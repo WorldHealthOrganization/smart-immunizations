@@ -27,13 +27,11 @@ parameter "Measurement Period" Interval<Date>
 
 context Patient 
 
-// TODO: How to group these so the CQL processor can create the proper measure resources
-
 /*
  * Numerator: Number of persons which have received the defined number of doses for an antigen 
  * Numerator Computation: COUNT of all persons receiving defined doses for an antigen (i.e. completed the schedule)
  */
-define "Numerator":
+define "BCG Numerator":
     exists([Immunization: vaccineCode in IMMZc."BCG Vaccine"] I
         where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
             and I.status = 'completed')
@@ -42,9 +40,12 @@ define "Numerator":
  * Denominator: Total number of persons which were expected to receive the dose for the antigen. For childhood antigens this is # of surviving infants.
  * Denominator Computation: COUNT of registered persons (actual population)
  */
-define "Denominator":
-    exists([ImmunizationRecommendation: recommendation.vaccineCode in IMMZc."BCG Vaccine"] I
-        where I.recommendation.dateCriterion.select(IMMZCom.ToDateTime(value) < (start of "Measurement Period") and IMMZCom.ToDateTime(value) < (end of "Measurement Period")).anyTrue()
+define "BCG Denominator":
+    exists([ImmunizationRecommendation] I
+        where I.recommendation.select(vaccineCode in IMMZc."BCG Vaccine" and 
+            dateCriterion.select(IMMZCom.ToDateTime(value) > (start of "Measurement Period") 
+            and IMMZCom.ToDateTime(value) < (end of "Measurement Period")).anyTrue()
+        ).anyTrue()
         ) 
 
 /*

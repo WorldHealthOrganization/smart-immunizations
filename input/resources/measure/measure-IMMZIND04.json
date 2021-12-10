@@ -1,6 +1,6 @@
 {
   "resourceType": "Measure",
-  "id": "IMMZIND01",
+  "id": "IMMZIND04",
   "meta": {
     "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm" ]
   },
@@ -21,16 +21,7 @@
   }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
     "valueParameterDefinition": {
-      "name": "Age Stratifier",
-      "use": "out",
-      "min": 0,
-      "max": "1",
-      "type": "Coding"
-    }
-  }, {
-    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
-    "valueParameterDefinition": {
-      "name": "BCG Numerator",
+      "name": "Numerator",
       "use": "out",
       "min": 0,
       "max": "1",
@@ -39,7 +30,7 @@
   }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
     "valueParameterDefinition": {
-      "name": "BCG Denominator",
+      "name": "Denominator",
       "use": "out",
       "min": 0,
       "max": "1",
@@ -59,10 +50,10 @@
     "valueDataRequirement": {
       "type": "Immunization",
       "profile": [ "http://hl7.org/fhir/StructureDefinition/Immunization" ],
-      "mustSupport": [ "occurrence", "vaccineCode", "status" ],
+      "mustSupport": [ "protocolApplied", "protocolApplied.doseNumber", "occurrence", "vaccineCode", "status" ],
       "codeFilter": [ {
         "path": "vaccineCode",
-        "valueSet": "http://fhir.org/guides/who/smart-immunize/ValueSet/bcgvaccine-values"
+        "valueSet": "http://fhir.org/guides/who/smart-immunize/ValueSet/mcvvaccine-values"
       } ]
     }
   }, {
@@ -80,30 +71,16 @@
       "mustSupport": [ "address", "id" ]
     }
   }, {
-    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
-    "valueCoding": {
-      "system": "http://ohie.org/CodeSystem/iso-8601-derived-periods",
-      "code": "P0Y--P1Y",
-      "display": "< 1 year"
-    }
-  }, {
-    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
-    "valueCoding": {
-      "system": "http://ohie.org/CodeSystem/iso-8601-derived-periods",
-      "code": "P1Y--P9999Y",
-      "display": "> 1 year"
-    }
-  }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
     "extension": [ {
       "url": "libraryName",
-      "valueString": "IMMZStratifiers"
+      "valueString": "IMMZIND04"
     }, {
       "url": "name",
-      "valueString": "Infant By Age Stratifier"
+      "valueString": "Numerator"
     }, {
       "url": "statement",
-      "valueString": "// Vaccinations given to infants stratified by age is < 1 yr or > 1 yrdefine \"Infant By Age Stratifier\":\n    case \n        when AgeInYearsAt(start of \"Measurement Period\") < 1 then \"P0Y--P1Y\"\n        when AgeInYearsAt(start of \"Measurement Period\") >= 1 then \"P1Y--P9999Y\"\n        else null\n    end"
+      "valueString": "/*\n * Numerator: The number of persons with a confirmed dose of MCV2 and no confirmed dose of MCV1 where MCV1 is overdue.\n * Numerator Computation: COUNT the number of persons with confirmed MCV1 dose administration and no confirmed MCV2 dose administration (having MCV2 overdue)\n */define \"Numerator\":\n    exists // Patient DID receive MCV1 before the measurement period\n        (\n            [Immunization: vaccineCode in IMMZc.\"MCV Vaccine\"] I\n            where IMMZCom.ToDate(I.occurrence) < start of \"Measurement Period\"\n                and IMMZCom.Only(I.protocolApplied).doseNumber = 1\n                and I.status = 'completed'\n        ) \n    and exists // Patient HAS an Immunization Recommendation for MCV 2 during the measurement period\n        (\n            [ImmunizationRecommendation] I\n            where I.recommendation.select(vaccineCode in IMMZc.\"MCV Vaccine\"\n                and dateCriterion.select(IMMZCom.ToDateTime(value) between start of \"Measurement Period\" and end of \"Measurement Period\" ).anyTrue() \n                and doseNumber = 2).anyTrue()\n        ) \n    and not exists// Patient DID NOT receive MCV2 during measurement period\n        (\n            [Immunization: vaccineCode in IMMZc.\"MCV Vaccine\"] I\n            where IMMZCom.ToDate(I.occurrence) during \"Measurement Period\"\n                and IMMZCom.Only(I.protocolApplied).doseNumber = 2\n                and I.status = 'completed'\n        )"
     }, {
       "url": "displaySequence",
       "valueInteger": 0
@@ -112,46 +89,16 @@
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
     "extension": [ {
       "url": "libraryName",
-      "valueString": "IMMZIND01"
+      "valueString": "IMMZIND04"
     }, {
       "url": "name",
-      "valueString": "Age Stratifier"
+      "valueString": "Denominator"
     }, {
       "url": "statement",
-      "valueString": "/*\n * Disaggregator: Age (<1 year , >1 year)\n */define \"Age Stratifier\":\n    IMMZStratifiers.\"Infant By Age Stratifier\""
+      "valueString": "/*\n * Denominator:  Total number of persons who have received an MCV1 administration.\n * Denominator Computation: COUNT number of persons with administered MCV1 dose and should have received MCV2.\n */define \"Denominator\":\n   exists // Patient DID receive MCV1 before the measurement period\n        (\n            [Immunization: vaccineCode in IMMZc.\"MCV Vaccine\"] I\n            where IMMZCom.ToDate(I.occurrence) < start of \"Measurement Period\"\n                and IMMZCom.Only(I.protocolApplied).doseNumber = 1\n                and I.status = 'completed'\n        ) \n    and exists \n        ( // Patient HAS an Immunization Recommendation for MCV 1 during the measurement period\n            [ImmunizationRecommendation] I\n            where I.recommendation.select(vaccineCode in IMMZc.\"MCV Vaccine\"\n                and dateCriterion.select(IMMZCom.ToDateTime(value) between start of \"Measurement Period\" and end of \"Measurement Period\" ).anyTrue() \n                and doseNumber = 2).anyTrue()\n        )"
     }, {
       "url": "displaySequence",
       "valueInteger": 1
-    } ]
-  }, {
-    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
-    "extension": [ {
-      "url": "libraryName",
-      "valueString": "IMMZIND01"
-    }, {
-      "url": "name",
-      "valueString": "BCG Numerator"
-    }, {
-      "url": "statement",
-      "valueString": "/*\n * Numerator: Number of persons which have received the defined number of doses for an antigen \n * Numerator Computation: COUNT of all persons receiving defined doses for an antigen (i.e. completed the schedule)\n */define \"BCG Numerator\":\n    exists([Immunization: vaccineCode in IMMZc.\"BCG Vaccine\"] I\n        where IMMZCom.ToDate(I.occurrence) during \"Measurement Period\"\n            and I.status = 'completed')"
-    }, {
-      "url": "displaySequence",
-      "valueInteger": 2
-    } ]
-  }, {
-    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
-    "extension": [ {
-      "url": "libraryName",
-      "valueString": "IMMZIND01"
-    }, {
-      "url": "name",
-      "valueString": "BCG Denominator"
-    }, {
-      "url": "statement",
-      "valueString": "/*\n * Denominator: Total number of persons which were expected to receive the dose for the antigen. For childhood antigens this is # of surviving infants.\n * Denominator Computation: COUNT of registered persons (actual population)\n */define \"BCG Denominator\":\n    exists([ImmunizationRecommendation] I\n        where I.recommendation.select(vaccineCode in IMMZc.\"BCG Vaccine\" and \n            dateCriterion.select(IMMZCom.ToDateTime(value) > (start of \"Measurement Period\") \n            and IMMZCom.ToDateTime(value) < (end of \"Measurement Period\")).anyTrue()\n        ).anyTrue()\n        )"
-    }, {
-      "url": "displaySequence",
-      "valueInteger": 3
     } ]
   }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -166,7 +113,7 @@
       "valueString": "// @dataElement: Geographic Region where the vaccination was provideddefine \"Geographic Region\": \n    WCom.Official([Location] L \n        where L.id = Last(Split(Immunization.location.reference, '/'))\n        return L.address).state"
     }, {
       "url": "displaySequence",
-      "valueInteger": 4
+      "valueInteger": 2
     } ]
   }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -181,13 +128,13 @@
       "valueString": "define \"By Geographic Region Stratifier\":\n    IMMZCommonDataElements.\"Geographic Region\""
     }, {
       "url": "displaySequence",
-      "valueInteger": 5
+      "valueInteger": 3
     } ]
   }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
     "extension": [ {
       "url": "libraryName",
-      "valueString": "IMMZIND01"
+      "valueString": "IMMZIND04"
     }, {
       "url": "name",
       "valueString": "Geographic Region Stratifier"
@@ -196,47 +143,43 @@
       "valueString": "/*\n * Disaggregator: Geographic District \n */define \"Geographic Region Stratifier\":\n    IMMZStratifiers.\"By Geographic Region Stratifier\""
     }, {
       "url": "displaySequence",
-      "valueInteger": 6
+      "valueInteger": 4
     } ]
   } ],
-  "name": "IMMZ.IND.01",
-  "title": "Immunization coverage for each vaccine in the national schedule.",
+  "name": "IMMZ.IND.04",
+  "title": "Dropout Rate of MCV1 to MCV2",
   "date": "2021-12-09T14:05:16-05:00",
-  "description": "Compares the actual doses administered with those that were expected to be administered. This data can be graphed by geographic region as a shaded map, or can be used on a temporal scale to show trends over time.",
+  "description": "The number of patients who started the MCV vaccination schedule however did not complete it. This is an indicator which illustrates the ability of the jurisdiction to immunize persons beyond childhood.",
   "relatedArtifact": [ {
     "type": "depends-on",
-    "display": "Library IMMZStratifiers",
-    "resource": "Library/IMMZStratifiers"
-  }, {
-    "type": "depends-on",
     "display": "Library IMMZc",
-    "resource": "Library/IMMZConcepts"
+    "resource": "http://fhir.org/guides/who/immz/Library/IMMZConcepts"
   }, {
     "type": "depends-on",
     "display": "Library FHIRHelpers",
-    "resource": "Library/FHIRHelpers|4.0.1"
+    "resource": "http://fhir.org/guides/who/immz/Library/FHIRHelpers|4.0.1"
   }, {
     "type": "depends-on",
     "display": "Library IMMZCom",
-    "resource": "Library/IMMZCommon"
+    "resource": "http://fhir.org/guides/who/immz/Library/IMMZCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZStratifiers",
+    "resource": "http://fhir.org/guides/who/immz/Library/IMMZStratifiers"
   }, {
     "type": "depends-on",
     "display": "Library IMMZCommonDataElements",
-    "resource": "Library/IMMZCommonIzDataElements"
+    "resource": "http://fhir.org/guides/who/immz/Library/IMMZCommonIzDataElements"
   }, {
     "type": "depends-on",
     "display": "Library WCom",
-    "resource": "Library/WHOCommon"
+    "resource": "http://fhir.org/guides/who/immz/Library/WHOCommon"
   }, {
     "type": "depends-on",
-    "display": "Code system ISO-8601-Derived Periods",
-    "resource": "http://ohie.org/CodeSystem/iso-8601-derived-periods"
-  }, {
-    "type": "depends-on",
-    "display": "Value set BCG Vaccine",
-    "resource": "http://fhir.org/guides/who/smart-immunize/ValueSet/bcgvaccine-values"
+    "display": "Value set MCV Vaccine",
+    "resource": "http://fhir.org/guides/who/smart-immunize/ValueSet/mcvvaccine-values"
   } ],
-  "library": [ "http://fhir.org/guides/who/core/Library/IMMZIND01" ],
+  "library": [ "http://fhir.org/guides/who/immz/Library/IMMZIND04" ],
   "scoring": {
     "coding": [ {
       "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
@@ -252,11 +195,11 @@
   "improvementNotation": {
     "coding": [ {
       "system": "http://terminology.hl7.org/CodeSystem/measure-improvement-notation",
-      "code": "increase"
+      "code": "decrease"
     } ]
   },
   "group": [ {
-    "id": "IMMZIND01.BCG",
+    "id": "IMMZIND04",
     "population": [ {
       "id": "denominator",
       "code": {
@@ -267,7 +210,7 @@
       },
       "criteria": {
         "language": "text/cql-identifier",
-        "expression": "BCG Denominator"
+        "expression": "Denominator"
       }
     }, {
       "id": "numerator",
@@ -279,16 +222,10 @@
       },
       "criteria": {
         "language": "text/cql-identifier",
-        "expression": "BCG Numerator"
+        "expression": "Numerator"
       }
     } ],
     "stratifier": [ {
-      "id": "by-age",
-      "criteria": {
-        "language": "text/cql-identifier",
-        "expression": "Age Stratifier"
-      }
-    }, {
       "id": "by-geographic-region",
       "criteria": {
         "expression": "Geographic Region Stratifier"
