@@ -25,6 +25,8 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
+parameter "Census Target Births" Integer
+parameter "Census Target Infant Deaths" Integer
 
 context Patient
 
@@ -40,11 +42,11 @@ define "numerator":
  * Denominator Computation: PARAMETER number of births MINUS PARAMETER number of infant deaths
  */
 define "denominator":
-	true // TODO: Write logic here 
+	"Census Target Surviving Infants"
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZStratifiers."By Geographic Region Stratifier"
 

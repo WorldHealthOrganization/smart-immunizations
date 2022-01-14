@@ -27,6 +27,8 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
+parameter "Census Estimated Population of Children" Integer
+parameter "Census Estimated Population of Adolescants" Integer
 
 context Patient
 
@@ -39,10 +41,10 @@ define "numerator":
 
 /*
  * Denominator: Estimated census of children over one year of age in reporting area.
- * Denominator Computation: PARAMETER number children from census over one year of age.
+ * Denominator Computation: PARAMETER number children from census plus PARMATER number of adolescants from census
  */
 define "denominator":
-	true // TODO: Write logic here 
+	"Census Estimated Population of Children" + "Census Estimated Population of Adolescants" 
 
 /*
  * Disaggregator: Dose Sequence (1, 2)
@@ -60,5 +62,5 @@ define "Age Group  Stratifier":
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZStratifiers."By Geographic Region Stratifier"
 

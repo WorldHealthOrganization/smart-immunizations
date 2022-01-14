@@ -10,6 +10,7 @@
  * 
  * Disaggregation:
  *   - Age Group (< 9 months, 9 - 18 months, 18 months - 15 years, > 15 years)
+ *   - Geographic Region
  * 
  * References: WHO Immunization Facility Analysis Guide (1)
  */
@@ -48,3 +49,8 @@ define "denominator":
 define "Age Group  Stratifier":
 	true // todo: fill in logic
 
+/*
+ * Disaggregator: Geographic Region 
+ */
+define "Geographic Region  Stratifier":
+	IMMZStratifiers."By Geographic Region Stratifier"

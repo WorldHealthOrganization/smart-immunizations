@@ -46,5 +46,5 @@ define "denominator":
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZStratifiers."By Geographic Region Stratifier"
 

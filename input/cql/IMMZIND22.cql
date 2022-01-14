@@ -62,11 +62,6 @@ define "Age Group  Stratifier":
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZStratifiers."By Geographic Region Stratifier"
 
-/*
- * Disaggregator: 
- */
-define " Stratifier":
-	true // todo: fill in logic
 

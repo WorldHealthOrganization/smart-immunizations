@@ -10,6 +10,7 @@
  * 
  * Disaggregation:
  *   - Age Group (< 9 months, 9 - 18 months, 18 months - 15 years, > 15 years)
+ *   - Geographic Region
  * 
  * References: WHO Immunization Facility Analysis Guide (1), WHO recommendations for routine immunization (2)
  */
@@ -25,6 +26,8 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
+parameter "Census Estimated Population of Children" Integer
+parameter "Census Estimated Population of Adolescants" Integer
 
 context Patient
 
@@ -37,10 +40,11 @@ define "numerator":
 
 /*
  * Denominator: Estimated census of children over one year of age plus estimated census sample of adolescents in reporting area.
- * Denominator Computation: PARAMETER number of children from census over one year of age PLUS PARAMETER number of adolescants
+ * Denominator Computation: PARAMETER number of children from census  PLUS PARAMETER number of adolescants from census
  */
 define "denominator":
-	true // TODO: Write logic here 
+	"Census Estimated Population of Children" + "Census Estimated Population of Adolescants" 
+
 
 /*
  * Disaggregator: Age Group (< 9 months, 9 - 18 months, 18 months - 15 years, > 15 years)
@@ -48,3 +52,8 @@ define "denominator":
 define "Age Group  Stratifier":
 	true // todo: fill in logic
 
+/*
+ * Disaggregator: Geographic Region
+ */
+define "Geographic Region Stratifier":
+	IMMZStratifiers."By Geographic Region Stratifier"

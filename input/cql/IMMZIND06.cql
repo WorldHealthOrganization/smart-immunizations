@@ -6,7 +6,7 @@
  * Numerator: Number of administrations of vaccines containing an MCV component during reporting period 
  * Numerator Computation: COUNT immunization events WHERE administered product is  a Meningococcal vaccine (IMMZ.A1.DE10) during reporting period
  * Denominator: Estimated census of children over one year of age plus estimated census sample of adolescents in reporting area.
- * Denominator Computation: PARAMETER number of children from census over one year of age PLUS PARAMETER number of adolescants
+ * Denominator Computation: PARAMETER number of children from census  PLUS PARAMETER number of adolescants from census
  * 
  * Disaggregation:
  *   - Dose Sequence (1, 2)
@@ -27,6 +27,8 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
+parameter "Census Estimated Population of Children" Integer
+parameter "Census Estimated Population of Adolescants" Integer
 
 context Patient
 
@@ -42,7 +44,7 @@ define "numerator":
  * Denominator Computation: PARAMETER number of children from census over one year of age PLUS PARAMETER number of adolescants
  */
 define "denominator":
-	true // TODO: Write logic here 
+	"Census Estimated Population of Children" + "Census Estimated Population of Adolescants" 
 
 /*
  * Disaggregator: Dose Sequence (1, 2)
@@ -60,11 +62,5 @@ define "Age Group  Stratifier":
  * Disaggregator: Geographic Region 
  */
 define "Geographic Region  Stratifier":
-	true // todo: fill in logic
-
-/*
- * Disaggregator: 
- */
-define " Stratifier":
-	true // todo: fill in logic
+	IMMZStratifiers."By Geographic Region Stratifier"
 
