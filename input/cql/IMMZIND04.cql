@@ -1,17 +1,19 @@
 /*
- * Library: IMMZ.IND.4
- * WHO Immunization Indicator 4
- * Dropout Rate of MCV1 to MCV2.
+ * Library: IMMZ.IND.04
+ * Immunization coverage for Measles (Target / Reported Cohort) 
+ * Compares the actual doses of Measles vaccinations over the estimated population of children (> 1 year old)
  * 
- * The number of children who started the MCV vaccination schedule however did not complete it. This is an indicator which illustrates the ability of the jurisdiction to immunize persons beyond childhood.
+ * Numerator: Number of administrations of vaccinations containing a Measles component during reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Measles vaccine (IMMZ.A1.DE3) during reporting period
+ * Denominator: Estimated census sample of children over one year of age in reporting area.
+ * Denominator Computation: PARAMETER number of chilren from census over one year of age
  * 
- * Numerator: The number of persons with a confirmed dose of MCV2 and no confirmed dose of MCV1 where MCV1 is overdue.
- * Numerator Computation: COUNT the number of persons with confirmed MCV1 dose administration and no confirmed MCV2 dose administration (having MCV2 overdue)
- * Denominator:  Total number of persons who have received an MCV1 administration.
- * Denominator Computation: COUNT number of persons with administered MCV1 dose and should have received MCV2.
- *
- * Disaggregation: 
- *  Geographic District 
+ * Disaggregation:
+ *   - Dose Sequence (1, 2)
+ *   - Age Group (0 - 9 months, 9 - 18 months, > 18 months)
+ *   - Geographic Region
+ * 
+ * References: WHO Immunization Facility Analysis Guide (1), WHO recommendations for routine immunization (2)
  */
 
 library IMMZIND04
@@ -26,57 +28,43 @@ include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
 
-context Patient 
+context Patient
 
 /*
- * Numerator: The number of persons with a confirmed dose of MCV2 and no confirmed dose of MCV1 where MCV1 is overdue.
- * Numerator Computation: COUNT the number of persons with confirmed MCV1 dose administration and no confirmed MCV2 dose administration (having MCV2 overdue)
+ * Numerator: Number of administrations of vaccinations containing a Measles component during reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Measles vaccine (IMMZ.A1.DE3) during reporting period
  */
-define "Numerator":
-    exists // Patient DID receive MCV1 before the measurement period
-        (
-            [Immunization: vaccineCode in IMMZc."MCV Vaccine"] I
-            where IMMZCom.ToDate(I.occurrence) < start of "Measurement Period"
-                and IMMZCom.Only(I.protocolApplied).doseNumber = 1
-                and I.status = 'completed'
-        ) 
-    and exists // Patient HAS an Immunization Recommendation for MCV 2 during the measurement period
-        (
-            [ImmunizationRecommendation] I
-            where I.recommendation.select(vaccineCode in IMMZc."MCV Vaccine"
-                and dateCriterion.select(IMMZCom.ToDateTime(value) between start of "Measurement Period" and end of "Measurement Period" ).anyTrue() 
-                and doseNumber = 2).anyTrue()
-        ) 
-    and not exists// Patient DID NOT receive MCV2 during measurement period
-        (
-            [Immunization: vaccineCode in IMMZc."MCV Vaccine"] I
-            where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
-                and IMMZCom.Only(I.protocolApplied).doseNumber = 2
-                and I.status = 'completed'
-        )
-                        
-/*
- * Denominator:  Total number of persons who have received an MCV1 administration.
- * Denominator Computation: COUNT number of persons with administered MCV1 dose and should have received MCV2.
- */
-define "Denominator":
-   exists // Patient DID receive MCV1 before the measurement period
-        (
-            [Immunization: vaccineCode in IMMZc."MCV Vaccine"] I
-            where IMMZCom.ToDate(I.occurrence) < start of "Measurement Period"
-                and IMMZCom.Only(I.protocolApplied).doseNumber = 1
-                and I.status = 'completed'
-        ) 
-    and exists 
-        ( // Patient HAS an Immunization Recommendation for MCV 1 during the measurement period
-            [ImmunizationRecommendation] I
-            where I.recommendation.select(vaccineCode in IMMZc."MCV Vaccine"
-                and dateCriterion.select(IMMZCom.ToDateTime(value) between start of "Measurement Period" and end of "Measurement Period" ).anyTrue() 
-                and doseNumber = 2).anyTrue()
-        ) 
+define "numerator":
+	true // TODO: Write logic here 
 
 /*
- * Disaggregator: Geographic District 
+ * Denominator: Estimated census sample of children over one year of age in reporting area.
+ * Denominator Computation: PARAMETER number of chilren from census over one year of age
+ */
+define "denominator":
+	true // TODO: Write logic here 
+
+/*
+ * Disaggregator: Dose Sequence (1, 2)
+ */
+define "Dose Sequence  Stratifier":
+	true // todo: fill in logic
+
+/*
+ * Disaggregator: Age Group (0 - 9 months, 9 - 18 months, > 18 months)
+ */
+define "Age Group  Stratifier":
+	true // todo: fill in logic
+
+/*
+ * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-    IMMZStratifiers."By Geographic Region Stratifier"
+	true // todo: fill in logic
+
+/*
+ * Disaggregator: 
+ */
+define " Stratifier":
+	true // todo: fill in logic
+

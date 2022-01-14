@@ -1,17 +1,19 @@
 /*
- * Library: IMMZ.IND.2
- * WHO Immunization Indicator 2
- * Dropout Rate of DTP1 to DTP3.
+ * Library: IMMZ.IND.02
+ * Immunization coverage for DTP (Target / Reported Population) 
+ * Compares the actual doses of DTP derived vaccinations administered over the estimated number of suviving infants. 
  * 
- * "The number of children who started the DTP vaccination protocol (i.e. were administered DTP1) however did not complete the DTP vaccination protocol (i.e. did not receive DTP3). 
+ * Numerator: Number of administrations of vaccinations containing a Diptheria, Tetanus, and Pertussis component during the reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a DTP vaccine (IMMZ.A1.DE24)  during reporting period
+ * Denominator: Estimated number of surviving infants (number of births minus infant deaths) for reporting area.
+ * Denominator Computation: PARAMETER number of births MINUS PARAMETER number of infant deaths
  * 
- * Numerator: The number of persons administered DTP3 who did not receive DTP1.
- * Numerator Computation: COUNT number of persons administered DTP1 and not given DTP3 where the recommended date for DTP3 has passed
- * Denominator:  The number of persons with a confirmed does of DTP1.
- * Denominator Computation: COUNT number of persons administered DTP1.
- *
- * Disaggregation: 
- *  Geographic District 
+ * Disaggregation:
+ *   - Dose Sequence (1, 2, 3)
+ *   - Age Group (< 1 year or >1 year)
+ *   - Geographic Region
+ * 
+ * References: WHO Immunization Facility Analysis Guide (1), WHO recommendations for routine immunization (2)
  */
 
 library IMMZIND02
@@ -26,57 +28,37 @@ include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
 
-context Patient 
+context Patient
 
 /*
- * Numerator: The number of persons administered DTP3 who did not receive DTP1.
- * Numerator Computation: COUNT number of persons administered DTP1 and not given DTP3 where the recommended date for DTP3 has passed during hte measurement period
+ * Numerator: Number of administrations of vaccinations containing a Diptheria, Tetanus, and Pertussis component during the reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is a DTP vaccine (IMMZ.A1.DE24)  during reporting period
  */
-define "Numerator":
-    exists // Patient DID receive DTP 1 before the measurement period
-        (
-            [Immunization: vaccineCode in IMMZc."DTP Vaccine"] I
-            where IMMZCom.ToDate(I.occurrence) < start of "Measurement Period"
-                and IMMZCom.Only(I.protocolApplied).doseNumber = 1
-                and I.status = 'completed'
-        ) 
-    and exists // Patient HAS an Immunization Recommendation for DTP 3 during the measurement period
-        (
-            [ImmunizationRecommendation] I
-            where I.recommendation.select(vaccineCode in IMMZc."DTP Vaccine"
-                and dateCriterion.select(IMMZCom.ToDateTime(value) between start of "Measurement Period"  and end of "Measurement Period").anyTrue() 
-                and doseNumber = 3).anyTrue()
-        ) 
-    and not exists// Patient DID NOT receive DTP3 during measurement period
-        (
-            [Immunization: vaccineCode in IMMZc."DTP Vaccine"] I
-            where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
-                and IMMZCom.Only(I.protocolApplied).doseNumber = 3
-                and I.status = 'completed'
-        )
-                        
-/*
- * Denominator:  The number of persons with a confirmed dose of DTP1 who were recommended to have received .
- * Denominator Computation: COUNT number of persons administered DTP1 and should have gotten DTP3.
- */
-define "Denominator":
-    exists
-        ( // Patient DID receive DTP 1 before measurement period
-            [Immunization: vaccineCode in IMMZc."DTP Vaccine"] I
-            where IMMZCom.ToDate(I.occurrence) < start of "Measurement Period"
-                and IMMZCom.Only(I.protocolApplied).doseNumber = 1
-                and I.status = 'completed'
-        ) 
-    and exists 
-        ( // Patient HAS an Immunization Recommendation for DTP 3 during the measurement period
-            [ImmunizationRecommendation] I
-            where I.recommendation.select(vaccineCode in IMMZc."DTP Vaccine"
-                and dateCriterion.select(IMMZCom.ToDateTime(value) between start of "Measurement Period" and end of "Measurement Period").anyTrue() 
-                and doseNumber = 3).anyTrue()
-        ) 
+define "numerator":
+	true // TODO: Write logic here 
 
 /*
- * Disaggregator: Geographic District 
+ * Denominator: Estimated number of surviving infants (number of births minus infant deaths) for reporting area.
+ * Denominator Computation: PARAMETER number of births MINUS PARAMETER number of infant deaths
+ */
+define "denominator":
+	true // TODO: Write logic here 
+
+/*
+ * Disaggregator: Dose Sequence (1, 2, 3)
+ */
+define "Dose Sequence  Stratifier":
+	true // todo: fill in logic
+
+/*
+ * Disaggregator: Age Group (< 1 year or >1 year)
+ */
+define "Age Group  Stratifier":
+	true // todo: fill in logic
+
+/*
+ * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-    IMMZStratifiers."By Geographic Region Stratifier"
+	true // todo: fill in logic
+

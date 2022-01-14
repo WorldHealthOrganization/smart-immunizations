@@ -1,17 +1,19 @@
 /*
- * Library: IMMZ.IND.3
- * WHO Immunization Indicator 3
- * Dropout Rate of BCG to MCV.
+ * Library: IMMZ.IND.03
+ * Immunization coverage for OPV and IPV (Target / Reported Cohort) 
+ * Compares the actual doses of each of IPV, OPV over the estimated number of surviving infants
  * 
- * The number of children who were administered BCG however did not receive MCV1. 
+ * Numerator: Number of administrations of IPV or OPV during reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a polio vaccine (IMMZ.A1.DE14) during reporting period
+ * Denominator: Estimated number of surviving infants (number of births minus infant deaths) for reporting area.
+ * Denominator Computation: PARAMETER number of births MINUS PARAMETER number of infant deaths
  * 
- * Numerator: The number of persons with a confirmed dose of BCG with no confirmed dose of MCV1 where MCV1 is overdue
- * Numerator Computation: COUNT the number of patients with confirmed BCG dose and no confirmed record of MCV1 having an immunization recommendation for MCV1 during the period
- * Denominator:  The number of persons with a confirmed does of BCG.
- * Denominator Computation: COUNT number of persons administered BCG with an immunization recommendation for MCV1 during the reporting period.
- *
- * Disaggregation: 
- *  Geographic District 
+ * Disaggregation:
+ *   - Dose sequence (1, 2, 3)
+ *   - Age Group (0 to 3 months / 0 to 14 weeks, 3 to 6 months / 14 to 24 weeks, > 6 months / > 24 weeks )
+ *   - Geographic Region
+ * 
+ * References: WHO Immunization Facility Analysis Guide (1), WHO recommendations for routine immunization (2)
  */
 
 library IMMZIND03
@@ -26,55 +28,37 @@ include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
 
-context Patient 
+context Patient
 
 /*
- * Numerator: The number of persons with a confirmed dose of BCG with no confirmed dose of MCV1 where MCV1 is overdue
- * Numerator Computation: COUNT the number of patients with confirmed BCG dose and no confirmed record of MCV1 having an immunization recommendation for MCV1 during the period
+ * Numerator: Number of administrations of IPV or OPV during reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is a polio vaccine (IMMZ.A1.DE14) during reporting period
  */
-define "Numerator":
-    exists // Patient DID receive BCG before the measurement period
-        (
-            [Immunization: vaccineCode in IMMZc."BCG Vaccine"] I
-            where IMMZCom.ToDate(I.occurrence) < start of "Measurement Period"
-                and I.status = 'completed'
-        ) 
-    and exists // Patient HAS an Immunization Recommendation for MCV 1 during the measurement period
-        (
-            [ImmunizationRecommendation] I
-            where I.recommendation.select(vaccineCode in IMMZc."MCV Vaccine"
-                and dateCriterion.select(IMMZCom.ToDateTime(value) between start of "Measurement Period" and end of "Measurement Period" ).anyTrue() 
-                and doseNumber = 1).anyTrue()
-        ) 
-    and not exists// Patient DID NOT receive DTP3 during measurement period
-        (
-            [Immunization: vaccineCode in IMMZc."MCV Vaccine"] I
-            where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
-                and IMMZCom.Only(I.protocolApplied).doseNumber = 1
-                and I.status = 'completed'
-        )
-                        
-/*
- * Denominator:  The number of persons with a confirmed does of BCG.
- * Denominator Computation: COUNT number of persons administered BCG with an immunization recommendation for MCV1 during the reporting period.
- */
-define "Denominator":
-    exists
-        ( // Patient DID receive BCG  before measurement period
-            [Immunization: vaccineCode in IMMZc."BCG Vaccine"] I
-            where IMMZCom.ToDate(I.occurrence) < start of "Measurement Period"
-                and I.status = 'completed'
-        ) 
-    and exists 
-        ( // Patient HAS an Immunization Recommendation for MCV 1 during the measurement period
-            [ImmunizationRecommendation] I
-            where I.recommendation.select(vaccineCode in IMMZc."MCV Vaccine"
-                and dateCriterion.select(IMMZCom.ToDateTime(value) between start of "Measurement Period" and end of "Measurement Period" ).anyTrue() 
-                and doseNumber = 1).anyTrue()
-        ) 
+define "numerator":
+	true // TODO: Write logic here 
 
 /*
- * Disaggregator: Geographic District 
+ * Denominator: Estimated number of surviving infants (number of births minus infant deaths) for reporting area.
+ * Denominator Computation: PARAMETER number of births MINUS PARAMETER number of infant deaths
+ */
+define "denominator":
+	true // TODO: Write logic here 
+
+/*
+ * Disaggregator: Dose sequence (1, 2, 3)
+ */
+define "Dose sequence  Stratifier":
+	true // todo: fill in logic
+
+/*
+ * Disaggregator: Age Group (0 to 3 months / 0 to 14 weeks, 3 to 6 months / 14 to 24 weeks, > 6 months / > 24 weeks )
+ */
+define "Age Group  Stratifier":
+	true // todo: fill in logic
+
+/*
+ * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-    IMMZStratifiers."By Geographic Region Stratifier"
+	true // todo: fill in logic
+
