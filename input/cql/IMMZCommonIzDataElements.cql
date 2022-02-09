@@ -16,6 +16,7 @@ codesystem "Vaccines Administered": 'http://hl7.org/fhir/ValueSet/vaccine-code'
 
 // Vaccines administered
 code "BCG": 'BCG' from "Vaccines Administered" display 'BCG'
+//should this reference the BCG valueset from IMMZConcepts.cql? 
 
 context Immunization
 
