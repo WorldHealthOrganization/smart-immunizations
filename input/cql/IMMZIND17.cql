@@ -1,26 +1,17 @@
 /*
  * Library: IMMZ.IND.17
- * Adverse Event Following Immunization (AEFI) case rate. 
- * Clinics should report adverse events (reported and confirmed) to the central authority. 
-
-This should be tracked as an aggregate tally (which should indicate the severity, and optionally the manifesttation such as rash, vomiting, etc.), with severe cases being reported using case reporting forms, and should include an analysis of whether the AEFI was a direct result (confirmed) of vaccination or not (suspected). Serious cases are those which involved hospitalization, disability, or death.
-
-Investigation of AEFI events can lead to withdrawal of the vaccine from the market, or inform further guidance on administration of a particular antigen/product.
-
+ * Immunization coverage for Japanese encephalitis vaccines (Estimated Denominator) 
+ * Compares the administered doses of Japanese encephalitis vaccines with a country specified target population expressed as a percentage.
  * 
- * Numerator: Number of persons which have received a vaccine dose, and have reported an adverse event 
- * Numerator Computation: COUNT immunization HAVING reaction reported during reporting period
- * Denominator: The total number of doses administered to patients of the product.
- * Denominator Computation: COUNT number of doses administered during reporting period
+ * Numerator: Number of administrations of vaccines which contain Japanese encephalitis component during the reporting period. 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Japanese Encephalitis vaccine (IMMZ.A1.DE8) during reporting period.
+ * Denominator: Country defined target population.
+ * Denominator Computation: PARAMETER country defined target population.
  * 
  * Disaggregation:
- *   - Vaccine (BCG, OPV, etc.)
- *   - Product/Manufacturer
- *   - Severity (Severe, Non-Severe)
  *   - Geographic Region
- *   - Manifestation / Event (optional - Rash, Vomiting,  etc.)
  * 
- * References: WHO Immunization Facility Analysis Guide (1)
+ * References: WHO / UNICEF Joint Reporting Form (3 - element 4300)
  */
 
 library IMMZIND17
@@ -38,52 +29,22 @@ parameter "Measurement Period" Interval<Date>
 context Patient
 
 /*
- * Numerator: Number of persons which have received a vaccine dose, and have reported an adverse event
- * Numerator Computation: COUNT immunization HAVING reaction reported during reporting period
+ * Numerator: Number of administrations of vaccines which contain Japanese encephalitis component during the reporting period.
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Japanese Encephalitis vaccine (IMMZ.A1.DE8) during reporting period.
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: The total number of doses administered to patients of the product.
- * Denominator Computation: COUNT number of doses administered during reporting period
+ * Denominator: Country defined target population.
+ * Denominator Computation: PARAMETER country defined target population.
  */
 define "denominator":
 	true // TODO: Write logic here 
 
 /*
- * Disaggregator: Vaccine (BCG, OPV, etc.)
- */
-define "Vaccine  Stratifier":
-	true // todo: fill in logic
-
-/*
- * Disaggregator: Product/Manufacturer
- */
-define "Product/Manufacturer Stratifier":
-	true // todo: fill in logic
-
-/*
- * Disaggregator: Severity (Severe, Non-Severe)
- */
-define "Severity  Stratifier":
-	true // todo: fill in logic
-
-/*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
-
-/*
- * Disaggregator: Manifestation / Event (optional - Rash, Vomiting,  etc.)
- */
-define "Manifestation / Event  Stratifier":
-	true // todo: fill in logic
-
-/*
- * Disaggregator: 
- */
-define " Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
 

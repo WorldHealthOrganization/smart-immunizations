@@ -1,15 +1,14 @@
 /*
  * Library: IMMZ.IND.26
- * Immunization coverage for Rubella Vaccinations (Actual / Planned Cohort) 
- * Compares the actual number of children who have a confirmed dose of Vaccinations with the actual number of children which should have received Vaccinations vaccination during the reporting period
+ * Functional status of cold-chain storage equipment. 
+ * The proportion of refrigerators which are functional within a clinic.
  * 
- * Numerator: Number of administrations of vaccines containing a Rubella component during reporting period 
- * Numerator Computation: COUNT immunization events WHERE administered product is a Rubella vaccine (IMMZ.A1.DE17) during reporting period
- * Denominator: The number of Rubella immunizations events which were planned/eligible to be administered during the reporting period
- * Denominator Computation: COUNT immunization recommendations WHERE suggested vaccine product is a Rubella vaccine (IMMZ.A1.DE17) during reporting period
+ * Numerator: The number of functional refrigerators in the clinic. 
+ * Numerator Computation: COUNT refrigerators which are functional during the reporting period
+ * Denominator: The number of refrigerators which are present in the clinic.
+ * Denominator Computation: COUNT total refrigerators (regardless of status)
  * 
  * Disaggregation:
- *   - Age Group (< 9 months, 9 - 18 months, 18 months - 15 years, > 15 years)
  *   - Geographic Region
  * 
  * References: WHO Immunization Facility Analysis Guide (1)
@@ -30,27 +29,22 @@ parameter "Measurement Period" Interval<Date>
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccines containing a Rubella component during reporting period
- * Numerator Computation: COUNT immunization events WHERE administered product is a Rubella vaccine (IMMZ.A1.DE17) during reporting period
+ * Numerator: The number of functional refrigerators in the clinic.
+ * Numerator Computation: COUNT refrigerators which are functional during the reporting period
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: The number of Rubella immunizations events which were planned/eligible to be administered during the reporting period
- * Denominator Computation: COUNT immunization recommendations WHERE suggested vaccine product is a Rubella vaccine (IMMZ.A1.DE17) during reporting period
+ * Denominator: The number of refrigerators which are present in the clinic.
+ * Denominator Computation: COUNT total refrigerators (regardless of status)
  */
 define "denominator":
 	true // TODO: Write logic here 
 
 /*
- * Disaggregator: Age Group (< 9 months, 9 - 18 months, 18 months - 15 years, > 15 years)
+ * Disaggregator: Geographic Region
  */
-define "Age Group  Stratifier":
-	true // todo: fill in logic
-
-/*
- * Disaggregator: Geographic Region 
- */
-define "Geographic Region  Stratifier":
+define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
+

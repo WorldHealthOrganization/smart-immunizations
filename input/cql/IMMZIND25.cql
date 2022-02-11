@@ -1,16 +1,14 @@
 /*
  * Library: IMMZ.IND.25
- * Immunization coverage for Mumps (Actual / Planned Cohort) 
- * Compares the actual number of children who have a confirmed dose of Mumps with the actual number of children which should have received Mumps vaccination during the reporting period
+ * Availability of vaccine stock and supplies 
+ * The proportion of clinics which have had no stock outs for vaccine or injection supplies when they are demanded/required.
  * 
- * Numerator: Number of administrations of vaccines containing a Mumps component during reporting period 
- * Numerator Computation: COUNT immunization events WHERE administered product is a Mumps vaccine (IMMZ.A1.DE11) during reporting period
- * Denominator: The number of Mumps immunization events which were planned/eligible to be administered during the reporting period.
- * Denominator Computation: COUNT immunization recommendations WHERE suggested vaccine product is a Mumps vaccine (IMMZ.A1.DE11) during reporting period
+ * Numerator: The number of vaccination clinics which had no stock outs for the reporting period (i.e. they were able to fully meet all vaccine demand) 
+ * Numerator Computation: COUNT of facilities which were able to fulfill all vaccination activities.
+ * Denominator: Total number of facilities.
+ * Denominator Computation: COUNT all locations in the region
  * 
  * Disaggregation:
- *   - Dose Sequence (1, 2)
- *   - Age Group (< 11 months, 11 - 19 months, > 19 months)
  *   - Geographic Region
  * 
  * References: WHO Immunization Facility Analysis Guide (1)
@@ -31,30 +29,18 @@ parameter "Measurement Period" Interval<Date>
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccines containing a Mumps component during reporting period
- * Numerator Computation: COUNT immunization events WHERE administered product is a Mumps vaccine (IMMZ.A1.DE11) during reporting period
+ * Numerator: The number of vaccination clinics which had no stock outs for the reporting period (i.e. they were able to fully meet all vaccine demand)
+ * Numerator Computation: COUNT of facilities which were able to fulfill all vaccination activities.
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: The number of Mumps immunization events which were planned/eligible to be administered during the reporting period.
- * Denominator Computation: COUNT immunization recommendations WHERE suggested vaccine product is a Mumps vaccine (IMMZ.A1.DE11) during reporting period
+ * Denominator: Total number of facilities.
+ * Denominator Computation: COUNT all locations in the region
  */
 define "denominator":
 	true // TODO: Write logic here 
-
-/*
- * Disaggregator: Dose Sequence (1, 2)
- */
-define "Dose Sequence  Stratifier":
-	true // todo: fill in logic
-
-/*
- * Disaggregator: Age Group (< 11 months, 11 - 19 months, > 19 months)
- */
-define "Age Group  Stratifier":
-	true // todo: fill in logic
 
 /*
  * Disaggregator: Geographic Region

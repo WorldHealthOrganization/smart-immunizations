@@ -1,17 +1,18 @@
 /*
  * Library: IMMZ.IND.19
- * Immunization coverage for BCG (Actual / Planned Cohort) 
- * Compares the actual number of children who have a confirmed dose of BCG with the actual number of children which should have received a BCG vaccination for the reporting period (those infants who have not died)
+ * Immunization coverage for seasonal influenza (Estimated Denominator) 
+ * Compares the administered doses of seasonal influenza vaccines with country defined target population (at risk) expressed as a percentage
  * 
- * Numerator: The number of BCG immunizations administered during the report period 
- * Numerator Computation: COUNT immunization events WHERE product administered is a BCG vaccine (IMMZ.A1.DE1) during reporting period
- * Denominator: The number of non-dead infants born during the reporting period.
- * Denominator Computation: COUNT patients WHERE deceased is null and date of birth is during report period
+ * Numerator: Number of administrations of seasonal influenza vaccines during reporting period. 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a seasonal influenza vaccine (IMMZ.A1.DE18) during reporting period.
+ * Denominator: Country defined target population of at-risk individuals.
+ * Denominator Computation: PARAMETER country defined target population.
  * 
  * Disaggregation:
+ *   - Age Group (< 1 year, < 15 year,  > 60 year)
  *   - Geographic Region
  * 
- * References: WHO Immunization Facility Analysis Guide (1)
+ * References: WHO / UNICEF Joint Reporting Form (3 - elements 7030 - 7050)
  */
 
 library IMMZIND19
@@ -29,18 +30,24 @@ parameter "Measurement Period" Interval<Date>
 context Patient
 
 /*
- * Numerator: The number of BCG immunizations administered during the report period
- * Numerator Computation: COUNT immunization events WHERE product administered is a BCG vaccine (IMMZ.A1.DE1) during reporting period
+ * Numerator: Number of administrations of seasonal influenza vaccines during reporting period.
+ * Numerator Computation: COUNT immunization events WHERE administered product is a seasonal influenza vaccine (IMMZ.A1.DE18) during reporting period.
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: The number of non-dead infants born during the reporting period.
- * Denominator Computation: COUNT patients WHERE deceased is null and date of birth is during report period
+ * Denominator: Country defined target population of at-risk individuals.
+ * Denominator Computation: PARAMETER country defined target population.
  */
 define "denominator":
 	true // TODO: Write logic here 
+
+/*
+ * Disaggregator: Age Group (< 1 year, < 15 year,  > 60 year)
+ */
+define "Age Group  Stratifier":
+	true // todo: fill in logic
 
 /*
  * Disaggregator: Geographic Region

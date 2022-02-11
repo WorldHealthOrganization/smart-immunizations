@@ -1,16 +1,16 @@
 /*
  * Library: IMMZ.IND.12
- * Dropout Rate of MCV1 to MCV2 (Target / Reported Cohort) 
- * The number of children who started the MCV vaccination schedule however did not complete it. This is an indicator which illustrates the ability of the jurisdiction to immunize persons beyond childhood.
+ * Immunization coverage for Varicella vaccinations (Estimated Denominator) 
+ * Compares the administered doses of varicella containing vaccine with a country specified denominator expressed as a percentage.
  * 
- * Numerator: The number of doses of MCV1 administered during reporting period minus the number of MCV2 doses administered during the report period 
- * Numerator Computation: COUNT immunization events WHERE administered product is MCV (IMMZ.A1.10) AND dose sequence is 1  during reporting period
-SUBTRACT 
-COUNT immunization events WHERE administered product is MCV (IMMZ.A1.10) AND dose sequence is 3 during reporting period
- * Denominator: Number of doses of MCV1 administered during the reporting period.
- * Denominator Computation: COUNT immunization events WHERE administered product is MCV (IMMZ.A1.10) AND dose sequence is 1  during reporting period
+ * Numerator: Number of administrations of vaccines containing a varicella component during reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Varicella vaccine (IMMZ.A1.DE.22) during reporting period
+ * Denominator: Country defined denominator (no guidance on JRF)
+ * Denominator Computation: PARAMETER country defined target population.
  * 
  * Disaggregation:
+ *   - Dose Sequence (1, 2)
+ *   - Age Group (< 12 months, 12 - 18 months, 18 - 36 months, 36 months - 12 years, > 12 years)
  *   - Geographic Region
  * 
  * References: WHO Immunization Facility Analysis Guide (1)
@@ -31,20 +31,30 @@ parameter "Measurement Period" Interval<Date>
 context Patient
 
 /*
- * Numerator: The number of doses of MCV1 administered during reporting period minus the number of MCV2 doses administered during the report period
- * Numerator Computation: COUNT immunization events WHERE administered product is MCV (IMMZ.A1.10) AND dose sequence is 1  during reporting period
-SUBTRACT 
-COUNT immunization events WHERE administered product is MCV (IMMZ.A1.10) AND dose sequence is 3 during reporting period
+ * Numerator: Number of administrations of vaccines containing a varicella component during reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Varicella vaccine (IMMZ.A1.DE.22) during reporting period
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: Number of doses of MCV1 administered during the reporting period.
- * Denominator Computation: COUNT immunization events WHERE administered product is MCV (IMMZ.A1.10) AND dose sequence is 1  during reporting period
+ * Denominator: Country defined denominator (no guidance on JRF)
+ * Denominator Computation: PARAMETER country defined target population.
  */
 define "denominator":
 	true // TODO: Write logic here 
+
+/*
+ * Disaggregator: Dose Sequence (1, 2)
+ */
+define "Dose Sequence  Stratifier":
+	true // todo: fill in logic
+
+/*
+ * Disaggregator: Age Group (< 12 months, 12 - 18 months, 18 - 36 months, 36 months - 12 years, > 12 years)
+ */
+define "Age Group  Stratifier":
+	true // todo: fill in logic
 
 /*
  * Disaggregator: Geographic Region

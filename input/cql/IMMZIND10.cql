@@ -1,19 +1,19 @@
 /*
  * Library: IMMZ.IND.10
- * Dropout Rate of DTP1 to DTP3 (Target / Reported Cohort) 
- * Compares the number of children who started the DTP vaccination protocol (i.e. were administered DTP1) however did not complete the DTP vaccination protocol (i.e. did not receive DTP3). 
+ * Immunization coverage for Rotavirus containing vaccines (Estimated Denominator) 
+ * Compares the administered doses of rotavirus containing vaccine with the number of surviving infants expressed as a percentage
  * 
- * Numerator: Number of administrations of DTP1 administered during reporting period minus the number of administrations of DTP3 administered during report period 
- * Numerator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1  during reporting period
-SUBTRACT
-COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 3  during reporting period
- * Denominator: Number of administrations of DTP1 administered
- * Denominator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1 during reporting period
+ * Numerator: Number of administrations of vaccines containing a rotavirus component during reporting period. 
+ * Numerator Computation: COUNT immunization events where administered product is a rotavirus vaccine (IMMZ.A1.DE16) during reporting period
+ * Denominator: Estimated number of surviving infants
+ * Denominator Computation: PARAMETER number of surviving infants
  * 
  * Disaggregation:
+ *   - Dose Sequence (1, 2, 3)
+ *   - Age Group (< 1 year or > 1 year)
  *   - Geographic Region
  * 
- * References: WHO Immunization Facility Analysis Guide (1)
+ * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - elements 4220, 4230)
  */
 
 library IMMZIND10
@@ -31,20 +31,30 @@ parameter "Measurement Period" Interval<Date>
 context Patient
 
 /*
- * Numerator: Number of administrations of DTP1 administered during reporting period minus the number of administrations of DTP3 administered during report period
- * Numerator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1  during reporting period
-SUBTRACT
-COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 3  during reporting period
+ * Numerator: Number of administrations of vaccines containing a rotavirus component during reporting period.
+ * Numerator Computation: COUNT immunization events where administered product is a rotavirus vaccine (IMMZ.A1.DE16) during reporting period
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: Number of administrations of DTP1 administered
- * Denominator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1 during reporting period
+ * Denominator: Estimated number of surviving infants
+ * Denominator Computation: PARAMETER number of surviving infants
  */
 define "denominator":
 	true // TODO: Write logic here 
+
+/*
+ * Disaggregator: Dose Sequence (1, 2, 3)
+ */
+define "Dose Sequence  Stratifier":
+	true // todo: fill in logic
+
+/*
+ * Disaggregator: Age Group (< 1 year or > 1 year)
+ */
+define "Age Group  Stratifier":
+	true // todo: fill in logic
 
 /*
  * Disaggregator: Geographic Region

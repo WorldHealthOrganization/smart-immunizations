@@ -1,17 +1,20 @@
 /*
  * Library: IMMZ.IND.24
- * Immunization coverage for MCV (Actual / Planned Cohort) 
- * Compares the actual number of children who have a confirmed dose of MCV with the actual number of children which should have received MCV vaccination during the reporting period
+ * Open vial wastage rate 
+ * The open vial wastage rate is used to measure the percentage of doses of vaccine that were opened, but discarded due to under-utilization. For example, a 5 dose vile of an antigen may be thrown out after only 2 administrations of the vaccine, indicating an open vial wastage of 3 doses.
  * 
- * Numerator: The number of vaccination events administered for MCV during the reporting period 
- * Numerator Computation: COUNT immunization events WHERE product administered is an MCV vaccines (IMMZ.A1.DE10) during reporting period
- * Denominator: The number of MCV immunization events which were planned/eligible to be administered during the reporting period.
- * Denominator Computation: COUNT immunization recommendations WHERE suggested vaccine product is a MCV vaccine (IMMZ.A1.DE10) during reporting period
+ * Numerator: Total number of doses used (starting balance of doses + supplied doses - ending balance doses) minus total number of doses administered to patients.
+
+Starting Balance = The number of doses available for immunization at the start of day/session.
+Supplied Doses = The number of doses which were received/added to the stock during the day/session.
+Ending Balance = The number of doses which were left at the end of the day/session 
+ * Numerator Computation: (Starting Balance + Supplied Doses - Ending Balance) - COUNT of persons who were administered the vaccine
+ * Denominator: The total number of doses used / consumed during the vaccination session/day.
+ * Denominator Computation: Starting Balance + Supplied Doses - Ending Balance
  * 
  * Disaggregation:
- *   - Dose Sequence (1, 2)
- *   - Age Group (< 3 months, 3 - 9 months, 9  -12 months, 12 - 18 months, > 18 months)
- *   - Geographic Region 
+ *   - Vaccine (BCG, OPV, etc.)
+ *   - Geographic Region
  * 
  * References: WHO Immunization Facility Analysis Guide (1)
  */
@@ -31,34 +34,32 @@ parameter "Measurement Period" Interval<Date>
 context Patient
 
 /*
- * Numerator: The number of vaccination events administered for MCV during the reporting period
- * Numerator Computation: COUNT immunization events WHERE product administered is an MCV vaccines (IMMZ.A1.DE10) during reporting period
+ * Numerator: Total number of doses used (starting balance of doses + supplied doses - ending balance doses) minus total number of doses administered to patients.
+
+Starting Balance = The number of doses available for immunization at the start of day/session.
+Supplied Doses = The number of doses which were received/added to the stock during the day/session.
+Ending Balance = The number of doses which were left at the end of the day/session
+ * Numerator Computation: (Starting Balance + Supplied Doses - Ending Balance) - COUNT of persons who were administered the vaccine
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: The number of MCV immunization events which were planned/eligible to be administered during the reporting period.
- * Denominator Computation: COUNT immunization recommendations WHERE suggested vaccine product is a MCV vaccine (IMMZ.A1.DE10) during reporting period
+ * Denominator: The total number of doses used / consumed during the vaccination session/day.
+ * Denominator Computation: Starting Balance + Supplied Doses - Ending Balance
  */
 define "denominator":
 	true // TODO: Write logic here 
 
 /*
- * Disaggregator: Dose Sequence (1, 2)
+ * Disaggregator: Vaccine (BCG, OPV, etc.)
  */
-define "Dose Sequence  Stratifier":
+define "Vaccine  Stratifier":
 	true // todo: fill in logic
 
 /*
- * Disaggregator: Age Group (< 3 months, 3 - 9 months, 9  -12 months, 12 - 18 months, > 18 months)
+ * Disaggregator: Geographic Region
  */
-define "Age Group  Stratifier":
-	true // todo: fill in logic
-
-/*
- * Disaggregator: Geographic Region 
- */
-define "Geographic Region  Stratifier":
+define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
 

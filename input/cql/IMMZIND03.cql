@@ -1,19 +1,19 @@
 /*
  * Library: IMMZ.IND.03
- * Immunization coverage for OPV and IPV (Target / Reported Cohort) 
- * Compares the actual doses of each of IPV, OPV over the estimated number of surviving infants
+ * Immunization coverage for HepB containing vaccines (Estimated Denominator) 
+ * Compares the administered doses of Hepatitis B containing vaccine with the estimated number of live births (if dose sequence is 1 or 2) or number of surviving infants (for dose 3 - if given)
  * 
- * Numerator: Number of administrations of IPV or OPV during reporting period 
- * Numerator Computation: COUNT immunization events WHERE administered product is a polio vaccine (IMMZ.A1.DE14) during reporting period
- * Denominator: Estimated number of surviving infants (number of births minus infant deaths) for reporting area.
- * Denominator Computation: PARAMETER number of births MINUS PARAMETER number of infant deaths
+ * Numerator: Number of administrations of vaccinations containing a Hepatitis B component. 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a HepB (IMMZ.A1.DE6) during reporting period.
+ * Denominator: Estimated number of live births.
+ * Denominator Computation: PARAMETER number of live births or PARAMETER number of surviving infants (see comments)
  * 
  * Disaggregation:
- *   - Dose sequence (1, 2, 3)
- *   - Age Group (0 to 3 months / 0 to 14 weeks, 3 to 6 months / 14 to 24 weeks, > 6 months / > 24 weeks )
+ *   - Dose Sequence (1, 2, 3)
+ *   - Age Group (<24 H of Birth)
  *   - Geographic Region
  * 
- * References: WHO Immunization Facility Analysis Guide (1), WHO recommendations for routine immunization (2)
+ * References: WHO / UNICEF Join Reporting Form (3 - element 4030)
  */
 
 library IMMZIND03
@@ -27,33 +27,32 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
-parameter "Census Estimated Births" Integer
-parameter "Census Estimated Infant Deaths" Integer
+parameter "Estimated Number of Live Births" Integer
 
 context Patient
 
 /*
- * Numerator: Number of administrations of IPV or OPV during reporting period
- * Numerator Computation: COUNT immunization events WHERE administered product is a polio vaccine (IMMZ.A1.DE14) during reporting period
+ * Numerator: Number of administrations of vaccinations containing a Hepatitis B component.
+ * Numerator Computation: COUNT immunization events WHERE administered product is a HepB (IMMZ.A1.DE6) during reporting period.
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: Estimated number of surviving infants (number of births minus infant deaths) for reporting area.
- * Denominator Computation: PARAMETER number of births MINUS PARAMETER number of infant deaths
+ * Denominator: Estimated number of live births.
+ * Denominator Computation: PARAMETER number of live births or PARAMETER number of surviving infants (see comments)
  */
 define "denominator":
-	"Census Estimated Births" - "Census Target Infant Deaths"
+	true // TODO: Write logic here 
 
 /*
- * Disaggregator: Dose sequence (1, 2, 3)
+ * Disaggregator: Dose Sequence (1, 2, 3)
  */
-define "Dose sequence  Stratifier":
+define "Dose Sequence  Stratifier":
 	true // todo: fill in logic
 
 /*
- * Disaggregator: Age Group (0 to 3 months / 0 to 14 weeks, 3 to 6 months / 14 to 24 weeks, > 6 months / > 24 weeks )
+ * Disaggregator: Age Group (<24 H of Birth)
  */
 define "Age Group  Stratifier":
 	true // todo: fill in logic
@@ -62,6 +61,5 @@ define "Age Group  Stratifier":
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	IMMZStratifiers."By Geographic Region Stratifier" 
-
+	IMMZStratifiers."By Geographic Region Stratifier"
 

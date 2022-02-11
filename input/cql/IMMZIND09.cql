@@ -1,19 +1,18 @@
 /*
  * Library: IMMZ.IND.09
- * Immunization coverage for Varicella vaccinations (Target / Reported Cohort) 
- * Compares the actual doses of Varicella vaccinations administered with the esteimated number of children
+ * Immunization coverage for Hemophilus containing vaccine (Estimated Denominator) 
+ * Compares the administered doses of haemophilus containing vaccine with the estimated number of surviving infants expressed as a percentage 
  * 
- * Numerator: Number of administrations of vaccines containing a varicella component during reporting period 
- * Numerator Computation: COUNT immunization events WHERE administered product is a Varicella vaccine (IMMZ.A1.DE.22) during reporting period
- * Denominator: Estimated census of children over one year of age in reporting area.
- * Denominator Computation: PARAMETER number children from census over one year of age.
+ * Numerator: Number of administrations of vaccines containing an Haemophilus component during the reporting period. 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Haemophilus vaccine (IMMZ.A1.DE4) during reporting period.
+ * Denominator: Estimated number of surviving infants
+ * Denominator Computation: PARAMETER number of surviving infants.
  * 
  * Disaggregation:
- *   - Dose Sequence (1, 2)
- *   - Age Group (< 12 months, 12 - 18 months, 18 - 36 months, 36 months - 12 years, > 12 years)
+ *   - Age Group (<1 year or > 1 year)
  *   - Geographic Region
  * 
- * References: WHO Immunization Facility Analysis Guide (1), WHO recommendations for routine immunization (2)
+ * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - element 4180)
  */
 
 library IMMZIND09
@@ -27,33 +26,25 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
-parameter "Census Estimated Population of Children" Integer
-parameter "Census Estimated Population of Adolescants" Integer
 
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccines containing a varicella component during reporting period
- * Numerator Computation: COUNT immunization events WHERE administered product is a Varicella vaccine (IMMZ.A1.DE.22) during reporting period
+ * Numerator: Number of administrations of vaccines containing an Haemophilus component during the reporting period.
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Haemophilus vaccine (IMMZ.A1.DE4) during reporting period.
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: Estimated census of children over one year of age in reporting area.
- * Denominator Computation: PARAMETER number children from census plus PARMATER number of adolescants from census
+ * Denominator: Estimated number of surviving infants
+ * Denominator Computation: PARAMETER number of surviving infants.
  */
 define "denominator":
-	"Census Estimated Population of Children" + "Census Estimated Population of Adolescants" 
+	true // TODO: Write logic here 
 
 /*
- * Disaggregator: Dose Sequence (1, 2)
- */
-define "Dose Sequence  Stratifier":
-	true // todo: fill in logic
-
-/*
- * Disaggregator: Age Group (< 12 months, 12 - 18 months, 18 - 36 months, 36 months - 12 years, > 12 years)
+ * Disaggregator: Age Group (<1 year or > 1 year)
  */
 define "Age Group  Stratifier":
 	true // todo: fill in logic

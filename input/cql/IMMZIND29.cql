@@ -1,22 +1,17 @@
 /*
  * Library: IMMZ.IND.29
- * Dropout Rate of BCG to MCV1 (Actual / Planned Cohort) 
- * Compares the actual number of children who have a confirmed dose of MCV1 with the actual number of children which should have received MCV1 vaccination during the reporting period
+ * Immunization coverage for BCG (Computed Denominator) 
+ * Compares the administered doses of BCG vaccine with the actual number of registered, surviving infants expressed as a percentage.
  * 
- * Numerator: Number of patients with a confirmed dose of BCG1 who are past due (have a recommendation) for MCV1 and have not received MCV1 
- * Numerator Computation: COUNT patients 
-HAVING immunization where vaccine is BCG (IMMZ.A1.DE1) 
-HAVING immunization recommendation of MCV (IMMZ.A1.DE10) dose 1 and recommendation date during reporting period 
-NOT HAVING immunization where vaccine is MCV dose 1.
- * Denominator: The number of patients who have a confirmed dose of BCG
- * Denominator Computation: COUNT patients
-HAVING immunization where vaccine is BCG (IMMZ.A1.DE1)
-HAVING immunization recommendation where vaccine is MCV (IMMZ.A1.DE10) and recommendation date during reporting period
+ * Numerator: Number of administrations of BCG during the reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a BCG vaccine (IMMZ.A1.DE1) during reporting period
+ * Denominator: Number of registered, surviving infants.
+ * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  * 
  * Disaggregation:
  *   - Geographic Region
  * 
- * References: WHO Immunization Facility Analysis Guide (1)
+ * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - element 4010)
  */
 
 library IMMZIND29
@@ -34,20 +29,15 @@ parameter "Measurement Period" Interval<Date>
 context Patient
 
 /*
- * Numerator: Number of patients with a confirmed dose of BCG1 who are past due (have a recommendation) for MCV1 and have not received MCV1
- * Numerator Computation: COUNT patients 
-HAVING immunization where vaccine is BCG (IMMZ.A1.DE1) 
-HAVING immunization recommendation of MCV (IMMZ.A1.DE10) dose 1 and recommendation date during reporting period 
-NOT HAVING immunization where vaccine is MCV dose 1.
+ * Numerator: Number of administrations of BCG during the reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is a BCG vaccine (IMMZ.A1.DE1) during reporting period
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: The number of patients who have a confirmed dose of BCG
- * Denominator Computation: COUNT patients
-HAVING immunization where vaccine is BCG (IMMZ.A1.DE1)
-HAVING immunization recommendation where vaccine is MCV (IMMZ.A1.DE10) and recommendation date during reporting period
+ * Denominator: Number of registered, surviving infants.
+ * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  */
 define "denominator":
 	true // TODO: Write logic here 

@@ -1,17 +1,18 @@
 /*
  * Library: IMMZ.IND.22
- * Immunization coverage for Measles (Actual / Planned Cohort) 
- * Compares the actual number of children who have a confirmed dose of a measles vaccination with the actual number of children which should have received a measles vaccination during the reporting period.
+ * Dropout Rate of MCV1 to MCV2 (Target / Reported Cohort) 
+ * Indicates the aggregate dropout rate of children which began vaccination of measles containing vaccines (MCV1) with the aggregate administration of the second dose (MCV2).
+
+The indicator compares the number of administrations of MCV dose 1 minus the number of administration of MCV2 divided by the number of MCV1 vaccinations (MCV1 - MCV2 / MCV1)
  * 
- * Numerator: The number of vaccination events administered for a measles vaccine during the reporting period. 
- * Numerator Computation: COUNT immunization events
-WHERE product administered is a measles vaccine (IMMZ.A1.DE3) during reporting period
- * Denominator: The number of measles immunization events which were planned/eligible to be administered during the reporting period.
- * Denominator Computation: COUNT immunization recommendations WHERE suggested vaccine product is a measles vaccine (IMMZ.A1.DE3) during reporting period
+ * Numerator: The number of first doses of measles containing vaccine administered during reporting period minus the number of last doses of measles containing vaccine during the report period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
+SUBTRACT 
+COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 3 during reporting period
+ * Denominator: Number of first doses of measles containing vaccine administered during the reporting period.
+ * Denominator Computation: COUNT immunization events WHERE administered product is a measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
  * 
  * Disaggregation:
- *   - Dose Sequence (1, 2)
- *   - Age Group (0 - 9 months, 9 - 18 months, > 18 months)
  *   - Geographic Region
  * 
  * References: WHO Immunization Facility Analysis Guide (1)
@@ -32,36 +33,24 @@ parameter "Measurement Period" Interval<Date>
 context Patient
 
 /*
- * Numerator: The number of vaccination events administered for a measles vaccine during the reporting period.
- * Numerator Computation: COUNT immunization events
-WHERE product administered is a measles vaccine (IMMZ.A1.DE3) during reporting period
+ * Numerator: The number of first doses of measles containing vaccine administered during reporting period minus the number of last doses of measles containing vaccine during the report period
+ * Numerator Computation: COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
+SUBTRACT 
+COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 3 during reporting period
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: The number of measles immunization events which were planned/eligible to be administered during the reporting period.
- * Denominator Computation: COUNT immunization recommendations WHERE suggested vaccine product is a measles vaccine (IMMZ.A1.DE3) during reporting period
+ * Denominator: Number of first doses of measles containing vaccine administered during the reporting period.
+ * Denominator Computation: COUNT immunization events WHERE administered product is a measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
  */
 define "denominator":
 	true // TODO: Write logic here 
-
-/*
- * Disaggregator: Dose Sequence (1, 2)
- */
-define "Dose Sequence  Stratifier":
-	true // todo: fill in logic
-
-/*
- * Disaggregator: Age Group (0 - 9 months, 9 - 18 months, > 18 months)
- */
-define "Age Group  Stratifier":
-	true // todo: fill in logic
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
-
 

@@ -1,19 +1,18 @@
 /*
  * Library: IMMZ.IND.11
- * Dropout Rate of BCG to MCV1 (Target / Reported Cohort) 
- * The number of children who were administered BCG however did not receive MCV1. 
+ * Immunization coverage for Rubella containing vaccines (Estimated Denominator) 
+ * Compares the administered doses of rubella containing vaccine (RCV) with a country specified denominator expressed as a percentage.
  * 
- * Numerator: The number of doses of MCV1 administered during reporting period minus the number of BCG doses administered during reporting period 
- * Numerator Computation: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1)  during reporting period
-SUBTRACT 
-COUNT immunization events WHERE administered product is MCV (IMMZ.A1.DE10) AND dose sequence is 1 during reporting period
- * Denominator: Number of administrations of BCG administered during reporting period.
- * Denominator Computation: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1)  during reporting period
+ * Numerator: Number of administrations of vaccines containing a Rubella component during reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Rubella vaccine (IMMZ.A1.DE17) during reporting period
+ * Denominator: Country defined target population (see comments)
+ * Denominator Computation: PARAMETER country defined target population.
  * 
  * Disaggregation:
+ *   - Age Group (< 9 months, 9 - 18 months, 18 months - 15 years, > 15 years)
  *   - Geographic Region
  * 
- * References: WHO Immunization Facility Analysis Guide (1)
+ * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - element 4250)
  */
 
 library IMMZIND11
@@ -31,20 +30,24 @@ parameter "Measurement Period" Interval<Date>
 context Patient
 
 /*
- * Numerator: The number of doses of MCV1 administered during reporting period minus the number of BCG doses administered during reporting period
- * Numerator Computation: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1)  during reporting period
-SUBTRACT 
-COUNT immunization events WHERE administered product is MCV (IMMZ.A1.DE10) AND dose sequence is 1 during reporting period
+ * Numerator: Number of administrations of vaccines containing a Rubella component during reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Rubella vaccine (IMMZ.A1.DE17) during reporting period
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: Number of administrations of BCG administered during reporting period.
- * Denominator Computation: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1)  during reporting period
+ * Denominator: Country defined target population (see comments)
+ * Denominator Computation: PARAMETER country defined target population.
  */
 define "denominator":
 	true // TODO: Write logic here 
+
+/*
+ * Disaggregator: Age Group (< 9 months, 9 - 18 months, 18 months - 15 years, > 15 years)
+ */
+define "Age Group  Stratifier":
+	true // todo: fill in logic
 
 /*
  * Disaggregator: Geographic Region

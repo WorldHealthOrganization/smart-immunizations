@@ -1,19 +1,15 @@
 /*
  * Library: IMMZ.IND.28
- * Dropout Rate of DTP1 to DTP3 (Actual / Planned Cohort) 
- * Compares the actual number of children who have a confirmed dose of DTP3 with the actual number of children which should have received DTP3 vaccination during the reporting period
+ * Immunization session completion rates. 
+ * This indicator allows for supervisors to follow-up on planned and completed immunization sessions - which can give an indication of planning, operational or budget issues at a facility.
  * 
- * Numerator: Number of patients with a confirmed dose of DTP1 who are past due (have a recommendation) for DTP3 and have not received a dose of DTP3 
- * Numerator Computation: COUNT patients 
-HAVING immunization where vaccine is DTP (IMMZ.A1.24) and dose is 1
-HAVING immunization recommendation where vaccine is DTP and dose is 3 and recommendation date during reporting period 
-NOT HAVING immunization where vaccine is DTP (IMMZ.A1.24) and dose is 3
- * Denominator: The number of patients who have a confirmed dose of DTP1
- * Denominator Computation: COUNT patients 
-HAVING immunization where vaccine is DTP (IMMZ.A1.24) and dose is 1 
-HAVING immunization recommendation where vaccine is DTP and dose 3 and recommendation date during reporting period
+ * Numerator: The number of conducted immunization sessions performed at the facility. 
+ * Numerator Computation: COUNT number of vaccination sessions
+ * Denominator: The planned number of vaccination sessions for a facility.
+ * Denominator Computation: COUNT number of planned sessions
  * 
  * Disaggregation:
+ *   - Facility
  *   - Geographic Region
  * 
  * References: WHO Immunization Facility Analysis Guide (1)
@@ -34,23 +30,24 @@ parameter "Measurement Period" Interval<Date>
 context Patient
 
 /*
- * Numerator: Number of patients with a confirmed dose of DTP1 who are past due (have a recommendation) for DTP3 and have not received a dose of DTP3
- * Numerator Computation: COUNT patients 
-HAVING immunization where vaccine is DTP (IMMZ.A1.24) and dose is 1
-HAVING immunization recommendation where vaccine is DTP and dose is 3 and recommendation date during reporting period 
-NOT HAVING immunization where vaccine is DTP (IMMZ.A1.24) and dose is 3
+ * Numerator: The number of conducted immunization sessions performed at the facility.
+ * Numerator Computation: COUNT number of vaccination sessions
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: The number of patients who have a confirmed dose of DTP1
- * Denominator Computation: COUNT patients 
-HAVING immunization where vaccine is DTP (IMMZ.A1.24) and dose is 1 
-HAVING immunization recommendation where vaccine is DTP and dose 3 and recommendation date during reporting period
+ * Denominator: The planned number of vaccination sessions for a facility.
+ * Denominator Computation: COUNT number of planned sessions
  */
 define "denominator":
 	true // TODO: Write logic here 
+
+/*
+ * Disaggregator: Facility
+ */
+define "Facility Stratifier":
+	true // todo: fill in logic
 
 /*
  * Disaggregator: Geographic Region

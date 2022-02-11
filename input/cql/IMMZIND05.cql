@@ -1,19 +1,19 @@
 /*
  * Library: IMMZ.IND.05
- * Immunization coverage for HPV (Target / Reported Cohort) 
- * Compares the actual doses of HPV vaccinations administered over the estimated population of adolescants
+ * Immunization coverage for Measles containing vaccine (Estimated Denominator) 
+ * Compares the administered doses of measles containing vaccines (MCV) with the estimated number of surviving infants (if dose 1) or a country supplied denominator (if dose 2) expressed as a percentage. 
  * 
- * Numerator: Number of administrations of vaccines containing an HPV component during reporting period 
- * Numerator Computation: COUNT immunization events WHERE administered product is an HPV vaccine (IMMZ.A1.DE7) during reporting period
- * Denominator: Estimated census sample of adolescants in reporting area.
- * Denominator Computation: PARAMETER number of adolescants from census
+ * Numerator: Number of administrations of vaccinations containing a Measles component during reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Measles vaccine (IMMZ.A1.DE9) during reporting period
+ * Denominator: Estimated number of surviving infants (for dose 1) and country supplied denominator for dose sequence 2 (see comments)
+ * Denominator Computation: PARAMETER number of surviving infants (if Dose Sequence = 1) or PARAMETER of country supplied denominator (if Dose Sequence = 2)
  * 
  * Disaggregation:
- *   - Dose Sequence (1, 2, 3)
- *   - Age Group (< 9 years, 9 - 14 years, > 15 years)
+ *   - Dose Sequence (1, 2)
+ *   - Age Group (< 1 year or > 1 year)
  *   - Geographic Region
  * 
- * References: WHO Immunization Facility Analysis Guide (1), WHO recommendations for routine immunization (2)
+ * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - elements 4240 and 4260 )
  */
 
 library IMMZIND05
@@ -27,32 +27,33 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
-parameter "Census Estimated Population of Adolescants" Integer
+parameter "Estimated Number of Surviving Infants Dose 1" Integer
+parameter "Country Specified Denominator" Integer
 
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccines containing an HPV component during reporting period
- * Numerator Computation: COUNT immunization events WHERE administered product is an HPV vaccine (IMMZ.A1.DE7) during reporting period
+ * Numerator: Number of administrations of vaccinations containing a Measles component during reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Measles vaccine (IMMZ.A1.DE9) during reporting period
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: Estimated census sample of adolescants in reporting area.
- * Denominator Computation: PARAMETER number of adolescants from census
+ * Denominator: Estimated number of surviving infants (for dose 1) and country supplied denominator for dose sequence 2 (see comments)
+ * Denominator Computation: PARAMETER number of surviving infants (if Dose Sequence = 1) or PARAMETER of country supplied denominator (if Dose Sequence = 2)
  */
 define "denominator":
-	"Census Estimated Population of Adolescants" // TODO: Write logic here 
+	true // TODO: Write logic here 
 
 /*
- * Disaggregator: Dose Sequence (1, 2, 3)
+ * Disaggregator: Dose Sequence (1, 2)
  */
 define "Dose Sequence  Stratifier":
 	true // todo: fill in logic
 
 /*
- * Disaggregator: Age Group (< 9 years, 9 - 14 years, > 15 years)
+ * Disaggregator: Age Group (< 1 year or > 1 year)
  */
 define "Age Group  Stratifier":
 	true // todo: fill in logic
@@ -62,4 +63,5 @@ define "Age Group  Stratifier":
  */
 define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
+
 

@@ -1,19 +1,19 @@
 /*
  * Library: IMMZ.IND.02
- * Immunization coverage for DTP (Target / Reported Population) 
- * Compares the actual doses of DTP derived vaccinations administered over the estimated number of suviving infants. 
+ * Immunization coverage for DTP containing vaccines (Estimated Denominator) 
+ * Compares the administered doses of a DTP containing vaccine with the estimated number of surviving infants as a percentage.
  * 
- * Numerator: Number of administrations of vaccinations containing a Diptheria, Tetanus, and Pertussis component during the reporting period 
+ * Numerator: Number of administrations of vaccinations containing a Diphtheria, Tetanus, and Pertussis component during the reporting period 
  * Numerator Computation: COUNT immunization events WHERE administered product is a DTP vaccine (IMMZ.A1.DE24)  during reporting period
- * Denominator: Estimated number of surviving infants (number of births minus infant deaths) for reporting area.
- * Denominator Computation: PARAMETER number of births MINUS PARAMETER number of infant deaths
+ * Denominator: Estimated number of surviving infants.
+ * Denominator Computation: PARAMETER surviving number of infants
  * 
  * Disaggregation:
  *   - Dose Sequence (1, 2, 3)
  *   - Age Group (< 1 year or >1 year)
  *   - Geographic Region
  * 
- * References: WHO Immunization Facility Analysis Guide (1), WHO recommendations for routine immunization (2)
+ * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - element 4040, 4050)
  */
 
 library IMMZIND02
@@ -27,24 +27,23 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
-parameter "Census Estimated Births" Integer
-parameter "Census Estimated Infant Deaths" Integer
+parameter "Estimated Number of Surviving Infants" Integer
 
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccinations containing a Diptheria, Tetanus, and Pertussis component during the reporting period
+ * Numerator: Number of administrations of vaccinations containing a Diphtheria, Tetanus, and Pertussis component during the reporting period
  * Numerator Computation: COUNT immunization events WHERE administered product is a DTP vaccine (IMMZ.A1.DE24)  during reporting period
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: Estimated number of surviving infants (number of births minus infant deaths) for reporting area.
- * Denominator Computation: PARAMETER number of births MINUS PARAMETER number of infant deaths
+ * Denominator: Estimated number of surviving infants.
+ * Denominator Computation: PARAMETER surviving number of infants
  */
 define "denominator":
-	"Census Target Births" - "Census Target Infant Deaths"
+	"Estimated Number of Surviving Infants" 
 
 /*
  * Disaggregator: Dose Sequence (1, 2, 3)

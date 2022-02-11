@@ -1,19 +1,19 @@
 /*
  * Library: IMMZ.IND.06
- * Immunization coverage for MCV (Target / Reported Cohort) 
- * Compares the actual doses of MCV given with the estimated population of children and adolescants
+ * Immunization coverage for HPV (Estimated Denominator) 
+ * Compares the administered doses of HPV vaccines with the country specified denominator for HPV coverage expressed as a percentage.
  * 
- * Numerator: Number of administrations of vaccines containing an MCV component during reporting period 
- * Numerator Computation: COUNT immunization events WHERE administered product is  a Meningococcal vaccine (IMMZ.A1.DE10) during reporting period
- * Denominator: Estimated census of children over one year of age plus estimated census sample of adolescents in reporting area.
- * Denominator Computation: PARAMETER number of children from census  PLUS PARAMETER number of adolescants from census
+ * Numerator: Number of administrations of vaccines containing an HPV component during reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is an HPV vaccine (IMMZ.A1.DE7) during reporting period
+ * Denominator: Country defined target population (see comments)
+ * Denominator Computation: PARAMETER country defined target population.
  * 
  * Disaggregation:
- *   - Dose Sequence (1, 2)
- *   - Age Group (< 3 months, 3 - 9 months, 9  -12 months, 12 - 18 months, > 18 months)
- *   - Geographic Region 
+ *   - Dose Sequence (1, 2, 3)
+ *   - Age Group (<= 9 years, 9  - 14 years, >= 15 years)
+ *   - Geographic Region
  * 
- * References: WHO Immunization Facility Analysis Guide (1), WHO recommendations for routine immunization (2)
+ * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - elements 4330, 4340)
  */
 
 library IMMZIND06
@@ -27,40 +27,38 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
-parameter "Census Estimated Population of Children" Integer
-parameter "Census Estimated Population of Adolescants" Integer
 
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccines containing an MCV component during reporting period
- * Numerator Computation: COUNT immunization events WHERE administered product is  a Meningococcal vaccine (IMMZ.A1.DE10) during reporting period
+ * Numerator: Number of administrations of vaccines containing an HPV component during reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is an HPV vaccine (IMMZ.A1.DE7) during reporting period
  */
 define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: Estimated census of children over one year of age plus estimated census sample of adolescents in reporting area.
- * Denominator Computation: PARAMETER number of children from census over one year of age PLUS PARAMETER number of adolescants
+ * Denominator: Country defined target population (see comments)
+ * Denominator Computation: PARAMETER country defined target population.
  */
 define "denominator":
-	"Census Estimated Population of Children" + "Census Estimated Population of Adolescants" 
+	true // TODO: Write logic here 
 
 /*
- * Disaggregator: Dose Sequence (1, 2)
+ * Disaggregator: Dose Sequence (1, 2, 3)
  */
 define "Dose Sequence  Stratifier":
 	true // todo: fill in logic
 
 /*
- * Disaggregator: Age Group (< 3 months, 3 - 9 months, 9  -12 months, 12 - 18 months, > 18 months)
+ * Disaggregator: Age Group (<= 9 years, 9  - 14 years, >= 15 years)
  */
 define "Age Group  Stratifier":
 	true // todo: fill in logic
 
 /*
- * Disaggregator: Geographic Region 
+ * Disaggregator: Geographic Region
  */
-define "Geographic Region  Stratifier":
+define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
 
