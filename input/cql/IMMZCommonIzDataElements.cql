@@ -19,17 +19,17 @@ code "BCG": 'BCG' from "Vaccines Administered" display 'BCG'
 
 context Immunization
 
-//  Geographic Region where the vaccination was provided     
+// @dataElement: Geographic Region where the vaccination was provided
 define "Geographic Region": 
     WCom.Official([Location] L 
         where L.id = Last(Split(Immunization.location.reference, '/'))
         return L.address).state
 
-//   vaccine dose sequence 
-define "Vaccine Dose Sequence": 
+// @dataElement: The vaccination dose sequence
+define "Dose Number": 
     IMMZCom.Only(Immunization.protocolApplied).doseNumber as FHIR.positiveInt
 
-//   Vaccine antigen classification
+//  @dataElement: Vaccine classification
 define "Vaccine Type":
     // TODO: How to apply a case statement to an Immunization? This is my best shot
     case 
