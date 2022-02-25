@@ -1,3 +1,6 @@
+/**
+ * Common data elements where Patient is the context
+ */
 library IMMZCommon
 
 using FHIR version '4.0.1'

@@ -24,8 +24,8 @@ include IMMZConcepts called IMMZc
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
-parameter "Measurement Period" Interval<Date>
-parameter "Estimated Number of Live Births" Integer
+parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
+parameter "Estimated Number of Live Births" Integer default 10
 context Patient
 
 /*
@@ -36,15 +36,18 @@ define "numerator":
 	exists([Immunization: vaccineCode in IMMZc."BCG Vaccine"] I
         where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
             and I.status = 'completed')
+
 /*
  * Denominator: Estimated number of live births.
  * Denominator Computation: PARAMETER number of live births
  */
 define "denominator":
 	"Estimated Number of Live Births"
+
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
+
 /* End of IMMZ.IND.01 */

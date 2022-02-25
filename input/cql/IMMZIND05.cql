@@ -26,7 +26,7 @@ include IMMZConcepts called IMMZc
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
-parameter "Measurement Period" Interval<Date>
+parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
 parameter "Estimated Number of Surviving Infants Dose 1" Integer
 parameter "Country Specified Denominator" Integer
 context Patient
