@@ -29,7 +29,6 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -37,30 +36,26 @@ context Patient
  * Numerator Computation: COUNT number of disposed vials of vaccine product.
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Total number of doses vaccine product received and available for use during the reporting period.
  * Denominator Computation: COUNT number of total vials of vaccine product received and available for use.
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Vaccine  (BCG, OPV, etc.)
  */
 define "Vaccine   Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Type of Spoilage (Broken, Heat Exposure/VVM, Expiry)
  */
 define "Type of Spoilage  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
-
+/* End of IMMZ.IND.23 */

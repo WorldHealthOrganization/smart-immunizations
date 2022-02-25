@@ -28,7 +28,6 @@ include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
 parameter "Estimated Number of Surviving Infants" Integer
-
 context Patient
 
 /*
@@ -36,30 +35,26 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a DTP vaccine (IMMZ.A1.DE24)  during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Estimated number of surviving infants.
  * Denominator Computation: PARAMETER surviving number of infants
  */
 define "denominator":
-	"Estimated Number of Surviving Infants" 
-
+	"Estimated Number of Surviving Infants"
 /*
  * Disaggregator: Dose Sequence (1, 2, 3)
  */
 define "Dose Sequence  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Age Group (< 1 year or >1 year)
  */
 define "Age Group  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
-
+/* End of IMMZ.IND.02 */

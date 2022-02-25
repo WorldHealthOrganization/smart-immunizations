@@ -28,7 +28,6 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -37,18 +36,16 @@ context Patient
 Numerator Exclusion: COUNT immunization recommendations WHERE recommended product is MCV and dose number = 3 and due date during reporting period AND NOT EXISTS immunization where product is MCV and dose sequence = 1
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Number of children who have received MCV dose 1
  * Denominator Computation: COUNT immunization events WHERE administered product is MCV (IMMZ.A1.DE9) and dose sequence =1 AND EXISTS immunization recommendation WHERE product is MCV and dose sequence = 3 and due date during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
-
+/* End of IMMZ.IND.49 */

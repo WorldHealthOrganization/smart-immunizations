@@ -27,7 +27,6 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -35,30 +34,26 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is an HPV vaccine (IMMZ.A1.DE7) during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Number of immunization recommendations for HPV vaccine during reporting period.
  * Denominator Computation: COUNT Immunization Recommendation WHERE recommended product is HPV vaccine (IMMZ.A1.DE7) and due date during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Dose Sequence (1, 2, 3)
  */
 define "Dose Sequence  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Age Group (<= 9 years, 9  - 14 years, >= 15 years)
  */
 define "Age Group  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
-
+/* End of IMMZ.IND.34 */

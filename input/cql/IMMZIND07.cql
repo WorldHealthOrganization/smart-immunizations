@@ -27,7 +27,6 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -35,36 +34,31 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is  a Meningococcal vaccine (IMMZ.A1.DE10) during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Estimated number of surviving infants
  * Denominator Computation: PARAMETER number of surviving infants
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Dose Sequence (1, 2)
  */
 define "Dose Sequence  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Age Group (< 1 year or > 1 year)
  */
 define "Age Group  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Geographic Region 
  */
 define "Geographic Region  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: 
  */
 define " Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
-
+/* End of IMMZ.IND.07 */

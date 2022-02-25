@@ -28,7 +28,6 @@ include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
 parameter "Estimated Number of Live Births" Integer
-
 context Patient
 
 /*
@@ -36,30 +35,26 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a HepB (IMMZ.A1.DE6) during reporting period.
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Estimated number of live births.
  * Denominator Computation: PARAMETER number of live births or PARAMETER number of surviving infants (see comments)
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Dose Sequence (1, 2, 3)
  */
 define "Dose Sequence  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Age Group (<24 H of Birth)
  */
 define "Age Group  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
-
+/* End of IMMZ.IND.03 */

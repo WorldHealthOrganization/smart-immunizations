@@ -26,7 +26,6 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -34,24 +33,21 @@ context Patient
  * Numerator Computation: COUNT number of vaccination sessions
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: The planned number of vaccination sessions for a facility.
  * Denominator Computation: COUNT number of planned sessions
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Facility
  */
 define "Facility Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
-
+/* End of IMMZ.IND.28 */

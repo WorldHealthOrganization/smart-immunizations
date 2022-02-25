@@ -34,7 +34,6 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -42,42 +41,41 @@ context Patient
  * Numerator Computation: COUNT immunization HAVING reaction reported during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: The total number of doses administered to patients of the product.
  * Denominator Computation: COUNT number of doses administered during reporting period
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Vaccine (BCG, OPV, etc.)
  */
 define "Vaccine  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Product/Manufacturer
  */
 define "Product/Manufacturer Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Severity (Severe, Non-Severe)
  */
 define "Severity  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Manifestation / Event (optional - Rash, Vomiting,  etc.)
  */
 define "Manifestation / Event  Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
-
+/*
+ * Disaggregator: 
+ */
+define " Stratifier":
+	true // todo: fill in logic
+/* End of IMMZ.IND.27 */

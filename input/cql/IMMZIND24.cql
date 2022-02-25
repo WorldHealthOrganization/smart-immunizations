@@ -30,7 +30,6 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -42,24 +41,21 @@ Ending Balance = The number of doses which were left at the end of the day/sessi
  * Numerator Computation: (Starting Balance + Supplied Doses - Ending Balance) - COUNT of persons who were administered the vaccine
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: The total number of doses used / consumed during the vaccination session/day.
  * Denominator Computation: Starting Balance + Supplied Doses - Ending Balance
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Vaccine (BCG, OPV, etc.)
  */
 define "Vaccine  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
-
+/* End of IMMZ.IND.24 */
