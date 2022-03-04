@@ -44,7 +44,10 @@ define "Immunization StatusReason":
 //define statusReason Immunizations for when it was not given
 
 //Procedure for vaccine administration
-
+define "Has Adverse Event":
+  [Immunization] I
+    where exists([Observation] O where O.id = Last(Split(singleton from I.reaction.detail.reference, '/')))
+    return I
 
 //Get patient observations
 define "Get Observations":
