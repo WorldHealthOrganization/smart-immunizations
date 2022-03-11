@@ -60,19 +60,19 @@ define "BCG vaccine immunization history":
  * @dataElement No-doses
  */
 define "No-doses":
-	true; // TODO: Define this
+	true; // TODO: delete this since is covered by BCG vaccine not exists
 
 /* 
  * @dataElement Unknown
  */
 define "Unknown":
-	true; // TODO: Define this
+	true; // TODO: delete implied as no doses - note that this only applies to BCG and individually determined per-antigen
 
 /* 
  * @dataElement BCG vaccine immunization history = No-doses
  */
 define "BCG vaccine immunization history = No-doses":
-	true; // TODO: Define this
+	true; // TODO: Delete this because inferred above as not exists
 
 /* 
  * @dataElement HIV Status = Positive

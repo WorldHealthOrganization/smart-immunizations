@@ -10,7 +10,7 @@ include IMMZConcepts called IMMZc
 
 context Patient
 
-//Check patient is alive
+//TODO: Check patient is alive
 
 //Get patient immunizations
 define "Get Immunization":
@@ -66,6 +66,8 @@ define "Pregnant":
   exists
   ( "Pregnant Observation")
   or exists ("Pregnant Condition")
+
+//Questions for Bryn: How to do Adverse Event and Immunosuppression
 
 
 //Get adverse events - should be captured in Observations

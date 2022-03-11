@@ -22,9 +22,11 @@ valueset "Cholera Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/
 valueset "Negative Result": 'http://example.org/ValueSets/negative-results'
 valueset "Positive Result": 'http://example.org/ValueSets/positive-results'
 valueset "HIV Status Positive": 'http://example.org/ValueSets/HIV-status-positive'
-valueset "CD4% Test Result": 'http://example.org/ValueSets/CD4-test-result'
+valueset "CD4% Test Result": 'http://example.org/ValueSets/CD4%-test-result'
+valueset "CD4 Count Test Result": 'http://example.org/ValueSets/CD4-count-test-result'
 
 // Vaccine specific ValueSets
+//BCG specific ValuSets
 valueset "TST Test Result": 'http://example.org/ValueSets/tst-test'
 valueset "IGRA Test Result": 'http://example.org/ValueSets/igra-tst'
 //TODO: replace the TST/IGRA test link with a real valueset 
