@@ -1,6 +1,6 @@
-# Indicators
+### Indicators
 The FHIR [Measure]() is used to describe the indicator in a computable format. 
 
-## How Measures were derived 
+#### How Measures were derived 
 
-## Generating a FHIR Measure Report 
+#### Generating a FHIR Measure Report 

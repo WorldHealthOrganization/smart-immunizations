@@ -13,3 +13,4 @@ codesystem "Extended Codes CodeSystem codes": 'http://fhir.org/guides/who/anc-cd
 
 // ValuSets
 valueset "Pregnancy Status Pregnant": 'http://fhir.org/guides/who/core/ValueSet/pregnancystatus-values'
+valueset "Adverse Events": 'http://hl7.org/fhir/valueset-adverse-event-type.html'
