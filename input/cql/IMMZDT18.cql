@@ -51,7 +51,6 @@ define "Category II exposure":
  */
 define "Should vaccinate patient with PEP Vaccine on 1 dose scheme":
 	((("Rabies vaccine immunization history" = "No-doses") and ("Exposed to RABV" = true)) and ("Category II exposure" = true));
-
 /*
  * Rule: Should vaccinate patient with PEP Vaccine and RIG if indicated on 1 dose scheme
  * Annotations:
@@ -65,7 +64,6 @@ define "Should vaccinate patient with PEP Vaccine on 1 dose scheme":
  */
 define "Should vaccinate patient with PEP Vaccine and RIG if indicated on 1 dose scheme":
 	((("Rabies vaccine immunization history" = "No-doses") and ("Exposed to RABV" = true)) and ("Category II exposure" = true));
-
 /* 
  * @dataElement High risk of RABV exposure
  */
@@ -86,7 +84,6 @@ define "High risk of RABV exposure":
  */
 define "Should vaccinate patient with PrEP Vaccine - ID route":
 	(("Rabies vaccine immunization history" = "No-doses") and ("High risk of RABV exposure" = true));
-
 /*
  * Rule: Should vaccinate patient with PrEP Vaccine - IM route
  * Annotations:
@@ -101,7 +98,6 @@ define "Should vaccinate patient with PrEP Vaccine - ID route":
  */
 define "Should vaccinate patient with PrEP Vaccine - IM route":
 	(("Rabies vaccine immunization history" = "No-doses") and ("High risk of RABV exposure" = true));
-
 /* 
  * @dataElement vaccinated
  */
@@ -134,4 +130,3 @@ define "VNA levels fall to <0.5 IU/mL":
  */
 define "Should vaccinate patient with PrEP Vaccine - IM OR ID route":
 	((("Rabies vaccine immunization history" = "vaccinated") and ("At frequent risk of exposure " = true)) and ("VNA levels fall to <0.5 IU/mL" = true));
-

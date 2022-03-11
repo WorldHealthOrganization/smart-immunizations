@@ -39,29 +39,10 @@ define "Female":
  */
 define "Should vaccinate Patient for HPV because no doses on a two-dose schedule":
 	("Sex" = "Female");
-
 /* 
- * @dataElement HPV vaccine history
+ * @dataElement Patient Age >= 9 years
  */
-define "HPV vaccine history":
-	true; // TODO: Define this
-
-/* 
- * @dataElement One-dose
- */
-define "One-dose":
-	true; // TODO: Define this
-
-/* 
- * @dataElement Patient Age
- */
-define "Patient Age":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 9 years
- */
-define "9 years":
+define "Patient Age >= 9 years":
 	true; // TODO: Define this
 
 /* 
@@ -79,11 +60,10 @@ define "Patient Age <= 14 years":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (((("HPV vaccine history" = "One-dose") and ("Sex" = "Female")) and ("Patient Age" >= "9 years")) and ("Patient Age <= "14 years" = true))
+ *	 ((("Sex" = "Female") and ("Patient Age" >= "9 years" = true)) and ("Patient Age <= "14 years" = true))
  */
 define "Should vaccinate Patient for HPV a second time on a two-dose schedule":
 	(((("HPV vaccine history" = "One-dose") and ("Sex" = "Female")) and ("Patient Age" >= "9 years")) and ("Patient Age <= "14 years" = true));
-
 /*
  * Rule: Should vaccinate Patient for HPV a third time due to short interval between first and second dose
  * Annotations:
@@ -97,11 +77,28 @@ define "Should vaccinate Patient for HPV a second time on a two-dose schedule":
  */
 define "Should vaccinate Patient for HPV a third time due to short interval between first and second dose":
 	("Sex" = "Female");
+/* 
+ * @dataElement HPV vaccine history
+ */
+define "HPV vaccine history":
+	true; // TODO: Define this
 
 /* 
  * @dataElement No-doses
  */
 define "No-doses":
+	true; // TODO: Define this
+
+/* 
+ * @dataElement Immunocompromised
+ */
+define "Immunocompromised":
+	true; // TODO: Define this
+
+/* 
+ * @dataElement True
+ */
+define "True":
 	true; // TODO: Define this
 
 /*
@@ -113,8 +110,66 @@ define "No-doses":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (("HPV vaccine history" = "No-doses") and ("Sex" = "Female"))
+ *	 ((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) or ((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Immunocompromised" = "True")))
  */
 define "Should vaccinate Patient for HPV because no doses on a three-dose schedule":
-	(("HPV vaccine history" = "No-doses") and ("Sex" = "Female"));
+	((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) or ((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Immunocompromised" = "True")));
+
+/* 
+ * @dataElement One-dose
+ */
+define "One-dose":
+	true; // TODO: Define this
+
+/* 
+ * @dataElement 1-2 months after 1st dose
+ */
+define "1-2 months after 1st dose":
+	true; // TODO: Define this
+
+/*
+ * Rule: Should vaccinate Patient for HPV because one dose on a three-dose schedule
+ * Annotations:
+ * 	 - Provide HPV immunizations - using the "HPV vaccine immunization -  ONE PREVIOUS" schedule (3 dose scheme)
+ * 	 - 
+ * Outputs:
+ * 	 - Immunize Patient for HPV - One Dose
+ * 	 - 
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- 
+ * Logic:
+ *	 (((("HPV vaccine history" = "One-dose") and ("Sex" = "Female")) and ("1-2 months after 1st dose" = true)) or (((("HPV vaccine history" = "One-dose") and ("Sex" = "Female")) and ("Immunocompromised" = "True")) and ("1-2 months after 1st dose" = true)))
+ */
+define "Should vaccinate Patient for HPV because one dose on a three-dose schedule":
+	(((("HPV vaccine history" = "One-dose") and ("Sex" = "Female")) and ("1-2 months after 1st dose" = true)) or (((("HPV vaccine history" = "One-dose") and ("Sex" = "Female")) and ("Immunocompromised" = "True")) and ("1-2 months after 1st dose" = true)));
+
+/* 
+ * @dataElement Two-doses
+ */
+define "Two-doses":
+	true; // TODO: Define this
+
+/* 
+ * @dataElement 6 months after 1st dose
+ */
+define "6 months after 1st dose":
+	true; // TODO: Define this
+
+/*
+ * Rule: Should vaccinate Patient for HPV because two doses on a three-dose schedule
+ * Annotations:
+ * 	 - Provide HPV immunizations - using the "HPV vaccine immunization -  TWO PREVIOUS" schedule (3 dose scheme)
+ * 	 - 
+ * Outputs:
+ * 	 - Immunize Patient for HPV - Two Doses
+ * 	 - 
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- 
+ * Logic:
+ *	 (((("HPV vaccine history" = "Two-doses") and ("Sex" = "Female")) and ("6 months after 1st dose" = true)) or (((("HPV vaccine history" = "Two-doses") and ("Sex" = "Female")) and ("Immunocompromised" = "True")) and ("6 months after 1st dose" = true)))
+ */
+define "Should vaccinate Patient for HPV because two doses on a three-dose schedule":
+	(((("HPV vaccine history" = "Two-doses") and ("Sex" = "Female")) and ("6 months after 1st dose" = true)) or (((("HPV vaccine history" = "Two-doses") and ("Sex" = "Female")) and ("Immunocompromised" = "True")) and ("6 months after 1st dose" = true)));
 

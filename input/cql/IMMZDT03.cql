@@ -69,7 +69,6 @@ define "Polio-endemic country with high risk of spread":
  */
 define "Should vaccinate patient for Polio (bOPV) because no doses at birth (up to 2 weeks old) and patient is in a polio-endemic country with high risk of spread":
 	((((("Polio (IPV) vaccine immunization history" = "No-doses") and ("Polio (bOPV) vaccine immunization history" = "No-doses")) and ("Age" < "2 weeks")) and ("Combined bOPV and IPV Schedule" = true)) and ("Polio-endemic country with high risk of spread" = true));
-
 /* 
  * @dataElement 6 weeks
  */
@@ -89,6 +88,11 @@ define "6 weeks":
  */
 define "Should vaccinate patient for Polio (bOPV) because no doses at 6 weeks old":
 	((("Polio (bOPV) vaccine immunization history" = "No-doses") and ("Age" >= "6 weeks")) and ("Combined bOPV and IPV Schedule" = true));
+/* 
+ * @dataElement Polio (IPV) vaccine immunization history = No-doses
+ */
+define "Polio (IPV) vaccine immunization history = No-doses":
+	true; // TODO: Define this
 
 /* 
  * @dataElement 14 weeks
@@ -105,15 +109,14 @@ define "14 weeks":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("Polio (IPV) vaccine immunization history" = "No-doses") and ("Age" >= "14 weeks")) and ("Combined bOPV and IPV Schedule" = true))
+ *	 ((("Polio (IPV) vaccine immunization history" = "No-doses" = true) and ("Age" >= "14 weeks")) and ("Combined bOPV and IPV Schedule" = true))
  */
 define "Should vaccinate patient for Polio (IPV) because no doses at 14 weeks old":
 	((("Polio (IPV) vaccine immunization history" = "No-doses") and ("Age" >= "14 weeks")) and ("Combined bOPV and IPV Schedule" = true));
-
 /* 
- * @dataElement 1 dose
+ * @dataElement Polio (bOPV) vaccine immunization history = 1 dose
  */
-define "1 dose":
+define "Polio (bOPV) vaccine immunization history = 1 dose":
 	true; // TODO: Define this
 
 /* 
@@ -137,10 +140,15 @@ define "4 weeks":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("Polio (bOPV) vaccine immunization history" = "1 dose") and ("Last bOPV dose given date" >= "4 weeks")) and ("Combined bOPV and IPV Schedule" = true))
+ *	 ((("Polio (bOPV) vaccine immunization history" = "1 dose" = true) and ("Last bOPV dose given date" >= "4 weeks")) and ("Combined bOPV and IPV Schedule" = true))
  */
 define "Should vaccinate patient for Polio (bOPV) because 1 dose bOPV given 4 weeks ago":
 	((("Polio (bOPV) vaccine immunization history" = "1 dose") and ("Last bOPV dose given date" >= "4 weeks")) and ("Combined bOPV and IPV Schedule" = true));
+/* 
+ * @dataElement Polio (IPV) vaccine immunization history = 1 dose
+ */
+define "Polio (IPV) vaccine immunization history = 1 dose":
+	true; // TODO: Define this
 
 /* 
  * @dataElement Last IPV dose given
@@ -163,11 +171,10 @@ define "4 months":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("Polio (IPV) vaccine immunization history" = "1 dose") and ("Last IPV dose given" >= "4 months")) and ("Combined bOPV and IPV Schedule" = true))
+ *	 ((("Polio (IPV) vaccine immunization history" = "1 dose" = true) and ("Last IPV dose given" >= "4 months")) and ("Combined bOPV and IPV Schedule" = true))
  */
 define "Should vaccinate patient for Polio (IPV) because 1 dose IPV given at least 4 months ago":
 	((("Polio (IPV) vaccine immunization history" = "1 dose") and ("Last IPV dose given" >= "4 months")) and ("Combined bOPV and IPV Schedule" = true));
-
 /* 
  * @dataElement 2 dose
  */
@@ -187,7 +194,6 @@ define "2 dose":
  */
 define "Should vaccinate patient for Polio (bOPV) because 2nd dose bOPV given 4 weeks ago":
 	((("Polio (bOPV) vaccine immunization history" = "2 dose") and ("Last bOPV dose given date" >= "4 weeks")) and ("Combined bOPV and IPV Schedule" = true));
-
 /* 
  * @dataElement 8 weeks
  */
@@ -213,6 +219,11 @@ define "Sequential IPV-OPV Schedule":
  */
 define "Should vaccinate patient for Polio (IPV) because no doses at 8 weeks old":
 	((("Polio (IPV) vaccine immunization history" = "No-doses") and ("Age" >= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true));
+/* 
+ * @dataElement 1 dose
+ */
+define "1 dose":
+	true; // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient for Polio (bOPV) because 1st dose IPV given 4-8 weeks ago
@@ -227,7 +238,6 @@ define "Should vaccinate patient for Polio (IPV) because no doses at 8 weeks old
  */
 define "Should vaccinate patient for Polio (bOPV) because 1st dose IPV given 4-8 weeks ago":
 	(((("Polio (IPV) vaccine immunization history" = "1 dose") and ("Last IPV dose given" >= "4 weeks")) and ("Last IPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true));
-
 /* 
  * @dataElement Country has a high risk of exposure
  */
@@ -243,11 +253,10 @@ define "Country has a high risk of exposure":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((((("Polio (IPV) vaccine immunization history" = "1 dose") and ("Last IPV dose given" >= "4 weeks")) and ("Last IPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true)) and ("Country has a high risk of exposure" = true))
+ *	 ((((("Polio (IPV) vaccine immunization history" = "1 dose" = true) and ("Last IPV dose given" >= "4 weeks")) and ("Last IPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true)) and ("Country has a high risk of exposure" = true))
  */
 define "Should vaccinate patient for Polio (IPV) because 1st dose IPV given 4-8 weeks ago (High risk of exposure scenario)":
 	((((("Polio (IPV) vaccine immunization history" = "1 dose") and ("Last IPV dose given" >= "4 weeks")) and ("Last IPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true)) and ("Country has a high risk of exposure" = true));
-
 /* 
  * @dataElement Last bOPV dose given
  */
@@ -267,6 +276,11 @@ define "Last bOPV dose given":
  */
 define "Should vaccinate patient for Polio (bOPV) because 1st dose bOPV (Second dose in 3-dose schedule) given 4-8 weeks ago":
 	(((("Polio (bOPV) vaccine immunization history" = "1 dose") and ("Last bOPV dose given" >= "4 weeks")) and ("Last bOPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true));
+/* 
+ * @dataElement Last IPV dose given >= 4 weeks
+ */
+define "Last IPV dose given >= 4 weeks":
+	true; // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient for Polio (bOPV) because 2nd dose IPV given 4-8 weeks ago (High risk of exposure scneario)
@@ -277,17 +291,10 @@ define "Should vaccinate patient for Polio (bOPV) because 1st dose bOPV (Second 
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((((("Polio (IPV) vaccine immunization history" = "2 dose") and ("Last IPV dose given" >= "4 weeks")) and ("Last IPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true)) and ("Country has a high risk of exposure" = true))
+ *	 ((((("Polio (IPV) vaccine immunization history" = "2 dose") and ("Last IPV dose given" >= "4 weeks" = true)) and ("Last IPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true)) and ("Country has a high risk of exposure" = true))
  */
 define "Should vaccinate patient for Polio (bOPV) because 2nd dose IPV given 4-8 weeks ago (High risk of exposure scneario)":
 	((((("Polio (IPV) vaccine immunization history" = "2 dose") and ("Last IPV dose given" >= "4 weeks")) and ("Last IPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true)) and ("Country has a high risk of exposure" = true));
-
-/* 
- * @dataElement 2 doses
- */
-define "2 doses":
-	true; // TODO: Define this
-
 /*
  * Rule: Should vaccinate patient for Polio (bOPV) because 1st dose bOPV (Third dose in 4-dose schedule) given 4-8 weeks ago
  * Annotations:
@@ -297,11 +304,10 @@ define "2 doses":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (((((("Polio (bOPV) vaccine immunization history" = "1 dose") and ("Polio (IPV) vaccine immunization history" = "2 doses")) and ("Last bOPV dose given" >= "4 weeks")) and ("Last bOPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true)) and ("Country has a high risk of exposure" = true))
+ *	 ((((("Polio (bOPV) vaccine immunization history" = "1 dose") and ("Last bOPV dose given" >= "4 weeks")) and ("Last bOPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true)) and ("Country has a high risk of exposure" = true))
  */
 define "Should vaccinate patient for Polio (bOPV) because 1st dose bOPV (Third dose in 4-dose schedule) given 4-8 weeks ago":
 	(((((("Polio (bOPV) vaccine immunization history" = "1 dose") and ("Polio (IPV) vaccine immunization history" = "2 doses")) and ("Last bOPV dose given" >= "4 weeks")) and ("Last bOPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true)) and ("Country has a high risk of exposure" = true));
-
 /* 
  * @dataElement IPV vaccine immunization history
  */
@@ -327,7 +333,6 @@ define "High Coverage of Polio and Risk of Wild Importation":
  */
 define "Should vaccinate patient with IPV 1st dose":
 	((("IPV vaccine immunization history" = "No-doses") and ("Age" <= "8 weeks")) and ("High Coverage of Polio and Risk of Wild Importation" = true));
-
 /* 
  * @dataElement 1 IPV dose
  */
@@ -347,7 +352,6 @@ define "1 IPV dose":
  */
 define "Should vaccinate patient with IPV 2nd dose":
 	(("IPV vaccine immunization history" = "1 IPV dose") and ("High Coverage of Polio and Risk of Wild Importation" = true));
-
 /* 
  * @dataElement 2 IPV doses
  */
@@ -367,7 +371,6 @@ define "2 IPV doses":
  */
 define "Should vaccinate patient with IPV 3rd dose":
 	(("IPV vaccine immunization history" = "2 IPV doses") and ("High Coverage of Polio and Risk of Wild Importation" = true));
-
 /* 
  * @dataElement 3 IPV doses
  */
@@ -399,4 +402,3 @@ define "6 months":
  */
 define "Should vaccinate patient with IPV 4th dose (booster)":
 	(((("IPV vaccine immunization history" = "3 IPV doses") and ("Age when 1st IPV dose was given" < "8 weeks")) and ("Age" >= "6 months")) and ("High Coverage of Polio and Risk of Wild Importation" = true));
-

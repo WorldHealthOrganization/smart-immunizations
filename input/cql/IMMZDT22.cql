@@ -39,9 +39,9 @@ define "<=18 months":
 	true; // TODO: Define this
 
 /* 
- * @dataElement 1 doses given 4 weeks to 3 months ago
+ * @dataElement Varicella vaccine immunization history = 1 doses given 4 weeks to 3 months ago
  */
-define "1 doses given 4 weeks to 3 months ago":
+define "Varicella vaccine immunization history = 1 doses given 4 weeks to 3 months ago":
 	true; // TODO: Define this
 
 /* 
@@ -91,8 +91,7 @@ define "1 doses and potentially susceptible health-care worker (i.e.unvaccinated
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (((((((("Varicella vaccine immunization history" = "No doses") and (">= 12 months" = true)) and ("<=18 months" = true)) or ((("Varicella vaccine immunization history" = "1 doses given 4 weeks to 3 months ago") and (">= 12 months" = true)) and ("<=18 months" = true))) or ((("Varicella vaccine immunization history" = "No doses greater") and (">= 15 years old (adults and adolescents)" = true)) and ("Not pregnant" = true))) or ((("Varicella vaccine immunization history" = "1 doses") and (">= 15 years old (adults and adolescents)" = true)) and ("Not pregnant" = true))) or ((("Varicella vaccine immunization history" = "No doses") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Not pregnant" = true))) or ((("Varicella vaccine immunization history" = "1 doses and potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella) and not pregnant") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Not pregnant" = true)))
+ *	 (((((((("Varicella vaccine immunization history" = "No doses") and (">= 12 months" = true)) and ("<=18 months" = true)) or ((("Varicella vaccine immunization history" = "1 doses given 4 weeks to 3 months ago" = true) and (">= 12 months" = true)) and ("<=18 months" = true))) or ((("Varicella vaccine immunization history" = "No doses greater") and (">= 15 years old (adults and adolescents)" = true)) and ("Not pregnant" = true))) or ((("Varicella vaccine immunization history" = "1 doses") and (">= 15 years old (adults and adolescents)" = true)) and ("Not pregnant" = true))) or ((("Varicella vaccine immunization history" = "No doses") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Not pregnant" = true))) or ((("Varicella vaccine immunization history" = "1 doses and potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella) and not pregnant") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Not pregnant" = true)))
  */
 define "Should vaccinate patient with Varicella vaccine":
 	(((((((("Varicella vaccine immunization history" = "No doses") and (">= 12 months" = true)) and ("<=18 months" = true)) or ((("Varicella vaccine immunization history" = "1 doses given 4 weeks to 3 months ago") and (">= 12 months" = true)) and ("<=18 months" = true))) or ((("Varicella vaccine immunization history" = "No doses greater") and (">= 15 years old (adults and adolescents)" = true)) and ("Not pregnant" = true))) or ((("Varicella vaccine immunization history" = "1 doses") and (">= 15 years old (adults and adolescents)" = true)) and ("Not pregnant" = true))) or ((("Varicella vaccine immunization history" = "No doses") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Not pregnant" = true))) or ((("Varicella vaccine immunization history" = "1 doses and potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella) and not pregnant") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Not pregnant" = true)));
-

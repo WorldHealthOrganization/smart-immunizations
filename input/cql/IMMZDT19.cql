@@ -51,7 +51,6 @@ define "9 years":
  */
 define "Should vaccinate patient for Dengue because no doses at 9 years old in a 3 dose scheme":
 	(("Dengue vaccine immunization history" = "No-doses") and ("Age" >= "9 years"));
-
 /* 
  * @dataElement 1 dose
  */
@@ -83,7 +82,6 @@ define "6 months":
  */
 define "Should vaccinate patient for Dengue because 1st dose given 6 months ago in a 3 dose scheme":
 	(("Dengue vaccine immunization history" = "1 dose") and ("Last dose given" >= "6 months"));
-
 /* 
  * @dataElement 2 doses
  */
@@ -103,4 +101,3 @@ define "2 doses":
  */
 define "Should vaccinate patient for Dengue because 2nd dose given 6 months ago in a 3 dose scheme":
 	(("Dengue vaccine immunization history" = "2 doses") and ("Last dose given" >= "6 months"));
-

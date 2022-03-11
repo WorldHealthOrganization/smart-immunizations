@@ -51,7 +51,6 @@ define "2 years":
  */
 define "Should vaccinate patient with ViPS vaccine":
 	(("Typhoid vaccine immunization history" = "No-doses ") and ("Age" >= "2 years"));
-
 /* 
  * @dataElement 6 years
  */
@@ -83,9 +82,9 @@ define "2 Days Ago":
 	true; // TODO: Define this
 
 /* 
- * @dataElement 2 doses
+ * @dataElement Typhoid vaccine immunization history = 2 doses
  */
-define "2 doses":
+define "Typhoid vaccine immunization history = 2 doses":
 	true; // TODO: Define this
 
 /* 
@@ -119,15 +118,14 @@ define "6 Years old":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (((("Age" > "6 years") and ("Pregnant" = "False")) or ((("Dose Given" = "2 Days Ago") and ("Age" > "6 years")) and ("Pregnant" = "False"))) or (((("Typhoid vaccine immunization history" = "2 doses") and ("2nd dose given" = "2 days ago")) and ("Age" > "6 Years old")) and ("Pregnant" = "False")))
+ *	 (((("Age" > "6 years") and ("Pregnant" = "False")) or ((("Dose Given" = "2 Days Ago") and ("Age" > "6 years")) and ("Pregnant" = "False"))) or (((("Typhoid vaccine immunization history" = "2 doses" = true) and ("2nd dose given" = "2 days ago")) and ("Age" > "6 Years old")) and ("Pregnant" = "False")))
  */
 define "Should vaccinate patient with Ty21a vaccine":
 	(((("Age" > "6 years") and ("Pregnant" = "False")) or ((("Dose Given" = "2 Days Ago") and ("Age" > "6 years")) and ("Pregnant" = "False"))) or (((("Typhoid vaccine immunization history" = "2 doses") and ("2nd dose given" = "2 days ago")) and ("Age" > "6 Years old")) and ("Pregnant" = "False")));
-
 /* 
- * @dataElement 6 Months
+ * @dataElement Age >= 6 Months
  */
-define "6 Months":
+define "Age >= 6 Months":
 	true; // TODO: Define this
 
 /* 
@@ -145,8 +143,7 @@ define "45 Years":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (("Age" >= "6 Months") and ("Age" <= "45 Years"))
+ *	 (("Age" >= "6 Months" = true) and ("Age" <= "45 Years"))
  */
 define "Should vaccinate patient with TCV vaccine":
 	(("Age" >= "6 Months") and ("Age" <= "45 Years"));
-

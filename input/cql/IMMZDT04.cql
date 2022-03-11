@@ -39,7 +39,6 @@ define "No-doses":
  */
 define "Should vaccinate patient with DTP first dose":
 	("DTP vaccine immunization history" = "No-doses");
-
 /* 
  * @dataElement 1 dose
  */
@@ -59,7 +58,6 @@ define "1 dose":
  */
 define "Should vaccinate patient for DTP with 2nd dose":
 	("DTP vaccine immunization history" = "1 dose");
-
 /* 
  * @dataElement 2 dose
  */
@@ -79,7 +77,6 @@ define "2 dose":
  */
 define "Should vaccinate patient for DTP with 3rd dose":
 	("DTP vaccine immunization history" = "2 dose");
-
 /* 
  * @dataElement Interrupted primary series
  */
@@ -99,7 +96,6 @@ define "Interrupted primary series":
  */
 define "Should vaccinate the patient is next appriopriate dose.":
 	("Interrupted primary series" = true);
-
 /* 
  * @dataElement 3 doses
  */
@@ -119,7 +115,6 @@ define "3 doses":
  */
 define "Should vaccinate patient for DTP with 1st booster":
 	("DTP vaccine immunization history" = "3 doses");
-
 /* 
  * @dataElement 3 doses + 1 booster
  */
@@ -139,7 +134,6 @@ define "3 doses + 1 booster":
  */
 define "Should vaccinate patient for DTP with 2nd booster":
 	("DTP vaccine immunization history" = "3 doses + 1 booster");
-
 /* 
  * @dataElement 3 doses + 2 boosters
  */
@@ -159,7 +153,6 @@ define "3 doses + 2 boosters":
  */
 define "Should vaccinate patient for DTP with 3rd booster":
 	("DTP vaccine immunization history" = "3 doses + 2 boosters");
-
 /* 
  * @dataElement Patient started primary series >15 years of age
  */
@@ -179,4 +172,3 @@ define "Patient started primary series >15 years of age":
  */
 define "Should vaccinate the patient in a 5 shot scheme":
 	("Patient started primary series >15 years of age" = true);
-

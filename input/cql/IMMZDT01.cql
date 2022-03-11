@@ -63,15 +63,15 @@ define "Unknown":
 	true; // TODO: Define this
 
 /* 
- * @dataElement HIV Status
+ * @dataElement BCG vaccine immunization history = No-doses
  */
-define "HIV Status":
+define "BCG vaccine immunization history = No-doses":
 	true; // TODO: Define this
 
 /* 
- * @dataElement Positive
+ * @dataElement HIV Status = Positive
  */
-define "Positive":
+define "HIV Status = Positive":
 	true; // TODO: Define this
 
 /* 
@@ -115,8 +115,7 @@ define "CD4 count ≥ 200":
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * 	- 
  * Logic:
- *	 ((((((("TST test" = "TST-negative") and ("High incidence of TB and/or high leprosy burden" = true)) or (("IGRA test" = "IGRA-negative") and ("High incidence of TB and/or high leprosy burden" = true))) or (("BCG vaccine immunization history" = "No-doses") and ("High incidence of TB and/or high leprosy burden" = true))) or (("BCG vaccine immunization history" = "Unknown") and ("High incidence of TB and/or high leprosy burden" = true))) or ((((("BCG vaccine immunization history" = "No-doses") and ("HIV Status" = "Positive")) and ("CD4%" >"25%" = true)) and ("Age" < "5 years")) and ("High incidence of TB and/or high leprosy burden" = true))) or ((((("BCG vaccine immunization history" = "No-doses") and ("HIV Status" = "Positive")) and ("CD4 count" ≥ "200" = true)) and ("Age" > "5 years")) and ("High incidence of TB and/or high leprosy burden" = true)))
+ *	 ((((((("TST test" = "TST-negative") and ("High incidence of TB and/or high leprosy burden" = true)) or (("IGRA test" = "IGRA-negative") and ("High incidence of TB and/or high leprosy burden" = true))) or (("BCG vaccine immunization history" = "No-doses") and ("High incidence of TB and/or high leprosy burden" = true))) or (("BCG vaccine immunization history" = "Unknown") and ("High incidence of TB and/or high leprosy burden" = true))) or ((((("BCG vaccine immunization history" = "No-doses" = true) and ("HIV Status" = "Positive" = true)) and ("CD4%" >"25%" = true)) and ("Age" < "5 years")) and ("High incidence of TB and/or high leprosy burden" = true))) or ((((("BCG vaccine immunization history" = "No-doses" = true) and ("HIV Status" = "Positive" = true)) and ("CD4 count" ≥ "200" = true)) and ("Age" > "5 years")) and ("High incidence of TB and/or high leprosy burden" = true)))
  */
 define "Should vaccinate patient for BCG":
 	((((((("TST test" = "TST-negative") and ("High incidence of TB and/or high leprosy burden" = true)) or (("IGRA test" = "IGRA-negative") and ("High incidence of TB and/or high leprosy burden" = true))) or (("BCG vaccine immunization history" = "No-doses") and ("High incidence of TB and/or high leprosy burden" = true))) or (("BCG vaccine immunization history" = "Unknown") and ("High incidence of TB and/or high leprosy burden" = true))) or ((((("BCG vaccine immunization history" = "No-doses") and ("HIV Status" = "Positive")) and ("CD4%" >"25%" = true)) and ("Age" < "5 years")) and ("High incidence of TB and/or high leprosy burden" = true))) or ((((("BCG vaccine immunization history" = "No-doses") and ("HIV Status" = "Positive")) and ("CD4 count" ≥ "200" = true)) and ("Age" > "5 years")) and ("High incidence of TB and/or high leprosy burden" = true)));
-

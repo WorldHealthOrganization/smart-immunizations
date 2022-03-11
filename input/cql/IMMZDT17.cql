@@ -57,4 +57,3 @@ define "Country is not highly endemic":
  */
 define "Should vaccinate patient for Hepatitis A because no doses at 1 year old in a 1 dose scheme":
 	((("Hepatitis A vaccine immunization history" = "No-doses") and ("Age" >= "1 year")) and ("Country is not highly endemic" = true));
-

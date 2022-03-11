@@ -58,7 +58,6 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  */
 define "Should vaccinate patient for Pneumococcal because no doses in a 2 dose scheme":
 	((("Pneumococcal vaccine immunization history" = "No-doses") and ("Age" >= "6 weeks")) and ("Country is following a 2 dose scheme" = true));
-
 /* 
  * @dataElement 1 dose
  */
@@ -97,7 +96,6 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  */
 define "Should vaccinate patient for Pneumococcal because 1 dose in a 2 dose scheme":
 	(((("Pneumococcal vaccine immunization history" = "1 dose") and ("Last Pneumococcal Dose given" >= "8 weeks ago")) and ("Age" >= "6 weeks")) and ("Country is using a 2 dose scheme" = true));
-
 /* 
  * @dataElement  No doses
  */
@@ -124,7 +122,6 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  */
 define "Should vaccinate patient for Pneumococcal because No doses in a 3 dose scheme":
 	((("Pneumococcal vaccine immunization history" = " No doses") and ("Age" >= "6 weeks")) and ("Country is following a 3 dose scheme" = true));
-
 /* 
  * @dataElement  1 dose
  */
@@ -151,7 +148,6 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  */
 define "Should vaccinate patient for Pneumococcal because 1 dose in a 3 dose scheme":
 	(((("Pneumococcal vaccine immunization history" = " 1 dose") and ("Last Pneumococcal Dose given" >= "4 weeks ago")) and ("Age" >= "6 weeks")) and ("Country is following a 3 dose scheme" = true));
-
 /* 
  * @dataElement  2 doses
  */
@@ -172,7 +168,6 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  */
 define "Should vaccinate patient for Pneumococcal because 2 doses in a 3 dose scheme":
 	(((("Pneumococcal vaccine immunization history" = " 2 doses") and ("Last Pneumococcal Dose given" >= "4 weeks ago")) and ("Age" >= "6 weeks")) and ("Country is following a 3 dose scheme" = true));
-
 /* 
  * @dataElement No doses
  */
@@ -217,7 +212,6 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  */
 define "Should vaccinate patient for Pneumococcal because No doses in a 2 dose scheme":
 	((((("Pneumococcal vaccine immunization history" = "No doses") and ("Age" >= "1 years")) and ("Age" <= "5 years")) and ("Patient is HIV+" = true)) or (((("Pneumococcal vaccine immunization history" = "No doses") and ("Age" >= "1 years")) and ("Age" <= "5 years")) and ("Patient has sickle-cell disease" = true)));
-
 /*
  * Rule: Should vaccinate patient for Pneumococcal because 1 doses in a 2 dose scheme
  * Annotations:
@@ -232,7 +226,6 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  */
 define "Should vaccinate patient for Pneumococcal because 1 doses in a 2 dose scheme":
 	((((("Pneumococcal vaccine immunization history" = "1 dose") and ("Age" >= "1 years")) and ("Age" <= "5 years")) and ("Patient is HIV+" = true)) or (((("Pneumococcal vaccine immunization history" = "1 dose") and ("Age" >= "1 years")) and ("Age" <= "5 years")) and ("Patient has sickle-cell disease" = true)));
-
 /* 
  * @dataElement In a setting with a high disease burden and mortality
  */
@@ -253,4 +246,3 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  */
 define "Should vaccinate patient for Pneumococcal because No doses in a 1 dose scheme":
 	(((("Pneumococcal vaccine immunization history" = " No doses") and ("Age" >= "1 years")) and ("Age" <= "5 years")) and ("In a setting with a high disease burden and mortality" = true));
-

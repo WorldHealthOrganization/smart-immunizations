@@ -39,9 +39,9 @@ define "1 Year":
 	true; // TODO: Define this
 
 /* 
- * @dataElement 1 dose given
+ * @dataElement Cholera vaccine immunization history = 1 dose given
  */
-define "1 dose given":
+define "Cholera vaccine immunization history = 1 dose given":
 	true; // TODO: Define this
 
 /* 
@@ -67,11 +67,10 @@ define "2 Weeks Ago":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("Cholera vaccine immunization history" = "No doses") and ("Age" >= "1 Year")) or ((("Cholera vaccine immunization history" = "1 dose given") and ("Dose Given" = "2 Weeks Ago")) and ("Age" >= "1 Year")))
+ *	 ((("Cholera vaccine immunization history" = "No doses") and ("Age" >= "1 Year")) or ((("Cholera vaccine immunization history" = "1 dose given" = true) and ("Dose Given" = "2 Weeks Ago")) and ("Age" >= "1 Year")))
  */
 define "Should vaccinate patient with WC vaccines(Shanchol, Euvchol, and mORCVAX)":
 	((("Cholera vaccine immunization history" = "No doses") and ("Age" >= "1 Year")) or ((("Cholera vaccine immunization history" = "1 dose given") and ("Dose Given" = "2 Weeks Ago")) and ("Age" >= "1 Year")));
-
 /* 
  * @dataElement No doses given
  */
@@ -91,15 +90,21 @@ define "5 Years":
 	true; // TODO: Define this
 
 /* 
- * @dataElement Dose given
+ * @dataElement 1 dose given
  */
-define "Dose given":
+define "1 dose given":
 	true; // TODO: Define this
 
 /* 
- * @dataElement 1 week
+ * @dataElement Dose given >= 1 week
  */
-define "1 week":
+define "Dose given >= 1 week":
+	true; // TODO: Define this
+
+/* 
+ * @dataElement Dose given
+ */
+define "Dose given":
 	true; // TODO: Define this
 
 /* 
@@ -148,15 +153,14 @@ define "6 week":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((((((("Cholera vaccine immunization history" = "No doses given") and ("Age" >= "2 Years")) and ("Age" <= "5 Years")) or ((((("Cholera vaccine immunization history" = "1 dose given") and ("Dose given" >= "1 week")) and ("Dose given" <= "6 weeks")) and ("Age" >= "2 Years")) and ("Age" <= "5 Years"))) or ((((("Cholera vaccine immunization history" = "2 doses given") and ("Dose given" >= "1 week")) and ("Dose given" <= "6 weeks")) and ("Age" >= "2 Years")) and ("Age" <= "5 Years"))) or (("Cholera vaccine immunization history" = "No doses") and ("Age" > "6 Years"))) or (((("Cholera vaccine immunization history" = "1 dose given 1-6 weeks before and greater than or equal to 6 years old and adults") and ("Dose given" >= "1 week")) and ("Dose given" <= "6 week")) and ("Age" >= "6 Years")))
+ *	 ((((((("Cholera vaccine immunization history" = "No doses given") and ("Age" >= "2 Years")) and ("Age" <= "5 Years")) or ((((("Cholera vaccine immunization history" = "1 dose given") and ("Dose given" >= "1 week" = true)) and ("Dose given" <= "6 weeks")) and ("Age" >= "2 Years")) and ("Age" <= "5 Years"))) or ((((("Cholera vaccine immunization history" = "2 doses given") and ("Dose given" >= "1 week" = true)) and ("Dose given" <= "6 weeks")) and ("Age" >= "2 Years")) and ("Age" <= "5 Years"))) or (("Cholera vaccine immunization history" = "No doses") and ("Age" > "6 Years"))) or (((("Cholera vaccine immunization history" = "1 dose given 1-6 weeks before and greater than or equal to 6 years old and adults") and ("Dose given" >= "1 week" = true)) and ("Dose given" <= "6 week")) and ("Age" >= "6 Years")))
  */
 define "Should vaccinate patient with WC-rBS vaccine (Dukoral)":
 	((((((("Cholera vaccine immunization history" = "No doses given") and ("Age" >= "2 Years")) and ("Age" <= "5 Years")) or ((((("Cholera vaccine immunization history" = "1 dose given") and ("Dose given" >= "1 week")) and ("Dose given" <= "6 weeks")) and ("Age" >= "2 Years")) and ("Age" <= "5 Years"))) or ((((("Cholera vaccine immunization history" = "2 doses given") and ("Dose given" >= "1 week")) and ("Dose given" <= "6 weeks")) and ("Age" >= "2 Years")) and ("Age" <= "5 Years"))) or (("Cholera vaccine immunization history" = "No doses") and ("Age" > "6 Years"))) or (((("Cholera vaccine immunization history" = "1 dose given 1-6 weeks before and greater than or equal to 6 years old and adults") and ("Dose given" >= "1 week")) and ("Dose given" <= "6 week")) and ("Age" >= "6 Years")));
-
 /* 
- * @dataElement No dose
+ * @dataElement Cholera vaccine immunization history = No dose
  */
-define "No dose":
+define "Cholera vaccine immunization history = No dose":
 	true; // TODO: Define this
 
 /* 
@@ -182,11 +186,11 @@ Euvchol or mORCVAX) immunization – NO PREVIOUS" schedule (1 dose scheme)
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (("Cholera vaccine immunization history" = "No dose") and ("cholera outbreaks" = "True"))
+ *	 (("Cholera vaccine immunization history" = "No dose" = true) and ("cholera outbreaks" = "True"))
  */
 define "Should vaccinate patient with WC vaccines (Shanchol,
 Euvchol or mORCVAX)":
-	(("Cholera vaccine immunization history" = "No dose") and ("cholera outbreaks" = "True"));
+	(("Cholera vaccine immunization history" = "No dose" = true) and ("cholera outbreaks" = "True"));
 
 /*
  * Rule: Should vaccinate patient with OCV
@@ -197,8 +201,7 @@ Euvchol or mORCVAX)":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ("Cholera vaccine immunization history" = "No dose")
+ *	 ("Cholera vaccine immunization history" = "No dose" = true)
  */
 define "Should vaccinate patient with OCV":
 	("Cholera vaccine immunization history" = "No dose");
-

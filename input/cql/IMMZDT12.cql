@@ -14,18 +14,6 @@ include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
 context Patient
 
-/* 
- * @dataElement Age
- */
-define "Age":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 9 months
- */
-define "9 months":
-	true; // TODO: Define this
-
 /*
  * Rule: Should vaccinate patient for Yellow Fever because no doses on 1 dose scheme
  * Annotations:
@@ -36,8 +24,7 @@ define "9 months":
  * 	- WHO recommendations for routine immunization - summary tables: https://w
 ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ("Age" >= "9 months")
+ *	 
  */
 define "Should vaccinate patient for Yellow Fever because no doses on 1 dose scheme":
 	("Age" >= "9 months");
-

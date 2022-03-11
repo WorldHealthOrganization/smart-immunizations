@@ -15,15 +15,9 @@ include IMMZVaccineLibrary called IMMZvl
 context Patient
 
 /* 
- * @dataElement Japanese Encephalitis vaccine immunization history
+ * @dataElement Japanese Encephalitis vaccine immunization history = No-doses
  */
-define "Japanese Encephalitis vaccine immunization history":
-	true; // TODO: Define this
-
-/* 
- * @dataElement No-doses
- */
-define "No-doses":
+define "Japanese Encephalitis vaccine immunization history = No-doses":
 	true; // TODO: Define this
 
 /* 
@@ -83,27 +77,20 @@ define "Live recombinant":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((((("Japanese Encephalitis vaccine immunization history" = "No-doses") and ("Age" >= "6 months")) and ("Antigen" = "Inactivated Vero cell-derived")) or ((("Japanese Encephalitis vaccine immunization history" = "No-doses") and ("Age" >= "8 months")) and ("Antigen" = "Live attentuated"))) or ((("Japanese Encephalitis vaccine immunization history" = "No-doses") and ("Age" >= "9 months")) and ("Antigen" = "Live recombinant")))
+ *	 ((((("Japanese Encephalitis vaccine immunization history" = "No-doses" = true) and ("Age" >= "6 months")) and ("Antigen" = "Inactivated Vero cell-derived")) or ((("Japanese Encephalitis vaccine immunization history" = "No-doses" = true) and ("Age" >= "8 months")) and ("Antigen" = "Live attentuated"))) or ((("Japanese Encephalitis vaccine immunization history" = "No-doses" = true) and ("Age" >= "9 months")) and ("Antigen" = "Live recombinant")))
  */
 define "Should vaccinate patient for Japanese Encephalitis because no doses":
 	((((("Japanese Encephalitis vaccine immunization history" = "No-doses") and ("Age" >= "6 months")) and ("Antigen" = "Inactivated Vero cell-derived")) or ((("Japanese Encephalitis vaccine immunization history" = "No-doses") and ("Age" >= "8 months")) and ("Antigen" = "Live attentuated"))) or ((("Japanese Encephalitis vaccine immunization history" = "No-doses") and ("Age" >= "9 months")) and ("Antigen" = "Live recombinant")));
-
 /* 
- * @dataElement 1 dose
+ * @dataElement Japanese Encephalitis vaccine immunization history = 1 dose
  */
-define "1 dose":
+define "Japanese Encephalitis vaccine immunization history = 1 dose":
 	true; // TODO: Define this
 
 /* 
- * @dataElement Previous dose
+ * @dataElement Previous dose >= 4 weeks
  */
-define "Previous dose":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 4 weeks
- */
-define "4 weeks":
+define "Previous dose >= 4 weeks":
 	true; // TODO: Define this
 
 /*
@@ -115,8 +102,7 @@ define "4 weeks":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("Japanese Encephalitis vaccine immunization history" = "1 dose") and ("Previous dose" >= "4 weeks")) and ("Antigen" = "Inactivated Vero cell-derived"))
+ *	 ((("Japanese Encephalitis vaccine immunization history" = "1 dose" = true) and ("Previous dose" >= "4 weeks" = true)) and ("Antigen" = "Inactivated Vero cell-derived"))
  */
 define "Should vaccinate patient for Japanese Encephalitis because 1 dose":
 	((("Japanese Encephalitis vaccine immunization history" = "1 dose") and ("Previous dose" >= "4 weeks")) and ("Antigen" = "Inactivated Vero cell-derived"));
-

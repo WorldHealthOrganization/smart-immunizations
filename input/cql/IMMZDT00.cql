@@ -27,15 +27,15 @@ define "True":
 	true; // TODO: Define this
 
 /* 
- * @dataElement Allergy
+ * @dataElement Allergy = True
  */
-define "Allergy":
+define "Allergy = True":
 	true; // TODO: Define this
 
 /* 
- * @dataElement Immunocompromised
+ * @dataElement Immunocompromised = True
  */
-define "Immunocompromised":
+define "Immunocompromised = True":
 	true; // TODO: Define this
 
 /*
@@ -52,8 +52,7 @@ Note: this is a difficult one because we don't have the data on each product's a
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("Adverse Reaction" = "True") or ("Allergy" = "True")) or ("Immunocompromised" = "True"))
+ *	 ((("Adverse Reaction" = "True") or ("Allergy" = "True" = true)) or ("Immunocompromised" = "True" = true))
  */
 define "":
 	((("Adverse Reaction" = "True") or ("Allergy" = "True")) or ("Immunocompromised" = "True"));
-

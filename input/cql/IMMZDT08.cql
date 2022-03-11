@@ -15,15 +15,9 @@ include IMMZVaccineLibrary called IMMZvl
 context Patient
 
 /* 
- * @dataElement Measles vaccine immunization history
+ * @dataElement Measles vaccine immunization history = No-doses
  */
-define "Measles vaccine immunization history":
-	true; // TODO: Define this
-
-/* 
- * @dataElement No-doses
- */
-define "No-doses":
+define "Measles vaccine immunization history = No-doses":
 	true; // TODO: Define this
 
 /* 
@@ -61,8 +55,7 @@ define "18 months":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((((("Measles vaccine immunization history" = "No-doses") and ("Age" >= "9 months")) and ("Age" <= "15 months")) or ((("Measles vaccine immunization history" = "No-doses") and ("Age" >= "15 months")) and ("Age" <= "18 months"))) or (("Measles vaccine immunization history" = "No-doses") and ("Age" > "9 months")))
+ *	 ((((("Measles vaccine immunization history" = "No-doses" = true) and ("Age" >= "9 months")) and ("Age" <= "15 months")) or ((("Measles vaccine immunization history" = "No-doses" = true) and ("Age" >= "15 months")) and ("Age" <= "18 months"))) or (("Measles vaccine immunization history" = "No-doses" = true) and ("Age" > "9 months")))
  */
 define "Should vaccinate patient for measles because no doses":
 	((((("Measles vaccine immunization history" = "No-doses") and ("Age" >= "9 months")) and ("Age" <= "15 months")) or ((("Measles vaccine immunization history" = "No-doses") and ("Age" >= "15 months")) and ("Age" <= "18 months"))) or (("Measles vaccine immunization history" = "No-doses") and ("Age" > "9 months")));
-

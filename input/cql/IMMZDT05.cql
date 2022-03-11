@@ -15,15 +15,9 @@ include IMMZVaccineLibrary called IMMZvl
 context Patient
 
 /* 
- * @dataElement Hib vaccine immunization history
+ * @dataElement Hib vaccine immunization history = No-doses
  */
-define "Hib vaccine immunization history":
-	true; // TODO: Define this
-
-/* 
- * @dataElement No-doses
- */
-define "No-doses":
+define "Hib vaccine immunization history = No-doses":
 	true; // TODO: Define this
 
 /* 
@@ -48,10 +42,21 @@ define "No known allergies to any component of the vaccine":
  * 	- WHO recommendations for routine immunization - summary tables: https://w
 ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("Hib vaccine immunization history" = "No-doses") and ("Age > 12 months" = true)) and ("No known allergies to any component of the vaccine" = true))
+ *	 ((("Hib vaccine immunization history" = "No-doses" = true) and ("Age > 12 months" = true)) and ("No known allergies to any component of the vaccine" = true))
  */
 define "Should vaccinate patient for Hib because no doses on 1 dose scheme":
 	((("Hib vaccine immunization history" = "No-doses") and ("Age > 12 months" = true)) and ("No known allergies to any component of the vaccine" = true));
+/* 
+ * @dataElement Hib vaccine immunization history
+ */
+define "Hib vaccine immunization history":
+	true; // TODO: Define this
+
+/* 
+ * @dataElement No-doses
+ */
+define "No-doses":
+	true; // TODO: Define this
 
 /* 
  * @dataElement Age >= 6 weeks
@@ -65,6 +70,12 @@ define "Age >= 6 weeks":
 define "No known allergies to any componentof the vaccine":
 	true; // TODO: Define this
 
+/* 
+ * @dataElement In a country where the peak burden of severe Hib disease occurs in young infants
+ */
+define "In a country where the peak burden of severe Hib disease occurs in young infants":
+	true; // TODO: Define this
+
 /*
  * Rule: Should vaccinate patient for Hib because no doses on 3 dose scheme
  * Annotations:
@@ -75,15 +86,14 @@ define "No known allergies to any componentof the vaccine":
  * 	- WHO recommendations for routine immunization - summary tables: https://w
 ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("Hib vaccine immunization history" = "No-doses") and ("Age >= 6 weeks" = true)) and ("No known allergies to any componentof the vaccine" = true))
+ *	 (((("Hib vaccine immunization history" = "No-doses") and ("Age >= 6 weeks" = true)) and ("No known allergies to any componentof the vaccine" = true)) and ("In a country where the peak burden of severe Hib disease occurs in young infants" = true))
  */
 define "Should vaccinate patient for Hib because no doses on 3 dose scheme":
 	((("Hib vaccine immunization history" = "No-doses") and ("Age >= 6 weeks" = true)) and ("No known allergies to any componentof the vaccine" = true));
-
 /* 
- * @dataElement 1-dose
+ * @dataElement Hib vaccine immunization history = 1-dose
  */
-define "1-dose":
+define "Hib vaccine immunization history = 1-dose":
 	true; // TODO: Define this
 
 /* 
@@ -102,12 +112,6 @@ define "4 weeks ago":
  * @dataElement Age>= 6 weeks
  */
 define "Age>= 6 weeks":
-	true; // TODO: Define this
-
-/* 
- * @dataElement In a country where the peak burden of severe Hib disease occurs in young infants
- */
-define "In a country where the peak burden of severe Hib disease occurs in young infants":
 	true; // TODO: Define this
 
 /* 
@@ -145,11 +149,10 @@ define "In a setting (e.g. where the greatest disease morbidity and mortality oc
  * 	- WHO recommendations for routine immunization - summary tables: https://w
 ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (((((("Hib vaccine immunization history" = "1-dose") and ("Last Hib vaccine immunization dose given" >= "4 weeks ago")) and ("Age>= 6 weeks" = true)) and ("No known allergies to any componentof the vaccine" = true)) and ("In a country where the peak burden of severe Hib disease occurs in young infants"" = true)) or ((((("Hib vaccine immunization history" = "1-dose given 4 weeks ago") and ("Last Hib Vaccine immunization dose given" >= "4 weeks ago")) and ("Age>= 6 weeks " = true)) and ("No known allergies to any componentof the vaccine" = true)) and ("In a setting (e.g. where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine)" = true)))
+ *	 (((((("Hib vaccine immunization history" = "1-dose" = true) and ("Last Hib vaccine immunization dose given" >= "4 weeks ago")) and ("Age>= 6 weeks" = true)) and ("No known allergies to any componentof the vaccine" = true)) and ("In a country where the peak burden of severe Hib disease occurs in young infants"" = true)) or ((((("Hib vaccine immunization history" = "1-dose given 4 weeks ago") and ("Last Hib Vaccine immunization dose given" >= "4 weeks ago")) and ("Age>= 6 weeks " = true)) and ("No known allergies to any componentof the vaccine" = true)) and ("In a setting (e.g. where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine)" = true)))
  */
 define "Should vaccinate patient for Hib because 1 dose on 3 dose scheme":
 	(((((("Hib vaccine immunization history" = "1-dose") and ("Last Hib vaccine immunization dose given" >= "4 weeks ago")) and ("Age>= 6 weeks" = true)) and ("No known allergies to any componentof the vaccine" = true)) and ("In a country where the peak burden of severe Hib disease occurs in young infants"" = true)) or ((((("Hib vaccine immunization history" = "1-dose given 4 weeks ago") and ("Last Hib Vaccine immunization dose given" >= "4 weeks ago")) and ("Age>= 6 weeks " = true)) and ("No known allergies to any componentof the vaccine" = true)) and ("In a setting (e.g. where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine)" = true)));
-
 /* 
  * @dataElement 2-doses
  */
@@ -195,7 +198,6 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  */
 define "Should vaccinate patient for Hib because 2 doses on 3 dose scheme":
 	(((((("Hib vaccine immunization history" = "2-doses") and ("Last Hib vaccine immunization dose given" >= "4 weeks ago")) and ("Age >= 6 weeks " = true)) and ("No known allergies to any componentof the vaccine" = true)) and ("In a country where the peak burden of severe Hib disease occurs in young infants"" = true)) or ((((("Hib vaccine immunization history" = "2-doses given 4 weeks ago") and ("Last Hib Vaccine immunization dose given" >= "4 weeks ago")) and ("Age" >= "6 weeks")) and ("No known allergies to any componentof the vaccine" = true)) and ("In a setting (e.g. where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine)" = true)));
-
 /*
  * Rule: Should vaccinate patient for Hib because No dose on 3 dose scheme
  * Annotations:
@@ -210,7 +212,6 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  */
 define "Should vaccinate patient for Hib because No dose on 3 dose scheme":
 	(((("Hib vaccine immunization history" = "No-doses") and ("Age >= 6 weeks " = true)) and ("No known allergies to any componentof the vaccine" = true)) and ("In a setting (e.g. where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine)" = true));
-
 /*
  * Rule: Should vaccinate patient for Hib because No dose on 2 dose scheme
  * Annotations:
@@ -225,6 +226,11 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  */
 define "Should vaccinate patient for Hib because No dose on 2 dose scheme":
 	((("Hib vaccine immunization history" = "No-doses") and ("Age" >= "6 weeks")) and ("No known allergies to any componentof the vaccine" = true));
+/* 
+ * @dataElement 1-dose
+ */
+define "1-dose":
+	true; // TODO: Define this
 
 /* 
  * @dataElement 8 weeks ago
@@ -242,8 +248,7 @@ define "8 weeks ago":
  * 	- WHO recommendations for routine immunization - summary tables: https://w
 ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((((("Hib vaccine immunization history" = "1-dose") and ("Last Hib Vaccine immunization dose given" >= "8 weeks ago")) and ("Age" >= "6 weeks")) and ("No known allergies to any componentof the vaccine" = true)) and ("In a setting (e.g. where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine)" = true))
+ *	 ((((("Hib vaccine immunization history" = "1-dose") and ("Last Hib Vaccine immunization dose given" >= "8 weeks ago")) and ("Age" >= "6 weeks" = true)) and ("No known allergies to any componentof the vaccine" = true)) and ("In a setting (e.g. where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine)" = true))
  */
 define "Should vaccinate patient for Hib because 1 dose on 2 dose scheme":
 	((((("Hib vaccine immunization history" = "1-dose") and ("Last Hib Vaccine immunization dose given" >= "8 weeks ago")) and ("Age" >= "6 weeks")) and ("No known allergies to any componentof the vaccine" = true)) and ("In a setting (e.g. where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine)" = true));
-

@@ -39,7 +39,6 @@ define "No-doses":
  */
 define "Should vaccinate patient for Hepatitis B because no doses":
 	("Hepatitis B vaccine immunization history" = "No-doses");
-
 /* 
  * @dataElement 1 dose
  */
@@ -59,7 +58,6 @@ define "1 dose":
  */
 define "Should vaccinate patient for Hepatitis B because 1 dose":
 	("Hepatitis B vaccine immunization history" = "1 dose");
-
 /* 
  * @dataElement 2 doses
  */
@@ -79,7 +77,6 @@ define "2 doses":
  */
 define "Should vaccinate patient for Hepatitis B because 2 doses":
 	("Hepatitis B vaccine immunization history" = "2 doses");
-
 /* 
  * @dataElement 3 doses
  */
@@ -92,17 +89,32 @@ define "3 doses":
 define "Patient birth weight observation value":
 	true; // TODO: Define this
 
+/* 
+ * @dataElement Patient mother's prenancy outcome observation
+ */
+define "Patient mother's prenancy outcome observation":
+	true; // TODO: Define this
+
+/* 
+ * @dataElement preterm
+ */
+define "preterm":
+	true; // TODO: Define this
+
 /*
  * Rule: Should vaccinate patient for Hepatitis B because 3 doses and (low birth weight or premature infant)
  * Annotations:
  * 	 - Provide Hepatitis B immunizations – using the "Hepatitis B vaccine immunization – 3 PREVIOUS" schedule (4 doses scheme)
+ * 	 - 
  * Outputs:
  * 	 - Immunize Patient for Hepatitis B - 3 Doses and Premature birth/low birth weight
+ * 	 - 
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- 
  * Logic:
- *	 (("Hepatitis B vaccine immunization history" = "3 doses") and ("Patient birth weight observation value" < 2000g))
+ *	 ((("Hepatitis B vaccine immunization history" = "3 doses") and ("Patient birth weight observation value" < 2000g)) or (("Hepatitis B vaccine immunization history" = "3 doses") and ("Patient mother's prenancy outcome observation" = "preterm")))
  */
 define "Should vaccinate patient for Hepatitis B because 3 doses and (low birth weight or premature infant)":
-	(("Hepatitis B vaccine immunization history" = "3 doses") and ("Patient birth weight observation value" < 2000g));
+	((("Hepatitis B vaccine immunization history" = "3 doses") and ("Patient birth weight observation value" < 2000g)) or (("Hepatitis B vaccine immunization history" = "3 doses") and ("Patient mother's prenancy outcome observation" = "preterm")));
 

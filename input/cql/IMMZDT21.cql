@@ -51,7 +51,6 @@ define "6 months":
  */
 define "Should vaccinate patient for Seasonal influenza because no doses at 6 months old in a 2 dose scheme":
 	(("Seasonal influenza vaccine immunization history" = "No-doses") and ("Age" >= "6 months"));
-
 /* 
  * @dataElement 1 dose
  */
@@ -89,7 +88,6 @@ define "9 years":
  */
 define "Should vaccinate patient for Seasonal influenza because 1st dose was given 4 weeks ago in a 2 dose scheme":
 	((("Seasonal influenza vaccine immunization history" = "1 dose") and ("Last dose given" >= "4 weeks ago")) and ("Age" < "9 years"));
-
 /* 
  * @dataElement Seasonal influenza vaccine immunization last dose given
  */
@@ -115,4 +113,3 @@ define "1 year ago":
  */
 define "Should vaccinate patient for Seasonal influenza - Yearly booster dose":
 	("Seasonal influenza vaccine immunization last dose given" >= "1 year ago");
-
