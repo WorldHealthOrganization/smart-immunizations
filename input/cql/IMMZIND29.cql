@@ -1,12 +1,12 @@
 /*
- * Library: IMMZ.IND.01
- * Immunization coverage for BCG (Estimated Denominator) 
- * Compares the doses of BCG vaccine administered with the estimated number of live births as a percentage.
+ * Library: IMMZ.IND.29
+ * Immunization coverage for BCG (Computed Denominator) 
+ * Compares the administered doses of BCG vaccine with the actual number of registered, surviving infants expressed as a percentage.
  * 
  * Numerator: Number of administrations of BCG during the reporting period 
  * Numerator Computation: COUNT immunization events WHERE administered product is a BCG vaccine (IMMZ.A1.DE1) during reporting period
- * Denominator: Estimated number of live births.
- * Denominator Computation: PARAMETER number of live births
+ * Denominator: Number of registered, surviving infants.
+ * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  * 
  * Disaggregation:
  *   - Geographic Region
@@ -14,7 +14,7 @@
  * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - element 4010)
  */
 
-library IMMZIND01
+library IMMZIND29
 
 // Start Skeleton CQL
 using FHIR version '4.0.1'
@@ -25,6 +25,7 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
+
 context Patient
 
 /*
@@ -35,8 +36,8 @@ define "numerator":
 	true // TODO: Write logic here 
 
 /*
- * Denominator: Estimated number of live births.
- * Denominator Computation: PARAMETER number of live births
+ * Denominator: Number of registered, surviving infants.
+ * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  */
 define "denominator":
 	true // TODO: Write logic here 
@@ -45,5 +46,6 @@ define "denominator":
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-    IMMZStratifiers."By Geographic Region Stratifier"
-/* End of IMMZ.IND.01 */
+	true // todo: fill in logic
+
+/* End of IMMZ.IND.29 */
