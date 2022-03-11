@@ -31,7 +31,7 @@ define "Immunization Not Done":
   [Immunization] I
     where I.status in {'not-done'}
 
-//how do we handle entered-in-error? It seems like it should be different from not-done in how it should be handled? These should be ignored so we likely don't need to check for them
+//how do we handle entered-in-error? It seems like it should be different from not-done in how it should be handled? These should be ignored so we likely don't need to check for them. We should maybe set these to check for statuses like complete, or amended 
 
 //check vaccine status reason - e.g. if vaccine was not given
 define "Immunization StatusReason":
@@ -43,13 +43,13 @@ define "Immunization StatusReason":
 //Procedure for vaccine administration
 
 
-//Get patient observations
+//Get patient observations. Do we need this statement to get all Observations? 
 define "Get Observations":
   [Observation]
 
 //Check if patient is pregnant
 //not sure if pregnancy is an Observation
-define "Pregnant":
+define "Pregnant Observation":
   [Observation] O
   //IPS Uses Observation - https://hl7.org/fhir/uv/ips/StructureDefinition-observation-pregnancy-status-uv-ips.html
     where (O.value as CodeableConcept) in Wcon."Pregnancy Status Pregnant"
@@ -58,8 +58,31 @@ Need to figure out how to add the OR Condition in case pregnancy is stored in a 
 or [Condition] C
       where (C.code as CodeableConcept) in Wcon."Pregnancy Status Pregnant"
 */
+define "Pregnant Condition":
+  [Condition] C
+    where (C.code as CodeableConcept) in Wcon."Pregnancy Status Pregnant"
+
+define "Pregnant": 
+  exists
+  ( "Pregnant Observation")
+  or exists ("Pregnant Condition")
+
 
 //Get adverse events - should be captured in Observations
+/*define "Adverse Event":
+  [Observation] O
+    where (O.value as CodeableConcept) in Wcon."Adverse Events"
+
+define "Has Adverse Event": 
+     Wcon."Adverse Events"([Observation] O
+        where O.id = Last(Split(Immunization.reaction.detail.reference, '/'))
+        and (O.value as CodeableConcept) in Wcon."Adverse Events"
+
+define "Has Adverse Events":
+  [Immunization] I 
+  where exists ([Observation] O where O.id = Last(Split(I.reaction.detail.reference, '/')))
+*/
+
 /**
  * @description Fetches a singleton protocol applied from an immunization
  * @comment The protocol list from the immunization
