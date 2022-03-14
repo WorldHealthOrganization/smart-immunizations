@@ -83,7 +83,12 @@ define "Has Adverse Event":
 define "Has Adverse Events":
   [Immunization] I 
   where exists ([Observation] O where O.id = Last(Split(I.reaction.detail.reference, '/')))
-*/
+  */
+//Bryn's Adverse Event:
+define "Adverse Event":
+  from [Immunization] I, [Observation] O
+    where O.id in (I.reaction R return Last(Split(R.detail.reference, '/')))
+    return O
 
 /**
  * @description Fetches a singleton protocol applied from an immunization
