@@ -33,9 +33,8 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a BCG vaccine (IMMZ.A1.DE1) during reporting period
  */
 define "numerator":
-	exists([Immunization: vaccineCode in IMMZc."BCG Vaccine"] I
-        where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
-            and I.status = 'completed')
+	exists(IMMZCom."BCG Doses Administered" I
+		where IMMZCom.ToDate(I.occurrence) during "Measurement Period")
 
 /*
  * Denominator: Estimated number of live births.

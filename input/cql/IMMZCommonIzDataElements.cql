@@ -1,5 +1,5 @@
 /**
- * Common data elements where "Immunization" is the context
+ * Immunization Common Stratifiers by Patients as Context
  */
 
 library IMMZCommonIzDataElements
@@ -14,6 +14,10 @@ include IMMZVaccineLibrary called IMMZvl
 
 codesystem "Vaccines Administered": 'http://hl7.org/fhir/ValueSet/vaccine-code'
 
+// Vaccines administered
+code "BCG": 'BCG' from "Vaccines Administered" display 'BCG'
+//should this reference the BCG valueset from IMMZConcepts.cql? 
+
 context Immunization
 
 // @dataElement: Geographic Region where the vaccination was provided
@@ -27,5 +31,9 @@ define "Dose Number":
     IMMZCom.Only(Immunization.protocolApplied).doseNumber as FHIR.positiveInt
 
 //  @dataElement: Vaccine classification
-define "Vaccine Code":
-    Immunization.vaccineCode
+define "Vaccine Type":
+    // TODO: How to apply a case statement to an Immunization? This is my best shot
+    case 
+        when Immunization.vaccineCode in IMMZc."BCG Vaccine" then "BCG"
+        else null
+    end

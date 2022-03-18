@@ -58,9 +58,5 @@ define "Age Group  Stratifier":
  */
 define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
-/*
- * Disaggregator: 
- */
-define " Stratifier":
-	true // todo: fill in logic
+
 /* End of IMMZ.IND.05 */
