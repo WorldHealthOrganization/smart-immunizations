@@ -36,8 +36,15 @@ context Patient
  *	 ((((((("TST test" = "TST-negative") and ("High incidence of TB and/or high leprosy burden" = true)) or (("IGRA test" = "IGRA-negative") and ("High incidence of TB and/or high leprosy burden" = true))) or (("BCG vaccine immunization history" = "No-doses") and ("High incidence of TB and/or high leprosy burden" = true))) or (("BCG vaccine immunization history" = "Unknown") and ("High incidence of TB and/or high leprosy burden" = true))) or ((((("BCG vaccine immunization history" = "No-doses" = true) and ("HIV Status" = "Positive" = true)) and ("CD4%" >"25%" = true)) and ("Age" < "5 years")) and ("High incidence of TB and/or high leprosy burden" = true))) or ((((("BCG vaccine immunization history" = "No-doses" = true) and ("HIV Status" = "Positive" = true)) and ("CD4 count" ≥ "200" = true)) and ("Age" > "5 years")) and ("High incidence of TB and/or high leprosy burden" = true)))
  */
 define "Should vaccinate patient for BCG":
-	(IMMZCom."Most Recent TST Test Result" in IMMZc."Negative Result" and IMMZCon."High incidence of TB and/or high leprosy burden" = true) or 
-	(IMMZCom."Most Recent IGRA Test Result" in IMMZc."Negative Result" and IMMZCon."High incidence of TB and/or high leprosy burden" = true) or 
-	(IMMZCom."No BCG Doses Administered" and IMMZCon."High incidence of TB and/or high leprosy burden" = true) or 
-	(IMMZCom."No BCG Doses Administered" and IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices" and IMMZCom."Most Recent CD4%" > 25'%' and IMMZCom."Current Patient Age In Years" < 5 and IMMZCon."High incidence of TB and/or high leprosy burden" = true) or 
-	(IMMZCom."No BCG Doses Administered" and IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices" and IMMZCom."Most Recent CD4 Count" >= 200 and IMMZCom."Current Patient Age In Years" >= 5 and IMMZCon."High incidence of TB and/or high leprosy burden" = true)
+	IMMZCon."High incidence of TB and/or high leprosy burden" = true and (
+		(IMMZCom."Most Recent TST Test Result" in IMMZc."Negative Result") or 
+		(IMMZCom."Most Recent IGRA Test Result" in IMMZc."Negative Result") or 
+		(IMMZCom."No BCG Doses Administered") or 
+		(
+				(IMMZCom."No BCG Doses Administered" and IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices") and 
+				(
+					(IMMZCom."Most Recent CD4%" > 25'%' and IMMZCom."Current Patient Age In Years" < 5) or 
+					(IMMZCom."Most Recent CD4 Count" >= 200 and IMMZCom."Current Patient Age In Years" >= 5)
+				)
+		)
+	)
