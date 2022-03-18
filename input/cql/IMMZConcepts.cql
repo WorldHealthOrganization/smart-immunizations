@@ -20,6 +20,11 @@ valueset "HIV Status Positive": 'http://example.org/ValueSets/HIV-status-positiv
 valueset "CD4% Test Result": 'http://example.org/ValueSets/CD4%-test-result'
 valueset "CD4 Count Test Result": 'http://example.org/ValueSets/CD4-count-test-result'
 
+// TODO : Adapt from ANC
+valueset "HIV status": 'http://fhir.org/guides/who/anc-cds/ValueSet/anc-b9-de45'
+valueset "HIV status - HIV positive Choices": 'http://fhir.org/guides/who/anc-cds/ValueSet/anc-b9-de46'
+valueset "HIV status - HIV negative Choices": 'http://fhir.org/guides/who/anc-cds/ValueSet/anc-b9-de47'
+
 // Vaccine specific ValueSets
 //BCG specific ValuSets
 valueset "TST Test Result": 'http://example.org/ValueSets/tst-test'
