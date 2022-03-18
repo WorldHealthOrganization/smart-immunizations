@@ -19,16 +19,15 @@ Numerator Exclusion: COUNT immunization recommendations WHERE recommended produc
 
 library IMMZIND48
 
-// Start Skeleton CQL
 using FHIR version '4.0.1'
+
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
-// End Skeleton CQL
-parameter "Measurement Period" Interval<Date>
 
+parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
 context Patient
 
 /*
@@ -37,19 +36,16 @@ context Patient
 Numerator Exclusion: COUNT immunization recommendations WHERE recommended product is BCG AND due date during reporting period AND NOT EXISTS Immunization event where administered product is MCV AND dose sequence = 3
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Number of children who have received BCG vaccine
  * Denominator Computation: COUNT immunization events WHERE administered product is BCG AND EXISTS immunization recommendation WHERE product is MCV and dose sequence = 1 and due date during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
-
+	IMMZStratifiers."By Geographic Region Stratifier"
 /* End of IMMZ.IND.48 */

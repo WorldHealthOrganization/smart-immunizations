@@ -20,16 +20,15 @@ COUNT immunization events WHERE administered product is measles containing vacci
 
 library IMMZIND21
 
-// Start Skeleton CQL
 using FHIR version '4.0.1'
+
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
-// End Skeleton CQL
-parameter "Measurement Period" Interval<Date>
 
+parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
 context Patient
 
 /*
@@ -39,19 +38,16 @@ SUBTRACT
 COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1 during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Number of administrations of BCG administered during reporting period.
  * Denominator Computation: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1)  during reporting period
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
-
+	IMMZStratifiers."By Geographic Region Stratifier"
 /* End of IMMZ.IND.21 */

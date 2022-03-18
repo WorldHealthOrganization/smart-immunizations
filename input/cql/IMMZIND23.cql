@@ -20,16 +20,15 @@ This indicator is used to compare performance of management. Implementers may pr
 
 library IMMZIND23
 
-// Start Skeleton CQL
 using FHIR version '4.0.1'
+
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
-// End Skeleton CQL
-parameter "Measurement Period" Interval<Date>
 
+parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
 context Patient
 
 /*
@@ -37,31 +36,26 @@ context Patient
  * Numerator Computation: COUNT number of disposed vials of vaccine product.
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Total number of doses vaccine product received and available for use during the reporting period.
  * Denominator Computation: COUNT number of total vials of vaccine product received and available for use.
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Vaccine  (BCG, OPV, etc.)
  */
 define "Vaccine   Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Type of Spoilage (Broken, Heat Exposure/VVM, Expiry)
  */
 define "Type of Spoilage  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
-
+	IMMZStratifiers."By Geographic Region Stratifier"
 /* End of IMMZ.IND.23 */

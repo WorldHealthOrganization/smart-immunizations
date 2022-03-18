@@ -23,8 +23,9 @@ include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
-// End Skeleton CQL
-parameter "Measurement Period" Interval<Date>
+
+parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
+parameter "Estimated Number of Live Births" Integer default 10
 context Patient
 
 /*
@@ -32,18 +33,20 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a BCG vaccine (IMMZ.A1.DE1) during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
+	exists(IMMZCom."BCG Doses Administered" I
+		where IMMZCom.ToDate(I.occurrence) during "Measurement Period")
 
 /*
  * Denominator: Estimated number of live births.
  * Denominator Computation: PARAMETER number of live births
  */
 define "denominator":
-	true // TODO: Write logic here 
+	"Estimated Number of Live Births"
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-    IMMZStratifiers."By Geographic Region Stratifier"
+	IMMZStratifiers."By Geographic Region Stratifier"
+
 /* End of IMMZ.IND.01 */

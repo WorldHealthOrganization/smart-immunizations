@@ -67,8 +67,205 @@ define "Pregnant":
   ( "Pregnant Observation")
   or exists ("Pregnant Condition")
 
-//Questions for Bryn: How to do Adverse Event and Immunosuppression
 
+/*******************
+ * Indicator Data elements
+ */
+
+/**
+ * @dataElement All doses administered to patient
+ */
+define "Doses Administered":
+  [Immunization] I
+    where I.status = 'completed'
+
+/**
+ * @dataElement BCG Doses Administered
+ */
+define "BCG Doses Administered":
+  "Doses Administered" I 
+  where 
+    I.vaccineCode in IMMZc."BCG Vaccine"
+
+/**
+ * @dataElement Polio Doses Administered
+ */
+define "Polio Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Polio Vaccine"
+
+/**
+ * @dataElement Diptheria containing doses Administered
+ */
+define "Diphtheria Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Diphtheria Vaccine"
+
+/**
+ * @dataElement Cholera containing doses administered
+ */
+define "Cholera Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Cholera Vaccine"
+
+/**
+ * @dataElement Hib containing doses administered
+ */
+define "Hib Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Hib Vaccine"
+
+/**
+ * @dataElement HepA containing doses administered
+ */
+define "HepA Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."HepA Vaccine"
+
+/**
+ * @dataElement HepB containing doses administered
+ */
+define "HepB Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."HepB Vaccine"
+
+/**
+ * @dataElement HPV containing doses administered
+ */
+define "HPV Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."HPV Vaccine"
+
+/**
+ * @dataElement Japanese Encephalitis containing doses administered
+ */
+define "Japanese Encephalitis Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Japanese Encephalitis Vaccine"
+
+/**
+ * @dataElement MCV containing doses administered
+ */
+define "MCV Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."MCV Vaccine"
+
+/**
+ * @dataElement Meningococcal containing doses administered
+ */
+define "Meningococcal Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Meningococcal Vaccine"
+
+/**
+ * @dataElement Mumps containing doses administered
+ */
+define "Mumps Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Mumps Vaccine"
+
+/**
+ * @dataElement Pertussis containing doses administered
+ */
+define "Pertussis Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Pertussis Vaccine"
+
+/**
+ * @dataElement Pertussis containing doses administered
+ */
+define "Pneumococcal Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Pneumococcal Vaccine"
+
+/**
+ * @dataElement Rabies containing doses administered
+ */
+define "Rabies Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Rabies Vaccine"
+
+/**
+ * @dataElement Rotavirus containing doses administered
+ */
+define "Rotavirus Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Rotavirus Vaccine"
+
+/**
+ * @dataElement Rubella containing doses administered
+ */
+define "Rubella Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Rubella Vaccine"
+
+/**
+ * @dataElement Seasonal Influenza containing doses administered
+ */
+define "Seasonal Influenza Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Seasonal Influenza Vaccine"
+
+/**
+ * @dataElement Tetanus containing doses administered
+ */
+define "Tetanus Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Tetanus Vaccine"
+
+/**
+ * @dataElement Typhoid containing doses administered
+ */
+define "Typhoid Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Typhoid Vaccine"
+
+/**
+ * @dataElement Varicella containing doses administered
+ */
+define "Varicella Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Varicella Vaccine"
+
+/**
+ * @dataElement Yellow Fever containing doses administered
+ */
+define "Yellow Fever Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Yellow Fever Vaccine"
+
+/**
+ * @dataElement DTP containing doses administered
+ */
+define "DTP Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."DTP Vaccine"
+
+/************************
+ * End Indicator Data elements
+ */
 
 //Get adverse events - should be captured in Observations
 /*define "Adverse Event":
@@ -83,12 +280,7 @@ define "Has Adverse Event":
 define "Has Adverse Events":
   [Immunization] I 
   where exists ([Observation] O where O.id = Last(Split(I.reaction.detail.reference, '/')))
-  */
-//Bryn's Adverse Event:
-define "Adverse Event":
-  from [Immunization] I, [Observation] O
-    where O.id in (I.reaction R return Last(Split(R.detail.reference, '/')))
-    return O
+*/
 
 /**
  * @description Fetches a singleton protocol applied from an immunization

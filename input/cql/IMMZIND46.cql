@@ -17,16 +17,15 @@
 
 library IMMZIND46
 
-// Start Skeleton CQL
 using FHIR version '4.0.1'
+
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
-// End Skeleton CQL
-parameter "Measurement Period" Interval<Date>
 
+parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
 context Patient
 
 /*
@@ -34,25 +33,21 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a Typhoid vaccine (IMMZ.A1.DE21) during reporting period.
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Number of immunization recommendations for typhoid vaccines dur during reporting period.
  * Denominator Computation: COUNT Immunization recommendation WHERE recommended product is typhoid vaccine (IMMZ.A1.DE21) during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Dose Sequence (1, 2, 3)
  */
 define "Dose Sequence  Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
-
+	IMMZStratifiers."By Geographic Region Stratifier"
 /* End of IMMZ.IND.46 */

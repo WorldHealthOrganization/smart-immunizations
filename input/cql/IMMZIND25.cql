@@ -16,16 +16,15 @@
 
 library IMMZIND25
 
-// Start Skeleton CQL
 using FHIR version '4.0.1'
+
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
-// End Skeleton CQL
-parameter "Measurement Period" Interval<Date>
 
+parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
 context Patient
 
 /*
@@ -33,19 +32,16 @@ context Patient
  * Numerator Computation: COUNT of facilities which were able to fulfill all vaccination activities.
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Total number of facilities.
  * Denominator Computation: COUNT all locations in the region
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
-
+	IMMZStratifiers."By Geographic Region Stratifier"
 /* End of IMMZ.IND.25 */
