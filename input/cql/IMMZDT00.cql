@@ -9,6 +9,7 @@ library IMMZDT00
 // Start Skeleton CQL
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
+include FHIRCommon called FC
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZStratifiers called IMMZStratifiers
@@ -32,13 +33,22 @@ define "True":
  * @dataElement Allergy = True
  */
 define "Allergy = True":
-	true; // TODO: Define this
+	[AllergyIntolerance] A
+	where 
+	A.clinicalStatus ~ FC."allergy-active"
+	and
+	A.verificationStatus ~ FC."allergy-confirmed"
 
 /* 
  * @dataElement Immunocompromised = True
  */
 define "Immunocompromised = True":
-	true; // TODO: Define this
+	[Condition] C 
+	where C.code in IMMZc."Immunocompromised"
+	and
+  	C.clinicalStatus in FC."Active Condition"
+	and
+	C.verificationStatus ~ FC."confirmed"
 
 /*
  * Rule: 
