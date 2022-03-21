@@ -42,7 +42,6 @@ define "Immunization StatusReason":
 
 //Procedure for vaccine administration
 
-
 //Get patient observations. Do we need this statement to get all Observations? 
 define "Get Observations":
   [Observation]
@@ -68,16 +67,13 @@ define "Pregnant":
   or exists ("Pregnant Condition")
 
 
-/*******************
- * Indicator Data elements
- */
-
 /**
- * @dataElement All doses administered to patient
+ * @dataElement All doses administered to patient ordered by newest to oldest
  */
 define "Doses Administered":
   [Immunization] I
     where I.status = 'completed'
+    sort by (occurrence as FHIR.dateTime) desc
 
 /**
  * @dataElement BCG Doses Administered
@@ -86,6 +82,12 @@ define "BCG Doses Administered":
   "Doses Administered" I 
   where 
     I.vaccineCode in IMMZc."BCG Vaccine"
+
+/**
+ * @dataElement Patient has no BCG doses
+ */
+define "No BCG Doses Administered":
+  not exists("BCG Doses Administered")
 
 /**
  * @dataElement Polio Doses Administered
@@ -263,24 +265,101 @@ define "DTP Doses Administered":
   where
     I.vaccineCode in IMMZc."DTP Vaccine"
 
-/************************
- * End Indicator Data elements
+
+/******************************
+ * Test Results
  */
 
-//Get adverse events - should be captured in Observations
-/*define "Adverse Event":
-  [Observation] O
-    where (O.value as CodeableConcept) in Wcon."Adverse Events"
+/* 
+ * @dataElement TST Test Result
+ */
+define "TST Test Results":
+	[Observation: code in IMMZc."TST Test Result"] O
+  where O.status in { 'final', 'amended', 'corrected' }
+    and not(Coalesce(WCom.ModifierExtension(O, 'who-notDone').value, false))
+  sort by effective desc
 
-define "Has Adverse Event": 
-     Wcon."Adverse Events"([Observation] O
-        where O.id = Last(Split(Immunization.reaction.detail.reference, '/'))
-        and (O.value as CodeableConcept) in Wcon."Adverse Events"
+/*
+ * @dataElement Most recent TST Test result
+ */
+define "Most Recent TST Test Result":
+  First("TST Test Results" O
+    return O.value as FHIR.CodeableConcept)
+  
+/* 
+ * @dataElement IGRA Test Result
+ */
+define "IGRA Test Results":
+	[Observation: code in IMMZc."IGRA Test Result"] O
+    where O.status in { 'final', 'amended', 'corrected' }
+      and not(Coalesce(WCom.ModifierExtension(O, 'who-notDone').value, false))
+    sort by effective desc
 
-define "Has Adverse Events":
-  [Immunization] I 
-  where exists ([Observation] O where O.id = Last(Split(I.reaction.detail.reference, '/')))
+/*
+ * @dataElement Most recent IGRA Test Result
+ */
+define "Most Recent IGRA Test Result":
+  First("IGRA Test Results" O
+    return O.value as FHIR.CodeableConcept)
+
+/* 
+ * @dataElement All CD4% observations ordered by date issued
+ */
+define "Observed CD4% Measurements":
+	[Observation: code in IMMZc."CD4% Test Result"] O
+    sort by effective desc
+		
+/**
+ * @dataElement The most recent CD4%
+ */
+define "Most Recent CD4%":
+  First("Observed CD4% Measurements" O 
+    return O.value as FHIR.Quantity)
+
+/**
+ * @dataElement The observed CD4 counts ordered newest to oldest
+ */
+define "Observed CD4 Count":
+	[Observation: code in IMMZc."CD4 Count Test Result"] O
+    sort by effective desc
+
+/*
+  @dataElement HIV Status observations of the patient most recent first
 */
+define "HIV Status":
+  [Observation: IMMZc."HIV status"] O
+    where O.status in { 'final', 'amended', 'corrected' }
+      and Coalesce(WCom.ModifierExtension(O, 'who-notDone').value, false) is false
+    return O.value as FHIR.CodeableConcept
+
+/**
+ * @dataElement The most recent CD4 count
+ */
+define "Most Recent CD4 Count":
+  First("Observed CD4 Count" O 
+    return O.value as FHIR.Quantity)
+
+/** 
+ * @dataElement Patient age in years
+ */
+define "Current Patient Age In Years":
+  AgeInYearsAt(Today())
+
+/** 
+ * @dataElement Patient age in weeks
+ */
+define "Current Patient Age In Weeks":
+  AgeInWeeksAt(Today())
+
+/** 
+ * @dataElement Patient age in months
+ */
+define "Current Patient Age In Months":
+  AgeInMonthsAt(Today())
+
+/******************************
+ * CQL Helper Functions
+ */
 
 /**
  * @description Fetches a singleton protocol applied from an immunization

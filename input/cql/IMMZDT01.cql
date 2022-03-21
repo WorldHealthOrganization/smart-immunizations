@@ -13,97 +13,8 @@ include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 include IMMZConfig called IMMZCon
 
-// End Skeleton CQL
-//TODO: leave TST and IGRA tests as codes for now, but replace with ValueSets
-code "TST Test Result": '39263-9' from IMMZc."LOINC" display 'Tuberculin screen test status CPHS'
-code "TST negative": 'LA11155-1' from IMMZc."LOINC" display 'Ordered - Negative'
-
 context Patient
 
-/* 
- * @dataElement TST test
- */
-
-define "TST test":
-	[Observation: code in IMMZc."TST Test Result"] O
-	where O.value in IMMZc."Negative Result"
-
-/* 
- * @dataElement TST-negative
- */
- //is inferred negative in "TST test"
-
-/* 
- * @dataElement High incidence of TB and/or high leprosy burden
- */
-
-/* 
- * @dataElement IGRA test
- */
-define "IGRA test":
-	[Observation: code in IMMZc."IGRA Test Result"] O
-	where O.value in IMMZc."Negative Result"
-
-/* 
- * @dataElement IGRA-negative
- */
- //is inferred negative in "IGRA test"
-
-
-/* 
- * @dataElement BCG vaccine immunization history
- */
-define "BCG vaccine immunization history":
-  [Immunization: vaccineCode in IMMZc."BCG Vaccine"]
-
-/* 
- * @dataElement No-doses
- */
-define "No-doses":
-	true; // TODO: delete this since is covered by BCG vaccine not exists
-
-/* 
- * @dataElement Unknown
- */
-define "Unknown":
-	true; // TODO: delete implied as no doses - note that this only applies to BCG and individually determined per-antigen
-
-/* 
- * @dataElement BCG vaccine immunization history = No-doses
- */
-define "BCG vaccine immunization history = No-doses":
-	true; // TODO: Delete this because inferred above as not exists
-
-/* 
- * @dataElement HIV Status = Positive
- */
-define "HIV Status Positive":
-	[Condition: code in IMMZc."HIV Status Positive"]
-
-/* 
- * @dataElement CD4% >25%
- */
-define "CD4% >25%":
-	[Observation: code in IMMZc."CD4% Test Result"] O
-	where O.value as FHIR.Quantity > 25'%'
-
-/* 
- * @dataElement Age
- */
-define "Age":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 5 years
- */
-define "5 years":
-	true; // TODO: Define this
-
-/* 
- * @dataElement CD4 count ≥ 200
- */
-define "CD4 count ≥ 200":
-	true; // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient for BCG
@@ -125,4 +36,15 @@ define "CD4 count ≥ 200":
  *	 ((((((("TST test" = "TST-negative") and ("High incidence of TB and/or high leprosy burden" = true)) or (("IGRA test" = "IGRA-negative") and ("High incidence of TB and/or high leprosy burden" = true))) or (("BCG vaccine immunization history" = "No-doses") and ("High incidence of TB and/or high leprosy burden" = true))) or (("BCG vaccine immunization history" = "Unknown") and ("High incidence of TB and/or high leprosy burden" = true))) or ((((("BCG vaccine immunization history" = "No-doses" = true) and ("HIV Status" = "Positive" = true)) and ("CD4%" >"25%" = true)) and ("Age" < "5 years")) and ("High incidence of TB and/or high leprosy burden" = true))) or ((((("BCG vaccine immunization history" = "No-doses" = true) and ("HIV Status" = "Positive" = true)) and ("CD4 count" ≥ "200" = true)) and ("Age" > "5 years")) and ("High incidence of TB and/or high leprosy burden" = true)))
  */
 define "Should vaccinate patient for BCG":
-	(((((((exists  ("TST test")) and (IMMZCon."High incidence of TB and/or high leprosy burden" = true)) or ((exists  ("IGRA test")) and (IMMZCon."High incidence of TB and/or high leprosy burden" = true))) or ((not exists "BCG vaccine immunization history") and (IMMZCon."High incidence of TB and/or high leprosy burden" = true))) or (((((not exists "BCG vaccine immunization history") and ("HIV Status Positive")) and ("CD4%" >"25%" = true)) and ("Age" < "5 years")) and (IMMZCon."High incidence of TB and/or high leprosy burden" = true))) or ((((("BCG vaccine immunization history" = "No-doses") and ("HIV Status" = "Positive")) and ("CD4 count" ≥ "200" = true)) and ("Age" > "5 years")) and (IMMZCon."High incidence of TB and/or high leprosy burden" = true))))
+	IMMZCon."High incidence of TB and/or high leprosy burden" = true and (
+		(IMMZCom."Most Recent TST Test Result" in IMMZc."Negative Result") or 
+		(IMMZCom."Most Recent IGRA Test Result" in IMMZc."Negative Result") or 
+		(IMMZCom."No BCG Doses Administered") or 
+		(
+				(IMMZCom."No BCG Doses Administered" and IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices") and 
+				(
+					(IMMZCom."Most Recent CD4%" > 25'%' and IMMZCom."Current Patient Age In Years" < 5) or 
+					(IMMZCom."Most Recent CD4 Count" >= 200 and IMMZCom."Current Patient Age In Years" >= 5)
+				)
+		)
+	)
