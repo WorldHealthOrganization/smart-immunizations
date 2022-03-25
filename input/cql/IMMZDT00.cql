@@ -1,5 +1,3 @@
-//TODO: Delete this sheet since it's been replaced by IMMZCommmon
-
 /*
  * Library: IMMZDT00 (IMMZ.DT.00.Common)
  * Rule: Common rules that apply to all antigens 
@@ -9,7 +7,6 @@ library IMMZDT00
 // Start Skeleton CQL
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
-include FHIRCommon called FC
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZStratifiers called IMMZStratifiers

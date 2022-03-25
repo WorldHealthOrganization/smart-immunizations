@@ -14,24 +14,16 @@ include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
 context Patient
 
-/*
- * Rule: Should vaccinate patient for Tick-Borne Encephalitis because No dose  on 3 dose scheme
- * Annotations:
- * 	 - Provide Tick-Borne Encephalitis immunizations – using the "FSME-Immun and Encepur vaccine immunization – NO PREVIOUS" schedule (3 dose scheme)
- * Outputs:
- * 	 - Immunize Patient for Tick-Borne Encephalitis  - No Doses
- * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w
-ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
- * Logic:
- *	 
- */
-define "Should vaccinate patient for Tick-Borne Encephalitis because No dose  on 3 dose scheme":
-	("Age" >= "1 year");
 /* 
- * @dataElement Tick-Borne Encephalitis immunization history =  1 doses
+ * @dataElement Tick-Borne Encephalitis immunization history
  */
-define "Tick-Borne Encephalitis immunization history =  1 doses":
+define "Tick-Borne Encephalitis immunization history":
+	true; // TODO: Define this
+
+/* 
+ * @dataElement No-doses
+ */
+define "No-doses":
 	true; // TODO: Define this
 
 /* 
@@ -47,6 +39,26 @@ define "1 year":
 	true; // TODO: Define this
 
 /*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis because No dose  on 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "FSME-Immun and Encepur vaccine immunization – NO PREVIOUS" schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis  - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://w
+ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Age" >= "1 year"))
+ */
+define "Should vaccinate patient for Tick-Borne Encephalitis because No dose  on 3 dose scheme":
+	("Age" >= "1 year");
+/* 
+ * @dataElement 1-dose
+ */
+define "1-dose":
+	true; // TODO: Define this
+
+/*
  * Rule: Should vaccinate patient for Tick-Borne Encephalitis because 1st  dose given 1 to 3 months ago on 3 dose scheme
  * Annotations:
  * 	 - Provide Tick-Borne Encephalitis immunizations – using the "FSME-Immun and Encepur vaccine immunization – 1 PREVIOUS" schedule (3 dose scheme)
@@ -56,16 +68,10 @@ define "1 year":
  * 	- WHO recommendations for routine immunization - summary tables: https://w
 ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (("Tick-Borne Encephalitis immunization history" = " 1 doses" = true) and ("Age" >= "1 year"))
+ *	 (("Tick-Borne Encephalitis immunization history" = "1-dose") and ("Age" >= "1 year"))
  */
 define "Should vaccinate patient for Tick-Borne Encephalitis because 1st  dose given 1 to 3 months ago on 3 dose scheme":
 	(("Tick-Borne Encephalitis immunization history" = " 1 doses") and ("Age" >= "1 year"));
-/* 
- * @dataElement Tick-Borne Encephalitis immunization history
- */
-define "Tick-Borne Encephalitis immunization history":
-	true; // TODO: Define this
-
 /* 
  * @dataElement  2 doses 
  */
@@ -82,7 +88,7 @@ define " 2 doses ":
  * 	- WHO recommendations for routine immunization - summary tables: https://w
 ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ("Tick-Borne Encephalitis immunization history" = " 2 doses ")
+ *	 (("Tick-Borne Encephalitis immunization history" = " 2 doses ") and ("Age" > "1 year"))
  */
 define "Should vaccinate patient for Tick-Borne Encephalitis because 2nd doses given 5 months to 12 months ago on 3 dose scheme":
 	(("Tick-Borne Encephalitis immunization history" = " 2 doses ") and ("Age" > "1 year"));
@@ -90,6 +96,12 @@ define "Should vaccinate patient for Tick-Borne Encephalitis because 2nd doses g
  * @dataElement No-doses 
  */
 define "No-doses ":
+	true; // TODO: Define this
+
+/* 
+ * @dataElement 3 years
+ */
+define "3 years":
 	true; // TODO: Define this
 
 /*
@@ -102,14 +114,14 @@ define "No-doses ":
  * 	- WHO recommendations for routine immunization - summary tables: https://w
 ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ("Tick-Borne Encephalitis immunization history" = "No-doses ")
+ *	 (("Tick-Borne Encephalitis immunization history" = "No-doses ") and ("Age" >= "3 years"))
  */
 define "Should vaccinate patient for Tick-Borne Encephalitis because no doses on 3 dose scheme":
 	(("Tick-Borne Encephalitis immunization history" = "No-doses ") and ("Age" >= "3 years"));
 /* 
- * @dataElement  1 dose
+ * @dataElement 1 dose
  */
-define " 1 dose":
+define "1 dose":
 	true; // TODO: Define this
 
 /* 
@@ -125,9 +137,9 @@ define "1 month":
 	true; // TODO: Define this
 
 /* 
- * @dataElement 7months
+ * @dataElement 7 months
  */
-define "7months":
+define "7 months":
 	true; // TODO: Define this
 
 /*
@@ -140,26 +152,20 @@ define "7months":
  * 	- WHO recommendations for routine immunization - summary tables: https://w
 ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("Tick-Borne Encephalitis immunization history" = " 1 dose") and ("Last TBE-Moscow and EnceVir vaccine given" >= "1 month")) and ("Last TBE-Moscow and EnceVir vaccine given" <= "7months"))
+ *	 (((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Age" >= "3 years")) and ("Last TBE-Moscow and EnceVir vaccine given" >= "1 month")) and ("Last TBE-Moscow and EnceVir vaccine given" <= "7 months"))
  */
 define "Should vaccinate patient for Tick-Borne Encephalitis because 1st dose given 1 month to 7 months ago on 3 dose scheme":
 	(((("Tick-Borne Encephalitis immunization history" = " 1 dose") and ("Age" >= "3 years")) and ("Last TBE-Moscow and EnceVir vaccine given" >= "1 month")) and ("Last TBE-Moscow and EnceVir vaccine given" <= "7months"));
 /* 
- * @dataElement  2 doses
+ * @dataElement 2 doses
  */
-define " 2 doses":
+define "2 doses":
 	true; // TODO: Define this
 
 /* 
- * @dataElement 3 years
+ * @dataElement TBE-Moscow and EnceVir vaccine given  12 months
  */
-define "3 years":
-	true; // TODO: Define this
-
-/* 
- * @dataElement TBE-Moscow and EnceVir vaccine given  12 months ago
- */
-define "TBE-Moscow and EnceVir vaccine given  12 months ago":
+define "TBE-Moscow and EnceVir vaccine given  12 months":
 	true; // TODO: Define this
 
 /*
@@ -172,7 +178,7 @@ define "TBE-Moscow and EnceVir vaccine given  12 months ago":
  * 	- WHO recommendations for routine immunization - summary tables: https://w
 ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("Tick-Borne Encephalitis immunization history" = " 2 doses") and ("Age" >= "3 years")) and ("TBE-Moscow and EnceVir vaccine given"  "12 months ago" = true))
+ *	 ((("Tick-Borne Encephalitis immunization history" = "2 doses") and ("Age" >= "3 years")) and ("TBE-Moscow and EnceVir vaccine given"  "12 months" = true))
  */
 define "Should vaccinate patient for Tick-Borne Encephalitis because 2nd dose given 12 months ago on 3 dose scheme":
 	((("Tick-Borne Encephalitis immunization history" = " 2 doses") and ("Age" >= "3 years")) and ("TBE-Moscow and EnceVir vaccine given"  "12 months ago" = true));

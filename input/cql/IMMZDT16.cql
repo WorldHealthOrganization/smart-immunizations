@@ -58,7 +58,7 @@ define "There is a compelling reason to vaccinate infants between 3 to 9 months 
 	true; // TODO: Define this
 
 /*
- * Rule: Should vaccinate patient with MenA conjugate vaccine (5µg) because no doses on 2 dose scheme'
+ * Rule: Should vaccinate patient with MenA conjugate vaccine (5µg) because no doses on 2 dose scheme
  * Annotations:
  * 	 - Provide Meningococcal immunizations – using the "MenA conjugate vaccine (5µg) immunization – NO PREVIOUS" schedule (2 dose scheme)
  * Outputs:
@@ -68,7 +68,7 @@ define "There is a compelling reason to vaccinate infants between 3 to 9 months 
  * Logic:
  *	 (("Meningococcal vaccine immunization history" = "No doses") and ("There is a compelling reason to vaccinate infants between 3 to 9 months old" = true))
  */
-define "Should vaccinate patient with MenA conjugate vaccine (5µg) because no doses on 2 dose scheme'":
+define "Should vaccinate patient with MenA conjugate vaccine (5µg) because no doses on 2 dose scheme":
 	(("Meningococcal vaccine immunization history" = "No doses") and ("There is a compelling reason to vaccinate infants between 3 to 9 months old" = true));
 /* 
  * @dataElement 1 dose

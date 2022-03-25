@@ -21,9 +21,9 @@ define "Typhoid vaccine immunization history":
 	true; // TODO: Define this
 
 /* 
- * @dataElement No-doses 
+ * @dataElement No-doses
  */
-define "No-doses ":
+define "No-doses":
 	true; // TODO: Define this
 
 /* 
@@ -47,7 +47,7 @@ define "2 years":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (("Typhoid vaccine immunization history" = "No-doses ") and ("Age" >= "2 years"))
+ *	 (("Typhoid vaccine immunization history" = "No-doses") and ("Age" >= "2 years"))
  */
 define "Should vaccinate patient with ViPS vaccine":
 	(("Typhoid vaccine immunization history" = "No-doses ") and ("Age" >= "2 years"));
@@ -70,39 +70,27 @@ define "False":
 	true; // TODO: Define this
 
 /* 
- * @dataElement Dose Given
+ * @dataElement 1 dose
  */
-define "Dose Given":
+define "1 dose":
 	true; // TODO: Define this
 
 /* 
- * @dataElement 2 Days Ago
+ * @dataElement Previous dose date
  */
-define "2 Days Ago":
+define "Previous dose date":
+	true; // TODO: Define this
+
+/* 
+ * @dataElement 2 days
+ */
+define "2 days":
 	true; // TODO: Define this
 
 /* 
  * @dataElement Typhoid vaccine immunization history = 2 doses
  */
 define "Typhoid vaccine immunization history = 2 doses":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 2nd dose given
- */
-define "2nd dose given":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 2 days ago
- */
-define "2 days ago":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 6 Years old
- */
-define "6 Years old":
 	true; // TODO: Define this
 
 /*
@@ -118,20 +106,26 @@ define "6 Years old":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (((("Age" > "6 years") and ("Pregnant" = "False")) or ((("Dose Given" = "2 Days Ago") and ("Age" > "6 years")) and ("Pregnant" = "False"))) or (((("Typhoid vaccine immunization history" = "2 doses" = true) and ("2nd dose given" = "2 days ago")) and ("Age" > "6 Years old")) and ("Pregnant" = "False")))
+ *	 ((((("Typhoid vaccine immunization history" = "No-doses") and ("Age" > "6 years")) and ("Pregnant" = "False")) or (((("Typhoid vaccine immunization history" = "1 dose") and ("Previous dose date" = "2 days")) and ("Age" > "6 years")) and ("Pregnant" = "False"))) or (((("Typhoid vaccine immunization history" = "2 doses" = true) and ("Previous dose date" = "2 days")) and ("Age" > "6 years")) and ("Pregnant" = "False")))
  */
 define "Should vaccinate patient with Ty21a vaccine":
 	(((("Age" > "6 years") and ("Pregnant" = "False")) or ((("Dose Given" = "2 Days Ago") and ("Age" > "6 years")) and ("Pregnant" = "False"))) or (((("Typhoid vaccine immunization history" = "2 doses") and ("2nd dose given" = "2 days ago")) and ("Age" > "6 Years old")) and ("Pregnant" = "False")));
 /* 
- * @dataElement Age >= 6 Months
+ * @dataElement No doses
  */
-define "Age >= 6 Months":
+define "No doses":
 	true; // TODO: Define this
 
 /* 
- * @dataElement 45 Years
+ * @dataElement Age >= 6 months
  */
-define "45 Years":
+define "Age >= 6 months":
+	true; // TODO: Define this
+
+/* 
+ * @dataElement 45 years
+ */
+define "45 years":
 	true; // TODO: Define this
 
 /*
@@ -143,7 +137,7 @@ define "45 Years":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (("Age" >= "6 Months" = true) and ("Age" <= "45 Years"))
+ *	 ((("Typhoid vaccine immunization history" = "No doses") and ("Age" >= "6 months" = true)) and ("Age" <= "45 years"))
  */
 define "Should vaccinate patient with TCV vaccine":
 	(("Age" >= "6 Months") and ("Age" <= "45 Years"));
