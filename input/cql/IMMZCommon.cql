@@ -67,6 +67,12 @@ define "Pregnant":
   or exists ("Pregnant Condition")
 
 
+//Bryn's Adverse Event:
+define "Adverse Event":
+  from [Immunization] I, [Observation] O
+    where O.id in (I.reaction R return Last(Split(R.detail.reference, '/')))
+    return O
+    
 /**
  * @dataElement All doses administered to patient ordered by newest to oldest
  */
