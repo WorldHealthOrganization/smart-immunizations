@@ -1,0 +1,229 @@
+{
+  "resourceType": "Measure",
+  "id": "measure-IMMZIND01",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm" ]
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
+    "valueReference": {
+      "reference": "Device/cqf-tooling"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Measurement Period",
+      "use": "in",
+      "min": 0,
+      "max": "1",
+      "type": "Period"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Age Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "Coding"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Geographic Region Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "string"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-dataRequirement",
+    "valueDataRequirement": {
+      "type": "Location",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Location" ],
+      "mustSupport": [ "address", "id" ]
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-dataRequirement",
+    "valueDataRequirement": {
+      "type": "Patient",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Patient" ]
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-dataRequirement",
+    "valueDataRequirement": {
+      "type": "Immunization",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Immunization" ]
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+    "valueCoding": {
+      "system": "http://ohie.org/CodeSystem/iso-8601-derived-periods",
+      "code": "P0Y--P1Y",
+      "display": "< 1 year"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+    "valueCoding": {
+      "system": "http://ohie.org/CodeSystem/iso-8601-derived-periods",
+      "code": "P1Y--P9999Y",
+      "display": "> 1 year"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZStratifiers"
+    }, {
+      "url": "name",
+      "valueString": "Infant By Age Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "// Vaccinations given to infants stratified by age is < 1 yr or > 1 yr\ndefine \"Infant By Age Stratifier\":\n    case \n        when AgeInYearsAt(start of \"Measurement Period\") < 1 then \"P0Y--P1Y\"\n        when AgeInYearsAt(start of \"Measurement Period\") >= 1 then \"P1Y--P9999Y\"\n        else null\n    end"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 0
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND01"
+    }, {
+      "url": "name",
+      "valueString": "Age Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Age (<1 year , >1 year)\n */\ndefine \"Age Stratifier\":\n    IMMZStratifiers.\"Infant By Age Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 1
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZCommonIzDataElements"
+    }, {
+      "url": "name",
+      "valueString": "Geographic Region"
+    }, {
+      "url": "statement",
+      "valueString": "//  Geographic Region where the vaccination was provided\ndefine \"Geographic Region\": \n    WCom.Official([Location] L \n        where L.id = Last(Split(Immunization.location.reference, '/'))\n        return L.address).state"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 2
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZStratifiers"
+    }, {
+      "url": "name",
+      "valueString": "By Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "define \"By Geographic Region Stratifier\":\n    IMMZCommonDataElements.\"Geographic Region\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 3
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND01"
+    }, {
+      "url": "name",
+      "valueString": "Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Geographic District \n */\ndefine \"Geographic Region Stratifier\":\n    IMMZStratifiers.\"By Geographic Region Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 4
+    } ]
+  } ],
+  "date": "2021-12-02T13:37:55-05:00",
+  "relatedArtifact": [ {
+    "type": "depends-on",
+    "display": "Library IMMZStratifiers",
+    "resource": "http://fhir.org/guides/who/core/Library/IMMZStratifiers"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZCommonDataElements",
+    "resource": "http://fhir.org/guides/who/core/Library/IMMZCommonIzDataElements"
+  }, {
+    "type": "depends-on",
+    "display": "Library WCom",
+    "resource": "http://fhir.org/guides/who/core/Library/WHOCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library FHIRHelpers",
+    "resource": "http://fhir.org/guides/who/core/Library/FHIRHelpers|4.0.1"
+  }, {
+    "type": "depends-on",
+    "display": "Code system ISO-8601-Derived Periods",
+    "resource": "http://ohie.org/CodeSystem/iso-8601-derived-periods"
+  } ],
+  "library": [ "http://fhir.org/guides/who/core/Library/IMMZIND01" ],
+  "scoring": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
+      "code": "proportion"
+    } ]
+  },
+  "type": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/measure-type",
+      "code": "process"
+    } ]
+  } ],
+  "improvementNotation": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/measure-improvement-notation",
+      "code": "increase"
+    } ]
+  },
+  "group": [ {
+    "id": "IMMZIND01.BCG",
+    "population": [ {
+      "id": "denominator",
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator"
+        } ]
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "BCG Denominator"
+      }
+    }, {
+      "id": "numerator",
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator"
+        } ]
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "BCG Numerator"
+      }
+    } ],
+    "stratifier": [ {
+      "id": "by-age",
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Age Stratifier"
+      }
+    }, {
+      "id": "by-geographic-region",
+      "criteria": {
+        "expression": "Geographic Region Stratifier"
+      }
+    } ]
+  } ]
+}
