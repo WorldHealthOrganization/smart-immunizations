@@ -27,15 +27,9 @@ define "No-doses":
 	true; // TODO: Define this
 
 /* 
- * @dataElement Age
+ * @dataElement Current Patient Age in Weeks
  */
-define "Age":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 6 weeks
- */
-define "6 weeks":
+define "Current Patient Age in Weeks":
 	true; // TODO: Define this
 
 /*
@@ -47,7 +41,7 @@ define "6 weeks":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (("Rotavirus vaccine immunization history" = "No-doses") and ("Age" <= "6 weeks"))
+ *	 (("Rotavirus vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6))
  */
 define "Should vaccinate patient for Rotavirus 1st dose":
 	(("Rotavirus vaccine immunization history" = "No-doses") and ("Age" <= "6 weeks"));
@@ -96,7 +90,6 @@ define "3 dose":
  */
 define "Should vaccinate patient with Rotavirus 2nd dose":
 	((("Rotavirus vaccine given 1 dose in immunization history" = "1 Rotavirus dose") and ("Scheme" = "2 dose")) or (("Rotavirus vaccine given 1 dose in immunization history" = "1 Rotavirus dose") and ("Scheme" = "3 dose")));
-
 /* 
  * @dataElement Rotavirus vaccine given 2 dose in immunization history
  */
@@ -122,7 +115,6 @@ define "3 Rotavirus dose":
  */
 define "Should vaccinate patient with Rotavirus 3rd dose":
 	("Rotavirus vaccine given 2 dose in immunization history" = "3 Rotavirus dose");
-
 /* 
  * @dataElement Interrupted primary series
  */
@@ -142,7 +134,6 @@ define "Interrupted primary series":
  */
 define "Should vaccinate the patient is next appriopriate dose.":
 	("Interrupted primary series" = true);
-
 /* 
  * @dataElement Rotavirus vaccine unknown history
  */
@@ -168,4 +159,3 @@ define "Resume 3 dose scheme":
  */
 define "Should resume 3 dose scheme":
 	("Rotavirus vaccine unknown history" = "Resume 3 dose scheme");
-

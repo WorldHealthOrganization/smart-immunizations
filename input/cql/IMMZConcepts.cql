@@ -56,3 +56,5 @@ valueset "Typhoid Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/
 valueset "Varicella Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE22'
 valueset "Yellow Fever Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE23'
 valueset "DTP Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE24'
+valueset "Inactivated Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE25'
+valueset "Oral Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE26'
