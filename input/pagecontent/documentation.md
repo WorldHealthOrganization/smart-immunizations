@@ -13,6 +13,9 @@ The over all workflow for immunizations is documented below. More details can be
 9. Resolve Duplicate Vaccine Events
 10. Report generation
 
+##### 1. Facility Registration
+All facilities that are able to administer vaccines must be registered and uniquely identified to enable appropriate tracking of vaccine coverage and stock. There are situations where the locations providing vaccines may not be a permanent physical facility but rather some kind of public health authority￼(as is the case with some temporary or pop up clinics). These may be included as per local policy or needs.
+
 #### Generic Personas 
 * Health Worker
 * Community Health Worker 
