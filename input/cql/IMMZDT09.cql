@@ -9,6 +9,7 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
@@ -18,19 +19,19 @@ context Patient
  * @dataElement Rubella vaccine immunization history
  */
 define "Rubella vaccine immunization history":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement No-doses
  */
 define "No-doses":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement Current Patient Age in Months
  */
 define "Current Patient Age in Months":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient for Rubella because no doses on 1 dose scheme
@@ -45,4 +46,5 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  *	 (("Rubella vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 9))
  */
 define "Should vaccinate patient for Rubella because no doses on 1 dose scheme":
-	((("Rubella vaccine immunization history" = "No-doses") or ((("Rubella vaccine immunization history" = "No-doses") and (" Age" = "9 months ")) and ("depending on level of measles virus transmissions" = true))) or (("Rubella vaccine immunization history" = "No-doses") and ("depending on level of measles virus transmissions" = true)));
+	(("Rubella vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 9))
+
