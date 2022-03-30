@@ -13,6 +13,9 @@ The over all workflow for immunizations is documented below. More details can be
 9. Resolve Duplicate Vaccine Events
 10. Report generation
 
+##### 1. Facility Registration
+All facilities that are able to administer vaccines must be registered and uniquely identified to enable appropriate tracking of vaccine coverage and stock. There are situations where the locations providing vaccines may not be a permanent physical facility but rather some kind of public health authority￼(as is the case with some temporary or pop up clinics). These may be included as per local policy or needs.
+
 #### Generic Personas 
 * Health Worker
 * Community Health Worker 
@@ -23,7 +26,11 @@ Each antigen in the [WHO recommendations for routine immunization - summary tabl
 
 These PlanDefinitions can be found in the [Artifact Index](artifacts.html)
 
-#### Vaccine Library
+#### ActivityDefinitions
+<!--As part of the implementation the country specific EIR will need to fill in the ActivityDefinition.product[x] it is not possible for this IG to recommend a specific product. There are limitations of supply chain, country specific needs, and other issues which cannot be captured and generalized to accomodate all specific use cases. Provide example like Cholera has 3 SNOMED Codes and 4 ATC codes - we can't assume which code an implementer might use or write reasonable logic to determine which code might be used due to our -->
+#### ValueSet
+
+##### Vaccine Library
 The value sets include a vaccine list of many codes which may be found in a patient record to see if the patient has been vaccinated with a particular antigen. 
 <!--add example of something that is often in a comobo vaccine  -->
 
