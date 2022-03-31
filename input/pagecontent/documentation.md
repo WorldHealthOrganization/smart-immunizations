@@ -170,4 +170,6 @@ Abdu uses the immunization registry data to inform the health center replenishme
 Abdu physically transfers inventory from his district stores to Namsemba’s clinic. The stock delivery is logged to the SMT, which then automatically updates the national database with the stock now on hand at Namsemba’s health center. The inventory movements from the district to the health centers are then used to develop the replenishment plan for Abdu’s district stores from the regional store. 
 
 
+<!--
 #### Data Elements 
+--> 
