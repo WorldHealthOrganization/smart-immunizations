@@ -1,60 +1,52 @@
 /*
- * Library: IMMZ.IND.1
- * WHO Immunization Indicator 1
- * Immunization coverage for each vaccine in the national schedule.
+ * Library: IMMZ.IND.01
+ * Immunization coverage for BCG (Estimated Denominator) 
+ * Compares the doses of BCG vaccine administered with the estimated number of live births as a percentage.
  * 
- * Numerator: Number of persons which have received the defined number of doses for an antigen 
- * Numerator Computation: COUNT of all persons receiving defined doses for an antigen (i.e. completed the schedule)
- * Denominator: Total number of persons which were expected to receive the dose for the antigen. For childhood antigens this is # of surviving infants.
- * Denominator Computation: COUNT of registered persons (actual population)
- *
- * Disaggregation: 
- *  Age (<1 year , >1 year)
- *  Geographic District 
+ * Numerator: Number of administrations of BCG during the reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a BCG vaccine (IMMZ.A1.DE1) during reporting period
+ * Denominator: Estimated number of live births.
+ * Denominator Computation: PARAMETER number of live births
+ * 
+ * Disaggregation:
+ *   - Geographic Region
+ * 
+ * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - element 4010)
  */
 
 library IMMZIND01
 
+// Start Skeleton CQL
 using FHIR version '4.0.1'
-
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
-parameter "Measurement Period" Interval<Date>
-
-context Patient 
-
-// TODO: How to group these so the CQL processor can create the proper measure resources
+parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
+parameter "Estimated Number of Live Births" Integer default 10
+context Patient
 
 /*
- * Numerator: Number of persons which have received the defined number of doses for an antigen 
- * Numerator Computation: COUNT of all persons receiving defined doses for an antigen (i.e. completed the schedule)
+ * Numerator: Number of administrations of BCG during the reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is a BCG vaccine (IMMZ.A1.DE1) during reporting period
  */
-define "Numerator":
-    exists([Immunization: vaccineCode in IMMZc."BCG Vaccine"] I
-        where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
-            and I.status = 'completed')
-                        
-/*
- * Denominator: Total number of persons which were expected to receive the dose for the antigen. For childhood antigens this is # of surviving infants.
- * Denominator Computation: COUNT of registered persons (actual population)
- */
-define "Denominator":
-    exists([ImmunizationRecommendation: recommendation.vaccineCode in IMMZc."BCG Vaccine"] I
-        where I.recommendation.dateCriterion.select(IMMZCom.ToDateTime(value) < (start of "Measurement Period") and IMMZCom.ToDateTime(value) < (end of "Measurement Period")).anyTrue()
-        ) 
+define "numerator":
+	exists(IMMZCom."BCG Doses Administered" I
+		where IMMZCom.ToDate(I.occurrence) during "Measurement Period")
 
 /*
- * Disaggregator: Age (<1 year , >1 year)
+ * Denominator: Estimated number of live births.
+ * Denominator Computation: PARAMETER number of live births
  */
-define "Age Stratifier":
-    IMMZStratifiers."Infant By Age Stratifier"
+define "denominator":
+	"Estimated Number of Live Births"
 
 /*
- * Disaggregator: Geographic District 
+ * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-    IMMZStratifiers."By Geographic Region Stratifier"
+	IMMZStratifiers."By Geographic Region Stratifier"
+
+/* End of IMMZ.IND.01 */

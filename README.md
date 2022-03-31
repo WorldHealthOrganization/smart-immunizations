@@ -13,12 +13,16 @@ Feedback and issues can be submitted via the [issues](issues) page, and will be 
 ## Roadmap
 ### Completed
 * PlanDefinitions
+* ActivityDefinitions
 
 ### In Progress
-* Measures 
+* Measures
+* CQL libraries for Indicators
+* CQL libraries for Decision Support  
 
-### ToDo 
-* ActivityDefinitions
+
+### ToDo
+* Examples
 
 ## Repository and Build Information
 
@@ -47,3 +51,13 @@ Once the publication tooling is cached locally, use the _genOnce script to build
     _genOnce
 
 The output will be available in the `output` folder.
+
+### Refreshing CQL 
+
+The CQF tooling can be installed or updated using the _updateCQFTooling script: 
+    
+    _updateCQFTooling
+
+Once that has been updated the _refresh script can be used to generate the CQL Libraries and create test bundles for the applicable PlanDefinitions. 
+
+    _refresh

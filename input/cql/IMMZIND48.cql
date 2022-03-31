@@ -1,0 +1,51 @@
+/*
+ * Library: IMMZ.IND.48
+ * Dropout Rate of BCG to MCV1 (Individuals) 
+ * Indicates the number of individuals which received a BCG dose at birth (or early life) yet did not receive the first dose of a measles containing vaccine (MCV).
+
+This indicator works by counting the number of individuals who have received a BCG dose, who have not received a MCV1 dose (are past due for MCV1) with the children who have received BCG and MCV1 doses.
+ * 
+ * Numerator: Number of children who have received BCG (numerator) minus number of children who have not received MCV dose 1 and are past due (numerator exclusion)  
+ * Numerator Computation: Numerator: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1) before reporting period and EXISTS immunization recommendation WHERE product is MCV (IMMZ.A1.DE9) AND dose sequence = 1 AND due date during reporting period.
+Numerator Exclusion: COUNT immunization recommendations WHERE recommended product is BCG AND due date during reporting period AND NOT EXISTS Immunization event where administered product is MCV AND dose sequence = 3
+ * Denominator: Number of children who have received BCG vaccine
+ * Denominator Computation: COUNT immunization events WHERE administered product is BCG AND EXISTS immunization recommendation WHERE product is MCV and dose sequence = 1 and due date during reporting period.
+ * 
+ * Disaggregation:
+ *   - Geographic Region
+ * 
+ * References: WHO Immunization Facility Analysis Guide (1)
+ */
+
+library IMMZIND48
+
+using FHIR version '4.0.1'
+
+include FHIRHelpers version '4.0.1'
+include IMMZCommon called IMMZCom
+include IMMZConcepts called IMMZc
+include IMMZStratifiers called IMMZStratifiers
+include IMMZVaccineLibrary called IMMZvl
+
+parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
+context Patient
+
+/*
+ * Numerator: Number of children who have received BCG (numerator) minus number of children who have not received MCV dose 1 and are past due (numerator exclusion) 
+ * Numerator Computation: Numerator: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1) before reporting period and EXISTS immunization recommendation WHERE product is MCV (IMMZ.A1.DE9) AND dose sequence = 1 AND due date during reporting period.
+Numerator Exclusion: COUNT immunization recommendations WHERE recommended product is BCG AND due date during reporting period AND NOT EXISTS Immunization event where administered product is MCV AND dose sequence = 3
+ */
+define "numerator":
+	true // TODO: Write logic here
+/*
+ * Denominator: Number of children who have received BCG vaccine
+ * Denominator Computation: COUNT immunization events WHERE administered product is BCG AND EXISTS immunization recommendation WHERE product is MCV and dose sequence = 1 and due date during reporting period.
+ */
+define "denominator":
+	true // TODO: Write logic here
+/*
+ * Disaggregator: Geographic Region
+ */
+define "Geographic Region Stratifier":
+	IMMZStratifiers."By Geographic Region Stratifier"
+/* End of IMMZ.IND.48 */
