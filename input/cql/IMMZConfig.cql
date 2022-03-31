@@ -9,6 +9,7 @@ define "Combined bOPV and IPV Schedule": true
 define "Sequential IPV-OPV Schedule": true
 define "Country has a high risk of exposure to polio": true
 define "High Coverage of Polio and Risk of Wild Importation": true
+define "Hepatitis A endemic country": true
 // TODO: 
 //define "bOPV and IPV Schedule":
 //	'combined'
