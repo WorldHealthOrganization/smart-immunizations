@@ -125,12 +125,75 @@ define "Polio Doses Administered":
     I.vaccineCode in IMMZc."Polio Vaccine"
 
 /**
+ * @dataElement Polio Doses Administered
+ */
+define "bOPV Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Oral Polio Vaccine"
+
+/**
+ * @dataElement Patient has no bOPV Doses
+ */
+define "Number of bOPV Doses Administered":
+  Count("bOPV Doses Administered" O where (singleton from O.protocolApplied).doseNumber != 0)
+
+/**
+ * @dataElement Patient has no IPV doses
+ */
+define "No bOPV Doses Administered":
+  not exists ("bOPV Doses Administered")
+
+/** 
+ * @dataElement Date of last OPV dose administration
+ */
+define "Date Last bOPV Dose Administered":
+  date from (First("bOPV Doses Administered").occurrence as FHIR.dateTime)
+
+/**
+ * @dataElement Polio Doses Administered
+ */
+define "IPV Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Inactivated Polio Vaccine"
+
+/**
+ * @dataElement Patient has no IPV doses
+ */
+define "Number of IPV Doses Administered":
+  Count("IPV Doses Administered" O where (singleton from O.protocolApplied).doseNumber != 0)
+
+/**
+ * @dataElement Patient has no IPV doses
+ */
+define "No IPV Doses Administered":
+  not exists ("IPV Doses Administered")
+
+/** 
+ * @dataElement Date of last IPV dose administration
+ */
+define "Date Last IPV Dose Administered":
+  date from (First("IPV Doses Administered").occurrence as FHIR.dateTime)
+
+/**
+ * @dataElement Patient of the patient of the most recent IPV dose
+ */
+define "Patient Age at 1st IPV Dose in Weeks":
+  First("IPV Doses Administered" I
+  where 
+    (singleton from (I.protocolApplied).doseNumber as FHIR.positiveInt) = 1
+  return 
+    AgeInWeeksAt(I.occurrence))
+
+/**
  * @dataElement Diptheria containing doses Administered
  */
 define "Diphtheria Doses Administered":
   "Doses Administered" I
   where
     I.vaccineCode in IMMZc."Diphtheria Vaccine"
+
 
 /**
  * @dataElement Cholera containing doses administered
@@ -292,6 +355,18 @@ define "DTP Doses Administered":
   where
     I.vaccineCode in IMMZc."DTP Vaccine"
 
+/**
+ * @dataElement Number of DTP doses administered excluding the birth dose
+ */
+define "Number of DTP Doses Administered Excluding Birth Dose":
+  Count("DTP Doses Administered" O where (singleton from O.protocolApplied.doseNumber != 0))// O return ToPositiveInt((singleton from O.protocolApplied).doseNumber))
+
+/**
+ * @dataElement 
+ */
+define "Date Last DTP Dose Administered":
+  date from (First("DTP Doses Administered").occurrence as FHIR.dateTime)
+
 
 /******************************
  * Test Results
@@ -366,11 +441,13 @@ define "Most Recent CD4 Count":
   First("Observed CD4 Count" O 
     return O.value as FHIR.Quantity)
 
+
 /** 
  * @dataElement Patient age in years
  */
 define "Current Patient Age In Years":
   AgeInYearsAt(Today())
+  //Today() - (Patient.birthDate as System.Date)
 
 /** 
  * @dataElement Patient age in weeks
@@ -403,7 +480,7 @@ define function ToDate(choice Choice<FHIR.date, FHIR.string>):
 	  when choice is FHIR.date then
     	choice as FHIR.date
 		else
-      Message(null as FHIR.date, true, '1', 'Error', 'Cannot compute an date from a String value')
+      Message(null as FHIR.date, true, '1', 'Error', 'Cannot compute a date from a String value')
 	end
 
 /**
@@ -414,5 +491,17 @@ define function ToDateTime(choice Choice<FHIR.dateTime, FHIR.string>):
 	  when choice is FHIR.dateTime then
     	choice as FHIR.dateTime
 		else
-      Message(null as FHIR.dateTime, true, '1', 'Error', 'Cannot compute an date from a String value')
+      Message(null as FHIR.dateTime, true, '1', 'Error', 'Cannot compute a date from a String value')
+	end
+
+
+/**
+ * @description Takes a choice of FHIR.string and FHIR.positiveInt and ensures the result is a FHIR.positiveInt
+ */
+define function ToPositiveInt(choice Choice<FHIR.positiveInt, FHIR.string>):
+  case
+	  when choice is FHIR.positiveInt then
+    	choice as FHIR.positiveInt
+		else
+      Message(null as FHIR.positiveInt, true, '1', 'Error', 'Cannot compute a positive from a String value') // TODO: I'm sure that this is supported somehow?
 	end
