@@ -19,7 +19,7 @@ context Patient
  * @dataElement Hepatitis B vaccine immunization history
  */
 define "Hepatitis B vaccine immunization history":
-	IMMZc."HepB Doses Administered"
+	IMMZCom."HepB Doses Administered"
 
 
 /* 
