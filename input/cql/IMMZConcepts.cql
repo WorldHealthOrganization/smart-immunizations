@@ -12,6 +12,8 @@ codesystem "ICHI": 'https://mitel.dimi.uniud.it/ichi/#http://id.who.int/ichi'
 codesystem "ICF": 'http://hl7.org/fhir/sid/icf-nl'
 codesystem "Extended Codes CodeSystem codes": 'http://fhir.org/guides/who/anc-cds/CodeSystem/anc-custom-codes'
 
+//WHO ATC IPS Valueset
+valueset "WHO ATC": 'http://hl7.org/fhir/uv/ips/ValueSet/whoatc-uv-ips'
 
 // General use ValueSets 
 valueset "Negative Result": 'http://example.org/ValueSets/negative-results'
