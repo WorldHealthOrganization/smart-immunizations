@@ -192,6 +192,12 @@ define "Should vaccinate patient with WC vaccines (Shanchol,
 Euvchol or mORCVAX)":
 	(("Cholera vaccine immunization history" = "No dose" = true) and ("cholera outbreaks" = "True"));
 
+/* 
+ * @dataElement Humanitarian emergency with a risk of cholera
+ */
+define "Humanitarian emergency with a risk of cholera":
+	true; // TODO: Define this
+
 /*
  * Rule: Should vaccinate patient with OCV
  * Annotations:
@@ -201,7 +207,7 @@ Euvchol or mORCVAX)":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ("Cholera vaccine immunization history" = "No dose" = true)
+ *	 (("Cholera vaccine immunization history" = "No dose" = true) and ("Humanitarian emergency with a risk of cholera" = "True"))
  */
 define "Should vaccinate patient with OCV":
 	("Cholera vaccine immunization history" = "No dose");

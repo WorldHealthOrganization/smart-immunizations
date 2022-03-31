@@ -21,27 +21,9 @@ define "Measles vaccine immunization history = No-doses":
 	true; // TODO: Define this
 
 /* 
- * @dataElement Age
+ * @dataElement Current Patient Age in Months
  */
-define "Age":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 9 months
- */
-define "9 months":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 15 months
- */
-define "15 months":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 18 months
- */
-define "18 months":
+define "Current Patient Age in Months":
 	true; // TODO: Define this
 
 /*
@@ -55,7 +37,7 @@ define "18 months":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((((("Measles vaccine immunization history" = "No-doses" = true) and ("Age" >= "9 months")) and ("Age" <= "15 months")) or ((("Measles vaccine immunization history" = "No-doses" = true) and ("Age" >= "15 months")) and ("Age" <= "18 months"))) or (("Measles vaccine immunization history" = "No-doses" = true) and ("Age" > "9 months")))
+ *	 ((((("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" >= 9)) and ("Current Patient Age in Months" <= 15)) or ((("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" >= 15)) and ("Current Patient Age in Months" <= 18))) or (("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" > 9)))
  */
 define "Should vaccinate patient for measles because no doses":
 	((((("Measles vaccine immunization history" = "No-doses") and ("Age" >= "9 months")) and ("Age" <= "15 months")) or ((("Measles vaccine immunization history" = "No-doses") and ("Age" >= "15 months")) and ("Age" <= "18 months"))) or (("Measles vaccine immunization history" = "No-doses") and ("Age" > "9 months")));

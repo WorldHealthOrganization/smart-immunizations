@@ -57,12 +57,6 @@ define "11 months":
  */
 define "Should vaccinate Patient for MUMPS because no doses on 2 dose scheme":
 	((("MUMPS vaccine history" = "No-doses") and ("Age" < "19 months")) and ("Age" > "11 months"));
-/* 
- * @dataElement Month since last dose is greater than one
- */
-define "Month since last dose is greater than one":
-	true; // TODO: Define this
-
 /*
  * Rule: Should vaccinate Patient for MUMPS a second dose on a 2 dose scheme
  * Annotations:
@@ -72,7 +66,7 @@ define "Month since last dose is greater than one":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("MUMPS vaccine history" = "Month since last dose is greater than one") and ("Age" < "19 months")) and ("Age" > "11 months"))
+ *	 (("Age" < "19 months") and ("Age" > "11 months"))
  */
 define "Should vaccinate Patient for MUMPS a second dose on a 2 dose scheme":
 	((("MUMPS vaccine history" = "Month since last dose is greater than one") and ("Age" < "19 months")) and ("Age" > "11 months"));
