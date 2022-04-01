@@ -1,16 +1,16 @@
 /*
  * Library: IMMZ.IND.22
- * Dropout Rate of MCV1 to MCV2 (Target / Reported Cohort) 
- * Indicates the aggregate dropout rate of children which began vaccination of measles containing vaccines (MCV1) with the aggregate administration of the second dose (MCV2).
+ * Dropout Rate of DTP1 to DTP3 (Target / Reported Cohort) 
+ * Indicates the aggregate dropout rate of DTP containing vaccines protocol. 
 
-The indicator compares the number of administrations of MCV dose 1 minus the number of administration of MCV2 divided by the number of MCV1 vaccinations (MCV1 - MCV2 / MCV1)
+The indicator compares the number of administrations of first dose of DTP containing vaccines (DTP1) minus the number of administrations of the final dose (DTP3) protocol divided by the number of administrations of first dose (DTP1 - DTP3 / DTP1)
  * 
- * Numerator: The number of first doses of measles containing vaccine administered during reporting period minus the number of last doses of measles containing vaccine during the report period 
- * Numerator Computation: COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
-SUBTRACT 
-COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 3 during reporting period
- * Denominator: Number of first doses of measles containing vaccine administered during the reporting period.
- * Denominator Computation: COUNT immunization events WHERE administered product is a measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
+ * Numerator: Number of administrations of DTP1 administered during reporting period minus the number of administrations of DTP3 administered during report period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1  during reporting period
+SUBTRACT
+COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 3  during reporting period
+ * Denominator: Number of doses of DTP1 administered
+ * Denominator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1 during reporting period
  * 
  * Disaggregation:
  *   - Geographic Region
@@ -20,28 +20,29 @@ COUNT immunization events WHERE administered product is measles containing vacci
 
 library IMMZIND22
 
+// Start Skeleton CQL
 using FHIR version '4.0.1'
-
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
-
+// End Skeleton CQL
 parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
 context Patient
 
 /*
- * Numerator: The number of first doses of measles containing vaccine administered during reporting period minus the number of last doses of measles containing vaccine during the report period
- * Numerator Computation: COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
-SUBTRACT 
-COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 3 during reporting period
+ * Numerator: Number of administrations of DTP1 administered during reporting period minus the number of administrations of DTP3 administered during report period
+ * Numerator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1  during reporting period
+SUBTRACT
+COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 3  during reporting period
  */
 define "numerator":
 	true // TODO: Write logic here
 /*
- * Denominator: Number of first doses of measles containing vaccine administered during the reporting period.
- * Denominator Computation: COUNT immunization events WHERE administered product is a measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
+ * Denominator: Number of doses of DTP1 administered
+ * Denominator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1 during reporting period
  */
 define "denominator":
 	true // TODO: Write logic here
