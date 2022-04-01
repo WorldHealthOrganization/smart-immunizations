@@ -356,6 +356,14 @@ define "DTP Doses Administered":
     I.vaccineCode in IMMZc."DTP Vaccine"
 
 /**
+ * @dataElement Dengue containing doses administered
+ */
+define "Dengue Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Dengue Vaccine"
+
+/**
  * @dataElement Number of DTP doses administered excluding the birth dose
  */
 define "Number of DTP Doses Administered Excluding Birth Dose":

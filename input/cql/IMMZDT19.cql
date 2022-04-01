@@ -18,25 +18,25 @@ context Patient
  * @dataElement Dengue vaccine immunization history
  */
 define "Dengue vaccine immunization history":
-	true; // TODO: Define this
+	IMMZCom."Dengue Doses Administered"
 
 /* 
  * @dataElement No-doses
  */
 define "No-doses":
-	true; // TODO: Define this
+	not exists("Dengue vaccine immunization history")
 
 /* 
  * @dataElement Age
  */
 define "Age":
-	true; // TODO: Define this
+	IMMZCom."Current Patient Age In Years"
 
 /* 
  * @dataElement 9 years
  */
 define "9 years":
-	true; // TODO: Define this
+	9 years
 
 /*
  * Rule: Should vaccinate patient for Dengue because no doses at 9 years old in a 3 dose scheme
@@ -55,19 +55,20 @@ define "Should vaccinate patient for Dengue because no doses at 9 years old in a
  * @dataElement 1 dose
  */
 define "1 dose":
-	true; // TODO: Define this
+	Count("Dengue vaccine immunization history" H) = 1
 
 /* 
  * @dataElement Last dose given
  */
 define "Last dose given":
-	true; // TODO: Define this
+  date from (First(IMMZCom."Dengue Doses Administered").occurrence as FHIR.dateTime)
+
 
 /* 
  * @dataElement 6 months
  */
 define "6 months":
-	true; // TODO: Define this
+	6 months
 
 /*
  * Rule: Should vaccinate patient for Dengue because 1st dose given 6 months ago in a 3 dose scheme
@@ -86,7 +87,7 @@ define "Should vaccinate patient for Dengue because 1st dose given 6 months ago 
  * @dataElement 2 doses
  */
 define "2 doses":
-	true; // TODO: Define this
+	Count("Dengue vaccine immunization history" H) = 2
 
 /*
  * Rule: Should vaccinate patient for Dengue because 2nd dose given 6 months ago in a 3 dose scheme
