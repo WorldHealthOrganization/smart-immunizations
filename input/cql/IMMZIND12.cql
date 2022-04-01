@@ -61,7 +61,7 @@ define "Geographic Region Stratifier":
 /*
  * Disaggregator: Administrative Gender (or Biological Sex)
  */
-define "Administrative Gender  Stratifier":
+define "Administrative Gender Stratifier":
 	true // todo: fill in logic
 
 /* End of IMMZ.IND.12 */
