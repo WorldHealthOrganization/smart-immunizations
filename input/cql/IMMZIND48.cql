@@ -1,51 +1,62 @@
 /*
  * Library: IMMZ.IND.48
- * Dropout Rate of BCG to MCV1 (Individuals) 
- * Indicates the number of individuals which received a BCG dose at birth (or early life) yet did not receive the first dose of a measles containing vaccine (MCV).
-
-This indicator works by counting the number of individuals who have received a BCG dose, who have not received a MCV1 dose (are past due for MCV1) with the children who have received BCG and MCV1 doses.
+ * Immunization coverage for Typhoid vaccines (Computed Denominator) 
+ * Compares the administered doses of Typhoid vaccines with the number of immunization recommendations for typhoid vaccines expressed as a percentage.
  * 
- * Numerator: Number of children who have received BCG (numerator) minus number of children who have not received MCV dose 1 and are past due (numerator exclusion)  
- * Numerator Computation: Numerator: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1) before reporting period and EXISTS immunization recommendation WHERE product is MCV (IMMZ.A1.DE9) AND dose sequence = 1 AND due date during reporting period.
-Numerator Exclusion: COUNT immunization recommendations WHERE recommended product is BCG AND due date during reporting period AND NOT EXISTS Immunization event where administered product is MCV AND dose sequence = 3
- * Denominator: Number of children who have received BCG vaccine
- * Denominator Computation: COUNT immunization events WHERE administered product is BCG AND EXISTS immunization recommendation WHERE product is MCV and dose sequence = 1 and due date during reporting period.
+ * Numerator: Number of administrations of vaccines which contain a typhoid component during the reporting period. 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Typhoid vaccine (IMMZ.A1.DE21) during reporting period.
+ * Denominator: Number of immunization recommendations for typhoid vaccines dur during reporting period.
+ * Denominator Computation: COUNT Immunization recommendation WHERE recommended product is typhoid vaccine (IMMZ.A1.DE21) during reporting period.
  * 
  * Disaggregation:
+ *   - Dose Sequence (1, 2, 3)
  *   - Geographic Region
+ *   - Gender
  * 
- * References: WHO Immunization Facility Analysis Guide (1)
+ * References: WHO / UNICEF Joint Reporting Form (3- element 4350)
  */
 
 library IMMZIND48
 
+// Start Skeleton CQL
 using FHIR version '4.0.1'
-
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
-
+// End Skeleton CQL
 parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
 context Patient
 
 /*
- * Numerator: Number of children who have received BCG (numerator) minus number of children who have not received MCV dose 1 and are past due (numerator exclusion) 
- * Numerator Computation: Numerator: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1) before reporting period and EXISTS immunization recommendation WHERE product is MCV (IMMZ.A1.DE9) AND dose sequence = 1 AND due date during reporting period.
-Numerator Exclusion: COUNT immunization recommendations WHERE recommended product is BCG AND due date during reporting period AND NOT EXISTS Immunization event where administered product is MCV AND dose sequence = 3
+ * Numerator: Number of administrations of vaccines which contain a typhoid component during the reporting period.
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Typhoid vaccine (IMMZ.A1.DE21) during reporting period.
  */
 define "numerator":
 	true // TODO: Write logic here
 /*
- * Denominator: Number of children who have received BCG vaccine
- * Denominator Computation: COUNT immunization events WHERE administered product is BCG AND EXISTS immunization recommendation WHERE product is MCV and dose sequence = 1 and due date during reporting period.
+ * Denominator: Number of immunization recommendations for typhoid vaccines dur during reporting period.
+ * Denominator Computation: COUNT Immunization recommendation WHERE recommended product is typhoid vaccine (IMMZ.A1.DE21) during reporting period.
  */
 define "denominator":
 	true // TODO: Write logic here
+/*
+ * Disaggregator: Dose Sequence (1, 2, 3)
+ */
+define "Dose Sequence  Stratifier":
+	true // todo: fill in logic
+
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
+/*
+ * Disaggregator: Gender
+ */
+define "Gender Stratifier":
+	true // todo: fill in logic
+
 /* End of IMMZ.IND.48 */

@@ -9,6 +9,7 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
@@ -18,31 +19,31 @@ context Patient
  * @dataElement MUMPS vaccine history
  */
 define "MUMPS vaccine history":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement No-doses
  */
 define "No-doses":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement Age
  */
 define "Age":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement 19 months
  */
 define "19 months":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement 11 months
  */
 define "11 months":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate Patient for MUMPS because no doses on 2 dose scheme
@@ -56,7 +57,8 @@ define "11 months":
  *	 ((("MUMPS vaccine history" = "No-doses") and ("Age" < "19 months")) and ("Age" > "11 months"))
  */
 define "Should vaccinate Patient for MUMPS because no doses on 2 dose scheme":
-	((("MUMPS vaccine history" = "No-doses") and ("Age" < "19 months")) and ("Age" > "11 months"));
+	((("MUMPS vaccine history" = "No-doses") and ("Age" < "19 months")) and ("Age" > "11 months"))
+
 /*
  * Rule: Should vaccinate Patient for MUMPS a second dose on a 2 dose scheme
  * Annotations:
@@ -69,4 +71,5 @@ define "Should vaccinate Patient for MUMPS because no doses on 2 dose scheme":
  *	 (("Age" < "19 months") and ("Age" > "11 months"))
  */
 define "Should vaccinate Patient for MUMPS a second dose on a 2 dose scheme":
-	((("MUMPS vaccine history" = "Month since last dose is greater than one") and ("Age" < "19 months")) and ("Age" > "11 months"));
+	(("Age" < "19 months") and ("Age" > "11 months"))
+

@@ -9,6 +9,7 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
@@ -50,7 +51,8 @@ define "9 years":
  *	 (("Dengue vaccine immunization history" = "No-doses") and ("Age" >= "9 years"))
  */
 define "Should vaccinate patient for Dengue because no doses at 9 years old in a 3 dose scheme":
-	(("Dengue vaccine immunization history" = "No-doses") and ("Age" >= "9 years"));
+	(("Dengue vaccine immunization history" = "No-doses") and ("Age" >= "9 years"))
+
 /* 
  * @dataElement 1 dose
  */
@@ -62,7 +64,6 @@ define "1 dose":
  */
 define "Last dose given":
   date from (First(IMMZCom."Dengue Doses Administered").occurrence as FHIR.dateTime)
-
 
 /* 
  * @dataElement 6 months
@@ -82,7 +83,8 @@ define "6 months":
  *	 (("Dengue vaccine immunization history" = "1 dose") and ("Last dose given" >= "6 months"))
  */
 define "Should vaccinate patient for Dengue because 1st dose given 6 months ago in a 3 dose scheme":
-	(("Dengue vaccine immunization history" = "1 dose") and ("Last dose given" >= "6 months"));
+	(("Dengue vaccine immunization history" = "1 dose") and ("Last dose given" >= "6 months"))
+
 /* 
  * @dataElement 2 doses
  */
@@ -101,4 +103,5 @@ define "2 doses":
  *	 (("Dengue vaccine immunization history" = "2 doses") and ("Last dose given" >= "6 months"))
  */
 define "Should vaccinate patient for Dengue because 2nd dose given 6 months ago in a 3 dose scheme":
-	(("Dengue vaccine immunization history" = "2 doses") and ("Last dose given" >= "6 months"));
+	(("Dengue vaccine immunization history" = "2 doses") and ("Last dose given" >= "6 months"))
+

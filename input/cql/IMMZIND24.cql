@@ -1,19 +1,18 @@
 /*
  * Library: IMMZ.IND.24
- * Open vial wastage rate 
- * The open vial wastage rate is used to measure the percentage of doses of vaccine that were opened, but discarded due to under-utilization. For example, a 5 dose vile of an antigen may be thrown out after only 2 administrations of the vaccine, indicating an open vial wastage of 3 doses.
- * 
- * Numerator: Total number of doses used (starting balance of doses + supplied doses - ending balance doses) minus total number of doses administered to patients.
+ * Dropout Rate of MCV1 to MCV2 (Target / Reported Cohort) 
+ * Indicates the aggregate dropout rate of children which began vaccination of measles containing vaccines (MCV1) with the aggregate administration of the second dose (MCV2).
 
-Starting Balance = The number of doses available for immunization at the start of day/session.
-Supplied Doses = The number of doses which were received/added to the stock during the day/session.
-Ending Balance = The number of doses which were left at the end of the day/session 
- * Numerator Computation: (Starting Balance + Supplied Doses - Ending Balance) - COUNT of persons who were administered the vaccine
- * Denominator: The total number of doses used / consumed during the vaccination session/day.
- * Denominator Computation: Starting Balance + Supplied Doses - Ending Balance
+The indicator compares the number of administrations of MCV dose 1 minus the number of administration of MCV2 divided by the number of MCV1 vaccinations (MCV1 - MCV2 / MCV1)
+ * 
+ * Numerator: The number of first doses of measles containing vaccine administered during reporting period minus the number of last doses of measles containing vaccine during the report period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
+SUBTRACT 
+COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 3 during reporting period
+ * Denominator: Number of first doses of measles containing vaccine administered during the reporting period.
+ * Denominator Computation: COUNT immunization events WHERE administered product is a measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
  * 
  * Disaggregation:
- *   - Vaccine (BCG, OPV, etc.)
  *   - Geographic Region
  * 
  * References: WHO Immunization Facility Analysis Guide (1)
@@ -21,38 +20,32 @@ Ending Balance = The number of doses which were left at the end of the day/sessi
 
 library IMMZIND24
 
+// Start Skeleton CQL
 using FHIR version '4.0.1'
-
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
-
+// End Skeleton CQL
 parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
 context Patient
 
 /*
- * Numerator: Total number of doses used (starting balance of doses + supplied doses - ending balance doses) minus total number of doses administered to patients.
-
-Starting Balance = The number of doses available for immunization at the start of day/session.
-Supplied Doses = The number of doses which were received/added to the stock during the day/session.
-Ending Balance = The number of doses which were left at the end of the day/session
- * Numerator Computation: (Starting Balance + Supplied Doses - Ending Balance) - COUNT of persons who were administered the vaccine
+ * Numerator: The number of first doses of measles containing vaccine administered during reporting period minus the number of last doses of measles containing vaccine during the report period
+ * Numerator Computation: COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
+SUBTRACT 
+COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 3 during reporting period
  */
 define "numerator":
 	true // TODO: Write logic here
 /*
- * Denominator: The total number of doses used / consumed during the vaccination session/day.
- * Denominator Computation: Starting Balance + Supplied Doses - Ending Balance
+ * Denominator: Number of first doses of measles containing vaccine administered during the reporting period.
+ * Denominator Computation: COUNT immunization events WHERE administered product is a measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
  */
 define "denominator":
 	true // TODO: Write logic here
-/*
- * Disaggregator: Vaccine (BCG, OPV, etc.)
- */
-define "Vaccine  Stratifier":
-	true // todo: fill in logic
 /*
  * Disaggregator: Geographic Region
  */

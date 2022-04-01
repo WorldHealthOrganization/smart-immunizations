@@ -1,41 +1,43 @@
 /*
  * Library: IMMZ.IND.44
- * Immunization coverage for Yellow Fever vaccine (Computed Denominator) 
- * Compares the administered dose of yellow fever vaccine with the number of registered surviving infants expressed as a percentage.
+ * Immunization coverage for Pertussis containing vaccine boosters (Computed Denominator) 
+ * Compares the administered booster dose of pertussis containing vaccine (dose 4) with the number of immunization recommendations for boosters of pertussis containing vaccines expressed as a percentage.
  * 
- * Numerator: Number of administrations of vaccines containing a yellow fever component during reporting period. 
- * Numerator Computation: COUNT immunization events WHERE administered product is a Yellow Fever vaccine (IMMZ.A1.DE23) during reporting period
- * Denominator: Number of registered, surviving infants.
- * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
+ * Numerator: Number of administrations of booster vaccine containing a pertussis component during the reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Pertussis containing vaccine (IMMZ.A1.DE12) and dose > 3 during reporting period.
+ * Denominator: Number of immunization recommendations for pertussis boosters (doses >= 4) due during reporting period.
+ * Denominator Computation: COUNT immunization recommendation WHERE recommended product is pertussis containing vaccine (IMMZ.A1.DE12) AND due date during reporting period.
  * 
  * Disaggregation:
  *   - Geographic Region
+ *   - Gender
  * 
- * References: WHO / UNICEF Joint Reporting Form (3 - element 4270)
+ * References: WHO / UNICEF Joint Reporting Form (3 - element 4090)
  */
 
 library IMMZIND44
 
+// Start Skeleton CQL
 using FHIR version '4.0.1'
-
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
-
+// End Skeleton CQL
 parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccines containing a yellow fever component during reporting period.
- * Numerator Computation: COUNT immunization events WHERE administered product is a Yellow Fever vaccine (IMMZ.A1.DE23) during reporting period
+ * Numerator: Number of administrations of booster vaccine containing a pertussis component during the reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Pertussis containing vaccine (IMMZ.A1.DE12) and dose > 3 during reporting period.
  */
 define "numerator":
 	true // TODO: Write logic here
 /*
- * Denominator: Number of registered, surviving infants.
- * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
+ * Denominator: Number of immunization recommendations for pertussis boosters (doses >= 4) due during reporting period.
+ * Denominator Computation: COUNT immunization recommendation WHERE recommended product is pertussis containing vaccine (IMMZ.A1.DE12) AND due date during reporting period.
  */
 define "denominator":
 	true // TODO: Write logic here
@@ -44,4 +46,10 @@ define "denominator":
  */
 define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
+/*
+ * Disaggregator: Gender
+ */
+define "Gender Stratifier":
+	true // todo: fill in logic
+
 /* End of IMMZ.IND.44 */
