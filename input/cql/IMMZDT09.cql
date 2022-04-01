@@ -15,24 +15,6 @@ include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
 context Patient
 
-/* 
- * @dataElement Rubella vaccine immunization history
- */
-define "Rubella vaccine immunization history":
-	0 // TODO: Define this
-
-/* 
- * @dataElement No-doses
- */
-define "No-doses":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Current Patient Age in Months
- */
-define "Current Patient Age in Months":
-	0 // TODO: Define this
-
 /*
  * Rule: Should vaccinate patient for Rubella because no doses on 1 dose scheme
  * Annotations:
@@ -46,5 +28,6 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  *	 (("Rubella vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 9))
  */
 define "Should vaccinate patient for Rubella because no doses on 1 dose scheme":
-	(("Rubella vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 9))
+	IMMZCom."No Rubella Doses Administered to Patient" and 
+	IMMZCom."Current Patient Age In Months" >= 9
 

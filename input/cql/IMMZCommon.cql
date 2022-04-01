@@ -345,7 +345,14 @@ define "Rubella Doses Administered to Patient":
     I.vaccineCode in IMMZc."Rubella Vaccine"
 
 /**
- * @dataElement Seasonal Influenza containing Doses Administered to Patient
+ * @dataElement Rubella containing doses administered
+ */
+define "No Rubella Doses Administered to Patient":
+  not exists("Rubella Doses Administered to Patient")
+
+
+/**
+ * @dataElement Seasonal Influenza containing doses administered
  */
 define "Seasonal Influenza Doses Administered to Patient":
   "Doses Administered to Patient" I
