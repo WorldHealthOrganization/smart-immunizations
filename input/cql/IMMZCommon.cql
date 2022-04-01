@@ -302,10 +302,17 @@ define "Rotavirus Doses Administered":
 /**
  * @dataElement Rubella containing doses administered
  */
-define "Rubella Doses Administered":
+define "Rubella Doses Administered to Patient":
   "Doses Administered" I
   where
     I.vaccineCode in IMMZc."Rubella Vaccine"
+
+/**
+ * @dataElement Rubella containing doses administered
+ */
+define "No Rubella Doses Administered to Patient":
+  not exists("Rubella Doses Administered to Patient")
+
 
 /**
  * @dataElement Seasonal Influenza containing doses administered
