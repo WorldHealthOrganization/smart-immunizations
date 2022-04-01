@@ -19,25 +19,26 @@ context Patient
  * @dataElement Yellow Fever vaccine immunization history
  */
 define "Yellow Fever vaccine immunization history":
-	0 // TODO: Define this
+	IMMZCom."Yellow Fever Doses Administered"
+
 
 /* 
  * @dataElement No-doses
  */
 define "No-doses":
-	0 // TODO: Define this
+	not exist("Yellow Fever vaccine immunization history")
 
 /* 
  * @dataElement Age
  */
 define "Age":
-	0 // TODO: Define this
+	IMMZCom."Current Patient Age In Months"
 
 /* 
  * @dataElement 9 months
  */
 define "9 months":
-	0 // TODO: Define this
+	9 months
 
 /*
  * Rule: Should vaccinate patient for Yellow Fever because no doses on 1 dose scheme
@@ -53,4 +54,3 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  */
 define "Should vaccinate patient for Yellow Fever because no doses on 1 dose scheme":
 	(("Yellow Fever vaccine immunization history" = "No-doses") and ("Age" >= "9 months"))
-

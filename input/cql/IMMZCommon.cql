@@ -413,7 +413,16 @@ define "Number of DTP Doses Administered to Patient Excluding Birth Dose":
   Count("DTP Doses Administered to Patient Excluding Birth Dose")// O return ToPositiveInt((singleton from O.protocolApplied).doseNumber))
 
 /**
- * @dataElement 
+
+ * @dataElement Dengue containing doses administered
+ */
+define "Dengue Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Dengue Vaccine"
+
+/**
+ * @dataElement Number of DTP doses administered excluding the birth dose
  */
 define "Date Last DTP Dose Administered to Patient":
   date from (First("DTP Doses Administered to Patient").occurrence as FHIR.dateTime)
