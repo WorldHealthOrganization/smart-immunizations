@@ -7,7 +7,17 @@ Each antigen in the [WHO recommendations for routine immunization - summary tabl
 These PlanDefinitions can be found in the [Artifact Index](artifacts.html)
 
 #### ActivityDefinitions
-<!--As part of the implementation the country specific EIR will need to fill in the ActivityDefinition.product[x] it is not possible for this IG to recommend a specific product. There are limitations of supply chain, country specific needs, and other issues which cannot be captured and generalized to accomodate all specific use cases. Provide example like Cholera has 3 SNOMED Codes and 4 ATC codes - we can't assume which code an implementer might use or write reasonable logic to determine which code might be used due to our -->
+To represent the activities that need to be carried out, this implementation guide follows the workflow patterns established by the base FHIR specification. Each antigen represented as a PlanDefinition will be processed to produce ActivityDefnitions conform to the FHIR Clinical Practice Guidelines Implementation guide [CPG-ActivityProfiles](http://hl7.org/fhir/uv/cpg/profiles.html#activity-profiles).
+
+In particular, processing the PlanDefinition  with the $apply operation [FHIR-Workflow](https://www.hl7.org/fhir/workflow.html) will result in the creation of an [CPG-ImmunizationActivity]http://hl7.org/fhir/uv/cpg/StructureDefinition-cpg-immunizationactivity.html
+
+![BCG-ImmunizationActivity](./images/ActivityDefinition_BCG_Example1.png)
+
+As part of the implementation the country specific EIR (Electronic Immunization Registry) will need to fill in the ActivityDefinition.product[x]. It is not possible for this IG to recommend a specific product. There are limitations of supply chain, country specific needs, and other issues which cannot be captured and generalized to accomodate all specific use cases. 
+
+For example, Cholera has 3 SNOMED Codes and 4 ATC Codes.
+![Cholera-SNOMEDCT/ACT Codes](./images/Cholera_SNOMED_ATC_Example.png)<br />
+
 
 #### ValueSets
 Many of the ValueSets used in this IG are  from [CPG on FHIR](https://hl7.org/fhir/uv/cpg/) and the [IPS](https://hl7.org/fhir/uv/ips/). There are a number of generated ValueSets based on the user scenarios detailed in this IG. 
