@@ -27,8 +27,8 @@ context Patient
  *	 ((((("Polio (IPV) vaccine immunization history" = "No-doses") and ("Polio (bOPV) vaccine immunization history" = "No-doses")) and ("Current Patient Age in Weeks" < 2)) and ("Combined bOPV and IPV Schedule" = true)) and ("Polio-endemic country with high risk of spread" = true))
  */
 define "Should vaccinate patient for Polio (bOPV) because no doses at birth (up to 2 weeks old) and patient is in a polio-endemic country with high risk of spread":
-	IMMZCom."No IPV Doses Administered" and 
-	IMMZCom."No bOPV Doses Administered" and 
+	IMMZCom."No IPV Doses Administered to Patient" and 
+	IMMZCom."No bOPV Doses Administered to Patient" and 
 	IMMZCom."Current Patient Age In Weeks" < 2 and 
 	IMMZCon."Combined bOPV and IPV Schedule" and
 	IMMZCon."Polio-endemic country with high risk of spread"
@@ -45,7 +45,7 @@ define "Should vaccinate patient for Polio (bOPV) because no doses at birth (up 
  *	 ((("Polio (bOPV) vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6)) and ("Combined bOPV and IPV Schedule" = true))
  */
 define "Should vaccinate patient for Polio (bOPV) because no doses at 6 weeks old":
-	IMMZCom."No bOPV Doses Administered" and
+	IMMZCom."No bOPV Doses Administered to Patient" and
 	IMMZCom."Current Patient Age In Weeks" >= 6 and
 	IMMZCon."Combined bOPV and IPV Schedule"
 
@@ -61,7 +61,7 @@ define "Should vaccinate patient for Polio (bOPV) because no doses at 6 weeks ol
  *	 ((("Polio (IPV) vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Weeks" >= 14)) and ("Combined bOPV and IPV Schedule" = true))
  */
 define "Should vaccinate patient for Polio (IPV) because no doses at 14 weeks old":
-	"IMMZCom"."No IPV Doses Administered" and
+	"IMMZCom"."No IPV Doses Administered to Patient" and
 	"IMMZCom"."Current Patient Age In Weeks" >= 14 and
 	IMMZCon."Combined bOPV and IPV Schedule"
 	
@@ -77,8 +77,8 @@ define "Should vaccinate patient for Polio (IPV) because no doses at 14 weeks ol
  *	 ((("Polio (bOPV) vaccine immunization history" = "1 dose" = true) and ("Date last bOPV dose given" >= "4 weeks")) and ("Combined bOPV and IPV Schedule" = true))
  */
 define "Should vaccinate patient for Polio (bOPV) because 1 dose bOPV given 4 weeks ago":
-	(IMMZCom."Number of bOPV Doses Administered" = 1) and
-	(IMMZCom."Date Last bOPV Dose Administered" more than 4 'weeks' before Today()) and
+	(IMMZCom."Number of bOPV Doses Administered to Patient" = 1) and
+	(IMMZCom."Date Last bOPV Dose Administered to Patient" more than 4 'weeks' before Today()) and
 	IMMZCon."Combined bOPV and IPV Schedule"
 
 	//((("Polio (bOPV) vaccine immunization history" = "1 dose" = true) and ("Date last bOPV dose given" >= "4 weeks")) and ("Combined bOPV and IPV Schedule" = true))
@@ -95,8 +95,8 @@ define "Should vaccinate patient for Polio (bOPV) because 1 dose bOPV given 4 we
  *	 ((("Polio (IPV) vaccine immunization history" = "1 dose" = true) and ("Date last IPV dose given" >= "4 months")) and ("Combined bOPV and IPV Schedule" = true))
  */
 define "Should vaccinate patient for Polio (IPV) because 1 dose IPV given at least 4 months ago":
-	IMMZCom."Number of IPV Doses Administered" = 1 and
-	IMMZCom."Date Last IPV Dose Administered" more than 4 'months' before Today() and
+	IMMZCom."Number of IPV Doses Administered to Patient" = 1 and
+	IMMZCom."Date Last IPV Dose Administered to Patient" more than 4 'months' before Today() and
 	IMMZCon."Combined bOPV and IPV Schedule"
 
 
@@ -112,8 +112,8 @@ define "Should vaccinate patient for Polio (IPV) because 1 dose IPV given at lea
  *	 ((("Polio (bOPV) vaccine immunization history" = "2 doses") and ("Date last bOPV dose given" >= "4 weeks")) and ("Combined bOPV and IPV Schedule" = true))
  */
 define "Should vaccinate patient for Polio (bOPV) because 2nd dose bOPV given 4 weeks ago":
-	(IMMZCom."Number of bOPV Doses Administered" = 2) and
-	IMMZCom."Date Last bOPV Dose Administered" more than 4 'weeks' before Today() and
+	(IMMZCom."Number of bOPV Doses Administered to Patient" = 2) and
+	IMMZCom."Date Last bOPV Dose Administered to Patient" more than 4 'weeks' before Today() and
 	IMMZCon."Combined bOPV and IPV Schedule"
 	
 /*
@@ -128,7 +128,7 @@ define "Should vaccinate patient for Polio (bOPV) because 2nd dose bOPV given 4 
  *	 ((("Polio (IPV) vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 8)) and ("Sequential IPV-OPV Schedule" = true))
  */
 define "Should vaccinate patient for Polio (IPV) because no doses at 8 weeks old":
-	IMMZCom."No IPV Doses Administered" and
+	IMMZCom."No IPV Doses Administered to Patient" and
 	IMMZCom."Current Patient Age In Weeks" >= 8 and
 	IMMZCon."Sequential IPV-OPV Schedule"
 
@@ -144,9 +144,9 @@ define "Should vaccinate patient for Polio (IPV) because no doses at 8 weeks old
  *	 (((("Polio (IPV) vaccine immunization history" = "1 dose") and ("Date last IPV dose given" >= "4 weeks")) and ("Date last IPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true))
  */
 define "Should vaccinate patient for Polio (bOPV) because 1st dose IPV given 4-8 weeks ago":
-	(IMMZCom."Number of IPV Doses Administered" = 1) and 
-	IMMZCom."Date Last IPV Dose Administered" more than 4 'weeks' before Today() and
-	IMMZCom."Date Last IPV Dose Administered" less than 8 'weeks' before Today() and
+	(IMMZCom."Number of IPV Doses Administered to Patient" = 1) and 
+	IMMZCom."Date Last IPV Dose Administered to Patient" more than 4 'weeks' before Today() and
+	IMMZCom."Date Last IPV Dose Administered to Patient" less than 8 'weeks' before Today() and
 	IMMZCon."Sequential IPV-OPV Schedule"
 
 /*
@@ -161,9 +161,9 @@ define "Should vaccinate patient for Polio (bOPV) because 1st dose IPV given 4-8
  *	 ((((("Polio (IPV) vaccine immunization history" = "1 dose" = true) and ("Date last IPV dose given" >= "4 weeks")) and ("Date last IPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true)) and ("Country has a high risk of exposure" = true))
  */
 define "Should vaccinate patient for Polio (IPV) because 1st dose IPV given 4-8 weeks ago (High risk of exposure scenario)":
-	IMMZCom."Number of IPV Doses Administered" = 1 and 
-	IMMZCom."Date Last IPV Dose Administered" more than 4 'weeks' before Today() and
-	IMMZCom."Date Last IPV Dose Administered" less than 8 'weeks' before Today() and
+	IMMZCom."Number of IPV Doses Administered to Patient" = 1 and 
+	IMMZCom."Date Last IPV Dose Administered to Patient" more than 4 'weeks' before Today() and
+	IMMZCom."Date Last IPV Dose Administered to Patient" less than 8 'weeks' before Today() and
 	IMMZCon."Sequential IPV-OPV Schedule" and
 	IMMZCon."Country has a high risk of exposure to polio"
 
@@ -179,9 +179,9 @@ define "Should vaccinate patient for Polio (IPV) because 1st dose IPV given 4-8 
  *	 (((("Polio (bOPV) vaccine immunization history" = "1 dose") and ("Date last bOPV dose given" >= "4 weeks")) and ("Date last bOPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true))
  */
 define "Should vaccinate patient for Polio (bOPV) because 1st dose bOPV (Second dose in 3-dose schedule) given 4-8 weeks ago":
-	IMMZCom."Number of bOPV Doses Administered" = 1 and 
-	IMMZCom."Date Last bOPV Dose Administered" more than 4 'weeks' before Today() and
-	IMMZCom."Date Last bOPV Dose Administered" less than 8 'weeks' before Today() and
+	IMMZCom."Number of bOPV Doses Administered to Patient" = 1 and 
+	IMMZCom."Date Last bOPV Dose Administered to Patient" more than 4 'weeks' before Today() and
+	IMMZCom."Date Last bOPV Dose Administered to Patient" less than 8 'weeks' before Today() and
 	IMMZCon."Sequential IPV-OPV Schedule"
 
 
@@ -197,9 +197,9 @@ define "Should vaccinate patient for Polio (bOPV) because 1st dose bOPV (Second 
  *	 ((((("Polio (IPV) vaccine immunization history" = "2 doses") and ("Date last IPV dose given" >= "4 weeks" = true)) and ("Date last IPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true)) and ("Country has a high risk of exposure" = true))
  */
 define "Should vaccinate patient for Polio (bOPV) because 2nd dose IPV given 4-8 weeks ago (High risk of exposure scneario)":
-	IMMZCom."Number of IPV Doses Administered" = 2 and 
-	IMMZCom."Date Last IPV Dose Administered" more than 4 'weeks' before Today() and
-	IMMZCom."Date Last IPV Dose Administered" less than 8 'weeks' before Today() and
+	IMMZCom."Number of IPV Doses Administered to Patient" = 2 and 
+	IMMZCom."Date Last IPV Dose Administered to Patient" more than 4 'weeks' before Today() and
+	IMMZCom."Date Last IPV Dose Administered to Patient" less than 8 'weeks' before Today() and
 	IMMZCon."Sequential IPV-OPV Schedule" and 
 	IMMZCon."Country has a high risk of exposure to polio"	
 
@@ -215,10 +215,10 @@ define "Should vaccinate patient for Polio (bOPV) because 2nd dose IPV given 4-8
  *	 (((((("Polio (bOPV) vaccine immunization history" = "1 dose") and ("Polio (IPV) vaccine immunization history" = "2 doses")) and ("Date last bOPV dose given" >= "4 weeks")) and ("Date last bOPV dose given" <= "8 weeks")) and ("Sequential IPV-OPV Schedule" = true)) and ("Country has a high risk of exposure" = true))
  */
 define "Should vaccinate patient for Polio (bOPV) because 1st dose bOPV (Third dose in 4-dose schedule) given 4-8 weeks ago":
-	IMMZCom."Number of bOPV Doses Administered" = 1 and 
-	IMMZCom."Number of IPV Doses Administered" = 2 and 
-	IMMZCom."Date Last bOPV Dose Administered" more than 4 'weeks' before Today() and
-	IMMZCom."Date Last bOPV Dose Administered" less than 8 'weeks' before Today() and
+	IMMZCom."Number of bOPV Doses Administered to Patient" = 1 and 
+	IMMZCom."Number of IPV Doses Administered to Patient" = 2 and 
+	IMMZCom."Date Last bOPV Dose Administered to Patient" more than 4 'weeks' before Today() and
+	IMMZCom."Date Last bOPV Dose Administered to Patient" less than 8 'weeks' before Today() and
 	IMMZCon."Sequential IPV-OPV Schedule" and 
 	IMMZCon."Country has a high risk of exposure to polio"	
 
@@ -234,7 +234,7 @@ define "Should vaccinate patient for Polio (bOPV) because 1st dose bOPV (Third d
  *	 ((("IPV vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" <= 8)) and ("High Coverage of Polio and Risk of Wild Importation" = true))
  */
 define "Should vaccinate patient with IPV 1st dose":
-	IMMZCom."No IPV Doses Administered" and
+	IMMZCom."No IPV Doses Administered to Patient" and
 	IMMZCom."Current Patient Age In Weeks" <= 8 and
 	IMMZCon."High Coverage of Polio and Risk of Wild Importation"
 
@@ -250,9 +250,9 @@ define "Should vaccinate patient with IPV 1st dose":
  *	 (("IPV vaccine immunization history" = "1 IPV dose") and ("High Coverage of Polio and Risk of Wild Importation" = true))
  */
 define "Should vaccinate patient with IPV 2nd dose":
-	IMMZCom."Number of IPV Doses Administered" = 1 and 
-	IMMZCom."Date Last IPV Dose Administered" more than 4 'weeks' before Today() and
-	IMMZCom."Date Last IPV Dose Administered" less than 8 'weeks' before Today() and
+	IMMZCom."Number of IPV Doses Administered to Patient" = 1 and 
+	IMMZCom."Date Last IPV Dose Administered to Patient" more than 4 'weeks' before Today() and
+	IMMZCom."Date Last IPV Dose Administered to Patient" less than 8 'weeks' before Today() and
 	IMMZCon."High Coverage of Polio and Risk of Wild Importation"
 
 /*
@@ -267,9 +267,9 @@ define "Should vaccinate patient with IPV 2nd dose":
  *	 (("IPV vaccine immunization history" = "2 IPV doses") and ("High Coverage of Polio and Risk of Wild Importation" = true))
  */
 define "Should vaccinate patient with IPV 3rd dose":
-	IMMZCom."Number of IPV Doses Administered" = 2 and 
-	IMMZCom."Date Last IPV Dose Administered" more than 4 'weeks' before Today() and
-	IMMZCom."Date Last IPV Dose Administered" less than 8 'weeks' before Today() and
+	IMMZCom."Number of IPV Doses Administered to Patient" = 2 and 
+	IMMZCom."Date Last IPV Dose Administered to Patient" more than 4 'weeks' before Today() and
+	IMMZCom."Date Last IPV Dose Administered to Patient" less than 8 'weeks' before Today() and
 	IMMZCon."High Coverage of Polio and Risk of Wild Importation"
 
 
@@ -285,7 +285,7 @@ define "Should vaccinate patient with IPV 3rd dose":
  *	 (((("IPV vaccine immunization history" = "3 IPV doses") and ("Age when 1st IPV dose was given" < "8 weeks")) and ("Current Patient Age in Months" >= 6)) and ("High Coverage of Polio and Risk of Wild Importation" = true))
  */
 define "Should vaccinate patient with IPV 4th dose (booster)":
-	IMMZCom."Number of IPV Doses Administered" = 3 and
+	IMMZCom."Number of IPV Doses Administered to Patient" = 3 and
 	IMMZCom."Patient Age at 1st IPV Dose in Weeks" < 8 and
 	IMMZCom."Current Patient Age In Months" >= 6 and
 	IMMZCon."High Coverage of Polio and Risk of Wild Importation"
