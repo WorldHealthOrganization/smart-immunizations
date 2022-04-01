@@ -1,9 +1,9 @@
 ### Indicators
-The FHIR [Measure]() is used to describe the indicator in a computable format. 
+The FHIR [Measure](http://www.hl7.org/fhir/measure) is used to describe the indicator in a computable format. The tables below show the data elements and highlight some of the measures those are applied in from this IG. For a complete list of measures, visit the [Artifact Index](artifacts.html)
 
-#### Indicator Table Column Descriptions
+#### Indicator Table Data Element Descriptions
 
-|Column|Description|
+|Data Element|Description|
 |---|---|
 |Indicator code|Sequential numbering of the indicator|
 |Indicator name|Brief name of the indicator|

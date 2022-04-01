@@ -9,18 +9,15 @@ These PlanDefinitions can be found in the [Artifact Index](artifacts.html)
 #### ActivityDefinitions
 To represent the activities that need to be carried out, this implementation guide follows the workflow patterns established by the base FHIR specification. Each antigen represented as a PlanDefinition will be processed to produce ActivityDefnitions conform to the FHIR Clinical Practice Guidelines Implementation guide [CPG-ActivityProfiles](http://hl7.org/fhir/uv/cpg/profiles.html#activity-profiles).
 
-In particular, processing the PlanDefinition  with the $apply operation [FHIR-Workflow](https://www.hl7.org/fhir/workflow.html) will result in the creation of an [CPG-ImmunizationActivity]http://hl7.org/fhir/uv/cpg/StructureDefinition-cpg-immunizationactivity.html
+In particular, processing the PlanDefinition  with the $apply operation [FHIR-Workflow](https://www.hl7.org/fhir/workflow.html) will result in the creation of an [CPG-ImmunizationActivity](http://hl7.org/fhir/uv/cpg/StructureDefinition-cpg-immunizationactivity.html)
 
-<!--![BCG-ImmunizationActivity](./images/ActivityDefinition_BCG_Example1.png)-->
+![BCG-ImmunizationActivity](./images/ActivityDefinition_BCG_Example1.png)
 
 As part of the implementation the country specific EIR (Electronic Immunization Registry) will need to fill in the ActivityDefinition.product[x]. It is not possible for this IG to recommend a specific product. There are limitations of supply chain, country specific needs, and other issues which cannot be captured and generalized to accomodate all specific use cases. 
 
 For example, Cholera has 3 SNOMED Codes and 4 ATC Codes.
-<!--
-![Cholera-SNOMEDCT/ACT Codes](./images/Cholera_SNOMED_ATC_Example.png)
 
-<br />
---> 
+![Cholera-SNOMEDCT/ACT Codes](./images/Cholera_SNOMED_ATC_Example.png)
 
 #### FHIR Library
 The FHIR Library contains a base64 encoded CQL library which represents the decision logic as a series of boolean clauses. Each PlanDefinition and Measure will reference a Library from which each decision point can be made and specify which expression from the CQL is used to trigger a decision in PlanDefinition or where to retrieve data to create the MeasureReport in the Measure, repsectively.
@@ -35,6 +32,7 @@ The ValueSets include a vaccine list of many codes which may be found in a patie
 
 ## Indicators
 Indicators have their own structure using the FHIR Measure and MeasureReport structure. More information on these resources and how they are used in this IG can be found in the [Indicators](indicators.html)
+
 <!--
 #### Data Elements 
 --> 
