@@ -9,6 +9,7 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
@@ -18,55 +19,55 @@ context Patient
  * @dataElement Varicella vaccine immunization history
  */
 define "Varicella vaccine immunization history":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement No doses
  */
 define "No doses":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement Age
  */
 define "Age":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement 12 months
  */
 define "12 months":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement 18 months
  */
 define "18 months":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement 15 years
  */
 define "15 years":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement Pregnant
  */
 define "Pregnant":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement False
  */
 define "False":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)
  */
 define "Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)":
-	true; // TODO: Define this
+	true // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient with Varicella vaccine because no doses
@@ -80,12 +81,13 @@ define "Potentially susceptible health-care worker (i.e.unvaccinated and with no
  *	 ((((("Varicella vaccine immunization history" = "No doses") and ("Age" >= "12 months")) and ("Age" <= "18 months")) or ((("Varicella vaccine immunization history" = "No doses") and ("Age" >= "15 years")) and ("Pregnant" = "False"))) or ((("Varicella vaccine immunization history" = "No doses") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Pregnant" = "False")))
  */
 define "Should vaccinate patient with Varicella vaccine because no doses":
-	((((("Varicella vaccine immunization history" = "No doses") and ("Age" >= "12 months")) and ("Age" <= "18 months")) or ((("Varicella vaccine immunization history" = "No doses") and ("Age" >= "15 years")) and ("Pregnant" = "False"))) or ((("Varicella vaccine immunization history" = "No doses") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Pregnant" = "False")));
+	((((("Varicella vaccine immunization history" = "No doses") and ("Age" >= "12 months")) and ("Age" <= "18 months")) or ((("Varicella vaccine immunization history" = "No doses") and ("Age" >= "15 years")) and ("Pregnant" = "False"))) or ((("Varicella vaccine immunization history" = "No doses") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Pregnant" = "False")))
+
 /* 
  * @dataElement Varicella vaccine immunization history = 1 doses given 4 weeks to 3 months ago
  */
 define "Varicella vaccine immunization history = 1 doses given 4 weeks to 3 months ago":
-	true; // TODO: Define this
+	true // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient with Varicella vaccine because 1 dose given 4 weeks ago
@@ -99,18 +101,19 @@ define "Varicella vaccine immunization history = 1 doses given 4 weeks to 3 mont
  *	 ((("Varicella vaccine immunization history" = "1 doses given 4 weeks to 3 months ago" = true) and ("Age" >= "12 months")) and ("Age" <= "18 months"))
  */
 define "Should vaccinate patient with Varicella vaccine because 1 dose given 4 weeks ago":
-	((("Varicella vaccine immunization history" = "1 doses given 4 weeks to 3 months ago" = true) and ("Age" >= "12 months")) and ("Age" <= "18 months"));
+	((("Varicella vaccine immunization history = 1 doses given 4 weeks to 3 months ago" = true) and ("Age" >= "12 months")) and ("Age" <= "18 months"))
+
 /* 
  * @dataElement 1 dose
  */
 define "1 dose":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement 1 doses and potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella) and not pregnant
  */
 define "1 doses and potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella) and not pregnant":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient with Varicella vaccine because 1 dose  given
@@ -124,4 +127,5 @@ define "1 doses and potentially susceptible health-care worker (i.e.unvaccinated
  *	 (((("Varicella vaccine immunization history" = "1 dose") and ("Age" >= "15 years")) and ("Pregnant" = "False")) or ((("Varicella vaccine immunization history" = "1 doses and potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella) and not pregnant") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Pregnant" = "False")))
  */
 define "Should vaccinate patient with Varicella vaccine because 1 dose  given":
-	(((("Varicella vaccine immunization history" = "1 dose") and ("Age" >= "15 years")) and ("Pregnant" = "False")) or ((("Varicella vaccine immunization history" = "1 doses and potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella) and not pregnant") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Pregnant" = "False")));
+	(((("Varicella vaccine immunization history" = "1 dose") and ("Age" >= "15 years")) and ("Pregnant" = "False")) or ((("Varicella vaccine immunization history" = "1 doses and potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella) and not pregnant") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Pregnant" = "False")))
+

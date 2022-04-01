@@ -9,6 +9,7 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
@@ -17,14 +18,16 @@ context Patient
 /* 
  * @dataElement Measles vaccine immunization history = No-doses
  */
-define "Measles vaccine immunization history = No-doses":
-	true; // TODO: Define this
+define "Measles vaccine immunization history":
+	0 // TODO: Define this
 
+define "No-doses":
+	0 // TODO: Define this
 /* 
  * @dataElement Current Patient Age in Months
  */
 define "Current Patient Age in Months":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient for measles because no doses
@@ -40,4 +43,5 @@ define "Current Patient Age in Months":
  *	 ((((("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" >= 9)) and ("Current Patient Age in Months" <= 15)) or ((("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" >= 15)) and ("Current Patient Age in Months" <= 18))) or (("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" > 9)))
  */
 define "Should vaccinate patient for measles because no doses":
-	((((("Measles vaccine immunization history" = "No-doses") and ("Age" >= "9 months")) and ("Age" <= "15 months")) or ((("Measles vaccine immunization history" = "No-doses") and ("Age" >= "15 months")) and ("Age" <= "18 months"))) or (("Measles vaccine immunization history" = "No-doses") and ("Age" > "9 months")));
+	((((("Measles vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 9)) and ("Current Patient Age in Months" <= 15)) or ((("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" >= 15)) and ("Current Patient Age in Months" <= 18))) or (("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" > 9)))
+
