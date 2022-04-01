@@ -11,6 +11,7 @@ include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include IMMZConfig called IMMZConf
 // End Skeleton CQL
 context Patient
 
@@ -18,31 +19,31 @@ context Patient
  * @dataElement Hepatitis A vaccine immunization history
  */
 define "Hepatitis A vaccine immunization history":
-	true; // TODO: Define this
+	IMMZCom."HepA Doses Administered"
 
 /* 
  * @dataElement No-doses
  */
 define "No-doses":
-	true; // TODO: Define this
+	not exists("Hepatitis A vaccine immunization history")
 
 /* 
  * @dataElement Age
  */
 define "Age":
-	true; // TODO: Define this
+	IMMZCom."Current Patient Age In Years"
 
-/* 
+/*
  * @dataElement 1 year
  */
 define "1 year":
-	true; // TODO: Define this
+	1 year
 
 /* 
  * @dataElement Country is not highly endemic
  */
 define "Country is not highly endemic":
-	true; // TODO: Define this
+	IMMZConf."Hepatitis A endemic country" = false
 
 /*
  * Rule: Should vaccinate patient for Hepatitis A because no doses at 1 year old in a 1 dose scheme

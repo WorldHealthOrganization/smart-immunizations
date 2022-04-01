@@ -66,6 +66,7 @@ The following personas are generic examples which are evident in some of the use
 #### User Scenarios
 <!--explain that we are describing the personas from the perspective of fake people-->
 
+
 #### Mother
 Ruth is 21 years old and Esther, her first baby, is 11 weeks old. She completed primary school and has basic literacy. Her husband attended secondary school for three years, but did not finish. They all live in a single-room house without electricity in a small village near Msindo. There is a public tap for drinking water a few hundred meters away. 
 
