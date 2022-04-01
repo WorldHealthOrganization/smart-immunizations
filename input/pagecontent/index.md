@@ -31,3 +31,6 @@ For a complete listing of the artifacts defined in this implementation guide, re
 Implementation content, as well as a complete offline copy of this implementation guide can be found on the [Downloads](downloads.html) page.
 
 Note that the content of this implementation guide is draft material that has not yet been tested or validated for use in production environments.
+
+#### Clinial Quality Language
+This Implementation Guide makes use of [Clinical Quality Language](https://cql.hl7.org/) for the decision support artifacts including the PlanDefinitions and Measures. They are used to express how a calculation should occur and can be used with a CQL engine in order to process the decision or indicator directly from the applicable FHIR resources. 
