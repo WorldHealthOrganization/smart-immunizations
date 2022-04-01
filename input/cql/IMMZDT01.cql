@@ -11,86 +11,9 @@ include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include IMMZConfig called IMMZCon
 // End Skeleton CQL
 context Patient
-
-/* 
- * @dataElement TST Test Result
- */
-define "TST Test Result":
-	true; // TODO: Define this
-
-/* 
- * @dataElement TST-negative
- */
-define "TST-negative":
-	true; // TODO: Define this
-
-/* 
- * @dataElement High incidence of TB and/or high leprosy burden
- */
-define "High incidence of TB and/or high leprosy burden":
-	true; // TODO: Define this
-
-/* 
- * @dataElement IGRA Test Result
- */
-define "IGRA Test Result":
-	true; // TODO: Define this
-
-/* 
- * @dataElement IGRA-negative
- */
-define "IGRA-negative":
-	true; // TODO: Define this
-
-/* 
- * @dataElement BCG vaccine immunization history
- */
-define "BCG vaccine immunization history":
-	true; // TODO: Define this
-
-/* 
- * @dataElement No-doses
- */
-define "No-doses":
-	true; // TODO: Define this
-
-/* 
- * @dataElement Unknown
- */
-define "Unknown":
-	true; // TODO: Define this
-
-/* 
- * @dataElement BCG vaccine immunization history = No-doses
- */
-define "BCG vaccine immunization history = No-doses":
-	true; // TODO: Define this
-
-/* 
- * @dataElement HIV Status = Positive
- */
-define "HIV Status = Positive":
-	true; // TODO: Define this
-
-/* 
- * @dataElement CD4% >25%
- */
-define "CD4% >25%":
-	true; // TODO: Define this
-
-/* 
- * @dataElement Current Patient Age in Years
- */
-define "Current Patient Age in Years":
-	true; // TODO: Define this
-
-/* 
- * @dataElement CD4 count ≥ 200
- */
-define "CD4 count ≥ 200":
-	true; // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient for BCG
@@ -115,9 +38,9 @@ define "Should vaccinate patient for BCG":
 	IMMZCon."High incidence of TB and/or high leprosy burden" = true and (
 		(IMMZCom."Most Recent TST Test Result" in IMMZc."Negative Result") or 
 		(IMMZCom."Most Recent IGRA Test Result" in IMMZc."Negative Result") or 
-		(IMMZCom."No BCG Doses Administered") or 
+		(IMMZCom."No BCG Doses Administered to Patient") or 
 		(
-				(IMMZCom."No BCG Doses Administered" and IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices") and 
+				(IMMZCom."No BCG Doses Administered to Patient" and IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices") and 
 				(
 					(IMMZCom."Most Recent CD4%" > 25'%' and IMMZCom."Current Patient Age In Years" < 5) or 
 					(IMMZCom."Most Recent CD4 Count" >= 200 and IMMZCom."Current Patient Age In Years" >= 5)
