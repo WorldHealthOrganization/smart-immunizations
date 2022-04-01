@@ -9,6 +9,7 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
@@ -18,25 +19,25 @@ context Patient
  * @dataElement Rabies vaccine immunization history
  */
 define "Rabies vaccine immunization history":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement No-doses
  */
 define "No-doses":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement Exposed to RABV
  */
 define "Exposed to RABV":
-	true; // TODO: Define this
+	true // TODO: Define this
 
 /* 
  * @dataElement Category II exposure
  */
 define "Category II exposure":
-	true; // TODO: Define this
+	true // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient with PEP Vaccine on 1 dose scheme
@@ -50,7 +51,8 @@ define "Category II exposure":
  *	 ((("Rabies vaccine immunization history" = "No-doses") and ("Exposed to RABV" = true)) and ("Category II exposure" = true))
  */
 define "Should vaccinate patient with PEP Vaccine on 1 dose scheme":
-	((("Rabies vaccine immunization history" = "No-doses") and ("Exposed to RABV" = true)) and ("Category II exposure" = true));
+	((("Rabies vaccine immunization history" = "No-doses") and ("Exposed to RABV" = true)) and ("Category II exposure" = true))
+
 /*
  * Rule: Should vaccinate patient with PEP Vaccine and RIG if indicated on 1 dose scheme
  * Annotations:
@@ -63,12 +65,13 @@ define "Should vaccinate patient with PEP Vaccine on 1 dose scheme":
  *	 ((("Rabies vaccine immunization history" = "No-doses") and ("Exposed to RABV" = true)) and ("Category II exposure" = true))
  */
 define "Should vaccinate patient with PEP Vaccine and RIG if indicated on 1 dose scheme":
-	((("Rabies vaccine immunization history" = "No-doses") and ("Exposed to RABV" = true)) and ("Category II exposure" = true));
+	((("Rabies vaccine immunization history" = "No-doses") and ("Exposed to RABV" = true)) and ("Category II exposure" = true))
+
 /* 
  * @dataElement High risk of RABV exposure
  */
 define "High risk of RABV exposure":
-	true; // TODO: Define this
+	true // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient with PrEP Vaccine - ID route
@@ -83,7 +86,8 @@ define "High risk of RABV exposure":
  *	 (("Rabies vaccine immunization history" = "No-doses") and ("High risk of RABV exposure" = true))
  */
 define "Should vaccinate patient with PrEP Vaccine - ID route":
-	(("Rabies vaccine immunization history" = "No-doses") and ("High risk of RABV exposure" = true));
+	(("Rabies vaccine immunization history" = "No-doses") and ("High risk of RABV exposure" = true))
+
 /*
  * Rule: Should vaccinate patient with PrEP Vaccine - IM route
  * Annotations:
@@ -97,24 +101,25 @@ define "Should vaccinate patient with PrEP Vaccine - ID route":
  *	 (("Rabies vaccine immunization history" = "No-doses") and ("High risk of RABV exposure" = true))
  */
 define "Should vaccinate patient with PrEP Vaccine - IM route":
-	(("Rabies vaccine immunization history" = "No-doses") and ("High risk of RABV exposure" = true));
+	(("Rabies vaccine immunization history" = "No-doses") and ("High risk of RABV exposure" = true))
+
 /* 
  * @dataElement vaccinated
  */
 define "vaccinated":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement At frequent risk of exposure 
  */
 define "At frequent risk of exposure ":
-	true; // TODO: Define this
+	true // TODO: Define this
 
 /* 
  * @dataElement VNA levels fall to <0.5 IU/mL
  */
 define "VNA levels fall to <0.5 IU/mL":
-	true; // TODO: Define this
+	true // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient with PrEP Vaccine - IM OR ID route
@@ -129,4 +134,5 @@ define "VNA levels fall to <0.5 IU/mL":
  *	 ((("Rabies vaccine immunization history" = "vaccinated") and ("At frequent risk of exposure " = true)) and ("VNA levels fall to <0.5 IU/mL" = true))
  */
 define "Should vaccinate patient with PrEP Vaccine - IM OR ID route":
-	((("Rabies vaccine immunization history" = "vaccinated") and ("At frequent risk of exposure " = true)) and ("VNA levels fall to <0.5 IU/mL" = true));
+	((("Rabies vaccine immunization history" = "vaccinated") and ("At frequent risk of exposure " = true)) and ("VNA levels fall to <0.5 IU/mL" = true))
+

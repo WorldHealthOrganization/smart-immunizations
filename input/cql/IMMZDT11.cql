@@ -9,6 +9,7 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
@@ -18,55 +19,55 @@ context Patient
  * @dataElement Japanese Encephalitis vaccine immunization history = No-doses
  */
 define "Japanese Encephalitis vaccine immunization history = No-doses":
-	true; // TODO: Define this
+	true // TODO: Define this
 
 /* 
  * @dataElement Age
  */
 define "Age":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement 6 months
  */
 define "6 months":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement Antigen
  */
 define "Antigen":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement Inactivated Vero cell-derived
  */
 define "Inactivated Vero cell-derived":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement 8 months
  */
 define "8 months":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement Live attentuated
  */
 define "Live attentuated":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement 9 months
  */
 define "9 months":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement Live recombinant
  */
 define "Live recombinant":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient for Japanese Encephalitis because no doses
@@ -80,18 +81,19 @@ define "Live recombinant":
  *	 ((((("Japanese Encephalitis vaccine immunization history" = "No-doses" = true) and ("Age" >= "6 months")) and ("Antigen" = "Inactivated Vero cell-derived")) or ((("Japanese Encephalitis vaccine immunization history" = "No-doses" = true) and ("Age" >= "8 months")) and ("Antigen" = "Live attentuated"))) or ((("Japanese Encephalitis vaccine immunization history" = "No-doses" = true) and ("Age" >= "9 months")) and ("Antigen" = "Live recombinant")))
  */
 define "Should vaccinate patient for Japanese Encephalitis because no doses":
-	((((("Japanese Encephalitis vaccine immunization history" = "No-doses") and ("Age" >= "6 months")) and ("Antigen" = "Inactivated Vero cell-derived")) or ((("Japanese Encephalitis vaccine immunization history" = "No-doses") and ("Age" >= "8 months")) and ("Antigen" = "Live attentuated"))) or ((("Japanese Encephalitis vaccine immunization history" = "No-doses") and ("Age" >= "9 months")) and ("Antigen" = "Live recombinant")));
+	((((("Japanese Encephalitis vaccine immunization history = No-doses" = true) and ("Age" >= "6 months")) and ("Antigen" = "Inactivated Vero cell-derived")) or ((("Japanese Encephalitis vaccine immunization history = No-doses" = true) and ("Age" >= "8 months")) and ("Antigen" = "Live attentuated"))) or ((("Japanese Encephalitis vaccine immunization history = No-doses" = true) and ("Age" >= "9 months")) and ("Antigen" = "Live recombinant")))
+
 /* 
  * @dataElement Japanese Encephalitis vaccine immunization history = 1 dose
  */
 define "Japanese Encephalitis vaccine immunization history = 1 dose":
-	true; // TODO: Define this
+	true // TODO: Define this
 
 /* 
  * @dataElement Previous dose >= 4 weeks
  */
 define "Previous dose >= 4 weeks":
-	true; // TODO: Define this
+	true // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient for Japanese Encephalitis because 1 dose
@@ -105,4 +107,5 @@ define "Previous dose >= 4 weeks":
  *	 ((("Japanese Encephalitis vaccine immunization history" = "1 dose" = true) and ("Previous dose" >= "4 weeks" = true)) and ("Antigen" = "Inactivated Vero cell-derived"))
  */
 define "Should vaccinate patient for Japanese Encephalitis because 1 dose":
-	((("Japanese Encephalitis vaccine immunization history" = "1 dose") and ("Previous dose" >= "4 weeks")) and ("Antigen" = "Inactivated Vero cell-derived"));
+	((("Japanese Encephalitis vaccine immunization history = 1 dose" = true) and ("Previous dose >= 4 weeks" = true)) and ("Antigen" = "Inactivated Vero cell-derived"))
+
