@@ -8,6 +8,7 @@ These PlanDefinitions can be found in the [Artifact Index](artifacts.html)
 
 #### ActivityDefinitions
 <!--As part of the implementation the country specific EIR will need to fill in the ActivityDefinition.product[x] it is not possible for this IG to recommend a specific product. There are limitations of supply chain, country specific needs, and other issues which cannot be captured and generalized to accomodate all specific use cases. Provide example like Cholera has 3 SNOMED Codes and 4 ATC codes - we can't assume which code an implementer might use or write reasonable logic to determine which code might be used due to our -->
+
 #### ValueSets
 Many of the ValueSets used in this IG are  from [CPG on FHIR](https://hl7.org/fhir/uv/cpg/) and the [IPS](https://hl7.org/fhir/uv/ips/). There are a number of generated ValueSets based on the user scenarios detailed in this IG. 
 

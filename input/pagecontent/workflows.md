@@ -14,7 +14,7 @@ The over all workflow for immunizations is documented below. More details can be
 9. Resolve Duplicate Vaccine Events
 10. Report generation
 
-#### 1. Facility Registration
+##### 1. Facility Registration
 All facilities that are able to administer vaccines must be registered and uniquely identified to enable appropriate tracking of vaccine coverage and stock. There are situations where the locations providing vaccines may not be a permanent physical facility but rather some kind of public health authority ￼(as is the case with some temporary or pop up clinics). These may be included as per local policy or needs.
 
 #### 2. Plan Service Delivery 
@@ -63,11 +63,10 @@ The following personas are generic examples which are evident in some of the use
 * Expanded Programme on Immunization Manager
 * System Administrator
 
-#### User Scenarios
 <!--explain that we are describing the personas from the perspective of fake people-->
 
 
-#### Mother
+##### Mother
 Ruth is 21 years old and Esther, her first baby, is 11 weeks old. She completed primary school and has basic literacy. Her husband attended secondary school for three years, but did not finish. They all live in a single-room house without electricity in a small village near Msindo. There is a public tap for drinking water a few hundred meters away. 
 
 #### Child 
@@ -113,7 +112,8 @@ Mohamed is a systems administrator working in the Ministry of Health at the nati
 
 #### Business Process
 
-#### Request district-level reports 
+<!--should be level 5-->
+##### Request district-level reports 
 Abdu uses his computer to generate an immunization report from the eHealth database for his district showing summary information by catchment (i.e., clinic service area). The report lists the number of children who are due for immunizations in the near-term, broken down by type and by week, as well as information about women in the MoH’s maternal care program. Abdu also generates a historical report showing trends in the catchment’s immunization activities (including coverage) over the last number of months.  
 
 #### Discuss district-level strategy and develop tactics 
