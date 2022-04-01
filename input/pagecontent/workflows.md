@@ -112,6 +112,8 @@ Mohamed is a systems administrator working in the Ministry of Health at the nati
 
 #### Business Process
 
+A business process is a set of related activities or tasks performed together to achieve the objectives of the health programme.
+
 <!--should be level 5-->
 ##### Request district-level reports 
 Abdu uses his computer to generate an immunization report from the eHealth database for his district showing summary information by catchment (i.e., clinic service area). The report lists the number of children who are due for immunizations in the near-term, broken down by type and by week, as well as information about women in the MoH’s maternal care program. Abdu also generates a historical report showing trends in the catchment’s immunization activities (including coverage) over the last number of months.  
