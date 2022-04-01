@@ -19,6 +19,7 @@ For example, Cholera has 3 SNOMED Codes and 4 ATC Codes.
 ![Cholera-SNOMEDCT/ACT Codes](./images/Cholera_SNOMED_ATC_Example.png)
 
 <br />
+
 #### ValueSets
 Many of the ValueSets used in this IG are  from [CPG on FHIR](https://hl7.org/fhir/uv/cpg/) and the [IPS](https://hl7.org/fhir/uv/ips/). There are a number of generated ValueSets based on the user scenarios detailed in this IG. 
 
