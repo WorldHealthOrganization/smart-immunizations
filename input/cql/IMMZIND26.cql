@@ -1,14 +1,19 @@
 /*
  * Library: IMMZ.IND.26
- * Functional status of cold-chain storage equipment. 
- * The proportion of refrigerators which are functional within a clinic.
+ * Open vial wastage rate 
+ * The open vial wastage rate is used to measure the percentage of doses of vaccine that were opened, but discarded due to under-utilization. For example, a 5 dose vile of an antigen may be thrown out after only 2 administrations of the vaccine, indicating an open vial wastage of 3 doses.
  * 
- * Numerator: The number of functional refrigerators in the clinic. 
- * Numerator Computation: COUNT refrigerators which are functional during the reporting period
- * Denominator: The number of refrigerators which are present in the clinic.
- * Denominator Computation: COUNT total refrigerators (regardless of status)
+ * Numerator: Total number of doses used (starting balance of doses + supplied doses - ending balance doses) minus total number of doses administered to patients.
+
+Starting Balance = The number of doses available for immunization at the start of day/session.
+Supplied Doses = The number of doses which were received/added to the stock during the day/session.
+Ending Balance = The number of doses which were left at the end of the day/session 
+ * Numerator Computation: (Starting Balance + Supplied Doses - Ending Balance) - COUNT of persons who were administered the vaccine
+ * Denominator: The total number of doses used / consumed during the vaccination session/day.
+ * Denominator Computation: Starting Balance + Supplied Doses - Ending Balance
  * 
  * Disaggregation:
+ *   - Vaccine (BCG, OPV, etc.)
  *   - Geographic Region
  * 
  * References: WHO Immunization Facility Analysis Guide (1)
@@ -16,29 +21,40 @@
 
 library IMMZIND26
 
+// Start Skeleton CQL
 using FHIR version '4.0.1'
-
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
-
+// End Skeleton CQL
 parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
 context Patient
 
 /*
- * Numerator: The number of functional refrigerators in the clinic.
- * Numerator Computation: COUNT refrigerators which are functional during the reporting period
+ * Numerator: Total number of doses used (starting balance of doses + supplied doses - ending balance doses) minus total number of doses administered to patients.
+
+Starting Balance = The number of doses available for immunization at the start of day/session.
+Supplied Doses = The number of doses which were received/added to the stock during the day/session.
+Ending Balance = The number of doses which were left at the end of the day/session
+ * Numerator Computation: (Starting Balance + Supplied Doses - Ending Balance) - COUNT of persons who were administered the vaccine
  */
 define "numerator":
 	true // TODO: Write logic here
 /*
- * Denominator: The number of refrigerators which are present in the clinic.
- * Denominator Computation: COUNT total refrigerators (regardless of status)
+ * Denominator: The total number of doses used / consumed during the vaccination session/day.
+ * Denominator Computation: Starting Balance + Supplied Doses - Ending Balance
  */
 define "denominator":
 	true // TODO: Write logic here
+/*
+ * Disaggregator: Vaccine (BCG, OPV, etc.)
+ */
+define "Vaccine  Stratifier":
+	true // todo: fill in logic
+
 /*
  * Disaggregator: Geographic Region
  */

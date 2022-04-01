@@ -1,35 +1,38 @@
 /*
  * Library: IMMZ.IND.17
- * Immunization coverage for Japanese encephalitis vaccines (Estimated Denominator) 
- * Compares the administered doses of Japanese encephalitis vaccines with a country specified target population expressed as a percentage.
+ * Immunization coverage for Tetanus containing vaccine boosters (Estimated Denominator) 
+ * Compares the administered booster dose of tetanus containing vaccines (doses 4, 5, 6) with a country specified denominator expressed as a percentage
  * 
- * Numerator: Number of administrations of vaccines which contain Japanese encephalitis component during the reporting period. 
- * Numerator Computation: COUNT immunization events WHERE administered product is a Japanese Encephalitis vaccine (IMMZ.A1.DE8) during reporting period.
+ * Numerator: Number of administrations of booster containing tetanus component during the reporting period. 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Tetanus containing vaccine (IMMZ.A1.DE19) and dose > 3 during reporting period
  * Denominator: Country defined target population.
  * Denominator Computation: PARAMETER country defined target population.
  * 
  * Disaggregation:
+ *   - Dose Sequence (4, 5, 6)
  *   - Geographic Region
+ *   - Administrative Gender (or Biological Sex)
  * 
- * References: WHO / UNICEF Joint Reporting Form (3 - element 4300)
+ * References: WHO / UNICEF Joint Reporting Form (3 - element 4100, 4110, 4120)
  */
 
 library IMMZIND17
 
+// Start Skeleton CQL
 using FHIR version '4.0.1'
-
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
-
+// End Skeleton CQL
 parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccines which contain Japanese encephalitis component during the reporting period.
- * Numerator Computation: COUNT immunization events WHERE administered product is a Japanese Encephalitis vaccine (IMMZ.A1.DE8) during reporting period.
+ * Numerator: Number of administrations of booster containing tetanus component during the reporting period.
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Tetanus containing vaccine (IMMZ.A1.DE19) and dose > 3 during reporting period
  */
 define "numerator":
 	true // TODO: Write logic here
@@ -40,8 +43,20 @@ define "numerator":
 define "denominator":
 	true // TODO: Write logic here
 /*
+ * Disaggregator: Dose Sequence (4, 5, 6)
+ */
+define "Dose Sequence  Stratifier":
+	true // todo: fill in logic
+
+/*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	IMMZStratifiers."By Geographic Region Stratifier"
+/*
+ * Disaggregator: Administrative Gender (or Biological Sex)
+ */
+define "Administrative Gender Stratifier":
+	true // todo: fill in logic
+
 /* End of IMMZ.IND.17 */

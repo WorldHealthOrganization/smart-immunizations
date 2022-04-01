@@ -1,18 +1,18 @@
 /*
  * Library: IMMZ.IND.23
- * Closed vial wastage rate 
- * The closed vial wastage rate is used to measure percentage of doses of vaccine which were spoiled during the reporting period due to expiry, freezing, breakage, etc. 
+ * Dropout Rate of BCG to MCV1 (Target / Reported Cohort) 
+ * Indicates the aggregate dropout rate of children which have begun vaccination (at birth, BCG if given) with aggregate administration of measles containing vaccines. 
 
-This indicator is used to compare performance of management. Implementers may provide codified reasons for further disaggregation (i.e. monitoring what specifically is causing wastage in the system)
+The indicator compares the number of administration of BCG minus the number of administration of MCV1 divided by the number of BCG vaccinations (BCG - MCV1 / BCG)
  * 
- * Numerator: Number of doses in closed vials of vaccine product that were discarded (for example: expired, VVM state, freezing, breakage, etc.) 
- * Numerator Computation: COUNT number of disposed vials of vaccine product.
- * Denominator: Total number of doses vaccine product received and available for use during the reporting period.
- * Denominator Computation: COUNT number of total vials of vaccine product received and available for use.
+ * Numerator: The number of doses of MCV1 administered during reporting period minus the number of BCG doses administered during reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1)  during reporting period
+SUBTRACT 
+COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1 during reporting period
+ * Denominator: Number of doses of BCG administered during reporting period.
+ * Denominator Computation: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1)  during reporting period
  * 
  * Disaggregation:
- *   - Vaccine  (BCG, OPV, etc.)
- *   - Type of Spoilage (Broken, Heat Exposure/VVM, Expiry)
  *   - Geographic Region
  * 
  * References: WHO Immunization Facility Analysis Guide (1)
@@ -20,39 +20,32 @@ This indicator is used to compare performance of management. Implementers may pr
 
 library IMMZIND23
 
+// Start Skeleton CQL
 using FHIR version '4.0.1'
-
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
-
+// End Skeleton CQL
 parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
 context Patient
 
 /*
- * Numerator: Number of doses in closed vials of vaccine product that were discarded (for example: expired, VVM state, freezing, breakage, etc.)
- * Numerator Computation: COUNT number of disposed vials of vaccine product.
+ * Numerator: The number of doses of MCV1 administered during reporting period minus the number of BCG doses administered during reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1)  during reporting period
+SUBTRACT 
+COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1 during reporting period
  */
 define "numerator":
 	true // TODO: Write logic here
 /*
- * Denominator: Total number of doses vaccine product received and available for use during the reporting period.
- * Denominator Computation: COUNT number of total vials of vaccine product received and available for use.
+ * Denominator: Number of doses of BCG administered during reporting period.
+ * Denominator Computation: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1)  during reporting period
  */
 define "denominator":
 	true // TODO: Write logic here
-/*
- * Disaggregator: Vaccine  (BCG, OPV, etc.)
- */
-define "Vaccine   Stratifier":
-	true // todo: fill in logic
-/*
- * Disaggregator: Type of Spoilage (Broken, Heat Exposure/VVM, Expiry)
- */
-define "Type of Spoilage  Stratifier":
-	true // todo: fill in logic
 /*
  * Disaggregator: Geographic Region
  */
