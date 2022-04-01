@@ -16,9 +16,9 @@ In particular, processing the PlanDefinition  with the $apply operation [FHIR-Wo
 As part of the implementation the country specific EIR (Electronic Immunization Registry) will need to fill in the ActivityDefinition.product[x]. It is not possible for this IG to recommend a specific product. There are limitations of supply chain, country specific needs, and other issues which cannot be captured and generalized to accomodate all specific use cases. 
 
 For example, Cholera has 3 SNOMED Codes and 4 ATC Codes.
-![Cholera-SNOMEDCT/ACT Codes](./images/Cholera_SNOMED_ATC_Example.png)<br />
+![Cholera-SNOMEDCT/ACT Codes](./images/Cholera_SNOMED_ATC_Example.png)
 
-
+<br />
 #### ValueSets
 Many of the ValueSets used in this IG are  from [CPG on FHIR](https://hl7.org/fhir/uv/cpg/) and the [IPS](https://hl7.org/fhir/uv/ips/). There are a number of generated ValueSets based on the user scenarios detailed in this IG. 
 
