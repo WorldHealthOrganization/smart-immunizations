@@ -20,6 +20,14 @@ This guide is prepared to facilitate digital implementation of WHO Immunization 
 
 This guide is a companion to the Digital Adaptation Kit (DAK) and should be used side-by-side with it. Implementers are strongly encouraged to make use of the Digital Adaptation Kit as it contains a wealth of context and guidance that is intentionally not duplicated here. The focus of this guide is on the explanation and use of the computable artifacts.
 
+The DAKs content used in this implementation guide and their content are referenced in the follows pages: 
+|Page|Description|
+|----|----|
+|[Documentation](documentation.html)| Describes make up of the resources in this implementation guide, with focus on the decision logic|
+|[Workflows](workflows.html)|Describes some of the workflows and business processes used in this immunization IG|
+|[Indicators](indicators.html)|Describes how to implement indicators in this IG|
+
+
 This guide assumes use of the following resources: 
 * [IPS Patient](http://hl7.org/fhir/uv/ips/StructureDefinition/Patient-uv-ips)
 * [IPS Immunization](http://hl7.org/fhir/uv/ips/StructureDefinition/Immunization-uv-ips)
@@ -33,4 +41,4 @@ Implementation content, as well as a complete offline copy of this implementatio
 Note that the content of this implementation guide is draft material that has not yet been tested or validated for use in production environments.
 
 #### Clinial Quality Language
-This Implementation Guide makes use of [Clinical Quality Language](https://cql.hl7.org/) for the decision support artifacts including the PlanDefinitions and Measures. They are used to express how a calculation should occur and can be used with a CQL engine in order to process the decision or indicator directly from the applicable FHIR resources. 
+This Implementation Guide makes use of [Clinical Quality Language](https://cql.hl7.org/) for the decision support artifacts including the PlanDefinitions and Measures. They are used to express how a calculation should occur and can be used with a CQL engine in order to process the decision or indicator directly from the applicable FHIR resources. Links to this specification, the FHIR Clinical Practice Guidelines Speciciation, and other helpful resources can be found in the Support dropdown.
