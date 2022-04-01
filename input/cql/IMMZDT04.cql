@@ -11,32 +11,9 @@ include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include IMMZConfig called IMMZCon
 // End Skeleton CQL
 context Patient
-
-/* 
- * @dataElement DTP vaccine immunization history
- */
-define "DTP vaccine immunization history":
-	true; // TODO: Define this
-
-/* 
- * @dataElement No-doses
- */
-define "No-doses":
-	true; // TODO: Define this
-
-/* 
- * @dataElement Current Patient Age in Weeks
- */
-define "Current Patient Age in Weeks":
-	true; // TODO: Define this
-
-/* 
- * @dataElement Current Patient Age in Years
- */
-define "Current Patient Age in Years":
-	true; // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient with DTP first dose
@@ -52,31 +29,8 @@ define "Current Patient Age in Years":
  *	 ((("DTP vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6)) or (("DTP vaccine immunization history" = "No-doses") and ("Current Patient Age in Years" >= 15)))
  */
 define "Should vaccinate patient with DTP first dose":
-	((("DTP vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6)) or (("DTP vaccine immunization history" = "No-doses") and ("Current Patient Age in Years" >= 15)));
-
-/* 
- * @dataElement 1 dose
- */
-define "1 dose":
-	true; // TODO: Define this
-
-/* 
- * @dataElement Date last DTP dose given
- */
-define "Date last DTP dose given":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 4 weeks
- */
-define "4 weeks":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 8 weeks
- */
-define "8 weeks":
-	true; // TODO: Define this
+	(IMMZCom."No DTP Doses Administered") and 
+	((IMMZCom."Current Patient Age In Weeks" >= 6) or (IMMZCom."Current Patient Age In Years" >= 15))
 
 /*
  * Rule: Should vaccinate patient for DTP with 2nd dose
@@ -92,38 +46,16 @@ define "8 weeks":
  *	 ((("DTP vaccine immunization history" = "1 dose") and ("Date last DTP dose given" >= "4 weeks")) or (((("DTP vaccine immunization history" = "1 dose") and ("Current Patient Age in Years" >= 15)) and ("Date last DTP dose given" >= "4 weeks")) and ("Date last DTP dose given" <= "8 weeks")))
  */
 define "Should vaccinate patient for DTP with 2nd dose":
-	((("DTP vaccine immunization history" = "1 dose") and ("Date last DTP dose given" >= "4 weeks")) or (((("DTP vaccine immunization history" = "1 dose") and ("Current Patient Age in Years" >= 15)) and ("Date last DTP dose given" >= "4 weeks")) and ("Date last DTP dose given" <= "8 weeks")));
-
-/* 
- * @dataElement 2 doses
- */
-define "2 doses":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 6 months
- */
-define "6 months":
-	true; // TODO: Define this
-
-/* 
- * @dataElement Age when patient received 1st dose
- */
-define "Age when patient received 1st dose":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 1 year
- */
-define "1 year":
-	true; // TODO: Define this
-
-/* 
- * @dataElement 7 years
- */
-define "7 years":
-	true; // TODO: Define this
-
+	IMMZCom."Number of DTP Doses Administered Excluding Birth Dose" = 1 and
+	(
+		IMMZCom."Date Last DTP Dose Administered" more than 4 'weeks' before Today() or
+		(
+			IMMZCom."Current Patient Age In Years" >= 15 and
+			(IMMZCom."Date Last DTP Dose Administered" more than 4 'weeks' before Today()) and 
+			(IMMZCom."Date Last DTP Dose Administered" less than 8 'weeks' before Today())
+		)
+	)
+	
 /*
  * Rule: Should vaccinate patient for DTP with 3rd dose
  * Annotations:
@@ -141,19 +73,21 @@ define "7 years":
  *	 (((("DTP vaccine immunization history" = "2 doses") and ("Date last DTP dose given" >= "4 weeks")) or (((("DTP vaccine immunization history" = "2 doses") and ("Date last DTP dose given" >= "6 months")) and ("Age when patient received 1st dose" >= "1 year")) and ("Age when patient received 1st dose" < "7 years"))) or (((("DTP vaccine immunization history" = "2 doses") and ("Current Patient Age in Years" >= 15)) and ("Date last DTP dose given" >= "4 weeks")) and ("Date last DTP dose given" <= "8 weeks")))
  */
 define "Should vaccinate patient for DTP with 3rd dose":
-	(((("DTP vaccine immunization history" = "2 doses") and ("Date last DTP dose given" >= "4 weeks")) or (((("DTP vaccine immunization history" = "2 doses") and ("Date last DTP dose given" >= "6 months")) and ("Age when patient received 1st dose" >= "1 year")) and ("Age when patient received 1st dose" < "7 years"))) or (((("DTP vaccine immunization history" = "2 doses") and ("Current Patient Age in Years" >= 15)) and ("Date last DTP dose given" >= "4 weeks")) and ("Date last DTP dose given" <= "8 weeks")));
+	IMMZCom."Number of DTP Doses Administered Excluding Birth Dose" = 2 and
+	(
+		IMMZCom."Date Last DTP Dose Administered" more than 4 'weeks' before Today() or 
+		(
+			IMMZCom."Date Last DTP Dose Administered" more than 6 'months' before Today()  and  
+			IMMZCom."Date First DTP Dose Administered Excluding Birth Dose" more than 1 'year' after Patient.birthDate and
+			IMMZCom."Date First DTP Dose Administered Excluding Birth Dose" less than 7 'year' after Patient.birthDate 
+		) or
+		(
+			(IMMZCom."Current Patient Age In Years" >= 15) and 
+			(IMMZCom."Date Last DTP Dose Administered" more than 4 'weeks' before Today()) and 
+			(IMMZCom."Date Last DTP Dose Administered" less than 8 'weeks' before Today())
+		)
+	)
 
-/* 
- * @dataElement 3 doses
- */
-define "3 doses":
-	true; // TODO: Define this
-
-/* 
- * @dataElement Current Patient Age in Months
- */
-define "Current Patient Age in Months":
-	true; // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient for DTP with 1st booster
@@ -167,13 +101,8 @@ define "Current Patient Age in Months":
  *	 (("DTP vaccine immunization history" = "3 doses") and ("Current Patient Age in Months" >= 12))
  */
 define "Should vaccinate patient for DTP with 1st booster":
-	(("DTP vaccine immunization history" = "3 doses") and ("Current Patient Age in Months" >= 12));
-
-/* 
- * @dataElement 4 doses
- */
-define "4 doses":
-	true; // TODO: Define this
+	IMMZCom."Number of DTP Doses Administered Excluding Birth Dose" = 3
+	and IMMZCom."Current Patient Age In Months" >= 12
 
 /*
  * Rule: Should vaccinate patient for DTP with 2nd booster
@@ -187,13 +116,8 @@ define "4 doses":
  *	 (("DTP vaccine immunization history" = "4 doses") and ("Current Patient Age in Years" >= 4))
  */
 define "Should vaccinate patient for DTP with 2nd booster":
-	(("DTP vaccine immunization history" = "4 doses") and ("Current Patient Age in Years" >= 4));
-
-/* 
- * @dataElement 5 doses
- */
-define "5 doses":
-	true; // TODO: Define this
+	IMMZCom."Number of DTP Doses Administered Excluding Birth Dose" = 4
+	and IMMZCom."Current Patient Age In Years" >= 4
 
 /*
  * Rule: Should vaccinate patient for DTP with 3rd booster
@@ -207,7 +131,8 @@ define "5 doses":
  *	 (("DTP vaccine immunization history" = "5 doses") and ("Current Patient Age in Years" >= 9))
  */
 define "Should vaccinate patient for DTP with 3rd booster":
-	(("DTP vaccine immunization history" = "5 doses") and ("Current Patient Age in Years" >= 9));
+	IMMZCom."Number of DTP Doses Administered Excluding Birth Dose" = 5
+	and IMMZCom."Current Patient Age In Years" >= 9
 
 /*
  * Rule: Should vaccinate patient for DTP with 4th dose
@@ -221,7 +146,10 @@ define "Should vaccinate patient for DTP with 3rd booster":
  *	 (((("DTP vaccine immunization history" = "3 doses") and ("Current Patient Age in Years" >= 15)) and ("Date last DTP dose given" >= "4 weeks")) and ("Date last DTP dose given" <= "8 weeks"))
  */
 define "Should vaccinate patient for DTP with 4th dose":
-	(((("DTP vaccine immunization history" = "3 doses") and ("Current Patient Age in Years" >= 15)) and ("Date last DTP dose given" >= "4 weeks")) and ("Date last DTP dose given" <= "8 weeks"));
+	IMMZCom."Number of DTP Doses Administered Excluding Birth Dose" = 3 and
+	IMMZCom."Current Patient Age In Years" >= 15 and
+	IMMZCom."Date Last DTP Dose Administered" more than 4 'weeks' before Today() and
+	IMMZCom."Date Last DTP Dose Administered" less than 8 'weeks' before Today()
 
 /*
  * Rule: Should vaccinate patient for DTP with 5th dose
@@ -235,5 +163,8 @@ define "Should vaccinate patient for DTP with 4th dose":
  *	 (((("DTP vaccine immunization history" = "4 doses") and ("Current Patient Age in Years" >= 15)) and ("Date last DTP dose given" >= "4 weeks")) and ("Date last DTP dose given" <= "8 weeks"))
  */
 define "Should vaccinate patient for DTP with 5th dose":
-	(((("DTP vaccine immunization history" = "4 doses") and ("Current Patient Age in Years" >= 15)) and ("Date last DTP dose given" >= "4 weeks")) and ("Date last DTP dose given" <= "8 weeks"));
+	IMMZCom."Number of DTP Doses Administered Excluding Birth Dose" = 4 and
+	IMMZCom."Current Patient Age In Years" >= 15 and
+	IMMZCom."Date Last DTP Dose Administered" more than 4 'weeks' before Today() and
+	IMMZCom."Date Last DTP Dose Administered" less than 8 'weeks' before Today()
 

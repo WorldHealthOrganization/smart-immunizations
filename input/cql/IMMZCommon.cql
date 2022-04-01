@@ -355,11 +355,18 @@ define "DTP Doses Administered":
   where
     I.vaccineCode in IMMZc."DTP Vaccine"
 
+/** 
+  * @dataElement DTP administrations excluding birth doses
+ */
+define "DTP Doses Administered Excluding Birth Dose":
+  "DTP Doses Administered" O 
+  where (singleton from O.protocolApplied.doseNumber) != 0
+
 /**
  * @dataElement Number of DTP doses administered excluding the birth dose
  */
 define "Number of DTP Doses Administered Excluding Birth Dose":
-  Count("DTP Doses Administered" O where (singleton from O.protocolApplied.doseNumber != 0))// O return ToPositiveInt((singleton from O.protocolApplied).doseNumber))
+  Count("DTP Doses Administered Excluding Birth Dose")// O return ToPositiveInt((singleton from O.protocolApplied).doseNumber))
 
 /**
  * @dataElement 
@@ -367,6 +374,18 @@ define "Number of DTP Doses Administered Excluding Birth Dose":
 define "Date Last DTP Dose Administered":
   date from (First("DTP Doses Administered").occurrence as FHIR.dateTime)
 
+/**
+ * @dataElement 
+ */
+define "Date First DTP Dose Administered Excluding Birth Dose":
+  date from (Last("DTP Doses Administered Excluding Birth Dose").occurrence as FHIR.dateTime)
+
+
+/**
+ * @dataElement 
+ */
+define "No DTP Doses Administered":
+  not exists("DTP Doses Administered")
 
 /******************************
  * Test Results
