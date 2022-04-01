@@ -21,6 +21,7 @@ This guide is prepared to facilitate digital implementation of WHO Immunization 
 This guide is a companion to the Digital Adaptation Kit (DAK) and should be used side-by-side with it. Implementers are strongly encouraged to make use of the Digital Adaptation Kit as it contains a wealth of context and guidance that is intentionally not duplicated here. The focus of this guide is on the explanation and use of the computable artifacts.
 
 The DAKs content used in this implementation guide and their content are referenced in the follows pages: 
+
 |Page|Description|
 |----|----|
 |[Documentation](documentation.html)| Describes make up of the resources in this implementation guide, with focus on the decision logic|
