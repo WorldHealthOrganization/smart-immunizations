@@ -9,6 +9,7 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 include IMMZConfig called IMMZConf
@@ -57,4 +58,5 @@ define "Country is not highly endemic":
  *	 ((("Hepatitis A vaccine immunization history" = "No-doses") and ("Age" >= "1 year")) and ("Country is not highly endemic" = true))
  */
 define "Should vaccinate patient for Hepatitis A because no doses at 1 year old in a 1 dose scheme":
-	((("Hepatitis A vaccine immunization history" = "No-doses") and ("Age" >= "1 year")) and ("Country is not highly endemic" = true));
+	((("Hepatitis A vaccine immunization history" = "No-doses") and ("Age" >= "1 year")) and ("Country is not highly endemic" = true))
+

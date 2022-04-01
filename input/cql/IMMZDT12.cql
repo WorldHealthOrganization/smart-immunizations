@@ -9,6 +9,7 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
@@ -19,6 +20,7 @@ context Patient
  */
 define "Yellow Fever vaccine immunization history":
 	IMMZCom."Yellow Fever Doses Administered"
+
 
 /* 
  * @dataElement No-doses
@@ -51,4 +53,4 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  *	 (("Yellow Fever vaccine immunization history" = "No-doses") and ("Age" >= "9 months"))
  */
 define "Should vaccinate patient for Yellow Fever because no doses on 1 dose scheme":
-	(("Yellow Fever vaccine immunization history" = "No-doses") and ("Age" >= "9 months"));
+	(("Yellow Fever vaccine immunization history" = "No-doses") and ("Age" >= "9 months"))

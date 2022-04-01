@@ -9,6 +9,7 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 
@@ -19,7 +20,8 @@ context Patient
  * @dataElement Hepatitis B vaccine immunization history
  */
 define "Hepatitis B vaccine immunization history":
-	IMMZCom."HepB Doses Administered"
+	IMMZCom."HepB Doses Administered to patient"
+
 
 
 /* 
@@ -40,13 +42,13 @@ define "No-doses":
  *	 ("Hepatitis B vaccine immunization history" = "No-doses")
  */
 define "Should vaccinate patient for Hepatitis B because no doses":
-	("Hepatitis B vaccine immunization history" = "No-doses");
+	("Hepatitis B vaccine immunization history" = "No-doses")
+
 /* 
  * @dataElement 1 dose
  */
 define "1 dose":
 	Count("Hepatitis B vaccine immunization history" H) = 1
-
 
 /*
  * Rule: Should vaccinate patient for Hepatitis B because 1 dose
@@ -60,7 +62,8 @@ define "1 dose":
  *	 ("Hepatitis B vaccine immunization history" = "1 dose")
  */
 define "Should vaccinate patient for Hepatitis B because 1 dose":
-	("Hepatitis B vaccine immunization history" = "1 dose");
+	(("Hepatitis B vaccine immunization history" = "1 dose") and ("Date last Hepatitis B dose given" >= "4 weeks"))
+
 /* 
  * @dataElement 2 doses
  */
@@ -79,7 +82,8 @@ define "2 doses":
  *	 ("Hepatitis B vaccine immunization history" = "2 doses")
  */
 define "Should vaccinate patient for Hepatitis B because 2 doses":
-	("Hepatitis B vaccine immunization history" = "2 doses");
+	(("Hepatitis B vaccine immunization history" = "2 doses") and ("Date last Hepatitis B dose given" >= "4 weeks"))
+
 /* 
  * @dataElement 3 doses
  */
@@ -90,19 +94,20 @@ define "3 doses":
  * @dataElement Patient birth weight observation value
  */
 define "Patient birth weight observation value":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
+
  * @dataElement Patient mother's prenancy outcome observation
  */
 define "Patient mother's prenancy outcome observation":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement preterm
  */
 define "preterm":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient for Hepatitis B because 3 doses and (low birth weight or premature infant)
@@ -119,4 +124,5 @@ define "preterm":
  *	 ((("Hepatitis B vaccine immunization history" = "3 doses") and ("Patient birth weight observation value" < 2000g)) or (("Hepatitis B vaccine immunization history" = "3 doses") and ("Patient mother's prenancy outcome observation" = "preterm")))
  */
 define "Should vaccinate patient for Hepatitis B because 3 doses and (low birth weight or premature infant)":
-	((("Hepatitis B vaccine immunization history" = "3 doses") and ("Patient birth weight observation value" < 2000g)) or (("Hepatitis B vaccine immunization history" = "3 doses") and ("Patient mother's prenancy outcome observation" = "preterm")));
+	(((("Hepatitis B vaccine immunization history" = "3 doses") and ("Patient birth weight observation value" < "2000g")) and ("Date last Hepatitis B dose given" >= "4 weeks")) or ((("Hepatitis B vaccine immunization history" = "3 doses") and ("Patient mother's prenancy outcome observation" = "preterm")) and ("Date last Hepatitis B dose given" >= "4 weeks")))
+

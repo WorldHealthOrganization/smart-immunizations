@@ -9,6 +9,7 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
+include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
@@ -18,19 +19,19 @@ context Patient
  * @dataElement Rotavirus vaccine immunization history
  */
 define "Rotavirus vaccine immunization history":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement No-doses
  */
 define "No-doses":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement Current Patient Age in Weeks
  */
 define "Current Patient Age in Weeks":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient for Rotavirus 1st dose
@@ -44,36 +45,37 @@ define "Current Patient Age in Weeks":
  *	 (("Rotavirus vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6))
  */
 define "Should vaccinate patient for Rotavirus 1st dose":
-	(("Rotavirus vaccine immunization history" = "No-doses") and ("Age" <= "6 weeks"));
+	(("Rotavirus vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6))
+
 /* 
  * @dataElement Rotavirus vaccine given 1 dose in immunization history
  */
 define "Rotavirus vaccine given 1 dose in immunization history":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement 1 Rotavirus dose
  */
 define "1 Rotavirus dose":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement Scheme
  */
 define "Scheme":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement 2 dose
  */
 define "2 dose":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement 3 dose
  */
 define "3 dose":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient with Rotavirus 2nd dose
@@ -89,18 +91,19 @@ define "3 dose":
  *	 ((("Rotavirus vaccine given 1 dose in immunization history" = "1 Rotavirus dose") and ("Scheme" = "2 dose")) or (("Rotavirus vaccine given 1 dose in immunization history" = "1 Rotavirus dose") and ("Scheme" = "3 dose")))
  */
 define "Should vaccinate patient with Rotavirus 2nd dose":
-	((("Rotavirus vaccine given 1 dose in immunization history" = "1 Rotavirus dose") and ("Scheme" = "2 dose")) or (("Rotavirus vaccine given 1 dose in immunization history" = "1 Rotavirus dose") and ("Scheme" = "3 dose")));
+	((("Rotavirus vaccine given 1 dose in immunization history" = "1 Rotavirus dose") and ("Scheme" = "2 dose")) or (("Rotavirus vaccine given 1 dose in immunization history" = "1 Rotavirus dose") and ("Scheme" = "3 dose")))
+
 /* 
  * @dataElement Rotavirus vaccine given 2 dose in immunization history
  */
 define "Rotavirus vaccine given 2 dose in immunization history":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement 3 Rotavirus dose
  */
 define "3 Rotavirus dose":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient with Rotavirus 3rd dose
@@ -114,12 +117,13 @@ define "3 Rotavirus dose":
  *	 ("Rotavirus vaccine given 2 dose in immunization history" = "3 Rotavirus dose")
  */
 define "Should vaccinate patient with Rotavirus 3rd dose":
-	("Rotavirus vaccine given 2 dose in immunization history" = "3 Rotavirus dose");
+	("Rotavirus vaccine given 2 dose in immunization history" = "3 Rotavirus dose")
+
 /* 
  * @dataElement Interrupted primary series
  */
 define "Interrupted primary series":
-	true; // TODO: Define this
+	true // TODO: Define this
 
 /*
  * Rule: Should vaccinate the patient is next appriopriate dose.
@@ -133,18 +137,19 @@ define "Interrupted primary series":
  *	 ("Interrupted primary series" = true)
  */
 define "Should vaccinate the patient is next appriopriate dose.":
-	("Interrupted primary series" = true);
+	("Interrupted primary series" = true)
+
 /* 
  * @dataElement Rotavirus vaccine unknown history
  */
 define "Rotavirus vaccine unknown history":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /* 
  * @dataElement Resume 3 dose scheme
  */
 define "Resume 3 dose scheme":
-	true; // TODO: Define this
+	0 // TODO: Define this
 
 /*
  * Rule: Should resume 3 dose scheme
@@ -158,4 +163,5 @@ define "Resume 3 dose scheme":
  *	 ("Rotavirus vaccine unknown history" = "Resume 3 dose scheme")
  */
 define "Should resume 3 dose scheme":
-	("Rotavirus vaccine unknown history" = "Resume 3 dose scheme");
+	("Rotavirus vaccine unknown history" = "Resume 3 dose scheme")
+

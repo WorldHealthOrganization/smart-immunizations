@@ -95,278 +95,350 @@ define "Immunocompromised = True":
 	C.verificationStatus ~ FC."confirmed"
 
 /**
- * @dataElement All doses administered to patient ordered by newest to oldest
+ * @dataElement All Doses Administered to Patient to patient ordered by newest to oldest
  */
-define "Doses Administered":
+define "Doses Administered to Patient":
   [Immunization] I
     where I.status = 'completed'
     sort by (occurrence as FHIR.dateTime) desc
 
 /**
- * @dataElement BCG Doses Administered
+ * @dataElement BCG Doses Administered to Patient
  */
-define "BCG Doses Administered":
-  "Doses Administered" I 
+define "BCG Doses Administered to Patient":
+  "Doses Administered to Patient" I 
   where 
     I.vaccineCode in IMMZc."BCG Vaccine"
 
 /**
  * @dataElement Patient has no BCG doses
  */
-define "No BCG Doses Administered":
-  not exists("BCG Doses Administered")
+define "No BCG Doses Administered to Patient":
+  not exists("BCG Doses Administered to Patient")
 
 /**
- * @dataElement Polio Doses Administered
+ * @dataElement Polio Doses Administered to Patient
  */
-define "Polio Doses Administered":
-  "Doses Administered" I
+define "Polio Doses Administered to Patient":
+  "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Polio Vaccine"
 
 /**
- * @dataElement Polio Doses Administered
+ * @dataElement Polio Doses Administered to Patient
  */
-define "bOPV Doses Administered":
-  "Doses Administered" I
+define "bOPV Doses Administered to Patient":
+  "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Oral Polio Vaccine"
 
 /**
  * @dataElement Patient has no bOPV Doses
  */
-define "Number of bOPV Doses Administered":
-  Count("bOPV Doses Administered" O where (singleton from O.protocolApplied).doseNumber != 0)
+define "Number of bOPV Doses Administered to Patient":
+  Count("bOPV Doses Administered to Patient" O where (singleton from O.protocolApplied).doseNumber != 0)
 
 /**
  * @dataElement Patient has no IPV doses
  */
-define "No bOPV Doses Administered":
-  not exists ("bOPV Doses Administered")
+define "No bOPV Doses Administered to Patient":
+  not exists ("bOPV Doses Administered to Patient")
 
 /** 
  * @dataElement Date of last OPV dose administration
  */
-define "Date Last bOPV Dose Administered":
-  date from (First("bOPV Doses Administered").occurrence as FHIR.dateTime)
+define "Date Last bOPV Dose Administered to Patient":
+  date from (First("bOPV Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 /**
- * @dataElement Polio Doses Administered
+ * @dataElement Polio Doses Administered to Patient
  */
-define "IPV Doses Administered":
-  "Doses Administered" I
+define "IPV Doses Administered to Patient":
+  "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Inactivated Polio Vaccine"
 
 /**
  * @dataElement Patient has no IPV doses
  */
-define "Number of IPV Doses Administered":
-  Count("IPV Doses Administered" O where (singleton from O.protocolApplied).doseNumber != 0)
+define "Number of IPV Doses Administered to Patient":
+  Count("IPV Doses Administered to Patient" O where (singleton from O.protocolApplied).doseNumber != 0)
 
 /**
  * @dataElement Patient has no IPV doses
  */
-define "No IPV Doses Administered":
-  not exists ("IPV Doses Administered")
+define "No IPV Doses Administered to Patient":
+  not exists ("IPV Doses Administered to Patient")
 
 /** 
  * @dataElement Date of last IPV dose administration
  */
-define "Date Last IPV Dose Administered":
-  date from (First("IPV Doses Administered").occurrence as FHIR.dateTime)
+define "Date Last IPV Dose Administered to Patient":
+  date from (First("IPV Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 /**
  * @dataElement Patient of the patient of the most recent IPV dose
  */
 define "Patient Age at 1st IPV Dose in Weeks":
-  First("IPV Doses Administered" I
+  First("IPV Doses Administered to Patient" I
   where 
     (singleton from (I.protocolApplied).doseNumber as FHIR.positiveInt) = 1
   return 
     AgeInWeeksAt(I.occurrence))
 
 /**
- * @dataElement Diptheria containing doses Administered
+ * @dataElement Diptheria containing Doses Administered to Patient
  */
-define "Diphtheria Doses Administered":
-  "Doses Administered" I
+define "Diphtheria Doses Administered to Patient":
+  "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Diphtheria Vaccine"
 
 
 /**
- * @dataElement Cholera containing doses administered
+ * @dataElement Cholera containing Doses Administered to Patient
  */
-define "Cholera Doses Administered":
-  "Doses Administered" I
+define "Cholera Doses Administered to Patient":
+  "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Cholera Vaccine"
 
 /**
- * @dataElement Hib containing doses administered
+ * @dataElement Hib containing Doses Administered to Patient
  */
-define "Hib Doses Administered":
-  "Doses Administered" I
+define "Hib Doses Administered to Patient":
+  "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Hib Vaccine"
 
 /**
- * @dataElement HepA containing doses administered
+ * @dataElement Hib containing Doses Administered to Patient
  */
-define "HepA Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."HepA Vaccine"
+define "No Hib Doses Administered to Patient":
+  not exists("Hib Doses Administered to Patient")
+
 
 /**
- * @dataElement HepB containing doses administered
+ * @dataElement Number of Hib Doses Administered to Patient excluding the birth dose
  */
-define "HepB Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."HepB Vaccine"
-
-/**
- * @dataElement HPV containing doses administered
- */
-define "HPV Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."HPV Vaccine"
-
-/**
- * @dataElement Japanese Encephalitis containing doses administered
- */
-define "Japanese Encephalitis Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."Japanese Encephalitis Vaccine"
-
-/**
- * @dataElement MCV containing doses administered
- */
-define "MCV Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."MCV Vaccine"
-
-/**
- * @dataElement Meningococcal containing doses administered
- */
-define "Meningococcal Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."Meningococcal Vaccine"
-
-/**
- * @dataElement Mumps containing doses administered
- */
-define "Mumps Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."Mumps Vaccine"
-
-/**
- * @dataElement Pertussis containing doses administered
- */
-define "Pertussis Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."Pertussis Vaccine"
-
-/**
- * @dataElement Pertussis containing doses administered
- */
-define "Pneumococcal Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."Pneumococcal Vaccine"
-
-/**
- * @dataElement Rabies containing doses administered
- */
-define "Rabies Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."Rabies Vaccine"
-
-/**
- * @dataElement Rotavirus containing doses administered
- */
-define "Rotavirus Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."Rotavirus Vaccine"
-
-/**
- * @dataElement Rubella containing doses administered
- */
-define "Rubella Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."Rubella Vaccine"
-
-/**
- * @dataElement Seasonal Influenza containing doses administered
- */
-define "Seasonal Influenza Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."Seasonal Influenza Vaccine"
-
-/**
- * @dataElement Tetanus containing doses administered
- */
-define "Tetanus Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."Tetanus Vaccine"
-
-/**
- * @dataElement Typhoid containing doses administered
- */
-define "Typhoid Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."Typhoid Vaccine"
-
-/**
- * @dataElement Varicella containing doses administered
- */
-define "Varicella Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."Varicella Vaccine"
-
-/**
- * @dataElement Yellow Fever containing doses administered
- */
-define "Yellow Fever Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."Yellow Fever Vaccine"
-
-/**
- * @dataElement DTP containing doses administered
- */
-define "DTP Doses Administered":
-  "Doses Administered" I
-  where
-    I.vaccineCode in IMMZc."DTP Vaccine"
-
-/**
- * @dataElement Number of DTP doses administered excluding the birth dose
- */
-define "Number of DTP Doses Administered Excluding Birth Dose":
-  Count("DTP Doses Administered" O where (singleton from O.protocolApplied.doseNumber != 0))// O return ToPositiveInt((singleton from O.protocolApplied).doseNumber))
+define "Number of Hib Doses Administered to Patient":
+  Count("Hib Doses Administered to Patient")// O return ToPositiveInt((singleton from O.protocolApplied).doseNumber))
 
 /**
  * @dataElement 
  */
-define "Date Last DTP Dose Administered":
-  date from (First("DTP Doses Administered").occurrence as FHIR.dateTime)
+define "Date Last Hib Dose Administered to Patient":
+  date from (First("Hib Doses Administered to Patient").occurrence as FHIR.dateTime)
 
+
+/**
+ * @dataElement 
+ */
+define "Date First Hib Dose Administered to Patient":
+  date from (First("Hib Doses Administered to Patient").occurrence as FHIR.dateTime)
+
+
+/**
+ * @dataElement HepA containing Doses Administered to Patient
+ */
+define "HepA Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."HepA Vaccine"
+
+/**
+ * @dataElement HepB containing Doses Administered to Patient
+ */
+define "HepB Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."HepB Vaccine"
+
+
+/**
+ * @dataElement HepB containing Doses Administered to Patient
+ */
+define "HepB Doses Administered to Patient Excluding Birth Dose":
+  "HepB Doses Administered to Patient" I
+  where
+    singleton from (I.protocolApplied.doseNumber) != 0
+
+
+/**
+ * @dataElement HPV containing Doses Administered to Patient
+ */
+define "HPV Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."HPV Vaccine"
+
+/**
+ * @dataElement Japanese Encephalitis containing Doses Administered to Patient
+ */
+define "Japanese Encephalitis Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Japanese Encephalitis Vaccine"
+
+/**
+ * @dataElement MCV containing Doses Administered to Patient
+ */
+define "MCV Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."MCV Vaccine"
+
+/**
+ * @dataElement Meningococcal containing Doses Administered to Patient
+ */
+define "Meningococcal Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Meningococcal Vaccine"
+
+/**
+ * @dataElement Mumps containing Doses Administered to Patient
+ */
+define "Mumps Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Mumps Vaccine"
+
+/**
+ * @dataElement Pertussis containing Doses Administered to Patient
+ */
+define "Pertussis Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Pertussis Vaccine"
+
+/**
+ * @dataElement Pertussis containing Doses Administered to Patient
+ */
+define "Pneumococcal Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Pneumococcal Vaccine"
+
+/**
+ * @dataElement Rabies containing Doses Administered to Patient
+ */
+define "Rabies Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Rabies Vaccine"
+
+/**
+ * @dataElement Rotavirus containing Doses Administered to Patient
+ */
+define "Rotavirus Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Rotavirus Vaccine"
+
+/**
+ * @dataElement Rubella containing Doses Administered to Patient
+ */
+define "Rubella Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Rubella Vaccine"
+
+/**
+ * @dataElement Rubella containing doses administered
+ */
+define "No Rubella Doses Administered to Patient":
+  not exists("Rubella Doses Administered to Patient")
+
+
+/**
+ * @dataElement Seasonal Influenza containing doses administered
+ */
+define "Seasonal Influenza Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Seasonal Influenza Vaccine"
+
+/**
+ * @dataElement Tetanus containing Doses Administered to Patient
+ */
+define "Tetanus Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Tetanus Vaccine"
+
+/**
+ * @dataElement Typhoid containing Doses Administered to Patient
+ */
+define "Typhoid Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Typhoid Vaccine"
+
+/**
+ * @dataElement Varicella containing Doses Administered to Patient
+ */
+define "Varicella Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Varicella Vaccine"
+
+/**
+ * @dataElement Yellow Fever containing Doses Administered to Patient
+ */
+define "Yellow Fever Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Yellow Fever Vaccine"
+
+/**
+ * @dataElement DTP containing Doses Administered to Patient
+ */
+define "DTP Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."DTP Vaccine"
+
+/** 
+  * @dataElement DTP administrations excluding birth doses
+ */
+define "DTP Doses Administered to Patient Excluding Birth Dose":
+  "DTP Doses Administered to Patient" O 
+  where (singleton from O.protocolApplied.doseNumber) != 0
+
+/**
+ * @dataElement Number of DTP Doses Administered to Patient excluding the birth dose
+ */
+define "Number of DTP Doses Administered to Patient Excluding Birth Dose":
+  Count("DTP Doses Administered to Patient Excluding Birth Dose")// O return ToPositiveInt((singleton from O.protocolApplied).doseNumber))
+
+/**
+
+ * @dataElement Dengue containing doses administered
+ */
+define "Dengue Doses Administered":
+  "Doses Administered" I
+  where
+    I.vaccineCode in IMMZc."Dengue Vaccine"
+
+/**
+ * @dataElement Number of DTP doses administered excluding the birth dose
+ */
+define "Date Last DTP Dose Administered to Patient":
+  date from (First("DTP Doses Administered to Patient").occurrence as FHIR.dateTime)
+
+/**
+ * @dataElement 
+ */
+define "Date First DTP Dose Administered to Patient Excluding Birth Dose":
+  date from (Last("DTP Doses Administered to Patient Excluding Birth Dose").occurrence as FHIR.dateTime)
+
+
+/**
+ * @dataElement 
+ */
+define "No DTP Doses Administered to Patient":
+  not exists("DTP Doses Administered to Patient")
 
 /******************************
  * Test Results
