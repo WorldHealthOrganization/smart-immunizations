@@ -281,10 +281,28 @@ define "HPV Doses Administered to Patient":
 /**
  * @dataElement Japanese Encephalitis containing Doses Administered to Patient
  */
-define "Japanese Encephalitis Doses Administered to Patient":
+define "JE Doses Administered to Patient":
   "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Japanese Encephalitis Vaccine"
+
+/**
+ * @dataElement No Japanese Encephalitis containing Doses Administered to Patient
+ */
+define "No JE Doses Administered to Patient":
+  not exists("JE Doses Administered to Patient")
+
+/**
+ * @dataElement Date the last JE dose was administered
+ */
+define "Date Last JE Dose Administered to Patient":
+  date from (First("JE Doses Administered to Patient").occurrence as FHIR.dateTime)
+
+/**
+ * @dataElement No Japanese Encephalitis containing Doses Administered to Patient
+ */
+define "Number of JE Doses Administered to Patient":
+  Count("JE Doses Administered to Patient" I where (singleton from I.protocolApplied).doseNumber != 0)
 
 /**
  * @dataElement MCV containing Doses Administered to Patient
@@ -447,7 +465,8 @@ define "Number of DTP Doses Administered to Patient Excluding Birth Dose":
 
  * @dataElement Dengue containing doses administered
  */
-define "Dengue Doses Administered":
+define "Dengue Doses Administered to Patient":
+
   "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Dengue Vaccine"
