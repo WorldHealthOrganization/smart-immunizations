@@ -1,5 +1,6 @@
 library IMMZConfig
 using FHIR version '4.0.1'
+include IMMZConcepts called IMMZc
 
 context Patient 
 
@@ -13,10 +14,12 @@ define "High Coverage of Polio and Risk of Wild Importation": true
 define "In a country where the peak burden of severe Hib disease occurs in young infants":true
 define "In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine": true
 define "Hepatitis A endemic country": true
+
+define "JE Antigen Used in Country Classification": IMMZc."Inactivated Vero cell-derived vaccine"
+
 define "Country is following a 2 dose scheme for Pneumococcal": true
 define "Country is following a 3 dose scheme for Pneumococcal": true
 define "In a setting with a high disease burden and mortality": true
-
 
 // TODO: 
 //define "bOPV and IPV Schedule":
