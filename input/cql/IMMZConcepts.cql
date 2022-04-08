@@ -34,7 +34,10 @@ valueset "TST Test Result": 'http://example.org/ValueSets/tst-test'
 valueset "IGRA Test Result": 'http://example.org/ValueSets/igra-tst'
 
 // JE Classification 
-valueset "Japanese Encephalitis Vaccine Classifications": 'http://example.org/ValueSets/japanese-encephalitis-antigen-classification'
+codesystem "Antigen Type Classifications": 'http://example.org/ValueSets/antigent-type-classification'
+code "Inactivated Vero cell-derived vaccine": 'IVCD' from "Antigen Type Classifications" display 'Inactivated Vero cell-derived'
+code "Live attentuated virus vaccine": 'LAV' from "Antigen Type Classifications" display 'Live attentuated virus vaccine'
+code "Live recombinant virus vaccine": 'LRC' from "Antigen Type Classifications" display 'Live recombinant'
 
 //TODO: replace the TST/IGRA test link with a real valueset 
 // Vaccine Value Sets
