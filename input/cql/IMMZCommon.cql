@@ -372,6 +372,24 @@ define "Seasonal Influenza Doses Administered to Patient":
   where
     I.vaccineCode in IMMZc."Seasonal Influenza Vaccine"
 
+/** 
+ * @dataElement No seasonal influenza doses administerd to patient
+ */
+define "No Seasonal Influenza Doses Administered to Patient":
+  not exists("Seasonal Influenza Doses Administered to Patient")
+  
+/** 
+ * @dataElement Number of seasonal influenza doses administerd to patient
+ */
+define "Number of Seasonal Influenza Doses Administered to Patient":
+  Count("Seasonal Influenza Doses Administered to Patient")
+  
+/**
+ * @dataElement Number of DTP doses administered excluding the birth dose
+ */
+define "Date Last Seasonal Influenza Dose Administered to Patient":
+  date from (First("Seasonal Influenza Doses Administered to Patient").occurrence as FHIR.dateTime)
+
 /**
  * @dataElement Tetanus containing Doses Administered to Patient
  */
@@ -430,7 +448,7 @@ define "Number of DTP Doses Administered to Patient Excluding Birth Dose":
  * @dataElement Dengue containing doses administered
  */
 define "Dengue Doses Administered":
-  "Doses Administered" I
+  "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Dengue Vaccine"
 
