@@ -16,6 +16,7 @@ include FHIRCommon called FC
 // End Skeleton CQL
 valueset "intussusception": 'http://example.org/ValueSets/intussusception'
 valueset "three-dose-series-product": 'http://example.org/ValueSets/three-dose-series-product'
+valueset "two-dose-series-product": 'http://example.org/ValueSets/two-dose-series-product'
 context Patient
 
 /* 
@@ -89,8 +90,15 @@ define "All previous doses were not the same product":
 /* 
  * @dataElement Any of the previous doses was administered with an unknown product
  */
-define "Any of the previous doses was administered with an unknown product":
-	0 // TODO: Define this
+define "Any previous doses administered with unknown schedule":
+	exists(
+		from IMMZCom."Rotavirus Doses Administered to Patient" I
+		where 
+			not(
+				I.vaccineCode in "two-dose-series-product" and
+				I.vaccineCode in "three-dose-series-product" 
+			)
+	) // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient with Rotavirus 3rd dose
@@ -113,8 +121,8 @@ define "Should vaccinate patient with Rotavirus 3rd dose":
 		(
 			("All previous doses given with a 3 dose series product" = true) or
 			("All previous doses were not the same product" = true) or
-			("Any of the previous doses was administered with an unknown product" = true)
+			("Any previous doses administered with unknown schedule" = true)
 		) and
 		("Patient has no history of intussusception" = true) and
-		("Current Patient Age in Months" <= 24)
+		(IMMZCom."Current Patient Age In Months" <= 24)
 	)
