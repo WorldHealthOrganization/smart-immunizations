@@ -70,7 +70,7 @@ define "8 weeks":
  * @dataElement Country is using a 2 dose scheme
  */
 define "Country is using a 2 dose scheme":
-	IMMZCom."Country is following a 2 dose scheme"
+	IMMZConf."Country is following a 2 dose scheme for Pneumococcal"
 
 /* 
  * @dataElement Current Patient Age in Years
