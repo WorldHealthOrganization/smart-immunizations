@@ -254,6 +254,12 @@ define "HepB Doses Administered to Patient":
   where
     I.vaccineCode in IMMZc."HepB Vaccine"
 
+/**
+ * @dataElement Number of HepB Doses Administered to Patient
+ */
+define "Number of HepB Doses Administered to Patient":
+  Count("HepB Doses Administered to Patient" O where (singleton from O.protocolApplied).doseNumber != 0)
+
 
 /**
  * @dataElement HepB containing Doses Administered to Patient
@@ -331,12 +337,19 @@ define "Pertussis Doses Administered to Patient":
     I.vaccineCode in IMMZc."Pertussis Vaccine"
 
 /**
- * @dataElement Pertussis containing Doses Administered to Patient
+ * @dataElement Pneumococcal containing Doses Administered to Patient
  */
 define "Pneumococcal Doses Administered to Patient":
   "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Pneumococcal Vaccine"
+
+/**
+ * @dataElement Number of Pneumococcal Doses Administered to Patient
+ */
+define "Number of Pneumococcal Doses Administered to Patient":
+  Count("Pneumococcal Doses Administered to Patient")
+
 
 /**
  * @dataElement Rabies containing Doses Administered to Patient
@@ -376,6 +389,24 @@ define "Seasonal Influenza Doses Administered to Patient":
   "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Seasonal Influenza Vaccine"
+
+/** 
+ * @dataElement No seasonal influenza doses administerd to patient
+ */
+define "No Seasonal Influenza Doses Administered to Patient":
+  not exists("Seasonal Influenza Doses Administered to Patient")
+  
+/** 
+ * @dataElement Number of seasonal influenza doses administerd to patient
+ */
+define "Number of Seasonal Influenza Doses Administered to Patient":
+  Count("Seasonal Influenza Doses Administered to Patient")
+  
+/**
+ * @dataElement Number of DTP doses administered excluding the birth dose
+ */
+define "Date Last Seasonal Influenza Dose Administered to Patient":
+  date from (First("Seasonal Influenza Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 /**
  * @dataElement Tetanus containing Doses Administered to Patient
@@ -435,6 +466,7 @@ define "Number of DTP Doses Administered to Patient Excluding Birth Dose":
  * @dataElement Dengue containing doses administered
  */
 define "Dengue Doses Administered to Patient":
+
   "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Dengue Vaccine"

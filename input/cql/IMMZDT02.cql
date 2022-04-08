@@ -48,7 +48,7 @@ define "Should vaccinate patient for Hepatitis B because no doses":
  * @dataElement 1 dose
  */
 define "1 dose":
-	Count("Hepatitis B vaccine immunization history" H) = 1
+	IMMZCom."Number of HepB Doses Administered to Patient" = 1
 
 /*
  * Rule: Should vaccinate patient for Hepatitis B because 1 dose
@@ -68,7 +68,7 @@ define "Should vaccinate patient for Hepatitis B because 1 dose":
  * @dataElement 2 doses
  */
 define "2 doses":
-	Count("Hepatitis B vaccine immunization history" H) = 2
+	IMMZCom."Number of HepB Doses Administered to Patient" = 2
 
 /*
  * Rule: Should vaccinate patient for Hepatitis B because 2 doses
@@ -88,7 +88,7 @@ define "Should vaccinate patient for Hepatitis B because 2 doses":
  * @dataElement 3 doses
  */
 define "3 doses":
-	Count("Hepatitis B vaccine immunization history" H) = 3
+	IMMZCom."Number of HepB Doses Administered to Patient" = 3
 
 /* 
  * @dataElement Patient birth weight observation value
