@@ -33,6 +33,9 @@ valueset "HIV status - HIV negative Choices": 'http://fhir.org/guides/who/anc-cd
 valueset "TST Test Result": 'http://example.org/ValueSets/tst-test'
 valueset "IGRA Test Result": 'http://example.org/ValueSets/igra-tst'
 
+// JE Classification 
+valueset "Japanese Encephalitis Vaccine Classifications": 'http://example.org/ValueSets/japanese-encephalitis-antigen-classification'
+
 //TODO: replace the TST/IGRA test link with a real valueset 
 // Vaccine Value Sets
 valueset "BCG Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE1'

@@ -275,10 +275,16 @@ define "HPV Doses Administered to Patient":
 /**
  * @dataElement Japanese Encephalitis containing Doses Administered to Patient
  */
-define "Japanese Encephalitis Doses Administered to Patient":
+define "JE Doses Administered to Patient":
   "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Japanese Encephalitis Vaccine"
+
+/**
+ * @dataElement No Japanese Encephalitis containing Doses Administered to Patient
+ */
+define "No JE Doses Administered to Patient":
+  not exists("JE Doses Administered to Patient")
 
 /**
  * @dataElement MCV containing Doses Administered to Patient

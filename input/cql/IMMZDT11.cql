@@ -81,6 +81,9 @@ define "Live recombinant":
  *	 ((((("Japanese Encephalitis vaccine immunization history" = "No-doses" = true) and ("Age" >= "6 months")) and ("Antigen" = "Inactivated Vero cell-derived")) or ((("Japanese Encephalitis vaccine immunization history" = "No-doses" = true) and ("Age" >= "8 months")) and ("Antigen" = "Live attentuated"))) or ((("Japanese Encephalitis vaccine immunization history" = "No-doses" = true) and ("Age" >= "9 months")) and ("Antigen" = "Live recombinant")))
  */
 define "Should vaccinate patient for Japanese Encephalitis because no doses":
+	IMMZCom."No JE Doses Administered to Patient"
+	and IMMZCom."Current Patient Age in Months" >= 6
+	and IMMZCon."JE Antigen Used in Country Classification" =  
 	((((("Japanese Encephalitis vaccine immunization history = No-doses" = true) and ("Age" >= "6 months")) and ("Antigen" = "Inactivated Vero cell-derived")) or ((("Japanese Encephalitis vaccine immunization history = No-doses" = true) and ("Age" >= "8 months")) and ("Antigen" = "Live attentuated"))) or ((("Japanese Encephalitis vaccine immunization history = No-doses" = true) and ("Age" >= "9 months")) and ("Antigen" = "Live recombinant")))
 
 /* 
