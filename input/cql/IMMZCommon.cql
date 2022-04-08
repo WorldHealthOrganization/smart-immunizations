@@ -258,7 +258,7 @@ define "HepB Doses Administered to Patient":
  * @dataElement Number of HepB Doses Administered to Patient
  */
 define "Number of HepB Doses Administered to Patient":
-  Count("HepB Doses Administered to Patient")
+  Count("HepB Doses Administered to Patient" O where (singleton from O.protocolApplied).doseNumber != 0)
 
 
 /**
