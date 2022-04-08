@@ -20,14 +20,14 @@ context Patient
  * @dataElement Hepatitis B vaccine immunization history
  */
 define "Hepatitis B vaccine immunization history":
-	IMMZCom."HepB Doses Administered to patient"
+	IMMZCom."HepB Doses Administered to Patient"
 
 
 
 /* 
  * @dataElement No-doses
  */
-define "No-doses":
+define "No-doses of HepB vaccine administered to patient":
 	not exists("Hepatitis B vaccine immunization history")
 
 /*
@@ -42,7 +42,7 @@ define "No-doses":
  *	 ("Hepatitis B vaccine immunization history" = "No-doses")
  */
 define "Should vaccinate patient for Hepatitis B because no doses":
-	("Hepatitis B vaccine immunization history" = "No-doses")
+	("No-doses of HepB vaccine administered to patient")
 
 /* 
  * @dataElement 1 dose
@@ -62,7 +62,7 @@ define "1 dose":
  *	 ("Hepatitis B vaccine immunization history" = "1 dose")
  */
 define "Should vaccinate patient for Hepatitis B because 1 dose":
-	(("Hepatitis B vaccine immunization history" = "1 dose") and ("Date last Hepatitis B dose given" >= "4 weeks"))
+	(("1 dose") and (IMMZCom."Date Last HepB Dose Administered to Patient" more than 4 'weeks' before Today()))
 
 /* 
  * @dataElement 2 doses

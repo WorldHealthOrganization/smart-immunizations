@@ -269,6 +269,9 @@ define "HepB Doses Administered to Patient Excluding Birth Dose":
   where
     singleton from (I.protocolApplied.doseNumber) != 0
 
+//Date last administered HepB
+define "Date Last HepB Dose Administered to Patient":
+  date from (First("HepB Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 /**
  * @dataElement HPV containing Doses Administered to Patient
