@@ -57,7 +57,7 @@ define "Should vaccinate patient for Pneumococcal because no doses in a 2 dose s
  * @dataElement 1 dose
  */
 define "1 dose":
-	Count("Pneumococcal vaccine immunization history" H) = 1
+	IMMZCom."Number of Pneumococcal Doses Administered to Patient" = 1
 
 
 /* 

@@ -254,6 +254,12 @@ define "HepB Doses Administered to Patient":
   where
     I.vaccineCode in IMMZc."HepB Vaccine"
 
+/**
+ * @dataElement Number of HepB Doses Administered to Patient
+ */
+define "Number of HepB Doses Administered to Patient":
+  Count("HepB Doses Administered to Patient")
+
 
 /**
  * @dataElement HepB containing Doses Administered to Patient
@@ -313,12 +319,19 @@ define "Pertussis Doses Administered to Patient":
     I.vaccineCode in IMMZc."Pertussis Vaccine"
 
 /**
- * @dataElement Pertussis containing Doses Administered to Patient
+ * @dataElement Pneumococcal containing Doses Administered to Patient
  */
 define "Pneumococcal Doses Administered to Patient":
   "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Pneumococcal Vaccine"
+
+/**
+ * @dataElement Number of Pneumococcal Doses Administered to Patient
+ */
+define "Number of Pneumococcal Doses Administered to Patient":
+  Count("Pneumococcal Doses Administered to Patient")
+
 
 /**
  * @dataElement Rabies containing Doses Administered to Patient
