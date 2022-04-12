@@ -72,12 +72,11 @@ define "Should vaccinate patient for measles (supplimentary) because no doses":
  *	 ((((("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" >= 9)) and ("In a setting where there is high transmission of Measles" = true)) and ("Pregnancy Status" = false)) or ((("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" >= 12)) and ("In a setting where there is low transmission of Measles" = true)))
  */
 define "Should vaccinate patient for measles because no doses in a 2 dose scheme":
-	IMMZCom."No MCV Doses Administered to Patient" and
+	IMMZCom."No MCV Doses Administered to Patient" and not(IMMZCom."Pregnant") and
 	(
 		(
 			IMMZCom."Current Patient Age In Months" >= 9 and
-			IMMZCon."In a setting where there is high transmission of Measles" and
-			not(IMMZCom."Pregnant")
+			IMMZCon."In a setting where there is high transmission of Measles"
 		) or (
 			IMMZCom."Current Patient Age In Months" >= 12 and
 			IMMZCon."In a setting where there is low transmission of Measles"
