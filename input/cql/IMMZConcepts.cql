@@ -32,6 +32,7 @@ valueset "HIV status - HIV negative Choices": 'http://fhir.org/guides/who/anc-cd
 //BCG specific ValuSets
 valueset "TST Test Result": 'http://example.org/ValueSets/tst-test'
 valueset "IGRA Test Result": 'http://example.org/ValueSets/igra-tst'
+valueset "ARV Drugs": 'http://exmaple.org/ValueSets/arv-drugs'
 
 // JE Classification 
 codesystem "Antigen Type Classifications": 'http://example.org/ValueSets/antigent-type-classification'
