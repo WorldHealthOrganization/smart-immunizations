@@ -15,37 +15,7 @@ include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 context Patient
-
-/* 
- * @dataElement Tick-Borne Encephalitis immunization history
- */
-define "Tick-Borne Encephalitis immunization history":
-	0 // TODO: Define this
-
-/* 
- * @dataElement No-doses
- */
-define "No-doses":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Current Patient Age in Years
- */
-define "Current Patient Age in Years":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Country recognizes TBE as a priority and is administering FSME-Immun and Encepur
- */
-define "Country recognizes TBE as a priority and is administering FSME-Immun and Encepur":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Country recognizes TBE as a priority and is administering TBE-Moscow and EnceVir
- */
-define "Country recognizes TBE as a priority and is administering TBE-Moscow and EnceVir":
-	0 // TODO: Define this
-
+ 
 /*
  * Rule: Should vaccinate patient for Tick-Borne Encephalitis because no doses on 3 dose scheme
  * Annotations:
@@ -59,7 +29,16 @@ define "Country recognizes TBE as a priority and is administering TBE-Moscow and
  *	 (((("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Current Patient Age in Years" >= 1)) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)) or ((("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Current Patient Age in Years" >= 3)) and ("Country recognizes TBE as a priority and is administering TBE-Moscow and EnceVir" = true)))
  */
 define "Should vaccinate patient for Tick-Borne Encephalitis because no doses on 3 dose scheme":
-	(((("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Current Patient Age in Years" >= 1)) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)) or ((("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Current Patient Age in Years" >= 3)) and ("Country recognizes TBE as a priority and is administering TBE-Moscow and EnceVir" = true)))
+	IMMZCom."No TBE Doses Administered to Patient"
+	and (
+		(
+			IMMZCom."Current Patient Age In Years" >= 1
+			and IMMZCon."Country recognizes TBE as a priority and is administering FSME-Immun and Encepur"
+		) or (
+			IMMZCom."Current Patient Age In Years" >= 3
+			and IMMZCon."Country recognizes TBE as a priority and is administering TBE-Moscow and EnceVir"	
+		)
+	)
 
 /* 
  * @dataElement 1 dose
@@ -118,7 +97,7 @@ define "Rapid protection is required":
  *	 ((((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last FSME-Immun and Encepur dose given" >= "1 month")) and ("Date last FSME-Immun and Encepur dose given" <= "3 months")) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)) or ((((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last FSME-Immun and Encepur dose given" >= "1 weeks")) and ("Date last FSME-Immun and Encepur dose given" <= "2 weeks")) and ("Rapid protection is required" = true)) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)))
  */
 define "Should vaccinate patient for Tick-Borne Encephalitis because 1st dose given 1 to 3 months ago on 3 dose scheme":
-	((((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last FSME-Immun and Encepur dose given" >= "1 month")) and ("Date last FSME-Immun and Encepur dose given" <= "3 months")) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)) or ((((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last FSME-Immun and Encepur dose given" >= "1 weeks")) and ("Date last FSME-Immun and Encepur dose given" <= "2 weeks")) and ("Rapid protection is required" = true)) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)))
+	(((((IMMZCom."Number of TBE Doses Administered to Patient" = 1) and ("Date last FSME-Immun and Encepur dose given" >= "1 month")) and ("Date last FSME-Immun and Encepur dose given" <= "3 months")) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)) or ((((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last FSME-Immun and Encepur dose given" >= "1 weeks")) and ("Date last FSME-Immun and Encepur dose given" <= "2 weeks")) and ("Rapid protection is required" = true)) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)))
 
 /* 
  * @dataElement 2 doses 
