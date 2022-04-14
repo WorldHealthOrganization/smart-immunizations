@@ -35,7 +35,7 @@ context Patient
  * Numerator: Number of administrations of vaccinations containing a Measles component during reporting period
  * Numerator Computation: COUNT immunization events WHERE administered product is a Measles vaccine (IMMZ.A1.DE9) during reporting period
  */
-define "numerator":
+define "measure-population":
 	true // TODO: Write logic here
 /*
  * Denominator: Estimated number of surviving infants (for dose 1) and country supplied denominator for dose sequence 2 (see comments)

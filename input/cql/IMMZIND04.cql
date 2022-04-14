@@ -62,8 +62,7 @@ define "Age Group  Stratifier":
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	    IMMZIndCom."By Geographic Region Stratifier"
-
+	IMMZIndCom."By Geographic Region Stratifier"
 
 /*
  * Disaggregator: Administrative Gender (or Biological Sex)

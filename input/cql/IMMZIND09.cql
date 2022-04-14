@@ -35,7 +35,7 @@ context Patient
  * Numerator: Number of administrations of vaccines containing an Meningococcal component during reporting period
  * Numerator Computation: COUNT immunization events WHERE administered product is  a Meningococcal vaccine (IMMZ.A1.DE10) during reporting period
  */
-define "numerator":
+define "measure-population":
 	true // TODO: Write logic here
 /*
  * Denominator: Estimated number of surviving infants

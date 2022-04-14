@@ -35,7 +35,7 @@ context Patient
  * Numerator: Number of administrations of vaccines containing an HPV component during reporting period
  * Numerator Computation: COUNT immunization events WHERE administered product is an HPV vaccine (IMMZ.A1.DE7) during reporting period
  */
-define "numerator":
+define "measure-population":
 	true // TODO: Write logic here
 /*
  * Denominator: Country defined target population (see comments)
@@ -57,7 +57,7 @@ define "Age Group  Stratifier":
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	IMMZStratifiers."By Geographic Region Stratifier"
+	IMMZIndCom."By Geographic Region Stratifier"
 /*
  * Disaggregator: Administrative Gender (or Biological Sex)
  */

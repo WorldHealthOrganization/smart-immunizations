@@ -35,7 +35,7 @@ context Patient
  * Numerator: Number of administrations of vaccinations using an oral polio vaccine (OPV) during the reporting period.
  * Numerator Computation: COUNT immunization events WHERE administered product is a polio vaccine (IMMZ.A1.DE26) during reporting period
  */
-define "numerator":
+define "measure-population":
 	true // TODO: Write logic here
 /*
  * Denominator: Estimated number of surviving infants
@@ -58,7 +58,7 @@ define "Age Group  Stratifier":
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	IMMZStratifiers."By Geographic Region Stratifier"
+	IMMZIndCom."By Geographic Region Stratifier"
 /*
  * Disaggregator: Administrative Gender (or Biological Sex)
  */

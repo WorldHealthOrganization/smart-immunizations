@@ -24,7 +24,7 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
+include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
@@ -52,7 +52,7 @@ define "Dose Sequence  Stratifier":
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	IMMZStratifiers."By Geographic Region Stratifier"
+	IMMZIndCom."By Geographic Region Stratifier"
 /*
  * Disaggregator: Gender
  */

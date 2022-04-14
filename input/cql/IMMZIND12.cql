@@ -25,7 +25,7 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
+include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
@@ -35,7 +35,7 @@ context Patient
  * Numerator: Number of administrations of vaccines containing a rotavirus component during reporting period.
  * Numerator Computation: COUNT immunization events where administered product is a rotavirus vaccine (IMMZ.A1.DE16) during reporting period
  */
-define "numerator":
+define "measure-population":
 	true // TODO: Write logic here
 /*
  * Denominator: Estimated number of surviving infants
@@ -57,7 +57,7 @@ define "Age Group  Stratifier":
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	IMMZStratifiers."By Geographic Region Stratifier"
+	IMMZIndCom."By Geographic Region Stratifier"
 /*
  * Disaggregator: Administrative Gender (or Biological Sex)
  */
