@@ -32,6 +32,7 @@ valueset "HIV status - HIV negative Choices": 'http://fhir.org/guides/who/anc-cd
 //BCG specific ValuSets
 valueset "TST Test Result": 'http://example.org/ValueSets/tst-test'
 valueset "IGRA Test Result": 'http://example.org/ValueSets/igra-tst'
+valueset "ARV Drugs": 'http://exmaple.org/ValueSets/arv-drugs'
 
 // JE Classification 
 codesystem "Antigen Type Classifications": 'http://example.org/ValueSets/antigent-type-classification'
@@ -60,7 +61,6 @@ valueset "Rotavirus Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSe
 valueset "Rubella Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE17'
 valueset "Seasonal Influenza Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE18'
 valueset "Tetanus Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE19'
-valueset "Tick-Borne Encephalitis Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE20'
 valueset "Typhoid Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE21'
 valueset "Varicella Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE22'
 valueset "Yellow Fever Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE23'
