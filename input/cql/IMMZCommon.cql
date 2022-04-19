@@ -8,6 +8,9 @@ include FHIRHelpers version '4.0.1'
 include FHIRCommon called FC
 include IMMZConcepts called IMMZc
 
+
+code "[#] Births total": '11640-0' from IMMZc."LOINC" display 'Pregnancy outcome'
+code "[#] Births.preterm": '11637-6' from IMMZc."LOINC" display 'Preterm'
 context Patient
 
 //TODO: Check patient is alive
@@ -66,6 +69,16 @@ define "Pregnant":
   ( "Pregnant Observation")
   or exists ("Pregnant Condition")
 
+//Total number of births including abortions, stillbirths and live births.
+define "Patient mother's pregnancy outcome observation":
+  [Observation: code = "[#] Births total"] O
+    return O.value
+
+// Total number of children whose birth occurred through the end of the last day of the 37th week (259th day) 
+// following onset of the last menstrual period
+define "Preterm":
+  [Observation: code = "[#] Births.preterm"] O
+    return O.value
 
 //@dataElement Adverse Event:
 define "Adverse Event":
@@ -433,7 +446,7 @@ define "Number of DTP Doses Administered to Patient Excluding Birth Dose":
  * @dataElement Dengue containing doses administered
  */
 define "Dengue Doses Administered":
-  "Doses Administered" I
+  "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Dengue Vaccine"
 
@@ -506,12 +519,18 @@ define "Most Recent CD4%":
   First("Observed CD4% Measurements" O 
     return O.value as FHIR.Quantity)
 
+
 /**
  * @dataElement The observed CD4 counts ordered newest to oldest
  */
 define "Observed CD4 Count":
 	[Observation: code in IMMZc."CD4 Count Test Result"] O
     sort by effective desc
+
+
+  define "Patient birth weight observation value":
+  [Observation: code in IMMZc."Patient birth weight observation value"] O
+    return O.value as FHIR.Quantity
 
 /*
   @dataElement HIV Status observations of the patient most recent first
