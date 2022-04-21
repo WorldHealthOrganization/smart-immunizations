@@ -25,7 +25,7 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
+include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
@@ -38,30 +38,31 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a Measles vaccine (IMMZ.A1.DE9) during reporting period
  */
 define "measure-population":
-	true // TODO: Write logic here 
+	exists(IMMZIndCom."MCV Doses Administered to Patient During Reporting Period")
 
 /*
  * Disaggregator: Dose Sequence (1, 2)
  */
-define "Dose Sequence Stratifier":
-	true // todo: fill in logic
+define "Dose Sequence  Stratifier":
+	IMMZIndCom."MCV Birth Doses Administered to Patient During Measurement Period" I
+	return (singleton from I.protocolApplied).doseNumber
 
 /*
- * Disaggregator: Age Group (< 1 year or > 1 year)
+ * Disaggregator: Age Group (<24H of Birth, < 2 weeks)
  */
 define "Age Group Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."Infant By Age Stratifier"
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier"
 
 /*
  * Disaggregator: Administrative Gender (or Biological Sex)
  */
 define "Administrative Gender Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Administrative Gender Stratifier"
 
 /* End of IMMZ.IND.08 */

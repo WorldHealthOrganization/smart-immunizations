@@ -23,7 +23,7 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
+include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
@@ -36,18 +36,18 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a Yellow Fever vaccine (IMMZ.A1.DE23) during reporting period
  */
 define "measure-population":
-	true // TODO: Write logic here 
+	exists(IMMZIndCom."Yellow Fever Doses Administered to Patient During Measurement Period") // TODO: Write logic here 
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier" // todo: fill in logic
 
 /*
  * Disaggregator: Administrative Gender (or Biological Sex)
  */
 define "Administrative Gender Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Administrative Gender Stratifier"
 
 /* End of IMMZ.IND.19 */

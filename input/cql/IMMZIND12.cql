@@ -24,7 +24,7 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
+include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
@@ -33,29 +33,29 @@ parameter "Measurement Period" Interval<Date>
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccines containing an Haemophilus component during the reporting period.
- * Numerator Computation: COUNT immunization events WHERE administered product is a Haemophilus vaccine (IMMZ.A1.DE4) during reporting period.
+ * Numerator: Number of administrations of vaccines containing an Hib component during the reporting period.
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Hib vaccine (IMMZ.A1.DE4) during reporting period.
  */
 define "measure-population":
-	true // TODO: Write logic here 
+	exists(IMMZIndCom."Hib Doses Administered to Patient During Measurement Period")
 
 
 /*
  * Disaggregator: Age Group (<1 year or > 1 year)
  */
 define "Age Group Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."Infant By Age Stratifier" // todo: fill in logic
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier" // todo: fill in logic
 
 /*
  * Disaggregator: Administrative Gender (or Biological Sex)
  */
 define "Administrative Gender Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Administrative Gender Stratifier"
 
 /* End of IMMZ.IND.12 */

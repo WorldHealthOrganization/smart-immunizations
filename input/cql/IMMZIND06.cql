@@ -24,7 +24,7 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
+include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
@@ -37,24 +37,24 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is an oral polio vaccine (IMMZ.A1.DE26) and dose sequence = 0 during reporitng period.
  */
 define "measure-population":
-	true // TODO: Write logic here 
+	exists(IMMZIndCom."bOPV Birth Doses Administered to Patient During Measurement Period")
 
 /*
  * Disaggregator: Age Group (<24H of Birth, < 2 weeks)
  */
 define "Age Group Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."Newborn By Age Stratifier"
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier"
 
 /*
- * Disaggregator: Administrative Gender (biological sex)
+ * Disaggregator: Administrative Gender (or Biological Sex)
  */
 define "Administrative Gender Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Administrative Gender Stratifier"
 
 /* End of IMMZ.IND.06 */

@@ -37,25 +37,24 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a seasonal influenza vaccine (IMMZ.A1.DE18) during reporting period.
  */
 define "measure-population":
-	true // TODO: Write logic here 
-
+	IMMZIndCom."Seasonal Influenza Doses Administered to Patient During Reporting Period"
 
 /*
  * Disaggregator: Age Group (< 1 year, < 15 year,  > 60 year)
  */
 define "Age Group Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."Seasonal Influenza By Age Stratifier" // todo: fill in logic
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier"
 
 /*
  * Disaggregator: Gender
  */
 define "Gender Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Administrative Gender Stratifier"
 
 /* End of IMMZ.IND.22 */
