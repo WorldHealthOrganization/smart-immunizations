@@ -38,7 +38,7 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is an HPV vaccine (IMMZ.A1.DE7) during reporting period
  */
 define "measure-population":
-	exists(IMMZIndCom."HPV Doses Administered to Patient During Reporting Period") // TODO: Write logic here 
+	exists(IMMZIndCom."HPV Doses Administered to Patient During Measurement Period") // TODO: Write logic here 
 
 /*
  * Disaggregator: Dose Sequence (1, 2, 3)

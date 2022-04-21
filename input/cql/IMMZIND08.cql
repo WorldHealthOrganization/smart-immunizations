@@ -38,13 +38,13 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a Measles vaccine (IMMZ.A1.DE9) during reporting period
  */
 define "measure-population":
-	exists(IMMZIndCom."MCV Doses Administered to Patient During Reporting Period")
+	exists(IMMZIndCom."MCV Doses Administered to Patient During Measurement Period")
 
 /*
  * Disaggregator: Dose Sequence (1, 2)
  */
 define "Dose Sequence  Stratifier":
-	IMMZIndCom."MCV Birth Doses Administered to Patient During Measurement Period" I
+	IMMZIndCom."MCV Doses Administered to Patient During Measurement Period" I
 	return (singleton from I.protocolApplied).doseNumber
 
 /*
