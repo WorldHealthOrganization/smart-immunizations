@@ -1,20 +1,19 @@
 /*
  * Library: IMMZ.IND.42
- * Immunization coverage for Varicella vaccinations (Computed Denominator) 
- * Compares the administered doses of varicella containing vaccine with the number of immunization recommendations for varicella vaccines expressed as a percentage.
+ * Immunization coverage for Rubella containing vaccines (Computed Denominator) 
+ * Compares the administered doses of rubella containing vaccine (RCV) with the number of immunization recommendations for rubella containing vaccines expressed as a percentage.
  * 
- * Numerator: Number of administrations of vaccines containing a varicella component during reporting period 
- * Numerator Computation: COUNT immunization events WHERE administered product is a Varicella vaccine (IMMZ.A1.DE.22) during reporting period
- * Denominator: Number of immunization recommendations for varicella vaccines due during reporting period.
- * Denominator Computation: COUNT immunization recommendation WHERE recommended product is varicella vaccine (IMMZ.A1.DE22) AND due date during reporting period.
+ * Numerator: Number of administrations of vaccines containing a Rubella component during reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Rubella vaccine (IMMZ.A1.DE17) during reporting period
+ * Denominator: Number of immunization recommendations for RCV vaccines due during reporting period.
+ * Denominator Computation: COUNT immunization recommendation WHERE recommended product is RCV vaccine (IMMZ.A1.DE17) AND due date during reporting period.
  * 
  * Disaggregation:
- *   - Dose Sequence (1, 2)
- *   - Age Group (< 12 months, 12 - 18 months, 18 - 36 months, 36 months - 12 years, > 12 years)
+ *   - Age Group (< 9 months, 9 - 18 months, 18 months - 15 years, > 15 years)
  *   - Geographic Region
  *   - Gender
  * 
- * References: WHO Immunization Facility Analysis Guide (1)
+ * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - element 4250)
  */
 
 library IMMZIND42
@@ -25,41 +24,40 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZIndicatorCommon called IMMZIndCom
+include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
-parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
+parameter "Measurement Period" Interval<Date>
+
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccines containing a varicella component during reporting period
- * Numerator Computation: COUNT immunization events WHERE administered product is a Varicella vaccine (IMMZ.A1.DE.22) during reporting period
+ * Numerator: Number of administrations of vaccines containing a Rubella component during reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Rubella vaccine (IMMZ.A1.DE17) during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here
-/*
- * Denominator: Number of immunization recommendations for varicella vaccines due during reporting period.
- * Denominator Computation: COUNT immunization recommendation WHERE recommended product is varicella vaccine (IMMZ.A1.DE22) AND due date during reporting period.
- */
-define "denominator":
-	true // TODO: Write logic here
-/*
- * Disaggregator: Dose Sequence (1, 2)
- */
-define "Dose Sequence  Stratifier":
-	true // todo: fill in logic
+	true // TODO: Write logic here 
 
 /*
- * Disaggregator: Age Group (< 12 months, 12 - 18 months, 18 - 36 months, 36 months - 12 years, > 12 years)
+ * Denominator: Number of immunization recommendations for RCV vaccines due during reporting period.
+ * Denominator Computation: COUNT immunization recommendation WHERE recommended product is RCV vaccine (IMMZ.A1.DE17) AND due date during reporting period.
  */
-define "Age Group  Stratifier":
+define "denominator":
+	true // TODO: Write logic here 
+
+/*
+ * Disaggregator: Age Group (< 9 months, 9 - 18 months, 18 months - 15 years, > 15 years)
+ */
+define "Age Group Stratifier":
 	true // todo: fill in logic
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	IMMZIndCom."By Geographic Region Stratifier"
+	true // todo: fill in logic
+
 /*
  * Disaggregator: Gender
  */

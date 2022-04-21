@@ -1,19 +1,19 @@
 /*
  * Library: IMMZ.IND.21
- * Immunization coverage for seasonal influenza (Estimated Denominator) 
- * Compares the administered doses of seasonal influenza vaccines with country defined target population (at risk) expressed as a percentage
+ * Immunization coverage for Typhoid vaccines (Estimated Denominator) 
+ * Compares the administered doses of Typhoid vaccines with a country defined target population expressed as a percentage.
  * 
- * Numerator: Number of administrations of seasonal influenza vaccines during reporting period. 
- * Numerator Computation: COUNT immunization events WHERE administered product is a seasonal influenza vaccine (IMMZ.A1.DE18) during reporting period.
- * Denominator: Country defined target population of at-risk individuals.
+ * Numerator: Number of administrations of vaccines which contain a typhoid component during the reporting period. 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Typhoid vaccine (IMMZ.A1.DE21) during reporting period.
+ * Denominator: Country defined target population.
  * Denominator Computation: PARAMETER country defined target population.
  * 
  * Disaggregation:
- *   - Age Group (< 1 year, < 15 year,  > 60 year)
+ *   - Dose Sequence (1, 2, 3)
  *   - Geographic Region
- *   - Gender
+ *   - Administrative Gender (or Biological Sex)
  * 
- * References: WHO / UNICEF Joint Reporting Form (3 - elements 7030 - 7050)
+ * References: WHO / UNICEF Joint Reporting Form (3- element 4350)
  */
 
 library IMMZIND21
@@ -24,39 +24,38 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZIndicatorCommon called IMMZIndCom
+include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
-parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
+parameter "Measurement Period" Interval<Date>
+
 context Patient
 
 /*
- * Numerator: Number of administrations of seasonal influenza vaccines during reporting period.
- * Numerator Computation: COUNT immunization events WHERE administered product is a seasonal influenza vaccine (IMMZ.A1.DE18) during reporting period.
+ * Numerator: Number of administrations of vaccines which contain a typhoid component during the reporting period.
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Typhoid vaccine (IMMZ.A1.DE21) during reporting period.
  */
 define "measure-population":
-	true // TODO: Write logic here
+	true // TODO: Write logic here 
+
+
 /*
- * Denominator: Country defined target population of at-risk individuals.
- * Denominator Computation: PARAMETER country defined target population.
+ * Disaggregator: Dose Sequence (1, 2, 3)
  */
-define "denominator":
-	true // TODO: Write logic here
-/*
- * Disaggregator: Age Group (< 1 year, < 15 year,  > 60 year)
- */
-define "Age Group  Stratifier":
+define "Dose Sequence Stratifier":
 	true // todo: fill in logic
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	IMMZIndCom."By Geographic Region Stratifier"
+	true // todo: fill in logic
+
 /*
- * Disaggregator: Gender
+ * Disaggregator: Administrative Gender (or Biological Sex)
  */
-define "Gender Stratifier":
+define "Administrative Gender Stratifier":
 	true // todo: fill in logic
 
 /* End of IMMZ.IND.21 */

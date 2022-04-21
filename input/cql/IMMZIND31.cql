@@ -1,18 +1,18 @@
 /*
  * Library: IMMZ.IND.31
- * Immunization coverage for BCG (Computed Denominator) 
- * Compares the administered doses of BCG vaccine with the actual number of registered, surviving infants expressed as a percentage.
+ * Immunization session completion rates. 
+ * This indicator allows for supervisors to follow-up on planned and completed immunization sessions - which can give an indication of planning, operational or budget issues at a facility.
  * 
- * Numerator: Number of administrations of BCG during the reporting period 
- * Numerator Computation: COUNT immunization events WHERE administered product is a BCG vaccine (IMMZ.A1.DE1) during reporting period
- * Denominator: Number of registered, surviving infants.
- * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
+ * Numerator: The number of conducted immunization sessions performed at the facility. 
+ * Numerator Computation: COUNT number of vaccination sessions
+ * Denominator: The planned number of vaccination sessions for a facility.
+ * Denominator Computation: COUNT number of planned sessions
  * 
  * Disaggregation:
+ *   - Facility
  *   - Geographic Region
- *   - Gender
  * 
- * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - element 4010)
+ * References: WHO Immunization Facility Analysis Guide (1)
  */
 
 library IMMZIND31
@@ -23,33 +23,38 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZIndicatorCommon called IMMZIndCom
+include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
-parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
+parameter "Measurement Period" Interval<Date>
+
 context Patient
 
 /*
- * Numerator: Number of administrations of BCG during the reporting period
- * Numerator Computation: COUNT immunization events WHERE administered product is a BCG vaccine (IMMZ.A1.DE1) during reporting period
+ * Numerator: The number of conducted immunization sessions performed at the facility.
+ * Numerator Computation: COUNT number of vaccination sessions
  */
 define "numerator":
-	true // TODO: Write logic here
+	true // TODO: Write logic here 
+
 /*
- * Denominator: Number of registered, surviving infants.
- * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
+ * Denominator: The planned number of vaccination sessions for a facility.
+ * Denominator Computation: COUNT number of planned sessions
  */
 define "denominator":
-	true // TODO: Write logic here
+	true // TODO: Write logic here 
+
+/*
+ * Disaggregator: Facility
+ */
+define "Facility Stratifier":
+	true // todo: fill in logic
+
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	IMMZIndCom."By Geographic Region Stratifier"
-/*
- * Disaggregator: Gender
- */
-define "Gender Stratifier":
 	true // todo: fill in logic
 
 /* End of IMMZ.IND.31 */

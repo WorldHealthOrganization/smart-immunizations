@@ -1,21 +1,19 @@
 /*
  * Library: IMMZ.IND.22
- * Dropout Rate of DTP1 to DTP3 (Target / Reported Cohort) 
- * Indicates the aggregate dropout rate of DTP containing vaccines protocol. 
-
-The indicator compares the number of administrations of first dose of DTP containing vaccines (DTP1) minus the number of administrations of the final dose (DTP3) protocol divided by the number of administrations of first dose (DTP1 - DTP3 / DTP1)
+ * Immunization coverage for seasonal influenza (Estimated Denominator) 
+ * Compares the administered doses of seasonal influenza vaccines with country defined target population (at risk) expressed as a percentage
  * 
- * Numerator: Number of administrations of DTP1 administered during reporting period minus the number of administrations of DTP3 administered during report period 
- * Numerator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1  during reporting period
-SUBTRACT
-COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 3  during reporting period
- * Denominator: Number of doses of DTP1 administered
- * Denominator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1 during reporting period
+ * Numerator: Number of administrations of seasonal influenza vaccines during reporting period. 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a seasonal influenza vaccine (IMMZ.A1.DE18) during reporting period.
+ * Denominator: Country defined target population of at-risk individuals.
+ * Denominator Computation: PARAMETER country defined target population.
  * 
  * Disaggregation:
+ *   - Age Group (< 1 year, < 15 year,  > 60 year)
  *   - Geographic Region
+ *   - Gender
  * 
- * References: WHO Immunization Facility Analysis Guide (1)
+ * References: WHO / UNICEF Joint Reporting Form (3 - elements 7030 - 7050)
  */
 
 library IMMZIND22
@@ -26,29 +24,38 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZIndicatorCommon called IMMZIndCom
+include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
-parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
+parameter "Measurement Period" Interval<Date>
+
 context Patient
 
 /*
- * Numerator: Number of administrations of DTP1 administered during reporting period minus the number of administrations of DTP3 administered during report period
- * Numerator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1  during reporting period
-SUBTRACT
-COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 3  during reporting period
+ * Numerator: Number of administrations of seasonal influenza vaccines during reporting period.
+ * Numerator Computation: COUNT immunization events WHERE administered product is a seasonal influenza vaccine (IMMZ.A1.DE18) during reporting period.
  */
-define "numerator":
-	true // TODO: Write logic here
+define "measure-population":
+	true // TODO: Write logic here 
+
+
 /*
- * Denominator: Number of doses of DTP1 administered
- * Denominator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1 during reporting period
+ * Disaggregator: Age Group (< 1 year, < 15 year,  > 60 year)
  */
-define "denominator":
-	true // TODO: Write logic here
+define "Age Group Stratifier":
+	true // todo: fill in logic
+
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	IMMZIndCom."By Geographic Region Stratifier"
+	true // todo: fill in logic
+
+/*
+ * Disaggregator: Gender
+ */
+define "Gender Stratifier":
+	true // todo: fill in logic
+
 /* End of IMMZ.IND.22 */

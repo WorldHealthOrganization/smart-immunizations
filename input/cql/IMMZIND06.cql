@@ -1,18 +1,17 @@
 /*
  * Library: IMMZ.IND.06
- * Immunization coverage for oral polio containing vaccine (Estimated Denominator) 
- * Compares the administered doses of oral polio containing vaccines (OPV) with the estimated number of surviving infants expressed as a percentage.
+ * Immunization coverage for oral polio containing vaccine birth doses (Estimated Denominator) 
+ * Compares the administered doses of oral polio containing vaccines (OPV) given at birth (dose sequence 0) with the number of live births. This indicator should only be used in contexts where an OPV birth dose is administered.
  * 
- * Numerator: Number of administrations of vaccinations using an oral polio vaccine (OPV) during the reporting period. 
- * Numerator Computation: COUNT immunization events WHERE administered product is a polio vaccine (IMMZ.A1.DE26) during reporting period
- * Denominator: Estimated number of surviving infants
- * Denominator Computation: PARAMETER surviving number of infants
+ * Numerator: Number of administrations of vaccinations using an oral polio vaccine (OPV) where the dose sequence is 0 (birth dose) during the reporting period. 
+ * Numerator Computation: COUNT immunization events WHERE administered product is an oral polio vaccine (IMMZ.A1.DE26) and dose sequence = 0 during reporitng period.
+ * Denominator: Estimated number of live births.
+ * Denominator Computation: PARAMETER number of live births
  * 
  * Disaggregation:
- *   - Dose sequence (1, 2, 3)
- *   - Age Group (< 1 year or > 1 year)
+ *   - Age Group (<24H of Birth, < 2 weeks)
  *   - Geographic Region
- *   - Administrative Gender (or Biological Sex)
+ *   - Administrative Gender (biological sex)
  * 
  * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - elements 4130 - 4160)
  */
@@ -25,44 +24,37 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZIndicatorCommon called IMMZIndCom
+include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
-parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
+parameter "Measurement Period" Interval<Date>
+
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccinations using an oral polio vaccine (OPV) during the reporting period.
- * Numerator Computation: COUNT immunization events WHERE administered product is a polio vaccine (IMMZ.A1.DE26) during reporting period
+ * Numerator: Number of administrations of vaccinations using an oral polio vaccine (OPV) where the dose sequence is 0 (birth dose) during the reporting period.
+ * Numerator Computation: COUNT immunization events WHERE administered product is an oral polio vaccine (IMMZ.A1.DE26) and dose sequence = 0 during reporitng period.
  */
 define "measure-population":
-	true // TODO: Write logic here
-/*
- * Denominator: Estimated number of surviving infants
- * Denominator Computation: PARAMETER surviving number of infants
- */
-define "denominator":
-	true // TODO: Write logic here
-/*
- * Disaggregator: Dose sequence (1, 2, 3)
- */
-define "Dose sequence  Stratifier":
-	true // todo: fill in logic
+	true // TODO: Write logic here 
 
 /*
- * Disaggregator: Age Group (< 1 year or > 1 year)
+ * Disaggregator: Age Group (<24H of Birth, < 2 weeks)
  */
-define "Age Group  Stratifier":
+define "Age Group Stratifier":
 	true // todo: fill in logic
+
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	IMMZIndCom."By Geographic Region Stratifier"
+	true // todo: fill in logic
+
 /*
- * Disaggregator: Administrative Gender (or Biological Sex)
+ * Disaggregator: Administrative Gender (biological sex)
  */
 define "Administrative Gender Stratifier":
-	IMMZIndCom."By Administrative Gender Stratifier"
+	true // todo: fill in logic
 
 /* End of IMMZ.IND.06 */
