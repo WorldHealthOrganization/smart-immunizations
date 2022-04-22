@@ -16,7 +16,7 @@ codesystem "Extended Codes CodeSystem codes": 'http://fhir.org/guides/who/anc-cd
 valueset "WHO ATC": 'http://hl7.org/fhir/uv/ips/ValueSet/whoatc-uv-ips'
 
 // General use ValueSets 
-valueset "Negative Result": 'http://example.org/ValueSets/negative-results'
+valueset "Negative Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/negativetestresult-values'
 valueset "Positive Result": 'http://example.org/ValueSets/positive-results'
 valueset "HIV Status Positive": 'http://example.org/ValueSets/HIV-status-positive'
 valueset "CD4% Test Result": 'http://example.org/ValueSets/CD4-test-result'
