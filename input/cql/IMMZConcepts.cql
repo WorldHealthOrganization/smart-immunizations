@@ -68,3 +68,6 @@ valueset "Inactivated Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize
 valueset "Oral Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE26'
 valueset "Dengue Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE27'
 
+// Cholera vaccine classes
+valueset "WC Class Cholera Vaccine": 'http://example.org/ValueSet/wc-cholera'
+valueset "WC-rBS Class Cholera Vaccine": 'http://example.org/ValueSet/wc-rbs-cholera'

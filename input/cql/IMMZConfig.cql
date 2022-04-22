@@ -21,6 +21,7 @@ define "Country is following a 2 dose scheme for Pneumococcal": true
 define "Country is following a 3 dose scheme for Pneumococcal": true
 define "In a setting with a high disease burden and mortality": true
 
+define "Region recommends Cholera vaccination": true
 // TODO: 
 //define "bOPV and IPV Schedule":
 //	'combined'
