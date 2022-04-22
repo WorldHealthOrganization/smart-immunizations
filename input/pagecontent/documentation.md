@@ -25,8 +25,6 @@ The FHIR Library contains a base64 encoded CQL library which represents the deci
 #### ValueSets
 Many of the ValueSets used in this IG are  from [CPG on FHIR](https://hl7.org/fhir/uv/cpg/) and the [IPS](https://hl7.org/fhir/uv/ips/). There are a number of generated ValueSets based on the user scenarios detailed in this IG.
 
-This is a test
-
 There is one exception to that format which is the vaccine libraries, which map the codes between a variety of different systems including SNOMED GPS and WHO ATC in order to allow implementers to search for any vaccine which might be applicable to their user. More details on this approach is provided below. 
 
 ##### Vaccine Library
