@@ -496,7 +496,20 @@ define "No DTP Doses Administered to Patient":
 define "TBE Doses Administered to Patient":
   "Doses Administered to Patient" I
   where
-    I.vaccineCode in IMMZc."Tick-Borne Encephalitis Vaccine"
+    I.vaccineCode in IMMZc."TBE Vaccine"
+
+/** 
+ * @dataElement Date of last TBE dose administration
+ */
+define "Date Last TBE Dose Administered to Patient":
+  date from (First("TBE Doses Administered to Patient").occurrence as FHIR.dateTime)
+
+/** 
+ * @dataElement Date of last TBE dose administration
+ */
+define "Type of Last TBE Dose Administered to Patient":
+  First("TBE Doses Administered to Patient").vaccineCode
+
 
 /**
  * @dataElement Patient has no Tick-Borne Encephalitis doses

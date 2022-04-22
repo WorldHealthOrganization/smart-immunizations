@@ -23,7 +23,7 @@ context Patient
  * @dataElement Patient has no history of intussusception
  */
 define "Patient has no history of intussusception":
-	not(exists([Condition: "intussusception"]))
+	not(exists([Condition: code in "intussusception"]))
 
 /*
  * Rule: Should vaccinate patient for Rotavirus 1st dose
