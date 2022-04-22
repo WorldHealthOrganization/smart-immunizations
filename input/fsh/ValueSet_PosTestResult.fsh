@@ -1,9 +1,9 @@
 //Example Valuset you can use as a template to create new ones
 //change ValueSet name, Id, Title, Description
-ValueSet: HIVstatus-values
-Id: HIVstatus-values
-Title: "HIV status valuest"
-Description: "Codes representing HIV status values"
+ValueSet: PositiveTestResult-values
+Id: PositiveTestResult-values
+Title: "Positive Test Result valuest"
+Description: "Codes representing Positive Test Result values"
 //don't touch status, experimental, immutable
 * ^status = #draft
 * ^experimental = false
