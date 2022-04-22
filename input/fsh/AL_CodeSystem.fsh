@@ -8,6 +8,6 @@ Alias:   WHOatc = http://www.whocc.no/atc
 Alias:   ObsCat = http://terminology.hl7.org/CodeSystem/observation-category
 Alias:   ObsStatus = http://hl7.org/fhir/observation-status
 Alias:   ObsInt = http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
-Alias:   SMARTIMMZ "Extended IMMZ CodeSystem codes": 'http://fhir.org/guides/who/smart-immunization/CodeSystem/immz-custom-codes'
+Alias:   SMARTIMMZ = http://fhir.org/guides/who/smart-immunization/CodeSystem/immz-custom-codes
 
 //https://www.hl7.org/fhir/terminologies-systems.html check here if you need to add more codesystems

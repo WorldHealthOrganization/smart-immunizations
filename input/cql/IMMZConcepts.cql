@@ -17,7 +17,7 @@ valueset "WHO ATC": 'http://hl7.org/fhir/uv/ips/ValueSet/whoatc-uv-ips'
 
 // General use ValueSets 
 valueset "Negative Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/negativetestresult-values'
-valueset "Positive Result": 'http://example.org/ValueSets/positive-results'
+valueset "Positive Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/PositiveTestResult-values'
 valueset "HIV Status Positive": 'http://example.org/ValueSets/HIV-status-positive'
 valueset "CD4% Test Result": 'http://example.org/ValueSets/CD4-test-result'
 valueset "CD4 Count Test Result": 'http://example.org/ValueSets/CD4-count-test-result'
