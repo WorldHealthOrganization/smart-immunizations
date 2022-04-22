@@ -134,6 +134,8 @@ define "bOPV Doses Administered to Patient":
 
 /**
  * @dataElement Patient has no bOPV Doses
+ * TODO: Do we want "number of doses" or "highest dose sequence"? For example for interrupted series the dose
+ *       number would be 1, 2, 1, 2, 1, 2 -> the highest sequence is 2 but the number is 6
  */
 define "Number of bOPV Doses Administered to Patient":
   Count("bOPV Doses Administered to Patient" O where (singleton from O.protocolApplied).doseNumber != 0)
@@ -416,8 +418,8 @@ define "Number of DTP Doses Administered to Patient Excluding Birth Dose":
 
  * @dataElement Dengue containing doses administered
  */
-define "Dengue Doses Administered":
-  "Doses Administered" I
+define "Dengue Doses Administered to Patient":
+  "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Dengue Vaccine"
 
@@ -532,6 +534,14 @@ define "Current Patient Age In Weeks":
  */
 define "Current Patient Age In Months":
   AgeInMonthsAt(Today())
+
+/** 
+ * @dataElement Patient biological sex used for deciding vaccine eligibility
+ * TODO: I believe "Gender" of patient in FHIR is the administrative gender - or can we expect that this will be biological sex and administrative
+ *        gender identity will be captured using the gender identity extension?
+ */
+define "Patient Biological Sex":
+  Patient.gender
 
 /******************************
  * CQL Helper Functions

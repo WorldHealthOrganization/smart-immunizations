@@ -15,48 +15,6 @@ include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
 context Patient
 
-/* 
- * @dataElement HPV vaccine history
- */
-define "HPV vaccine history":
-	0 // TODO: Define this
-
-/* 
- * @dataElement No-doses
- */
-define "No-doses":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Sex
- */
-define "Sex":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Female
- */
-define "Female":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Age
- */
-define "Age":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 9 years
- */
-define "9 years":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 14 years
- */
-define "14 years":
-	0 // TODO: Define this
-
 /*
  * Rule: Should vaccinate Patient for HPV because no doses on a two-dose schedule
  * Annotations:
@@ -69,37 +27,10 @@ define "14 years":
  *	 (((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Age" >= "9 years")) and ("Age" <= "14 years"))
  */
 define "Should vaccinate Patient for HPV because no doses on a two-dose schedule":
-	(((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Age" >= "9 years")) and ("Age" <= "14 years"))
+	IMMZCom."No HPV Doses Administered to Patient"
+	and IMMZCom."Patient Biological Sex" = 'female'
+	and IMMZCom."Current Patient Age In Years" between 9 and 14
 
-/* 
- * @dataElement 1-dose
- */
-define "1-dose":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Age <= 14 years
- */
-define "Age <= 14 years":
-	true // TODO: Define this
-
-/* 
- * @dataElement Previous dose date
- */
-define "Previous dose date":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 6 months
- */
-define "6 months":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 12 months
- */
-define "12 months":
-	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate Patient for HPV a second time on a two-dose schedule
@@ -113,7 +44,10 @@ define "12 months":
  *	 (((((("HPV vaccine history" = "1-dose") and ("Sex" = "Female")) and ("Age" >= "9 years")) and ("Age <= "14 years" = true)) and ("Previous dose date" >= "6 months")) and ("Previous dose date" <= "12 months"))
  */
 define "Should vaccinate Patient for HPV a second time on a two-dose schedule":
-	(((((("HPV vaccine history" = "1-dose") and ("Sex" = "Female")) and ("Age" >= "9 years")) and ("Age <= 14 years" = true)) and ("Previous dose date" >= "6 months")) and ("Previous dose date" <= "12 months"))
+	IMMZCom."Number of HPV Doses Administered to Patient" = 1
+	and IMMZCom."Patient Biological Sex" = 'female'
+	and IMMZCom."Current Patient Age In Years" between 9 and 14 
+	and IMMZCom."Date Last HPV Dose Administered to Patient" between 6 month and 12 month before Today()
 
 /* 
  * @dataElement Interval between first and second dose shorter than 5 months and at least six months after intitial dose
@@ -133,6 +67,9 @@ define "Interval between first and second dose shorter than 5 months and at leas
  *	 ((((("HPV vaccine history" = "1-dose") and ("Sex" = "Female")) and ("Interval between first and second dose shorter than 5 months and "at least six months after intitial dose" = true)) and ("Age" >= "9 years")) and ("Age" <= "14 years"))
  */
 define "Should vaccinate Patient for HPV a third time due to short interval between first and second dose":
+	IMMZCom."Number of HPV Doses Administered to Patient"
+	and IMMZCom."Patient Biological Sex" = 'female'
+	and IMMZCom."HPV vaccine history"
 	((((("HPV vaccine history" = "1-dose") and ("Sex" = "Female")) and ("Interval between first and second dose shorter than 5 months and at least six months after intitial dose" = true)) and ("Age" >= "9 years")) and ("Age" <= "14 years"))
 
 /* 
