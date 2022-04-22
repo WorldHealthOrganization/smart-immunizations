@@ -87,12 +87,12 @@ define "Allergy = True":
  * @dataElement Immunocompromised = True
  */
 define "Immunocompromised = True":
-	[Condition] C 
+	exists([Condition] C 
 	where C.code in IMMZc."Immunocompromised"
 	and
   	C.clinicalStatus in FC."Active Condition"
 	and
-	C.verificationStatus ~ FC."confirmed"
+	C.verificationStatus ~ FC."confirmed")
 
 /**
  * @dataElement All Doses Administered to Patient to patient ordered by newest to oldest
@@ -273,6 +273,24 @@ define "HPV Doses Administered to Patient":
   "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."HPV Vaccine"
+
+/** 
+ * @dataElement No HPV doses have been administered to patient 
+ */
+define "No HPV Doses Administered to Patient":
+  not exists("HPV Doses Administered to Patient")
+
+/** 
+ * @dataElement Number of HPV doses administered to patient
+ */
+define "Number of HPV Doses Administered to Patient":
+  Count("HPV Doses Administered to Patient")
+
+/**
+ * @dataElement Date of HPV dose administered
+ */
+define "Date Last HPV Dose Administered to Patient":
+  date from (First("HPV Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 /**
  * @dataElement Japanese Encephalitis containing Doses Administered to Patient
