@@ -12,6 +12,7 @@ include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
 context Patient
 
@@ -40,21 +41,9 @@ define "Female":
 	0 // TODO: Define this
 
 /* 
- * @dataElement Age
+ * @dataElement Current Patient Age in Years
  */
-define "Age":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 9 years
- */
-define "9 years":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 14 years
- */
-define "14 years":
+define "Current Patient Age in Years":
 	0 // TODO: Define this
 
 /*
@@ -66,27 +55,21 @@ define "14 years":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Age" >= "9 years")) and ("Age" <= "14 years"))
+ *	 (((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Current Patient Age in Years" >= 9)) and ("Current Patient Age in Years" <= 14))
  */
 define "Should vaccinate Patient for HPV because no doses on a two-dose schedule":
-	(((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Age" >= "9 years")) and ("Age" <= "14 years"))
+	(((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Current Patient Age in Years" >= 9)) and ("Current Patient Age in Years" <= 14))
 
 /* 
- * @dataElement 1-dose
+ * @dataElement 1 dose
  */
-define "1-dose":
+define "1 dose":
 	0 // TODO: Define this
 
 /* 
- * @dataElement Age <= 14 years
+ * @dataElement Date last HPV dose given
  */
-define "Age <= 14 years":
-	true // TODO: Define this
-
-/* 
- * @dataElement Previous dose date
- */
-define "Previous dose date":
+define "Date last HPV dose given":
 	0 // TODO: Define this
 
 /* 
@@ -104,42 +87,48 @@ define "12 months":
 /*
  * Rule: Should vaccinate Patient for HPV a second time on a two-dose schedule
  * Annotations:
- * 	 - Provide HPV immunizations - using "HPV vaccine immunization - ONE PREVIOUS" schedule (2 dose scheme)
+ * 	 - Provide HPV immunizations - using "HPV vaccine immunization - 1 PREVIOUS" schedule (2 dose scheme)
  * Outputs:
- * 	 - Immunize Patient for HPV - One Dose
+ * 	 - Immunize Patient for HPV - 1 Dose
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (((((("HPV vaccine history" = "1-dose") and ("Sex" = "Female")) and ("Age" >= "9 years")) and ("Age <= "14 years" = true)) and ("Previous dose date" >= "6 months")) and ("Previous dose date" <= "12 months"))
+ *	 (((((("HPV vaccine history" = "1 dose") and ("Sex" = "Female")) and ("Current Patient Age in Years" >=  9)) and ("Current Patient Age in Years" <= 14)) and ("Date last HPV dose given" >= "6 months")) and ("Date last HPV dose given" <= "12 months"))
  */
 define "Should vaccinate Patient for HPV a second time on a two-dose schedule":
-	(((((("HPV vaccine history" = "1-dose") and ("Sex" = "Female")) and ("Age" >= "9 years")) and ("Age <= 14 years" = true)) and ("Previous dose date" >= "6 months")) and ("Previous dose date" <= "12 months"))
+	(((((("HPV vaccine history" = "1 dose") and ("Sex" = "Female")) and ("Current Patient Age in Years" >=  9)) and ("Current Patient Age in Years" <= 14)) and ("Date last HPV dose given" >= "6 months")) and ("Date last HPV dose given" <= "12 months"))
 
 /* 
- * @dataElement Interval between first and second dose shorter than 5 months and at least six months after intitial dose
+ * @dataElement 2 doses
  */
-define "Interval between first and second dose shorter than 5 months and at least six months after intitial dose":
-	true // TODO: Define this
+define "2 doses":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement Time between first and second HPV doses in Months
+ */
+define "Time between first and second HPV doses in Months":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement Time since initial HPV dose in Months
+ */
+define "Time since initial HPV dose in Months":
+	0 // TODO: Define this
 
 /*
- * Rule: Should vaccinate Patient for HPV a third time due to short interval between first and second dose
+ * Rule: Should vaccinate Patient for HPV Dose 3 - due to short interval between first and second dose
  * Annotations:
- * 	 - Provide additional HPV immunizations - using "HPV vaccination immunization - ONE PREVIOUS" schedule (2 dose scheme)
+ * 	 - Provide additional HPV immunizations - using "HPV vaccination immunization - 2 PREVIOUS" schedule (2+1 dose scheme)
  * Outputs:
- * 	 - Immunize Patient for HPV - Two Doses
+ * 	 - Immunize Patient for HPV - 2 Doses
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((((("HPV vaccine history" = "1-dose") and ("Sex" = "Female")) and ("Interval between first and second dose shorter than 5 months and "at least six months after intitial dose" = true)) and ("Age" >= "9 years")) and ("Age" <= "14 years"))
+ *	 (((((("HPV vaccine history" = "2 doses") and ("Sex" = "Female")) and ("Time between first and second HPV doses in Months" < 5)) and ("Time since initial HPV dose in Months" >= 6)) and ("Current Patient Age in Years" >= 9)) and ("Current Patient Age in Years" <= 14))
  */
-define "Should vaccinate Patient for HPV a third time due to short interval between first and second dose":
-	((((("HPV vaccine history" = "1-dose") and ("Sex" = "Female")) and ("Interval between first and second dose shorter than 5 months and at least six months after intitial dose" = true)) and ("Age" >= "9 years")) and ("Age" <= "14 years"))
-
-/* 
- * @dataElement 15 years
- */
-define "15 years":
-	0 // TODO: Define this
+define "Should vaccinate Patient for HPV Dose 3 - due to short interval between first and second dose":
+	(((((("HPV vaccine history" = "2 doses") and ("Sex" = "Female")) and ("Time between first and second HPV doses in Months" < 5)) and ("Time since initial HPV dose in Months" >= 6)) and ("Current Patient Age in Years" >= 9)) and ("Current Patient Age in Years" <= 14))
 
 /* 
  * @dataElement Immunocompromised
@@ -162,15 +151,27 @@ define "True":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Age" >= "15 years")) or (((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Age" < "15 years")) and ("Immunocompromised" = "True")))
+ *	 (((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Current Patient Age in Years" >= 15)) or (((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Current Patient Age in Years" < 15)) and ("Immunocompromised" = "True")))
  */
 define "Should vaccinate Patient for HPV because no doses on a three-dose schedule":
-	(((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Age" >= "15 years")) or (((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Age" < "15 years")) and ("Immunocompromised" = "True")))
+	(((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Current Patient Age in Years" >= 15)) or (((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Current Patient Age in Years" < 15)) and ("Immunocompromised" = "True")))
+
+/* 
+ * @dataElement Current Patient Age in  Years
+ */
+define "Current Patient Age in  Years":
+	0 // TODO: Define this
 
 /* 
  * @dataElement 1 month
  */
 define "1 month":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement Date last HPV does given
+ */
+define "Date last HPV does given":
 	0 // TODO: Define this
 
 /* 
@@ -185,22 +186,16 @@ define "2 months":
  * 	 - Provide HPV immunizations - using the "HPV vaccine immunization -  ONE PREVIOUS" schedule (3 dose scheme)
  * 	 - 
  * Outputs:
- * 	 - Immunize Patient for HPV - One Dose
+ * 	 - Immunize Patient for HPV - 1 Dose
  * 	 - 
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * 	- 
  * Logic:
- *	 (((((("HPV vaccine history" = "1-dose") and ("Sex" = "Female")) and ("Age" >= "15 years")) and ("Previous dose date" >= "1 month")) and ("Previous dose date" <= "2 months")) or (((((("HPV vaccine history" = "1-dose") and ("Sex" = "Female")) and ("Age" < "15 years")) and ("Immunocompromised" = "True")) and ("Previous dose date" >= "1 month")) and ("Previous dose date" <= "2 months")))
+ *	 (((((("HPV vaccine history" = "1 dose") and ("Sex" = "Female")) and ("Current Patient Age in  Years" >= 15)) and ("Date last HPV dose given" >= "1 month")) and ("Date last HPV does given" <= "2 months")) or (((((("HPV vaccine history" = "1 dose") and ("Sex" = "Female")) and ("Current Patient Age in Years" < 15)) and ("Immunocompromised" = "True")) and ("Date last HPV dose given" >= "1 month")) and ("Date last HPV dose given" <= "2 months")))
  */
 define "Should vaccinate Patient for HPV because one dose on a three-dose schedule":
-	(((((("HPV vaccine history" = "1-dose") and ("Sex" = "Female")) and ("Age" >= "15 years")) and ("Previous dose date" >= "1 month")) and ("Previous dose date" <= "2 months")) or (((((("HPV vaccine history" = "1-dose") and ("Sex" = "Female")) and ("Age" < "15 years")) and ("Immunocompromised" = "True")) and ("Previous dose date" >= "1 month")) and ("Previous dose date" <= "2 months")))
-
-/* 
- * @dataElement 2-doses
- */
-define "2-doses":
-	0 // TODO: Define this
+	(((((("HPV vaccine history" = "1 dose") and ("Sex" = "Female")) and ("Current Patient Age in  Years" >= 15)) and ("Date last HPV dose given" >= "1 month")) and ("Date last HPV does given" <= "2 months")) or (((((("HPV vaccine history" = "1 dose") and ("Sex" = "Female")) and ("Current Patient Age in Years" < 15)) and ("Immunocompromised" = "True")) and ("Date last HPV dose given" >= "1 month")) and ("Date last HPV dose given" <= "2 months")))
 
 /*
  * Rule: Should vaccinate Patient for HPV because two doses on a three-dose schedule
@@ -208,14 +203,14 @@ define "2-doses":
  * 	 - Provide HPV immunizations - using the "HPV vaccine immunization -  TWO PREVIOUS" schedule (3 dose scheme)
  * 	 - 
  * Outputs:
- * 	 - Immunize Patient for HPV - Two Doses
+ * 	 - Immunize Patient for HPV - 2 Doses
  * 	 - 
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * 	- 
  * Logic:
- *	 ((((("HPV vaccine history" = "2-doses") and ("Sex" = "Female")) and ("Age" >= "15 years")) and ("Previous dose date" >= "6 months")) or ((((("HPV vaccine history" = "2-doses") and ("Sex" = "Female")) and ("Age" < "15 years")) and ("Immunocompromised" = "True")) and ("Previous dose date" >= "6 months")))
+ *	 ((((("HPV vaccine history" = "2 doses") and ("Sex" = "Female")) and ("Current Patient Age in Years" >= 15)) and ("Date last HPV dose given" >= "6 months")) or ((((("HPV vaccine history" = "2 doses") and ("Sex" = "Female")) and ("Current Patient Age in Years" < 15)) and ("Immunocompromised" = "True")) and ("Date last HPV dose given" >= "6 months")))
  */
 define "Should vaccinate Patient for HPV because two doses on a three-dose schedule":
-	((((("HPV vaccine history" = "2-doses") and ("Sex" = "Female")) and ("Age" >= "15 years")) and ("Previous dose date" >= "6 months")) or ((((("HPV vaccine history" = "2-doses") and ("Sex" = "Female")) and ("Age" < "15 years")) and ("Immunocompromised" = "True")) and ("Previous dose date" >= "6 months")))
+	((((("HPV vaccine history" = "2 doses") and ("Sex" = "Female")) and ("Current Patient Age in Years" >= 15)) and ("Date last HPV dose given" >= "6 months")) or ((((("HPV vaccine history" = "2 doses") and ("Sex" = "Female")) and ("Current Patient Age in Years" < 15)) and ("Immunocompromised" = "True")) and ("Date last HPV dose given" >= "6 months")))
 

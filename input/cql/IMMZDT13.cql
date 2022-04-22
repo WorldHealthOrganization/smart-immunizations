@@ -1,7 +1,7 @@
 /*
  * Library: IMMZDT13 (IMMZ.DT.13.Tick-BorneEncephalitis)
  * Rule: If child or person has not been vaccinated, give Tick-Borne Encephalitis vaccine according to the defined schedule 
- * Trigger: Patient has not been vaccinated for Tick-Borne Encephalitis and is greater than 1 year old
+ * Trigger: Patient has not been vaccinated for Tick-Borne Encephalitis
  */
 library IMMZDT13
 // Start Skeleton CQL
@@ -15,30 +15,44 @@ include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 context Patient
- 
+
+/* 
+ * @dataElement Tick-Borne Encephalitis immunization history
+ */
+define "Tick-Borne Encephalitis immunization history":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement No-doses
+ */
+define "No-doses":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement Current Patient Age in Years
+ */
+define "Current Patient Age in Years":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement Country recognizes TBE as a priority
+ */
+define "Country recognizes TBE as a priority":
+	0 // TODO: Define this
+
 /*
- * Rule: Should vaccinate patient for Tick-Borne Encephalitis because no doses on 3 dose scheme
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because no doses on a 3 dose scheme
  * Annotations:
- * 	 - Provide Tick-Borne Encephalitis immunizations – using the "FSME-Immun and Encepur vaccine immunization – NO PREVIOUS" schedule (3 dose scheme)
- * 	 - Provide Tick-Borne Encephalitis immunizations – using the "TBE-Moscow and EnceVir vaccine immunization – NO PREVIOUS" schedule (3 dose scheme)
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "FSME-Immun vaccine immunization – NO PREVIOUS" schedule (3 dose scheme)
  * Outputs:
- * 	 - Immunize Patient for Tick-Borne Encephalitis  - No Doses
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - No Doses
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (((("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Current Patient Age in Years" >= 1)) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)) or ((("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Current Patient Age in Years" >= 3)) and ("Country recognizes TBE as a priority and is administering TBE-Moscow and EnceVir" = true)))
+ *	 ((("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Current Patient Age in Years" >= 1)) and ("Country recognizes TBE as a priority" = true))
  */
-define "Should vaccinate patient for Tick-Borne Encephalitis because no doses on 3 dose scheme":
-	IMMZCom."No TBE Doses Administered to Patient"
-	and (
-		(
-			IMMZCom."Current Patient Age In Years" >= 1
-			and IMMZCon."Country recognizes TBE as a priority and is administering FSME-Immun and Encepur"
-		) or (
-			IMMZCom."Current Patient Age In Years" >= 3
-			and IMMZCon."Country recognizes TBE as a priority and is administering TBE-Moscow and EnceVir"	
-		)
-	)
+define "Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because no doses on a 3 dose scheme":
+	((("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Current Patient Age in Years" >= 1)) and ("Country recognizes TBE as a priority" = true))
 
 /* 
  * @dataElement 1 dose
@@ -47,9 +61,9 @@ define "1 dose":
 	0 // TODO: Define this
 
 /* 
- * @dataElement Date last FSME-Immun and Encepur dose given
+ * @dataElement Date last TBE dose given
  */
-define "Date last FSME-Immun and Encepur dose given":
+define "Date last TBE dose given":
 	0 // TODO: Define this
 
 /* 
@@ -59,50 +73,35 @@ define "1 month":
 	0 // TODO: Define this
 
 /* 
- * @dataElement 3 months
+ * @dataElement Type of last TBE dose
  */
-define "3 months":
+define "Type of last TBE dose":
 	0 // TODO: Define this
 
 /* 
- * @dataElement 1 weeks
+ * @dataElement FSME-Immun
  */
-define "1 weeks":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 2 weeks
- */
-define "2 weeks":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Rapid protection is required
- */
-define "Rapid protection is required":
+define "FSME-Immun":
 	0 // TODO: Define this
 
 /*
- * Rule: Should vaccinate patient for Tick-Borne Encephalitis because 1st dose given 1 to 3 months ago on 3 dose scheme
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because 1st dose given 1-3 months ago on a 3 dose scheme
  * Annotations:
- * 	 - Provide Tick-Borne Encephalitis immunizations – using the "FSME-Immun and Encepur vaccine immunization – 1 PREVIOUS" schedule (3 dose scheme)
- * 	 - 
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "FSME-Immun vaccine immunization – 1 PREVIOUS" schedule (3 dose scheme)
  * Outputs:
- * 	 - Immunize Patient for Tick-Borne Encephalitis  - 1st Dose given 1 to 3 months ago
- * 	 - 
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 1st Dose given 1-3 months ago
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
- * 	- 
  * Logic:
- *	 ((((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last FSME-Immun and Encepur dose given" >= "1 month")) and ("Date last FSME-Immun and Encepur dose given" <= "3 months")) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)) or ((((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last FSME-Immun and Encepur dose given" >= "1 weeks")) and ("Date last FSME-Immun and Encepur dose given" <= "2 weeks")) and ("Rapid protection is required" = true)) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)))
+ *	 ((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last TBE dose given" >= "1 month")) and ("Type of last TBE dose" = "FSME-Immun"))
  */
-define "Should vaccinate patient for Tick-Borne Encephalitis because 1st dose given 1 to 3 months ago on 3 dose scheme":
-	(((((IMMZCom."Number of TBE Doses Administered to Patient" = 1) and ("Date last FSME-Immun and Encepur dose given" >= "1 month")) and ("Date last FSME-Immun and Encepur dose given" <= "3 months")) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)) or ((((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last FSME-Immun and Encepur dose given" >= "1 weeks")) and ("Date last FSME-Immun and Encepur dose given" <= "2 weeks")) and ("Rapid protection is required" = true)) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)))
+define "Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because 1st dose given 1-3 months ago on a 3 dose scheme":
+	((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last TBE dose given" >= "1 month")) and ("Type of last TBE dose" = "FSME-Immun"))
 
 /* 
- * @dataElement 2 doses 
+ * @dataElement 2 doses
  */
-define "2 doses ":
+define "2 doses":
 	0 // TODO: Define this
 
 /* 
@@ -111,30 +110,24 @@ define "2 doses ":
 define "5 months":
 	0 // TODO: Define this
 
-/* 
- * @dataElement 12 months
- */
-define "12 months":
-	0 // TODO: Define this
-
 /*
- * Rule: Should vaccinate patient for Tick-Borne Encephalitis because 2nd doses given 5 months to 12 months ago on 3 dose scheme
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because 2nd doses given 5 months to 12 months ago on a 3 dose scheme
  * Annotations:
- * 	 - Provide Tick-Borne Encephalitis immunizations – using the "FSME-Immun and Encepur vaccine immunization – 2 PREVIOUS" schedule (3 dose scheme)
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "FSME-Immun vaccine immunization – 2 PREVIOUS" schedule (3 dose scheme)
  * Outputs:
- * 	 - Immunize Patient for Tick-Borne Encephalitis  - 2nd Dose given between 5 months to 12 months ago
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 2nd Dose given between 5 months to 12 months ago
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (((("Tick-Borne Encephalitis immunization history" = "2 doses ") and ("Date last FSME-Immun and Encepur dose given" >= "5 months")) and ("Date last FSME-Immun and Encepur dose given" <= "12 months")) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true))
+ *	 ((("Tick-Borne Encephalitis immunization history" = "2 doses") and ("Date last TBE dose given" >= "5 months")) and ("Type of last TBE dose" = "FSME-Immun"))
  */
-define "Should vaccinate patient for Tick-Borne Encephalitis because 2nd doses given 5 months to 12 months ago on 3 dose scheme":
-	(((("Tick-Borne Encephalitis immunization history" = "2 doses ") and ("Date last FSME-Immun and Encepur dose given" >= "5 months")) and ("Date last FSME-Immun and Encepur dose given" <= "12 months")) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true))
+define "Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because 2nd doses given 5 months to 12 months ago on a 3 dose scheme":
+	((("Tick-Borne Encephalitis immunization history" = "2 doses") and ("Date last TBE dose given" >= "5 months")) and ("Type of last TBE dose" = "FSME-Immun"))
 
 /* 
- * @dataElement Number of Tick-Borne Encephalitis doses administered
+ * @dataElement Patient has completed TBE primary series
  */
-define "Number of Tick-Borne Encephalitis doses administered":
+define "Patient has completed TBE primary series":
 	0 // TODO: Define this
 
 /* 
@@ -143,64 +136,209 @@ define "Number of Tick-Borne Encephalitis doses administered":
 define "3 years":
 	0 // TODO: Define this
 
-/* 
- * @dataElement Date last TBE-Moscow and EnceVir dose given
- */
-define "Date last TBE-Moscow and EnceVir dose given":
-	0 // TODO: Define this
-
 /*
- * Rule: Should vaccinate patient for Tick-Borne Encephalitis Booster because last dose given 3 years ago
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis Booster using FSME-Immun because last dose given 3 years ago
  * Annotations:
- * 	 - Provide Tick-Borne Encephalitis immunizations – using the "FSME-Immun and Encepur vaccine immunization – BOOSTER" schedule (1 every 3 years)
- * 	 - Provide Tick-Borne Encephalitis immunizations – using the "TBE-Moscow and EnceVir vaccine immunization – BOOSTER" schedule (1 every 3 years)
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "FSME-Immun vaccine immunization – BOOSTER" schedule (1 every 3-5 years)
  * Outputs:
- * 	 - Immunize Patient for Tick-Borne Encephalitis  - Last dose given 3 years ago
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - Last dose given 3 years ago
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (((("Number of Tick-Borne Encephalitis doses administered" >= 3) and ("Date last FSME-Immun and Encepur dose given" >= "3 years")) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)) or ((("Number of Tick-Borne Encephalitis doses administered" >= 3) and ("Date last TBE-Moscow and EnceVir dose given" >= "3 years")) and ("Country recognizes TBE as a priority and is administering TBE-Moscow and EnceVir" = true)))
+ *	 (((("Patient has completed TBE primary series" = true) and ("Date last TBE dose given" >= "3 years")) and ("Type of last TBE dose" = "FSME-Immun")) and ("Country recognizes TBE as a priority" = true))
  */
-define "Should vaccinate patient for Tick-Borne Encephalitis Booster because last dose given 3 years ago":
-	(((("Number of Tick-Borne Encephalitis doses administered" >= 3) and ("Date last FSME-Immun and Encepur dose given" >= "3 years")) and ("Country recognizes TBE as a priority and is administering FSME-Immun and Encepur" = true)) or ((("Number of Tick-Borne Encephalitis doses administered" >= 3) and ("Date last TBE-Moscow and EnceVir dose given" >= "3 years")) and ("Country recognizes TBE as a priority and is administering TBE-Moscow and EnceVir" = true)))
-
-/* 
- * @dataElement 7 months
- */
-define "7 months":
-	0 // TODO: Define this
+define "Should vaccinate patient for Tick-Borne Encephalitis Booster using FSME-Immun because last dose given 3 years ago":
+	(((("Patient has completed TBE primary series" = true) and ("Date last TBE dose given" >= "3 years")) and ("Type of last TBE dose" = "FSME-Immun")) and ("Country recognizes TBE as a priority" = true))
 
 /*
- * Rule: Should vaccinate patient for Tick-Borne Encephalitis because 1st dose given 1 month to 7 months ago on 3 dose scheme
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using Encepur because no doses on a 3 dose scheme
  * Annotations:
- * 	 - Provide Tick-Borne Encephalitis immunizations – using the "TBE-Moscow and EnceVir  vaccine immunization – 1 PREVIOUS" schedule (3 dose scheme)
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "Encepur vaccine immunization – NO PREVIOUS" schedule (3 dose scheme)
  * Outputs:
- * 	 - Immunize Patient for Tick-Borne Encephalitis  - 1st Dose given 1 month to 7 months ago
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - No Doses
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last TBE-Moscow and EnceVir dose given" >= "1 month")) and ("Date last TBE-Moscow and EnceVir dose given" <= "7 months")) and ("Country recognizes TBE as a priority and is administering TBE-Moscow and EnceVir" = true))
+ *	 ((("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Current Patient Age in Years" >= 1)) and ("Country recognizes TBE as a priority" = true))
  */
-define "Should vaccinate patient for Tick-Borne Encephalitis because 1st dose given 1 month to 7 months ago on 3 dose scheme":
-	(((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last TBE-Moscow and EnceVir dose given" >= "1 month")) and ("Date last TBE-Moscow and EnceVir dose given" <= "7 months")) and ("Country recognizes TBE as a priority and is administering TBE-Moscow and EnceVir" = true))
+define "Should vaccinate patient for Tick-Borne Encephalitis using Encepur because no doses on a 3 dose scheme":
+	((("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Current Patient Age in Years" >= 1)) and ("Country recognizes TBE as a priority" = true))
 
 /* 
- * @dataElement 2 doses
+ * @dataElement Encepur
  */
-define "2 doses":
+define "Encepur":
 	0 // TODO: Define this
 
 /*
- * Rule: Should vaccinate patient for Tick-Borne Encephalitis because 2nd dose given 12 months ago on 3 dose scheme
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using Encepur because 1st dose given 1-3 months ago on a 3 dose scheme
  * Annotations:
- * 	 - Provide Tick-Borne Encephalitis immunizations – using the "TBE-Moscow and EnceVir vaccine immunization – 2 PREVIOUS" schedule (3 dose scheme)
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "Encepur vaccine immunization – 1 PREVIOUS" schedule (3 dose scheme)
  * Outputs:
- * 	 - Immunize Patient for Tick-Borne Encephalitis  - 2nd Dose given 12 months ago
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 1st Dose given 1-3 months ago
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("Tick-Borne Encephalitis immunization history" = "2 doses") and ("Date last TBE-Moscow and EnceVir dose given" >= "12 months")) and ("Country recognizes TBE as a priority and is administering TBE-Moscow and EnceVir" = true))
+ *	 ((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last TBE dose given" >= "1 month")) and ("Type of last TBE dose" = "Encepur"))
  */
-define "Should vaccinate patient for Tick-Borne Encephalitis because 2nd dose given 12 months ago on 3 dose scheme":
-	((("Tick-Borne Encephalitis immunization history" = "2 doses") and ("Date last TBE-Moscow and EnceVir dose given" >= "12 months")) and ("Country recognizes TBE as a priority and is administering TBE-Moscow and EnceVir" = true))
+define "Should vaccinate patient for Tick-Borne Encephalitis using Encepur because 1st dose given 1-3 months ago on a 3 dose scheme":
+	((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last TBE dose given" >= "1 month")) and ("Type of last TBE dose" = "Encepur"))
+
+/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using Encepur because 2nd doses given 5 months to 12 months ago on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "Encepur vaccine immunization – 2 PREVIOUS" schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 2nd Dose given between 5 months to 12 months ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((("Tick-Borne Encephalitis immunization history" = "2 doses") and ("Date last TBE dose given" >= "5 months")) and ("Type of last TBE dose" = "Encepur"))
+ */
+define "Should vaccinate patient for Tick-Borne Encephalitis using Encepur because 2nd doses given 5 months to 12 months ago on a 3 dose scheme":
+	((("Tick-Borne Encephalitis immunization history" = "2 doses") and ("Date last TBE dose given" >= "5 months")) and ("Type of last TBE dose" = "Encepur"))
+
+/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis Booster using Encepur because last dose given 3 years ago
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "Encepur vaccine immunization – BOOSTER" schedule (1 every 3-5 years)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - Last dose given 3 years ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((("Patient has completed TBE primary series" = true) and ("Date last TBE dose given" >= "3 years")) and ("Type of last TBE dose" = "Encepur")) and ("Country recognizes TBE as a priority" = true))
+ */
+define "Should vaccinate patient for Tick-Borne Encephalitis Booster using Encepur because last dose given 3 years ago":
+	(((("Patient has completed TBE primary series" = true) and ("Date last TBE dose given" >= "3 years")) and ("Type of last TBE dose" = "Encepur")) and ("Country recognizes TBE as a priority" = true))
+
+/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because no doses on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "TBE-Moscow vaccine immunization – NO PREVIOUS" schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Current Patient Age in Years" >= 3)) and ("Country recognizes TBE as a priority" = true))
+ */
+define "Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because no doses on a 3 dose scheme":
+	((("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Current Patient Age in Years" >= 3)) and ("Country recognizes TBE as a priority" = true))
+
+/* 
+ * @dataElement TBE-Moscow
+ */
+define "TBE-Moscow":
+	0 // TODO: Define this
+
+/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because 1st dose given 1 month to 7 months ago on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "TBE-Moscow vaccine immunization – 1 PREVIOUS" schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 1st Dose given 1 month ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last TBE dose given" >= "1 month")) and ("Type of last TBE dose" = "TBE-Moscow"))
+ */
+define "Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because 1st dose given 1 month to 7 months ago on a 3 dose scheme":
+	((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last TBE dose given" >= "1 month")) and ("Type of last TBE dose" = "TBE-Moscow"))
+
+/* 
+ * @dataElement 12 months
+ */
+define "12 months":
+	0 // TODO: Define this
+
+/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because 2nd dose given 12 months ago on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "TBE-Moscow vaccine immunization – 2 PREVIOUS" schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 2nd Dose given 12 months ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((("Tick-Borne Encephalitis immunization history" = "2 doses") and ("Date last TBE dose given" >= "12 months")) and ("Type of last TBE dose" = "TBE-Moscow"))
+ */
+define "Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because 2nd dose given 12 months ago on a 3 dose scheme":
+	((("Tick-Borne Encephalitis immunization history" = "2 doses") and ("Date last TBE dose given" >= "12 months")) and ("Type of last TBE dose" = "TBE-Moscow"))
+
+/*
+ * Rule: Should vaccinate patient for TBE-Moscow Booster because last dose given 3 years ago
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "TBE-Moscow vaccine immunization – BOOSTER" schedule (1 every 3 years)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - Last TBE-Moscow dose given 3 years ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((("Patient has completed TBE primary series" = true) and ("Date last TBE dose given" >= "3 years")) and ("Type of last TBE dose" = "TBE-Moscow")) and ("Country recognizes TBE as a priority" = true))
+ */
+define "Should vaccinate patient for TBE-Moscow Booster because last dose given 3 years ago":
+	(((("Patient has completed TBE primary series" = true) and ("Date last TBE dose given" >= "3 years")) and ("Type of last TBE dose" = "TBE-Moscow")) and ("Country recognizes TBE as a priority" = true))
+
+/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because no doses on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "EnceVir vaccine immunization – NO PREVIOUS" schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Current Patient Age in Years" >= 3)) and ("Country recognizes TBE as a priority" = true))
+ */
+define "Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because no doses on a 3 dose scheme":
+	((("Tick-Borne Encephalitis immunization history" = "No-doses") and ("Current Patient Age in Years" >= 3)) and ("Country recognizes TBE as a priority" = true))
+
+/* 
+ * @dataElement EnceVir
+ */
+define "EnceVir":
+	0 // TODO: Define this
+
+/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because 1st dose given 1 month to 7 months ago on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "EnceVir vaccine immunization – 1 PREVIOUS" schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 1st Dose given 1 month ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last TBE dose given" >= "1 month")) and ("Type of last TBE dose" = "EnceVir"))
+ */
+define "Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because 1st dose given 1 month to 7 months ago on a 3 dose scheme":
+	((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last TBE dose given" >= "1 month")) and ("Type of last TBE dose" = "EnceVir"))
+
+/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because 2nd dose given 12 months ago on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "EnceVir vaccine immunization – 2 PREVIOUS" schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 2nd Dose given 12 months ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((("Tick-Borne Encephalitis immunization history" = "2 doses") and ("Date last TBE dose given" >= "12 months")) and ("Type of last TBE dose" = "EnceVir"))
+ */
+define "Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because 2nd dose given 12 months ago on a 3 dose scheme":
+	((("Tick-Borne Encephalitis immunization history" = "2 doses") and ("Date last TBE dose given" >= "12 months")) and ("Type of last TBE dose" = "EnceVir"))
+
+/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis Booster using EnceVir because last dose given 3 years ago
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the "EnceVir vaccine immunization – BOOSTER" schedule (1 every 3 years)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - Last dose given 3 years ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((("Patient has completed TBE primary series" = true) and ("Date last TBE dose given" >= "3 years")) and ("Type of last TBE dose" = "EnceVir")) and ("Country recognizes TBE as a priority" = true))
+ */
+define "Should vaccinate patient for Tick-Borne Encephalitis Booster using EnceVir because last dose given 3 years ago":
+	(((("Patient has completed TBE primary series" = true) and ("Date last TBE dose given" >= "3 years")) and ("Type of last TBE dose" = "EnceVir")) and ("Country recognizes TBE as a priority" = true))
 

@@ -12,6 +12,7 @@ include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
 context Patient
 
@@ -28,111 +29,68 @@ define "No-doses":
 	0 // TODO: Define this
 
 /* 
- * @dataElement Exposed to RABV
+ * @dataElement Individual is at high risk of RABV exposure
  */
-define "Exposed to RABV":
-	true // TODO: Define this
-
-/* 
- * @dataElement Category II exposure
- */
-define "Category II exposure":
-	true // TODO: Define this
-
-/*
- * Rule: Should vaccinate patient with PEP Vaccine on 1 dose scheme
- * Annotations:
- * 	 - Provide Rabies immunizations – using the "PEP immunization – NO PREVIOUS" schedule (1 dose scheme)
- * Outputs:
- * 	 - Immunize Patient for Rabies - No Doses
- * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
- * Logic:
- *	 ((("Rabies vaccine immunization history" = "No-doses") and ("Exposed to RABV" = true)) and ("Category II exposure" = true))
- */
-define "Should vaccinate patient with PEP Vaccine on 1 dose scheme":
-	((("Rabies vaccine immunization history" = "No-doses") and ("Exposed to RABV" = true)) and ("Category II exposure" = true))
-
-/*
- * Rule: Should vaccinate patient with PEP Vaccine and RIG if indicated on 1 dose scheme
- * Annotations:
- * 	 - Provide Rabies immunizations – using the "PEP immunization – NO PREVIOUS" schedule (1 dose scheme)
- * Outputs:
- * 	 - Immunize Patient for Rabies - No Doses
- * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
- * Logic:
- *	 ((("Rabies vaccine immunization history" = "No-doses") and ("Exposed to RABV" = true)) and ("Category II exposure" = true))
- */
-define "Should vaccinate patient with PEP Vaccine and RIG if indicated on 1 dose scheme":
-	((("Rabies vaccine immunization history" = "No-doses") and ("Exposed to RABV" = true)) and ("Category II exposure" = true))
-
-/* 
- * @dataElement High risk of RABV exposure
- */
-define "High risk of RABV exposure":
-	true // TODO: Define this
-
-/*
- * Rule: Should vaccinate patient with PrEP Vaccine - ID route
- * Annotations:
- * 	 - Provide Rabies immunizations – using the "PrEP- ID route immunization – NO PREVIOUS" schedule : 
-2-site ID vaccine administered on days 0 and 7
- * Outputs:
- * 	 - Immunize Patient for Rabies - No Doses
- * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
- * Logic:
- *	 (("Rabies vaccine immunization history" = "No-doses") and ("High risk of RABV exposure" = true))
- */
-define "Should vaccinate patient with PrEP Vaccine - ID route":
-	(("Rabies vaccine immunization history" = "No-doses") and ("High risk of RABV exposure" = true))
-
-/*
- * Rule: Should vaccinate patient with PrEP Vaccine - IM route
- * Annotations:
- * 	 - Provide Rabies immunizations – using the "PrEP- IM route immunization – NO PREVIOUS" schedule 
- 1-site IM vaccine administration on days 0 and 7
- * Outputs:
- * 	 - Immunize Patient for Rabies - No Doses
- * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
- * Logic:
- *	 (("Rabies vaccine immunization history" = "No-doses") and ("High risk of RABV exposure" = true))
- */
-define "Should vaccinate patient with PrEP Vaccine - IM route":
-	(("Rabies vaccine immunization history" = "No-doses") and ("High risk of RABV exposure" = true))
-
-/* 
- * @dataElement vaccinated
- */
-define "vaccinated":
+define "Individual is at high risk of RABV exposure":
 	0 // TODO: Define this
 
 /* 
- * @dataElement At frequent risk of exposure 
+ * @dataElement 1 dose
  */
-define "At frequent risk of exposure ":
-	true // TODO: Define this
+define "1 dose":
+	0 // TODO: Define this
 
 /* 
- * @dataElement VNA levels fall to <0.5 IU/mL
+ * @dataElement Date last Rabies dose given >= 7 days
  */
-define "VNA levels fall to <0.5 IU/mL":
-	true // TODO: Define this
+define "Date last Rabies dose given >= 7 days":
+	0 // TODO: Define this
 
 /*
- * Rule: Should vaccinate patient with PrEP Vaccine - IM OR ID route
+ * Rule: Should vaccinate patient with Rabies vaccine (PrEP strategy) on 2 dose scheme
  * Annotations:
- * 	 - Provide Rabies immunizations – using the "PrEP- IM or ID route immunization – VACCINATED" schedule 
-1-site ID or a 1-site IM PrEP booster vaccination
+ * 	 - Provide Rabies immunizations – using the "PrEP vaccination strategy – NO PREVIOUS" schedule (2 dose scheme)
+ * 	 - Provide Rabies immunizations – using the "PrEP vaccination strategy – 1 PREVIOUS" schedule (2 dose scheme)
  * Outputs:
- * 	 - Immunize Patient for Rabies - VNA levels  <0.5 IU/mL
+ * 	 - Immunize Patient for Rabies (PrEP strategy) - No Doses
+ * 	 - Immunize Patient for Rabies (PrEP strategy) - 1 Dose
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("Rabies vaccine immunization history" = "vaccinated") and ("At frequent risk of exposure " = true)) and ("VNA levels fall to <0.5 IU/mL" = true))
+ *	 ((("Rabies vaccine immunization history" = "No-doses") and ("Individual is at high risk of RABV exposure" = true)) or (("Rabies vaccine immunization history" = "1 dose") and ("Date last Rabies dose given" >= "7 days" = true)))
  */
-define "Should vaccinate patient with PrEP Vaccine - IM OR ID route":
-	((("Rabies vaccine immunization history" = "vaccinated") and ("At frequent risk of exposure " = true)) and ("VNA levels fall to <0.5 IU/mL" = true))
+define "Should vaccinate patient with Rabies vaccine (PrEP strategy) on 2 dose scheme":
+	((("Rabies vaccine immunization history" = "No-doses") and ("Individual is at high risk of RABV exposure" = true)) or (("Rabies vaccine immunization history" = "1 dose") and ("Date last Rabies dose given" >= "7 days" = true)))
+
+/* 
+ * @dataElement Individual has continual or frequent risk of exposure (i.e. occupational)
+ */
+define "Individual has continual or frequent risk of exposure (i.e. occupational)":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement VNA levels
+ */
+define "VNA levels":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement 0.5 IU/mL
+ */
+define "0.5 IU/mL":
+	0 // TODO: Define this
+
+/*
+ * Rule: Should vaccinate patient with Rabies vaccine Booster (PrEP strategy)
+ * Annotations:
+ * 	 - Provide Rabies immunizations – using the "PrEP vaccination strategy – BOOSTER" schedule (1 dose booster)
+ * Outputs:
+ * 	 - Immunize Patient for Rabies vaccine Booster (PrEP strategy)
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (("Individual has continual or frequent risk of exposure (i.e. occupational)" = true) and ("VNA levels" < "0.5 IU/mL"))
+ */
+define "Should vaccinate patient with Rabies vaccine Booster (PrEP strategy)":
+	(("Individual has continual or frequent risk of exposure (i.e. occupational)" = true) and ("VNA levels" < "0.5 IU/mL"))
 

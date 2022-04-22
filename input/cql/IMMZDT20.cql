@@ -1,7 +1,7 @@
 /*
  * Library: IMMZDT20 (IMMZ.DT.20.Mumps)
  * Rule: If child or person has not been vaccinated against Mumps, give Mumps vaccine 
- * Trigger: Patient has never had the Mumps vaccination, or missing doses in the vaccination schedule
+ * Trigger: Patient has never had the Mumps vaccination
  */
 library IMMZDT20
 // Start Skeleton CQL
@@ -12,13 +12,14 @@ include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
 context Patient
 
 /* 
- * @dataElement MUMPS vaccine history
+ * @dataElement MUMPS vaccine immunization history
  */
-define "MUMPS vaccine history":
+define "MUMPS vaccine immunization history":
 	0 // TODO: Define this
 
 /* 
@@ -28,21 +29,15 @@ define "No-doses":
 	0 // TODO: Define this
 
 /* 
- * @dataElement Age
+ * @dataElement Current Patient Age in Months
  */
-define "Age":
+define "Current Patient Age in Months":
 	0 // TODO: Define this
 
 /* 
- * @dataElement 19 months
+ * @dataElement Country recognizes MUMPS reduction as a public health priority
  */
-define "19 months":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 11 months
- */
-define "11 months":
+define "Country recognizes MUMPS reduction as a public health priority":
 	0 // TODO: Define this
 
 /*
@@ -54,22 +49,40 @@ define "11 months":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("MUMPS vaccine history" = "No-doses") and ("Age" < "19 months")) and ("Age" > "11 months"))
+ *	 ((("MUMPS vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 12)) and ("Country recognizes MUMPS reduction as a public health priority" = true))
  */
 define "Should vaccinate Patient for MUMPS because no doses on 2 dose scheme":
-	((("MUMPS vaccine history" = "No-doses") and ("Age" < "19 months")) and ("Age" > "11 months"))
+	((("MUMPS vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 12)) and ("Country recognizes MUMPS reduction as a public health priority" = true))
+
+/* 
+ * @dataElement 1 dose
+ */
+define "1 dose":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement Date last MUMPS dose given
+ */
+define "Date last MUMPS dose given":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement 1 months
+ */
+define "1 months":
+	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate Patient for MUMPS a second dose on a 2 dose scheme
  * Annotations:
- * 	 - Provide MUMPS immunizations - using the "MUMPS vaccine immunization - ONE PREVIOUS" schedule (2 dose scheme)
+ * 	 - Provide MUMPS immunizations - using the "MUMPS vaccine immunization - 1 PREVIOUS" schedule (2 dose scheme)
  * Outputs:
- * 	 - Immunize Patient for MUMPS - One Dose
+ * 	 - Immunize Patient for MUMPS - 1 Dose given a month ago
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (("Age" < "19 months") and ("Age" > "11 months"))
+ *	 (("MUMPS vaccine immunization history" = "1 dose") and ("Date last MUMPS dose given" >= "1 months"))
  */
 define "Should vaccinate Patient for MUMPS a second dose on a 2 dose scheme":
-	(("Age" < "19 months") and ("Age" > "11 months"))
+	(("MUMPS vaccine immunization history" = "1 dose") and ("Date last MUMPS dose given" >= "1 months"))
 

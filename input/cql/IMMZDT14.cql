@@ -12,6 +12,7 @@ include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
 context Patient
 
@@ -28,19 +29,51 @@ define "No-doses":
 	0 // TODO: Define this
 
 /* 
- * @dataElement Age
+ * @dataElement Current Patient Age in Months
  */
-define "Age":
+define "Current Patient Age in Months":
 	0 // TODO: Define this
 
 /* 
- * @dataElement 2 years
+ * @dataElement Current Patient Age in Years
  */
-define "2 years":
+define "Current Patient Age in Years":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement Region recommends Typhoid vaccination
+ */
+define "Region recommends Typhoid vaccination":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement Country is administering the TCV vaccine
+ */
+define "Country is administering the TCV vaccine":
 	0 // TODO: Define this
 
 /*
- * Rule: Should vaccinate patient with ViPS vaccine
+ * Rule: Should vaccinate patient with TCV vaccine on a 1 dose scheme
+ * Annotations:
+ * 	 - Provide Typhoid immunizations – using the "TCV vaccine immunization – NO PREVIOUS" schedule (1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Typhoid -  No doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((("Typhoid vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 6)) and ("Current Patient Age in Years" <= 45)) and ("Region recommends Typhoid vaccination" = true)) and ("Country is administering the TCV vaccine" = true))
+ */
+define "Should vaccinate patient with TCV vaccine on a 1 dose scheme":
+	((((("Typhoid vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 6)) and ("Current Patient Age in Years" <= 45)) and ("Region recommends Typhoid vaccination" = true)) and ("Country is administering the TCV vaccine" = true))
+
+/* 
+ * @dataElement Country is administering the ViPS vaccine
+ */
+define "Country is administering the ViPS vaccine":
+	0 // TODO: Define this
+
+/*
+ * Rule: Should vaccinate patient with ViPS vaccine on a 1 dose scheme
  * Annotations:
  * 	 - Provide Typhoid immunizations – using the "ViPS vaccine immunization – NO PREVIOUS" schedule (1 dose scheme)
  * Outputs:
@@ -48,27 +81,59 @@ define "2 years":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (("Typhoid vaccine immunization history" = "No-doses") and ("Age" >= "2 years"))
+ *	 (((("Typhoid vaccine immunization history" = "No-doses") and ("Current Patient Age in Years" >= 2)) and ("Region recommends Typhoid vaccination" = true)) and ("Country is administering the ViPS vaccine" = true))
  */
-define "Should vaccinate patient with ViPS vaccine":
-	(("Typhoid vaccine immunization history" = "No-doses") and ("Age" >= "2 years"))
+define "Should vaccinate patient with ViPS vaccine on a 1 dose scheme":
+	(((("Typhoid vaccine immunization history" = "No-doses") and ("Current Patient Age in Years" >= 2)) and ("Region recommends Typhoid vaccination" = true)) and ("Country is administering the ViPS vaccine" = true))
 
 /* 
- * @dataElement 6 years
+ * @dataElement Patient has completed Typhoid primary series
  */
-define "6 years":
+define "Patient has completed Typhoid primary series":
 	0 // TODO: Define this
 
 /* 
- * @dataElement Pregnant
+ * @dataElement Date last Typhoid dose given
  */
-define "Pregnant":
+define "Date last Typhoid dose given":
 	0 // TODO: Define this
 
 /* 
- * @dataElement False
+ * @dataElement 3 years
  */
-define "False":
+define "3 years":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement Type of last Typhoid dose
+ */
+define "Type of last Typhoid dose":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement ViPS
+ */
+define "ViPS":
+	0 // TODO: Define this
+
+/*
+ * Rule: Should Re-vaccinate patient with ViPS vaccine on a 1 dose scheme
+ * Annotations:
+ * 	 - Provide Typhoid revaccination – using the "ViPS vaccine – Revaccination every 3 years" schedule (1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Typhoid - Last dose given 3 years ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((("Patient has completed Typhoid primary series" = true) and ("Date last Typhoid dose given" >= "3 years")) and ("Type of last Typhoid dose" = "ViPS")) and ("Region recommends Typhoid vaccination" = true))
+ */
+define "Should Re-vaccinate patient with ViPS vaccine on a 1 dose scheme":
+	(((("Patient has completed Typhoid primary series" = true) and ("Date last Typhoid dose given" >= "3 years")) and ("Type of last Typhoid dose" = "ViPS")) and ("Region recommends Typhoid vaccination" = true))
+
+/* 
+ * @dataElement Pregnancy Status
+ */
+define "Pregnancy Status":
 	0 // TODO: Define this
 
 /* 
@@ -78,22 +143,31 @@ define "1 dose":
 	0 // TODO: Define this
 
 /* 
- * @dataElement Previous dose date
+ * @dataElement 1 day
  */
-define "Previous dose date":
+define "1 day":
 	0 // TODO: Define this
 
 /* 
- * @dataElement 2 days
+ * @dataElement 21 days
  */
-define "2 days":
+define "21 days":
 	0 // TODO: Define this
 
-define "2 doses":
-	0
+/* 
+ * @dataElement Ty21a
+ */
+define "Ty21a":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement Typhoid vaccine immunization history = 2 doses
+ */
+define "Typhoid vaccine immunization history = 2 doses":
+	0 // TODO: Define this
 
 /*
- * Rule: Should vaccinate patient with Ty21a vaccine
+ * Rule: Should vaccinate patient with Ty21a vaccine on a 3 dose scheme
  * Annotations:
  * 	 - Provide Typhoid immunizations – using the "Ty21a vaccine immunization – NO PREVIOUS" schedule (3 dose scheme)
  * 	 - Provide Typhoid immunizations – using the "Ty21a vaccine immunization – 1 PREVIOUS" schedule (3 dose scheme)
@@ -105,37 +179,42 @@ define "2 doses":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((((("Typhoid vaccine immunization history" = "No-doses") and ("Age" > "6 years")) and ("Pregnant" = "False")) or (((("Typhoid vaccine immunization history" = "1 dose") and ("Previous dose date" = "2 days")) and ("Age" > "6 years")) and ("Pregnant" = "False"))) or (((("Typhoid vaccine immunization history" = "2 doses" = true) and ("Previous dose date" = "2 days")) and ("Age" > "6 years")) and ("Pregnant" = "False")))
+ *	 ((((("Typhoid vaccine immunization history" = "No-doses") and ("Current Patient Age in Years" > 6)) and ("Pregnancy Status" = false)) or ((((("Typhoid vaccine immunization history" = "1 dose") and ("Date last Typhoid dose given" > "1 day")) and ("Date last Typhoid dose given" < "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false))) or ((((("Typhoid vaccine immunization history" = "2 doses" = true) and ("Date last Typhoid dose given" > "1 day")) and ("Date last Typhoid dose given" < "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false)))
  */
-define "Should vaccinate patient with Ty21a vaccine":
-	((((("Typhoid vaccine immunization history" = "No-doses") and ("Age" > "6 years")) and ("Pregnant" = "False")) or (((("Typhoid vaccine immunization history" = "1 dose") and ("Previous dose date" = "2 days")) and ("Age" > "6 years")) and ("Pregnant" = "False"))) or (((("Typhoid vaccine immunization history" = "2 doses" = true) and ("Previous dose date" = "2 days")) and ("Age" > "6 years")) and ("Pregnant" = "False")))
+define "Should vaccinate patient with Ty21a vaccine on a 3 dose scheme":
+	((((("Typhoid vaccine immunization history" = "No-doses") and ("Current Patient Age in Years" > 6)) and ("Pregnancy Status" = false)) or ((((("Typhoid vaccine immunization history" = "1 dose") and ("Date last Typhoid dose given" > "1 day")) and ("Date last Typhoid dose given" < "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false))) or ((((("Typhoid vaccine immunization history" = "2 doses" = true) and ("Date last Typhoid dose given" > "1 day")) and ("Date last Typhoid dose given" < "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false)))
 
 /* 
- * @dataElement No doses
+ * @dataElement 2 doses
  */
-define "No doses":
-	0 // TODO: Define this
-
-define "6 months":
-	0
-
-/* 
- * @dataElement 45 years
- */
-define "45 years":
+define "2 doses":
 	0 // TODO: Define this
 
 /*
- * Rule: Should vaccinate patient with TCV vaccine
+ * Rule: Should vaccinate patient with Ty21a vaccine - dose 1 (restart due to interrupted series)
  * Annotations:
- * 	 - Provide Typhoid immunizations – using the "TCV vaccine immunization – NO PREVIOUS" schedule (1 dose scheme)
+ * 	 - Provide Typhoid immunizations – using the "Ty21a vaccine immunization – INTERRUPTED SERIES" schedule (3 dose scheme)
  * Outputs:
- * 	 - Immunize Patient for Typhoid -  No doses
+ * 	 - Immunize Patient for Typhoid - Interrupted series
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("Typhoid vaccine immunization history" = "No doses") and ("Age" >= "6 months" = true)) and ("Age" <= "45 years"))
+ *	 ((((("Typhoid vaccine immunization history" = "1 dose") and ("Date last Typhoid dose given" >= "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false)) or (((("Typhoid vaccine immunization history" = "2 doses") and ("Date last Typhoid dose given" >= "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false)))
  */
-define "Should vaccinate patient with TCV vaccine":
-	((("Typhoid vaccine immunization history" = "No doses") and ("Age" >= "6 months" = true)) and ("Age" <= "45 years"))
+define "Should vaccinate patient with Ty21a vaccine - dose 1 (restart due to interrupted series)":
+	((((("Typhoid vaccine immunization history" = "1 dose") and ("Date last Typhoid dose given" >= "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false)) or (((("Typhoid vaccine immunization history" = "2 doses") and ("Date last Typhoid dose given" >= "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false)))
+
+/*
+ * Rule: Should Re-vaccinate patient with Ty21a vaccine on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Typhoid revaccination – using the "Ty21a vaccine – Revaccination every 3-7 years" schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Typhoid - Last dose given 3 years ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((("Patient has completed Typhoid primary series" = true) and ("Date last Typhoid dose given" >= "3 years")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Region recommends Typhoid vaccination" = true))
+ */
+define "Should Re-vaccinate patient with Ty21a vaccine on a 3 dose scheme":
+	(((("Patient has completed Typhoid primary series" = true) and ("Date last Typhoid dose given" >= "3 years")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Region recommends Typhoid vaccination" = true))
 
