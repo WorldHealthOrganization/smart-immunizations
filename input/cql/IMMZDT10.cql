@@ -12,10 +12,8 @@ include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
-
 // End Skeleton CQL
 context Patient
-
 /*
  * Rule: Should vaccinate Patient for HPV because no doses on a two-dose schedule
  * Annotations:
@@ -31,8 +29,6 @@ define "Should vaccinate Patient for HPV because no doses on a two-dose schedule
 	IMMZCom."No HPV Doses Administered to Patient"
 	and IMMZCom."Patient Biological Sex" = 'female'
 	and IMMZCom."Current Patient Age In Years" between 9 and 14
-
-
 
 /*
  * Rule: Should vaccinate Patient for HPV a second time on a two-dose schedule
@@ -138,7 +134,6 @@ define "Should vaccinate Patient for HPV because one dose on a three-dose schedu
 			and IMMZCom."Immunocompromised = True"
 		)
 	)
-	
 /*
  * Rule: Should vaccinate Patient for HPV because two doses on a three-dose schedule
  * Annotations:
