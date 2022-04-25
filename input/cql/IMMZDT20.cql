@@ -18,31 +18,31 @@ context Patient
  * @dataElement MUMPS vaccine history
  */
 define "MUMPS vaccine history":
-	0 // TODO: Define this
+	IMMZCom."Mumps Doses Administered to Patient"
 
 /* 
  * @dataElement No-doses
  */
 define "No-doses":
-	0 // TODO: Define this
+	not exists("MUMPS vaccine history")
 
 /* 
  * @dataElement Age
  */
 define "Age":
-	0 // TODO: Define this
+	IMMZCom."Current Patient Age In Months"
 
 /* 
  * @dataElement 19 months
  */
 define "19 months":
-	0 // TODO: Define this
+	19 months
 
 /* 
  * @dataElement 11 months
  */
 define "11 months":
-	0 // TODO: Define this
+	11 months
 
 /*
  * Rule: Should vaccinate Patient for MUMPS because no doses on 2 dose scheme

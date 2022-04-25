@@ -8,6 +8,8 @@ include FHIRHelpers version '4.0.1'
 include FHIRCommon called FC
 include IMMZConcepts called IMMZc
 
+code "Sickle cells [Presence] in Blood by Light microscopy": '801-1' from IMMZc."LOINC" display 'Sickle cells [Presence] in Blood'
+
 context Patient
 
 //TODO: Check patient is alive
@@ -368,6 +370,15 @@ define "Pneumococcal Doses Administered to Patient":
  */
 define "Number of Pneumococcal Doses Administered to Patient":
   Count("Pneumococcal Doses Administered to Patient")
+
+/**
+ * @dataElement Number of Pneumococcal Doses Administered to Patient
+ */
+define "Patient has sickle-cell disease":
+  [Observation: code = "Sickle cells [Presence] in Blood by Light microscopy"] 0
+    return 
+
+
 
 
 /**
