@@ -31,7 +31,7 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
+include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
@@ -44,26 +44,31 @@ context Patient
  * Numerator Computation: COUNT immunization HAVING reaction reported during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
+	exists(IMMZIndCom."Adverse Events During Measurement Period")
 
 /*
  * Denominator: The total number of doses administered to patients of the product.
  * Denominator Computation: COUNT number of doses administered during reporting period
  */
 define "denominator":
-	true // TODO: Write logic here 
+	exists(IMMZIndCom."Doses Administered to Patient During Measurement Period")
 
 /*
  * Disaggregator: Vaccine (BCG, OPV, etc.)
  */
 define "Vaccine Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."Adverse Events During Measurement Period" A
+	return A.vaccineCode
 
 /*
  * Disaggregator: Product/Manufacturer
  */
 define "Product/Manufacturer Stratifier":
-	true // todo: fill in logic
+	[Organization] O
+	with IMMZIndCom."Adverse Events During Measurement Period" A
+	such that O.id = Last(Split(A.manufacturer.reference, '/'))
+	return O.name
+	
 
 /*
  * Disaggregator: Severity (Severe, Non-Severe)

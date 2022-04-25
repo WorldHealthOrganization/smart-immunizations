@@ -7,8 +7,10 @@ library IMMZIndicatorCommon
 using FHIR version '4.0.1'
 
 include FHIRHelpers version '4.0.1'
+include FHIRCommon called FC
 include IMMZCommon called IMMZCom
 include WHOCommon called WCom
+include WHOConcepts called WC
 codesystem "ISO-8601-Derived Periods": 'http://ohie.org/CodeSystem/iso-8601-derived-periods'
 parameter "Measurement Period" Interval<Date> default Interval[@2020-01-01, @2020-12-31]
 
@@ -301,6 +303,23 @@ define "By Administrative Gender Stratifier":
  */
 define "By Geographic Region Stratifier":
     WCom.Official(Patient.address).state
+
+
+/** 
+ * @define Adverse events for immunizations which occurred during (or observed) during measurement period
+ */
+define "Adverse Events During Measurement Period":
+    IMMZCom."Doses Administered to Patient" I
+    with [Observation: code in WC."Adverse Events"] O
+    such that exists(I.reaction R where O.id = Last(Split(R.detail.reference, '/')))
+    and FC.ToInterval(O.effective) during "Measurement Period"
+
+/** 
+ * @define Doses which were 
+ */
+define "Doses Administered to Patient During Measurement Period":
+    IMMZCom."Doses Administered to Patient"  I
+    where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
 
 /** 
  * @function
