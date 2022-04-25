@@ -56,7 +56,7 @@ define "11 months":
  *	 ((("MUMPS vaccine history" = "No-doses") and ("Age" < "19 months")) and ("Age" > "11 months"))
  */
 define "Should vaccinate Patient for MUMPS because no doses on 2 dose scheme":
-	((("MUMPS vaccine history" = "No-doses") and ("Age" < "19 months")) and ("Age" > "11 months"))
+	((("No-doses") and ("Age" < "19 months")) and ("Age" > "11 months"))
 
 /*
  * Rule: Should vaccinate Patient for MUMPS a second dose on a 2 dose scheme

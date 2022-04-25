@@ -375,12 +375,7 @@ define "Number of Pneumococcal Doses Administered to Patient":
  * @dataElement Number of Pneumococcal Doses Administered to Patient
  */
 define "Patient has sickle-cell disease":
-  [Observation: code = "Sickle cells [Presence] in Blood by Light microscopy"] 0
-    return 
-
-
-
-
+  [Observation: code = "Sickle cells [Presence] in Blood by Light microscopy"]
 /**
  * @dataElement Rabies containing Doses Administered to Patient
  */
