@@ -16,6 +16,7 @@ include FHIRCommon called FC
 // End Skeleton CQL
 context Patient
 
+
 /*
  * Rule: Should vaccinate patient with a WC vaccines (Shanchol, Euvchol, and mORCVAX)
  * Annotations:
@@ -72,6 +73,7 @@ define "Should Re-vaccinate patient with a WC vaccines (Shanchol, Euvchol, and m
 	and IMMZCom."Date Last Cholera Dose Administered to Patient" more than 3 year before Today()
 	and IMMZCom."Type of Last Cholera Dose Administered to Patient" in IMMZc."WC Class Cholera Vaccine"
 	and IMMZConf."Region recommends Cholera vaccination" 
+
 
 /*
  * Rule: Should vaccinate patient with WC-rBS vaccine (Dukoral)
@@ -166,6 +168,7 @@ define "Should Re-vaccinate patient with WC-rBS vaccine (Dukoral) on a 3 dose sc
 	and IMMZCom."Date Last Cholera Dose Administered to Patient" more than 6 month before Today() 
 	and IMMZCom."Type of Last Cholera Dose Administered to Patient" in IMMZc."WC-rBS Class Cholera Vaccine"
 	and IMMZConf."Region recommends Cholera vaccination" = true
+
 
 /*
  * Rule: Should Re-vaccinate patient with WC-rBS vaccine (Dukoral) on a 2 dose scheme

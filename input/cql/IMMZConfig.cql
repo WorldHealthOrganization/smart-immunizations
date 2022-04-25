@@ -22,6 +22,16 @@ define "Country is following a 3 dose scheme for Pneumococcal": true
 define "In a setting with a high disease burden and mortality": true
 
 define "Region recommends Cholera vaccination": true
+define "Region recommends Typhoid vaccination": true
+define "Country is administering the TCV vaccine": true
+define "Country is administering ViPS vaccine": true
+define "In a setting where the risk of measles among infants < 9 months of age remains high": false
+define "Country currently has a measles outbreak": false
+define "Population is in conflict zones internally displaced populations and refugees": false
+define "In a setting where there is high transmission of Measles":false
+define "In a setting where there is low transmission of Measles":false
+
+define "Country recognizes TBE as a priority": true
 // TODO: 
 //define "bOPV and IPV Schedule":
 //	'combined'
