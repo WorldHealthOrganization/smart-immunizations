@@ -10,7 +10,6 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZConf
-include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
@@ -71,7 +70,7 @@ define "Patient has completed Typhoid primary series":
  * Outputs:
  * 	 - Immunize Patient for Typhoid - Last dose given 3 years ago
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 (((("Patient has completed Typhoid primary series" = true) and ("Date last Typhoid dose given" >= "3 years")) and ("Type of last Typhoid dose" = "ViPS")) and ("Region recommends Typhoid vaccination" = true))
  */
@@ -96,6 +95,13 @@ define "Should Re-vaccinate patient with ViPS vaccine on a 1 dose scheme":
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 ((((("Typhoid vaccine immunization history" = "No-doses") and ("Current Patient Age in Years" > 6)) and ("Pregnancy Status" = false)) or ((((("Typhoid vaccine immunization history" = "1 dose") and ("Date last Typhoid dose given" > "1 day")) and ("Date last Typhoid dose given" < "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false))) or ((((("Typhoid vaccine immunization history" = "2 doses" = true) and ("Date last Typhoid dose given" > "1 day")) and ("Date last Typhoid dose given" < "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false)))
+ * Assumption:
+ * 	The EIR implementation will correctly set the doseNumber on protocolApplied in order for this logic to work for example:
+ *		D1 -> Ty21A DoseNumber = 1
+ *		D20 -> Ty21A DoseNumber = 2
+ * 		D50 -> Ty21A DoseNumber = 1
+ *		D53 -> Ty21A DoseNumber = 2
+ *		D55 -> Ty21A DoseNumber = 3
  */
 define "Should vaccinate patient with Ty21a vaccine on a 3 dose scheme":
 	not(IMMZCom."Pregnant")
@@ -125,6 +131,13 @@ define "Should vaccinate patient with Ty21a vaccine on a 3 dose scheme":
  * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 ((((("Typhoid vaccine immunization history" = "1 dose") and ("Date last Typhoid dose given" >= "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false)) or (((("Typhoid vaccine immunization history" = "2 doses") and ("Date last Typhoid dose given" >= "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false)))
+ * Assumption:
+ * 	The EIR implementation will correctly set the doseNumber on protocolApplied in order for this logic to work for example:
+ *		D1 -> Ty21A DoseNumber = 1
+ *		D20 -> Ty21A DoseNumber = 2
+ * 		D50 -> Ty21A DoseNumber = 1
+ *		D53 -> Ty21A DoseNumber = 2
+ *		D55 -> Ty21A DoseNumber = 3
  */
 define "Should vaccinate patient with Ty21a vaccine - dose 1 (restart due to interrupted series)":
 	IMMZCom."Highest Sequence of Typhoid Doses Administered to Patient" between 1 and 2
