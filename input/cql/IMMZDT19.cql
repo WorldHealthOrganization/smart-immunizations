@@ -10,7 +10,6 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
 context Patient
@@ -19,7 +18,7 @@ context Patient
  * @dataElement Dengue vaccine immunization history
  */
 define "Dengue vaccine immunization history":
-	IMMZCom."Dengue Doses Administered"
+	IMMZCom."Dengue Doses Administered to Patient"
 
 /* 
  * @dataElement No-doses
@@ -63,7 +62,7 @@ define "1 dose":
  * @dataElement Last dose given
  */
 define "Last dose given":
-  date from (First(IMMZCom."Dengue Doses Administered").occurrence as FHIR.dateTime)
+  date from (First(IMMZCom."Dengue Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 /* 
  * @dataElement 6 months

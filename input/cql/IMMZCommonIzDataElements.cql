@@ -21,19 +21,11 @@ code "BCG": 'BCG' from "Vaccines Administered" display 'BCG'
 context Immunization
 
 // @dataElement: Geographic Region where the vaccination was provided
-define "Geographic Region": 
+define "Geographic Region of Vaccine Administration": 
     WCom.Official([Location] L 
         where L.id = Last(Split(Immunization.location.reference, '/'))
         return L.address).state
 
 // @dataElement: The vaccination dose sequence
-define "Dose Number": 
+define "Dose Number of Vaccine Administration": 
     IMMZCom.Only(Immunization.protocolApplied).doseNumber as FHIR.positiveInt
-
-//  @dataElement: Vaccine classification
-define "Vaccine Type":
-    // TODO: How to apply a case statement to an Immunization? This is my best shot
-    case 
-        when Immunization.vaccineCode in IMMZc."BCG Vaccine" then "BCG"
-        else null
-    end
