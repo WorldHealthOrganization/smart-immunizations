@@ -1,20 +1,19 @@
 /*
  * Library: IMMZ.IND.40
- * Immunization coverage for Rotavirus containing vaccines (Computed Denominator) 
- * Compares the administered doses of rotavirus containing vaccine with the number of registered children (under 2) expressed as a percentage
+ * Immunization coverage for Haemophilus containing vaccine (Computed Denominator) 
+ * Compares the administered doses of haemophilus containing vaccine with the registered number of surviving infants, expressed as a percentage .
  * 
- * Numerator: Number of administrations of vaccines containing a rotavirus component during reporting period. 
- * Numerator Computation: COUNT immunization events where administered product is a rotavirus vaccine (IMMZ.A1.DE16) during reporting period
- * Denominator: Number of non-deceased children under 2.
- * Denominator Computation: COUNT Patient WHERE age at reporting period < 2 yr. AND deceasedDate is not populated.
+ * Numerator: Number of administrations of vaccines containing an Haemophilus component during the reporting period. 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Haemophilus vaccine (IMMZ.A1.DE4) during reporting period.
+ * Denominator: Number of registered, surviving infants.
+ * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  * 
  * Disaggregation:
- *   - Dose Sequence (1, 2, 3)
- *   - Age Group (< 1 year or > 1 year)
+ *   - Age Group (<1 year or > 1 year)
  *   - Geographic Region
  *   - Gender
  * 
- * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - elements 4220, 4230)
+ * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - element 4180)
  */
 
 library IMMZIND40
@@ -27,37 +26,38 @@ include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
-parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
+parameter "Measurement Period" Interval<Date>
+
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccines containing a rotavirus component during reporting period.
- * Numerator Computation: COUNT immunization events where administered product is a rotavirus vaccine (IMMZ.A1.DE16) during reporting period
+ * Numerator: Number of administrations of vaccines containing an Haemophilus component during the reporting period.
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Haemophilus vaccine (IMMZ.A1.DE4) during reporting period.
  */
 define "numerator":
-	true // TODO: Write logic here
+	true // TODO: Write logic here 
+
 /*
- * Denominator: Number of non-deceased children under 2.
- * Denominator Computation: COUNT Patient WHERE age at reporting period < 2 yr. AND deceasedDate is not populated.
+ * Denominator: Number of registered, surviving infants.
+ * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  */
 define "denominator":
-	true // TODO: Write logic here
+	true // TODO: Write logic here 
+
 /*
- * Disaggregator: Dose Sequence (1, 2, 3)
+ * Disaggregator: Age Group (<1 year or > 1 year)
  */
-define "Dose Sequence  Stratifier":
+define "Age Group Stratifier":
 	true // todo: fill in logic
-/*
- * Disaggregator: Age Group (< 1 year or > 1 year)
- */
-define "Age Group  Stratifier":
-	true // todo: fill in logic
+
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	IMMZStratifiers."By Geographic Region Stratifier"
+	true // todo: fill in logic
+
 /*
  * Disaggregator: Gender
  */

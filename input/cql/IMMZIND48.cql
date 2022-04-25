@@ -1,19 +1,18 @@
 /*
  * Library: IMMZ.IND.48
- * Immunization coverage for Typhoid vaccines (Computed Denominator) 
- * Compares the administered doses of Typhoid vaccines with the number of immunization recommendations for typhoid vaccines expressed as a percentage.
+ * Immunization coverage for Japanese encephalitis vaccines (Computed Denominator) 
+ * Compares the administered doses of Japanese encephalitis vaccines with the number of immunization recommendations for Japanese encephalitis expressed as a percentage.
  * 
- * Numerator: Number of administrations of vaccines which contain a typhoid component during the reporting period. 
- * Numerator Computation: COUNT immunization events WHERE administered product is a Typhoid vaccine (IMMZ.A1.DE21) during reporting period.
- * Denominator: Number of immunization recommendations for typhoid vaccines dur during reporting period.
- * Denominator Computation: COUNT Immunization recommendation WHERE recommended product is typhoid vaccine (IMMZ.A1.DE21) during reporting period.
+ * Numerator: Number of administrations of vaccines which contain Japanese encephalitis component during the reporting period. 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Japanese Encephalitis vaccine (IMMZ.A1.DE8) during reporting period.
+ * Denominator: Number of immunization recommendations for Japanese encephalitis containing vaccines dur during reporting period.
+ * Denominator Computation: COUNT Immunization recommendation WHERE recommended product is Japanese encephalitis (IMMZ.A1.DE8) during reporting period.
  * 
  * Disaggregation:
- *   - Dose Sequence (1, 2, 3)
  *   - Geographic Region
  *   - Gender
  * 
- * References: WHO / UNICEF Joint Reporting Form (3- element 4350)
+ * References: WHO / UNICEF Joint Reporting Form (3 - element 4300)
  */
 
 library IMMZIND48
@@ -26,33 +25,32 @@ include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
-parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
+parameter "Measurement Period" Interval<Date>
+
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccines which contain a typhoid component during the reporting period.
- * Numerator Computation: COUNT immunization events WHERE administered product is a Typhoid vaccine (IMMZ.A1.DE21) during reporting period.
+ * Numerator: Number of administrations of vaccines which contain Japanese encephalitis component during the reporting period.
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Japanese Encephalitis vaccine (IMMZ.A1.DE8) during reporting period.
  */
 define "numerator":
-	true // TODO: Write logic here
+	true // TODO: Write logic here 
+
 /*
- * Denominator: Number of immunization recommendations for typhoid vaccines dur during reporting period.
- * Denominator Computation: COUNT Immunization recommendation WHERE recommended product is typhoid vaccine (IMMZ.A1.DE21) during reporting period.
+ * Denominator: Number of immunization recommendations for Japanese encephalitis containing vaccines dur during reporting period.
+ * Denominator Computation: COUNT Immunization recommendation WHERE recommended product is Japanese encephalitis (IMMZ.A1.DE8) during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here
-/*
- * Disaggregator: Dose Sequence (1, 2, 3)
- */
-define "Dose Sequence  Stratifier":
-	true // todo: fill in logic
+	true // TODO: Write logic here 
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	IMMZStratifiers."By Geographic Region Stratifier"
+	true // todo: fill in logic
+
 /*
  * Disaggregator: Gender
  */
