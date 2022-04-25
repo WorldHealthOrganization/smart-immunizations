@@ -16,12 +16,14 @@ codesystem "Extended Codes CodeSystem codes": 'http://fhir.org/guides/who/anc-cd
 valueset "WHO ATC": 'http://hl7.org/fhir/uv/ips/ValueSet/whoatc-uv-ips'
 
 // General use ValueSets 
-valueset "Negative Result": 'http://example.org/ValueSets/negative-results'
-valueset "Positive Result": 'http://example.org/ValueSets/positive-results'
+valueset "Negative Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/negativetestresult-values'
+valueset "Positive Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/PositiveTestResult-values'
 valueset "HIV Status Positive": 'http://example.org/ValueSets/HIV-status-positive'
 valueset "CD4% Test Result": 'http://example.org/ValueSets/CD4-test-result'
 valueset "CD4 Count Test Result": 'http://example.org/ValueSets/CD4-count-test-result'
 valueset "Immunocompromised": 'http://example.org/ValueSets/Immunocompromised'
+valueset "Patient birth weight observation value": 'http://example.org/ValueSets/Patient-birth-weight-observation-value'
+
 
 // TODO : Adapt from ANC
 valueset "HIV status": 'http://fhir.org/guides/who/anc-cds/ValueSet/anc-b9-de45'
@@ -32,6 +34,7 @@ valueset "HIV status - HIV negative Choices": 'http://fhir.org/guides/who/anc-cd
 //BCG specific ValuSets
 valueset "TST Test Result": 'http://example.org/ValueSets/tst-test'
 valueset "IGRA Test Result": 'http://example.org/ValueSets/igra-tst'
+valueset "ARV Drugs": 'http://exmaple.org/ValueSets/arv-drugs'
 
 // JE Classification 
 codesystem "Antigen Type Classifications": 'http://example.org/ValueSets/antigent-type-classification'
@@ -67,4 +70,3 @@ valueset "DTP Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ
 valueset "Inactivated Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE25'
 valueset "Oral Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE26'
 valueset "Dengue Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE27'
-

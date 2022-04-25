@@ -1,20 +1,20 @@
 /*
  * Library: IMMZ.IND.38
- * Immunization coverage for Pneumococcal containing vaccine (Computed Denominator) 
- * Compares the administered doses of a pneumococcal containing vaccine with the number of registered surviving infants expressed as a percentage.
+ * Immunization coverage for Meningococcal containing vaccine (Computed Denominator) 
+ * Compares the administered doses of a meningococcal containing vaccine with the number of registered surviving infants.
  * 
- * Numerator: Number of administrations of vaccines containing an Pneumococcal component during the reporting period. 
- * Numerator Computation: COUNT immunization events WHERE administered product is a Pneumococcal vaccine (IMMZ.A1.DE13) during reporting period.
+ * Numerator: Number of administrations of vaccines containing an Meningococcal component during reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is  a Meningococcal vaccine (IMMZ.A1.DE10) during reporting period
  * Denominator: Number of registered, surviving infants.
  * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  * 
  * Disaggregation:
- *   - Dose Sequence (1, 2, 3)
+ *   - Dose Sequence (1, 2)
  *   - Age Group (< 1 year or > 1 year)
- *   - Geographic Region
+ *   - Geographic Region 
  *   - Gender
  * 
- * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3- elements 4190, 4200, 4210)
+ * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - element 4280)
  */
 
 library IMMZIND38
@@ -27,37 +27,44 @@ include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
-parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
+parameter "Measurement Period" Interval<Date>
+
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccines containing an Pneumococcal component during the reporting period.
- * Numerator Computation: COUNT immunization events WHERE administered product is a Pneumococcal vaccine (IMMZ.A1.DE13) during reporting period.
+ * Numerator: Number of administrations of vaccines containing an Meningococcal component during reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is  a Meningococcal vaccine (IMMZ.A1.DE10) during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here
+	true // TODO: Write logic here 
+
 /*
  * Denominator: Number of registered, surviving infants.
  * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  */
 define "denominator":
-	true // TODO: Write logic here
+	true // TODO: Write logic here 
+
 /*
- * Disaggregator: Dose Sequence (1, 2, 3)
+ * Disaggregator: Dose Sequence (1, 2)
  */
-define "Dose Sequence  Stratifier":
+define "Dose Sequence Stratifier":
 	true // todo: fill in logic
+
 /*
  * Disaggregator: Age Group (< 1 year or > 1 year)
  */
-define "Age Group  Stratifier":
+define "Age Group Stratifier":
 	true // todo: fill in logic
+
 /*
- * Disaggregator: Geographic Region
+ * Disaggregator: Geographic Region 
  */
-define "Geographic Region Stratifier":
-	IMMZStratifiers."By Geographic Region Stratifier"
+define "Geographic Region  Stratifier":
+	true // todo: fill in logic
+
 /*
  * Disaggregator: Gender
  */

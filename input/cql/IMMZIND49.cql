@@ -1,20 +1,19 @@
 /*
  * Library: IMMZ.IND.49
- * Dropout Rate of DTP1 to DTP3 (Individuals) 
- * Indicates the number of individuals which have dropped out of the DTP containing vaccine protocol (i.e. children which have received DTP1 but not DTP3).
-
-This indicator works by counting the number of individuals who have received the first dose of DTP (dose 1) containing vaccine but not the last dose of DTP (are past-due for dose 3) with the children who have completed the vaccination protocol.
+ * Immunization coverage for Typhoid vaccines (Computed Denominator) 
+ * Compares the administered doses of Typhoid vaccines with the number of immunization recommendations for typhoid vaccines expressed as a percentage.
  * 
- * Numerator: Number of children who have received DTP1 (numerator) minus number of children who have not received DTP dose 3 and are past due (numerator exclusion)  
- * Numerator Computation: Numerator: COUNT immunization events WHERE administered product is DTP containing vaccine AND dose sequence = 1 before reporting period and EXISTS immunization recommendation WHERE product is DTP AND dose sequence = 3 AND due date during reporting period.
-Numerator Exclusion: COUNT immunization recommendations WHERE recommended product is DTP containing vaccine AND dose sequence = 3 AND due date during reporting period AND NOT EXISTS Immunization event where administered product is DTP containing vaccine AND dose sequence = 3
- * Denominator: Number of children who have received DTP containing vaccine dose 1
- * Denominator Computation: COUNT immunization events WHERE administered product is DTP containing vaccine AND dose sequence = 1 AND EXISTS immunization recommendation WHERE product is DTP and dose sequence = 3 and due date during reporting period.
+ * Numerator: Number of administrations of vaccines which contain a typhoid component during the reporting period. 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Typhoid vaccine (IMMZ.A1.DE21) during reporting period.
+ * Denominator: Number of immunization recommendations for typhoid vaccines dur during reporting period.
+ * Denominator Computation: COUNT Immunization recommendation WHERE recommended product is typhoid vaccine (IMMZ.A1.DE21) during reporting period.
  * 
  * Disaggregation:
+ *   - Dose Sequence (1, 2, 3)
  *   - Geographic Region
+ *   - Gender
  * 
- * References: WHO Immunization Facility Analysis Guide (1)
+ * References: WHO / UNICEF Joint Reporting Form (3- element 4350)
  */
 
 library IMMZIND49
@@ -27,26 +26,42 @@ include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
 include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
-parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
+parameter "Measurement Period" Interval<Date>
+
 context Patient
 
 /*
- * Numerator: Number of children who have received DTP1 (numerator) minus number of children who have not received DTP dose 3 and are past due (numerator exclusion) 
- * Numerator Computation: Numerator: COUNT immunization events WHERE administered product is DTP containing vaccine AND dose sequence = 1 before reporting period and EXISTS immunization recommendation WHERE product is DTP AND dose sequence = 3 AND due date during reporting period.
-Numerator Exclusion: COUNT immunization recommendations WHERE recommended product is DTP containing vaccine AND dose sequence = 3 AND due date during reporting period AND NOT EXISTS Immunization event where administered product is DTP containing vaccine AND dose sequence = 3
+ * Numerator: Number of administrations of vaccines which contain a typhoid component during the reporting period.
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Typhoid vaccine (IMMZ.A1.DE21) during reporting period.
  */
 define "numerator":
-	true // TODO: Write logic here
+	true // TODO: Write logic here 
+
 /*
- * Denominator: Number of children who have received DTP containing vaccine dose 1
- * Denominator Computation: COUNT immunization events WHERE administered product is DTP containing vaccine AND dose sequence = 1 AND EXISTS immunization recommendation WHERE product is DTP and dose sequence = 3 and due date during reporting period.
+ * Denominator: Number of immunization recommendations for typhoid vaccines dur during reporting period.
+ * Denominator Computation: COUNT Immunization recommendation WHERE recommended product is typhoid vaccine (IMMZ.A1.DE21) during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here
+	true // TODO: Write logic here 
+
+/*
+ * Disaggregator: Dose Sequence (1, 2, 3)
+ */
+define "Dose Sequence Stratifier":
+	true // todo: fill in logic
+
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	IMMZStratifiers."By Geographic Region Stratifier"
+	true // todo: fill in logic
+
+/*
+ * Disaggregator: Gender
+ */
+define "Gender Stratifier":
+	true // todo: fill in logic
+
 /* End of IMMZ.IND.49 */

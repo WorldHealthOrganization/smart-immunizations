@@ -8,6 +8,9 @@ include FHIRHelpers version '4.0.1'
 include FHIRCommon called FC
 include IMMZConcepts called IMMZc
 
+
+code "[#] Births total": '11640-0' from IMMZc."LOINC" display 'Pregnancy outcome'
+code "[#] Births.preterm": '11637-6' from IMMZc."LOINC" display 'Preterm'
 context Patient
 
 //TODO: Check patient is alive
@@ -50,7 +53,7 @@ define "Get Observations":
 //not sure if pregnancy is an Observation
 define "Pregnant Observation":
   [Observation] O
-  //IPS Uses Observation - https://hl7.org/fhir/uv/ips/StructureDefinition-observation-pregnancy-status-uv-ips.html
+  //IPS Uses Observcation - https://hl7.org/fhir/uv/ips/StructureDefinition-observation-pregnancy-status-uv-ips.html
     where (O.value as CodeableConcept) in Wcon."Pregnancy Status Pregnant"
 /*
 Need to figure out how to add the OR Condition in case pregnancy is stored in a condition instead of an Observation 
@@ -66,6 +69,16 @@ define "Pregnant":
   ( "Pregnant Observation")
   or exists ("Pregnant Condition")
 
+//Total number of births including abortions, stillbirths and live births.
+define "Patient mother's pregnancy outcome observation":
+  [Observation: code = "[#] Births total"] O
+    return O.value
+
+// Total number of children whose birth occurred through the end of the last day of the 37th week (259th day) 
+// following onset of the last menstrual period
+define "Preterm":
+  [Observation: code = "[#] Births.preterm"] O
+    return O.value
 
 //@dataElement Adverse Event:
 define "Adverse Event":
@@ -95,7 +108,7 @@ define "Immunocompromised = True":
 	C.verificationStatus ~ FC."confirmed"
 
 /**
- * @dataElement All Doses Administered to Patient to patient ordered by newest to oldest
+ * @dataElement All Doses Administered to Patient to patient ordered newest to oldest
  */
 define "Doses Administered to Patient":
   [Immunization] I
@@ -269,6 +282,9 @@ define "HepB Doses Administered to Patient Excluding Birth Dose":
   where
     singleton from (I.protocolApplied.doseNumber) != 0
 
+//Date last administered HepB
+define "Date Last HepB Dose Administered to Patient":
+  date from (First("HepB Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 /**
  * @dataElement HPV containing Doses Administered to Patient
@@ -311,6 +327,25 @@ define "MCV Doses Administered to Patient":
   "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."MCV Vaccine"
+
+/**
+ * @define The patient has no MCV doses administered
+ */
+define "No MCV Doses Administered to Patient":
+  not exists("MCV Doses Administered to Patient")
+
+
+/** 
+ * @dataElement Date of last MCV dose administration
+ */
+define "Date Last MCV Dose Administered to Patient":
+  date from (First("MCV Doses Administered to Patient").occurrence as FHIR.dateTime)
+
+/**
+ * @define The number of MCV doses administerd to the patient
+ */
+define "Number of MCV Doses Administered to Patient":
+  Count("MCV Doses Administered to Patient")
 
 /**
  * @dataElement Meningococcal containing Doses Administered to Patient
@@ -466,7 +501,6 @@ define "Number of DTP Doses Administered to Patient Excluding Birth Dose":
  * @dataElement Dengue containing doses administered
  */
 define "Dengue Doses Administered to Patient":
-
   "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Dengue Vaccine"
@@ -540,12 +574,55 @@ define "Most Recent CD4%":
   First("Observed CD4% Measurements" O 
     return O.value as FHIR.Quantity)
 
+
 /**
  * @dataElement The observed CD4 counts ordered newest to oldest
  */
 define "Observed CD4 Count":
 	[Observation: code in IMMZc."CD4 Count Test Result"] O
     sort by effective desc
+
+
+define "Patient birth weight observation value":
+[Observation: code in IMMZc."Patient birth weight observation value"] O
+  return O.value as FHIR.Quantity
+
+/** 
+ * @dataElement Immune reconsititution has been achieved for this patient
+ */
+define "Most Recent CD4% Between 20% and 25%":
+  "Most Recent CD4%" between 20 '%' and 25 '%' // TODO: Define this
+
+/** 
+ * @dataElements Periods where the patient was receiving HAART treatment
+ */
+define "Patient HAART Treatment Started 6 to 12 Months Ago":
+  exists(
+    [MedicationStatement] S 
+    where 
+      ExtractMedicationCode(S.medication) in IMMZc."ARV Drugs" 
+      and S.status in { 'active', 'completed' } 
+      and ExtractMedicationInitiationDate(S.effective) more than 6 'month' before Today() 
+      and ExtractMedicationInitiationDate(S.effective) less than 12 'month' before Today()
+  )
+  or 
+  exists(
+    [MedicationAdministration] A 
+    where 
+      ExtractMedicationCode(A.medication) in IMMZc."ARV Drugs" 
+      and A.status in { 'active', 'complete' } 
+      and ExtractMedicationInitiationDate(A.effective) more than 6 'month' before Today() 
+      and ExtractMedicationInitiationDate(A.effective) less than 12 'month' before Today()
+  )
+  
+/**
+ * @dataElement The patient has a medication record which indicates that they are receiving ARV
+ */
+define "Patient is receiving HAART":
+ exists([MedicationStatement] S where ExtractMedicationCode(S.medication) in IMMZc."ARV Drugs" and S.status = 'active')
+ or exists([MedicationAdministration] A where ExtractMedicationCode(A.medication) in IMMZc."ARV Drugs" and A.status = 'in-progress')
+ //union 
+ //
 
 /*
   @dataElement HIV Status observations of the patient most recent first
@@ -626,4 +703,33 @@ define function ToPositiveInt(choice Choice<FHIR.positiveInt, FHIR.string>):
     	choice as FHIR.positiveInt
 		else
       Message(null as FHIR.positiveInt, true, '1', 'Error', 'Cannot compute a positive from a String value') // TODO: I'm sure that this is supported somehow?
+	end
+
+/**
+ * @description Takes a choice between a Medication and a CodeableConcept and returns just the code of the medication
+ */
+define function ExtractMedicationCode(choice Choice<FHIR.CodeableConcept, FHIR.Reference>):
+  case
+	  when choice is FHIR.CodeableConcept then
+    	choice as FHIR.CodeableConcept
+    when choice is FHIR.Reference then
+      First([Medication] M 
+        where M.id = Last(Split(choice.reference, '/'))
+        return M.code as FHIR.CodeableConcept)
+		else
+      Message(null as FHIR.CodeableConcept, true, '1', 'Error', 'Cannot compute a medication code') // TODO: I'm sure that this is supported somehow?
+	end
+
+
+/**
+ * @description Takes a choice between a Medication and a CodeableConcept and returns just the code of the medication
+ */
+define function ExtractMedicationInitiationDate(choice Choice<FHIR.dateTime, FHIR.Period>):
+  case
+	  when choice is FHIR.Period then
+    	start of (choice as FHIR.Period)
+    when choice is FHIR.dateTime then
+      choice as FHIR.dateTime
+		else
+      Message(null as FHIR.dateTime, true, '1', 'Error', 'Cannot compute medication treatment initiation date') // TODO: I'm sure that this is supported somehow?
 	end

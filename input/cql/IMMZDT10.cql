@@ -10,52 +10,10 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
+
 context Patient
-
-/* 
- * @dataElement HPV vaccine history
- */
-define "HPV vaccine history":
-	0 // TODO: Define this
-
-/* 
- * @dataElement No-doses
- */
-define "No-doses":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Sex
- */
-define "Sex":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Female
- */
-define "Female":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Age
- */
-define "Age":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 9 years
- */
-define "9 years":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 14 years
- */
-define "14 years":
-	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate Patient for HPV because no doses on a two-dose schedule
@@ -69,6 +27,9 @@ define "14 years":
  *	 (((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Age" >= "9 years")) and ("Age" <= "14 years"))
  */
 define "Should vaccinate Patient for HPV because no doses on a two-dose schedule":
+	IMMZCom."No HPV Doses Administered to Patient" and 
+	IMMZCom."Current Patient Age in Years" between 9 and 14
+	IMMZCom."Patient Gender Is Female"
 	(((("HPV vaccine history" = "No-doses") and ("Sex" = "Female")) and ("Age" >= "9 years")) and ("Age" <= "14 years"))
 
 /* 
