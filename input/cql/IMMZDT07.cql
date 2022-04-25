@@ -10,7 +10,6 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
@@ -116,7 +115,7 @@ define "Any previous doses administered with unknown schedule":
  */
 define "Should vaccinate patient with Rotavirus 3rd dose":
 	(
-		(Count(IMMZCom."Rotavirus Doses Administered to Patient") = 1) and
+		(Count(IMMZCom."Rotavirus Doses Administered to Patient") = 2) and
 		("Date last Rotavirus dose given" more than 4 'weeks' before Today()) and
 		(
 			("All previous doses given with a 3 dose series product" = true) or

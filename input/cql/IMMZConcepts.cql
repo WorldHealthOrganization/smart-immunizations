@@ -16,12 +16,14 @@ codesystem "Extended Codes CodeSystem codes": 'http://fhir.org/guides/who/anc-cd
 valueset "WHO ATC": 'http://hl7.org/fhir/uv/ips/ValueSet/whoatc-uv-ips'
 
 // General use ValueSets 
-valueset "Negative Result": 'http://example.org/ValueSets/negative-results'
-valueset "Positive Result": 'http://example.org/ValueSets/positive-results'
+valueset "Negative Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/negativetestresult-values'
+valueset "Positive Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/PositiveTestResult-values'
 valueset "HIV Status Positive": 'http://example.org/ValueSets/HIV-status-positive'
 valueset "CD4% Test Result": 'http://example.org/ValueSets/CD4-test-result'
 valueset "CD4 Count Test Result": 'http://example.org/ValueSets/CD4-count-test-result'
 valueset "Immunocompromised": 'http://example.org/ValueSets/Immunocompromised'
+valueset "Patient birth weight observation value": 'http://example.org/ValueSets/Patient-birth-weight-observation-value'
+
 
 // TODO : Adapt from ANC
 valueset "HIV status": 'http://fhir.org/guides/who/anc-cds/ValueSet/anc-b9-de45'
@@ -75,5 +77,4 @@ valueset "FSME-Immun Class TBE Vaccine": 'http://example.org/ValueSet/FSME-Immun
 valueset "TBE-Moscow Class TBE Vaccine": 'http://example.org/ValueSet/TBE-Moscow'
 valueset "EnceVir Class TBE Vaccine": 'http://example.org/ValueSet/EnceVir'
 valueset "Encepur Class TBE Vaccine": 'http://example.org/ValueSet/Encepur'
-
 
