@@ -63,7 +63,6 @@ The following personas are generic examples which are evident in some of the use
 * Expanded Programme on Immunization Manager
 * System Administrator
 
-<!--explain that we are describing the personas from the perspective of fake people-->
 The personas described are fictional characters which have been created in order to represent the different user types that might use the service.
 
 ##### Mother
@@ -111,8 +110,8 @@ Sarah is the national manager for the EPI and has held this role for one year. S
 Mohamed is a systems administrator working in the Ministry of Health at the national office. He has worked there for the past 3 years in the M&E department and only moved into this role in the past year. He has a degree in M&E. He is 30 years old. 
 
 #### Business Process
+A business process is a set of related activities or tasks performed together to achieve the objectives of the health programme. Below are descriptions of some processes which are covered by this IG in a narrative format.
 
-<!--should be level 5-->
 ##### Request district-level reports 
 Abdu uses his computer to generate an immunization report from the eHealth database for his district showing summary information by catchment (i.e., clinic service area). The report lists the number of children who are due for immunizations in the near-term, broken down by type and by week, as well as information about women in the MoH’s maternal care program. Abdu also generates a historical report showing trends in the catchment’s immunization activities (including coverage) over the last number of months.  
 

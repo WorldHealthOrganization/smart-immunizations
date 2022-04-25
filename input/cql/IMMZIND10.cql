@@ -1,20 +1,20 @@
 /*
  * Library: IMMZ.IND.10
- * Immunization coverage for Pneumococcal containing vaccine (Estimated Denominator) 
- * Compares the administered doses of pneumococcal containing vaccine with the number of surviving infants (with the exception of final dose which is country supplied denominator definition) expressed as a percentage
+ * Immunization coverage for Meningococcal containing vaccine (Estimated Denominator) 
+ * Compares the administered doses of meningococcal containing vaccine with the number of estimated surviving infants expressed as a percentage. 
  * 
- * Numerator: Number of administrations of vaccines containing an Pneumococcal component during the reporting period. 
- * Numerator Computation: COUNT immunization events WHERE administered product is a Pneumococcal vaccine (IMMZ.A1.DE13) during reporting period.
- * Denominator: Estimated number of surviving infants (dose 1 and 2) or country supplied denominator definition (dose 3)
- * Denominator Computation: PARAMETER number of surviving infants and PARAMETER of country supplied denominator (if dose sequence = 3)
+ * Numerator: Number of administrations of vaccines containing an Meningococcal component during reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is  a Meningococcal vaccine (IMMZ.A1.DE10) during reporting period
+ * Denominator: Estimated number of surviving infants
+ * Denominator Computation: PARAMETER number of surviving infants
  * 
  * Disaggregation:
- *   - Dose Sequence (1, 2, 3)
+ *   - Dose Sequence (1, 2)
  *   - Age Group (< 1 year or > 1 year)
- *   - Geographic Region
+ *   - Geographic Region 
  *   - Administrative Gender (or Biological Sex)
  * 
- * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3- elements 4190, 4200, 4210)
+ * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - element 4280)
  */
 
 library IMMZIND10
@@ -25,43 +25,43 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
+include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
-parameter "Measurement Period" Interval<Date> default Interval[@2022-01-01, @2022-01-31]
+parameter "Measurement Period" Interval<Date>
+
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccines containing an Pneumococcal component during the reporting period.
- * Numerator Computation: COUNT immunization events WHERE administered product is a Pneumococcal vaccine (IMMZ.A1.DE13) during reporting period.
+ * Numerator: Number of administrations of vaccines containing an Meningococcal component during reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is  a Meningococcal vaccine (IMMZ.A1.DE10) during reporting period
  */
-define "numerator":
-	true // TODO: Write logic here
+define "measure-population":
+	exists(IMMZIndCom."Meningococcal Doses Administered to Patient During Measurement Period") // TODO: Write logic here 
+
 /*
- * Denominator: Estimated number of surviving infants (dose 1 and 2) or country supplied denominator definition (dose 3)
- * Denominator Computation: PARAMETER number of surviving infants and PARAMETER of country supplied denominator (if dose sequence = 3)
+ * Disaggregator: Dose Sequence (1, 2)
  */
-define "denominator":
-	true // TODO: Write logic here
+define "Dose Sequence Stratifier":
+	IMMZIndCom."Meningococcal Doses Administered to Patient During Measurement Period" I
+	return (singleton from I.protocolApplied).doseNumber
 /*
- * Disaggregator: Dose Sequence (1, 2, 3)
+ * Disaggregator: Age Group (< 1 year, > 1 year)
  */
-define "Dose Sequence  Stratifier":
-	true // todo: fill in logic
-/*
- * Disaggregator: Age Group (< 1 year or > 1 year)
- */
-define "Age Group  Stratifier":
-	true // todo: fill in logic
+define "Age Group Stratifier":
+	IMMZIndCom."Infant By Age Stratifier"
+
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	IMMZStratifiers."By Geographic Region Stratifier"
+	IMMZIndCom."By Geographic Region Stratifier"
+
 /*
  * Disaggregator: Administrative Gender (or Biological Sex)
  */
 define "Administrative Gender Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Administrative Gender Stratifier"
 
 /* End of IMMZ.IND.10 */
