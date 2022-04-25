@@ -26,7 +26,7 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
+include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
@@ -41,19 +41,32 @@ SUBTRACT
 COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1 during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
+	exists(IMMZIndCom."BCG Doses Administered to Patient During Measurement Period")
+
+/** 
+ * Exclusion for numerator
+ */
+define "numerator-exclusion":
+	exists(IMMZIndCom."MCV Doses Administered to Patient During Measurement Period" I where (singleton from I.protocolApplied).doseNumber = 1)
+
 
 /*
  * Denominator: Number of doses of BCG administered during reporting period.
  * Denominator Computation: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1)  during reporting period
  */
 define "denominator":
-	true // TODO: Write logic here 
+	exists(IMMZIndCom."BCG Doses Administered to Patient During Measurement Period")
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier"
+
+/*
+ * Disaggregator: Gender
+ */
+define "Gender Stratifier":
+	IMMZIndCom."By Administrative Gender Stratifier"
 
 /* End of IMMZ.IND.24 */

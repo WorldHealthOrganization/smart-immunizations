@@ -26,7 +26,7 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
+include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
@@ -41,19 +41,31 @@ SUBTRACT
 COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 3  during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
+	exists(IMMZIndCom."DTP Doses Administered to Patient During Measurement Period" I where (singleton from I.protocolApplied).doseNumber = 1)
+
+/** 
+ * Exclude the dose 3
+ */
+define "numerator-exclusion":
+	exists(IMMZIndCom."DTP Doses Administered to Patient During Measurement Period" I where (singleton from I.protocolApplied).doseNumber = 3)
 
 /*
  * Denominator: Number of doses of DTP1 administered
  * Denominator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1 during reporting period
  */
 define "denominator":
-	true // TODO: Write logic here 
+	exists(IMMZIndCom."DTP Doses Administered to Patient During Measurement Period" I where (singleton from I.protocolApplied).doseNumber = 1)
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier"
+
+/*
+ * Disaggregator: Gender
+ */
+define "Gender Stratifier":
+	IMMZIndCom."By Administrative Gender Stratifier"
 
 /* End of IMMZ.IND.23 */
