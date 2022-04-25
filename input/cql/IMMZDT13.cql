@@ -41,6 +41,8 @@ define "Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun be
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 ((("Tick-Borne Encephalitis immunization history" = "1 dose") and ("Date last TBE dose given" >= "1 month")) and ("Type of last TBE dose" = "FSME-Immun"))
+ * Assumption:
+ * 	vaccineCode will contain a specific classification of the antigen given (or a future version of FHIR will have a product link)
  */
 define "Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because 1st dose given 1-3 months ago on a 3 dose scheme":
 	IMMZCom."Number of TBE Doses Administered to Patient" = 1
@@ -57,6 +59,8 @@ define "Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun be
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 ((("Tick-Borne Encephalitis immunization history" = "2 doses") and ("Date last TBE dose given" >= "5 months")) and ("Type of last TBE dose" = "FSME-Immun"))
+ * Assumption:
+ * 	vaccineCode will contain a specific classification of the antigen given (or a future version of FHIR will have a product link)
  */
 define "Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because 2nd doses given 5 months to 12 months ago on a 3 dose scheme":
 	IMMZCom."Number of TBE Doses Administered to Patient" = 2
@@ -80,6 +84,8 @@ define "Patient has completed TBE primary series":
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 (((("Patient has completed TBE primary series" = true) and ("Date last TBE dose given" >= "3 years")) and ("Type of last TBE dose" = "FSME-Immun")) and ("Country recognizes TBE as a priority" = true))
+ * Assumption:
+ * 	vaccineCode will contain a specific classification of the antigen given (or a future version of FHIR will have a product link)
  */
 define "Should vaccinate patient for Tick-Borne Encephalitis Booster using FSME-Immun because last dose given 3 years ago":
 	"Patient has completed TBE primary series"

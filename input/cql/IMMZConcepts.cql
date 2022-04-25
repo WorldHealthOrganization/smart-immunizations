@@ -73,6 +73,7 @@ valueset "Oral Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueS
 valueset "Dengue Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE27'
 
 // TBE classifications of vaccines
+// Assumption: Classifications of TBE vaccine can be codified using some (yet to be discovered) code system - possibly using GTIN on the product?
 valueset "FSME-Immun Class TBE Vaccine": 'http://example.org/ValueSet/FSME-Immun'
 valueset "TBE-Moscow Class TBE Vaccine": 'http://example.org/ValueSet/TBE-Moscow'
 valueset "EnceVir Class TBE Vaccine": 'http://example.org/ValueSet/EnceVir'
