@@ -9,13 +9,15 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
-include IMMZVaccineLibrary called IMMZvl
 include IMMZConfig called IMMZCon
+include IMMZStratifiers called IMMZStratifiers
+include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
 context Patient
 
 /*
- * Rule: Should vaccinate patient with DTP first dose
+ * Rule: Should vaccinate patient with DTP 1st dose
  * Annotations:
  * 	 - Provide DTP immunization 1st dose – using the "DTP vaccine immunization – NO PREVIOUS" schedule (3 dose scheme) if the patient is the older 6 weeks of age
  * 	 - Provide DTP immunization 1st dose – using the "DTP vaccine immunization – NO PREVIOUS" schedule (5 dose scheme) if the patient is 15 years of age or more
@@ -27,9 +29,10 @@ context Patient
  * Logic:
  *	 ((("DTP vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6)) or (("DTP vaccine immunization history" = "No-doses") and ("Current Patient Age in Years" >= 15)))
  */
-define "Should vaccinate patient with DTP first dose":
+define "Should vaccinate patient with DTP 1st dose":
 	(IMMZCom."No DTP Doses Administered to Patient") and 
 	((IMMZCom."Current Patient Age In Weeks" >= 6) or (IMMZCom."Current Patient Age In Years" >= 15))
+
 
 /*
  * Rule: Should vaccinate patient for DTP with 2nd dose
@@ -45,17 +48,15 @@ define "Should vaccinate patient with DTP first dose":
  *	 ((("DTP vaccine immunization history" = "1 dose") and ("Date last DTP dose given" >= "4 weeks")) or (((("DTP vaccine immunization history" = "1 dose") and ("Current Patient Age in Years" >= 15)) and ("Date last DTP dose given" >= "4 weeks")) and ("Date last DTP dose given" <= "8 weeks")))
  */
 define "Should vaccinate patient for DTP with 2nd dose":
-
 	IMMZCom."Number of DTP Doses Administered to Patient Excluding Birth Dose" = 1 and
 	(
-		IMMZCom."Date Last DTP Dose Administered to Patient" more than 4 'weeks' before Today() or
+		IMMZCom."Date Last DTP Dose Administered to Patient" more than 4 week before Today() or
 		(
 			IMMZCom."Current Patient Age In Years" >= 15 and
-			(IMMZCom."Date Last DTP Dose Administered to Patient" more than 4 'weeks' before Today()) and 
-			(IMMZCom."Date Last DTP Dose Administered to Patient" less than 8 'weeks' before Today())
+			(IMMZCom."Date Last DTP Dose Administered to Patient" more than 4 week before Today()) and 
+			(IMMZCom."Date Last DTP Dose Administered to Patient" less than 8 week before Today())
 		)
 	)
-	
 
 /*
  * Rule: Should vaccinate patient for DTP with 3rd dose
@@ -76,19 +77,18 @@ define "Should vaccinate patient for DTP with 2nd dose":
 define "Should vaccinate patient for DTP with 3rd dose":
 	IMMZCom."Number of DTP Doses Administered to Patient Excluding Birth Dose" = 2 and
 	(
-		IMMZCom."Date Last DTP Dose Administered to Patient" more than 4 'weeks' before Today() or 
+		IMMZCom."Date Last DTP Dose Administered to Patient" more than 4 week before Today() or 
 		(
-			IMMZCom."Date Last DTP Dose Administered to Patient" more than 6 'months' before Today()  and  
+			IMMZCom."Date Last DTP Dose Administered to Patient" more than 6 month before Today()  and  
 			IMMZCom."Date First DTP Dose Administered to Patient Excluding Birth Dose" more than 1 'year' after Patient.birthDate and
 			IMMZCom."Date First DTP Dose Administered to Patient Excluding Birth Dose" less than 7 'year' after Patient.birthDate 
 		) or
 		(
 			(IMMZCom."Current Patient Age In Years" >= 15) and 
-			(IMMZCom."Date Last DTP Dose Administered to Patient" more than 4 'weeks' before Today()) and 
-			(IMMZCom."Date Last DTP Dose Administered to Patient" less than 8 'weeks' before Today())
+			(IMMZCom."Date Last DTP Dose Administered to Patient" more than 4 week before Today()) and 
+			(IMMZCom."Date Last DTP Dose Administered to Patient" less than 8 week before Today())
 		)
 	)
-
 
 
 /*
@@ -153,8 +153,8 @@ define "Should vaccinate patient for DTP with 3rd booster":
 define "Should vaccinate patient for DTP with 4th dose":
 	IMMZCom."Number of DTP Doses Administered to Patient Excluding Birth Dose" = 3 and
 	IMMZCom."Current Patient Age In Years" >= 15 and
-	IMMZCom."Date Last DTP Dose Administered to Patient" more than 4 'weeks' before Today() and
-	IMMZCom."Date Last DTP Dose Administered to Patient" less than 8 'weeks' before Today()
+	IMMZCom."Date Last DTP Dose Administered to Patient" more than 4 week before Today() and
+	IMMZCom."Date Last DTP Dose Administered to Patient" less than 8 week before Today()
 
 /*
  * Rule: Should vaccinate patient for DTP with 5th dose
@@ -170,7 +170,7 @@ define "Should vaccinate patient for DTP with 4th dose":
 define "Should vaccinate patient for DTP with 5th dose":
 	IMMZCom."Number of DTP Doses Administered to Patient Excluding Birth Dose" = 4 and
 	IMMZCom."Current Patient Age In Years" >= 15 and
-	IMMZCom."Date Last DTP Dose Administered to Patient" more than 4 'weeks' before Today() and
-	IMMZCom."Date Last DTP Dose Administered to Patient" less than 8 'weeks' before Today()
+	IMMZCom."Date Last DTP Dose Administered to Patient" more than 4 week before Today() and
+	IMMZCom."Date Last DTP Dose Administered to Patient" less than 8 week before Today()
 
 
