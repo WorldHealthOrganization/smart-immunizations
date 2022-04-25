@@ -72,6 +72,8 @@ valueset "Inactivated Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize
 valueset "Oral Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE26'
 valueset "Dengue Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE27'
 
+valueset "ViPS Class Typhoid Vaccine": 'http://example.org/ValueSet/vips'
+valueset "Ty21a Class Typhoid Vaccine": 'http://example.org/ValueSet/ty21a'
 // TBE classifications of vaccines
 // Assumption: Classifications of TBE vaccine can be codified using some (yet to be discovered) code system - possibly using GTIN on the product?
 valueset "FSME-Immun Class TBE Vaccine": 'http://example.org/ValueSet/FSME-Immun'

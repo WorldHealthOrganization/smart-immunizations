@@ -479,6 +479,30 @@ define "Typhoid Doses Administered to Patient":
   where
     I.vaccineCode in IMMZc."Typhoid Vaccine"
 
+/** 
+ * @dataElement No Typhoid doses administered to patient
+ */
+define "No Typhoid Doses Administered to Patient":
+  not exists ("Typhoid Doses Administered to Patient")
+
+/** 
+ * @dataElement Largest sequence of typhoid doses administered to patient
+ */
+define "Highest Sequence of Typhoid Doses Administered to Patient":
+  Max("Typhoid Doses Administered to Patient" I return (singleton from I.protocolApplied).doseNumber as FHIR.positiveInt)
+
+/** 
+ * @dataElement Date last typhoid dose administered
+ */
+define "Date Last Typhoid Dose Administered to Patient":
+  date from (First("Typhoid Doses Administered to Patient").occurrence as FHIR.dateTime)
+
+/** 
+ * @dataElement The type of the last typhoid dose administered to patient
+ */
+define "Type of Last Typhoid Dose Administered to Patient":
+  First("Typhoid Doses Administered to Patient" I return I.vaccineCode)
+
 /**
  * @dataElement Varicella containing Doses Administered to Patient
  */
