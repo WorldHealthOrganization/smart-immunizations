@@ -544,6 +544,40 @@ define "Date First DTP Dose Administered to Patient Excluding Birth Dose":
 define "No DTP Doses Administered to Patient":
   not exists("DTP Doses Administered to Patient")
 
+/**
+ * @dataElement Tick-Borne Encephalitis containing Doses Administered to Patient
+ */
+define "TBE Doses Administered to Patient":
+  "Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."TBE Vaccine"
+
+/** 
+ * @dataElement Date of last TBE dose administration
+ */
+define "Date Last TBE Dose Administered to Patient":
+  date from (First("TBE Doses Administered to Patient").occurrence as FHIR.dateTime)
+
+/** 
+ * @dataElement Date of last TBE dose administration
+ */
+define "Type of Last TBE Dose Administered to Patient":
+  First("TBE Doses Administered to Patient").vaccineCode
+
+
+/**
+ * @dataElement Patient has no Tick-Borne Encephalitis doses
+ */
+define "No TBE Doses Administered to Patient":
+  not exists("TBE Doses Administered to Patient")
+
+/**
+ * @dataElement Number of TBE Doses Administered to Patient excluding the birth dose
+ */
+define "Number of TBE Doses Administered to Patient":
+  Count("TBE Doses Administered to Patient")// O return ToPositiveInt((singleton from O.protocolApplied).doseNumber))
+
+
 /******************************
  * Test Results
  */
