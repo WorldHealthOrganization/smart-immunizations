@@ -27,6 +27,7 @@ define "Population is in conflict zones internally displaced populations and ref
 define "In a setting where there is high transmission of Measles":false
 define "In a setting where there is low transmission of Measles":false
 
+define "Country has Yellow Fever Endemic": false
 // TODO: 
 //define "bOPV and IPV Schedule":
 //	'combined'

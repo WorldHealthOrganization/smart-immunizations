@@ -10,7 +10,6 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
@@ -80,8 +79,8 @@ define "Should vaccinate patient for DTP with 3rd dose":
 		IMMZCom."Date Last DTP Dose Administered to Patient" more than 4 week before Today() or 
 		(
 			IMMZCom."Date Last DTP Dose Administered to Patient" more than 6 month before Today()  and  
-			IMMZCom."Date First DTP Dose Administered to Patient Excluding Birth Dose" more than 1 'year' after Patient.birthDate and
-			IMMZCom."Date First DTP Dose Administered to Patient Excluding Birth Dose" less than 7 'year' after Patient.birthDate 
+			IMMZCom."Date First DTP Dose Administered to Patient Excluding Birth Dose" more than 1 year after Patient.birthDate and
+			IMMZCom."Date First DTP Dose Administered to Patient Excluding Birth Dose" less than 7 year after Patient.birthDate 
 		) or
 		(
 			(IMMZCom."Current Patient Age In Years" >= 15) and 

@@ -33,7 +33,6 @@ define "Should vaccinate Patient for HPV because no doses on a two-dose schedule
 	and IMMZCom."Current Patient Age In Years" between 9 and 14
 
 
-
 /*
  * Rule: Should vaccinate Patient for HPV a second time on a two-dose schedule
  * Annotations:
@@ -83,8 +82,7 @@ define "Should vaccinate Patient for HPV Dose 3 - due to short interval between 
 	and IMMZCom."Patient Biological Sex" = 'female'
 	and "Time between first and second HPV doses less than 5 months"
 	and "Time since initial HPV dose more than 6 months"
-	and IMMZCom."Current Patient Age In Years" >= 9 
-	and IMMZCom."Current Patient Age In Years" <= 14
+	and IMMZCom."Current Patient Age In Years" between 9 and 14
 
 /*
  * Rule: Should vaccinate Patient for HPV because no doses on a three-dose schedule

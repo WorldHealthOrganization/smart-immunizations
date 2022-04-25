@@ -16,6 +16,7 @@ include FHIRCommon called FC
 parameter "Individual is at high risk of contracting measles" Boolean default false
 parameter "Individual is travelling to a country experiencing measles outbreaks" Boolean default false
 parameter "Individual is known to be HIV-infected or exposed" Boolean default false
+parameter "Immune reconstitution was achieved" Boolean default false
 
 // End Skeleton CQL
 context Patient
@@ -37,14 +38,13 @@ context Patient
 define "Should vaccinate patient for measles (supplimentary) because no doses":
 	IMMZCom."No MCV Doses Administered to Patient" and 
 	(
+		IMMZCom."Current Patient Age In Months" between 6 and 9 and
 		(
-			IMMZCom."Current Patient Age In Months" between 6 and 9 and
-			IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices" and
-			not(IMMZCom."Patient is receiving HAART")
-		)
-		or 
-		(
-			IMMZCom."Current Patient Age In Months" between 6 and 9 and
+			(
+				IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices" and
+				not(IMMZCom."Patient is receiving HAART")
+			)
+			or 
 			(
 				IMMZCon."Country currently has a measles outbreak" or
 				IMMZCon."In a setting where the risk of measles among infants < 9 months of age remains high" or
@@ -118,7 +118,8 @@ define "Should vaccinate patient for measles supplimentary dose because HIV posi
 	IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices" and
 	IMMZCom."Patient is receiving HAART" and 
 	(
-		IMMZCom."Most Recent CD4% Between 20% and 25%" or
+
+		"Immune reconstitution was achieved" or
 		not exists(IMMZCom."Observed CD4% Measurements")
 		and IMMZCom."Patient HAART Treatment Started 6 to 12 Months Ago"
 	)

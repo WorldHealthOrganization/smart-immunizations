@@ -682,7 +682,7 @@ define "Current Patient Age In Months":
 
 /** 
  * @dataElement Patient biological sex used for deciding vaccine eligibility
- * TODO: I believe "Gender" of patient in FHIR is the administrative gender - or can we expect that this will be biological sex and administrative
+ * TODO: "Gender" of patient in FHIR is the administrative gender - or can we expect that this will be biological sex and administrative
  *        gender identity will be captured using the gender identity extension?
  */
 define "Patient Biological Sex":

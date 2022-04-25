@@ -34,10 +34,12 @@ define "Should vaccinate patient for Japanese Encephalitis because no doses":
 		or (
 			IMMZCom."Current Patient Age In Months" >= 8 
 			and IMMZCon."JE Antigen Used in Country Classification" = IMMZc."Live attentuated virus vaccine"
+			and not(IMMZCom."Pregnant")
 		)
 		or (
 			IMMZCom."Current Patient Age In Months" >= 9
 			and IMMZCon."JE Antigen Used in Country Classification" = IMMZc."Live recombinant virus vaccine"
+			and not(IMMZCom."Pregnant")
 		)
 	)
 
@@ -56,4 +58,6 @@ define "Should vaccinate patient for Japanese Encephalitis because 1 dose":
 	IMMZCom."Number of JE Doses Administered to Patient" = 1
 	and IMMZCom."Date Last JE Dose Administered to Patient" more than 4 'weeks' before Today()
 	and IMMZCon."JE Antigen Used in Country Classification" = IMMZc."Inactivated Vero cell-derived vaccine"
+	// TODO: Add condition for type of previous dose
+	// TODO: 
 
