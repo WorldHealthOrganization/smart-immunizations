@@ -72,6 +72,9 @@ valueset "Inactivated Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize
 valueset "Oral Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE26'
 valueset "Dengue Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE27'
 
+// Cholera vaccine classes
+valueset "WC Class Cholera Vaccine": 'http://example.org/ValueSet/wc-cholera'
+valueset "WC-rBS Class Cholera Vaccine": 'http://example.org/ValueSet/wc-rbs-cholera'
 valueset "ViPS Class Typhoid Vaccine": 'http://example.org/ValueSet/vips'
 valueset "Ty21a Class Typhoid Vaccine": 'http://example.org/ValueSet/ty21a'
 // TBE classifications of vaccines
@@ -80,4 +83,3 @@ valueset "FSME-Immun Class TBE Vaccine": 'http://example.org/ValueSet/FSME-Immun
 valueset "TBE-Moscow Class TBE Vaccine": 'http://example.org/ValueSet/TBE-Moscow'
 valueset "EnceVir Class TBE Vaccine": 'http://example.org/ValueSet/EnceVir'
 valueset "Encepur Class TBE Vaccine": 'http://example.org/ValueSet/Encepur'
-

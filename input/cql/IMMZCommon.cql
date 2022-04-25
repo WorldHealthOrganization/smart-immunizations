@@ -150,7 +150,7 @@ define "bOPV Doses Administered to Patient":
  * TODO: Do we want "number of doses" or "highest dose sequence"? For example for interrupted series the dose
  *       number would be 1, 2, 1, 2, 1, 2 -> the highest sequence is 2 but the number is 6
  */
-define "Number of bOPV Doses Administered to Patient":
+define "Number of bOPV Doses Administered to Patient Excluding Birth Dose":
   Count("bOPV Doses Administered to Patient" O where (singleton from O.protocolApplied).doseNumber != 0)
 
 /**
@@ -217,6 +217,31 @@ define "Cholera Doses Administered to Patient":
   "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Cholera Vaccine"
+
+/** 
+ * @dataElement There have been no choldera doses administered to patient
+ */
+define "No Cholera Doses Administered to Patient":
+  not exists("Cholera Doses Administered to Patient")
+
+/** 
+ * @dataElement Fact: Date last cholera dose was administered to the patient
+ */
+define "Date Last Cholera Dose Administered to Patient":
+  date from (First("Cholera Doses Administered to Patient").occurrence as FHIR.dateTime)
+
+/** 
+ * @dataElement Fact: Type of last cholera dose administered to patient
+ */
+define "Type of Last Cholera Dose Administered to Patient":
+  First("Cholera Doses Administered to Patient" I return I.vaccineCode)
+
+/**
+ * @dataElement Fact: The highest dosing sequence of cholera vaccine administerd to patient
+ */
+define "Highest Sequence of Cholera Doses Administered to Patient":
+  Max("Cholera Doses Administered to Patient" I return (singleton from I.protocolApplied).doseNumber as FHIR.positiveInt)
+
 
 /**
  * @dataElement Hib containing Doses Administered to Patient
