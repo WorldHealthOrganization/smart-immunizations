@@ -1,6 +1,6 @@
 /*
  * Library: IMMZDT22 (IMMZ.DT.22.Varicella)
- * Rule: If child or person has not been vaccinated against Varicella, give Varciella vaccine 
+ * Rule: If child or person has not been vaccinated against Varicella 
  * Trigger: Patient has never had the Varicella vaccination or shows no evidence of Varciella immunity
  */
 library IMMZDT22
@@ -10,8 +10,8 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
 context Patient
 
@@ -22,86 +22,42 @@ define "Varicella vaccine immunization history":
 	0 // TODO: Define this
 
 /* 
- * @dataElement No doses
+ * @dataElement No-doses
  */
-define "No doses":
+define "No-doses":
 	0 // TODO: Define this
 
 /* 
- * @dataElement Age
+ * @dataElement Current Patient Age in Months
  */
-define "Age":
+define "Current Patient Age in Months":
 	0 // TODO: Define this
 
 /* 
- * @dataElement 12 months
+ * @dataElement Pregnancy Status
  */
-define "12 months":
+define "Pregnancy Status":
 	0 // TODO: Define this
 
 /* 
- * @dataElement 18 months
+ * @dataElement Country recognizes Varicella an important public health burden
  */
-define "18 months":
+define "Country recognizes Varicella an important public health burden":
 	0 // TODO: Define this
-
-/* 
- * @dataElement 15 years
- */
-define "15 years":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Pregnant
- */
-define "Pregnant":
-	0 // TODO: Define this
-
-/* 
- * @dataElement False
- */
-define "False":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)
- */
-define "Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)":
-	true // TODO: Define this
 
 /*
- * Rule: Should vaccinate patient with Varicella vaccine because no doses
+ * Rule: Should vaccinate patient with Varicella vaccine because no doses in a 2 dose scheme
  * Annotations:
  * 	 - Provide Varicella immunizations – using the "Varicella vaccine immunization – NO PREVIOUS" schedule (2 dose scheme)
  * Outputs:
  * 	 - Immunize Patient for Varicella- No Doses
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((((("Varicella vaccine immunization history" = "No doses") and ("Age" >= "12 months")) and ("Age" <= "18 months")) or ((("Varicella vaccine immunization history" = "No doses") and ("Age" >= "15 years")) and ("Pregnant" = "False"))) or ((("Varicella vaccine immunization history" = "No doses") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Pregnant" = "False")))
+ *	 (((("Varicella vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 12)) and ("Pregnancy Status" = false)) and ("Country recognizes Varicella an important public health burden" = true))
  */
-define "Should vaccinate patient with Varicella vaccine because no doses":
-	((((("Varicella vaccine immunization history" = "No doses") and ("Age" >= "12 months")) and ("Age" <= "18 months")) or ((("Varicella vaccine immunization history" = "No doses") and ("Age" >= "15 years")) and ("Pregnant" = "False"))) or ((("Varicella vaccine immunization history" = "No doses") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Pregnant" = "False")))
-
-/* 
- * @dataElement Varicella vaccine immunization history = 1 doses given 4 weeks to 3 months ago
- */
-define "Varicella vaccine immunization history = 1 doses given 4 weeks to 3 months ago":
-	true // TODO: Define this
-
-/*
- * Rule: Should vaccinate patient with Varicella vaccine because 1 dose given 4 weeks ago
- * Annotations:
- * 	 - Provide Varicella immunizations – using the "Varicella vaccine immunization – 1 PREVIOUS" schedule (2 dose scheme)
- * Outputs:
- * 	 - Immunize Patient for Varicella- 1 Doses
- * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
- * Logic:
- *	 ((("Varicella vaccine immunization history" = "1 doses given 4 weeks to 3 months ago" = true) and ("Age" >= "12 months")) and ("Age" <= "18 months"))
- */
-define "Should vaccinate patient with Varicella vaccine because 1 dose given 4 weeks ago":
-	((("Varicella vaccine immunization history = 1 doses given 4 weeks to 3 months ago" = true) and ("Age" >= "12 months")) and ("Age" <= "18 months"))
+define "Should vaccinate patient with Varicella vaccine because no doses in a 2 dose scheme":
+	(((("Varicella vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 12)) and ("Pregnancy Status" = false)) and ("Country recognizes Varicella an important public health burden" = true))
 
 /* 
  * @dataElement 1 dose
@@ -110,22 +66,28 @@ define "1 dose":
 	0 // TODO: Define this
 
 /* 
- * @dataElement 1 doses and potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella) and not pregnant
+ * @dataElement Date last Varicella dose given
  */
-define "1 doses and potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella) and not pregnant":
+define "Date last Varicella dose given":
+	0 // TODO: Define this
+
+/* 
+ * @dataElement 4 weeks
+ */
+define "4 weeks":
 	0 // TODO: Define this
 
 /*
- * Rule: Should vaccinate patient with Varicella vaccine because 1 dose  given
+ * Rule: Should vaccinate patient with Varicella vaccine because 1 dose given 4 weeks ago in a 2 dose scheme
  * Annotations:
  * 	 - Provide Varicella immunizations – using the "Varicella vaccine immunization – 1 PREVIOUS" schedule (2 dose scheme)
  * Outputs:
- * 	 - Immunize Patient for Varicella- 1 Doses
+ * 	 - Immunize Patient for Varicella -  1st dose given between 4 weeks and 3 months ago
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (((("Varicella vaccine immunization history" = "1 dose") and ("Age" >= "15 years")) and ("Pregnant" = "False")) or ((("Varicella vaccine immunization history" = "1 doses and potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella) and not pregnant") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Pregnant" = "False")))
+ *	 ((("Varicella vaccine immunization history" = "1 dose") and ("Date last Varicella dose given" >= "4 weeks")) and ("Pregnancy Status" = false))
  */
-define "Should vaccinate patient with Varicella vaccine because 1 dose  given":
-	(((("Varicella vaccine immunization history" = "1 dose") and ("Age" >= "15 years")) and ("Pregnant" = "False")) or ((("Varicella vaccine immunization history" = "1 doses and potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella) and not pregnant") and ("Potentially susceptible health-care worker (i.e.unvaccinated and with no history of varicella)" = true)) and ("Pregnant" = "False")))
+define "Should vaccinate patient with Varicella vaccine because 1 dose given 4 weeks ago in a 2 dose scheme":
+	((("Varicella vaccine immunization history" = "1 dose") and ("Date last Varicella dose given" >= "4 weeks")) and ("Pregnancy Status" = false))
 

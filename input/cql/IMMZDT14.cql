@@ -81,6 +81,7 @@ define "Should Re-vaccinate patient with ViPS vaccine on a 1 dose scheme":
 	and IMMZCom."Type of Last Typhoid Dose Administered to Patient" in IMMZc."ViPS Class Typhoid Vaccine"
 	and IMMZConf."Region recommends Typhoid vaccination"
 
+
 /*
  * Rule: Should vaccinate patient with Ty21a vaccine on a 3 dose scheme
  * Annotations:
