@@ -10,34 +10,9 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
 context Patient
-
-/* 
- * @dataElement Seasonal influenza vaccine immunization history
- */
-define "Seasonal influenza vaccine immunization history":
-	0 // TODO: Define this
-
-/* 
- * @dataElement No-doses
- */
-define "No-doses":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Age
- */
-define "Age":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 6 months
- */
-define "6 months":
-	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient for Seasonal influenza because no doses at 6 months old in a 2 dose scheme
@@ -51,31 +26,8 @@ define "6 months":
  *	 (("Seasonal influenza vaccine immunization history" = "No-doses") and ("Age" >= "6 months"))
  */
 define "Should vaccinate patient for Seasonal influenza because no doses at 6 months old in a 2 dose scheme":
-	(("Seasonal influenza vaccine immunization history" = "No-doses") and ("Age" >= "6 months"))
-
-/* 
- * @dataElement 1 dose
- */
-define "1 dose":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Last dose given
- */
-define "Last dose given":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 4 weeks ago
- */
-define "4 weeks ago":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 9 years
- */
-define "9 years":
-	0 // TODO: Define this
+	IMMZCom."No Seasonal Influenza Doses Administered to Patient" and
+	IMMZCom."Current Patient Age In Months" >= 6
 
 /*
  * Rule: Should vaccinate patient for Seasonal influenza because 1st dose was given 4 weeks ago in a 2 dose scheme
@@ -89,19 +41,9 @@ define "9 years":
  *	 ((("Seasonal influenza vaccine immunization history" = "1 dose") and ("Last dose given" >= "4 weeks ago")) and ("Age" < "9 years"))
  */
 define "Should vaccinate patient for Seasonal influenza because 1st dose was given 4 weeks ago in a 2 dose scheme":
-	((("Seasonal influenza vaccine immunization history" = "1 dose") and ("Last dose given" >= "4 weeks ago")) and ("Age" < "9 years"))
-
-/* 
- * @dataElement Seasonal influenza vaccine immunization last dose given
- */
-define "Seasonal influenza vaccine immunization last dose given":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 1 year ago
- */
-define "1 year ago":
-	0 // TODO: Define this
+	IMMZCom."Number of Seasonal Influenza Doses Administered to Patient" = 1
+	and IMMZCom."Date Last Seasonal Influenza Dose Administered to Patient" more than 4 'weeks' before Today()
+	and IMMZCom."Current Patient Age In Years" < 9
 
 /*
  * Rule: Should vaccinate patient for Seasonal influenza - Yearly booster dose
@@ -115,5 +57,6 @@ define "1 year ago":
  *	 ("Seasonal influenza vaccine immunization last dose given" >= "1 year ago")
  */
 define "Should vaccinate patient for Seasonal influenza - Yearly booster dose":
-	("Seasonal influenza vaccine immunization last dose given" >= "1 year ago")
+	IMMZCom."Number of Seasonal Influenza Doses Administered to Patient" > 0
+	and IMMZCom."Date Last Seasonal Influenza Dose Administered to Patient" more than 1 'year' before Today()
 

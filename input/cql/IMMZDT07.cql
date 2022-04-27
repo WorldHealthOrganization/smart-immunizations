@@ -10,28 +10,19 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include FHIRCommon called FC
 // End Skeleton CQL
+valueset "intussusception": 'http://example.org/ValueSets/intussusception'
+valueset "three-dose-series-product": 'http://example.org/ValueSets/three-dose-series-product'
+valueset "two-dose-series-product": 'http://example.org/ValueSets/two-dose-series-product'
 context Patient
 
 /* 
- * @dataElement Rotavirus vaccine immunization history
+ * @dataElement Patient has no history of intussusception
  */
-define "Rotavirus vaccine immunization history":
-	0 // TODO: Define this
-
-/* 
- * @dataElement No-doses
- */
-define "No-doses":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Current Patient Age in Weeks
- */
-define "Current Patient Age in Weeks":
-	0 // TODO: Define this
+define "Patient has no history of intussusception":
+	not(exists([Condition: code in "intussusception"]))
 
 /*
  * Rule: Should vaccinate patient for Rotavirus 1st dose
@@ -42,126 +33,95 @@ define "Current Patient Age in Weeks":
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 (("Rotavirus vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6))
+ *	 (((("Rotavirus immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6)) and ("Current Patient Age in Months" <= 24)) and ("Patient has no history of intussusception" = true))
  */
 define "Should vaccinate patient for Rotavirus 1st dose":
-	(("Rotavirus vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6))
+	(
+		(Count(IMMZCom."Rotavirus Doses Administered to Patient") = 0) and 
+		(IMMZCom."Current Patient Age In Weeks" >= 6) and 
+		(IMMZCom."Current Patient Age In Months" <= 24) and 
+		("Patient has no history of intussusception" = true)
+	)
 
 /* 
- * @dataElement Rotavirus vaccine given 1 dose in immunization history
+ * @dataElement Date last Rotavirus dose given
  */
-define "Rotavirus vaccine given 1 dose in immunization history":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 1 Rotavirus dose
- */
-define "1 Rotavirus dose":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Scheme
- */
-define "Scheme":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 2 dose
- */
-define "2 dose":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 3 dose
- */
-define "3 dose":
-	0 // TODO: Define this
+define "Date last Rotavirus dose given":
+	(Last(IMMZCom."Rotavirus Doses Administered to Patient" O sort by (occurrence as FHIR.dateTime)).occurrence as FHIR.dateTime)
 
 /*
  * Rule: Should vaccinate patient with Rotavirus 2nd dose
  * Annotations:
- * 	 - Provide Rotavirus immunizations – using the "Rotavirus vaccine immunization schedule" – minimum of 4 weeks after previous dose assuming 2 dose scheme
- * 	 - Provide Rotavirus immunizations – using the "Rotavirus vaccine immunization schedule" – minimum of 4 weeks after previous dose assuming 3 dose scheme
+ * 	 - Provide Rotavirus immunizations – using the "Rotavirus vaccine immunization schedule" – minimum of 4 weeks after previous dose
  * Outputs:
  * 	 - Immunize Patient for Rotavirus - 1 Rotavirus dose previously given 2 dose scheme
- * 	 - Immunize Patient for Rotavirus - 1 Rotavirus dose previously given 3 dose scheme
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
- *	 ((("Rotavirus vaccine given 1 dose in immunization history" = "1 Rotavirus dose") and ("Scheme" = "2 dose")) or (("Rotavirus vaccine given 1 dose in immunization history" = "1 Rotavirus dose") and ("Scheme" = "3 dose")))
+ *	 (((("Rotavirus immunization history" = "1-dose") and ("Date last Rotavirus dose given" >= "4 weeks")) and ("Current Patient Age in Months" <= 24)) and ("Patient has no history of intussusception" = true))
  */
 define "Should vaccinate patient with Rotavirus 2nd dose":
-	((("Rotavirus vaccine given 1 dose in immunization history" = "1 Rotavirus dose") and ("Scheme" = "2 dose")) or (("Rotavirus vaccine given 1 dose in immunization history" = "1 Rotavirus dose") and ("Scheme" = "3 dose")))
+	(
+		(Count(IMMZCom."Rotavirus Doses Administered to Patient") = 1) and 
+		("Date last Rotavirus dose given" more than 4 'weeks' before Today()) and 
+		(IMMZCom."Current Patient Age In Months" <= 24) and 
+		("Patient has no history of intussusception" = true)
+	)
 
 /* 
- * @dataElement Rotavirus vaccine given 2 dose in immunization history
+ * @dataElement All previous doses given with a 3 dose series product
  */
-define "Rotavirus vaccine given 2 dose in immunization history":
-	0 // TODO: Define this
+define "All previous doses given with a 3 dose series product":
+	Count(IMMZCom."Rotavirus Doses Administered to Patient" I where I.vaccineCode in "three-dose-series-product") = Count(IMMZCom."Rotavirus Doses Administered to Patient")
 
 /* 
- * @dataElement 3 Rotavirus dose
+ * @dataElement All previous doses were not the same product
  */
-define "3 Rotavirus dose":
-	0 // TODO: Define this
+define "All previous doses were not the same product":
+	exists(
+		from
+			IMMZCom."Rotavirus Doses Administered to Patient" RVOne,
+			IMMZCom."Rotavirus Doses Administered to Patient" RVTwo 
+		where RVOne.vaccineCode != RVTwo.vaccineCode
+	)
+
+
+/* 
+ * @dataElement Any of the previous doses was administered with an unknown product
+ */
+define "Any previous doses administered with unknown schedule":
+	exists(
+		from IMMZCom."Rotavirus Doses Administered to Patient" I
+		where 
+			not(
+				I.vaccineCode in "two-dose-series-product" and
+				I.vaccineCode in "three-dose-series-product" 
+			)
+	) // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient with Rotavirus 3rd dose
  * Annotations:
  * 	 - Provide Rotavirus immunizations – using the "Rotavirus vaccine immunization schedule" – minimum of 4 weeks after previous dose assuming 3 dose scheme
+ * 	 - 
  * Outputs:
  * 	 - Immunize Patient for Rotavirus - 2 Rotavirus dose previously given 3 dose scheme
+ * 	 - 
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- 
  * Logic:
- *	 ("Rotavirus vaccine given 2 dose in immunization history" = "3 Rotavirus dose")
+ *	 ((((((("Rotavirus immunization history" = "2-doses") and ("Date last Rotavirus dose given" >= "4 weeks")) and ("All previous doses given with a 3 dose series product" = true)) and ("Patient has no history of intussusception" = true)) and ("Current Patient Age in Months" <= 24)) or ((((("Rotavirus immunization history" = "2-doses") and ("Date last Rotavirus dose given" >= "4 weeks")) and ("All previous doses were not the same product" = true)) and ("Patient has no history of intussusception" = true)) and ("Current Patient Age in Months" <= 24))) or ((((("Rotavirus immunization history" = "2-doses") and ("Date last Rotavirus dose given" >= "4 weeks")) and ("Any of the previous doses was administered with an unknown product" = true)) and ("Patient has no history of intussusception" = true)) and ("Current Patient Age in Months" <= 24)))
  */
 define "Should vaccinate patient with Rotavirus 3rd dose":
-	("Rotavirus vaccine given 2 dose in immunization history" = "3 Rotavirus dose")
-
-/* 
- * @dataElement Interrupted primary series
- */
-define "Interrupted primary series":
-	true // TODO: Define this
-
-/*
- * Rule: Should vaccinate the patient is next appriopriate dose.
- * Annotations:
- * 	 - Provide the 2nd or 3rd dose without repeating the previous dose in the scheme, even if after the 4 week window
- * Outputs:
- * 	 - Immunize Patient for Rotavirus - Missed Dose
- * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
- * Logic:
- *	 ("Interrupted primary series" = true)
- */
-define "Should vaccinate the patient is next appriopriate dose.":
-	("Interrupted primary series" = true)
-
-/* 
- * @dataElement Rotavirus vaccine unknown history
- */
-define "Rotavirus vaccine unknown history":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Resume 3 dose scheme
- */
-define "Resume 3 dose scheme":
-	0 // TODO: Define this
-
-/*
- * Rule: Should resume 3 dose scheme
- * Annotations:
- * 	 - Provide the 2nd or 3rd dose without repeating the previous dose in the scheme, even if after the 4 week window
- * Outputs:
- * 	 - Resume 3 dose scheme if known or unavailable previous 2 dose product
- * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
- * Logic:
- *	 ("Rotavirus vaccine unknown history" = "Resume 3 dose scheme")
- */
-define "Should resume 3 dose scheme":
-	("Rotavirus vaccine unknown history" = "Resume 3 dose scheme")
-
+	(
+		(Count(IMMZCom."Rotavirus Doses Administered to Patient") = 2) and
+		("Date last Rotavirus dose given" more than 4 'weeks' before Today()) and
+		(
+			("All previous doses given with a 3 dose series product" = true) or
+			("All previous doses were not the same product" = true) or
+			("Any previous doses administered with unknown schedule" = true)
+		) and
+		("Patient has no history of intussusception" = true) and
+		(IMMZCom."Current Patient Age In Months" <= 24)
+	)

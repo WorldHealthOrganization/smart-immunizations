@@ -9,9 +9,8 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
-include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
+include IMMZConfig called IMMZConf
 // End Skeleton CQL
 context Patient
 
@@ -19,25 +18,25 @@ context Patient
  * @dataElement Pneumococcal vaccine immunization history
  */
 define "Pneumococcal vaccine immunization history":
-	0 // TODO: Define this
+	IMMZCom."Pneumococcal Doses Administered"
 
 /* 
  * @dataElement No-doses
  */
 define "No-doses":
-	0 // TODO: Define this
+	not exists("Pneumococcal vaccine immunization history")
 
 /* 
  * @dataElement Current Patient Age in Weeks
  */
 define "Current Patient Age in Weeks":
-	0 // TODO: Define this
+	IMMZCom."Current Patient Age In Weeks"
 
 /* 
  * @dataElement Country is following a 2 dose scheme
  */
 define "Country is following a 2 dose scheme":
-	true // TODO: Define this
+	IMMZConf."Country is following a 2 dose scheme for Pneumococcal"
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because no doses in a 2 dose scheme
@@ -52,55 +51,49 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  *	 ((("Pneumococcal vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6 )) and ("Country is following a 2 dose scheme" = true))
  */
 define "Should vaccinate patient for Pneumococcal because no doses in a 2 dose scheme":
-	((("Pneumococcal vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6 )) and ("Country is following a 2 dose scheme" = true))
-
+	((("Pneumococcal vaccine immunization history" = "No-doses") and ("Age" >= "6 weeks")) and ("Country is following a 2 dose scheme" = true));
 /* 
  * @dataElement 1 dose
  */
 define "1 dose":
-	0 // TODO: Define this
+	IMMZCom."Number of Pneumococcal Doses Administered to Patient" = 1
 
-/* 
- * @dataElement Date last Pneumococcal dose given
- */
-define "Date last Pneumococcal dose given":
-	0 // TODO: Define this
 
 /* 
  * @dataElement 8 weeks
  */
 define "8 weeks":
-	0 // TODO: Define this
+	8 weeks
 
 /* 
  * @dataElement Country is using a 2 dose scheme
  */
 define "Country is using a 2 dose scheme":
-	true // TODO: Define this
+	IMMZConf."Country is following a 2 dose scheme for Pneumococcal"
 
 /* 
  * @dataElement Current Patient Age in Years
  */
 define "Current Patient Age in Years":
-	0 // TODO: Define this
+	IMMZCom."Current Patient Age In Years"
 
 /* 
  * @dataElement HIV Status
  */
 define "HIV Status":
-	0 // TODO: Define this
+	IMMZCom."HIV Status"
 
 /* 
  * @dataElement Positive
  */
 define "Positive":
-	0 // TODO: Define this
+	IMMZCom."HIV Status - Positive"
 
 /* 
  * @dataElement Patient has sickle-cell disease
  */
 define "Patient has sickle-cell disease":
-	true // TODO: Define this
+	true; // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because 1 dose in a 2 dose scheme
@@ -119,19 +112,14 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  *	 (((((("Pneumococcal vaccine immunization history" = "1 dose") and ("Date last Pneumococcal dose given" >= "8 weeks")) and ("Current Patient Age in Weeks" >= 6 )) and ("Country is using a 2 dose scheme" = true)) or (((("Pneumococcal vaccine immunization history" = "1 dose") and ("Current Patient Age in Years" >= 1)) and ("Current Patient Age in Years" <= 5)) and ("HIV Status" = "Positive"))) or (((("Pneumococcal vaccine immunization history" = "1 dose") and ("Current Patient Age in Years" >= 1)) and ("Current Patient Age in Years" <= 5)) and ("Patient has sickle-cell disease" = true)))
  */
 define "Should vaccinate patient for Pneumococcal because 1 dose in a 2 dose scheme":
-	(((((("Pneumococcal vaccine immunization history" = "1 dose") and ("Date last Pneumococcal dose given" >= "8 weeks")) and ("Current Patient Age in Weeks" >= 6 )) and ("Country is using a 2 dose scheme" = true)) or (((("Pneumococcal vaccine immunization history" = "1 dose") and ("Current Patient Age in Years" >= 1)) and ("Current Patient Age in Years" <= 5)) and ("HIV Status" = "Positive"))) or (((("Pneumococcal vaccine immunization history" = "1 dose") and ("Current Patient Age in Years" >= 1)) and ("Current Patient Age in Years" <= 5)) and ("Patient has sickle-cell disease" = true)))
+	(((("Pneumococcal vaccine immunization history" = "1 dose") and ("Last Pneumococcal Dose given" >= "8 weeks ago")) and ("Age" >= "6 weeks")) and ("Country is using a 2 dose scheme" = true));
 
-/* 
- * @dataElement  No doses
- */
-define " No doses":
-	0 // TODO: Define this
 
 /* 
  * @dataElement Country is following a 3 dose scheme
  */
 define "Country is following a 3 dose scheme":
-	true // TODO: Define this
+	IMMZConf."Country is following a 3 dose scheme for Pneumococcal"
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because No doses in a 3 dose scheme
@@ -146,19 +134,13 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  *	 ((("Pneumococcal vaccine immunization history" = " No doses") and ("Current Patient Age in Weeks" >= 6 )) and ("Country is following a 3 dose scheme" = true))
  */
 define "Should vaccinate patient for Pneumococcal because No doses in a 3 dose scheme":
-	((("Pneumococcal vaccine immunization history" = " No doses") and ("Current Patient Age in Weeks" >= 6 )) and ("Country is following a 3 dose scheme" = true))
-
-/* 
- * @dataElement  1 dose
- */
-define " 1 dose":
-	0 // TODO: Define this
+	((("Pneumococcal vaccine immunization history" = " No doses") and ("Age" >= "6 weeks")) and ("Country is following a 3 dose scheme" = true));
 
 /* 
  * @dataElement 4 weeks
  */
 define "4 weeks":
-	0 // TODO: Define this
+	4 weeks
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because 1 dose in a 3 dose scheme
@@ -173,19 +155,13 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  *	 (((("Pneumococcal vaccine immunization history" = " 1 dose") and ("Date last Pneumococcal dose given" >= "4 weeks")) and ("Current Patient Age in Weeks" >= 6 )) and ("Country is following a 3 dose scheme" = true))
  */
 define "Should vaccinate patient for Pneumococcal because 1 dose in a 3 dose scheme":
-	(((("Pneumococcal vaccine immunization history" = " 1 dose") and ("Date last Pneumococcal dose given" >= "4 weeks")) and ("Current Patient Age in Weeks" >= 6 )) and ("Country is following a 3 dose scheme" = true))
-
-/* 
- * @dataElement  2 doses
- */
-define " 2 doses":
-	0 // TODO: Define this
+	(((("Pneumococcal vaccine immunization history" = " 1 dose") and ("Last Pneumococcal Dose given" >= "4 weeks ago")) and ("Age" >= "6 weeks")) and ("Country is following a 3 dose scheme" = true));
 
 /* 
  * @dataElement Date Last Pneumococcal Dose given
  */
 define "Date Last Pneumococcal Dose given":
-	0 // TODO: Define this
+	date from (First(IMMZCom."Pneumococcal Doses Administered").occurrence as FHIR.dateTime)
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because 2 doses in a 3 dose scheme
@@ -200,13 +176,8 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  *	 (((("Pneumococcal vaccine immunization history" = " 2 doses") and ("Date Last Pneumococcal Dose given" >= "4 weeks")) and ("Current Patient Age in Weeks" >= 6 )) and ("Country is following a 3 dose scheme" = true))
  */
 define "Should vaccinate patient for Pneumococcal because 2 doses in a 3 dose scheme":
-	(((("Pneumococcal vaccine immunization history" = " 2 doses") and ("Date Last Pneumococcal Dose given" >= "4 weeks")) and ("Current Patient Age in Weeks" >= 6 )) and ("Country is following a 3 dose scheme" = true))
+	(((("Pneumococcal vaccine immunization history" = " 2 doses") and ("Last Pneumococcal Dose given" >= "4 weeks ago")) and ("Age" >= "6 weeks")) and ("Country is following a 3 dose scheme" = true));
 
-/* 
- * @dataElement No doses
- */
-define "No doses":
-	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because No doses in a 2 dose scheme
@@ -223,13 +194,12 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  *	 ((((("Pneumococcal vaccine immunization history" = "No doses") and ("Current Patient Age in Years" >= 1)) and ("Current Patient Age in Years" <= 5)) and ("HIV Status" = "Positive")) or (((("Pneumococcal vaccine immunization history" = "No doses") and ("Current Patient Age in Years" >= 1)) and ("Current Patient Age in Years" <= 5)) and ("Patient has sickle-cell disease" = true)))
  */
 define "Should vaccinate patient for Pneumococcal because No doses in a 2 dose scheme":
-	((((("Pneumococcal vaccine immunization history" = "No doses") and ("Current Patient Age in Years" >= 1)) and ("Current Patient Age in Years" <= 5)) and ("HIV Status" = "Positive")) or (((("Pneumococcal vaccine immunization history" = "No doses") and ("Current Patient Age in Years" >= 1)) and ("Current Patient Age in Years" <= 5)) and ("Patient has sickle-cell disease" = true)))
-
+	((((("Pneumococcal vaccine immunization history" = "No doses") and ("Age" >= "1 years")) and ("Age" <= "5 years")) and ("Patient is HIV+" = true)) or (((("Pneumococcal vaccine immunization history" = "No doses") and ("Age" >= "1 years")) and ("Age" <= "5 years")) and ("Patient has sickle-cell disease" = true)));
 /* 
  * @dataElement In a setting with a high disease burden and mortality
  */
 define "In a setting with a high disease burden and mortality":
-	true // TODO: Define this
+	IMMZConf."High Pneumococcal disease burden and mortality"
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because No doses in a 1 dose scheme
@@ -244,5 +214,4 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  *	 (((("Pneumococcal vaccine immunization history" = " No doses") and ("Current Patient Age in Years" >= 1)) and ("Current Patient Age in Years" <= 5)) and ("In a setting with a high disease burden and mortality" = true))
  */
 define "Should vaccinate patient for Pneumococcal because No doses in a 1 dose scheme":
-	(((("Pneumococcal vaccine immunization history" = " No doses") and ("Current Patient Age in Years" >= 1)) and ("Current Patient Age in Years" <= 5)) and ("In a setting with a high disease burden and mortality" = true))
-
+	(((("Pneumococcal vaccine immunization history" = " No doses") and ("Age" >= "1 years")) and ("Age" <= "5 years")) and ("In a setting with a high disease burden and mortality" = true));
