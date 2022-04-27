@@ -242,6 +242,11 @@ define "Type of Last Cholera Dose Administered to Patient":
 define "Highest Sequence of Cholera Doses Administered to Patient":
   Max("Cholera Doses Administered to Patient" I return (singleton from I.protocolApplied).doseNumber as FHIR.positiveInt)
 
+/** 
+ * @dataele
+ */
+define "Most Recent Dose Sequence of Cholera Doses Administered to Patient":
+  First("Cholera Doses Administered to Patient" I return (singleton from I.protocolApplied).doseNumber as FHIR.positiveInt)
 
 /**
  * @dataElement Hib containing Doses Administered to Patient

@@ -29,6 +29,8 @@ context Patient
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 (((("Cholera vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Years" >= 1)) and ("Region recommends Cholera vaccination" = true)) or ((("Cholera vaccine immunization history" = "1 dose" = true) and ("Date last Cholera dose given" >= "2 weeks")) and ("Type of last Cholera dose" = "WC vaccines")))
+ * Assumption:
+ * 	vaccineCode will contain a specific classification of the antigen given (or a future version of FHIR will have a product link)
  */
 define "Should vaccinate patient with a WC vaccines (Shanchol, Euvchol, and mORCVAX)":
 	(
@@ -49,13 +51,21 @@ define "Patient has completed Cholera primary series":
 	IMMZCom."Type of Last Cholera Dose Administered to Patient" in IMMZc."WC-rBS Class Cholera Vaccine"
 	and 
 	(
-		IMMZCom."Current Patient Age In Years" between 2 and 5 
-		and IMMZCom."Highest Sequence of Cholera Doses Administered to Patient" >= 3 
-		or IMMZCom."Current Patient Age In Years" >= 6 
+		(
+			IMMZCom."Current Patient Age In Years" between 2 and 5 
+			and IMMZCom."Highest Sequence of Cholera Doses Administered to Patient" >= 3 
+		)
+		or 
+		(
+			IMMZCom."Current Patient Age In Years" >= 6 
+			and IMMZCom."Highest Sequence of Cholera Doses Administered to Patient" >= 2
+		)
+	)
+	or 
+	(	
+		IMMZCom."Type of Last Cholera Dose Administered to Patient" in IMMZc."WC Class Cholera Vaccine"
 		and IMMZCom."Highest Sequence of Cholera Doses Administered to Patient" >= 2
 	)
-	or not(IMMZCom."Type of Last Cholera Dose Administered to Patient" in IMMZc."WC-rBS Class Cholera Vaccine") 
-	and IMMZCom."Highest Sequence of Cholera Doses Administered to Patient" >= 2
 
 /*
  * Rule: Should Re-vaccinate patient with a WC vaccines (Shanchol, Euvchol, and mORCVAX) on a 2 dose scheme
@@ -102,7 +112,7 @@ define "Should vaccinate patient with WC-rBS vaccine (Dukoral)":
 			and IMMZConf."Region recommends Cholera vaccination"
 		)
 		or (
-			IMMZCom."Highest Sequence of Cholera Doses Administered to Patient" between 1 and 2
+			IMMZCom."Most Recent Dose Sequence of Cholera Doses Administered to Patient" between 1 and 2
 			and IMMZCom."Type of Last Cholera Dose Administered to Patient" in IMMZc."WC-rBS Class Cholera Vaccine"
 			and IMMZCom."Date Last Cholera Dose Administered to Patient" more than 1 week before Today()
 			and IMMZCom."Date Last Cholera Dose Administered to Patient" less than 6 month before Today()
@@ -116,13 +126,12 @@ define "Should vaccinate patient with WC-rBS vaccine (Dukoral)":
 			and IMMZConf."Region recommends Cholera vaccination"
 		)
 		or (
-			IMMZCom."Highest Sequence of Cholera Doses Administered to Patient" = 1
+			IMMZCom."Most Recent Dose Sequence of Cholera Doses Administered to Patient" = 1
 			and IMMZCom."Type of Last Cholera Dose Administered to Patient" in IMMZc."WC-rBS Class Cholera Vaccine"
 			and IMMZCom."Date Last Cholera Dose Administered to Patient" more than 1 week before Today()
 			and IMMZCom."Date Last Cholera Dose Administered to Patient" less than 6 week before Today()
 		)
 	)
-
 
 /*
  * Rule: Should re-vaccinate patient with WC-rBS vaccine (Dukoral)
@@ -136,6 +145,15 @@ define "Should vaccinate patient with WC-rBS vaccine (Dukoral)":
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 ((((((("Patient has completed Cholera primary series" = true) and ("Current Patient Age in Years" >= 2)) and ("Current Patient Age in Years" <= 5)) and ("Date last Cholera dose given" <= "6 months" = true)) and ("Type of last Cholera dose" = "WC-rBS vaccine")) and ("Region recommends Cholera vaccination" = true)) or ((((("Patient has completed Cholera primary series" = true) and ("Current Patient Age in Years" >= 6)) and ("Date last Cholera dose given" <= "2 years" = true)) and ("Type of last Cholera dose" = "WC-rBS vaccine")) and ("Region recommends Cholera vaccination" = true)))
+ * Example:
+ * 	Assume patient is 3 yo
+ *		Month 1: Dukoral Dose #1 
+ * 		Month 2: Dukoral Dose #2
+ * 		Month 3: Dukoral Dose #3 <-- Completed primary series
+ * 		Month 6: Dukoral Dose #4 <-- This booster
+ *		Month 9: Dukoral Dose #6
+ *		Month 12: Dukoral Dose #7
+ *		Month 20: Dukoral Dose #1
  */
 define "Should re-vaccinate patient with WC-rBS vaccine (Dukoral)":
 	"Patient has completed Cholera primary series"
@@ -144,10 +162,10 @@ define "Should re-vaccinate patient with WC-rBS vaccine (Dukoral)":
 	and (
 		(
 			IMMZCom."Current Patient Age In Years" between 2 and 5
-			and IMMZCom."Date Last Cholera Dose Administered to Patient" more than 6 month before Today()
+			and IMMZCom."Date Last Cholera Dose Administered to Patient" less than 6 month before Today()
 		) or (
 			IMMZCom."Current Patient Age In Years" > 6
-			and IMMZCom."Date Last Cholera Dose Administered to Patient" more than 2 year before Today()
+			and IMMZCom."Date Last Cholera Dose Administered to Patient" less than 2 year before Today()
 		)
 	)
 
