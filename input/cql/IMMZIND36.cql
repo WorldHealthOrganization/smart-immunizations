@@ -25,7 +25,7 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
+include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
@@ -38,37 +38,39 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a Measles vaccine (IMMZ.A1.DE9) during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
+	exists(IMMZIndCom."MCV Doses Administered to Patient During Measurement Period")
 
 /*
  * Denominator: Number of registered, surviving infants.
  * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  */
 define "denominator":
-	true // TODO: Write logic here 
+	IMMZIndCom."Patient Under 12 Months Old Before Measurement Period"
+	and not (IMMZIndCom."Patient Deceased Before Measurement Period")
 
 /*
  * Disaggregator: Dose Sequence (1, 2)
  */
-define "Dose Sequence Stratifier":
-	true // todo: fill in logic
+define "Dose Sequence  Stratifier":
+	IMMZIndCom."MCV Doses Administered to Patient During Measurement Period" I
+	return (singleton from I.protocolApplied).doseNumber
 
 /*
- * Disaggregator: Age Group (< 1 year or > 1 year)
+ * Disaggregator: Age Group (<24H of Birth, < 2 weeks)
  */
 define "Age Group Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."Infant By Age Stratifier"
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier"
 
 /*
- * Disaggregator: Gender
+ * Disaggregator: Administrative Gender (or Biological Sex)
  */
-define "Gender Stratifier":
-	true // todo: fill in logic
-
+define "Administrative Gender Stratifier":
+	IMMZIndCom."By Administrative Gender Stratifier"
+	
 /* End of IMMZ.IND.36 */

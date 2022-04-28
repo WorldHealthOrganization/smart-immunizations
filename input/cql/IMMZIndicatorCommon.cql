@@ -9,6 +9,7 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include FHIRCommon called FC
 include IMMZCommon called IMMZCom
+include IMMZConcepts called IMMZc
 include WHOCommon called WCom
 include WHOConcepts called WC
 codesystem "ISO-8601-Derived Periods": 'http://ohie.org/CodeSystem/iso-8601-derived-periods'
@@ -292,6 +293,15 @@ define "Typhoid Doses Administered to Patient During Measurement Period":
     IMMZCom."Typhoid Doses Administered to Patient" I 
     where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
 
+/** 
+ * HPV Doses recommended during reporting period - 
+ *  This is used since the country should define the rules which recommend an HPV dose (age, sex, etc.)
+ */
+define "HPV Doses Recommended During Reporting Period":
+    [ImmunizationRecommendation] IR
+    where exists(IR.recommendation RC where exists(RC.dateCriterion DC where date from DC.value during "Measurement Period")
+    and RC.vaccineCode in IMMZc."HPV Vaccine")
+
 /**
  * By Administrative Gender of Patient Stratifier
  */
@@ -306,13 +316,45 @@ define "By Geographic Region Stratifier":
 
 
 /** 
+ * @dataElement Patient is deceased
+ */
+define "Patient Deceased Before Measurement Period":
+  case 
+    when Patient.deceased is FHIR.boolean then Patient.deceased as FHIR.boolean
+    when Patient.deceased is FHIR.dateTime then Patient.deceased as FHIR.dateTime before end of "Measurement Period"
+    else false
+  end
+
+/** 
+ * Patient was born during measurement period
+ */
+define "Patient Born During Measurement Period":
+    Patient.birthDate during "Measurement Period"
+
+/** 
+ * Patient is < 12 months old at the beginning of the measurement period
+ */
+define "Patient Under 12 Months Old Before Measurement Period":
+    Patient.birthDate more than 12 month before start of "Measurement Period"
+
+/** 
  * @define Adverse events for immunizations which occurred during (or observed) during measurement period
  */
-define "Adverse Events During Measurement Period":
+define "Immunizations with Adverse Events During Measurement Period":
     IMMZCom."Doses Administered to Patient" I
     with [Observation: code in WC."Adverse Events"] O
     such that exists(I.reaction R where O.id = Last(Split(R.detail.reference, '/')))
     and FC.ToInterval(O.effective) during "Measurement Period"
+
+
+/** 
+ * @define Adverse events for immunizations which occurred during (or observed) during measurement period
+ */
+define "Adverse Event Reactions During Measurement Period":
+    [Observation: code in WC."Adverse Events"] O
+    with IMMZCom."Doses Administered to Patient" I
+    such that exists(I.reaction R where O.id = Last(Split(R.detail.reference, '/')))
+    where FC.ToInterval(O.effective) during "Measurement Period"
 
 /** 
  * @define Doses which were 

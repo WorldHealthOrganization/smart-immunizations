@@ -627,3 +627,4 @@ define function ToPositiveInt(choice Choice<FHIR.positiveInt, FHIR.string>):
 		else
       Message(null as FHIR.positiveInt, true, '1', 'Error', 'Cannot compute a positive from a String value') // TODO: I'm sure that this is supported somehow?
 	end
+

@@ -44,7 +44,7 @@ context Patient
  * Numerator Computation: COUNT immunization HAVING reaction reported during reporting period
  */
 define "numerator":
-	exists(IMMZIndCom."Adverse Events During Measurement Period")
+	exists(IMMZIndCom."Immunizations with Adverse Events During Measurement Period")
 
 /*
  * Denominator: The total number of doses administered to patients of the product.
@@ -57,7 +57,7 @@ define "denominator":
  * Disaggregator: Vaccine (BCG, OPV, etc.)
  */
 define "Vaccine Stratifier":
-	IMMZIndCom."Adverse Events During Measurement Period" A
+	IMMZIndCom."Immunizations with Adverse Events During Measurement Period" A
 	return A.vaccineCode
 
 /*
@@ -65,33 +65,30 @@ define "Vaccine Stratifier":
  */
 define "Product/Manufacturer Stratifier":
 	[Organization] O
-	with IMMZIndCom."Adverse Events During Measurement Period" A
+	with IMMZIndCom."Immunizations with Adverse Events During Measurement Period" A
 	such that O.id = Last(Split(A.manufacturer.reference, '/'))
 	return O.name
-	
+
 
 /*
  * Disaggregator: Severity (Severe, Non-Severe)
  */
 define "Severity Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."Adverse Event Reactions During Measurement Period" A
+	return First(A.component C where C.code = IMMZc."Adverse Event Severity").value as FHIR.CodeableConcept
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier"
 
 /*
  * Disaggregator: Manifestation / Event (optional - Rash, Vomiting,  etc.)
  */
 define "Manifestation / Event Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."Adverse Event Reactions During Measurement Period" A
+	return A.value as FHIR.CodeableConcept
 
-/*
- * Disaggregator: 
- */
-define " Stratifier":
-	true // todo: fill in logic
 
 /* End of IMMZ.IND.30 */
