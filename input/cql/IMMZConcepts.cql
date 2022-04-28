@@ -39,7 +39,8 @@ code "Inactivated Vero cell-derived vaccine": 'IVCD' from "Antigen Type Classifi
 code "Live attentuated virus vaccine": 'LAV' from "Antigen Type Classifications" display 'Live attentuated virus vaccine'
 code "Live recombinant virus vaccine": 'LRC' from "Antigen Type Classifications" display 'Live recombinant'
 
-//TODO: replace the TST/IGRA test link with a real valueset 
+valueset "Target Disease": 'http://hl7.org/fhir/ValueSet/immunization-target-disease'
+
 // Vaccine Value Sets
 valueset "BCG Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE1'
 valueset "Cholera Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE2'
