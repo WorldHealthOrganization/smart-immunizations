@@ -119,6 +119,7 @@ define "2000g":
 define "4 weeks":
 	Today() - 4 weeks
 
+
 /*
  * Rule: Should vaccinate patient for Hepatitis B because 3 doses and (low birth weight or premature infant)
  * Annotations:
