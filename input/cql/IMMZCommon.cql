@@ -431,6 +431,12 @@ define "Number of Pneumococcal Doses Administered to Patient":
   Count("Pneumococcal Doses Administered to Patient")
 
 
+/** 
+ * @dataElement Date of last Pneumococcal dose administration
+ */
+define "Date Last Pneumococcal Dose Administered to Patient":
+  date from (First("Pneumococcal Doses Administered to Patient").occurrence as FHIR.dateTime)
+
 /**
  * @dataElement Rabies containing Doses Administered to Patient
  */

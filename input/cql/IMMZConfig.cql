@@ -19,7 +19,7 @@ define "JE Antigen Used in Country Classification": IMMZc."Inactivated Vero cell
 
 define "Country is following a 2 dose scheme for Pneumococcal": true
 define "Country is following a 3 dose scheme for Pneumococcal": true
-define "In a setting with a high disease burden and mortality": true
+define "In a setting with a high disease burden and mortality for Pneumococcal": true
 
 define "Region recommends Cholera vaccination": true
 define "Region recommends Typhoid vaccination": true
