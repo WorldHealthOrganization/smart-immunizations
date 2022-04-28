@@ -10,7 +10,6 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZConf
-include IMMZStratifiers called IMMZStratifiers
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
@@ -53,18 +52,18 @@ define "Patient has completed Cholera primary series":
 	(
 		(
 			IMMZCom."Current Patient Age In Years" between 2 and 5 
-			and IMMZCom."Highest Sequence of Cholera Doses Administered to Patient" >= 3 
+			and IMMZCom."Most Recent Dose Sequence of Cholera Doses Administered to Patient" >= 3 
 		)
 		or 
 		(
 			IMMZCom."Current Patient Age In Years" >= 6 
-			and IMMZCom."Highest Sequence of Cholera Doses Administered to Patient" >= 2
+			and IMMZCom."Most Recent Dose Sequence of Cholera Doses Administered to Patient" >= 2
 		)
 	)
 	or 
 	(	
 		IMMZCom."Type of Last Cholera Dose Administered to Patient" in IMMZc."WC Class Cholera Vaccine"
-		and IMMZCom."Highest Sequence of Cholera Doses Administered to Patient" >= 2
+		and IMMZCom."Most Recent Dose Sequence of Cholera Doses Administered to Patient" >= 2
 	)
 
 /*
@@ -151,8 +150,8 @@ define "Should vaccinate patient with WC-rBS vaccine (Dukoral)":
  * 		Month 2: Dukoral Dose #2
  * 		Month 3: Dukoral Dose #3 <-- Completed primary series
  * 		Month 6: Dukoral Dose #4 <-- This booster
- *		Month 9: Dukoral Dose #6
- *		Month 12: Dukoral Dose #7
+ *		Month 9: Dukoral Dose #5
+ *		Month 12: Dukoral Dose #6
  *		Month 20: Dukoral Dose #1
  */
 define "Should re-vaccinate patient with WC-rBS vaccine (Dukoral)":
