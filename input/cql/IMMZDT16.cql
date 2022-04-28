@@ -19,25 +19,26 @@ context Patient
  * @dataElement Meningococcal vaccine immunization history
  */
 define "Meningococcal vaccine immunization history":
-	0 // TODO: Define this
+	IMMZCom."Meningococcal Doses Administered to Patient"
 
 /* 
  * @dataElement No-doses
  */
 define "No-doses":
-	0 // TODO: Define this
+	not exists("Meningococcal vaccine immunization history")
 
 /* 
  * @dataElement Current Patient Age in Months
  */
 define "Current Patient Age in Months":
-	0 // TODO: Define this
+	IMMZCom."Current Patient Age In Months"
 
 /* 
  * @dataElement There is a compelling reason to vaccinate infants with Meningococcal between 3 to 9 months old
  */
 define "There is a compelling reason to vaccinate infants with Meningococcal between 3 to 9 months old":
-	0 // TODO: Define this
+	true
+	//Seek clarity 
 
 /*
  * Rule: Should vaccinate patient with MenA conjugate vaccine (5µg) because no doses on 2 dose scheme
@@ -51,31 +52,32 @@ define "There is a compelling reason to vaccinate infants with Meningococcal bet
  *	 (((("Meningococcal vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 3)) and ("Current Patient Age in Months" < 9)) and ("There is a compelling reason to vaccinate infants with Meningococcal between 3 to 9 months old" = true))
  */
 define "Should vaccinate patient with MenA conjugate vaccine (5µg) because no doses on 2 dose scheme":
-	(((("Meningococcal vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 3)) and ("Current Patient Age in Months" < 9)) and ("There is a compelling reason to vaccinate infants with Meningococcal between 3 to 9 months old" = true))
+	(((("No-doses") and ("Current Patient Age in Months" >= 3)) and ("Current Patient Age in Months" < 9)) and ("There is a compelling reason to vaccinate infants with Meningococcal between 3 to 9 months old" = true))
 
 /* 
  * @dataElement 1 dose
  */
 define "1 dose":
-	0 // TODO: Define this
+	IMMZCom."Number of Meningococcal Doses Administered to Patient" = 1
 
 /* 
  * @dataElement Date last Meningococcal dose given >= 8 weeks
  */
 define "Date last Meningococcal dose given >= 8 weeks":
-	0 // TODO: Define this
+	 IMMZCom."Date last Meningococcal dose Administered to Patient" equal 8 'weeks' before Today()
+	 or IMMZCom."Date last Meningococcal dose Administered to Patient" more than 8 'weeks' before Today()
 
 /* 
  * @dataElement Type of last Meningococcal dose
  */
 define "Type of last Meningococcal dose":
-	0 // TODO: Define this
+	IMMZCom."Type of last Meningococcal Dose Administered to Patient" 
 
 /* 
  * @dataElement MenA conjugate vaccine (5µg)
  */
-define "MenA conjugate vaccine (5µg)":
-	0 // TODO: Define this
+define "MenA conjugate vaccine (5µg)s":
+	IMMZc."MenA conjugate vaccine (5µg)"
 
 /*
  * Rule: Should vaccinate patient with MenA conjugate vaccine (5µg) because 1 dose on 2 dose scheme
@@ -89,13 +91,13 @@ define "MenA conjugate vaccine (5µg)":
  *	 (((((("Meningococcal vaccine immunization history" = "1 dose") and ("Current Patient Age in Months" >= 3)) and ("Current Patient Age in Months" < 9)) and ("Date last Meningococcal dose given" >= "8 weeks" = true)) and ("Type of last Meningococcal dose" = "MenA conjugate vaccine (5µg)")) and ("There is a compelling reason to vaccinate infants with Meningococcal between 3 to 9 months old" = true))
  */
 define "Should vaccinate patient with MenA conjugate vaccine (5µg) because 1 dose on 2 dose scheme":
-	(((((("Meningococcal vaccine immunization history" = "1 dose") and ("Current Patient Age in Months" >= 3)) and ("Current Patient Age in Months" < 9)) and ("Date last Meningococcal dose given" >= "8 weeks" = true)) and ("Type of last Meningococcal dose" = "MenA conjugate vaccine (5µg)")) and ("There is a compelling reason to vaccinate infants with Meningococcal between 3 to 9 months old" = true))
+	(((((("1 dose") and ("Current Patient Age in Months" >= 3)) and ("Current Patient Age in Months" < 9)) and ("Date last Meningococcal dose given >= 8 weeks")) and ("Type of last Meningococcal dose" in IMMZc."MenA conjugate vaccine (5µg)")) and ("There is a compelling reason to vaccinate infants with Meningococcal between 3 to 9 months old" = true))
 
 /* 
  * @dataElement Meningococcal vaccine immunization history = No-doses
  */
 define "Meningococcal vaccine immunization history = No-doses":
-	0 // TODO: Define this
+	not exists("Meningococcal vaccine immunization history")
 
 /* 
  * @dataElement Region recommends Meningococcal vaccination
@@ -115,31 +117,33 @@ define "Region recommends Meningococcal vaccination":
  *	 (((("Meningococcal vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" >= 9)) and ("Current Patient Age in Months" <= 24)) and ("Region recommends Meningococcal vaccination" = true))
  */
 define "Should vaccinate patient with MenA conjugate vaccine (5µg) on 1 dose scheme":
-	(((("Meningococcal vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" >= 9)) and ("Current Patient Age in Months" <= 24)) and ("Region recommends Meningococcal vaccination" = true))
+	(((("Meningococcal vaccine immunization history = No-doses") and ("Current Patient Age in Months" >= 9)) and ("Current Patient Age in Months" <= 24)) and ("Region recommends Meningococcal vaccination" = true))
 
 /* 
  * @dataElement Patient has completed Meningococcal primary series
  */
 define "Patient has completed Meningococcal primary series":
-	0 // TODO: Define this
+	Max(IMMZCom."Meningococcal Doses Administered to Patient" I return (singleton from I.protocolApplied).doseNumber as FHIR.positiveInt) >= 3
 
 /* 
  * @dataElement Date last Meningococcal dose given >= 3 years
  */
 define "Date last Meningococcal dose given >= 3 years":
-	0 // TODO: Define this
+	IMMZCom."Date last Meningococcal dose Administered to Patient" equal 3 'years' before Today()
+	or IMMZCom."Date last Meningococcal dose Administered to Patient" more than 3 'years' before Today()
 
 /* 
  * @dataElement Date last Meningococcal dose given <= 5 years
  */
 define "Date last Meningococcal dose given <= 5 years":
-	0 // TODO: Define this
+	IMMZCom."Date last Meningococcal dose Administered to Patient" equal 5 'years' before Today()
+	or IMMZCom."Date last Meningococcal dose Administered to Patient" less than 5 'years' before Today()
 
 /* 
  * @dataElement Individual has a continued high risk of exposure (including health workers)
  */
 define "Individual has a continued high risk of exposure (including health workers)":
-	0 // TODO: Define this
+	IMMZCon."Individual has a continued high risk of exposure (including health workers)"
 
 /*
  * Rule: Should vaccinate patient with MenA conjugate vaccine (5µg) non-recurring booster 3-5 years after last shot

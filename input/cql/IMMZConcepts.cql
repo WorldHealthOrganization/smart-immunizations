@@ -77,6 +77,8 @@ valueset "WC Class Cholera Vaccine": 'http://example.org/ValueSet/wc-cholera'
 valueset "WC-rBS Class Cholera Vaccine": 'http://example.org/ValueSet/wc-rbs-cholera'
 valueset "ViPS Class Typhoid Vaccine": 'http://example.org/ValueSet/vips'
 valueset "Ty21a Class Typhoid Vaccine": 'http://example.org/ValueSet/ty21a'
+//  MenA vaccine classes
+valueset "MenA conjugate vaccine (5µg)": 'http://example.org/ValueSet/MenA'
 // TBE classifications of vaccines
 valueset "FSME-Immun Class TBE Vaccine": 'http://example.org/ValueSet/FSME-Immun'
 valueset "TBE-Moscow Class TBE Vaccine": 'http://example.org/ValueSet/TBE-Moscow'
