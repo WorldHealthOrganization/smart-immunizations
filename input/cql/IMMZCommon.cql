@@ -406,6 +406,13 @@ define "Meningococcal Doses Administered to Patient":
     I.vaccineCode in IMMZc."Meningococcal Vaccine"
 
 /**
+ * @define The number of Meningococcal doses administerd to the patient
+ */
+define "Number of Meningococcal Doses Administered to Patient":
+  Count("Meningococcal Doses Administered to Patient")
+
+
+/**
  * @dataElement Mumps containing Doses Administered to Patient
  */
 define "Mumps Doses Administered to Patient":
@@ -494,6 +501,11 @@ define "Date Last Seasonal Influenza Dose Administered to Patient":
   date from (First("Seasonal Influenza Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 /**
+ * @dataElement Number of Meningococcal doses administered to the Patient
+ */
+define "Date last Meningococcal dose Administered to Patient":
+  date from (First("Meningococcal Doses Administered to Patient").occurrence as FHIR.dateTime)
+/**
  * @dataElement Tetanus containing Doses Administered to Patient
  */
 define "Tetanus Doses Administered to Patient":
@@ -532,6 +544,12 @@ define "Date Last Typhoid Dose Administered to Patient":
  */
 define "Type of Last Typhoid Dose Administered to Patient":
   First("Typhoid Doses Administered to Patient" I return I.vaccineCode)
+
+/** 
+ * @dataElement Type of last Meningococcal Dose Administered to Patient
+ */
+define "Type of last Meningococcal Dose Administered to Patient":
+  First("Meningococcal Doses Administered to Patient" I return I.vaccineCode)
 
 /**
  * @dataElement Varicella containing Doses Administered to Patient

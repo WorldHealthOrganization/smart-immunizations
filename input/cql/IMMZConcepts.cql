@@ -77,6 +77,8 @@ valueset "WC Class Cholera Vaccine": 'http://example.org/ValueSet/wc-cholera'
 valueset "WC-rBS Class Cholera Vaccine": 'http://example.org/ValueSet/wc-rbs-cholera'
 valueset "ViPS Class Typhoid Vaccine": 'http://example.org/ValueSet/vips'
 valueset "Ty21a Class Typhoid Vaccine": 'http://example.org/ValueSet/ty21a'
+//  MenA vaccine classes
+valueset "MenA conjugate vaccine (5µg)": 'http://example.org/ValueSet/MenA'
 // TBE classifications of vaccines
 // Assumption: Classifications of TBE vaccine can be codified using some (yet to be discovered) code system - possibly using GTIN on the product?
 valueset "FSME-Immun Class TBE Vaccine": 'http://example.org/ValueSet/FSME-Immun'

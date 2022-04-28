@@ -33,6 +33,8 @@ define "In a setting where there is low transmission of Measles":false
 
 define "Country has Yellow Fever Endemic": false
 define "Country recognizes TBE as a priority": true
+
+define "Individual has a continued high risk of exposure (including health workers)": true
 // TODO: 
 //define "bOPV and IPV Schedule":
 //	'combined'
