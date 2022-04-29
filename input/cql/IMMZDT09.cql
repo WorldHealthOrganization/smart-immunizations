@@ -21,12 +21,12 @@ context Patient
  * Outputs:
  * 	 - Immunize Patient for Rubella- No Doses
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w
-ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 (("Rubella vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 9))
  */
 define "Should vaccinate patient for Rubella because no doses on 1 dose scheme":
+	not(IMMZCom."Pregnant") and
 	IMMZCom."No Rubella Doses Administered to Patient" and 
 	IMMZCom."Current Patient Age In Months" >= 9
 

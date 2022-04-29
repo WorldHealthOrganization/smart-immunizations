@@ -10,7 +10,7 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZVaccineLibrary called IMMZvl
-include IMMZConfig called IMMZCon
+include IMMZConfig called IMMZConf
 // End Skeleton CQL
 context Patient
 
@@ -34,7 +34,7 @@ context Patient
  *	 ((((((("TST Test Result" = "TST-negative") and ("High incidence of TB and/or high leprosy burden" = true)) or (("IGRA Test Result" = "IGRA-negative") and ("High incidence of TB and/or high leprosy burden" = true))) or (("BCG vaccine immunization history" = "No-doses") and ("High incidence of TB and/or high leprosy burden" = true))) or (("BCG vaccine immunization history" = "Unknown") and ("High incidence of TB and/or high leprosy burden" = true))) or ((((("BCG vaccine immunization history" = "No-doses" = true) and ("HIV Status" = "Positive" = true)) and ("CD4%" >"25%" = true)) and ("Current Patient Age in Years" < 5)) and ("High incidence of TB and/or high leprosy burden" = true))) or ((((("BCG vaccine immunization history" = "No-doses" = true) and ("HIV Status" = "Positive" = true)) and ("CD4 count" ≥ "200" = true)) and ("Current Patient Age in Years" > 5)) and ("High incidence of TB and/or high leprosy burden" = true)))
  */
 define "Should vaccinate patient for BCG":
-	IMMZCon."High incidence of TB and/or high leprosy burden" = true and (
+	IMMZConf."High incidence of TB and/or high leprosy burden" = true and (
 		(IMMZCom."Most Recent TST Test Result" in IMMZc."Negative Result") or 
 		(IMMZCom."Most Recent IGRA Test Result" in IMMZc."Negative Result") or 
 		(IMMZCom."No BCG Doses Administered to Patient") or 

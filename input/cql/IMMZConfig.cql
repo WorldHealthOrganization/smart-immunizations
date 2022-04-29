@@ -21,6 +21,22 @@ define "Country is following a 2 dose scheme for Pneumococcal": true
 define "Country is following a 3 dose scheme for Pneumococcal": true
 define "In a setting with a high disease burden and mortality": true
 
+define "Region recommends Meningococcal vaccination": true
+define "Region recommends Cholera vaccination": true
+define "Region recommends Typhoid vaccination": true
+define "Country is administering the TCV vaccine": true
+define "Country is administering ViPS vaccine": true
+define "In a setting where the risk of measles among infants < 9 months of age remains high": false
+define "Country currently has a measles outbreak": false
+define "Population is in conflict zones internally displaced populations and refugees": false
+define "In a setting where there is high transmission of Measles":false
+define "In a setting where there is low transmission of Measles":false
+
+define "Country has Yellow Fever Endemic": false
+define "Country recognizes TBE as a priority": true
+
+define "Individual has a continued high risk of exposure (including health workers)": true
+define "There is a compelling reason to vaccinate infants with Meningococcal between 3 to 9 months old": true
 // TODO: 
 //define "bOPV and IPV Schedule":
 //	'combined'

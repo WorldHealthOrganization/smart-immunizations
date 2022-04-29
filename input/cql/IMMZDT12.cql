@@ -11,6 +11,8 @@ include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
 include IMMZVaccineLibrary called IMMZvl
+
+parameter "Patient is travelling to and from a Yellow Fever endemic area" Boolean default false
 // End Skeleton CQL
 context Patient
 
@@ -18,14 +20,14 @@ context Patient
  * @dataElement Yellow Fever vaccine immunization history
  */
 define "Yellow Fever vaccine immunization history":
-	IMMZCom."Yellow Fever Doses Administered"
+	IMMZCom."Yellow Fever Doses Administered to Patient"
 
 
 /* 
  * @dataElement No-doses
  */
-define "No-doses":
-	not exist("Yellow Fever vaccine immunization history")
+define "No-doses of Yellow Fever vaccine administered to patient":
+	not exists("Yellow Fever vaccine immunization history")
 
 /* 
  * @dataElement Age
@@ -52,4 +54,5 @@ ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendati
  *	 (("Yellow Fever vaccine immunization history" = "No-doses") and ("Age" >= "9 months"))
  */
 define "Should vaccinate patient for Yellow Fever because no doses on 1 dose scheme":
-	(("Yellow Fever vaccine immunization history" = "No-doses") and ("Age" >= "9 months"))
+	(("No-doses of Yellow Fever vaccine administered to patient") and ("Age" >= "9 months")) and 
+	(IMMZCon."Country has Yellow Fever Endemic" or "Patient is travelling to and from a Yellow Fever endemic area")

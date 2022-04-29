@@ -16,12 +16,14 @@ codesystem "Extended Codes CodeSystem codes": 'http://fhir.org/guides/who/anc-cd
 valueset "WHO ATC": 'http://hl7.org/fhir/uv/ips/ValueSet/whoatc-uv-ips'
 
 // General use ValueSets 
-valueset "Negative Result": 'http://example.org/ValueSets/negative-results'
-valueset "Positive Result": 'http://example.org/ValueSets/positive-results'
+valueset "Negative Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/negativetestresult-values'
+valueset "Positive Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/PositiveTestResult-values'
 valueset "HIV Status Positive": 'http://example.org/ValueSets/HIV-status-positive'
 valueset "CD4% Test Result": 'http://example.org/ValueSets/CD4-test-result'
 valueset "CD4 Count Test Result": 'http://example.org/ValueSets/CD4-count-test-result'
 valueset "Immunocompromised": 'http://example.org/ValueSets/Immunocompromised'
+valueset "Patient birth weight observation value": 'http://example.org/ValueSets/Patient-birth-weight-observation-value'
+
 
 // TODO : Adapt from ANC
 valueset "HIV status": 'http://fhir.org/guides/who/anc-cds/ValueSet/anc-b9-de45'
@@ -32,6 +34,7 @@ valueset "HIV status - HIV negative Choices": 'http://fhir.org/guides/who/anc-cd
 //BCG specific ValuSets
 valueset "TST Test Result": 'http://example.org/ValueSets/tst-test'
 valueset "IGRA Test Result": 'http://example.org/ValueSets/igra-tst'
+valueset "ARV Drugs": 'http://exmaple.org/ValueSets/arv-drugs'
 
 // JE Classification 
 codesystem "Antigen Type Classifications": 'http://example.org/ValueSets/antigent-type-classification'
@@ -61,6 +64,7 @@ valueset "Rubella Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/
 valueset "Seasonal Influenza Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE18'
 valueset "Tetanus Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE19'
 valueset "Typhoid Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE21'
+valueset "TBE Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE20'
 valueset "Varicella Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE22'
 valueset "Yellow Fever Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE23'
 valueset "DTP Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE24'
@@ -70,3 +74,19 @@ valueset "Dengue Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/I
 
 code "Adverse Event Severity": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
 code "Adverse Event Manifestation": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
+// Cholera vaccine classes
+valueset "WC Class Cholera Vaccine": 'http://example.org/ValueSet/wc-cholera'
+valueset "WC-rBS Class Cholera Vaccine": 'http://example.org/ValueSet/wc-rbs-cholera'
+valueset "ViPS Class Typhoid Vaccine": 'http://example.org/ValueSet/vips'
+valueset "Ty21a Class Typhoid Vaccine": 'http://example.org/ValueSet/ty21a'
+//  MenA vaccine classes
+valueset "MenA conjugate vaccine (5µg)": 'http://example.org/ValueSet/MenA'
+valueset "monovalent MenC conjugate": 'http://example.org/ValueSet/Menc'
+valueset "Quadrivalent conjugate": 'http://example.org/ValueSet/Menc'
+// TBE classifications of vaccines
+// Assumption: Classifications of TBE vaccine can be codified using some (yet to be discovered) code system - possibly using GTIN on the product?
+valueset "FSME-Immun Class TBE Vaccine": 'http://example.org/ValueSet/FSME-Immun'
+valueset "TBE-Moscow Class TBE Vaccine": 'http://example.org/ValueSet/TBE-Moscow'
+valueset "EnceVir Class TBE Vaccine": 'http://example.org/ValueSet/EnceVir'
+valueset "Encepur Class TBE Vaccine": 'http://example.org/ValueSet/Encepur'
+
