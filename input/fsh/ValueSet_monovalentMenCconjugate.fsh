@@ -10,5 +10,3 @@ Description: "Codes representing monovalent MenC conjugate values"
 * ^immutable = true
 //fill in codes, check AL_CodeSystems.fsh for the short names of the codesystem
 * ICD11#XM2WV4 "Meningococcal vaccines"
-
-
