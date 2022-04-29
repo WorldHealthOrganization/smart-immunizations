@@ -92,4 +92,3 @@ valueset "FSME-Immun Class TBE Vaccine": 'http://example.org/ValueSet/FSME-Immun
 valueset "TBE-Moscow Class TBE Vaccine": 'http://example.org/ValueSet/TBE-Moscow'
 valueset "EnceVir Class TBE Vaccine": 'http://example.org/ValueSet/EnceVir'
 valueset "Encepur Class TBE Vaccine": 'http://example.org/ValueSet/Encepur'
-
