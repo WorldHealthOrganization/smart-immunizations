@@ -2,7 +2,7 @@
 SET tooling_jar=tooling-1.3.1-SNAPSHOT-jar-with-dependencies.jar
 SET input_cache_path=%~dp0input-cache
 SET resources_path=%~dp0input/resources
-SET ig_resource_path=input/anc-cds.xml
+SET ig_resource_path=input/immz.xml
 
 ECHO Checking internet connection...
 PING tx.fhir.org -n 1 -w 1000 | FINDSTR TTL && GOTO isonline
