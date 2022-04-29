@@ -9,4 +9,4 @@ Description: "Codes representing IGRA Test Result values"
 * ^experimental = false
 * ^immutable = true
 //fill in codes, check AL_CodeSystems.fsh for the short names of the codesystem
-* 
+
