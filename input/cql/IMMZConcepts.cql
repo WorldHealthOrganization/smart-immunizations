@@ -71,6 +71,7 @@ valueset "DTP Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ
 valueset "Inactivated Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE25'
 valueset "Oral Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE26'
 valueset "Dengue Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE27'
+valueset "Inactivated HAV": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE28'
 
 code "Adverse Event Severity": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
 code "Adverse Event Manifestation": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
