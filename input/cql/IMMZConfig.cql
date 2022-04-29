@@ -19,7 +19,7 @@ define "JE Antigen Used in Country Classification": IMMZc."Inactivated Vero cell
 
 define "Country is following a 2 dose scheme for Pneumococcal": true
 define "Country is following a 3 dose scheme for Pneumococcal": true
-define "Country is not highly endemic":true
+define "Country is not highly endemic for Hepatitis A":true
 define "Country is administering a Live attenuated HAV vaccine": true
 define "In a setting with a high disease burden and mortality": true
 
@@ -39,9 +39,8 @@ define "Country has Yellow Fever Endemic": false
 define "Country recognizes TBE as a priority": true
 
 define "There is a compelling reason to vaccinate infants with Meningococcal between 3 to 9 months old": true
-define "Individual has a substantial risk of contracting Hepatitis A": true
 define "Country recognizes Varicella an important public health burden": true
-
+define "Country recognizes MUMPS reduction as a public health priority": true
 // TODO: 
 //define "bOPV and IPV Schedule":
 //	'combined'

@@ -32,18 +32,6 @@ define "No-doses":
 define "Age":
 	IMMZCom."Current Patient Age In Months"
 
-/* 
- * @dataElement 19 months
- */
-define "19 months":
-	19 months
-
-/* 
- * @dataElement 11 months
- */
-define "11 months":
-	11 months
-
 /*
  * Rule: Should vaccinate Patient for MUMPS because no doses on 2 dose scheme
  * Annotations:
@@ -56,7 +44,7 @@ define "11 months":
  *	 ((("MUMPS vaccine history" = "No-doses") and ("Age" < "19 months")) and ("Age" > "11 months"))
  */
 define "Should vaccinate Patient for MUMPS because no doses on 2 dose scheme":
-	((("No-doses") and ("Age" < "19 months")) and ("Age" > "11 months"))
+	"No-doses" and "Age" >= 12 and IMMZCon."Country recognizes MUMPS reduction as a public health priority"
 
 /*
  * Rule: Should vaccinate Patient for MUMPS a second dose on a 2 dose scheme
@@ -70,4 +58,5 @@ define "Should vaccinate Patient for MUMPS because no doses on 2 dose scheme":
  *	 (("Age" < "19 months") and ("Age" > "11 months"))
  */
 define "Should vaccinate Patient for MUMPS a second dose on a 2 dose scheme":
-	(("Age" < "19 months") and ("Age" > "11 months"))
+	IMMZCom."Number of Mumps Doses Administered to Patient" = 1
+	and IMMZCom."Date last Mumps dose Administered to Patient" more than 12 month before Today()

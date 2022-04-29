@@ -10,8 +10,11 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConfig called IMMZCon
 include IMMZConcepts called IMMZc
+parameter "Individual has a substantial risk of contracting Hepatitis A" Boolean default false
+
 // End Skeleton CQL
 context Patient
+
 
 /* 
  * @dataElement Hepatitis A vaccine immunization history
@@ -35,7 +38,7 @@ define "Current Patient Age in Years":
  * @dataElement Country is not highly endemic
  */
 define "Country is not highly endemic":
- IMMZCon."Country is not highly endemic"
+ IMMZCon."Country is not highly endemic for Hepatitis A"
 
 /* 
  * @dataElement Pregnancy Status
@@ -46,7 +49,7 @@ define "Pregnancy Status":
 /* 
  * @dataElement Immunocompromised
  */
-define "Immunocompromised":
+define "Not Immunocompromised":
 	not(IMMZCom."Immunocompromised = True")
 
 /* 
@@ -67,7 +70,7 @@ define "Country is administering a Live attenuated HAV vaccine":
  *	 (((((("Hepatitis A vaccine immunization history" = "No-doses") and ("Current Patient Age in Years" >= 1)) and ("Country is not highly endemic" = true)) and ("Pregnancy Status" = false)) and ("Immunocompromised" = false)) and ("Country is administering a Live attenuated HAV vaccine" = true))
  */
 define "Should vaccinate patient for Hepatitis A because no doses at 1 year old in a 1 dose scheme":
-	(((((("No-doses") and ("Current Patient Age in Years" >= 1)) and ("Country is not highly endemic")) and ("Pregnancy Status" = false)) and ("Immunocompromised")) and ("Country is administering a Live attenuated HAV vaccine"))
+	(((((("No-doses") and ("Current Patient Age in Years" >= 1)) and ("Country is not highly endemic")) and ("Pregnancy Status" = false)) and ("Not Immunocompromised")) and ("Country is administering a Live attenuated HAV vaccine"))
 
 /* 
  * @dataElement Country is administering an Inactivated HAV vaccine
@@ -121,12 +124,6 @@ define "Type of last Hepatits A dose":
 define "Inactivated HAV":
 	IMMZc."Inactivated HAV"
 
-/* 
- * @dataElement Individual has a substantial risk of contracting Hepatitis A
- */
-define "Individual has a substantial risk of contracting Hepatitis A":
-	IMMZCon."Individual has a substantial risk of contracting Hepatitis A"
-
 /*
  * Rule: Should vaccinate patient for Hepatitis A because 1 dose given 6 months to 5 years ago in a 2 dose scheme due to high risk or immunocompromised
  * Annotations:
@@ -142,5 +139,12 @@ define "Individual has a substantial risk of contracting Hepatitis A":
  *	 (((((("Hepatitis A vaccine immunization history" = "1 dose") and ("Date last Hepatitis A dose given" >= "6 months" = true)) and ("Date last Hepatitis A dose given" <= "5 years" = true)) and ("Type of last Hepatits A dose" = "Inactivated HAV")) and ("Individual has a substantial risk of contracting Hepatitis A" = true)) or ((((("Hepatitis A vaccine immunization history" = "1 dose") and ("Date last Hepatitis A dose given" >= "6 months" = true)) and ("Date last Hepatitis A dose given" <= "5 years" = true)) and ("Type of last Hepatits A dose" = "Inactivated HAV")) and ("Immunocompromised" = true)))
  */
 define "Should vaccinate patient for Hepatitis A because 1 dose given 6 months to 5 years ago in a 2 dose scheme due to high risk or immunocompromised":
-	(((((("1 dose") and ("Date last Hepatitis A dose given >= 6 months")) and ("Date last Hepatitis A dose given <= 5 years")) and ("Type of last Hepatits A dose" in IMMZc."Inactivated HAV")) and ("Individual has a substantial risk of contracting Hepatitis A")) or ((((("1 dose") and ("Date last Hepatitis A dose given >= 6 months")) and ("Date last Hepatitis A dose given <= 5 years")) and ("Type of last Hepatits A dose" in IMMZc."Inactivated HAV")) and (IMMZCom."Immunocompromised = True")))
+	("1 dose") 
+	and ("Date last Hepatitis A dose given >= 6 months")
+	and ("Date last Hepatitis A dose given <= 5 years")
+	and ("Type of last Hepatits A dose" in IMMZc."Inactivated HAV")
+	and (
+		("Individual has a substantial risk of contracting Hepatitis A")
+		or (IMMZCom."Immunocompromised = True")
+	)
 

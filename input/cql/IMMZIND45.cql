@@ -60,6 +60,6 @@ define "Geographic Region Stratifier":
 /*
  * Disaggregator: Administrative Gender (or Biological Sex)
  */
-define "Administrative Gender Stratifier":
+define "Gender Stratifier":
 	IMMZIndCom."By Administrative Gender Stratifier"
 /* End of IMMZ.IND.45 */

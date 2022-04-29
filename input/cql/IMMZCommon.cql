@@ -431,6 +431,19 @@ define "Mumps Doses Administered to Patient":
   where
     I.vaccineCode in IMMZc."Mumps Vaccine"
 
+
+/**
+ * @dataElement Mumps containing Doses Administered to Patient
+ */
+define "Number of Mumps Doses Administered to Patient":
+  Count("Mumps Doses Administered to Patient")
+
+/**
+ * @dataElement last date Mumps doses administered to the Patient
+ */
+define "Date last Mumps dose Administered to Patient":
+  date from (First("Mumps Doses Administered to Patient").occurrence as FHIR.dateTime)
+
 /**
  * @dataElement Pertussis containing Doses Administered to Patient
  */
