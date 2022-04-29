@@ -839,6 +839,7 @@ define function ToPositiveInt(choice Choice<FHIR.positiveInt, FHIR.string>):
       Message(null as FHIR.positiveInt, true, '1', 'Error', 'Cannot compute a positive from a String value') // TODO: I'm sure that this is supported somehow?
 	end
 
+
 /**
  * @description Takes a choice between a Medication and a CodeableConcept and returns just the code of the medication
  */
@@ -867,3 +868,4 @@ define function ExtractMedicationInitiationDate(choice Choice<FHIR.dateTime, FHI
 		else
       Message(null as FHIR.dateTime, true, '1', 'Error', 'Cannot compute medication treatment initiation date') // TODO: I'm sure that this is supported somehow?
 	end
+

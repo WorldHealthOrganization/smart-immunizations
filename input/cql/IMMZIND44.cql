@@ -24,12 +24,11 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
+include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -37,31 +36,33 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a Diphtheria containing vaccine (IMMZ.A1.DE3) and dose > 3 during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
+	exists(IMMZIndCom."Diphtheria Booster Doses Administered to Patient During Measurement Period")
 
 /*
  * Denominator: Number of immunization recommendations for diphtheria boosters (doses >= 4) due during reporting period.
  * Denominator Computation: COUNT immunization recommendation WHERE recommended product is diphtheria containing vaccine (IMMZ.A1.DE3) AND due date during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here 
+	exists(IMMZIndCom."Diphtheria Booster Doses Recommended During Reporting Period")
+
 
 /*
  * Disaggregator: Dose Sequence (4, 5, 6)
  */
 define "Dose Sequence Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."Diphtheria Booster Doses Administered to Patient During Measurement Period" I
+	return (singleton from I.protocolApplied).doseNumber
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier"
 
 /*
- * Disaggregator: Gender
+ * Disaggregator: Administrative Gender (or Biological Sex)
  */
 define "Gender Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Administrative Gender Stratifier"
 
 /* End of IMMZ.IND.44 */
