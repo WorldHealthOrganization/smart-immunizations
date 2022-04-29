@@ -13,16 +13,14 @@ include IMMZConfig called IMMZCon
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
-valueset "intussusception": 'http://example.org/ValueSets/intussusception'
-valueset "three-dose-series-product": 'http://example.org/ValueSets/three-dose-series-product'
-valueset "two-dose-series-product": 'http://example.org/ValueSets/two-dose-series-product'
+
 context Patient
 
 /* 
  * @dataElement Patient has no history of intussusception
  */
 define "Patient has no history of intussusception":
-	not(exists([Condition: code in "intussusception"]))
+	not(exists([Condition: code in IMMZc."Intussusception"]))
 
 /*
  * Rule: Should vaccinate patient for Rotavirus 1st dose
@@ -69,12 +67,6 @@ define "Should vaccinate patient with Rotavirus 2nd dose":
 	)
 
 /* 
- * @dataElement All previous doses given with a 3 dose series product
- */
-define "All previous doses given with a 3 dose series product":
-	Count(IMMZCom."Rotavirus Doses Administered to Patient" I where I.vaccineCode in "three-dose-series-product") = Count(IMMZCom."Rotavirus Doses Administered to Patient")
-
-/* 
  * @dataElement All previous doses were not the same product
  */
 define "All previous doses were not the same product":
@@ -85,19 +77,6 @@ define "All previous doses were not the same product":
 		where RVOne.vaccineCode != RVTwo.vaccineCode
 	)
 
-
-/* 
- * @dataElement Any of the previous doses was administered with an unknown product
- */
-define "Any previous doses administered with unknown schedule":
-	exists(
-		from IMMZCom."Rotavirus Doses Administered to Patient" I
-		where 
-			not(
-				I.vaccineCode in "two-dose-series-product" and
-				I.vaccineCode in "three-dose-series-product" 
-			)
-	) 
 
 /*
  * Rule: Should vaccinate patient with Rotavirus 3rd dose
@@ -118,9 +97,10 @@ define "Should vaccinate patient with Rotavirus 3rd dose":
 		(Count(IMMZCom."Rotavirus Doses Administered to Patient") = 2) and
 		("Date last Rotavirus dose given" more than 4 'weeks' before Today()) and
 		(
-			("All previous doses given with a 3 dose series product" = true) or
-			("All previous doses were not the same product" = true) or
-			("Any previous doses administered with unknown schedule" = true)
+			(IMMZCon."Country is using a 3 dose series ROTA product") or
+			("All previous doses were not the same product" = true) //or
+			// Implementation Constraint: There is no way to know this with the current immunization resource
+			// or ("Any previous doses administered with unknown schedule" = true)
 		) and
 		("Patient has no history of intussusception" = true) and
 		(IMMZCom."Current Patient Age In Months" <= 24)

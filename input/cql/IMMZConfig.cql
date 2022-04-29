@@ -44,6 +44,7 @@ define "Country recognizes TBE as a priority": true
 define "There is a compelling reason to vaccinate infants with Meningococcal between 3 to 9 months old": true
 define "Country recognizes Varicella an important public health burden": true
 define "Country recognizes MUMPS reduction as a public health priority": true
+define "Country is using a 3 dose series ROTA product": true
 // TODO: 
 //define "bOPV and IPV Schedule":
 //	'combined'

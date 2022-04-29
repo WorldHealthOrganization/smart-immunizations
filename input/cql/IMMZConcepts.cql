@@ -92,3 +92,5 @@ valueset "FSME-Immun Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immun
 valueset "TBE-Moscow Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/TBE-MoscowClassTBEVaccine-values'
 valueset "EnceVir Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/EnceVirClassTBEVaccine-values'
 valueset "Encepur Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/EncepurClassTBEVaccine-values'
+
+valueset "Intussusception": 'http://fhir.org/guides/who/smart-immunization/ValueSet/intussusception-values'
