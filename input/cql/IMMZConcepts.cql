@@ -18,12 +18,12 @@ valueset "WHO ATC": 'http://hl7.org/fhir/uv/ips/ValueSet/whoatc-uv-ips'
 // General use ValueSets 
 valueset "Negative Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/negativetestresult-values'
 valueset "Positive Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/PositiveTestResult-values'
-valueset "HIV Status Positive": 'http://example.org/ValueSets/HIV-status-positive'
 valueset "CD4% Test Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/CD4percentageTest-values'
 valueset "CD4 Count Test Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/CD4CountTestResult-values'
 valueset "Immunocompromised": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Immunocompromised-values'
 valueset "Patient birth weight observation value": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Birthweight-values'
-valueset "Seronegative": 'http://example.org/ValueSets/Seronegative'
+valueset "Seronegative": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Seronegative-values'
+valueset "PretermBirth": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Preterm-values'
 
 // TODO : Adapt from ANC
 valueset "HIV status": 'http://fhir.org/guides/who/anc-cds/ValueSet/anc-b9-de45'
@@ -32,13 +32,13 @@ valueset "HIV status - HIV negative Choices": 'http://fhir.org/guides/who/anc-cd
 
 // Vaccine specific ValueSets
 //BCG specific ValuSets
-valueset "TST Test Result": 'http://example.org/ValueSets/tst-test'
-valueset "IGRA Test Result": 'http://example.org/ValueSets/igra-tst'
-valueset "ARV Drugs": 'http://exmaple.org/ValueSets/arv-drugs'
-valueset "VNA levels": 'http://example.org/ValueSet/vna-levels'
+valueset "TST Test Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/TSTTestResult-values'
+valueset "IGRA Test Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/IGRATestResult-values'
+valueset "ARV Drugs": 'http://fhir.org/guides/who/smart-immunization/ValueSet/ARVDrugs-values'
+valueset "VNA levels": 'http://fhir.org/guides/who/smart-immunization/ValueSet/VNAlevelsRAbies-values'
 
 // JE Classification 
-valueset "Inactivated Vero cell-derived Japanese Encephalitis vaccines": 'http://example.org/ValueSet/inactivated-vero-cell-derived-je-vaccines'
+valueset "Inactivated Vero cell-derived Japanese Encephalitis vaccines": 'http://fhir.org/guides/who/smart-immunization/ValueSet/InactivatedJE-values'
 
 valueset "Target Disease": 'http://hl7.org/fhir/ValueSet/immunization-target-disease'
 
@@ -78,17 +78,17 @@ code "Adverse Event Manifestation": '246112005' from "SNOMED-CT" display 'Severi
 code "Sickle-cell Disease Condition": '127040003' from "SNOMED-CT" display 'Sickle cell-hemoglobin SS disease (disorder)'
 
 // Cholera vaccine classes
-valueset "WC Class Cholera Vaccine": 'http://example.org/ValueSet/wc-cholera'
-valueset "WC-rBS Class Cholera Vaccine": 'http://example.org/ValueSet/wc-rbs-cholera'
-valueset "ViPS Class Typhoid Vaccine": 'http://example.org/ValueSet/vips'
-valueset "Ty21a Class Typhoid Vaccine": 'http://example.org/ValueSet/ty21a'
+valueset "WC Class Cholera Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/WCClassCholeraVaccine-values'
+valueset "WC-rBS Class Cholera Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/WC-rBSClassCholeraVaccine-values'
+valueset "ViPS Class Typhoid Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/ViPSClassTyphoidVaccine-values'
+valueset "Ty21a Class Typhoid Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Ty21aClassTyphoidVaccine-values'
 //  MenA vaccine classes
-valueset "MenA conjugate vaccine (5µg)": 'http://example.org/ValueSet/MenA'
-valueset "monovalent MenC conjugate": 'http://example.org/ValueSet/Menc'
-valueset "Quadrivalent conjugate": 'http://example.org/ValueSet/Menc'
+valueset "MenA conjugate vaccine (5µg)": 'http://fhir.org/guides/who/smart-immunization/ValueSet/MenAconjugatevaccine-values'
+valueset "monovalent MenC conjugate": 'http://fhir.org/guides/who/smart-immunization/ValueSet/monovalentMenCconjugate-values'
+valueset "Quadrivalent conjugate": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Quadrivalentconjugate-values'
 // TBE classifications of vaccines
 // Assumption: Classifications of TBE vaccine can be codified using some (yet to be discovered) code system - possibly using GTIN on the product?
-valueset "FSME-Immun Class TBE Vaccine": 'http://example.org/ValueSet/FSME-Immun'
-valueset "TBE-Moscow Class TBE Vaccine": 'http://example.org/ValueSet/TBE-Moscow'
-valueset "EnceVir Class TBE Vaccine": 'http://example.org/ValueSet/EnceVir'
-valueset "Encepur Class TBE Vaccine": 'http://example.org/ValueSet/Encepur'
+valueset "FSME-Immun Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/FSME-ImmunClassTBEVaccine-values'
+valueset "TBE-Moscow Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/TBE-MoscowClassTBEVaccine-values'
+valueset "EnceVir Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/EnceVirClassTBEVaccine-values'
+valueset "Encepur Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/EncepurClassTBEVaccine-values'

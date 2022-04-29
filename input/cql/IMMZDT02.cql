@@ -120,7 +120,7 @@ define "Patient mother's pregnancy outcome observation":
  * @dataElement preterm
  */
 define "preterm":
-    IMMZCom."Preterm"
+    IMMZCom."Preterm Birth"
 
 define "2000g":
-	2000 'gm'
+	2000 'g'

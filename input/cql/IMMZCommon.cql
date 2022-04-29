@@ -92,6 +92,11 @@ define "Preterm":
   [Observation: code = "[#] Births.preterm"] O
     return O.value
 
+//Observed Preterm birth
+define "Preterm Birth":
+  [Observation] O
+    where (O.value as CodeableConcept) in IMMZc.PretermBirth
+
 //@dataElement Adverse Event:
 define "Adverse Event":
   from [Immunization] I, [Observation] O
