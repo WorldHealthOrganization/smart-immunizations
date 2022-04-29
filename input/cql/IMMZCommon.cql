@@ -559,6 +559,24 @@ define "Varicella Doses Administered to Patient":
   where
     I.vaccineCode in IMMZc."Varicella Vaccine"
 
+/** 
+ * @dataElement There have been no Varicella doses administered to patient
+ */
+define "No Varicella Doses Administered to Patient":
+  not exists("Varicella Doses Administered to Patient")
+
+/**
+ * @define The number of Varicella doses administerd to the patient
+ */
+define "Number of Varicella Doses Administered to Patient":
+  Count("Varicella Doses Administered to Patient")
+
+/** 
+ * @dataElement Date of last Varicella dose administration
+ */
+define "Date Last Varicella Dose Administered to Patient":
+  date from (First("Varicella Doses Administered to Patient").occurrence as FHIR.dateTime)
+
 /**
  * @dataElement Yellow Fever containing Doses Administered to Patient
  */
