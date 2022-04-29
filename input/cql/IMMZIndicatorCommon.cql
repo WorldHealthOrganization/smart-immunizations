@@ -170,6 +170,9 @@ define "IPV Doses Administered to Patient During Measurement Period":
     IMMZCom."IPV Doses Administered to Patient" I 
     where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
 
+define "Seasonal Influenza Doses Administered to Patient During Reporting Period":
+    IMMZCom."Seasonal Influenza Doses Administered to Patient" I 
+    where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
 
 /**
  * OPV Birth Doses Administered to Patient
