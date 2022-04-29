@@ -53,13 +53,20 @@ define "Get Observations":
 //not sure if pregnancy is an Observation
 define "Pregnant Observation":
   [Observation] O
-  //IPS Uses Observcation - https://hl7.org/fhir/uv/ips/StructureDefinition-observation-pregnancy-status-uv-ips.html
+  //IPS Uses Observation - https://hl7.org/fhir/uv/ips/StructureDefinition-observation-pregnancy-status-uv-ips.html
     where (O.value as CodeableConcept) in Wcon."Pregnancy Status Pregnant"
 /*
 Need to figure out how to add the OR Condition in case pregnancy is stored in a condition instead of an Observation 
 or [Condition] C
       where (C.code as CodeableConcept) in Wcon."Pregnancy Status Pregnant"
 */
+
+define "Patient Has Active Sickle-cell disease":
+  exists([Condition: code = IMMZc."Sickle-cell Disease Condition"] C
+  where exists(C.clinicalStatus.coding CC where CC.code  in { 'active', 'recurrence', 'relapse' })
+  and exists(C.verificationStatus.coding VS where VS.code in { 'unconfirmed','provisional','differential','confirmed' })
+  and C.abatement is null)
+
 define "Pregnant Condition":
   [Condition] C
     where (C.code as CodeableConcept) in Wcon."Pregnancy Status Pregnant"
@@ -68,6 +75,11 @@ define "Pregnant":
   exists
   ( "Pregnant Observation")
   or exists ("Pregnant Condition")
+
+//Seronegative. Relevant for Dengue 
+define "Individual is Seronegative for Dengue":
+  [Observation] O
+    where (O.value as CodeableConcept) in IMMZc.Seronegative
 
 //Total number of births including abortions, stillbirths and live births.
 define "Patient mother's pregnancy outcome observation":
@@ -201,6 +213,15 @@ define "Patient Age at 1st IPV Dose in Weeks":
   return 
     AgeInWeeksAt(I.occurrence))
 
+/** 
+* @dataElement Age of patient at first dose of pneu
+ */
+define "Patient Age at 1st Dose of Pneumococcal in Months":
+  First("Pneumococcal Doses Administered to Patient" I 
+    where (singleton from (I.protocolApplied).doseNumber as FHIR.positiveInt) = 1
+  return 
+    AgeInWeeksAt(I.occurrence))
+
 /**
  * @dataElement Diptheria containing Doses Administered to Patient
  */
@@ -307,12 +328,10 @@ define "Number of HepB Doses Administered to Patient":
 
 
 /**
- * @dataElement HepB containing Doses Administered to Patient
+ * @dataElement No HepB containing Birth Dose Administered to Patient
  */
-define "HepB Doses Administered to Patient Excluding Birth Dose":
-  "HepB Doses Administered to Patient" I
-  where
-    singleton from (I.protocolApplied.doseNumber) != 0
+define "No HepB Birth Dose Administered to Patient":
+  not exists("HepB Doses Administered to Patient" I where singleton from (I.protocolApplied.doseNumber) = 0)
 
 //Date last administered HepB
 define "Date Last HepB Dose Administered to Patient":
@@ -465,6 +484,19 @@ define "Pneumococcal Doses Administered to Patient":
  */
 define "Number of Pneumococcal Doses Administered to Patient":
   Count("Pneumococcal Doses Administered to Patient")
+
+/**
+ * @dataElement Date last Pneumococcal dose administered 
+ */
+define "Date Last Pneumococcal Dose Administered to Patient":
+  date from (First("Pneumococcal Doses Administered to Patient").occurrence as FHIR.dateTime)
+
+
+/**
+ * @dataElement Number of Pneumococcal Doses Administered to Patient
+ */
+define "No Pneumococcal Doses Administered to Patient":
+  not exists("Pneumococcal Doses Administered to Patient")
 
 
 /**

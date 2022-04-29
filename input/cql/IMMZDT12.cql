@@ -48,8 +48,7 @@ define "9 months":
  * Outputs:
  * 	 - Immunize Patient for Yellow Fever - No Doses
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w
-ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 (("Yellow Fever vaccine immunization history" = "No-doses") and ("Age" >= "9 months"))
  */

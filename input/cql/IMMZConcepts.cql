@@ -18,12 +18,12 @@ valueset "WHO ATC": 'http://hl7.org/fhir/uv/ips/ValueSet/whoatc-uv-ips'
 // General use ValueSets 
 valueset "Negative Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/negativetestresult-values'
 valueset "Positive Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/PositiveTestResult-values'
-valueset "HIV Status Positive": 'http://fhir.org/guides/who/smart-immunization/ValueSet/HIVstatus-values'
+valueset "HIV Status Positive": 'http://example.org/ValueSets/HIV-status-positive'
 valueset "CD4% Test Result": 'http://example.org/ValueSets/CD4-test-result'
 valueset "CD4 Count Test Result": 'http://example.org/ValueSets/CD4-count-test-result'
-valueset "Immunocompromised": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Immunocompromised-values'
+valueset "Immunocompromised": 'http://example.org/ValueSets/Immunocompromised'
 valueset "Patient birth weight observation value": 'http://example.org/ValueSets/Patient-birth-weight-observation-value'
-
+valueset "Seronegative": 'http://example.org/ValueSets/Seronegative'
 
 // TODO : Adapt from ANC
 valueset "HIV status": 'http://fhir.org/guides/who/anc-cds/ValueSet/anc-b9-de45'
@@ -35,14 +35,13 @@ valueset "HIV status - HIV negative Choices": 'http://fhir.org/guides/who/anc-cd
 valueset "TST Test Result": 'http://example.org/ValueSets/tst-test'
 valueset "IGRA Test Result": 'http://example.org/ValueSets/igra-tst'
 valueset "ARV Drugs": 'http://exmaple.org/ValueSets/arv-drugs'
+valueset "VNA levels": 'http://example.org/ValueSet/vna-levels'
 
 // JE Classification 
-codesystem "Antigen Type Classifications": 'http://example.org/ValueSets/antigent-type-classification'
-code "Inactivated Vero cell-derived vaccine": 'IVCD' from "Antigen Type Classifications" display 'Inactivated Vero cell-derived'
-code "Live attentuated virus vaccine": 'LAV' from "Antigen Type Classifications" display 'Live attentuated virus vaccine'
-code "Live recombinant virus vaccine": 'LRC' from "Antigen Type Classifications" display 'Live recombinant'
+valueset "Inactivated Vero cell-derived Japanese Encephalitis vaccines": 'http://example.org/ValueSet/inactivated-vero-cell-derived-je-vaccines'
 
-//TODO: replace the TST/IGRA test link with a real valueset 
+valueset "Target Disease": 'http://hl7.org/fhir/ValueSet/immunization-target-disease'
+
 // Vaccine Value Sets
 valueset "BCG Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE1'
 valueset "Cholera Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE2'
@@ -71,9 +70,13 @@ valueset "DTP Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ
 valueset "Inactivated Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE25'
 valueset "Oral Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE26'
 valueset "Dengue Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE27'
+valueset "Inactivated HAV": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE28'
+
 
 code "Adverse Event Severity": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
 code "Adverse Event Manifestation": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
+code "Sickle-cell Disease Condition": '127040003' from "SNOMED-CT" display 'Sickle cell-hemoglobin SS disease (disorder)'
+
 // Cholera vaccine classes
 valueset "WC Class Cholera Vaccine": 'http://example.org/ValueSet/wc-cholera'
 valueset "WC-rBS Class Cholera Vaccine": 'http://example.org/ValueSet/wc-rbs-cholera'
@@ -89,4 +92,3 @@ valueset "FSME-Immun Class TBE Vaccine": 'http://example.org/ValueSet/FSME-Immun
 valueset "TBE-Moscow Class TBE Vaccine": 'http://example.org/ValueSet/TBE-Moscow'
 valueset "EnceVir Class TBE Vaccine": 'http://example.org/ValueSet/EnceVir'
 valueset "Encepur Class TBE Vaccine": 'http://example.org/ValueSet/Encepur'
-
