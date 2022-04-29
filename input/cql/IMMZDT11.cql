@@ -1,5 +1,5 @@
 /*
- * Library: IMMZDT11 (IMMZ.DT.11.JapaneseEncephalitis)
+ * Library: IMMZDT11 (IMMZ.DT.11.JE)
  * Rule: If child or person has not been vaccinated, give Japanese Encephalitis vaccine according to the defined schedule 
  * Trigger: Patient has never received Japanese Encephalitis vaccination
  */
