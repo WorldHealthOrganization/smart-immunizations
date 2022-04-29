@@ -40,7 +40,8 @@ valueset "VNA levels": 'http://example.org/ValueSet/vna-levels'
 // JE Classification 
 valueset "Inactivated Vero cell-derived Japanese Encephalitis vaccines": 'http://example.org/ValueSet/inactivated-vero-cell-derived-je-vaccines'
 
-//TODO: replace the TST/IGRA test link with a real valueset 
+valueset "Target Disease": 'http://hl7.org/fhir/ValueSet/immunization-target-disease'
+
 // Vaccine Value Sets
 valueset "BCG Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE1'
 valueset "Cholera Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE2'
