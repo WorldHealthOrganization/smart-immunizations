@@ -53,7 +53,7 @@ define "Get Observations":
 //not sure if pregnancy is an Observation
 define "Pregnant Observation":
   [Observation] O
-  //IPS Uses Observcation - https://hl7.org/fhir/uv/ips/StructureDefinition-observation-pregnancy-status-uv-ips.html
+  //IPS Uses Observation - https://hl7.org/fhir/uv/ips/StructureDefinition-observation-pregnancy-status-uv-ips.html
     where (O.value as CodeableConcept) in Wcon."Pregnancy Status Pregnant"
 /*
 Need to figure out how to add the OR Condition in case pregnancy is stored in a condition instead of an Observation 
@@ -75,6 +75,11 @@ define "Pregnant":
   exists
   ( "Pregnant Observation")
   or exists ("Pregnant Condition")
+
+//Seronegative. Relevant for Dengue 
+define "Individual is Seronegative for Dengue":
+  [Observation] O
+    where (O.value as CodeableConcept) in IMMZc.Seronegative
 
 //Total number of births including abortions, stillbirths and live births.
 define "Patient mother's pregnancy outcome observation":

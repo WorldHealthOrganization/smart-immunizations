@@ -23,7 +23,7 @@ valueset "CD4% Test Result": 'http://example.org/ValueSets/CD4-test-result'
 valueset "CD4 Count Test Result": 'http://example.org/ValueSets/CD4-count-test-result'
 valueset "Immunocompromised": 'http://example.org/ValueSets/Immunocompromised'
 valueset "Patient birth weight observation value": 'http://example.org/ValueSets/Patient-birth-weight-observation-value'
-
+valueset "Seronegative": 'http://example.org/ValueSets/Seronegative'
 
 // TODO : Adapt from ANC
 valueset "HIV status": 'http://fhir.org/guides/who/anc-cds/ValueSet/anc-b9-de45'

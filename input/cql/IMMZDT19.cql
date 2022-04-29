@@ -13,8 +13,6 @@ include IMMZConfig called IMMZCon
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
 
-parameter "Individual is Seronegative for Dengue" Boolean default true
-
 context Patient
 
 /* 
@@ -55,7 +53,7 @@ define "45 years":
 define "Should vaccinate patient for Dengue because no doses at 9 years old in a 3 dose scheme":
 	(("No-doses Dengue vaccine immunization history") and ("Age" between "9 years" and "45 years"))
 	and not(IMMZCom."Pregnant")
-	and not("Individual is Seronegative for Dengue")
+	and not(IMMZCom."Individual is Seronegative for Dengue")
 
 /* 
  * @dataElement 1 dose
