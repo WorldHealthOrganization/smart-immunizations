@@ -73,6 +73,8 @@ valueset "Oral Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueS
 valueset "Dengue Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE27'
 valueset "Inactivated HAV": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE28'
 
+code "Adverse Event Severity": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
+code "Adverse Event Manifestation": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
 // Cholera vaccine classes
 valueset "WC Class Cholera Vaccine": 'http://example.org/ValueSet/wc-cholera'
 valueset "WC-rBS Class Cholera Vaccine": 'http://example.org/ValueSet/wc-rbs-cholera'
@@ -88,3 +90,4 @@ valueset "FSME-Immun Class TBE Vaccine": 'http://example.org/ValueSet/FSME-Immun
 valueset "TBE-Moscow Class TBE Vaccine": 'http://example.org/ValueSet/TBE-Moscow'
 valueset "EnceVir Class TBE Vaccine": 'http://example.org/ValueSet/EnceVir'
 valueset "Encepur Class TBE Vaccine": 'http://example.org/ValueSet/Encepur'
+

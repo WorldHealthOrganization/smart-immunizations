@@ -9,41 +9,11 @@ using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
-include IMMZConfig called IMMZCon
+include IMMZConfig called IMMZConf
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 context Patient
-
-/* 
- * @dataElement Varicella vaccine immunization history
- */
-define "Varicella vaccine immunization history":
-	0 // TODO: Define this
-
-/* 
- * @dataElement No-doses
- */
-define "No-doses":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Current Patient Age in Months
- */
-define "Current Patient Age in Months":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Pregnancy Status
- */
-define "Pregnancy Status":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Country recognizes Varicella an important public health burden
- */
-define "Country recognizes Varicella an important public health burden":
-	0 // TODO: Define this
 
 /*
  * Rule: Should vaccinate patient with Varicella vaccine because no doses in a 2 dose scheme
@@ -57,25 +27,10 @@ define "Country recognizes Varicella an important public health burden":
  *	 (((("Varicella vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 12)) and ("Pregnancy Status" = false)) and ("Country recognizes Varicella an important public health burden" = true))
  */
 define "Should vaccinate patient with Varicella vaccine because no doses in a 2 dose scheme":
-	(((("Varicella vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 12)) and ("Pregnancy Status" = false)) and ("Country recognizes Varicella an important public health burden" = true))
-
-/* 
- * @dataElement 1 dose
- */
-define "1 dose":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Date last Varicella dose given
- */
-define "Date last Varicella dose given":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 4 weeks
- */
-define "4 weeks":
-	0 // TODO: Define this
+	IMMZCom."No Varicella Doses Administered to Patient"
+	and IMMZCom."Current Patient Age In Months" >= 12
+	and not(IMMZCom."Pregnant")
+	and IMMZConf."Country recognizes Varicella an important public health burden"
 
 /*
  * Rule: Should vaccinate patient with Varicella vaccine because 1 dose given 4 weeks ago in a 2 dose scheme
@@ -89,5 +44,7 @@ define "4 weeks":
  *	 ((("Varicella vaccine immunization history" = "1 dose") and ("Date last Varicella dose given" >= "4 weeks")) and ("Pregnancy Status" = false))
  */
 define "Should vaccinate patient with Varicella vaccine because 1 dose given 4 weeks ago in a 2 dose scheme":
-	((("Varicella vaccine immunization history" = "1 dose") and ("Date last Varicella dose given" >= "4 weeks")) and ("Pregnancy Status" = false))
+	IMMZCom."Number of Varicella Doses Administered to Patient" = 1
+	and IMMZCom."Date Last Varicella Dose Administered to Patient" more than 4 weeks before Today()
+	and not(IMMZCom."Pregnant")
 

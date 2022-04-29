@@ -25,12 +25,11 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
+include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -38,37 +37,34 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is an HPV vaccine (IMMZ.A1.DE7) during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	exists(IMMZIndCom."HPV Doses Administered to Patient During Measurement Period") // TODO: Write logic here
+	
 /*
  * Denominator: Number of immunization recommendations for HPV vaccine during reporting period.
  * Denominator Computation: COUNT Immunization Recommendation WHERE recommended product is HPV vaccine (IMMZ.A1.DE7) and due date during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	exists(IMMZIndCom."HPV Doses Recommended During Reporting Period")
 /*
  * Disaggregator: Dose Sequence (1, 2, 3)
  */
 define "Dose Sequence Stratifier":
-	true // todo: fill in logic
-
+	IMMZIndCom."HPV Doses Administered to Patient During Measurement Period" I
+	return (singleton from I.protocolApplied).doseNumber
 /*
  * Disaggregator: Age Group (<= 9 years, 9  - 14 years, >= 15 years)
  */
 define "Age Group Stratifier":
-	true // todo: fill in logic
-
+	IMMZIndCom."Adolescent By Age Stratifier"
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
-
+	IMMZIndCom."By Geographic Region Stratifier"
 /*
  * Disaggregator: Gender
  */
 define "Gender Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Administrative Gender Stratifier"
 
 /* End of IMMZ.IND.37 */
