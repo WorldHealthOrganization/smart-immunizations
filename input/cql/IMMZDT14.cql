@@ -23,7 +23,7 @@ context Patient
  * Outputs:
  * 	 - Immunize Patient for Typhoid -  No doses
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 ((((("Typhoid vaccine immunization history" = "No-doses") and ("Current Patient Age in Months" >= 6)) and ("Current Patient Age in Years" <= 45)) and ("Region recommends Typhoid vaccination" = true)) and ("Country is administering the TCV vaccine" = true))
  */
@@ -41,7 +41,7 @@ define "Should vaccinate patient with TCV vaccine on a 1 dose scheme":
  * Outputs:
  * 	 - Immunize Patient for Typhoid - No Doses
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 (((("Typhoid vaccine immunization history" = "No-doses") and ("Current Patient Age in Years" >= 2)) and ("Region recommends Typhoid vaccination" = true)) and ("Country is administering the ViPS vaccine" = true))
  */
@@ -92,7 +92,7 @@ define "Should Re-vaccinate patient with ViPS vaccine on a 1 dose scheme":
  * 	 - Immunize Patient for Typhoid -  1 dose
  * 	 - Immunize Patient for Typhoid -  2 doses
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 ((((("Typhoid vaccine immunization history" = "No-doses") and ("Current Patient Age in Years" > 6)) and ("Pregnancy Status" = false)) or ((((("Typhoid vaccine immunization history" = "1 dose") and ("Date last Typhoid dose given" > "1 day")) and ("Date last Typhoid dose given" < "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false))) or ((((("Typhoid vaccine immunization history" = "2 doses" = true) and ("Date last Typhoid dose given" > "1 day")) and ("Date last Typhoid dose given" < "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false)))
  * Assumption:
@@ -128,7 +128,7 @@ define "Should vaccinate patient with Ty21a vaccine on a 3 dose scheme":
  * Outputs:
  * 	 - Immunize Patient for Typhoid - Interrupted series
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 ((((("Typhoid vaccine immunization history" = "1 dose") and ("Date last Typhoid dose given" >= "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false)) or (((("Typhoid vaccine immunization history" = "2 doses") and ("Date last Typhoid dose given" >= "21 days")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Pregnancy Status" = false)))
  * Assumption:
@@ -152,7 +152,7 @@ define "Should vaccinate patient with Ty21a vaccine - dose 1 (restart due to int
  * Outputs:
  * 	 - Immunize Patient for Typhoid - Last dose given 3 years ago
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 (((("Patient has completed Typhoid primary series" = true) and ("Date last Typhoid dose given" >= "3 years")) and ("Type of last Typhoid dose" = "Ty21a")) and ("Region recommends Typhoid vaccination" = true))
  */

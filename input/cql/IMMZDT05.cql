@@ -21,8 +21,7 @@ context Patient
  * Outputs:
  * 	 - Immunize Patient for Hib - No Doses
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w
-ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 (("Hib vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" > 12))
  */
@@ -69,8 +68,7 @@ define "Should vaccinate patient for Hib because 1 dose on 3p dose scheme":
  * Outputs:
  * 	 - Immunize Patient for Hib - 2 Doses
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w
-ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 ((("Hib vaccine immunization history" = "2-doses") and ("Date last Hib dose given" >= "4 weeks")) and ("In a country where the peak burden of severe Hib disease occurs in young infants" = true))
  */
@@ -86,8 +84,7 @@ define "Should vaccinate patient for Hib because 2 doses on 3p dose scheme":
  * Outputs:
  * 	 - Immunize Patient for Hib - No Doses
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w
-ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 ((("Hib vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6 )) and ("In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine" = true))
  */
@@ -153,8 +150,7 @@ define "Should vaccinate patient for Hib because 3 doses on 3p+1 dose scheme":
  * Outputs:
  * 	 - Immunize Patient for Hib - No Doses
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w
-ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 ((("Hib vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6 )) and ("In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine" = true))
  */
@@ -170,8 +166,7 @@ define "Should vaccinate patient for Hib because No dose on 2p+1 dose scheme":
  * Outputs:
  * 	 - Immunize Patient for Hib - 1 Dose
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w
-ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 (((("Hib vaccine immunization history" = "1-dose") and ("Date last Hib dose given" >= "8 weeks")) and ("In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine" = true)) and ("Age when patient received 1st dose" <= "12 months"))
  */
@@ -189,8 +184,7 @@ define "Should vaccinate patient for Hib because 1 dose on 2p+1 dose scheme":
  * Outputs:
  * 	 - Immunize Patient for Hib - Booster
  * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://w
-ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
  * Logic:
  *	 ((("Hib vaccine immunization history" = "2-dose") and ("Date last Hib dose given" >= "6 months")) and ("In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine" = true))
  */
