@@ -63,8 +63,7 @@ or [Condition] C
 
 define "Patient Has Active Sickle-cell disease":
   exists([Condition: code = IMMZc."Sickle-cell Disease Condition"] C
-  where exists(C.clinicalStatus.coding CC where CC.code  in { 'active', 'recurrence', 'relapse' })
-  and exists(C.verificationStatus.coding VS where VS.code in { 'unconfirmed','provisional','differential','confirmed' })
+  where C.clinicalStatus in FC."Active Condition"
   and C.abatement is null)
 
 define "Pregnant Condition":
