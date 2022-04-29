@@ -40,7 +40,6 @@ define "Patient Should Complete DTP Series During Measurement Period":
 		IMMZCom."DTP Doses Administered to Patient" I 
 		where 
 			(singleton from I.protocolApplied).doseNumber = 1
-			and I.occurrence before start of "Measurement Period"
 	)
 	and 
 	exists(
@@ -53,6 +52,7 @@ define "Patient Should Complete DTP Series During Measurement Period":
 				and RC.vaccineCode in IMMZc."DTP Vaccine"
 		)
 	)
+	
 /*
  * Numerator: Number of administrations of DTP1 administered during reporting period minus the number of administrations of DTP3 administered during report period
  * Numerator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1  during reporting period

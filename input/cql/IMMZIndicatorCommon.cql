@@ -363,7 +363,7 @@ define "By Administrative Gender Stratifier":
  * By Administrative Gender of Patient Stratifier
  */
 define "By Geographic Region Stratifier":
-    WCom.Official(Patient.address).state
+    First(Patient.address A where A.use in { 'home' }).state
 
 /** 
  * @dataElement Patient is deceased
