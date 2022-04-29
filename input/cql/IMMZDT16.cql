@@ -15,6 +15,8 @@ include FHIRCommon called FC
 // End Skeleton CQL
 context Patient
 
+parameter "Individual has a continued high risk of exposure (including health workers)" Boolean default false
+
 /* 
  * @dataElement Meningococcal vaccine immunization history
  */
@@ -76,7 +78,7 @@ define "Type of last Meningococcal dose":
 /* 
  * @dataElement MenA conjugate vaccine (5µg)
  */
-define "MenA conjugate vaccine (5µg)s":
+define "MenA conjugate vaccine (5µg)":
 	IMMZc."MenA conjugate vaccine (5µg)"
 
 /*
@@ -121,9 +123,12 @@ define "Should vaccinate patient with MenA conjugate vaccine (5µg) on 1 dose sc
 
 /* 
  * @dataElement Patient has completed Meningococcal primary series
+ * TODO: Update so that this is true if < 9 months then doses >= 2 otherwise >= 1
  */
-define "Patient has completed Meningococcal primary series":
-	Max(IMMZCom."Meningococcal Doses Administered to Patient" I return (singleton from I.protocolApplied).doseNumber as FHIR.positiveInt) >= 3
+define "Patient has completed MenA primary series":
+	Max(IMMZCom."Meningococcal Doses Administered to Patient" I where 
+		I.vaccineCode in IMMZc."MenA conjugate vaccine (5µg)" 
+	return (singleton from I.protocolApplied).doseNumber as FHIR.positiveInt) >= 3
 
 /* 
  * @dataElement Date last Meningococcal dose given >= 3 years
@@ -139,11 +144,19 @@ define "Date last Meningococcal dose given <= 5 years":
 	IMMZCom."Date last Meningococcal dose Administered to Patient" equal 5 'years' before Today()
 	or IMMZCom."Date last Meningococcal dose Administered to Patient" less than 5 'years' before Today()
 
-/* 
- * @dataElement Individual has a continued high risk of exposure (including health workers)
+/** 
+ * @dataElement Patient not received a MenA booster
  */
-define "Individual has a continued high risk of exposure (including health workers)":
-	IMMZCon."Individual has a continued high risk of exposure (including health workers)"
+define "Patient Has Not Received MenA Booster":
+	not exists(
+		IMMZCom."Meningococcal Doses Administered to Patient" I 
+		where I.vaccineCode in IMMZc."MenA conjugate vaccine (5µg)" 
+		and exists(I.protocolApplied P 
+			where ("Age when patient received 1st dose" < 9 and P.doseNumber = 3) or
+			("Age when patient received 1st dose" >= 9 and P.doseNumber = 2)
+			))
+
+
 
 /*
  * Rule: Should vaccinate patient with MenA conjugate vaccine (5µg) non-recurring booster 3-5 years after last shot
@@ -157,7 +170,8 @@ define "Individual has a continued high risk of exposure (including health worke
  *	 (((((("Patient has completed Meningococcal primary series" = true) and ("Date last Meningococcal dose given" >= "3 years" = true)) and ("Date last Meningococcal dose given" <= "5 years" = true)) and ("Type of last Meningococcal dose" = "MenA conjugate vaccine (5µg)")) and ("Individual has a continued high risk of exposure (including health workers)" = true)) and ("Region recommends Meningococcal vaccination" = true))
  */
 define "Should vaccinate patient with MenA conjugate vaccine (5µg) non-recurring booster 3-5 years after last shot":
-	(((((("Patient has completed Meningococcal primary series") and ("Date last Meningococcal dose given >= 3 years")) and ("Date last Meningococcal dose given <= 5 years")) and ("Type of last Meningococcal dose" in IMMZc."MenA conjugate vaccine (5µg)")) and ("Individual has a continued high risk of exposure (including health workers)")) and ("Region recommends Meningococcal vaccination"))
+	(((((("Patient has completed MenA primary series") and ("Date last Meningococcal dose given >= 3 years")) and ("Date last Meningococcal dose given <= 5 years")) and ("Type of last Meningococcal dose" in IMMZc."MenA conjugate vaccine (5µg)")) and ("Individual has a continued high risk of exposure (including health workers)")) and ("Region recommends Meningococcal vaccination"))
+	and "Patient Has Not Received MenA Booster"
 
 /*
  * Rule: Should vaccinate patient with monovalent MenC conjugate vaccine because no dose on 1 dose scheme
@@ -194,13 +208,6 @@ define "monovalent MenC conjugate":
 	IMMZc."monovalent MenC conjugate"
 
 
-/* 
- * @dataElement Date last Meningococcal dose given <= 5 years
- */
-
-define "Date last Meningococcal dose given => 8 weeks":
-	IMMZCom."Date last Meningococcal dose Administered to Patient" equal 8 'weeks' before Today()
-	or IMMZCom."Date last Meningococcal dose Administered to Patient" less than 8 'weeks' before Today()
 /*
  * Rule: Should vaccinate patient with monovalent MenC conjugate vaccine because 1 dose on 2 dose scheme
  * Annotations:
@@ -213,7 +220,7 @@ define "Date last Meningococcal dose given => 8 weeks":
  *	 ((((("Meningococcal vaccine immunization history" = "1 dose") and ("Current Patient Age in Months" >= 2)) and ("Current Patient Age in Months" <= 11)) and ("Date last Meningococcal dose given" >= "8 weeks" = true)) and ("Type of last Meningococcal dose" = "monovalent MenC conjugate"))
  */
 define "Should vaccinate patient with monovalent MenC conjugate vaccine because 1 dose on 2 dose scheme":
-	((((("1 dose") and ("Current Patient Age in Months" >= 2)) and ("Current Patient Age in Months" <= 11)) and ("Date last Meningococcal dose given => 8 weeks")) and ("Type of last Meningococcal dose" in IMMZc."monovalent MenC conjugate"))
+	((((("1 dose") and ("Current Patient Age in Months" >= 2)) and ("Current Patient Age in Months" <= 11)) and ("Date last Meningococcal dose given >= 8 weeks")) and ("Type of last Meningococcal dose" in IMMZc."monovalent MenC conjugate"))
 
 /* 
  * @dataElement 2 doses
@@ -232,7 +239,9 @@ define "Date last Meningococcal dose given >= 1 year":
  * @dataElement Age when patient received 1st dose
  */
 define "Age when patient received 1st dose":
-	0 // TODO: Define this
+	AgeInMonthsAt(First(IMMZCom."Meningococcal Doses Administered to Patient" I
+		where (singleton from I.protocolApplied).doseNumber = 1
+		return I.occurrence)) // TODO: Define this
 
 /* 
  * @dataElement 2 months
@@ -245,6 +254,31 @@ define "2 months":
  */
 define "11 months":
 	11 'months'
+
+/**
+ * @dataElement Patient has received dose 3 (booster) if beween 2 and 11 months or dose 2 (booster) if > 12 months
+ */
+define "Patient Has Not Received 1st MenC Booster":
+	not exists(
+		IMMZCom."Meningococcal Doses Administered to Patient" I 
+		where I.vaccineCode in IMMZc."monovalent MenC conjugate" 
+		and exists(I.protocolApplied P 
+			where ("Age when patient received 1st dose" between "2 months" and "11 months" and P.doseNumber = 3) or
+			("Age when patient received 1st dose" > "11 months" and P.doseNumber = 2)
+			))
+
+
+/**
+ * @dataElement Patient has received dose 3 (booster) if beween 2 and 11 months or dose 2 (booster) if > 12 months
+ */
+define "Patient has completed MenC primary series":
+	not exists(
+		IMMZCom."Meningococcal Doses Administered to Patient" I 
+		where I.vaccineCode in IMMZc."monovalent MenC conjugate" 
+		and exists(I.protocolApplied P 
+			where ("Age when patient received 1st dose" between "2 months" and "11 months" and P.doseNumber = 2) or
+			("Age when patient received 1st dose" > "11 months" and P.doseNumber = 1)
+			))
 
 /*
  * Rule: Should vaccinate patient with monovalent MenC conjugate vaccine non-recurring booster because 1 year after last shot
@@ -259,6 +293,19 @@ define "11 months":
  */
 define "Should vaccinate patient with monovalent MenC conjugate vaccine non-recurring booster because 1 year after last shot":
 	(((((("2 doses") and ("Date last Meningococcal dose given >= 1 year")) and ("Type of last Meningococcal dose" in IMMZc."monovalent MenC conjugate")) and ("Age when patient received 1st dose" >= "2 months")) and ("Age when patient received 1st dose" <= "11 months")) and ("Region recommends Meningococcal vaccination"))
+	and "Patient Has Not Received 1st MenC Booster"
+
+/**
+ * @dataElement Patient has received dose 3 (booster) if beween 2 and 11 months or dose 2 (booster) if > 12 months
+ */
+define "Patient Has Not Received 2nd MenC Booster":
+	not exists(
+		IMMZCom."Meningococcal Doses Administered to Patient" I 
+		where I.vaccineCode in IMMZc."monovalent MenC conjugate" 
+		and exists(I.protocolApplied P 
+			where ("Age when patient received 1st dose" between "2 months" and "11 months" and P.doseNumber = 4) or
+			("Age when patient received 1st dose" > "11 months" and P.doseNumber = 3)
+			))
 
 /*
  * Rule: Should vaccinate patient with monovalent MenC conjugate non-recurring booster 3-5 years after last shot
@@ -272,7 +319,8 @@ define "Should vaccinate patient with monovalent MenC conjugate vaccine non-recu
  *	 (((((("Patient has completed Meningococcal primary series" = true) and ("Date last Meningococcal dose given" >= "3 years" = true)) and ("Date last Meningococcal dose given" <= "5 years" = true)) and ("Type of last Meningococcal dose" = "monovalent MenC conjugate")) and ("Individual has a continued high risk of exposure (including health workers)" = true)) and ("Region recommends Meningococcal vaccination" = true))
  */
 define "Should vaccinate patient with monovalent MenC conjugate non-recurring booster 3-5 years after last shot":
-	(((((("Patient has completed Meningococcal primary series" = true) and ("Date last Meningococcal dose given >= 3 years")) and ("Date last Meningococcal dose given <= 5 years")) and ("Type of last Meningococcal dose" in IMMZc."monovalent MenC conjugate")) and ("Individual has a continued high risk of exposure (including health workers)")) and ("Region recommends Meningococcal vaccination"))
+	(((((("Patient has completed MenC primary series" = true) and ("Date last Meningococcal dose given >= 3 years")) and ("Date last Meningococcal dose given <= 5 years")) and ("Type of last Meningococcal dose" in IMMZc."monovalent MenC conjugate")) and ("Individual has a continued high risk of exposure (including health workers)")) and ("Region recommends Meningococcal vaccination"))
+	and "Patient Has Not Received 2nd MenC Booster"
 
 /* 
  * @dataElement Current Patient Age in Years
@@ -346,6 +394,51 @@ define "Quadrivalent conjugate":
 define "Should vaccinate patient with Quadrivalent conjugate vaccines (A,C,W135,Y-D) on 2 dose scheme":
 	((("1 dose") and ("Date last Meningococcal dose given >= 12 weeks")) and ("Type of last Meningococcal dose" in IMMZc."Quadrivalent conjugate"))
 
+/** 
+ * @dataElement 9 months
+*/
+define "9 months":
+	9 month
+
+	
+/** 
+ * @dataElement 23 months
+*/
+define "23 months":
+	23 month
+
+/**
+ * @dataElement 2 years
+ */
+define "2 years":
+	2 year
+
+/**
+ * @dataElement Patient has received dose 3 (booster) if beween 2 and 11 months or dose 2 (booster) if > 12 months
+ */
+define "Patient Has Not Received 1st Quadrivalent conjugate Booster":
+	not exists(
+		IMMZCom."Meningococcal Doses Administered to Patient" I 
+		where I.vaccineCode in IMMZc."Quadrivalent conjugate" 
+		and exists(I.protocolApplied P 
+			where ("Age when patient received 1st dose" between "9 months" and "23 months" and P.doseNumber = 3) or
+			("Age when patient received 1st dose" >= "2 years" and P.doseNumber = 2)
+			))
+
+
+/**
+ * @dataElement Patient has received dose 3 (booster) if beween 2 and 11 months or dose 2 (booster) if > 12 months
+ */
+define "Patient has completed Quadrivalent conjugate primary series":
+	not exists(
+		IMMZCom."Meningococcal Doses Administered to Patient" I 
+		where I.vaccineCode in IMMZc."Quadrivalent conjugate" 
+		and exists(I.protocolApplied P 
+			where ("Age when patient received 1st dose" between "9 months" and "23 months" and P.doseNumber = 2) or
+			("Age when patient received 1st dose" >= "2 years" and P.doseNumber = 1)
+			))
+
+
 /*
  * Rule: Should vaccinate patient with Quadrivalent conjugate vaccines (A,C,W135,Y-D) non-recurring booster 3-5 years after last shot
  * Annotations:
@@ -358,5 +451,5 @@ define "Should vaccinate patient with Quadrivalent conjugate vaccines (A,C,W135,
  *	 (((((("Patient has completed Meningococcal primary series" = true) and ("Date last Meningococcal dose given" >= "3 years" = true)) and ("Date last Meningococcal dose given" <= "5 years" = true)) and ("Type of last Meningococcal dose" = "Quadrivalent conjugate")) and ("Individual has a continued high risk of exposure (including health workers)" = true)) and ("Region recommends Meningococcal vaccination" = true))
  */
 define "Should vaccinate patient with Quadrivalent conjugate vaccines (A,C,W135,Y-D) non-recurring booster 3-5 years after last shot":
-	(((((("Patient has completed Meningococcal primary series") and ("Date last Meningococcal dose given >= 3 years")) and ("Date last Meningococcal dose given <= 5 years")) and ("Type of last Meningococcal dose" in IMMZc."Quadrivalent conjugate")) and ("Individual has a continued high risk of exposure (including health workers)")) and ("Region recommends Meningococcal vaccination"))
-
+	(((((("Patient has completed Quadrivalent conjugate primary series") and ("Date last Meningococcal dose given >= 3 years")) and ("Date last Meningococcal dose given <= 5 years")) and ("Type of last Meningococcal dose" in IMMZc."Quadrivalent conjugate")) and ("Individual has a continued high risk of exposure (including health workers)")) and ("Region recommends Meningococcal vaccination"))
+	and "Patient Has Not Received 1st Quadrivalent conjugate Booster"
