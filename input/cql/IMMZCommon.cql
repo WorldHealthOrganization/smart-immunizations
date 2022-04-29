@@ -364,6 +364,12 @@ define "No JE Doses Administered to Patient":
 define "Date Last JE Dose Administered to Patient":
   date from (First("JE Doses Administered to Patient").occurrence as FHIR.dateTime)
 
+/** 
+ * @dataElement The type of the last typhoid dose administered to patient
+ */
+define "Type of Last JE Dose Administered to Patient":
+  First("JE Doses Administered to Patient" I return I.vaccineCode)
+
 /**
  * @dataElement No Japanese Encephalitis containing Doses Administered to Patient
  */
@@ -410,6 +416,7 @@ define "Meningococcal Doses Administered to Patient":
  */
 define "Number of Meningococcal Doses Administered to Patient":
   Count("Meningococcal Doses Administered to Patient")
+
 
 
 /**

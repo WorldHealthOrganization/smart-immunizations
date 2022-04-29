@@ -57,7 +57,8 @@ define "Should vaccinate patient for Japanese Encephalitis because no doses":
 define "Should vaccinate patient for Japanese Encephalitis because 1 dose":
 	IMMZCom."Number of JE Doses Administered to Patient" = 1
 	and IMMZCom."Date Last JE Dose Administered to Patient" more than 4 'weeks' before Today()
-	and IMMZCon."JE Antigen Used in Country Classification" = IMMZc."Inactivated Vero cell-derived vaccine"
+	and IMMZCom."Type of Last JE Dose Administered to Patient" = IMMZc."Inactivated Vero cell-derived vaccine"
+
 	// TODO: Add condition for type of previous dose
 	// TODO: 
 
