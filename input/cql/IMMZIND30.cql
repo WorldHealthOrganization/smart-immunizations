@@ -60,10 +60,10 @@ define "Vaccine Stratifier":
  * Disaggregator: Product/Manufacturer
  */
 define "Product/Manufacturer Stratifier":
-	[Organization] O
-	with IMMZIndCom."Immunizations with Adverse Events During Measurement Period" A
-	such that O.id = Last(Split(A.manufacturer.reference, '/'))
-	return O.name
+	IMMZIndCom."Immunizations with Adverse Events During Measurement Period" A
+	// TODO: Find a better way to do this
+	return Tuple { Manufacturer : First([Organization] O where O.id = Last(Split(A.manufacturer.reference, '/'))), LotNumber : A.lotNumber, VaccineType: A.vaccineCode }
+	
 /*
  * Disaggregator: Severity (Severe, Non-Severe)
  */

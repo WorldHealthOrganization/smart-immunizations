@@ -38,37 +38,40 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a polio vaccine (IMMZ.A1.DE26) and dose sequence > 0 during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
+	exists(IMMZIndCom."bOPV Non-Birth Doses Administered to Patient During Measurement Period")
+
 
 /*
  * Denominator: Number of registered surviving infants
  * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  */
 define "denominator":
-	true // TODO: Write logic here 
+	IMMZIndCom."Patient Under 12 Months Old During Measurement Period"
+	and not (IMMZIndCom."Patient Deceased During Measurement Period")
 
 /*
  * Disaggregator: Dose sequence (1, 2, 3)
  */
 define "Dose sequence Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."bOPV Non-Birth Doses Administered to Patient During Measurement Period" I
+	return (singleton from I.protocolApplied).doseNumber
 
 /*
  * Disaggregator: Age Group (< 1 year or > 1 year)
  */
 define "Age Group Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Age Group Stratifier" 
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier" 
 
 /*
  * Disaggregator: Administrative Gender (or Biological Sex)
  */
 define "Administrative Gender Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Administrative Gender Stratifier" 
 
 /* End of IMMZ.IND.55 */

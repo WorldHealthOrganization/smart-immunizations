@@ -45,6 +45,15 @@ define "Should vaccinate patient for Seasonal influenza because 1st dose was giv
 	and IMMZCom."Date Last Seasonal Influenza Dose Administered to Patient" more than 4 'weeks' before Today()
 	and IMMZCom."Current Patient Age In Years" < 9
 
+/**
+ * Patient has completed primary series
+ */
+define "Patient has completed Seasonal influenza primary series":
+	(IMMZCom."Current Patient Age In Years" < 9
+		and IMMZCom."Number of Seasonal Influenza Doses Administered to Patient" >= 2)
+	or (IMMZCom."Current Patient Age In Years" >= 9
+	and IMMZCom."Number of Seasonal Influenza Doses Administered to Patient" >= 1)
+
 /*
  * Rule: Should vaccinate patient for Seasonal influenza - Yearly booster dose
  * Annotations:
@@ -57,6 +66,6 @@ define "Should vaccinate patient for Seasonal influenza because 1st dose was giv
  *	 ("Seasonal influenza vaccine immunization last dose given" >= "1 year ago")
  */
 define "Should vaccinate patient for Seasonal influenza - Yearly booster dose":
-	IMMZCom."Number of Seasonal Influenza Doses Administered to Patient" > 0
+	"Patient has completed Seasonal influenza primary series" 
 	and IMMZCom."Date Last Seasonal Influenza Dose Administered to Patient" more than 1 'year' before Today()
 
