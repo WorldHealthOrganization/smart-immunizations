@@ -1,5 +1,5 @@
 /*
- * Library: IMMZDT13 (IMMZ.DT.13.Tick-BorneEncephalitis)
+ * Library: IMMZDT13 (IMMZ.DT.13.TBE)
  * Rule: If child or person has not been vaccinated, give Tick-Borne Encephalitis vaccine according to the defined schedule 
  * Trigger: Patient has not been vaccinated for Tick-Borne Encephalitis
  */
