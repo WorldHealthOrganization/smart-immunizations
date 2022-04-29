@@ -60,7 +60,7 @@ define "Dose sequence Stratifier":
  * Disaggregator: Age Group (< 1 year or > 1 year)
  */
 define "Age Group Stratifier":
-	IMMZIndCom."By Age Group Stratifier" 
+	IMMZIndCom."Infant By Age Stratifier" 
 
 /*
  * Disaggregator: Geographic Region
