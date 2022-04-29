@@ -74,6 +74,8 @@ valueset "Inactivated HAV": 'http://fhir.org/guides/who/smart-immunize/ValueSet/
 
 code "Adverse Event Severity": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
 code "Adverse Event Manifestation": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
+code "Sickle-cell Disease Condition": '127040003' from "SNOMED-CT" display 'Sickle cell-hemoglobin SS disease (disorder)'
+
 // Cholera vaccine classes
 valueset "WC Class Cholera Vaccine": 'http://example.org/ValueSet/wc-cholera'
 valueset "WC-rBS Class Cholera Vaccine": 'http://example.org/ValueSet/wc-rbs-cholera'
