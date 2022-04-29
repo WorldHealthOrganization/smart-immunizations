@@ -7,39 +7,40 @@ library IMMZDT18
 // Start Skeleton CQL
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
+include IMMZCommon called IMMZCom
+include IMMZConfig called IMMZCon
+include IMMZConcepts called IMMZc
 // End Skeleton CQL
+parameter "Individual is at high risk of RABV exposure" Boolean default false
+parameter "Individual has continual or frequent risk of exposure (i.e. occupational)" Boolean default false
+
 context Patient
 
 /* 
  * @dataElement Rabies vaccine immunization history
  */
 define "Rabies vaccine immunization history":
-	0 // TODO: Define this
+	IMMZCom."Rabies Doses Administered to Patient"
 
 /* 
  * @dataElement No-doses
  */
 define "No-doses":
-	0 // TODO: Define this
-
-/* 
- * @dataElement Individual is at high risk of RABV exposure
- */
-define "Individual is at high risk of RABV exposure":
-	0 // TODO: Define this
+	not exists("Rabies vaccine immunization history")
 
 /* 
  * @dataElement 1 dose
  */
 define "1 dose":
-	0 // TODO: Define this
+	IMMZCom."Number of Rabies Doses Administered to Patient" = 1
 
 /* 
  * @dataElement Date last Rabies dose given >= 7 days
  */
 define "Date last Rabies dose given >= 7 days":
-	0 // TODO: Define this
-
+	IMMZCom."Date last Rabies dose given Dose Administered to Patient" equal 7 'days' before Today()
+	or IMMZCom."Date last Rabies dose given Dose Administered to Patient" more than 7 'days' before Today()
+	
 /*
  * Rule: Should vaccinate patient with Rabies vaccine (PrEP strategy) on 2 dose scheme
  * Annotations:
@@ -54,25 +55,16 @@ define "Date last Rabies dose given >= 7 days":
  *	 ((("Rabies vaccine immunization history" = "No-doses") and ("Individual is at high risk of RABV exposure" = true)) or (("Rabies vaccine immunization history" = "1 dose") and ("Date last Rabies dose given" >= "7 days" = true)))
  */
 define "Should vaccinate patient with Rabies vaccine (PrEP strategy) on 2 dose scheme":
-	((("Rabies vaccine immunization history" = "No-doses") and ("Individual is at high risk of RABV exposure" = true)) or (("Rabies vaccine immunization history" = "1 dose") and ("Date last Rabies dose given" >= "7 days" = true)))
+	((("No-doses") and ("Individual is at high risk of RABV exposure")) or (("1 dose") and ("Date last Rabies dose given >= 7 days")))
 
-/* 
- * @dataElement Individual has continual or frequent risk of exposure (i.e. occupational)
- */
-define "Individual has continual or frequent risk of exposure (i.e. occupational)":
-	0 // TODO: Define this
 
 /* 
  * @dataElement VNA levels
  */
 define "VNA levels":
-	0 // TODO: Define this
-
-/* 
- * @dataElement 0.5 IU/mL
- */
-define "0.5 IU/mL":
-	0 // TODO: Define this
+	First(
+		IMMZCom."VNA Test Results"
+	).value as FHIR.Quantity
 
 /*
  * Rule: Should vaccinate patient with Rabies vaccine Booster (PrEP strategy)
@@ -86,5 +78,5 @@ define "0.5 IU/mL":
  *	 (("Individual has continual or frequent risk of exposure (i.e. occupational)" = true) and ("VNA levels" < "0.5 IU/mL"))
  */
 define "Should vaccinate patient with Rabies vaccine Booster (PrEP strategy)":
-	(("Individual has continual or frequent risk of exposure (i.e. occupational)" = true) and ("VNA levels" < "0.5 IU/mL"))
+	(("Individual has continual or frequent risk of exposure (i.e. occupational)") and ("VNA levels" < 0.5 'IU/mL'))
 

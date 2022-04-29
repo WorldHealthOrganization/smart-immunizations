@@ -35,6 +35,7 @@ valueset "HIV status - HIV negative Choices": 'http://fhir.org/guides/who/anc-cd
 valueset "TST Test Result": 'http://example.org/ValueSets/tst-test'
 valueset "IGRA Test Result": 'http://example.org/ValueSets/igra-tst'
 valueset "ARV Drugs": 'http://exmaple.org/ValueSets/arv-drugs'
+valueset "VNA levels": 'http://example.org/ValueSet/vna-levels'
 
 // JE Classification 
 codesystem "Antigen Type Classifications": 'http://example.org/ValueSets/antigent-type-classification'
@@ -72,6 +73,7 @@ valueset "Inactivated Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize
 valueset "Oral Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE26'
 valueset "Dengue Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE27'
 valueset "Inactivated HAV": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE28'
+
 
 code "Adverse Event Severity": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
 code "Adverse Event Manifestation": '246112005' from "SNOMED-CT" display 'Severity (attribute)'

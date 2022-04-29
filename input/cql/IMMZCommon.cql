@@ -476,6 +476,12 @@ define "Rabies Doses Administered to Patient":
     I.vaccineCode in IMMZc."Rabies Vaccine"
 
 /**
+ * @dataElement Number of Rabies Doses Administered to Patient
+ */
+define "Number of Rabies Doses Administered to Patient":
+  Count("Rabies Doses Administered to Patient")
+
+/**
  * @dataElement Rotavirus containing Doses Administered to Patient
  */
 define "Rotavirus Doses Administered to Patient":
@@ -525,7 +531,12 @@ define "Date Last Seasonal Influenza Dose Administered to Patient":
   date from (First("Seasonal Influenza Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 /**
- * @dataElement Date last Meningococcal doses administered to the Patient
+ * @dataElement Date last Rabies dose administered excluding the birth dose
+ */
+define "Date last Rabies dose given Dose Administered to Patient":
+  date from (First("Rabies Doses Administered to Patient").occurrence as FHIR.dateTime)
+/**
+ * @dataElement Number of Meningococcal doses administered to the Patient
  */
 define "Date last Meningococcal dose Administered to Patient":
   date from (First("Meningococcal Doses Administered to Patient").occurrence as FHIR.dateTime)
@@ -724,7 +735,16 @@ define "TST Test Results":
 define "Most Recent TST Test Result":
   First("TST Test Results" O
     return O.value as FHIR.CodeableConcept)
-  
+
+/**
+ * @dataElement Observed VNA Levels
+ */
+define "VNA Test Results":
+  [Observation: code in IMMZc."VNA levels"] O
+    where O.status in { 'final', 'amended', 'corrected' }
+      and not(Coalesce(WCom.ModifierExtension(O, 'who-notDone').value, false))
+    sort by effective desc
+
 /* 
  * @dataElement IGRA Test Result
  */
