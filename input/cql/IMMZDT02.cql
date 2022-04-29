@@ -34,7 +34,7 @@ define "Should vaccinate patient for Hepatitis B because no doses and (low birth
 	IMMZCom."Current Patient Age In Weeks" < 2 and
 	(
 		"Patient birth weight observation value" < "2000g" or
-		"Patient mother's pregnancy outcome observation" = "preterm"
+		exists(IMMZCom."Preterm Birth")
 	)
 
 /* 
