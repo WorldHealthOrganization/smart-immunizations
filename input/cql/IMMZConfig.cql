@@ -36,6 +36,8 @@ define "Country has Yellow Fever Endemic": false
 define "Country recognizes TBE as a priority": true
 
 define "There is a compelling reason to vaccinate infants with Meningococcal between 3 to 9 months old": true
+
+define "Country recognizes Varicella an important public health burden": true
 // TODO: 
 //define "bOPV and IPV Schedule":
 //	'combined'
