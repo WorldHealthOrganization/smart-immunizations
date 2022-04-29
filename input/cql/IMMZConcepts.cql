@@ -71,6 +71,8 @@ valueset "DTP Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ
 valueset "Inactivated Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE25'
 valueset "Oral Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE26'
 valueset "Dengue Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE27'
+valueset "VNA levels": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE28'
+valueset "0.5 IU/mL": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE29'
 
 // Cholera vaccine classes
 valueset "WC Class Cholera Vaccine": 'http://example.org/ValueSet/wc-cholera'

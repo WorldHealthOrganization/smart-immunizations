@@ -452,6 +452,12 @@ define "Rabies Doses Administered to Patient":
     I.vaccineCode in IMMZc."Rabies Vaccine"
 
 /**
+ * @dataElement Number of Rabies Doses Administered to Patient
+ */
+define "Number of Rabies Doses Administered to Patient":
+  Count("Rabies Doses Administered to Patient")
+
+/**
  * @dataElement Rotavirus containing Doses Administered to Patient
  */
 define "Rotavirus Doses Administered to Patient":
@@ -500,6 +506,11 @@ define "Number of Seasonal Influenza Doses Administered to Patient":
 define "Date Last Seasonal Influenza Dose Administered to Patient":
   date from (First("Seasonal Influenza Doses Administered to Patient").occurrence as FHIR.dateTime)
 
+/**
+ * @dataElement Date last Rabies dose administered excluding the birth dose
+ */
+define "Date last Rabies dose given Dose Administered to Patient":
+  date from (First("Rabies Doses Administered to Patient").occurrence as FHIR.dateTime)
 /**
  * @dataElement Number of Meningococcal doses administered to the Patient
  */
