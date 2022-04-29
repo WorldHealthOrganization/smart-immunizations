@@ -1,10 +1,10 @@
 /*
  * Library: IMMZ.IND.35
- * Immunization coverage for polio containing vaccine (Computed Denominator) 
- * Compares the administered doses of polio containing vaccines (such as IPV or OPV) with the number of registered surviving infants expressed as a percentage.
+ * Immunization coverage for inactivated polio containing vaccine (Computed Denominator) 
+ * Compares the administered doses of inactive polio containing vaccines with the number of registered surviving infants expressed as a percentage.
  * 
- * Numerator: Number of administrations of vaccinations against polio (such as IPV or OPV) during the reporting period. 
- * Numerator Computation: COUNT immunization events WHERE administered product is a polio vaccine (IMMZ.A1.DE14) during reporting period
+ * Numerator: Number of administrations of vaccinations against inactivated polio during the reporting period. 
+ * Numerator Computation: COUNT immunization events WHERE administered product is an inactivated polio vaccine (IMMZ.A1.DE25) during reporting period
  * Denominator: Number of registered, surviving infants.
  * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  * 
@@ -31,16 +31,14 @@ include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccinations against polio (such as IPV or OPV) during the reporting period.
- * Numerator Computation: COUNT immunization events WHERE administered product is a polio vaccine (IMMZ.A1.DE14) during reporting period
+ * Numerator: Number of administrations of vaccinations against inactivated polio during the reporting period.
+ * Numerator Computation: COUNT immunization events WHERE administered product is an inactivated polio vaccine (IMMZ.A1.DE25) during reporting period
  */
 define "numerator":
 	exists(IMMZIndCom."IPV Doses Administered to Patient During Measurement Period")
-
 /*
  * Denominator: Number of registered, surviving infants.
  * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
@@ -48,11 +46,10 @@ define "numerator":
 define "denominator":
 	IMMZIndCom."Patient Under 12 Months Old Before Measurement Period"
 	and not (IMMZIndCom."Patient Deceased Before Measurement Period")
-	
 /*
  * Disaggregator: Dose sequence (1, 2, 3)
  */
-define "Dose sequence  Stratifier":
+define "Dose sequence Stratifier":
 	IMMZIndCom."IPV Doses Administered to Patient During Measurement Period" I
 	return (singleton from I.protocolApplied).doseNumber
 
@@ -67,11 +64,10 @@ define "Age Group Stratifier":
  */
 define "Geographic Region Stratifier":
 	IMMZIndCom."By Geographic Region Stratifier"
-
 /*
- * Disaggregator: Administrative Gender (or Biological Sex)
+ * Disaggregator: Gender
  */
-define "Administrative Gender Stratifier":
+define "Gender Stratifier":
 	IMMZIndCom."By Administrative Gender Stratifier"
 
 

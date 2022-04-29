@@ -30,7 +30,6 @@ include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -38,37 +37,31 @@ context Patient
  * Numerator Computation: COUNT immunization events where administered product is a rotavirus vaccine (IMMZ.A1.DE16) during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Number of non-deceased children under 2.
  * Denominator Computation: COUNT Patient WHERE age at reporting period < 2 yr. AND deceasedDate is not populated.
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Dose Sequence (1, 2, 3)
  */
 define "Dose Sequence Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Age Group (< 1 year or > 1 year)
  */
 define "Age Group Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Gender
  */
 define "Gender Stratifier":
 	true // todo: fill in logic
-
 /* End of IMMZ.IND.41 */

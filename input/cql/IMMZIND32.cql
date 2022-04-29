@@ -29,7 +29,6 @@ include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -39,7 +38,6 @@ HAVING immunization event WHERE administered product is BCG vaccine (IMMZ.A1.DE1
  */
 define "numerator":
 	exists(IMMZIndCom."BCG Doses Administered to Patient During Measurement Period")
-
 /*
  * Denominator: Number of registered, surviving infants born during reporting period.
  * Denominator Computation: COUNT Patient WHERE birthDate during reporting period AND deceasedDate is not populated.
@@ -47,17 +45,15 @@ define "numerator":
 define "denominator":
 	IMMZIndCom."Patient Born During Measurement Period"
 	and not (IMMZIndCom."Patient Deceased Before Measurement Period")
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
     IMMZIndCom."By Geographic Region Stratifier"
-	
 /*
- * Disaggregator: Administrative Gender (or Biological Sex)
+ * Disaggregator: Gender
  */
-define "Administrative Gender Stratifier":
-	IMMZIndCom."By Administrative Gender Stratifier"
+define "Gender Stratifier":
+	true // todo: fill in logic
 
 /* End of IMMZ.IND.32 */

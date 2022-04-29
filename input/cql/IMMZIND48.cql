@@ -28,7 +28,6 @@ include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -36,25 +35,21 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a Japanese Encephalitis vaccine (IMMZ.A1.DE8) during reporting period.
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Number of immunization recommendations for Japanese encephalitis containing vaccines dur during reporting period.
  * Denominator Computation: COUNT Immunization recommendation WHERE recommended product is Japanese encephalitis (IMMZ.A1.DE8) during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Gender
  */
 define "Gender Stratifier":
 	true // todo: fill in logic
-
 /* End of IMMZ.IND.48 */

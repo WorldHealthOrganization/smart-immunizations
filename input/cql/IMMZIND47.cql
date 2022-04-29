@@ -28,7 +28,6 @@ include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -36,25 +35,21 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a Yellow Fever vaccine (IMMZ.A1.DE23) during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Number of registered, surviving infants.
  * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Gender
  */
 define "Gender Stratifier":
 	true // todo: fill in logic
-
 /* End of IMMZ.IND.47 */

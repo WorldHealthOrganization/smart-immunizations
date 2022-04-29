@@ -30,7 +30,6 @@ include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -39,7 +38,6 @@ context Patient
  */
 define "numerator":
 	exists(IMMZIndCom."MCV Doses Administered to Patient During Measurement Period")
-
 /*
  * Denominator: Number of registered, surviving infants.
  * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
@@ -47,30 +45,27 @@ define "numerator":
 define "denominator":
 	IMMZIndCom."Patient Under 12 Months Old Before Measurement Period"
 	and not (IMMZIndCom."Patient Deceased Before Measurement Period")
-
 /*
  * Disaggregator: Dose Sequence (1, 2)
  */
-define "Dose Sequence  Stratifier":
+define "Dose Sequence Stratifier":
 	IMMZIndCom."MCV Doses Administered to Patient During Measurement Period" I
 	return (singleton from I.protocolApplied).doseNumber
 
 /*
- * Disaggregator: Age Group (<24H of Birth, < 2 weeks)
+ * Disaggregator: Age Group (< 1 year or > 1 year)
  */
 define "Age Group Stratifier":
 	IMMZIndCom."Infant By Age Stratifier"
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	IMMZIndCom."By Geographic Region Stratifier"
-
 /*
- * Disaggregator: Administrative Gender (or Biological Sex)
+ * Disaggregator: Gender
  */
-define "Administrative Gender Stratifier":
+define "Gender Stratifier":
 	IMMZIndCom."By Administrative Gender Stratifier"
-	
+
 /* End of IMMZ.IND.36 */

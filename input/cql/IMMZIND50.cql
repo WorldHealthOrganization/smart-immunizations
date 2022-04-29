@@ -30,7 +30,6 @@ include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -39,19 +38,16 @@ context Patient
 Numerator Exclusion: COUNT immunization recommendations WHERE recommended product is DTP containing vaccine AND dose sequence = 3 AND due date during reporting period AND NOT EXISTS Immunization event where administered product is DTP containing vaccine AND dose sequence = 3
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Number of children who have received DTP containing vaccine dose 1
  * Denominator Computation: COUNT immunization events WHERE administered product is DTP containing vaccine AND dose sequence = 1 AND EXISTS immunization recommendation WHERE product is DTP and dose sequence = 3 and due date during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	true // todo: fill in logic
-
 /* End of IMMZ.IND.50 */

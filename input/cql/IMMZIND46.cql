@@ -29,7 +29,6 @@ include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -37,31 +36,26 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a Tetanus containing vaccine (IMMZ.A1.DE19) and dose > 3 during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Number of immunization recommendations for tetanus boosters (doses >= 4) due during reporting period.
  * Denominator Computation: COUNT immunization recommendation WHERE recommended product is tetanus containing vaccine (IMMZ.A1.DE19) AND due date during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Dose Sequence (4, 5, 6)
  */
 define "Dose Sequence Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Gender
  */
 define "Gender Stratifier":
 	true // todo: fill in logic
-
 /* End of IMMZ.IND.46 */

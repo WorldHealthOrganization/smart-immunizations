@@ -31,7 +31,6 @@ include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -41,7 +40,6 @@ HAVING immunization events WHERE administered product is a HepB (IMMZ.A1.DE6) du
  */
 define "numerator":
 	exists(IMMZIndCom."HepB Non-Birth Doses Administered to Patient During Measurement Period")
-
 /*
  * Denominator: Number of registered, surviving infants whose ages is less than 12 months during reporting period.
  * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
@@ -49,30 +47,28 @@ define "numerator":
 define "denominator":
 	IMMZIndCom."Patient Under 12 Months Old Before Measurement Period"
 	and not (IMMZIndCom."Patient Deceased Before Measurement Period")
-
 /*
  * Disaggregator: Dose Sequence (1, 2, 3)
  */
-define "Dose Sequence  Stratifier":
+define "Dose Sequence Stratifier":
 	IMMZIndCom."HepB Non-Birth Doses Administered to Patient During Measurement Period" I
 	return (singleton from I.protocolApplied).doseNumber
 
 /*
- * Disaggregator: Age Group (<1 year or > 1year)
+ * Disaggregator: Age Group (<24 H of Birth)
  */
-define "Age Group  Stratifier":
+define "Age Group Stratifier":
 	IMMZIndCom."Infant By Age Stratifier"
+
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	IMMZIndCom."By Geographic Region Stratifier"
-
 /*
- * Disaggregator: Administrative Gender (or Biological Sex)
+ * Disaggregator: Gender
  */
-define "Administrative Gender Stratifier":
+define "Gender Stratifier":
 	IMMZIndCom."By Administrative Gender Stratifier"
-
 
 /* End of IMMZ.IND.34 */

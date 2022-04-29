@@ -29,7 +29,6 @@ include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -37,31 +36,26 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a Rubella vaccine (IMMZ.A1.DE17) during reporting period
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Number of immunization recommendations for RCV vaccines due during reporting period.
  * Denominator Computation: COUNT immunization recommendation WHERE recommended product is RCV vaccine (IMMZ.A1.DE17) AND due date during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Age Group (< 9 months, 9 - 18 months, 18 months - 15 years, > 15 years)
  */
 define "Age Group Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	true // todo: fill in logic
-
 /*
  * Disaggregator: Gender
  */
 define "Gender Stratifier":
 	true // todo: fill in logic
-
 /* End of IMMZ.IND.42 */

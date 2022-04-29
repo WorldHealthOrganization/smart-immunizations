@@ -30,7 +30,6 @@ include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -39,19 +38,16 @@ context Patient
 Numerator Exclusion: COUNT immunization recommendations WHERE recommended product is BCG AND due date during reporting period AND NOT EXISTS Immunization event where administered product is MCV AND dose sequence = 3
  */
 define "numerator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Denominator: Number of children who have received BCG vaccine
  * Denominator Computation: COUNT immunization events WHERE administered product is BCG AND EXISTS immunization recommendation WHERE product is MCV and dose sequence = 1 and due date during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here 
-
+	true // TODO: Write logic here
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	true // todo: fill in logic
-
 /* End of IMMZ.IND.51 */

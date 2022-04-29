@@ -36,7 +36,6 @@ include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
 
 /*
@@ -45,21 +44,18 @@ context Patient
  */
 define "numerator":
 	exists(IMMZIndCom."Immunizations with Adverse Events During Measurement Period")
-
 /*
  * Denominator: The total number of doses administered to patients of the product.
  * Denominator Computation: COUNT number of doses administered during reporting period
  */
 define "denominator":
 	exists(IMMZIndCom."Doses Administered to Patient During Measurement Period")
-
 /*
  * Disaggregator: Vaccine (BCG, OPV, etc.)
  */
 define "Vaccine Stratifier":
 	IMMZIndCom."Immunizations with Adverse Events During Measurement Period" A
 	return A.vaccineCode
-
 /*
  * Disaggregator: Product/Manufacturer
  */
@@ -68,21 +64,17 @@ define "Product/Manufacturer Stratifier":
 	with IMMZIndCom."Immunizations with Adverse Events During Measurement Period" A
 	such that O.id = Last(Split(A.manufacturer.reference, '/'))
 	return O.name
-
-
 /*
  * Disaggregator: Severity (Severe, Non-Severe)
  */
 define "Severity Stratifier":
 	IMMZIndCom."Adverse Event Reactions During Measurement Period" A
 	return First(A.component C where C.code = IMMZc."Adverse Event Severity").value as FHIR.CodeableConcept
-
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
 	IMMZIndCom."By Geographic Region Stratifier"
-
 /*
  * Disaggregator: Manifestation / Event (optional - Rash, Vomiting,  etc.)
  */
