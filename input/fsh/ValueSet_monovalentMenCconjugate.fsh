@@ -1,12 +1,12 @@
-//Example Valuset you can use as a template to create new ones
-//change ValueSet name, Id, Title, Description
 ValueSet: monovalentMenCconjugate-values
 Id: monovalentMenCconjugate-values
 Title: "monovalent MenC conjugate values"
 Description: "Codes representing monovalent MenC conjugate values"
-//don't touch status, experimental, immutable
 * ^status = #draft
 * ^experimental = false
 * ^immutable = true
-//fill in codes, check AL_CodeSystems.fsh for the short names of the codesystem
 * ICD11#XM2WV4 "Meningococcal vaccines"
+* ICD11#XM18Y8 "Meningococcus C, purified polysaccharides antigen conjugated"
+* SCT#259840006 "Meningococcal polysaccharide group C antibody (substance)"
+* SCT#871866001 "Vaccine product containing only Neisseria meningitidis serogroup C antigen (medicinal product)"
+* SCT#951000221102 "Vaccine product containing only Neisseria meningitidis serogroup C capsular polysaccharide conjugated antigen (medicinal product)"

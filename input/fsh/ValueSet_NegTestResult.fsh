@@ -9,4 +9,4 @@ Description: "Codes representing negative test result values"
 * ^experimental = false
 * ^immutable = true
 //fill in codes, check AL_CodeSystems.fsh for the short names of the codesystem
-* SCT#260385009 "Negative"
+* SCT#260385009 "Negative (qualifier value)"

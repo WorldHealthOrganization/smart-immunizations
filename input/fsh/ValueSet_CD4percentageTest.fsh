@@ -11,3 +11,4 @@ Description: "Codes representing CD4 Percentage Test values"
 //fill in codes, check AL_CodeSystems.fsh for the short names of the codesystem
 * SCT#313938009 "CD4 percent count (procedure)"
 * SCT#413069009 "Percentage CD4 (T4 cells) count (procedure)"
+* LNC#80223-1 "CD4 cells/100 lymphocytes in Specimen"
