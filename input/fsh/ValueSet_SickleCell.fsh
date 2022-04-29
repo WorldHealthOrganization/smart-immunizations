@@ -1,7 +1,7 @@
-ValueSet: PositiveTestResult-values
-Id: PositiveTestResult-values
-Title: "Positive Test Result valuest"
-Description: "Codes representing Positive Test Result values"
+ValueSet: SickleCell-values
+Id: SickleCell-values
+Title: "Sickle Cell valuest"
+Description: "Codes representing Sickle Cell values"
 * ^status = #draft
 * ^experimental = false
 * ^immutable = true
