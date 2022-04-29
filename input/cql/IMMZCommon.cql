@@ -323,12 +323,10 @@ define "Number of HepB Doses Administered to Patient":
 
 
 /**
- * @dataElement HepB containing Doses Administered to Patient
+ * @dataElement No HepB containing Birth Dose Administered to Patient
  */
-define "HepB Doses Administered to Patient Excluding Birth Dose":
-  "HepB Doses Administered to Patient" I
-  where
-    singleton from (I.protocolApplied.doseNumber) != 0
+define "No HepB Birth Dose Administered to Patient":
+  not exists("HepB Doses Administered to Patient" I where singleton from (I.protocolApplied.doseNumber) = 0)
 
 //Date last administered HepB
 define "Date Last HepB Dose Administered to Patient":

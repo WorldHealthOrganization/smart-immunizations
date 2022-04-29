@@ -15,13 +15,33 @@ include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
 context Patient
 
+/*
+ * Rule: Should vaccinate patient for Hepatitis B because no doses and (low birth weight or premature infant)
+ * Annotations:
+ * 	 - Provide Hepatitis B immunizations – using the "Hepatitis B vaccine immunization – Birth dose" schedule (Birth dose)
+ * 	 - 
+ * Outputs:
+ * 	 - Immunize Patient for Hepatitis B - No Doses and Premature birth or low birth weight
+ * 	 - 
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- 
+ * Logic:
+ *	 (("Hepatitis B vaccine immunization history" = "No-doses") and (("Patient birth weight observation value" < 2000g) or ("Patient mother's prenancy outcome observation" = "preterm")) and ("Current Patient Age in Weeks" < 2))
+ */
+define "Should vaccinate patient for Hepatitis B because no doses and (low birth weight or premature infant)":
+	IMMZCom."No HepB Birth Dose Administered to Patient" and
+	IMMZCom."Current Patient Age In Weeks" < 2 and
+	(
+		"Patient birth weight observation value" < "2000g" or
+		"Patient mother's pregnancy outcome observation" = "preterm"
+	)
+
 /* 
  * @dataElement Hepatitis B vaccine immunization history
  */
 define "Hepatitis B vaccine immunization history":
 	IMMZCom."HepB Doses Administered to Patient"
-
-
 
 /* 
  * @dataElement No-doses
@@ -84,12 +104,6 @@ define "Should vaccinate patient for Hepatitis B because 2 doses":
 	(("2 doses") and (IMMZCom."Date Last HepB Dose Administered to Patient" more than 4 'weeks' before Today()))
 
 /* 
- * @dataElement 3 doses
- */
-define "3 doses":
-	IMMZCom."Number of HepB Doses Administered to Patient" = 3
-
-/* 
  * @dataElement Patient birth weight observation value
  */
 define "Patient birth weight observation value":
@@ -101,38 +115,12 @@ define "Patient birth weight observation value":
  */
 define "Patient mother's pregnancy outcome observation":
 	IMMZCom."Patient mother's pregnancy outcome observation"
-	 // TODO: Define this
 
 /* 
  * @dataElement preterm
  */
 define "preterm":
     IMMZCom."Preterm"
-	 // TODO: Define this
 
 define "2000g":
 	2000 'gm'
-
-/* 
- * @dataElement 4 weeks
- */
-define "4 weeks":
-	Today() - 4 weeks
-
-/*
- * Rule: Should vaccinate patient for Hepatitis B because 3 doses and (low birth weight or premature infant)
- * Annotations:
- * 	 - Provide Hepatitis B immunizations – using the "Hepatitis B vaccine immunization – 3 PREVIOUS" schedule (4 doses scheme)
- * 	 - 
- * Outputs:
- * 	 - Immunize Patient for Hepatitis B - 3 Doses and Premature birth/low birth weight
- * 	 - 
- * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
- * 	- 
- * Logic:
- *	 ((("Hepatitis B vaccine immunization history" = "3 doses") and ("Patient birth weight observation value" < 2000g)) or (("Hepatitis B vaccine immunization history" = "3 doses") and ("Patient mother's prenancy outcome observation" = "preterm")))
- */
-define "Should vaccinate patient for Hepatitis B because 3 doses and (low birth weight or premature infant)":
-	(((("3 doses") and ("Patient birth weight observation value" < "2000g")) and (IMMZCom."Date Last HepB Dose Administered to Patient" >= "4 weeks")) or ((("3 doses") and ("Patient mother's pregnancy outcome observation" = "preterm")) and (IMMZCom."Date Last HepB Dose Administered to Patient" >= "4 weeks")))
-
