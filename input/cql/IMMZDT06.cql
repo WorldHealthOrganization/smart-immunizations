@@ -183,8 +183,11 @@ define "Should vaccinate patient for Pneumococcal because No doses in a 1 dose s
  */
 define "Should vaccinate patient for Pneumococcal Booster in second year of life because HIV infected or preterm who completed 3-dose series before 12 months of age":
 	IMMZCom."Number of Pneumococcal Doses Administered to Patient" = 3
-	and (IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices")
-	and exists(IMMZCom."Preterm")
+	and // todo: validate with WHO this is supposed to be an OR even though the sheet says AND
+	(
+		(IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices")
+		or exists(IMMZCom."Preterm")
+	)
 	and IMMZCom."Patient Age at 1st Dose of Pneumococcal in Months" < 12
 	and IMMZCom."Current Patient Age In Months" between 12 and 24
 
