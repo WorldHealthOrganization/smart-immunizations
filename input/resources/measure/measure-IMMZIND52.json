@@ -1,17 +1,250 @@
 {
   "resourceType": "Measure",
   "id": "IMMZIND52",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm" ]
+  },
   "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Measurement Period",
+      "use": "in",
+      "min": 0,
+      "max": "1",
+      "type": "Period"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Gender Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Geographic Region Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "string"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "numerator",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "denominator",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-dataRequirement",
+    "valueDataRequirement": {
+      "type": "Immunization",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Immunization" ],
+      "mustSupport": [ "protocolApplied.doseNumber", "protocolApplied", "occurrence", "vaccineCode", "status" ]
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-dataRequirement",
+    "valueDataRequirement": {
+      "type": "ImmunizationRecommendation",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation" ],
+      "mustSupport": [ "recommendation" ]
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "By Administrative Gender Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * By Administrative Gender of Patient Stratifier\n */define \"By Administrative Gender Stratifier\":\n    Patient.gender"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 0
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND52"
+    }, {
+      "url": "name",
+      "valueString": "Gender Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Gender\n */define \"Gender Stratifier\":\n\tIMMZIndCom.\"By Administrative Gender Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 1
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "By Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * By Administrative Gender of Patient Stratifier\n */define \"By Geographic Region Stratifier\":\n    First(Patient.address A where A.use in { 'home' }).state"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 2
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND52"
+    }, {
+      "url": "name",
+      "valueString": "Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Geographic Region\n */define \"Geographic Region Stratifier\":\n\tIMMZIndCom.\"By Geographic Region Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 3
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZCommon"
+    }, {
+      "url": "name",
+      "valueString": "Doses Administered to Patient"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * @dataElement All Doses Administered to Patient to patient ordered newest to oldest\n */define \"Doses Administered to Patient\":\n  [Immunization] I\n    where I.status = 'completed'\n    sort by (occurrence as FHIR.dateTime) desc"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 4
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZCommon"
+    }, {
+      "url": "name",
+      "valueString": "MCV Doses Administered to Patient"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * @dataElement MCV containing Doses Administered to Patient\n */define \"MCV Doses Administered to Patient\":\n  \"Doses Administered to Patient\" I\n  where\n    I.vaccineCode in IMMZc.\"MCV Vaccine\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 5
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND52"
+    }, {
+      "url": "name",
+      "valueString": "Patient Should Complete MCV Series During Measurement Period"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * Patient should be completing MCV during measurement period\n */define \"Patient Should Complete MCV Series During Measurement Period\":\n\texists(\n\t\tIMMZCom.\"MCV Doses Administered to Patient\" I \n\t\twhere \n\t\t\t(singleton from I.protocolApplied).doseNumber = 1\n\t\t\tand I.occurrence before start of \"Measurement Period\"\n\t)\n\tand \n\texists(\n\t\t[ImmunizationRecommendation] IR \n\t\twhere \n\t\t\texists(\n\t\t\t\tIR.recommendation RC where\n\t\t\t\texists(RC.dateCriterion DC where date from DC.value during \"Measurement Period\")\n\t\t\t\tand RC.doseNumber = 3\n\t\t\t\tand RC.vaccineCode in IMMZc.\"MCV Vaccine\"\n\t\t)\n\t)"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 6
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "MCV Doses Administered to Patient During Measurement Period"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * MCV Doses Administered to Patient\n */define \"MCV Doses Administered to Patient During Measurement Period\":\n    IMMZCom.\"MCV Doses Administered to Patient\" I \n    where IMMZCom.ToDate(I.occurrence) during \"Measurement Period\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 7
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND52"
+    }, {
+      "url": "name",
+      "valueString": "numerator"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Numerator: Number of children who have received MCV 1 (numerator) minus the number of children who have not received MCV 3 and are past due (exclusion)\n * Numerator Computation: Numerator: COUNT immunization events WHERE administered product is MCV (IMMZ.A1.DE9) and dose number = 1 and before reporting period and EXISTS immunization recommendation WHERE product is MCV and dose number is 3 and due date during reporting period.\nNumerator Exclusion: COUNT immunization recommendations WHERE recommended product is MCV and dose number = 3 and due date during reporting period AND NOT EXISTS immunization where product is MCV and dose sequence = 1\n */define \"numerator\":\n\t\"Patient Should Complete MCV Series During Measurement Period\"\n\tand not exists(IMMZIndCom.\"MCV Doses Administered to Patient During Measurement Period\" I where (singleton from I.protocolApplied).doseNumber = 3)"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 8
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND52"
+    }, {
+      "url": "name",
+      "valueString": "denominator"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Denominator: Number of children who have received MCV dose 1\n * Denominator Computation: COUNT immunization events WHERE administered product is MCV (IMMZ.A1.DE9) and dose sequence =1 AND EXISTS immunization recommendation WHERE product is MCV and dose sequence = 3 and due date during reporting period.\n */define \"denominator\":\n\t\"Patient Should Complete MCV Series During Measurement Period\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 9
+    } ]
+  }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
     "valueReference": {
       "reference": "Device/cqf-tooling"
     }
   } ],
-  "url": "http://fhir.org/guides/who/Immz/Measure/IMMZIND52",
+  "url": "http://fhir.org/guides/who/smart-immunization/Library/Measure/IMMZIND52",
   "name": "IMMZIND52",
   "title": "IMMZ.IND.52 Dropout Rate of MCV1 to MCV2 (Individuals)",
-  "date": "2022-04-21T12:10:47.3492552-04:00",
+  "date": "2022-04-29T18:45:15.241-04:00",
   "description": "Indicates the number of individuals which have dropped out of the measles containing vaccine protocol. \n\nThe indicator counts the number of individuals who have received a measles containing vaccine dose 1, yet have not received the final dose of measles containing vaccine (are past due of MCV2) with the individuals who have received MCV1 and MCV2",
+  "relatedArtifact": [ {
+    "type": "depends-on",
+    "display": "Library IMMZIndCom",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZIndicatorCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library FHIRHelpers",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/FHIRHelpers|4.0.1"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZCom",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZc",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZConcepts"
+  }, {
+    "type": "depends-on",
+    "display": "Value set MCV Vaccine",
+    "resource": "http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE9"
+  } ],
+  "library": [ "http://fhir.org/guides/who/smart-immunization/Library/IMMZIND52" ],
   "scoring": {
     "coding": [ {
       "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
@@ -27,7 +260,7 @@
   "improvementNotation": {
     "coding": [ {
       "system": "http://terminology.hl7.org/CodeSystem/measure-improvement-notation",
-      "code": "decrease"
+      "code": "increase"
     } ]
   },
   "group": [ {
@@ -64,6 +297,12 @@
       "criteria": {
         "language": "text/cql",
         "expression": "Geographic Region Stratifier"
+      }
+    }, {
+      "id": "gender-stratifier",
+      "criteria": {
+        "language": "text/cql",
+        "expression": "Gender Stratifier"
       }
     } ]
   } ]

@@ -1,17 +1,244 @@
 {
   "resourceType": "Measure",
   "id": "IMMZIND49",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm" ]
+  },
   "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Measurement Period",
+      "use": "in",
+      "min": 0,
+      "max": "1",
+      "type": "Period"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Dose Sequence Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "Any"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Geographic Region Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "string"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "numerator",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "denominator",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-dataRequirement",
+    "valueDataRequirement": {
+      "type": "Immunization",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Immunization" ],
+      "mustSupport": [ "protocolApplied.doseNumber", "protocolApplied", "occurrence", "vaccineCode", "status" ]
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZCommon"
+    }, {
+      "url": "name",
+      "valueString": "Doses Administered to Patient"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * @dataElement All Doses Administered to Patient to patient ordered newest to oldest\n */define \"Doses Administered to Patient\":\n  [Immunization] I\n    where I.status = 'completed'\n    sort by (occurrence as FHIR.dateTime) desc"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 0
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZCommon"
+    }, {
+      "url": "name",
+      "valueString": "Typhoid Doses Administered to Patient"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * @dataElement Typhoid containing Doses Administered to Patient\n */define \"Typhoid Doses Administered to Patient\":\n  \"Doses Administered to Patient\" I\n  where\n    I.vaccineCode in IMMZc.\"Typhoid Vaccine\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 1
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "Typhoid Doses Administered to Patient During Measurement Period"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * Typhoid Encephalitis  Doses Administered to Patient\n */define \"Typhoid Doses Administered to Patient During Measurement Period\":\n    IMMZCom.\"Typhoid Doses Administered to Patient\" I \n    where IMMZCom.ToDate(I.occurrence) during \"Measurement Period\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 2
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND49"
+    }, {
+      "url": "name",
+      "valueString": "Dose Sequence Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Dose Sequence (1, 2, 3)\n */define \"Dose Sequence Stratifier\":\n\tIMMZIndCom.\"Typhoid Doses Administered to Patient During Measurement Period\" I\n\treturn (singleton from I.protocolApplied).doseNumber"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 3
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "By Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * By Administrative Gender of Patient Stratifier\n */define \"By Geographic Region Stratifier\":\n    First(Patient.address A where A.use in { 'home' }).state"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 4
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND49"
+    }, {
+      "url": "name",
+      "valueString": "Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Geographic Region\n */define \"Geographic Region Stratifier\":\n\tIMMZIndCom.\"By Geographic Region Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 5
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND49"
+    }, {
+      "url": "name",
+      "valueString": "numerator"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Numerator: Number of administrations of vaccines which contain a typhoid component during the reporting period.\n * Numerator Computation: COUNT immunization events WHERE administered product is a Typhoid vaccine (IMMZ.A1.DE21) during reporting period.\n */define \"numerator\":\n\texists(IMMZIndCom.\"Typhoid Doses Administered to Patient During Measurement Period\")"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 6
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "Patient Under 12 Months Old During Measurement Period"
+    }, {
+      "url": "statement",
+      "valueString": "/** \n * Patient is < 12 months old at the end of the measurement period\n */define \"Patient Under 12 Months Old During Measurement Period\":\n    Patient.birthDate more than 12 month before end of \"Measurement Period\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 7
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "Patient Deceased During Measurement Period"
+    }, {
+      "url": "statement",
+      "valueString": "/** \n * @dataElement Patient is deceased\n */define \"Patient Deceased During Measurement Period\":\n  case \n    when Patient.deceased is FHIR.boolean then Patient.deceased as FHIR.boolean\n    when Patient.deceased is FHIR.dateTime then Patient.deceased as FHIR.dateTime before end of \"Measurement Period\"\n    else false\n  end"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 8
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND49"
+    }, {
+      "url": "name",
+      "valueString": "denominator"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Denominator: Number of immunization recommendations for typhoid vaccines dur during reporting period.\n * Denominator Computation: COUNT Immunization recommendation WHERE recommended product is typhoid vaccine (IMMZ.A1.DE21) during reporting period.\n */define \"denominator\":\n\tIMMZIndCom.\"Patient Under 12 Months Old During Measurement Period\"\n\tand not (IMMZIndCom.\"Patient Deceased During Measurement Period\")"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 9
+    } ]
+  }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
     "valueReference": {
       "reference": "Device/cqf-tooling"
     }
   } ],
-  "url": "http://fhir.org/guides/who/Immz/Measure/IMMZIND49",
+  "url": "http://fhir.org/guides/who/smart-immunization/Library/Measure/IMMZIND49",
   "name": "IMMZIND49",
-  "title": "IMMZ.IND.49 Dropout Rate of DTP1 to DTP3 (Individuals)",
-  "date": "2022-04-14T11:33:35.1075428-04:00",
-  "description": "Indicates the number of individuals which have dropped out of the DTP containing vaccine protocol (i.e. children which have received DTP1 but not DTP3).\n\nThis indicator works by counting the number of individuals who have received the first dose of DTP (dose 1) containing vaccine but not the last dose of DTP (are past-due for dose 3) with the children who have completed the vaccination protocol.",
+  "title": "IMMZ.IND.49 Immunization coverage for Typhoid vaccines (Computed Denominator)",
+  "date": "2022-04-29T18:45:15.219-04:00",
+  "description": "Compares the administered doses of Typhoid vaccines with the number of immunization recommendations for typhoid vaccines expressed as a percentage.",
+  "relatedArtifact": [ {
+    "type": "depends-on",
+    "display": "Library IMMZIndCom",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZIndicatorCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZCom",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library FHIRHelpers",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/FHIRHelpers|4.0.1"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZc",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZConcepts"
+  }, {
+    "type": "depends-on",
+    "display": "Value set Typhoid Vaccine",
+    "resource": "http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE21"
+  } ],
+  "library": [ "http://fhir.org/guides/who/smart-immunization/Library/IMMZIND49" ],
   "scoring": {
     "coding": [ {
       "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
@@ -40,7 +267,7 @@
           "code": "numerator"
         } ]
       },
-      "description": "Number of children who have received DTP1 (numerator) minus number of children who have not received DTP dose 3 and are past due (numerator exclusion)",
+      "description": "Number of administrations of vaccines which contain a typhoid component during the reporting period.",
       "criteria": {
         "language": "text/cql",
         "expression": "numerator"
@@ -53,17 +280,29 @@
           "code": "denominator"
         } ]
       },
-      "description": "Number of children who have received DTP containing vaccine dose 1",
+      "description": "Number of immunization recommendations for typhoid vaccines dur during reporting period.",
       "criteria": {
         "language": "text/cql",
         "expression": "denominator"
       }
     } ],
     "stratifier": [ {
+      "id": "dose-sequence-stratifier",
+      "criteria": {
+        "language": "text/cql",
+        "expression": "Dose Sequence Stratifier"
+      }
+    }, {
       "id": "geographic-region-stratifier",
       "criteria": {
         "language": "text/cql",
         "expression": "Geographic Region Stratifier"
+      }
+    }, {
+      "id": "gender-stratifier",
+      "criteria": {
+        "language": "text/cql",
+        "expression": "Gender Stratifier"
       }
     } ]
   } ]

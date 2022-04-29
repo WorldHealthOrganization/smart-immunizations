@@ -1,17 +1,251 @@
 {
   "resourceType": "Measure",
   "id": "IMMZIND32",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm" ]
+  },
   "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Measurement Period",
+      "use": "in",
+      "min": 0,
+      "max": "1",
+      "type": "Period"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Gender Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Geographic Region Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "string"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "numerator",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "denominator",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "By Administrative Gender Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * By Administrative Gender of Patient Stratifier\n */define \"By Administrative Gender Stratifier\":\n    Patient.gender"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 0
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND32"
+    }, {
+      "url": "name",
+      "valueString": "Gender Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Gender\n */define \"Gender Stratifier\":\n\tIMMZIndCom.\"By Administrative Gender Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 1
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "By Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * By Administrative Gender of Patient Stratifier\n */define \"By Geographic Region Stratifier\":\n    First(Patient.address A where A.use in { 'home' }).state"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 2
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND32"
+    }, {
+      "url": "name",
+      "valueString": "Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Geographic Region\n */define \"Geographic Region Stratifier\":\n    IMMZIndCom.\"By Geographic Region Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 3
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZCommon"
+    }, {
+      "url": "name",
+      "valueString": "Doses Administered to Patient"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * @dataElement All Doses Administered to Patient to patient ordered newest to oldest\n */define \"Doses Administered to Patient\":\n  [Immunization] I\n    where I.status = 'completed'\n    sort by (occurrence as FHIR.dateTime) desc"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 4
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZCommon"
+    }, {
+      "url": "name",
+      "valueString": "BCG Doses Administered to Patient"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * @dataElement BCG Doses Administered to Patient\n */define \"BCG Doses Administered to Patient\":\n  \"Doses Administered to Patient\" I \n  where \n    I.vaccineCode in IMMZc.\"BCG Vaccine\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 5
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "BCG Doses Administered to Patient During Measurement Period"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * BCG Doses administered to the patient during the measurement period\n */define \"BCG Doses Administered to Patient During Measurement Period\":\n    IMMZCom.\"BCG Doses Administered to Patient\" I\n\t\twhere IMMZCom.ToDate(I.occurrence) during \"Measurement Period\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 6
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND32"
+    }, {
+      "url": "name",
+      "valueString": "numerator"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Numerator: Number of registered patients born during reporting period who were administered BCG\n * Numerator Computation: COUNT patients WHERE birthDate during reporting period AND deceasedDate is not populated\nHAVING immunization event WHERE administered product is BCG vaccine (IMMZ.A1.DE1)\n */define \"numerator\":\n\texists(IMMZIndCom.\"BCG Doses Administered to Patient During Measurement Period\")"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 7
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "Patient Born During Measurement Period"
+    }, {
+      "url": "statement",
+      "valueString": "/** \n * Patient was born during measurement period\n */define \"Patient Born During Measurement Period\":\n    Patient.birthDate during \"Measurement Period\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 8
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "Patient Deceased During Measurement Period"
+    }, {
+      "url": "statement",
+      "valueString": "/** \n * @dataElement Patient is deceased\n */define \"Patient Deceased During Measurement Period\":\n  case \n    when Patient.deceased is FHIR.boolean then Patient.deceased as FHIR.boolean\n    when Patient.deceased is FHIR.dateTime then Patient.deceased as FHIR.dateTime before end of \"Measurement Period\"\n    else false\n  end"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 9
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND32"
+    }, {
+      "url": "name",
+      "valueString": "denominator"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Denominator: Number of registered, surviving infants born during reporting period.\n * Denominator Computation: COUNT Patient WHERE birthDate during reporting period AND deceasedDate is not populated.\n */define \"denominator\":\n\tIMMZIndCom.\"Patient Born During Measurement Period\"\n\tand not (IMMZIndCom.\"Patient Deceased During Measurement Period\")"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 10
+    } ]
+  }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
     "valueReference": {
       "reference": "Device/cqf-tooling"
     }
   } ],
-  "url": "http://fhir.org/guides/who/Immz/Measure/IMMZIND32",
+  "url": "http://fhir.org/guides/who/smart-immunization/Library/Measure/IMMZIND32",
   "name": "IMMZIND32",
-  "title": "IMMZ.IND.32 Immunization coverage for DTP containing vaccines (Computed Denominator)",
-  "date": "2022-04-14T11:33:35.0690790-04:00",
-  "description": "Compares the administered doses of a DTP containing vaccine with the registered number of surviving infants expressed as a percentage.",
+  "title": "IMMZ.IND.32 Immunization coverage for BCG (Computed Denominator)",
+  "date": "2022-04-29T18:45:15.087-04:00",
+  "description": "Compares the administered doses of BCG vaccine with the actual number of registered, surviving infants expressed as a percentage.",
+  "relatedArtifact": [ {
+    "type": "depends-on",
+    "display": "Library IMMZIndCom",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZIndicatorCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library FHIRHelpers",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/FHIRHelpers|4.0.1"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZCom",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZc",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZConcepts"
+  }, {
+    "type": "depends-on",
+    "display": "Value set BCG Vaccine",
+    "resource": "http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE1"
+  } ],
+  "library": [ "http://fhir.org/guides/who/smart-immunization/Library/IMMZIND32" ],
   "scoring": {
     "coding": [ {
       "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
@@ -40,7 +274,7 @@
           "code": "numerator"
         } ]
       },
-      "description": "Number of patients WHERE age at reporting period < 12 months and deceasedDate is not populated \nHAVING administration of vaccine product containing DTP component during the reporting period",
+      "description": "Number of registered patients born during reporting period who were administered BCG",
       "criteria": {
         "language": "text/cql",
         "expression": "numerator"
@@ -53,25 +287,13 @@
           "code": "denominator"
         } ]
       },
-      "description": "Number of registered, surviving infants whose age is less than 12 months during reporting period.",
+      "description": "Number of registered, surviving infants born during reporting period.",
       "criteria": {
         "language": "text/cql",
         "expression": "denominator"
       }
     } ],
     "stratifier": [ {
-      "id": "dose-sequence-stratifier",
-      "criteria": {
-        "language": "text/cql",
-        "expression": "Dose Sequence Stratifier"
-      }
-    }, {
-      "id": "age-group-stratifier",
-      "criteria": {
-        "language": "text/cql",
-        "expression": "Age Group Stratifier"
-      }
-    }, {
       "id": "geographic-region-stratifier",
       "criteria": {
         "language": "text/cql",

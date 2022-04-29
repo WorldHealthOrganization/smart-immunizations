@@ -1,17 +1,254 @@
 {
   "resourceType": "Measure",
   "id": "IMMZIND08",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm" ]
+  },
   "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Measurement Period",
+      "use": "in",
+      "min": 0,
+      "max": "1",
+      "type": "Period"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Administrative Gender Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "measure-population",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Age Group Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "Coding"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Geographic Region Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "string"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+    "valueCoding": {
+      "system": "http://ohie.org/CodeSystem/iso-8601-derived-periods",
+      "code": "P0Y--P1Y",
+      "display": "< 1 year"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+    "valueCoding": {
+      "system": "http://ohie.org/CodeSystem/iso-8601-derived-periods",
+      "code": "P1Y--P9999Y",
+      "display": "> 1 year"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "By Administrative Gender Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * By Administrative Gender of Patient Stratifier\n */define \"By Administrative Gender Stratifier\":\n    Patient.gender"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 0
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND08"
+    }, {
+      "url": "name",
+      "valueString": "Administrative Gender Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Administrative Gender (or Biological Sex)\n */define \"Administrative Gender Stratifier\":\n\tIMMZIndCom.\"By Administrative Gender Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 1
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZCommon"
+    }, {
+      "url": "name",
+      "valueString": "Doses Administered to Patient"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * @dataElement All Doses Administered to Patient to patient ordered newest to oldest\n */define \"Doses Administered to Patient\":\n  [Immunization] I\n    where I.status = 'completed'\n    sort by (occurrence as FHIR.dateTime) desc"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 2
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZCommon"
+    }, {
+      "url": "name",
+      "valueString": "MCV Doses Administered to Patient"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * @dataElement MCV containing Doses Administered to Patient\n */define \"MCV Doses Administered to Patient\":\n  \"Doses Administered to Patient\" I\n  where\n    I.vaccineCode in IMMZc.\"MCV Vaccine\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 3
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "MCV Doses Administered to Patient During Measurement Period"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * MCV Doses Administered to Patient\n */define \"MCV Doses Administered to Patient During Measurement Period\":\n    IMMZCom.\"MCV Doses Administered to Patient\" I \n    where IMMZCom.ToDate(I.occurrence) during \"Measurement Period\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 4
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND08"
+    }, {
+      "url": "name",
+      "valueString": "measure-population"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Numerator: Number of administrations of vaccinations containing a Measles component during reporting period\n * Numerator Computation: COUNT immunization events WHERE administered product is a Measles vaccine (IMMZ.A1.DE9) during reporting period\n */define \"measure-population\":\n\texists(IMMZIndCom.\"MCV Doses Administered to Patient During Measurement Period\")"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 5
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "Infant By Age Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/** \n * Infant disaggregations by age\n */define \"Infant By Age Stratifier\":\n    case \n        when AgeInYearsAt(start of \"Measurement Period\") < 1 then \"P0Y--P1Y\"\n        when AgeInYearsAt(start of \"Measurement Period\") >= 1 then \"P1Y--P9999Y\"\n        else null\n    end"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 6
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND08"
+    }, {
+      "url": "name",
+      "valueString": "Age Group Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Age Group (<24H of Birth, < 2 weeks)\n */define \"Age Group Stratifier\":\n\tIMMZIndCom.\"Infant By Age Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 7
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "By Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * By Administrative Gender of Patient Stratifier\n */define \"By Geographic Region Stratifier\":\n    First(Patient.address A where A.use in { 'home' }).state"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 8
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND08"
+    }, {
+      "url": "name",
+      "valueString": "Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Geographic Region\n */define \"Geographic Region Stratifier\":\n\tIMMZIndCom.\"By Geographic Region Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 9
+    } ]
+  }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
     "valueReference": {
       "reference": "Device/cqf-tooling"
     }
   } ],
-  "url": "http://fhir.org/guides/who/Immz/Measure/IMMZIND08",
+  "url": "http://fhir.org/guides/who/smart-immunization/Library/Measure/IMMZIND08",
   "name": "IMMZIND08",
-  "title": "IMMZ.IND.08 Immunization coverage for HPV (Estimated Denominator)",
-  "date": "2022-04-14T11:33:35.0143455-04:00",
-  "description": "Compares the administered doses of HPV vaccines with the country specified denominator for HPV coverage expressed as a percentage.",
+  "title": "IMMZ.IND.08 Immunization coverage for Measles containing vaccine (Estimated Denominator)",
+  "date": "2022-04-29T18:45:14.937-04:00",
+  "description": "Compares the administered doses of measles containing vaccines (MCV) with the estimated number of surviving infants (if dose 1) or a country supplied denominator (if dose 2) expressed as a percentage.",
+  "relatedArtifact": [ {
+    "type": "depends-on",
+    "display": "Library IMMZIndCom",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZIndicatorCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZCom",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library FHIRHelpers",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/FHIRHelpers|4.0.1"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZc",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZConcepts"
+  }, {
+    "type": "depends-on",
+    "display": "Code system ISO-8601-Derived Periods",
+    "resource": "http://ohie.org/CodeSystem/iso-8601-derived-periods"
+  }, {
+    "type": "depends-on",
+    "display": "Value set MCV Vaccine",
+    "resource": "http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE9"
+  } ],
+  "library": [ "http://fhir.org/guides/who/smart-immunization/Library/IMMZIND08" ],
   "scoring": {
     "coding": [ {
       "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
@@ -40,10 +277,23 @@
           "code": "measure-population"
         } ]
       },
-      "description": "Number of administrations of vaccines containing an HPV component during reporting period",
+      "description": "Number of administrations of vaccinations containing a Measles component during reporting period",
       "criteria": {
         "language": "text/cql",
         "expression": "measure-population"
+      }
+    }, {
+      "id": "denominator",
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator"
+        } ]
+      },
+      "description": "Estimated number of surviving infants (for dose 1) and country supplied denominator for dose sequence 2 (see comments)",
+      "criteria": {
+        "language": "text/cql",
+        "expression": "denominator"
       }
     } ],
     "stratifier": [ {

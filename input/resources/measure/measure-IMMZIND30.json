@@ -1,17 +1,320 @@
 {
   "resourceType": "Measure",
   "id": "IMMZIND30",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm" ]
+  },
   "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Measurement Period",
+      "use": "in",
+      "min": 0,
+      "max": "1",
+      "type": "Period"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Vaccine Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "CodeableConcept"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Severity Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "CodeableConcept"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Manifestation / Event Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "CodeableConcept"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Geographic Region Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "string"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Product/Manufacturer Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "Any"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "numerator",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "denominator",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-dataRequirement",
+    "valueDataRequirement": {
+      "type": "Organization",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Organization" ],
+      "mustSupport": [ "id" ]
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+    "valueCoding": {
+      "system": "http://snomed.info/sct",
+      "code": "246112005",
+      "display": "Severity (attribute)"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZCommon"
+    }, {
+      "url": "name",
+      "valueString": "Doses Administered to Patient"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * @dataElement All Doses Administered to Patient to patient ordered newest to oldest\n */define \"Doses Administered to Patient\":\n  [Immunization] I\n    where I.status = 'completed'\n    sort by (occurrence as FHIR.dateTime) desc"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 0
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "Immunizations with Adverse Events During Measurement Period"
+    }, {
+      "url": "statement",
+      "valueString": "/** \n * @define Adverse events for immunizations which occurred during (or observed) during measurement period\n */define \"Immunizations with Adverse Events During Measurement Period\":\n    IMMZCom.\"Doses Administered to Patient\" I\n    with [Observation: code in WC.\"Adverse Events\"] O\n    such that exists(I.reaction R where O.id = Last(Split(R.detail.reference, '/')))\n    and FC.ToInterval(O.effective) during \"Measurement Period\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 1
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND30"
+    }, {
+      "url": "name",
+      "valueString": "Vaccine Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Vaccine (BCG, OPV, etc.)\n */define \"Vaccine Stratifier\":\n\tIMMZIndCom.\"Immunizations with Adverse Events During Measurement Period\" A\n\treturn A.vaccineCode"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 2
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "Adverse Event Reactions During Measurement Period"
+    }, {
+      "url": "statement",
+      "valueString": "/** \n * @define Adverse events for immunizations which occurred during (or observed) during measurement period\n */define \"Adverse Event Reactions During Measurement Period\":\n    [Observation: code in WC.\"Adverse Events\"] O\n    with IMMZCom.\"Doses Administered to Patient\" I\n    such that exists(I.reaction R where O.id = Last(Split(R.detail.reference, '/')))\n    where FC.ToInterval(O.effective) during \"Measurement Period\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 3
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND30"
+    }, {
+      "url": "name",
+      "valueString": "Severity Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Severity (Severe, Non-Severe)\n */define \"Severity Stratifier\":\n\tIMMZIndCom.\"Adverse Event Reactions During Measurement Period\" A\n\treturn First(A.component C where C.code = IMMZc.\"Adverse Event Severity\").value as FHIR.CodeableConcept"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 4
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND30"
+    }, {
+      "url": "name",
+      "valueString": "Manifestation / Event Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Manifestation / Event (optional - Rash, Vomiting,  etc.)\n */define \"Manifestation / Event Stratifier\":\n\tIMMZIndCom.\"Adverse Event Reactions During Measurement Period\" A\n\treturn A.value as FHIR.CodeableConcept"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 5
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "By Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * By Administrative Gender of Patient Stratifier\n */define \"By Geographic Region Stratifier\":\n    First(Patient.address A where A.use in { 'home' }).state"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 6
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND30"
+    }, {
+      "url": "name",
+      "valueString": "Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Geographic Region\n */define \"Geographic Region Stratifier\":\n\tIMMZIndCom.\"By Geographic Region Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 7
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND30"
+    }, {
+      "url": "name",
+      "valueString": "Product/Manufacturer Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Product/Manufacturer\n */define \"Product/Manufacturer Stratifier\":\n\tIMMZIndCom.\"Immunizations with Adverse Events During Measurement Period\" A\n\t// TODO: Find a better way to do this\n\treturn Tuple { Manufacturer : First([Organization] O where O.id = Last(Split(A.manufacturer.reference, '/'))), LotNumber : A.lotNumber, VaccineType: A.vaccineCode }"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 8
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND30"
+    }, {
+      "url": "name",
+      "valueString": "numerator"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Numerator: Number of persons which have received a vaccine dose, and have reported an adverse event\n * Numerator Computation: COUNT immunization HAVING reaction reported during reporting period\n */define \"numerator\":\n\texists(IMMZIndCom.\"Immunizations with Adverse Events During Measurement Period\")"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 9
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "Doses Administered to Patient During Measurement Period"
+    }, {
+      "url": "statement",
+      "valueString": "/** \n * @define Doses which were \n */define \"Doses Administered to Patient During Measurement Period\":\n    IMMZCom.\"Doses Administered to Patient\"  I\n    where IMMZCom.ToDate(I.occurrence) during \"Measurement Period\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 10
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND30"
+    }, {
+      "url": "name",
+      "valueString": "denominator"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Denominator: The total number of doses administered to patients of the product.\n * Denominator Computation: COUNT number of doses administered during reporting period\n */define \"denominator\":\n\texists(IMMZIndCom.\"Doses Administered to Patient During Measurement Period\")"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 11
+    } ]
+  }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
     "valueReference": {
       "reference": "Device/cqf-tooling"
     }
   } ],
-  "url": "http://fhir.org/guides/who/Immz/Measure/IMMZIND30",
+  "url": "http://fhir.org/guides/who/smart-immunization/Library/Measure/IMMZIND30",
   "name": "IMMZIND30",
   "title": "IMMZ.IND.30 Adverse Event Following Immunization (AEFI) case rate.",
-  "date": "2022-04-29T07:32:59.5280618-04:00",
+  "date": "2022-04-29T18:45:15.080-04:00",
   "description": "Clinics should report adverse events (reported and confirmed) to the central authority. \n\nThis should be tracked as an aggregate tally (which should indicate the severity, and optionally the manifestation such as rash, vomiting, etc.), with severe cases being reported using case reporting forms, and should include an analysis of whether the AEFI was a direct result (confirmed) of vaccination or not (suspected). Serious cases are those which involved hospitalization, disability, or death.\n\nInvestigation of AEFI events can lead to withdrawal of the vaccine from the market, or inform further guidance on administration of a particular antigen/product.",
+  "relatedArtifact": [ {
+    "type": "depends-on",
+    "display": "Library IMMZIndCom",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZIndicatorCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZCom",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library FHIRHelpers",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/FHIRHelpers|4.0.1"
+  }, {
+    "type": "depends-on",
+    "display": "Library WC",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/WHOConcepts"
+  }, {
+    "type": "depends-on",
+    "display": "Library FC",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/FHIRCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZc",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZConcepts"
+  }, {
+    "type": "depends-on",
+    "display": "Code system SNOMED-CT",
+    "resource": "http://snomed.info/sct"
+  }, {
+    "type": "depends-on",
+    "display": "Value set Adverse Events",
+    "resource": "http://hl7.org/fhir/valueset-adverse-event-type.html"
+  } ],
+  "library": [ "http://fhir.org/guides/who/smart-immunization/Library/IMMZIND30" ],
   "scoring": {
     "coding": [ {
       "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",

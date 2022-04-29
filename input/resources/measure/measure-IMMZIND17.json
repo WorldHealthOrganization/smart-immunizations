@@ -1,17 +1,197 @@
 {
   "resourceType": "Measure",
   "id": "IMMZIND17",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm" ]
+  },
   "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Measurement Period",
+      "use": "in",
+      "min": 0,
+      "max": "1",
+      "type": "Period"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Administrative Gender Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "measure-population",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Geographic Region Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "string"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "By Administrative Gender Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * By Administrative Gender of Patient Stratifier\n */define \"By Administrative Gender Stratifier\":\n    Patient.gender"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 0
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND17"
+    }, {
+      "url": "name",
+      "valueString": "Administrative Gender Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Administrative Gender (or Biological Sex)\n */define \"Administrative Gender Stratifier\":\n\tIMMZIndCom.\"By Administrative Gender Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 1
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZCommon"
+    }, {
+      "url": "name",
+      "valueString": "Doses Administered to Patient"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * @dataElement All Doses Administered to Patient to patient ordered newest to oldest\n */define \"Doses Administered to Patient\":\n  [Immunization] I\n    where I.status = 'completed'\n    sort by (occurrence as FHIR.dateTime) desc"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 2
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZCommon"
+    }, {
+      "url": "name",
+      "valueString": "Diphtheria Doses Administered to Patient"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * @dataElement Diptheria containing Doses Administered to Patient\n */define \"Diphtheria Doses Administered to Patient\":\n  \"Doses Administered to Patient\" I\n  where\n    I.vaccineCode in IMMZc.\"Diphtheria Vaccine\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 3
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "Pertussis Booster Doses Administered to Patient During Measurement Period"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * Pertussis Doses Administered to Patient\n */define \"Pertussis Booster Doses Administered to Patient During Measurement Period\":\n    IMMZCom.\"Diphtheria Doses Administered to Patient\" I \n    where IMMZCom.ToDate(I.occurrence) during \"Measurement Period\"\n        and (singleton from I.protocolApplied).doseNumber > 3"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 4
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND17"
+    }, {
+      "url": "name",
+      "valueString": "measure-population"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Numerator: Number of administrations of booster vaccine containing a pertussis component during the reporting period\n * Numerator Computation: COUNT immunization events WHERE administered product is a Pertussis containing vaccine (IMMZ.A1.DE12) and dose > 3 during reporting period.\n */define \"measure-population\":\n\texists(IMMZIndCom.\"Pertussis Booster Doses Administered to Patient During Measurement Period\")"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 5
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "By Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * By Administrative Gender of Patient Stratifier\n */define \"By Geographic Region Stratifier\":\n    First(Patient.address A where A.use in { 'home' }).state"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 6
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND17"
+    }, {
+      "url": "name",
+      "valueString": "Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Geographic Region\n */define \"Geographic Region Stratifier\":\n\tIMMZIndCom.\"By Geographic Region Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 7
+    } ]
+  }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
     "valueReference": {
       "reference": "Device/cqf-tooling"
     }
   } ],
-  "url": "http://fhir.org/guides/who/Immz/Measure/IMMZIND17",
+  "url": "http://fhir.org/guides/who/smart-immunization/Library/Measure/IMMZIND17",
   "name": "IMMZIND17",
-  "title": "IMMZ.IND.17 Immunization coverage for Tetanus containing vaccine boosters (Estimated Denominator)",
-  "date": "2022-04-14T11:33:35.0317357-04:00",
-  "description": "Compares the administered booster dose of tetanus containing vaccines (doses 4, 5, 6) with a country specified denominator expressed as a percentage",
+  "title": "IMMZ.IND.17 Immunization coverage for Pertussis containing vaccine boosters (Estimated Denominator)",
+  "date": "2022-04-29T18:45:15.003-04:00",
+  "description": "Compares the administered booster dose of pertussis containing vaccine (dose 4) with a country specified denominator expressed as a percentage.",
+  "relatedArtifact": [ {
+    "type": "depends-on",
+    "display": "Library IMMZIndCom",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZIndicatorCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZCom",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library FHIRHelpers",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/FHIRHelpers|4.0.1"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZc",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZConcepts"
+  }, {
+    "type": "depends-on",
+    "display": "Value set Diphtheria Vaccine",
+    "resource": "http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE3"
+  } ],
+  "library": [ "http://fhir.org/guides/who/smart-immunization/Library/IMMZIND17" ],
   "scoring": {
     "coding": [ {
       "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
@@ -40,19 +220,13 @@
           "code": "measure-population"
         } ]
       },
-      "description": "Number of administrations of booster containing tetanus component during the reporting period.",
+      "description": "Number of administrations of booster vaccine containing a pertussis component during the reporting period",
       "criteria": {
         "language": "text/cql",
         "expression": "measure-population"
       }
     } ],
     "stratifier": [ {
-      "id": "dose-sequence-stratifier",
-      "criteria": {
-        "language": "text/cql",
-        "expression": "Dose Sequence Stratifier"
-      }
-    }, {
       "id": "geographic-region-stratifier",
       "criteria": {
         "language": "text/cql",

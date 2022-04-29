@@ -1,17 +1,269 @@
 {
   "resourceType": "Measure",
   "id": "IMMZIND42",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm" ]
+  },
   "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Measurement Period",
+      "use": "in",
+      "min": 0,
+      "max": "1",
+      "type": "Period"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Age Group Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "Coding"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "Geographic Region Stratifier",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "string"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "numerator",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-parameter",
+    "valueParameterDefinition": {
+      "name": "denominator",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+    "valueCoding": {
+      "system": "http://ohie.org/CodeSystem/iso-8601-derived-periods",
+      "code": "P0M--P9M",
+      "display": "< 9 months"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+    "valueCoding": {
+      "system": "http://ohie.org/CodeSystem/iso-8601-derived-periods",
+      "code": "P9M--P18M",
+      "display": "9 - 18 months"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+    "valueCoding": {
+      "system": "http://ohie.org/CodeSystem/iso-8601-derived-periods",
+      "code": "P18M--P15Y",
+      "display": "18 months - 15 years"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+    "valueCoding": {
+      "system": "http://ohie.org/CodeSystem/iso-8601-derived-periods",
+      "code": "P15Y--P9999Y",
+      "display": "> 15 years"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "RCV By Age Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/** \n * RCV age disaggregators\n */define \"RCV By Age Stratifier\":\n    case \n        when AgeInMonthsAt(start of \"Measurement Period\") < 9 then \"P0M--P9M\"\n        when AgeInMonthsAt(start of \"Measurement Period\") < 18 then \"P9M--P18M\"\n        when AgeInYearsAt(start of \"Measurement Period\") < 15 then \"P18M--P15Y\"\n        when AgeInYearsAt(start of \"Measurement Period\") >= 15 then \"P15Y--P9999Y\"\n        else null\n    end"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 0
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND42"
+    }, {
+      "url": "name",
+      "valueString": "Age Group Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Disaggregator: Age Group (< 9 months, 9 - 18 months, 18 months - 15 years, > 15 years)\n */define \"Age Group Stratifier\":\n\tIMMZIndCom.\"RCV By Age Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 1
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "By Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * By Administrative Gender of Patient Stratifier\n */define \"By Geographic Region Stratifier\":\n    First(Patient.address A where A.use in { 'home' }).state"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 2
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND42"
+    }, {
+      "url": "name",
+      "valueString": "Geographic Region Stratifier"
+    }, {
+      "url": "statement",
+      "valueString": "// todo: fill in logic\n\n/*\n * Disaggregator: Geographic Region\n */define \"Geographic Region Stratifier\":\n\tIMMZIndCom.\"By Geographic Region Stratifier\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 3
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZCommon"
+    }, {
+      "url": "name",
+      "valueString": "Doses Administered to Patient"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * @dataElement All Doses Administered to Patient to patient ordered newest to oldest\n */define \"Doses Administered to Patient\":\n  [Immunization] I\n    where I.status = 'completed'\n    sort by (occurrence as FHIR.dateTime) desc"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 4
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZCommon"
+    }, {
+      "url": "name",
+      "valueString": "Rubella Doses Administered to Patient"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * @dataElement Rubella containing Doses Administered to Patient\n */define \"Rubella Doses Administered to Patient\":\n  \"Doses Administered to Patient\" I\n  where\n    I.vaccineCode in IMMZc.\"Rubella Vaccine\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 5
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "Rubella Doses Administered to Patient During Measurement Period"
+    }, {
+      "url": "statement",
+      "valueString": "/**\n * RCV Doses Administered to Patient\n */define \"Rubella Doses Administered to Patient During Measurement Period\":\n    IMMZCom.\"Rubella Doses Administered to Patient\" I \n    where IMMZCom.ToDate(I.occurrence) during \"Measurement Period\""
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 6
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND42"
+    }, {
+      "url": "name",
+      "valueString": "numerator"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Numerator: Number of administrations of vaccines containing a Rubella component during reporting period\n * Numerator Computation: COUNT immunization events WHERE administered product is a Rubella vaccine (IMMZ.A1.DE17) during reporting period\n */define \"numerator\":\n\texists(IMMZIndCom.\"Rubella Doses Administered to Patient During Measurement Period\")"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 7
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIndicatorCommon"
+    }, {
+      "url": "name",
+      "valueString": "Rubella Doses Recommended During Reporting Period"
+    }, {
+      "url": "statement",
+      "valueString": "/** \n * Rubella Doses recommended during reporting period - \n *  This is used since the country should define the rules which recommend an Rubella dose (configuration, age, sex, etc.)\n */define \"Rubella Doses Recommended During Reporting Period\":\n    [ImmunizationRecommendation] IR\n    where exists(IR.recommendation RC where exists(RC.dateCriterion DC where date from DC.value during \"Measurement Period\")\n    and RC.vaccineCode in IMMZc.\"Rubella Vaccine\")"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 8
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+    "extension": [ {
+      "url": "libraryName",
+      "valueString": "IMMZIND42"
+    }, {
+      "url": "name",
+      "valueString": "denominator"
+    }, {
+      "url": "statement",
+      "valueString": "/*\n * Denominator: Number of immunization recommendations for RCV vaccines due during reporting period.\n * Denominator Computation: COUNT immunization recommendation WHERE recommended product is RCV vaccine (IMMZ.A1.DE17) AND due date during reporting period.\n */define \"denominator\":\n\texists(IMMZIndCom.\"Rubella Doses Recommended During Reporting Period\")"
+    }, {
+      "url": "displaySequence",
+      "valueInteger": 9
+    } ]
+  }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
     "valueReference": {
       "reference": "Device/cqf-tooling"
     }
   } ],
-  "url": "http://fhir.org/guides/who/Immz/Measure/IMMZIND42",
+  "url": "http://fhir.org/guides/who/smart-immunization/Library/Measure/IMMZIND42",
   "name": "IMMZIND42",
-  "title": "IMMZ.IND.42 Immunization coverage for Varicella vaccinations (Computed Denominator)",
-  "date": "2022-04-14T11:33:35.0927351-04:00",
-  "description": "Compares the administered doses of varicella containing vaccine with the number of immunization recommendations for varicella vaccines expressed as a percentage.",
+  "title": "IMMZ.IND.42 Immunization coverage for Rubella containing vaccines (Computed Denominator)",
+  "date": "2022-04-29T18:45:15.164-04:00",
+  "description": "Compares the administered doses of rubella containing vaccine (RCV) with the number of immunization recommendations for rubella containing vaccines expressed as a percentage.",
+  "relatedArtifact": [ {
+    "type": "depends-on",
+    "display": "Library IMMZIndCom",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZIndicatorCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library FHIRHelpers",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/FHIRHelpers|4.0.1"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZCom",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZCommon"
+  }, {
+    "type": "depends-on",
+    "display": "Library IMMZc",
+    "resource": "http://fhir.org/guides/who/smart-immunization/Library/IMMZConcepts"
+  }, {
+    "type": "depends-on",
+    "display": "Code system ISO-8601-Derived Periods",
+    "resource": "http://ohie.org/CodeSystem/iso-8601-derived-periods"
+  }, {
+    "type": "depends-on",
+    "display": "Value set Rubella Vaccine",
+    "resource": "http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE17"
+  } ],
+  "library": [ "http://fhir.org/guides/who/smart-immunization/Library/IMMZIND42" ],
   "scoring": {
     "coding": [ {
       "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
@@ -40,7 +292,7 @@
           "code": "numerator"
         } ]
       },
-      "description": "Number of administrations of vaccines containing a varicella component during reporting period",
+      "description": "Number of administrations of vaccines containing a Rubella component during reporting period",
       "criteria": {
         "language": "text/cql",
         "expression": "numerator"
@@ -53,19 +305,13 @@
           "code": "denominator"
         } ]
       },
-      "description": "Number of immunization recommendations for varicella vaccines due during reporting period.",
+      "description": "Number of immunization recommendations for RCV vaccines due during reporting period.",
       "criteria": {
         "language": "text/cql",
         "expression": "denominator"
       }
     } ],
     "stratifier": [ {
-      "id": "dose-sequence-stratifier",
-      "criteria": {
-        "language": "text/cql",
-        "expression": "Dose Sequence Stratifier"
-      }
-    }, {
       "id": "age-group-stratifier",
       "criteria": {
         "language": "text/cql",
