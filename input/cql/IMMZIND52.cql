@@ -32,22 +32,55 @@ include FHIRCommon called FC
 parameter "Measurement Period" Interval<Date>
 context Patient
 
+
+/**
+ * Patient should be completing MCV during measurement period
+ */
+define "Patient Should Complete MCV Series During Measurement Period":
+	exists(
+		IMMZCom."MCV Doses Administered to Patient" I 
+		where 
+			(singleton from I.protocolApplied).doseNumber = 1
+			and I.occurrence before start of "Measurement Period"
+	)
+	and 
+	exists(
+		[ImmunizationRecommendation] IR 
+		where 
+			exists(
+				IR.recommendation RC where
+				exists(RC.dateCriterion DC where date from DC.value during "Measurement Period")
+				and RC.doseNumber = 3
+				and RC.vaccineCode in IMMZc."MCV Vaccine"
+		)
+	)
+
 /*
  * Numerator: Number of children who have received MCV 1 (numerator) minus the number of children who have not received MCV 3 and are past due (exclusion)
  * Numerator Computation: Numerator: COUNT immunization events WHERE administered product is MCV (IMMZ.A1.DE9) and dose number = 1 and before reporting period and EXISTS immunization recommendation WHERE product is MCV and dose number is 3 and due date during reporting period.
 Numerator Exclusion: COUNT immunization recommendations WHERE recommended product is MCV and dose number = 3 and due date during reporting period AND NOT EXISTS immunization where product is MCV and dose sequence = 1
  */
 define "numerator":
-	true // TODO: Write logic here
+	"Patient Should Complete MCV Series During Measurement Period"
+	and not exists(IMMZIndCom."MCV Doses Administered to Patient During Measurement Period" I where (singleton from I.protocolApplied).doseNumber = 3)
+
 /*
  * Denominator: Number of children who have received MCV dose 1
  * Denominator Computation: COUNT immunization events WHERE administered product is MCV (IMMZ.A1.DE9) and dose sequence =1 AND EXISTS immunization recommendation WHERE product is MCV and dose sequence = 3 and due date during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here
+	"Patient Should Complete MCV Series During Measurement Period"
+	
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier"
+
+/*
+ * Disaggregator: Gender
+ */
+define "Gender Stratifier":
+	IMMZIndCom."By Administrative Gender Stratifier"
+
 /* End of IMMZ.IND.52 */

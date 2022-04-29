@@ -302,6 +302,57 @@ define "HPV Doses Recommended During Reporting Period":
     where exists(IR.recommendation RC where exists(RC.dateCriterion DC where date from DC.value during "Measurement Period")
     and RC.vaccineCode in IMMZc."HPV Vaccine")
 
+
+/** 
+ * Rubella Doses recommended during reporting period - 
+ *  This is used since the country should define the rules which recommend an Rubella dose (configuration, age, sex, etc.)
+ */
+define "Rubella Doses Recommended During Reporting Period":
+    [ImmunizationRecommendation] IR
+    where exists(IR.recommendation RC where exists(RC.dateCriterion DC where date from DC.value during "Measurement Period")
+    and RC.vaccineCode in IMMZc."Rubella Vaccine")
+
+/** 
+ * Varicella Doses recommended during reporting period - 
+ *  This is used since the country should define the rules which recommend an Varicella dose (configuration, age, sex, etc.)
+ */
+define "Varicella Doses Recommended During Reporting Period":
+    [ImmunizationRecommendation] IR
+    where exists(IR.recommendation RC where exists(RC.dateCriterion DC where date from DC.value during "Measurement Period")
+    and RC.vaccineCode in IMMZc."Varicella Vaccine")
+
+/** 
+ * Diphtheria Booster Doses recommended during reporting period - 
+ *  This is used since the country should define the rules which recommend an Diphtheria booster dose (configuration, age, sex, etc.)
+ */
+define "Diphtheria Booster Doses Recommended During Reporting Period":
+    [ImmunizationRecommendation] IR
+    where exists(IR.recommendation RC where exists(RC.dateCriterion DC where date from DC.value during "Measurement Period")
+    and RC.doseNumber > 3
+    and RC.vaccineCode in IMMZc."Diphtheria Vaccine")
+
+/** 
+ * Pertussis Booster Doses recommended during reporting period - 
+ *  This is used since the country should define the rules which recommend an Pertussis booster dose (configuration, age, sex, etc.)
+ */
+define "Pertussis Booster Doses Recommended During Reporting Period":
+    [ImmunizationRecommendation] IR
+    where exists(IR.recommendation RC where exists(RC.dateCriterion DC where date from DC.value during "Measurement Period")
+    and RC.doseNumber > 3
+    and RC.vaccineCode in IMMZc."Pertussis Vaccine")
+
+
+/** 
+ * Tetanus Booster Doses recommended during reporting period - 
+ *  This is used since the country should define the rules which recommend an Tetanus booster dose (configuration, age, sex, etc.)
+ */
+define "Tetanus Booster Doses Recommended During Reporting Period":
+    [ImmunizationRecommendation] IR
+    where exists(IR.recommendation RC where exists(RC.dateCriterion DC where date from DC.value during "Measurement Period")
+    and RC.doseNumber > 3
+    and RC.vaccineCode in IMMZc."Tetanus Vaccine")
+
+
 /**
  * By Administrative Gender of Patient Stratifier
  */
@@ -314,11 +365,10 @@ define "By Administrative Gender Stratifier":
 define "By Geographic Region Stratifier":
     WCom.Official(Patient.address).state
 
-
 /** 
  * @dataElement Patient is deceased
  */
-define "Patient Deceased Before Measurement Period":
+define "Patient Deceased During Measurement Period":
   case 
     when Patient.deceased is FHIR.boolean then Patient.deceased as FHIR.boolean
     when Patient.deceased is FHIR.dateTime then Patient.deceased as FHIR.dateTime before end of "Measurement Period"
@@ -332,10 +382,17 @@ define "Patient Born During Measurement Period":
     Patient.birthDate during "Measurement Period"
 
 /** 
- * Patient is < 12 months old at the beginning of the measurement period
+ * Patient is < 12 months old at the end of the measurement period
  */
-define "Patient Under 12 Months Old Before Measurement Period":
-    Patient.birthDate more than 12 month before start of "Measurement Period"
+define "Patient Under 12 Months Old During Measurement Period":
+    Patient.birthDate more than 12 month before end of "Measurement Period"
+
+/** 
+ * Patient is < 12 years old at the end of the measurement period
+ */
+define "Patient Under 2 Years Old During Measurement Period":
+    Patient.birthDate more than 2 year before end of "Measurement Period"
+
 
 /** 
  * @define Adverse events for immunizations which occurred during (or observed) during measurement period

@@ -44,7 +44,7 @@ define "numerator":
  */
 define "denominator":
 	IMMZIndCom."Patient Born During Measurement Period"
-	and not (IMMZIndCom."Patient Deceased Before Measurement Period")
+	and not (IMMZIndCom."Patient Deceased During Measurement Period")
 /*
  * Disaggregator: Geographic Region
  */

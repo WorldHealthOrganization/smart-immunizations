@@ -40,13 +40,14 @@ HAVING immunization events WHERE administered product is a HepB (IMMZ.A1.DE6) du
  */
 define "numerator":
 	exists(IMMZIndCom."HepB Non-Birth Doses Administered to Patient During Measurement Period")
+	
 /*
  * Denominator: Number of registered, surviving infants whose ages is less than 12 months during reporting period.
  * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  */
 define "denominator":
-	IMMZIndCom."Patient Under 12 Months Old Before Measurement Period"
-	and not (IMMZIndCom."Patient Deceased Before Measurement Period")
+	IMMZIndCom."Patient Under 12 Months Old During Measurement Period"
+	and not (IMMZIndCom."Patient Deceased During Measurement Period")
 /*
  * Disaggregator: Dose Sequence (1, 2, 3)
  */

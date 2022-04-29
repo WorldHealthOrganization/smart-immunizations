@@ -36,26 +36,33 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a Typhoid vaccine (IMMZ.A1.DE21) during reporting period.
  */
 define "numerator":
-	true // TODO: Write logic here
+	exists(IMMZIndCom."Typhoid Doses Administered to Patient During Measurement Period")
+
 /*
  * Denominator: Number of immunization recommendations for typhoid vaccines dur during reporting period.
  * Denominator Computation: COUNT Immunization recommendation WHERE recommended product is typhoid vaccine (IMMZ.A1.DE21) during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here
+	IMMZIndCom."Patient Under 12 Months Old During Measurement Period"
+	and not (IMMZIndCom."Patient Deceased During Measurement Period")
+
 /*
  * Disaggregator: Dose Sequence (1, 2, 3)
  */
 define "Dose Sequence Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."Typhoid Doses Administered to Patient During Measurement Period" I
+	return (singleton from I.protocolApplied).doseNumber
+
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier"
+
 /*
- * Disaggregator: Gender
+ * Disaggregator: Administrative Gender (or Biological Sex)
  */
-define "Gender Stratifier":
-	true // todo: fill in logic
+define "Administrative Gender Stratifier":
+	IMMZIndCom."By Administrative Gender Stratifier"
+
 /* End of IMMZ.IND.49 */

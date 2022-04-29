@@ -38,6 +38,7 @@ context Patient
  */
 define "numerator":
 	exists(IMMZIndCom."HPV Doses Administered to Patient During Measurement Period") // TODO: Write logic here
+	
 /*
  * Denominator: Number of immunization recommendations for HPV vaccine during reporting period.
  * Denominator Computation: COUNT Immunization Recommendation WHERE recommended product is HPV vaccine (IMMZ.A1.DE7) and due date during reporting period.

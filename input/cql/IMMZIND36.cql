@@ -38,13 +38,14 @@ context Patient
  */
 define "numerator":
 	exists(IMMZIndCom."MCV Doses Administered to Patient During Measurement Period")
+	
 /*
  * Denominator: Number of registered, surviving infants.
  * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  */
 define "denominator":
-	IMMZIndCom."Patient Under 12 Months Old Before Measurement Period"
-	and not (IMMZIndCom."Patient Deceased Before Measurement Period")
+	IMMZIndCom."Patient Under 12 Months Old During Measurement Period"
+	and not (IMMZIndCom."Patient Deceased During Measurement Period")
 /*
  * Disaggregator: Dose Sequence (1, 2)
  */

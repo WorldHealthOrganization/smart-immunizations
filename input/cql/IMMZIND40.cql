@@ -36,26 +36,31 @@ context Patient
  * Numerator Computation: COUNT immunization events WHERE administered product is a Haemophilus vaccine (IMMZ.A1.DE4) during reporting period.
  */
 define "numerator":
-	true // TODO: Write logic here
+	exists(IMMZIndCom."Hib Doses Administered to Patient During Measurement Period")
+	
 /*
  * Denominator: Number of registered, surviving infants.
  * Denominator Computation: COUNT Patient WHERE age at reporting period < 12 months AND deceasedDate is not populated.
  */
 define "denominator":
-	true // TODO: Write logic here
+	IMMZIndCom."Patient Under 12 Months Old During Measurement Period"
+	and not (IMMZIndCom."Patient Deceased During Measurement Period")
 /*
- * Disaggregator: Age Group (<1 year or > 1 year)
+ * Disaggregator: Age Group (< 1 year or > 1 year)
  */
 define "Age Group Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."Infant By Age Stratifier"
+
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier"
+
 /*
  * Disaggregator: Gender
  */
 define "Gender Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Administrative Gender Stratifier"	
+
 /* End of IMMZ.IND.40 */
