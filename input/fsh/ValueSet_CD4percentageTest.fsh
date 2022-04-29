@@ -1,12 +1,13 @@
 //Example Valuset you can use as a template to create new ones
 //change ValueSet name, Id, Title, Description
-ValueSet: HIVstatus-values
-Id: HIVstatus-values
-Title: "HIV status values"
-Description: "Codes representing HIV status values"
+ValueSet: CD4percentageTest-values
+Id: CD4percentageTest-values
+Title: "CD4 Percentage Test"
+Description: "Codes representing CD4 Percentage Test values"
 //don't touch status, experimental, immutable
 * ^status = #draft
 * ^experimental = false
 * ^immutable = true
 //fill in codes, check AL_CodeSystems.fsh for the short names of the codesystem
-* SCT#278977008 "Human immunodeficiency virus status (observable entity)"
+* SCT#313938009 "CD4 percent count (procedure)"
+* SCT#413069009 "Percentage CD4 (T4 cells) count (procedure)"
