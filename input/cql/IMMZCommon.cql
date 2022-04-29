@@ -680,7 +680,16 @@ define "TST Test Results":
 define "Most Recent TST Test Result":
   First("TST Test Results" O
     return O.value as FHIR.CodeableConcept)
-  
+
+/**
+ * @dataElement Observed VNA Levels
+ */
+define "VNA Test Results":
+  [Observation: code in IMMZc."VNA levels"] O
+    where O.status in { 'final', 'amended', 'corrected' }
+      and not(Coalesce(WCom.ModifierExtension(O, 'who-notDone').value, false))
+    sort by effective desc
+
 /* 
  * @dataElement IGRA Test Result
  */

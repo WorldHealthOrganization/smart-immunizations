@@ -11,6 +11,9 @@ include IMMZCommon called IMMZCom
 include IMMZConfig called IMMZCon
 include IMMZConcepts called IMMZc
 // End Skeleton CQL
+parameter "Individual is at high risk of RABV exposure" Boolean default false
+parameter "Individual has continual or frequent risk of exposure (i.e. occupational)" Boolean default false
+
 context Patient
 
 /* 
@@ -24,12 +27,6 @@ define "Rabies vaccine immunization history":
  */
 define "No-doses":
 	not exists("Rabies vaccine immunization history")
-
-/* 
- * @dataElement Individual is at high risk of RABV exposure
- */
-define "Individual is at high risk of RABV exposure":
-	IMMZCon."Individual is at high risk of RABV exposure"
 
 /* 
  * @dataElement 1 dose
@@ -60,22 +57,14 @@ define "Date last Rabies dose given >= 7 days":
 define "Should vaccinate patient with Rabies vaccine (PrEP strategy) on 2 dose scheme":
 	((("No-doses") and ("Individual is at high risk of RABV exposure")) or (("1 dose") and ("Date last Rabies dose given >= 7 days")))
 
-/* 
- * @dataElement Individual has continual or frequent risk of exposure (i.e. occupational)
- */
-define "Individual has continual or frequent risk of exposure (i.e. occupational)":
-	IMMZCon."Individual has continual or frequent risk of exposure (i.e. occupational)"
 
 /* 
  * @dataElement VNA levels
  */
 define "VNA levels":
-	IMMZc."VNA levels" 
-/* 
- * @dataElement 0.5 IU/mL
- */
-define "0.5 IU/mL":
-	IMMZc."VNA levels"
+	First(
+		IMMZCom."VNA Test Results"
+	).value as FHIR.Quantity
 
 /*
  * Rule: Should vaccinate patient with Rabies vaccine Booster (PrEP strategy)
@@ -89,5 +78,5 @@ define "0.5 IU/mL":
  *	 (("Individual has continual or frequent risk of exposure (i.e. occupational)" = true) and ("VNA levels" < "0.5 IU/mL"))
  */
 define "Should vaccinate patient with Rabies vaccine Booster (PrEP strategy)":
-	(("Individual has continual or frequent risk of exposure (i.e. occupational)") and ("VNA levels" < "0.5 IU/mL"))
+	(("Individual has continual or frequent risk of exposure (i.e. occupational)") and ("VNA levels" < 0.5 'IU/mL'))
 

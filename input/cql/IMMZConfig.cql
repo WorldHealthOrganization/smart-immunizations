@@ -37,8 +37,6 @@ define "Country recognizes TBE as a priority": true
 
 define "Individual has a continued high risk of exposure (including health workers)": true
 define "There is a compelling reason to vaccinate infants with Meningococcal between 3 to 9 months old": true
-define "Individual is at high risk of RABV exposure": true
-define "Individual has continual or frequent risk of exposure (i.e. occupational)": true
 // TODO: 
 //define "bOPV and IPV Schedule":
 //	'combined'

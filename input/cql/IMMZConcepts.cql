@@ -35,6 +35,7 @@ valueset "HIV status - HIV negative Choices": 'http://fhir.org/guides/who/anc-cd
 valueset "TST Test Result": 'http://example.org/ValueSets/tst-test'
 valueset "IGRA Test Result": 'http://example.org/ValueSets/igra-tst'
 valueset "ARV Drugs": 'http://exmaple.org/ValueSets/arv-drugs'
+valueset "VNA levels": 'http://example.org/ValueSet/vna-levels'
 
 // JE Classification 
 codesystem "Antigen Type Classifications": 'http://example.org/ValueSets/antigent-type-classification'
@@ -71,8 +72,8 @@ valueset "DTP Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ
 valueset "Inactivated Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE25'
 valueset "Oral Polio Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE26'
 valueset "Dengue Vaccine": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE27'
-valueset "VNA levels": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE28'
-valueset "0.5 IU/mL": 'http://fhir.org/guides/who/smart-immunize/ValueSet/IMMZ.A1.DE29'
+
+
 
 // Cholera vaccine classes
 valueset "WC Class Cholera Vaccine": 'http://example.org/ValueSet/wc-cholera'
