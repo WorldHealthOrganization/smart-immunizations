@@ -38,10 +38,7 @@ valueset "ARV Drugs": 'http://exmaple.org/ValueSets/arv-drugs'
 valueset "VNA levels": 'http://example.org/ValueSet/vna-levels'
 
 // JE Classification 
-codesystem "Antigen Type Classifications": 'http://example.org/ValueSets/antigent-type-classification'
-code "Inactivated Vero cell-derived vaccine": 'IVCD' from "Antigen Type Classifications" display 'Inactivated Vero cell-derived'
-code "Live attentuated virus vaccine": 'LAV' from "Antigen Type Classifications" display 'Live attentuated virus vaccine'
-code "Live recombinant virus vaccine": 'LRC' from "Antigen Type Classifications" display 'Live recombinant'
+valueset "Inactivated Vero cell-derived Japanese Encephalitis vaccines": 'http://example.org/ValueSet/inactivated-vero-cell-derived-je-vaccines'
 
 //TODO: replace the TST/IGRA test link with a real valueset 
 // Vaccine Value Sets
