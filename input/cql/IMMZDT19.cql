@@ -12,19 +12,16 @@ include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
 include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
-context Patient
 
-/* 
- * @dataElement Dengue vaccine immunization history
- */
-define "Dengue vaccine immunization history":
-	IMMZCom."Dengue Doses Administered to Patient"
+parameter "Individual is Seronegative for Dengue" Boolean default true
+
+context Patient
 
 /* 
  * @dataElement No-doses
  */
-define "No-doses":
-	not exists("Dengue vaccine immunization history")
+define "No-doses Dengue vaccine immunization history":
+	not exists(IMMZCom."Dengue Doses Administered to Patient")
 
 /* 
  * @dataElement Age
@@ -38,6 +35,12 @@ define "Age":
 define "9 years":
 	9 years
 
+/* 
+ * @dataElement 45 years
+ */
+define "45 years":
+	45 years
+
 /*
  * Rule: Should vaccinate patient for Dengue because no doses at 9 years old in a 3 dose scheme
  * Annotations:
@@ -50,13 +53,15 @@ define "9 years":
  *	 (("Dengue vaccine immunization history" = "No-doses") and ("Age" >= "9 years"))
  */
 define "Should vaccinate patient for Dengue because no doses at 9 years old in a 3 dose scheme":
-	(("Dengue vaccine immunization history" = "No-doses") and ("Age" >= "9 years"))
+	(("No-doses Dengue vaccine immunization history") and ("Age" between "9 years" and "45 years"))
+	and not(IMMZCom."Pregnant")
+	and not("Individual is Seronegative for Dengue")
 
 /* 
  * @dataElement 1 dose
  */
-define "1 dose":
-	Count("Dengue vaccine immunization history" H) = 1
+define "Dengue vaccine immunization history = 1 dose":
+	Count(IMMZCom."Dengue Doses Administered to Patient") = 1
 
 /* 
  * @dataElement Last dose given
@@ -82,13 +87,15 @@ define "6 months":
  *	 (("Dengue vaccine immunization history" = "1 dose") and ("Last dose given" >= "6 months"))
  */
 define "Should vaccinate patient for Dengue because 1st dose given 6 months ago in a 3 dose scheme":
-	(("Dengue vaccine immunization history" = "1 dose") and ("Last dose given" >= "6 months"))
+	(("Dengue vaccine immunization history = 1 dose") and ("Last dose given" more than 6 months before Today()))
+	and not(IMMZCom."Pregnant")
+	and not("Individual is Seronegative for Dengue")
 
 /* 
  * @dataElement 2 doses
  */
-define "2 doses":
-	Count("Dengue vaccine immunization history" H) = 2
+define "Dengue vaccine immunization history = 2 doses":
+	Count(IMMZCom."Dengue Doses Administered to Patient" H) = 2
 
 /*
  * Rule: Should vaccinate patient for Dengue because 2nd dose given 6 months ago in a 3 dose scheme
@@ -102,5 +109,6 @@ define "2 doses":
  *	 (("Dengue vaccine immunization history" = "2 doses") and ("Last dose given" >= "6 months"))
  */
 define "Should vaccinate patient for Dengue because 2nd dose given 6 months ago in a 3 dose scheme":
-	(("Dengue vaccine immunization history" = "2 doses") and ("Last dose given" >= "6 months"))
-
+	(("Dengue vaccine immunization history = 2 doses") and ("Last dose given" more than 6 months before Today()))
+	and not(IMMZCom."Pregnant")
+	and not("Individual is Seronegative for Dengue")

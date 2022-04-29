@@ -2,6 +2,14 @@
  * Library: IMMZDT15 (IMMZ.DT.15.Cholera)
  * Rule: If child or person has not been vaccinated, give the Cholera vaccine to child greater than or equal to 1 year old and adults 
  * Trigger: Patient has never received cholera vaccination and/or resides/is from an endemic region and/or there is an outbreak
+ * Implementation Note: This CQL logic includes restarts for vaccination. Restarts require that the implementer properly set the protocolApplied.doseNumber
+ *						  to accurately reflect the dosing numbers where 1-3 are primary series and 4+ are boosters. For example, consider a 2 year old child:
+ *							25 months -> Dose 1
+ *                          27 months -> Dose 2 (Within 6w - 6m of first)
+ *                          29 months -> Dose 3  (Within 6w - 6m of first)
+ *                          32 months -> Dose 4 (Booster within appropriate time range)
+ *                         If the child were late for Dose 5 the series here should restart:
+ *                          40 months -> Dose 1 (not within time frame for boosting and must receive primary series again)
  */
 library IMMZDT15
 // Start Skeleton CQL

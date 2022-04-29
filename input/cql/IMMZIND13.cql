@@ -48,6 +48,7 @@ define "Dose Sequence Stratifier":
 	IMMZIndCom."Rotavirus Doses Administered to Patient During Measurement Period" I
 	return (singleton from I.protocolApplied).doseNumber
 
+
 /*
  * Disaggregator: Age Group (< 1 year or > 1 year)
  */

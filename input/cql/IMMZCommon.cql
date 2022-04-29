@@ -364,6 +364,12 @@ define "No JE Doses Administered to Patient":
 define "Date Last JE Dose Administered to Patient":
   date from (First("JE Doses Administered to Patient").occurrence as FHIR.dateTime)
 
+/** 
+ * @dataElement The type of the last typhoid dose administered to patient
+ */
+define "Type of Last JE Dose Administered to Patient":
+  First("JE Doses Administered to Patient" I return I.vaccineCode)
+
 /**
  * @dataElement No Japanese Encephalitis containing Doses Administered to Patient
  */
@@ -411,6 +417,11 @@ define "Meningococcal Doses Administered to Patient":
 define "Number of Meningococcal Doses Administered to Patient":
   Count("Meningococcal Doses Administered to Patient")
 
+/**
+ * @define The number of HepA Doses administerd to the patient
+ */
+define "Number of HepA Doses Administered to Patient":
+  Count("HepA Doses Administered to Patient")
 
 /**
  * @dataElement Mumps containing Doses Administered to Patient
@@ -419,6 +430,19 @@ define "Mumps Doses Administered to Patient":
   "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Mumps Vaccine"
+
+
+/**
+ * @dataElement Mumps containing Doses Administered to Patient
+ */
+define "Number of Mumps Doses Administered to Patient":
+  Count("Mumps Doses Administered to Patient")
+
+/**
+ * @dataElement last date Mumps doses administered to the Patient
+ */
+define "Date last Mumps dose Administered to Patient":
+  date from (First("Mumps Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 /**
  * @dataElement Pertussis containing Doses Administered to Patient
@@ -516,6 +540,12 @@ define "Date last Rabies dose given Dose Administered to Patient":
  */
 define "Date last Meningococcal dose Administered to Patient":
   date from (First("Meningococcal Doses Administered to Patient").occurrence as FHIR.dateTime)
+
+  /**
+ * @dataElement last date HepA doses administered to the Patient
+ */
+define "Date last HepA dose Administered to Patient":
+  date from (First("HepA Doses Administered to Patient").occurrence as FHIR.dateTime)
 /**
  * @dataElement Tetanus containing Doses Administered to Patient
  */
@@ -562,6 +592,13 @@ define "Type of Last Typhoid Dose Administered to Patient":
 define "Type of last Meningococcal Dose Administered to Patient":
   First("Meningococcal Doses Administered to Patient" I return I.vaccineCode)
 
+/** 
+ * @dataElement Type of last Hepatits A dose Administered to Patient
+ */
+define "Type of last Hepatits A dose Administered to Patient":
+  First("HepA Doses Administered to Patient" I return I.vaccineCode)
+
+
 /**
  * @dataElement Varicella containing Doses Administered to Patient
  */
@@ -569,6 +606,24 @@ define "Varicella Doses Administered to Patient":
   "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."Varicella Vaccine"
+
+/** 
+ * @dataElement There have been no Varicella doses administered to patient
+ */
+define "No Varicella Doses Administered to Patient":
+  not exists("Varicella Doses Administered to Patient")
+
+/**
+ * @define The number of Varicella doses administerd to the patient
+ */
+define "Number of Varicella Doses Administered to Patient":
+  Count("Varicella Doses Administered to Patient")
+
+/** 
+ * @dataElement Date of last Varicella dose administration
+ */
+define "Date Last Varicella Dose Administered to Patient":
+  date from (First("Varicella Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 /**
  * @dataElement Yellow Fever containing Doses Administered to Patient
@@ -859,6 +914,7 @@ define function ToPositiveInt(choice Choice<FHIR.positiveInt, FHIR.string>):
       Message(null as FHIR.positiveInt, true, '1', 'Error', 'Cannot compute a positive from a String value') // TODO: I'm sure that this is supported somehow?
 	end
 
+
 /**
  * @description Takes a choice between a Medication and a CodeableConcept and returns just the code of the medication
  */
@@ -887,3 +943,4 @@ define function ExtractMedicationInitiationDate(choice Choice<FHIR.dateTime, FHI
 		else
       Message(null as FHIR.dateTime, true, '1', 'Error', 'Cannot compute medication treatment initiation date') // TODO: I'm sure that this is supported somehow?
 	end
+

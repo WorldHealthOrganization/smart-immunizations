@@ -25,13 +25,34 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZStratifiers called IMMZStratifiers
+include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
-
 context Patient
+
+
+/**
+ * Patient should be completing DTP during measurement period
+ */
+define "Patient Should Complete BCG to MCV During Measurement Period":
+	exists(
+		IMMZCom."BCG Doses Administered to Patient" I 
+		where 
+			I.occurrence before start of "Measurement Period"
+	)
+	and 
+	exists(
+		[ImmunizationRecommendation] IR 
+		where 
+			exists(
+				IR.recommendation RC where
+				exists(RC.dateCriterion DC where date from DC.value during "Measurement Period")
+				and RC.doseNumber = 1
+				and RC.vaccineCode in IMMZc."MCV Vaccine"
+		)
+	)
 
 /*
  * Numerator: Number of children who have received BCG (numerator) minus number of children who have not received MCV dose 1 and are past due (numerator exclusion) 
@@ -39,19 +60,26 @@ context Patient
 Numerator Exclusion: COUNT immunization recommendations WHERE recommended product is BCG AND due date during reporting period AND NOT EXISTS Immunization event where administered product is MCV AND dose sequence = 3
  */
 define "numerator":
-	true // TODO: Write logic here 
+	"Patient Should Complete BCG to MCV During Measurement Period"
+	and not exists(IMMZIndCom."MCV Doses Administered to Patient During Measurement Period" I where (singleton from I.protocolApplied).doseNumber = 1)
 
 /*
  * Denominator: Number of children who have received BCG vaccine
  * Denominator Computation: COUNT immunization events WHERE administered product is BCG AND EXISTS immunization recommendation WHERE product is MCV and dose sequence = 1 and due date during reporting period.
  */
 define "denominator":
-	true // TODO: Write logic here 
+	"Patient Should Complete BCG to MCV During Measurement Period"
+
 
 /*
  * Disaggregator: Geographic Region
  */
 define "Geographic Region Stratifier":
-	true // todo: fill in logic
+	IMMZIndCom."By Geographic Region Stratifier"
 
+/*
+ * Disaggregator: Gender
+ */
+define "Gender Stratifier":
+	IMMZIndCom."By Administrative Gender Stratifier"
 /* End of IMMZ.IND.51 */
