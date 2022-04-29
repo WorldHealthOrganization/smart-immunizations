@@ -40,7 +40,7 @@ valueset "VNA levels": 'http://fhir.org/guides/who/smart-immunization/ValueSet/V
 // JE Classification 
 valueset "Inactivated Vero cell-derived Japanese Encephalitis vaccines": 'http://fhir.org/guides/who/smart-immunization/ValueSet/InactivatedJE-values'
 
-valueset "Target Disease": 'http://hl7.org/fhir/ValueSet/immunization-target-disease'
+//valueset "Target Disease": 'http://hl7.org/fhir/ValueSet/immunization-target-disease'
 
 // Vaccine Value Sets
 valueset "BCG Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/IMMZ.A1.DE1'
