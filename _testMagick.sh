@@ -69,7 +69,6 @@ cat $(ls $CQL_SOURCE/*.cql) | grep "^library\s.*$" | sed -E 's/library\s([A-Za-z
 		if [ ! -d $DEST_DIR ]; then
 			mkdir $DEST_DIR
 		fi
-		echo "$SOURCE_FILE => $DEST_DIR/$DEST_FILE"
 		cp $SOURCE_FILE $DEST_DIR/$DEST_FILE
 	done
 done
