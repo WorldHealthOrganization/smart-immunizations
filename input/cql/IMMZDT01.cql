@@ -45,4 +45,4 @@ define "Should vaccinate patient for BCG":
 					(IMMZCom."Most Recent CD4 Count" >= 200 and IMMZCom."Current Patient Age In Years" >= 5)
 				)
 		)
-	)
+	) 
