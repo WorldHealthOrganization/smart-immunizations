@@ -53,7 +53,7 @@ define "45 years":
 define "Should vaccinate patient for Dengue because no doses at 9 years old in a 3 dose scheme":
 	(("No-doses Dengue vaccine immunization history") and ("Age" between "9 years" and "45 years"))
 	and not(IMMZCom."Pregnant")
-	and not(IMMZCom."Individual is Seronegative for Dengue")
+	and not exists(IMMZCom."Individual is Seronegative for Dengue")
 
 /* 
  * @dataElement 1 dose
@@ -87,7 +87,7 @@ define "6 months":
 define "Should vaccinate patient for Dengue because 1st dose given 6 months ago in a 3 dose scheme":
 	(("Dengue vaccine immunization history = 1 dose") and ("Last dose given" more than 6 months before Today()))
 	and not(IMMZCom."Pregnant")
-	and not("Individual is Seronegative for Dengue")
+	and not exists(IMMZCom."Individual is Seronegative for Dengue")
 
 /* 
  * @dataElement 2 doses
@@ -109,4 +109,4 @@ define "Dengue vaccine immunization history = 2 doses":
 define "Should vaccinate patient for Dengue because 2nd dose given 6 months ago in a 3 dose scheme":
 	(("Dengue vaccine immunization history = 2 doses") and ("Last dose given" more than 6 months before Today()))
 	and not(IMMZCom."Pregnant")
-	and not("Individual is Seronegative for Dengue")
+	and not exists(IMMZCom."Individual is Seronegative for Dengue")

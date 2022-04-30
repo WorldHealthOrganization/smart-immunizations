@@ -13,9 +13,9 @@ include IMMZConfig called IMMZCon
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
 // End Skeleton CQL
+parameter "Individual has a continued high risk of exposure (including health workers)" Boolean default false
 context Patient
 
-parameter "Individual has a continued high risk of exposure (including health workers)" Boolean default false
 
 /* 
  * @dataElement Meningococcal vaccine immunization history
