@@ -129,7 +129,7 @@ define "Immunocompromised = True":
 define "Doses Administered to Patient":
   [Immunization] I
     where I.status = 'completed'
-    sort by (occurrence as FHIR.dateTime) desc
+    sort by date from (occurrence as FHIR.dateTime) desc
 
 /**
  * @dataElement BCG Doses Administered to Patient
@@ -167,7 +167,7 @@ define "bOPV Doses Administered to Patient":
  *       number would be 1, 2, 1, 2, 1, 2 -> the highest sequence is 2 but the number is 6
  */
 define "Number of bOPV Doses Administered to Patient Excluding Birth Dose":
-  Count("bOPV Doses Administered to Patient" O where (singleton from O.protocolApplied).doseNumber != 0)
+  Count("bOPV Doses Administered to Patient" O where ToPositiveInt((singleton from O.protocolApplied).doseNumber) != 0)
 
 /**
  * @dataElement Patient has no IPV doses
@@ -193,7 +193,7 @@ define "IPV Doses Administered to Patient":
  * @dataElement Patient has no IPV doses
  */
 define "Number of IPV Doses Administered to Patient":
-  Count("IPV Doses Administered to Patient" O where (singleton from O.protocolApplied).doseNumber != 0)
+  Count("IPV Doses Administered to Patient" O where ToPositiveInt((singleton from O.protocolApplied).doseNumber) != 0)
 
 /**
  * @dataElement Patient has no IPV doses
@@ -213,7 +213,7 @@ define "Date Last IPV Dose Administered to Patient":
 define "Patient Age at 1st IPV Dose in Weeks":
   First("IPV Doses Administered to Patient" I
   where 
-    (singleton from (I.protocolApplied).doseNumber as FHIR.positiveInt) = 1
+    ToPositiveInt(singleton from (I.protocolApplied).doseNumber) = 1
   return 
     AgeInWeeksAt(I.occurrence))
 
@@ -222,7 +222,7 @@ define "Patient Age at 1st IPV Dose in Weeks":
  */
 define "Patient Age at 1st Dose of Pneumococcal in Months":
   First("Pneumococcal Doses Administered to Patient" I 
-    where (singleton from (I.protocolApplied).doseNumber as FHIR.positiveInt) = 1
+    where ToPositiveInt((singleton from I.protocolApplied).doseNumber) = 1
   return 
     AgeInWeeksAt(I.occurrence))
 
@@ -265,13 +265,13 @@ define "Type of Last Cholera Dose Administered to Patient":
  * @dataElement Fact: The highest dosing sequence of cholera vaccine administerd to patient
  */
 define "Highest Sequence of Cholera Doses Administered to Patient":
-  Max("Cholera Doses Administered to Patient" I return (singleton from I.protocolApplied).doseNumber as FHIR.positiveInt)
+  Max("Cholera Doses Administered to Patient" I return ToPositiveInt((singleton from I.protocolApplied).doseNumber))
 
 /** 
  * @dataele
  */
 define "Most Recent Dose Sequence of Cholera Doses Administered to Patient":
-  First("Cholera Doses Administered to Patient" I return (singleton from I.protocolApplied).doseNumber as FHIR.positiveInt)
+  First("Cholera Doses Administered to Patient" I return ToPositiveInt((singleton from I.protocolApplied).doseNumber))
 
 /**
  * @dataElement Hib containing Doses Administered to Patient
@@ -328,14 +328,14 @@ define "HepB Doses Administered to Patient":
  * @dataElement Number of HepB Doses Administered to Patient
  */
 define "Number of HepB Doses Administered to Patient":
-  Count("HepB Doses Administered to Patient" O where (singleton from O.protocolApplied).doseNumber != 0)
+  Count("HepB Doses Administered to Patient" O where ToPositiveInt((singleton from O.protocolApplied).doseNumber) != 0)
 
 
 /**
  * @dataElement No HepB containing Birth Dose Administered to Patient
  */
 define "No HepB Birth Dose Administered to Patient":
-  not exists("HepB Doses Administered to Patient" I where singleton from (I.protocolApplied.doseNumber) = 0)
+  not exists("HepB Doses Administered to Patient" I where ToPositiveInt((singleton from I.protocolApplied).doseNumber) = 0)
 
 //Date last administered HepB
 define "Date Last HepB Dose Administered to Patient":
@@ -397,7 +397,7 @@ define "Type of Last JE Dose Administered to Patient":
  * @dataElement No Japanese Encephalitis containing Doses Administered to Patient
  */
 define "Number of JE Doses Administered to Patient":
-  Count("JE Doses Administered to Patient" I where (singleton from I.protocolApplied).doseNumber != 0)
+  Count("JE Doses Administered to Patient" I where ToPositiveInt((singleton from I.protocolApplied).doseNumber) != 0)
 
 /**
  * @dataElement MCV containing Doses Administered to Patient
@@ -608,7 +608,7 @@ define "No Typhoid Doses Administered to Patient":
  * @dataElement Largest sequence of typhoid doses administered to patient
  */
 define "Highest Sequence of Typhoid Doses Administered to Patient":
-  Max("Typhoid Doses Administered to Patient" I return (singleton from I.protocolApplied).doseNumber as FHIR.positiveInt)
+  Max("Typhoid Doses Administered to Patient" I return ToPositiveInt((singleton from I.protocolApplied).doseNumber))
 
 /** 
  * @dataElement Date last typhoid dose administered
@@ -682,7 +682,7 @@ define "DTP Doses Administered to Patient":
  */
 define "DTP Doses Administered to Patient Excluding Birth Dose":
   "DTP Doses Administered to Patient" O 
-  where (singleton from O.protocolApplied.doseNumber) != 0
+  where ToPositiveInt((singleton from O.protocolApplied).doseNumber) != 0
 
 /**
  * @dataElement Number of DTP Doses Administered to Patient excluding the birth dose

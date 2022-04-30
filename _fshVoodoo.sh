@@ -28,6 +28,8 @@ FSH_OUTPUT_ROOT='./input/tests'
 TEST_OUTPUT='./input/tests/library'
 # CQL Source code
 CQL_SOURCE='./input/cql'
+# Test Case Prefix
+TEST_PREFIX='IMMZ-Patient'
 
 if [ ! -d $CQL_SOURCE ]; then
 	>&2 echo "Missing $CQL_SOURCE directory! Do you have CQL files located there?"
@@ -60,13 +62,14 @@ cat $(ls $CQL_SOURCE/*.cql) | grep "^library\s.*$" | sed -E 's/library\s([A-Za-z
 
 	# For each FSH file copy them
 	ls $FSH_OUTPUT_ROOT/*.json | sed -E 's/^\.\/input\/tests\/(.*)$/\1/I' | while read RESOURCE ; do
-		TEST_CASE_ID=`echo $RESOURCE | sed -E 's/^.*-(.*?)-[m|f]\.json$/\1/g'`
+		TEST_CASE_ID=`echo $RESOURCE | sed -E 's/^.*-(.*?)-([m|f])\.json$/\1-\2/g'`
 		SOURCE_FILE=$FSH_OUTPUT_ROOT/$RESOURCE
-		DEST_DIR=$TEST_OUTPUT/$LIB/$TEST_CASE_ID
+		DEST_DIR=$TEST_OUTPUT/$LIB/$TEST_PREFIX-$TEST_CASE_ID
+		DEST_FILE=`echo $RESOURCE | sed -E 's/^[^\-]*-(.*?)$/\1/g'`
 		if [ ! -d $DEST_DIR ]; then
 			mkdir $DEST_DIR
 		fi
-		echo "$SOURCE_FILE => $DEST_DIR/$RESOURCE"
-		cp $SOURCE_FILE $DEST_DIR/$RESOURCE
+		echo "$SOURCE_FILE => $DEST_DIR/$DEST_FILE"
+		cp $SOURCE_FILE $DEST_DIR/$DEST_FILE
 	done
 done
