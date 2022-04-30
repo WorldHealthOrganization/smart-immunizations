@@ -78,5 +78,5 @@ define "VNA levels":
  *	 (("Individual has continual or frequent risk of exposure (i.e. occupational)" = true) and ("VNA levels" < "0.5 IU/mL"))
  */
 define "Should vaccinate patient with Rabies vaccine Booster (PrEP strategy)":
-	(("Individual has continual or frequent risk of exposure (i.e. occupational)") and ("VNA levels" < 0.5 'IU/mL'))
+	(("Individual has continual or frequent risk of exposure (i.e. occupational)") and ("VNA levels" < 0.5 '[iU]/mL'))
 
