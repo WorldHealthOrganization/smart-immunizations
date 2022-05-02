@@ -20,10 +20,10 @@ SET JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 
 IF EXIST "%input_cache_path%\%tooling_jar%" (
 	ECHO running: JAVA -jar "%input_cache_path%\%tooling_jar%" -RefreshIG -root-dir=%~dp0 -rp="%resources_path%" -ip="%ig_resource_path%" -t -d -p %fsoption%
-	JAVA -Xmx4096M -jar "%input_cache_path%\%tooling_jar%" -RefreshIG -root-dir=%~dp0 -rp="%resources_path%" -ip="%ig_resource_path%" -t -d -p %fsoption%
+	JAVA -Xmx2048M -jar "%input_cache_path%\%tooling_jar%" -RefreshIG -root-dir=%~dp0 -rp="%resources_path%" -ip="%ig_resource_path%" -t -d -p %fsoption%
 ) ELSE If exist "..\%tooling_jar%" (
 	ECHO running: JAVA -jar "..\%tooling_jar%" -RefreshIG -root-dir=%~dp0 -rp="%resources_path%" -ip="%ig_resource_path%" -t -d -p %fsoption%
-	JAVA -Xmx4096M -jar "..\%tooling_jar%" -RefreshIG -root-dir=%~dp0 -rp="%resources_path%" -ip="%ig_resource_path%" -t -d -p %fsoption%
+	JAVA -Xmx2048M -jar "..\%tooling_jar%" -RefreshIG -root-dir=%~dp0 -rp="%resources_path%" -ip="%ig_resource_path%" -t -d -p %fsoption%
 ) ELSE (
 	ECHO IG Refresh NOT FOUND in input-cache or parent folder.  Please run _updateCQFTooling.  Aborting...
 )
