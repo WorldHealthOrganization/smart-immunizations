@@ -23,13 +23,13 @@ read_yesno() {
 }
 
 # Where the Bulk FSH output in format Patient-XXXXXX is located
-FSH_OUTPUT_ROOT='./input/tests'
+declare FSH_OUTPUT_ROOT='./input/tests'
 # Where the output for test library should be output
-TEST_OUTPUT='./input/tests/library'
+declare TEST_OUTPUT='./input/tests/library'
 # CQL Source code
-CQL_SOURCE='./input/cql'
+declare CQL_SOURCE='./input/cql'
 # Test Case Prefix
-TEST_PREFIX='IMMZ-Patient'
+declare TEST_PREFIX='IMMZ-Patient'
 
 if [ ! -d $CQL_SOURCE ]; then
 	>&2 echo "Missing $CQL_SOURCE directory! Do you have CQL files located there?"
@@ -54,7 +54,7 @@ echo "Scanning for Libraries"
 cat $(ls $CQL_SOURCE/*.cql) | grep "^library\s.*$" | sed -E 's/library\s([A-Za-z0-9]*).*$/\1/ig' | while read LIB ; do
 
 	# Create output directory
-	LIB_DIR=$TEST_OUTPUT/$LIB
+	declare LIB_DIR=$TEST_OUTPUT/$LIB
 	echo "$LIB => $LIB_DIR"
 	if [ ! -d $LIB_DIR ]; then
 		mkdir $LIB_DIR
@@ -62,10 +62,10 @@ cat $(ls $CQL_SOURCE/*.cql) | grep "^library\s.*$" | sed -E 's/library\s([A-Za-z
 
 	# For each FSH file copy them
 	ls $FSH_OUTPUT_ROOT/*.json | sed -E 's/^\.\/input\/tests\/(.*)$/\1/I' | while read RESOURCE ; do
-		TEST_CASE_ID=`echo $RESOURCE | sed -E 's/^.*-(.*?)-([m|f])\.json$/\1-\2/g'`
-		SOURCE_FILE=$FSH_OUTPUT_ROOT/$RESOURCE
-		DEST_DIR=$TEST_OUTPUT/$LIB/$TEST_PREFIX-$TEST_CASE_ID
-		DEST_FILE=`echo $RESOURCE | sed -E 's/^[^\-]*-(.*?)$/\1/g'`
+		declare TEST_CASE_ID=`echo $RESOURCE | sed -E 's/^.*-(.*?)-([m|f])\.json$/\1-\2/g'`
+		declare SOURCE_FILE=$FSH_OUTPUT_ROOT/$RESOURCE
+		declare DEST_DIR=$TEST_OUTPUT/$LIB/$TEST_PREFIX-$TEST_CASE_ID
+		declare DEST_FILE=`echo $RESOURCE | sed -E 's/^[^\-]*-(.*?)$/\1/g'`
 		if [ ! -d $DEST_DIR ]; then
 			mkdir $DEST_DIR
 		fi
