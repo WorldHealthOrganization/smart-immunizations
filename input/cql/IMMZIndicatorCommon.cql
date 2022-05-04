@@ -50,6 +50,10 @@ code "P1Y--P15Y": 'P1Y--P15Y' from "ISO-8601-Derived Periods" display '1 year - 
 code "P15Y--P60Y": 'P15Y--P60Y' from "ISO-8601-Derived Periods" display '15 years - 60 years'
 code "P60Y--P9999Y": 'P60Y--P9999Y' from "ISO-8601-Derived Periods" display '> 60 years'
 
+codesystem "Administrative Gender Codes": 'http://hl7.org/fhir/administrative-gender'
+code "Males" : 'male' from "Administrative Gender Codes" display 'Males'
+code "Females" : 'female' from "Administrative Gender Codes" display 'Females'
+code "Other" : 'other' from "Administrative Gender Codes" display 'Other/NA'
 context Patient
 
 
@@ -360,7 +364,11 @@ define "Tetanus Booster Doses Recommended During Reporting Period":
  * By Administrative Gender of Patient Stratifier
  */
 define "By Administrative Gender Stratifier":
-    Patient.gender
+    case 
+        when Patient.gender = 'male' then "Males"
+        when Patient.gender = 'female' then "Females"
+        else "Other"
+    end
 
 /**
  * By Administrative Gender of Patient Stratifier

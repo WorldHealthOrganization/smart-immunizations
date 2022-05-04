@@ -834,7 +834,7 @@ define "Most Recent CD4% Between 20% and 25%":
  * @dataElements Periods where the patient was receiving HAART treatment
  */
 define "Patient HAART Treatment Started 6 to 12 Months Ago":
-  exists(
+  /*exists(
     [MedicationStatement] S 
     where 
       ExtractMedicationCode(S.medication) in IMMZc."ARV Drugs" 
@@ -842,7 +842,7 @@ define "Patient HAART Treatment Started 6 to 12 Months Ago":
       and ExtractMedicationInitiationDate(S.effective) more than 6 'month' before Today() 
       and ExtractMedicationInitiationDate(S.effective) less than 12 'month' before Today()
   )
-  or 
+  or */
   exists(
     [MedicationAdministration] A 
     where 
@@ -856,8 +856,9 @@ define "Patient HAART Treatment Started 6 to 12 Months Ago":
  * @dataElement The patient has a medication record which indicates that they are receiving ARV
  */
 define "Patient is receiving HAART":
- exists([MedicationStatement] S where ExtractMedicationCode(S.medication) in IMMZc."ARV Drugs" and S.status = 'active')
- or exists([MedicationAdministration] A where ExtractMedicationCode(A.medication) in IMMZc."ARV Drugs" and A.status = 'in-progress')
+ //exists([MedicationStatement] S where ExtractMedicationCode(S.medication) in IMMZc."ARV Drugs" and S.status = 'active')
+ //or 
+ exists([MedicationAdministration] A where ExtractMedicationCode(A.medication) in IMMZc."ARV Drugs" and A.status = 'in-progress')
  //union 
  //
 
