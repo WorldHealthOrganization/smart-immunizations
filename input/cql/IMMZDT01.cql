@@ -35,14 +35,14 @@ context Patient
  */
 define "Should vaccinate patient for BCG":
 	IMMZConf."High incidence of TB and/or high leprosy burden" = true and (
-		(IMMZCom."Most Recent TST Test Result" in IMMZc."Negative Result") or 
-		(IMMZCom."Most Recent IGRA Test Result" in IMMZc."Negative Result") or 
+		Coalesce((IMMZCom."Most Recent TST Test Result" in IMMZc."Negative Result"), false) or 
+		Coalesce((IMMZCom."Most Recent IGRA Test Result" in IMMZc."Negative Result"), false) or 
 		(IMMZCom."No BCG Doses Administered to Patient") or 
 		(
 				(IMMZCom."No BCG Doses Administered to Patient" and IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices") and 
 				(
-					(IMMZCom."Most Recent CD4%" > 25'%' and IMMZCom."Current Patient Age In Years" < 5) or 
-					(IMMZCom."Most Recent CD4 Count" >= 200 and IMMZCom."Current Patient Age In Years" >= 5)
+					Coalesce((IMMZCom."Most Recent CD4%" > 25'%' and IMMZCom."Current Patient Age In Years" < 5), false) or 
+					Coalesce((IMMZCom."Most Recent CD4 Count" >= 200 and IMMZCom."Current Patient Age In Years" >= 5), false)
 				)
 		)
 	)
