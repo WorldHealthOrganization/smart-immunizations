@@ -32,7 +32,3 @@ The ValueSets include a vaccine list of many codes which may be found in a patie
 
 ## Indicators
 Indicators have their own structure using the FHIR Measure and MeasureReport structure. More information on these resources and how they are used in this IG can be found in the [Indicators](indicators.html)
-
-<!--
-#### Data Elements 
---> 

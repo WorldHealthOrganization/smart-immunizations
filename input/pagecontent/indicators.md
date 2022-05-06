@@ -10,7 +10,7 @@ The FHIR [Measure](http://www.hl7.org/fhir/measure) is used to describe the indi
 |Definition|This is a narrative description of the indicator to provide additional context.|
 |Numerator definition|The description of numerator used to calculate the indicator.|
 |Numerator computation|The calculation or how to derive this numerator. Any specific data elements noted here should align directly with the individual-level Data Element Name.|
-|Denominator definition|The description of denominator used to calculate the indicator.|
+|Denominator definition|The dglossescription of denominator used to calculate the indicator.|
 |Denominator computation|The calculation or how to derive this denominator. Any specific data elements noted here should align directly with the individual-level Data Element Name.|
 |Disaggregations|Are there any dis-aggregations that you would like to be able to do in order to conduct the necessary analysis?|
 |References|If there are any national or global guidelines (e.g. WHO guidelines) that dictate how and why this indicator should be calculated or reported, it should be noted here. If any guidelines or recommendations change, having a clear reference listed would help in updating or restructuring your data.|				
@@ -29,10 +29,3 @@ The FHIR [Measure](http://www.hl7.org/fhir/measure) is used to describe the indi
 |[IMMZ.IND.8](Measure-measure-IMMZIND08.html)|Immunization coverage for HPV (Estimated Denominator)|Compares the administered doses of HPV vaccines with the country specified denominator for HPV coverage expressed as a percentage.|WHO Immunization Facility Analysis Guide (1)<br/>WHO / UNICEF Joint Reporting Form (3 - elements 4330, 4340)|
 |[IMMZ.IND.9](Measure-measure-IMMZIND09.html)|Immunization coverage for Meningococcal containing vaccine (Estimated Denominator)|Compares the administered doses of meningococcal containing vaccine with the number of estimated surviving infants expressed as a percentage. |WHO Immunization Facility Analysis Guide (1)<br/>WHO / UNICEF Joint Reporting Form (3 - element 4280)|
 |[IMMZ.IND.10](Measure-measure-IMMZIND10.html)|Immunization coverage for Pneumococcal containing vaccine (Estimated Denominator)|Compares the administered doses of pneumococcal containing vaccine with the number of surviving infants (with the exception of final dose which is country supplied denominator definition) expressed as a percentage|WHO Immunization Facility Analysis Guide (1)<br/>WHO / UNICEF Joint Reporting Form (3- elements 4190, 4200, 4210)|
-
-<!--
-#### How Measures were derived 
-
-
-#### Generating a FHIR Measure Report 
--->
