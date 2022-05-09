@@ -4,7 +4,7 @@
 |----|----|
 |[Anatomical Therapeutic Chemical code (ATC)](https://build.fhir.org/ig/HL7/fhir-ips/ValueSet-whoatc-uv-ips.html)|A unique code assigned to a medicine according to the organ or system it works on and how it works.|
 |[Clinical practice guidelines (CPG)](http://hl7.org/fhir/uv/cpg/)|Clinical practice guidelines are statements that include recommendations intended to optimize patient care that are informed by a systematic review of evidence and an assessment of the benefits and harms of alternative care options.|
-|Clinical Quality Language (CQL)|This is a HL7 specification for the expression of clinical knowledge that can be used within both the Clinical Decision Support (CDS) and Clinical Quality Measurement (CQM) domains.|
+|[Clinical Quality Language (CQL)](https://cql.hl7.org)|This is a HL7 specification for the expression of clinical knowledge that can be used within both the Clinical Decision Support (CDS) and Clinical Quality Measurement (CQM) domains.|
 |Data dictionary|A data dictionary defines and describes each variable in a data set, giving you a clear understanding of the indicators you’re working with. |
 |Data Element| The fundamental data structure in a data processing system. Any unit of data defined for processing is a data element; for example, ACCOUNT NUMBER, NAME, ADDRESS and CITY. |
 |[Electronic Immunization Registry (EIR)](https://build.fhir.org/ig/HL7/fhir-shc-vaccination-ig/)|Electronic Immunization Registry are tools that facilitate the monitoring of individual immunization schedules and the storage of individual immunization histories, and, consequently, help enhance the performance of the Expanded Program on Immunization (EPI), in terms of both coverage and efficiency.|
