@@ -1,5 +1,5 @@
-ValueSet: ViPSClassTyphoidVaccine-values
-Id: ViPSClassTyphoidVaccine-values
+ValueSet: ViPSClassTyphoidVaccinevalues
+Id: ViPSClassTyphoidVaccinevalues
 Title: "ViPS Class Typhoid Vaccine values"
 Description: "Codes representing ViPS Class Typhoid Vaccine values"
 * ^status = #draft

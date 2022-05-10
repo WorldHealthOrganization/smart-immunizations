@@ -1,5 +1,5 @@
-ValueSet: Ty21aClassTyphoidVaccine-values
-Id: Ty21aClassTyphoidVaccine-values
+ValueSet: Ty21aClassTyphoidVaccinevalues
+Id: Ty21aClassTyphoidVaccinevalues
 Title: "Ty21a Class Typhoid Vaccine values"
 Description: "Codes representing Ty21a Class Typhoid Vaccine values"
 * ^status = #draft

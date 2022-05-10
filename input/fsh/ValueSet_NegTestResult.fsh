@@ -1,7 +1,7 @@
 //Example Valuset you can use as a template to create new ones
 //change ValueSet name, Id, Title, Description
-ValueSet: negativetestresult-values
-Id: negativetestresult-values
+ValueSet: Negativetestresultvalues
+Id: Negativetestresultvalues
 Title: "Negative Test Results"
 Description: "Codes representing negative test result values"
 //don't touch status, experimental, immutable

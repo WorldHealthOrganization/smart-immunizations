@@ -1,7 +1,7 @@
 //Example Valuset you can use as a template to create new ones
 //change ValueSet name, Id, Title, Description
-ValueSet: Quadrivalentconjugate-values
-Id: Quadrivalentconjugate-values
+ValueSet: Quadrivalentconjugatevalues
+Id: Quadrivalentconjugatevalues
 Title: "Quadrivalent conjugate values"
 Description: "Codes representing Quadrivalent conjugate values"
 //don't touch status, experimental, immutable

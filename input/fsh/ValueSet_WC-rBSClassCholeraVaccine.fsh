@@ -1,5 +1,5 @@
-ValueSet: WC-rBSClassCholeraVaccine-values
-Id: WC-rBSClassCholeraVaccine-values
+ValueSet: WCrBSClassCholeraVaccinevalues
+Id: WCrBSClassCholeraVaccinevalues
 Title: "WC-rBS Class Cholera Vaccine values"
 Description: "Codes representing WC-rBS Class Cholera Vaccine values"
 * ^status = #draft

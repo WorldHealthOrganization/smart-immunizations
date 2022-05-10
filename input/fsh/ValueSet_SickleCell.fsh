@@ -1,5 +1,5 @@
-ValueSet: SickleCell-values
-Id: SickleCell-values
+ValueSet: SickleCellvalues
+Id: SickleCellvalues
 Title: "Sickle Cell valuest"
 Description: "Codes representing Sickle Cell values"
 * ^status = #draft

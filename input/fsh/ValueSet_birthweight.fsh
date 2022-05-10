@@ -1,5 +1,5 @@
-ValueSet: Birthweight-values
-Id: Birthweight-values
+ValueSet: Birthweightvalues
+Id: Birthweightvalues
 Title: "Birthweight valueset"
 Description: "Codes representing Birthweight values"
 * ^status = #draft

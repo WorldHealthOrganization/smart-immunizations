@@ -1,7 +1,7 @@
 //Example Valuset you can use as a template to create new ones
 //change ValueSet name, Id, Title, Description
-ValueSet: HIVstatus-values
-Id: HIVstatus-values
+ValueSet: HIVstatusvalues
+Id: HIVstatusvalues
 Title: "HIV status values"
 Description: "Codes representing HIV status values"
 //don't touch status, experimental, immutable

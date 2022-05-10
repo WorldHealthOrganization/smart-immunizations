@@ -1,5 +1,5 @@
-ValueSet: InactivatedJE-values
-Id: InactivatedJE-values
+ValueSet: InactivatedJEvalues
+Id: InactivatedJEvalues
 Title: "Inactivated Vero cell-derived Japanese Encephalitis vaccines valueset"
 Description: "Codes representing Inactivated Vero cell-derived Japanese Encephalitis vaccines values"
 * ^status = #draft

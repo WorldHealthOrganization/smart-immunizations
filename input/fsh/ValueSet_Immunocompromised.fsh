@@ -1,5 +1,5 @@
-ValueSet: Immunocompromised-values
-Id: Immunocompromised-values
+ValueSet: Immunocompromisedvalues
+Id: Immunocompromisedvalues
 Title: "Immunocompromised valueset"
 Description: "Codes representing Immunocompromised values"
 * ^status = #draft

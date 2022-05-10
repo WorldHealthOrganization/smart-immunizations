@@ -1,5 +1,5 @@
-ValueSet: CD4CountTestResult-values
-Id: CD4CountTestResult-values
+ValueSet: CD4CountTestResultvalues
+Id: CD4CountTestResultvalues
 Title: "CD4 Count Test Result"
 Description: "Codes representing CD4 Count Test Result values"
 * ^status = #draft

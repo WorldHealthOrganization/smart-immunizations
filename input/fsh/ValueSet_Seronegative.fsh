@@ -1,5 +1,5 @@
-ValueSet: Seronegative-values
-Id: Seronegative-values
+ValueSet: Seronegativevalues
+Id: Seronegativevalues
 Title: "Seronegative valuest"
 Description: "Codes representing Seronegative values"
 * ^status = #draft
