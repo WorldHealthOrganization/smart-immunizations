@@ -16,29 +16,29 @@ codesystem "Extended Codes CodeSystem codes": 'http://fhir.org/guides/who/anc-cd
 valueset "WHO ATC": 'http://hl7.org/fhir/uv/ips/ValueSet/whoatc-uv-ips'
 
 // General use ValueSets 
-valueset "Negative Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/negativetestresult-values'
-valueset "Positive Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/PositiveTestResult-values'
-valueset "CD4% Test Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/CD4percentageTest-values'
-valueset "CD4 Count Test Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/CD4CountTestResult-values'
-valueset "Immunocompromised": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Immunocompromised-values'
-valueset "Patient birth weight observation value": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Birthweight-values'
-valueset "Seronegative": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Seronegative-values'
-valueset "PretermBirth": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Preterm-values'
+valueset "Negative Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Negativetestresultvalues'
+valueset "Positive Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/PositiveTestResultvalues'
+valueset "CD4% Test Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/CD4percentageTestvalues'
+valueset "CD4 Count Test Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/CD4CountTestResultvalues'
+valueset "Immunocompromised": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Immunocompromisedvalues'
+valueset "Patient birth weight observation value": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Birthweightvalues'
+valueset "Seronegative": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Seronegativevalues'
+valueset "PretermBirth": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Pretermvalues'
 
 // TODO : Adapt from ANC
-valueset "HIV status": 'http://fhir.org/guides/who/anc-cds/ValueSet/anc-b9-de45'
+valueset "HIV status": 'http://fhir.org/guides/who/smart-immunization/ValueSet/HIVstatusvalues'
 valueset "HIV status - HIV positive Choices": 'http://fhir.org/guides/who/anc-cds/ValueSet/anc-b9-de46'
 valueset "HIV status - HIV negative Choices": 'http://fhir.org/guides/who/anc-cds/ValueSet/anc-b9-de47'
 
 // Vaccine specific ValueSets
 //BCG specific ValuSets
 valueset "TST Test Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/TSTTestResult-values'
-valueset "IGRA Test Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/IGRATestResult-values'
-valueset "ARV Drugs": 'http://fhir.org/guides/who/smart-immunization/ValueSet/ARVDrugs-values'
-valueset "VNA levels": 'http://fhir.org/guides/who/smart-immunization/ValueSet/VNAlevelsRAbies-values'
+valueset "IGRA Test Result": 'http://fhir.org/guides/who/smart-immunization/ValueSet/IGRATestResultvalues'
+valueset "ARV Drugs": 'http://fhir.org/guides/who/smart-immunization/ValueSet/ARVDrugsvalues'
+valueset "VNA levels": 'http://fhir.org/guides/who/smart-immunization/ValueSet/VNAlevelsRAbiesvalues'
 
 // JE Classification 
-valueset "Inactivated Vero cell-derived Japanese Encephalitis vaccines": 'http://fhir.org/guides/who/smart-immunization/ValueSet/InactivatedJE-values'
+valueset "Inactivated Vero cell-derived Japanese Encephalitis vaccines": 'http://fhir.org/guides/who/smart-immunization/ValueSet/InactivatedJEvalues'
 
 //valueset "Target Disease": 'http://hl7.org/fhir/ValueSet/immunization-target-disease'
 
@@ -76,21 +76,21 @@ valueset "Inactivated HAV": 'http://fhir.org/guides/who/smart-immunization/Value
 code "Adverse Event Severity": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
 code "Adverse Event Manifestation": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
 code "Sickle-cell Disease Condition": '127040003' from "SNOMED-CT" display 'Sickle cell-hemoglobin SS disease (disorder)'
+//A valueset for sickle cell is defined, but it only contains the code above: http://fhir.org/guides/who/smart-immunization/ValueSet/SickleCellvalues
 
 // Cholera vaccine classes
-valueset "WC Class Cholera Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/WCClassCholeraVaccine-values'
-valueset "WC-rBS Class Cholera Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/WC-rBSClassCholeraVaccine-values'
-valueset "ViPS Class Typhoid Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/ViPSClassTyphoidVaccine-values'
-valueset "Ty21a Class Typhoid Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Ty21aClassTyphoidVaccine-values'
+valueset "WC Class Cholera Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/WCClassCholeraVaccinevalues'
+valueset "WC-rBS Class Cholera Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/WCrBSClassCholeraVaccinevalues'
+valueset "ViPS Class Typhoid Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/ViPSClassTyphoidVaccinevalues'
+valueset "Ty21a Class Typhoid Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Ty21aClassTyphoidVaccinevalues'
 //  MenA vaccine classes
-valueset "MenA conjugate vaccine (5µg)": 'http://fhir.org/guides/who/smart-immunization/ValueSet/MenAconjugatevaccine-values'
-valueset "monovalent MenC conjugate": 'http://fhir.org/guides/who/smart-immunization/ValueSet/monovalentMenCconjugate-values'
-valueset "Quadrivalent conjugate": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Quadrivalentconjugate-values'
+valueset "MenA conjugate vaccine (5µg)": 'http://fhir.org/guides/who/smart-immunization/ValueSet/MenAconjugatevaccinevalues'
+valueset "monovalent MenC conjugate": 'http://fhir.org/guides/who/smart-immunization/ValueSet/MonovalentMenCconjugatevalues'
+valueset "Quadrivalent conjugate": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Quadrivalentconjugatevalues'
 // TBE classifications of vaccines
 // Assumption: Classifications of TBE vaccine can be codified using some (yet to be discovered) code system - possibly using GTIN on the product?
-valueset "FSME-Immun Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/FSME-ImmunClassTBEVaccine-values'
-valueset "TBE-Moscow Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/TBE-MoscowClassTBEVaccine-values'
-valueset "EnceVir Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/EnceVirClassTBEVaccine-values'
-valueset "Encepur Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/EncepurClassTBEVaccine-values'
-
-valueset "Intussusception": 'http://fhir.org/guides/who/smart-immunization/ValueSet/intussusception-values'
+valueset "FSME-Immun Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/FSMEImmunClassTBEVaccinevalues'
+valueset "TBE-Moscow Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/TBEMoscowClassTBEVaccinevalues'
+valueset "EnceVir Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/EnceVirClassTBEVaccinevalues'
+valueset "Encepur Class TBE Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/EncepurClassTBEVaccinevalues'
+valueset "Intussusception": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Intussusceptionvalues'

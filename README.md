@@ -12,16 +12,15 @@ Feedback and issues can be submitted via the [issues](issues) page, and will be 
 
 ## Roadmap
 ### Completed
+
 * PlanDefinitions
 * ActivityDefinitions
-
-### In Progress
 * Measures
 * CQL libraries for Indicators
 * CQL libraries for Decision Support  
 
-
 ### ToDo
+
 * Examples
 
 ## Repository and Build Information
@@ -52,12 +51,24 @@ Once the publication tooling is cached locally, use the _genOnce script to build
 
 The output will be available in the `output` folder.
 
-### Refreshing CQL 
+### Refreshing CQL
 
-The CQF tooling can be installed or updated using the _updateCQFTooling script: 
-    
+The CQF tooling can be installed or updated using the _updateCQFTooling script:
+
     _updateCQFTooling
 
 Once that has been updated the _refresh script can be used to generate the CQL Libraries and create test bundles for the applicable PlanDefinitions. 
 
     _refresh
+
+### Organizing Tests
+
+The tests were generated using [BulkFSH repo](https://github.com/PuraJuniper/bulk-fsh)).
+
+Use the _testMagick.sh scrip to sort the tests into the appropriate folders to execute the CQL tests.
+
+### Executing CQL Tests
+
+Using a CQL plugin in Atom or [VSCode](https://github.com/PuraJuniper/bulk-fsh), right click on your CQL file and click "Execute Tests"
+
+After running the _testMagick.sh script this should produce an output file with the results of how each CQL file executed against your test patients.
