@@ -1,5 +1,5 @@
 ### Workflows
-The over all workflow for immunizations is documented below. More details can be found in the [WHO Immunization Digital Accelerator Kit](). The FHIR resources in this implementation guide reflect the WHO Routine immunizations by antigen as described in the [PlanDefinition Index](plandefinitionindex.html)
+The over all workflow for immunizations is documented below. More details can be found in the [WHO Immunization Digital Adaptation Kit](). The FHIR resources in this implementation guide reflect the WHO Routine immunizations by antigen as described in the [PlanDefinition Index](plandefinitionindex.html)
 
 #### Immunization Workflow
 1. Facility Registration
