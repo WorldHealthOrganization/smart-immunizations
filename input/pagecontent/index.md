@@ -3,7 +3,7 @@
 This implementation guide provides implementation resources and guidance in support of applying the WHO recommendations on routine vaccinations:
 [The World Health Organization's (WHO) Recommendations on Immunization](https://www.who.int/teams/immunization-vaccines-and-biologicals). The decision support artifacts specifically represent the content defined as part of routine immunizations: [WHO recommendations for routine immunization - summary tables](https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables)
 
-The implementation guide is part of the [WHO SMART Guidelines approach](https://www.who.int/teams/digital-health-and-innovation/smart-guidelines) to support countries to integrate WHO global data and health recommendations into digital systems accurately and consistently. It defines a series of FHIR Resources, Profiles, Extensions, and Terminology based on the [WHO Immunization Digital Accelerator Kit](). 
+The implementation guide is part of the [WHO SMART Guidelines approach](https://www.who.int/teams/digital-health-and-innovation/smart-guidelines) to support countries to integrate WHO global data and health recommendations into digital systems accurately and consistently. It defines a series of FHIR Resources, Profiles, Extensions, and Terminology based on the [WHO Immunization Digital Adaptation Kit](). 
 
 This guide utilizes the [International Patient Summary(IPS)](https://hl7.org/fhir/uv/ips/) as a base for defining immunizations and expects that most data captured will be presented in conformance with the resources defined as part of that implementation guide. 
 
