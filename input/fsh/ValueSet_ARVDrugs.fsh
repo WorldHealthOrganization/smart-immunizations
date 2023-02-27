@@ -1,5 +1,5 @@
 ValueSet: ARVDrugsvalues
-Id: ARVDrugsvalues
+Id: ARVDrugs-values
 Title: "ARV Drugs values"
 Description: "Codes representing ARV Drugs values"
 * ^status = #draft

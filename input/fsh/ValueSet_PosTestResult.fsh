@@ -1,5 +1,5 @@
 ValueSet: PositiveTestResultvalues
-Id: PositiveTestResultvalues
+Id: PositiveTestResult-values
 Title: "Positive Test Result valuest"
 Description: "Codes representing Positive Test Result values"
 * ^status = #draft

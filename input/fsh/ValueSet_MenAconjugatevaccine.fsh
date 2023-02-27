@@ -1,5 +1,5 @@
 ValueSet: MenAconjugatevaccinevalues
-Id: MenAconjugatevaccinevalues
+Id: MenAconjugatevaccine-values
 Title: "MenA conjugate vaccine values"
 Description: "Codes representing MenA conjugate vaccine values"
 * ^status = #draft
