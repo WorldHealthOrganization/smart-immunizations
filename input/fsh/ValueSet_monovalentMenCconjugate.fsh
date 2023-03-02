@@ -1,5 +1,5 @@
 ValueSet: MonovalentMenCconjugatevalues
-Id: MonovalentMenCconjugatevalues
+Id: MonovalentMenCconjugate-values
 Title: "monovalent MenC conjugate values"
 Description: "Codes representing monovalent MenC conjugate values"
 * ^status = #draft

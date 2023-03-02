@@ -1,7 +1,7 @@
 //Example Valuset you can use as a template to create new ones
 //change ValueSet name, Id, Title, Description
 ValueSet: TBEMoscowClassTBEVaccinevalues
-Id: TBEMoscowClassTBEVaccinevalues
+Id: TBEMoscowClassTBEVaccine-values
 Title: "TBE-Moscow Class TBE Vaccine values"
 Description: "Codes representing TBE-Moscow Class TBE Vaccine values"
 //don't touch status, experimental, immutable

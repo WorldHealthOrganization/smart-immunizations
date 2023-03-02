@@ -1,5 +1,5 @@
 ValueSet: EnceVirClassTBEVaccinevalues
-Id: EnceVirClassTBEVaccinevalues
+Id: EnceVirClassTBEVaccine-values
 Title: "EnceVir Class TBE Vaccine values"
 Description: "Codes representing EnceVir Class TBE Vaccine values"
 * ^status = #draft

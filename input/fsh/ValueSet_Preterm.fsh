@@ -1,7 +1,7 @@
 //Example Valuset you can use as a template to create new ones
 //change ValueSet name, Id, Title, Description
 ValueSet: Pretermvalues
-Id: Pretermvalues
+Id: Preterm-values
 Title: "Preterm valueset"
 Description: "Codes representing Preterm values"
 //don't touch status, experimental, immutable

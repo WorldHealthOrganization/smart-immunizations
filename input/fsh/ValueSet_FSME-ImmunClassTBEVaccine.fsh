@@ -1,5 +1,5 @@
 ValueSet: FSMEImmunClassTBEVaccinevalues
-Id: FSMEImmunClassTBEVaccinevalues
+Id: FSMEImmunClassTBEVaccine-values
 Title: "FSME-Immun Class TBE Vaccine values"
 Description: "Codes representing FSME-Immun Class TBE Vaccine values"
 * ^status = #draft

@@ -1,5 +1,5 @@
 ValueSet: Intussusceptionvalues
-Id: Intussusceptionvalues
+Id: Intussusception-values
 Title: "Intussusception valueset"
 Description: "Codes representing Intussuception values"
 * ^status = #draft

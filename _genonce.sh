@@ -14,6 +14,8 @@ fi
 
 echo "$txoption"
 
+export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS -Dfile.encoding=UTF-8"
+
 publisher=$input_cache_path/$publisher_jar
 if test -f "$publisher"; then
 	java -jar $publisher -ig . $txoption $*
@@ -21,7 +23,7 @@ if test -f "$publisher"; then
 else
 	publisher=../$publisher_jar
 	if test -f "$publisher"; then
-		java -Xmx2048M -jar $publisher -ig . $txoption $*
+		java -jar $publisher -ig . $txoption $*
 	else
 		echo IG Publisher NOT FOUND in input-cache or parent folder.  Please run _updatePublisher.  Aborting...
 	fi
