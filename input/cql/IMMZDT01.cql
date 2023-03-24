@@ -46,3 +46,31 @@ define "Should vaccinate patient for BCG":
 				)
 		)
 	) 
+
+
+/*
+ * Rule: Provision of the BCG dose
+ * Create Condition:
+ *   - BCG dose should be provided if the patient has not received any BCG doses, and is in a High incidence of TB and/or high leprosy burden, and TST-negative and IGRA-negative
+ * 
+ * Completion:
+ *   - "BCG Dose 1 provided" = TRUE
+ *
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	 
+ */
+define "Provision of the BCG dose":
+  IMMZCom."No BCG Doses Administered to Patient" and
+  if IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices" 
+	then 
+		(
+			Coalesce((IMMZCom."Most Recent CD4%" > 25'%' and IMMZCom."Current Patient Age In Years" < 5), false) or 
+			Coalesce((IMMZCom."Most Recent CD4 Count" >= 200 and IMMZCom."Current Patient Age In Years" >= 5), false)
+		)
+	else 
+		IMMZConf."High incidence of TB and/or high leprosy burden" = true 
+
+define "Schedule Due Date for BCG dose":
+	ToString(Patient.birthDate)
+	
