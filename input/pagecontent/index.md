@@ -1,5 +1,13 @@
 ### Introduction
 
+<div>
+* This version of the implementation guide is based on the current content at https://github.com/WorldHealthOrganization/ddcc
+* This implementation guide and set of artifacts are still undergoing development.
+* Content is for demonstration purposes only.
+</div>{.stu-note}
+
+
+
 This implementation guide provides implementation resources and guidance in support of applying the WHO recommendations on routine vaccinations:
 [The World Health Organization's (WHO) Recommendations on Immunization](https://www.who.int/teams/immunization-vaccines-and-biologicals). The decision support artifacts specifically represent the content defined as part of routine immunizations: [WHO recommendations for routine immunization - summary tables](https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables)
 
