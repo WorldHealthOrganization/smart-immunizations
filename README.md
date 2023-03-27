@@ -72,4 +72,3 @@ Use the _testMagick.sh scrip to sort the tests into the appropriate folders to e
 Using a CQL plugin in Atom or [VSCode](https://github.com/PuraJuniper/bulk-fsh), right click on your CQL file and click "Execute Tests"
 
 After running the _testMagick.sh script this should produce an output file with the results of how each CQL file executed against your test patients.
-
