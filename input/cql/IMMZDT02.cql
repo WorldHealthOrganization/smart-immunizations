@@ -15,112 +15,164 @@ include IMMZVaccineLibrary called IMMZvl
 // End Skeleton CQL
 context Patient
 
-/*
- * Rule: Should vaccinate patient for Hepatitis B because no doses and (low birth weight or premature infant)
- * Annotations:
- * 	 - Provide Hepatitis B immunizations – using the "Hepatitis B vaccine immunization – Birth dose" schedule (Birth dose)
- * 	 - 
- * Outputs:
- * 	 - Immunize Patient for Hepatitis B - No Doses and Premature birth or low birth weight
- * 	 - 
- * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
- * 	- 
- * Logic:
- *	 (("Hepatitis B vaccine immunization history" = "No-doses") and (("Patient birth weight observation value" < 2000g) or ("Patient mother's prenancy outcome observation" = "preterm")) and ("Current Patient Age in Weeks" < 2))
+/**
+ * @dataElement Should provision HepB Dose
  */
-define "Should vaccinate patient for Hepatitis B because no doses and (low birth weight or premature infant)":
-	IMMZCom."No HepB Birth Dose Administered to Patient" and
-	IMMZCom."Current Patient Age In Weeks" < 2 and
+define "Provision of the HepB dose":
+	if ( "Third HepB Dose Administered to Patient" is not null and not "HepB Birth Dose Administered to Patient")
+		or "Fourth HepB Dose Administered to Patient" is not null
+	then false
+	else true
+
+define "Schedule Due Date for HepB dose":
+	ToDateTime(
+		case 
+		when "Needs HepB Birth Dose" 
+			then Patient.birthDate
+		when "No HepB Dose Administered to Patient"
+			then Patient.birthDate + 2 weeks
+		else "Date Last Valid HepB Dose" + 4 weeks
+		end
+	)
+
+define "HepB Next Dose Number":
+	case 
+	when "Third HepB Dose Administered to Patient" is not null then 4
+	when "Second HepB Dose Administered to Patient" is not null then 3
+	when "First HepB Dose Administered to Patient" is not null then 2
+	else 1
+	end
+
+define "Expiration Date for HepB dose":
+	ToDateTime(
+		if "Needs HepB Birth Dose" then Patient.birthDate + 2 weeks
+		else null
+	)
+
+define "Date Last Valid HepB Dose":
+	case 
+	when "Fourth HepB Dose Administered to Patient" is not null then "Date Fourth HepB Dose Administered to Patient"
+	when "Third HepB Dose Administered to Patient" is not null then "Date Third HepB Dose Administered to Patient"
+	when "Second HepB Dose Administered to Patient" is not null then "Date Second HepB Dose Administered to Patient"
+	when "First HepB Dose Administered to Patient" is not null then "Date First HepB Dose Administered to Patient"
+	else null
+	end
+
+define "Should vaccinate patient for HepB":
+	"Provision of the HepB dose" and ("Schedule Due Date for HepB dose" <= (Now()))
+
+
+/**
+ * @dataElement Number of doses required for this patient
+ * 4 is a birth dose was given for premature birth or low birth weight, 3 if not.
+ */
+ define "Number of Required HepB Doses":
+	if "HepB Birth Dose Administered to Patient" or "Needs HepB Birth Dose"
+	then 4 
+	else 3
+
+define "Needs HepB Birth Dose":
+	"No HepB Dose Administered to Patient" and
+		IMMZCom."Current Patient Age In Weeks" < 2 and
+		(
+			"Patient birth weight observation value" < "2000g" or
+			exists(IMMZCom."Preterm Birth")
+		)
+
+/**
+ * @dataElement HepB containing Doses Administered to Patient
+ */
+define "HepB Doses Administered to Patient":
+  IMMZCom."Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."HepB Vaccine"
+
+/**
+ * @dataElement Number of HepB Doses Administered to Patient
+ */
+define "Number of HepB Doses Administered to Patient":
+  Count("HepB Doses Administered to Patient" O)
+
+
+/**
+ * @dataElement No HepB containing Birth Dose Administered to Patient
+ */
+define "No HepB Dose Administered to Patient":
+  not exists("HepB Doses Administered to Patient" I)
+
+//Date last administered HepB
+define "Date Last HepB Dose Administered to Patient":
+  date from (First("HepB Doses Administered to Patient").occurrence as FHIR.dateTime)
+
+/**
+ * @dataElement First HepB dose given to Patient
+ */
+define "First HepB Dose Administered to Patient":
+	Last("HepB Doses Administered to Patient")
+
+/**
+ * @dataElement Date first HepB dose administered
+ */
+define "Date First HepB Dose Administered to Patient":
+  date from ("First HepB Dose Administered to Patient".occurrence as FHIR.dateTime)
+
+/**
+ * @dataElement If the birth dose has been administered to the Patient
+ * given for low weight or premature birth within the first 2 weeks
+ */
+define "HepB Birth Dose Administered to Patient":
+	AgeInWeeksAt("Date First HepB Dose Administered to Patient") < 2 and
 	(
 		"Patient birth weight observation value" < "2000g" or
 		exists(IMMZCom."Preterm Birth")
 	)
 
-/* 
- * @dataElement Hepatitis B vaccine immunization history
- */
-define "Hepatitis B vaccine immunization history":
-	IMMZCom."HepB Doses Administered to Patient"
 
-/* 
- * @dataElement No-doses
- */
-define "No-doses of HepB vaccine administered to patient":
-	not exists("Hepatitis B vaccine immunization history")
 
-/*
- * Rule: Should vaccinate patient for Hepatitis B because no doses
- * Annotations:
- * 	 - Provide Hepatitis B immunizations – using the "Hepatitis B vaccine immunization – NO PREVIOUS" schedule (3 doses scheme)
- * Outputs:
- * 	 - Immunize Patient for Hepatitis B - No Doses
- * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
- * Logic:
- *	 ("Hepatitis B vaccine immunization history" = "No-doses")
+/**
+ * @dataElement "Second HepB Dose Administered to Patient"
+ * only valid if 4 weeks after first dose
  */
-define "Should vaccinate patient for Hepatitis B because no doses":
-	("No-doses of HepB vaccine administered to patient")
+define "Second HepB Dose Administered to Patient":
+  Last("HepB Doses Administered to Patient" I where I.occurrence after "Date First HepB Dose Administered to Patient" + 4 weeks)
 
-/* 
- * @dataElement 1 dose
+/**
+ * @dataElement Date second HepB dose administered
  */
-define "1 dose":
-	IMMZCom."Number of HepB Doses Administered to Patient" = 1
+define "Date Second HepB Dose Administered to Patient":
+  date from ("Second HepB Dose Administered to Patient".occurrence as FHIR.dateTime)
 
-/*
- * Rule: Should vaccinate patient for Hepatitis B because 1 dose
- * Annotations:
- * 	 - Provide Hepatitis B immunizations – using the "Hepatitis B vaccine immunization – 1 PREVIOUS" schedule (3 doses scheme)
- * Outputs:
- * 	 - Immunize Patient for Hepatitis B - 1 Dose
- * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
- * Logic:
- *	 ("Hepatitis B vaccine immunization history" = "1 dose")
+/**
+ * @dataElement "Third HepB Dose Administered to Patient"
+ * only valid if 4 weeks after second dose
  */
-define "Should vaccinate patient for Hepatitis B because 1 dose":
-	(("1 dose") and (IMMZCom."Date Last HepB Dose Administered to Patient" more than 4 'weeks' before Today()))
+define "Third HepB Dose Administered to Patient":
+  Last("HepB Doses Administered to Patient" I where I.occurrence after "Date Second HepB Dose Administered to Patient" + 4 weeks)
 
-/* 
- * @dataElement 2 doses
+/**
+ * @dataElement Date third HepB dose administered
  */
-define "2 doses":
-	IMMZCom."Number of HepB Doses Administered to Patient" = 2
+define "Date Third HepB Dose Administered to Patient":
+  date from ("Third HepB Dose Administered to Patient".occurrence as FHIR.dateTime)
 
-/*
- * Rule: Should vaccinate patient for Hepatitis B because 2 doses
- * Annotations:
- * 	 - Provide Hepatitis B immunizations – using the "Hepatitis B vaccine immunization – 2 PREVIOUS" schedule (3 doses scheme)
- * Outputs:
- * 	 - Immunize Patient for Hepatitis B - 2 Doses
- * References:
- * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
- * Logic:
- *	 ("Hepatitis B vaccine immunization history" = "2 doses")
+/**
+ * @dataElement "Fourth HepB Dose Administered to Patient"
+ * only valid if 4 weeks after third dose
  */
-define "Should vaccinate patient for Hepatitis B because 2 doses":
-	(("2 doses") and (IMMZCom."Date Last HepB Dose Administered to Patient" more than 4 'weeks' before Today()))
+define "Fourth HepB Dose Administered to Patient":
+  Last("HepB Doses Administered to Patient" I where I.occurrence after "Date Third HepB Dose Administered to Patient" + 4 weeks)
+
+/**
+ * @dataElement Date third HepB dose administered
+ */
+define "Date Fourth HepB Dose Administered to Patient":
+  date from ("Fourth HepB Dose Administered to Patient".occurrence as FHIR.dateTime)
 
 /* 
  * @dataElement Patient birth weight observation value
  */
 define "Patient birth weight observation value":
 	First(IMMZCom."Patient birth weight observation value")
-
-/* 
-
- * @dataElement Patient mother's pregnancy outcome observation
- */
-define "Patient mother's pregnancy outcome observation":
-	IMMZCom."Patient mother's pregnancy outcome observation"
-
-/* 
- * @dataElement preterm
- */
-define "preterm":
-    IMMZCom."Preterm Birth"
 
 define "2000g":
 	2000 'g'
