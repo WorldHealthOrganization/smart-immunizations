@@ -19,20 +19,13 @@ key competences of are defined in the following table.
 
 Descriptions of key generic personas
 
-|         |   |     |   |
-|------------|---------------------------------------------|-------|----------|
-| **Occupational Title**        | **Description**   | **Different Names**       | **ISCO Code**      |
-| Community Health Worker       | Community health workers provide health education, referral and follow-up; case management and basic preventive health care; and home visiting services to specific communities. They provide support and assistance to clients by reminding clients to take their vaccinations, responding to emergencies, and reporting births. | Volunteer assistant, Volunteer health worker | 3253 (Worker, community: health)      |
-| Health Worker (HW)     | Health workers facilitate education sessions, administers immunizations, provide counselling when needed, record stock movements, and compiles/generates reports.     | Nurse, Registered Nurse, Practical Nurse     | 3221 (Nursing Associate Professional) |
-| Expanded Programme of Immunization (EPI) Manager | Responsible for: developing annual and multi-annual plans; immunization communication and mobilization; management of logistics, the cold chain, and vaccines; monitoring, supervision and evaluation of immunization services; and coordination of EPI activities at the national level.   | Program Manager    | 1342 (Manager, health service         |
-
-*\[description needed\]*
-
-|    |         |     |         |
-|-----------|---------------------------------------|------------|-----------|
-| **Occupational Title**   | **Description**        | **Different Names**       | **ISCO Code**    |
-| Care giver        | This can be the mother, father, guardian, carer of the child,infant, elderly, or disabled person.        | Parent, Guardian   | N/A     |
-| Client     | A person who intends to receive vaccination services from the targeted health worker personas. A client who is 17 years of age or younger is considered a child.     | Vaccinated person         | N/A     |
-| Child   | The child to receive vaccination services from the targeted health worker personas.       | Infant, Baby, Client      | N/A     |
-| Immunization Information System (IIS) Staff | A System Administrator supervises the operation and storage of electronic health records and makes sure that servers function properly, allowing clients and staff to communicate with each other, coordinate their actions and take care of essential tasks. | System Administrator, IT Manager, Technical Support | 2522 (Administrator, IT systems)  |
-| Clerical Staff    | Assist in scheduling appointments, answer phones, greet patients, keep/document medical records, handle medical billing.    | Registration Clerk        | 3252 (Clerk, information: health) |
+|Occupational Title|Description|Different Names|ISCO Code|
+|---|----|---|---|
+|Health Worker (HW)|Health workers facilitate education sessions, administers immunizations, provide counselling when needed, record stock movements, and compiles/generates reports.|Nurse, Registered Nurse, Practical Nurse|3221 (Nursing Associate Professional)|
+|Community Health Worker|Community health workers provide health education, referral and follow-up; case management and basic preventive health care; and home visiting services to specific communities. They provide support and assistance to clients by reminding clients to take their vaccinations, responding to emergencies, and reporting births.|Volunteer assistant, Volunteer health worker|3253 (Worker, community: health)|
+|Expanded Programme of Immunization (EPI) Manager|Responsible for: developing annual and multi-annual plans; immunization communication and mobilization; management of logistics, the cold chain, and vaccines; monitoring, supervision and evaluation of immunization services; and coordination of EPI activities at the national and subnational levels.|Program Manager|1342 (Manager, health service)|
+|Care giver|This can be the mother, father, guardian, carer of the child, infant, elderly, or disabled person.|Parent, Guardian|N/A|
+|Client|A person who intends to receive vaccination services from the targeted health worker personas. A client who is 17 years of age or younger is considered a child.|Vaccinated person|N/A|
+|Child|The child to receive vaccination services from the targeted health worker personas.|Infant, Baby, Client|N/A|
+|Immunization Information System (IIS) Staff|A System Administrator supervises the operation and storage of electronic health records and makes sure that servers function properly, allowing clients and staff to communicate with each other, coordinate their actions and take care of essential tasks.|System Administrator, IT Manager, Technical Support|2522 (Administrator, IT systems)|
+|Clerical Staff|Assist in scheduling appointments, answer phones, greet clients, keep/document medical records, handle medical billing.|Registration Clerk|3252 (Clerk, information: health)|
