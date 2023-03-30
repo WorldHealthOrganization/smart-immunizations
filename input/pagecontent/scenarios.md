@@ -2,16 +2,11 @@ Component 3 in the Digital Adaptation Kit (link forthcoming) includes user scena
 
 **How to interpret user scenarios**
 
-User scenarios can be helpful tools not only to better understand the context in which a digital tool would operate, but also for some
-insights into what key data elements would need to be recorded and accounted for in the database. Additionally, the context in which the
-tool would operate, illuminated by the user scenarios, provides insight into some functional and non-functional requirements that the system
-would also need.
+User scenarios can be helpful tools not only to better understand the context in which a digital tool would operate, but also for some insights into what key data elements would need to be recorded and accounted for in the database. Additionally, the context in which the tool would operate, illuminated by the user scenarios, provides insight into some functional and non-functional requirements that the system would also need.
 
-As examples, the scenarios identify: key data elements that need to be recorded and/or calculated; decision-support logic that can be automated
-in the system; key functional and non-functional requirements that should be included in the system, and adolescent-specific considerations
-that should be accounted for.
+As examples, the scenarios identify: key data elements that need to be recorded and/or calculated; decision-support logic that can be automated in the system; key functional and non-functional requirements that should be included in the system, and adolescent-specific considerations that should be accounted for.
 
-###3.1 User Scenario for Routine Vaccination Clinic
+### 3.1 User Scenario for Routine Vaccination Clinic
 **User personas**
 - Care giver (mother): Ruth
 - Child: Esther
@@ -28,6 +23,7 @@ Ruth and Esther arrive at the clinic just after 9am, there are already 5 other m
 Lucy takes the appropriate vaccines out of the small cooler box beside her table. Lucy had filled the cooler box earlier that morning based on what she would typically need based on an average clinic day. She has access to more vaccines, but they are in the fridge in the storage room. She prepares each vaccine, making sure that it is not expired and that the small symbol on the vial indicates it is safe to give. Lucy gives each vaccine (starting with the ones given by mouth, then the injections) to Esther. While Ruth comforts Esther, Lucy <span style="background:yellow;">records the vaccines given</span> in the application on the tablet, as well as on Esther’s home-based record. She also tells Ruth <span style="background:aqua;">when to bring Esther back for her next vaccines</span>, and she also writes this on Esther’s home-based record. She also advises Ruth on what to do if Esther develops a fever or some other symptom following vaccination. Since the clinic operates every weekday morning, Ruth understands that while she should try to come on the date given, it is not an actual appointment, just a guideline to come within a day or two of that date. Lucy also informs her that they have a new system that <span style="background:lime;">can send and SMS reminder</span> when <span style="background:aqua;">Esther is due for a vaccine</span> to her phone if she would like. Ruth agrees that she would like this reminder and Lucy confirms her phone number in the system and <span style="background:lime;">checks the box indicates she would like to receive these notifications</span>.
 
 **Corresponding business processes**
+
 This scenario refers to the following business processes:
 - C. Client Reminder
 - E. Register Client
@@ -38,5 +34,6 @@ This scenario refers to the following business processes:
 |----|---|---|
 |•	Unique ID <br> •	Name<br>•	Date of birth<br>•	Vaccine given<br>•	Date vaccine given<br>•	Weight	<br>|•	Determine what vaccines are due at this time (taking into account: last vaccine date, national vaccine schedule)<br>•	Determine if weight appropriate for age based on standardized growth charts (age calculated by date of birth) <br>•	Determine when next vaccines are due (taking into account: last vaccine date, national vaccine schedule) <br>•	Determine if due date of vaccine is within a few days |•	Ability to automatically generate SMS messages based on trigger events<br>•	Indicate consent to receive reminders <br>•	Indicate dissent to receive reminders if the default is to receive reminders and there is an opt out option<br>•	Send reminders only to those who have given consent|
 
-###3.2 User Scenario for Defaulter Tracing
-###3.3 User Scenario for Catchup Campaign
+### 3.2 User Scenario for Defaulter Tracing
+
+### 3.3 User Scenario for Catchup Campaign
