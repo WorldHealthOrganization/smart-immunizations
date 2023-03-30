@@ -8,6 +8,10 @@ overview of the data elements, a more complete data dictionary in
 spreadsheet form detailing the input options, validation checks and
 concept dictionary codes is available in Web Annex A.
 
+
+<div style=" width: 100%; height: 500px; overflow: scroll;">
+                
+
 <table border="1" class="dataframe table table-striped table-bordered">
   <thead>
     <tr style="text-align: right;">
@@ -14123,3 +14127,5 @@ concept dictionary codes is available in Web Annex A.
     </tr>
   </tbody>
 </table>
+
+</div>
