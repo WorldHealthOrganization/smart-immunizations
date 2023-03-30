@@ -14,7 +14,8 @@ implementation guide:
     -   [Mobile Care Services Discovery (mCSD)
         Profile ](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_mCSD.pdf)
 
-    -   
+
+
 
 -   The International Patient Summary (IPS):
 

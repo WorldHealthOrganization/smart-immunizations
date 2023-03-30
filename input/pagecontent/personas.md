@@ -29,3 +29,4 @@ Descriptions of key generic personas
 |Child|The child to receive vaccination services from the targeted health worker personas.|Infant, Baby, Client|N/A|
 |Immunization Information System (IIS) Staff|A System Administrator supervises the operation and storage of electronic health records and makes sure that servers function properly, allowing clients and staff to communicate with each other, coordinate their actions and take care of essential tasks.|System Administrator, IT Manager, Technical Support|2522 (Administrator, IT systems)|
 |Clerical Staff|Assist in scheduling appointments, answer phones, greet clients, keep/document medical records, handle medical billing.|Registration Clerk|3252 (Clerk, information: health)|
+{:.table-bordered .table-striped .thead-light}

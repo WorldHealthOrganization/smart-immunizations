@@ -1,17 +1,12 @@
-*Adapted from the IG checklist and draft text from the DAK*
-
 This page describes the business processes included in the [WHO Digital
-Adaptation Kit (DAK): SMART Guidelines for Immunizations]{.underline}
-... For full details, see the published DAK content.
+Adaptation Kit (DAK): SMART Guidelines for Immunizations](). 
+For full details, see the published DAK content.
 
 The DAK for Immunizations focuses on key business processes that are
 part of routine immunizations programmes and mass immunization
 campaigns.
 
-##############################  {#section .unnumbered}
-
-############################## Overview of Key Business Processes {#overview-of-key-business-processes .unnumbered}
-
+### Overview of Key Business Processes 
 This section illustrates the workflows of the identified processes.
 
 Overview of business processes

@@ -10,7 +10,8 @@ be accessed in Web Annex D.
 Please note that these are not exhaustive lists and should be modified according to context and
 user persona needs.
 
-### Business process A: Facility Registration
+<span style="font-size: larger; font-weight: bold;">Business process A: Facility Registration
+</span>
 
 |Requirement ID|Activity ID and Description|[As a ...](personas.html)|I want ...|So that ...|
 |----|---|---|---|
@@ -41,7 +42,8 @@ user persona needs.
 |IMMZ.FXNREQ.025|Send facility registration notification|IIS Staff/System|The system to include instructions of how to use IIS ID (i.e. reporting requisition)|Other systems will know how to interact with the IIS|
 {:.table-bordered .table-striped .thead-light}
 
-### Business process B: Plan Service Delivery
+<span style="font-size: larger; font-weight: bold;">Business process B: Plan Service Delivery
+</span>
 
 |Requirement ID|Activity ID and Description|[As a ...](personas.html)|I want ...|So that ...|
 |----|---|---|---|
@@ -66,7 +68,8 @@ user persona needs.
 |IMMZ.FXNREQ.044|Assemble all needed materials for clinic|health worker (HW)|The system to provide a clinic materials checklist, which is a list of materials I would need for clinic|I can make sure I have the materials I need for clinic|
 {:.table-bordered .table-striped .thead-light}
 
-### Business process C: Client Reminder 
+<span style="font-size: larger; font-weight: bold;">Business process C: Client Reminder 
+</span>
 
 |Requirement ID|Activity ID and Description|[As a ...](personas.html)|I want ...|So that ...|
 |----|---|---|---|
@@ -93,7 +96,8 @@ user persona needs.
 |IMMZ.FXNREQ.066|Is another reminder needed?|IIS Staff/System & Vaccine Provider|The system to track notification attempts and log back to a client's record|That information will be available when reviewing the record|
 {:.table-bordered .table-striped .thead-light}
 
-### Business process D: Defaulter Tracing
+<span style="font-size: larger; font-weight: bold;">Business process D: Defaulter Tracing
+</span>
 
 |Requirement ID|Activity ID and Description|[As a ...](personas.html)|I want ...|So that ...|
 |----|---|---|---|
@@ -118,7 +122,8 @@ user persona needs.
 |IMMZ.FXNREQ.085|Update record to document reason/lost to follow-up|health worker (HW)|To allow a client record to be inactive for a selected time frame e.g. temporarily lost residence, crop harvest season|I can distinguish between those who may require follow up at a future time and those who are permanently inactive|
 {:.table-bordered .table-striped .thead-light}
 
-### Business process E: Register Client
+<span style="font-size: larger; font-weight: bold;">Business process E: Register Client
+</span>
 
 |Requirement ID|Activity ID and Description|[As a ...](personas.html)|I want ...|So that ...|
 |----|---|---|---|
@@ -150,7 +155,8 @@ user persona needs.
 |IMMZ.FXNREQ.107|Modify record|health worker (HW)|The system to identify changes made to the record for my confirmation before saving|I can have the opportunity to double check the data to prevent errors|
 {:.table-bordered .table-striped .thead-light}
 
-### Business process F: Query Client Record
+<span style="font-size: larger; font-weight: bold;">Business process F: Query Client Record
+</span>
 
 |Requirement ID|Activity ID and Description|[As a ...](personas.html)|I want ...|So that ...|
 |----|---|---|---|
@@ -181,7 +187,8 @@ user persona needs.
 |IMMZ.FXNREQ.132|Display or retrieve record|health worker (HW)|The system to display the information of the selected record|I can see the information I need to provide care|
 {:.table-bordered .table-striped .thead-light}
 
-### Business process G: Administer Vaccine
+<span style="font-size: larger; font-weight: bold;">Business process G: Administer Vaccine
+</span>
 
 |Requirement ID|Activity ID and Description|[As a ...](personas.html)|I want ...|So that ...|
 |----|---|---|---|
@@ -215,7 +222,8 @@ user persona needs.
 |IMMZ.FXNREQ.161|Does client require digital certificate?|health worker (HW)|To be prompted to ask client if they want a digital vaccination certificate where appropriate|The digital vaccination certificate can be generated|
 {:.table-bordered .table-striped .thead-light}
 
-### Business process H: Resolve Duplicate Client Record
+<span style="font-size: larger; font-weight: bold;">Business process H: Resolve Duplicate Client Record
+</span>
 
 |Requirement ID|Activity ID and Description|[As a ...](personas.html)|I want ...|So that ...|
 |----|---|---|---|
@@ -242,7 +250,8 @@ user persona needs.
 |IMMZ.FXNREQ.184|Mark as "not a duplicate" or "pending"|IIS Staff/System|To enter comments for records marked as "not a duplicate"|I can add any additional information to let other users see why it was determined to not be a duplicate|
 {:.table-bordered .table-striped .thead-light}
 
-### Business process I: Resolve Duplicate Vaccination Events
+<span style="font-size: larger; font-weight: bold;">Business process I: Resolve Duplicate Vaccination Events
+</span>
 
 |Requirement ID|Activity ID and Description|[As a ...](personas.html)|I want ...|So that ...|
 |----|---|---|---|
@@ -269,7 +278,8 @@ user persona needs.
 |IMMZ.FXNREQ.205|Generate report of duplicate vaccine events|IIS Staff/System & health worker (HW)|The system to restrict access to confidential personal identifiable information|client confidentiality is maintained|
 {:.table-bordered .table-striped .thead-light}
 
-### Business process J: Report Generation
+<span style="font-size: larger; font-weight: bold;">Business process J: Report Generation
+</span>
 
 |Requirement ID|Activity ID and Description|[As a ...](personas.html)|I want ...|So that ...|
 |----|---|---|---|
