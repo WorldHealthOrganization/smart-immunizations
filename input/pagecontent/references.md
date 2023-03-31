@@ -18,6 +18,6 @@ For additional resources, see theÂ <a href="dependencies.html">Dependencies</a>Â
 - [References section of the SMART IG starter kit](https://worldhealthorganization.github.io/smart-ig-starter-kit/references.html#2)
 
 ### Additional resources
--   [WHO Digital implementation investment guide (DIIG): integrating digital interventions into health programmes. 2020.](https://www.who.int/publications/i/item/9789240010567)
+-   [WHO Digital implementation investment guide (DIIG): integrating digital interventions into health programmes](https://www.who.int/publications/i/item/9789240010567)
 
--   [Open Health Information Exchange (OpenHIE) Specification and Architecture]](https://guides.ohie.org/arch-spec/architecture-specification/overview-of-the-architecture)
+-   [Open Health Information Exchange (OpenHIE) Specification and Architecture](https://guides.ohie.org/arch-spec/architecture-specification/overview-of-the-architecture)
