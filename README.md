@@ -2,7 +2,7 @@
 
 This implementation guide defines core data element profiles for use for the World Health Organization (WHO) Immunization computable guideline content.
 
-The current draft of the implementation guide is available [here](https://build.fhir.org/ig/WorldHealthOrganization/smart-immunizations).
+The current draft of the implementation guide is available [here](https://build.fhir.org/ig/WorldHealthOrganization/smart-immunizations/branches/main).
 
 The guide is published under a Creative Commons [license](LICENSE.md).
 
