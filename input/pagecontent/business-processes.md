@@ -1,5 +1,5 @@
-This page describes the business processes included in the [WHO Digital
-Adaptation Kit (DAK): SMART Guidelines for Immunizations](). 
+This page describes the business processes included in the WHO Digital
+Adaptation Kit (DAK): SMART Guidelines for Immunizations (link forthcoming). 
 For full details, see the published DAK content.
 
 The DAK for Immunizations focuses on key business processes that are
@@ -222,3 +222,25 @@ immunization program decision making</td>
 </tr>
 </tbody>
 </table>
+
+## 4.2 Workflows
+The workflows that follow depict processes that have been generalized across different contexts and may not reflect the variability and nuances across different settings. The simplicity of the workflow may not adequately illustrate the nonlinear steps that may occur.
+
+#### A. Facility Registration
+Objective: All facilities that are able to administer vaccines must be registered and uniquely identified to enable appropriate tracking of vaccine coverage and stock. There are situations where the locations providing vaccines may not be a permanent physical facility but rather some kind of public health authority (as is the case with some temporary or pop-up clinics). These may be included as per local policy or needs.   
+
+#### B. Service Plan Delivery
+
+#### C. Client Reminder
+
+#### D. Defaulter Tracing
+
+#### E. Register Client
+
+#### F. Query Client Record
+
+#### G. Administer Vaccine
+
+#### H. Resolve Duplicate Client Records
+
+#### I. Resolve Duplicate Vaccine Events
