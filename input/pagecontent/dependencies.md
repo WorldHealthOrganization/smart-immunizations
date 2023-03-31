@@ -1,5 +1,3 @@
-*Adapted from the DDCC IG*
-
 The following standards and profiles are referenced in this
 implementation guide:
 
@@ -8,14 +6,11 @@ implementation guide:
     -   [Audit Trail and Node Authentication (ATNA)
         Profile](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html)
 
-    -   [Sharing Value Sets and Concept Maps (SVCM)
-        Profile](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_SVCM.pdf)
+    -   [Sharing Valuesets and Concept Maps (SVCM)
+        Profile](https://profiles.ihe.net/ITI/SVCM/index.html)
 
     -   [Mobile Care Services Discovery (mCSD)
-        Profile ](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_mCSD.pdf)
-
-
-
+        Profile ](https://profiles.ihe.net/ITI/mCSD/index.html)
 
 -   The International Patient Summary (IPS):
 
@@ -26,7 +21,6 @@ implementation guide:
 
 -   World Health Organization (WHO):
 
-    -   [WHO International Classification of Diseases 11th Revision
-        (ICD-11)](https://icd.who.int/en)
+    -   [WHO International Classification of Diseases 11th Revision (ICD-11)](https://icd.who.int/en)
 
-    -   WHO Family of International Classifications
+    -   [WHO Family of International Classifications](https://www.who.int/standards/classifications)
