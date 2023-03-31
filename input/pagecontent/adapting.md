@@ -1,20 +1,14 @@
-*From the SMART template:*
-
 The following page provides a reference to resources that can guide
 countries in adapting the guidelines for country use.
-
-*From the SMART who.int page:*
 
 To implement WHO recommendations in country settings, governments must
 interpret and then adapt the content in line with local policies,
 procedures, and digital tools.
 
-*From the HIV DAK*
-
 This implementation guide provides the generic content required in
 digital systems, independently of a specific software application and
-[with the intention that countries can adapt it to meet local
-needs.]
+with the intention that countries can adapt it to meet local
+needs.
 
 WHO guidelines articulate and endorse rigorously tested recommendations
 for health interventions to be adopted within country programs. When
@@ -23,8 +17,6 @@ lives. To ensure that countries can effectively benefit from digital
 health investments, the SMART Guidelines approach is intended to
 facilitate the accurate reflection of WHO's clinical, public health and
 data use guidelines in the digital systems that countries are adopting.
-
-*From the SMART who.int page:*
 
 The content below is maintained by Digital Square in the Global Goods
 Guidebook at https://gg-gb.digitalsquare.org.
