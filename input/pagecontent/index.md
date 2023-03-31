@@ -1,10 +1,9 @@
 This WHO Immunization Implementation Guide details how to use Health Level 7 (HL7) Fast Healthcare Interoperability Resources (FHIR) for consistent digital representation of immunization services.
 
 <div>
-* This version of the implementation guide is based on the current content at https://github.com/WorldHealthOrganization/ddcc
-* This implementation guide and set of artifacts are still undergoing development.
-* Content is for demonstration purposes only.
-</div>{.stu-note}
+<p> This implementation guide and set of artifacts are still undergoing development. </p>
+<p> Content is for demonstration purposes only. </p>
+</div>{:.stu-note}
 
 
 ### Summary 
