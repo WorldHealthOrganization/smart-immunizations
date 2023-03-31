@@ -1,7 +1,7 @@
 //Example Valuset you can use as a template to create new ones
 //change ValueSet name, Id, Title, Description
 ValueSet: CD4percentageTestvalues
-Id: CD4percentageTestvalues
+Id: CD4percentageTest-values
 Title: "CD4 Percentage Test"
 Description: "Codes representing CD4 Percentage Test values"
 //don't touch status, experimental, immutable

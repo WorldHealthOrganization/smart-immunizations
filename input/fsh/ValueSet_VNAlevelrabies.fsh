@@ -1,5 +1,5 @@
-ValueSet: VNAlevelsRAbiesvalues
-Id: VNAlevelsRAbiesvalues
+ValueSet: VNAlevelsRabiesvalues
+Id: VNAlevelsRabies-values
 Title: "VNA Level Rabies valueset"
 Description: "Codes representing Virus Neutralizing Antibody Levels values"
 * ^status = #draft

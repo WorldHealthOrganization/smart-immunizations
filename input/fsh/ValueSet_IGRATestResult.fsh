@@ -1,5 +1,5 @@
 ValueSet: IGRATestResultvalues
-Id: IGRATestResultvalues
+Id: IGRATestResult-values
 Title: "IGRA Test Result values"
 Description: "Codes representing IGRA Test Result values"
 * ^status = #draft
