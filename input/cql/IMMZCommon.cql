@@ -145,77 +145,6 @@ define "BCG Doses Administered to Patient":
 define "No BCG Doses Administered to Patient":
   not exists("BCG Doses Administered to Patient")
 
-/**
- * @dataElement Polio Doses Administered to Patient
- */
-define "Polio Doses Administered to Patient":
-  "Doses Administered to Patient" I
-  where
-    I.vaccineCode in IMMZc."Polio Vaccine"
-
-/**
- * @dataElement Polio Doses Administered to Patient
- */
-define "bOPV Doses Administered to Patient":
-  "Doses Administered to Patient" I
-  where
-    I.vaccineCode in IMMZc."Oral Polio Vaccine"
-
-/**
- * @dataElement Patient has no bOPV Doses
- * TODO: Do we want "number of doses" or "highest dose sequence"? For example for interrupted series the dose
- *       number would be 1, 2, 1, 2, 1, 2 -> the highest sequence is 2 but the number is 6
- */
-define "Number of bOPV Doses Administered to Patient Excluding Birth Dose":
-  Count("bOPV Doses Administered to Patient" O where ToPositiveInt((singleton from O.protocolApplied).doseNumber) != 0)
-
-/**
- * @dataElement Patient has no IPV doses
- */
-define "No bOPV Doses Administered to Patient":
-  not exists ("bOPV Doses Administered to Patient")
-
-/** 
- * @dataElement Date of last OPV dose administration
- */
-define "Date Last bOPV Dose Administered to Patient":
-  date from (First("bOPV Doses Administered to Patient").occurrence as FHIR.dateTime)
-
-/**
- * @dataElement Polio Doses Administered to Patient
- */
-define "IPV Doses Administered to Patient":
-  "Doses Administered to Patient" I
-  where
-    I.vaccineCode in IMMZc."Inactivated Polio Vaccine"
-
-/**
- * @dataElement Patient has no IPV doses
- */
-define "Number of IPV Doses Administered to Patient":
-  Count("IPV Doses Administered to Patient" O where ToPositiveInt((singleton from O.protocolApplied).doseNumber) != 0)
-
-/**
- * @dataElement Patient has no IPV doses
- */
-define "No IPV Doses Administered to Patient":
-  not exists ("IPV Doses Administered to Patient")
-
-/** 
- * @dataElement Date of last IPV dose administration
- */
-define "Date Last IPV Dose Administered to Patient":
-  date from (First("IPV Doses Administered to Patient").occurrence as FHIR.dateTime)
-
-/**
- * @dataElement Patient of the patient of the most recent IPV dose
- */
-define "Patient Age at 1st IPV Dose in Weeks":
-  First("IPV Doses Administered to Patient" I
-  where 
-    ToPositiveInt(singleton from (I.protocolApplied).doseNumber) = 1
-  return 
-    AgeInWeeksAt(I.occurrence))
 
 /** 
 * @dataElement Age of patient at first dose of pneu
@@ -273,39 +202,7 @@ define "Highest Sequence of Cholera Doses Administered to Patient":
 define "Most Recent Dose Sequence of Cholera Doses Administered to Patient":
   First("Cholera Doses Administered to Patient" I return ToPositiveInt((singleton from I.protocolApplied).doseNumber))
 
-/**
- * @dataElement Hib containing Doses Administered to Patient
- */
-define "Hib Doses Administered to Patient":
-  "Doses Administered to Patient" I
-  where
-    I.vaccineCode in IMMZc."Hib Vaccine"
 
-/**
- * @dataElement Hib containing Doses Administered to Patient
- */
-define "No Hib Doses Administered to Patient":
-  not exists("Hib Doses Administered to Patient")
-
-
-/**
- * @dataElement Number of Hib Doses Administered to Patient excluding the birth dose
- */
-define "Number of Hib Doses Administered to Patient":
-  Count("Hib Doses Administered to Patient")// O return ToPositiveInt((singleton from O.protocolApplied).doseNumber))
-
-/**
- * @dataElement 
- */
-define "Date Last Hib Dose Administered to Patient":
-  date from (First("Hib Doses Administered to Patient").occurrence as FHIR.dateTime)
-
-
-/**
- * @dataElement 
- */
-define "Date First Hib Dose Administered to Patient":
-  date from (First("Hib Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 
 /**
@@ -341,31 +238,6 @@ define "No HepB Birth Dose Administered to Patient":
 define "Date Last HepB Dose Administered to Patient":
   date from (First("HepB Doses Administered to Patient").occurrence as FHIR.dateTime)
 
-/**
- * @dataElement HPV containing Doses Administered to Patient
- */
-define "HPV Doses Administered to Patient":
-  "Doses Administered to Patient" I
-  where
-    I.vaccineCode in IMMZc."HPV Vaccine"
-
-/** 
- * @dataElement No HPV doses have been administered to patient 
- */
-define "No HPV Doses Administered to Patient":
-  not exists("HPV Doses Administered to Patient")
-
-/** 
- * @dataElement Number of HPV doses administered to patient
- */
-define "Number of HPV Doses Administered to Patient":
-  Count("HPV Doses Administered to Patient")
-
-/**
- * @dataElement Date of HPV dose administered
- */
-define "Date Last HPV Dose Administered to Patient":
-  date from (First("HPV Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 /**
  * @dataElement Japanese Encephalitis containing Doses Administered to Patient
@@ -399,32 +271,7 @@ define "Type of Last JE Dose Administered to Patient":
 define "Number of JE Doses Administered to Patient":
   Count("JE Doses Administered to Patient" I where ToPositiveInt((singleton from I.protocolApplied).doseNumber) != 0)
 
-/**
- * @dataElement MCV containing Doses Administered to Patient
- */
-define "MCV Doses Administered to Patient":
-  "Doses Administered to Patient" I
-  where
-    I.vaccineCode in IMMZc."MCV Vaccine"
 
-/**
- * @define The patient has no MCV doses administered
- */
-define "No MCV Doses Administered to Patient":
-  not exists("MCV Doses Administered to Patient")
-
-
-/** 
- * @dataElement Date of last MCV dose administration
- */
-define "Date Last MCV Dose Administered to Patient":
-  date from (First("MCV Doses Administered to Patient").occurrence as FHIR.dateTime)
-
-/**
- * @define The number of MCV doses administerd to the patient
- */
-define "Number of MCV Doses Administered to Patient":
-  Count("MCV Doses Administered to Patient")
 
 /**
  * @dataElement Meningococcal containing Doses Administered to Patient
@@ -476,34 +323,6 @@ define "Pertussis Doses Administered to Patient":
     I.vaccineCode in IMMZc."Pertussis Vaccine"
 
 /**
- * @dataElement Pneumococcal containing Doses Administered to Patient
- */
-define "Pneumococcal Doses Administered to Patient":
-  "Doses Administered to Patient" I
-  where
-    I.vaccineCode in IMMZc."Pneumococcal Vaccine"
-
-/**
- * @dataElement Number of Pneumococcal Doses Administered to Patient
- */
-define "Number of Pneumococcal Doses Administered to Patient":
-  Count("Pneumococcal Doses Administered to Patient")
-
-/**
- * @dataElement Date last Pneumococcal dose administered 
- */
-define "Date Last Pneumococcal Dose Administered to Patient":
-  date from (First("Pneumococcal Doses Administered to Patient").occurrence as FHIR.dateTime)
-
-
-/**
- * @dataElement Number of Pneumococcal Doses Administered to Patient
- */
-define "No Pneumococcal Doses Administered to Patient":
-  not exists("Pneumococcal Doses Administered to Patient")
-
-
-/**
  * @dataElement Rabies containing Doses Administered to Patient
  */
 define "Rabies Doses Administered to Patient":
@@ -516,28 +335,6 @@ define "Rabies Doses Administered to Patient":
  */
 define "Number of Rabies Doses Administered to Patient":
   Count("Rabies Doses Administered to Patient")
-
-/**
- * @dataElement Rotavirus containing Doses Administered to Patient
- */
-define "Rotavirus Doses Administered to Patient":
-  "Doses Administered to Patient" I
-  where
-    I.vaccineCode in IMMZc."Rotavirus Vaccine"
-
-/**
- * @dataElement Rubella containing Doses Administered to Patient
- */
-define "Rubella Doses Administered to Patient":
-  "Doses Administered to Patient" I
-  where
-    I.vaccineCode in IMMZc."Rubella Vaccine"
-
-/**
- * @dataElement Rubella containing doses administered
- */
-define "No Rubella Doses Administered to Patient":
-  not exists("Rubella Doses Administered to Patient")
 
 
 /**
@@ -669,26 +466,7 @@ define "Yellow Fever Doses Administered to Patient":
   where
     I.vaccineCode in IMMZc."Yellow Fever Vaccine"
 
-/**
- * @dataElement DTP containing Doses Administered to Patient
- */
-define "DTP Doses Administered to Patient":
-  "Doses Administered to Patient" I
-  where
-    I.vaccineCode in IMMZc."DTP Vaccine"
 
-/** 
-  * @dataElement DTP administrations excluding birth doses
- */
-define "DTP Doses Administered to Patient Excluding Birth Dose":
-  "DTP Doses Administered to Patient" O 
-  where ToPositiveInt((singleton from O.protocolApplied).doseNumber) != 0
-
-/**
- * @dataElement Number of DTP Doses Administered to Patient excluding the birth dose
- */
-define "Number of DTP Doses Administered to Patient Excluding Birth Dose":
-  Count("DTP Doses Administered to Patient Excluding Birth Dose")// O return ToPositiveInt((singleton from O.protocolApplied).doseNumber))
 
 /**
 
@@ -699,24 +477,7 @@ define "Dengue Doses Administered to Patient":
   where
     I.vaccineCode in IMMZc."Dengue Vaccine"
 
-/**
- * @dataElement Number of DTP doses administered excluding the birth dose
- */
-define "Date Last DTP Dose Administered to Patient":
-  date from (First("DTP Doses Administered to Patient").occurrence as FHIR.dateTime)
 
-/**
- * @dataElement 
- */
-define "Date First DTP Dose Administered to Patient Excluding Birth Dose":
-  date from (Last("DTP Doses Administered to Patient Excluding Birth Dose").occurrence as FHIR.dateTime)
-
-
-/**
- * @dataElement 
- */
-define "No DTP Doses Administered to Patient":
-  not exists("DTP Doses Administered to Patient")
 
 /**
  * @dataElement Tick-Borne Encephalitis containing Doses Administered to Patient
@@ -833,6 +594,7 @@ define "Most Recent CD4% Between 20% and 25%":
 /** 
  * @dataElements Periods where the patient was receiving HAART treatment
  */
+ /*
 define "Patient HAART Treatment Started 6 to 12 Months Ago":
   /*exists(
     [MedicationStatement] S 
@@ -842,7 +604,9 @@ define "Patient HAART Treatment Started 6 to 12 Months Ago":
       and ExtractMedicationInitiationDate(S.effective) more than 6 'month' before Today() 
       and ExtractMedicationInitiationDate(S.effective) less than 12 'month' before Today()
   )
-  or */
+  or */ 
+  
+  /*
   exists(
     [MedicationAdministration] A 
     where 
@@ -851,6 +615,19 @@ define "Patient HAART Treatment Started 6 to 12 Months Ago":
       and ExtractMedicationInitiationDate(A.effective) more than 6 'month' before Today() 
       and ExtractMedicationInitiationDate(A.effective) less than 12 'month' before Today()
   )
+*/
+
+define "Patient HAART Treatment Start Date":
+  Last([MedicationAdministration] A 
+    where 
+      ExtractMedicationCode(A.medication) in IMMZc."ARV Drugs" 
+      and A.status in { 'active', 'complete' }
+      and ExtractMedicationInitiationDate(A.effective) less than 12 'month' before Today()
+      return ExtractMedicationInitiationDate(A.effective))
+
+define "Patient HAART Treatment Started 6 to 12 Months Ago":
+  "Patient HAART Treatment Start Date" between Now() - 12 months and Now() - 6 months
+
   
 /**
  * @dataElement The patient has a medication record which indicates that they are receiving ARV

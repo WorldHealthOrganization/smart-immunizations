@@ -3,7 +3,7 @@
  * Rule: If child or person has not been vaccinated, give Pneumococcal vaccine minimum age 6 weeks old 
  * Trigger: Patient has never received PCV vaccination
  */
-library IMMZDT06
+library IMMZDT06Common
 // Start Skeleton CQL
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
@@ -12,70 +12,56 @@ include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZConf
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
-include IMMZDT06Common called Com
-include IMMZDT0601 called TwoOne
-include IMMZDT0602 called Three
 
 // End Skeleton CQL
 context Patient
 
 
-define "Provision of the Pneumococcal dose":
-	case
-		when Com."Pneumococcal Three Primary Dose Schedule"
-			then Three."Provision of the Pneumococcal dose"
-		when Com."Pneumococcal Two Primary plus One Booster Schedule"
-			then TwoOne."Provision of the Pneumococcal dose"
-		else false
-	end
+define "Valid schemes": { '2p+1', '3p' }
+
+define "Dose scheme":
+  if IMMZConf."Pneumococcal dose scheme" in "Valid schemes"
+	then IMMZConf."Pneumococcal dose scheme"
+	else '2p+1' 
+
+define "Pneumococcal Three Primary Dose Schedule":
+	"Dose scheme" = '3p'
+
+define "Pneumococcal Two Primary plus One Booster Schedule":
+	"Dose scheme" = 'ip2p+1v'
+
+/**
+ * @dataElement Pneumococcal containing Doses Administered to Patient
+ */
+define "Pneumococcal Doses Administered to Patient":
+  IMMZCom."Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Pneumococcal Vaccine"
+
+/**
+ * @dataElement Number of Pneumococcal Doses Administered to Patient
+ */
+define "Number of Pneumococcal Doses Administered to Patient":
+  Count("Pneumococcal Doses Administered to Patient")
+
+/**
+ * @dataElement Date last Pneumococcal dose administered 
+ */
+define "Date Last Pneumococcal Dose Administered to Patient":
+  date from (First("Pneumococcal Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 
-define "Schedule Due Date for Pneumococcal dose":
-	case
-		when Com."Pneumococcal Three Primary Dose Schedule"
-			then Three."Schedule Due Date for Pneumococcal dose"
-		when Com."Pneumococcal Two Primary plus One Booster Schedule"
-			then TwoOne."Schedule Due Date for Pneumococcal dose"
-		else null
-	end
+/**
+ * @dataElement Number of Pneumococcal Doses Administered to Patient
+ */
+define "No Pneumococcal Doses Administered to Patient":
+  not exists("Pneumococcal Doses Administered to Patient")
 
-
-define "Should vaccinate patient for Pneumococcal":
-	"Provision of the Pneumococcal dose" and ("Schedule Due Date for Pneumococcal dose" <= (Now()))
-
-
-define "Overdue Date for Pneumococcal dose":
-	null
-
-define "Expiration Date for Pneumococcal dose":
-	case
-		when Com."Pneumococcal Three Primary Dose Schedule"
-			then Three."Expiration Date for Pneumococcal dose"
-		when Com."Pneumococcal Two Primary plus One Booster Schedule"
-			then TwoOne."Expiration Date for Pneumococcal dose"
-		else null
-	end
-
-
-define "Pneumococcal Next Dose Number":
-	case
-		when Com."Pneumococcal Three Primary Dose Schedule"
-			then Three."Pneumococcal Next Dose Number"
-		when Com."Pneumococcal Two Primary plus One Booster Schedule"
-			then TwoOne."Pneumococcal Next Dose Number"
-		else null
-	end
-
-
-define "Number of Required Pneumococcal Doses":
-	case
-		when Com."Pneumococcal Three Primary Dose Schedule"
-			then Three."Number of Required Pneumococcal Doses"
-		when Com."Pneumococcal Two Primary plus One Booster Schedule"
-			then TwoOne."Number of Required Pneumococcal Doses"
-		else null
-	end
-
+/**
+ * @dataElement 
+ */
+define "Date First Pneumococcal Dose Administered to Patient":
+  date from (First("Pneumococcal Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because no doses in a 2 dose scheme
