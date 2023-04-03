@@ -396,16 +396,6 @@ define "Date Last Varicella Dose Administered to Patient":
   date from (First("Varicella Doses Administered to Patient").occurrence as FHIR.dateTime)
 
 /**
- * @dataElement Yellow Fever containing Doses Administered to Patient
- */
-define "Yellow Fever Doses Administered to Patient":
-  "Doses Administered to Patient" I
-  where
-    I.vaccineCode in IMMZc."Yellow Fever Vaccine"
-
-
-
-/**
 
  * @dataElement Dengue containing doses administered
  */

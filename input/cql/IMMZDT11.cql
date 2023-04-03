@@ -72,9 +72,6 @@ define "Overdue Date for JE dose":
 define "Should vaccinate patient for JE":
 	"Provision of the JE dose" and ("Schedule Due Date for JE dose" <= (Now()))
 
-/*endtodo*/
-
-
 
 define "Due Date for JE First Dose":
 	case
