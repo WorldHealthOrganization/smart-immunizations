@@ -202,9 +202,6 @@ define "Highest Sequence of Cholera Doses Administered to Patient":
 define "Most Recent Dose Sequence of Cholera Doses Administered to Patient":
   First("Cholera Doses Administered to Patient" I return ToPositiveInt((singleton from I.protocolApplied).doseNumber))
 
-
-
-
 /**
  * @dataElement HepA containing Doses Administered to Patient
  */
@@ -212,66 +209,6 @@ define "HepA Doses Administered to Patient":
   "Doses Administered to Patient" I
   where
     I.vaccineCode in IMMZc."HepA Vaccine"
-
-/**
- * @dataElement HepB containing Doses Administered to Patient
- */
-define "HepB Doses Administered to Patient":
-  "Doses Administered to Patient" I
-  where
-    I.vaccineCode in IMMZc."HepB Vaccine"
-
-/**
- * @dataElement Number of HepB Doses Administered to Patient
- */
-define "Number of HepB Doses Administered to Patient":
-  Count("HepB Doses Administered to Patient" O where ToPositiveInt((singleton from O.protocolApplied).doseNumber) != 0)
-
-
-/**
- * @dataElement No HepB containing Birth Dose Administered to Patient
- */
-define "No HepB Birth Dose Administered to Patient":
-  not exists("HepB Doses Administered to Patient" I where ToPositiveInt((singleton from I.protocolApplied).doseNumber) = 0)
-
-//Date last administered HepB
-define "Date Last HepB Dose Administered to Patient":
-  date from (First("HepB Doses Administered to Patient").occurrence as FHIR.dateTime)
-
-
-/**
- * @dataElement Japanese Encephalitis containing Doses Administered to Patient
- */
-define "JE Doses Administered to Patient":
-  "Doses Administered to Patient" I
-  where
-    I.vaccineCode in IMMZc."Japanese Encephalitis Vaccine"
-
-/**
- * @dataElement No Japanese Encephalitis containing Doses Administered to Patient
- */
-define "No JE Doses Administered to Patient":
-  not exists("JE Doses Administered to Patient")
-
-/**
- * @dataElement Date the last JE dose was administered
- */
-define "Date Last JE Dose Administered to Patient":
-  date from (First("JE Doses Administered to Patient").occurrence as FHIR.dateTime)
-
-/** 
- * @dataElement The type of the last typhoid dose administered to patient
- */
-define "Type of Last JE Dose Administered to Patient":
-  First("JE Doses Administered to Patient" I return I.vaccineCode)
-
-/**
- * @dataElement No Japanese Encephalitis containing Doses Administered to Patient
- */
-define "Number of JE Doses Administered to Patient":
-  Count("JE Doses Administered to Patient" I where ToPositiveInt((singleton from I.protocolApplied).doseNumber) != 0)
-
-
 
 /**
  * @dataElement Meningococcal containing Doses Administered to Patient

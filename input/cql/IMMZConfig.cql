@@ -22,9 +22,12 @@ define "In a setting where the greatest disease morbidity and mortality occur la
 define "Hib dose scheme": '1p'
 define "Hepatitis A endemic country": true
 
+define "Japanese Encephalitis dose scheme": 'attenuated'
+/*
 define "Country is administering Live recombinant JE antigen":true
 define "Country is administering Live attentuated JE antigen": true
 define "Country is administering Inactivated Vero cell-derived JE antigen": true
+*/
 define "Country recognizes JE as a health priority": true
 
 /*
