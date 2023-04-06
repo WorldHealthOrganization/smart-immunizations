@@ -7,8 +7,7 @@ These requirements are taken from Component 8 and Web Annex D of the WHO Digital
 Please note that these are not exhaustive lists and should be modified according to context and user persona needs.
 
 
-<span style="font-size: larger; font-weight: bold;">Business process A: Facility Registration
-</span>
+<h3>Business process A: Facility Registration</h3>
 
 |Requirement ID|Activity ID and Description|[As a ...](personas.html)|I want ...|So that ...|
 |----|---|---|---|
@@ -65,8 +64,7 @@ Please note that these are not exhaustive lists and should be modified according
 |IMMZ.FXNREQ.044|Assemble all needed materials for clinic|health worker (HW)|The system to provide a clinic materials checklist, which is a list of materials I would need for clinic|I can make sure I have the materials I need for clinic|
 {:.table-bordered .table-striped .thead-light}
 
-<span style="font-size: larger; font-weight: bold;">Business process C: Client Reminder 
-</span>
+<h3>Business process C: Client Reminder</h3>
 
 |Requirement ID|Activity ID and Description|[As a ...](personas.html)|I want ...|So that ...|
 |----|---|---|---|

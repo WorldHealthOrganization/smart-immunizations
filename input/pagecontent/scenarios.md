@@ -36,4 +36,4 @@ This scenario refers to the following business processes:
 
 ### 3.2 User Scenario for Defaulter Tracing
 
-### 3.3 User Scenario for Catchup Campaign
+### 3.3 User Scenario for Catch-up Campaign
