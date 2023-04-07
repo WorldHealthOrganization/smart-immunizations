@@ -132,6 +132,7 @@ The business processes included in the DAK are shown in the following figure. Pr
   <div> 
     <img src="immz-0-overview-business-process.png" alt="Overview of key immunization process flows" style="width:85%"/>
   </div>
+<br/>
   
 #### A. Facility Registration
 Objective: All facilities that are able to administer vaccines must be registered and uniquely identified to enable appropriate tracking of vaccine coverage and stock. There are situations where the locations providing vaccines may not be a permanent physical facility but rather some kind of public health authority (as is the case with some temporary or pop up clinics). These may be included as per local policy or needs. 
@@ -143,7 +144,8 @@ Each step can often be done by either the system (automated) or may be performed
   <div> 
     <img src="immz-a-facility-registration-business-process.png" alt="IMMZ.A Facility Registration business process" style="width:85%"/>
   </div> 
-  
+<br/> 
+
 #### B. Service Plan Delivery
 Objective:  The objective is to prepare for an immunization session, either at the facility or done on an outreach basis. The primary difference if done as outreach is that all equipment and vaccines must be properly packaged (cold box) for transport. 
 
@@ -152,58 +154,67 @@ Note: There are opportunities to integrate with stock management systems to prov
   <div> 
     <img src="immz-b-plan-service-delivery-business-process.png" alt="IMMZ.B Plan Service Delivery business process" style="width:85%"/>
   </div> 
+<br/>
 
 #### C. Query Client Record
 Objective: The objective is to correctly locate or identify a client’s immunization record as well as review and update a client’s record to provide a complete immunization history. This will be used to determine recommended vaccines and due dates, allowing providers to recommend and discuss immunizations with the client. It may also be used if the client record needs to be recreated in case original paper record is lost.
 
   <div> 
-    <img src="immz-f-query-client-record-business-process.png" alt="IMMZ.C Query Client Record business process" style="width:85%"/>
+    <img src="immz-c-query-client-record-business-process.png" alt="IMMZ.C Query Client Record business process" style="width:85%"/>
   </div> 
+<br/>
 
 #### D. Register Client
 Objective: The objective is to start or contribute to the client’s lifelong immunization record. This will allow providers and the client/mother to identify what vaccinations have been given. Adult clients requiring a new vaccine (such as COVID-19 vaccines) will typically not be in the system as it may not have been available when they received their childhood vaccines. How this is handled will vary widely. It may be possible to import records from another system (such as a universal health insurance system) or from a list from another source (such as an external scheduling or registration system), or they may all be required to be entered manually. This will depend on local capacity and policy.
 If starting with a paper record, there are some vaccination records (home-based record) that may require additional security/validation features in the paper record for validation. For more information, please refer to Digital Documentation of COVID-19 Certificates: Vaccination Status (23).
 
   <div> 
-    <img src="immz-e-register-client-business-process.png" alt="IMMZ.D Register client business process business process" style="width:85%"/>
+    <img src="immz-d-register-client-business-process.png" alt="IMMZ.D Register client business process business process" style="width:85%"/>
   </div> 
+<br/>  
   
 #### E. Administer Vaccine
 Objective: The objective is to determine what vaccines a client needs, administer those, and record the relevant necessary data both in the system as well as on the appropriate paper records. Clients will enter this process in a variety of ways. They may be coming for one in a series of routine childhood vaccines, they may be a healthcare worker requiring a vaccine for work, they may be an adult seeking a vaccine for COVID-19 or an annual flu vaccine, or a student getting a vaccine for HPV at a school vaccination clinic. This will also apply to catch up campaigns, although they will often be conducted as outreach/mobile clinics. Supplementary vaccine campaigns do not follow the process below as they vary widely on what is recorded on an individuals record and determining eligibility (everyone in the age range will be eligible regardless of vaccine status, since the dose is supplemental to any series. 
 
   <div>
-    <img src="immz-g-administer-vaccine-business-process.png" alt="IMMZ.E Administer Vaccine business process" style="width:85%"/>
+    <img src="immz-e-administer-vaccine-business-process.png" alt="IMMZ.E Administer Vaccine business process" style="width:85%"/>
   </div> 
+<br/>
 
 #### F. Client Reminder
 Objective: The objective is to correctly locate or identify a client’s immunization record as well as review and update a client’s record to provide a complete immunization history. This will be used to determine recommended vaccines and due dates, allowing providers to recommend and discuss immunizations with the client. It may also be used if the client record needs to be recreated in case original paper record is lost.![image]
 
-<div> 
-    <img src="immz-c-client-reminder-business-process.png" alt="IMMZ.F Client reminder business process" style="width:85%"/>
+  <div> 
+    <img src="immz-f-client-reminder-business-process.png" alt="IMMZ.F Client reminder business process" style="width:85%"/>
   </div> 
+  <br/>  
   
 #### G. Defaulter Tracing
 
 Objective: The objective is to identify those who are overdue for a follow-up dose and/or vaccination as part of their immunization schedule to come in for vaccination. There is a significant amount of variability in how this follow-up is done currently. This process flow assumes the client is registered and has started an initial dose. This also assumes that there are no automated reminders sent by the system and that follow up is done by the health worker, or that electronic reminders have already been sent, but the client has not arrived for their vaccine. (See Client reminder workflow for automated reminders). This process may also be done as a part of a “catch-up campaign” where coverage in an area has fallen below certain thresholds and a large number of clients are overdue for vaccinations. These campaigns may include broader advertising and the addition of extra outreach sessions or pop- up clinics.  
 
   <div> 
-    <img src="immz-d-defaulter-tracing-business-process.png" alt="IMMZ.G Defaulter tracing business process" style="width:85%"/>
+    <img src="immz-g-defaulter-tracing-business-process.png" alt="IMMZ.G Defaulter tracing business process" style="width:85%"/>
   </div> 
+  <br/> 
   
 #### H. Resolve Duplicate Client Records
 
   <div> 
     <img src="immz-h-resolve-duplicate-client-records-business-process.png" alt="IMMZ.H Resolve duplicate client records business process" style="width:85%"/>
   </div> 
+  <br/>
 
 #### I. Resolve Duplicate Vaccine Events
 
   <div> 
     <img src="immz-i-resolve-duplicate-vaccine-events-business-process.png" alt="IMMZ.I Resolve duplicate vaccine events business process" style="width:85%"/>
   </div> 
+  <br/>
 
 #### J. Report Generation
 
   <div> 
     <img src="immz-j-report-generation-business-process.png" alt="IMMZ.J Report generation business process" style="width:85%"/> 
   </div>
+  <br/>
