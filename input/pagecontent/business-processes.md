@@ -8,7 +8,7 @@ The DAK for Immunizations focuses on key business processes that are
 part of routine immunization programmes and mass immunization
 campaigns.
 
-### Overview of Key Business Processes 
+## Overview of Key Business Processes 
 The following table describes the workflows of the included processes. 
 
 <table border="1" class="dataframe table table-striped table-bordered">
@@ -117,72 +117,72 @@ The following table describes the workflows of the included processes.
   </tbody>
 </table>
 
-### Workflows
+## Workflows
 The workflows that follow depict processes that have been generalized across different contexts and may not reflect the variability and nuances across different settings. The simplicity of the workflow may not adequately illustrate the nonlinear steps that may occur.
 
-#### Overview of key immunization process flows
+### Overview of key immunization process flows
 The business processes included in the DAK are shown in the following figure. Processes included in the DAK start with a letter (e.g. "A.") and are shown using the "Activity with sub-process" shape, which includes a plus sign. 
 
   <figure> 
-    <img src="immz-0-overview-business-process.png" alt="Overview of key immunization process flows" style="width:70%"/>
+    <div style="text-align: left"><img src="immz-0-overview-business-process.png" alt="Overview of key immunization process flows" style="width:85%"/>
   </figure>
   
-#### A. Facility Registration
+### A. Facility Registration
 Objective: All facilities that are able to administer vaccines must be registered and uniquely identified to enable appropriate tracking of vaccine coverage and stock. There are situations where the locations providing vaccines may not be a permanent physical facility but rather some kind of public health authority (as is the case with some temporary or pop-up clinics). These may be included as per local policy or needs.  
 
   <figure> 
-    <img src="immz-a-facility-registration-business-process.png" alt="IMMZ.A Facility Registration business process" style="width:70%"/>
+    <div style="text-align: left"><img src="immz-a-facility-registration-business-process.png" alt="IMMZ.A Facility Registration business process" style="width:85%"/>
   </figure> 
   
-#### B. Service Plan Delivery
+### B. Service Plan Delivery
 
   <figure> 
-    <img src="immz-b-plan-service-delivery-business-process.png" alt="IMMZ.B Plan Service Delivery business process" style="width:70%"/>
+    <div style="text-align: left"><img src="immz-b-plan-service-delivery-business-process.png" alt="IMMZ.B Plan Service Delivery business process" style="width:85%"/>
   </figure> 
 
-#### C. Client Reminder
+### C. Client Reminder
   <figure> 
-    <img src="immz-c-client-reminder-business-process.png" alt="IMMZ.C Client reminder business process" style="width:70%"/>
-  </figure> 
-  
-#### D. Defaulter Tracing
-
-  <figure> 
-    <img src="immz-d-defaulter-tracing-business-process.png" alt="IMMZ.D Defaulter tracing business process" style="width:70%"/>
+    <div style="text-align: left"><img src="immz-c-client-reminder-business-process.png" alt="IMMZ.C Client reminder business process" style="width:85%"/>
   </figure> 
   
-#### E. Register Client
+### D. Defaulter Tracing
 
   <figure> 
-    <img src="immz-e-register-client-business-process.png" alt="IMMZ.E Register client business process business process" style="width:70%"/>
+    <div style="text-align: left"><img src="immz-d-defaulter-tracing-business-process.png" alt="IMMZ.D Defaulter tracing business process" style="width:85%"/>
   </figure> 
   
-#### F. Query Client Record
+### E. Register Client
 
   <figure> 
-    <img src="immz-f-query-client-record-business-process.png" alt="IMMZ.F Query Client Record business process" style="width:70%"/>
+    <div style="text-align: left"><img src="immz-e-register-client-business-process.png" alt="IMMZ.E Register client business process business process" style="width:85%"/>
+  </figure> 
+  
+### F. Query Client Record
+
+  <figure> 
+    <div style="text-align: left"><img src="immz-f-query-client-record-business-process.png" alt="IMMZ.F Query Client Record business process" style="width:85%"/>
   </figure> 
 
-#### G. Administer Vaccine
+### G. Administer Vaccine
 
   <figure>
-    <img src="immz-g-administer-vaccine-business-process.png" alt="IMMZ.G  Administer Vaccine business process" style="width:70%"/>
+    <div style="text-align: left"><img src="immz-g-administer-vaccine-business-process.png" alt="IMMZ.G  Administer Vaccine business process" style="width:85%"/>
   </figure> 
 
-#### H. Resolve Duplicate Client Records
+### H. Resolve Duplicate Client Records
 
   <figure> 
-    <img src="immz-h-resolve-duplicate-client-records-business-process.png" alt="IMMZ.H Resolve duplicate client records business process" style="width:70%"/>
+    <div style="text-align: left"><img src="immz-h-resolve-duplicate-client-records-business-process.png" alt="IMMZ.H Resolve duplicate client records business process" style="width:85%"/>
   </figure> 
 
-#### I. Resolve Duplicate Vaccine Events
+### I. Resolve Duplicate Vaccine Events
 
   <figure> 
-    <img src="immz-i-resolve-duplicate-vaccine-events-business-process.png" alt="IMMZI Resolve duplicate vaccine events business process" style="width:70%"/>
+    <div style="text-align: left"><img src="immz-i-resolve-duplicate-vaccine-events-business-process.png" alt="IMMZ.I Resolve duplicate vaccine events business process" style="width:85%"/>
   </figure> 
 
-#### J. Report Generation
+### J. Report Generation
 
   <figure> 
-    <img src="immz-j-report-generation-business-process.png" alt="IMMZ.J Report generation business process" style="width:70%"/> 
+    <div style="text-align: left"><img src="immz-j-report-generation-business-process.png" alt="IMMZ.J Report generation business process" style="width:85%"/> 
   </figure>
