@@ -3,13 +3,13 @@ Adaptation Kit (DAK): SMART Guidelines for Immunizations (link forthcoming).
 For full details, see the published DAK content.
 
 The DAK for Immunizations focuses on key business processes that are
-part of routine immunizations programmes and mass immunization
+part of routine immunization programmes and mass immunization
 campaigns.
 
 ### Overview of Key Business Processes 
 This section illustrates the workflows of the identified processes. 
 
-<table class="table-bordered table-striped thead-light">
+<table border="1" class="dataframe table table-striped table-bordered">
   <thead>
     <tr class="header">
       <th><strong>#</strong> </th>
@@ -118,9 +118,16 @@ This section illustrates the workflows of the identified processes.
 ## 4.2 Workflows
 The workflows that follow depict processes that have been generalized across different contexts and may not reflect the variability and nuances across different settings. The simplicity of the workflow may not adequately illustrate the nonlinear steps that may occur.
 
-#### A. Facility Registration
-Objective: All facilities that are able to administer vaccines must be registered and uniquely identified to enable appropriate tracking of vaccine coverage and stock. There are situations where the locations providing vaccines may not be a permanent physical facility but rather some kind of public health authority (as is the case with some temporary or pop-up clinics). These may be included as per local policy or needs.   
+#### Overview of key immunization process flows
+The business processes included in the DAK are shown in the following figure. Processes included in the DAK start with a letter (e.g. "A.") and are shown using the "Activity with sub-process" shape, which includes a plus sign. 
 
+  <figure> 
+    <img style="width:80%" src="immz-0-overview-business-process.png" alt="Overview of key immunization process flows"/>
+  </figure>
+  
+#### A. Facility Registration
+Objective: All facilities that are able to administer vaccines must be registered and uniquely identified to enable appropriate tracking of vaccine coverage and stock. There are situations where the locations providing vaccines may not be a permanent physical facility but rather some kind of public health authority (as is the case with some temporary or pop-up clinics). These may be included as per local policy or needs.  
+  
 #### B. Service Plan Delivery
 
 #### C. Client Reminder
