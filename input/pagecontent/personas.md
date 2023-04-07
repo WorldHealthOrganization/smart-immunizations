@@ -3,8 +3,6 @@ Immunizations (link forthcoming).
 
 The specific roles and demographic profile of the personas will vary depending on the setting, the generic personas are based on the WHO core competencies and credentials of different health worker personas.
 
-In the clinical flows, generic personas are represented using profiles of the various entity resources in HL7 FHIR, such as [Patient](http://hl7.org/fhir/patient), [Practitioner](http://hl7.org/fhir/practitioner), [PractitionerRole](http://hl7.org/fhir/practitionerrole), and [RelatedPerson](http://hl7.org/fhir/relatedperson).
-
 Illustrative examples of immunization user personas for individuals are included in the [BID Initiative Product Vision](https://www.path.org/resources/product-vision-for-the-better-immunization-data-bid-initiative/).
 
 ### Targeted generic personas

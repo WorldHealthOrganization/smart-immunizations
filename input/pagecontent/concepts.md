@@ -11,10 +11,6 @@ Key concepts and abbreviations are described here. Additional terms are defined 
 </thead>
 <tbody>
   <tr>
-    <td>Term</td>
-    <td>Description</td>
-  </tr>
-  <tr>
     <td><a href="https://build.fhir.org/ig/HL7/fhir-ips/ValueSet-whoatc-uv-ips.html">Anatomical Therapeutic Chemical code (ATC)</a></td>
     <td>A unique code assigned to a medicine according to the organ or system it works on and how it works.</td>
   </tr>
@@ -83,10 +79,10 @@ Key concepts and abbreviations are described here. Additional terms are defined 
 
 ### Abbreviations
 
-<table border="1" class="dataframe table table-striped table-bordered">
+<table class="list">
 <thead>
   <tr>
-    <th>Abbreviation</th>
+    <th>Term</th>
     <th>Description</th>
   </tr>
 </thead>
