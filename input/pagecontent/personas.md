@@ -46,7 +46,6 @@ key competences of are defined in the following table.
     </tr>
   </tbody>
 </table>
-    </div>
     
 ### Related personas
 In addition to the central personas detailed above, additional personas that play a role are listed in the table below.

@@ -1,7 +1,7 @@
 This page includes indicators and performance metrics that would be aggregated from core data elements identified and is extracted from the WHO Digital Adaptation Kit (DAK): SMART Guidelines for Immunizations (link forthcoming). 
 
 For full operational descriptions of the indicators included and their references, see Web Annex C of the DAK. 
-For machine-readable representations, see the Indicators and Measures page. 
+For machine-readable representations, see the <a href="indicators-measures.html">Indicators and Measures</a>. 
 
 These indicators may be aggregated automatically from the digital tracking tool to populate a digital health management information system (HMIS). 
 
@@ -20,14 +20,15 @@ These indicators may be aggregated automatically from the digital tracking tool 
 |Disaggregations|Are there any dis-aggregations that you would like to be able to do in order to conduct the necessary analysis?|
 |References|If there are any national or global guidelines (e.g. WHO guidelines) that dictate how and why this indicator should be calculated or reported, it should be noted here. If any guidelines or recommendations change, having a clear reference listed would help in updating or restructuring your data.|				
 |References|If there are any national or global guidelines (e.g. WHO guidelines) that dictate how and why this indicator should be calculated or reported, it should be noted here. If any guidelines or recommendations change, having a clear reference listed would help in updating or restructuring your data.|
+{:.grid}
 
 ### Indicators and performance metrics table
 The following indicators are extracted from the DAK for Immunizations. The full indicators and performance metrics table is available in Web Annex C of the DAK. To see linkages to references and full details of the L2 content, please reference the DAK. 
 
 <div style=" width: 100%; height: 500px; overflow: scroll;">
+
   <table border="1" class="dataframe table table-striped table-bordered">
     <thead style="position: sticky;top: 0;z-index: 100;background-color: white;">
-      <thead>
         <tr>
           <th>Indicator code</th>
           <th>Indicator name</th>
