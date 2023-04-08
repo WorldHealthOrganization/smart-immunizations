@@ -2,7 +2,7 @@ Key concepts and abbreviations are described here. Additional terms are defined 
 
 ### Concepts 
 
-<table border="1" class="dataframe table table-striped table-bordered">
+<table class="list">
 <thead>
   <tr>
     <th>Term</th>
