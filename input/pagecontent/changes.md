@@ -1,0 +1,1 @@
+This page provides a list of changes to the WHO Immunization SMART Guidelines Implementation Guide since its initial release.

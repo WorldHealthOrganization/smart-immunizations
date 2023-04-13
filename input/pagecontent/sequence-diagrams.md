@@ -1,0 +1,1 @@
+This page will include sequence diagrams with [Actors](system-actors.html) and Fast Healthcare Interoperability Resources (FHIR) references.

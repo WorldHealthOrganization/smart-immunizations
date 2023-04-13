@@ -83,6 +83,7 @@ valueset "WC Class Cholera Vaccine": 'http://fhir.org/guides/who/smart-immunizat
 valueset "WC-rBS Class Cholera Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/WCrBSClassCholeraVaccinevalues'
 valueset "ViPS Class Typhoid Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/ViPSClassTyphoidVaccinevalues'
 valueset "Ty21a Class Typhoid Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Ty21aClassTyphoidVaccinevalues'
+valueset "TCV Class Typhoid Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/TCVClassTyphoidVaccinevalues'
 //  MenA vaccine classes
 valueset "MenA conjugate vaccine (5µg)": 'http://fhir.org/guides/who/smart-immunization/ValueSet/MenAconjugatevaccinevalues'
 valueset "monovalent MenC conjugate": 'http://fhir.org/guides/who/smart-immunization/ValueSet/MonovalentMenCconjugatevalues'

@@ -16,31 +16,74 @@ parameter "Patient is travelling to and from a Yellow Fever endemic area" Boolea
 // End Skeleton CQL
 context Patient
 
+/**
+ * @dataElement Should provision Yellow Fever Dose
+ */
+define "Provision of the Yellow Fever dose":
+	"No doses of Yellow Fever vaccine administered to patient" 
+	and (
+		IMMZCon."Country has Yellow Fever Endemic"
+		or "Patient is travelling to and from a Yellow Fever endemic area"
+	)
+
+define "Schedule Due Date for Yellow Fever dose":
+	ToDateTime(
+		Patient.birthDate + 9 months
+	)
+
+define "Yellow Fever Next Dose Number":
+	1
+
+define "Number of Required Yellow Fever Doses":
+	1
+
+define "Expiration Date for Yellow Fever dose":
+	null
+
+define "Overdue Date for Yellow Fever dose":
+	Patient.birthDate + 12 months
+
+define "Should vaccinate patient for Yellow Fever":
+	"Provision of the Yellow Fever dose" and ("Schedule Due Date for Yellow Fever dose" <= (Now()))
+
+/**
+ * @dataElement Yellow Fever containing Doses Administered to Patient
+ */
+define "Yellow Fever Doses Administered to Patient":
+  IMMZCom."Doses Administered to Patient" I
+  where
+    I.vaccineCode in IMMZc."Yellow Fever Vaccine"
+
+
+
 /* 
  * @dataElement Yellow Fever vaccine immunization history
  */
 define "Yellow Fever vaccine immunization history":
-	IMMZCom."Yellow Fever Doses Administered to Patient"
+	"Yellow Fever Doses Administered to Patient"
 
 
 /* 
  * @dataElement No-doses
  */
-define "No-doses of Yellow Fever vaccine administered to patient":
+define "No doses of Yellow Fever vaccine administered to patient":
 	not exists("Yellow Fever vaccine immunization history")
 
 /* 
  * @dataElement Age
  */
+ /*
 define "Age":
 	IMMZCom."Current Patient Age In Months"
+*/
 
 /* 
  * @dataElement 9 months
  */
+ /*
 define "9 months":
 	9 months
-
+*/
 /*
  * Rule: Should vaccinate patient for Yellow Fever because no doses on 1 dose scheme
  * Annotations:
@@ -52,6 +95,8 @@ define "9 months":
  * Logic:
  *	 (("Yellow Fever vaccine immunization history" = "No-doses") and ("Age" >= "9 months"))
  */
+ /*
 define "Should vaccinate patient for Yellow Fever because no doses on 1 dose scheme":
 	(("No-doses of Yellow Fever vaccine administered to patient") and ("Age" >= "9 months")) and 
 	(IMMZCon."Country has Yellow Fever Endemic" or "Patient is travelling to and from a Yellow Fever endemic area")
+	*/

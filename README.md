@@ -2,7 +2,7 @@
 
 This implementation guide defines core data element profiles for use for the World Health Organization (WHO) Immunization computable guideline content.
 
-The current draft of the implementation guide is available [here](https://build.fhir.org/ig/WorldHealthOrganization/smart-immunizations).
+The current draft of the implementation guide is available [here](https://build.fhir.org/ig/WorldHealthOrganization/smart-immunizations/branches/main).
 
 The guide is published under a Creative Commons [license](LICENSE.md).
 
@@ -27,9 +27,9 @@ Feedback and issues can be submitted via the [issues](issues) page, and will be 
 
 This repository contains the source for the WHO Core Implementation Guide, and uses the [FHIR Implementation Guide publisher](http://wiki.hl7.org/index.php?title=IG_Publisher_Documentation) to produce a FHIR Implementation Guide.
 
-Commits to this repository will automatically trigger a new build of the IG, which will then be published to the following location:
+Commits to this repository will automatically trigger a new build of the implementation guide, which will then be published to the following location:
 
-[https://build.fhir.org/ig/WorldHealthOrganization/smart-immunizations/](https://build.fhir.org/ig/WorldHealthOrganization/smart-immunizations)
+[https://build.fhir.org/ig/WorldHealthOrganization/smart-immunizations/branches/main](https://build.fhir.org/ig/WorldHealthOrganization/smart-immunizations/branches/main)
 
 Build log is available here:
 

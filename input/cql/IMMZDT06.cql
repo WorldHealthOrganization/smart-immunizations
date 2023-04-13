@@ -12,9 +12,70 @@ include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZConf
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
+include IMMZDT06Common called Com
+include IMMZDT0601 called TwoOne
+include IMMZDT0602 called Three
 
 // End Skeleton CQL
 context Patient
+
+
+define "Provision of the Pneumococcal dose":
+	case
+		when Com."Pneumococcal Three Primary Dose Schedule"
+			then Three."Provision of the Pneumococcal dose"
+		when Com."Pneumococcal Two Primary plus One Booster Schedule"
+			then TwoOne."Provision of the Pneumococcal dose"
+		else false
+	end
+
+
+define "Schedule Due Date for Pneumococcal dose":
+	case
+		when Com."Pneumococcal Three Primary Dose Schedule"
+			then Three."Schedule Due Date for Pneumococcal dose"
+		when Com."Pneumococcal Two Primary plus One Booster Schedule"
+			then TwoOne."Schedule Due Date for Pneumococcal dose"
+		else null
+	end
+
+
+define "Should vaccinate patient for Pneumococcal":
+	"Provision of the Pneumococcal dose" and ("Schedule Due Date for Pneumococcal dose" <= (Now()))
+
+
+define "Overdue Date for Pneumococcal dose":
+	null
+
+define "Expiration Date for Pneumococcal dose":
+	case
+		when Com."Pneumococcal Three Primary Dose Schedule"
+			then Three."Expiration Date for Pneumococcal dose"
+		when Com."Pneumococcal Two Primary plus One Booster Schedule"
+			then TwoOne."Expiration Date for Pneumococcal dose"
+		else null
+	end
+
+
+define "Pneumococcal Next Dose Number":
+	case
+		when Com."Pneumococcal Three Primary Dose Schedule"
+			then Three."Pneumococcal Next Dose Number"
+		when Com."Pneumococcal Two Primary plus One Booster Schedule"
+			then TwoOne."Pneumococcal Next Dose Number"
+		else null
+	end
+
+
+define "Number of Required Pneumococcal Doses":
+	case
+		when Com."Pneumococcal Three Primary Dose Schedule"
+			then Three."Number of Required Pneumococcal Doses"
+		when Com."Pneumococcal Two Primary plus One Booster Schedule"
+			then TwoOne."Number of Required Pneumococcal Doses"
+		else null
+	end
+
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because no doses in a 2 dose scheme
@@ -27,10 +88,12 @@ context Patient
  * Logic:
  *	 ((("Pneumococcal vaccine immunization history" = "No-doses") and ("Current Patient Age in Weeks" >= 6 )) and ("Country is following a 2 dose scheme" = true))
  */
+ /*
 define "Should vaccinate patient for Pneumococcal because no doses in a 2 dose scheme":
 	IMMZCom."No Pneumococcal Doses Administered to Patient"
 	and IMMZCom."Current Patient Age In Weeks" >= 6
 	and IMMZConf."Country is following a 2 dose scheme for Pneumococcal"
+*/
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because 1 dose in a 2 dose scheme
@@ -47,6 +110,7 @@ define "Should vaccinate patient for Pneumococcal because no doses in a 2 dose s
  * Logic:
  *	 (((((("Pneumococcal vaccine immunization history" = "1 dose") and ("Date last Pneumococcal dose given" >= "8 weeks")) and ("Current Patient Age in Weeks" >= 6 )) and ("Country is using a 2 dose scheme" = true)) or ((((("Pneumococcal vaccine immunization history" = "1 dose") and ("Current Patient Age in Years" >= 1)) and ("Current Patient Age in Years" <= 5)) and ("HIV Status" = "Positive")) and ("Date last Pneumococcal Dose given" >= "8 weeks"))) or ((((("Pneumococcal vaccine immunization history" = "1 dose") and ("Current Patient Age in Years" >= 1)) and ("Current Patient Age in Years" <= 5)) and ("Patient has sickle-cell disease" = true)) and ("Date last Pneumococcal Dose given" >= "8 weeks")))
  */
+ /*
 define "Should vaccinate patient for Pneumococcal because 1 dose in a 2 dose scheme":
 	IMMZCom."Number of Pneumococcal Doses Administered to Patient" = 1
 	and IMMZCom."Date Last Pneumococcal Dose Administered to Patient" more than 8 week before Today()
@@ -64,7 +128,7 @@ define "Should vaccinate patient for Pneumococcal because 1 dose in a 2 dose sch
 			)
 		)
 	)
-	
+	*/
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal booster because 2 doses in a 2+1 dose scheme
@@ -77,10 +141,12 @@ define "Should vaccinate patient for Pneumococcal because 1 dose in a 2 dose sch
  * Logic:
  *	 (((("Pneumococcal vaccine immunization history" = "2 dose") and ("Current Patient Age in Months" >= 9 )) and ("Current Patient Age in Months" <= 18 )) and ("Country is using a 2 dose scheme" = true))
  */
+ /*
 define "Should vaccinate patient for Pneumococcal booster because 2 doses in a 2+1 dose scheme":
 	IMMZCom."Number of Pneumococcal Doses Administered to Patient" = 2
 	and IMMZCom."Current Patient Age In Months" between 9 and 18 
 	and IMMZConf."Country is following a 2 dose scheme for Pneumococcal"
+*/
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because No doses in a 3 dose scheme
@@ -93,10 +159,12 @@ define "Should vaccinate patient for Pneumococcal booster because 2 doses in a 2
  * Logic:
  *	 ((("Pneumococcal vaccine immunization history" = " No-doses") and ("Current Patient Age in Weeks" >= 6 )) and ("Country is following a 3 dose scheme" = true))
  */
+ /*
 define "Should vaccinate patient for Pneumococcal because No doses in a 3 dose scheme":
 	IMMZCom."No Pneumococcal Doses Administered to Patient"
 	and IMMZCom."Current Patient Age In Weeks" >= 6
 	and IMMZConf."Country is following a 3 dose scheme for Pneumococcal"
+*/
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because 1 dose in a 3 dose scheme
@@ -109,11 +177,13 @@ define "Should vaccinate patient for Pneumococcal because No doses in a 3 dose s
  * Logic:
  *	 (((("Pneumococcal vaccine immunization history" = " 1 dose") and ("Date last Pneumococcal dose given" >= "4 weeks")) and ("Current Patient Age in Weeks" >= 6 )) and ("Country is following a 3 dose scheme" = true))
  */
+ /*
 define "Should vaccinate patient for Pneumococcal because 1 dose in a 3 dose scheme":
 	IMMZCom."No Pneumococcal Doses Administered to Patient"
 	and IMMZCom."Date Last Pneumococcal Dose Administered to Patient" more than 4 week before Today() 
 	and IMMZCom."Current Patient Age In Weeks" >= 6
 	and IMMZConf."Country is following a 3 dose scheme for Pneumococcal"
+*/
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because 2 doses in a 3 dose scheme
@@ -126,11 +196,13 @@ define "Should vaccinate patient for Pneumococcal because 1 dose in a 3 dose sch
  * Logic:
  *	 (((("Pneumococcal vaccine immunization history" = " 2 doses") and ("Date last Pneumococcal Dose given" >= "4 weeks")) and ("Current Patient Age in Weeks" >= 6 )) and ("Country is following a 3 dose scheme" = true))
  */
+ /*
 define "Should vaccinate patient for Pneumococcal because 2 doses in a 3 dose scheme":
 	IMMZCom."Number of Pneumococcal Doses Administered to Patient" = 2
 	and IMMZCom."Date Last Pneumococcal Dose Administered to Patient" more than 4 week before Today() 
 	and IMMZCom."Current Patient Age In Weeks" >= 6
 	and IMMZConf."Country is following a 3 dose scheme for Pneumococcal"
+*/
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because No doses in a 2 dose scheme
@@ -145,6 +217,7 @@ define "Should vaccinate patient for Pneumococcal because 2 doses in a 3 dose sc
  * Logic:
  *	 ((((("Pneumococcal vaccine immunization history" = "No-doses") and ("Current Patient Age in Years" >= 1)) and ("Current Patient Age in Years" <= 5)) and ("HIV Status" = "Positive")) or (((("Pneumococcal vaccine immunization history" = "No-doses") and ("Current Patient Age in Years" >= 1)) and ("Current Patient Age in Years" <= 5)) and ("Patient has sickle-cell disease" = true)))
  */
+ /*
 define "Should vaccinate patient for Pneumococcal because No doses in a 2 dose scheme":
 	IMMZCom."No Pneumococcal Doses Administered to Patient" 
 	and IMMZCom."Current Patient Age In Years" between 1 and 5
@@ -153,6 +226,7 @@ define "Should vaccinate patient for Pneumococcal because No doses in a 2 dose s
 		or 
 		(IMMZCom."Patient Has Active Sickle-cell disease")
 	)
+*/
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because No doses in a 1 dose scheme
@@ -165,10 +239,12 @@ define "Should vaccinate patient for Pneumococcal because No doses in a 2 dose s
  * Logic:
  *	 ((("Pneumococcal vaccine immunization history" = " No-doses") and ("Current Patient Age in Months" >= 24)) and ("In a setting with a high disease burden and mortality" = true))
  */
+ /*
 define "Should vaccinate patient for Pneumococcal because No doses in a 1 dose scheme":
 	IMMZCom."No Pneumococcal Doses Administered to Patient"
 	and IMMZCom."Current Patient Age In Months" >= 24
 	and IMMZConf."In a setting with a high disease burden and mortality"
+*/
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal Booster in second year of life because HIV infected or preterm who completed 3-dose series before 12 months of age
@@ -181,6 +257,7 @@ define "Should vaccinate patient for Pneumococcal because No doses in a 1 dose s
  * Logic:
  *	 (((((("Pneumococcal vaccine immunization history" = "3 doses") and ("HIV Status" = "Positive")) and ("Patient mother's pregnancy outcome observation" = "preterm")) and ("Age when Patient received 3rd dose in Months" < 12)) and ("Current Patient Age in Months" >= 12)) and ("Current Patient Age in Months" <= 24))
  */
+ /*
 define "Should vaccinate patient for Pneumococcal Booster in second year of life because HIV infected or preterm who completed 3-dose series before 12 months of age":
 	IMMZCom."Number of Pneumococcal Doses Administered to Patient" = 3
 	and // todo: validate with WHO this is supposed to be an OR even though the sheet says AND
@@ -190,4 +267,4 @@ define "Should vaccinate patient for Pneumococcal Booster in second year of life
 	)
 	and IMMZCom."Patient Age at 1st Dose of Pneumococcal in Months" < 12
 	and IMMZCom."Current Patient Age In Months" between 12 and 24
-
+*/
