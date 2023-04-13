@@ -140,7 +140,7 @@ define "Type of Last JE Dose Administered to Patient":
  * @dataElement No Japanese Encephalitis containing Doses Administered to Patient
  */
 define "Number of JE Doses Administered to Patient":
-  Count("JE Doses Administered to Patient" I where ToPositiveInt((singleton from I.protocolApplied).doseNumber) != 0)
+  Count("JE Doses Administered to Patient" I where IMMZCom.ToPositiveInt((singleton from I.protocolApplied).doseNumber) != 0)
 
 
 /*

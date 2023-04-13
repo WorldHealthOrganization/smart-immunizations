@@ -146,14 +146,6 @@ define "No BCG Doses Administered to Patient":
   not exists("BCG Doses Administered to Patient")
 
 
-/** 
-* @dataElement Age of patient at first dose of pneu
- */
-define "Patient Age at 1st Dose of Pneumococcal in Months":
-  First("Pneumococcal Doses Administered to Patient" I 
-    where ToPositiveInt((singleton from I.protocolApplied).doseNumber) = 1
-  return 
-    AgeInWeeksAt(I.occurrence))
 
 /**
  * @dataElement Diptheria containing Doses Administered to Patient

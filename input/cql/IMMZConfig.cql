@@ -51,7 +51,7 @@ define "Population is in conflict zones internally displaced populations and ref
 define "In a setting where there is high transmission of Measles":false
 define "In a setting where there is low transmission of Measles":false
 
-define "Country has Yellow Fever Endemic": false
+define "Country has Yellow Fever Endemic": true
 define "Country recognizes TBE as a priority": true
 
 define "There is a compelling reason to vaccinate infants with Meningococcal between 3 to 9 months old": true

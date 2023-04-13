@@ -101,7 +101,7 @@ define "Date Second Hib Dose Administered to Patient":
  */
 define "Booster Hib Dose Administered to Patient":
   Last(Com."Hib Doses Administered to Patient" I 
-		where I.occurrence after "Date Third Hib Dose Administered to Patient" + 6 months)
+		where I.occurrence after "Date Second Hib Dose Administered to Patient" + 6 months)
 
 /**
  * @dataElement Date Booster Hib dose administered

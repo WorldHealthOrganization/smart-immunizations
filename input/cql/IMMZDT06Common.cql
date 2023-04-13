@@ -28,7 +28,7 @@ define "Pneumococcal Three Primary Dose Schedule":
 	"Dose scheme" = '3p'
 
 define "Pneumococcal Two Primary plus One Booster Schedule":
-	"Dose scheme" = 'ip2p+1v'
+	"Dose scheme" = '2p+1'
 
 /**
  * @dataElement Pneumococcal containing Doses Administered to Patient
@@ -62,6 +62,16 @@ define "No Pneumococcal Doses Administered to Patient":
  */
 define "Date First Pneumococcal Dose Administered to Patient":
   date from (First("Pneumococcal Doses Administered to Patient").occurrence as FHIR.dateTime)
+
+
+/** 
+* @dataElement Age of patient at first dose of pneu
+ */
+define "Patient Age at 1st Dose of Pneumococcal in Months":
+  First("Pneumococcal Doses Administered to Patient" I 
+    where IMMZCom.ToPositiveInt((singleton from I.protocolApplied).doseNumber) = 1
+  return 
+    AgeInWeeksAt(I.occurrence))
 
 /*
  * Rule: Should vaccinate patient for Pneumococcal because no doses in a 2 dose scheme

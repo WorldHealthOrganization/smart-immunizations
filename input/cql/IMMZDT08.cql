@@ -72,6 +72,7 @@ define "Expiration Date for MCV dose":
 	when "Needs Supplimentary MCV Dose"
 		then IMMZCom."Patient HAART Treatment Start Date" + 12 months
 	else null
+	end
 
 define "Overdue Date for MCV dose":
 	null

@@ -85,12 +85,12 @@ define "Expiration Date for Typhoid dose":
 			then case
 			when (
 					("First Typhoid Dose Administered to Patient" is not null and "Date First Typhoid Dose Administered to Patient" >= Now() - 3 years) and
-					("Second Typhoid Dose Administered to Patient" is null or "Date Second Typhoid Dose Administered to Patient" <= Now - 3 years)
+					("Second Typhoid Dose Administered to Patient" is null or "Date Second Typhoid Dose Administered to Patient" <= Now() - 3 years)
 				)
 				then "Date First Typhoid Dose Administered to Patient" + 21 days
 			when (
 					("Second Typhoid Dose Administered to Patient" is not null and "Date Second Typhoid Dose Administered to Patient" >= Now() - 3 years) and
-					("Third Typhoid Dose Administered to Patient" is null or "Date Third Typhoid Dose Administered to Patient" <= Now - 3 years)
+					("Third Typhoid Dose Administered to Patient" is null or "Date Third Typhoid Dose Administered to Patient" <= Now() - 3 years)
 				)
 				then "Date Second Typhoid Dose Administered to Patient" + 21 days
 			else null
