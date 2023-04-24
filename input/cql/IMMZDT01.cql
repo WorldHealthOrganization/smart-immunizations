@@ -93,4 +93,14 @@ define "Schedule Due Date for BCG dose":
 
 define "Should vaccinate patient for BCG":
 	"Provision of the BCG dose" and ("Schedule Due Date for BCG dose" <= (Now()))
-	
+
+define "Reminder Message for BCG dose":
+	if "Provision of the BCG dose"
+	then 'BCG dose is due on ' + ToString("Schedule Due Date for BCG dose")
+	else null	
+
+define "Should Send BCG Reminder":
+	"Reminder Message for BCG dose" is not null
+
+define "BCG Reminder Recipient":
+	Patient
