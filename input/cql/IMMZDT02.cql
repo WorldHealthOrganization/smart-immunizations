@@ -19,7 +19,7 @@ context Patient
  * @dataElement Should provision HepB Dose
  */
 define "Provision of the HepB dose":
-	if ( "Third HepB Dose Administered to Patient" is not null and not "HepB Birth Dose Administered to Patient")
+	if ( "Third HepB Dose Administered to Patient" is not null and ( not "HepB Birth Dose Administered to Patient" or "HepB Birth Dose Administered to Patient" is null ) )
 		or "Fourth HepB Dose Administered to Patient" is not null
 	then false
 	else true
@@ -61,6 +61,18 @@ define "Date Last Valid HepB Dose":
 define "Should vaccinate patient for HepB":
 	"Provision of the HepB dose" and ("Schedule Due Date for HepB dose" <= (Now()))
 
+define "Reminder Message for HepB dose":
+	if "Provision of the HepB dose"
+	then if "Needs HepB Birth Dose"
+		then 'HepB Birth dose is due on ' + ToString("Schedule Due Date for HepB dose") + ' and expires on ' + ToString("Expiration Date for HepB dose")
+		else 'HepB dose ' + ToString("HepB Next Dose Number") + ' of ' + ToString("Number of Required HepB Doses") + ' is due on ' + ToString("Schedule Due Date for HepB dose")
+	else null	
+
+define "Should Send HepB Reminder":
+	"Reminder Message for HepB dose" is not null
+
+define "HepB Reminder Recipient":
+	Patient
 
 /**
  * @dataElement Number of doses required for this patient

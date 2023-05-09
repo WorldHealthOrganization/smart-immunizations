@@ -158,6 +158,27 @@ define "Number of Required bOPV Doses":
 		else null
 	end
 
+define "Reminder Message for IPV dose":
+	if "Provision of the IPV dose"
+	then 'IPV dose ' + ToString("IPV Next Dose Number") + ' of ' + ToString("Number of Required IPV Doses") + ' is due on ' + ToString("Schedule Due Date for IPV dose") 
+		+ if "Expiration Date for IPV dose" is not null then ' and expires on ' + "Expiration Date for IPV dose" else ''
+	else null	
+
+define "Should Send IPV Reminder":
+	"Reminder Message for IPV dose" is not null
+
+define "Polio Reminder Recipient":
+	Patient
+
+define "Reminder Message for bOPV dose":
+	if "Provision of the bOPV dose"
+	then 'bOPV dose ' + ToString("bOPV Next Dose Number") + ' of ' + ToString("Number of Required bOPV Doses") + ' is due on ' + ToString("Schedule Due Date for bOPV dose")
+	  + if "Expiration Date for bOPV dose" is not null then ' and expires on ' + ToString("Expiration Date for bOPV dose") else ''
+	else null	
+
+define "Should Send bOPV Reminder":
+	"Reminder Message for bOPV dose" is not null
+
 /*
  * Rule: Should vaccinate patient for Polio (bOPV) because no doses at birth (up to 2 weeks old) and patient is in a polio-endemic country with high risk of spread
  * Annotations:
