@@ -1,6 +1,6 @@
 Invariant:    IMMZ-C-DE10-1
 Description:  "If Date of Birth is entered, Calculated ages are required."
-Expression:   "iif(DE10.exists(), DE11.exists() and DE12.exists() and DE13.exists(), true)"
+Expression:   "iif(birthDate.exists(), ageInWeeks.exists() and ageInMonths.exists() and ageInYears.exists(), true)"
 Severity:     #error
 
 Invariant:    IMMZ-C-name-1
