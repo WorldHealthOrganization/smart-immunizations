@@ -16,75 +16,75 @@ Description:  "Data elements for the IMMZ.C Register Client Data Dictionary."
 * ^name = "IMMZ_C_Register_Client"
 * obeys IMMZ-C-DE10-1
 * uniqueId 1..1 SU Identifier "Unique identifier for the client, according to the policies applicable to each country. There can be more than one unique identifier used to link records (e.g. national ID, health ID, immunization information system ID, medical record ID)."
-  * ^code[+] = CS.IMMZ.C#DE1
+  * ^code[+] = IMMZ.C#DE1
   * value 1..1
 * name 1..1 string "The full name of the client"
   * obeys IMMZ-C-name-1
-  * ^code[+] = CS.IMMZ.C#DE2
+  * ^code[+] = IMMZ.C#DE2
   * ^code[+] = LNC#54125-0 "Patient name"
   * ^code[+] = SCT#371484003 "Patient name (observable entity)"
 * firstName 0..1 string "Client's first name or given name"
   * obeys IMMZ-C-name-1
-  * ^code[+] = CS.IMMZ.C#DE3
+  * ^code[+] = IMMZ.C#DE3
   * ^code[+] = LNC#45392-8 "First name"
   * ^code[+] = SCT#184095009 "Patient forename (observable entity)"
 * familyName 0..1 string "Client's family name or last name"
   * obeys IMMZ-C-name-1
-  * ^code[+] = CS.IMMZ.C#DE4
+  * ^code[+] = IMMZ.C#DE4
   * ^code[+] = LNC#45394-4 "Last name"
   * ^code[+] = SCT#184096005 "Patient surname (observable entity)"
 * sex 1..1 code "Documentation of a specific instance of sex information for the client"
-  * ^code[+] = CS.IMMZ.C#DE5
+  * ^code[+] = IMMZ.C#DE5
   * ^code[+] = LNC#46098-0	"Sex"
   * ^code[+] = SCT#184100006 "Patient sex (observable entity)"
-* sex from VS.IMMZ.C.DE5 (required)
+* sex from IMMZ.C.DE5 (required)
 * birthDate 0..1 date "Client's date of birth (DOB) if known; if unknown, use assigned DOB for administrative purposes"
-  * ^code[+] = CS.IMMZ.C#DE10
+  * ^code[+] = IMMZ.C#DE10
   * ^code[+] = LNC#21112-8	"Birth date"
   * ^code[+] = SCT#184099003 "Date of birth (observable entity)"
 * ageInWeeks 0..1 integer "The client's calculated age (number of weeks) based on the date of birth (DOB) and the visit date"
-  * ^code[+] = CS.IMMZ.C#DE11
+  * ^code[+] = IMMZ.C#DE11
   * ^code[+] = LNC#63900-5	"Current age or age at death"
 * ageInMonths 0..1 integer "The client's calculated age (number of months) based on the date of birth (DOB) and the visit date"
-  * ^code[+] = CS.IMMZ.C#DE12
+  * ^code[+] = IMMZ.C#DE12
   * ^code[+] = LNC#63900-5	"Current age or age at death"
 * ageInYears 0..1 integer "The client's calculated age (number of years) based on the date of birth (DOB) and the visit date"
-  * ^code[+] = CS.IMMZ.C#DE13
+  * ^code[+] = IMMZ.C#DE13
   * ^code[+] = LNC#63900-5	"Current age or age at death"
 * caregiver 0..* BackboneElement "The client's caregiver (person) which could be next of kin (e.g. partner, husband, mother, sibling, etc.)"
-  * ^code[+] = CS.IMMZ.C#DE14
+  * ^code[+] = IMMZ.C#DE14
   * ^code[+] = SCT#184140000 "Caregiver details (observable entity)"
   * name 1..1 string "The full name of the client's caregiver"
     * obeys IMMZ-C-name-1
-    * ^code[+] = CS.IMMZ.C#DE15
+    * ^code[+] = IMMZ.C#DE15
     * ^code[+] = SCT#184140000 "Caregiver details (observable entity)"
   * firstName 0..1 string "First or given name of the client's caregiver"
     * obeys IMMZ-C-name-1
-    * ^code[+] = CS.IMMZ.C#DE16
+    * ^code[+] = IMMZ.C#DE16
   * familyName 0..1 string "Family name or last name of the client's caregiver"
     * obeys IMMZ-C-name-1
-    * ^code[+] = CS.IMMZ.C#DE17
+    * ^code[+] = IMMZ.C#DE17
 * phone 1..1 string "Client's phone number"
-  * ^code[+] = CS.IMMZ.C#DE18
+  * ^code[+] = IMMZ.C#DE18
   * ^code[+] = LNC#42077-8 "Patient Phone number"
   * ^code[+] = SCT#184103008 "Patient telephone number (observable entity)"
 * administrativeArea 0..1 CodeableConcept "The name of the city/municipality/town/village of where the client lives"
-  * ^code[+] = CS.IMMZ.C#DE19
+  * ^code[+] = IMMZ.C#DE19
   * ^code[+] = LNC#56799-0 "Address"
   * ^code[+] = SCT#184097001 "Patient address (observable entity)"
 * healthWorker 1..1 boolean "Is the client an active and participating health worker. This data element is used mainly for reporting and indicators purposes."
-  * ^code[+] = CS.IMMZ.C#DE20
+  * ^code[+] = IMMZ.C#DE20
   
 
 
 
-CodeSystem:   CS.IMMZ.C
+CodeSystem:   IMMZ.C
 Title:        "IMMZ.C CodeSystem for Data Elements"
 Description:  "CodeSystem for IMMZ.C Data Elements"
 
 * ^experimental = false
 * ^caseSensitive = false
-* ^name = "CS_IMMZ_C"
+* ^name = "IMMZ_C"
 * #DE1 "Unique identifier" "Unique identifier for the client, according to the policies applicable to each country. There can be more than one unique identifier used to link records (e.g. national ID, health ID, immunization information system ID, medical record ID)."
 * #DE2 "Name" "The full name of the client"
 * #DE3 "First name" "Client's first name or given name"
@@ -107,13 +107,13 @@ Description:  "CodeSystem for IMMZ.C Data Elements"
 * #DE20 "Active health worker" "Is the client an active and participating health worker. This data element is used mainly for reporting and indicators purposes."
 
 
-ValueSet:     VS.IMMZ.C.DE5
+ValueSet:     IMMZ.C.DE5
 Title:        "IMMZ.C.DE5 ValueSet for Sex"
 Description:  "ValueSet for Sex for IMMZ.C.DE5."
 
 * ^status = #active
-* ^name = "VS_IMMZ_C_DE5"
-* CS.IMMZ.C#DE6 "Male"
-* CS.IMMZ.C#DE7 "Female"
-* CS.IMMZ.C#DE8 "Biological sex not specified"
-* CS.IMMZ.C#DE9 "Intersex"
+* ^name = "IMMZ_C_DE5"
+* IMMZ.C#DE6 "Male"
+* IMMZ.C#DE7 "Female"
+* IMMZ.C#DE8 "Biological sex not specified"
+* IMMZ.C#DE9 "Intersex"
