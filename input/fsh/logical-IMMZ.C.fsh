@@ -18,22 +18,21 @@ Description:  "Data elements for the IMMZ.C Register Client Data Dictionary."
 * uniqueId 1..1 SU Identifier "Unique identifier for the client, according to the policies applicable to each country. There can be more than one unique identifier used to link records (e.g. national ID, health ID, immunization information system ID, medical record ID)."
   * ^code[+] = CS.IMMZ.C#DE1
   * value 1..1
-* name 1..1 HumanName "The full name of the client"
-  * text 1..1 string "The full name of the client"
-    * obeys IMMZ-C-name-1
-    * ^code[+] = CS.IMMZ.C#DE2
-    * ^code[+] = LNC#54125-0 "Patient name"
-    * ^code[+] = SCT#371484003 "Patient name (observable entity)"
-  * given 0..1 string "Client's first name or given name"
-    * obeys IMMZ-C-name-1
-    * ^code[+] = CS.IMMZ.C#DE3
-    * ^code[+] = LNC#45392-8 "First name"
-    * ^code[+] = SCT#184095009 "Patient forename (observable entity)"
-  * family 0..1 string "Client's family name or last name"
-    * obeys IMMZ-C-name-1
-    * ^code[+] = CS.IMMZ.C#DE4
-    * ^code[+] = LNC#45394-4 "Last name"
-    * ^code[+] = SCT#184096005 "Patient surname (observable entity)"
+* name 1..1 string "The full name of the client"
+  * obeys IMMZ-C-name-1
+  * ^code[+] = CS.IMMZ.C#DE2
+  * ^code[+] = LNC#54125-0 "Patient name"
+  * ^code[+] = SCT#371484003 "Patient name (observable entity)"
+* firstName 0..1 string "Client's first name or given name"
+  * obeys IMMZ-C-name-1
+  * ^code[+] = CS.IMMZ.C#DE3
+  * ^code[+] = LNC#45392-8 "First name"
+  * ^code[+] = SCT#184095009 "Patient forename (observable entity)"
+* familyName 0..1 string "Client's family name or last name"
+  * obeys IMMZ-C-name-1
+  * ^code[+] = CS.IMMZ.C#DE4
+  * ^code[+] = LNC#45394-4 "Last name"
+  * ^code[+] = SCT#184096005 "Patient surname (observable entity)"
 * sex 1..1 code "Documentation of a specific instance of sex information for the client"
   * ^code[+] = CS.IMMZ.C#DE5
   * ^code[+] = LNC#46098-0	"Sex"
@@ -43,41 +42,32 @@ Description:  "Data elements for the IMMZ.C Register Client Data Dictionary."
   * ^code[+] = CS.IMMZ.C#DE10
   * ^code[+] = LNC#21112-8	"Birth date"
   * ^code[+] = SCT#184099003 "Date of birth (observable entity)"
-* ageInWeeks 0..1 Age "The client's calculated age (number of weeks) based on the date of birth (DOB) and the visit date"
+* ageInWeeks 0..1 integer "The client's calculated age (number of weeks) based on the date of birth (DOB) and the visit date"
   * ^code[+] = CS.IMMZ.C#DE11
   * ^code[+] = LNC#63900-5	"Current age or age at death"
-  * value 1..1
-  * unit = "wk" (exactly)
-* ageInMonths 0..1 Age "The client's calculated age (number of months) based on the date of birth (DOB) and the visit date"
+* ageInMonths 0..1 integer "The client's calculated age (number of months) based on the date of birth (DOB) and the visit date"
   * ^code[+] = CS.IMMZ.C#DE12
   * ^code[+] = LNC#63900-5	"Current age or age at death"
-  * value 1..1
-  * unit = "mo" (exactly)
-* ageInYears 0..1 Age "The client's calculated age (number of years) based on the date of birth (DOB) and the visit date"
+* ageInYears 0..1 integer "The client's calculated age (number of years) based on the date of birth (DOB) and the visit date"
   * ^code[+] = CS.IMMZ.C#DE13
   * ^code[+] = LNC#63900-5	"Current age or age at death"
-  * value 1..1
-  * unit = "a" (exactly)
 * caregiver 0..* BackboneElement "The client's caregiver (person) which could be next of kin (e.g. partner, husband, mother, sibling, etc.)"
   * ^code[+] = CS.IMMZ.C#DE14
   * ^code[+] = SCT#184140000 "Caregiver details (observable entity)"
-  * name 1..1 HumanName "The full name of the client's caregiver"
-    * text 1..1 string "The full name of the client's caregiver"
-      * obeys IMMZ-C-name-1
-      * ^code[+] = CS.IMMZ.C#DE15
-      * ^code[+] = SCT#184140000 "Caregiver details (observable entity)"
-    * given 0..1 string "First or given name of the client's caregiver"
-      * obeys IMMZ-C-name-1
-      * ^code[+] = CS.IMMZ.C#DE16
-    * family 0..1 string "Family name or last name of the client's caregiver"
-      * obeys IMMZ-C-name-1
-      * ^code[+] = CS.IMMZ.C#DE17
-* phone 1..1 ContactPoint "Client's phone number"
+  * name 1..1 string "The full name of the client's caregiver"
+    * obeys IMMZ-C-name-1
+    * ^code[+] = CS.IMMZ.C#DE15
+    * ^code[+] = SCT#184140000 "Caregiver details (observable entity)"
+  * firstName 0..1 string "First or given name of the client's caregiver"
+    * obeys IMMZ-C-name-1
+    * ^code[+] = CS.IMMZ.C#DE16
+  * familyName 0..1 string "Family name or last name of the client's caregiver"
+    * obeys IMMZ-C-name-1
+    * ^code[+] = CS.IMMZ.C#DE17
+* phone 1..1 string "Client's phone number"
   * ^code[+] = CS.IMMZ.C#DE18
   * ^code[+] = LNC#42077-8 "Patient Phone number"
   * ^code[+] = SCT#184103008 "Patient telephone number (observable entity)"
-  * system = #phone
-  * value 1..1  
 * administrativeArea 0..1 CodeableConcept "The name of the city/municipality/town/village of where the client lives"
   * ^code[+] = CS.IMMZ.C#DE19
   * ^code[+] = LNC#56799-0 "Address"
