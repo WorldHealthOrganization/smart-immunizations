@@ -141,11 +141,11 @@ RuleSet: ElementMap(source, target, equivalence)
 
 Instance:     IMMZ.C.ConceptMap
 InstanceOf:   ConceptMap
-Description:  "Mapping from IMMZ.C Data Dictionary to other codesystems."
+Description:  "Mapping to and from IMMZ.C Data Dictionary to other codesystems."
 Usage:        #definition
 
 * name = "IMMZ_C_ConceptMap"
-* title = "ConceptMap from IMMZ.C DataElements"
+* title = "ConceptMap to and from IMMZ.C DataElements"
 * status = #active
 * experimental = false
 * date = "2023-08-04"
