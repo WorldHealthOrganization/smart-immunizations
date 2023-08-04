@@ -15,9 +15,8 @@ Description:  "Data elements for the IMMZ.C Register Client Data Dictionary."
 
 * ^name = "IMMZ_C_Register_Client"
 * obeys IMMZ-C-DE10-1
-* uniqueId 1..1 SU Identifier "Unique identifier for the client, according to the policies applicable to each country. There can be more than one unique identifier used to link records (e.g. national ID, health ID, immunization information system ID, medical record ID)."
+* uniqueId 1..1 SU string "Unique identifier for the client, according to the policies applicable to each country. There can be more than one unique identifier used to link records (e.g. national ID, health ID, immunization information system ID, medical record ID)."
   * ^code[+] = IMMZ.C#DE1
-  * value 1..1
 * name 1..1 string "The full name of the client"
   * obeys IMMZ-C-name-1
   * ^code[+] = IMMZ.C#DE2
