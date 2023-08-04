@@ -20,43 +20,43 @@ Description:  "Data elements for the IMMZ.C Register Client Data Dictionary."
 * name 1..1 string "The full name of the client"
   * obeys IMMZ-C-name-1
   * ^code[+] = IMMZ.C#DE2
-  * ^code[+] = LNC#54125-0 "Patient name"
-  * ^code[+] = SCT#371484003 "Patient name (observable entity)"
+  * ^code[+] = $LNC#54125-0 "Patient name"
+  * ^code[+] = $SCT#371484003 "Patient name (observable entity)"
 * firstName 0..1 string "Client's first name or given name"
   * obeys IMMZ-C-name-1
   * ^code[+] = IMMZ.C#DE3
-  * ^code[+] = LNC#45392-8 "First name"
-  * ^code[+] = SCT#184095009 "Patient forename (observable entity)"
+  * ^code[+] = $LNC#45392-8 "First name"
+  * ^code[+] = $SCT#184095009 "Patient forename (observable entity)"
 * familyName 0..1 string "Client's family name or last name"
   * obeys IMMZ-C-name-1
   * ^code[+] = IMMZ.C#DE4
-  * ^code[+] = LNC#45394-4 "Last name"
-  * ^code[+] = SCT#184096005 "Patient surname (observable entity)"
+  * ^code[+] = $LNC#45394-4 "Last name"
+  * ^code[+] = $SCT#184096005 "Patient surname (observable entity)"
 * sex 1..1 code "Documentation of a specific instance of sex information for the client"
   * ^code[+] = IMMZ.C#DE5
-  * ^code[+] = LNC#46098-0	"Sex"
-  * ^code[+] = SCT#184100006 "Patient sex (observable entity)"
+  * ^code[+] = $LNC#46098-0	"Sex"
+  * ^code[+] = $SCT#184100006 "Patient sex (observable entity)"
 * sex from IMMZ.C.DE5 (required)
 * birthDate 0..1 date "Client's date of birth (DOB) if known; if unknown, use assigned DOB for administrative purposes"
   * ^code[+] = IMMZ.C#DE10
-  * ^code[+] = LNC#21112-8	"Birth date"
-  * ^code[+] = SCT#184099003 "Date of birth (observable entity)"
+  * ^code[+] = $LNC#21112-8	"Birth date"
+  * ^code[+] = $SCT#184099003 "Date of birth (observable entity)"
 * ageInWeeks 0..1 integer "The client's calculated age (number of weeks) based on the date of birth (DOB) and the visit date"
   * ^code[+] = IMMZ.C#DE11
-  * ^code[+] = LNC#63900-5	"Current age or age at death"
+  * ^code[+] = $LNC#63900-5	"Current age or age at death"
 * ageInMonths 0..1 integer "The client's calculated age (number of months) based on the date of birth (DOB) and the visit date"
   * ^code[+] = IMMZ.C#DE12
-  * ^code[+] = LNC#63900-5	"Current age or age at death"
+  * ^code[+] = $LNC#63900-5	"Current age or age at death"
 * ageInYears 0..1 integer "The client's calculated age (number of years) based on the date of birth (DOB) and the visit date"
   * ^code[+] = IMMZ.C#DE13
-  * ^code[+] = LNC#63900-5	"Current age or age at death"
+  * ^code[+] = $LNC#63900-5	"Current age or age at death"
 * caregiver 0..* BackboneElement "The client's caregiver (person) which could be next of kin (e.g. partner, husband, mother, sibling, etc.)"
   * ^code[+] = IMMZ.C#DE14
-  * ^code[+] = SCT#184140000 "Caregiver details (observable entity)"
+  * ^code[+] = $SCT#184140000 "Caregiver details (observable entity)"
   * name 1..1 string "The full name of the client's caregiver"
     * obeys IMMZ-C-name-1
     * ^code[+] = IMMZ.C#DE15
-    * ^code[+] = SCT#184140000 "Caregiver details (observable entity)"
+    * ^code[+] = $SCT#184140000 "Caregiver details (observable entity)"
   * firstName 0..1 string "First or given name of the client's caregiver"
     * obeys IMMZ-C-name-1
     * ^code[+] = IMMZ.C#DE16
@@ -65,12 +65,12 @@ Description:  "Data elements for the IMMZ.C Register Client Data Dictionary."
     * ^code[+] = IMMZ.C#DE17
 * phone 1..1 string "Client's phone number"
   * ^code[+] = IMMZ.C#DE18
-  * ^code[+] = LNC#42077-8 "Patient Phone number"
-  * ^code[+] = SCT#184103008 "Patient telephone number (observable entity)"
+  * ^code[+] = $LNC#42077-8 "Patient Phone number"
+  * ^code[+] = $SCT#184103008 "Patient telephone number (observable entity)"
 * administrativeArea 0..1 CodeableConcept "The name of the city/municipality/town/village of where the client lives"
   * ^code[+] = IMMZ.C#DE19
-  * ^code[+] = LNC#56799-0 "Address"
-  * ^code[+] = SCT#184097001 "Patient address (observable entity)"
+  * ^code[+] = $LNC#56799-0 "Address"
+  * ^code[+] = $SCT#184097001 "Patient address (observable entity)"
 * healthWorker 1..1 boolean "Is the client an active and participating health worker. This data element is used mainly for reporting and indicators purposes."
   * ^code[+] = IMMZ.C#DE20
   
@@ -152,14 +152,14 @@ Usage:        #definition
 
 * group[+]
   * source = Canonical(IMMZ.C)
-  * target = GENDER
+  * target = $GENDER
   * insert ElementMap(DE6, male, equivalent)
   * insert ElementMap(DE7, female, equivalent)
   * insert ElementMap(DE8, unknown, equivalent)
   * insert ElementMap(DE9, other, wider)
 
 * group[+]
-  * source = GENDER
+  * source = $GENDER
   * target = Canonical(IMMZ.C)
   * insert ElementMap(male, DE6, equivalent)
   * insert ElementMap(female, DE7, equivalent)
@@ -168,14 +168,14 @@ Usage:        #definition
 
 * group[+]
   * source = Canonical(IMMZ.C)
-  * target = ICD11
+  * target = $ICD11
   * insert ElementMap(DE6, XX2UQ8, equivalent)
   * insert ElementMap(DE7, XX2V25, equivalent)
   * insert ElementMap(DE8, XX2PX3, equivalent)
   * insert ElementMap(DE9, XX45B7, equivalent)
 
 * group[+]
-  * source = ICD11
+  * source = $ICD11
   * target = Canonical(IMMZ.C)
   * insert ElementMap(XX2UQ8, DE6, equivalent)
   * insert ElementMap(XX2V25, DE7, equivalent)
@@ -184,7 +184,7 @@ Usage:        #definition
 
 * group[+]
   * source = Canonical(IMMZ.C)
-  * target = LNC
+  * target = $LNC
   * insert ElementMap(DE2, 54125-0, equivalent)
   * insert ElementMap(DE3, 45392-8, relatedto)
   * insert ElementMap(DE4, 45394-4, relatedto)
@@ -198,7 +198,7 @@ Usage:        #definition
 
 * group[+]
   * source = Canonical(IMMZ.C)
-  * target = SCT
+  * target = $SCT
   * insert ElementMap(DE2, 371484003, equivalent)
   * insert ElementMap(DE3, 184095009, relatedto)
   * insert ElementMap(DE4, 184096005, relatedto)
@@ -214,7 +214,7 @@ Usage:        #definition
   * insert ElementMap(DE19, 184097001, narrower)
 
 * group[+]
-  * source = SCT
+  * source = $SCT
   * target = Canonical(IMMZ.C)
   * insert ElementMap(248153007, DE6, equivalent)
   * insert ElementMap(248152002, DE7, equivalent)
