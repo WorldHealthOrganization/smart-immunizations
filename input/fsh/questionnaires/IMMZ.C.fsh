@@ -52,7 +52,7 @@ Usage: #definition
     * code[+] = $SCT#184096005 "Patient surname (observable entity)"
 
 
-* insert Question(sex, Client name,group,true,false)
+* insert Question(sex, Sex,choice,true,false)
 * item[=]
   * answerValueSet = Canonical(IMMZ.C.DE5)
   * code[+] = IMMZ.C#DE5
