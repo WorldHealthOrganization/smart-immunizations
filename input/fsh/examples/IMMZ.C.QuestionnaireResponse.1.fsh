@@ -3,6 +3,7 @@ InstanceOf: QuestionnaireResponse
 Usage: #example
 * status = #completed
 * authored = "2023-08-08T19:20:20.913Z"
+* questionnaire = Canonical(Questionnaire-IMMZCRegisterClient)
 * item[+]
   * linkId = "uniqueId"
   * text = "Unique identifier for the client"
@@ -25,9 +26,7 @@ Usage: #example
 * item[+]
   * linkId = "sex"
   * text = "Sex"
-  * answer.valueCoding
-    * system = Canonical(IMMZ.C.DE5)
-    * code = #DE6
+  * answer.valueCoding = IMMZ.C#DE6 "Male"
 * item[+]
   * linkId = "birthDate"
   * text = "Birth Date"
@@ -63,6 +62,10 @@ Usage: #example
   * linkId = "phone"
   * text = "Client Phone number"
   * answer.valueString = "406-555-12-12"
+* item[+]
+  * linkId = "administrativeArea"
+  * text = "Administrative Area"
+  * answer.valueCoding = urn:iso:std:iso:3166:-2#KE-30 "Nairobi City"
 * item[+]
   * linkId = "healthWorker"
   * text = "Health Worker"
