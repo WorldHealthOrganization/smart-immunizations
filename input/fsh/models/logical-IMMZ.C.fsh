@@ -78,7 +78,7 @@ Mapping:      IMMZ-C-to-Patient
 Source:       IMMZ-C-register-client
 Target:       "Patient"
 * -> "Patient"
-* uniqueId -> "Patient.identifier"
+* uniqueId -> "Patient.identifier.value"
 * name -> "Patient.name.text"
 * firstName -> "Patient.name.given"
 * familyName -> "Patient.name.family"
@@ -88,8 +88,8 @@ Target:       "Patient"
 * caregiver.name -> "Patient.contact.name.text"
 * caregiver.firstName -> "Patient.contact.name.given"
 * caregiver.familyName -> "Patient.contact.name.family"
-* phone -> "Patient.telecom"
-* administrativeArea -> "Patient.address"
+* phone -> "Patient.telecom.value"
+* administrativeArea -> "Patient.address.text"
 
 
 CodeSystem:   IMMZ.C
@@ -139,16 +139,16 @@ RuleSet: ElementMap(source, target, equivalence)
     * code = #{target}
     * equivalence = #{equivalence}
 
-Instance:     IMMZ.C.ConceptMap
+Instance:     IMMZ.C.SexToAdministrativeGender
 InstanceOf:   ConceptMap
-Description:  "Mapping to and from IMMZ.C Data Dictionary to other codesystems."
+Description:  "Mapping to and from IMMZ.C sex coding to FHIR Administrative Gender."
 Usage:        #definition
 
-* name = "IMMZ_C_ConceptMap"
-* title = "ConceptMap to and from IMMZ.C DataElements"
+* name = "IMMZ_C_SexToAdministrativeGender"
+* title = "ConceptMap to and From IMMZ.C sex to administrative gender"
 * status = #active
 * experimental = false
-* date = "2023-08-04"
+* date = "2023-08-09"
 
 * group[+]
   * source = Canonical(IMMZ.C)
@@ -165,6 +165,18 @@ Usage:        #definition
   * insert ElementMap(female, DE7, equivalent)
   * insert ElementMap(unknown, DE8, equivalent)
   * insert ElementMap(other, DE9, narrower)
+
+
+Instance:     IMMZ.C.ConceptMap
+InstanceOf:   ConceptMap
+Description:  "Mapping to and from IMMZ.C Data Dictionary to other codesystems."
+Usage:        #definition
+
+* name = "IMMZ_C_ConceptMap"
+* title = "ConceptMap to and from IMMZ.C DataElements"
+* status = #active
+* experimental = false
+* date = "2023-08-04"
 
 * group[+]
   * source = Canonical(IMMZ.C)

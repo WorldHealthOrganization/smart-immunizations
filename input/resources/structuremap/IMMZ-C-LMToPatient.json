@@ -1,0 +1,461 @@
+{
+  "resourceType": "StructureMap",
+  "id": "IMMZ-C-LMToPatient",
+  "meta": {
+    "versionId": "3",
+    "lastUpdated": "2023-08-09T20:36:18.157+00:00"
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><pre>map &quot;http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-LMToPatient&quot; = &quot;IMMZ-C-LMToPatient&quot;\r\n\r\n\r\nuses &quot;http://fhir.org/guides/who/smart-immunization/StructureDefinition/IMMZ-C-register-client&quot; alias IMMZC as target\r\nuses &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot; alias Patient as target\r\n\r\ngroup IMMZCToPatient(source immzc : IMMZC, target patient : Patient) {\r\n  immzc.uniqueId as id -&gt; patient.identifier as identifier then {\r\n    id -&gt; identifier.value = id &quot;set identifier value&quot;;\r\n  } &quot;set identifier&quot;;\r\n  immzc -&gt; patient.name as pname then NameToHumanName(immzc, pname) &quot;set name&quot;;\r\n  immzc.sex as sex -&gt; patient.gender = translate(sex, 'http://fhir.org/guides/who/smart-immunization/ConceptMap/IMMZ.C.SexToAdministrativeGender', 'code') &quot;set gender&quot;;\r\n  immzc.birthDate as birthDate -&gt; patient.birthDate = birthDate &quot;set birthDate&quot;;\r\n  immzc.caregiver as caregiver -&gt;  patient.contact as contact,  contact.name as hname then NameToHumanName(caregiver, hname) &quot;set caregiver&quot;;\r\n  immzc.phone as phone -&gt; patient.telecom as telecom then {\r\n    phone as content -&gt;  telecom.value = content,  telecom.system = 'phone' &quot;set phone value&quot;;\r\n  } &quot;set phone&quot;;\r\n  immzc.administrativeArea as area -&gt; patient.address as address then {\r\n    area.coding first as coding -&gt; address then {\r\n      coding.code as content -&gt; address.text = content &quot;set address to code&quot;;\r\n      coding.display as content -&gt; address.text = content &quot;set address to display&quot;;\r\n    } &quot;set address text&quot;;\r\n  } &quot;set administrativeArea&quot;;\r\n}\r\n\r\ngroup NameToHumanNAme(source name, target hname) {\r\n  name.name as fullName -&gt; hname.text = fullName &quot;set full name&quot;;\r\n  name.firstName as firstName -&gt; hname.given = firstName &quot;set first name&quot;;\r\n  name.familyName as familyName -&gt; hname.family = familyName &quot;set family name&quot;;\r\n}\r\n\r\n</pre></div>"
+  },
+  "url": "http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-LMToPatient",
+  "name": "IMMZ-C-LMToPatient",
+  "structure": [
+    {
+      "url": "http://fhir.org/guides/who/smart-immunization/StructureDefinition/IMMZ-C-register-client",
+      "mode": "target",
+      "alias": "IMMZC"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+      "mode": "target",
+      "alias": "Patient"
+    }
+  ],
+  "group": [
+    {
+      "name": "IMMZCToPatient",
+      "typeMode": "none",
+      "input": [
+        {
+          "name": "immzc",
+          "type": "IMMZC",
+          "mode": "source"
+        },
+        {
+          "name": "patient",
+          "type": "Patient",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "name": "set identifier",
+          "source": [
+            {
+              "context": "immzc",
+              "element": "uniqueId",
+              "variable": "id"
+            }
+          ],
+          "target": [
+            {
+              "context": "patient",
+              "contextType": "variable",
+              "element": "identifier",
+              "variable": "identifier"
+            }
+          ],
+          "rule": [
+            {
+              "name": "set identifier value",
+              "source": [
+                {
+                  "context": "id"
+                }
+              ],
+              "target": [
+                {
+                  "context": "identifier",
+                  "contextType": "variable",
+                  "element": "value",
+                  "transform": "copy",
+                  "parameter": [
+                    {
+                      "valueId": "id"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "set name",
+          "source": [
+            {
+              "context": "immzc"
+            }
+          ],
+          "target": [
+            {
+              "context": "patient",
+              "contextType": "variable",
+              "element": "name",
+              "variable": "pname"
+            }
+          ],
+          "dependent": [
+            {
+              "name": "NameToHumanName",
+              "variable": [
+                "immzc",
+                "pname"
+              ],
+              "_variable": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/tools/StructureDefinition/original-item-type",
+                      "valueUrl": "id"
+                    }
+                  ]
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/tools/StructureDefinition/original-item-type",
+                      "valueUrl": "id"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "set gender",
+          "source": [
+            {
+              "context": "immzc",
+              "element": "sex",
+              "variable": "sex"
+            }
+          ],
+          "target": [
+            {
+              "context": "patient",
+              "contextType": "variable",
+              "element": "gender",
+              "transform": "translate",
+              "parameter": [
+                {
+                  "valueId": "sex"
+                },
+                {
+                  "valueString": "http://fhir.org/guides/who/smart-immunization/ConceptMap/IMMZ.C.SexToAdministrativeGender"
+                },
+                {
+                  "valueString": "code"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "set birthDate",
+          "source": [
+            {
+              "context": "immzc",
+              "element": "birthDate",
+              "variable": "birthDate"
+            }
+          ],
+          "target": [
+            {
+              "context": "patient",
+              "contextType": "variable",
+              "element": "birthDate",
+              "transform": "copy",
+              "parameter": [
+                {
+                  "valueId": "birthDate"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "set caregiver",
+          "source": [
+            {
+              "context": "immzc",
+              "element": "caregiver",
+              "variable": "caregiver"
+            }
+          ],
+          "target": [
+            {
+              "context": "patient",
+              "contextType": "variable",
+              "element": "contact",
+              "variable": "contact"
+            },
+            {
+              "context": "contact",
+              "contextType": "variable",
+              "element": "name",
+              "variable": "hname"
+            }
+          ],
+          "dependent": [
+            {
+              "name": "NameToHumanName",
+              "variable": [
+                "caregiver",
+                "hname"
+              ],
+              "_variable": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/tools/StructureDefinition/original-item-type",
+                      "valueUrl": "id"
+                    }
+                  ]
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/tools/StructureDefinition/original-item-type",
+                      "valueUrl": "id"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "set phone",
+          "source": [
+            {
+              "context": "immzc",
+              "element": "phone",
+              "variable": "phone"
+            }
+          ],
+          "target": [
+            {
+              "context": "patient",
+              "contextType": "variable",
+              "element": "telecom",
+              "variable": "telecom"
+            }
+          ],
+          "rule": [
+            {
+              "name": "set phone value",
+              "source": [
+                {
+                  "context": "phone",
+                  "variable": "content"
+                }
+              ],
+              "target": [
+                {
+                  "context": "telecom",
+                  "contextType": "variable",
+                  "element": "value",
+                  "transform": "copy",
+                  "parameter": [
+                    {
+                      "valueId": "content"
+                    }
+                  ]
+                },
+                {
+                  "context": "telecom",
+                  "contextType": "variable",
+                  "element": "system",
+                  "transform": "copy",
+                  "parameter": [
+                    {
+                      "valueString": "phone"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "set administrativeArea",
+          "source": [
+            {
+              "context": "immzc",
+              "element": "administrativeArea",
+              "variable": "area"
+            }
+          ],
+          "target": [
+            {
+              "context": "patient",
+              "contextType": "variable",
+              "element": "address",
+              "variable": "address"
+            }
+          ],
+          "rule": [
+            {
+              "name": "set address text",
+              "source": [
+                {
+                  "context": "area",
+                  "element": "coding",
+                  "listMode": "first",
+                  "variable": "coding"
+                }
+              ],
+              "target": [
+                {
+                  "contextType": "variable",
+                  "transform": "copy",
+                  "parameter": [
+                    {
+                      "valueId": "address"
+                    }
+                  ]
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set address to code",
+                  "source": [
+                    {
+                      "context": "coding",
+                      "element": "code",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "address",
+                      "contextType": "variable",
+                      "element": "text",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "set address to display",
+                  "source": [
+                    {
+                      "context": "coding",
+                      "element": "display",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "address",
+                      "contextType": "variable",
+                      "element": "text",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "NameToHumanNAme",
+      "typeMode": "none",
+      "input": [
+        {
+          "name": "name",
+          "mode": "source"
+        },
+        {
+          "name": "hname",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "name": "set full name",
+          "source": [
+            {
+              "context": "name",
+              "element": "name",
+              "variable": "fullName"
+            }
+          ],
+          "target": [
+            {
+              "context": "hname",
+              "contextType": "variable",
+              "element": "text",
+              "transform": "copy",
+              "parameter": [
+                {
+                  "valueId": "fullName"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "set first name",
+          "source": [
+            {
+              "context": "name",
+              "element": "firstName",
+              "variable": "firstName"
+            }
+          ],
+          "target": [
+            {
+              "context": "hname",
+              "contextType": "variable",
+              "element": "given",
+              "transform": "copy",
+              "parameter": [
+                {
+                  "valueId": "firstName"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "set family name",
+          "source": [
+            {
+              "context": "name",
+              "element": "familyName",
+              "variable": "familyName"
+            }
+          ],
+          "target": [
+            {
+              "context": "hname",
+              "contextType": "variable",
+              "element": "family",
+              "transform": "copy",
+              "parameter": [
+                {
+                  "valueId": "familyName"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

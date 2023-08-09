@@ -1,0 +1,578 @@
+{
+  "resourceType": "StructureMap",
+  "id": "IMMZ-C-QRToPatient",
+  "meta": {
+    "versionId": "6",
+    "lastUpdated": "2023-08-09T20:36:05.234+00:00"
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><pre>map &quot;http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-QRToPatient&quot; = &quot;IMMZ-C-QRToPatient&quot;\r\n\r\n\r\nuses &quot;http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse&quot; alias QResp as source\r\nuses &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot; alias Patient as target\r\n\r\ngroup QRespToIMMZC(source qr : QResp, target patient : Patient) {\r\n  qr.item as item then {\r\n    item.answer first as answer where item.linkId = 'uniqueId' -&gt; patient.identifier as identifier then {\r\n      answer.valueString as content -&gt; identifier.value = content &quot;set identifier&quot;;\r\n    } &quot;first answer for identifier&quot;;\r\n    item as name where item.linkId = 'name' -&gt; patient.name as pname then NameToHumanName(name, pname) &quot;set names&quot;;\r\n    item.answer first as answer where item.linkId = 'sex' then {\r\n      answer.valueCoding as coding then {\r\n        coding.code as content -&gt; patient.gender = translate(content, 'http://fhir.org/guides/who/smart-immunization/ConceptMap/IMMZ.C.SexToAdministrativeGender', 'code') &quot;set sex&quot;;\r\n      } &quot;process coding&quot;;\r\n    } &quot;first answer for identifier&quot;;\r\n    item.answer first as answer where item.linkId = 'birthDate' then {\r\n      answer.valueDate as content -&gt; patient.birthDate = content &quot;set birthDate&quot;;\r\n    } &quot;first answer for birthDate&quot;;\r\n    item as caregiver where item.linkId = 'caregiver' -&gt;  patient.contact as contact,  contact.name as hname then NameToHumanName(caregiver, hname) &quot;set caregiver&quot;;\r\n    item.answer first as answer where item.linkId = 'phone' -&gt; patient.telecom as telecom then {\r\n      answer.valueString as content -&gt;  telecom.value = content,  telecom.system = 'phone' &quot;set phone&quot;;\r\n    } &quot;first answer for phone&quot;;\r\n    item.answer first as answer where item.linkId = 'administrativeArea' -&gt; patient.address as address then {\r\n      answer.valueCoding first as coding -&gt; address then {\r\n        coding.code as content -&gt; address.text = content &quot;set address to code&quot;;\r\n        coding.display as content -&gt; address.text = content &quot;set address to display&quot;;\r\n      } &quot;set address text&quot;;\r\n    } &quot;first answer for administrativeArea&quot;;\r\n  } &quot;process items&quot;;\r\n}\r\n\r\ngroup NameToHumanName(source name, target hname) {\r\n  name.item as item then {\r\n    item.answer first as answer where item.linkId = 'fullName' then {\r\n      answer.valueString as content -&gt; hname.text = content &quot;set full name&quot;;\r\n    } &quot;first answer for full name&quot;;\r\n    item.answer first as answer where item.linkId = 'firstName' then {\r\n      answer.valueString as content -&gt; hname.given = content &quot;set first name&quot;;\r\n    } &quot;first answer for first name&quot;;\r\n    item.answer first as answer where item.linkId = 'familyName' then {\r\n      answer.valueString as content -&gt; hname.family = content &quot;set family name&quot;;\r\n    } &quot;first answer for family name&quot;;\r\n  } &quot;process name items&quot;;\r\n}\r\n\r\n</pre></div>"
+  },
+  "url": "http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-QRToPatient",
+  "name": "IMMZ-C-QRToPatient",
+  "structure": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+      "mode": "source",
+      "alias": "QResp"
+    },
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+      "mode": "target",
+      "alias": "Patient"
+    }
+  ],
+  "group": [
+    {
+      "name": "QRespToIMMZC",
+      "typeMode": "none",
+      "input": [
+        {
+          "name": "qr",
+          "type": "QResp",
+          "mode": "source"
+        },
+        {
+          "name": "patient",
+          "type": "Patient",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "name": "process items",
+          "source": [
+            {
+              "context": "qr",
+              "element": "item",
+              "variable": "item"
+            }
+          ],
+          "rule": [
+            {
+              "name": "first answer for identifier",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'uniqueId'"
+                }
+              ],
+              "target": [
+                {
+                  "context": "patient",
+                  "contextType": "variable",
+                  "element": "identifier",
+                  "variable": "identifier"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set identifier",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueString",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "identifier",
+                      "contextType": "variable",
+                      "element": "value",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "set names",
+              "source": [
+                {
+                  "context": "item",
+                  "variable": "name",
+                  "condition": "item.linkId = 'name'"
+                }
+              ],
+              "target": [
+                {
+                  "context": "patient",
+                  "contextType": "variable",
+                  "element": "name",
+                  "variable": "pname"
+                }
+              ],
+              "dependent": [
+                {
+                  "name": "NameToHumanName",
+                  "variable": [
+                    "name",
+                    "pname"
+                  ],
+                  "_variable": [
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/tools/StructureDefinition/original-item-type",
+                          "valueUrl": "id"
+                        }
+                      ]
+                    },
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/tools/StructureDefinition/original-item-type",
+                          "valueUrl": "id"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for identifier",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'sex'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "process coding",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueCoding",
+                      "variable": "coding"
+                    }
+                  ],
+                  "rule": [
+                    {
+                      "name": "set sex",
+                      "source": [
+                        {
+                          "context": "coding",
+                          "element": "code",
+                          "variable": "content"
+                        }
+                      ],
+                      "target": [
+                        {
+                          "context": "patient",
+                          "contextType": "variable",
+                          "element": "gender",
+                          "transform": "translate",
+                          "parameter": [
+                            {
+                              "valueId": "content"
+                            },
+                            {
+                              "valueString": "http://fhir.org/guides/who/smart-immunization/ConceptMap/IMMZ.C.SexToAdministrativeGender"
+                            },
+                            {
+                              "valueString": "code"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for birthDate",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'birthDate'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set birthDate",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueDate",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "patient",
+                      "contextType": "variable",
+                      "element": "birthDate",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "set caregiver",
+              "source": [
+                {
+                  "context": "item",
+                  "variable": "caregiver",
+                  "condition": "item.linkId = 'caregiver'"
+                }
+              ],
+              "target": [
+                {
+                  "context": "patient",
+                  "contextType": "variable",
+                  "element": "contact",
+                  "variable": "contact"
+                },
+                {
+                  "context": "contact",
+                  "contextType": "variable",
+                  "element": "name",
+                  "variable": "hname"
+                }
+              ],
+              "dependent": [
+                {
+                  "name": "NameToHumanName",
+                  "variable": [
+                    "caregiver",
+                    "hname"
+                  ],
+                  "_variable": [
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/tools/StructureDefinition/original-item-type",
+                          "valueUrl": "id"
+                        }
+                      ]
+                    },
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/tools/StructureDefinition/original-item-type",
+                          "valueUrl": "id"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for phone",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'phone'"
+                }
+              ],
+              "target": [
+                {
+                  "context": "patient",
+                  "contextType": "variable",
+                  "element": "telecom",
+                  "variable": "telecom"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set phone",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueString",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "telecom",
+                      "contextType": "variable",
+                      "element": "value",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    },
+                    {
+                      "context": "telecom",
+                      "contextType": "variable",
+                      "element": "system",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueString": "phone"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for administrativeArea",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'administrativeArea'"
+                }
+              ],
+              "target": [
+                {
+                  "context": "patient",
+                  "contextType": "variable",
+                  "element": "address",
+                  "variable": "address"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set address text",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueCoding",
+                      "listMode": "first",
+                      "variable": "coding"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "contextType": "variable",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "address"
+                        }
+                      ]
+                    }
+                  ],
+                  "rule": [
+                    {
+                      "name": "set address to code",
+                      "source": [
+                        {
+                          "context": "coding",
+                          "element": "code",
+                          "variable": "content"
+                        }
+                      ],
+                      "target": [
+                        {
+                          "context": "address",
+                          "contextType": "variable",
+                          "element": "text",
+                          "transform": "copy",
+                          "parameter": [
+                            {
+                              "valueId": "content"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "set address to display",
+                      "source": [
+                        {
+                          "context": "coding",
+                          "element": "display",
+                          "variable": "content"
+                        }
+                      ],
+                      "target": [
+                        {
+                          "context": "address",
+                          "contextType": "variable",
+                          "element": "text",
+                          "transform": "copy",
+                          "parameter": [
+                            {
+                              "valueId": "content"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "NameToHumanName",
+      "typeMode": "none",
+      "input": [
+        {
+          "name": "name",
+          "mode": "source"
+        },
+        {
+          "name": "hname",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "name": "process name items",
+          "source": [
+            {
+              "context": "name",
+              "element": "item",
+              "variable": "item"
+            }
+          ],
+          "rule": [
+            {
+              "name": "first answer for full name",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'fullName'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set full name",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueString",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "hname",
+                      "contextType": "variable",
+                      "element": "text",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for first name",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'firstName'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set first name",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueString",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "hname",
+                      "contextType": "variable",
+                      "element": "given",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for family name",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'familyName'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set family name",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueString",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "hname",
+                      "contextType": "variable",
+                      "element": "family",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
