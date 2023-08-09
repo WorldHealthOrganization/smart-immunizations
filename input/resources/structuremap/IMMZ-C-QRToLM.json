@@ -1,0 +1,661 @@
+{
+  "resourceType": "StructureMap",
+  "id": "IMMZ-C-QRToLM",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><pre>map &quot;http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-QRToLM&quot; = &quot;IMMZ-C-QRToLM&quot;\r\n\r\n\r\nuses &quot;http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse&quot; alias QResp as source\r\nuses &quot;http://fhir.org/guides/who/smart-immunization/StructureDefinition/IMMZ-C-register-client&quot; alias IMMZC as target\r\n\r\ngroup QRespToIMMZC(source qr : QResp, target immzc : IMMZC) {\r\n  qr.item as item then {\r\n    item.answer first as answer where item.linkId = 'uniqueId' then {\r\n      answer.valueString as content -&gt; immzc.uniqueId = content &quot;set identifier&quot;;\r\n    } &quot;first answer for identifier&quot;;\r\n    item as name where item.linkId = 'name' then NameToIMMZC(name, immzc) &quot;set names&quot;;\r\n    item.answer first as answer where item.linkId = 'sex' then {\r\n      answer.valueCoding as coding then {\r\n        coding.code as content -&gt; immzc.sex = content &quot;set sex&quot;;\r\n      } &quot;process coding&quot;;\r\n    } &quot;first answer for identifier&quot;;\r\n    item.answer first as answer where item.linkId = 'birthDate' then {\r\n      answer.valueDate as content -&gt; immzc.birthDate = content &quot;set birthDate&quot;;\r\n    } &quot;first answer for birthDate&quot;;\r\n    item.answer first as answer where item.linkId = 'ageInWeeks' then {\r\n      answer.valueInteger as content -&gt; immzc.ageInWeeks = content &quot;set ageInWeeks&quot;;\r\n    } &quot;first answer for ageInWeeks&quot;;\r\n    item.answer first as answer where item.linkId = 'ageInMonths' then {\r\n      answer.valueInteger as content -&gt; immzc.ageInMonths = content &quot;set ageInMonths&quot;;\r\n    } &quot;first answer for ageInMonths&quot;;\r\n    item.answer first as answer where item.linkId = 'ageInYears' then {\r\n      answer.valueInteger as content -&gt; immzc.ageInWeeks = content &quot;set ageInYears&quot;;\r\n    } &quot;first answer for ageInYears&quot;;\r\n    item as caregiver where item.linkId = 'caregiver' -&gt; immzc.caregiver as caretgt then NameToIMMZC(caregiver, caretgt) &quot;set caregiver&quot;;\r\n    item.answer first as answer where item.linkId = 'phone' then {\r\n      answer.valueString as content -&gt; immzc.phone = content &quot;set phone&quot;;\r\n    } &quot;first answer for phone&quot;;\r\n    item.answer first as answer where item.linkId = 'administrativeArea' then {\r\n      answer.valueCoding as coding -&gt; immzc.administrativeArea as area then {\r\n        coding -&gt; area.coding = coding &quot;set coding value&quot;;\r\n        coding.display as display -&gt; area.text = display &quot;set display&quot;;\r\n      } &quot;set coding&quot;;\r\n    } &quot;first answer for administrativeArea&quot;;\r\n    item.answer first as answer where item.linkId = 'healthWorker' then {\r\n      answer.valueBoolean as content -&gt; immzc.healthWorker = content &quot;set healthWorker&quot;;\r\n    } &quot;first answer for healthWorker&quot;;\r\n  } &quot;process items&quot;;\r\n}\r\n\r\ngroup NameToIMMZC(source name, target immzc) {\r\n  name.item as item then {\r\n    item.answer first as answer where item.linkId = 'fullName' then {\r\n      answer.valueString as content -&gt; immzc.name = content &quot;set full name&quot;;\r\n    } &quot;first answer for full name&quot;;\r\n    item.answer first as answer where item.linkId = 'firstName' then {\r\n      answer.valueString as content -&gt; immzc.firstName = content &quot;set first name&quot;;\r\n    } &quot;first answer for first name&quot;;\r\n    item.answer first as answer where item.linkId = 'familyName' then {\r\n      answer.valueString as content -&gt; immzc.familyName = content &quot;set family name&quot;;\r\n    } &quot;first answer for family name&quot;;\r\n  } &quot;process name items&quot;;\r\n}\r\n\r\n</pre></div>"
+  },
+  "url": "http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-QRToLM",
+  "name": "IMMZ-C-QRToLM",
+  "structure": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+      "mode": "source",
+      "alias": "QResp"
+    },
+    {
+      "url": "http://fhir.org/guides/who/smart-immunization/StructureDefinition/IMMZ-C-register-client",
+      "mode": "target",
+      "alias": "IMMZC"
+    }
+  ],
+  "group": [
+    {
+      "name": "QRespToIMMZC",
+      "typeMode": "none",
+      "input": [
+        {
+          "name": "qr",
+          "type": "QResp",
+          "mode": "source"
+        },
+        {
+          "name": "immzc",
+          "type": "IMMZC",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "name": "process items",
+          "source": [
+            {
+              "context": "qr",
+              "element": "item",
+              "variable": "item"
+            }
+          ],
+          "rule": [
+            {
+              "name": "first answer for identifier",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'uniqueId'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set identifier",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueString",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "immzc",
+                      "contextType": "variable",
+                      "element": "uniqueId",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "set names",
+              "source": [
+                {
+                  "context": "item",
+                  "variable": "name",
+                  "condition": "item.linkId = 'name'"
+                }
+              ],
+              "dependent": [
+                {
+                  "name": "NameToIMMZC",
+                  "variable": [
+                    "name",
+                    "immzc"
+                  ],
+                  "_variable": [
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/tools/StructureDefinition/original-item-type",
+                          "valueUrl": "id"
+                        }
+                      ]
+                    },
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/tools/StructureDefinition/original-item-type",
+                          "valueUrl": "id"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for identifier",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'sex'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "process coding",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueCoding",
+                      "variable": "coding"
+                    }
+                  ],
+                  "rule": [
+                    {
+                      "name": "set sex",
+                      "source": [
+                        {
+                          "context": "coding",
+                          "element": "code",
+                          "variable": "content"
+                        }
+                      ],
+                      "target": [
+                        {
+                          "context": "immzc",
+                          "contextType": "variable",
+                          "element": "sex",
+                          "transform": "copy",
+                          "parameter": [
+                            {
+                              "valueId": "content"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for birthDate",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'birthDate'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set birthDate",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueDate",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "immzc",
+                      "contextType": "variable",
+                      "element": "birthDate",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for ageInWeeks",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'ageInWeeks'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set ageInWeeks",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueInteger",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "immzc",
+                      "contextType": "variable",
+                      "element": "ageInWeeks",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for ageInMonths",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'ageInMonths'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set ageInMonths",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueInteger",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "immzc",
+                      "contextType": "variable",
+                      "element": "ageInMonths",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for ageInYears",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'ageInYears'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set ageInYears",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueInteger",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "immzc",
+                      "contextType": "variable",
+                      "element": "ageInWeeks",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "set caregiver",
+              "source": [
+                {
+                  "context": "item",
+                  "variable": "caregiver",
+                  "condition": "item.linkId = 'caregiver'"
+                }
+              ],
+              "target": [
+                {
+                  "context": "immzc",
+                  "contextType": "variable",
+                  "element": "caregiver",
+                  "variable": "caretgt"
+                }
+              ],
+              "dependent": [
+                {
+                  "name": "NameToIMMZC",
+                  "variable": [
+                    "caregiver",
+                    "caretgt"
+                  ],
+                  "_variable": [
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/tools/StructureDefinition/original-item-type",
+                          "valueUrl": "id"
+                        }
+                      ]
+                    },
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/tools/StructureDefinition/original-item-type",
+                          "valueUrl": "id"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for phone",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'phone'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set phone",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueString",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "immzc",
+                      "contextType": "variable",
+                      "element": "phone",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for administrativeArea",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'administrativeArea'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set coding",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueCoding",
+                      "variable": "coding"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "immzc",
+                      "contextType": "variable",
+                      "element": "administrativeArea",
+                      "variable": "area"
+                    }
+                  ],
+                  "rule": [
+                    {
+                      "name": "set coding value",
+                      "source": [
+                        {
+                          "context": "coding"
+                        }
+                      ],
+                      "target": [
+                        {
+                          "context": "area",
+                          "contextType": "variable",
+                          "element": "coding",
+                          "transform": "copy",
+                          "parameter": [
+                            {
+                              "valueId": "coding"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "set display",
+                      "source": [
+                        {
+                          "context": "coding",
+                          "element": "display",
+                          "variable": "display"
+                        }
+                      ],
+                      "target": [
+                        {
+                          "context": "area",
+                          "contextType": "variable",
+                          "element": "text",
+                          "transform": "copy",
+                          "parameter": [
+                            {
+                              "valueId": "display"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for healthWorker",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'healthWorker'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set healthWorker",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueBoolean",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "immzc",
+                      "contextType": "variable",
+                      "element": "healthWorker",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "NameToIMMZC",
+      "typeMode": "none",
+      "input": [
+        {
+          "name": "name",
+          "mode": "source"
+        },
+        {
+          "name": "immzc",
+          "mode": "target"
+        }
+      ],
+      "rule": [
+        {
+          "name": "process name items",
+          "source": [
+            {
+              "context": "name",
+              "element": "item",
+              "variable": "item"
+            }
+          ],
+          "rule": [
+            {
+              "name": "first answer for full name",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'fullName'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set full name",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueString",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "immzc",
+                      "contextType": "variable",
+                      "element": "name",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for first name",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'firstName'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set first name",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueString",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "immzc",
+                      "contextType": "variable",
+                      "element": "firstName",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "first answer for family name",
+              "source": [
+                {
+                  "context": "item",
+                  "element": "answer",
+                  "listMode": "first",
+                  "variable": "answer",
+                  "condition": "item.linkId = 'familyName'"
+                }
+              ],
+              "rule": [
+                {
+                  "name": "set family name",
+                  "source": [
+                    {
+                      "context": "answer",
+                      "element": "valueString",
+                      "variable": "content"
+                    }
+                  ],
+                  "target": [
+                    {
+                      "context": "immzc",
+                      "contextType": "variable",
+                      "element": "familyName",
+                      "transform": "copy",
+                      "parameter": [
+                        {
+                          "valueId": "content"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

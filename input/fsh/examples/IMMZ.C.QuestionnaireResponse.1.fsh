@@ -61,7 +61,7 @@ Usage: #example
 * item[+]
   * linkId = "phone"
   * text = "Client Phone number"
-  * answer.valueString = "406-555-12-12"
+  * answer.valueString = "406-555-1212"
 * item[+]
   * linkId = "administrativeArea"
   * text = "Administrative Area"

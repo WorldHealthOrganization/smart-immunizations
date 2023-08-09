@@ -1,0 +1,27 @@
+
+@host = http://localhost:8080/matchbox/fhir
+
+### Post the StructureMap with transform included
+PUT {{host}}/StructureMap/IMMZ-C-QRToLM HTTP/1.1
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/maps-src/IMMZ-C-QRToLM.map
+
+### Test Transform of QR to LM
+### after running sushi
+POST {{host}}/StructureMap/$transform?source=http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-QRToLM
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: application/fhir+json;fhirVersion=4.0
+
+< ../fsh-generated/resources/QuestionnaireResponse-Example.IMMZ.C.QuestionnaireResponse.1.json
+
+### POST Logical Model
+PUT {{host}}/StructureDefinition/IMMZ-C-register-client HTTP/1.1
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: application/fhir+json;fhirVersion=4.0
+
+< ../fsh-generated/resources/StructureDefinition-IMMZ-C-register-client.json
+
+### Get structure def
+GET {{host}}/StructureDefinition/IMMZ-C-register-client HTTP/1.1
