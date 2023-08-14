@@ -65,21 +65,6 @@ Usage: #definition
   * code[+] = $LNC#21112-8	"Birth date"
   * code[+] = $SCT#184099003 "Date of birth (observable entity)"
 
-* insert Question(ageInWeeks, Age in Weeks,integer,false,false)
-* item[=]
-  * code[+] = IMMZ.C#DE11
-  * code[+] = $LNC#63900-5	"Current age or age at death"
-
-* insert Question(ageInMonths, Age in Months,integer,false,false)
-* item[=]
-  * code[+] = IMMZ.C#DE12
-  * code[+] = $LNC#63900-5	"Current age or age at death"
-
-* insert Question(ageInYears, Age in Years,integer,false,false)
-* item[=]
-  * code[+] = IMMZ.C#DE13
-  * code[+] = $LNC#63900-5	"Current age or age at death"
-
 * insert Question(caregiver, Care giver name,group,true,false)
 * item[=]
   * code[+] = IMMZ.C#DE14

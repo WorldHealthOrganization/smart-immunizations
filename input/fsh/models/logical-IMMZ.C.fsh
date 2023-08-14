@@ -41,15 +41,6 @@ Description:  "Data elements for the IMMZ.C Register Client Data Dictionary."
   * ^code[+] = IMMZ.C#DE10
   * ^code[+] = $LNC#21112-8	"Birth date"
   * ^code[+] = $SCT#184099003 "Date of birth (observable entity)"
-* ageInWeeks 0..1 integer "The client's calculated age (number of weeks) based on the date of birth (DOB) and the visit date"
-  * ^code[+] = IMMZ.C#DE11
-  * ^code[+] = $LNC#63900-5	"Current age or age at death"
-* ageInMonths 0..1 integer "The client's calculated age (number of months) based on the date of birth (DOB) and the visit date"
-  * ^code[+] = IMMZ.C#DE12
-  * ^code[+] = $LNC#63900-5	"Current age or age at death"
-* ageInYears 0..1 integer "The client's calculated age (number of years) based on the date of birth (DOB) and the visit date"
-  * ^code[+] = IMMZ.C#DE13
-  * ^code[+] = $LNC#63900-5	"Current age or age at death"
 * caregiver 0..* BackboneElement "The client's caregiver (person) which could be next of kin (e.g. partner, husband, mother, sibling, etc.)"
   * ^code[+] = IMMZ.C#DE14
   * ^code[+] = $SCT#184140000 "Caregiver details (observable entity)"
@@ -109,9 +100,7 @@ Description:  "CodeSystem for IMMZ.C Data Elements"
 * #DE8 "Biological sex not specified" "Client's biological sex is not specified"
 * #DE9 "Intersex" "Client's biological sex is intersex"
 * #DE10 "Date of birth" "Client's date of birth (DOB) if known; if unknown, use assigned DOB for administrative purposes"
-* #DE11 "Age in weeks" "The client's calculated age (number of weeks) based on the date of birth (DOB) and the visit date"
-* #DE12 "Age in months" "The client's calculated age (number of months) based on the date of birth (DOB) and the visit date"
-* #DE13 "Age in years" "The client's calculated age (number of years) based on the date of birth (DOB) and the visit date"
+* #DE13 "Age" "The client's calculated age (presented as number of years, months, days) based on the date of birth (DOB) and the visit date"
 * #DE14 "Caregivers (multiple)" "The client's caregiver (person) which could be next of kin (e.g. partner, husband, mother, sibling, etc.)"
 * #DE15 "Caregiver's full name" "The full name of the client's caregiver"
 * #DE16 "Caregiver's first name" "First or given name of the client's caregiver"
@@ -131,13 +120,6 @@ Description:  "ValueSet for Sex for IMMZ.C.DE5."
 * IMMZ.C#DE7 "Female"
 * IMMZ.C#DE8 "Biological sex not specified"
 * IMMZ.C#DE9 "Intersex"
-
-RuleSet: ElementMap(source, target, equivalence)
-* element[+]
-  * code = #{source}
-  * target[+]
-    * code = #{target}
-    * equivalence = #{equivalence}
 
 Instance:     IMMZ.C.SexToAdministrativeGender
 InstanceOf:   ConceptMap
@@ -202,8 +184,6 @@ Usage:        #definition
   * insert ElementMap(DE4, 45394-4, relatedto)
   * insert ElementMap(DE5, 46098-0, equivalent)
   * insert ElementMap(DE10, 21112-8, equivalent)
-  * insert ElementMap(DE11, 63900-5, wider)
-  * insert ElementMap(DE12, 63900-5, wider)
   * insert ElementMap(DE13, 63900-5, wider)
   * insert ElementMap(DE18, 42077-8, equivalent)
   * insert ElementMap(DE19, 56799-0, narrower)
