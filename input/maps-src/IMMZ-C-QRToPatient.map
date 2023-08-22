@@ -1,8 +1,24 @@
 map "http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-QRToPatient" = "IMMZ-C-QRToPatient"
 
 uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QResp as source
+uses "http://fhir.org/guides/who/smart-immunization/StructureDefinition/IMMZ-C-register-client" alias IMMZC as produced
 uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as target
 
+imports "http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-QRToLM"
+imports "http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-LMToPatient"
+
+group QRestToIMMZC (
+  source qr : QResp,
+  target patient: Patient
+) {
+  qr -> create("http://fhir.org/guides/who/smart-immunization/StructureDefinition/IMMZ-C-register-client") as model 
+  then{
+    qr -> model then QRespToIMMZC( qr, model) "QRtoLM";
+    qr -> patient then IMMZCToPatient( model, patient ) "LMtoPatient";
+  } "QRtoPatient";
+}
+
+/*
 group QRespToIMMZC (
   source qr : QResp,
   target patient : Patient
@@ -65,3 +81,4 @@ group NameToHumanName(
 
   } "process name items";
 }
+*/
