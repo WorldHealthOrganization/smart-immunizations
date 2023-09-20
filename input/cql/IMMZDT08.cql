@@ -21,18 +21,20 @@ parameter "Immune reconstitution was achieved" Boolean default false
 // End Skeleton CQL
 context Patient
 
+
 /**
  * @dataElement Should provision MCV Dose
  */
 define "Provision of the MCV dose":
 	not("MCV Dose Contraindicated") 
-  and IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks <= Now()
+  and if exists(IMMZCom."Live Attenuated Vaccines") then IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks <= Now() else true
 	and (
 		"Second MCV Dose Administered to Patient" is null or
 		(
 			"Needs Supplementary MCV Dose" and "Supplementary MCV Dose Administered to Patient" is null
 		)
 	)
+	and IMMZCom."Current Patient Age In Years" < 15
 
 define "Schedule Due Date for MCV dose":
 	if "Expected Due Date for MCV dose" > IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks
