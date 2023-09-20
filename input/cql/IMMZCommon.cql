@@ -61,10 +61,12 @@ or [Condition] C
       where (C.code as CodeableConcept) in Wcon."Pregnancy Status Pregnant"
 */
 
+/*
 define "Patient Has Active Sickle-cell disease":
   exists([Condition: code = IMMZc."Sickle-cell Disease Condition"] C
   where C.clinicalStatus in FC."Active Condition"
   and C.abatement is null)
+*/
 
 define "Pregnant Condition":
   [Condition] C
@@ -76,9 +78,11 @@ define "Pregnant":
   or exists ("Pregnant Condition")
 
 //Seronegative. Relevant for Dengue 
+/*
 define "Individual is Seronegative for Dengue":
   [Observation] O
     where (O.value as CodeableConcept) in IMMZc.Seronegative
+*/
 
 //Total number of births including abortions, stillbirths and live births.
 define "Patient mother's pregnancy outcome observation":
@@ -167,6 +171,45 @@ define "Current Patient Age In Months":
  */
 define "Patient Biological Sex":
   Patient.gender
+
+define "Patient HAART Treatment Start Date":
+  Last([MedicationAdministration] A 
+    where 
+      ExtractMedicationCode(A.medication) in IMMZc."ARV Drugs" 
+      and A.status in { 'active', 'complete' }
+      and ExtractMedicationInitiationDate(A.effective) less than 12 'month' before Today()
+      return ExtractMedicationInitiationDate(A.effective))
+
+define "Patient HAART Treatment Started 6 to 12 Months Ago":
+  "Patient HAART Treatment Start Date" between Now() - 12 months and Now() - 6 months
+
+/**
+ * @dataElement The patient has a medication record which indicates that they are receiving ARV
+ */
+define "Patient is receiving HAART":
+ //exists([MedicationStatement] S where ExtractMedicationCode(S.medication) in IMMZc."ARV Drugs" and S.status = 'active')
+ //or 
+ exists([MedicationAdministration] A where ExtractMedicationCode(A.medication) in IMMZc."ARV Drugs" and A.status = 'in-progress')
+ //union 
+ //
+
+/*
+  @dataElement HIV Status observations of the patient most recent first
+*/
+define "HIV Status":
+  [Observation: IMMZc."HIV status"] O
+    where O.status in { 'final', 'amended', 'corrected' }
+      and Coalesce(WCom.ModifierExtension(O, 'who-notDone').value, false) is false
+    return O.value as FHIR.CodeableConcept
+
+/*
+  @dataElement Date and time of last live attenuated vaccine
+*/
+define "Live Attenuated Vaccines":
+  "Doses Administered to Patient" I where I.vaccineCode in IMMZc."Live Attenuated"
+
+define "Date of Latest Live Attenuated Vaccine":
+  First("Live Attenuated Vaccines").occurrence as dateTime
 
 /******************************
  * CQL Helper Functions

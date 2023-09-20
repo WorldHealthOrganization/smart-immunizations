@@ -21,12 +21,23 @@ valueset "Positive Result": 'http://fhir.org/guides/who/smart-immunization/Value
 valueset "Immunocompromised": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Immunocompromised-values'
 valueset "Patient birth weight observation value": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Birthweight-values'
 valueset "PretermBirth": 'http://fhir.org/guides/who/smart-immunization/ValueSet/Preterm-values'
+valueset "Live Attenuated": 'http://fhir.org/guides/who/smart-immunization/ValueSet/LiveAttenduatedVaccines'
 
 //valueset "Target Disease": 'http://hl7.org/fhir/ValueSet/immunization-target-disease'
+
+valueset "HIV status": 'http://fhir.org/guides/who/smart-immunization/ValueSet/HIVstatus-values'
+valueset "HIV status - HIV positive Choices": 'http://fhir.org/guides/who/anc-cds/ValueSet/anc-b9-de46'
+valueset "HIV status - HIV negative Choices": 'http://fhir.org/guides/who/anc-cds/ValueSet/anc-b9-de47'
+
+valueset "ARV Drugs": 'http://fhir.org/guides/who/smart-immunization/ValueSet/ARVDrugs-values'
 
 // Vaccine Value Sets
 
 valueset "MCV Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/IMMZ.A1.DE9'
+
+// Plugin is complaining about not finding these so that should be resolved, but here until it can be fixed
+valueset "BCG Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/IMMZ.A1.DE1'
+valueset "Cholera Vaccine": 'http://fhir.org/guides/who/smart-immunization/ValueSet/IMMZ.A1.DE2'
 
 
 

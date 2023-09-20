@@ -25,21 +25,30 @@ context Patient
  * @dataElement Should provision MCV Dose
  */
 define "Provision of the MCV dose":
-	"Second MCV Dose Administered to Patient" is null or
-	(
-		"Needs Supplimentary MCV Dose" and "Supplimentary MCV Dose Administered to Patient" is null
+	not("MCV Dose Contraindicated") 
+  and IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks <= Now()
+	and (
+		"Second MCV Dose Administered to Patient" is null or
+		(
+			"Needs Supplementary MCV Dose" and "Supplementary MCV Dose Administered to Patient" is null
+		)
 	)
 
 define "Schedule Due Date for MCV dose":
+	if "Expected Due Date for MCV dose" > IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks
+	then "Expected Due Date for MCV dose"
+	else IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks
+
+define "Expected Due Date for MCV dose":
 	case 
 	when "Needs Birth MCV Dose"
 		then Patient.birthDate + 6 months
 	when "No MCV Doses Administered to Patient"
 		then if "High Transmission Setting" then Patient.birthDate + 9 months else Patient.birthDate + 12 months
-	when "Second MCV Dose Administered to Patient" is not null and "Needs Supplimentary MCV Dose"
-		then IMMZCom."Patient HAART Treatment Start Date" + 6 months
+	when "Second MCV Dose Administered to Patient" is not null and "Needs Supplementary MCV Dose"
+		then "Date Second MCV Dose Administered to Patient" + 4 weeks
 	when "First MCV Dose Administered to Patient" is not null
-		then if Patient.birthDate + 15 months > "Date First MCV Dose Administered to Patient" + 4 weeks then Patient.birthDate + 15 months else "Date First MCV Dose Administered to Patient" + 4 weeks
+		then Patient.birthDate + 15 months
 	else null
 	end
 
@@ -48,14 +57,14 @@ define "MCV Next Dose Number":
 	if "Needs Birth MCV Dose" or "Birth MCV Dose Administered to Patient" is not null
 	then 
 		case 
-		when "Second MCV Dose Administered to Patient" is not null and "Needs Supplimentary MCV Dose" then 'booster'
+		when "Second MCV Dose Administered to Patient" is not null and "Needs Supplementary MCV Dose" then 'booster'
 		when "First MCV Dose Administered to Patient" is not null then 3
 		when "Birth MCV Dose Administered to Patient" is not null then 2
 		else 1
 		end
 	else
 		case 
-		when "Second MCV Dose Administered to Patient" is not null and "Needs Supplimentary MCV Dose" then 'booster'
+		when "Second MCV Dose Administered to Patient" is not null and "Needs Supplementary MCV Dose" then 'booster'
 		when "First MCV Dose Administered to Patient" is not null then 2
 		else 1
 		end
@@ -69,8 +78,6 @@ define "Expiration Date for MCV dose":
 	case
 	when "Needs Birth MCV Dose"
 		then Patient.birthDate + 9 months
-	when "Needs Supplimentary MCV Dose"
-		then IMMZCom."Patient HAART Treatment Start Date" + 12 months
 	else null
 	end
 
@@ -79,7 +86,7 @@ define "Overdue Date for MCV dose":
 
 define "Date Last Valid MCV Dose":
 	case 
-	when "Supplimentary MCV Dose Administered to Patient" is not null then "Date Supplimentary MCV Dose Administered to Patient"
+	when "Supplementary MCV Dose Administered to Patient" is not null then "Date Supplementary MCV Dose Administered to Patient"
 	when "Second MCV Dose Administered to Patient" is not null then "Date Second MCV Dose Administered to Patient"
 	when "First MCV Dose Administered to Patient" is not null then "Date First MCV Dose Administered to Patient"
 	when "Birth MCV Dose Administered to Patient" is not null then "Date Birth MCV Dose Administered to Patient"
@@ -89,6 +96,8 @@ define "Date Last Valid MCV Dose":
 define "Should vaccinate patient for MCV":
 	"Provision of the MCV dose" and ("Schedule Due Date for MCV dose" <= (Now()))
 
+define "MCV Dose Contraindicated":
+	IMMZCom."Pregnant"
 
 /**
  * @dataElement MCV containing Doses Administered to Patient
@@ -128,29 +137,33 @@ define "High Transmission Setting":
 	)
 
 define "Needs Birth MCV Dose":
-	"No MCV Doses Administered to Patient" and 
-	(
-		IMMZCom."Current Patient Age In Months" between 6 and 9 and
-		(
-			(
-				IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices" and
-				not(IMMZCom."Patient is receiving HAART")
-			)
-			or "High Transmission Setting"
+	"No MCV Doses Administered to Patient" 
+	  and (
+			if "High Transmission Setting" 
+			then IMMZCom."Current Patient Age In Months" between 6 and 9 
+			else IMMZCom."Current Patient Age In Months" between 6 and 12
 		)
-	)
+		and IMMZCom."Date of Latest Live Attenuated Vaccine" +4 weeks <= Now()
+		and 
+			(
+				(
+					IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices" 
+					  and (
+					    not(IMMZCom."Patient is receiving HAART")
+							or "Immune reconstitution was achieved"
+						)
+				)
+				or "Individual is known to be HIV-infected or exposed"
+			)
 
-define "Needs Supplimentary MCV Dose":
-	not(IMMZCom."Pregnant") and
-	IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices" and
-	IMMZCom."Patient is receiving HAART" and 
-	(
+define "Needs Supplementary MCV Dose":
+	IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices" 
+	and IMMZCom."Current Patient Age In Years" < 15
+	and IMMZCom."Patient is receiving HAART"
+	and "Immune reconstitution was achieved" 
+	and "Supplementary MCV Dose Administered to Patient" is null
+	and IMMZCom."Date of Latest Live Attenuated Vaccine" +4 weeks <= Now()
 
-		"Immune reconstitution was achieved" or
-		not exists(IMMZCom."Observed CD4% Measurements")
-		and IMMZCom."Patient HAART Treatment Start Date" <= Now()
-		and IMMZCom."Patient HAART Treatment Start Date" + 12 months >= Now()
-	)
 
 /**
  * @dataElement Birth MCV dose given to Patient
@@ -196,19 +209,19 @@ define "Date Second MCV Dose Administered to Patient":
  * @dataElement "Second MCV Dose Administered to Patient"
  * only valid if 4 weeks after first dose
  */
-define "Supplimentary MCV Dose Administered to Patient":
-  Last("MCV Doses Administered to Patient" I where I.occurrence after IMMZCom."Patient HAART Treatment Start Date" + 6 months)
+define "Supplementary MCV Dose Administered to Patient":
+  Last("MCV Doses Administered to Patient" I where I.occurrence after "Date Second MCV Dose Administered to Patient")
 
 /**
  * @dataElement Date second MCV dose administered
  */
-define "Date Supplimentary MCV Dose Administered to Patient":
-  date from ("Supplimentary MCV Dose Administered to Patient".occurrence as FHIR.dateTime)
+define "Date Supplementary MCV Dose Administered to Patient":
+  date from ("Supplementary MCV Dose Administered to Patient".occurrence as FHIR.dateTime)
 
 /*
- * Rule: Should vaccinate patient for measles (supplimentary) because no doses
+ * Rule: Should vaccinate patient for measles (Supplementary) because no doses
  * Annotations:
- * 	 - Provide measles immunization supplimentary dose - Using the "MCV0 Vaccine immunization - NO Previous" schedule (supplimentary dose zero)
+ * 	 - Provide measles immunization Supplementary dose - Using the "MCV0 Vaccine immunization - NO Previous" schedule (Supplementary dose zero)
  * 	 - 
  * Outputs:
  * 	 - Immunize patient for Measles - No doses
@@ -220,7 +233,7 @@ define "Date Supplimentary MCV Dose Administered to Patient":
  *	 ((((((((((("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" > 6)) and ("HIV Status" = "Positive" = true)) and ("Current Patient Age in Months" < 9)) and ("Patient is receiving HAART" = false)) or (((("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" > 6)) and ("Country currently has a measles outbreak" = true)) and ("Current Patient Age in Months" < 9))) or (((("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" > 6)) and ("In a setting where the risk of measles among infants < 9 months of age remains high" = true)) and ("Current Patient Age in Months" < 9))) or (((("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" > 6)) and ("Population is in conflict zones internally displaced populations and refugees" = true)) and ("Current Patient Age in Months" < 9))) or (((("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" > 6)) and ("Individual is at high risk of contracting measles (e.g. contacts of known measles cases or in settings with increased risk of exposure during outbreaks suck as day-care facilities" = true)) and ("Current Patient Age in Months" < 9))) or (((("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" > 6)) and ("Individual is travelling to a country experiencing measles outbreaks" = true)) and ("Current Patient Age in Months" < 9))) or (((("Measles vaccine immunization history" = "No-doses" = true) and ("Current Patient Age in Months" > 6)) and ("Individual is known to be HIV-infected or exposed (i.e. born to an HIV-infected woman" = true)) and ("Current Patient Age in Months" < 9)))
  */
  /*
-define "Should vaccinate patient for measles (supplimentary) because no doses":
+define "Should vaccinate patient for measles (Supplementary) because no doses":
 	IMMZCom."No MCV Doses Administered to Patient" and 
 	(
 		IMMZCom."Current Patient Age In Months" between 6 and 9 and
@@ -290,12 +303,12 @@ define "Should vaccinate patient for measles because 1 dose in a 2 dose scheme":
 */
 
 /*
- * Rule: Should vaccinate patient for measles supplimentary dose because HIV positive and started HAART
+ * Rule: Should vaccinate patient for measles Supplementary dose because HIV positive and started HAART
  * Annotations:
- * 	 - Provide measles immunization supplimentary dose - Using the "MCV Vaccine immunization" schedule (additional supplimentary dose)
+ * 	 - Provide measles immunization Supplementary dose - Using the "MCV Vaccine immunization" schedule (additional Supplementary dose)
  * 	 - 
  * Outputs:
- * 	 - Immunize patient for Measles supplimentary
+ * 	 - Immunize patient for Measles Supplementary
  * 	 - 
  * References:
  * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
@@ -304,7 +317,7 @@ define "Should vaccinate patient for measles because 1 dose in a 2 dose scheme":
  *	 ((((("HIV Status" = "Positive" = true) and ("Patient is receiving HAART" = true)) and ("Immune reconstitution was achieved" = true)) and ("Pregnancy Status" = false)) or (((((("HIV Status" = "Positive" = true) and ("Patient is receiving HAART" = true)) and ("CD4+ T Lymphocyte monitoring is available" = false)) and ("Time since HAART was initiated in Months" >= 6)) and ("Time since HAART was initiated in Months" <= 12)) and ("Pregnancy Status" = false)))
  */
  /*
-define "Should vaccinate patient for measles supplimentary dose because HIV positive and started HAART":
+define "Should vaccinate patient for measles Supplementary dose because HIV positive and started HAART":
 	not(IMMZCom."Pregnant") and
 	IMMZCom."HIV Status" in IMMZc."HIV status - HIV positive Choices" and
 	IMMZCom."Patient is receiving HAART" and 
