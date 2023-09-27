@@ -1,0 +1,42 @@
+map "http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZCLMToPatient" = "IMMZCLMToPatient"
+
+uses "http://fhir.org/guides/who/smart-immunization/StructureDefinition/IMMZCRegisterClient" alias IMMZC as source
+uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as target
+
+group IMMZCToPatient (source immzc : IMMZC, target patient: Patient) {
+  immzc.uniqueId as id -> patient.identifier as identifier then {
+    id -> identifier.value = id "SetIdentifierValue";
+  } "SetIdentifier";
+  
+  immzc -> patient.name as pname then NameToHumanName( immzc, pname ) "SetName";
+
+  immzc.sex as sex -> patient.gender = translate(sex, 'http://fhir.org/guides/who/smart-immunization/ConceptMap/IMMZ.C.SexToAdministrativeGender', 'code') "SetGender";
+
+  immzc.birthDate as birthDate -> patient.birthDate = birthDate "SetBirthDate";
+
+  immzc.caregiver as caregiver -> patient.contact as contact, contact.name as hname 
+    then NameToHumanName( caregiver, hname ) "SetCaregiver";
+
+  immzc.phone as phone -> patient.telecom as telecom then {
+    phone as content -> telecom.value = content, telecom.system = 'phone' "SetPhoneValue";
+  } "SetPhone";
+
+  immzc.administrativeArea as area -> patient.address as address then {
+    area.coding first as coding -> address then {
+      coding.code as content -> address.text = content "SetAddressToCode";
+      coding.display as content -> address.text = content "SetAddressToDisplay";
+    } "SetAddressText";
+  } "SetAdministrativeArea";
+
+
+}
+
+group NameToHumanName (
+  source immzc,
+  target hname
+) {
+  immzc.name as fullName -> hname.text = fullName "SetFullName";
+  immzc.firstName as firstName -> hname.given = firstName "SetFirstName";
+  immzc.familyName as familyName -> hname.family = familyName "SetFamilyName";
+}
+

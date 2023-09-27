@@ -59,6 +59,21 @@ Usage: #example
     * text = "Family name"
     * answer.valueString = "Patient"
 * item[+]
+  * linkId = "caregiver"
+  * text = "Care giver name"
+  * item[+]
+    * linkId = "fullName"
+    * text = "Full name of the care giver"
+    * answer.valueString = "Father Patient"
+  * item[+]
+    * linkId = "firstName"
+    * text = "First or given name"
+    * answer.valueString = "Father"
+  * item[+]
+    * linkId = "familyName"
+    * text = "Family name"
+    * answer.valueString = "Patient"
+* item[+]
   * linkId = "phone"
   * text = "Client Phone number"
   * answer.valueString = "406-555-1212"

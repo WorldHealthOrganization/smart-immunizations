@@ -1,20 +1,15 @@
-Invariant:    IMMZ-C-DE10-1
-Description:  "If Date of Birth is entered, Calculated ages are required."
-Expression:   "iif(birthDate.exists(), ageInWeeks.exists() and ageInMonths.exists() and ageInYears.exists(), true)"
-Severity:     #error
-
 Invariant:    IMMZ-C-name-1
 Description:  "Only letters and special characters (period, dash) allowed."
 Expression:   "$this.matches('[A-Za-z-.]*')"
 Severity:     #error
 
 
-Logical:      IMMZ-C-register-client
+Logical:      IMMZCRegisterClient
 Title:        "IMMZ.C Register Client"
 Description:  "Data elements for the IMMZ.C Register Client Data Dictionary."
 
 * ^name = "IMMZ_C_Register_Client"
-* obeys IMMZ-C-DE10-1
+* ^status = #active
 * uniqueId 1..1 SU string "Unique identifier" "Unique identifier for the client, according to the policies applicable to each country. There can be more than one unique identifier used to link records (e.g. national ID, health ID, immunization information system ID, medical record ID)."
   * ^code[+] = IMMZ.C#DE1
 //  * ^code[WHOCommon] = IMMZ.C#DE1
@@ -67,7 +62,7 @@ Description:  "Data elements for the IMMZ.C Register Client Data Dictionary."
   * ^code[+] = IMMZ.C#DE20
   
 Mapping:      IMMZ-C-to-Patient
-Source:       IMMZ-C-register-client
+Source:       IMMZCRegisterClient
 Target:       "Patient"
 * -> "Patient"
 * uniqueId -> "Patient.identifier.value"
