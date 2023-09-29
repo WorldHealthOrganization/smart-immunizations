@@ -37,7 +37,7 @@ define "Provision of the MCV dose":
 	and IMMZCom."Current Patient Age In Years" < 15
 
 define "Schedule Due Date for MCV dose":
-	if "Expected Due Date for MCV dose" > IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks
+	if IMMZCom."Date of Latest Live Attenuated Vaccine" is null or "Expected Due Date for MCV dose" > IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks
 	then "Expected Due Date for MCV dose"
 	else IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks
 
