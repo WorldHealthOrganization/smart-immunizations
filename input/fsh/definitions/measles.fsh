@@ -22,7 +22,7 @@ Usage: #definition
       * description = "Provision of the MCV dose"
       * language = #text/cql-identifier
       * expression = "Provision of the MCV dose"
-  * definitionCanonical = Canonical(Instance: IMMZD2DTMeaslesMR)
+  * definitionCanonical = Canonical(IMMZD2DTMeaslesMR)
 
 
 Instance: IMMZD2DTMeaslesMR

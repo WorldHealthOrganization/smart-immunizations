@@ -22,4 +22,4 @@ Usage: #definition
     * description = "Provide measles immunization"
     * code = http://hl7.org/fhir/uv/cpg/CodeSystem/cpg-common-process-cs#dispense-medications
     * selectionBehavior = #all
-    * definitionCanonical = Canonical(IMMZDT08Measles)
+    * definitionCanonical = Canonical(IMMZD2DTMeasles)
