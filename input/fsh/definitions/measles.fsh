@@ -26,7 +26,7 @@ Usage: #definition
 
 
 Instance: IMMZDT08MeaslesMR
-InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-medicationrequestactivity
+InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity
 Title: "IMMZ.DT.08.Measles.MR"
 Description: "Provide measles immunization"
 Usage: #definition
