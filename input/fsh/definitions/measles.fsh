@@ -1,15 +1,15 @@
-Instance: IMMZDT08Measles
+Instance: IMMZD2DTMeasles
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
-Title: "IMMZ.DT.08.Measles"
+Title: "IMMZ.D2.DT.Measles"
 Description: "If the child or patient has not been given MCV1 (at 9 months) and MCV2 (between 15-18 months) vaccination"
 Usage: #definition
 
-* library = "http://fhir.org/guides/who/smart-immunization/Library/IMMZDT08"
+* library = "http://fhir.org/guides/who/smart-immunization/Library/IMMZD2DTMeasles"
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
 * version = "0.1.0"
-* name = "IMMZDT08Measles"
+* name = "IMMZD2DTMeasles"
 * status = #draft
 * experimental = false
 * publisher = "World Health Organization (WHO)"
@@ -22,21 +22,21 @@ Usage: #definition
       * description = "Provision of the MCV dose"
       * language = #text/cql-identifier
       * expression = "Provision of the MCV dose"
-  * definitionCanonical = Canonical(IMMZDT08MeaslesMR)
+  * definitionCanonical = Canonical(Instance: IMMZD2DTMeaslesMR)
 
 
-Instance: IMMZDT08MeaslesMR
+Instance: IMMZD2DTMeaslesMR
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity
-Title: "IMMZ.DT.08.Measles.MR"
+Title: "IMMZ.D2.DT.Measles.MR"
 Description: "Provide measles immunization"
 Usage: #definition
 
-* library = "http://fhir.org/guides/who/smart-immunization/Library/IMMZDT08"
+* library = "http://fhir.org/guides/who/smart-immunization/Library/IMMZD2DTMeasles"
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
 * version = "0.1.0"
-* name = "IMMZDT08MeaslesMR"
+* name = "IMMZD2DTMeaslesMR"
 * status = #draft
 * experimental = false
 * date = 2023-10-03
