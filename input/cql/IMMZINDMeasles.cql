@@ -1,5 +1,5 @@
 /*
- * Library: IMMZ.IND.08
+ * Library: IMMZ.IND.Measles
  * Immunization coverage for Measles containing vaccine (Estimated Denominator) 
  * Compares the administered doses of measles containing vaccines (MCV) with the estimated number of surviving infants (if dose 1) or a country supplied denominator (if dose 2) expressed as a percentage. 
  * 
@@ -17,7 +17,7 @@
  * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - elements 4240 and 4260 )
  */
 
-library IMMZIND08
+library IMMZINDMeasles
 
 // Start Skeleton CQL
 using FHIR version '4.0.1'
@@ -28,41 +28,50 @@ include IMMZConfig called IMMZCon
 include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
+include IMMZD2DTMeasles called Measles
 // End Skeleton CQL
 parameter "Measurement Period" Interval<Date>
 
 context Patient
 
 /*
- * Numerator: Number of administrations of vaccinations containing a Measles component during reporting period
- * Numerator Computation: COUNT immunization events WHERE administered product is a Measles vaccine (IMMZ.A1.DE9) during reporting period
- */
-define "measure-population":
-	exists(IMMZIndCom."MCV Doses Administered to Patient During Measurement Period")
+define "MCV Doses Administered to Patient During Measurement Period":
+    Measles."MCV Doses Administered to Patient" I 
+    where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
+*/
+
+define function "Measure Observation" (Patient "Patient"):
+  1
 
 /*
- * Disaggregator: Dose Sequence (1, 2)
- */
-define "Dose Sequence  Stratifier":
-	IMMZIndCom."MCV Doses Administered to Patient During Measurement Period" I
-	return (singleton from I.protocolApplied).doseNumber
+ * Target population for first dose: Any one over 9 (in high transmission area) or 12 (in low transmission area) months old
+ */ 
+define "Initial Population 05":
+	Measles."First MCV Dose Administered to Patient" I where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
 
 /*
- * Disaggregator: Age Group (<24H of Birth, < 2 weeks)
+ * Numerator for first dose: Anyone having received the first dose
  */
-define "Age Group Stratifier":
-	IMMZIndCom."Infant By Age Stratifier"
+define "Measure Population 05":
+	"Initial Population 05"
 
 /*
- * Disaggregator: Geographic Region
- */
-define "Geographic Region Stratifier":
-	IMMZIndCom."By Geographic Region Stratifier"
+ * Target population for second dose: Any one over 15 months
+ */ 
+define "Initial Population 40":
+	Measles."Second MCV Dose Administered to Patient" I where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
 
 /*
- * Disaggregator: Administrative Gender (or Biological Sex)
+ * Numerator for second dose: Anyone having received the first dose
  */
-define "Administrative Gender Stratifier":
-	IMMZIndCom."By Administrative Gender Stratifier"
+define "Measure Population 40":
+	"Initial Population 40"
 
-/* End of IMMZ.IND.08 */
+
+/*
+ * Combined stratifiers
+ */
+define "Stratification":
+		IMMZIndCom."By Administrative Gender Stratifier".code + ':' + IMMZIndCom."Toddler By Age Stratifier".code + ':' + IMMZIndCom."By Geographic Region Stratifier"
+
+
