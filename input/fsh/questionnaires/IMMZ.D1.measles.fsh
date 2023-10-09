@@ -19,18 +19,6 @@ Usage: #definition
 * insert Question(dateSeriesCompleted, The date when the client completed the primary vaccination series - per product/antigen, date, false, true)
 * item[=]
   * code[+] = IMMZ.D1#DE81
-* insert Question(pregnant, The client is currently pregnant, boolean, false, false)
-* item[=]
-  * code[+] = IMMZ.D1#DE9
-  * code[+] = $ICD11#XT0S
-  * code[+] = $LNC#82810-3
-  * code[+] = $SCT#77386006
-* insert Question(breastfeeding, The client is currently breastfeeding, boolean, false, false)
-* item[=]
-  * code[+] = IMMZ.D1#DE82
-  * code[+] = $ICD11#QA48.1
-  * code[+] = $LNC#63895-7
-  * code[+] = $SCT#69840006
 * insert Question(hivStatus, The current human immunodeficiency virus HIV status of the client, choice, false, false)
 * item[=]
   * answerValueSet = Canonical(IMMZ.D1.DE10)

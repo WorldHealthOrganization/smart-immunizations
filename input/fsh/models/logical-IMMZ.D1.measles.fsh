@@ -10,16 +10,6 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
   * ^code[+] = IMMZ.D1#DE8
 * dateSeriesCompleted 1..1 date "Date when primary vaccination series was completed" "The date when the client completed the primary vaccination series (per product/antigen)"
   * ^code[+] = IMMZ.D1#DE81
-* pregnant 0..1 boolean "Currently pregnant" "The client is currently pregnant"
-  * ^code[+] = IMMZ.D1#DE9
-  * ^code[+] = $ICD11#XT0S
-  * ^code[+] = $LNC#82810-3
-  * ^code[+] = $SCT#77386006
-* breastfeeding 0..1 boolean "Breastfeeding" "The client is currently breastfeeding"
-  * ^code[+] = IMMZ.D1#DE82
-  * ^code[+] = $ICD11#QA48.1
-  * ^code[+] = $LNC#63895-7
-  * ^code[+] = $SCT#69840006
 * hivStatus 0..1 Coding "HIV status" "The current human immunodeficiency virus (HIV) status of the client"
   * ^code[+] = IMMZ.D1#DE10
   * ^code[+] = $LNC#55277-8

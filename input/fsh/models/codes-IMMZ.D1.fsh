@@ -9,8 +9,6 @@ Description:  "CodeSystem for IMMZ.C Data Elements"
 * #DE80 "Dose 0 administered" "Indicates if the client has received a birth dose and/or supplementary dose"
 * #DE8 "Completed the primary vaccination series" "Indicates if the client has completed the primary vaccination series of a product/antigen. If the client has not yet completed their primary series, it means they may be expected to receive more doses to complete their vaccination regimen for the respective product/antigen."
 * #DE81 "Date when primary vaccination series was completed" "The date when the client completed the primary vaccination series (per product/antigen)"
-* #DE9 "Currently pregnant" "The client is currently pregnant"
-* #DE82 "Breastfeeding" "The client is currently breastfeeding"
 * #DE10 "HIV status" "The current human immunodeficiency virus (HIV) status of the client"
 * #DE11 "HIV-positive" "The client is known to be HIV positive"
 * #DE12 "HIV-negative" "The client is known to be HIV negative"
@@ -194,7 +192,6 @@ Usage:        #definition
   * insert ElementMap(DE15, KA21.4, equivalent)
   * insert ElementMap(DE89, QA02.0, relatedto)
   * insert ElementMap(DE12, QA02.Y, relatedto)
-  * insert ElementMap(DE82, QA48.1, wider)
   * insert ElementMap(DE90, QC60, wider)
   * insert ElementMap(DE70, XM18Y8, equivalent)
   * insert ElementMap(DE69, XM2280, equivalent)
@@ -205,7 +202,6 @@ Usage:        #definition
   * insert ElementMap(DE36, XM5V19, equivalent)
   * insert ElementMap(DE37, XM79H3, equivalent)
   * insert ElementMap(DE86, XM7PF6, wider)
-  * insert ElementMap(DE9, XT0S, equivalent)
 
 * group[+]
   * source = $ICD11
@@ -218,7 +214,6 @@ Usage:        #definition
   * insert ElementMap(KA21.4, DE15, equivalent)
   * insert ElementMap(QA02.0, DE89, relatedto)
   * insert ElementMap(QA02.Y, DE12, relatedto)
-  * insert ElementMap(QA48.1, DE82, narrower)
   * insert ElementMap(QC60, DE90, narrower)
   * insert ElementMap(XM18Y8, DE70, equivalent)
   * insert ElementMap(XM2280, DE69, equivalent)
@@ -229,7 +224,6 @@ Usage:        #definition
   * insert ElementMap(XM5V19, DE36, equivalent)
   * insert ElementMap(XM79H3, DE37, equivalent)
   * insert ElementMap(XM7PF6, DE86, narrower)
-  * insert ElementMap(XT0S, DE9, equivalent)
   
 * group[+]
   * source = Canonical(IMMZ.D1)
@@ -240,9 +234,7 @@ Usage:        #definition
   * insert ElementMap(DE88, 45241-7, relatedto)
   * insert ElementMap(DE11, 45683-0, equivalent)
   * insert ElementMap(DE10, 55277-8, equivalent)
-  * insert ElementMap(DE82, 63895-7, wider)
   * insert ElementMap(DE15, 76517-2, equivalent)
-  * insert ElementMap(DE9, 82810-3, equivalent)
   * insert ElementMap(DE29, 8339-4, equivalent)
   * insert ElementMap(DE16, 96381-9, relatedto)
   * insert ElementMap(DE92, 96381-9, relatedto)
@@ -256,9 +248,7 @@ Usage:        #definition
   * insert ElementMap(45241-7, DE88, relatedto)
   * insert ElementMap(45683-0, DE11, equivalent)
   * insert ElementMap(55277-8, DE10, equivalent)
-  * insert ElementMap(63895-7, DE82, narrower)
   * insert ElementMap(76517-2, DE15, equivalent)
-  * insert ElementMap(82810-3, DE9, equivalent)
   * insert ElementMap(8339-4, DE29, equivalent)
   * insert ElementMap(96381-9, DE16, relatedto)
   * insert ElementMap(96381-9, DE92, relatedto)
@@ -269,8 +259,6 @@ Usage:        #definition
   * insert ElementMap(DE88, 10828004, wider)
   * insert ElementMap(DE86, 28163009, equivalent)
   * insert ElementMap(DE85, 68311008, equivalent)
-  * insert ElementMap(DE82, 69840006, equivalent)
-  * insert ElementMap(DE9, 77386006, equivalent)
   * insert ElementMap(DE12, 165815009, equivalent)
   * insert ElementMap(DE11, 165816005, equivalent)
   * insert ElementMap(DE89, 260385009, wider)
@@ -289,8 +277,6 @@ Usage:        #definition
   * insert ElementMap(10828004, DE88, narrower)
   * insert ElementMap(28163009, DE86, equivalent)
   * insert ElementMap(68311008, DE85, equivalent)
-  * insert ElementMap(69840006, DE82, equivalent)
-  * insert ElementMap(77386006, DE9, equivalent)
   * insert ElementMap(165815009, DE12, equivalent)
   * insert ElementMap(165816005, DE11, equivalent)
   * insert ElementMap(260385009, DE89, narrower)
