@@ -26,8 +26,8 @@ context Patient
  * @dataElement Should provision MCV Dose
  */
 define "Provision of the MCV dose":
-	not("MCV Dose Contraindicated") 
-  and if exists(IMMZCom."Live Attenuated Vaccines") then IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks <= Now() else true
+	//not("MCV Dose Contraindicated") and 
+  if exists(IMMZCom."Live Attenuated Vaccines") then IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks <= Now() else true
 	and (
 		"Second MCV Dose Administered to Patient" is null or
 		(
