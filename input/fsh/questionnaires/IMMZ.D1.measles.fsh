@@ -25,12 +25,6 @@ Usage: #definition
   * code[+] = IMMZ.D1#DE10
   * code[+] = $LNC#55277-8
   * code[+] = $SCT#278977008
-* insert Question(pretermBirth, The infant was preterm\, the mother gave birth to the infant when gestational age was less than 37 weeks, boolean, false, false)
-* item[=]
-  * code[+] = IMMZ.D1#DE15
-  * code[+] = $ICD11#KA21.4
-  * code[+] = $LNC#76517-2
-  * code[+] = $SCT#395507008
 * insert Question(immunocompromised, The client is known to be immunocompromised or immunosuppressed. This means the client has a weakened immune system and having a reduced ability to fight infections and other diseases, boolean, false, false)
 * item[=]
   * code[+] = IMMZ.D1#DE16

@@ -15,11 +15,6 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
   * ^code[+] = $LNC#55277-8
   * ^code[+] = $SCT#278977008
 * hivStatus from IMMZ.D1.DE10
-* pretermBirth 0..1 boolean "Preterm birth" "The infant was preterm,  the mother gave birth to the infant when gestational age was less than 37 weeks"
-  * ^code[+] = IMMZ.D1#DE15
-  * ^code[+] = $ICD11#KA21.4
-  * ^code[+] = $LNC#76517-2
-  * ^code[+] = $SCT#395507008
 * immunocompromised 0..1 boolean "Immunocompromised" "The client is known to be immunocompromised or immunosuppressed. This means the client has a weakened immune system and having a reduced ability to fight infections and other diseases"
   * ^code[+] = IMMZ.D1#DE16
   * ^code[+] = $ICD11#4B4Z

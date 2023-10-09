@@ -13,7 +13,6 @@ Description:  "CodeSystem for IMMZ.C Data Elements"
 * #DE11 "HIV-positive" "The client is known to be HIV positive"
 * #DE12 "HIV-negative" "The client is known to be HIV negative"
 * #DE13 "Unknown" "The client's HIV status is unknown"
-* #DE15 "Preterm birth" "The infant was preterm"
 * #DE16 "Immunocompromised" "The client is known to be immunocompromised or immunosuppressed. This means the client has a weakened immune system and having a reduced ability to fight infections and other diseases"
 * #DE17 "Currently on ART" "The client is currently receiving antiretroviral therapy (ART)"
 * #DE84 "Type of TB infection test performed" "The type of TB infection test performed"
@@ -189,7 +188,6 @@ Usage:        #definition
   * insert ElementMap(DE13, 1H0Z, equivalent)
   * insert ElementMap(DE40, 3A51, equivalent)
   * insert ElementMap(DE16, 4B4Z, wider)
-  * insert ElementMap(DE15, KA21.4, equivalent)
   * insert ElementMap(DE89, QA02.0, relatedto)
   * insert ElementMap(DE12, QA02.Y, relatedto)
   * insert ElementMap(DE90, QC60, wider)
@@ -211,7 +209,6 @@ Usage:        #definition
   * insert ElementMap(1H0Z, DE13, equivalent)
   * insert ElementMap(3A51, DE40, equivalent)
   * insert ElementMap(4B4Z, DE16, narrower)
-  * insert ElementMap(KA21.4, DE15, equivalent)
   * insert ElementMap(QA02.0, DE89, relatedto)
   * insert ElementMap(QA02.Y, DE12, relatedto)
   * insert ElementMap(QC60, DE90, narrower)
@@ -234,7 +231,6 @@ Usage:        #definition
   * insert ElementMap(DE88, 45241-7, relatedto)
   * insert ElementMap(DE11, 45683-0, equivalent)
   * insert ElementMap(DE10, 55277-8, equivalent)
-  * insert ElementMap(DE15, 76517-2, equivalent)
   * insert ElementMap(DE29, 8339-4, equivalent)
   * insert ElementMap(DE16, 96381-9, relatedto)
   * insert ElementMap(DE92, 96381-9, relatedto)
@@ -248,7 +244,6 @@ Usage:        #definition
   * insert ElementMap(45241-7, DE88, relatedto)
   * insert ElementMap(45683-0, DE11, equivalent)
   * insert ElementMap(55277-8, DE10, equivalent)
-  * insert ElementMap(76517-2, DE15, equivalent)
   * insert ElementMap(8339-4, DE29, equivalent)
   * insert ElementMap(96381-9, DE16, relatedto)
   * insert ElementMap(96381-9, DE92, relatedto)
@@ -265,7 +260,6 @@ Usage:        #definition
   * insert ElementMap(DE13, 261665006, wider)
   * insert ElementMap(DE10, 278977008, equivalent)
   * insert ElementMap(DE16, 370388006, equivalent)
-  * insert ElementMap(DE15, 395507008, equivalent)
   * insert ElementMap(DE40, 417357006, equivalent)
   * insert ElementMap(DE90, 438998000, wider)
   * insert ElementMap(DE36, 871740006, equivalent)
@@ -283,7 +277,6 @@ Usage:        #definition
   * insert ElementMap(261665006, DE13, narrower)
   * insert ElementMap(278977008, DE10, equivalent)
   * insert ElementMap(370388006, DE16, equivalent)
-  * insert ElementMap(395507008, DE15, equivalent)
   * insert ElementMap(417357006, DE40, equivalent)
   * insert ElementMap(438998000, DE90, narrower)
   * insert ElementMap(871740006, DE36, equivalent)
