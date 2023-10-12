@@ -1,4 +1,4 @@
-Logical:      IMMZ-D1-client-history-measles
+Logical:      IMMZD1ClientHistoryMeasles
 Title:        "IMMZ.D1 Capture Client History for Measles"
 Description:  "Data elements for the IMMZ.D1 Capture Client History Data Dictionary for Measles."
 

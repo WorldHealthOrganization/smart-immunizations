@@ -1,0 +1,19 @@
+map "http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZD4QRToResources" = "IMMZD4QRToResources"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QResp as source
+uses "http://fhir.org/guides/who/smart-immunization/StructureDefinition/IMMZD4CheckContraindications" alias IMMZD4 as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+
+imports "http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZD4QRToLM"
+imports "http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZD4LMToResources"
+
+group QRespToBundle (
+  source qr : QResp,
+  target bundle: Bundle
+) {
+  qr -> create("http://fhir.org/guides/who/smart-immunization/StructureDefinition/IMMZD4CheckContraindications") as model 
+  then{
+    qr -> model then QRespToIMMZD4( qr, model) "QRtoLM";
+    qr -> bundle then IMMZD4ToBundle( model, bundle ) "LMtoBundle";
+  } "QRtoBundle";
+}

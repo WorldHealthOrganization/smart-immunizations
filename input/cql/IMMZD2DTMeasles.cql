@@ -99,6 +99,9 @@ define "Should vaccinate patient for MCV":
 define "MCV Dose Contraindicated":
 	IMMZCom."Pregnant"
 
+define "Contraindication Evaluation of the MCV dose":
+	IMMZCom."Pregnant"
+
 /**
  * @dataElement MCV containing Doses Administered to Patient
  */

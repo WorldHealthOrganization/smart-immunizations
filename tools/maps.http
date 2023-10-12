@@ -61,3 +61,40 @@ Accept: application/fhir+json;fhirVersion=4.0
 Content-Type: application/fhir+json;fhirVersion=4.0
 
 < ../output/QuestionnaireResponse-Example.IMMZ.C.QuestionnaireResponse.1.json
+
+
+
+### Post the StructureMap for Contraindications with transform included
+PUT {{host}}/StructureMap/IMMZD4QRToLM HTTP/1.1
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/maps/IMMZ-D4-QRToLM.fml
+
+### Test Transform of QR to LM
+POST {{host}}/StructureMap/$transform?source=http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZD4QRToLM
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: application/fhir+json;fhirVersion=4.0
+
+< ../fsh-generated/resources/QuestionnaireResponse-Example.IMMZ.D4.QuestionnaireResponse.4.json
+
+### Post the StructureMap for Contraindications with transform included
+PUT {{host}}/StructureMap/IMMZD4LMToResources HTTP/1.1
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/maps/IMMZ-D4-LMToResources.fml
+
+### Post the StructureMap for Contraindications with transform included
+PUT {{host}}/StructureMap/IMMZD4QRToResources HTTP/1.1
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/maps/IMMZ-D4-QRToResources.fml
+
+### Test Transform of QR to Bundle
+POST {{host}}/StructureMap/$transform?source=http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZD4QRToResources
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: application/fhir+json;fhirVersion=4.0
+
+< ../fsh-generated/resources/QuestionnaireResponse-Example.IMMZ.D4.QuestionnaireResponse.4.json
