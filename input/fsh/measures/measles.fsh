@@ -3,14 +3,14 @@ InstanceOf: http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cv-measure-cq
 Title: "IMMZIND05"
 
 * description = "IMMZ.IND.05 Measles indicator for first dose."
-* url = "http://fhir.org/guides/who/smart-immunization/Measure/IMMZIND05"
+* url = "http://smart.who.int/ig/smart-immunizations/Measure/IMMZIND05"
 * version = "0.1.0"
 * status = #draft
 * experimental = false
 * date = "2023-10-05"
 * name = "IMMZIND05"
 * publisher = "World Health Organization (WHO)"
-* library = "http://fhir.org/guides/who/smart-immunization/Library/IMMZINDMeasles"
+* library = "http://smart.who.int/ig/smart-immunizations/Library/IMMZINDMeasles"
 * scoring = $measure-scoring#continuous-variable "Continuous Variable"
 * group[+]
   * population[initialPopulation]
@@ -45,14 +45,14 @@ InstanceOf: http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cv-measure-cq
 Title: "IMMZIND40"
 
 * description = "IMMZ.IND.40 Measles indicator for second dose."
-* url = "http://fhir.org/guides/who/smart-immunization/Measure/IMMZIND40"
+* url = "http://smart.who.int/ig/smart-immunizations/Measure/IMMZIND40"
 * version = "0.1.0"
 * status = #draft
 * experimental = false
 * date = "2023-10-05"
 * name = "IMMZIND40"
 * publisher = "World Health Organization (WHO)"
-* library = "http://fhir.org/guides/who/smart-immunization/Library/IMMZINDMeasles"
+* library = "http://smart.who.int/ig/smart-immunizations/Library/IMMZINDMeasles"
 * scoring = $measure-scoring#continuous-variable "Continuous Variable"
 * group[+]
   * population[initialPopulation]

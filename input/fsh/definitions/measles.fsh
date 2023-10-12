@@ -4,7 +4,7 @@ Title: "IMMZ.D2.DT.Measles"
 Description: "If the child or patient has not been given MCV1 (at 9 months) and MCV2 (between 15-18 months) vaccination"
 Usage: #definition
 
-* library = "http://fhir.org/guides/who/smart-immunization/Library/IMMZD2DTMeasles"
+* library = "http://smart.who.int/ig/smart-immunizations/Library/IMMZD2DTMeasles"
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
@@ -31,7 +31,7 @@ Title: "IMMZ.D2.DT.Measles.MR"
 Description: "Provide measles immunization"
 Usage: #definition
 
-* library = "http://fhir.org/guides/who/smart-immunization/Library/IMMZD2DTMeasles"
+* library = "http://smart.who.int/ig/smart-immunizations/Library/IMMZD2DTMeasles"
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
@@ -79,7 +79,7 @@ Title: "IMMZ.D2.DT.Measles.Contraindication"
 Description: "Check contraindications for Measles vaccine"
 Usage: #definition
 
-* library = "http://fhir.org/guides/who/smart-immunization/Library/IMMZD2DTMeasles"
+* library = "http://smart.who.int/ig/smart-immunizations/Library/IMMZD2DTMeasles"
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
@@ -116,7 +116,7 @@ Title: "IMMZ.D2.DT.Measles.Contraindication"
 Description: "Provide measles immunization"
 Usage: #definition
 
-* library = "http://fhir.org/guides/who/smart-immunization/Library/IMMZD2DTMeasles"
+* library = "http://smart.who.int/ig/smart-immunizations/Library/IMMZD2DTMeasles"
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
@@ -147,7 +147,7 @@ Title: "IMMZ.D2.DT.Measles.Eval"
 Description: "Provide measles immunization"
 Usage: #definition
 
-* library = "http://fhir.org/guides/who/smart-immunization/Library/IMMZD2DTMeasles"
+* library = "http://smart.who.int/ig/smart-immunizations/Library/IMMZD2DTMeasles"
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
