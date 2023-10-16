@@ -29,12 +29,12 @@ define "Provision of the MCV dose":
 	//not("MCV Dose Contraindicated") and 
   if exists(IMMZCom."Live Attenuated Vaccines") then IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks <= Now() else true
 	and (
-		"Second MCV Dose Administered to Patient" is null or
-		(
-			"Needs Supplementary MCV Dose" and "Supplementary MCV Dose Administered to Patient" is null
-		)
+		"Second MCV Dose Administered to Patient" is null 
+		//or (
+		//	"Needs Supplementary MCV Dose" and "Supplementary MCV Dose Administered to Patient" is null
+		//)
 	)
-	and IMMZCom."Current Patient Age In Years" < 15
+	//and IMMZCom."Current Patient Age In Years" < 15
 
 define "Schedule Due Date for MCV dose":
 	if IMMZCom."Date of Latest Live Attenuated Vaccine" is null or "Expected Due Date for MCV dose" > IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks
@@ -43,12 +43,12 @@ define "Schedule Due Date for MCV dose":
 
 define "Expected Due Date for MCV dose":
 	case 
-	when "Needs Zero MCV Dose"
-		then Patient.birthDate + 6 months
+	//when "Needs Zero MCV Dose"
+	//	then Patient.birthDate + 6 months
 	when "No MCV Doses Administered to Patient"
 		then if "High Transmission Setting" then Patient.birthDate + 9 months else Patient.birthDate + 12 months
-	when "Second MCV Dose Administered to Patient" is not null and "Needs Supplementary MCV Dose"
-		then "Date Second MCV Dose Administered to Patient" + 4 weeks
+	//when "Second MCV Dose Administered to Patient" is not null and "Needs Supplementary MCV Dose"
+	//	then "Date Second MCV Dose Administered to Patient" + 4 weeks
 	when "First MCV Dose Administered to Patient" is not null
 		then Patient.birthDate + 15 months
 	else null
@@ -56,17 +56,17 @@ define "Expected Due Date for MCV dose":
 
 
 define "MCV Next Dose Number":
-	if "Needs Zero MCV Dose" or "Zero MCV Dose Administered to Patient" is not null
-	then 
+	//if "Needs Zero MCV Dose" or "Zero MCV Dose Administered to Patient" is not null
+	//then 
+	//	case 
+	//	when "Second MCV Dose Administered to Patient" is not null and "Needs Supplementary MCV Dose" then 'booster'
+	//	when "First MCV Dose Administered to Patient" is not null then 2
+	//	when "Zero MCV Dose Administered to Patient" is not null then 1
+	//	else 'zero'
+	//	end
+	//else
 		case 
-		when "Second MCV Dose Administered to Patient" is not null and "Needs Supplementary MCV Dose" then 'booster'
-		when "First MCV Dose Administered to Patient" is not null then 2
-		when "Zero MCV Dose Administered to Patient" is not null then 1
-		else 'zero'
-		end
-	else
-		case 
-		when "Second MCV Dose Administered to Patient" is not null and "Needs Supplementary MCV Dose" then 'booster'
+		//when "Second MCV Dose Administered to Patient" is not null and "Needs Supplementary MCV Dose" then 'booster'
 		when "First MCV Dose Administered to Patient" is not null then 2
 		else 1
 		end
@@ -75,21 +75,22 @@ define "Number of Required MCV Doses":
 	2
 
 define "Expiration Date for MCV dose":
-	case
-	when "Needs Zero MCV Dose"
-		then Patient.birthDate + 9 months
-	else null
-	end
+	//case
+	//when "Needs Zero MCV Dose"
+	//	then Patient.birthDate + 9 months
+	//else null
+	//end
+	null
 
 define "Overdue Date for MCV dose":
 	null
 
 define "Date Last Valid MCV Dose":
 	case 
-	when "Supplementary MCV Dose Administered to Patient" is not null then "Date Supplementary MCV Dose Administered to Patient"
+	//when "Supplementary MCV Dose Administered to Patient" is not null then "Date Supplementary MCV Dose Administered to Patient"
 	when "Second MCV Dose Administered to Patient" is not null then "Date Second MCV Dose Administered to Patient"
 	when "First MCV Dose Administered to Patient" is not null then "Date First MCV Dose Administered to Patient"
-	when "Zero MCV Dose Administered to Patient" is not null then "Date Zero MCV Dose Administered to Patient"
+	//when "Zero MCV Dose Administered to Patient" is not null then "Date Zero MCV Dose Administered to Patient"
 	else null
 	end
 
@@ -144,6 +145,7 @@ define "High Transmission Setting":
 		"Individual is known to be HIV-infected or exposed"
 	)
 
+/*
 define "Needs Zero MCV Dose":
 	"No MCV Doses Administered to Patient" 
 	  and (
@@ -171,19 +173,19 @@ define "Needs Supplementary MCV Dose":
 	and "Immune reconstitution was achieved" 
 	and "Supplementary MCV Dose Administered to Patient" is null
 	and IMMZCom."Date of Latest Live Attenuated Vaccine" +4 weeks <= Now()
-
+*/
 
 /**
  * @dataElement Zero MCV dose given to Patient
  */
-define "Zero MCV Dose Administered to Patient":
-	Last("MCV Doses Administered to Patient" I where I.occurrence between Patient.birthDate + 6 months and Patient.birthDate + 9 months)
+//define "Zero MCV Dose Administered to Patient":
+//	Last("MCV Doses Administered to Patient" I where I.occurrence between Patient.birthDate + 6 months and Patient.birthDate + 9 months)
 
 /**
  * @dataElement Date Zero MCV dose administered
  */
-define "Date Zero MCV Dose Administered to Patient":
-  date from ("Zero MCV Dose Administered to Patient".occurrence as FHIR.dateTime)
+//define "Date Zero MCV Dose Administered to Patient":
+//  date from ("Zero MCV Dose Administered to Patient".occurrence as FHIR.dateTime)
 
 /**
  * @dataElement First MCV dose given to Patient
@@ -217,14 +219,14 @@ define "Date Second MCV Dose Administered to Patient":
  * @dataElement "Second MCV Dose Administered to Patient"
  * only valid if 4 weeks after first dose
  */
-define "Supplementary MCV Dose Administered to Patient":
-  Last("MCV Doses Administered to Patient" I where I.occurrence after "Date Second MCV Dose Administered to Patient")
+//define "Supplementary MCV Dose Administered to Patient":
+//  Last("MCV Doses Administered to Patient" I where I.occurrence after "Date Second MCV Dose Administered to Patient")
 
 /**
  * @dataElement Date second MCV dose administered
  */
-define "Date Supplementary MCV Dose Administered to Patient":
-  date from ("Supplementary MCV Dose Administered to Patient".occurrence as FHIR.dateTime)
+//define "Date Supplementary MCV Dose Administered to Patient":
+//  date from ("Supplementary MCV Dose Administered to Patient".occurrence as FHIR.dateTime)
 
 
 define "Draft Medication Request for MCV dose":
