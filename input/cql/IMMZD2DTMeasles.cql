@@ -98,10 +98,15 @@ define "Should vaccinate patient for MCV":
 
 define "MCV Dose Contraindicated":
 	IMMZCom."Pregnant"
+	or exists(IMMZCom."Severely Immunosuppressed Condition")
 
 define "Contraindication Evaluation of the MCV dose":
-	IMMZCom."Pregnant"
-
+	not("MCV Dose Contraindicated") and (
+		exists(IMMZCom."History of Anaphylactic Reactions Condition")
+		or exists(IMMZCom."Severe Allergic Reactions Condition")
+		or exists(IMMZCom."Symptomatic HIV Infection Condition")
+	)
+	
 /**
  * @dataElement MCV containing Doses Administered to Patient
  */
@@ -220,6 +225,14 @@ define "Supplementary MCV Dose Administered to Patient":
  */
 define "Date Supplementary MCV Dose Administered to Patient":
   date from ("Supplementary MCV Dose Administered to Patient".occurrence as FHIR.dateTime)
+
+
+define "Draft Medication Request for MCV dose":
+	[MedicationRequest] MR where MR.status = 'draft' and MR.intent = 'proposal'
+	sort by date from (authoredOn as FHIR.dateTime) desc
+
+define "Draft Medication Request ID for MCV dose":
+	First("Draft Medication Request for MCV dose").id
 
 /*
  * Rule: Should vaccinate patient for measles (Supplementary) because no doses

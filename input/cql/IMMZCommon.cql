@@ -70,7 +70,7 @@ define "Patient Has Active Sickle-cell disease":
 
 define "Pregnant Condition":
   [Condition] C
-    where (C.code as CodeableConcept) in Wcon."Pregnancy Status Pregnant"
+    where (C.code as CodeableConcept) in Wcon."Pregnancy Status Pregnant" or (C.code as CodeableConcept) ~ IMMZc."Currently Pregnant"
 
 define "Pregnant": 
   exists
@@ -134,6 +134,20 @@ define "Doses Administered to Patient":
   [Immunization] I
     where I.status = 'completed'
     sort by date from (occurrence as FHIR.dateTime) desc
+/**
+ * Contraindications 
+ */
+define "Severely Immunosuppressed Condition":
+  [Condition: IMMZc."Severely immunosuppressed"]
+
+define "History of Anaphylactic Reactions Condition":
+  [Condition: IMMZc."History of anaphylactic reactions"]
+
+define "Severe Allergic Reactions Condition":
+  [Condition: IMMZc."Severe allergic reactions"]
+
+define "Symptomatic HIV Infection Condition":
+  [Condition: IMMZc."Symptomatic HIV infection"]
 
 
 /******************************

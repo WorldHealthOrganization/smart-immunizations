@@ -137,9 +137,9 @@ Usage: #definition
 * dynamicValue[+]
   * path = "id"
   * expression
-    * description = "Draft Medication Request for MCV dose"
+    * description = "Draft Medication Request ID for MCV dose"
     * language = #text/cql-identifier
-    * expression = "Draft Medication Request for MCV dose"
+    * expression = "Draft Medication Request ID for MCV dose"
 
 Instance: IMMZD2DTMeaslesEval
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-servicerequestactivity
@@ -164,3 +164,9 @@ Usage: #definition
 * kind = #ServiceRequest
 * intent = #proposal
 * doNotPerform = false
+* dynamicValue[+]
+  * path = "code.coding"
+  * expression
+    * description = "Measles Code"
+    * language = #text/cql
+    * expression = "Code { system: 'http://hl7.org/fhir/sid/icd-11', code: 'XM28X5' }"
