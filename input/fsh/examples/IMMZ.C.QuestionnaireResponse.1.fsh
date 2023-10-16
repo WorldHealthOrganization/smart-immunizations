@@ -3,7 +3,7 @@ InstanceOf: QuestionnaireResponse
 Usage: #example
 * status = #completed
 * authored = "2023-08-08T19:20:20.913Z"
-* questionnaire = Canonical(Questionnaire-IMMZCRegisterClient)
+* questionnaire = Canonical(QIMMZCRegisterClient)
 * item[+]
   * linkId = "uniqueId"
   * text = "Unique identifier for the client"

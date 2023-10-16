@@ -1,8 +1,9 @@
-Instance: IMMZD4CheckContraindicationsMeasles
+Instance: QIMMZD4CheckContraindicationsMeasles
 InstanceOf: sdc-questionnaire-extr-smap
 Title: "Check Contraindications Questionnaire"
 Description: "Immunization - Check Contraindications Questionnaire"
 Usage: #definition
+* id = "IMMZD4CheckContraindicationsMeasles"
 * version = "2023"
 * status = #draft
 * subjectType = #Patient
