@@ -1,4 +1,4 @@
-Instance: Questionnaire-IMMZCRegisterClient
+Instance: IMMZCRegisterClient
 InstanceOf: sdc-questionnaire-extr-smap
 Title: "Client Registration Questionnaire"
 Description: "Immunization - Client Registration Questionnaire"

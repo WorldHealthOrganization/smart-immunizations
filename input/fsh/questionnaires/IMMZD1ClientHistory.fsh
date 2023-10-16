@@ -1,4 +1,4 @@
-Instance: Questionnaire-IMMZD1ClientHistory
+Instance: IMMZD1ClientHistoryMeasles
 InstanceOf: sdc-questionnaire-extr-smap
 Title: "Capture Client History Questionnaire"
 Description: "Immunization - Capture Client History Questionnaire"

@@ -1,4 +1,4 @@
-Logical:      IMMZD4CheckContraindications
+Logical:      IMMZD4CheckContraindicationsMeasles
 Title:        "IMMZ.D4 Check Contraindications for Measles"
 Description:  "Data elements for the IMMZ.D4 Check Contraindications Data Dictionary for Measles."
 
