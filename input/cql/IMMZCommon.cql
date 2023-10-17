@@ -229,6 +229,8 @@ define function ToDate(choice Choice<FHIR.date, FHIR.string>):
   case
 	  when choice is FHIR.date then
     	choice as FHIR.date
+    when  ConvertsToDate(choice) then
+      ToDate(choice)
 		else
       Message(null as FHIR.date, true, '1', 'Error', 'Cannot compute a date from a String value')
 	end
@@ -240,6 +242,8 @@ define function ToDateTime(choice Choice<FHIR.dateTime, FHIR.string>):
   case
 	  when choice is FHIR.dateTime then
     	choice as FHIR.dateTime
+		when  ConvertsToDateTime(choice) then
+      ToDateTime(choice)
 		else
       Message(null as FHIR.dateTime, true, '1', 'Error', 'Cannot compute a date from a String value')
 	end
