@@ -3,8 +3,6 @@
  * Immunization coverage for Measles containing vaccine (Estimated Denominator) 
  * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - elements 4240 and 4260 )
  */
-
-
 /* ============================================================================
  * Measle Dose 1
  * ============================================================================
@@ -50,7 +48,7 @@
  * ============================================================================
  */
 
-library IMMZIND08
+library IMMZIND08 version '1.0.1'
 
 
 using FHIR version '4.0.1'
@@ -102,8 +100,8 @@ define DenominatorPopulation:
 		where MR.subject.reference = 'Location/' + getPatientGeographicStr
 		and MR.measure = FHIR.canonical {value:canonical_demographic_measure_url}
 		and start of "Measurement Period" in MR.period ).group.first().stratifier.first().stratum.where(
-			exists(component.where(code.coding.first().code ~ code { value: 'sex'} and  value.coding.first().code = Patient.gender)) 
-			and exists(component.where(code.coding.first().code ~ code { value: 'AgeGroup'}   and value.coding.first().code ~ "Age Group".code))
+			exists(component.where(code.coding.first().code ~ code { value: 'sex'} and  value.coding.first().code ~ "Administrative Gender Stratifier".code)) 
+			and exists(component.where(code.coding.first().code ~ code { value: 'AgeGroup'}   and value.coding.first().code ~ "Age Group Stratifier".code))
 		).first().population.first().count
 
 
@@ -138,7 +136,7 @@ define function ToDate(choice Choice<FHIR.date, FHIR.string>):
 // Stratifiers
 
 // Age Group
-define "Age Group":
+define "Age Group Stratifier":
   case
     when AgeInYearsAt(start of "Measurement Period") in Interval[0, 1) then "P0Y--P1Y"
     when AgeInYearsAt(start of "Measurement Period") in Interval[1, 2) then "P1Y--P2Y"
@@ -163,4 +161,7 @@ define "Administrative Gender Stratifier":
  * By Administrative Gender of Patient Stratifier
  */
 define "Geographic Region Stratifier":
-    code {value: getPatientGeographicStr}
+    System.Code {code: getPatientGeographicStr}
+
+define "Age Group / Region / Sex Stratifier":
+	code { value: ("Geographic Region Stratifier".code + '__' + "Administrative Gender Stratifier".code + '__' + "Age Group Stratifier".code)}
