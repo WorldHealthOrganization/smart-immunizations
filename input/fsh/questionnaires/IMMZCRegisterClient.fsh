@@ -12,6 +12,8 @@ Usage: #definition
 * contained[+] = IMMZ.C.DE5
 //* contained[+] = YesNoUnknown
 
+* extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
+* extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZCQRToPatient"
 
 
 //Header
@@ -47,7 +49,7 @@ Usage: #definition
 
 * insert Question(sex, Sex,choice,true,false)
 * item[=]
-  * answerValueSet = Canonical(IMMZ.C.DE5)
+  * answerValueSet = "#IMMZ.C.DE5"
   * code[+] = IMMZ.C#DE5
   * code[+] = $LNC#46098-0	"Sex"
   * code[+] = $SCT#184100006 "Patient sex (observable entity)"
