@@ -37,7 +37,7 @@ valueset "ARV Drugs": 'http://smart.who.int/ig/smart-immunizations/ValueSet/ARVD
 
 // Vaccine Value Sets
 
-valueset "MCV Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.A1.DE9'
+valueset "MCV Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE9'
 
 // Plugin is complaining about not finding these so that should be resolved, but here until it can be fixed
 valueset "BCG Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.A1.DE1'

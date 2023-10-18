@@ -1,4 +1,4 @@
-Instance: IMMZD1ClientHistoryMeasles
+Instance: QIMMZD1ClientHistoryMeasles
 InstanceOf: sdc-questionnaire-extr-smap
 Title: "Capture Client History Questionnaire"
 Description: "Immunization - Capture Client History Questionnaire"
@@ -25,28 +25,28 @@ Usage: #definition
   * code[+] = IMMZ.D1#DE10
   * code[+] = $LNC#55277-8
   * code[+] = $SCT#278977008
-* insert Question(immunocompromised, The client is known to be immunocompromised or immunosuppressed. This means the client has a weakened immune system and having a reduced ability to fight infections and other diseases, boolean, false, false)
+* insert Question(pretermBirth, The infant was preterm; the mother gave birth to the infant when gestational age was less than 37 weeks, boolean, false, false)
 * item[=]
-  * code[+] = IMMZ.D1#DE16
-  * code[+] = $ICD11#4B4Z
-  * code[+] = $LNC#96381-9
-  * code[+] = $SCT#370388006
-* insert Question(onART, The client is currently receiving antiretroviral therapy ART, boolean, false, false)
-* item[=]
-  * code[+] = IMMZ.D1#DE17
-* insert Question(hivExposedInfant, The infant is known to be exposed to HIV\, i.e. born to an HIV-infected woman, boolean, false, true)
-* item[=]
-  * code[+] = IMMZ.D1#DE90
-  * code[+] = $ICD11#QC60
-  * code[+] = $LNC#10157-6
-  * code[+] = $SCT#438998000
-* insert Question(immuneReconstitutionAchieved, The client is known to have achieved immune reconstitution, boolean, false, true)
-* item[=]
-  * code[+] = IMMZ.D1#DE46
+  * code[+] = IMMZ.D1#DE15
+  * code[+] = $ICD11#KA21.4
+  * code[+] = $LNC#76517-2
+  * code[+] = $SCT#395507008
 * insert Question(severelyImmunosuppressed, The client is known to be severely immunocompromised or immunosuppressed, boolean, false, true)
 * item[=] 
   * code[+] = IMMZ.D1#DE92
-  * code[=] = $LNC#96381-9
+  * code[+] = $LNC#96381-9
 * insert Question(artStartDate, The date on which the client started or restarted antiretroviral therapy ART, date, false, true)
 * item[=]
   * code[+] = IMMZ.D1#DE49
+* insert Question(vaccineHistory, Vaccine History, group, false, true)
+* item[=]
+  * insert Question(vaccineType, Vaccine type/category that was administered or was to be administered. Any vaccine code available in the IMMZ.Z Vaccine Library list of codes applies in this data element, choice, true, false)
+  * item[=]
+    * answerValueSet = Canonical(IMMZ.Z.DE9)
+    * code[+] = IMMZ.D1#DE19
+    * code[+] = $LNC#39236-5
+    * code[+] = $SCT#787859002
+  * insert Question(vaccineDate, Represents the visit/encounter date\, which is the date and time when the vaccine was administered to the client, date, true, false)
+  * item[=]
+    * code[+] = IMMZ.D1#DE20
+    * code[+] = $LNC#30952-6  
