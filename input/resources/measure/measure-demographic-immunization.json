@@ -1,0 +1,71 @@
+{
+  "resourceType": "Measure",
+  "id": "demographicForImmunization",
+  "url": "https://fhir.who.org/Measure/demographicForImmunization",
+  "name": "demographic for immunization",
+  "title": "demographic for immunization use ad Estimated Denominator",
+  "date": "2022-05-12T15:36:34.955-04:00",
+  "description": "Definition of the MeasureReport expected to rum the Immunization measure",
+  "scoring": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
+      "code": "cohort"
+    } ]
+  },
+  "library": [ "http://fhir.org/guides/who/smart-immunization/Library/WHOCommon" ],
+  "type": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/measure-type",
+      "code": "process"
+    } ]
+  } ],
+  "group": [
+      {
+      "id": "IMMZ.IND.05",
+      "description": "Compares the number of clients who received the first dose in the primary series of measles containing vaccine (MCV1) with the number in the target population, expressed as a percentage.",
+      "population": [ 
+        {
+        "id": "initial-population",
+        "code": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+            "code": "initial-population"
+          } ]
+        },
+        "description": "All patients",
+        "criteria": {
+          "language": "text/cql-expression",
+          "expression": "true"
+        }
+      }, {
+        "id": "measured-population",
+        "code": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+            "code": "numerator"
+          } ]
+        },
+        "description": "Number of persons",
+        "criteria": {
+          "language": "text/cql-expression",
+          "expression": "true"
+        } 
+      }
+      ],
+      "stratifier": [ 
+          {
+          "id": "age-group-stratifier",
+          "criteria": {
+            "language": "text/cql-expression",
+            "expression": " case when AgeInYearsAt(periodStart) in Interval[0, 1) then FHIR.code {value: 'P0Y--P1Y'} when AgeInYearsAt(periodStart) in Interval[1, 2) then FHIR.code {value: 'P1Y--P2Y'} when AgeInYearsAt(periodStart) >= 2 then FHIR.code {value: 'P2Y--P9999Y'} else null end "
+          }
+        },{
+          "id": "administrative-gender-stratifier",
+          "criteria": {
+            "language": "text/cql-expression",
+            "expression": "case when Patient.gender = 'male' then code {value: 'male'} when Patient.gender = 'female' then code {value: 'female'}  else code {value: 'other'} end"
+          }
+        } 
+      ]
+    } ]
+}

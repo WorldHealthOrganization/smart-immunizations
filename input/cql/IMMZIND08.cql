@@ -47,15 +47,14 @@
  * 
  * ============================================================================
  */
-
-library IMMZIND08 version '1.0.1'
+library IMMZIND08 version '1.0.2'
 
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 
 parameter "Measurement Period" Interval<Date>
-parameter "canonical_demographic_measure_url" String default 'https://fhir.who.org/Measure/demographic-for-immunization'
+parameter "canonical_demographic_measure_url" String default 'https://fhir.who.org/Measure/demographicForImmunization'
 
 valueset "Measles Vaccines": 'http://fhir.org/guides/who/smart-immunization/ValueSet/IMMZ.A1.DE'
 
@@ -75,13 +74,12 @@ code "Other" : 'other' from "Administrative Gender Codes" display 'Other/NA'
 context Patient
 
 define getPatientGeographicStr:
-	First(Patient.address A where A.use in { 'home' }).district
+	Coalesce(First(Patient.address A where A.use in { 'home' }).district, 'nodistrict')
 
 define getPatientGeographicLocation:
-    if getPatientGeographicStr is not null then
+    if getPatientGeographicStr is not null and getPatientGeographicStr != 'nodistrict' then
       First([Location] L where L.id = id { value: getPatientGeographicStr})
     else null
-
 
 /*
 All patient should be included 
@@ -100,8 +98,8 @@ define DenominatorPopulation:
 		where MR.subject.reference = 'Location/' + getPatientGeographicStr
 		and MR.measure = FHIR.canonical {value:canonical_demographic_measure_url}
 		and start of "Measurement Period" in MR.period ).group.first().stratifier.first().stratum.where(
-			exists(component.where(code.coding.first().code ~ code { value: 'sex'} and  value.coding.first().code ~ "Administrative Gender Stratifier".code)) 
-			and exists(component.where(code.coding.first().code ~ code { value: 'AgeGroup'}   and value.coding.first().code ~ "Age Group Stratifier".code))
+			exists(component.where(code.coding.first().code ~ 'sex' and  value.coding.first().code ~ "Administrative Gender Stratifier".code)) 
+			and exists(component.where(code.coding.first().code ~ 'AgeGroup' and value.coding.first().code ~ "Age Group Stratifier".code))
 		).first().population.first().count
 
 
@@ -113,11 +111,11 @@ define getdoses:
 
 
 define FirstDose:
-	Count(getdoses) = 1 and exists(getdoses.where(ToDate(occurrence) in "Measurement Period"))
+	Count(getdoses) = 1 and exists(getdoses.where(ToDate(occurrence) during "Measurement Period"))
 
 
 define SecondDose:
-	Count(getdoses) = 2 and exists(getdoses.where(ToDate(occurrence) in "Measurement Period"))
+	Count(getdoses) = 2 and exists(getdoses.where(ToDate(occurrence) during "Measurement Period"))
 
 
 /**
@@ -140,8 +138,7 @@ define "Age Group Stratifier":
   case
     when AgeInYearsAt(start of "Measurement Period") in Interval[0, 1) then "P0Y--P1Y"
     when AgeInYearsAt(start of "Measurement Period") in Interval[1, 2) then "P1Y--P2Y"
-    when AgeInYearsAt(start of "Measurement Period") >= 2 then "P2Y--P9999Y"
-    else null
+    else "P2Y--P9999Y"
   end
 
 // Sex
@@ -163,5 +160,6 @@ define "Administrative Gender Stratifier":
 define "Geographic Region Stratifier":
     System.Code {code: getPatientGeographicStr}
 
-define "Age Group / Region / Sex Stratifier":
-	code { value: ("Geographic Region Stratifier".code + '__' + "Administrative Gender Stratifier".code + '__' + "Age Group Stratifier".code)}
+define "Region - Sex - Age Group Stratifier":
+	"Geographic Region Stratifier".code + ':' + "Administrative Gender Stratifier".code + ':' + "Age Group Stratifier".code
+
