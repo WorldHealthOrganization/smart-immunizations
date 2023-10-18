@@ -3,6 +3,7 @@ InstanceOf: sdc-questionnaire-extr-smap
 Title: "Capture Client History Questionnaire"
 Description: "Immunization - Capture Client History Questionnaire"
 Usage: #definition
+* id = "IMMZD1ClientHistoryMeasles"
 * version = "2023"
 * status = #draft
 * subjectType = #Patient
