@@ -8,5 +8,5 @@ Usage: #example
   * text = "Test Patient"
   * family = "Patient"
   * given = "Test"
-* gender = #male
-* birthDate = "1993-08-12"
+* gender = #female
+* birthDate = "2023-03-02"

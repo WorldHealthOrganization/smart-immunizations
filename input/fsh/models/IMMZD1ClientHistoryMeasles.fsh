@@ -4,6 +4,7 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
 
 * ^name = "IMMZ_D1_Client_History_Measles"
 
+* patient 1..1 Reference "Patient" "The patient who is being checked for contraindications."
 * dose0 0..1 boolean "Dose 0 administered" "Indicates if the client has received a birth dose and/or supplementary dose"
   * ^code[+] = IMMZ.D1#DE80
 * completedPrimarySeries 0..1 boolean "Completed the primary vaccination series" "Indicates if the client has completed the primary vaccination series of a product/antigen. If the client has not yet completed their primary series, it means they may be expected to receive more doses to complete their vaccination regimen for the respective product/antigen."

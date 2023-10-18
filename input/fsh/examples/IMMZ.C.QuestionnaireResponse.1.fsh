@@ -26,23 +26,11 @@ Usage: #example
 * item[+]
   * linkId = "sex"
   * text = "Sex"
-  * answer.valueCoding = IMMZ.C#DE6 "Male"
+  * answer.valueCoding = IMMZ.C#DE7 "Female"
 * item[+]
   * linkId = "birthDate"
   * text = "Birth Date"
-  * answer.valueDate = "1993-08-12"
-* item[+]
-  * linkId = "ageInWeeks"
-  * text = "Age in Weeks"
-  * answer.valueInteger = 1565
-* item[+]
-  * linkId = "ageInMonths"
-  * text = "Age in Months"
-  * answer.valueInteger = 359
-* item[+]
-  * linkId = "ageInYears"
-  * text = "Age in Years"
-  * answer.valueInteger = 29
+  * answer.valueDate = "2023-03-02"
 * item[+]
   * linkId = "caregiver"
   * text = "Care giver name"
