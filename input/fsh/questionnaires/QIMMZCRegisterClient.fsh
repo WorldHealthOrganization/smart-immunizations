@@ -3,12 +3,10 @@ InstanceOf: sdc-questionnaire-extr-smap
 Title: "Client Registration Questionnaire"
 Description: "Immunization - Client Registration Questionnaire"
 Usage: #definition
-* id = "IMMZCRegisterClient"
 * version = "2023"
 * status = #draft
 * subjectType = #Patient
 * language = #en
-* status = #draft
 * contained[+] = IMMZ.C.DE5
 //* contained[+] = YesNoUnknown
 
@@ -49,7 +47,7 @@ Usage: #definition
 
 * insert Question(sex, Sex,choice,true,false)
 * item[=]
-  * answerValueSet = "#IMMZ.C.DE5"
+  * answerValueSet = Canonical(IMMZ.C.DE5)
   * code[+] = IMMZ.C#DE5
   * code[+] = $LNC#46098-0	"Sex"
   * code[+] = $SCT#184100006 "Patient sex (observable entity)"
@@ -96,18 +94,3 @@ Usage: #definition
   * code[+] = IMMZ.C#DE20
 
 
-/*
-
-* phone 1..1 string "Client's phone number"
-  * code[+] = IMMZ.C#DE18
-  * code[+] = $LNC#42077-8 "Patient Phone number"
-  * code[+] = $SCT#184103008 "Patient telephone number (observable entity)"
-* administrativeArea 0..1 CodeableConcept "The name of the city/municipality/town/village of where the client lives"
-  * code[+] = IMMZ.C#DE19
-  * code[+] = $LNC#56799-0 "Address"
-  * code[+] = $SCT#184097001 "Patient address (observable entity)"
-* healthWorker 1..1 boolean "Is the client an active and participating health worker. This data element is used mainly for reporting and indicators purposes."
-  * code[+] = IMMZ.C#DE20
-  
-
-*/

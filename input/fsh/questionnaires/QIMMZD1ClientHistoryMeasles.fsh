@@ -26,7 +26,7 @@ Usage: #definition
   * code[+] = IMMZ.D1#DE81
 * insert Question(hivStatus, The current human immunodeficiency virus HIV status of the client, choice, false, false)
 * item[=]
-  * answerValueSet = "#IMMZ.D1.DE10"
+  * answerValueSet = Canonical(IMMZ.D1.DE10)
   * code[+] = IMMZ.D1#DE10
   * code[+] = $LNC#55277-8
   * code[+] = $SCT#278977008
@@ -47,7 +47,7 @@ Usage: #definition
 * item[=]
   * insert Question(vaccineType, Vaccine type/category that was administered or was to be administered. Any vaccine code available in the IMMZ.Z Vaccine Library list of codes applies in this data element, choice, true, false)
   * item[=]
-    * answerValueSet = "#IMMZ.Z.DE9"
+    * answerValueSet = Canonical(IMMZ.Z.DE9)
     * code[+] = IMMZ.D1#DE19
     * code[+] = $LNC#39236-5
     * code[+] = $SCT#787859002
