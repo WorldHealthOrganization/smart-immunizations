@@ -16,7 +16,7 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
   * ^code[+] = $LNC#55277-8
   * ^code[+] = $SCT#278977008
 * hivStatus from IMMZ.D1.DE10
-* pretermBirth 0..1 boolean "Preterm Birth" "The infant was preterm; the mother gave birth to the infant when gestational age was less than 37 weeks"
+* pretermBirth 0..1 boolean "Preterm birth" "The infant was preterm, the mother gave birth to the infant when gestational age was less than 37 weeks"
   * ^code[+] = IMMZ.D1#DE15
   * ^code[+] = $ICD11#KA21.4
   * ^code[+] = $LNC#76517-2
