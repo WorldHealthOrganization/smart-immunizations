@@ -11,7 +11,7 @@ include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
 include IMMZVaccineLibrary called IMMZvl
-include FHIRCommon called FC
+include FHIRCommon version '4.0.1' called FC
 
 parameter "Individual is at high risk of contracting measles" Boolean default false
 parameter "Individual is travelling to a country experiencing measles outbreaks" Boolean default false
@@ -73,6 +73,9 @@ define "MCV Next Dose Number":
 
 define "Number of Required MCV Doses":
 	2
+
+define "Period for MCV dose":
+	Interval [ "Schedule Due Date for MCV dose", "Expiration Date for MCV dose"]
 
 define "Expiration Date for MCV dose":
 	//case
@@ -192,28 +195,29 @@ define "Needs Supplementary MCV Dose":
  */
 define "First MCV Dose Administered to Patient":
 	if "High Transmission Setting"
-	then Last("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 9 months)
-	else Last("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 12 months)
+	then First("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 9 months sort by IMMZCom.ToDate(occurrence) desc)
+	else First("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 12 months sort by IMMZCom.ToDate(occurrence) desc)
 /**
  * @dataElement Date first MCV dose administered
  */
 define "Date First MCV Dose Administered to Patient":
-  date from ("First MCV Dose Administered to Patient".occurrence as FHIR.dateTime)
+   IMMZCom.ToDate("First MCV Dose Administered to Patient".occurrence)
 
 /**
  * @dataElement "Second MCV Dose Administered to Patient"
  * only valid if 4 weeks after first dose
  */
 define "Second MCV Dose Administered to Patient":
-  Last("MCV Doses Administered to Patient" I 
-		where I.occurrence after "Date First MCV Dose Administered to Patient" + 4 weeks 
-			and I.occurrence after Patient.birthDate + 15 months)
+  First("MCV Doses Administered to Patient" I 
+		where IMMZCom.ToDate(I.occurrence) after "Date First MCV Dose Administered to Patient" + 4 weeks 
+			and IMMZCom.ToDate(I.occurrence) after Patient.birthDate + 15 months 
+			sort by IMMZCom.ToDate(occurrence) desc)
 
 /**
  * @dataElement Date second MCV dose administered
  */
 define "Date Second MCV Dose Administered to Patient":
-  date from ("Second MCV Dose Administered to Patient".occurrence as FHIR.dateTime)
+  IMMZCom.ToDate("Second MCV Dose Administered to Patient".occurrence)
 
 /**
  * @dataElement "Second MCV Dose Administered to Patient"

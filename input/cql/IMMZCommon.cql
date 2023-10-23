@@ -5,7 +5,7 @@ using FHIR version '4.0.1'
 include WHOCommon called WCom
 include WHOConcepts called Wcon
 include FHIRHelpers version '4.0.1'
-include FHIRCommon called FC
+include FHIRCommon version '4.0.1' called FC
 include IMMZConcepts called IMMZc
 
 
@@ -243,7 +243,9 @@ define function ToDate(choice Choice<FHIR.date, FHIR.string>):
   case
 	  when choice is FHIR.date then
     	choice as FHIR.date
-		else
+		when choice is FHIR.string and ConvertsToDate(choice) then
+      FHIRHelpers.ToDate(choice)
+    else
       Message(null as FHIR.date, true, '1', 'Error', 'Cannot compute a date from a String value')
 	end
 
@@ -254,7 +256,9 @@ define function ToDateTime(choice Choice<FHIR.dateTime, FHIR.string>):
   case
 	  when choice is FHIR.dateTime then
     	choice as FHIR.dateTime
-		else
+		when choice is FHIR.string and ConvertsToDateTime(choice) then
+      FHIRHelpers.ToDateTime(choice)
+    else
       Message(null as FHIR.dateTime, true, '1', 'Error', 'Cannot compute a date from a String value')
 	end
 
