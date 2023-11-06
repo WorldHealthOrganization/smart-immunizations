@@ -5,8 +5,10 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
 * ^name = "IMMZ_D1_Client_History_Measles"
 
 * patient 1..1 Reference "Patient" "The patient who is being checked for contraindications."
-* dose0 0..1 boolean "Dose 0 administered" "Indicates if the client has received a birth dose and/or supplementary dose"
+* dose0 0..1 boolean "Dose 0 administered" "Indicates if the client has received a birth dose and/or a zero dose"
   * ^code[+] = IMMZ.D1#DE80
+* booster 0..1 boolean "Booster dose administered" "Indicates if the client has received a booster dose and/or a supplementary dose"
+  * ^code[+] = IMMZ.D1#DE95
 * completedPrimarySeries 0..1 boolean "Completed the primary vaccination series" "Indicates if the client has completed the primary vaccination series of a product/antigen. If the client has not yet completed their primary series, it means they may be expected to receive more doses to complete their vaccination regimen for the respective product/antigen."
   * ^code[+] = IMMZ.D1#DE8
 * dateSeriesCompleted 1..1 date "Date when primary vaccination series was completed" "The date when the client completed the primary vaccination series (per product/antigen)"
@@ -21,6 +23,13 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
   * ^code[+] = $ICD11#KA21.4
   * ^code[+] = $LNC#76517-2
   * ^code[+] = $SCT#395507008
+* immunocompromised 0..1 boolean "Immunocompromised" "The client is known to be immunocompromised. This means the client has a weakened immune system and having a reduced ability to fight infections and other diseases"
+  * ^code[+] = IMMZ.D1#DE16
+  * ^code[+] = $ICD11#4B4Z
+  * ^code[+] = $LNC#96381-9
+  * ^code[+] = $SCT#370388006
+* onART 0..1 boolean "Currently on ART" "The client is currently receiving antiretroviral therapy (ART)"
+  * ^code[+] = IMMZ.D1#DE17
 * severelyImmunosuppressed 1..1 boolean "Severely immunosuppressed" "The client is known to be severely immunocompromised or immunosuppressed"
   * ^code[+] = IMMZ.D1#DE92
   * ^code[=] = $LNC#96381-9

@@ -10,6 +10,9 @@ Usage: #example
   * linkId = "dose0"
   * answer.valueBoolean = false
 * item[+]
+  * linkId = "booster"
+  * answer.valueBoolean = false
+* item[+]
   * linkId = "completedPrimarySeries"
   * answer.valueBoolean = false
 * item[+]
@@ -17,6 +20,12 @@ Usage: #example
   * answer.valueCoding = IMMZ.D1#DE12
 * item[+]
   * linkId = "pretermBirth"
+  * answer.valueBoolean = false
+* item[+]
+  * linkId = "immunocompromised"
+  * answer.valueBoolean = false
+* item[+]
+  * linkId = "OnART"
   * answer.valueBoolean = false
 * item[+]
   * linkId = "severelyImmunosuppressed"

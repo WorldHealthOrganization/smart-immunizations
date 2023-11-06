@@ -15,9 +15,12 @@ Usage: #definition
 * extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1QRToResources"
 
 
-* insert Question(dose0, Indicates if the client has received a birth dose and/or supplementary dose, boolean, false, false)
+* insert Question(dose0, Indicates if the client has received a birth dose and/or a zero dose, boolean, false, false)
 * item[=]
   * code[+] = IMMZ.D1#DE80
+* insert Question(booster, Indicates if the client has received a booster dose and/or a supplementary dose, boolean, false, false)
+* item[=]
+  * code[+] = IMMZ.D1#DE95
 * insert Question(completedPrimarySeries, Indicates if the client has completed the primary vaccination series of a product/antigen. If the client has not yet completed their primary series\, it means they may be expected to receive more doses to complete their vaccination regimen for the respective product/antigen., boolean, false, false)
 * item[=]
   * code[+] = IMMZ.D1#DE8
@@ -36,6 +39,15 @@ Usage: #definition
   * code[+] = $ICD11#KA21.4
   * code[+] = $LNC#76517-2
   * code[+] = $SCT#395507008
+* insert Question(immunocompromised, The client is known to be immunocompromised. This means the client has a weakened immune system and having a reduced ability to fight infections and other diseases, boolean, false, false)
+* item[=]
+  * code[+] = IMMZ.D1#DE16
+  * code[+] = $ICD11#4B4Z
+  * code[+] = $LNC#96381-9
+  * code[+] = $SCT#370388006
+* insert Question(onART, The client is currently receiving antiretroviral therapy - ART, boolean, false, false)
+* item[=]
+  * code[+] = IMMZ.D1#DE17
 * insert Question(severelyImmunosuppressed, The client is known to be severely immunocompromised or immunosuppressed, boolean, false, true)
 * item[=] 
   * code[+] = IMMZ.D1#DE92

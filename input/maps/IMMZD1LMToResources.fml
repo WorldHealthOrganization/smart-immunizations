@@ -20,6 +20,17 @@ group IMMZD1ToBundle (source immz : IMMZD1, target bundle: Bundle) {
       content -> obs.value = content "SetValue";
     } "SetDose0Observation";
 
+    immz.booster as content -> bundle.entry as entry, entry.resource = create('Observation') as obs then {
+      patient -> obs.subject = patient "SetPatient";
+      content -> obs.code as code then {
+        content -> code.coding as coding then {
+          content -> coding.system = 'http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D1' "SetObsSystem";
+          content -> coding.code = 'DE95' "SetObsCode";
+        } "SetObsCoding";
+      } "SetObsCode";
+      content -> obs.value = content "SetValue";
+    } "SetBoosterObservation";
+
     immz.completedPrimarySeries as content -> bundle.entry as entry, entry.resource = create('Observation') as obs then {
       patient -> obs.subject = patient "SetPatient";
       content -> obs.code as code then {
@@ -65,6 +76,30 @@ group IMMZD1ToBundle (source immz : IMMZD1, target bundle: Bundle) {
       } "SetObsCode";
       content -> obs.value = content "SetValue";
     } "SetPretermBirthObservation";
+
+    immz.immunocompromised as content -> bundle.entry as entry, entry.resource = create('Observation') as obs then {
+      patient -> obs.subject = patient "SetPatient";
+      content -> obs.code as code then {
+        content -> code.coding as coding then {
+          content -> coding.system = 'http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D1' "SetObsSystem";
+          content -> coding.code = 'DE16' "SetObsCode";
+        } "SetObsCoding";
+      } "SetObsCode";
+      content -> obs.value = content "SetValue";
+    } "SetImmunocompromisedObservation";
+
+    immz.onART as content -> bundle.entry as entry, entry.resource = create('Observation') as obs then {
+      patient -> obs.subject = patient "SetPatient";
+      content -> obs.code as code then {
+        content -> code.coding as coding then {
+          content -> coding.system = 'http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D1' "SetObsSystem";
+          content -> coding.code = 'DE17' "SetObsCode";
+        } "SetObsCoding";
+      } "SetObsCode";
+      content -> obs.value = content "SetValue";
+    } "SetOnARTObservation";
+
+
 
     immz.severelyImmunosuppressed as content -> bundle.entry as entry, entry.resource = create('Observation') as obs then {
       patient -> obs.subject = patient "SetPatient";
