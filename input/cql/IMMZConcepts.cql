@@ -14,7 +14,7 @@ codesystem "Extended Codes CodeSystem codes": 'http://fhir.org/guides/who/anc-cd
 
 codesystem "IMMZ.C": 'http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.C'
 codesystem "IMMZ.D1": 'http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D1'
-codesystem "IMMZ.D4": 'http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D4'
+codesystem "IMMZ.D": 'http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D'
 
 //WHO ATC IPS Valueset
 valueset "WHO ATC": 'http://hl7.org/fhir/uv/ips/ValueSet/whoatc-uv-ips'
@@ -48,8 +48,8 @@ valueset "Cholera Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSe
 code "Adverse Event Severity": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
 code "Adverse Event Manifestation": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
 
-code "Currently Pregnant": 'DE161' from "IMMZ.D4" display 'Currently Pregnant'
-code "Severely immunosuppressed": 'DE165' from "IMMZ.D4" display 'Severely immunosuppressed' 
-code "History of anaphylactic reactions": 'DE166' from "IMMZ.D4" display 'History of anaphylactic reactions'
-code "Severe allergic reactions": 'DE167' from "IMMZ.D4" display 'Severe allergic reactions'
-code "Symptomatic HIV infection": 'DE168' from "IMMZ.D4" display 'Symptomatic HIV infection'
+code "Currently Pregnant": 'DE161' from "IMMZ.D" display 'Currently Pregnant'
+code "Severely immunosuppressed": 'DE165' from "IMMZ.D" display 'Severely immunosuppressed' 
+code "History of anaphylactic reactions": 'DE166' from "IMMZ.D" display 'History of anaphylactic reactions'
+code "Severe allergic reactions": 'DE167' from "IMMZ.D" display 'Severe allergic reactions'
+code "Symptomatic HIV infection": 'DE168' from "IMMZ.D" display 'Symptomatic HIV infection'
