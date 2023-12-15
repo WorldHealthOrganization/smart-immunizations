@@ -4,7 +4,6 @@ Title: "IMMZ.D2.DT.Measles.MR"
 Description: "Provide measles immunization"
 Usage: #definition
 
-* library = "http://smart.who.int/ig/smart-immunizations/Library/IMMZD2DTMeaslesHighTx"
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
@@ -22,19 +21,3 @@ Usage: #definition
 * intent = #proposal
 * doNotPerform = false
 * productCodeableConcept = $ICD11#XM28X5 "Measles vaccines"
-* dynamicValue[+]
-  * path = "status"
-  * expression
-    * language = #text/cql
-    * expression = "'draft'"
-* dynamicValue[+]
-  * path = "intent"
-  * expression
-    * language = #text/cql
-    * expression = "'proposal'"
-* dynamicValue[+]
-  * path = "dispenseRequest.validityPeriod.start"
-  * expression
-    * description = "Due date of the dose"
-    * language = #text/cql-identifier
-    * expression = "Due date of the dose"
