@@ -174,3 +174,37 @@ define "Live vaccine was administered in the last four weeks":
 define "No live vaccine was administered in the last four weeks":
 	not("Live vaccine was administered in the last four weeks")
 
+/*
+@input: The client is pregnant
+@pseudocode: "Potential contraindications" = 'Currently pregnant'
+*/
+define "The client is pregnant":
+	IMMZCom."Pregnant"
+
+/*
+@input: The client has history of anaphylactic reactions
+@pseudocode: "Potential contraindications" = 'History of anaphylactic reactions'
+*/
+define "The client has history of anaphylactic reactions":
+	exists(IMMZCom."History of Anaphylactic Reactions Condition")
+
+/*
+@input: The client has history of severe allergic reactions
+@pseudocode: "Potential contraindications" = 'Severe allergic reactions'
+*/
+define "The client has history of severe allergic reactions":
+		exists(IMMZCom."Severe Allergic Reactions Condition")
+
+/*
+@input: The client is severely immunosuppressed
+@pseudocode: "Potential contraindications" = 'Severely immunosuppressed'
+*/
+define "The client is severely immunosuppressed":
+	exists(IMMZCom."Severely Immunosuppressed Condition")
+
+/*
+@input: The client has a symptomatic HIV infection
+@pseudocode: "Potential contraindications" = 'Symptomatic HIV infection'
+*/
+define "The client has a symptomatic HIV infection":
+	exists(IMMZCom."Symptomatic HIV Infection Condition")

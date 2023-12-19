@@ -48,7 +48,7 @@ valueset "Cholera Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSe
 code "Adverse Event Severity": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
 code "Adverse Event Manifestation": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
 
-code "Currently Pregnant": 'DE161' from "IMMZ.D" display 'Currently Pregnant'
+code "Currently Pregnant": 'DE162' from "IMMZ.D" display 'Currently Pregnant'
 code "Severely immunosuppressed": 'DE165' from "IMMZ.D" display 'Severely immunosuppressed' 
 code "History of anaphylactic reactions": 'DE166' from "IMMZ.D" display 'History of anaphylactic reactions'
 code "Severe allergic reactions": 'DE167' from "IMMZ.D" display 'Severe allergic reactions'
