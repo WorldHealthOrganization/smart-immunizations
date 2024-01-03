@@ -18,8 +18,20 @@ Usage: #definition
   * code = http://hl7.org/fhir/uv/cpg/CodeSystem/cpg-common-process-cs#dispense-medications
   * selectionBehavior = #all
   * action[+]
+    * title = "Immunize patient for Measles Dose 0"
+    * description = "Provide measles immunization MCV0"
+    * code = http://hl7.org/fhir/uv/cpg/CodeSystem/cpg-common-process-cs#dispense-medications
+    * selectionBehavior = #all
+    * definitionCanonical = Canonical(IMMZD2DTMeaslesDose0)
+  * action[+]
     * title = "Immunize patient for Measles"
     * description = "Provide measles immunization"
     * code = http://hl7.org/fhir/uv/cpg/CodeSystem/cpg-common-process-cs#dispense-medications
     * selectionBehavior = #all
-    * definitionCanonical = Canonical(IMMZD2DTMeasles)
+    * definitionCanonical = Canonical(IMMZD2DTMeaslesHighTx)
+  * action[+]
+    * title = "Immunize patient for Measles supplementary dose"
+    * description = "Provide measles supplementary dose immunization"
+    * code = http://hl7.org/fhir/uv/cpg/CodeSystem/cpg-common-process-cs#dispense-medications
+    * selectionBehavior = #all
+    * definitionCanonical = Canonical(IMMZD2DTMeaslesSupp)
