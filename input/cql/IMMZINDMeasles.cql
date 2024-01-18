@@ -25,53 +25,18 @@ include FHIRHelpers version '4.0.1'
 include IMMZCommon called IMMZCom
 include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
-include IMMZIndicatorCommon called IMMZIndCom
+//include IMMZIndicatorCommon called IMMZIndCom
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
-include IMMZD2DTMeasles called Measles
+include IMMZD2DTMeaslesInput called Measles
 // End Skeleton CQL
-parameter "Measurement Period" Interval<Date>
+parameter "Measurement Period" Interval<DateTime> default Interval[@2023-01-01T00:00:00.0, @2023-12-31T23:59:59.9]
 
 context Patient
 
 /*
-define "MCV Doses Administered to Patient During Measurement Period":
-    Measles."MCV Doses Administered to Patient" I 
-    where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
-*/
-
-define function "Measure Observation" (Patient "Patient"):
-  1
-
-/*
- * Target population for first dose: Any one over 9 (in high transmission area) or 12 (in low transmission area) months old
- */ 
-define "Initial Population 05":
-	Measles."First MCV Dose Administered to Patient" I where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
-
-/*
- * Numerator for first dose: Anyone having received the first dose
+ * Measles doses given during measurement period
  */
-define "Measure Population 05":
-	"Initial Population 05"
-
-/*
- * Target population for second dose: Any one over 15 months
- */ 
-define "Initial Population 40":
-	Measles."Second MCV Dose Administered to Patient" I where IMMZCom.ToDate(I.occurrence) during "Measurement Period"
-
-/*
- * Numerator for second dose: Anyone having received the first dose
- */
-define "Measure Population 40":
-	"Initial Population 40"
-
-
-/*
- * Combined stratifiers
- */
-define "Stratification":
-		IMMZIndCom."By Administrative Gender Stratifier".code + ':' + IMMZIndCom."Toddler By Age Stratifier".code + ':' + IMMZIndCom."By Geographic Region Stratifier"
-
+define "Measles Doses in Measurement Period":
+	Measles."MCV Doses Administered to Patient" I where I.occurrence during "Measurement Period"
 
