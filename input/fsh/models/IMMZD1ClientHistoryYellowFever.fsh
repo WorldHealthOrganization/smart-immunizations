@@ -33,17 +33,12 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
   * ^code[+] = $SCT#370388006
 * onART 0..1 boolean "Currently on ART" "The client is currently receiving antiretroviral therapy (ART)"
   * ^code[+] = IMMZ.D1#DE17
-* severelyImmunosuppressed 1..1 boolean "Severely immunosuppressed" "The client is known to be severely immunocompromised or immunosuppressed"
-  * ^code[+] = IMMZ.D1#DE92
-  * ^code[=] = $LNC#96381-9
-* artStartDate 1..1 date "ART start date" "The date on which the client started or restarted antiretroviral therapy (ART)"
-  * ^code[+] = IMMZ.D1#DE49
 * vaccineHistory 0..* BackboneElement "Vaccine History" "History of previous vaccine doses."
   * vaccineType 0..1 Coding "Vaccine type" "Vaccine type/category that was administered or was to be administered. Any vaccine code available in the IMMZ.Z Vaccine Library list of codes applies in this data element"
     * ^code[+] = IMMZ.D#DE19
     * ^code[+] = $LNC#39236-5
     * ^code[+] = $SCT#787859002
-  * vaccineType from IMMZ.Z.DE9
+  * vaccineType from IMMZ.Z.DE23
   * vaccineDate 0..1 date "Date and time of vaccination" "Represents the visit/encounter date, which is the date and time when the vaccine was administered to the client"
     * ^code[+] = IMMZ.D#DE20
     * ^code[+] = $LNC#30952-6 
