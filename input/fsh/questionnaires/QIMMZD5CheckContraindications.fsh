@@ -1,4 +1,4 @@
-Instance: QIMMZD5CheckContraindicationsMeasles
+Instance: QIMMZ5CheckContraindications
 InstanceOf: sdc-questionnaire-extr-smap
 Title: "Check Contraindications Questionnaire"
 Description: "Immunization - Check Contraindications Questionnaire"
