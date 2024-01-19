@@ -1,4 +1,4 @@
-Logical:      IMMZ5CheckContraindications
+Logical:      IMMZD5CheckContraindications
 Title:        "IMMZ.D5 Check Contraindications"
 Description:  "Data elements for the IMMZ.D5 Check Contraindications Data Dictionary."
 

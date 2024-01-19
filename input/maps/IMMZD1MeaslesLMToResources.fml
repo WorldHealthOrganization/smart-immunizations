@@ -1,4 +1,4 @@
-map "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1LMToResources" = "IMMZD1LMToResources"
+map "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1MeaslesLMToResources" = "IMMZD1MeaslesLMToResources"
 
 uses "http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZD1ClientHistoryMeasles" alias IMMZD1 as source
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
@@ -9,23 +9,36 @@ group IMMZD1ToBundle (source immz : IMMZD1, target bundle: Bundle) {
   immz.patient as patient then {
 
 
-    immz.dose0 as content -> bundle.entry as entry, entry.resource = create('Observation') as obs then {
+    immz.birth as content -> bundle.entry as entry, entry.resource = create('Observation') as obs then {
       patient -> obs.subject = patient "SetPatient";
       content -> obs.code as code then {
         content -> code.coding as coding then {
           content -> coding.system = 'http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D1' "SetObsSystem";
-          content -> coding.code = 'DE80' "SetObsCode";
+          content -> coding.code = 'DE109' "SetObsCode";
         } "SetObsCoding";
       } "SetObsCode";
       content -> obs.value = content "SetValue";
-    } "SetDose0Observation";
+    } "SetBirthObservation";
 
+    immz.type as content -> bundle.entry as entry, entry.resource = create('Observation') as obs then {
+      patient -> obs.subject = patient "SetPatient";
+      content -> obs.code as code then {
+        content -> code.coding as coding then {
+          content -> coding.system = 'http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D1' "SetObsSystem";
+          content -> coding.code = 'DE103' "SetObsCode";
+        } "SetObsCoding";
+      } "SetObsCode";
+      content -> obs.valueCodeableConcept as code then {
+        content -> code.coding = content "SetCoding";
+      } "SetCodeableConcept";
+    } "SetTypeObservation";
+    
     immz.booster as content -> bundle.entry as entry, entry.resource = create('Observation') as obs then {
       patient -> obs.subject = patient "SetPatient";
       content -> obs.code as code then {
         content -> code.coding as coding then {
           content -> coding.system = 'http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D1' "SetObsSystem";
-          content -> coding.code = 'DE95' "SetObsCode";
+          content -> coding.code = 'DE102' "SetObsCode";
         } "SetObsCoding";
       } "SetObsCode";
       content -> obs.value = content "SetValue";

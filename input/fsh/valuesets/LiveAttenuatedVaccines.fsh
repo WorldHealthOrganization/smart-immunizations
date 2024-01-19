@@ -34,5 +34,4 @@ Description: "Codes representing live attenuated vaccines"
 * $SCT#2221000221107
 * $ICD11#XM3418
 * $ICD11#XM5DF6
-* $ICD11#XM3418
 * $SCT#1121000221106

@@ -1,20 +1,20 @@
-Logical:      IMMZD1ClientHistoryMeasles
-Title:        "IMMZ.D1 Capture Client History for Measles"
-Description:  "Data elements for the IMMZ.D1 Capture Client History Data Dictionary for Measles."
+Logical:      IMMZD1ClientHistoryYellowFever
+Title:        "IMMZ.D1 Capture Client History for Yellow Fever"
+Description:  "Data elements for the IMMZ.D1 Capture Client History Data Dictionary for Yellow Fever."
 
-* ^name = "IMMZ_D1_Client_History_Measles"
+* ^name = "IMMZ_D1_Client_History_YellowFever"
 
 * patient 1..1 Reference "Patient" "The patient who is being checked for contraindications."
 * birth 0..1 boolean "Birth dose" "Indicates if the client received a dose within 24 hours of birth. Whether a birth dose is counted as part of the primary series will depend on the antigen."
   * ^code[+] = IMMZ.D1#DE109
-* type 0..* Coding "Type of dose" "The type of dose in a series that the client received"
+* type 1..* Coding "Type of dose" "The type of dose in a series that the client received"
   * ^code[+] = IMMZ.D1#DE103
 * type from IMMZ.D1.DE103
 * completedPrimarySeries 0..1 boolean "Completed the primary vaccination series" "Indicates if the client has completed the primary vaccination series of a product/antigen. If the client has not yet completed their primary series, it means they may be expected to receive more doses to complete their vaccination regimen for the respective product/antigen."
   * ^code[+] = IMMZ.D1#DE8
 * booster 0..1 boolean "Completed the booster series" "Indicates if the client has completed the booster series of a product/antigen"
   * ^code[+] = IMMZ.D1#DE102
-* dateSeriesCompleted 0..1 date "Date when primary vaccination series was completed" "The date when the client completed the primary vaccination series (per product/antigen)"
+* dateSeriesCompleted 1..1 date "Date when primary vaccination series was completed" "The date when the client completed the primary vaccination series (per product/antigen)"
   * ^code[+] = IMMZ.D1#DE81
 * hivStatus 0..1 Coding "HIV status" "The current human immunodeficiency virus (HIV) status of the client"
   * ^code[+] = IMMZ.D1#DE10
@@ -36,7 +36,7 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
 * severelyImmunosuppressed 1..1 boolean "Severely immunosuppressed" "The client is known to be severely immunocompromised or immunosuppressed"
   * ^code[+] = IMMZ.D1#DE92
   * ^code[=] = $LNC#96381-9
-* artStartDate 0..1 date "ART start date" "The date on which the client started or restarted antiretroviral therapy (ART)"
+* artStartDate 1..1 date "ART start date" "The date on which the client started or restarted antiretroviral therapy (ART)"
   * ^code[+] = IMMZ.D1#DE49
 * vaccineHistory 0..* BackboneElement "Vaccine History" "History of previous vaccine doses."
   * vaccineType 0..1 Coding "Vaccine type" "Vaccine type/category that was administered or was to be administered. Any vaccine code available in the IMMZ.Z Vaccine Library list of codes applies in this data element"

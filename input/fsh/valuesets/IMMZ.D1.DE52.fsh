@@ -1,6 +1,6 @@
-ValueSet:     IMMZ.D1.DE52
-Title:        "IMMZ.D1.DE52 ValueSet for Type of JE dose"
-Description:  "ValueSet for Type of JE dose for IMMZ.D1.DE52."
+ValueSet: IMMZ.D1.DE52
+Title: "IMMZ.D1.DE52 ValueSet for Type of JE dose"
+Description: "ValueSet for Type of JE dose for IMMZ.D1.DE52"
 
 * ^status = #active
 * ^name = "IMMZ_D1_DE52"

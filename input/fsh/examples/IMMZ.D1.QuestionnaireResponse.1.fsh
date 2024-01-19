@@ -7,7 +7,7 @@ Usage: #example
 * subject = Reference(patient123456)
 
 * item[+]
-  * linkId = "dose0"
+  * linkId = "birth"
   * answer.valueBoolean = false
 * item[+]
   * linkId = "booster"

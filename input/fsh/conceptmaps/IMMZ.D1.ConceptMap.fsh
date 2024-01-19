@@ -1,5 +1,5 @@
-Instance:     IMMZ.D1.ConceptMap
-InstanceOf:   ConceptMap
+Instance: IMMZ.D1.ConceptMap
+InstanceOf: ConceptMap
 Description:  "Mapping to and from IMMZ.D1 Data Dictionary to other codesystems."
 Usage:        #definition
 
@@ -7,7 +7,7 @@ Usage:        #definition
 * title = "ConceptMap to and from IMMZ.D1 DataElements"
 * status = #active
 * experimental = false
-* date = "2023-08-09"
+* date = "2024-01-19"
 
 * group[+]
   * source = Canonical(IMMZ.D1)
@@ -40,8 +40,7 @@ Usage:        #definition
   * insert ElementMap(DE97, XM92B2, narrower)
   * insert ElementMap(DE74, XM6LL6, wider)
   * insert ElementMap(DE75, XM2A12, equivalent)
-
-
+  * insert ElementMap(DE100, XM9V38, relatedto)
 * group[+]
   * source = $ICD11
   * target = Canonical(IMMZ.D1)
@@ -73,48 +72,40 @@ Usage:        #definition
   * insert ElementMap(XM92B2, DE97, wider)
   * insert ElementMap(XM6LL6, DE74, narrower)
   * insert ElementMap(XM2A12, DE75, equivalent)
+  * insert ElementMap(XM9V38, DE100, relatedto)
 
-
-  
 * group[+]
   * source = Canonical(IMMZ.D1)
   * target = $LNC
-  * insert ElementMap(DE11, 45683-0, equivalent)
   * insert ElementMap(DE10, 55277-8, equivalent)
-  * insert ElementMap(DE92, 96381-9, relatedto)
+  * insert ElementMap(DE11, 45683-0, equivalent)
   * insert ElementMap(DE15, 76517-2, equivalent)
-  * insert ElementMap(DE19, 39236-5, equivalent)
-  * insert ElementMap(DE20, 30952-6, equivalent)
   * insert ElementMap(DE16, 96381-9, relatedto)
   * insert ElementMap(DE85, 27415-9, wider)
   * insert ElementMap(DE86, 39263-9, equivalent)
   * insert ElementMap(DE88, 45241-7, relatedto)
   * insert ElementMap(DE29, 8339-4, equivalent)
-
+  * insert ElementMap(DE92, 96381-9, relatedto)
 * group[+]
   * source = $LNC
   * target = Canonical(IMMZ.D1)
-  * insert ElementMap(45683-0, DE11, equivalent)
   * insert ElementMap(55277-8, DE10, equivalent)
-  * insert ElementMap(96381-9, DE92, relatedto)
+  * insert ElementMap(45683-0, DE11, equivalent)
   * insert ElementMap(76517-2, DE15, equivalent)
-  * insert ElementMap(39236-5, DE19, equivalent)
-  * insert ElementMap(30952-6, DE20, equivalent)
   * insert ElementMap(96381-9, DE16, relatedto)
   * insert ElementMap(27415-9, DE85, narrower)
   * insert ElementMap(39263-9, DE86, equivalent)
   * insert ElementMap(45241-7, DE88, relatedto)
   * insert ElementMap(8339-4, DE29, equivalent)
-
-
+  * insert ElementMap(96381-9, DE92, relatedto)
 
 * group[+]
   * source = Canonical(IMMZ.D1)
   * target = $SCT
-  * insert ElementMap(DE12, 165815009, equivalent)
-  * insert ElementMap(DE11, 165816005, equivalent)
-  * insert ElementMap(DE13, 261665006, wider)
   * insert ElementMap(DE10, 278977008, equivalent)
+  * insert ElementMap(DE11, 165816005, equivalent)
+  * insert ElementMap(DE12, 165815009, equivalent)
+  * insert ElementMap(DE13, 261665006, wider)
   * insert ElementMap(DE15, 395507008, equivalent)
   * insert ElementMap(DE16, 370388006, equivalent)
   * insert ElementMap(DE85, 68311008, equivalent)
@@ -122,15 +113,13 @@ Usage:        #definition
   * insert ElementMap(DE88, 10828004, wider)
   * insert ElementMap(DE89, 260385009, wider)
   * insert ElementMap(DE36, 871740006, equivalent)
-
-
 * group[+]
   * source = $SCT
   * target = Canonical(IMMZ.D1)
-  * insert ElementMap(165815009, DE12, equivalent)
-  * insert ElementMap(165816005, DE11, equivalent)
-  * insert ElementMap(261665006, DE13, narrower)
   * insert ElementMap(278977008, DE10, equivalent)
+  * insert ElementMap(165816005, DE11, equivalent)
+  * insert ElementMap(165815009, DE12, equivalent)
+  * insert ElementMap(261665006, DE13, narrower)
   * insert ElementMap(395507008, DE15, equivalent)
   * insert ElementMap(370388006, DE16, equivalent)
   * insert ElementMap(68311008, DE85, equivalent)
@@ -138,5 +127,4 @@ Usage:        #definition
   * insert ElementMap(10828004, DE88, narrower)
   * insert ElementMap(260385009, DE89, narrower)
   * insert ElementMap(871740006, DE36, equivalent)
-
 

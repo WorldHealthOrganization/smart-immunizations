@@ -1,4 +1,4 @@
-map "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1QRToLM" = "IMMZD1QRToLM"
+map "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1MeaslesQRToLM" = "IMMZD1MeaslesQRToLM"
 
 uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QResp as source
 uses "http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZD1ClientHistoryMeasles" alias IMMZD1 as target
@@ -9,9 +9,13 @@ group QRespToIMMZD1 ( source qr : QResp, target immz : IMMZD1) {
 
   qr.item as item then {
 
-    item.answer first as answer where item.linkId = 'dose0' then {
-      answer.value as content -> immz.dose0 = content  "SetDose0";
-    } "FirstAnswerForDose0";
+    item.answer first as answer where item.linkId = 'birth' then {
+      answer.value as content -> immz.birth = content  "SetBirth";
+    } "FirstAnswerForBirth";
+
+    item.answer as answer where item.linkId = 'type' then {
+      answer.value as coding -> immz.type = coding "SetVaccineType";
+    } "AnswerForType";
 
     item.answer first as answer where item.linkId = 'booster' then {
       answer.value as content -> immz.booster = content  "SetBooster";

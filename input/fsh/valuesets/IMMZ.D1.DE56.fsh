@@ -1,6 +1,6 @@
-ValueSet:     IMMZ.D1.DE56
-Title:        "IMMZ.D1.DE56 ValueSet for Type of TBE dose"
-Description:  "ValueSet for Type of TBE dose for IMMZ.D1.DE56."
+ValueSet: IMMZ.D1.DE56
+Title: "IMMZ.D1.DE56 ValueSet for Type of TBE dose"
+Description: "ValueSet for Type of TBE dose for IMMZ.D1.DE56"
 
 * ^status = #active
 * ^name = "IMMZ_D1_DE56"
