@@ -45,10 +45,10 @@ define "Client not due for measles supplementary dose":
 
 /*
 @output: Client not due for measles supplementary dose Guidance
-@guidance: Live vaccine was administered in the last four weeks. Check for any vaccines due, and inform the caregiver of when to come back for the measles supplementary dose.
+@guidance: Should not vaccinate client for measles supplementary dose as live vaccine was administered in the last 4 weeks. Check for any vaccines due, and inform the caregiver of when to come back for supplementary dose.
 */
 define "Client not due for measles supplementary dose Guidance":
-  'Live vaccine was administered in the last four weeks. Check for any vaccines due, and inform the caregiver of when to come back for the measles supplementary dose.'
+  'Should not vaccinate client for measles supplementary dose as live vaccine was administered in the last 4 weeks. Check for any vaccines due, and inform the caregiver of when to come back for supplementary dose.'
 
 /*
 @output: Consider measles supplementary dose. Create a clinical note.
@@ -60,10 +60,10 @@ define "Consider measles supplementary dose. Create a clinical note.":
 	and input."No live vaccine was administered in the last four weeks"
 /*
 @input: Consider measles supplementary dose. Create a clinical note. Guidance
-@guidance: There is no measles supplementary dose administered for the client. No live vaccine administered in the last 4 weeks. Check if one of the measles supplementary dose specific scenarios is applicable.  
+@guidance: May vaccinate client for measles supplementary dose as supplementary dose was not administered, measles routine immunization schedule is complete and no live vaccine administered in the last 4 weeks. Check if one of the measles supplementary dose specific scenarios is applicable.  
 */
 define "Consider measles supplementary dose. Create a clinical note. Guidance":
-	'There is no measles supplementary dose administered for the client. No live vaccine administered in the last 4 weeks. Check if one of the measles supplementary dose specific scenarios is applicable.'
+	'May vaccinate client for measles supplementary dose as supplementary dose was not administered, measles routine immunization schedule is complete and no live vaccine administered in the last 4 weeks. Check if one of the measles supplementary dose specific scenarios is applicable.'
 
 /*
 @output: Measles schedule complete
@@ -74,7 +74,7 @@ define "Measles schedule complete":
 
 /*
 @output: Measles schedule complete Guidance
-@guidance: Measles immunization schedule is complete
+@guidance: Measles immunization schedule is complete. Measles supplementary dose was administered.
 */
 define "Measles schedule complete Guidance":
-	'Measles immunization schedule is complete'
+	'Measles immunization schedule is complete. Measles supplementary dose was administered.'
