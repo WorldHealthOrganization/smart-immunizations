@@ -45,13 +45,13 @@ define "Client is not due for MCV1":
 
 /*
 @output: Client is not due for MCV1 Guidance
-@guidance: Client is less than 12 months. Check for any vaccines due, and inform the caregiver of when to come back for MCV1 administration.
-@guidance: Live vaccine was administered in the last four weeks. Check for any vaccines due, and inform the caregiver of when to come back for MCV1 administration.
+@guidance: Should not vaccinate client for MCV1 as client's age is less than 12 months. Check for any vaccines due, and inform the caregiver of when to come back for MCV1.
+@guidance: Should not vaccinate client for MCV1 as live vaccine was administered in the last 4 weeks. Check for any vaccines due, and inform the caregiver of when to come back for MCV1.
 */
 define "Client is not due for MCV1 Guidance":
 	case
-	when "Client is not due for MCV1 Case 1" then 'Client is less than 12 months. Check for any vaccines due, and inform the caregiver of when to come back for MCV1 administration.'
-	when "Client is not due for MCV1 Case 2" then 'Live vaccine was administered in the last four weeks. Check for any vaccines due, and inform the caregiver of when to come back for MCV1 administration.'
+	when "Client is not due for MCV1 Case 1" then 'Should not vaccinate client for MCV1 as client\'s age is less than 12 months. Check for any vaccines due, and inform the caregiver of when to come back for MCV1.'
+	when "Client is not due for MCV1 Case 2" then 'Should not vaccinate client for MCV1 as live vaccine was administered in the last 4 weeks. Check for any vaccines due, and inform the caregiver of when to come back for MCV1.'
 	else ''
 	end
 
@@ -82,10 +82,10 @@ define "Client is due for MCV1":
 
 /*
 @output: Client is due for MCV1 Guidance
-@guidance: There is no dose from the Measles primary series administered for the client. No live vaccine administered in the last 4 weeks. Client is due for MCV1.
+@guidance: Should vaccinate client for MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine was administered in the last 4 weeks. Check for contraindications.
 */
 define "Client is due for MCV1 Guidance":
-	if "Client is due for MCV1" then 'There is no dose from the Measles primary series administered for the client. No live vaccine administered in the last 4 weeks. Client is due for MCV1.'
+	if "Client is due for MCV1" then 'Should vaccinate client for MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine was administered in the last 4 weeks. Check for contraindications.'
 	else ''
 
 /*
@@ -104,14 +104,14 @@ define "Client is not due for MCV2":
 
 /*
 @output: Client is not due for MCV2 Guidance
-@guidance: Client is less than 15 months. Check for any vaccines due, and inform the caregiver of when to come back for MCV2 administration.
-@guidance: Live vaccine was administered in the last four weeks. Check for any vaccines due, and inform the caregiver of when to come back for MCV2 administration.
+@guidance: Should not vaccinate client for MCV2 as client's age is less than 15 months. Check for any vaccines due, and inform the caregiver of when to come back for MCV2.
+@guidance: Should not vaccinate client for MCV2 as live vaccine was administered in the last 4 weeks. Check for any vaccines due, and inform the caregiver of when to come back for MCV2.
 */
 
 define "Client is not due for MCV2 Guidance":
 	case
-		when "Client is not due for MCV2 Case 1" then 'Client is less than 15 months. Check for any vaccines due, and inform the caregiver of when to come back for MCV2 administration.'
-		when "Client is not due for MCV2 Case 2" then 'Live vaccine was administered in the last four weeks. Check for any vaccines due, and inform the caregiver of when to come back for MCV2 administration.'
+		when "Client is not due for MCV2 Case 1" then 'Should not vaccinate client for MCV2 as client\'s age is less than 15 months. Check for any vaccines due, and inform the caregiver of when to come back for MCV2.'
+		when "Client is not due for MCV2 Case 2" then 'Should not vaccinate client for MCV2 as live vaccine was administered in the last 4 weeks. Check for any vaccines due, and inform the caregiver of when to come back for MCV2.'
 		else ''
 	end
 
@@ -127,11 +127,11 @@ define "Client is due for MCV2":
 
 /*
 @output: Client is due for MCV2 Guidance
-@guidance: MCV2 was NOT administered for the client. No live vaccine administered in the last 4 weeks. Client is due for MCV2.
+@guidance: Should vaccinate client for MCV2 as client is within appropriate age range and no live vaccine administered in the last 4 weeks. Check for contraindications.
 */
 
 define "Client is due for MCV2 Guidance":
-	if "Client is due for MCV2" then 'MCV2 was NOT administered for the client. No live vaccine administered in the last 4 weeks. Client is due for MCV2.'
+	if "Client is due for MCV2" then 'Should vaccinate client for MCV2 as client is within appropriate age range and no live vaccine administered in the last 4 weeks. Check for contraindications.'
 	else ''
 
 /*
@@ -152,8 +152,8 @@ define "Routine immunization schedule complete":
 
 /*
 @output: Routine immunization schedule complete Guidance
-@guidance: Measles routine immunization schedule is complete. Check if a measles supplementary dose is appropriate for the client.
+@guidance: Measles primary series is complete. Two measles primary series doses were administered. Check if a measles supplementary dose is appropriate for the client.
 */
 define "Routine immunization schedule complete Guidance":
-	if "Routine immunization schedule complete" then 'Measles routine immunization schedule is complete. Check if a measles supplementary dose is appropriate for the client.'
+	if "Routine immunization schedule complete" then 'Measles primary series is complete. Two measles primary series doses were administered. Check if a measles supplementary dose is appropriate for the client.'
 	else ''
