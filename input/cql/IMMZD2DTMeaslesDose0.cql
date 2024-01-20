@@ -46,10 +46,10 @@ define "Client not due for MCV0":
 */
 define "Client not due for MCV0 Guidance":
 	case
-	when "Client not due for MCV0 Case 1" then 'Client is less than 6 months. Check for any vaccines due, and inform the caregiver of when to come back for MCV0 administration.'
-	when "Client not due for MCV0 Case 2" then 'Live vaccine was administered in the last four weeks. Check for any vaccines due, and inform the caregiver of when to come back for MCV0 administration.'
-	when "Client not due for MCV0 Case 3" then 'Client is more than 9 months. Check Measles routine immunization schedule.'
-	when "Client not due for MCV0 Case 4" then 'MCV0 already administered. Check Measles routine immunization schedule.'
+	when "Client not due for MCV0 Case 1" then 'Should not vaccinate client for MCV0 as client is less than 6 months. Check for any vaccines due, and inform the caregiver of when to come back for MCV0.'
+	when "Client not due for MCV0 Case 2" then 'Should not vaccinate client for MCV0 as live vaccine was administered in the last 4 weeks. Check for any vaccines due, and inform the caregiver of when to come back for MCV0.'
+	when "Client not due for MCV0 Case 3" then 'Should not vaccinate client for MCV0 as client\'s age is more than 9 months. Check measles routine immunization schedule.'
+	when "Client not due for MCV0 Case 4" then 'MCV0 was administered. Check measles routine immunization schedule.'
 	else ''
 	end
 
@@ -97,5 +97,5 @@ define "Consider MCV0. Create a clinical note.":
 @guidance: There is no MCV0 dose administered for the client. No live vaccine administered in the last 4 weeks. Check if one of the MCV0 dose specific scenarios is applicable. 
 */
 define "Consider MCV0. Create a clinical note. Guidance":
-	if "Consider MCV0. Create a clinical note." then 'There is no MCV0 dose administered for the client. No live vaccine administered in the last 4 weeks. Check if one of the MCV0 dose specific scenarios is applicable.'
+	if "Consider MCV0. Create a clinical note." then 'May vaccinate client for MCV0 as client is within appropriate age range, MCV0 was not administered and no live vaccine was administered in the last 4 weeks. Check if one of the MCV0 specific scenarios is applicable.'
 	else ''
