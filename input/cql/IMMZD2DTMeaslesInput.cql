@@ -25,53 +25,53 @@ define "MCV Doses Administered to Patient":
     I.vaccineCode in IMMZc."MCV Vaccine"
 
 /*
-@input: No dose from primary MCV dose series administered
+@input: No measles primary series doses were administered
 @psuedocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Primary series" ) = 0
 */
-define "No dose from primary MCV dose series administered":
+define "No measles primary series doses were administered":
 	not exists("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 9 months)
 
 /*
-@input: MCV0 dose was administered
+@input: MCV0 was administered
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Dose 0") = 1
 */
-define "MCV0 dose was administered":
+define "MCV0 was administered":
 	Count("MCV Doses Administered to Patient" I where I.occurrence between Patient.birthDate + 6 months and Patient.birthDate + 9 months) >= 1
 
 /*
-@input: MCV0 dose was NOT administered
+@input: MCV0 was not administered
 @psuedocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Dose 0") = 0
 */
-define "MCV0 dose was NOT administered":
-	Not("MCV0 dose was administered")
+define "MCV0 was not administered":
+	Not("MCV0 was administered")
 
 /*
-@input: One dose from primary MCV dose series administered High Tx
+@input: MCV1 was administered High Tx
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Primary series" ) = 1	
 */
-define "One dose from primary MCV dose series administered High Tx":
+define "MCV1 was administered High Tx":
 	Count("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 9 months) = 1
 
 /*
-@input: Two doses from primary MCV dose series administered High Tx
+@input: MCV2 was administered High Tx
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Primary series" ) = 2		
 */
-define "Two doses from primary MCV dose series administered High Tx":
+define "MCV2 was administered High Tx":
 	Count("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 9 months) >= 2 
 	and Count("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 15 months) >= 1
 
 /*
-@input: One dose from primary MCV dose series administered Low Tx
+@input: MCV1 was administered Low Tx
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Primary series" ) = 1	
 */
-define "One dose from primary MCV dose series administered Low Tx":
+define "MCV1 was administered Low Tx":
 	Count("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 12 months) = 1
 
 /*
-@input: Two doses from primary MCV dose series administered Low Tx
+@input: MCV2 was administered Low Tx
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Primary series" ) = 2		
 */
-define "Two doses from primary MCV dose series administered Low Tx":
+define "MCV2 was administered Low Tx":
 	Count("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 12 months) >= 2 
 	and Count("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 15 months) >= 1
 
@@ -83,10 +83,10 @@ define "Measles supplementary dose was administered":
 	Count("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 9 months) >= 3
 
 /*
-@input: Measles supplementary dose was NOT administered
+@input: Measles supplementary dose was not administered
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Supplementary dose") = 0
 */
-define "Measles supplementary dose was NOT administered":
+define "Measles supplementary dose was not administered":
 	Not("Measles supplementary dose was administered")
 
 /*
@@ -94,14 +94,14 @@ define "Measles supplementary dose was NOT administered":
 @pseudocode: "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Measles containing vaccines")
 */
 define "Measles routine immunization schedule is complete High Tx":
-	"Two doses from primary MCV dose series administered High Tx"
+	"MCV2 was administered High Tx"
 
 /*
 @input: Measles routine immunization schedule is complete Low Tx
 @pseudocode: "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Measles containing vaccines")
 */
 define "Measles routine immunization schedule is complete Low Tx":
-	"Two doses from primary MCV dose series administered Low Tx"
+	"MCV2 was administered Low Tx"
 
 /*
 @input: Client's age is less than 6 months
@@ -125,10 +125,10 @@ define "Client's age is less than 9 months":
 	IMMZCom."Current Patient Age In Months" < 9
 
 /*
-@input: Client's age is more than 9 months 
+@input: Client's age is more than or equal to 9 months 
 @pseudocode: Today's date - "Date of birth" ≥ 9 'month'	
 */
-define "Client's age is more than 9 months":
+define "Client's age is more than or equal to 9 months":
 	not ("Client's age is less than 9 months")
 
 /*
@@ -139,10 +139,10 @@ define "Client's age is less than 12 months":
 	IMMZCom."Current Patient Age In Months" < 12
 
 /*
-@input: Client's age is more than 12 months
+@input: Client's age is more than or equal to 12 months
 Today's date - ""Date of birth"" ≥ 12 'month'
 */
-define "Client's age is more than 12 months":
+define "Client's age is more than or equal to 12 months":
 	not("Client's age is less than 12 months")
 
 /*
@@ -154,25 +154,25 @@ define "Client's age is less than 15 months":
 		IMMZCom."Current Patient Age In Months" < 15
 
 /*
-@input: Client's age is more than 15 months 
+@input: Client's age is more than or equal to 15 months 
 @psuedocode: Today's date - "Date of birth" ≥ 15 'month'	
 */
-define "Client's age is more than 15 months":
+define "Client's age is more than or equal to 15 months":
 	not("Client's age is less than 15 months")
 
 /*
 @input: Live vaccine was administered in the last four weeks 
 @pseudocode: Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 'week'	
 */
-define "Live vaccine was administered in the last four weeks":
+define "Live vaccine was administered in the last 4 weeks":
 	IMMZCom."Date of Latest Live Attenuated Vaccine" is not null and IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks > Now()
 
 /*
 @input: No live vaccine was administered in the last four weeks 
 @pseudocode: Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 'week'	
 */
-define "No live vaccine was administered in the last four weeks":
-	not("Live vaccine was administered in the last four weeks")
+define "No live vaccine was administered in the last 4 weeks":
+	not("Live vaccine was administered in the last 4 weeks")
 
 /*
 @input: The client is pregnant

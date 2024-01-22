@@ -68,18 +68,18 @@ define "Client is not due for MCV1 Case 1":
 @pseudocode: "Immunization recommendation status" = 'Not due'	
 */
 define "Client is not due for MCV1 Case 2":
-	input."No dose from primary MCV dose series administered" 
-	and input."Client's age is more than 9 months" 
-	and input."Live vaccine was administered in the last four weeks"
+	input."No measles primary series doses were administered" 
+	and input."Client's age is more than or equal to 9 months" 
+	and input."Live vaccine was administered in the last 4 weeks"
 
 /*
 @output: Client is due for MCV1  
 @pseudocode: "Immunization recommendation status" = 'Due'	
 */
 define "Client is due for MCV1":
-	input."No dose from primary MCV dose series administered" 
-		and input."Client's age is more than 9 months" 
-		and input."No live vaccine was administered in the last four weeks"
+	input."No measles primary series doses were administered" 
+		and input."Client's age is more than or equal to 9 months" 
+		and input."No live vaccine was administered in the last 4 weeks"
 
 /*
 @output: Client is due for MCV1 Guidance
@@ -122,9 +122,9 @@ define "Client is not due for MCV2 Guidance":
 @guidance:Should vaccinate client for MCV2 as client is within appropriate age range and no live vaccine administered in the last 4 weeks. Check for contraindications.
 */
 define "Client is due for MCV2":
-	input."One dose from primary MCV dose series administered High Tx" 
-		and input."Client's age is more than 15 months" 
-		and input."No live vaccine was administered in the last four weeks"
+	input."MCV1 was administered High Tx" 
+		and input."Client's age is more than or equal to 15 months" 
+		and input."No live vaccine was administered in the last 4 weeks"
 
 /*
 @output: Client is due for MCV2 Guidance
@@ -140,16 +140,16 @@ define "Client is due for MCV2 Guidance":
 @pseudocode: "Immunization recommendation status" = 'Not due'	
 */
 define "Client is not due for MCV2 Case 2":
-	input."One dose from primary MCV dose series administered High Tx" 
-		and input."Client's age is more than 15 months" 
-		and input."Live vaccine was administered in the last four weeks"
+	input."MCV1 was administered High Tx" 
+		and input."Client's age is more than or equal to 15 months" 
+		and input."Live vaccine was administered in the last 4 weeks"
 
 /*
 @output: Routine immunization schedule complete  
 @pseudocode: "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Measles containing vaccines")	
 */
 define "Routine immunization schedule complete":
-	input."Two doses from primary MCV dose series administered High Tx"
+	input."MCV2 was administered High Tx"
 
 /*
 @output: Routine immunization schedule complete Guidance

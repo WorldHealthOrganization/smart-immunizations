@@ -65,32 +65,32 @@ define "Client not due for MCV0 Case 1":
 @pseudocode: "Immunization recommendation status" = 'Not due'	
 */
 define "Client not due for MCV0 Case 2":
-	input."MCV0 dose was NOT administered" 
+	input."MCV0 was not administered" 
 	and input."Client's age is between 6 months and 9 months" 
-	and input."Live vaccine was administered in the last four weeks"
+	and input."Live vaccine was administered in the last 4 weeks"
 
 /*
 @output: Client not due for MCV0 Case 3
 @pseudocode: "Immunization recommendation status" = 'Not due'"
 */
 define "Client not due for MCV0 Case 3":
-	input."Client's age is more than 9 months"
+	input."Client's age is more than or equal to 9 months"
 
 /*
 @output: Client not due for MCV0 Case 4
 @pseudocode: "Immunization recommendation status" = 'Not due'"
 */
 define "Client not due for MCV0 Case 4":
-	input."MCV0 dose was administered"
+	input."MCV0 was administered"
 
 /*
 @output: Consider MCV0. Create a clinical note.
 @pseudocode: "Immunization recommendation status" = 'Further evaluation needed'
 */
 define "Consider MCV0. Create a clinical note.":
-	input."No dose from primary MCV dose series administered" 
+	input."No measles primary series doses were administered" 
 		and input."Client's age is between 6 months and 9 months" 
-		and input."No live vaccine was administered in the last four weeks"
+		and input."No live vaccine was administered in the last 4 weeks"
 
 /*
 @output: Consider MCV0. Create a clinical note. Guidance

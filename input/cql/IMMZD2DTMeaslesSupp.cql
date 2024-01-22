@@ -39,9 +39,9 @@ define "Guidance":
 @pseudocode: "Immunization recommendation status" = 'Not due'
 */
 define "Client not due for measles supplementary dose":
-	input."Measles supplementary dose was NOT administered" 
+	input."Measles supplementary dose was not administered" 
 	and input."Measles routine immunization schedule is complete High Tx"
-	and input."Live vaccine was administered in the last four weeks"
+	and input."Live vaccine was administered in the last 4 weeks"
 
 /*
 @output: Client not due for measles supplementary dose Guidance
@@ -55,9 +55,9 @@ define "Client not due for measles supplementary dose Guidance":
 @pseudocode: "Immunization recommendation status" = 'Further evaluation needed'	
 */
 define "Consider measles supplementary dose. Create a clinical note.":
-  input."Measles supplementary dose was NOT administered" 
+  input."Measles supplementary dose was not administered" 
 	and input."Measles routine immunization schedule is complete High Tx"
-	and input."No live vaccine was administered in the last four weeks"
+	and input."No live vaccine was administered in the last 4 weeks"
 /*
 @input: Consider measles supplementary dose. Create a clinical note. Guidance
 @guidance: May vaccinate client for measles supplementary dose as supplementary dose was not administered, measles routine immunization schedule is complete and no live vaccine administered in the last 4 weeks. Check if one of the measles supplementary dose specific scenarios is applicable.  
