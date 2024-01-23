@@ -149,6 +149,11 @@ define "Severe Allergic Reactions Condition":
 define "Symptomatic HIV Infection Condition":
   [Condition: IMMZc."Symptomatic HIV infection"]
 
+define "Severely immunocompromised Condition":
+  [Condition: IMMZc."Severely immunocompromised"]
+
+define "Breastfeeding Condition":
+  [Condition: IMMZc."Breastfeeding"]
 
 /******************************
  * Test Results

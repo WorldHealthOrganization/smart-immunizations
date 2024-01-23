@@ -35,9 +35,10 @@ valueset "HIV status - HIV negative Choices": 'http://fhir.org/guides/who/anc-cd
 
 valueset "ARV Drugs": 'http://smart.who.int/ig/smart-immunizations/ValueSet/ARVDrugs-values'
 
-// Vaccine Value Sets
+// Vaccine Value Sets 
 
 valueset "MCV Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE9'
+valueset "Yellow Fever Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE23'
 
 // Plugin is complaining about not finding these so that should be resolved, but here until it can be fixed
 valueset "BCG Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.A1.DE1'
@@ -53,3 +54,5 @@ code "Severely immunosuppressed": 'DE165' from "IMMZ.D" display 'Severely immuno
 code "History of anaphylactic reactions": 'DE166' from "IMMZ.D" display 'History of anaphylactic reactions'
 code "Severe allergic reactions": 'DE167' from "IMMZ.D" display 'Severe allergic reactions'
 code "Symptomatic HIV infection": 'DE168' from "IMMZ.D" display 'Symptomatic HIV infection'
+code "Severely immunocompromised": 'DE200' from "IMMZ.D" display 'Severely immunocompromised'
+code "Breastfeeding": 'DE191' from "IMMZ.D" display 'Breastfeeding'

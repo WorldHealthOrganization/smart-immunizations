@@ -21,7 +21,7 @@ context Patient
 @internal: Draft Medication Request for MCV dose
 */
 define "Draft Medication Request for MCV dose":
-	[MedicationRequest] MR where MR.status = 'draft' and MR.intent = 'proposal'
+	[MedicationRequest: IMMZc."MCV Vaccine"] MR where MR.status = 'draft' and MR.intent = 'proposal'
 	sort by date from (authoredOn as FHIR.dateTime) desc
 
 /*
