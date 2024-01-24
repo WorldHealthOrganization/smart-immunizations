@@ -1,9 +1,9 @@
 /*
- * Library: IMMZD5DTYellowFeverCI (IMMZ.D5.DT.YellowFever.CI)
+ * Library: IMMZD5DTYellowFever (IMMZ.D5.DT.YellowFever)
  * Rule: Check for contraindications before administering the vaccine(s) due	 	 	  
  * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
  */
-library IMMZD5DTYellowFeverCI
+library IMMZD5DTYellowFever
 // Start Skeleton CQL
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

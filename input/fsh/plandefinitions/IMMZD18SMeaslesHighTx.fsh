@@ -28,7 +28,7 @@ Usage: #definition
       * description = "Measles dose 1"
       * language = #text/cql-identifier
       * expression = "Measles dose 1"
-  * definitionCanonical = Canonical(IMMZD2DTMeaslesCR)
+  * definitionCanonical = Canonical(IMMZD2DTCR)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -73,7 +73,7 @@ Usage: #definition
       * description = "Measles dose 2"
       * language = #text/cql-identifier
       * expression = "Measles dose 2"
-  * definitionCanonical = Canonical(IMMZD2DTMeaslesCR)
+  * definitionCanonical = Canonical(IMMZD2DTCR)
   * dynamicValue[+]
     * path = "status"
     * expression

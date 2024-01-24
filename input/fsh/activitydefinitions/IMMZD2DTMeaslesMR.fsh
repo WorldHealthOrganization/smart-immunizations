@@ -1,7 +1,7 @@
 Instance: IMMZD2DTMeaslesMR
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity
 Title: "IMMZ.D2.DT.Measles.MR"
-Description: "Provide measles immunization"
+Description: "Provide immunization"
 Usage: #definition
 
 * extension[+]
@@ -20,4 +20,4 @@ Usage: #definition
 * kind = #MedicationRequest
 * intent = #proposal
 * doNotPerform = false
-* productCodeableConcept = $ICD11#XM28X5 "Measles vaccines"
+* productCodeableConcept = $ICD11#XM61M7 "Measles vaccines"

@@ -18,12 +18,6 @@ include IMMZD2DTMeaslesInput called input
 context Patient
 
 /*
-@dynamicValue: Due date of the dose
-*/
-define "Due date of the dose":
-	Now()
-
-/*
 @dynamicValue: Guidance
 */
 define "Guidance":

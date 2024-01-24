@@ -1,6 +1,6 @@
-Instance: IMMZD5DTMeaslesCI
+Instance: IMMZD5DTMeasles
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
-Title: "IMMZ.D5.DT.Measles.Contraindication"
+Title: "IMMZ.D5.DT.Measles"
 Description: "Check contraindications for Measles vaccine"
 Usage: #definition
 
@@ -9,7 +9,7 @@ Usage: #definition
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
 * version = "0.1.0"
-* name = "IMMZD5DTMeaslesContraindication"
+* name = "IMMZD5DTMeasles"
 * status = #draft
 * experimental = false
 * publisher = "World Health Organization (WHO)"
@@ -23,7 +23,7 @@ Usage: #definition
       * description = "Measles vaccination contraindicated"
       * language = #text/cql-identifier
       * expression = "Measles vaccination contraindicated"
-  * definitionCanonical = Canonical(IMMZD5DTMeaslesCIMR)
+  * definitionCanonical = Canonical(IMMZD5DTMeaslesMR)
   * dynamicValue[+]
     * path = "id"
     * expression
@@ -53,7 +53,7 @@ Usage: #definition
       * description = "Guidance"
       * language = #text/cql-identifier
       * expression = "Guidance"
-  * definitionCanonical = Canonical(IMMZD2DTMeaslesCR)
+  * definitionCanonical = Canonical(IMMZD2DTCR)
   * dynamicValue[+]
     * path = "status"
     * expression

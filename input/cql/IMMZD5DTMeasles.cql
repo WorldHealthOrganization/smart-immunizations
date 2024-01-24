@@ -1,9 +1,9 @@
 /*
- * Library: IMMZD5DTMeaslesCI (IMMZ.D5.DT.Measles.CI)
+ * Library: IMMZD5DTMeasles (IMMZ.D5.DT.Measles)
  * Rule: Check for contraindications before administering the vaccine(s) due	 	 	  
  * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
  */
-library IMMZD5DTMeaslesCI
+library IMMZD5DTMeasles
 // Start Skeleton CQL
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

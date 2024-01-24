@@ -1,6 +1,6 @@
-Instance: IMMZD2DTMeaslesCR
+Instance: IMMZD2DTCR
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-communicationactivity
-Title: "IMMZ.D2.DT.Measles.CR"
+Title: "IMMZ.D2.DT.CR"
 Description: "Provide measles immunization communication"
 Usage: #definition
 
@@ -8,7 +8,7 @@ Usage: #definition
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
 * version = "0.1.0"
-* name = "IMMZD2DTMeaslesCommunicationRequest"
+* name = "IMMZD2DTCommunicationRequest"
 * status = #draft
 * experimental = false
 * date = 2023-12-03

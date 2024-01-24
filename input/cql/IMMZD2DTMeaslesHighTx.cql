@@ -21,7 +21,9 @@ context Patient
 @dynamicValue: Due date of the dose
 */
 define "Due date of the dose":
-	Now()
+	if "Client is due for MCV1" then Patient.birthDate + 9 months
+	else if "Client is due for MCV2" then Patient.birthDate + 15 months
+	else null
 
 /*
 @dynamicValue: Guidance

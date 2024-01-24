@@ -27,7 +27,7 @@ Usage: #definition
       * description = "Guidance"
       * language = #text/cql-identifier
       * expression = "Guidance"
-  * definitionCanonical = Canonical(IMMZD2DTMeaslesCR)
+  * definitionCanonical = Canonical(IMMZD2DTCR)
   * dynamicValue[+]
     * path = "status"
     * expression

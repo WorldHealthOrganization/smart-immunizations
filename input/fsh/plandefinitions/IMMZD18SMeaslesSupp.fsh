@@ -28,7 +28,7 @@ Usage: #definition
       * description = "Measles supplementary dose"
       * language = #text/cql-identifier
       * expression = "Measles supplementary dose"
-  * definitionCanonical = Canonical(IMMZD2DTMeaslesCR)
+  * definitionCanonical = Canonical(IMMZD2DTCR)
   * dynamicValue[+]
     * path = "status"
     * expression

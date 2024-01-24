@@ -1,7 +1,7 @@
-Instance: IMMZD5DTMeaslesCIMR
+Instance: IMMZD5DTMeaslesMR
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity
-Title: "IMMZ.D5.DT.Measles.Contraindication"
-Description: "Provide measles immunization"
+Title: "IMMZ.D5.DT.Measles.MR"
+Description: "Immunization Contraindication"
 Usage: #definition
 
 * extension[+]
