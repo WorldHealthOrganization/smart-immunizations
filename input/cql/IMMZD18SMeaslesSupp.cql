@@ -25,7 +25,7 @@ context Patient
 */
 define "Measles supplementary dose":
 	input."Measles routine immunization schedule is complete High Tx"
-	and input."Measles supplementary dose was NOT administered"
+	and input."Measles supplementary dose was not administered"
 
 /*
 @output: Measles supplementary dose Create

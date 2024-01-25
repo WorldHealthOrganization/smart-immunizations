@@ -23,7 +23,7 @@ context Patient
 @trigger: Child's birth
 */
 define "Measles dose 1":
-	input."No dose from primary MCV dose series administered"
+	input."No measles primary series doses were administered"
 
 /*
 @output: Measles dose 1 Create
@@ -62,7 +62,7 @@ define "Measles dose 1 Expiration":
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Primary series" ) = 1
 */
 define "Measles dose 2":
-	input."One dose from primary MCV dose series administered High Tx"
+	input."MCV1 was administered High Tx"
 
 /*
 @output: Measles dose 2 Create
