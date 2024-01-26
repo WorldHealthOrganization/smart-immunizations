@@ -4,20 +4,4 @@ Title: "IMMZ.D5.DT.Measles.MR"
 Description: "Immunization Contraindication"
 Usage: #definition
 
-* extension[+]
-  * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
-  * valueCode = #computable
-* version = "0.1.0"
-* name = "IMMZD5DTMeaslesContraindicationMRUpdate"
-* status = #draft
-* experimental = false
-* date = 2023-10-03
-* publisher = "World Health Organization (WHO)"
-* contact[+]
-  * telecom[+]
-    * system = #url
-    * value = "https://who.int"
-* kind = #MedicationRequest
-* intent = #proposal
-* doNotPerform = true
-* productCodeableConcept = $ICD11#XM28X5 "Measles vaccines"
+* insert MedicationRequestActivityDefinition( D5DTMeasles, 0.1.0, 2023-10-23, true, $ICD11#XM28X5 "Measles vaccines")
