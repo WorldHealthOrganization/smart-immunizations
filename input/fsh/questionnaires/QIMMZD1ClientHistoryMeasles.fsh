@@ -13,7 +13,7 @@ Usage: #definition
 * contained[+] = IMMZ.D1.DE103
 
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
-* extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1QRToResources"
+* extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1MeaslesQRToResources"
 
 
 * insert Question(birth, Indicates if the client received a dose within 24 hours of birth. Whether a birth dose is counted as part of the primary series will depend on the antigen., boolean, false, false)

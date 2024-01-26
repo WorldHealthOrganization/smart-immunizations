@@ -1,19 +1,20 @@
-Instance: QIMMZD1ClientHistoryYellowFever
+Instance: QIMMZD1ClientHistoryPolio
 InstanceOf: sdc-questionnaire-extr-smap
 Title: "Capture Client History Questionnaire"
 Description: "Immunization - Capture Client History Questionnaire"
 Usage: #definition
-* id = "IMMZD1ClientHistoryYellowFever"
+* id = "IMMZD1ClientHistoryPolio"
 * version = "2023"
 * status = #draft
 * subjectType = #Patient
 * language = #en
 * status = #draft
 * contained[+] = IMMZ.D1.DE10
+* contained[+] = IMMZ.D1.DE35
 * contained[+] = IMMZ.D1.DE103
 
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
-* extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1YellowFeverQRToResources"
+* extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1PolioQRToResources"
 
 
 * insert Question(birth, Indicates if the client received a dose within 24 hours of birth. Whether a birth dose is counted as part of the primary series will depend on the antigen., boolean, false, false)
@@ -53,6 +54,10 @@ Usage: #definition
 * insert Question(onART, The client is currently receiving antiretroviral therapy - ART, boolean, false, false)
 * item[=]
   * code[+] = IMMZ.D1#DE17
+* insert Question(poliotype, The type of the polio vaccine dose administered to the client, choice, false, false)
+* item[=]
+  * answerValueSet = Canonical(IMMZ.D1.DE35)
+  * code[+] = IMMZ.D1#DE35
 * insert Question(artStartDate, The date on which the client started or restarted antiretroviral therapy ART, date, false, false)
 * item[=]
   * code[+] = IMMZ.D1#DE49
