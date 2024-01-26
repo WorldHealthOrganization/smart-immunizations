@@ -39,11 +39,13 @@ valueset "ARV Drugs": 'http://smart.who.int/ig/smart-immunizations/ValueSet/ARVD
 
 valueset "MCV Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE9'
 valueset "Yellow Fever Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE23'
+valueset "Polio Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE14'
 
+/*
 // Plugin is complaining about not finding these so that should be resolved, but here until it can be fixed
 valueset "BCG Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.A1.DE1'
 valueset "Cholera Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.A1.DE2'
-
+*/
 
 
 code "Adverse Event Severity": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
