@@ -27,7 +27,9 @@ processes.
       <tr style="text-align: left;">
         <th>Activity ID.Activity Name</th>
         <th>Tab Name</th>
-        <th>Decision-support table (DT), Contraindications table &amp; Scheduling logic table (S) ID</th>
+        <th>Decision-support table (DT), <br>
+          Contraindications table &amp; <br>
+          Scheduling logic table (S) ID</th>
         <th>Table description</th>
         <th>Reference/Source</th>
       </tr>
@@ -358,7 +360,7 @@ processes.
     </tr>
     <tr>
       <td>IMMZ.D2.DT.TBE.Encepur</td>
-      <td>Recommended vaccinations for tick-borne encephalitis (TBE) following thw Encepur schedule as per WHO recommendations</td>
+      <td>Recommended vaccinations for tick-borne encephalitis (TBE) following the Encepur schedule as per WHO recommendations</td>
     </tr>
     <tr>
       <td>IMMZ.D2.DT.TBE.TBE-Moscow</td>
@@ -640,22 +642,31 @@ processes.
   </table>
 </div>
 
-### Decision Logic Tables
+### Decision Logic Tables - DRAFT
 
-#### IMMZ.D2.DT.Measles.Ongoing transmission - Measles example - DRAFT
-Business rule:	Determine if the client is due for a measles vaccination according to the national immunization protocol
-Trigger: IMMZ.D2 Determine required vaccination(s) if any
+#### IMMZ.D2.DT.Measles example
 
+| Decision ID: | IMMZ.D2.DT.Measles |
+| :--- | :--- |
+| **Business rule:**	| Determine if the client is due for a measles vaccination according to the national immunization protocol |
+| **Trigger:** | IMMZ.D2 Determine required vaccination(s) if any |
+
+#### IMMZ.D2.DT.Measles.Ongoing transmission
 <div style=" width: 100%; height: 500px; overflow: scroll;">
   <table border="1" class="dataframe table table-striped table-bordered">
     <thead style="position: sticky;top: 0;z-index: 100;background-color: white;">
       <tr style="text-align: left;">
-      <th colspan="7">
-        <strong>Countries with ongoing transmission in which the risk of measles mortality remains high</strong>
-      </th>
+        <th colspan="3">Inputs</th>
+        <th>Output</th>
+        <th>Guidance displayed to health worker</th>
+        <th>Annotations</th>
+        <th>Reference(s)</th>
       </tr>
     </thead>
    <tbody>
+    <tr>
+      <td colspan="7"><strong>Countries with ongoing transmission in which the risk of measles mortality remains high</strong></td>
+    </tr>
     <tr>
       <td>
         <strong>Number of measles primary series doses administered</strong>
@@ -695,7 +706,7 @@ Trigger: IMMZ.D2 Determine required vaccination(s) if any
         <br> "Immunization recommendation status" = 'Not due'
       </td>
       <td>Should not vaccinate client as client's age is less than 9 months. Check for any vaccines due, and inform the caregiver of when to come back for MCV1.</td>
-      <td>In countries with ongoing transmission in which the risk of measles mortality remains high, MCV1 should be given at age 9 months. <br>
+      <td rowspan="3">In countries with ongoing transmission in which the risk of measles mortality remains high, MCV1 should be given at age 9 months. <br>
         <br> As a general rule, live vaccines should be given either simultaneously or at intervals of 4 weeks. An exception to this rule is OPV, which can be given at any time before or after measles vaccination without interference in the response to either vaccine.
       </td>
       <td rowspan="7">WHO recommendations for routine immunization - summary tables (March 2023)</td>
@@ -718,7 +729,6 @@ Trigger: IMMZ.D2 Determine required vaccination(s) if any
         <br> "Immunization recommendation status" = 'Due'
       </td>
       <td>Should vaccinate client for MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine administered in the last 4 weeks. Check for contraindications.</td>
-      <td></td>
     </tr>
     <tr>
       <td>
@@ -730,7 +740,6 @@ Trigger: IMMZ.D2 Determine required vaccination(s) if any
         <br> "Immunization recommendation status" = 'Not due'
       </td>
       <td>Should not vaccinate client for MCV1 as live vaccine was administered in the last 4 weeks. Check for any vaccines due, and inform the caregiver of when to come back for MCV1.</td>
-      <td></td>
     </tr>
     <tr>
       <td rowspan="3">
@@ -747,7 +756,7 @@ Trigger: IMMZ.D2 Determine required vaccination(s) if any
         <br> "Immunization recommendation status" = 'Not due'
       </td>
       <td>Should not vaccinate client for MCV2 as client's age is less than 15 months. Check for any vaccines due, and inform the caregiver of when to come back for MCV2.</td>
-      <td>In countries with ongoing transmission in which the risk of measles mortality remains high, MCV2 should be given between 15-18 months. The minimum interval between MCV1 and MCV2 is 4 weeks. <br>
+      <td rowspan="3">In countries with ongoing transmission in which the risk of measles mortality remains high, MCV2 should be given between 15-18 months. The minimum interval between MCV1 and MCV2 is 4 weeks. <br>
         <br> As a general rule, live vaccines should be given either simultaneously or at intervals of 4 weeks. An exception to this rule is OPV, which can be given at any time before or after measles vaccination without interference in the response to either vaccine
       </td>
     </tr>
@@ -762,7 +771,6 @@ Trigger: IMMZ.D2 Determine required vaccination(s) if any
         <br> "Immunization recommendation status" = 'Due'
       </td>
       <td>Should vaccinate client for MCV2 as client is within appropriate age range and no live vaccine administered in the last 4 weeks. Check for contraindications.</td>
-      <td></td>
     </tr>
     <tr>
       <td>
@@ -774,7 +782,6 @@ Trigger: IMMZ.D2 Determine required vaccination(s) if any
         <br> "Immunization recommendation status" = 'Not due'
       </td>
       <td>Should not vaccinate client for MCV2 as live vaccine was administered in the last 4 weeks. Check for any vaccines due, and inform the caregiver of when to come back for MCV2.</td>
-      <td></td>
     </tr>
     <tr>
       <td>
@@ -794,10 +801,13 @@ Trigger: IMMZ.D2 Determine required vaccination(s) if any
 </table>
 </div>
 
-### Scheduling Logic Tables
+### Scheduling Logic Tables - DRAFT
 
-#### IMMZ.D18.S.Measles.Ongoing transmission schedule - Measles example - DRAFT
-IMMZ.D. Administer Vaccine	
+#### IMMZ.D18.S.Measles.Ongoing transmission schedule 
+
+Schedule ID:   IMMZ.D2.DT.Measles  
+IMMZ.D. Administer Vaccine
+
 
   <div style=" width: 100%; height: 500px; overflow: scroll;">
     <table border="1" class="dataframe table table-striped table-bordered">
@@ -826,7 +836,8 @@ IMMZ.D. Administer Vaccine
           <td>How is the due date of the service calculated?</td>
           <td>When does the service become overdue?</td>
           <td>When does the service expire?</td>
-          <td colspan="2">How does the health worker complete the service?</td>
+          <td>How does the health worker complete the service?</td>
+          <td></td>
           <td></td>
         </tr>
         <tr>
