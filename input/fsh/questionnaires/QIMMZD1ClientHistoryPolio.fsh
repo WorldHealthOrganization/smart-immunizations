@@ -1,7 +1,7 @@
 Instance: QIMMZD1ClientHistoryPolio
 InstanceOf: sdc-questionnaire-extr-smap
-Title: "Capture Client History Questionnaire"
-Description: "Immunization - Capture Client History Questionnaire"
+Title: "Capture Client History Questionnaire - Polio"
+Description: "Immunization - Capture Client History Questionnaire for Polio Immunization"
 Usage: #definition
 * id = "IMMZD1ClientHistoryPolio"
 * version = "2023"
@@ -9,6 +9,7 @@ Usage: #definition
 * subjectType = #Patient
 * language = #en
 * status = #draft
+* derivedFrom = Canonical(QIMMZD1ClientHistory)
 * contained[+] = IMMZ.D1.DE10
 * contained[+] = IMMZ.D1.DE35
 * contained[+] = IMMZ.D1.DE103

@@ -1,20 +1,19 @@
-Instance: QIMMZD1ClientHistoryYellowFever
+Instance: QIMMZD1ClientHistory
 InstanceOf: sdc-questionnaire-extr-smap
-Title: "Capture Client History Questionnaire - Yellow Fever"
-Description: "Immunization - Capture Client History Questionnaire for Yellow Fever Immunization"
+Title: "Capture Client History Questionnaire"
+Description: "Immunization - Capture Client History Questionnaire"
 Usage: #definition
-* id = "IMMZD1ClientHistoryYellowFever"
+* id = "IMMZD1ClientHistory"
 * version = "2023"
 * status = #draft
 * subjectType = #Patient
 * language = #en
 * status = #draft
-* derivedFrom = Canonical(QIMMZD1ClientHistory)
 * contained[+] = IMMZ.D1.DE10
 * contained[+] = IMMZ.D1.DE103
 
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
-* extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1YellowFeverQRToResources"
+* extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1QRToResources"
 
 
 * insert Question(birth, Indicates if the client received a dose within 24 hours of birth. Whether a birth dose is counted as part of the primary series will depend on the antigen., boolean, false, false)

@@ -1,7 +1,7 @@
 Instance: QIMMZD1ClientHistoryMeasles
 InstanceOf: sdc-questionnaire-extr-smap
-Title: "Capture Client History Questionnaire"
-Description: "Immunization - Capture Client History Questionnaire"
+Title: "Capture Client History Questionnaire - Measles"
+Description: "Immunization - Capture Client History Questionnaire for Measles Immunization"
 Usage: #definition
 * id = "IMMZD1ClientHistoryMeasles"
 * version = "2023"
@@ -9,6 +9,7 @@ Usage: #definition
 * subjectType = #Patient
 * language = #en
 * status = #draft
+* derivedFrom = Canonical(QIMMZD1ClientHistory)
 * contained[+] = IMMZ.D1.DE10
 * contained[+] = IMMZ.D1.DE103
 
