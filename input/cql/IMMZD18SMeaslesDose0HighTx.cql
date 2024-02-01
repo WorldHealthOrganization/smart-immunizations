@@ -1,7 +1,6 @@
 /*
- * Library: IMMZD18SMeaslesDose0HighTx (IMMZ.D18.S.Measles.Dose0.HighTx)
- * Rule: Measles MCV0 dose schedule
- * Trigger: IMMZ.D18 Determine required vaccination(s) Schedule if any
+ * Library: IMMZD18SMeaslesDose0HighTx (IMMZ.D18.S.Measles.MCV dose 0 schedule.HighTx)
+ * Schedule Table: MCV dose 0 (MCV0) schedule
  */
 library IMMZD18SMeaslesDose0HighTx
 // Start Skeleton CQL

@@ -1,6 +1,7 @@
 /*
- * Library: IMMZD2DTMeaslesDose0 (IMMZ.D2.DT.Measles.Dose0)
- * Rule: Measles dose 0 (MCV0) administration 
+ * Library: IMMZD2DTMeaslesDose0 (IMMZ.D2.DT.Measles.MCV dose 0)
+ * Rule: Determine if the client is due for a measles vaccination according to the national immunization protocol					
+ * Decision Table: Measles dose 0 (MCV0) administration 
  * Trigger: IMMZ.D2 Determine required vaccination(s) if any
  */
 library IMMZD2DTMeaslesDose0

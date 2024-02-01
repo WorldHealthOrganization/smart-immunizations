@@ -1,7 +1,6 @@
 /*
- * Library: IMMZD18SMeaslesHighTx (IMMZ.D18.S.Measles.HighTx)
- * Rule: Countries with ongoing transmission in which the risk of measles mortality remains high
- * Trigger: IMMZ.D18 Determine required vaccination(s) Schedule if any
+ * Library: IMMZD18SMeaslesHighTx (IMMZ.D18.S.Measles.Ongoing transmission schedule)
+ * Schedule Table: Schedule for countries with ongoing transmission in which the risk of measles mortality remains high
  */
 library IMMZD18SMeaslesHighTx
 // Start Skeleton CQL

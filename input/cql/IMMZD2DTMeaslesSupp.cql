@@ -1,6 +1,7 @@
 /*
- * Library: IMMZD2DTMeaslesSupp (IMMZ.D2.DT.Measles.Supp)
- * Rule: Measles supplementary dose administration
+ * Library: IMMZD2DTMeaslesSupp (IMMZ.D2.DT.Measles.Supplementary dose)
+ * Rule: Determine if the client is due for a measles vaccination according to the national immunization protocol					
+ * Decision Table: Measles supplementary dose administration
  * Trigger: IMMZ.D2 Determine required vaccination(s) if any
  */
 library IMMZD2DTMeaslesSupp

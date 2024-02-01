@@ -1,7 +1,6 @@
 /*
- * Library: IMMZD18SMeaslesLowTx (IMMZ.D18.S.Measles.LowTx)
- * Rule: Countries with low levels of measles transmission							
- * Trigger: IMMZ.D18 Determine required vaccination(s) Schedule if any
+ * Library: IMMZD18SMeaslesLowTx (IMMZ.D18.S.Measles.Low transmission schedule)
+ * Schedule Table: Schedule for countries with low levels of measles transmission			
  */
 library IMMZD18SMeaslesLowTx
 // Start Skeleton CQL

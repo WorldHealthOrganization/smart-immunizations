@@ -1,7 +1,5 @@
 /*
- * Library: IMMZD2DTYellowFeverInput (IMMZ.D2.DT.YellowFeverInput)
- * Rule: Determine if the client is due for a yellow fever vaccination according to the national immunization protocol
- * Trigger: IMMZ.D2 Determine required vaccination(s) in any						
+ * Library: IMMZD2DTYellowFeverInput (IMMZ.D2.DT.YellowFeverInput)					
  */
 library IMMZD2DTYellowFeverInput
 // Start Skeleton CQL

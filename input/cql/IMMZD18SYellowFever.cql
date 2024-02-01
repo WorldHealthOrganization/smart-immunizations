@@ -1,6 +1,5 @@
 /*
- * Library: IMMZD18SYellowFever (IMMZ.D18.S.YellowFever)
- * Trigger: IMMZ.D18 Determine required vaccination(s) Schedule if any
+ * Library: IMMZD18SYellowFever (IMMZ.D18.S.Yellow fever schedule)
  */
 library IMMZD18SYellowFever
 // Start Skeleton CQL

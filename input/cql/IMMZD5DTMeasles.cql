@@ -1,5 +1,5 @@
 /*
- * Library: IMMZD5DTMeasles (IMMZ.D5.DT.Measles)
+ * Library: IMMZD5DTMeasles (IMMZ.D5.DT.Measles contraindications)
  * Rule: Check for contraindications before administering the vaccine(s) due	 	 	  
  * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
  */

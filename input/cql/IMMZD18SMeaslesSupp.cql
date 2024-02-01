@@ -1,7 +1,6 @@
 /*
- * Library: IMMZD18SMeaslesSupp (IMMZ.D18.S.Measles.Supp)
- * Rule: Measles supplementary dose schedule
- * Trigger: IMMZ.D18 Determine required vaccination(s) Schedule if any
+ * Library: IMMZD18SMeaslesSupp (IMMZ.D18.S.Measles.Supplementary dose schedule			)
+ * Schedule Table: Measles supplementary dose schedule
  */
 library IMMZD18SMeaslesSupp
 // Start Skeleton CQL

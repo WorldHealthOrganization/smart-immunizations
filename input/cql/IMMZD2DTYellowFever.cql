@@ -1,5 +1,5 @@
 /*
- * Library: IMMZD2DTYellowFever (IMMZ.D2.DT.YellowFever)
+ * Library: IMMZD2DTYellowFever (IMMZ.D2.DT.Yellow fever)
  * Rule: Determine if the client is due for a yellow fever vaccination according to the national immunization protocol						
  * Trigger: IMMZ.D2 Determine required vaccination(s) if any
  */
