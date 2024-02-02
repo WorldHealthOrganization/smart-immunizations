@@ -1,0 +1,19 @@
+map "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD5QRToResources" = "IMMZD5QRToResources"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QResp as source
+uses "http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZD5CheckContraindications" alias IMMZD5 as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+
+imports "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD5QRToLM"
+imports "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD5LMToResources"
+
+group QRespToBundle (
+  source qr : QResp,
+  target bundle: Bundle
+) {
+  qr -> create("http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZD5CheckContraindications") as model 
+  then{
+    qr -> model then QRespToIMMZD5( qr, model) "QRtoLM";
+    qr -> bundle then IMMZD5ToBundle( model, bundle ) "LMtoBundle";
+  } "QRtoBundle";
+}

@@ -1,0 +1,18 @@
+map "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1PolioQRToLM" = "IMMZD1PolioQRToLM"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QResp as source
+uses "http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZD1ClientHistoryPolio" alias IMMZD1 as target
+
+imports "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1QRToLM"
+
+group PolioQRespToIMMZD1 ( source qr : QResp, target immz : IMMZD1) extends QRespToIMMZD1 {
+
+  qr.item as item then {
+
+    item.answer first as answer where item.linkId = 'poliotype' then {
+      answer.value as coding -> immz.poliotype = coding "SetPolioType";
+    } "FirstAnswerForPolioType";
+
+  } "processItems";
+
+}
