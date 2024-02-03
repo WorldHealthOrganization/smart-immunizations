@@ -56,5 +56,6 @@ code "Severely immunosuppressed": 'DE165' from "IMMZ.D" display 'Severely immuno
 code "History of anaphylactic reactions": 'DE166' from "IMMZ.D" display 'History of anaphylactic reactions'
 code "Severe allergic reactions": 'DE167' from "IMMZ.D" display 'Severe allergic reactions'
 code "Symptomatic HIV infection": 'DE168' from "IMMZ.D" display 'Symptomatic HIV infection'
+code "Immunodeficiency syndromes": 'DE187' from "IMMZ.D" display 'Immunodeficiency syndromes'
 code "Severely immunocompromised": 'DE200' from "IMMZ.D" display 'Severely immunocompromised'
 code "Breastfeeding": 'DE191' from "IMMZ.D" display 'Breastfeeding'
