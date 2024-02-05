@@ -73,17 +73,17 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
     let content = []
     if ( sheet[r] && sheet[r][c] && sheet[r][c] != '-' ) {
       content = sheet[r][c].split( "\n", 2 )
-      prevtitles[c] = trim(content[0])
+      prevtitles[c] = content[0].trim()
     }
     if ( !content[0] && sheet[r][c] != '-' ) content[0] = prevtitles[c]
     if ( content[0] ) {
-      expression.push( 'input."' + trim(content[0]) + '"' )
+      expression.push( 'input."' + content[0].trim() + '"' )
     }
   }
 
   let content = sheet[r][1+parseInt(cs[1])].split( "\n", 2 );
-  content[0] = trim(content[0])
-  content[1] = trim(content[1])
+  content[0] = content[0].trim()
+  content[1] = content[1].trim()
   if ( !outputs[ content[0] ] ) outputs[ content[0] ] = []
   outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2] } )
   
