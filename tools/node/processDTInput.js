@@ -30,6 +30,8 @@ for( let c = cs; c <= ce; c++ ) {
   for ( let r = rs; r <= re; r++ ) {
     if ( sheet[0].data[r] && sheet[0].data[r][c] && sheet[0].data[r][c] != '-' ) {
       [ title, pseudo ] = sheet[0].data[r][c].split( "\n", 2 )
+      title = trim(title)
+      pseudo = trim(pseudo)
       console.log( "/*\n@input: " + title + "\n@pseudocode: " + pseudo + "\n*/\ndefine \""+title+"\":\n\n")
     }
   }

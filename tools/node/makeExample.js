@@ -13,22 +13,22 @@ for(let doc of docs) {
 
   options.birth = shiftDate(options.birth)
   const topDir = directory + "/" + options.id
-  fs.mkdirSync(topDir)
+  //fs.mkdirSync(topDir, true)
 
-  fs.mkdirSync(topDir+"/Patient")
+  fs.mkdirSync(topDir+"/Patient", {recursive: true})
   let patient = makePatient( options.id, options.patient, options.birth )
   fs.writeFileSync( topDir + "/Patient/" + options.id +".json", Buffer.from( JSON.stringify(patient,null,2) ))
   if ( options.immunization ) {
-    fs.mkdirSync(topDir+"/Immunization")
+    fs.mkdirSync(topDir+"/Immunization", {recursive: true})
     for( let immz in options.immunization ) {
-      let immzr = makeImmunization( immz, options.id, options.immunization[immz] )
+      let immzr = makeImmunization( immz, options.id, options.immunization[immz], options.birth )
       fs.writeFileSync( topDir+"/Immunization/"+immzr.id+".json", Buffer.from( JSON.stringify(immzr,null,2)))
     }
   }
   if ( options.condition ) {
-    fs.mkdirSync(topDir+"/Condition")
+    fs.mkdirSync(topDir+"/Condition", {recursive: true})
     for( let cond in options.condition ) {
-      let condr = makeCondition( cond, options.id, options.condition[cond] )
+      let condr = makeCondition( cond, options.id, options.condition[cond], options.birth )
       fs.writeFileSync( topDir+"/Condition/"+condr.id+".json", Buffer.from( JSON.stringify(condr,null,2)))
     }
   }
@@ -41,8 +41,7 @@ function shiftDate( shift, birth ) {
 
   let shifted
   let start = new Date()
-  let match = shift.match( /([bn]?)+?(-?\d+)([wdmy])/)
-  //console.log(match)
+  let match = shift.match( /([bn]?)\+?(-?\d+)([wdmy])/)
   if ( match[1] == 'b' ) start = new Date(birth)
   switch( match[3] ) {
     case 'd':
@@ -57,16 +56,16 @@ function shiftDate( shift, birth ) {
     case 'y':
       shifted = Dates.year.shift(start, parseInt(match[2]))
       break
-    }
+  }
   return shifted.toISOString().replace(/T.+/, '')
 }
 
-function copyFHIR( resource, options ) {
+function copyFHIR( resource, options, birth ) {
   if ( options.fhir ) {
     let elements = options.fhir
     for( let element in elements ) {
       if ( element.endsWith('Date') || element.endsWith('DateTime') ) {
-        elements[element] = shiftDate( elements[element], options.birth )
+        elements[element] = shiftDate( elements[element], birth )
       }
       resource[element] = elements[element]
     }
@@ -94,12 +93,12 @@ function makePatient ( id, options, birth ) {
   if ( birth ) {
     patient.birthDate = birth
   }
-  copyFHIR( patient, options )
+  copyFHIR( patient, options, birth )
 
   return patient
 }
 
-function makeImmunization( immz, patient, options ) {
+function makeImmunization( immz, patient, options, birth ) {
   let immunization = {
     "resourceType": "Immunization",
     "id": "",
@@ -121,12 +120,12 @@ function makeImmunization( immz, patient, options ) {
   immunization.id = immz+"-"+patient
   immunization.patient.reference = "Patient/"+patient
   immunization.vaccineCode.coding[0] = options.vaccine
-  copyFHIR( immunization, options )
+  copyFHIR( immunization, options, birth )
 
   return immunization
 }
 
-function makeCondition( cond, patient, options ) {
+function makeCondition( cond, patient, options, birth ) {
   let condition = {
     "resourceType": "Condition",
     "id": "",
@@ -149,7 +148,7 @@ function makeCondition( cond, patient, options ) {
   condition.id = cond+"-"+patient
   condition.subject.reference = "Patient/"+patient
   condition.code.coding[0] = options.code
-  copyFHIR( condition, options )
+  copyFHIR( condition, options, birth )
 
   return condition
 }
