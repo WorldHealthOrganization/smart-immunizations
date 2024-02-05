@@ -40,6 +40,8 @@ valueset "ARV Drugs": 'http://smart.who.int/ig/smart-immunizations/ValueSet/ARVD
 valueset "MCV Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE9'
 valueset "Yellow Fever Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE23'
 valueset "Polio Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE14'
+valueset "Polio Vaccine - bOPV": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE14.bOPV'
+valueset "Polio Vaccine - IPV": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE14.IPV'
 
 /*
 // Plugin is complaining about not finding these so that should be resolved, but here until it can be fixed
