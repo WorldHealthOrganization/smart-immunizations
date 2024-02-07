@@ -27,14 +27,14 @@ define "Yellow Fever Doses Administered to Patient":
 @pseudocode: Count of vaccines administered (where "Vaccine type" = "Yellow fever containing vaccines" and "Type of dose" = "Primary series" ) = 0
 */
 define "No yellow fever primary series doses were administered":
-	not exists("Yellow Fever Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 9 months)
+	not exists("Yellow Fever Doses Administered to Patient" I where difference in days between I.occurrence and Patient.birthDate + 9 months <= 0)
 
 /*
 @input: One yellow fever primary series dose was administered
 @pseudocode: Count of vaccines administered (where "Vaccine type" = "Yellow fever containing vaccines" and "Type of dose" = "Primary series" ) = 1
 */
 define "One yellow fever primary series dose was administered":
-	Count("Yellow Fever Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 9 months) >= 1
+	Count("Yellow Fever Doses Administered to Patient" I where difference in days between I.occurrence and Patient.birthDate + 9 months <= 0) >= 1
 
 /*
 @input: Client's age is less than 6 months
