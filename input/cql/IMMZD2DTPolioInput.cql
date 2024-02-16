@@ -26,7 +26,7 @@ define "Polio Doses Administered to Patient":
 @internal: Primary series polio containing doses administered to patient
 */
 define "Primary Series Polio Doses Administered to Patient":
-		"Polio Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 6 weeks
+		"Polio Doses Administered to Patient" I where difference in days between I.occurrence and Patient.birthDate + 6 weeks <= 0
 
 /*
 @internal: Polio containing bOPV Doses Administered to Patient
@@ -79,7 +79,7 @@ define "bOPV birth dose (a zero dose) was not administered":
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Polio containing vaccines' and "Type of dose" = 'Dose 0' AND "Birth Dose" = TRUE) = 1
 */
 define "bOPV birth dose (a zero dose) was administered":
-	exists("Polio Doses Administered to Patient" I where I.occurrence before Patient.birthDate + 1 week) 
+	exists("Polio Doses Administered to Patient" I where difference in days between I.occurrence and Patient.birthDate + 1 week > 0) 
 
 /*
 @input: No polio primary series doses were administered

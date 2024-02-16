@@ -18,6 +18,68 @@ include IMMZD2DTPolioInput called input
 // End Skeleton CQL
 context Patient
 
+define "bopv date":
+  ToString(input."Date of latest bOPV Polio Vaccine")
+
+define "ipv date":
+  ToString(input."Date of latest IPV Polio Vaccine")
+
+/*
+@test: Test expected results based on example patients
+*/
+define "Test Validation":
+  case
+    when Patient.id = '18.Alt6w' then "Client is not due for bOPV vaccination" and "Guidance" = 'Should not vaccinate client for first bOPV dose as client\'s age is less than 6 weeks. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the first bOPV dose.'
+    when Patient.id = '19.D0Abt6w3m' then "Client is due for bOPV vaccination Case 1" and "Guidance" = 'Should vaccinate client for first bOPV dose as no polio doses were administered and client\'s age is between 6 weeks and 3 months. Check for contraindications.'
+    when Patient.id = '20.D0Agt3m' then "Client is due for bOPV and IPV vaccination" and "Guidance" = 'Should vaccinate client for first bOPV dose and first IPV dose as client\'s age is more than 3 months and no polio doses were administered.
+Check for contraindications.'
+    when Patient.id = '21.D1Abt6w14wBlt4w' then "Client is not due for polio vaccination Case 1" and "Guidance" = 'Should not vaccinate client for polio dose as the latest bOPV dose was administered less than 4 weeks ago.
+Check for any other vaccines due, and inform the caregiver of when to come back for the next polio dose.'
+    when Patient.id = '22.D1Abt6w14wBgt4w' then "Client is due for bOPV vaccination Case 2" and "Guidance" = 'Should vaccinate client for second bOPV dose as the latest bOPV dose was administered more than 4 weeks ago.
+Check for contraindications'
+    when Patient.id = '24.D1BAgt14wBgt4w' then "Client is due for bOPV and IPV vaccination Case 2" and "Guidance" = 'Should vaccinate client for first IPV dose and second bOPV dose as client\'s age is more than 14 weeks and the latest bOPV dose was administered more than 4 weeks ago.
+Check for contraindications.'
+    when Patient.id = '23.D1BAgt14wBlt4w' then "Client is due for IPV vaccination Case 1" and "Guidance" = 'Should vaccinate client for first IPV dose as client\'s age is more than 14 weeks and the latest bOPV was administered less than 4 weeks ago.
+Check for contraindications.'
+    when Patient.id = '25.D1IAgt14wIlt4m' then "Client is due for bOPV vaccination Case 3" and "Guidance" = 'Should vaccinate client for first bOPV dose as client\'s age is more than 14 weeks, bOPV dose was not administered and the first IPV dose was administered less than 4 months ago.
+Check for contraindications.'
+    when Patient.id = '26.D1IAgt14wIgt4m' then "Client is due for bOPV and IPV vaccination Case 3" and "Guidance" = 'Should vaccinate client for first bOPV dose and second IPV dose as client\'s age is more than 14 weeks, bOPV dose was not administered and the first IPV dose was administered more than 4 months ago.
+Check for contraindications.'
+    when Patient.id = '27.D2B2Abt6w14wBlt4w' then "Client is not due for polio vaccination Case 2" and "Guidance" = 'Should not vaccinate client for polio dose as client\'s age is between 6 and 14 weeks, two bOPV doses were administered and the latest bOPV dose was administered less than 4 weeks ago. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next polio dose.'
+    when Patient.id = '28.D2B2Abt6w14wBgt4w' then "Client is due for bOPV vaccination Case 4" and "Guidance" = 'Should vaccinate client for third bOPV dose as client\'s age is between 6 and 14 weeks and the latest bOPV dose was administered more than 4 weeks ago. Check for contraindications.'
+    when Patient.id = '29.D2B2Agt14wBlt4w' then "Client is due for IPV vaccination Case 2" and "Guidance" = 'Should vaccinate client for first IPV dose as client\'s age is more than 14 weeks, IPV dose was not administered and the latest bOPV dose was administered less than 4 weeks ago.
+Check for contraindications.'
+    when Patient.id = '30.D2B2Agt14wBgt4w' then "Client is due for bOPV and IPV vaccination Case 4" and "Guidance" = 'Should vaccinate client for first IPV dose and third bOPV dose as client\'s age is more than 14 weeks, two bOPV doses and no IPV dose were administered and the latest bOPV dose was administered more than 4 weeks ago.
+Check for contraindications.'
+    when Patient.id = '31.D2B1I1Blt4wIlt4m' then "Client is not due for polio vaccination Case 3" and "Guidance" = 'Should not vaccinate client for polio dose as the latest bOPV dose was administered less than 4 weeks ago and the latest IPV dose was administered less than 4 months ago. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next polio dose.'
+    when Patient.id = '32.D2B1I1Blt4wIgt4m' then "Client is due for IPV vaccination Case 3" and "Guidance" = 'Should vaccinate client for second IPV dose as one bOPV dose and one IPV dose were administered, the latest bOPV dose was administered less than 4 weeks ago and the latest IPV dose was administered more than 4 months ago. Check for contraindications.'
+    when Patient.id = '33.D2B1I1Bgt4wIlt4m' then "Client is due for bOPV vaccination Case 5" and "Guidance" = 'Should vaccinate client for second bOPV dose as one bOPV dose and one IPV dose were administered, the latest bOPV dose was administered more than 4 weeks ago and the latest IPV dose was administered less than 4 months ago. Check for contraindications.'
+    when Patient.id = '34.D2B1I1Bgt4wIgt4m' then "Client is due for bOPV and IPV vaccination Case 5" and "Guidance" = 'Should vaccinate client for second bOPV dose and second IPV dose as one bOPV dose and one IPV dose were administered, the latest bOPV dose was administered more than 4 weeks ago and the latest IPV dose was administered more than 4 months ago. Check for contraindications.'
+    when Patient.id = '35.D2I2' then "Client is due for bOPV vaccination Case 6" and "Guidance" = 'Should vaccinate client for first bOPV dose as bOPV dose was not administered and two IPV doses were administered. Check for contraindications.'
+    when Patient.id = '36.D3B3Alt14w' then "Client is not due for polio vaccination Case 4" and "Guidance" = 'Should not vaccinate client for polio dose as client\'s age is less than 14 weeks and three bOPV doses were administered.
+Check for any other vaccines due, and inform the caregiver of when to come back for the next polio dose.'
+    when Patient.id = '37.D3B3Agt14w' then "Client is due for IPV vaccination Case 4" and "Guidance" = 'Should vaccinate client for first IPV dose as client\'s age is more than 14 weeks, three bOPV doses were administered and IPV dose was not administered. Check for contraindications.'
+    when Patient.id = '38.D3B2I1Blt4wIlt4m' then "Client is not due for polio vaccination Case 5" and "Guidance" = 'Should not vaccinate client for polio dose as two bOPV doses and one IPV dose were administered, the latest bOPV dose was administered less than 4 weeks ago and the latest IPV dose was administered less than 4 months ago. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next polio dose.'
+    when Patient.id = '39.D3B2I1Blt4wIgt4m' then "Client is due for IPV vaccination Case 5" and "Guidance" = 'Should vaccinate client for second IPV dose as two bOPV doses and one IPV dose were administered, the latest bOPV dose was administered less than 4 weeks ago and the latest IPV dose was administered more than 4 months ago. Check for contraindications.'
+    when Patient.id = '40.D3B2I1Bgt4wIlt4m' then "Client is due for bOPV vaccination Case 7" and "Guidance" = 'Should vaccinate client for third bOPV dose as two bOPV doses and one IPV dose were administered, the latest bOPV dose was administered more than 4 weeks ago and the latest IPV dose was administered less than 4 months ago. Check for contraindications.'
+    when Patient.id = '41.D3B2I1Bgt4wIgt4m' then "Client is due for bOPV and IPV vaccination Case 6" and "Guidance" = 'Should vaccinate client for third bOPV dose and second IPV dose as two bOPV doses and one IPV dose were administered, the latest bOPV dose was administered more than 4 weeks ago and the latest IPV dose was administered more than 4 months ago. Check for contraindications.'
+    when Patient.id = '42.D3B1I2Blt4w' then "Client is not due for polio vaccination Case 6" and "Guidance" = 'Should not vaccinate client for polio dose as one bOPV dose and two IPV doses were administered and the latest bOPV dose was administered less than 4 weeks ago. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next polio dose.'
+    when Patient.id = '43.D3B1I2Bgt4w' then "Client is due for bOPV vaccination Case 8" and "Guidance" = 'Should vaccinate client for second bOPV dose as one bOPV dose and two IPV doses were administered and the latest bOPV dose was administered more than 4 weeks ago. Check for contraindications.'
+    when Patient.id = '44.D432I1Ilt4m' then "Client is not due for polio vaccination Case 7" and "Guidance" = 'Should not vaccinate client for polio dose as three bOPV doses and one IPV dose were administered and the latest IPV dose was administered less than 4 months ago. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next polio dose.'
+    when Patient.id = '45.D432I1Igt4m' then "Client is due for IPV vaccination Case 6" and "Guidance" = 'Should vaccinate client for second IPV dose as three bOPV doses and one IPV dose were administered and the latest IPV dose was administered more than 4 months ago. Check for contraindications.'
+    when Patient.id = '46.D4B2I2Blt4w' then "Client is not due for polio vaccination Case 8" and "Guidance" = 'Should not vaccinate client for polio dose as two bOPV doses and two IPV doses were administered and the latest bOPV dose was administered less than 4 weeks ago. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next polio dose.'
+    when Patient.id = '47.D4B2I2Bgt4w' then "Client is due for bOPV vaccination Case 9" and "Guidance" = 'Should vaccinate client for third bOPV dose as two bOPV doses and two IPV doses were administered and the latest bOPV dose was administered more than 4 weeks ago. Check for contraindications.'
+    when Patient.id = '48.D5' then "Polio immunization schedule is complete" and "Guidance" = 'Polio routine immunization schedule is complete. Five polio primary series doses were administered. Check for any vaccines due.'
+    else 'No test case set'
+  end
+
 /*
 @dynamicValue: Guidance
 */

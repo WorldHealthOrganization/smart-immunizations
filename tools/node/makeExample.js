@@ -4,13 +4,15 @@ const Dates = require('date-math')
 
 const file = fs.readFileSync(process.argv[2])
 const docs = yaml.parseAllDocuments(file.toString())
+const fmt = new Intl.DateTimeFormat('en-US', { dateStyle: 'long' } )
+const now = Dates.day.floor(new Date(Date.parse(fmt.format(new Date()))))
+
 let directory = "."
 if ( process.argv[3] ) directory = process.argv[3] 
 
 for(let doc of docs) {
   let options = doc.toJS()
-  let now = Dates.day.floor(new Date())
-
+  
   options.birth = shiftDate(options.birth)
   const topDir = directory + "/" + options.id
   //fs.mkdirSync(topDir, true)
@@ -40,7 +42,7 @@ function shiftDate( shift, birth ) {
   if ( shift.match(/\d{4,4}-\d{2,2}-\{2,2}/) ) return shift
 
   let shifted
-  let start = new Date()
+  let start = now
   let match = shift.match( /([bn]?)\+?(-?\d+)([wdmy])/)
   if ( match[1] == 'b' ) start = new Date(birth)
   switch( match[3] ) {

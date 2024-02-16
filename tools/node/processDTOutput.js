@@ -54,11 +54,6 @@ include IMMZD2DT${sheetname}Input called input
 // End Skeleton CQL
 context Patient
 
-/*
-@dynamicValue: Due date of the dose
-*/
-define "Due date of the dose":
-  null
 `)
 
 

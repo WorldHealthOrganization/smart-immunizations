@@ -18,12 +18,8 @@ include IMMZD2DTPolioInput called input
 // End Skeleton CQL
 context Patient
 
-/*
-@dynamicValue: Due date of the dose
-*/
-define "Due date of the dose":
-  if "Client is due for the bOPV birth dose" then Patient.birthDate
-	else null
+define "Test":
+difference in days between First(input."Polio Doses Administered to Patient").occurrence and Patient.birthDate + 1 week
 
 /*
 @dynamicValue: Guidance
