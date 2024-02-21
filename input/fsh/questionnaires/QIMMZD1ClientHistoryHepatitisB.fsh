@@ -55,10 +55,11 @@ Usage: #definition
 * insert Question(onART, The client is currently receiving antiretroviral therapy - ART, boolean, false, false)
 * item[=]
   * code[+] = IMMZ.D1#DE17
-* insert Question(birthweight, Represents the client's birth weight value measures in grams, decimal, true, false)
+* insert Question(birthweight, [[Represents the client's birth weight value measures in grams]], decimal, true, false)
+* item[=]
   * code[+] = IMMZ.D1#DE29
   * code[+] = $ICD11#KA21
-  * code[+] = $LOINC#8339-4
+  * code[+] = $LNC#8339-4
 * insert Question(hebptype, The type of hepatitis B vaccine dose administered to the client, choice, true, false)
 * item[=]
   * answerValueSet = Canonical(IMMZ.D1.DE99)

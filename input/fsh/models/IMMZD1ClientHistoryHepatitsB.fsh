@@ -10,7 +10,7 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
 * birthweight 1..1 decimal "Birth weight in grams" "Represents the client's birth weight value measures in grams"
   * ^code[+] = IMMZ.D1#DE29
   * ^code[+] = $ICD11#KA21
-  * ^code[+] = $LOINC#8339-4
+  * ^code[+] = $LNC#8339-4
 * hepbtype 1..1 Coding "Type of hepatitis B dose" "The type of hepatitis B vaccine dose administered to the client"
   * ^code[+] = IMMZ.D1#DE99
 * hepbtype from IMMZ.D1.DE99
