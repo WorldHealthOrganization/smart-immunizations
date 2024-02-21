@@ -17,7 +17,7 @@ Usage: #definition
 * extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1MeaslesQRToResources"
 
 
-* insert Question(type, The type of dose in a series that the client received, choice, false, true)
+* insert Question(type, The type of dose in a series that the client received, choice, true, false)
 * item[=]
   * answerValueSet = Canonical(IMMZ.D1.DE103)
   * code[+] = IMMZ.D1#DE103

@@ -1,0 +1,26 @@
+map "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1HepatitisBQRToLM" = "IMMZD1HepatitisBQRToLM"
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QResp as source
+uses "http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZD1ClientHistoryHepatitisB" alias IMMZD1 as target
+
+imports "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1QRToLM"
+
+group HepatitisBQRespToIMMZD1 ( source qr : QResp, target immz : IMMZD1) extends QRespToIMMZD1 {
+
+  qr.item as item then {
+
+    item.answer first as answer where item.linkId = 'birth' then {
+      answer.value as content -> immz.birth = content  "SetBirth";
+    } "FirstAnswerForBirth";
+
+    item.answer first as answer where item.linkId = 'birthweight' then {
+      answer.value as content -> immz.birthweight = content  "SetBirthWeight";
+    } "FirstAnswerForBirthWeight";
+
+    item.answer first as answer where item.linkId = 'hepbtype' then {
+      answer.value as coding -> immz.hepbtype = coding "SetHepatitisBType";
+    } "FirstAnswerForHepatitisBType";
+
+  } "processItems";
+
+}

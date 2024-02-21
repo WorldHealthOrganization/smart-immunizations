@@ -1,9 +1,9 @@
-Instance: QIMMZD1ClientHistoryPolio
+Instance: QIMMZD1ClientHistoryHepatitisB
 InstanceOf: sdc-questionnaire-extr-smap
-Title: "Capture Client History Questionnaire - Polio"
-Description: "Immunization - Capture Client History Questionnaire for Polio Immunization"
+Title: "Capture Client History Questionnaire - Hepatitis B"
+Description: "Immunization - Capture Client History Questionnaire for Hepatitis B Immunization"
 Usage: #definition
-* id = "IMMZD1ClientHistoryPolio"
+* id = "IMMZD1ClientHistoryHepatitisB"
 * version = "2023"
 * status = #draft
 * subjectType = #Patient
@@ -11,11 +11,11 @@ Usage: #definition
 * status = #draft
 * derivedFrom = Canonical(QIMMZD1ClientHistory)
 * contained[+] = IMMZ.D1.DE10
-* contained[+] = IMMZ.D1.DE35
+* contained[+] = IMMZ.D1.DE99
 * contained[+] = IMMZ.D1.DE103
 
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
-* extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1PolioQRToResources"
+* extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1HepatitisBQRToResources"
 
 
 * insert Question(birth, Indicates if the client received a dose within 24 hours of birth. Whether a birth dose is counted as part of the primary series will depend on the antigen., boolean, true, false)
@@ -55,10 +55,14 @@ Usage: #definition
 * insert Question(onART, The client is currently receiving antiretroviral therapy - ART, boolean, false, false)
 * item[=]
   * code[+] = IMMZ.D1#DE17
-* insert Question(poliotype, The type of the polio vaccine dose administered to the client, choice, true, false)
+* insert Question(birthweight, Represents the client's birth weight value measures in grams, decimal, true, false)
+  * code[+] = IMMZ.D1#DE29
+  * code[+] = $ICD11#KA21
+  * code[+] = $LOINC#8339-4
+* insert Question(hebptype, The type of hepatitis B vaccine dose administered to the client, choice, true, false)
 * item[=]
-  * answerValueSet = Canonical(IMMZ.D1.DE35)
-  * code[+] = IMMZ.D1#DE35
+  * answerValueSet = Canonical(IMMZ.D1.DE99)
+  * code[+] = IMMZ.D1#DE99
 * insert Question(artStartDate, The date on which the client started or restarted antiretroviral therapy ART, date, false, false)
 * item[=]
   * code[+] = IMMZ.D1#DE49
@@ -66,7 +70,7 @@ Usage: #definition
 * item[=]
   * insert Question(vaccineType, Vaccine type/category that was administered or was to be administered. Any vaccine code available in the IMMZ.Z Vaccine Library list of codes applies in this data element, choice, true, false)
   * item[=]
-    * answerValueSet = Canonical(IMMZ.Z.DE23)
+    * answerValueSet = Canonical(IMMZ.Z.DE6)
     * code[+] = IMMZ.D#DE19
     * code[+] = $LNC#39236-5
     * code[+] = $SCT#787859002
