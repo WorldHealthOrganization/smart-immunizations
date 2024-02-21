@@ -18,12 +18,6 @@ include IMMZD2DTPolioInput called input
 // End Skeleton CQL
 context Patient
 
-define "bopv date":
-  ToString(input."Date of latest bOPV Polio Vaccine")
-
-define "ipv date":
-  ToString(input."Date of latest IPV Polio Vaccine")
-
 /*
 @test: Test expected results based on example patients
 */

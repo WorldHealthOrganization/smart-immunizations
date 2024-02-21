@@ -45,6 +45,18 @@ define "IPV Polio Doses Administered to Patient":
     I.vaccineCode in IMMZc."Polio Vaccine - IPV"
 
 /*
+@internal: Date of latest primary series Polio Vaccine
+*/
+define "Date of latest Primary Series Polio Vaccine":
+	First("Primary Series Polio Doses Administered to Patient").occurrence as dateTime
+
+/*
+@internal: Date of first primary series Polio Vaccine
+*/
+define "Date of first Primary Series Polio Vaccine":
+	Last("Primary Series Polio Doses Administered to Patient").occurrence as dateTime
+
+/*
 @internal: Date of latest bOPV Polio Vaccine
 */
 define "Date of latest bOPV Polio Vaccine":
@@ -215,11 +227,32 @@ define "Client's age is less than 6 weeks":
 	IMMZCom."Current Patient Age In Weeks" < 6
 
 /*
+@input: Client's age is more than or equal to 6 weeks
+@pseudocode: Today's date - "Date of birth" ≥ 6 'week'
+*/
+define "Client's age is more than or equal to 6 weeks":
+	Not( "Client's age is less than 6 weeks" )
+
+/*
 @input: Client's age is between 6 weeks and 3 months
 @pseudocode: 6 'week' ≤ Today's date - "Date of birth" ≤ 3 'month'
 */
 define "Client's age is between 6 weeks and 3 months":
 	not( "Client's age is less than 6 weeks" ) and not( "Client's age is more than 3 months" )
+
+/*
+@input: Client's age is less than 8 weeks
+@pseudocode: Today's date - "Date of birth" < 8 'week'
+*/
+define "Client's age is less than 8 weeks":
+	IMMZCom."Current Patient Age In Weeks" < 8
+
+/*
+@input: Client's age is more than or equal to 8 weeks
+@pseudocode: Today's date - "Date of birth" ≥ 8 'week'
+*/
+define "Client's age is more than or equal to 8 weeks":
+	not("Client's age is less than 8 weeks")
 
 /*
 @input: Client's age is more than 3 months
@@ -250,29 +283,115 @@ define "Client's age is less than 14 weeks":
 	IMMZCom."Current Patient Age In Weeks" < 14
 
 /*
+@input: Client's age was more than 6 weeks when the primary series was started
+@pseudocode: "Date and time of vaccination" (where "Vaccine type" = 'Polio containing vaccines' AND "Dose number" = 1) - "Date of birth" > 6 'week'
+*/
+define "Client's age was more than 6 weeks when the primary series was started":
+	AgeInWeeksAt("Date of first Primary Series Polio Vaccine") > 6
+
+/*
+@input: Client's age was 6 weeks when the primary series was started
+@pseudocode: "Date and time of vaccination" (where "Vaccine type" = 'Polio containing vaccines' AND "Dose number" = 1) - "Date of birth" = 6 'week'
+*/
+define "Client's age was 6 weeks when the primary series was started":
+	AgeInWeeksAt("Date of first Primary Series Polio Vaccine") = 6
+
+/*
 @input: The latest bOPV dose was administered less than 4 weeks ago
 @pseudocode: Today's date - Latest "Date and time of vaccination" (where "Vaccine type" = 'Polio containing vaccines' and "Type of Polio dose" = 'bOPV') < 4 'week'
 */
 define "The latest bOPV dose was administered less than 4 weeks ago":
-	"Date of latest bOPV Polio Vaccine" is not null and "Date of latest bOPV Polio Vaccine" + 4 weeks > Now()
+	//"Date of latest bOPV Polio Vaccine" is not null and "Date of latest bOPV Polio Vaccine" + 4 weeks > Now()
+	"Date of latest bOPV Polio Vaccine" is not null and difference in weeks between "Date of latest bOPV Polio Vaccine" and Now() < 4 
 
 /*
 @input: The latest bOPV dose was administered more than 4 weeks ago
 @pseudocode: Today's date - Latest "Date and time of vaccination" (where "Vaccine type" = 'Polio containing vaccines' and "Type of Polio dose" = 'bOPV') ≥ 4 'week'
 */
 define "The latest bOPV dose was administered more than 4 weeks ago":
-	"Date of latest bOPV Polio Vaccine" is not null and "Date of latest bOPV Polio Vaccine" + 4 weeks <= Now()
+	//"Date of latest bOPV Polio Vaccine" is not null and "Date of latest bOPV Polio Vaccine" + 4 weeks <= Now()
+	"Date of latest bOPV Polio Vaccine" is not null and difference in weeks between "Date of latest bOPV Polio Vaccine" and Now() >= 4
 
 /*
 @input: The latest IPV dose was administered less than 4 months ago
 @pseudocode: Today's date - Latest "Date and time of vaccination" (where "Vaccine type" = 'Polio containing vaccines' and "Type of polio dose" = 'IPV') < 4 'month'
 */
 define "The latest IPV dose was administered less than 4 months ago":
-	"Date of latest IPV Polio Vaccine" is not null and "Date of latest IPV Polio Vaccine" + 4 months > Now()
+	//"Date of latest IPV Polio Vaccine" is not null and "Date of latest IPV Polio Vaccine" + 4 months > Now()
+	"Date of latest IPV Polio Vaccine" is not null and difference in months between "Date of latest IPV Polio Vaccine" and Now() <  4
 
 /*
 @input: The latest IPV dose was administered more than 4 months ago
 @pseudocode: Today's date - Latest "Date and time of vaccination" (where "Vaccine type" = 'Polio containing vaccines' and "Type of polio dose" = 'IPV') ≥ 4 'month' 
 */
 define "The latest IPV dose was administered more than 4 months ago":
-	"Date of latest IPV Polio Vaccine" is not null and "Date of latest IPV Polio Vaccine" + 4 months <= Now()
+	//"Date of latest IPV Polio Vaccine" is not null and "Date of latest IPV Polio Vaccine" + 4 months <= Now()
+	"Date of latest IPV Polio Vaccine" is not null and difference in months between "Date of latest IPV Polio Vaccine" and Now() >= 4
+
+/*
+@input: The latest polio dose was administered less than 4 weeks ago
+@pseudocode: Today's date - latest "Date and time of vaccination" (where "Vaccine type" = 'Polio containing vaccines') < 4 'week'
+*/
+define "The latest polio dose was administered less than 4 weeks ago":
+	//"Date of latest Polio Vaccine" is not null and "Date of latest Polio Vaccine" + 4 weeks > Now()
+	"Date of latest Primary Series Polio Vaccine" is not null and difference in weeks between "Date of latest Primary Series Polio Vaccine" and Now() < 4
+
+/*
+@input: The latest polio dose was administered more than 4 weeks ago
+@pseudocode: Today's date - Latest "Date and time of vaccination" (where "Vaccine type" = 'Polio containing vaccines') ≥ 4 'week'
+*/
+define "The latest polio dose was administered more than 4 weeks ago":
+	//"Date of latest Polio Vaccine" is not null and "Date of latest Polio Vaccine" + 4 weeks <= Now()
+	"Date of latest Primary Series Polio Vaccine" is not null and difference in weeks between "Date of latest Primary Series Polio Vaccine" and Now() >= 4
+
+/*
+@input: The latest polio dose was administered less than 6 months ago
+@pseudocode: Today's date - Latest "Date and time of vaccination" (where "Vaccine type" = 'Polio containing vaccines') < 6 'month'
+*/
+define "The latest polio dose was administered less than 6 months ago":
+	//"Date of latest Polio Vaccine" is not null and "Date of latest Polio Vaccine" + 6 months > Now()
+	"Date of latest Primary Series Polio Vaccine" is not null and difference in months between "Date of latest Primary Series Polio Vaccine" and Now() < 6
+
+/*
+@input: The latest polio dose was administered more than 6 months ago
+@pseudocode: Today's date - Latest "Date and time of vaccination" (where "Vaccine type" = 'Polio containing vaccines') ≥ 6 'month'
+*/
+define "The latest polio dose was administered more than 6 months ago":
+	//"Date of latest Polio Vaccine" is not null and "Date of latest Polio Vaccine" + 6 months <= Now()
+	"Date of latest Primary Series Polio Vaccine" is not null and difference in months between "Date of latest Primary Series Polio Vaccine" and Now() >= 6
+
+/*
+@input: No polio booster dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = 'Polio containing vaccines' and "Type of dose" = 'Booster dose') = 0
+*/
+define "No polio booster dose was administered":
+	Not( "Polio booster dose was administered" )
+
+/*
+@input: Polio booster dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = 'Polio containing vaccines' and "Type of dose" = 'Booster dose') = 1
+*/
+define "Polio booster dose was administered":
+	Count("Polio Doses Administered to Patient") > 3 or exists("Polio Doses Administered to Patient" I where (First(I.protocolApplied.doseNumber) as string) = 'booster')
+
+/*
+@input: The client has history of severe allergic reactions
+@pseudocode: "Potential contraindications" = 'Severe allergic reactions'
+*/
+define "The client has history of severe allergic reactions":
+		exists(IMMZCom."Severe Allergic Reactions Condition")
+
+/*
+@input: The client is severely immunocompromised
+@pseudocode: "Potential contraindications" = 'Severely immunocompromised'
+*/
+define "The client is severely immunocompromised":
+		exists(IMMZCom."Severely immunocompromised Condition")
+
+/*
+@input: The client has immunodeficiency syndromes
+@pseudocode: "Potential contraindications" = 'Immunodeficiency syndromes'
+*/
+define "The client has immunodeficiency syndromes":
+		exists(IMMZCom."Immunodeficiency syndromes Condition")
+

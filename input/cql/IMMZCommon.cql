@@ -152,6 +152,9 @@ define "Symptomatic HIV Infection Condition":
 define "Severely immunocompromised Condition":
   [Condition: IMMZc."Severely immunocompromised"]
 
+define "Immunodeficiency syndromes Condition":
+  [Condition: IMMZc."Immunodeficiency syndromes"]
+
 define "Breastfeeding Condition":
   [Condition: IMMZc."Breastfeeding"]
 

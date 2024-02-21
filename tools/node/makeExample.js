@@ -34,6 +34,13 @@ for(let doc of docs) {
       fs.writeFileSync( topDir+"/Condition/"+condr.id+".json", Buffer.from( JSON.stringify(condr,null,2)))
     }
   }
+  if ( options.medicationrequest ) {
+    fs.mkdirSync(topDir+"/MedicationRequest", {recursive: true})
+    for( let mr in options.medicationrequest ) {
+      let resource = makeMedicationRequest( mr, options.id, options.medicationrequest[mr], options.birth )
+      fs.writeFileSync( topDir+"/MedicationRequest/"+resource.id+".json", Buffer.from( JSON.stringify(resource,null,2)))
+    }
+  }
 
 }
 
@@ -66,7 +73,7 @@ function copyFHIR( resource, options, birth ) {
   if ( options.fhir ) {
     let elements = options.fhir
     for( let element in elements ) {
-      if ( element.endsWith('Date') || element.endsWith('DateTime') ) {
+      if ( element.endsWith('Date') || element.endsWith('DateTime') || element == 'authoredOn' ) {
         elements[element] = shiftDate( elements[element], birth )
       }
       resource[element] = elements[element]
@@ -153,4 +160,27 @@ function makeCondition( cond, patient, options, birth ) {
   copyFHIR( condition, options, birth )
 
   return condition
+}
+
+function makeMedicationRequest( mreq, patient, options, birth ) {
+  let medreq = {
+    "resourceType": "MedicationRequest",
+    "id": "",
+    "status": "draft",
+    "intent": "proposal",
+    "medicationCodeableConcept": {
+      "coding": []
+    },
+    "subject": {
+      "reference": "Patient/"
+    }
+  }
+
+  medreq.id = mreq+"-"+patient
+  medreq.subject.reference = "Patient/"+patient
+  medreq.medicationCodeableConcept.coding[0] =  options.medication 
+  copyFHIR( medreq, options, birth )
+
+  return medreq
+
 }
