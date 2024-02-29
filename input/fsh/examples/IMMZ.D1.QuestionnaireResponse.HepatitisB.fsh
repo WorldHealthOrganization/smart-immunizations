@@ -41,7 +41,7 @@ Usage: #example
   * answer.valueCoding = IMMZ.D1#DE100
 * item[+]
   * linkId = "birthweight"
-  * answer.valueDecimal = 3000
+  * answer.valueInteger = 3000
 * item[+]
   * linkId = "vaccineHistory"
   * item[+]

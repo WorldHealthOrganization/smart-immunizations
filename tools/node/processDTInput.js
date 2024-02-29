@@ -10,7 +10,7 @@ const getRange = ( nums ) => {
     start = nums
     end = nums
   }
-  return [ start, end ]
+  return [ parseInt(start), parseInt(end) ]
 }
 
 var file, sheetname, rows, cols
@@ -26,13 +26,15 @@ var title, pseudo, rs, re, cs, ce
 
 [ cs, ce ] = getRange( cols );
 
+let output = {}
 for( let c = cs; c <= ce; c++ ) {
   for ( let r = rs; r <= re; r++ ) {
     if ( sheet[0].data[r] && sheet[0].data[r][c] && sheet[0].data[r][c] != '-' ) {
       [ title, pseudo ] = sheet[0].data[r][c].split( "\n", 2 )
       title = title.trim()
       pseudo = pseudo.trim()
-      console.log( "/*\n@input: " + title + "\n@pseudocode: " + pseudo + "\n*/\ndefine \""+title+"\":\n\n")
+      output[title+pseudo] = "/*\n@input: " + title + "\n@pseudocode: " + pseudo + "\n*/\ndefine \""+title+"\":\n\n"
     }
   }
 }
+console.log(Object.values(output).join(""))

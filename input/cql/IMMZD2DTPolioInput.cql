@@ -26,7 +26,7 @@ define "Polio Doses Administered to Patient":
 @internal: Primary series polio containing doses administered to patient
 */
 define "Primary Series Polio Doses Administered to Patient":
-		"Polio Doses Administered to Patient" I where difference in days between I.occurrence and Patient.birthDate + 6 weeks <= 0
+		"Polio Doses Administered to Patient" I where duration in days between I.occurrence and Patient.birthDate + 6 weeks <= 0
 
 /*
 @internal: Polio containing bOPV Doses Administered to Patient
@@ -69,17 +69,6 @@ define "Date of latest IPV Polio Vaccine":
   First("IPV Polio Doses Administered to Patient").occurrence as dateTime
 
 /*
-birth - Birth dose administration as part of "bOPV plus IPV" schedule (In countries that are polio-endemic countries 
-	or countries at high risk for importation and subsequent spread of poliovirus, that follow the combined 
-	bOPV-IPV schedule)								
-bOPVIPV - bOPV plus IPV schedule (applicable for all countries)
-sequential - Sequential IPV–bOPV schedule (in countries with high vaccination coverage (e.g. 90–95%) and low importation 
-	risk (where neighbouring countries and/or countries that share substantial population movement have a 
-	similarly high coverage))
-IPVonly - IPV-only (in countries, in polio-free regions, with a very low risk of importation and sustained high routine 
-	immunization coverage (DTP3 >90%)
-*/
-/*
 @input: bOPV birth dose (a zero dose) was not administered
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Polio containing vaccines' and "Type of dose" = 'Dose 0' AND "Birth Dose" = TRUE) = 0 
 */
@@ -91,7 +80,7 @@ define "bOPV birth dose (a zero dose) was not administered":
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Polio containing vaccines' and "Type of dose" = 'Dose 0' AND "Birth Dose" = TRUE) = 1
 */
 define "bOPV birth dose (a zero dose) was administered":
-	exists("Polio Doses Administered to Patient" I where difference in days between I.occurrence and Patient.birthDate + 1 week > 0) 
+	exists("Polio Doses Administered to Patient" I where duration in days between I.occurrence and Patient.birthDate + 1 week > 0) 
 
 /*
 @input: No polio primary series doses were administered
@@ -302,7 +291,7 @@ define "Client's age was 6 weeks when the primary series was started":
 */
 define "The latest bOPV dose was administered less than 4 weeks ago":
 	//"Date of latest bOPV Polio Vaccine" is not null and "Date of latest bOPV Polio Vaccine" + 4 weeks > Now()
-	"Date of latest bOPV Polio Vaccine" is not null and difference in weeks between "Date of latest bOPV Polio Vaccine" and Now() < 4 
+	"Date of latest bOPV Polio Vaccine" is not null and duration in weeks between "Date of latest bOPV Polio Vaccine" and Now() < 4 
 
 /*
 @input: The latest bOPV dose was administered more than 4 weeks ago
@@ -310,7 +299,7 @@ define "The latest bOPV dose was administered less than 4 weeks ago":
 */
 define "The latest bOPV dose was administered more than 4 weeks ago":
 	//"Date of latest bOPV Polio Vaccine" is not null and "Date of latest bOPV Polio Vaccine" + 4 weeks <= Now()
-	"Date of latest bOPV Polio Vaccine" is not null and difference in weeks between "Date of latest bOPV Polio Vaccine" and Now() >= 4
+	"Date of latest bOPV Polio Vaccine" is not null and duration in weeks between "Date of latest bOPV Polio Vaccine" and Now() >= 4
 
 /*
 @input: The latest IPV dose was administered less than 4 months ago
@@ -318,7 +307,7 @@ define "The latest bOPV dose was administered more than 4 weeks ago":
 */
 define "The latest IPV dose was administered less than 4 months ago":
 	//"Date of latest IPV Polio Vaccine" is not null and "Date of latest IPV Polio Vaccine" + 4 months > Now()
-	"Date of latest IPV Polio Vaccine" is not null and difference in months between "Date of latest IPV Polio Vaccine" and Now() <  4
+	"Date of latest IPV Polio Vaccine" is not null and duration in months between "Date of latest IPV Polio Vaccine" and Now() <  4
 
 /*
 @input: The latest IPV dose was administered more than 4 months ago
@@ -326,7 +315,7 @@ define "The latest IPV dose was administered less than 4 months ago":
 */
 define "The latest IPV dose was administered more than 4 months ago":
 	//"Date of latest IPV Polio Vaccine" is not null and "Date of latest IPV Polio Vaccine" + 4 months <= Now()
-	"Date of latest IPV Polio Vaccine" is not null and difference in months between "Date of latest IPV Polio Vaccine" and Now() >= 4
+	"Date of latest IPV Polio Vaccine" is not null and duration in months between "Date of latest IPV Polio Vaccine" and Now() >= 4
 
 /*
 @input: The latest polio dose was administered less than 4 weeks ago
@@ -334,7 +323,7 @@ define "The latest IPV dose was administered more than 4 months ago":
 */
 define "The latest polio dose was administered less than 4 weeks ago":
 	//"Date of latest Polio Vaccine" is not null and "Date of latest Polio Vaccine" + 4 weeks > Now()
-	"Date of latest Primary Series Polio Vaccine" is not null and difference in weeks between "Date of latest Primary Series Polio Vaccine" and Now() < 4
+	"Date of latest Primary Series Polio Vaccine" is not null and duration in weeks between "Date of latest Primary Series Polio Vaccine" and Now() < 4
 
 /*
 @input: The latest polio dose was administered more than 4 weeks ago
@@ -342,7 +331,7 @@ define "The latest polio dose was administered less than 4 weeks ago":
 */
 define "The latest polio dose was administered more than 4 weeks ago":
 	//"Date of latest Polio Vaccine" is not null and "Date of latest Polio Vaccine" + 4 weeks <= Now()
-	"Date of latest Primary Series Polio Vaccine" is not null and difference in weeks between "Date of latest Primary Series Polio Vaccine" and Now() >= 4
+	"Date of latest Primary Series Polio Vaccine" is not null and duration in weeks between "Date of latest Primary Series Polio Vaccine" and Now() >= 4
 
 /*
 @input: The latest polio dose was administered less than 6 months ago
@@ -350,7 +339,7 @@ define "The latest polio dose was administered more than 4 weeks ago":
 */
 define "The latest polio dose was administered less than 6 months ago":
 	//"Date of latest Polio Vaccine" is not null and "Date of latest Polio Vaccine" + 6 months > Now()
-	"Date of latest Primary Series Polio Vaccine" is not null and difference in months between "Date of latest Primary Series Polio Vaccine" and Now() < 6
+	"Date of latest Primary Series Polio Vaccine" is not null and duration in months between "Date of latest Primary Series Polio Vaccine" and Now() < 6
 
 /*
 @input: The latest polio dose was administered more than 6 months ago
@@ -358,7 +347,7 @@ define "The latest polio dose was administered less than 6 months ago":
 */
 define "The latest polio dose was administered more than 6 months ago":
 	//"Date of latest Polio Vaccine" is not null and "Date of latest Polio Vaccine" + 6 months <= Now()
-	"Date of latest Primary Series Polio Vaccine" is not null and difference in months between "Date of latest Primary Series Polio Vaccine" and Now() >= 6
+	"Date of latest Primary Series Polio Vaccine" is not null and duration in months between "Date of latest Primary Series Polio Vaccine" and Now() >= 6
 
 /*
 @input: No polio booster dose was administered

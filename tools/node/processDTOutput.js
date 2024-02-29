@@ -10,7 +10,7 @@ const getRange = ( nums ) => {
     start = nums
     end = nums
   }
-  return [ start, end ]
+  return [ parseInt(start), parseInt(end) ]
 }
 
 var file, sheetname, rows, cols, dt;
@@ -20,6 +20,7 @@ var file, sheetname, rows, cols, dt;
 
 const workbook = xlsx.parse( file )
 let sheet = workbook.filter( (tab) => { return tab.name === sheetname } );
+let sheetdisplay = sheetname.replace(/\s/,"")
 sheet = sheet[0].data
 
 let rs = getRange( rows )
@@ -27,20 +28,20 @@ let cs = getRange( cols )
 
 let top = parseInt(rs[0])
 
-let did = sheet[top-6][1]
-let rule = sheet[top-5][1]
-let trigger = sheet[top-4][1]
-let table = sheet[top-2][0]
+let did = sheet[top-6][cs[0]+1]
+let rule = sheet[top-5][cs[0]+1]
+let trigger = sheet[top-4][cs[0]+1]
+let table = sheet[top-2][cs[0]]
 
 
 console.log(`
 /*
- * Library: IMMZD2DT${sheetname}${dt} (${did})
+ * Library: IMMZD2DT${sheetdisplay}${dt} (${did})
  * Rule: ${rule}
  * Decision Table: ${table}
  * Trigger: ${trigger}
  */
-library IMMZD2DT${sheetname}${dt}
+library IMMZD2DT${sheetdisplay}${dt}
 // Start Skeleton CQL
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
@@ -49,7 +50,7 @@ include IMMZConcepts called IMMZc
 include IMMZConfig called IMMZCon
 include IMMZVaccineLibrary called IMMZvl
 include FHIRCommon called FC
-include IMMZD2DT${sheetname}Input called input
+include IMMZD2DT${sheetdisplay}Input called input
 
 // End Skeleton CQL
 context Patient
@@ -76,7 +77,8 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
     }
   }
 
-  let content = sheet[r][1+parseInt(cs[1])].split( "\n", 2 );
+  let content = sheet[r][1+cs[1]].split( "\n", 2 );
+  if ( !content[1] ) content[1] = ""
   content[0] = content[0].trim()
   content[1] = content[1].trim()
   if ( !outputs[ content[0] ] ) outputs[ content[0] ] = []

@@ -55,7 +55,7 @@ Usage: #definition
 * insert Question(onART, The client is currently receiving antiretroviral therapy - ART, boolean, false, false)
 * item[=]
   * code[+] = IMMZ.D1#DE17
-* insert Question(birthweight, [[Represents the client's birth weight value measures in grams]], decimal, true, false)
+* insert Question(birthweight, [[Represents the client's birth weight value measures in grams]], integer, true, false)
 * item[=]
   * code[+] = IMMZ.D1#DE29
   * code[+] = $ICD11#KA21

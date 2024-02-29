@@ -23,8 +23,8 @@ valueset "WHO ATC": 'http://hl7.org/fhir/uv/ips/ValueSet/whoatc-uv-ips'
 valueset "Negative Result": 'http://smart.who.int/ig/smart-immunizations/ValueSet/Negativetestresult-values'
 valueset "Positive Result": 'http://smart.who.int/ig/smart-immunizations/ValueSet/PositiveTestResult-values'
 valueset "Immunocompromised": 'http://smart.who.int/ig/smart-immunizations/ValueSet/Immunocompromised-values'
-valueset "Patient birth weight observation value": 'http://smart.who.int/ig/smart-immunizations/ValueSet/Birthweight-values'
-valueset "PretermBirth": 'http://smart.who.int/ig/smart-immunizations/ValueSet/Preterm-values'
+//valueset "Patient birth weight observation value": 'http://smart.who.int/ig/smart-immunizations/ValueSet/Birthweight-values'
+//valueset "PretermBirth": 'http://smart.who.int/ig/smart-immunizations/ValueSet/Preterm-values'
 valueset "Live Attenuated": 'http://smart.who.int/ig/smart-immunizations/ValueSet/LiveAttenuatedVaccines'
 
 //valueset "Target Disease": 'http://hl7.org/fhir/ValueSet/immunization-target-disease'
@@ -42,6 +42,8 @@ valueset "Yellow Fever Vaccine": 'http://smart.who.int/ig/smart-immunizations/Va
 valueset "Polio Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE14'
 valueset "Polio Vaccine - bOPV": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE14.bOPV'
 valueset "Polio Vaccine - IPV": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE14.IPV'
+valueset "Hepatitis B Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE6'
+
 
 /*
 // Plugin is complaining about not finding these so that should be resolved, but here until it can be fixed
@@ -49,6 +51,9 @@ valueset "BCG Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IM
 valueset "Cholera Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.A1.DE2'
 */
 
+
+code "Birth Weight in Grams": 'DE29' from "IMMZ.D1" display 'Birth Weight in Grams'
+code "Preterm Birth": 'DE15' from "IMMZ.D1" display 'Preterm Birth'
 
 code "Adverse Event Severity": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
 code "Adverse Event Manifestation": '246112005' from "SNOMED-CT" display 'Severity (attribute)'

@@ -26,7 +26,7 @@ define "Test Validation":
     when Patient.id = '18.Alt6w' then "Client is not due for bOPV vaccination" and "Guidance" = 'Should not vaccinate client for first bOPV dose as client\'s age is less than 6 weeks. 
 Check for any other vaccines due, and inform the caregiver of when to come back for the first bOPV dose.'
     when Patient.id = '19.D0Abt6w3m' then "Client is due for bOPV vaccination Case 1" and "Guidance" = 'Should vaccinate client for first bOPV dose as no polio doses were administered and client\'s age is between 6 weeks and 3 months. Check for contraindications.'
-    when Patient.id = '20.D0Agt3m' then "Client is due for bOPV and IPV vaccination" and "Guidance" = 'Should vaccinate client for first bOPV dose and first IPV dose as client\'s age is more than 3 months and no polio doses were administered.
+    when Patient.id = '20.D0Agt3m' then "Client is due for bOPV and IPV vaccination Case 1" and "Guidance" = 'Should vaccinate client for first bOPV dose and first IPV dose as client\'s age is more than 3 months and no polio doses were administered.
 Check for contraindications.'
     when Patient.id = '21.D1Abt6w14wBlt4w' then "Client is not due for polio vaccination Case 1" and "Guidance" = 'Should not vaccinate client for polio dose as the latest bOPV dose was administered less than 4 weeks ago.
 Check for any other vaccines due, and inform the caregiver of when to come back for the next polio dose.'

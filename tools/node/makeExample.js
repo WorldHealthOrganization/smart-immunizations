@@ -4,8 +4,9 @@ const Dates = require('date-math')
 
 const file = fs.readFileSync(process.argv[2])
 const docs = yaml.parseAllDocuments(file.toString())
-const fmt = new Intl.DateTimeFormat('en-US', { dateStyle: 'long' } )
+const fmt = new Intl.DateTimeFormat('en-US', { year: "numeric", month: "numeric", day: "numeric" } )
 const now = Dates.day.floor(new Date(Date.parse(fmt.format(new Date()))))
+//const now = Dates.day.floor(new Date())
 
 let directory = "."
 if ( process.argv[3] ) directory = process.argv[3] 
@@ -32,6 +33,13 @@ for(let doc of docs) {
     for( let cond in options.condition ) {
       let condr = makeCondition( cond, options.id, options.condition[cond], options.birth )
       fs.writeFileSync( topDir+"/Condition/"+condr.id+".json", Buffer.from( JSON.stringify(condr,null,2)))
+    }
+  }
+  if ( options.observation ) {
+    fs.mkdirSync(topDir+"/Observation", {recursive: true})
+    for( let obs in options.observation ) {
+      let obsr = makeObservation( obs, options.id, options.observation[obs], options.birth )
+      fs.writeFileSync( topDir+"/Observation/"+obsr.id+".json", Buffer.from( JSON.stringify(obsr,null,2)))
     }
   }
   if ( options.medicationrequest ) {
@@ -160,6 +168,35 @@ function makeCondition( cond, patient, options, birth ) {
   copyFHIR( condition, options, birth )
 
   return condition
+}
+
+function makeObservation( obs, patient, options, birth ) {
+  let observation = {
+    "resourceType": "Observation",
+    "id": "",
+    "status": "final",
+    "clinicalStatus": {
+      "coding": [
+        {
+          "code": "active"
+        }
+      ]
+    },
+    "code": {
+      "coding": []
+    },
+    "subject": {
+      "reference": "Patient/"
+    },
+    "effectiveDateTime": "2023-11-03"
+  }
+
+  observation.id = obs+"-"+patient
+  observation.subject.reference = "Patient/"+patient
+  observation.code.coding[0] = options.code
+  copyFHIR( observation, options, birth )
+
+  return observation
 }
 
 function makeMedicationRequest( mreq, patient, options, birth ) {

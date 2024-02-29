@@ -7,7 +7,7 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
 
 * birth 1..1 boolean "Birth dose" "Indicates if the client received a dose within 24 hours of birth. Whether a birth dose is counted as part of the primary series will depend on the antigen."
   * ^code[+] = IMMZ.D1#DE109
-* birthweight 1..1 decimal "Birth weight in grams" "Represents the client's birth weight value measures in grams"
+* birthweight 1..1 integer "Birth weight in grams" "Represents the client's birth weight value measures in grams"
   * ^code[+] = IMMZ.D1#DE29
   * ^code[+] = $ICD11#KA21
   * ^code[+] = $LNC#8339-4

@@ -96,9 +96,19 @@ define "Preterm":
     return O.value
 
 //Observed Preterm birth
+/*
 define "Preterm Birth":
   [Observation] O
     where (O.value as CodeableConcept) in IMMZc.PretermBirth
+*/
+
+define "Preterm Birth Observation":
+  [Observation: IMMZc."Preterm Birth"] O
+    where O.value as FHIR.boolean = true
+    sort by issued desc
+
+define "Preterm Birth":
+  exists("Preterm Birth Observation")
 
 //@dataElement Adverse Event:
 define "Adverse Event":
@@ -162,11 +172,14 @@ define "Breastfeeding Condition":
  * Test Results
  */
 
-
+/*
 define "Patient birth weight observation value":
 [Observation: code in IMMZc."Patient birth weight observation value"] O
   return O.value as FHIR.Quantity
-
+*/
+define "Patient birth weight in grams":
+  First([Observation: IMMZc."Birth Weight in Grams"] O
+    sort by issued desc).value as FHIR.integer
 /** 
  * @dataElement Patient age in years
  */
