@@ -3,6 +3,7 @@ Title:        "IMMZ.Z.DE14.bOPV Oral Polio containing vaccines"
 Description:  "Vaccine terminology codes for oral polio vaccines."
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_Z_DE14_bOPV"
 
 * $ICD11#XM79H3 "Poliomyelitis oral, bivalent, live attenuated"

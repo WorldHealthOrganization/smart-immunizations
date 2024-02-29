@@ -3,6 +3,7 @@ Title: "IMMZ.D.DE86 ValueSet for Client education and counselling on immunizatio
 Description: "ValueSet for Client education and counselling on immunization for IMMZ.D.DE86"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D_DE86"
 
 * IMMZ.D#DE87 "Counselling on functions of the immunological system"

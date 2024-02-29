@@ -3,6 +3,7 @@ Title: "IMMZ.D.DE161 ValueSet for Potential contraindications"
 Description: "ValueSet for Potential contraindications for IMMZ.D.DE161"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D_DE161"
 
 * IMMZ.D#DE162 "Currently pregnant"

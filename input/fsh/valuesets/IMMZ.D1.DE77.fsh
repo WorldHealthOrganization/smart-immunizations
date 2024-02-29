@@ -3,6 +3,7 @@ Title: "IMMZ.D1.DE77 ValueSet for Dengue serostatus"
 Description: "ValueSet for Dengue serostatus for IMMZ.D1.DE77"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D1_DE77"
 
 * IMMZ.D1#DE110 "Positive"

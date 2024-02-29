@@ -3,6 +3,7 @@ Title: "IMMZ.D1.DE65 ValueSet for Type of cholera dose"
 Description: "ValueSet for Type of cholera dose for IMMZ.D1.DE65"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D1_DE65"
 
 * IMMZ.D1#DE66 "WC vaccine"

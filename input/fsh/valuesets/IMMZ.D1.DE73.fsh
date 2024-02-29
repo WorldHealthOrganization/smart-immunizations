@@ -3,6 +3,7 @@ Title: "IMMZ.D1.DE73 ValueSet for Type of hepatitis A dose"
 Description: "ValueSet for Type of hepatitis A dose for IMMZ.D1.DE73"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D1_DE73"
 
 * IMMZ.D1#DE74 "Live attenuated hepatitis A vaccine"

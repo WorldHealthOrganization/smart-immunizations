@@ -3,6 +3,7 @@ Title: "IMMZ.D1.DE61 ValueSet for Type of typhoid dose"
 Description: "ValueSet for Type of typhoid dose for IMMZ.D1.DE61"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D1_DE61"
 
 * IMMZ.D1#DE62 "Typbar-TCV"

@@ -3,6 +3,7 @@ Title: "IMMZ.D1.DE103 ValueSet for Type of dose"
 Description: "ValueSet for Type of dose for IMMZ.D1.DE103"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D1_DE103"
 
 * IMMZ.D1#DE104 "Primary series"

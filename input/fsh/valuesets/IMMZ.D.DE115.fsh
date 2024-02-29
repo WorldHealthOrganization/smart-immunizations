@@ -3,6 +3,7 @@ Title: "IMMZ.D.DE115 ValueSet for Reaction outcome"
 Description: "ValueSet for Reaction outcome for IMMZ.D.DE115"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D_DE115"
 
 * IMMZ.D#DE116 "Died"

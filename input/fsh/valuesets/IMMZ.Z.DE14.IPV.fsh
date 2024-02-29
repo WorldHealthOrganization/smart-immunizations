@@ -3,6 +3,7 @@ Title:        "IMMZ.Z.DE14.IPV Inactiviated Polio containing vaccines"
 Description:  "Vaccine terminology codes for inactivated polio vaccines."
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_Z_DE14_IPV"
 
 * $ICD11#XM1LX9 "Diphtheria, hemophilus influenzae B, pertussis, poliomyelitis, tetanus vaccines"

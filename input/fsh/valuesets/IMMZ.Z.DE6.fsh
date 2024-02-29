@@ -3,6 +3,7 @@ Title:        "IMMZ.Z.DE6 Hepatitis B containing vaccines"
 Description:  "Vaccine terminology codes for hepatitis B."
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_Z_DE6"
 
 

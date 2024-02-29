@@ -3,5 +3,6 @@ Title: "IMMZ.D.DE25 ValueSet for Vaccine market authorization holder"
 Description: "ValueSet for Vaccine market authorization holder for IMMZ.D.DE25"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D_DE25"
 

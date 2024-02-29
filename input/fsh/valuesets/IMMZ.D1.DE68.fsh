@@ -3,6 +3,7 @@ Title: "IMMZ.D1.DE68 ValueSet for Type of meningococcal dose"
 Description: "ValueSet for Type of meningococcal dose for IMMZ.D1.DE68"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D1_DE68"
 
 * IMMZ.D1#DE69 "MenA conjugate vaccine (5µg)"

@@ -3,6 +3,7 @@ Title:        "IMMZ.Z.DE23 Yellow fever containing vaccines"
 Description:  "Vaccine terminology codes for yellow fever."
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_Z_DE23"
 
 

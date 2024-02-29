@@ -3,6 +3,7 @@ Title: "IMMZ.D1.DE56 ValueSet for Type of TBE dose"
 Description: "ValueSet for Type of TBE dose for IMMZ.D1.DE56"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D1_DE56"
 
 * IMMZ.D1#DE57 "FSME-Immun"
