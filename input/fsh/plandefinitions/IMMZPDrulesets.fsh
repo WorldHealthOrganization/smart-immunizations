@@ -66,7 +66,7 @@ RuleSet: PlanDefCommunicationRequestAction( title, description, condition, text 
   * dynamicValue[+]
     * path = "status"
     * expression
-      * language = #text-cql
+      * language = #text/cql
       * expression = "'active'"
   * dynamicValue[+]
     * path = "payload.contentAttachment.title"
