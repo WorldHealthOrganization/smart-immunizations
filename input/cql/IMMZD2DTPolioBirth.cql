@@ -18,9 +18,6 @@ include IMMZD2DTPolioInput called input
 // End Skeleton CQL
 context Patient
 
-define "Test":
-difference in days between First(input."Polio Doses Administered to Patient").occurrence and Patient.birthDate + 1 week
-
 /*
 @dynamicValue: Guidance
 */
