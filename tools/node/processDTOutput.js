@@ -55,6 +55,7 @@ include IMMZD2DT${sheetdisplay}Input called input
 // End Skeleton CQL
 context Patient
 
+
 `)
 
 
@@ -82,7 +83,7 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
   content[0] = content[0].trim()
   content[1] = content[1].trim()
   if ( !outputs[ content[0] ] ) outputs[ content[0] ] = []
-  outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2] } )
+  outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2], testid: (r+1) } )
   
 }
 
@@ -103,10 +104,13 @@ const displayOutput = ( title, pseudo, expression, guidance ) => {
 console.log( "/*\n@dynamicValue: Guidance\n*/\ndefine \"Guidance\":\n  case\n" 
   + Object.keys(outputs).map((title) => "    when \"" + title +"\" then \""+ title +" Guidance\"" ).join("\n") + "\n    else ''\n  end\n" )
 
+let tests = []
+
 for( let title in outputs ) {
 
   let output = outputs[title]
   if ( output.length === 1 ) {
+    tests[output[0].testid] = "    when Patient.id = '"+output[0].testid+".' then \""+output[0].content[0]+"\" and \"Guidance\" = '" + output[0].guidance.replace(/'/, '\\\'') + "'"
 
     displayOutput( output[0].content[0], output[0].content[1], output[0].expression, output[0].guidance )
 
@@ -118,6 +122,7 @@ for( let title in outputs ) {
       let display = parseInt(idx) + 1
       let title = output[idx].content[0] + " Case " + display
       displayOutput( title, output[idx].content[1], output[idx].expression )
+      tests[output[idx].testid] = "    when Patient.id = '"+output[idx].testid+".' then \""+title+"\" and \"Guidance\" = '" + output[idx].guidance.replace(/'/, '\\\'') + "'"
       guidances.push( "    when \""+ title + "\" then '" + output[idx].guidance.replace(/'/, '\\\'') + "'" )
       comment.push( "@guidance: " + output[idx].guidance )
       titles.push( "\"" + title + "\"" )
@@ -128,6 +133,14 @@ for( let title in outputs ) {
   }
 }
 
+console.log(`
+/*
+@test: Test expected results based on example patients
+*/
+define "Test Validation":
+  case`)
+console.log(tests.filter((test) => test.length > 0).join("\n"))
+console.log("    else 'No test case set'\n  end")
 
 //console.log( "/*\n@output: " + content[0] + "\n@pseudocode: " + content[1] + "\n*/\ndefine \""+content[0]+"\":")
 //console.log( "  " + expression.join( "\n    and ") + "\n" )

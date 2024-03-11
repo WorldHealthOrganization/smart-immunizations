@@ -27,4 +27,4 @@ var title, pseudo, rs, re, cs, ce
 [ cs, ce ] = getRange( cols );
 
 console.log(rs,cs,sheet[0].data[rs][cs])
-console.log(re,ce,sheet[0].data[re][ce])
+console.log(re,ce+1,sheet[0].data[re][ce+1])
