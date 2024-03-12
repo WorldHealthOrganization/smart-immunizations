@@ -6,7 +6,7 @@ Determine if the client is due for a hepatitis B vaccination according to the na
 """
 Usage: #definition
 
-* insert PlanDefMain( IMMZD2DTHepatitisB3Delayes, 0.1.0 )
+* insert PlanDefMain( IMMZD2DTHepatitisB3Delayed, 0.1.0 )
 * insert PlanDefMedicationRequestAction( [[Determine if the client is due for hepatitis B.]], [["""
     Determine if the client is due for hepatitis B vaccination according to the national immunization protocol.
   """]], Client is due for hepatitis B vaccination, IMMZD2DTHepatitisBMR )
