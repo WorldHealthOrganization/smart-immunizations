@@ -11,3 +11,4 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
   * ^code[+] = IMMZ.D1#DE35
   * ^code[+] = $ICD11#XM0N50
 * poliotype from IMMZ.D1.DE35
+* vaccineHistory.vaccineType from IMMZ.Z.DE14

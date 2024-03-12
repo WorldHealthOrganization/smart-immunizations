@@ -36,7 +36,6 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
     * ^code[+] = IMMZ.D#DE19
     * ^code[+] = $LNC#39236-5
     * ^code[+] = $SCT#787859002
-  * vaccineType from IMMZ.Z.DE23
   * vaccineDate 0..1 date "Date and time of vaccination" "Represents the visit/encounter date, which is the date and time when the vaccine was administered to the client"
     * ^code[+] = IMMZ.D#DE20
     * ^code[+] = $LNC#30952-6 

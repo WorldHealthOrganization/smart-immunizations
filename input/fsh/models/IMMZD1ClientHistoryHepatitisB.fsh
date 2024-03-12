@@ -14,3 +14,5 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
 * hepbtype 1..1 Coding "Type of hepatitis B dose" "The type of hepatitis B vaccine dose administered to the client"
   * ^code[+] = IMMZ.D1#DE99
 * hepbtype from IMMZ.D1.DE99
+* vaccineHistory.vaccineType from IMMZ.Z.DE6
+

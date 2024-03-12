@@ -12,6 +12,7 @@ Usage: #definition
 * derivedFrom = Canonical(QIMMZD1ClientHistory)
 * contained[+] = IMMZ.D1.DE10
 * contained[+] = IMMZ.D1.DE103
+* contained[+] = IMMZ.Z.DE9
 
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
 * extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1MeaslesQRToResources"
