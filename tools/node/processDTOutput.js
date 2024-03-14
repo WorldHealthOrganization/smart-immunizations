@@ -79,12 +79,13 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
   }
 
   let content = sheet[r][1+cs[1]].split( "\n", 2 );
+  if ( content[0] != '-' ) {
   if ( !content[1] ) content[1] = ""
-  content[0] = content[0].trim()
-  content[1] = content[1].trim()
-  if ( !outputs[ content[0] ] ) outputs[ content[0] ] = []
-  outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2], testid: (r+1) } )
-  
+    content[0] = content[0].trim()
+    content[1] = content[1].trim()
+    if ( !outputs[ content[0] ] ) outputs[ content[0] ] = []
+    outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2], testid: (r+1) } )
+  }
 }
 
 const displayGuidance = ( title, guidance, comment ) => {

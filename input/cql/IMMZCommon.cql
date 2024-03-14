@@ -147,8 +147,20 @@ define "Doses Administered to Patient":
 /**
  * Contraindications 
  */
+define "Planning to get pregnant in the next month Condition":
+  [Condition: IMMZc."Planning to get pregnant in the next month"]
+
 define "Severely Immunosuppressed Condition":
   [Condition: IMMZc."Severely immunosuppressed"]
+
+define "Exposed to immunosuppressive treatment Condition":
+  [Condition: IMMZc."Exposed to immunosuppressive treatment"]
+
+define "Receiving blood products Condition":
+  [Condition: IMMZc."Receiving blood products"]
+
+define "TB disease Condition":
+  [Condition: IMMZc."TB disease"]
 
 define "History of Anaphylactic Reactions Condition":
   [Condition: IMMZc."History of anaphylactic reactions"]
