@@ -49,6 +49,7 @@ valueset "Pertussis Vaccine": 'http://smart.who.int/ig/smart-immunizations/Value
 valueset "Rubella Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE17'
 valueset "Measles and Rubella Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE32'
 valueset "All Rubella Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE17.All'
+valueset "Mumps Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE11'
 
 
 /*

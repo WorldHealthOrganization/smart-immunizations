@@ -33,7 +33,7 @@ define "No rubella primary series dose was administered":
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Rubella containing vaccines' and "Type of dose" = "Primary series") = 1
 */
 define "One rubella primary series dose was administered":
-	Count("Rubella Doses Administered to Patient") = 1
+	Count("Rubella Doses Administered to Patient") >= 1
 
 /*
 @input: Client's age is less than 9 months
