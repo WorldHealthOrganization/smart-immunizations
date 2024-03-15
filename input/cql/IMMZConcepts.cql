@@ -23,8 +23,8 @@ valueset "WHO ATC": 'http://hl7.org/fhir/uv/ips/ValueSet/whoatc-uv-ips'
 valueset "Negative Result": 'http://smart.who.int/ig/smart-immunizations/ValueSet/Negativetestresult-values'
 valueset "Positive Result": 'http://smart.who.int/ig/smart-immunizations/ValueSet/PositiveTestResult-values'
 valueset "Immunocompromised": 'http://smart.who.int/ig/smart-immunizations/ValueSet/Immunocompromised-values'
-valueset "Patient birth weight observation value": 'http://smart.who.int/ig/smart-immunizations/ValueSet/Birthweight-values'
-valueset "PretermBirth": 'http://smart.who.int/ig/smart-immunizations/ValueSet/Preterm-values'
+//valueset "Patient birth weight observation value": 'http://smart.who.int/ig/smart-immunizations/ValueSet/Birthweight-values'
+//valueset "PretermBirth": 'http://smart.who.int/ig/smart-immunizations/ValueSet/Preterm-values'
 valueset "Live Attenuated": 'http://smart.who.int/ig/smart-immunizations/ValueSet/LiveAttenuatedVaccines'
 
 //valueset "Target Disease": 'http://hl7.org/fhir/ValueSet/immunization-target-disease'
@@ -40,6 +40,10 @@ valueset "ARV Drugs": 'http://smart.who.int/ig/smart-immunizations/ValueSet/ARVD
 valueset "MCV Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE9'
 valueset "Yellow Fever Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE23'
 valueset "Polio Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE14'
+valueset "Polio Vaccine - bOPV": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE14.bOPV'
+valueset "Polio Vaccine - IPV": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE14.IPV'
+valueset "Hepatitis B Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.Z.DE6'
+
 
 /*
 // Plugin is complaining about not finding these so that should be resolved, but here until it can be fixed
@@ -47,6 +51,9 @@ valueset "BCG Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IM
 valueset "Cholera Vaccine": 'http://smart.who.int/ig/smart-immunizations/ValueSet/IMMZ.A1.DE2'
 */
 
+
+code "Birth Weight in Grams": 'DE29' from "IMMZ.D1" display 'Birth Weight in Grams'
+code "Preterm Birth": 'DE15' from "IMMZ.D1" display 'Preterm Birth'
 
 code "Adverse Event Severity": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
 code "Adverse Event Manifestation": '246112005' from "SNOMED-CT" display 'Severity (attribute)'
@@ -56,5 +63,6 @@ code "Severely immunosuppressed": 'DE165' from "IMMZ.D" display 'Severely immuno
 code "History of anaphylactic reactions": 'DE166' from "IMMZ.D" display 'History of anaphylactic reactions'
 code "Severe allergic reactions": 'DE167' from "IMMZ.D" display 'Severe allergic reactions'
 code "Symptomatic HIV infection": 'DE168' from "IMMZ.D" display 'Symptomatic HIV infection'
+code "Immunodeficiency syndromes": 'DE187' from "IMMZ.D" display 'Immunodeficiency syndromes'
 code "Severely immunocompromised": 'DE200' from "IMMZ.D" display 'Severely immunocompromised'
 code "Breastfeeding": 'DE191' from "IMMZ.D" display 'Breastfeeding'

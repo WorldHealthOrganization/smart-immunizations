@@ -10,3 +10,4 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
   * ^code[=] = $LNC#96381-9
 * artStartDate 0..1 date "ART start date" "The date on which the client started or restarted antiretroviral therapy (ART)"
   * ^code[+] = IMMZ.D1#DE49
+* vaccineHistory.vaccineType from IMMZ.Z.DE9

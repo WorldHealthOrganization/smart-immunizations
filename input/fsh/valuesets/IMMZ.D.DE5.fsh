@@ -3,6 +3,7 @@ Title: "IMMZ.D.DE5 ValueSet for Reason vaccine was not administered"
 Description: "ValueSet for Reason vaccine was not administered for IMMZ.D.DE5"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D_DE5"
 
 * IMMZ.D#DE6 "Immunity"

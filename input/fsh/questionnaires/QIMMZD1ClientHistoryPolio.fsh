@@ -13,15 +13,16 @@ Usage: #definition
 * contained[+] = IMMZ.D1.DE10
 * contained[+] = IMMZ.D1.DE35
 * contained[+] = IMMZ.D1.DE103
+* contained[+] = IMMZ.Z.DE23
 
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
 * extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1PolioQRToResources"
 
 
-* insert Question(birth, Indicates if the client received a dose within 24 hours of birth. Whether a birth dose is counted as part of the primary series will depend on the antigen., boolean, false, false)
+* insert Question(birth, Indicates if the client received a dose within 24 hours of birth. Whether a birth dose is counted as part of the primary series will depend on the antigen., boolean, true, false)
 * item[=]
   * code[+] = IMMZ.D1#DE109
-* insert Question(type, The type of dose in a series that the client received, choice, false, true)
+* insert Question(type, The type of dose in a series that the client received, choice, true, false)
 * item[=]
   * answerValueSet = Canonical(IMMZ.D1.DE103)
   * code[+] = IMMZ.D1#DE103
@@ -55,7 +56,7 @@ Usage: #definition
 * insert Question(onART, The client is currently receiving antiretroviral therapy - ART, boolean, false, false)
 * item[=]
   * code[+] = IMMZ.D1#DE17
-* insert Question(poliotype, The type of the polio vaccine dose administered to the client, choice, false, false)
+* insert Question(poliotype, The type of the polio vaccine dose administered to the client, choice, true, false)
 * item[=]
   * answerValueSet = Canonical(IMMZ.D1.DE35)
   * code[+] = IMMZ.D1#DE35

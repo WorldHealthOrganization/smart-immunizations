@@ -3,6 +3,7 @@ Title: "IMMZ.D.DE126 ValueSet for Disease targeted"
 Description: "ValueSet for Disease targeted for IMMZ.D.DE126"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D_DE126"
 
 * IMMZ.D#DE127 "Typhoid"

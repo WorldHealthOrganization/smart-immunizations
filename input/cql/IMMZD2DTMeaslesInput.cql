@@ -27,7 +27,7 @@ define "MCV Doses Administered to Patient":
 @psuedocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Primary series" ) = 0
 */
 define "No measles primary series doses were administered":
-	not exists("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 9 months)
+	not exists("MCV Doses Administered to Patient" I where duration in days between I.occurrence and Patient.birthDate + 9 months <= 0)
 
 /*
 @input: MCV0 was administered
@@ -48,37 +48,37 @@ define "MCV0 was not administered":
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Primary series" ) = 1	
 */
 define "MCV1 was administered High Tx":
-	Count("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 9 months) = 1
+	Count("MCV Doses Administered to Patient" I where duration in days between I.occurrence and Patient.birthDate + 9 months <= 0) = 1
 
 /*
 @input: MCV2 was administered High Tx
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Primary series" ) = 2		
 */
 define "MCV2 was administered High Tx":
-	Count("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 9 months) >= 2 
-	and Count("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 15 months) >= 1
+	Count("MCV Doses Administered to Patient" I where duration in days between I.occurrence and Patient.birthDate + 9 months <= 0) >= 2 
+	and Count("MCV Doses Administered to Patient" I where duration in days between I.occurrence and Patient.birthDate + 15 months <= 0) >= 1
 
 /*
 @input: MCV1 was administered Low Tx
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Primary series" ) = 1	
 */
 define "MCV1 was administered Low Tx":
-	Count("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 12 months) = 1
+	Count("MCV Doses Administered to Patient" I where duration in days between I.occurrence and Patient.birthDate + 12 months <= 0) = 1
 
 /*
 @input: MCV2 was administered Low Tx
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Primary series" ) = 2		
 */
 define "MCV2 was administered Low Tx":
-	Count("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 12 months) >= 2 
-	and Count("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 15 months) >= 1
+	Count("MCV Doses Administered to Patient" I where duration in days between I.occurrence and Patient.birthDate + 12 months <= 0) >= 2 
+	and Count("MCV Doses Administered to Patient" I where duration in days between I.occurrence and Patient.birthDate + 15 months <= 0) >= 1
 
 /*
 @input: Measles supplementary dose was administered
 @pseudocode: Count of vaccines administered (where "Vaccine type" = 'Measles containing vaccines' and "Type of dose" = "Supplementary dose") = 1
 */
 define "Measles supplementary dose was administered":
-	Count("MCV Doses Administered to Patient" I where I.occurrence after Patient.birthDate + 9 months) >= 3
+	Count("MCV Doses Administered to Patient" I where duration in days between I.occurrence and Patient.birthDate + 9 months <= 0) >= 3
 
 /*
 @input: Measles supplementary dose was not administered
@@ -163,7 +163,8 @@ define "Client's age is more than or equal to 15 months":
 @pseudocode: Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 'week'	
 */
 define "Live vaccine was administered in the last 4 weeks":
-	IMMZCom."Date of Latest Live Attenuated Vaccine" is not null and IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks > Now()
+	//IMMZCom."Date of Latest Live Attenuated Vaccine" is not null and IMMZCom."Date of Latest Live Attenuated Vaccine" + 4 weeks > Now()
+	IMMZCom."Date of Latest Live Attenuated Vaccine" is not null and duration in weeks between IMMZCom."Date of Latest Live Attenuated Vaccine" and Now() < 4 
 
 /*
 @input: No live vaccine was administered in the last four weeks 

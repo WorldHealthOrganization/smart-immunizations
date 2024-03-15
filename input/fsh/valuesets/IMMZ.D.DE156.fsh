@@ -3,6 +3,7 @@ Title: "IMMZ.D.DE156 ValueSet for Immunization recommendation status"
 Description: "ValueSet for Immunization recommendation status for IMMZ.D.DE156"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D_DE156"
 
 * IMMZ.D#DE157 "Not due"

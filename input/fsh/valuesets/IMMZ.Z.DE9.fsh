@@ -3,6 +3,7 @@ Title:        "IMMZ.Z.DE9 ValueSet for Measles Vaccines"
 Description:  "Vaccine terminology codes for measles."
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_Z_DE9"
 
 * $ICD11#XM28X5	"Measles vaccines"

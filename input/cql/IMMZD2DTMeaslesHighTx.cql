@@ -1,6 +1,6 @@
 /*
  * Library: IMMZD2DTMeaslesHighTx (IMMZ.D2.DT.Measles.Ongoing transmission)
- * Rule: Determine if the client is due for a measles vaccination according to the national immunization protocol					
+ * Rule: Determine if the client is due for a measles vaccination according to the national immunization schedule					
  * Decision Table: Countries with ongoing transmission in which the risk of measles mortality remains high
  * Trigger: IMMZ.D2 Determine required vaccination(s) if any
  */

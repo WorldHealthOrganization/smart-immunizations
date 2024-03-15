@@ -31,12 +31,6 @@ RuleSet: PlanDefMedicationRequestAction( title, description, condition, library 
     * expression
       * language = #text/cql
       * expression = "'proposal'"
-  * dynamicValue[+]
-    * path = "dispenseRequest.validityPeriod.start"
-    * expression
-      * description = "Due date of the dose"
-      * language = #text/cql-identifier
-      * expression = "Due date of the dose"
 
 RuleSet: PlanDefMedicationRequestUpdate( title, description, condition, library, mrid )
 * action[+]
@@ -72,7 +66,7 @@ RuleSet: PlanDefCommunicationRequestAction( title, description, condition, text 
   * dynamicValue[+]
     * path = "status"
     * expression
-      * language = #text-cql
+      * language = #text/cql
       * expression = "'active'"
   * dynamicValue[+]
     * path = "payload.contentAttachment.title"

@@ -5,8 +5,6 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
 * ^name = "IMMZ_D1_Client_History"
 
 * patient 1..1 Reference "Patient" "The patient who is being checked for contraindications."
-* birth 0..1 boolean "Birth dose" "Indicates if the client received a dose within 24 hours of birth. Whether a birth dose is counted as part of the primary series will depend on the antigen."
-  * ^code[+] = IMMZ.D1#DE109
 * type 1..* Coding "Type of dose" "The type of dose in a series that the client received"
   * ^code[+] = IMMZ.D1#DE103
 * type from IMMZ.D1.DE103
@@ -38,7 +36,6 @@ Description:  "Data elements for the IMMZ.D1 Capture Client History Data Diction
     * ^code[+] = IMMZ.D#DE19
     * ^code[+] = $LNC#39236-5
     * ^code[+] = $SCT#787859002
-  * vaccineType from IMMZ.Z.DE23
   * vaccineDate 0..1 date "Date and time of vaccination" "Represents the visit/encounter date, which is the date and time when the vaccine was administered to the client"
     * ^code[+] = IMMZ.D#DE20
     * ^code[+] = $LNC#30952-6 

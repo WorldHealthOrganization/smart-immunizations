@@ -3,6 +3,7 @@ Title: "IMMZ.D1.DE52 ValueSet for Type of JE dose"
 Description: "ValueSet for Type of JE dose for IMMZ.D1.DE52"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D1_DE52"
 
 * IMMZ.D1#DE53 "Inactivated Vero cell-derived vaccine"

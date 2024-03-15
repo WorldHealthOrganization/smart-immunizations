@@ -648,7 +648,7 @@ processes.
 
 | Decision ID: | IMMZ.D2.DT.Measles |
 | :--- | :--- |
-| **Business rule:**	| Determine if the client is due for a measles vaccination according to the national immunization protocol |
+| **Business rule:**	| Determine if the client is due for a measles vaccination according to the national immunization schedule |
 | **Trigger:** | IMMZ.D2 Determine required vaccination(s) if any |
 
 #### IMMZ.D2.DT.Measles.Ongoing transmission
@@ -664,9 +664,6 @@ processes.
       </tr>
     </thead>
    <tbody>
-    <tr>
-      <td colspan="7"><strong>Countries with ongoing transmission in which the risk of measles mortality remains high</strong></td>
-    </tr>
     <tr>
       <td>
         <strong>Number of measles primary series doses administered</strong>
@@ -692,6 +689,9 @@ processes.
       <td>
         <strong>Reference(s)</strong>
       </td>
+    </tr>
+    <tr>
+      <td colspan="7"><strong>Countries with ongoing transmission in which the risk of measles mortality remains high</strong></td>
     </tr>
     <tr>
       <td>-</td>

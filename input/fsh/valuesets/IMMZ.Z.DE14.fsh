@@ -3,6 +3,7 @@ Title:        "IMMZ.Z.DE14 Polio containing vaccines"
 Description:  "Vaccine terminology codes for polio."
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_Z_DE14"
 
 

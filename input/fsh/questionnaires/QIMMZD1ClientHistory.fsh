@@ -16,10 +16,7 @@ Usage: #definition
 * extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1QRToResources"
 
 
-* insert Question(birth, Indicates if the client received a dose within 24 hours of birth. Whether a birth dose is counted as part of the primary series will depend on the antigen., boolean, false, false)
-* item[=]
-  * code[+] = IMMZ.D1#DE109
-* insert Question(type, The type of dose in a series that the client received, choice, false, true)
+* insert Question(type, The type of dose in a series that the client received, choice, true, false)
 * item[=]
   * answerValueSet = Canonical(IMMZ.D1.DE103)
   * code[+] = IMMZ.D1#DE103

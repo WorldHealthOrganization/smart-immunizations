@@ -3,6 +3,7 @@ Title: "IMMZ.D.DE95 ValueSet for Reaction manifestation"
 Description: "ValueSet for Reaction manifestation for IMMZ.D.DE95"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D_DE95"
 
 * IMMZ.D#DE96 "Severe local reaction"

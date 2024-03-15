@@ -3,6 +3,7 @@ Title: "IMMZ.D.DE107 ValueSet for Type of reaction"
 Description: "ValueSet for Type of reaction for IMMZ.D.DE107"
 
 * ^status = #active
+* ^experimental = false
 * ^name = "IMMZ_D_DE107"
 
 * IMMZ.D#DE174 "Non serious"

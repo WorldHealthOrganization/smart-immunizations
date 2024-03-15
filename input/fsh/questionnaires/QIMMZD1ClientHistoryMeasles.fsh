@@ -12,15 +12,13 @@ Usage: #definition
 * derivedFrom = Canonical(QIMMZD1ClientHistory)
 * contained[+] = IMMZ.D1.DE10
 * contained[+] = IMMZ.D1.DE103
+* contained[+] = IMMZ.Z.DE9
 
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
 * extension[=].valueCanonical = "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1MeaslesQRToResources"
 
 
-* insert Question(birth, Indicates if the client received a dose within 24 hours of birth. Whether a birth dose is counted as part of the primary series will depend on the antigen., boolean, false, false)
-* item[=]
-  * code[+] = IMMZ.D1#DE109
-* insert Question(type, The type of dose in a series that the client received, choice, false, true)
+* insert Question(type, The type of dose in a series that the client received, choice, true, false)
 * item[=]
   * answerValueSet = Canonical(IMMZ.D1.DE103)
   * code[+] = IMMZ.D1#DE103
