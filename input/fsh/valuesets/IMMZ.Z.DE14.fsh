@@ -20,4 +20,6 @@ Description:  "Vaccine terminology codes for polio."
 * $ICD11#XM79H3 "Poliomyelitis oral, bivalent, live attenuated"
 * $ICD11#XM0VX8 "Poliomyelitis oral, monovalent live attenuated"
 * $ICD11#XM0KZ1 "Poliomyelitis oral, trivalent, live attenuated"
+
 * $SCT#1031000221108	"Vaccine product containing Human poliovirus antigen (medicinal product)"
+* $SCT#1871740006 "Inactivated whole Human poliovirus antigen only vaccine product"

@@ -20,7 +20,7 @@ context Patient
 define "Rubella Doses Administered to Patient":
   IMMZCom."Doses Administered to Patient" I
   where
-    I.vaccineCode in IMMZc."All Rubella Vaccine"
+    I.vaccineCode in IMMZc."Rubella Vaccine"
 
 /*
 @input: No rubella primary series dose was administered
