@@ -168,6 +168,9 @@ define "History of Anaphylactic Reactions Condition":
 define "Severe Allergic Reactions Condition":
   [Condition: IMMZc."Severe allergic reactions"]
 
+define "Severe Acute Illness Condition":
+  [Condition: IMMZc."Severe acute illness" ]
+
 define "Symptomatic HIV Infection Condition":
   [Condition: IMMZc."Symptomatic HIV infection"]
 
