@@ -25,17 +25,23 @@ context Patient
 @dynamicValue: Guidance
 */
 define "Guidance":
-  case
-    when "Client is due for DTP vaccination" then "Client is due for DTP vaccination Guidance"
-    when "Client is not due for DTP vaccination" then "Client is not due for DTP vaccination Guidance"
-    when "Primary DTP series is complete." then "Primary DTP series is complete. Guidance"
-    when "Client is not due for tetanus and diphtheria booster dose" then "Client is not due for tetanus and diphtheria booster dose Guidance"
-    when "Client is due for tetanus and diphtheria booster dose" then "Client is due for tetanus and diphtheria booster dose Guidance"
-    when "Tetanus and diphtheria immunization schedule is complete" then "Tetanus and diphtheria immunization schedule is complete Guidance"
-    when "Primary DTP series is complete" then "Primary DTP series is complete Guidance"
-    when "Pertussis immunization schedule is complete" then "Pertussis immunization schedule is complete Guidance"
-    else ''
-  end
+  Combine( {
+    case
+      when "Client is due for DTP vaccination" then "Client is due for DTP vaccination Guidance"
+      when "Client is not due for DTP vaccination" then "Client is not due for DTP vaccination Guidance"
+      when "Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose." then "Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose. Guidance"
+      when "Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose." then "Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose. Guidance"
+      when "Client is not due for tetanus and diphtheria booster dose" then "Client is not due for tetanus and diphtheria booster dose Guidance"
+      when "Client is due for tetanus and diphtheria booster dose" then "Client is due for tetanus and diphtheria booster dose Guidance"
+      when "Tetanus and diphtheria immunization schedule is complete" then "Tetanus and diphtheria immunization schedule is complete Guidance"
+      else null
+    end,
+    case
+      when "Primary DTP series is complete. Client is not due for pertussis booster dose" then "Primary DTP series is complete. Client is not due for pertussis booster dose Guidance"
+      when "Primary DTP series is complete. Client is due for pertussis booster dose" then "Primary DTP series is complete. Client is due for pertussis booster dose Guidance"
+      when "Pertussis immunization schedule is complete" then "Pertussis immunization schedule is complete Guidance"
+      else null
+    end } except { null }, ' ' )
 
 /*
 @output: Client is due for DTP vaccination Case 1
@@ -121,42 +127,36 @@ define "Client is not due for DTP vaccination Guidance":
   end
 
 /*
-@output: Primary DTP series is complete. Case 1
-@pseudocode: Client is not due for tetanus and diphtheria booster dose.
+@output: Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose.
+@pseudocode: "Immunization recommendation status" = "Not due" (where "Vaccine type" = "Tetanus and diphtheria containing vaccines")
 */
-define "Primary DTP series is complete. Case 1":
+define "Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose.":
   input."Three DTP primary series doses were administered"
     and input."No tetanus and diphtheria booster doses were administered"
     and input."The latest DTP dose was administered less than 1 year ago"
 
 /*
-@output: Primary DTP series is complete. Case 2
-@pseudocode: Client is due for tetanus and diphtheria booster dose.
+@output: Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose. Guidance
+@guidance: Should not vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. Check for any other vaccines due, and inform the caregiver of when to come back for first tetanus and diphtheria booster dose.
 */
-define "Primary DTP series is complete. Case 2":
+define "Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose. Guidance":
+  'Should not vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. Check for any other vaccines due, and inform the caregiver of when to come back for first tetanus and diphtheria booster dose.'
+
+/*
+@output: Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose.
+@pseudocode: "Immunization recommendation status" = "Due" (where "Vaccine type" = "Tetanus and diphtheria containing vaccines")
+*/
+define "Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose.":
   input."Three DTP primary series doses were administered"
     and input."No tetanus and diphtheria booster doses were administered"
     and input."The latest DTP dose was administered more than 1 year ago"
 
 /*
-@output: Primary DTP series is complete.
-@pseudocode: Client is not due for tetanus and diphtheria booster dose.
-*/
-define "Primary DTP series is complete.":
-  "Primary DTP series is complete. Case 1"
-    or "Primary DTP series is complete. Case 2"
-
-/*
-@output: Primary DTP series is complete. Guidance
-@guidance: Should not vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. Check for any other vaccines due, and inform the caregiver of when to come back for first tetanus and diphtheria booster dose.
+@output: Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose. Guidance
 @guidance: Should vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. Check for contraindications.
 */
-define "Primary DTP series is complete. Guidance":
-  case
-    when "Primary DTP series is complete. Case 1" then 'Should not vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. Check for any other vaccines due, and inform the caregiver of when to come back for first tetanus and diphtheria booster dose.'
-    when "Primary DTP series is complete. Case 2" then 'Should vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. Check for contraindications.'
-    else ''
-  end
+define "Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose. Guidance":
+  'Should vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. Check for contraindications.'
 
 /*
 @output: Client is not due for tetanus and diphtheria booster dose
@@ -208,44 +208,38 @@ define "Tetanus and diphtheria immunization schedule is complete Guidance":
 Check for any other vaccines due.'
 
 /*
-@output: Primary DTP series is complete Case 1
-@pseudocode: Client is not due for pertussis booster dose
+@output: Primary DTP series is complete. Client is not due for pertussis booster dose
+@pseudocode: "Immunization recommendation status" = "Not due" (where "Vaccine type" = "Pertussis containing vaccines")
 */
-define "Primary DTP series is complete Case 1":
+define "Primary DTP series is complete. Client is not due for pertussis booster dose":
   input."Three DTP primary series doses were administered"
     and input."No pertussis booster doses were administered"
     and input."Client's age is between 1 year and 6 years old"
     and input."The latest DTP dose was administered less than 6 months ago"
 
 /*
-@output: Primary DTP series is complete Case 2
-@pseudocode: Client is due for pertussis booster dose
+@output: Primary DTP series is complete. Client is not due for pertussis booster dose Guidance
+@guidance: Should not vaccinate client for pertussis booster dose as the latest DTP dose was administered less than 6 months ago. Check for any other vaccines due, and inform the caregiver of when to come back for pertussis booster dose.
 */
-define "Primary DTP series is complete Case 2":
+define "Primary DTP series is complete. Client is not due for pertussis booster dose Guidance":
+  'Should not vaccinate client for pertussis booster dose as the latest DTP dose was administered less than 6 months ago. Check for any other vaccines due, and inform the caregiver of when to come back for pertussis booster dose.'
+
+/*
+@output: Primary DTP series is complete. Client is due for pertussis booster dose
+@pseudocode: "Immunization recommendation status" = "Due" (where "Vaccine type" = "Pertussis containing vaccines")
+*/
+define "Primary DTP series is complete. Client is due for pertussis booster dose":
   input."Three DTP primary series doses were administered"
     and input."No pertussis booster doses were administered"
     and input."Client's age is between 1 year and 6 years old"
     and input."The latest DTP dose was administered more than 6 months ago"
 
 /*
-@output: Primary DTP series is complete
-@pseudocode: Client is not due for pertussis booster dose
-*/
-define "Primary DTP series is complete":
-  "Primary DTP series is complete Case 1"
-    or "Primary DTP series is complete Case 2"
-
-/*
-@output: Primary DTP series is complete Guidance
-@guidance: Should not vaccinate client for pertussis booster dose as the latest DTP dose was administered less than 6 months ago. Check for any other vaccines due, and inform the caregiver of when to come back for pertussis booster dose.
+@output: Primary DTP series is complete. Client is due for pertussis booster dose Guidance
 @guidance: Should vaccinate client for pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. Check for contraindications.
 */
-define "Primary DTP series is complete Guidance":
-  case
-    when "Primary DTP series is complete Case 1" then 'Should not vaccinate client for pertussis booster dose as the latest DTP dose was administered less than 6 months ago. Check for any other vaccines due, and inform the caregiver of when to come back for pertussis booster dose.'
-    when "Primary DTP series is complete Case 2" then 'Should vaccinate client for pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. Check for contraindications.'
-    else ''
-  end
+define "Primary DTP series is complete. Client is due for pertussis booster dose Guidance":
+  'Should vaccinate client for pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. Check for contraindications.'
 
 /*
 @output: Pertussis immunization schedule is complete Case 1
@@ -299,17 +293,17 @@ define "Test Validation":
     when Patient.id = '35.D1Dgt4w' then "Client is due for DTP vaccination Case 2" and "Guidance" = 'Should vaccinate client for second DTP dose as the latest DTP dose was administered more than 4 weeks ago. Check for contraindications.'
     when Patient.id = '36.D2Dlt6m' then "Client is not due for DTP vaccination Case 2" and "Guidance" = 'Should not vaccinate client for third DTP dose the latest DTP dose was administered less than 6 months ago. Check for any other vaccines due, and inform the caregiver of when to come back for third DTP dose.'
     when Patient.id = '37.D2Dgt6m' then "Client is due for DTP vaccination Case 3" and "Guidance" = 'Should vaccinate client for third DTP dose as the latest DTP dose was administered more than 6 months ago. Check for contraindications.'
-    when Patient.id = '38.D3B0Dlt1y' then "Primary DTP series is complete. Case 1" and "Guidance" = 'Should not vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. Check for any other vaccines due, and inform the caregiver of when to come back for first tetanus and diphtheria booster dose.'
-    when Patient.id = '39.D3B0Dgt1y' then "Primary DTP series is complete. Case 2" and "Guidance" = 'Should vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. Check for contraindications.'
-    when Patient.id = '40.D3B1Blt1y' then "Client is not due for tetanus and diphtheria booster dose" and "Guidance" = 'Should not vaccinate client for second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered less than 1 year ago. Check for any other vaccines due, and inform the caregiver of when to come back for second tetanus and diphtheria booster dose.'
-    when Patient.id = '41.D3B1Bgt1y' then "Client is due for tetanus and diphtheria booster dose" and "Guidance" = 'Should vaccinate client for second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered more than 1 year ago. Check for contraindications.'
-    when Patient.id = '42.D3B2' then "Tetanus and diphtheria immunization schedule is complete" and "Guidance" = 'Tetanus and diphtheria immunization schedule is complete. Three DTP primary series doses and two tetanus and diphtheria booster doses were administered.
+    when Patient.id = '38.D3B0Dlt1y' then "Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose." and "Primary DTP series is complete. Client is not due for pertussis booster dose" and "Guidance" = 'Should not vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. Check for any other vaccines due, and inform the caregiver of when to come back for first tetanus and diphtheria booster dose. Should not vaccinate client for pertussis booster dose as the latest DTP dose was administered less than 6 months ago. Check for any other vaccines due, and inform the caregiver of when to come back for pertussis booster dose.'
+    when Patient.id = '39.D3B0Dgt1y' then "Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose." and "Primary DTP series is complete. Client is due for pertussis booster dose" and "Guidance" = 'Should vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. Check for contraindications. Should vaccinate client for pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. Check for contraindications.'
+    when Patient.id = '40.D3B1Blt1y' then "Client is not due for tetanus and diphtheria booster dose" and "Primary DTP series is complete. Client is due for pertussis booster dose" and "Guidance" = 'Should not vaccinate client for second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered less than 1 year ago. Check for any other vaccines due, and inform the caregiver of when to come back for second tetanus and diphtheria booster dose. Should vaccinate client for pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. Check for contraindications.'
+    when Patient.id = '41.D3B1Bgt1y' then "Client is due for tetanus and diphtheria booster dose" and "Primary DTP series is complete. Client is due for pertussis booster dose" and "Guidance" = 'Should vaccinate client for second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered more than 1 year ago. Check for contraindications. Should vaccinate client for pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. Check for contraindications.'
+    when Patient.id = '42.D3B2' then "Tetanus and diphtheria immunization schedule is complete" and "Primary DTP series is complete. Client is due for pertussis booster dose" and "Guidance" = 'Tetanus and diphtheria immunization schedule is complete. Three DTP primary series doses and two tetanus and diphtheria booster doses were administered.
+Check for any other vaccines due. Should vaccinate client for pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. Check for contraindications.'
+    when Patient.id = '43.D3P0Abt1y6yLDlt6m' then "Primary DTP series is complete. Client is not due for pertussis booster dose" and "Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose." and "Guidance" = 'Should not vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. Check for any other vaccines due, and inform the caregiver of when to come back for first tetanus and diphtheria booster dose. Should not vaccinate client for pertussis booster dose as the latest DTP dose was administered less than 6 months ago. Check for any other vaccines due, and inform the caregiver of when to come back for pertussis booster dose.'
+    when Patient.id = '44.D3P0Abt1y6yLDgt6m' then "Primary DTP series is complete. Client is due for pertussis booster dose" and "Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose." and "Guidance" = 'Should vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. Check for contraindications. Should vaccinate client for pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. Check for contraindications.'
+    when Patient.id = '45.D3P0Agt6y' then "Pertussis immunization schedule is complete Case 1" and "Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose." and "Guidance" = 'Should vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. Check for contraindications. Pertussis immunization schedule is complete. Three DTP primary series doses were administered.
 Check for any other vaccines due.'
-    when Patient.id = '43.D3P0Abt1y6yLDlt6m' then "Primary DTP series is complete Case 1" and "Guidance" = 'Should not vaccinate client for pertussis booster dose as the latest DTP dose was administered less than 6 months ago. Check for any other vaccines due, and inform the caregiver of when to come back for pertussis booster dose.'
-    when Patient.id = '44.D3P0Abt1y6yLDgt6m' then "Primary DTP series is complete Case 2" and "Guidance" = 'Should vaccinate client for pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. Check for contraindications.'
-    when Patient.id = '45.D3P0Agt6y' then "Pertussis immunization schedule is complete Case 1" and "Guidance" = 'Pertussis immunization schedule is complete. Three DTP primary series doses were administered.
-Check for any other vaccines due.'
-    when Patient.id = '46.D3P1' then "Pertussis immunization schedule is complete Case 2" and "Guidance" = 'Pertussis immunization schedule is complete. Three DTP primary series doses and one pertussis booster dose were administered.
+    when Patient.id = '46.D3P1' then "Pertussis immunization schedule is complete Case 2" and "Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose." and "Guidance" = 'Should vaccinate client for first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. Check for contraindications. Pertussis immunization schedule is complete. Three DTP primary series doses and one pertussis booster dose were administered.
 Check for any other vaccines due.'
     else 'No test case set'
   end
