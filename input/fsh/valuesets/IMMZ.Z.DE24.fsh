@@ -17,8 +17,6 @@ Description:  "Vaccine terminology codes for Diphtheria-tetanus-pertussis contai
 * $ICD11#XM1G86 "Tetanus toxoid, combinations with diphtheria toxoid vaccines"
 * $ICD11#XM21E6 "Diphtheria tetanus, acellular pertussis, inactivated polio virus, haemophilus Influenzae type B vaccines"
 * $ICD11#XM9JP8 "Diphtheria, tetanus, acellular pertussis, inactivated polio virus vaccines"
-* $ICD11#XM32Q5 "Tetanus and diphtheria vaccines"
-* $ICD11#XM4039 "Vaccines diphtheria with tetanus"
 
 * $SCT#774618008 "Whole cell Bordetella pertussis and Clostridium tetani toxoid adsorbed and Corynebacterium diphtheriae toxoid antigens only vaccine product"
 * $SCT#871875004 "Bordetella pertussis and Clostridium tetani and Corynebacterium diphtheriae antigens only vaccine product"
