@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureMap xmlns="http://hl7.org/fhir">
+  <id value="IMMZD1YellowFeverQRToLM"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><pre class="fml">
+<b>map</b><span style="color: navy"> &quot;</span>http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1YellowFeverQRToLM<span style="color: navy">&quot; = &quot;</span>IMMZD1YellowFeverQRToLM<span style="color: navy">&quot;
+
+</span><b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/questionnaireresponse.html" title="QuestionnaireResponse">http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse</a><span style="color: navy">&quot; </span><b>alias </b>QResp <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="StructureDefinition-IMMZD1ClientHistoryYellowFever.html" title="IMMZ.D1 Capture Client History for Yellow Fever">http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZD1ClientHistoryYellowFever</a><span style="color: navy">&quot; </span><b>alias </b>IMMZD1 <b>as </b><b>target</b>
+
+<b>group </b>QRespToIMMZD1<span style="color: navy">(</span><b>source</b> <span style="color: maroon">qr</span><span style="color: navy"> : </span>QResp, <b>target</b> <span style="color: maroon">immz</span><span style="color: navy"> : </span>IMMZD1<span style="color: navy">)</span><span style="color: navy"> {
+</span>  qr.subject<b> as </b><span style="color: maroon">patient</span><span style="color: navy"><b> -&gt; </b></span>immz.patient = <span style="color: maroon">patient</span> <i>&quot;SetPatient&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
+</span>    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'birth'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immz.birth = <span style="color: maroon">content</span> <i>&quot;SetBirth&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForBirth&quot;</i><span style="color: navy">;</span>
+    item.answer<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'type'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">coding</span><span style="color: navy"><b> -&gt; </b></span>immz.type = <span style="color: maroon">coding</span> <i>&quot;SetVaccineType&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;AnswerForType&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'booster'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immz.booster = <span style="color: maroon">content</span> <i>&quot;SetBooster&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForBooster&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'completedPrimarySeries'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immz.completedPrimarySeries = <span style="color: maroon">content</span> <i>&quot;SetCompletedPrimarySeries&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForCompletedPrimarySeries&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'dateSeriesCompleted'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immz.dateSeriesCompleted = <span style="color: maroon">content</span> <i>&quot;SetDateSeriesCompleted&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerDateSeriesCompleted&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'hivStatus'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">coding</span><span style="color: navy"><b> -&gt; </b></span>immz.hivStatus = <span style="color: maroon">coding</span> <i>&quot;SetHIVStatus&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForHIVStatus&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'pretermBirth'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immz.pretermBirth = <span style="color: maroon">content</span> <i>&quot;SetPretermBirth&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForPretermBirth&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'immunocompromised'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immz.immunocompromised = <span style="color: maroon">content</span> <i>&quot;SetImmunocompromised&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForImmunocompromised&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'onART'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immz.onART = <span style="color: maroon">content</span> <i>&quot;SetOnART&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForOnART&quot;</i><span style="color: navy">;</span>
+    item<b> as </b><span style="color: maroon">history</span><b> where </b>item.linkId = 'vaccineHistory'<span style="color: navy"><b> -&gt; </b></span>immz.vaccineHistory<b> as </b><span style="color: maroon">vaccine</span><b> then</b><span style="color: navy"> {
+</span>      history.item<b> as </b><span style="color: maroon">entry</span><b> then</b><span style="color: navy"> {
+</span>        entry.answer<b> as </b><span style="color: maroon">answer</span><b> where </b>entry.linkId = 'vaccineType'<b> then</b><span style="color: navy"> {
+</span>          answer.value<b> as </b><span style="color: maroon">coding</span><span style="color: navy"><b> -&gt; </b></span>vaccine.vaccineType = <span style="color: maroon">coding</span> <i>&quot;SetVaccineType&quot;</i><span style="color: navy">;</span>
+        <span style="color: navy">}</span> <i>&quot;AnswerForVaccineType&quot;</i><span style="color: navy">;</span>
+        entry.answer<b> as </b><span style="color: maroon">answer</span><b> where </b>entry.linkId = 'vaccineDate'<b> then</b><span style="color: navy"> {
+</span>          answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>vaccine.vaccineDate = <span style="color: maroon">content</span> <i>&quot;SetVaccineDate&quot;</i><span style="color: navy">;</span>
+        <span style="color: navy">}</span> <i>&quot;AnswerForVaccineDate&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;HistoryLoop&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;ForVaccineHistory&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;processItems&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span></pre></div>
+  </text>
+  <url value="http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1YellowFeverQRToLM"/>
+  <version value="0.1.0"/>
+  <name value="IMMZD1YellowFeverQRToLM"/>
+  <status value="draft"/>
+  <date value="2024-01-30T22:32:54+00:00"/>
+  <publisher value="World Health Organization (WHO)"/>
+  <contact>
+    <name value="World Health Organization (WHO)"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.who.int"/>
+    </telecom>
+  </contact>
+  <jurisdiction>
+    <coding>
+      <system value="http://unstats.un.org/unsd/methods/m49/m49.htm"/>
+      <code value="001"/>
+    </coding>
+  </jurisdiction>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
+    <mode value="source"/>
+    <alias value="QResp"/>
+  </structure>
+  <structure>
+    <url value="http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZD1ClientHistoryYellowFever"/>
+    <mode value="target"/>
+    <alias value="IMMZD1"/>
+  </structure>
+  <group>
+    <name value="QRespToIMMZD1"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="qr"/>
+      <type value="QResp"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immz"/>
+      <type value="IMMZD1"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="SetPatient"/>
+      <source>
+        <context value="qr"/>
+        <element value="subject"/>
+        <variable value="patient"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="patient"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="patient"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="processItems"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+      </source>
+      <rule>
+        <name value="FirstAnswerForBirth"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'birth'"/>
+        </source>
+        <rule>
+          <name value="SetBirth"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immz"/>
+            <contextType value="variable"/>
+            <element value="birth"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="AnswerForType"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'type'"/>
+        </source>
+        <rule>
+          <name value="SetVaccineType"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="coding"/>
+          </source>
+          <target>
+            <context value="immz"/>
+            <contextType value="variable"/>
+            <element value="type"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="coding"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="FirstAnswerForBooster"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'booster'"/>
+        </source>
+        <rule>
+          <name value="SetBooster"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immz"/>
+            <contextType value="variable"/>
+            <element value="booster"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="FirstAnswerForCompletedPrimarySeries"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'completedPrimarySeries'"/>
+        </source>
+        <rule>
+          <name value="SetCompletedPrimarySeries"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immz"/>
+            <contextType value="variable"/>
+            <element value="completedPrimarySeries"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="FirstAnswerDateSeriesCompleted"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'dateSeriesCompleted'"/>
+        </source>
+        <rule>
+          <name value="SetDateSeriesCompleted"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immz"/>
+            <contextType value="variable"/>
+            <element value="dateSeriesCompleted"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="FirstAnswerForHIVStatus"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'hivStatus'"/>
+        </source>
+        <rule>
+          <name value="SetHIVStatus"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="coding"/>
+          </source>
+          <target>
+            <context value="immz"/>
+            <contextType value="variable"/>
+            <element value="hivStatus"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="coding"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="FirstAnswerForPretermBirth"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'pretermBirth'"/>
+        </source>
+        <rule>
+          <name value="SetPretermBirth"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immz"/>
+            <contextType value="variable"/>
+            <element value="pretermBirth"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="FirstAnswerForImmunocompromised"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'immunocompromised'"/>
+        </source>
+        <rule>
+          <name value="SetImmunocompromised"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immz"/>
+            <contextType value="variable"/>
+            <element value="immunocompromised"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="FirstAnswerForOnART"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'onART'"/>
+        </source>
+        <rule>
+          <name value="SetOnART"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immz"/>
+            <contextType value="variable"/>
+            <element value="onART"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="ForVaccineHistory"/>
+        <source>
+          <context value="item"/>
+          <variable value="history"/>
+          <condition value="item.linkId = 'vaccineHistory'"/>
+        </source>
+        <target>
+          <context value="immz"/>
+          <contextType value="variable"/>
+          <element value="vaccineHistory"/>
+          <variable value="vaccine"/>
+        </target>
+        <rule>
+          <name value="HistoryLoop"/>
+          <source>
+            <context value="history"/>
+            <element value="item"/>
+            <variable value="entry"/>
+          </source>
+          <rule>
+            <name value="AnswerForVaccineType"/>
+            <source>
+              <context value="entry"/>
+              <element value="answer"/>
+              <variable value="answer"/>
+              <condition value="entry.linkId = 'vaccineType'"/>
+            </source>
+            <rule>
+              <name value="SetVaccineType"/>
+              <source>
+                <context value="answer"/>
+                <element value="value"/>
+                <variable value="coding"/>
+              </source>
+              <target>
+                <context value="vaccine"/>
+                <contextType value="variable"/>
+                <element value="vaccineType"/>
+                <transform value="copy"/>
+                <parameter>
+                  <valueId value="coding"/>
+                </parameter>
+              </target>
+            </rule>
+          </rule>
+          <rule>
+            <name value="AnswerForVaccineDate"/>
+            <source>
+              <context value="entry"/>
+              <element value="answer"/>
+              <variable value="answer"/>
+              <condition value="entry.linkId = 'vaccineDate'"/>
+            </source>
+            <rule>
+              <name value="SetVaccineDate"/>
+              <source>
+                <context value="answer"/>
+                <element value="value"/>
+                <variable value="content"/>
+              </source>
+              <target>
+                <context value="vaccine"/>
+                <contextType value="variable"/>
+                <element value="vaccineDate"/>
+                <transform value="copy"/>
+                <parameter>
+                  <valueId value="content"/>
+                </parameter>
+              </target>
+            </rule>
+          </rule>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+</StructureMap>
