@@ -24,3 +24,4 @@ Usage:        #definition
   * insert ElementMap(female, DE7, equivalent)
   * insert ElementMap(unknown, DE8, equivalent)
   * insert ElementMap(other, DE9, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"

@@ -13,6 +13,7 @@ Usage:        #definition
   * source = Canonical(IMMZ.D1)
   * target = $ICD11
   * insert ElementMap(DE11, 1C62.Z, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(DE12, QA02.Y, relatedto)
   * insert ElementMap(DE15, KA21.4, equivalent)
   * insert ElementMap(DE16, 4B4Z, wider)
@@ -38,6 +39,7 @@ Usage:        #definition
   * insert ElementMap(DE70, XM18Y8, equivalent)
   * insert ElementMap(DE71, XM2EH7, equivalent)
   * insert ElementMap(DE97, XM92B2, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(DE74, XM6LL6, wider)
   * insert ElementMap(DE75, XM2A12, equivalent)
   * insert ElementMap(DE100, XM9V38, relatedto)
@@ -48,6 +50,7 @@ Usage:        #definition
   * insert ElementMap(QA02.Y, DE12, relatedto)
   * insert ElementMap(KA21.4, DE15, equivalent)
   * insert ElementMap(4B4Z, DE16, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(XM0EK6, DE86, equivalent)
   * insert ElementMap(1B1Z, DE88, relatedto)
   * insert ElementMap(QA02.0, DE89, relatedto)
@@ -56,21 +59,31 @@ Usage:        #definition
   * insert ElementMap(XM5V19, DE36, equivalent)
   * insert ElementMap(XM79H3, DE37, equivalent)
   * insert ElementMap(XM0LB5, DE53, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(XM47S0, DE54, equivalent)
   * insert ElementMap(XM8MP6, DE57, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(XM8MP6, DE58, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(XM8MP6, DE59, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(XM8MP6, DE60, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(XM8BU8, DE62, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(XM3SF6, DE63, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(XM33K4, DE64, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(XM3Z26, DE66, equivalent)
   * insert ElementMap(XM29K4, DE67, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(XM2280, DE69, equivalent)
   * insert ElementMap(XM18Y8, DE70, equivalent)
   * insert ElementMap(XM2EH7, DE71, equivalent)
   * insert ElementMap(XM92B2, DE97, wider)
   * insert ElementMap(XM6LL6, DE74, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(XM2A12, DE75, equivalent)
   * insert ElementMap(XM9V38, DE100, relatedto)
 
@@ -94,6 +107,7 @@ Usage:        #definition
   * insert ElementMap(76517-2, DE15, equivalent)
   * insert ElementMap(96381-9, DE16, relatedto)
   * insert ElementMap(27415-9, DE85, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(39263-9, DE86, equivalent)
   * insert ElementMap(45241-7, DE88, relatedto)
   * insert ElementMap(8339-4, DE29, equivalent)
@@ -120,11 +134,14 @@ Usage:        #definition
   * insert ElementMap(165816005, DE11, equivalent)
   * insert ElementMap(165815009, DE12, equivalent)
   * insert ElementMap(261665006, DE13, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(395507008, DE15, equivalent)
   * insert ElementMap(370388006, DE16, equivalent)
   * insert ElementMap(68311008, DE85, equivalent)
   * insert ElementMap(28163009, DE86, equivalent)
   * insert ElementMap(10828004, DE88, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(260385009, DE89, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(871740006, DE36, equivalent)
 
