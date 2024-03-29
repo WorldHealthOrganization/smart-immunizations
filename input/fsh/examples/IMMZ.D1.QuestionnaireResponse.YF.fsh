@@ -7,8 +7,8 @@ Usage: #example
 * subject = Reference(patient654321)
 
 * item[+]
-  * linkId = "birth"
-  * answer.valueBoolean = false
+  * linkId = "type"
+  * answer.valueCoding = IMMZ.D1#DE104
 * item[+]
   * linkId = "booster"
   * answer.valueBoolean = false
