@@ -58,7 +58,7 @@ Usage: #definition
   * code[+] = $LNC#21112-8	"Birth date"
   * code[+] = $SCT#184099003 "Date of birth (observable entity)"
 
-* insert Question(caregiver, Care giver name,group,true,false)
+* insert Question(caregiver, Care giver name,group,false,true)
 * item[=]
   * code[+] = IMMZ.C#DE14
   * code[+] = $SCT#184140000 "Caregiver details (observable entity)"
