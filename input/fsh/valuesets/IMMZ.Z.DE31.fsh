@@ -1,5 +1,5 @@
 ValueSet:     IMMZ.Z.DE31
-Title:        "IMMZ.Z.DE31 Inactiviated Polio containing vaccines"
+Title:        "IMMZ.Z.DE31 Inactivated Polio containing vaccines"
 Description:  "Vaccine terminology codes for inactivated polio vaccines."
 
 * ^status = #active
