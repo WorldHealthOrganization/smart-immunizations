@@ -35,30 +35,30 @@ Usage: #example
   * linkId = "caregiver"
   * text = "Care giver name"
   * item[+]
-    * linkId = "fullName"
+    * linkId = "caregiverFullName"
     * text = "Full name of the care giver"
     * answer.valueString = "Mother Patient"
   * item[+]
-    * linkId = "firstName"
+    * linkId = "caregiverFirstName"
     * text = "First or given name"
     * answer.valueString = "Mother"
   * item[+]
-    * linkId = "familyName"
+    * linkId = "caregiverFamilyName"
     * text = "Family name"
     * answer.valueString = "Patient"
 * item[+]
   * linkId = "caregiver"
   * text = "Care giver name"
   * item[+]
-    * linkId = "fullName"
+    * linkId = "caregiverFullName"
     * text = "Full name of the care giver"
     * answer.valueString = "Father Patient"
   * item[+]
-    * linkId = "firstName"
+    * linkId = "caregiverFirstName"
     * text = "First or given name"
     * answer.valueString = "Father"
   * item[+]
-    * linkId = "familyName"
+    * linkId = "caregiverFamilyName"
     * text = "Family name"
     * answer.valueString = "Patient"
 * item[+]
@@ -68,7 +68,7 @@ Usage: #example
 * item[+]
   * linkId = "administrativeArea"
   * text = "Administrative Area"
-  * answer.valueCoding = urn:iso:std:iso:3166:-2#KE-30 "Nairobi City"
+  * answer.valueCoding = urn:iso:std:iso:3166:-2#KE-30 // "Nairobi City"
 * item[+]
   * linkId = "healthWorker"
   * text = "Health Worker"
