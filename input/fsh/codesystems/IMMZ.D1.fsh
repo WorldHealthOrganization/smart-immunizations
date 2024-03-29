@@ -5,6 +5,7 @@ Description:  "CodeSystem for IMMZ.D1 Data Elements"
 * ^experimental = false
 * ^caseSensitive = false
 * ^name = "IMMZ_D1"
+* ^status = #active
 
 * #DE109 "Birth dose" "Indicates if the client received a dose within 24 hours of birth. Whether a birth dose is counted as part of the primary series will depend on the antigen."
 * #DE103 "Type of dose" "The type of dose in a series that the client received"
