@@ -36,7 +36,7 @@ RuleSet: PlanDefMedicationRequestUpdate( title, description, condition, library,
 * action[+]
   * title = "{title}"
   * description = {description}
-  * type = #update
+  * type = $action-type#update
   * condition[+]
     * kind = #applicability
     * expression
