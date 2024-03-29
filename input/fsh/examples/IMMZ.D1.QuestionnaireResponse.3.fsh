@@ -34,7 +34,7 @@ Usage: #example
   * linkId = "immunocompromised"
   * answer.valueBoolean = false
 * item[+]
-  * linkId = "OnART"
+  * linkId = "onART"
   * answer.valueBoolean = true
 * item[+]
   * linkId = "severelyImmunosuppressed"

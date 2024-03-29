@@ -28,7 +28,7 @@ Usage: #example
   * linkId = "immunocompromised"
   * answer.valueBoolean = false
 * item[+]
-  * linkId = "OnART"
+  * linkId = "onART"
   * answer.valueBoolean = true
 * item[+]
   * linkId = "severelyImmunosuppressed"
@@ -36,9 +36,9 @@ Usage: #example
 * item[+]
   * linkId = "artStartDate"
   * answer.valueDate = "2022-06-01"
-* item[+]
-  * linkId = "poliotype"
-  * answer.valueCoding = IMMZ.D1#DE36
+// * item[+]
+//   * linkId = "poliotype"
+//   * answer.valueCoding = IMMZ.D1#DE36
 * item[+]
   * linkId = "vaccineHistory"
   * item[+]
