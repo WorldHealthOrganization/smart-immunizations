@@ -30,9 +30,9 @@ Usage: #example
 * item[+]
   * linkId = "onART"
   * answer.valueBoolean = true
-* item[+]
-  * linkId = "severelyImmunosuppressed"
-  * answer.valueBoolean = true
+// * item[+]
+//   * linkId = "severelyImmunosuppressed"
+//   * answer.valueBoolean = true
 * item[+]
   * linkId = "artStartDate"
   * answer.valueDate = "2022-06-01"

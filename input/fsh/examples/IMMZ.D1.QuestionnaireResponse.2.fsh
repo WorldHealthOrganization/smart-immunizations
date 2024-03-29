@@ -27,9 +27,9 @@ Usage: #example
 * item[+]
   * linkId = "onART"
   * answer.valueBoolean = false
-* item[+]
-  * linkId = "severelyImmunosuppressed"
-  * answer.valueBoolean = false
+// * item[+]
+//   * linkId = "severelyImmunosuppressed"
+//   * answer.valueBoolean = false
 * item[+]
   * linkId = "vaccineHistory"
   * item[+]
