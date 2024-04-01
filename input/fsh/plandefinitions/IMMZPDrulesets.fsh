@@ -24,12 +24,12 @@ RuleSet: PlanDefMedicationRequestAction( title, description, condition, library 
   * dynamicValue[+]
     * path = "status"
     * expression
-      * language = #text/cql
+      * language = #text/cql-expression
       * expression = "'draft'"
   * dynamicValue[+]
     * path = "intent"
     * expression
-      * language = #text/cql
+      * language = #text/cql-expression
       * expression = "'proposal'"
 
 RuleSet: PlanDefMedicationRequestUpdate( title, description, condition, library, mrid )
@@ -66,7 +66,7 @@ RuleSet: PlanDefCommunicationRequestAction( title, description, condition, text 
   * dynamicValue[+]
     * path = "status"
     * expression
-      * language = #text/cql
+      * language = #text/cql-expression
       * expression = "'active'"
   * dynamicValue[+]
     * path = "payload.contentAttachment.title"
@@ -76,22 +76,22 @@ RuleSet: PlanDefCommunicationRequestAction( title, description, condition, text 
   * dynamicValue[+]
     * path = "payload.contentAttachment.language"
     * expression
-      * language = #text/cql
+      * language = #text/cql-expression
       * expression = "'en-US'"
   * dynamicValue[+]
     * path = "payload.contentAttachment.contentType"
     * expression
-      * language = #text/cql
+      * language = #text/cql-expression
       * expression = "'text/plain'"
   * dynamicValue[+]
     * path = "category.coding"
     * expression
       * description = "Category of communication"
-      * language = #text/cql
+      * language = #text/cql-expression
       * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
   * dynamicValue[+]
     * path = "priority"
     * expression
       * description = "Alert priority"
-      * language = #text/cql
+      * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
