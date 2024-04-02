@@ -59,7 +59,7 @@ Usage: #definition
 * item[=]
   * insert Question(vaccineType, Vaccine type/category that was administered or was to be administered. Any vaccine code available in the IMMZ.Z Vaccine Library list of codes applies in this data element, choice, true, false)
   * item[=]
-    * answerValueSet = Canonical(IMMZ.Z.DE17)
+    * answerValueSet = Canonical(IMMZ.Z.DE11)
     * code[+] = IMMZ.D#DE11
     * code[+] = $LNC#39236-5
     * code[+] = $SCT#787859002
