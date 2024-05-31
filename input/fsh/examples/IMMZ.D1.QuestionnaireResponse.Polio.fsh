@@ -7,8 +7,8 @@ Usage: #example
 * subject = Reference(patient654321)
 
 * item[+]
-  * linkId = "birth"
-  * answer.valueBoolean = false
+  * linkId = "type"
+  * answer.valueCoding = IMMZ.D1#DE104
 * item[+]
   * linkId = "booster"
   * answer.valueBoolean = false
@@ -28,17 +28,17 @@ Usage: #example
   * linkId = "immunocompromised"
   * answer.valueBoolean = false
 * item[+]
-  * linkId = "OnART"
+  * linkId = "onART"
   * answer.valueBoolean = true
-* item[+]
-  * linkId = "severelyImmunosuppressed"
-  * answer.valueBoolean = true
+// * item[+]
+//   * linkId = "severelyImmunosuppressed"
+//   * answer.valueBoolean = true
 * item[+]
   * linkId = "artStartDate"
   * answer.valueDate = "2022-06-01"
-* item[+]
-  * linkId = "poliotype"
-  * answer.valueCoding = IMMZ.D1#DE36
+// * item[+]
+//   * linkId = "poliotype"
+//   * answer.valueCoding = IMMZ.D1#DE36
 * item[+]
   * linkId = "vaccineHistory"
   * item[+]

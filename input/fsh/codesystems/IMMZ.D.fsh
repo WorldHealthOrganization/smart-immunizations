@@ -5,6 +5,7 @@ Description:  "CodeSystem for IMMZ.D Data Elements"
 * ^experimental = false
 * ^caseSensitive = false
 * ^name = "IMMZ_D"
+* ^status = #active
 
 * #DE156 "Immunization recommendation status" "The current status or recommendation for a specific immunization for an client"
 * #DE157 "Not due" "The client is not currently eligible or scheduled for the specified immunization"

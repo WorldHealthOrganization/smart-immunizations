@@ -2,7 +2,8 @@ const csv = require('@fast-csv/parse')
 const fs = require('fs')
 
 //const csvFile = 'Annex A IMZ DAK Data Dictionary 20230810.csv'
-const csvFile = '01.Annex A_IMMZ DAK_Core Data Dictionary (20240116) D1.csv'
+//const csvFile = '01.Annex A_IMMZ DAK_Core Data Dictionary (20240116) D1.csv'
+const csvFile = '01 IMMZ.I.csv'
 
 let codesystems = {}
 let conceptmaps = {}
@@ -31,7 +32,7 @@ fs.createReadStream(csvFile)
     let dataelement = info[4]
     if ( !codesystems[codesystem] ) {
       codesystems[codesystem] = "CodeSystem: "+codesystem+"\nTitle:        \""+codesystem+" CodeSystem for Data Elements\"\nDescription:  \"CodeSystem for "+codesystem
-        +" Data Elements\"\n\n* ^experimental = false\n* ^caseSensitive = false\n* ^name = \""+csName+"\"\n\n"
+        +" Data Elements\"\n\n* ^experimental = false\n* ^caseSensitive = false\n* ^name = \""+csName+"\"\n* ^status = #active\n\n"
       conceptmaps[codesystem] = {}
       conceptmaps[codesystem].header = "Instance: "+codesystem+".ConceptMap\nInstanceOf: ConceptMap\nDescription:  \"Mapping to and from "+codesystem+" Data Dictionary to other codesystems.\"\nUsage:        #definition\n\n"
       conceptmaps[codesystem].header += "* name = \""+csName+"_ConceptMap\"\n* title = \"ConceptMap to and from "+codesystem+" DataElements\"\n* status = #active\n* experimental = false\n* date = \"2024-01-19\"\n\n"

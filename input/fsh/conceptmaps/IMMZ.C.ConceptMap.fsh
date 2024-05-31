@@ -36,6 +36,7 @@ Usage:        #definition
   * insert ElementMap(DE13, 63900-5, wider)
   * insert ElementMap(DE18, 42077-8, equivalent)
   * insert ElementMap(DE19, 56799-0, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
 
 * group[+]
   * source = $LNC
@@ -46,8 +47,10 @@ Usage:        #definition
   * insert ElementMap(46098-0, DE5, equivalent)
   * insert ElementMap(21112-8, DE10, equivalent)
   * insert ElementMap(63900-5, DE13, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(42077-8, DE18, equivalent)
   * insert ElementMap(56799-0, DE19, wider)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
 
 * group[+]
   * source = Canonical(IMMZ.C)
@@ -65,6 +68,7 @@ Usage:        #definition
   * insert ElementMap(DE15, 184140000, wider)
   * insert ElementMap(DE18, 184103008, equivalent)
   * insert ElementMap(DE19, 184097001, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
 
 * group[+]
   * source = $SCT
@@ -79,6 +83,8 @@ Usage:        #definition
   * insert ElementMap(15867007, DE9, equivalent)
   * insert ElementMap(184099003, DE10, equivalent)
   * insert ElementMap(184140000, DE14, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(184140000, DE15, narrower)
+  * element[=].target[=].comment = "The source concept is more specific than the target"
   * insert ElementMap(184103008, DE18, equivalent)
   * insert ElementMap(184097001, DE19, wider)

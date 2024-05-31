@@ -73,4 +73,3 @@ Using a CQL plugin in Atom or [VSCode](https://github.com/PuraJuniper/bulk-fsh),
 
 After running the _testMagick.sh script this should produce an output file with the results of how each CQL file executed against your test patients.
 
-

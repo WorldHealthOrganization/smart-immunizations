@@ -58,21 +58,21 @@ Usage: #definition
   * code[+] = $LNC#21112-8	"Birth date"
   * code[+] = $SCT#184099003 "Date of birth (observable entity)"
 
-* insert Question(caregiver, Care giver name,group,true,false)
+* insert Question(caregiver, Care giver name,group,false,true)
 * item[=]
   * code[+] = IMMZ.C#DE14
   * code[+] = $SCT#184140000 "Caregiver details (observable entity)"
 
-  * insert Question(fullName, Full name of the care giver,string,true,false)
+  * insert Question(caregiverFullName, Full name of the care giver,string,true,false)
   * item[=]
     * code[+] = IMMZ.C#DE15
     * code[+] = $SCT#184140000 "Caregiver details (observable entity)"
 
-  * insert Question(firstName, First or given name,string,false,false)
+  * insert Question(caregiverFirstName, First or given name,string,false,false)
   * item[=]
     * code[+] = IMMZ.C#DE16
 
-  * insert Question(familyName, Family name,string,false,false)
+  * insert Question(caregiverFamilyName, Family name,string,false,false)
   * item[=]
     * code[+] = IMMZ.C#DE17
 

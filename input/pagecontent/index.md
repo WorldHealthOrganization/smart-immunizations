@@ -20,8 +20,8 @@ Supporting guidance, recommendations, resources, and standards are included in t
 
 This implementation guide is broken into the following levels of [knowledge representation](http://hl7.org/fhir/uv/cpg/2019Sep/documentation-approach.html):
 - <a href="index.html">Home</a> - contains references to the guidance, guidelines, policies and recommendations underpinning this implementation guide.
-- <a href="requirements.html">Business Requirements</a> - contains the requirements for this implementation guide including the definition of key concepts, use cases, and a data dictionary.      
-- <a href="data_exchange.html">Data Models and Exchange</a> - contains the data models and data exchange protocols with actors and transactions defined.
+<!-- - <a href="requirements.html">Business Requirements</a> - contains the requirements for this implementation guide including the definition of key concepts, use cases, and a data dictionary.       -->
+<!-- - <a href="data_exchange.html">Data Models and Exchange</a> - contains the data models and data exchange protocols with actors and transactions defined. -->
 - <a href="deployment.html">Deployment Guidance </a> - contains relevant technical specifications and guidance, testing resources, reference implementation materials, and supporting guidance for adaptation to local contexts.
 
 This guide is prepared to facilitate digital implementation of WHO Immunization guidelines by providing FHIR-based computable representations of and implementation guidance for using the key components of the WHO Immunization digital adaptation kit (DAK):
