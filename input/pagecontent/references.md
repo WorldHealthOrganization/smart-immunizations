@@ -1,8 +1,8 @@
-This implementation guide is meant to facilitate operationalization of the World Health Organization (WHO) Digital Adaptation Kit (DAK): SMART Guidelines for Immunizations. This page includes links to the published DAK for Immunizations, as well as a small subset of other references.
+This implementation guide is meant to facilitate operationalization of the World Health Organization (WHO) Digital Adaptation Kit (DAK) for <mark>[insert health domain here]</mark>. This page includes links to the published DAK for <mark>[insert health domain here]</mark>, as well as a small subset of other references.
 
-For additional resources, see the <a href="dependencies.html">Dependencies</a> page, which includes the standards referenced in this implementation guide and the references section in the published DAK for Immunizations.
+For additional resources, see the <a href="dependencies.html">Dependencies</a> page, which includes the standards referenced in this implementation guide and the references section in the published DAK for <mark>[insert health domain here]</mark>.
 
-### WHO Digital Adaptation Kit (DAK): SMART Guidelines for Immunizations
+### WHO Digital Adaptation Kit (DAK) for <mark>[insert health domain here]</mark>
 
 > The Digital Adaptation Kit was published on \[publication date\]:
 >

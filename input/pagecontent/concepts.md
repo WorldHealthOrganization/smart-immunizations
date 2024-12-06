@@ -1,5 +1,4 @@
-Key concepts and abbreviations are described here. Additional terms are defined in the Glossary and List of Abbreviations in the WHO Digital Adaptation Kit: SMART Guidelines for Immunizations (link forthcoming), as well as in the [WHO Digital Documentation of COVID-19 Certificates FHIR Implementation Guide](https://worldhealthorganization.github.io/ddcc/concepts.html).
-
+Key concepts and abbreviations are described here. Additional terms are defined in the Glossary and List of Abbreviations in the WHO Digital Adaptation Kit for <mark>[insert health domain here]</mark> (link forthcoming)
 ### Concepts 
 
 <table class="list">
@@ -35,14 +34,6 @@ Key concepts and abbreviations are described here. Additional terms are defined 
     <td>A unit of data that has specific and precise meaning.</td>
   </tr>
   <tr>
-    <td>Defaulter</td>
-    <td>A person who has missed the scheduled dose of a vaccine.</td>
-  </tr>
-  <tr>
-    <td>Electronic Immunization Registry (EIR)</td>
-    <td>See Immunization Information System (IIS).</td>
-  </tr>
-  <tr>
     <td><a href="https://www.hl7.org/fhir/overview.html">Fast Healthcare Interoperability Resources (FHIR)</a></td>
     <td>A standard describing data formats and elements and an application programming interface for exchanging electronic health records.</td>
   </tr>
@@ -51,12 +42,9 @@ Key concepts and abbreviations are described here. Additional terms are defined 
     <td>Capabilities the system must have in order to meet the end-users’ needs and achieve tasks within the business process.</td>
   </tr>
   <tr>
-    <td>Immunization Information System (IIS)</td>
-    <td>Also called an Electronic Immunization Registry (EIR). Serves as a digital tracking and decision-support tool. IIS facilitate monitoring and tracking of individual immunization schedules and contain individuals’ immunization histories; supporting health workers to determine whether an individual is up to date on their immunization schedule and whether that individual has been vaccinated in a timely manner.</td>
-  </tr>
   <tr>
     <td><a href="https://build.fhir.org/implementationguide.html">Implementation Guide (IG)</a></td>
-    <td>A set of rules about how FHIR resources are used (or should be used) to solve a particular problem, with associated documentation to support and clarify the usage. This IG is based on WHO guidance, as it is represented in the Digital Adaptation Kit: SMART Guidelines for Immunizations, to support the adoption of open standards for interoperability.</td>
+    <td>A set of rules about how FHIR resources are used (or should be used) to solve a particular problem, with associated documentation to support and clarify the usage. This IG is based on WHO guidance, as it is represented in the Digital Adaptation Kit for <mark>[insert health domain here]</mark>, to support the adoption of open standards for interoperability.</td>
   </tr>
   <tr>
     <td>Indicator</td>
@@ -136,16 +124,8 @@ Key concepts and abbreviations are described here. Additional terms are defined 
     <td>Electronic health</td>
   </tr>
   <tr>
-    <td>EIR</td>
-    <td>Electronic immunization registry</td>
-  </tr>
-  <tr>
     <td>EMR</td>
     <td>Electronic medical record</td>
-  </tr>
-  <tr>
-    <td>EPI</td>
-    <td>Expanded Programme on Immunization</td>
   </tr>
   <tr>
     <td>FHIR</td>
@@ -190,10 +170,6 @@ Key concepts and abbreviations are described here. Additional terms are defined 
   <tr>
     <td>IHE</td>
     <td>Integrating the Healthcare Enterprise</td>
-  </tr>
-  <tr>
-    <td>IIS</td>
-    <td>Immunization Information System</td>
   </tr>
   <tr>
     <td>ISCO</td>

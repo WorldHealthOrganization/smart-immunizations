@@ -1,8 +1,8 @@
-### Validator Pack
+### Package
 
-The following file contains all value sets, profiles, extensions, pages, etc. in this Implementation Guide:
+This is the technical package containing the artifacts in this Implementation Guide:
 
-* [Validator Pack](validator.pack)
+* [IG Package](package.tgz)
 
 ### Definitions
 
