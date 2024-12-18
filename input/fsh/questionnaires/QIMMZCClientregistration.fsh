@@ -41,7 +41,7 @@ Usage: #definition
   * code[+] = IMMZ.C#DE10
   * code[+] = $LNC#21112-8 "Birth date"
   * code[+] = $SCT#184099003 "Date of birth (observable entity)"
-* insert Question(age, Age, integer, false, false)
+* insert Question(age, Age, string, false, false)
 * item[=]
   * code[+] = IMMZ.C#DE13
   * code[+] = $LNC#63900-5 "Current age or age at death"

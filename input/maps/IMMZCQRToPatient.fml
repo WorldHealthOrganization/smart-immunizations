@@ -1,0 +1,21 @@
+map "http://smart.who.int/immunizations/StructureMap/IMMZCQRToPatient" = "IMMZCQRToPatient"
+// Immunization Client Registry - Transform QuestionnaireResponse to Patient resources
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QResp as source
+uses "http://smart.who.int/immunizations/StructureDefinition/IMMZCClientregistration" alias IMMZC as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+
+imports "http://smart.who.int/immunizations/StructureMap/IMMZCQRToLM"
+imports "http://smart.who.int/immunizations/StructureMap/IMMZCLMToPatient"
+
+group QRestToIMMZC (
+  source qr : QResp,
+  target bundle: BUndle
+) {
+  qr -> create("http://smart.who.int/immunizations/StructureDefinition/IMMZCClientregistration") as model 
+  then{
+    qr -> model then QRespToIMMZC( qr, model) "QRtoLM";
+    qr -> bundle then IMMZCToPatient( model, bundle ) "LMtoPatient";
+  } "QRtoPatient";
+}
+

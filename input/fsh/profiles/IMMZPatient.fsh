@@ -4,6 +4,9 @@ Id:           IMMZ.Patient
 Title:        "SMART Guidelines Immunizations Patient"
 Description:  "Patient Profile for the Immunizations SMART Guidelines.  From IMMZ.C Client Registration for IMMZ.C4.Create client record OR IMMZ.C5.3.Update client details."
 
+* ^meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablestructuredefinition"
+* ^meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablestructuredefinition"
+
 * identifier 1..*
 * identifier.value 1..1
 
