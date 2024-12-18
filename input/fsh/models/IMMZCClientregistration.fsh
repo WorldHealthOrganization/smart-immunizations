@@ -67,3 +67,28 @@ Description:  "Data elements for the IMMZ.C Client registration Data Dictionary.
   * ^code[+] = IMMZ.C#DE19
   * ^code[+] = $LNC#56799-0 "Address"
   * ^code[+] = $SCT#184097001 "Patient address (observable entity)"
+
+Mapping:    IMMZCtoPatient
+Source:     IMMZCClientregistration
+Target:     "http://smart.who.int/immunizations/StructureDefinition/IMMZPatient"
+Title:      "Mapping from the IMMZ.C.Client registration to the IMMZPatient profile"
+
+* -> "Patient"
+* uniqueIdentifier -> "Patient.identifier.value"
+* name -> "Patient.name.text"
+* firstName -> "Patient.name.given"
+* familyName -> "Patient.name.family"
+* sex -> "Patient.gender"
+* dateOfBirth -> "Patient.birthDate"
+* contactPhoneNumber -> "Patient.telecom.value"
+* address -> "Patient.address.text"
+
+Mapping:    IMMZCtoRelatedPerson
+Source:     IMMZCClientregistration
+Target:     "http://smart.who.int/immunizations/StructureDefinition/IMMZCaregiver"
+Title:      "Mapping from the IMMZ.C.Client registration to the IMMZCaregiver (RelatedPerson) profile"
+
+* caregiversMultiple -> "RelatedPerson"
+* caregiversMultiple.caregiversFullName -> "RelatedPerson.name.text"
+* caregiversMultiple.caregiversFirstName -> "RelatedPerson.name.given"
+* caregiversMultiple.caregiversFamilyName -> "RelatedPerson.name.family"
