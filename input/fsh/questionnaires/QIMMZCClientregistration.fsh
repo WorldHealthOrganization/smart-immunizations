@@ -4,7 +4,7 @@ Title:        "IMMZ.C Client registration"
 Description:  "Questionnaire for IMMZ.C Client registration"
 Usage: #definition
 
-* version = "2024"
+* version = "0.2.0"
 * status = #draft
 * subjectType = #Patient
 * language = #en

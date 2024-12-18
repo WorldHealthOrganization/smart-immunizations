@@ -6,6 +6,16 @@ Description:  "Caregiver (RelatedPerson) Profile for the Immunizations SMART Gui
 
 * ^meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablestructuredefinition"
 * ^meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablestructuredefinition"
+* ^version = "0.2.0"
+* ^experimental = false
+* ^publisher = "WHO"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/cqf-knowledgeCapability"
+* ^extension[=].valueCode = #shareable
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-versionAlgorithm"
+* ^extension[=].valueCoding = http://hl7.org/fhir/version-algorithm#semver
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-versionPolicy"
+* ^extension[=].valueCodeableConcept = http://terminology.hl7.org/CodeSystem/artifact-version-policy-codes#metadata
+* ^date = "2024-12-18"
 
 * relationship 1..1
 * relationship = http://terminology.hl7.org/5.1.0/CodeSystem-v3-RoleClass.html#CAREGIVER

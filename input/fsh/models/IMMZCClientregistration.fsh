@@ -12,6 +12,19 @@ Logical:      IMMZCClientregistration
 Title:        "IMMZ.C Client registration"
 Description:  "Data elements for the IMMZ.C Client registration Data Dictionary."
 
+* ^meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablestructuredefinition"
+* ^meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablestructuredefinition"
+* ^version = "0.2.0"
+* ^experimental = false
+* ^publisher = "WHO"
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/cqf-knowledgeCapability"
+* ^extension[=].valueCode = #shareable
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-versionAlgorithm"
+* ^extension[=].valueCoding = http://hl7.org/fhir/version-algorithm#semver
+* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-versionPolicy"
+* ^extension[=].valueCodeableConcept = http://terminology.hl7.org/CodeSystem/artifact-version-policy-codes#metadata
+* ^date = "2024-12-18"
+
 * ^name = "IMMZ_C_Client_registration"
 * ^status = #active
 * uniqueIdentifier 1..1 string "Unique identifier" "Unique identifier for the client, according to the policies applicable to each country. There can be more than one unique identifier used to link records (e.g. national identification [ID], health ID, immunization information system ID, medical record ID)"
