@@ -8,10 +8,12 @@ Description:  "Required if date of birth is entered."
 Expression:   "not(%resource.dateOfBirth.exists()) or $this.exists()"
 Severity:     #error
 
-Logical:      IMMZCClientregistration
-Title:        "IMMZ.C Client registration"
-Description:  "Data elements for the IMMZ.C Client registration Data Dictionary."
+Logical:      IMMZC4
+Title:        "IMMZ.C4.Create client record"
+Description:  "Data elements for the IMMZ.C4.Create client record Data Dictionary Activity.  Identical to IMMZ.C5.3.Update client details."
 
+* ^name = "IMMZ_C4_Create_client_record"
+* ^status = #active
 * ^meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablestructuredefinition"
 * ^meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablestructuredefinition"
 * ^version = "0.2.0"
@@ -25,8 +27,7 @@ Description:  "Data elements for the IMMZ.C Client registration Data Dictionary.
 * ^extension[=].valueCodeableConcept = http://terminology.hl7.org/CodeSystem/artifact-version-policy-codes#metadata
 * ^date = "2024-12-18"
 
-* ^name = "IMMZ_C_Client_registration"
-* ^status = #active
+
 * uniqueIdentifier 1..1 string "Unique identifier" "Unique identifier for the client, according to the policies applicable to each country. There can be more than one unique identifier used to link records (e.g. national identification [ID], health ID, immunization information system ID, medical record ID)"
   * ^code[+] = IMMZ.C#DE1
 * name 1..1 string "Name" "The full name of the client"
@@ -81,10 +82,10 @@ Description:  "Data elements for the IMMZ.C Client registration Data Dictionary.
   * ^code[+] = $LNC#56799-0 "Address"
   * ^code[+] = $SCT#184097001 "Patient address (observable entity)"
 
-Mapping:    IMMZCtoPatient
-Source:     IMMZCClientregistration
+Mapping:    IMMZC4.to.Patient
+Source:     IMMZC4
 Target:     "http://smart.who.int/immunizations/StructureDefinition/IMMZPatient"
-Title:      "Mapping from the IMMZ.C.Client registration to the IMMZPatient profile"
+Title:      "Mapping from the IMMZ.C4 to the IMMZPatient profile"
 
 * -> "Patient"
 * uniqueIdentifier -> "Patient.identifier.value"
@@ -96,10 +97,10 @@ Title:      "Mapping from the IMMZ.C.Client registration to the IMMZPatient prof
 * contactPhoneNumber -> "Patient.telecom.value"
 * address -> "Patient.address.text"
 
-Mapping:    IMMZCtoRelatedPerson
-Source:     IMMZCClientregistration
+Mapping:    IMMZC4.to.RelatedPerson
+Source:     IMMZC4
 Target:     "http://smart.who.int/immunizations/StructureDefinition/IMMZCaregiver"
-Title:      "Mapping from the IMMZ.C.Client registration to the IMMZCaregiver (RelatedPerson) profile"
+Title:      "Mapping from the IMMZ.C4 to the IMMZCaregiver (RelatedPerson) profile"
 
 * caregiversMultiple -> "RelatedPerson"
 * caregiversMultiple.caregiversFullName -> "RelatedPerson.name.text"

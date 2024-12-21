@@ -3,7 +3,7 @@ InstanceOf: QuestionnaireResponse
 Usage: #example
 * status = #completed
 * authored = "2024-12-13T19:20:20.913Z"
-* questionnaire = Canonical(QIMMZCClientregistration)
+* questionnaire = Canonical(QIMMZC4)
 * item[+]
   * linkId = "uniqueIdentifier"
   * answer.valueString = "12345-ZA"

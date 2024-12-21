@@ -10,8 +10,8 @@ const camelCase = (str) => {
 let codesystems = {}
 let conceptmaps = {}
 let valuesets = {}
-let model = []
-let quest = []
+let models = {}
+let quests = {}
 let currentVS = null
 let relationships = {
   'Related to': [ 'relatedto', 'relatedto' ],
@@ -22,35 +22,61 @@ let relationships = {
 }
 
 let title = csvFile.substring(csvFile.lastIndexOf('/')+1).replace(/\.csv$/,'')
-let modelName = title.replace(/\W/g, '')
-//console.log(title)
-model.push("Logical:      " + modelName)
-model.push("Title:        \"" + title + "\"")
-model.push("Description:  \"Data elements for the " + title + " Data Dictionary.\"")
-model.push('')
-model.push("* ^name = \"" + title.replace(/\W/g, '_') + "\"")
-model.push("* ^status = #active")
 
-quest.push("Instance:     Q" + modelName)
-quest.push("InstanceOf:   sdc-questionnaire-extr-smap")
-quest.push("Title:        \"" + title + "\"")
-quest.push("Description:  \"Questionnaire for " + title + "\"")
-quest.push("Usage: #definition")
-quest.push('')
-quest.push("* version = \"2024\"")
-quest.push("* status = #draft")
-quest.push("* subjectType = #Patient")
-quest.push("* language = #en")
-quest.push("* contained[+] = ")
-quest.push("* extension[+].url = \"http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap\"")
-quest.push("* extension[=].valueCanonical = \"http://smart.who.int/immunizations/StructureMap/\"")
-quest.push('')
+let createModel = ( modelName, title ) => {
+  let model = []
+  model.push("Logical:      " + modelName)
+  model.push("Title:        \"" + title + "\"")
+  model.push("Description:  \"Data elements for the " + title + " Data Dictionary Activity.\"")
+  model.push('')
+  model.push("* ^name = \"" + title.replace(/\W/g, '_') + "\"")
+  model.push("* ^status = #active")
+  model.push('* ^meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablestructuredefinition"')
+  model.push('* ^meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablestructuredefinition"')
+  model.push('* ^version = "X.X.X"')
+  model.push('* ^experimental = false')
+  model.push('* ^publisher = "WHO"')
+  model.push('* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/cqf-knowledgeCapability"')
+  model.push('* ^extension[=].valueCode = #shareable')
+  model.push('* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-versionAlgorithm"')
+  model.push('* ^extension[=].valueCoding = http://hl7.org/fhir/version-algorithm#semver')
+  model.push('* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-versionPolicy"')
+  model.push('* ^extension[=].valueCodeableConcept = http://terminology.hl7.org/CodeSystem/artifact-version-policy-codes#metadata')
+  model.push('* ^date = "2024-XX-XX"')
+  model.push('')
+  return model
+}
+
+
+let createQuest = ( modelName, title ) => {
+  let quest = []
+  quest.push("Instance:     Q" + modelName)
+  quest.push("InstanceOf:   sdc-questionnaire-extr-smap")
+  quest.push("Title:        \"" + title + "\"")
+  quest.push("Description:  \"Questionnaire for " + title + "\"")
+  quest.push("Usage: #definition")
+  quest.push('')
+  quest.push("* version = \"2024\"")
+  quest.push("* status = #draft")
+  quest.push("* subjectType = #Patient")
+  quest.push("* language = #en")
+  quest.push("* contained[+] = ")
+  quest.push("* extension[+].url = \"http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap\"")
+  quest.push("* extension[=].valueCanonical = \"http://smart.who.int/immunizations/StructureMap/\"")
+  quest.push('')
+  return quest
+}
 
 fs.createReadStream(csvFile)
   .pipe(csv.parse( {headers:true}) )
   .on('data', row => {
     //console.log(row)
 
+    let model = []
+    let quest = []
+
+
+    
     let deid = row['Data element ID'].replace(/((\S+)\.(\S+)\.DE)\.(\d+)/, '$1$4')
     //console.log(deid)
     let label = row['Data element label']
@@ -141,16 +167,32 @@ fs.createReadStream(csvFile)
         quest.push("  * code[+] = $SCT#" + sct + " \""+row['SNOMED GPS \ncomments/considerations'].replace(/Code title:\s+/,'') + "\"")
       }
     }
+
+    let actids = row['Activity ID'].split(/\s+OR\s+/m)
+    for( let actid of actids ) {
+      let details = actid.match(/(IMMZ\.\w\d+[.\d]*)\..*/)
+      let modelName = details[1].replace(/\./g, '')
+      if ( !models[modelName] ) {
+        models[modelName] = createModel(modelName, details[0])
+        quests[modelName] = createQuest(modelName, details[0])
+      }
+      models[modelName].push(...model)
+      quests[modelName].push(...quest)
+    }
   })
   .on('end', () => {
     //console.log(model)
-    let modelFile = fs.createWriteStream("output/"+modelName+".fsh")
-    modelFile.write(model.join("\n"))
-    modelFile.close()
+    for( let code in models ) {
+      let modelFile = fs.createWriteStream("output/"+code+".fsh")
+      modelFile.write(models[code].join("\n"))
+      modelFile.close()
+    }
 
-    let questFile = fs.createWriteStream("output/Q"+modelName+".fsh")
-    questFile.write(quest.join("\n"))
-    questFile.close()    
+    for( let code in quests ) {
+      let questFile = fs.createWriteStream("output/Q"+code+".fsh")
+      questFile.write(quests[code].join("\n"))
+      questFile.close()    
+    }
 
     for( cs in codesystems ) {
       let file = fs.createWriteStream("output/"+cs+".fsh")

@@ -1,7 +1,7 @@
-Instance:     QIMMZCClientregistration
+Instance:     QIMMZC4
 InstanceOf:   sdc-questionnaire-extr-smap
-Title:        "IMMZ.C Client registration"
-Description:  "Questionnaire for IMMZ.C Client registration"
+Title:        "IMMZ.C4.Create client record"
+Description:  "Questionnaire for IMMZ.C4.Create client record"
 Usage: #definition
 
 * version = "0.2.0"
@@ -10,7 +10,7 @@ Usage: #definition
 * language = #en
 * contained[+] = IMMZ.C.DE5
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
-* extension[=].valueCanonical = "http://smart.who.int/immunizations/StructureMap/"
+* extension[=].valueCanonical = "http://smart.who.int/immunizations/StructureMap/IMMZ.C4.QRToPatient"
 
 * insert Question(uniqueIdentifier, Unique identifier, string, true, false)
 * item[=]
