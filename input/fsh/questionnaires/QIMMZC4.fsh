@@ -32,12 +32,12 @@ Usage: #definition
   * code[+] = $SCT#184096005 "Patient surname (observable entity)"
 * insert Question(sex, Sex, choice, true, false)
 * item[=]
+  * answerValueSet = Canonical(IMMZ.C.DE5)
   * code[+] = IMMZ.C#DE5
   * code[+] = $LNC#46098-0 "Sex"
   * code[+] = $SCT#184100006 "Patient sex (observable entity)"
 * insert Question(dateOfBirth , Date of birth , date, true, false)
 * item[=]
-  * answerValueSet = Canonical(IMMZ.C.DE5)
   * code[+] = IMMZ.C#DE10
   * code[+] = $LNC#21112-8 "Birth date"
   * code[+] = $SCT#184099003 "Date of birth (observable entity)"

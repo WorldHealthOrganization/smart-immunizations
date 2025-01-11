@@ -10,6 +10,7 @@ const camelCase = (str) => {
 let codesystems = {}
 let conceptmaps = {}
 let valuesets = {}
+let containeds = {}
 let models = {}
 let quests = {}
 let currentVS = null
@@ -60,11 +61,34 @@ let createQuest = ( modelName, title ) => {
   quest.push("* status = #draft")
   quest.push("* subjectType = #Patient")
   quest.push("* language = #en")
-  quest.push("* contained[+] = ")
+  quest.push("CONTAINED")
   quest.push("* extension[+].url = \"http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap\"")
   quest.push("* extension[=].valueCanonical = \"http://smart.who.int/immunizations/StructureMap/\"")
   quest.push('')
   return quest
+}
+
+let getType = ( type, isQuestionnaire ) => {
+  switch ( type.trim().toLowerCase() ) {
+    case "coding" : 
+      return (isQuestionnaire ? "choice" : "code")
+      break
+    case "date" :
+      return "date"
+      break
+    case "datetime":
+      return "dateTime"
+      break
+    case "boolean" :
+      return "boolean"
+      break
+    case "quantity":
+      return "decimal"
+      break
+    default:
+      return "string"
+      break
+  }
 }
 
 fs.createReadStream(csvFile)
@@ -74,6 +98,7 @@ fs.createReadStream(csvFile)
 
     let model = []
     let quest = []
+    let contained = []
 
 
     
@@ -91,17 +116,21 @@ fs.createReadStream(csvFile)
 
     if ( type != 'Codes' ) {
       model.push("* " + fieldName + " " + (row['Required'] == 'R' ? '1' : '0') + "..1 "
-        + (type == 'Coding' ? 'code' : 'string') + " \""+label+"\" \""+row['Description and definition'] 
+        + getType(type, false) + " \""+label+"\" \""+row['Description and definition'] 
         + "\"")
       if ( type == 'Coding' ) {
         model.push("* " + fieldName + " from " + codesystem + "." + dataelement + " (required)")
+        contained.push("* contained[+] = " + codesystem + "." + dataelement )
       }
-      model.push("  * code[+] = " + codesystem + "#" + dataelement )
+      model.push("  * ^code[+] = " + codesystem + "#" + dataelement )
 
       quest.push("* insert Question(" + fieldName + ", " + label
-        + ", " + (type == 'Coding' ? 'choice' : 'string') + ", " 
+        + ", " + getType(type, true) + ", " 
         + (row['Required'] == 'R' ? 'true' : 'false') + ", false)")
       quest.push("* item[=]")
+      if ( type == 'Coding' ) {
+        quest.push("  * answerValueSet = Canonical(" + codesystem + "." + dataelement + ")")
+      }
       quest.push("  * code[+] = " + codesystem + "#" + dataelement )
     }
     if ( !codesystems[codesystem] ) {
@@ -143,7 +172,7 @@ fs.createReadStream(csvFile)
       conceptmaps[codesystem].toicd11 += "  * insert ElementMap("+dataelement+", "+icd11+", "+relationships[relationship][0]+")\n"
       conceptmaps[codesystem].fromicd11 += "  * insert ElementMap("+icd11+", "+dataelement+", "+relationships[relationship][1]+")\n"
       if ( type !== 'Codes') {
-        model.push("  * code[+] = $ICD11#" + icd11 + " \""+row['ICD-11\ncomments/considerations'].replace(/Code title:\s+/,'') + "\"")
+        model.push("  * ^code[+] = $ICD11#" + icd11 + " \""+row['ICD-11\ncomments/considerations'].replace(/Code title:\s+/,'') + "\"")
         quest.push("  * code[+] = $ICD11#" + icd11 + " \""+row['ICD-11\ncomments/considerations'].replace(/Code title:\s+/,'') + "\"")
       }
     }
@@ -154,7 +183,7 @@ fs.createReadStream(csvFile)
         conceptmaps[codesystem].fromloinc += "  * insert ElementMap("+loinc+", "+dataelement+", "+relationships[relationship][1]+")\n"
       }
       if ( type !== 'Codes') {
-        model.push("  * code[+] = $LNC#" + loinc + " \""+row['LOINC version 2.68\ncomments/considerations'].replace(/Long common name:\s+/,'') + "\"")
+        model.push("  * ^code[+] = $LNC#" + loinc + " \""+row['LOINC version 2.68\ncomments/considerations'].replace(/Long common name:\s+/,'') + "\"")
         quest.push("  * code[+] = $LNC#" + loinc + " \""+row['LOINC version 2.68\ncomments/considerations'].replace(/Long common name:\s+/,'') + "\"")
       }
     }
@@ -163,7 +192,7 @@ fs.createReadStream(csvFile)
       conceptmaps[codesystem].tosct += "  * insert ElementMap("+dataelement+", "+sct+", "+relationships[relationship][0]+")\n"
       conceptmaps[codesystem].fromsct += "  * insert ElementMap("+sct+", "+dataelement+", "+relationships[relationship][1]+")\n"
       if ( type !== 'Codes') {
-        model.push("  * code[+] = $SCT#" + sct + " \""+row['SNOMED GPS \ncomments/considerations'].replace(/Code title:\s+/,'') + "\"")
+        model.push("  * ^code[+] = $SCT#" + sct + " \""+row['SNOMED GPS \ncomments/considerations'].replace(/Code title:\s+/,'') + "\"")
         quest.push("  * code[+] = $SCT#" + sct + " \""+row['SNOMED GPS \ncomments/considerations'].replace(/Code title:\s+/,'') + "\"")
       }
     }
@@ -175,9 +204,11 @@ fs.createReadStream(csvFile)
       if ( !models[modelName] ) {
         models[modelName] = createModel(modelName, details[0])
         quests[modelName] = createQuest(modelName, details[0])
+        containeds[modelName] = []
       }
       models[modelName].push(...model)
       quests[modelName].push(...quest)
+      containeds[modelName].push(...contained)
     }
   })
   .on('end', () => {
@@ -190,7 +221,14 @@ fs.createReadStream(csvFile)
 
     for( let code in quests ) {
       let questFile = fs.createWriteStream("output/Q"+code+".fsh")
-      questFile.write(quests[code].join("\n"))
+      for ( line of quests[code] ) {
+        if ( line === "CONTAINED" ) {
+          questFile.write(containeds[code].join("\n")+"\n")
+        } else {
+          questFile.write(line+"\n")
+        }
+      }
+      //questFile.write(quests[code].join("\n"))
       questFile.close()    
     }
 
