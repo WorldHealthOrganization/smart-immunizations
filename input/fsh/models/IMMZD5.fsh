@@ -19,4 +19,4 @@ Description:  "Data elements for the IMMZ.D5.Determine vaccine(s) to be administ
 
 * potentialContraindications 1..1 code "Potential contraindications" "Specific situations or medical conditions for which it is advised or recommended to avoid or delay administering a particular vaccine"
 * potentialContraindications from IMMZ.D.DE161 (required)
-  * code[+] = IMMZ.D#DE161
+  * ^code[+] = IMMZ.D#DE161

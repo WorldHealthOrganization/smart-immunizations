@@ -15,7 +15,7 @@ Usage: #definition
 * insert Question(certificateIssuer, Certificate issuer, string, true, false)
 * item[=]
   * code[+] = IMMZ.D#DE151
-* insert Question(healthCertificateIdentifier, Health Certificate Identifier (HCID), string, true, false)
+* insert Question(healthCertificateIdentifier, [[Health Certificate Identifier (HCID)]], string, true, false)
 * item[=]
   * code[+] = IMMZ.D#DE152
 * insert Question(certificateValidFrom, Certificate valid from, dateTime, true, false)

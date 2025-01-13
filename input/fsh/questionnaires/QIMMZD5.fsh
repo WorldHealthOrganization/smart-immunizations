@@ -8,11 +8,11 @@ Usage: #definition
 * status = #draft
 * subjectType = #Patient
 * language = #en
-* contained[+] = Canonical(IMMZ.D.DE161)
+* contained[+] = IMMZ.D.DE161
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
 * extension[=].valueCanonical = "http://smart.who.int/immunizations/StructureMap/"
 
 * insert Question(potentialContraindications, Potential contraindications, choice, true, false)
 * item[=]
-  * answerValueSet = IMMZ.D.DE161
+  * answerValueSet = Canonical(IMMZ.D.DE161)
   * code[+] = IMMZ.D#DE161

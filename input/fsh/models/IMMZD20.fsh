@@ -18,4 +18,4 @@ Description:  "Data elements for the IMMZ.D20.Does client require a verifiable d
 * ^date = "2025-01-13"
 
 * digitalCertificateNeeded 1..1 boolean "Digital certificate needed" "Indicates if a digital certificate is required"
-  * code[+] = IMMZ.D#DE150
+  * ^code[+] = IMMZ.D#DE150

@@ -19,5 +19,5 @@ Description:  "Data elements for the IMMZ.D7.Counsel client Data Dictionary Acti
 
 * clientEducationAndCounsellingOnImmunization 0..1 code "Client education and counselling on immunization" "Providing information, guidance and support to client or caretakers (such as parents or legal guardians) regarding immunization practices"
 * clientEducationAndCounsellingOnImmunization from IMMZ.D.DE86 (required)
-  * code[+] = IMMZ.D#DE86
-  * code[+] = $ICD11#QA1Y "Contact with health services for other specified counselling"
+  * ^code[+] = IMMZ.D#DE86
+  * ^code[+] = $ICD11#QA1Y "Contact with health services for other specified counselling"

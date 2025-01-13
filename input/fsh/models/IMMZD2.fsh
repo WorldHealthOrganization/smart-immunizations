@@ -19,4 +19,4 @@ Description:  "Data elements for the IMMZ.D2.Determine required vaccination(s) D
 
 * immunizationRecommendationStatus 1..1 code "Immunization recommendation status" "The current status or recommendation for a specific immunization for an client"
 * immunizationRecommendationStatus from IMMZ.D.DE156 (required)
-  * code[+] = IMMZ.D#DE156
+  * ^code[+] = IMMZ.D#DE156

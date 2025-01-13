@@ -8,9 +8,9 @@ Usage: #definition
 * status = #draft
 * subjectType = #Patient
 * language = #en
-* contained[+] = Canonical(IMMZ.D.DE95)
-* contained[+] = Canonical(IMMZ.D.DE107)
-* contained[+] = Canonical(IMMZ.D.DE115)
+* contained[+] = IMMZ.D.DE95
+* contained[+] = IMMZ.D.DE107
+* contained[+] = IMMZ.D.DE115
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
 * extension[=].valueCanonical = "http://smart.who.int/immunizations/StructureMap/"
 
@@ -35,7 +35,7 @@ Usage: #definition
     * answerBoolean = true
 * insert Question(reactionManifestation, Reaction manifestation, choice, true, false)
 * item[=]
-  * answerValueSet = IMMZ.D.DE95
+  * answerValueSet = Canonical(IMMZ.D.DE95)
   * code[+] = IMMZ.D#DE95
   * code[+] = $ICD11#NE80.3 "Other serum reactions. This code includes 'Complications of vaccination, serum reaction'. A more specific code may be selected based on the documented reaction/manifestation"
   * enableWhen[+]
@@ -44,18 +44,18 @@ Usage: #definition
     * answerBoolean = true
 * insert Question(typeOfReaction, Type of reaction, choice, true, false)
 * item[=]
-  * answerValueSet = IMMZ.D.DE107
+  * answerValueSet = Canonical(IMMZ.D.DE107)
   * code[+] = IMMZ.D#DE107
   * enableWhen[+]
     * question = "reactionReported"
     * operator = #=
     * answerBoolean = true
-* insert Question(otherImportantMedicalEvent(specify), Other important medical event (specify), string, false, false)
+* insert Question(otherImportantMedicalEvent, [[Other important medical event (specify)]], string, false, false)
 * item[=]
   * code[+] = IMMZ.D#DE113
 * insert Question(reactionOutcome, Reaction outcome, choice, true, false)
 * item[=]
-  * answerValueSet = IMMZ.D.DE115
+  * answerValueSet = Canonical(IMMZ.D.DE115)
   * code[+] = IMMZ.D#DE115
   * code[+] = $SCT#293104008 "Adverse reaction to component of vaccine product (disorder)"
   * enableWhen[+]

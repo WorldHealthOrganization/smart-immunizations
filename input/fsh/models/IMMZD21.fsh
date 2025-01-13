@@ -18,12 +18,12 @@ Description:  "Data elements for the IMMZ.D21.Generate verifiable digital certif
 * ^date = "2025-01-13"
 
 * certificateIssuer 1..1 string "Certificate issuer" "The authority or authorized organization that issued the vaccination certificate"
-  * code[+] = IMMZ.D#DE151
+  * ^code[+] = IMMZ.D#DE151
 * healthCertificateIdentifier 1..1 string "Health Certificate Identifier (HCID)" "Unique identifier used to associate the immunization event represented in a paper vaccination card to its digital representation(s)"
-  * code[+] = IMMZ.D#DE152
+  * ^code[+] = IMMZ.D#DE152
 * certificateValidFrom 1..1 dateTime "Certificate valid from" "Date in which the certificate for an immunization event became valid.  No health or clinical inferences should be made from this date"
-  * code[+] = IMMZ.D#DE153
+  * ^code[+] = IMMZ.D#DE153
 * certificateValidUntil 1..1 dateTime "Certificate valid until" "Last date in which the certificate for an immunization event is valid. No health or clinical inferences should be made from this date"
-  * code[+] = IMMZ.D#DE154
+  * ^code[+] = IMMZ.D#DE154
 * certificateSchemaVersion 1..1 string "Certificate schema version" "Version of the core data set and HL7 Fast Health Interoperability Resources (FHIR) implementation guide that the certificate is using"
-  * code[+] = IMMZ.D#DE155
+  * ^code[+] = IMMZ.D#DE155
