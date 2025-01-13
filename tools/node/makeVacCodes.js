@@ -45,7 +45,7 @@ fs.createReadStream(csvFile)
           +" Data Elements\"\n\n* ^experimental = false\n* ^caseSensitive = false\n* ^name = \""+csName+"\"\n* ^status = #active\n\n"
         conceptmaps[codesystem] = {}
         conceptmaps[codesystem].header = "Instance: "+codesystem+".ConceptMap\nInstanceOf: ConceptMap\nDescription:  \"Mapping to and from "+codesystem+" Data Dictionary to other codesystems.\"\nUsage:        #definition\n\n"
-        conceptmaps[codesystem].header += "* name = \""+csName+"_ConceptMap\"\n* title = \"ConceptMap to and from "+codesystem+" DataElements\"\n* status = #active\n* experimental = false\n* date = \"2024-01-19\"\n\n"
+        conceptmaps[codesystem].header += "* name = \""+csName+"_ConceptMap\"\n* title = \"ConceptMap to and from "+codesystem+" DataElements\"\n* status = #active\n* experimental = false\n* date = \"2025-01-13\"\n\n"
         conceptmaps[codesystem].toicd11 = "* group[+]\n  * source = Canonical("+codesystem+")\n  * target = $ICD11\n"
         conceptmaps[codesystem].fromicd11 = "* group[+]\n  * source = $ICD11\n  * target = Canonical("+codesystem+")\n"
         conceptmaps[codesystem].toloinc = "* group[+]\n  * source = Canonical("+codesystem+")\n  * target = $LNC\n"

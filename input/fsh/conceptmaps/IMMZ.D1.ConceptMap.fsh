@@ -7,7 +7,7 @@ Usage:        #definition
 * title = "ConceptMap to and from IMMZ.D1 DataElements"
 * status = #active
 * experimental = false
-* date = "2024-01-19"
+* date = "2025-01-10"
 
 * group[+]
   * source = Canonical(IMMZ.D1)

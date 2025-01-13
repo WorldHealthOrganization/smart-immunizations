@@ -34,7 +34,7 @@ let createModel = ( modelName, title ) => {
   model.push("* ^status = #active")
   model.push('* ^meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablestructuredefinition"')
   model.push('* ^meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablestructuredefinition"')
-  model.push('* ^version = "X.X.X"')
+  model.push('* ^version = "0.2.0"')
   model.push('* ^experimental = false')
   model.push('* ^publisher = "WHO"')
   model.push('* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/cqf-knowledgeCapability"')
@@ -43,7 +43,7 @@ let createModel = ( modelName, title ) => {
   model.push('* ^extension[=].valueCoding = http://hl7.org/fhir/version-algorithm#semver')
   model.push('* ^extension[+].url = "http://hl7.org/fhir/StructureDefinition/artifact-versionPolicy"')
   model.push('* ^extension[=].valueCodeableConcept = http://terminology.hl7.org/CodeSystem/artifact-version-policy-codes#metadata')
-  model.push('* ^date = "2024-XX-XX"')
+  model.push('* ^date = "2025-01-13"')
   model.push('')
   return model
 }
@@ -57,7 +57,7 @@ let createQuest = ( modelName, title ) => {
   quest.push("Description:  \"Questionnaire for " + title + "\"")
   quest.push("Usage: #definition")
   quest.push('')
-  quest.push("* version = \"2024\"")
+  quest.push("* version = \"2025\"")
   quest.push("* status = #draft")
   quest.push("* subjectType = #Patient")
   quest.push("* language = #en")
@@ -138,7 +138,7 @@ fs.createReadStream(csvFile)
         +" Data Elements\"\n\n* ^experimental = false\n* ^caseSensitive = false\n* ^name = \""+csName+"\"\n* ^status = #active\n\n"
       conceptmaps[codesystem] = {}
       conceptmaps[codesystem].header = "Instance: "+codesystem+".ConceptMap\nInstanceOf: ConceptMap\nDescription:  \"Mapping to and from "+codesystem+" Data Dictionary to other codesystems.\"\nUsage:        #definition\n\n"
-      conceptmaps[codesystem].header += "* name = \""+csName+"_ConceptMap\"\n* title = \"ConceptMap to and from "+codesystem+" DataElements\"\n* status = #active\n* experimental = false\n* date = \"2024-01-19\"\n\n"
+      conceptmaps[codesystem].header += "* name = \""+csName+"_ConceptMap\"\n* title = \"ConceptMap to and from "+codesystem+" DataElements\"\n* status = #active\n* experimental = false\n* date = \"2025-01-13\"\n\n"
       conceptmaps[codesystem].toicd11 = "* group[+]\n  * source = Canonical("+codesystem+")\n  * target = $ICD11\n"
       conceptmaps[codesystem].fromicd11 = "* group[+]\n  * source = $ICD11\n  * target = Canonical("+codesystem+")\n"
       conceptmaps[codesystem].toloinc = "* group[+]\n  * source = Canonical("+codesystem+")\n  * target = $LNC\n"
