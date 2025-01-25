@@ -17,6 +17,7 @@ Description:  "Data elements for the IMMZ.D21.Generate verifiable digital certif
 * ^extension[=].valueCodeableConcept = http://terminology.hl7.org/CodeSystem/artifact-version-policy-codes#metadata
 * ^date = "2025-01-13"
 
+* patient 1..1 Reference "Patient" "The patient."
 * certificateIssuer 1..1 string "Certificate issuer" "The authority or authorized organization that issued the vaccination certificate"
   * ^code[+] = IMMZ.D#DE151
 * healthCertificateIdentifier 1..1 string "Health Certificate Identifier (HCID)" "Unique identifier used to associate the immunization event represented in a paper vaccination card to its digital representation(s)"

@@ -2,65 +2,51 @@ map "http://smart.who.int/immunizations/StructureMap/IMMZ.C4.QRToLM" = "IMMZ.C4.
 // Immunization Client Registry - Transform QuestionnaireResponse to Logical Model
 
 uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QResp as source
-uses "http://smart.who.int/immunizations/StructureDefinition/IMMZC4" alias IMMZC as target
+uses "http://smart.who.int/immunizations/StructureDefinition/IMMZC4" alias immz as target
 
-group QRespToIMMZC ( source qr : QResp, target immzc : IMMZC) {
-  qr.item as item then {
+imports "http://smart.who.int/immunizations/StructureMap/IMMZ.QRToLM"
 
-    item.answer first as answer where item.linkId = 'uniqueIdentifier' then {
-      answer.value as content -> immzc.uniqueIdentifier = content  "SetIdentifier";
-    } "FirstAnswerForIdentifier";
 
-    item.answer first as answer where item.linkId = 'name' then {
-      answer.value as content -> immzc.name = content "SetFullName";
-    } "FirstAnswerForFullName";
+group QRespToIMMZC ( source qr : QResp, target immz : IMMZC) {
 
-    item.answer first as answer where item.linkId = 'firstName' then {
-      answer.value as content -> immzc.firstName = content "SetFirstName";
-    } "FirstAnswerForFirstName";
+  qr.item as item where item.linkId = 'uniqueIdentifier' -> immz.uniqueIdentifier as field 
+  then ItemToValue(item, field) "uniqueIdentifier";
 
-    item.answer first as answer where item.linkId = 'familyName' then {
-      answer.value as content -> immzc.familyName = content "SetFamilyName";
-    } "FirstAnswerForFamilyName";
+  qr.item as item where item.linkId = 'name' -> immz.name as field 
+  then ItemToValue(item, field) "name";
 
-    item.answer first as answer where item.linkId = 'sex' then {
-      answer.value as coding then {
-        coding.code as content -> immzc.sex = content "SetSex";
-      } "ProcessCoding";
-    } "FirstAnswerForIdentifier";
-  
-    item.answer first as answer where item.linkId = 'dateOfBirth' then {
-      answer.value as content -> immzc.dateOfBirth = content "SetBirthDate";
-    } "FirstAnswerForBirthDate";
+  qr.item as item where item.linkId = 'firstName' -> immz.firstName as field 
+  then ItemToValue(item, field) "firstName";
 
-    item.answer first as answer where item.linkId = 'age' then {
-      answer.value as content -> immzc.age = content "SetAge";
-    } "FirstAnswerForAge";
+  qr.item as item where item.linkId = 'familyName' -> immz.familyName as field 
+  then ItemToValue(item, field) "familyName";
 
-    item as caregiver where item.linkId = 'caregiversMultiple' -> immzc.caregiversMultiple as caretgt then {
-      caregiver.item as cgitem then {
-        cgitem.answer first as answer where cgitem.linkId = 'caregiversFullName' then {
-          answer.value as content -> caretgt.caregiversFullName = content "SetFullName";
-        } "FirstAnswerForFullName";
-    
-        cgitem.answer first as answer where cgitem.linkId = 'caregiversFirstName' then {
-          answer.value as content -> caretgt.caregiversFirstName = content "SetFirstName";
-        } "FirstAnswerForFirstName";
-    
-        cgitem.answer first as answer where cgitem.linkId = 'caregiversFamilyName' then {
-          answer.value as content -> caretgt.caregiversFamilyName = content "SetFamilyName";
-        } "FirstAnswerForFamilyName";
-      } "caregiverItems";
-    } "AnswerForCaregiverMultiple";
+  qr.item as item where item.linkId = 'sex' -> immz.sex as field 
+  then ItemToCode(item, field) "sex";
 
-    item.answer first as answer where item.linkId = 'contactPhoneNumber' then {
-       answer.value as content -> immzc.contactPhoneNumber = content  "SetPhone";
-     } "FirstAnswerForPhone";
+  qr.item as item where item.linkId = 'dateOfBirth' -> immz.dateOfBirth as field 
+  then ItemToValue(item, field) "dateOfBirth";
 
-    item.answer first as answer where item.linkId = 'address' then {
-      answer.value as content -> immzc.address = content  "SetAddress";
-    } "FirstAnswerForAddress";
+  qr.item as item where item.linkId = 'age' -> immz.age as field 
+  then ItemToValue(item, field) "age";
 
-  } "processItems";
+  qr.item as caregiver where caregiver.linkId = 'caregiversMultiple' -> immz.caregiversMultiple as caretgt then {
+
+    caregiver.item as item where item.linkId = 'caregiversFullName' -> caretgt.caregiversFullName as field
+    then ItemToValue(item, field) "caregiversFullName";
+
+    caregiver.item as item where item.linkId = 'caregiversFirstName' -> caretgt.caregiversFirstName as field
+    then ItemToValue(item, field) "caregiversFirstName";
+
+    caregiver.item as item where item.linkId = 'caregiversFamilyName' -> caretgt.caregiversFamilyName as field
+    then ItemToValue(item, field) "caregiversFamilyName";
+
+  } "caregiversMultiple";
+
+  qr.item as item where item.linkId = 'contactPhoneNumber' -> immz.contactPhoneNumber as field 
+  then ItemToValue(item, field) "contactPhoneNumber";
+
+  qr.item as item where item.linkId = 'address' -> immz.address as field 
+  then ItemToValue(item, field) "address";
 
 }

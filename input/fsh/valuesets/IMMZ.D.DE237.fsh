@@ -1,0 +1,9 @@
+ValueSet: IMMZ.D.DE237
+Title: "IMMZ.D.DE237 ValueSet for Type of hepatitis A dose"
+Description: "ValueSet for Type of hepatitis A dose for IMMZ.D.DE237"
+
+* ^status = #active
+* ^name = "IMMZ_D_DE237"
+
+* IMMZ.D#DE238 "Live attenuated hepatitis A vaccine"
+* IMMZ.D#DE239 "Inactivated hepatitis A vaccine"

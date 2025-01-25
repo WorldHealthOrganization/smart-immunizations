@@ -71,7 +71,7 @@ let createQuest = ( modelName, title ) => {
 let getType = ( type, isQuestionnaire ) => {
   switch ( type.trim().toLowerCase() ) {
     case "coding" : 
-      return (isQuestionnaire ? "choice" : "code")
+      return (isQuestionnaire ? "choice" : "Coding")
       break
     case "date" :
       return "date"

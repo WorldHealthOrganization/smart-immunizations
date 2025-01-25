@@ -17,6 +17,7 @@ Description:  "Data elements for the IMMZ.D2.Determine required vaccination(s) D
 * ^extension[=].valueCodeableConcept = http://terminology.hl7.org/CodeSystem/artifact-version-policy-codes#metadata
 * ^date = "2025-01-13"
 
-* immunizationRecommendationStatus 1..1 code "Immunization recommendation status" "The current status or recommendation for a specific immunization for an client"
+* patient 1..1 Reference "Patient" "The patient."
+* immunizationRecommendationStatus 1..1 Coding "Immunization recommendation status" "The current status or recommendation for a specific immunization for an client"
 * immunizationRecommendationStatus from IMMZ.D.DE156 (required)
   * ^code[+] = IMMZ.D#DE156

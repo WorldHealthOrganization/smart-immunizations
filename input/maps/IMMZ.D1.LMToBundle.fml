@@ -1,0 +1,136 @@
+map "http://smart.who.int/immunizations/StructureMap/IMMZ.D1.LMToBundle" = "IMMZ.D1.LMToBundle"
+// Immunization Administer Vaccine - Transform Logical Model to Immunization resources
+
+uses "http://smart.who.int/immunizations/StructureDefinition/IMMZD1" alias IMMZD1 as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+// uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as produced
+// uses "http://hl7.org/fhir/StructureDefinition/RelatedPerson" alias RelatedPerson as produced
+
+group IMMZD1ToBundle (source immz : IMMZD1, target bundle: Bundle) {
+
+  immz -> bundle.type = "transaction" "SetBundleType";
+
+  immz.patient as patient then {
+
+    immz.vaccineType as vaccineCode -> uuid() as iid,
+    bundle.entry as entry,
+    entry.fullUrl = append("urn:uuid:", iid),
+    entry.request as request,
+    request.method = "PUT",
+    request.url = append("Immunization/", iid),
+    entry.resource = create("Immunization") as imm then {
+
+      vaccineCode -> imm.vaccineCode = vaccineCode "SetVaccineCode";
+      immz.typeOfDose as typeOfDose -> imm.protocolApplied as pa then {
+        typeOfDose.code as code -> pa.series = code "SetSeriesToCode"; // if display is missing
+        typeOfDose.display as display -> pa.series = display "SetSeriesToDisplay";
+        immz.doseNumber as doseNumber -> pa.doseNumber = doseNumber "SetDoseNumber";
+      } "protocolApplied";
+
+    } "MakeImmunization";
+
+    immz.birthDose as content -> uuid() as oid,
+    bundle.entry as entry,
+    entry.fullUrl = append("urn:uuid:", oid),
+    entry.request as request,
+    request.method = "PUT",
+    request.url = append("Observation/", oid),
+    entry.resource = create("Observation") as obs, 
+    c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE263', 'Birth dose') as code
+    then MakeObservation( patient, code, content, obs ) "birthDose";
+
+    immz.completedThePrimaryVaccinationSeries as content -> uuid() as oid,
+    bundle.entry as entry,
+    entry.fullUrl = append("urn:uuid:", oid),
+    entry.request as request,
+    request.method = "PUT",
+    request.url = append("Observation/", oid),
+    entry.resource = create("Observation") as obs, 
+    c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE203', 'Completed the primary vaccination series') as code
+    then MakeObservation( patient, code, content, obs ) "completedThePrimaryVaccinationSeries";
+
+    immz.completedTheBoosterSeries as content -> uuid() as oid,
+    bundle.entry as entry,
+    entry.fullUrl = append("urn:uuid:", oid),
+    entry.request as request,
+    request.method = "PUT",
+    request.url = append("Observation/", oid),
+    entry.resource = create("Observation") as obs, 
+    c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE257', 'Completed the booster series') as code
+    then MakeObservation( patient, code, content, obs ) "completedTheBoosterSeries";
+
+    immz.dateWhenPrimaryVaccinationSeriesWasCompleted as content -> uuid() as oid,
+    bundle.entry as entry,
+    entry.fullUrl = append("urn:uuid:", oid),
+    entry.request as request,
+    request.method = "PUT",
+    request.url = append("Observation/", oid),
+    entry.resource = create("Observation") as obs, 
+    c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE242', 'Date when primary vaccination series was completed') as code
+    then MakeObservation( patient, code, content, obs ) "dateWhenPrimaryVaccinationSeriesWasCompleted";
+
+  } "GetPatient";
+
+
+  /*
+  immz -> bundle.type = "transaction" "SetBundleType";
+
+  immz -> uuid() as pid, 
+      bundle.entry as entry, 
+      entry.fullUrl = append("urn:uuid:", pid),
+      entry.request as request,
+      request.method = "PUT",
+      request.url = append("Patient/", pid),
+      entry.resource = create("Patient") as patient 
+  then {
+    
+    immz -> patient.id = pid "SetId";
+
+    immz.uniqueId as id -> patient.identifier as identifier then {
+      id -> identifier.value = id "SetIdentifierValue";
+    } "SetIdentifier";
+    
+    immz -> patient.name as pname then {
+      immz.name as fullName -> pname.text = fullName "SetFullName";
+      immz.firstName as firstName -> pname.given = firstName "SetFirstName";
+      immz.familyName as familyName -> pname.family = familyName "SetFamilyName";
+    }"SetName";
+
+    immz.sex as sex -> patient.gender = translate(sex, 'http://smart.who.int/immunizations/ConceptMap/IMMZ.C.ConceptMap', 'code') "SetGender";
+
+    immz.dateOfBirth as birthDate -> patient.birthDate = birthDate "SetBirthDate";
+
+    immz.contactPhoneNumber as phone -> patient.telecom as telecom then {
+      phone as content -> telecom.value = content, telecom.system = 'phone' "SetPhoneValue";
+    } "SetPhone";
+
+    immz.address as address -> patient.address as taddress then {
+      address as content -> taddress.text = content "SetAddressText";
+    } "SetAddress";
+
+    immz.caregiversMultiple as caregiver -> uuid() as rpid,
+        bundle.entry as entry, 
+        entry.fullUrl = append("urn:uuid:", rpid),
+        entry.request as request,
+        request.method = "PUT",
+        request.url = append("RelatedPerson/", rpid),
+        entry.resource = create("RelatedPerson") as person 
+    then {
+      caregiver -> person.id = rpid "SetId";
+      caregiver -> person.patient as patient, patient.reference = append("Patient/", pid ) "setPatient";
+      caregiver -> person.name as pname then {
+        caregiver.caregiversFullName as fullName -> pname.text = fullName "SetFullName";
+        caregiver.caregiversFirstName as firstName -> pname.given = firstName "SetFirstName";
+        caregiver.caregiversFamilyName as familyName -> pname.family = familyName "SetFamilyName";
+      } "SetCaregiverName";
+    } "CreateRelatedPerson";
+
+  } "CreatePatient";
+*/
+}
+
+group MakeObservation( source patient : Reference, source code : Coding, source value, target obs ) {
+  patient -> obs.subject = patient "SetSubject";
+  code -> obs.code = code "SetCode";
+  value -> obs.value = value "SetValue";
+}

@@ -17,6 +17,7 @@ Description:  "Data elements for the IMMZ.D18.Determine time for next visit Data
 * ^extension[=].valueCodeableConcept = http://terminology.hl7.org/CodeSystem/artifact-version-policy-codes#metadata
 * ^date = "2025-01-13"
 
+* patient 1..1 Reference "Patient" "The patient."
 * dateTimeOfFollowUpAppointment 0..1 dateTime "Date/time of follow-up appointment" "Date the client is to return for next vaccination"
   * ^code[+] = IMMZ.D#DE185
   * ^code[+] = $SCT#185353001 "Appointment date (finding)"

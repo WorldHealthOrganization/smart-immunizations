@@ -1,0 +1,18 @@
+Instance: Example.IMMZ.D1.QuestionnaireResponse.Flu
+InstanceOf: QuestionnaireResponse
+Usage: #example
+* status = #completed
+* authored = "2025-01-13T19:20:20.913Z"
+* questionnaire = Canonical(QIMMZD1)
+* subject = Reference(IMMZ.C.Patient.1)
+
+* insert QRItem( Coding, typeOfDose, IMMZ.D#DE260 "Dose 0" )
+* insert QRItem( Boolean, completedThePrimaryVaccinationSeries, false )
+* insert QRItem( Boolean, completedTheBoosterSeries, false )
+* insert QRItem( Coding, hivStatus, IMMZ.D#DE206 "HIV-negative" )
+* insert QRItem( Boolean, pretermBirth, false )
+* insert QRItem( Boolean, immunocompromised, false )
+* insert QRItem( Coding, vaccineType, IMMZ.Z#DE18 "Seasonal influenza vaccines" )
+* insert QRItem( DateTime, dateAndTimeOfVaccination, "2021-12-18")
+* insert QRItem( Date, contactDate, "2020-12-18" )
+* insert QRItem( Integer, doseNumber, 1 )

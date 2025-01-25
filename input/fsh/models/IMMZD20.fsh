@@ -17,5 +17,6 @@ Description:  "Data elements for the IMMZ.D20.Does client require a verifiable d
 * ^extension[=].valueCodeableConcept = http://terminology.hl7.org/CodeSystem/artifact-version-policy-codes#metadata
 * ^date = "2025-01-13"
 
+* patient 1..1 Reference "Patient" "The patient."
 * digitalCertificateNeeded 1..1 boolean "Digital certificate needed" "Indicates if a digital certificate is required"
   * ^code[+] = IMMZ.D#DE150

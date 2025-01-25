@@ -5,3 +5,4 @@ Description: "ValueSet for Vaccine manufacturer  for IMMZ.D.DE23"
 * ^status = #active
 * ^name = "IMMZ_D_DE23"
 
+* IMMZ.Ex#manufacturer "Example Manufacturer"

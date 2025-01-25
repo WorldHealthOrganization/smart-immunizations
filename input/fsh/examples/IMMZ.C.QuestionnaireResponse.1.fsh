@@ -4,42 +4,19 @@ Usage: #example
 * status = #completed
 * authored = "2024-12-13T19:20:20.913Z"
 * questionnaire = Canonical(QIMMZC4)
-* item[+]
-  * linkId = "uniqueIdentifier"
-  * answer.valueString = "12345-ZA"
-* item[+]
-  * linkId = "name"
-  * answer.valueString = "Thabo Mbulelo Mbeki"
-* item[+]
-  * linkId = "firstName"
-  * answer.valueString = "Thabo Mbulelo"
-* item[+]
-  * linkId = "familyName"
-  * answer.valueString = "Mbeki"
-* item[+]
-  * linkId = "sex"
-  * answer.valueCoding = IMMZ.C#DE6 "Male"
-* item[+]
-  * linkId = "dateOfBirth"
-  * answer.valueDate = "1942-06-18"
-* item[+]
-  * linkId = "age"
-  * answer.valueInteger = 82
+
+* insert QRItem( String, uniqueIdentifier, "12345-ZA" )
+* insert QRItem( String, name, "Thabo Mbulelo Mbeki" )
+* insert QRItem( String, firstName, "Thabo Mbulelo" )
+* insert QRItem( String, familyName, "Mbeki" )
+* insert QRItem( Coding, sex, IMMZ.C#DE6 "Male" )
+* insert QRItem( Date, dateOfBirth, "2020-06-18" )
+* insert QRItem( Integer, age, 4 )
 * item[+]
   * linkId = "caregiversMultiple"
-  * item[+]
-    * linkId = "caregiversFullName"
-    * answer.valueString = "Zanele Mbeki"
-  * item[+]
-    * linkId = "caregiversFirstName"
-    * answer.valueString = "Zanele"
-  * item[+]
-    * linkId = "caregiversFamilyName"
-    * answer.valueString = "Mbeki"
-* item[+]
-  * linkId = "contactPhoneNumber"
-  * answer.valueString = "+27 21 465 8000"
-* item[+]
-  * linkId = "address"
-  * answer.valueString = "123 Main Street, Cape Town, Western Cape, 8001, ZA"
+  * insert QRItem( String, caregiversFullName, "Zanele Mbeki" )
+  * insert QRItem( String, caregiversFirstName, "Zanele" )
+  * insert QRItem( String, caregiversFamilyName, "Mbeki" )
+* insert QRItem( String, contactPhoneNumber, "+27 21 465 8000" )
+* insert QRItem( String, address, [["123 Main Street, Cape Town, Western Cape, 8001, ZA"]] )
 

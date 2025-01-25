@@ -1,6 +1,14 @@
 @host = http://localhost:8080/matchboxv3/fhir
 
 ### Post the StructureMap with transform included
+PUT {{host}}/StructureMap/IMMZ.QRToLM HTTP/1.1
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/maps/IMMZ.QRToLM.fml
+
+
+### Post the StructureMap with transform included
 PUT {{host}}/StructureMap/IMMZ.C4.QRToLM HTTP/1.1
 Accept: application/fhir+json;fhirVersion=4.0
 Content-Type: text/fhir-mapping
@@ -36,3 +44,41 @@ Accept: application/fhir+json;fhirVersion=4.0
 Content-Type: application/fhir+json;fhirVersion=4.0
 
 < ../output/QuestionnaireResponse-Example.IMMZ.C.QuestionnaireResponse.1.json
+
+
+### Post the StructureMap with transform included
+PUT {{host}}/StructureMap/IMMZ.D1.QRToLM HTTP/1.1
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/maps/IMMZ.D1.QRToLM.fml
+
+### Post the StructureMap with transform included
+PUT {{host}}/StructureMap/IMMZ.D1.LMToBundle HTTP/1.1
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/maps/IMMZ.D1.LMToBundle.fml
+
+### Post the StructureMap with transform included
+PUT {{host}}/StructureMap/IMMZ.D1.QRToBundle HTTP/1.1
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/maps/IMMZ.D1.QRToBundle.fml
+
+### Test Transform of QR to LM
+### after running _getonce
+POST {{host}}/StructureMap/$transform?source=http://smart.who.int/immunizations/StructureMap/IMMZ.D1.QRToLM
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: application/fhir+json;fhirVersion=4.0
+
+< ../fsh-generated/resources/QuestionnaireResponse-Example.IMMZ.D1.QuestionnaireResponse.YellowFever.json
+
+### Test Transform of QR to LM
+### after running _genonce
+POST {{host}}/StructureMap/$transform?source=http://smart.who.int/immunizations/StructureMap/IMMZ.D1.QRToBundle
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: application/fhir+json;fhirVersion=4.0
+
+< ../fsh-generated/resources/QuestionnaireResponse-Example.IMMZ.D1.QuestionnaireResponse.YellowFever.json

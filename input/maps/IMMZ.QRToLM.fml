@@ -1,0 +1,28 @@
+map "http://smart.who.int/immunizations/StructureMap/IMMZ.QRToLM" = "IMMZ.QRToLM"
+// Immunization - Transform QuestionnaireResponse to Logical Model Helper groups
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QResp as source
+
+group ItemToValue( source item, target field ) {
+  item.answer first as answer then {
+    answer.value as content -> field.value = content "SetValue";
+  } "FirstAnswer";
+}
+
+group ItemToCode( source item, target field ) {
+  item.answer first as answer then {
+    answer.value as coding then {
+      coding.code as content -> field.value = content "SetCode";
+    } "Coding";
+  } "FirstAnswer";
+}
+
+group ItemToCoding( source item, target field ) {
+  item.answer first as answer then {
+    answer.value as coding then {
+      coding.code as code -> field.code = code "SetCode";
+      coding.system as system -> field.system = system "SetSystem";
+      coding.display as display -> field.display = display "SetDisplay";
+    } "Coding";
+  } "FirstAnswer";
+}

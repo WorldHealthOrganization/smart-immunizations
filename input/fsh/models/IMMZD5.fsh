@@ -17,6 +17,7 @@ Description:  "Data elements for the IMMZ.D5.Determine vaccine(s) to be administ
 * ^extension[=].valueCodeableConcept = http://terminology.hl7.org/CodeSystem/artifact-version-policy-codes#metadata
 * ^date = "2025-01-13"
 
-* potentialContraindications 1..1 code "Potential contraindications" "Specific situations or medical conditions for which it is advised or recommended to avoid or delay administering a particular vaccine"
+* patient 1..1 Reference "Patient" "The patient."
+* potentialContraindications 1..* Coding "Potential contraindications" "Specific situations or medical conditions for which it is advised or recommended to avoid or delay administering a particular vaccine"
 * potentialContraindications from IMMZ.D.DE161 (required)
   * ^code[+] = IMMZ.D#DE161
