@@ -20,4 +20,11 @@ Description:  "Observation Profile for the Immunizations SMART Guidelines.  From
 
 * code from IMMZ.D.Observation (required)
 
+* partOf ^slicing.discriminator[+].type = #type
+* partOf ^slicing.discriminator[=].path = "$this"
+* partOf ^slicing.rules = #open
+* partOf contains immzPartOf 0..*
+
+* partOf[immzPartOf] only Reference(IMMZImmunization)
+
 * value[x] only boolean or Quantity or CodeableConcept or integer or dateTime

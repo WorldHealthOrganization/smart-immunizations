@@ -81,7 +81,7 @@ POST {{host}}/StructureMap/$transform?source=http://smart.who.int/immunizations/
 Accept: application/fhir+json;fhirVersion=4.0
 Content-Type: application/fhir+json;fhirVersion=4.0
 
-< ../fsh-generated/resources/QuestionnaireResponse-Example.IMMZ.D1.QuestionnaireResponse.DTP.json
+< ../fsh-generated/resources/QuestionnaireResponse-Example.IMMZ.D1.QuestionnaireResponse.BCG.json
 
 
 ### Post the StructureMap with transform included
@@ -119,4 +119,42 @@ POST {{host}}/StructureMap/$transform?source=http://smart.who.int/immunizations/
 Accept: application/fhir+json;fhirVersion=4.0
 Content-Type: application/fhir+json;fhirVersion=4.0
 
-< ../fsh-generated/resources/QuestionnaireResponse-Example.IMMZ.D13.QuestionnaireResponse.Measles.json
+< ../fsh-generated/resources/QuestionnaireResponse-Example.IMMZ.D13.QuestionnaireResponse.BCG.json
+
+
+### Post the StructureMap with transform included
+PUT {{host}}/StructureMap/IMMZ.D5.QRToLM HTTP/1.1
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/maps/IMMZ.D5.QRToLM.fml
+
+### Post the StructureMap with transform included
+PUT {{host}}/StructureMap/IMMZ.D5.LMToBundle HTTP/1.1
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/maps/IMMZ.D5.LMToBundle.fml
+
+### Post the StructureMap with transform included
+PUT {{host}}/StructureMap/IMMZ.D5.QRToBundle HTTP/1.1
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ../input/maps/IMMZ.D5.QRToBundle.fml
+
+### Test Transform of QR to LM
+### after running _getonce
+POST {{host}}/StructureMap/$transform?source=http://smart.who.int/immunizations/StructureMap/IMMZ.D5.QRToLM
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: application/fhir+json;fhirVersion=4.0
+
+< ../fsh-generated/resources/QuestionnaireResponse-Example.IMMZ.D5.QuestionnaireResponse.1.json
+
+### Test Transform of QR to LM
+### after running _genonce
+POST {{host}}/StructureMap/$transform?source=http://smart.who.int/immunizations/StructureMap/IMMZ.D5.QRToBundle
+Accept: application/fhir+json;fhirVersion=4.0
+Content-Type: application/fhir+json;fhirVersion=4.0
+
+< ../fsh-generated/resources/QuestionnaireResponse-Example.IMMZ.D5.QuestionnaireResponse.1.json

@@ -193,7 +193,7 @@ group D13Questions(
 
 }
 
-group MakeObservation( 
+group MakeImmzObservation( 
   source patient : Reference, 
   source immid,
   source code : Coding, 
@@ -217,13 +217,31 @@ group MakeObservation(
     } "CreateObservation";
 }
 
+group MakeObservation( 
+  source patient : Reference, 
+  source code : Coding, 
+  source cat : Coding, 
+  source value, 
+  target bundle : Bundle ) {
+    value -> uuid() as oid,
+      bundle.entry as entry,
+      entry.fullUrl = append("urn:uuid:", oid),
+      entry.request as request,
+      request.method = "PUT",
+      request.url = append("Observation/", oid),
+      entry.resource = create("Observation") as obs
+    then {
+      value -> obs.id = oid "SetId";
+      patient -> obs.subject = patient "SetSubject";
+      code -> obs.code = code "SetCode";
+      value -> obs.value = value "SetValue";
+      cat -> obs.category = cat "SetCategory";
+    } "CreateObservation";
+}
+
 group TypeOfVaccineDose ( source typeof : Coding, target ext : Extension ) {
   typeof -> ext.url = 'http://smart.who.int/immunizations/StructureDefinition/IMMZTypeOfDose' "SetURL";
   typeof -> ext.value = typeof "SetValue";
-}
-
-group VaccineBrand( source value : Coding, target ext : Extension ) {
-
 }
 
 group MakeImmunization(
@@ -310,31 +328,31 @@ group D1andD13Observations(
 
     immz.birthDose as content ->
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE263', 'Birth dose') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "birthDose";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "birthDose";
 
     immz.completedThePrimaryVaccinationSeries as content ->
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE203', 'Completed the primary vaccination series') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "completedThePrimaryVaccinationSeries";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "completedThePrimaryVaccinationSeries";
 
     immz.completedTheBoosterSeries as content ->
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE257', 'Completed the booster series') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "completedTheBoosterSeries";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "completedTheBoosterSeries";
 
     immz.dateWhenPrimaryVaccinationSeriesWasCompleted as content ->
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE242', 'Date when primary vaccination series was completed') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "dateWhenPrimaryVaccinationSeriesWasCompleted";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "dateWhenPrimaryVaccinationSeriesWasCompleted";
 
     immz.hivStatus as content ->
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE204', 'HIV status') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "hivStatus";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "hivStatus";
 
     immz.contactDate as content -> 
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE201', 'Contact date') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "contactDate";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "contactDate";
 
     immz.ancContactNumber as content -> 
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE202', 'ANC contact number') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "ancContactNumber";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "ancContactNumber";
 
   } "DefineCategory";
 
@@ -349,62 +367,62 @@ group D1Observations(
   immz -> c( 'http://terminology.hl7.org/CodeSystem/observation-category', 'survey', 'Survey' ) as survey then {
     immz.pretermBirth as content ->
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE208', 'Preterm birth') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "pretermBirth";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "pretermBirth";
 
     immz.immunocompromised as content ->
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE209', 'Immunocompromised') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "immunocompromised";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "immunocompromised";
 
     immz.currentlyOnArt as content ->
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE210', 'Currently on ART') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "currentlyOnArt";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "currentlyOnArt";
 
     immz.typeOfTbInfectionTestPerformed as content ->
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE243', 'Type of TB infection test performed') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "typeOfTbInfectionTestPerformed";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "typeOfTbInfectionTestPerformed";
 
     immz.tbInfectionTestResult as content ->
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE246', 'TB infection test result') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "tbInfectionTestResult";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "tbInfectionTestResult";
 
     immz.immunologicallyStable as content ->
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE249', 'Immunologically stable') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "immunologicallyStable";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "immunologicallyStable";
     
     immz.clinicallyWell as content ->
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE250', 'Clinically well') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "clinicallyWell";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "clinicallyWell";
 
     immz.birthWeightInGrams as value -> create("Quantity") as content, content.system = 'http://unitsofmeasure.org', content.code = 'g', content.unit = 'g', content.value = value,
       c( 'http://loinc.org', '8339-4', 'Birth weight Measured') as bwloinc,
       c( 'http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE211', 'Birth weight in grams') as bwdak,
       create("CodeableConcept") as code, code.coding = bwloinc, code.coding = bwdak,
       c( 'http://terminology.hl7.org/CodeSystem/observation-category', 'vital-signs', 'Vital Signs' ) as vital
-    then MakeObservation( patient, immid, code, vital, content, bundle ) "birthWeightInGrams";
+    then MakeImmzObservation( patient, immid, code, vital, content, bundle ) "birthWeightInGrams";
 
     immz.artStartDate as content -> 
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE215', 'ART start date') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "artStartDate";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "artStartDate";
 
     immz.highRiskOfPneumococcalInfection as content -> 
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE251', 'High risk of pneumococcal infection') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "highRiskOfPneumococcalInfection";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "highRiskOfPneumococcalInfection";
 
     immz.ageInMonthsWhenClientReceivedFirstMeningococcalDose as value -> create("Quantity") as content, content.unit = 'mo', content.value = value, 
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE236', 'Age in months when client received first meningococcal dose') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "ageInMonthsWhenClientReceivedFirstMeningococcalDose";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "ageInMonthsWhenClientReceivedFirstMeningococcalDose";
 
     immz.vnaLevel as value -> create("Quantity") as content, content.system = 'http://unitsofmeasure.org', content.code = '[IU]/mL', content.unit = '[IU]/mL', content.value = value, 
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE240', 'VNA level') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "vnaLevel";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "vnaLevel";
 
     immz.riskOfOccupationalExposureToRabiesVirus as content -> 
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE253', 'Risk of occupational exposure to rabies virus') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "riskOfOccupationalExposureToRabiesVirus";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "riskOfOccupationalExposureToRabiesVirus";
 
     immz.dengueSerostatus as content -> 
       c('http://smart.who.int/immunizations/CodeSystem/IMMZ.D', 'DE241', 'Dengue serostatus') as code
-    then MakeObservation( patient, immid, code, survey, content, bundle ) "dengueSerostatus";
+    then MakeImmzObservation( patient, immid, code, survey, content, bundle ) "dengueSerostatus";
 
   } "DefineCategory";
 }
