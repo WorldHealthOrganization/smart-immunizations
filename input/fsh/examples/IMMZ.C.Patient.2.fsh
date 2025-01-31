@@ -1,15 +1,14 @@
-Instance:   IMMZ.C.Patient.1
+Instance:   IMMZ.C.Patient.2
 InstanceOf: IMMZPatient
 Usage:      #example
 
 * identifier.value = "12345-ZA"
 * name[immzName]
-  * text = "Thabo Mbulelo Mbeki"
+  * text = "Zanele Mbeki"
   * family = "Mbeki"
-  * given[+] = "Thabo"
-  * given[+] = "Mbulelo"
+  * given[+] = "Zanele"
 * gender = #male
-* birthDate = "2020-06-18"
+* birthDate = "1998-09-22"
 * address.text = "123 Main Street, Cape Town, Western Cape, 8001, ZA"
 * telecom[immzPhone]
   * system = #phone

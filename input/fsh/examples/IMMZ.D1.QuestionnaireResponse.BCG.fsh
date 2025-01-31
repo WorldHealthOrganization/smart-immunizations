@@ -7,8 +7,9 @@ Usage: #example
 * subject = Reference(IMMZ.C.Patient.1)
 
 * insert QRItem( Coding, typeOfDose, IMMZ.D#DE259 "Primary series" )
-* insert QRItem( Boolean, completedThePrimaryVaccinationSeries, false )
+* insert QRItem( Boolean, completedThePrimaryVaccinationSeries, true )
 * insert QRItem( Boolean, completedTheBoosterSeries, false )
+* insert QRItem( Date, dateWhenPrimaryVaccinationSeriesWasCompleted, "2020-07-01" )
 * insert QRItem( Coding, hivStatus, IMMZ.D#DE206 "HIV-negative" )
 * insert QRItem( Boolean, pretermBirth, false )
 * insert QRItem( Boolean, immunocompromised, false )

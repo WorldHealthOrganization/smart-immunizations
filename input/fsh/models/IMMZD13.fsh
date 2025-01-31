@@ -109,7 +109,7 @@ Description:  "Data elements for the IMMZ.D13.Update client record Data Dictiona
   * obeys IMMZ-D-statusNotDone-1
   * ^code[+] = IMMZ.D#DE5
   * ^code[+] = $ICD11#QC04 "Immunization not carried out"
-* vaccineBrand 1..1 code "Vaccine brand" "The brand or trade name used to refer to the vaccine received"
+* vaccineBrand 1..1 Coding "Vaccine brand" "The brand or trade name used to refer to the vaccine received"
 * vaccineBrand from IMMZ.D.DE18 (example)
   * ^code[+] = IMMZ.D#DE18
 * liveVaccine 0..1 boolean "Live vaccine" "Uses a living but weakened version of the virus or one that is very similar"
@@ -139,7 +139,7 @@ Description:  "Data elements for the IMMZ.D13.Update client record Data Dictiona
   * ^code[+] = $LNC#82745-1 "Doses of vaccine given per symptom onset"
 * healthWorkerIdentifier 0..1 string "Health worker identifier" "The person, organization or role of the entity that performed the act of giving the vaccine to the client. The implementing system can choose to populate this field using data from a health worker registry or health-care facility registry"
   * ^code[+] = IMMZ.D#DE35
-* totalDosesInSeries 0..1 decimal "Total doses in series" "The recommended number of doses for immunity according to the national immunization schedule (which may be based on product, age, etc.)"
+* totalDosesInSeries 0..1 integer "Total doses in series" "The recommended number of doses for immunity according to the national immunization schedule (which may be based on product, age, etc.)"
   * obeys IMMZ-D-reqGTZero-1
   * ^code[+] = IMMZ.D#DE125
 * diseaseTargeted 0..* Coding "Disease targeted" "Vaccine-preventable disease being targeted"
