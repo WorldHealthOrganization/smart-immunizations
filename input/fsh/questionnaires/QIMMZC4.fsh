@@ -8,7 +8,7 @@ Usage: #definition
 * status = #draft
 * subjectType = #Patient
 * language = #en
-//* contained[+] = IMMZ.C.DE5
+* contained[+] = IMMZ.C.DE5
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
 * extension[=].valueCanonical = "http://smart.who.int/immunizations/StructureMap/IMMZ.C4.QRToPatient"
 

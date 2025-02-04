@@ -8,7 +8,6 @@ Usage: #definition
 * status = #draft
 * subjectType = #Patient
 * language = #en
-/*
 * contained[+] = IMMZ.D.DE258
 * contained[+] = IMMZ.D.DE204
 * contained[+] = IMMZ.D.DE243
@@ -38,7 +37,6 @@ Usage: #definition
 * contained[+] = IMMZ.Z.DE5
 * contained[+] = IMMZ.Z.DE15
 * contained[+] = IMMZ.Z.DE25
-*/
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
 * extension[=].valueCanonical = "http://smart.who.int/immunizations/StructureMap/"
 
