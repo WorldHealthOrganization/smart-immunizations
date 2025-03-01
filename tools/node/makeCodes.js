@@ -150,6 +150,9 @@ fs.createReadStream(csvFile)
     if ( currentVS ) {
       if ( type == 'Codes' ) {
         valuesets[currentVS] += "* "+codesystem+"#"+dataelement+" \""+label+"\"\n"
+        valuesets[currentVS] += "* ^expansion.contains[+].system = Canonical("+codesystem+")\n"
+        valuesets[currentVS] += "* ^expansion.contains[=].code = #"+dataelement+"\n"
+        valuesets[currentVS] += "* ^expansion.contains[=].display = \""+label+"\"\n"
       } else {
         currentVS = null
       }

@@ -38,6 +38,9 @@ define "Guidance":
     else ''
   end
 
+define "Has Guidance":
+  "Guidance" is not null and "Guidance" != ''
+
 /*
 @output: Client is not due for first dose of measles-containing vaccine (MCV1)
 @pseudocode: "Immunization recommendation status" = "Not due"

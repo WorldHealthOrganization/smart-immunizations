@@ -17,3 +17,5 @@ valueset "MCV Vaccine": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE9'
 
 valueset "BCG Vaccine": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE1'
 valueset "Cholera Vaccine": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE2'
+
+code "Completed the primary vaccination series": 'DE203' from "IMMZD" display 'Completed the primary vaccination series'

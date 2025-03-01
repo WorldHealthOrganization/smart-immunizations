@@ -52,6 +52,19 @@ define "Current Patient Age In Months":
 define "Current Patient Age In Weeks":
   AgeInWeeksAt(Today())
 
+/*
+@input: Client's age is less than 6 months
+@pseudocode: Today's date − "Date of birth" < 6 months
+*/
+define "Client's age is less than 6 months":
+  "Current Patient Age In Months" < 6
+
+/*
+@input: Client's age is between 6 months and 9 months
+@pseudocode: 6 months ≤ Today's date − "Date of birth" < 9 months
+*/
+define "Client's age is between 6 months and 9 months":
+  "Current Patient Age In Months" >= 6 and "Current Patient Age In Months" < 9
 
 /*
 @input: Client's age is less than 9 months
@@ -66,6 +79,20 @@ define "Client's age is less than 9 months":
 */
 define "Client's age is more than or equal to 9 months":
   "Current Patient Age In Months" >= 9
+
+/*
+@input: Client's age is less than 12 months
+@pseudocode: Today's date − "Date of birth" < 12 months
+*/
+define "Client's age is less than 12 months":
+  "Current Patient Age In Months" < 12
+
+/*
+@input: Client's age is more than or equal to 12 months
+@pseudocode: Today's date − "Date of birth" ≥ 12 months
+*/
+define "Client's age is more than or equal to 12 months":
+  "Current Patient Age In Months" >= 12
 
 /*
 @input: Client's age is less than 15 months
@@ -95,3 +122,18 @@ define "Live vaccine was administered in the last 4 weeks":
 define "No live vaccine was administered in the last 4 weeks":
   not("Live vaccine was administered in the last 4 weeks")
 
+/*
+@input: Live vaccine was administered in the past 4 weeks
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) 
+< 4 weeks
+*/
+define "Live vaccine was administered in the past 4 weeks":
+  "Live vaccine was administered in the last 4 weeks"
+
+/*
+@input: No live vaccine was administered in the past 4 weeks
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) 
+≥ 4 weeks
+*/
+define "No live vaccine was administered in the past 4 weeks":
+  "No live vaccine was administered in the last 4 weeks"

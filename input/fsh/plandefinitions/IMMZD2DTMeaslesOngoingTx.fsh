@@ -1,7 +1,7 @@
 Instance: IMMZD2DTMeaslesOngoingTx
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
 Title: "IMMZ.D2.DT.Measles Ongoing Transmission"
-Description: "If the child or patient has not been given MCV1 (at 9 months) and MCV2 (between 15-18 months) vaccination"
+Description: "Countries with ongoing transmission in which the risk of measles mortality remains high (countries that provide first dose of measles-containing vaccine (MCV) at 9 months and second dose of MCV at 15 months)"
 Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTMeaslesOngoingTx, 0.1.0 )
@@ -24,4 +24,4 @@ to either vaccine.
 """]], Client is due for MCV2, IMMZD2DTMeaslesMR)
 * insert PlanDefCommunicationRequestAction([[Send Guidance for the patient regarding MCV primary series.]], [["""
     Send Guidance for the patient regarding MCV primary series.
-  """]], Guidance, Guidance)
+  """]], Has Guidance, Guidance)

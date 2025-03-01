@@ -155,7 +155,8 @@ logic.write(`
 @test: Test expected results based on example patients
 */
 define "Test Validation":
-  case`)
+  case
+`)
 logic.write(tests.filter((test) => test.length > 0).join("\n")+"\n")
 logic.write("    else 'No test case set'\n  end\n")
 

@@ -78,10 +78,11 @@ RuleSet: PlanDefCommunicationRequestAction( title, description, condition, text 
       * language = #text/cql-expression
       * expression = "'active'"
   * dynamicValue[+]
-    * path = "payload.contentAttachment.title"
+    * path = "payload.contentString"
     * expression
       * language = #text/cql-identifier
       * expression = "{text}"
+/*
   * dynamicValue[+]
     * path = "payload.contentAttachment.language"
     * expression
@@ -92,6 +93,7 @@ RuleSet: PlanDefCommunicationRequestAction( title, description, condition, text 
     * expression
       * language = #text/cql-expression
       * expression = "'text/plain'"
+*/
   * dynamicValue[+]
     * path = "category.coding"
     * expression
