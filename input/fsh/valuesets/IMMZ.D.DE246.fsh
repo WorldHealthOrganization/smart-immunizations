@@ -5,5 +5,5 @@ Description: "ValueSet for TB infection test result for IMMZ.D.DE246"
 * ^status = #active
 * ^name = "IMMZ_D_DE246"
 
-* IMMZ.D#DE247 "Positive"
-* IMMZ.D#DE248 "Negative"
+* insert AddWithExpandCanonical( IMMZ.D, #DE247, Positive )
+* insert AddWithExpandCanonical( IMMZ.D, #DE248, Negative )

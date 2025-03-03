@@ -5,4 +5,4 @@ Description: "ValueSet for Vaccine market authorization holder for IMMZ.D.DE25"
 * ^status = #active
 * ^name = "IMMZ_D_DE25"
 
-* IMMZ.Ex#marketauth "Example Market Authorization Holder"
+* insert AddWithExpandCanonical( IMMZ.Ex, #marketauth, Example Market Authorization Holder )

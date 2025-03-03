@@ -5,5 +5,5 @@ Description: "ValueSet for Type of hepatitis B dose for IMMZ.D.DE254"
 * ^status = #active
 * ^name = "IMMZ_D_DE254"
 
-* IMMZ.D#DE255 "Hepatitis B monovalent vaccine"
-* IMMZ.D#DE256 "Hepatitis B combination vaccine"
+* insert AddWithExpandCanonical( IMMZ.D, #DE255, Hepatitis B monovalent vaccine )
+* insert AddWithExpandCanonical( IMMZ.D, #DE256, Hepatitis B combination vaccine )

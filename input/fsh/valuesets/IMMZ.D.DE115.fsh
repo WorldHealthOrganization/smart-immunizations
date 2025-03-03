@@ -5,9 +5,9 @@ Description: "ValueSet for Reaction outcome for IMMZ.D.DE115"
 * ^status = #active
 * ^name = "IMMZ_D_DE115"
 
-* IMMZ.D#DE116 "Died"
-* IMMZ.D#DE117 "Recovered"
-* IMMZ.D#DE118 "Recovered with sequelae"
-* IMMZ.D#DE119 "Recovering"
-* IMMZ.D#DE120 "Not recovered"
-* IMMZ.D#DE121 "Unknown"
+* insert AddWithExpandCanonical( IMMZ.D, #DE116, Died )
+* insert AddWithExpandCanonical( IMMZ.D, #DE117, Recovered )
+* insert AddWithExpandCanonical( IMMZ.D, #DE118, Recovered with sequelae )
+* insert AddWithExpandCanonical( IMMZ.D, #DE119, Recovering )
+* insert AddWithExpandCanonical( IMMZ.D, #DE120, Not recovered )
+* insert AddWithExpandCanonical( IMMZ.D, #DE121, Unknown )

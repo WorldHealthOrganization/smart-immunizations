@@ -5,5 +5,5 @@ Description: "ValueSet for Type of poliovirus dose for IMMZ.D.DE212"
 * ^status = #active
 * ^name = "IMMZ_D_DE212"
 
-* IMMZ.D#DE213 "IPV"
-* IMMZ.D#DE214 "bOPV"
+* insert AddWithExpandCanonical( IMMZ.D, #DE213, IPV )
+* insert AddWithExpandCanonical( IMMZ.D, #DE214, bOPV )

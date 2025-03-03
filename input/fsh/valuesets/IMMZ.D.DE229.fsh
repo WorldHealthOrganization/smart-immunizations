@@ -5,5 +5,5 @@ Description: "ValueSet for Type of cholera dose for IMMZ.D.DE229"
 * ^status = #active
 * ^name = "IMMZ_D_DE229"
 
-* IMMZ.D#DE230 "WC vaccine"
-* IMMZ.D#DE231 "WC-rBS vaccine"
+* insert AddWithExpandCanonical( IMMZ.D, #DE230, WC vaccine )
+* insert AddWithExpandCanonical( IMMZ.D, #DE231, WC-rBS vaccine )

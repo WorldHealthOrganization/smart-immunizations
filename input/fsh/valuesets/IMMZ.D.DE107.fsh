@@ -5,9 +5,9 @@ Description: "ValueSet for Type of reaction for IMMZ.D.DE107"
 * ^status = #active
 * ^name = "IMMZ_D_DE107"
 
-* IMMZ.D#DE174 "Non serious"
-* IMMZ.D#DE108 "Death"
-* IMMZ.D#DE109 "Life threatening"
-* IMMZ.D#DE110 "Disability"
-* IMMZ.D#DE111 "Hospitalization"
-* IMMZ.D#DE112 "Congenital anomaly"
+* insert AddWithExpandCanonical( IMMZ.D, #DE174, Non serious )
+* insert AddWithExpandCanonical( IMMZ.D, #DE108, Death )
+* insert AddWithExpandCanonical( IMMZ.D, #DE109, Life threatening )
+* insert AddWithExpandCanonical( IMMZ.D, #DE110, Disability )
+* insert AddWithExpandCanonical( IMMZ.D, #DE111, Hospitalization )
+* insert AddWithExpandCanonical( IMMZ.D, #DE112, Congenital anomaly )

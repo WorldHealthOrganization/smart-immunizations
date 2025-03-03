@@ -5,12 +5,12 @@ Description: "ValueSet for Reaction manifestation for IMMZ.D.DE95"
 * ^status = #active
 * ^name = "IMMZ_D_DE95"
 
-* IMMZ.D#DE96 "Severe local reaction"
-* IMMZ.D#DE98 "Seizures"
-* IMMZ.D#DE99 "Abscess"
-* IMMZ.D#DE100 "Sepsis"
-* IMMZ.D#DE101 "Encephalopathy"
-* IMMZ.D#DE102 "Toxic shock syndrome"
-* IMMZ.D#DE103 "Anaphylaxis"
-* IMMZ.D#DE104 "Fever"
-* IMMZ.D#DE105 "Other"
+* insert AddWithExpandCanonical( IMMZ.D, #DE96, Severe local reaction )
+* insert AddWithExpandCanonical( IMMZ.D, #DE98, Seizures )
+* insert AddWithExpandCanonical( IMMZ.D, #DE99, Abscess )
+* insert AddWithExpandCanonical( IMMZ.D, #DE100, Sepsis )
+* insert AddWithExpandCanonical( IMMZ.D, #DE101, Encephalopathy )
+* insert AddWithExpandCanonical( IMMZ.D, #DE102, Toxic shock syndrome )
+* insert AddWithExpandCanonical( IMMZ.D, #DE103, Anaphylaxis )
+* insert AddWithExpandCanonical( IMMZ.D, #DE104, Fever )
+* insert AddWithExpandCanonical( IMMZ.D, #DE105, Other )

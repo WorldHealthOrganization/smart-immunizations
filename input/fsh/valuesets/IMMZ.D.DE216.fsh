@@ -5,6 +5,6 @@ Description: "ValueSet for Type of JE dose for IMMZ.D.DE216"
 * ^status = #active
 * ^name = "IMMZ_D_DE216"
 
-* IMMZ.D#DE217 "Inactivated Vero cell-derived vaccine"
-* IMMZ.D#DE218 "Live attenuated vaccine"
-* IMMZ.D#DE219 "Live recombinant vaccine"
+* insert AddWithExpandCanonical( IMMZ.D, #DE217, Inactivated Vero cell-derived vaccine )
+* insert AddWithExpandCanonical( IMMZ.D, #DE218, Live attenuated vaccine )
+* insert AddWithExpandCanonical( IMMZ.D, #DE219, Live recombinant vaccine )

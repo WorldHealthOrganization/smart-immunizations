@@ -5,5 +5,5 @@ Description: "ValueSet for Type of hepatitis A dose for IMMZ.D.DE237"
 * ^status = #active
 * ^name = "IMMZ_D_DE237"
 
-* IMMZ.D#DE238 "Live attenuated hepatitis A vaccine"
-* IMMZ.D#DE239 "Inactivated hepatitis A vaccine"
+* insert AddWithExpandCanonical( IMMZ.D, #DE238, Live attenuated hepatitis A vaccine )
+* insert AddWithExpandCanonical( IMMZ.D, #DE239, Inactivated hepatitis A vaccine )

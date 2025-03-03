@@ -61,10 +61,7 @@ fs.createReadStream(csvFile)
         console.error("Codes for "+deid+" already exists!!")
       }
       valuesets[deid] = "ValueSet: "+deid+"\nTitle: \""+deid+" ValueSet for "+label+"\"\nDescription: \"ValueSet for "+label+" for "+deid+"\"\n\n* ^status = #active\n* ^name = \""+csName+"_"+dataelement+"\"\n\n"
-      valuesets[deid] += "* "+codesystem+"#"+dataelement+" \""+label+"\"\n"
-      valuesets[deid] += "* ^expansion.contains[+].system = Canonical("+codesystem+")\n"
-      valuesets[deid] += "* ^expansion.contains[=].code = #"+dataelement+"\n"
-      valuesets[deid] += "* ^expansion.contains[=].display = \""+label+"\"\n"
+      valuesets[deid] += "* insert AddWithExpandCanonical("+codesystem+", #"+dataelement+", [["+label+"]])\n"
       codeused[deid] = {}
 
     }
@@ -76,11 +73,7 @@ fs.createReadStream(csvFile)
     if ( icd11 && !codeused[deid][icd11] && !icd11.startsWith('Not classifiable in ICD-11') ) {
       let relationship = row['ICD-11 relationship']
       //console.log("HERE",icd11,relationship, relationships[relationship])
-      valuesets[deid] += "* $ICD11#"+icd11+" \""+row['ICD-11\ncomments/considerations'].replace(/Code title:\s*/, "").replace(/([^\n]+)\n.+/s, "$1").trim()+"\"\n"
-      valuesets[deid] += "* ^expansion.contains[+].system = $ICD11\n"
-      valuesets[deid] += "* ^expansion.contains[=].code = #"+icd11+"\n"
-      valuesets[deid] += "* ^expansion.contains[=].display = \""+row['ICD-11\ncomments/considerations'].replace(/Code title:\s*/, "").replace(/([^\n]+)\n.+/s, "$1").trim()+"\"\n"
-
+      valuesets[deid] += "* insert AddWithExpand($ICD11, #"+icd11+", [["+row['ICD-11\ncomments/considerations'].replace(/Code title:\s*/, "").replace(/([^\n]+)\n.+/s, "$1").trim()+"]])\n"
       codeused[deid][icd11] = true
 
       conceptmaps[codesystem].toicd11 += "  * insert ElementMap("+dataelement+", "+icd11+", "+relationships[relationship][0]+")\n"
@@ -88,10 +81,7 @@ fs.createReadStream(csvFile)
     }
     if ( loinc && !codeused[deid][loinc] &&!loinc.startsWith('Not classifiable in LOINC') ) {
       let relationship = row['LOINC relationship']
-      valuesets[deid] += "* $LNC#"+loinc+" \""+row['LOINC version 2.68\ncomments/considerations'].replace(/Code title:\s*/, "").replace(/([^\n]+)\n.+/s, "$1").trim()+"\"\n"
-      valuesets[deid] += "* ^expansion.contains[+].system = $LNC\n"
-      valuesets[deid] += "* ^expansion.contains[=].code = #"+loinc+"\n"
-      valuesets[deid] += "* ^expansion.contains[=].display = \""+row['LOINC version 2.68\ncomments/considerations'].replace(/Code title:\s*/, "").replace(/([^\n]+)\n.+/s, "$1").trim()+"\"\n"
+      valuesets[deid] += "* insert AddWithExpand($LNC, #"+loinc+", [["+row['LOINC version 2.68\ncomments/considerations'].replace(/Code title:\s*/, "").replace(/([^\n]+)\n.+/s, "$1").trim()+"]])\n"
       codeused[deid][loinc] = true
 
       if ( relationship != 'Not related to' ) {
@@ -101,11 +91,7 @@ fs.createReadStream(csvFile)
     }
     if ( sct && !codeused[deid][sct] && !sct.startsWith('Not classifiable in SNOMED GPS') ) {
       let relationship = row['SNOMED GPS relationship']
-      valuesets[deid] += "* $SCT#"+sct+" \""+row['SNOMED GPS code\ncomments/considerations'].replace(/Code title:\s*/, "").replace(/([^\n]+)\n.+/s, "$1").trim()+"\"\n"
-      valuesets[deid] += "* ^expansion.contains[+].system = $SCT\n"
-      valuesets[deid] += "* ^expansion.contains[=].code = #"+sct+"\n"
-      valuesets[deid] += "* ^expansion.contains[=].display = \""+row['SNOMED GPS code\ncomments/considerations'].replace(/Code title:\s*/, "").replace(/([^\n]+)\n.+/s, "$1").trim()+"\"\n"
-
+      valuesets[deid] += "* insert AddWithExpand($SCT, #"+sct+",  [["+row['SNOMED GPS code\ncomments/considerations'].replace(/Code title:\s*/, "").replace(/([^\n]+)\n.+/s, "$1").trim()+"]])\n"
       codeused[deid][sct] = true
 
       conceptmaps[codesystem].tosct += "  * insert ElementMap("+dataelement+", "+sct+", "+relationships[relationship][0]+")\n"
@@ -114,11 +100,7 @@ fs.createReadStream(csvFile)
 
     if ( atc && !codeused[deid][atc] && !atc.startsWith('Not classifiable in WHO ATC') ) {
       let relationship = row['WHO ATC relationship']
-      valuesets[deid] += "* $ATC#"+atc+" \""+row['WHO ATC name'].replace(/Code title:\s*/, "").replace(/([^\n]+)\n.+/s, "$1").trim()+"\"\n"
-      valuesets[deid] += "* ^expansion.contains[+].system = $ATC\n"
-      valuesets[deid] += "* ^expansion.contains[=].code = #"+atc+"\n"
-      valuesets[deid] += "* ^expansion.contains[=].display = \""+row['WHO ATC name'].replace(/Code title:\s*/, "").replace(/([^\n]+)\n.+/s, "$1").trim()+"\"\n"
-
+      valuesets[deid] += "* insert AddWithExpand($ATC, #"+atc+",  [["+row['WHO ATC name'].replace(/Code title:\s*/, "").replace(/([^\n]+)\n.+/s, "$1").trim()+"]])\n"
       codeused[deid][atc] = true
 
       conceptmaps[codesystem].toatc += "  * insert ElementMap("+dataelement+", "+atc+", "+relationships[relationship][0]+")\n"

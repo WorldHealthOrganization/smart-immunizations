@@ -5,7 +5,7 @@ Description: "ValueSet for Type of TBE dose for IMMZ.D.DE220"
 * ^status = #active
 * ^name = "IMMZ_D_DE220"
 
-* IMMZ.D#DE221 "FSME-Immun"
-* IMMZ.D#DE222 "Encepur"
-* IMMZ.D#DE223 "TBE-Moscow"
-* IMMZ.D#DE224 "EnceVir"
+* insert AddWithExpandCanonical( IMMZ.D, #DE221, FSME-Immun )
+* insert AddWithExpandCanonical( IMMZ.D, #DE222, Encepur )
+* insert AddWithExpandCanonical( IMMZ.D, #DE223, TBE-Moscow )
+* insert AddWithExpandCanonical( IMMZ.D, #DE224, EnceVir )
