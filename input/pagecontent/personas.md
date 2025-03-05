@@ -18,7 +18,7 @@ key competences of are defined in the following table.
     <tr>
       <th>Occupational Title</th>
       <th>Description</th>
-      <th>Different Names</th>
+      <th>Alternate Names</th>
       <th>ISCO Code</th>
     </tr>
   </thead>
