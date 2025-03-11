@@ -119,7 +119,7 @@ const displayOutput = ( title, pseudo, expression, guidance ) => {
 }
 
 logic.write( "/*\n@dynamicValue: Guidance\n*/\ndefine \"Guidance\":\n  case\n" 
-  + Object.keys(outputs).map((title) => "    when \"" + title +"\" then \""+ title +" Guidance\"" ).join("\n") + "\n    else ''\n  end\n\n" )
+  + Object.keys(outputs).map((title) => "    when \"" + title +"\" then \""+ title +" Guidance\"" ).join("\n") + "\n    else ''\n  end\n\ndefine \"Has Guidance\":\n  \"Guidance\" is not null and \"Guidance\" != ''\n\n"
 
 let tests = []
 

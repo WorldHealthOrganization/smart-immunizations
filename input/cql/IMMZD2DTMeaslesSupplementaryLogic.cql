@@ -32,6 +32,9 @@ define "Guidance":
     else ''
   end
 
+define "Has Guidance":
+  "Guidance" is not null and "Guidance" != ''
+
 /*
 @output: Client is not due for measles supplementary dose
 @pseudocode: "Immunization recommendation status" = "Not due"

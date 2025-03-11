@@ -137,3 +137,117 @@ define "Live vaccine was administered in the past 4 weeks":
 */
 define "No live vaccine was administered in the past 4 weeks":
   "No live vaccine was administered in the last 4 weeks"
+
+/*
+@internal: Potential contraindications observations
+*/
+define "Potential contraindications":
+  [Observation: Concepts."Potential contraindications"] O
+    where O.status in { 'final', 'amended', 'corrected' }
+
+/*
+@input: The client is pregnant
+@pseudocode: "Potential contraindications" = "Currently pregnant"
+*/
+define "The client is pregnant":
+  exists "Currently pregnant Observation"
+  or exists "Currently pregnant Condition"
+  //or exists WE."Pregnant Observation"
+
+/*
+@internal: Observation for currently pregnant
+*/
+define "Currently pregnant Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Currently pregnant"
+
+/*
+@internal: Condition for currently pregnant
+*/
+define "Currently pregnant Condition":
+  [Condition: Concepts."Currently pregnant"]
+
+/*
+@input: The client has history of anaphylactic reactions
+@pseudocode: "Potential contraindications" = "History of anaphylactic reactions"
+*/
+define "The client has history of anaphylactic reactions":
+  exists "History of anaphylactic reactions Observation"
+    or exists "History of anaphylactic reactions Condition"
+
+/*
+@internal: Observation for History of anaphylactic reactions
+*/
+define "History of anaphylactic reactions Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."History of anaphylactic reactions"
+
+/*
+@internal: Condition for History of anaphylactic reactions
+*/
+define "History of anaphylactic reactions Condition":
+  [Condition: Concepts."History of anaphylactic reactions"]
+
+
+/*
+@input: The client has history of severe allergic reactions
+@pseudocode: "Potential contraindications" = "Severe allergic reactions"
+*/
+define "The client has history of severe allergic reactions":
+  exists "Severe allergic reactions Observation"
+    or exists "Severe allergic reactions Condition"
+    
+/*
+@internal: Observation for Severe allergic reactions
+*/
+define "Severe allergic reactions Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Severe allergic reactions"
+
+/*
+@internal: Condition for Severe allergic reactions
+*/
+define "Severe allergic reactions Condition":
+  [Condition: Concepts."Severe allergic reactions"]
+
+/*
+@input: The client is severely immunosuppressed
+@pseudocode: "Potential contraindications" = "Severely immunosuppressed"
+*/
+define "The client is severely immunosuppressed":
+  exists "Severely immunosuppressed Observation"
+    or exists "Severely immunosuppressed Condition"
+    
+/*
+@internal: Observation for Severely immunosuppressed
+*/
+define "Severely immunosuppressed Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Severely immunosuppressed"
+
+/*
+@internal: Condition for Severely immunosuppressed
+*/
+define "Severely immunosuppressed Condition":
+  [Condition: Concepts."Severely immunosuppressed"]
+
+/*
+@input: The client has a symptomatic HIV infection
+@pseudocode: "Potential contraindications" = "Symptomatic HIV infection"
+*/
+define "The client has a symptomatic HIV infection":
+  exists "Symptomatic HIV infection Observation"
+    or exists "Symptomatic HIV infection Condition"
+    
+/*
+@internal: Observation for Symptomatic HIV infection
+*/
+define "Symptomatic HIV infection Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Symptomatic HIV infection"
+
+/*
+@internal: Condition for Symptomatic HIV infection
+*/
+define "Symptomatic HIV infection Condition":
+  [Condition: Concepts."Symptomatic HIV infection"]

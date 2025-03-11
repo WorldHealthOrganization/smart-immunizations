@@ -174,6 +174,9 @@ define fluent function toInterval(choice Choice<FHIR.dateTime, FHIR.Period, FHIR
       null as Interval<DateTime>
   end
 
+// Was getting error on this for this particular choice set not being found
+
+
 /*
 @description: Returns an interval representing the normalized Abatement of a given Condition resource.
 @comment: NOTE: Due to the complexity of determining an interval from a String, this function will throw

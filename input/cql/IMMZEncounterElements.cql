@@ -6,7 +6,7 @@ include FHIRHelpers version '4.0.1'
 
 include WHOConcepts
 include WHOCommon called WC
-include WHOElements called WE
+include WHOEncounterElements called WE
 
 include IMMZConcepts called Concepts
 include IMMZCommon called Common
@@ -32,10 +32,8 @@ define "Live Attenuated Vaccines":
     where I.occurrence.toInterval() on or before Today
 
 define "Date of Latest Live Attenuated Vaccine":
-  Last(
-    "Live Attenuated Vaccines" V
-      sort by start of occurrence.toInterval()
-  ).occurrence as FHIR.dateTime
+  date from start of "Live Attenuated Vaccines".mostRecent().occurrence.toInterval()
+  
 /** 
  * @dataElement Patient age in years
  */
@@ -140,3 +138,120 @@ define "Live vaccine was administered in the past 4 weeks":
 */
 define "No live vaccine was administered in the past 4 weeks":
   "No live vaccine was administered in the last 4 weeks"
+
+/*
+@input: The client is pregnant
+@pseudocode: "Potential contraindications" = "Currently pregnant"
+*/
+define "The client is pregnant":
+  exists "Currently pregnant Observation"
+  or exists "Currently pregnant Condition"
+  or exists WE."Pregnant Observation"
+
+/*
+@internal: Observation for currently pregnant
+*/
+define "Currently pregnant Observation":
+  Elements."Currently pregnant Observation" O
+    where O.encounter.references(EncounterId)
+      or O.effective.toInterval() starts after Today - 9 months
+
+/*
+@internal: Condition for currently pregnant
+*/
+define "Currently pregnant Condition":
+  Elements."Currently pregnant Condition" C
+    where C.prevalenceInterval() includes Today
+
+/*
+@input: The client has history of anaphylactic reactions
+@pseudocode: "Potential contraindications" = "History of anaphylactic reactions"
+*/
+define "The client has history of anaphylactic reactions":
+  exists "History of anaphylactic reactions Observation"
+    or exists "History of anaphylactic reactions Condition"
+    
+/*
+@internal: Observation for History of anaphylactic reactions
+*/
+define "History of anaphylactic reactions Observation":
+  Elements."History of anaphylactic reactions Observation" O
+    where O.encounter.references(EncounterId)
+      or O.effective.toInterval() starts on or before Today
+
+/*
+@internal: Condition for History of anaphylactic reactions
+*/
+define "History of anaphylactic reactions Condition":
+  Elements."History of anaphylactic reactions Condition" C
+    where C.prevalenceInterval() includes Today
+
+/*
+@input: The client has history of severe allergic reactions
+@pseudocode: "Potential contraindications" = "Severe allergic reactions"
+*/
+define "The client has history of severe allergic reactions":
+  exists "Severe allergic reactions Observation"
+    or exists "Severe allergic reactions Condition"
+    
+/*
+@internal: Observation for Severe allergic reactions
+*/
+define "Severe allergic reactions Observation":
+  Elements."Severe allergic reactions Observation" O
+    where O.encounter.references(EncounterId)
+      or O.effective.toInterval() starts on or before Today
+
+/*
+@internal: Condition for Severe allergic reactions
+*/
+define "Severe allergic reactions Condition":
+  Elements."Severe allergic reactions Condition" C
+    where C.prevalenceInterval() includes Today
+
+/*
+@input: The client is severely immunosuppressed
+@pseudocode: "Potential contraindications" = "Severely immunosuppressed"
+*/
+define "The client is severely immunosuppressed":
+  exists "Severely immunosuppressed Observation"
+    or exists "Severely immunosuppressed Condition"
+    
+/*
+@internal: Observation for Severely immunosuppressed
+*/
+define "Severely immunosuppressed Observation":
+  Elements."Severely immunosuppressed Observation" O
+    where O.encounter.references(EncounterId)
+      or O.effective.toInterval() starts on or before Today
+
+/*
+@internal: Condition for Severely immunosuppressed
+*/
+define "Severely immunosuppressed Condition":
+  Elements."Severely immunosuppressed Condition" C
+    where C.prevalenceInterval() includes Today
+
+/*
+@input: The client has a symptomatic HIV infection
+@pseudocode: "Potential contraindications" = "Symptomatic HIV infection"
+*/
+define "The client has a symptomatic HIV infection":
+  exists "Symptomatic HIV infection Observation"
+    or exists "Symptomatic HIV infection Condition"
+    
+/*
+@internal: Observation for Symptomatic HIV infection
+*/
+define "Symptomatic HIV infection Observation":
+  Elements."Symptomatic HIV infection Observation" O
+    where O.encounter.references(EncounterId)
+      or O.effective.toInterval() starts on or before Today
+
+/*
+@internal: Condition for Symptomatic HIV infection
+*/
+define "Symptomatic HIV infection Condition":
+  Elements."Symptomatic HIV infection Condition" C
+    where C.prevalenceInterval() includes Today
+

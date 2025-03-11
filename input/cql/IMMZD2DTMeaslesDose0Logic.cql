@@ -31,6 +31,9 @@ define "Guidance":
     else ''
   end
 
+define "Has Guidance":
+  "Guidance" is not null and "Guidance" != ''
+
 /*
 @output: Client is not due for MCV0 Case 1
 @pseudocode: "Immunization recommendation status" = "Not due"

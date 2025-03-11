@@ -80,14 +80,14 @@ define "No measles primary series doses were administered":
 @pseudocode: Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 1
 */
 define "MCV1 was administered":
-  "Number of MCV Primary Series Doses Administered" = 1
+  "Number of MCV Primary Series Doses Administered" >= 1
 
 /*
 @input: MCV2 was administered
 @pseudocode: Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 2
 */
 define "MCV2 was administered":
-  "Number of MCV Primary Series Doses Administered" = 2
+  "Number of MCV Primary Series Doses Administered" >= 2
 
 /*
 @input: MCV0 was not administered
@@ -103,7 +103,7 @@ define "MCV0 was not administered":
 " and "Type of dose" = "Dose 0") = 1
 */
 define "MCV0 was administered":
-  "Number of MCV Dose 0 Doses Administered" = 1
+  "Number of MCV Dose 0 Doses Administered" >= 1
 
 /*
 @input: Measles supplementary dose was not administered
@@ -119,7 +119,7 @@ define "Measles supplementary dose was not administered":
 " and "Type of dose" = "Supplementary dose") = 1
 */
 define "Measles supplementary dose was administered":
-  "Number of MCV Supplementary Doses Administered" = 1
+  "Number of MCV Supplementary Doses Administered" >= 1
 
 /*
 @input: Measles routine immunization schedule is complete
