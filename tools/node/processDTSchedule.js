@@ -17,7 +17,6 @@ const getRange = ( nums ) => {
 var file, sheetname, rows, col, prefix, dt;
 
 [file, sheetname, rows, col, prefix, dt] = process.argv.slice(2);
-// output and guidance are expected to be +1 and +2 from the last column.  Even if blank, all columns should be listed.
 col = parseInt(col)
 
 const workbook = xlsx.parse( file )
@@ -104,10 +103,10 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
   let expiration = sheet[r][col+7].trim()
   let complete = sheet[r][col+8].trim().split(/\s*\n\s*/, 2)
 
-  let createmsg = create
-  if ( !due.startsWith('To be determined by Member States') ) createmsg += "\nDue Date: " + due
-  if ( !overdue.startsWith('To be determined by Member States') ) createmsg += "\nOverdue: " + overdue
-  if ( !expiration.startsWith('To be determined by Member States') ) createmsg += "\nExpiration: " + expiration
+  let createmsg = "'" + create + "'"
+  if ( !due.startsWith('To be determined by Member States') ) createmsg += " + '\nDue Date: ' + ToString(\""+sname+" Due Date\")"
+  if ( !overdue.startsWith('To be determined by Member States') ) createmsg += " + '\nOverdue: ' + ToString(\""+sname+" Overdue\")"
+  if ( !expiration.startsWith('To be determined by Member States') ) createmsg += " + '\nExpiration: ' + ToString(\""+sname+" Expiration\")"
 
   tests.push("    when Patient.id = '"+r+".' then \""+sname+"\"")
 
@@ -127,7 +126,7 @@ define "${sname}":
 */
 define "${sname} Create":
   if "${sname}" 
-  then '${createmsg}'
+  then ${createmsg}
   else ''
 
 /*

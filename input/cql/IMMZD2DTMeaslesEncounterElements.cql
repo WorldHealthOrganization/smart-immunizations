@@ -40,6 +40,12 @@ define "MCV Primary Series Doses Administered to Patient":
     I.occurrence.toInterval() on or before Today
 
 /*
+@internal: Date of most recent primary series dose
+*/
+define "Date when the primary vaccination series completed":
+  date from start of "MCV Primary Series Doses Administered to Patient".mostRecent().occurrence.toInterval()
+
+/*
 @internal: MCV containing Doses Administered to Patient that are in the Dose 0
 */
 define "MCV Dose 0 Doses Administered to Patient":
