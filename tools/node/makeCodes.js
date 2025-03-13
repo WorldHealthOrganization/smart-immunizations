@@ -94,7 +94,7 @@ let getType = ( type, isQuestionnaire ) => {
 fs.createReadStream(csvFile)
   .pipe(csv.parse( {headers:true}) )
   .on('data', row => {
-    //console.log(row)
+    console.log(row)
 
     let model = []
     let quest = []
