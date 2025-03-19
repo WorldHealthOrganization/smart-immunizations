@@ -29,10 +29,19 @@ let cs = getRange( cols )
 
 let top = parseInt(rs[0])
 
-let did = sheet[top-6][cs[0]+1]
-let rule = sheet[top-5][cs[0]+1]
-let trigger = sheet[top-4][cs[0]+1]
 let table = sheet[top-2][cs[0]]
+let dtmod = 0
+if ( dt == "single" ) {
+  table = sheet[top-5][cs[0]+1]
+  dtmod = 1
+  dt = ""
+} else if ( dt == "CI" ) {
+  table = sheet[top-1][cs[0]]
+  dtmod = 2
+}
+let did = sheet[top-6+dtmod][cs[0]+1]
+let rule = sheet[top-5+dtmod][cs[0]+1]
+let trigger = sheet[top-4+dtmod][cs[0]+1]
 
 let enclib = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+"Logic.fsh")
 enclib.write(`
@@ -50,20 +59,16 @@ let logic = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+"Logic.cql
 
 logic.write(`
 /*
- * Library: IMMZ${prefix}${sheetdisplay}${dt} (${did})
+ * Library: IMMZ${prefix}${sheetdisplay}${dt}Logic (${did})
  * Rule: ${rule}
  * Decision Table: ${table}
  * Trigger: ${trigger}
  */
-library IMMZ${prefix}${sheetdisplay}${dt}
+library IMMZ${prefix}${sheetdisplay}${dt}Logic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 
-include IMMZCommon called Common
-include IMMZConcepts called Concepts
-
-include IMMZEncounterElements called IE
 include IMMZ${prefix}${sheetdisplay}EncounterElements called Encounter
 
 parameter Today default Today()
@@ -73,6 +78,24 @@ context Patient
 
 `)
 
+let pdef = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+".fsh")
+
+pdef.write(`
+Instance: IMMZ${prefix}${sheetdisplay}${dt}
+InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
+Title: "IMMZ${prefix}${sheetdisplay}${dt}"
+Description: """
+${did}
+${table}
+"""
+Usage: #definition
+
+* insert PlanDefMain( IMMZ${prefix}${sheetdisplay}${dt}, 0.1.0 )
+
+* insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding ${did}.]], [["""
+    Show Guidance for the patient regarding ${did}.
+  """]], Has Guidance, Guidance)
+`)
 
 
 let prevtitles = []
@@ -100,7 +123,7 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
     content[0] = content[0].trim()
     content[1] = content[1].trim()
     if ( !outputs[ content[0] ] ) outputs[ content[0] ] = []
-    outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2], testid: (r+1) } )
+    outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2], testid: (r+2) } )
   }
 }
 
@@ -119,7 +142,8 @@ const displayOutput = ( title, pseudo, expression, guidance ) => {
 }
 
 logic.write( "/*\n@dynamicValue: Guidance\n*/\ndefine \"Guidance\":\n  case\n" 
-  + Object.keys(outputs).map((title) => "    when \"" + title +"\" then \""+ title +" Guidance\"" ).join("\n") + "\n    else ''\n  end\n\ndefine \"Has Guidance\":\n  \"Guidance\" is not null and \"Guidance\" != ''\n\n"
+  + Object.keys(outputs).map((title) => "    when \"" + title +"\" then \""+ title +" Guidance\"" ).join("\n") 
+  + "\n    else ''\n  end\n\ndefine \"Has Guidance\":\n  \"Guidance\" is not null and \"Guidance\" != ''\n\n" )
 
 let tests = []
 
@@ -127,7 +151,7 @@ for( let title in outputs ) {
 
   let output = outputs[title]
   if ( output.length === 1 ) {
-    tests[output[0].testid] = "    when Patient.id = '"+output[0].testid+".' then \""+output[0].content[0]+"\" and \"Guidance\" = '" + output[0].guidance.replace(/'/, '\\\'') + "'"
+    tests[output[0].testid] = "    when Patient.id = '"+(output[0].testid+2)+".' then \""+output[0].content[0]+"\" and \"Guidance\" = '" + output[0].guidance.replace(/'/, '\\\'') + "'"
 
     displayOutput( output[0].content[0], output[0].content[1], output[0].expression, output[0].guidance )
 

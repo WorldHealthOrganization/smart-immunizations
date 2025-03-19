@@ -8,12 +8,6 @@ library IMMZD18SMeaslesOngoingTx
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 
-include WHOCommon called WC
-
-include IMMZCommon called Common
-include IMMZConcepts called Concepts
-
-include IMMZEncounterElements called IE
 include IMMZD2DTMeaslesEncounterElements called Encounter
 
 parameter Today default Today()
@@ -28,7 +22,7 @@ context Patient
 @triggerDate: "Date of birth"
 */
 define "MCV dose 1 (MCV1)":
-  not "MCV1 was administered"
+  Encounter."No measles primary series doses were administered"
 
 /*
 @output: MCV dose 1 (MCV1) Create
@@ -45,21 +39,18 @@ Due Date: ' + ToString("MCV dose 1 (MCV1) Due Date")
 @pseudocode: "Date of birth" + 9 months
 */
 define "MCV dose 1 (MCV1) Due Date":
-  if "MCV dose 1 (MCV1)" then WC.LatestOf({
-    Patient.birthDate + 9 months,
-    IE."Date of Latest Live Attenuated Vaccine" + 4 weeks
-  })
+  if "MCV dose 1 (MCV1)" then Patient.birthDate + 9 months
   else null
 
 /*
-@dynanmicValue: MCV dose 1 (MCV1) Overdue
+@dynamicValue: MCV dose 1 (MCV1) Overdue
 @pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
 */
 define "MCV dose 1 (MCV1) Overdue":
   null
 
 /*
-@dynanmicValue: MCV dose 1 (MCV1) Expiration
+@dynamicValue: MCV dose 1 (MCV1) Expiration
 @pseudocode: To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated.
 */
 define "MCV dose 1 (MCV1) Expiration":
@@ -99,18 +90,18 @@ Due Date: ' + ToString("MCV2 Due Date")
 define "MCV2 Due Date":
   if "MCV2" then WC.LatestOf({
     Patient.birthDate + 15 months,
-    IE."Date of Latest Live Attenuated Vaccine" + 4 weeks
+    Encounter."Date of Latest Live Attenuated Vaccine" + 4 weeks
   })
   else null
 /*
-@dynanmicValue: MCV2 Overdue
+@dynamicValue: MCV2 Overdue
 @pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
 */
 define "MCV2 Overdue":
   null
 
 /*
-@dynanmicValue: MCV2 Expiration
+@dynamicValue: MCV2 Expiration
 @pseudocode: To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated.
 */
 define "MCV2 Expiration":

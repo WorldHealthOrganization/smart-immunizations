@@ -8,12 +8,6 @@ library IMMZD18SMeaslesDose0LT
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 
-include WHOCommon called WC
-
-include IMMZCommon called Common
-include IMMZConcepts called Concepts
-
-include IMMZEncounterElements called IE
 include IMMZD2DTMeaslesEncounterElements called Encounter
 
 parameter Today default Today()
@@ -58,21 +52,18 @@ Expiration: ' + ToString("MCV0 Expiration")
 @pseudocode: "Date of birth" + 6 months
 */
 define "MCV0 Due Date":
-  if "MCV0" then WC.LatestOf({
-    Patient.birthDate + 6 months,
-    IE."Date of Latest Live Attenuated Vaccine" + 4 weeks
-  })
+  if "MCV0" then Patient.birthDate + 6 months
   else null
 
 /*
-@dynanmicValue: MCV0 Overdue
+@dynamicValue: MCV0 Overdue
 @pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
 */
 define "MCV0 Overdue":
   null
 
 /*
-@dynanmicValue: MCV0 Expiration
+@dynamicValue: MCV0 Expiration
 @pseudocode: "Date of birth" + 12 months for countries with low levels of measles transmission
 */
 define "MCV0 Expiration":

@@ -91,14 +91,14 @@ define "No measles primary series doses were administered":
 @pseudocode: Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 1
 */
 define "MCV1 was administered":
-  "Number of MCV Primary Series Doses Administered" >= 1
+  "Number of MCV Primary Series Doses Administered" = 1
 
 /*
 @input: MCV2 was administered
 @pseudocode: Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 2
 */
 define "MCV2 was administered":
-  "Number of MCV Primary Series Doses Administered" >= 2
+  "Number of MCV Primary Series Doses Administered" = 2
 
 /*
 @input: MCV0 was not administered
@@ -114,7 +114,7 @@ define "MCV0 was not administered":
 " and "Type of dose" = "Dose 0") = 1
 */
 define "MCV0 was administered":
-  "Number of MCV Dose 0 Doses Administered" >= 1
+  "Number of MCV Dose 0 Doses Administered" = 1
 
 
 /*
@@ -131,7 +131,7 @@ define "Measles supplementary dose was not administered":
 " and "Type of dose" = "Supplementary dose") = 1
 */
 define "Measles supplementary dose was administered":
-  "Number of MCV Supplementary Doses Administered" >= 1
+  "Number of MCV Supplementary Doses Administered" = 1
 
 /*
 @input: Measles routine immunization schedule is complete
@@ -142,3 +142,96 @@ define "Measles routine immunization schedule is complete":
   exists( [Observation : Concepts."Completed the primary vaccination series"] O where O.value = true and O.effective.toInterval() on or before Today )
   or
   "MCV2 was administered"
+
+
+/*
+@input: Client's age is less than 6 months
+@pseudocode: Today's date − "Date of birth" < 6 months
+*/
+define "Client's age is less than 6 months":
+  Encounter."Client's age is less than 6 months"
+
+/*
+@input: Client's age is between 6 months and 9 months
+@pseudocode: 6 months ≤ Today's date − "Date of birth" < 9 months
+*/
+define "Client's age is between 6 months and 9 months":
+  Encounter."Client's age is between 6 months and 9 months"
+
+/*
+@input: Client's age is less than 9 months
+@pseudocode: Today's date − "Date of birth" < 9 months
+*/
+define "Client's age is less than 9 months":
+  Encounter."Client's age is less than 9 months"
+
+/*
+@input: Client's age is more than or equal to 9 months
+@pseudocode: Today's date − "Date of birth" ≥ 9 months
+*/
+define "Client's age is more than or equal to 9 months":
+  Encounter."Client's age is more than or equal to 9 months"
+
+/*
+@input: Client's age is less than 12 months
+@pseudocode: Today's date − "Date of birth" < 12 months
+*/
+define "Client's age is less than 12 months":
+  Encounter."Client's age is less than 12 months"
+
+/*
+@input: Client's age is more than or equal to 12 months
+@pseudocode: Today's date − "Date of birth" ≥ 12 months
+*/
+define "Client's age is more than or equal to 12 months":
+  Encounter."Client's age is more than or equal to 12 months"
+
+/*
+@input: Client's age is less than 15 months
+@pseudocode: Today's date − "Date of birth" < 15 months
+*/
+define "Client's age is less than 15 months":
+  Encounter."Client's age is less than 15 months"
+  
+/*
+@input: Client's age is more than or equal to 15 months
+@pseudocode: Today's date − "Date of birth" ≥ 15 months
+*/
+define "Client's age is more than or equal to 15 months":
+  Encounter."Client's age is more than or equal to 15 months"
+
+/*
+@input: Live vaccine was administered in the last 4 weeks
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
+*/
+define "Live vaccine was administered in the last 4 weeks":
+  Encounter."Live vaccine was administered in the last 4 weeks"
+
+/*
+@input: No live vaccine was administered in the last 4 weeks
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks
+*/
+define "No live vaccine was administered in the last 4 weeks":
+  Encounter."No live vaccine was administered in the last 4 weeks"
+
+/*
+@input: Live vaccine was administered in the past 4 weeks
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) 
+< 4 weeks
+*/
+define "Live vaccine was administered in the past 4 weeks":
+  "Live vaccine was administered in the last 4 weeks"
+
+/*
+@input: No live vaccine was administered in the past 4 weeks
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) 
+≥ 4 weeks
+*/
+define "No live vaccine was administered in the past 4 weeks":
+  "No live vaccine was administered in the last 4 weeks"
+
+/*
+@input Date and time of last live attenuated vaccine
+*/
+define "Date of Latest Live Attenuated Vaccine":
+  date from start of Encounter."Live Attenuated Vaccines".mostRecent().occurrence.toInterval()

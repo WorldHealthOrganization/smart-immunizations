@@ -1,21 +1,15 @@
 
 /*
- * Library: IMMZD5DTMeaslesCI (–)
- * Rule: undefined
- * Decision Table: Trigger
- * Trigger: IMMZ.D5.DT.Measles contraindications
+ * Library: IMMZD5DTMeaslesCILogic (IMMZ.D5.DT.Measles contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due
+ * Decision Table: IMMZ.D5.DT.Measles contraindications
+ * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
  */
-library IMMZD5DTMeaslesCI
+library IMMZD5DTMeaslesCILogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 
-include IMMZCommon called Common
-include IMMZConcepts called Concepts
-
-include IMMZElements called Elements
-
-include IMMZEncounterElements called IE
 include IMMZD5DTMeaslesEncounterElements called Encounter
 
 parameter Today default Today()
@@ -23,17 +17,10 @@ parameter Today default Today()
 context Patient
 
 /*
-@internal: Draft Medication Request for MCV dose
-*/
-define "Draft Medication Request for MCV dose":
-	[MedicationRequest: Concepts."MCV Vaccine"] MR where MR.status = 'draft' and MR.intent = 'proposal'
-	sort by date from (authoredOn as FHIR.dateTime) desc
-
-/*
 @dynamicValue: Draft Medication Request ID for MCV dose
 */
 define "Draft Medication Request ID for MCV dose":
-	First("Draft Medication Request for MCV dose").id
+	First(Encounter."Draft Medication Request for MCV dose").id
 
 /*
 @dynamicValue: Guidance

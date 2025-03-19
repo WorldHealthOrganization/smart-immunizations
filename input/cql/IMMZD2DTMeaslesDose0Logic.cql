@@ -1,19 +1,15 @@
 
 /*
- * Library: IMMZD2DTMeaslesDose0 (IMMZ.D2.DT.Measles.MCV dose 0)
+ * Library: IMMZD2DTMeaslesDose0Logic (IMMZ.D2.DT.Measles.MCV dose 0)
  * Rule: Determine if the client is due for a measles vaccination according to the national immunization schedule
  * Decision Table: Measles-containing vaccine dose 0 (MCV0) administration
  * Trigger: IMMZ.D2 Determine required vaccination(s) if any
  */
-library IMMZD2DTMeaslesDose0
+library IMMZD2DTMeaslesDose0Logic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 
-include IMMZCommon called Common
-include IMMZConcepts called Concepts
-
-include IMMZEncounterElements called IE
 include IMMZD2DTMeaslesEncounterElements called Encounter
 
 parameter Today default Today()
@@ -39,7 +35,7 @@ define "Has Guidance":
 @pseudocode: "Immunization recommendation status" = "Not due"
 */
 define "Client is not due for MCV0 Case 1":
-  IE."Client's age is less than 6 months"
+  Encounter."Client's age is less than 6 months"
 
 /*
 @output: Client is not due for MCV0 Case 2
@@ -47,15 +43,15 @@ define "Client is not due for MCV0 Case 1":
 */
 define "Client is not due for MCV0 Case 2":
   Encounter."MCV0 was not administered"
-    and IE."Client's age is between 6 months and 9 months"
-    and IE."Live vaccine was administered in the last 4 weeks"
+    and Encounter."Client's age is between 6 months and 9 months"
+    and Encounter."Live vaccine was administered in the last 4 weeks"
 
 /*
 @output: Client is not due for MCV0 Case 3
 @pseudocode: "Immunization recommendation status" = "Not due"
 */
 define "Client is not due for MCV0 Case 3":
-  IE."Client's age is more than or equal to 9 months"
+  Encounter."Client's age is more than or equal to 9 months"
 
 /*
 @output: Client is not due for MCV0 Case 4
@@ -100,8 +96,8 @@ Check measles routine immunization schedule.'
 */
 define "Consider MCV0.":
   Encounter."MCV0 was not administered"
-    and IE."Client's age is between 6 months and 9 months"
-    and IE."No live vaccine was administered in the last 4 weeks"
+    and Encounter."Client's age is between 6 months and 9 months"
+    and Encounter."No live vaccine was administered in the last 4 weeks"
 
 /*
 @output: Consider MCV0. Guidance

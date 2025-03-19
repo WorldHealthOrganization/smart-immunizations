@@ -18,6 +18,13 @@ include IMMZElements called Elements
 context Patient
 
 /*
+@internal: Draft Medication Request for MCV dose
+*/
+define "Draft Medication Request for MCV dose":
+  Elements."Draft Medication Request for Patient" MR 
+    where MR.medication in Concepts."MCV Vaccine"
+
+/*
 @input: The client is pregnant
 @pseudocode: "Potential contraindications" = "Currently pregnant"
 */

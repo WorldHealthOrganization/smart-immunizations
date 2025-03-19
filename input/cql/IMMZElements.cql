@@ -19,14 +19,25 @@ context Patient
 define "Doses Administered to Patient":
   [Immunization] I
     where I.status = 'completed'
+    and I.isSubpotent is not true
 
 /*
-  @dataElement Date and time of last live attenuated vaccine
+@dataElement: Draft Medication Request for Patient
+*/
+define "Draft Medication Request for Patient":
+	[MedicationRequest] MR where MR.status = 'draft' and MR.intent = 'proposal'
+	sort by date from (authoredOn as FHIR.dateTime) desc
+
+/*
+  @dataElement: Live attenuated vaccines
 */
 define "Live Attenuated Vaccines":
   "Doses Administered to Patient" I 
     where I.vaccineCode in Concepts."Live Attenuated"
 
+/*
+  @dataElement: Date and time of last live attenuated vaccine
+*/
 define "Date of Latest Live Attenuated Vaccine":
   Last(
     "Live Attenuated Vaccines" V
@@ -51,6 +62,26 @@ define "Current Patient Age In Months":
  */
 define "Current Patient Age In Weeks":
   AgeInWeeksAt(Today())
+
+/** 
+ * @dataElement Patient age in days
+ */
+define "Current Patient Age In Days":
+  AgeInDaysAt(Today())
+
+/*
+@input: Client's age is less than or equal to 28 days
+@pseudocode: Today's date − "Date of birth" ≤ 28 days
+*/
+define "Client's age is less than or equal to 28 days":
+  "Current Patient Age In Days" <= 28
+
+/*
+@input: Client's age is between 28 days and 5 years
+@pseudocode: 28 days < Today's date − "Date of birth" < 5 years
+*/
+define "Client's age is between 28 days and 5 years":
+  "Current Patient Age In Days" > 28 and "Current Patient Age In Years" < 5
 
 /*
 @input: Client's age is less than 6 months
@@ -109,6 +140,20 @@ define "Client's age is more than or equal to 15 months":
   "Current Patient Age In Months" >= 15
 
 /*
+@input: Client's age is more than 5 years
+@pseudocode: Today's date − "Date of birth" ≥ 5 years
+*/
+define "Client's age is more than 5 years":
+  "Current Patient Age In Years" >= 5
+
+/*
+@input: No live vaccine was administered
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) IS NULL
+*/
+define "No live vaccine was administered":
+  not exists("Live Attenuated Vaccines")
+
+/*
 @input: Live vaccine was administered in the last 4 weeks
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
 */
@@ -121,22 +166,6 @@ define "Live vaccine was administered in the last 4 weeks":
 */
 define "No live vaccine was administered in the last 4 weeks":
   not("Live vaccine was administered in the last 4 weeks")
-
-/*
-@input: Live vaccine was administered in the past 4 weeks
-@pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) 
-< 4 weeks
-*/
-define "Live vaccine was administered in the past 4 weeks":
-  "Live vaccine was administered in the last 4 weeks"
-
-/*
-@input: No live vaccine was administered in the past 4 weeks
-@pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) 
-≥ 4 weeks
-*/
-define "No live vaccine was administered in the past 4 weeks":
-  "No live vaccine was administered in the last 4 weeks"
 
 /*
 @internal: Potential contraindications observations
@@ -152,7 +181,7 @@ define "Potential contraindications":
 define "The client is pregnant":
   exists "Currently pregnant Observation"
   or exists "Currently pregnant Condition"
-  //or exists WE."Pregnant Observation"
+  or exists WE."Pregnant Observation"
 
 /*
 @internal: Observation for currently pregnant
@@ -251,3 +280,156 @@ define "Symptomatic HIV infection Observation":
 */
 define "Symptomatic HIV infection Condition":
   [Condition: Concepts."Symptomatic HIV infection"]
+
+/*
+@input: The client has immunodeficiency syndromes
+@pseudocode: "Potential contraindications" = "Immunodeficiency syndromes"
+*/
+define "The client has immunodeficiency syndromes":
+  exists "Immunodeficiency syndromes Observation"
+    or exists "Immunodeficiency syndromes Condition"
+    
+/*
+@internal: Observation for Immunodeficiency syndromes
+*/
+define "Immunodeficiency syndromes Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Immunodeficiency syndromes"
+
+/*
+@internal: Condition for Immunodeficiency syndromes
+*/
+define "Immunodeficiency syndromes Condition":
+  [Condition: Concepts."Immunodeficiency syndromes"]
+
+/*
+@input: The client is exposed to immunosuppressive treatment
+@pseudocode: "Potential contraindications" = "Exposed to immunosuppressive treatment"
+*/
+define "The client is exposed to immunosuppressive treatment":
+  exists "Exposed to immunosuppressive treatment Observation"
+    or exists "Exposed to immunosuppressive treatment Condition"
+    
+/*
+@internal: Observation for Exposed to immunosuppressive treatment
+*/
+define "Exposed to immunosuppressive treatment Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Exposed to immunosuppressive treatment"
+
+/*
+@internal: Condition for Exposed to immunosuppressive treatment
+*/
+define "Exposed to immunosuppressive treatment Condition":
+  [Condition: Concepts."Exposed to immunosuppressive treatment"]
+
+
+/*
+@internal: HIV Status Observation
+*/
+define "HIV status Observation":
+  [Observation: Concepts."HIV status"]
+
+/*
+@input: Client's HIV status is negative or unknown
+@pseudocode: "HIV status" ≠ "HIV-positive"
+*/
+define "Client's HIV status is negative or unknown":
+  not "Client's HIV status is positive"
+
+/*
+@input: Client's HIV status is positive
+@pseudocode: "HIV status" = "HIV-positive"
+*/
+define "Client's HIV status is positive":
+  exists( "HIV status Observation" O
+    where O.value ~ Concepts."HIV-positive" )
+
+/*
+@internal: Currently on ART Observation
+*/
+define "Currently on ART Observation":
+  [Observation: Concepts."Currently on ART"]
+
+/*
+@input: Client is currently receiving antiretroviral therapy
+@pseudocode: "Currently on ART" = TRUE
+*/
+define "Client is currently receiving antiretroviral therapy":
+  exists( "Currently on ART Observation" O where O.value = true )
+
+/*
+@input: Client is currently not receiving antiretroviral therapy
+@pseudocode: "Currently on ART" = FALSE
+*/
+define "Client is currently not receiving antiretroviral therapy":
+  not "Client is currently receiving antiretroviral therapy"
+
+/*
+@internal: Immunologically stable Observation
+*/
+define "Immunologically stable Observation":
+  [Observation: Concepts."Immunologically stable"]
+
+/*
+@input: Client is immunologically stable
+@pseudocode: "Immunologically stable" = TRUE
+*/
+define "Client is immunologically stable":
+  exists( "Immunologically stable Observation" O where O.value = true )
+
+/*
+@input: Client is not immunologically stable
+@pseudocode: "Immunologically stable" = FALSE
+*/
+define "Client is not immunologically stable":
+  exists( "Immunologically stable Observation" O where O.value = false )
+
+/*
+@internal: Immunologically stable Observation
+*/
+define "TB infection test result Observation":
+  [Observation: Concepts."TB infection test result"]
+
+/*
+@input: Client's TB infection test result is negative
+@pseudocode: "TB infection test result" = "Negative"
+*/
+define "Client's TB infection test result is negative":
+  exists( "TB infection test result Observation" O
+    where O.value ~ Concepts."TB-Negative" )
+/*
+@input: Client's TB infection test result is unknown (test not done or no result yet)
+@pseudocode: "TB infection test result" IS NULL
+*/
+define "Client's TB infection test result is unknown (test not done or no result yet)":
+  not exists( "TB infection test result Observation" ) or (
+    not ("Client's TB infection test result is negative") and not ("Client's TB infection test result is positive")
+  )
+/*
+@input: Client's TB infection test result is positive
+@pseudocode: "TB infection test result" = "Positive"
+*/
+define "Client's TB infection test result is positive":
+  exists( "TB infection test result Observation" O
+    where O.value ~ Concepts."TB-Positive" )
+
+/*
+@internal: Clinically well Observation
+*/
+define "Clinically well Observation":
+  [Observation: Concepts."Clinically well"]
+
+/*
+@input: Client is not clinically well
+@pseudocode: "Clinically well" = FALSE
+*/
+define "Client is not clinically well":
+  exists( "Clinically well Observation" O where O.value = false )
+
+/*
+@input: Client is clinically well
+@pseudocode: "Clinically well" = TRUE
+*/
+define "Client is clinically well":
+  exists( "Clinically well Observation" O where O.value = true )

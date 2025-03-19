@@ -1,0 +1,173 @@
+
+/*
+  * Library: IMMZD2DTBCGElements
+  */
+library IMMZD2DTBCGElements
+
+using FHIR version '4.0.1'
+include FHIRHelpers version '4.0.1'
+
+include WHOConcepts
+include WHOCommon called WC
+include WHOElements called WE
+
+include IMMZCommon called Common
+include IMMZConcepts called Concepts
+include IMMZElements called Elements
+
+context Patient
+
+/*
+@internal: BCG containing Doses Administered to Patient
+*/
+define "BCG Doses Administered to Patient":
+  Elements."Doses Administered to Patient" I
+  where
+    I.vaccineCode in Concepts."BCG Vaccine"
+
+/*
+@internal: BCG containing Doses Administered to Patient that are in the Primary series
+*/
+define "BCG Primary Series Doses Administered to Patient":
+  "BCG Doses Administered to Patient" I
+  where
+    exists( I.protocolApplied pa where pa.series = 'Primary series' )
+
+/*
+@internal: Number of BCG Primary Series doses
+*/
+define "Number of BCG Primary Series Doses Administered":
+  Count("BCG Primary Series Doses Administered to Patient")
+
+/*
+@input: No BCG primary series dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "BCG vaccines" and "Type of dose" = "Primary series") = 0
+*/
+define "No BCG primary series dose was administered":
+  "Number of BCG Primary Series Doses Administered" = 0
+
+/*
+@input: One BCG primary series dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "BCG vaccines" and "Type of dose" = "Primary series") = 1
+*/
+define "One BCG primary series dose was administered":
+  "Number of BCG Primary Series Doses Administered" = 1
+
+/*
+@input: Client's age is less than or equal to 28 days
+@pseudocode: Today's date − "Date of birth" ≤ 28 days
+*/
+define "Client's age is less than or equal to 28 days":
+  Elements."Client's age is less than or equal to 28 days"
+
+/*
+@input: Client's age is between 28 days and 5 years
+@pseudocode: 28 days < Today's date − "Date of birth" < 5 years
+*/
+define "Client's age is between 28 days and 5 years":
+  Elements."Client's age is between 28 days and 5 years"
+
+/*
+@input: Client's age is more than 5 years
+@pseudocode: Today's date − "Date of birth" ≥ 5 years
+*/
+define "Client's age is more than 5 years":
+  Elements."Client's age is more than 5 years"
+
+/*
+@input: Client's HIV status is negative or unknown
+@pseudocode: "HIV status" ≠ "HIV-positive"
+*/
+define "Client's HIV status is negative or unknown":
+  Elements."Client's HIV status is negative or unknown"
+
+/*
+@input: Client's HIV status is positive
+@pseudocode: "HIV status" = "HIV-positive"
+*/
+define "Client's HIV status is positive":
+  Elements."Client's HIV status is positive"
+
+/*
+@input: Client is currently receiving antiretroviral therapy
+@pseudocode: "Currently on ART" = TRUE
+*/
+define "Client is currently receiving antiretroviral therapy":
+  Elements."Client is currently receiving antiretroviral therapy"
+
+/*
+@input: Client is currently not receiving antiretroviral therapy
+@pseudocode: "Currently on ART" = FALSE
+*/
+define "Client is currently not receiving antiretroviral therapy":
+  Elements."Client is currently not receiving antiretroviral therapy"
+
+/*
+@input: Client is immunologically stable
+@pseudocode: "Immunologically stable" = TRUE
+*/
+define "Client is immunologically stable":
+  Elements."Client is immunologically stable"
+
+/*
+@input: Client is not immunologically stable
+@pseudocode: "Immunologically stable" = FALSE
+*/
+define "Client is not immunologically stable":
+  Elements."Client is not immunologically stable"
+
+/*
+@input: Client's TB infection test result is negative
+@pseudocode: "TB infection test result" = "Negative"
+*/
+define "Client's TB infection test result is negative":
+  Elements."Client's TB infection test result is negative"
+
+/*
+@input: Client's TB infection test result is unknown (test not done or no result yet)
+@pseudocode: "TB infection test result" IS NULL
+*/
+define "Client's TB infection test result is unknown (test not done or no result yet)":
+  Elements."Client's TB infection test result is unknown (test not done or no result yet)"
+
+/*
+@input: Client's TB infection test result is positive
+@pseudocode: "TB infection test result" = "Positive"
+*/
+define "Client's TB infection test result is positive":
+  Elements."Client's TB infection test result is positive"
+
+/*
+@input: No live vaccine was administered
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) IS NULL
+*/
+define "No live vaccine was administered":
+  Elements."No live vaccine was administered"
+
+/*
+@input: Live vaccine was administered in the last four weeks
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
+*/
+define "Live vaccine was administered in the last four weeks":
+  Elements."Live vaccine was administered in the last 4 weeks"
+
+/*
+@input: No live vaccine was administered in the last four weeks
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks
+*/
+define "No live vaccine was administered in the last four weeks":
+  Elements."No live vaccine was administered in the last 4 weeks"
+
+/*
+@input: Client is not clinically well
+@pseudocode: "Clinically well" = FALSE
+*/
+define "Client is not clinically well":
+  Elements."Client is not clinically well"
+/*
+@input: Client is clinically well
+@pseudocode: "Clinically well" = TRUE
+*/
+define "Client is clinically well":
+  Elements."Client is clinically well"
+

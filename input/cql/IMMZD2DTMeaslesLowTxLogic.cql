@@ -1,19 +1,16 @@
 
 /*
- * Library: IMMZD2DTMeaslesLowTx (IMMZ.D2.DT.Measles.Low transmission)
+ * Library: IMMZD2DTMeaslesLowTxLogic (IMMZ.D2.DT.Measles.Low transmission)
  * Rule: Determine if the client is due for a measles vaccination according to the national immunization schedule
  * Decision Table: Countries with low levels of measles transmission (countries that provide first dose of measles-containing vaccine (MCV) at 12 months and second dose of MCV at 15 months)
  * Trigger: IMMZ.D2 Determine required vaccination(s) if any
  */
-library IMMZD2DTMeaslesLowTx
+library IMMZD2DTMeaslesLowTxLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 
-include IMMZCommon called Common
-include IMMZConcepts called Concepts
 
-include IMMZEncounterElements called IE
 include IMMZD2DTMeaslesEncounterElements called Encounter
 
 parameter Today default Today()
@@ -41,7 +38,7 @@ define "Has Guidance":
 @pseudocode: "Immunization recommendation status" = "Not due"
 */
 define "Client is not due for MCV1 Case 1":
-  IE."Client's age is less than 12 months"
+  Encounter."Client's age is less than 12 months"
 
 /*
 @output: Client is not due for MCV1 Case 2
@@ -49,8 +46,8 @@ define "Client is not due for MCV1 Case 1":
 */
 define "Client is not due for MCV1 Case 2":
   Encounter."No measles primary series doses were administered"
-    and IE."Client's age is more than or equal to 12 months"
-    and IE."Live vaccine was administered in the last 4 weeks"
+    and Encounter."Client's age is more than or equal to 12 months"
+    and Encounter."Live vaccine was administered in the last 4 weeks"
 
 /*
 @output: Client is not due for MCV1
@@ -82,8 +79,8 @@ Check for any vaccines due and inform the caregiver of when to come back for MCV
 */
 define "Client is due for MCV1":
   Encounter."No measles primary series doses were administered"
-    and IE."Client's age is more than or equal to 12 months"
-    and IE."No live vaccine was administered in the last 4 weeks"
+    and Encounter."Client's age is more than or equal to 12 months"
+    and Encounter."No live vaccine was administered in the last 4 weeks"
 
 /*
 @output: Client is due for MCV1 Guidance
@@ -100,7 +97,7 @@ Check for contraindications.'
 */
 define "Client is not due for MCV2 Case 1":
   Encounter."MCV1 was administered"
-    and IE."Client's age is less than 15 months"
+    and Encounter."Client's age is less than 15 months"
 
 /*
 @output: Client is not due for MCV2 Case 2
@@ -108,8 +105,8 @@ define "Client is not due for MCV2 Case 1":
 */
 define "Client is not due for MCV2 Case 2":
   Encounter."MCV1 was administered"
-    and IE."Client's age is more than or equal to 15 months"
-    and IE."Live vaccine was administered in the last 4 weeks"
+    and Encounter."Client's age is more than or equal to 15 months"
+    and Encounter."Live vaccine was administered in the last 4 weeks"
 
 /*
 @output: Client is not due for MCV2
@@ -141,8 +138,8 @@ Check for any vaccines due and inform the caregiver of when to come back for MCV
 */
 define "Client is due for MCV2":
   Encounter."MCV1 was administered"
-    and IE."Client's age is more than or equal to 15 months"
-    and IE."No live vaccine was administered in the last 4 weeks"
+    and Encounter."Client's age is more than or equal to 15 months"
+    and Encounter."No live vaccine was administered in the last 4 weeks"
 
 /*
 @output: Client is due for MCV2 Guidance

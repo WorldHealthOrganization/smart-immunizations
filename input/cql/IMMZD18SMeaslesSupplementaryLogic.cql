@@ -8,12 +8,6 @@ library IMMZD18SMeaslesSupplementary
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
 
-include WHOCommon called WC
-
-include IMMZCommon called Common
-include IMMZConcepts called Concepts
-
-include IMMZEncounterElements called IE
 include IMMZD2DTMeaslesEncounterElements called Encounter
 
 parameter Today default Today()
@@ -46,21 +40,18 @@ Due Date: ' + ToString("Measles-containing vaccine (MCV) supplementary dose Due 
 @pseudocode: "Date when the primary vaccination series completed" + 4 weeks
 */
 define "Measles-containing vaccine (MCV) supplementary dose Due Date":
-  if "Measles-containing vaccine (MCV) supplementary dose" then WC.LatestOf({
-    Encounter."Date when the primary vaccination series completed" + 4 weeks,
-    IE."Date of Latest Live Attenuated Vaccine" + 4 weeks
-  })
+  if "Measles-containing vaccine (MCV) supplementary dose" then Encounter."Date when the primary vaccination series completed" + 4 weeks
   else null
 
 /*
-@dynanmicValue: Measles-containing vaccine (MCV) supplementary dose Overdue
+@dynamicValue: Measles-containing vaccine (MCV) supplementary dose Overdue
 @pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
 */
 define "Measles-containing vaccine (MCV) supplementary dose Overdue":
   null
 
 /*
-@dynanmicValue: Measles-containing vaccine (MCV) supplementary dose Expiration
+@dynamicValue: Measles-containing vaccine (MCV) supplementary dose Expiration
 @pseudocode: To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated.
 */
 define "Measles-containing vaccine (MCV) supplementary dose Expiration":

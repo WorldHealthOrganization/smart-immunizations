@@ -27,9 +27,16 @@ sheet = sheet[0].data
 let rs = getRange( rows )
 
 let top = parseInt(rs[0])
+let dtmod = 0
 
-let sid = sheet[top-5][col+1]
 let table = sheet[top-1][col]
+if ( dt == "single" ) {
+  table = sheet[top-4][col+1]
+  dtmod = 1
+  dt = ""
+}
+
+let sid = sheet[top-5+dtmod][col+1]
 
 let enclib = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+"Logic.fsh")
 enclib.write(`
@@ -108,7 +115,7 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
   if ( !overdue.startsWith('To be determined by Member States') ) createmsg += " + '\nOverdue: ' + ToString(\""+sname+" Overdue\")"
   if ( !expiration.startsWith('To be determined by Member States') ) createmsg += " + '\nExpiration: ' + ToString(\""+sname+" Expiration\")"
 
-  tests.push("    when Patient.id = '"+r+".' then \""+sname+"\"")
+  tests.push("    when Patient.id = '"+(r+2)+".' then \""+sname+"\"")
 
   logic.write(`
 /*
@@ -137,14 +144,14 @@ define "${sname} Due Date":
   null
 
 /*
-@dynanmicValue: ${sname} Overdue
+@dynamicValue: ${sname} Overdue
 @pseudocode: ${overdue}
 */
 define "${sname} Overdue":
   null
 
 /*
-@dynanmicValue: ${sname} Expiration
+@dynamicValue: ${sname} Expiration
 @pseudocode: ${expiration}
 */
 define "${sname} Expiration":

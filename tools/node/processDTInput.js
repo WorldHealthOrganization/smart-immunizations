@@ -39,11 +39,11 @@ for( let c = cs; c <= ce; c++ ) {
   for ( let r = rs; r <= re; r++ ) {
     //if ( sheet[0].data[r] && sheet[0].data[r][c] && sheet[0].data[r][c] != '-' ) {
     if ( sheet[0].data[r] && sheet[0].data[r][c] && sheet[0].data[r][c].trim().length > 3 ) {
-        [ title, pseudo ] = sheet[0].data[r][c].split( "\n", 2 )
+      [ title, pseudo ] = sheet[0].data[r][c].split( "\n", 2 )
       title = title.trim()
       pseudo = pseudo.trim()
-      eleoutput[title+pseudo] = "/*\n@input: " + title + "\n@pseudocode: " + pseudo + "\n*/\ndefine \""+title+"\":\n\n"
-      encoutput[title+pseudo] = "/*\n@input: " + title + "\n@pseudocode: " + pseudo + "\n*/\ndefine \""+title+"\":\n  "+cqlname+".\""+title+"\"\n\n"
+      eleoutput[title+pseudo] = "/*\n@input: " + title + "\n@pseudocode: " + pseudo + "\n*/\ndefine \""+title+"\":\n  Elements.\""+title+"\"\n\n"
+      encoutput[title+pseudo] = "/*\n@input: " + title + "\n@pseudocode: " + pseudo + "\n*/\ndefine \""+title+"\":\n  Encounter.\""+title+"\"\n\n"
     }
   }
 }
@@ -70,7 +70,6 @@ library IMMZ${prefix}${cqlname}Elements
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
-include fhir.cqf.common.FHIRCommon called FC
 
 include WHOConcepts
 include WHOCommon called WC
@@ -109,7 +108,6 @@ library IMMZ${prefix}${cqlname}EncounterElements
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
-include fhir.cqf.common.FHIRCommon called FC
 
 include WHOConcepts
 include WHOCommon called WC
