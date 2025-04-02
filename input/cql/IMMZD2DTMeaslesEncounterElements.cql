@@ -46,7 +46,7 @@ define "Date when the primary vaccination series completed":
   date from start of "MCV Primary Series Doses Administered to Patient".mostRecent().occurrence.toInterval()
 
 /*
-@internal: MCV containing Doses Administered to Patient that are in the Dose 0
+@internal: MCV containing Doses Administered to Patient that are in the Dose 0 series
 */
 define "MCV Dose 0 Doses Administered to Patient":
   MeaslesElements."MCV Dose 0 Doses Administered to Patient" I

@@ -73,6 +73,13 @@ define fluent function earliest(observations List<Observation>):
       sort by issued
   )
 
+define fluent function earliest(immunizations List<Immunization>):
+  First(
+    immunizations I
+      sort by start of occurrence.toInterval()
+  )
+
+
 define fluent function latest(observations List<Observation>):
   Last(
     observations O
@@ -114,6 +121,9 @@ define fluent function highest(observations List<Observation>):
     observations O
       sort by FHIRHelpers.ToQuantity(value as FHIR.Quantity)
   )
+
+define fluent function complete(observations List<Observation>):
+  observations O where O.status in { 'final', 'amended', 'corrected' }
 
 define function EarliestOf(dates List<Date>):
   Min(dates)

@@ -13,10 +13,11 @@ valueset "WHO ATC": 'http://hl7.org/fhir/uv/ips/ValueSet/whoatc-uv-ips'
 // Vaccine Value Sets
 
 valueset "Live Attenuated": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.LiveAttenuated'
-valueset "MCV Vaccine": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE9'
 
-valueset "BCG Vaccine": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE1'
-valueset "Cholera Vaccine": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE2'
+valueset "Measles-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE9'
+valueset "BCG vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE1'
+valueset "Cholera vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE2'
+valueset "Hepatitis B-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE6'
 
 code "Completed the primary vaccination series": 'DE203' from "IMMZD" display 'Completed the primary vaccination series'
 code "HIV status": 'DE204' from "IMMZD" display 'HIV status'
@@ -29,6 +30,8 @@ code "TB infection test result": 'DE246' from "IMMZD" display 'TB infection test
 code "TB-Positive": 'DE247' from "IMMZD" display 'Positive'
 code "TB-Negative": 'DE248' from "IMMZD" display 'Negative'
 code "Clinically well": 'DE250' from "IMMZD" display 'Clinically well'
+code "Birth weight in grams": 'DE211' from "IMMZD" display 'Birth weight in grams'
+code "Preterm birth": 'DE208' from "IMMZD" display 'Preterm birth'
 
 code "Potential contraindications": 'DE161' from "IMMZD" display 'Potential contraindications'
 code "Currently pregnant": 'DE162' from "IMMZD" display 'Currently pregnant'

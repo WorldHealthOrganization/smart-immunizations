@@ -41,6 +41,7 @@ for( let c = cs; c <= ce; c++ ) {
     if ( sheet[0].data[r] && sheet[0].data[r][c] && sheet[0].data[r][c].trim().length > 3 ) {
       [ title, pseudo ] = sheet[0].data[r][c].split( "\n", 2 )
       title = title.trim()
+      if (!pseudo) pseudo = ""
       pseudo = pseudo.trim()
       eleoutput[title+pseudo] = "/*\n@input: " + title + "\n@pseudocode: " + pseudo + "\n*/\ndefine \""+title+"\":\n  Elements.\""+title+"\"\n\n"
       encoutput[title+pseudo] = "/*\n@input: " + title + "\n@pseudocode: " + pseudo + "\n*/\ndefine \""+title+"\":\n  Encounter.\""+title+"\"\n\n"

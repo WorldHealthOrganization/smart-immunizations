@@ -23,7 +23,7 @@ context Patient
 define "MCV Doses Administered to Patient":
   Elements."Doses Administered to Patient" I
   where
-    I.vaccineCode in Concepts."MCV Vaccine"
+    I.vaccineCode in Concepts."Measles-containing vaccines"
 
 /*
 @internal: MCV containing Doses Administered to Patient that are in the Primary series

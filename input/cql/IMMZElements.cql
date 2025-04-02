@@ -39,11 +39,7 @@ define "Live Attenuated Vaccines":
   @dataElement: Date and time of last live attenuated vaccine
 */
 define "Date of Latest Live Attenuated Vaccine":
-  Last(
-    "Live Attenuated Vaccines" V
-      sort by start of occurrence.toInterval()
-  ).occurrence as FHIR.dateTime
-
+  date from start of "Live Attenuated Vaccines".mostRecent().occurrence.toInterval()
 
 /** 
  * @dataElement Patient age in years
@@ -158,7 +154,8 @@ define "No live vaccine was administered":
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
 */
 define "Live vaccine was administered in the last 4 weeks":
-	"Date of Latest Live Attenuated Vaccine" is not null and duration in weeks between "Date of Latest Live Attenuated Vaccine" and Now() < 4
+	"Date of Latest Live Attenuated Vaccine" is not null 
+    and duration in weeks between "Date of Latest Live Attenuated Vaccine" and Now() < 4
 
 /*
 @input: No live vaccine was administered in the last 4 weeks
@@ -171,8 +168,7 @@ define "No live vaccine was administered in the last 4 weeks":
 @internal: Potential contraindications observations
 */
 define "Potential contraindications":
-  [Observation: Concepts."Potential contraindications"] O
-    where O.status in { 'final', 'amended', 'corrected' }
+  ([Observation: Concepts."Potential contraindications"]).complete()
 
 /*
 @input: The client is pregnant
@@ -328,7 +324,7 @@ define "Exposed to immunosuppressive treatment Condition":
 @internal: HIV Status Observation
 */
 define "HIV status Observation":
-  [Observation: Concepts."HIV status"]
+  ([Observation: Concepts."HIV status"]).complete()
 
 /*
 @input: Client's HIV status is negative or unknown
@@ -349,14 +345,15 @@ define "Client's HIV status is positive":
 @internal: Currently on ART Observation
 */
 define "Currently on ART Observation":
-  [Observation: Concepts."Currently on ART"]
+  ([Observation: Concepts."Currently on ART"] O
+    sort by end of effective.toInterval() desc).complete()
 
 /*
 @input: Client is currently receiving antiretroviral therapy
 @pseudocode: "Currently on ART" = TRUE
 */
 define "Client is currently receiving antiretroviral therapy":
-  exists( "Currently on ART Observation" O where O.value = true )
+  First("Currently on ART Observation").value = true
 
 /*
 @input: Client is currently not receiving antiretroviral therapy
@@ -369,35 +366,36 @@ define "Client is currently not receiving antiretroviral therapy":
 @internal: Immunologically stable Observation
 */
 define "Immunologically stable Observation":
-  [Observation: Concepts."Immunologically stable"]
+  ([Observation: Concepts."Immunologically stable"] O
+    sort by end of effective.toInterval() desc).complete()
 
 /*
 @input: Client is immunologically stable
 @pseudocode: "Immunologically stable" = TRUE
 */
 define "Client is immunologically stable":
-  exists( "Immunologically stable Observation" O where O.value = true )
+  First("Immunologically stable Observation").value = true
 
 /*
 @input: Client is not immunologically stable
 @pseudocode: "Immunologically stable" = FALSE
 */
 define "Client is not immunologically stable":
-  exists( "Immunologically stable Observation" O where O.value = false )
+  First("Immunologically stable Observation").value = false
 
 /*
-@internal: Immunologically stable Observation
+@internal: TB infection test result Observation
 */
 define "TB infection test result Observation":
-  [Observation: Concepts."TB infection test result"]
+  ([Observation: Concepts."TB infection test result"] O
+    sort by end of effective.toInterval() desc).complete()
 
 /*
 @input: Client's TB infection test result is negative
 @pseudocode: "TB infection test result" = "Negative"
 */
 define "Client's TB infection test result is negative":
-  exists( "TB infection test result Observation" O
-    where O.value ~ Concepts."TB-Negative" )
+  First( "TB infection test result Observation" ).value ~ Concepts."TB-Negative"
 /*
 @input: Client's TB infection test result is unknown (test not done or no result yet)
 @pseudocode: "TB infection test result" IS NULL
@@ -411,25 +409,73 @@ define "Client's TB infection test result is unknown (test not done or no result
 @pseudocode: "TB infection test result" = "Positive"
 */
 define "Client's TB infection test result is positive":
-  exists( "TB infection test result Observation" O
-    where O.value ~ Concepts."TB-Positive" )
+  First( "TB infection test result Observation" ).value ~ Concepts."TB-Positive"
 
 /*
 @internal: Clinically well Observation
 */
 define "Clinically well Observation":
-  [Observation: Concepts."Clinically well"]
+  ([Observation: Concepts."Clinically well"] O
+    sort by end of effective.toInterval() desc).complete()
 
 /*
 @input: Client is not clinically well
 @pseudocode: "Clinically well" = FALSE
 */
 define "Client is not clinically well":
-  exists( "Clinically well Observation" O where O.value = false )
+  First( "Clinically well Observation" ).value = false 
 
 /*
 @input: Client is clinically well
 @pseudocode: "Clinically well" = TRUE
 */
 define "Client is clinically well":
-  exists( "Clinically well Observation" O where O.value = true )
+  First( "Clinically well Observation" ).value = true 
+
+/*
+@internal: Birth weight in grams Observation
+*/
+define "Birth weight in grams Observation":
+  ([Observation: Concepts."Birth weight in grams"] O
+    sort by end of effective.toInterval() desc).complete()
+
+define "Birth weight in grams Value":
+  First("Birth weight in grams Observation" O).value as FHIR.Quantity
+
+define "Birth weight in grams":
+  "Birth weight in grams Value".value as FHIR.decimal
+
+/*
+@input: Client's weight at birth was over 2000 g
+@pseudocode: "Birth weight in grams"  ≥ 2000
+*/
+define "Client's weight at birth was over 2000 g":
+  "Birth weight in grams" >= 2000
+
+/*
+@input: Client's weight at birth was below 2000 g
+@pseudocode: "Birth weight in grams" < 2000
+*/
+define "Client's weight at birth was below 2000 g":
+  "Birth weight in grams" < 2000
+
+/*
+@internal: Preterm birth Observation
+*/
+define "Preterm birth Observation":
+  ([Observation: Concepts."Preterm birth"]).complete()
+
+/*
+@input: Client was not a premature infant at birth
+@pseudocode: "Preterm birth" ≠  TRUE
+*/
+define "Client was not a premature infant at birth":
+  exists( "Preterm birth Observation" O where O.value = false )
+
+/*
+@input: Client was a premature infant at birth
+@pseudocode: "Preterm birth" =  TRUE
+*/
+define "Client was a premature infant at birth":
+  exists( "Preterm birth Observation" O where O.value = true )
+

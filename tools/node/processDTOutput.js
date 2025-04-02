@@ -83,7 +83,7 @@ let pdef = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+".fsh")
 pdef.write(`
 Instance: IMMZ${prefix}${sheetdisplay}${dt}
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
-Title: "IMMZ${prefix}${sheetdisplay}${dt}"
+Title: "${did}"
 Description: """
 ${did}
 ${table}
@@ -151,7 +151,7 @@ for( let title in outputs ) {
 
   let output = outputs[title]
   if ( output.length === 1 ) {
-    tests[output[0].testid] = "    when Patient.id = '"+(output[0].testid+2)+".' then \""+output[0].content[0]+"\" and \"Guidance\" = '" + output[0].guidance.replace(/'/, '\\\'') + "'"
+    tests[output[0].testid] = "    when Patient.id = '"+(output[0].testid)+".' then \""+output[0].content[0]+"\" and \"Guidance\" = '" + output[0].guidance.replace(/'/, '\\\'') + "'"
 
     displayOutput( output[0].content[0], output[0].content[1], output[0].expression, output[0].guidance )
 

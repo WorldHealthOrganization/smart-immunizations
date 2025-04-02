@@ -28,7 +28,7 @@ context Patient
 */
 define "Draft Medication Request for MCV dose":
   Encounter."Draft Medication Request for Patient" MR 
-    where MR.medication in Concepts."MCV Vaccine"
+    where MR.medication in Concepts."Measles-containing vaccines"
 
 /*
 @input: The client is pregnant

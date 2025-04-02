@@ -23,7 +23,7 @@ context Patient
 define "BCG Doses Administered to Patient":
   Elements."Doses Administered to Patient" I
   where
-    I.vaccineCode in Concepts."BCG Vaccine"
+    I.vaccineCode in Concepts."BCG vaccines"
 
 /*
 @internal: BCG containing Doses Administered to Patient that are in the Primary series

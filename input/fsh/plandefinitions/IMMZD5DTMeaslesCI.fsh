@@ -1,6 +1,6 @@
-Instance: IMMZD5DTMeasles
+Instance: IMMZD5DTMeaslesCI
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
-Title: "IMMZ.D5.DT.Measles"
+Title: "IMMZ.D5.DT.Measles contraindications"
 Description: "Check contraindications for Measles vaccine"
 Usage: #definition
 

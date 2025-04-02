@@ -352,10 +352,9 @@ define "Client's HIV status is positive":
 @pseudocode: "Currently on ART" = TRUE
 */
 define "Client is currently receiving antiretroviral therapy":
-  exists( Elements."Currently on ART Observation" O 
+  First(Elements."Currently on ART Observation" O 
     where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts on or before Today)
-      and O.value = true )
+      or O.effective.toInterval() starts on or before Today)).value = true
 
 /*
 @input: Client is currently not receiving antiretroviral therapy
@@ -377,16 +376,14 @@ define "Immunologically stable Observation":
 @pseudocode: "Immunologically stable" = TRUE
 */
 define "Client is immunologically stable":
-  exists( "Immunologically stable Observation" O 
-    where O.value = true )
+  First("Immunologically stable Observation").value = true
 
 /*
 @input: Client is not immunologically stable
 @pseudocode: "Immunologically stable" = FALSE
 */
 define "Client is not immunologically stable":
-  exists( "Immunologically stable Observation" O 
-    where O.value = false )
+  First("Immunologically stable Observation").value = false
 
 /*
 @internal: Immunologically stable Observation
@@ -401,8 +398,7 @@ define "TB infection test result Observation":
 @pseudocode: "TB infection test result" = "Negative"
 */
 define "Client's TB infection test result is negative":
-  exists( "TB infection test result Observation" O
-    where O.value ~ Concepts."TB-Negative" )
+  First( "TB infection test result Observation" ).value ~ Concepts."TB-Negative"
 /*
 @input: Client's TB infection test result is unknown (test not done or no result yet)
 @pseudocode: "TB infection test result" IS NULL
@@ -416,8 +412,7 @@ define "Client's TB infection test result is unknown (test not done or no result
 @pseudocode: "TB infection test result" = "Positive"
 */
 define "Client's TB infection test result is positive":
-  exists( "TB infection test result Observation" O
-    where O.value ~ Concepts."TB-Positive" )
+  First( "TB infection test result Observation" ).value ~ Concepts."TB-Positive"
 
 /*
 @internal: Clinically well Observation
@@ -431,11 +426,61 @@ define "Clinically well Observation":
 @pseudocode: "Clinically well" = FALSE
 */
 define "Client is not clinically well":
-  exists( "Clinically well Observation" O where O.value = false )
+  First( "Clinically well Observation" ).value = false
 
 /*
 @input: Client is clinically well
 @pseudocode: "Clinically well" = TRUE
 */
 define "Client is clinically well":
-  exists( "Clinically well Observation" O where O.value = true )
+  First( "Clinically well Observation" ).value = true 
+
+/*
+@internal: Birth weight in grams Observation
+*/
+define "Birth weight in grams Observation":
+  Elements."Birth weight in grams Observation" O
+    where (O.encounter.references(EncounterId)
+      or O.effective.toInterval() starts on or before Today)
+
+define "Birth weight in grams Value":
+  First("Birth weight in grams Observation").value as FHIR.Quantity
+
+define "Birth weight in grams":
+  "Birth weight in grams Value".value as FHIR.decimal
+
+/*
+@input: Client's weight at birth was over 2000 g
+@pseudocode: "Birth weight in grams"  ≥ 2000
+*/
+define "Client's weight at birth was over 2000 g":
+  "Birth weight in grams" >= 2000
+
+/*
+@input: Client's weight at birth was below 2000 g
+@pseudocode: "Birth weight in grams" < 2000
+*/
+define "Client's weight at birth was below 2000 g":
+  "Birth weight in grams" < 2000
+
+/*
+@internal: Preterm birth Observation
+*/
+define "Preterm birth Observation":
+  Elements."Preterm birth Observation" O
+    where (O.encounter.references(EncounterId)
+      or O.effective.toInterval() starts on or before Today)
+
+/*
+@input: Client was not a premature infant at birth
+@pseudocode: "Preterm birth" ≠  TRUE
+*/
+define "Client was not a premature infant at birth":
+  not("Client was a premature infant at birth")
+
+/*
+@input: Client was a premature infant at birth
+@pseudocode: "Preterm birth" =  TRUE
+*/
+define "Client was a premature infant at birth":
+  exists( "Preterm birth Observation" O where O.value = true )

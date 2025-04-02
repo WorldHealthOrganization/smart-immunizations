@@ -22,7 +22,7 @@ context Patient
 */
 define "Draft Medication Request for BCG dose":
   Elements."Draft Medication Request for Patient" MR 
-    where MR.medication in Concepts."BCG Vaccine"
+    where MR.medication in Concepts."BCG vaccines"
 
 /*
 @input: The client is pregnant

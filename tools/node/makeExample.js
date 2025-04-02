@@ -5,7 +5,8 @@ const Dates = require('date-math')
 const file = fs.readFileSync(process.argv[2])
 const docs = yaml.parseAllDocuments(file.toString())
 const fmt = new Intl.DateTimeFormat('en-US', { year: "numeric", month: "numeric", day: "numeric" } )
-const now = Dates.day.floor(new Date(Date.parse(fmt.format(new Date()))))
+const now = new Date(Date.parse(fmt.format(new Date())))
+//const now = Dates.day.floor(new Date(Date.parse(fmt.format(new Date()))))
 //const now = Dates.day.floor(new Date())
 
 let directory = "."
@@ -58,7 +59,7 @@ function shiftDate( shift, birth ) {
 
   let shifted
   let start = now
-  let match = shift.match( /([bn]?)\+?(-?\d+)([wdmy])/)
+  let match = shift.match( /([bn]?)\+?(-?\d+)([wdmyh])/)
   if ( match[1] == 'b' ) start = new Date(birth)
   switch( match[3] ) {
     case 'd':
@@ -72,6 +73,9 @@ function shiftDate( shift, birth ) {
       break
     case 'y':
       shifted = Dates.year.shift(start, parseInt(match[2]))
+      break
+    case 'h':
+      shifted = Dates.hour.shift(start, parseInt(match[2]))
       break
   }
   return shifted.toISOString().replace(/T.+/, '')
@@ -175,13 +179,6 @@ function makeObservation( obs, patient, options, birth ) {
     "resourceType": "Observation",
     "id": "",
     "status": "final",
-    "clinicalStatus": {
-      "coding": [
-        {
-          "code": "active"
-        }
-      ]
-    },
     "code": {
       "coding": []
     },
@@ -193,7 +190,13 @@ function makeObservation( obs, patient, options, birth ) {
 
   observation.id = obs+"-"+patient
   observation.subject.reference = "Patient/"+patient
-  observation.code.coding[0] = options.code
+  if ( Array.isArray( options.code ) ) {
+    for( let code of options.code ) {
+      observation.code.coding.push( code )
+    }
+  } else {
+    observation.code.coding[0] = options.code
+  }
   copyFHIR( observation, options, birth )
 
   return observation

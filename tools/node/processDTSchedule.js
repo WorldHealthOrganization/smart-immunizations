@@ -81,7 +81,7 @@ let pdef = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+".fsh")
 pdef.write(`
 Instance: IMMZ${prefix}${sheetdisplay}${dt}
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
-Title: "IMMZ${prefix}${sheetdisplay}${dt}"
+Title: "${sid}"
 Description: """
 ${sid}
 ${table}
@@ -93,6 +93,7 @@ Usage: #definition
 
 
 let tests = []
+let lastcreate = ""
 
 for ( let r = rs[0]; r <= rs[1]; r++ ) {
 
@@ -104,7 +105,13 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
   let sdesc = sheet[r][col+1].trim()
   let trigger = sheet[r][col+2].trim()
   let tdate = sheet[r][col+3].trim()
-  let create = sheet[r][col+4].trim()
+  let create
+  if ( sheet[r][col+4] ) {
+    create = sheet[r][col+4].trim()
+    lastcreate = create
+  } else {
+    create = lastcreate
+  }
   let due = sheet[r][col+5].trim()
   let overdue = sheet[r][col+6].trim()
   let expiration = sheet[r][col+7].trim()

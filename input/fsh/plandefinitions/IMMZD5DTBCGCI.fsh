@@ -1,7 +1,7 @@
 
-Instance: IMMZD5DTBCG
+Instance: IMMZD5DTBCGCI
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
-Title: "IMMZ.D5.DT.BCG
+Title: "IMMZ.D5.DT.BCG contraindications"
 Description: """
 IMMZ.D5.DT.BCG contraindications
 Potential contraindications

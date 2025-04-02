@@ -1,7 +1,7 @@
 
 Instance: IMMZD2DTBCG
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
-Title: "IMMZD2DTBCG"
+Title: "IMMZ.D2.DT.BCG"
 Description: """
 IMMZ.D2.DT.BCG
 IMMZ.D2.DT.BCG
