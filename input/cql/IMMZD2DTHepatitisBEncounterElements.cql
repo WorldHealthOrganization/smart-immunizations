@@ -31,7 +31,7 @@ context Patient
 define "Hepatitis B Doses Administered to Patient":
   HepatitisBElements."Hepatitis B Doses Administered to Patient" I
   where
-    I.occurrence.toInterval() on or before Today
+    I.occurrence.toInterval() same day or before Today
 
 /*
 @internal: Date and time of last Hepatitis B dose
@@ -51,7 +51,7 @@ define "Date of First Hepatitis B Dose":
 define "Hepatitis B Dose 0 Doses Administered to Patient":
   HepatitisBElements."Hepatitis B Dose 0 Doses Administered to Patient" I
   where
-    I.occurrence.toInterval() on or before Today
+    I.occurrence.toInterval() same day or before Today
 
 /*
 @internal: Number of Hepatitis B Dose 0 doses
@@ -79,7 +79,7 @@ define "Hepatitis B birth dose was administered":
 define "Hepatitis B Primary Series Doses Administered to Patient":
   HepatitisBElements."Hepatitis B Primary Series Doses Administered to Patient" I
   where
-    I.occurrence.toInterval() on or before Today
+    I.occurrence.toInterval() same day or before Today
 
 /*
 @internal: Number of Hepatitis B Primary Series doses
@@ -233,7 +233,7 @@ define "Client was a premature infant at birth":
 */
 define "The latest hepatitis B dose was administered less than 4 weeks ago":
   "Date of Latest Hepatitis B Dose" is not null 
-    and duration in weeks between "Date of Latest Hepatitis B Dose" and Now() < 4
+    and duration in weeks between "Date of Latest Hepatitis B Dose" and Today < 4
 
 /*
 @input: The latest hepatitis B dose was administered more than 4 weeks ago
@@ -250,7 +250,7 @@ ning vaccines" and "Dose number" = 1) < 6 months
 */
 define "The first hepatitis B dose was administered less than 6 months ago":
   "Date of First Hepatitis B Dose" is not null 
-    and duration in months between "Date of First Hepatitis B Dose" and Now() < 6
+    and duration in months between "Date of First Hepatitis B Dose" and Today < 6
     
 /*
 @input: The first hepatitis B dose was administered more than 6 months ago

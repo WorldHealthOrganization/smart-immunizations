@@ -82,3 +82,10 @@ define function ExtractMedicationInitiationDate(choice Choice<FHIR.dateTime, FHI
       Message(null as FHIR.dateTime, true, '1', 'Error', 'Cannot compute medication treatment initiation date') // TODO: I'm sure that this is supported somehow?
 	end
 
+/**
+ * @description: Gets the typeOfDose extension value from an Immunization
+ */
+define fluent function typeOfDose(immz Immunization):
+  (singleton from (
+    immz.extension E where E.url = 'http://smart.who.int/immunizations/StructureDefinition/IMMZTypeOfDose'
+  )).value as FHIR.CodeableConcept

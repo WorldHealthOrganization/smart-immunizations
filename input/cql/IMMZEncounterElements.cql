@@ -22,7 +22,7 @@ context Patient
  */
 define "Doses Administered to Patient":
   Elements."Doses Administered to Patient" I
-    where I.occurrence.toInterval() on or before Today
+    where I.occurrence.toInterval() same day or before Today
 
 /*
 @dataElement: Draft Medication Request for Patient
@@ -30,7 +30,7 @@ define "Doses Administered to Patient":
 define "Draft Medication Request for Patient":
   Elements."Draft Medication Request for Patient" MR
     where MR.encounter.references(EncounterId) 
-      or MR.authoredOn.toInterval() on or before Today
+      or MR.authoredOn.toInterval() same day or before Today
   	sort by date from (authoredOn as FHIR.dateTime) desc
 
 /*
@@ -38,7 +38,7 @@ define "Draft Medication Request for Patient":
 */
 define "Live Attenuated Vaccines":
   Elements."Live Attenuated Vaccines" I
-    where I.occurrence.toInterval() on or before Today
+    where I.occurrence.toInterval() same day or before Today
 
 /*
 @dataElement Date and time of last live attenuated vaccine
@@ -71,11 +71,90 @@ define "Current Patient Age In Days":
   AgeInDaysAt(Today)
 
 /*
+@input: Client's age is less than 1 week
+@pseudocode: Today's date − "Date of birth" < 1 week
+*/
+define "Client's age is less than 1 week":
+  "Current Patient Age In Weeks" < 1
+
+/*
+@input: Client's age is more than or equal to 1 week
+@pseudocode: Today's date − "Date of birth" ≥ 1 week
+*/
+define "Client's age is more than or equal to 1 week":
+  "Current Patient Age In Weeks" >= 1
+
+/*
 @input: Client's age is less than or equal to 28 days
 @pseudocode: Today's date − "Date of birth" ≤ 28 days
 */
 define "Client's age is less than or equal to 28 days":
   "Current Patient Age In Days" <= 28
+
+/*
+@input: Client's age is less than 6 weeks
+@pseudocode: Today's date − "Date of birth" < 6 weeks
+*/
+define "Client's age is less than 6 weeks":
+  "Current Patient Age In Weeks" < 6
+
+/*
+@input: Client's age is between 6 weeks and 3 months
+@pseudocode: 6 weeks ≤ Today's date − "Date of birth" ≤ 3 months
+*/
+define "Client's age is between 6 weeks and 3 months":
+  "Current Patient Age In Weeks" >= 6
+  and "Current Patient Age In Months" <= 3
+
+/*
+@input: Client's age is more than or equal to 6 weeks
+@pseudocode: Today's date − "Date of birth" ≥ 6 weeks
+*/
+define "Client's age is more than or equal to 6 weeks":
+  "Current Patient Age In Weeks" >= 6
+
+/*
+@input: Client's age is more than 3 months
+@pseudocode: Today's date − "Date of birth" > 3 months
+*/
+define "Client's age is more than 3 months":
+  "Current Patient Age In Months" > 3
+
+/*
+@input: Client's age is between 6 weeks and 14 weeks
+@pseudocode: 6 weeks ≤ Today's date − "Date of birth" < 14 weeks
+*/
+define "Client's age is between 6 weeks and 14 weeks":
+  "Current Patient Age In Weeks" >= 6
+  and "Current Patient Age In Weeks" < 14
+
+/*
+@input: Client's age is less than 8 weeks
+@pseudocode: Today's date − "Date of birth" < 8 weeks
+*/
+define "Client's age is less than 8 weeks":
+  "Current Patient Age In Weeks" < 8
+
+/*
+@input: Client's age is more than or equal to 8 weeks
+@pseudocode: Today's date − "Date of birth" ≥ 8 weeks
+*/
+define "Client's age is more than or equal to 8 weeks":
+  "Current Patient Age In Weeks" >= 8
+
+/*
+@input: Client's age is more than or equal to 14 weeks
+@pseudocode: Today's date − "Date of birth" ≥ 14 weeks
+*/
+define "Client's age is more than or equal to 14 weeks":
+  "Current Patient Age In Weeks" >= 14
+
+/*
+@input: Client's age is less than 14 weeks
+@pseudocode: Today's date − "Date of birth" < 14 weeks
+*/
+define "Client's age is less than 14 weeks":
+  "Current Patient Age In Weeks" < 14
 
 /*
 @input: Client's age is between 28 days and 5 years
@@ -206,7 +285,7 @@ define "The client has history of anaphylactic reactions":
 define "History of anaphylactic reactions Observation":
   Elements."History of anaphylactic reactions Observation" O
     where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts on or before Today
+      or O.effective.toInterval() starts same day or before Today
 
 /*
 @internal: Condition for History of anaphylactic reactions
@@ -229,13 +308,36 @@ define "The client has history of severe allergic reactions":
 define "Severe allergic reactions Observation":
   Elements."Severe allergic reactions Observation" O
     where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts on or before Today
+      or O.effective.toInterval() starts same day or before Today
 
 /*
 @internal: Condition for Severe allergic reactions
 */
 define "Severe allergic reactions Condition":
   Elements."Severe allergic reactions Condition" C
+    where C.prevalenceInterval() includes Today
+
+/*
+@input: The client is severely immunocompromised
+@pseudocode: "Potential contraindications" = "Severely immunocompromised"
+*/
+define "The client is severely immunocompromised":
+  exists "Severely immunocompromised Observation"
+    or exists "Severely immunocompromised Condition"
+    
+/*
+@internal: Observation for Severely immunocompromised
+*/
+define "Severely immunocompromised Observation":
+  Elements."Severely immunocompromised Observation" O
+    where O.encounter.references(EncounterId)
+      or O.effective.toInterval() starts same day or before Today
+
+/*
+@internal: Condition for Severely immunocompromised
+*/
+define "Severely immunocompromised Condition":
+  Elements."Severely immunocompromised Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -252,7 +354,7 @@ define "The client is severely immunosuppressed":
 define "Severely immunosuppressed Observation":
   Elements."Severely immunosuppressed Observation" O
     where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts on or before Today
+      or O.effective.toInterval() starts same day or before Today
 
 /*
 @internal: Condition for Severely immunosuppressed
@@ -275,7 +377,7 @@ define "The client has a symptomatic HIV infection":
 define "Symptomatic HIV infection Observation":
   Elements."Symptomatic HIV infection Observation" O
     where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts on or before Today
+      or O.effective.toInterval() starts same day or before Today
 
 /*
 @internal: Condition for Symptomatic HIV infection
@@ -298,7 +400,7 @@ define "The client has immunodeficiency syndromes":
 define "Immunodeficiency syndromes Observation":
   Elements."Immunodeficiency syndromes Observation" O
     where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts on or before Today
+      or O.effective.toInterval() starts same day or before Today
 
 /*
 @internal: Condition for Immunodeficiency syndromes
@@ -321,7 +423,7 @@ define "The client is exposed to immunosuppressive treatment":
 define "Exposed to immunosuppressive treatment Observation":
   Elements."Exposed to immunosuppressive treatment Observation" O
     where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts on or before Today
+      or O.effective.toInterval() starts same day or before Today
 
 /*
 @internal: Condition for Exposed to immunosuppressive treatment
@@ -344,7 +446,7 @@ define "Client's HIV status is negative or unknown":
 define "Client's HIV status is positive":
   exists( Elements."HIV status Observation" O
     where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts on or before Today)
+      or O.effective.toInterval() starts same day or before Today)
       and O.value ~ Concepts."HIV-positive" )
 
 /*
@@ -354,7 +456,7 @@ define "Client's HIV status is positive":
 define "Client is currently receiving antiretroviral therapy":
   First(Elements."Currently on ART Observation" O 
     where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts on or before Today)).value = true
+      or O.effective.toInterval() starts same day or before Today)).value = true
 
 /*
 @input: Client is currently not receiving antiretroviral therapy
@@ -369,7 +471,7 @@ define "Client is currently not receiving antiretroviral therapy":
 define "Immunologically stable Observation":
   Elements."Immunologically stable Observation" O
     where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts on or before Today)
+      or O.effective.toInterval() starts same day or before Today)
 
 /*
 @input: Client is immunologically stable
@@ -391,7 +493,7 @@ define "Client is not immunologically stable":
 define "TB infection test result Observation":
   Elements."TB infection test result Observation" O
     where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts on or before Today)
+      or O.effective.toInterval() starts same day or before Today)
 
 /*
 @input: Client's TB infection test result is negative
@@ -420,7 +522,7 @@ define "Client's TB infection test result is positive":
 define "Clinically well Observation":
   Elements."Clinically well Observation" O
     where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts on or before Today)
+      or O.effective.toInterval() starts same day or before Today)
 /*
 @input: Client is not clinically well
 @pseudocode: "Clinically well" = FALSE
@@ -441,7 +543,7 @@ define "Client is clinically well":
 define "Birth weight in grams Observation":
   Elements."Birth weight in grams Observation" O
     where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts on or before Today)
+      or O.effective.toInterval() starts same day or before Today)
 
 define "Birth weight in grams Value":
   First("Birth weight in grams Observation").value as FHIR.Quantity
@@ -469,7 +571,7 @@ define "Client's weight at birth was below 2000 g":
 define "Preterm birth Observation":
   Elements."Preterm birth Observation" O
     where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts on or before Today)
+      or O.effective.toInterval() starts same day or before Today)
 
 /*
 @input: Client was not a premature infant at birth

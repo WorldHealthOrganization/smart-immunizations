@@ -18,6 +18,13 @@ include IMMZElements called Elements
 context Patient
 
 /*
+@internal: Draft Medication Request for Hepatitis B dose
+*/
+define "Draft Medication Request for Hepatitis B dose":
+  Elements."Draft Medication Request for Patient" MR 
+    where MR.medication in Concepts."Hepatitis B-containing vaccines vaccines"
+
+/*
 @input: The client has history of severe allergic reactions
 @pseudocode: "Potential contraindications" = "Severe allergic reactions"
 */

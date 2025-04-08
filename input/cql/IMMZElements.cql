@@ -66,11 +66,90 @@ define "Current Patient Age In Days":
   AgeInDaysAt(Today())
 
 /*
+@input: Client's age is less than 1 week
+@pseudocode: Today's date − "Date of birth" < 1 week
+*/
+define "Client's age is less than 1 week":
+  "Current Patient Age In Weeks" < 1
+
+/*
+@input: Client's age is more than or equal to 1 week
+@pseudocode: Today's date − "Date of birth" ≥ 1 week
+*/
+define "Client's age is more than or equal to 1 week":
+  "Current Patient Age In Weeks" >= 1
+
+/*
 @input: Client's age is less than or equal to 28 days
 @pseudocode: Today's date − "Date of birth" ≤ 28 days
 */
 define "Client's age is less than or equal to 28 days":
   "Current Patient Age In Days" <= 28
+
+/*
+@input: Client's age is less than 6 weeks
+@pseudocode: Today's date − "Date of birth" < 6 weeks
+*/
+define "Client's age is less than 6 weeks":
+  "Current Patient Age In Weeks" < 6
+
+/*
+@input: Client's age is more than or equal to 6 weeks
+@pseudocode: Today's date − "Date of birth" ≥ 6 weeks
+*/
+define "Client's age is more than or equal to 6 weeks":
+  "Current Patient Age In Weeks" >= 6
+
+/*
+@input: Client's age is between 6 weeks and 3 months
+@pseudocode: 6 weeks ≤ Today's date − "Date of birth" ≤ 3 months
+*/
+define "Client's age is between 6 weeks and 3 months":
+  "Current Patient Age In Weeks" >= 6
+  and "Current Patient Age In Months" <= 3
+
+/*
+@input: Client's age is more than 3 months
+@pseudocode: Today's date − "Date of birth" > 3 months
+*/
+define "Client's age is more than 3 months":
+  "Current Patient Age In Months" > 3
+
+/*
+@input: Client's age is between 6 weeks and 14 weeks
+@pseudocode: 6 weeks ≤ Today's date − "Date of birth" < 14 weeks
+*/
+define "Client's age is between 6 weeks and 14 weeks":
+  "Current Patient Age In Weeks" >= 6
+  and "Current Patient Age In Weeks" < 14
+
+/*
+@input: Client's age is less than 8 weeks
+@pseudocode: Today's date − "Date of birth" < 8 weeks
+*/
+define "Client's age is less than 8 weeks":
+  "Current Patient Age In Weeks" < 8
+
+/*
+@input: Client's age is more than or equal to 8 weeks
+@pseudocode: Today's date − "Date of birth" ≥ 8 weeks
+*/
+define "Client's age is more than or equal to 8 weeks":
+  "Current Patient Age In Weeks" >= 8
+
+/*
+@input: Client's age is more than or equal to 14 weeks
+@pseudocode: Today's date − "Date of birth" ≥ 14 weeks
+*/
+define "Client's age is more than or equal to 14 weeks":
+  "Current Patient Age In Weeks" >= 14
+
+/*
+@input: Client's age is less than 14 weeks
+@pseudocode: Today's date − "Date of birth" < 14 weeks
+*/
+define "Client's age is less than 14 weeks":
+  "Current Patient Age In Weeks" < 14
 
 /*
 @input: Client's age is between 28 days and 5 years
@@ -235,6 +314,27 @@ define "Severe allergic reactions Observation":
 define "Severe allergic reactions Condition":
   [Condition: Concepts."Severe allergic reactions"]
 
+/*
+@input: The client is severely immunocompromised
+@pseudocode: "Potential contraindications" = "Severely immunocompromised"
+*/
+define "The client is severely immunocompromised":
+  exists "Severely immunocompromised Observation"
+    or exists "Severely immunocompromised Condition"
+    
+/*
+@internal: Observation for Severely immunocompromised
+*/
+define "Severely immunocompromised Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Severely immunocompromised"
+
+/*
+@internal: Condition for Severely immunocompromised
+*/
+define "Severely immunocompromised Condition":
+  [Condition: Concepts."Severely immunocompromised"]
+  
 /*
 @input: The client is severely immunosuppressed
 @pseudocode: "Potential contraindications" = "Severely immunosuppressed"

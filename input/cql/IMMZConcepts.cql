@@ -18,6 +18,12 @@ valueset "Measles-containing vaccines": 'http://smart.who.int/immunizations/Valu
 valueset "BCG vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE1'
 valueset "Cholera vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE2'
 valueset "Hepatitis B-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE6'
+valueset "Poliovirus-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE14'
+valueset "Oral polio vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE30'
+valueset "Inactivated polio vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE31'
+
+code "IPV": 'DE213' from "IMMZD" display 'IPV'
+code "bOPV": 'DE214' from "IMMZD" display 'bOPV'
 
 code "Completed the primary vaccination series": 'DE203' from "IMMZD" display 'Completed the primary vaccination series'
 code "HIV status": 'DE204' from "IMMZD" display 'HIV status'

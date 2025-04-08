@@ -29,7 +29,7 @@ context Patient
 define "MCV Doses Administered to Patient":
   MeaslesElements."MCV Doses Administered to Patient" I
   where
-    I.occurrence.toInterval() on or before Today
+    I.occurrence.toInterval() same day or before Today
 
 /*
 @internal: MCV containing Doses Administered to Patient that are in the Primary series
@@ -37,7 +37,7 @@ define "MCV Doses Administered to Patient":
 define "MCV Primary Series Doses Administered to Patient":
   MeaslesElements."MCV Primary Series Doses Administered to Patient" I
   where
-    I.occurrence.toInterval() on or before Today
+    I.occurrence.toInterval() same day or before Today
 
 /*
 @internal: Date of most recent primary series dose
@@ -51,7 +51,7 @@ define "Date when the primary vaccination series completed":
 define "MCV Dose 0 Doses Administered to Patient":
   MeaslesElements."MCV Dose 0 Doses Administered to Patient" I
   where
-    I.occurrence.toInterval() on or before Today
+    I.occurrence.toInterval() same day or before Today
 
 /*
 @internal: MCV containing Doses Administered to Patient that are in the Supplementary dose
@@ -59,7 +59,7 @@ define "MCV Dose 0 Doses Administered to Patient":
 define "MCV Supplementary Doses Administered to Patient":
   MeaslesElements."MCV Supplementary Doses Administered to Patient" I
   where
-    I.occurrence.toInterval() on or before Today
+    I.occurrence.toInterval() same day or before Today
 
 /*
 @internal: Number of MCV Primary Series doses
@@ -139,7 +139,7 @@ define "Measles supplementary dose was administered":
 containing vaccines")
 */
 define "Measles routine immunization schedule is complete":
-  exists( [Observation : Concepts."Completed the primary vaccination series"] O where O.value = true and O.effective.toInterval() on or before Today )
+  exists( [Observation : Concepts."Completed the primary vaccination series"] O where O.value = true and O.effective.toInterval() same day or before Today )
   or
   "MCV2 was administered"
 

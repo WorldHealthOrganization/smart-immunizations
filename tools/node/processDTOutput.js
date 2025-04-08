@@ -14,6 +14,8 @@ const getRange = ( nums ) => {
   return [ parseInt(start), parseInt(end) ]
 }
 
+let celloffset = 1
+
 var file, sheetname, rows, cols, prefix, dt;
 
 [file, sheetname, rows, cols, prefix, dt] = process.argv.slice(2);
@@ -123,7 +125,7 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
     content[0] = content[0].trim()
     content[1] = content[1].trim()
     if ( !outputs[ content[0] ] ) outputs[ content[0] ] = []
-    outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2], testid: (r+2) } )
+    outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2], testid: (r+celloffset) } )
   }
 }
 

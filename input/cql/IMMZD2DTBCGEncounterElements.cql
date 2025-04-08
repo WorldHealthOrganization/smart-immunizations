@@ -29,7 +29,7 @@ context Patient
 define "BCG Doses Administered to Patient":
   BCGElements."BCG Doses Administered to Patient" I
   where
-    I.occurrence.toInterval() on or before Today
+    I.occurrence.toInterval() same day or before Today
 
 /*
 @internal: BCG containing Doses Administered to Patient that are in the Primary series
@@ -37,7 +37,7 @@ define "BCG Doses Administered to Patient":
 define "BCG Primary Series Doses Administered to Patient":
   BCGElements."BCG Primary Series Doses Administered to Patient" I
   where
-    I.occurrence.toInterval() on or before Today
+    I.occurrence.toInterval() same day or before Today
 
 /*
 @internal: Number of BCG Primary Series doses
