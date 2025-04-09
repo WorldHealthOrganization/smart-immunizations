@@ -107,6 +107,14 @@ define "Client's age is between 6 weeks and 3 months":
   and "Current Patient Age In Months" <= 3
 
 /*
+@input: Client's age is between 6 weeks and 1 year
+@pseudocode: 6 weeks ≤ Today's date − "Date of birth" < 1 year
+*/
+define "Client's age is between 6 weeks and 1 year":
+  "Current Patient Age In Weeks" >= 6
+  and "Current Patient Age In Years" < 1
+
+/*
 @input: Client's age is more than or equal to 6 weeks
 @pseudocode: Today's date − "Date of birth" ≥ 6 weeks
 */
@@ -226,6 +234,56 @@ define "Client's age is more than 5 years":
   "Current Patient Age In Years" >= 5
 
 /*
+@input: Client's age is less than 4 years
+@pseudocode: Today's date − "Date of birth" < 4 years
+*/
+define "Client's age is less than 4 years":
+  "Current Patient Age In Years" < 4
+
+/*
+@input: Client's age is more than or equal to 4 years
+@pseudocode: Today's date − "Date of birth" ≥ 4 years
+*/
+define "Client's age is more than or equal to 4 years":
+  "Current Patient Age In Years" >= 4
+
+/*
+@input: Client's age is less than 9 years
+@pseudocode: Today's date − "Date of birth" < 9 years
+*/
+define "Client's age is less than 9 years":
+  "Current Patient Age In Years" < 9
+
+/*
+@input: Client's age is more than or equal to 9 years
+@pseudocode: Today's date − "Date of birth" ≥ 9 years
+*/
+define "Client's age is more than or equal to 9 years":
+  "Current Patient Age In Years" >= 9
+
+/*
+@input: Client's age is less than 1 year
+@pseudocode: Today's date − "Date of birth" < 1 year
+*/
+define "Client's age is less than 1 year":
+  "Current Patient Age In Years" < 1
+
+/*
+@input: Client's age is between 1 year and 6 years
+@pseudocode: 1 year ≤  Today's date − "Date of birth" ≤  6 years
+*/
+define "Client's age is between 1 year and 6 years":
+  "Current Patient Age In Years" >= 1
+  and "Current Patient Age In Years" <= 6
+
+/*
+@input: Client's age is more than 6 years
+@pseudocode: Today's date − "Date of birth" >  6 years
+*/
+define "Client's age is more than 6 years":
+  "Current Patient Age In Years" > 6
+
+/*
 @input: No live vaccine was administered
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) IS NULL
 */
@@ -283,9 +341,7 @@ define "The client has history of anaphylactic reactions":
 @internal: Observation for History of anaphylactic reactions
 */
 define "History of anaphylactic reactions Observation":
-  Elements."History of anaphylactic reactions Observation" O
-    where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts same day or before Today
+  Elements."History of anaphylactic reactions Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for History of anaphylactic reactions
@@ -306,9 +362,7 @@ define "The client has history of severe allergic reactions":
 @internal: Observation for Severe allergic reactions
 */
 define "Severe allergic reactions Observation":
-  Elements."Severe allergic reactions Observation" O
-    where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts same day or before Today
+  Elements."Severe allergic reactions Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Severe allergic reactions
@@ -329,9 +383,7 @@ define "The client is severely immunocompromised":
 @internal: Observation for Severely immunocompromised
 */
 define "Severely immunocompromised Observation":
-  Elements."Severely immunocompromised Observation" O
-    where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts same day or before Today
+  Elements."Severely immunocompromised Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Severely immunocompromised
@@ -352,9 +404,7 @@ define "The client is severely immunosuppressed":
 @internal: Observation for Severely immunosuppressed
 */
 define "Severely immunosuppressed Observation":
-  Elements."Severely immunosuppressed Observation" O
-    where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts same day or before Today
+  Elements."Severely immunosuppressed Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Severely immunosuppressed
@@ -375,9 +425,7 @@ define "The client has a symptomatic HIV infection":
 @internal: Observation for Symptomatic HIV infection
 */
 define "Symptomatic HIV infection Observation":
-  Elements."Symptomatic HIV infection Observation" O
-    where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts same day or before Today
+  Elements."Symptomatic HIV infection Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Symptomatic HIV infection
@@ -398,9 +446,7 @@ define "The client has immunodeficiency syndromes":
 @internal: Observation for Immunodeficiency syndromes
 */
 define "Immunodeficiency syndromes Observation":
-  Elements."Immunodeficiency syndromes Observation" O
-    where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts same day or before Today
+  Elements."Immunodeficiency syndromes Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Immunodeficiency syndromes
@@ -421,9 +467,7 @@ define "The client is exposed to immunosuppressive treatment":
 @internal: Observation for Exposed to immunosuppressive treatment
 */
 define "Exposed to immunosuppressive treatment Observation":
-  Elements."Exposed to immunosuppressive treatment Observation" O
-    where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts same day or before Today
+  Elements."Exposed to immunosuppressive treatment Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Exposed to immunosuppressive treatment
@@ -444,19 +488,15 @@ define "Client's HIV status is negative or unknown":
 @pseudocode: "HIV status" = "HIV-positive"
 */
 define "Client's HIV status is positive":
-  exists( Elements."HIV status Observation" O
-    where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts same day or before Today)
-      and O.value ~ Concepts."HIV-positive" )
+  exists( (Elements."HIV status Observation".encounterOrOnBefore(EncounterId, Today)) O
+    where O.value ~ Concepts."HIV-positive" )
 
 /*
 @input: Client is currently receiving antiretroviral therapy
 @pseudocode: "Currently on ART" = TRUE
 */
 define "Client is currently receiving antiretroviral therapy":
-  First(Elements."Currently on ART Observation" O 
-    where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts same day or before Today)).value = true
+  Elements."Currently on ART Observation".encounterOrOnBefore(EncounterId, Today).mostRecent().value = true
 
 /*
 @input: Client is currently not receiving antiretroviral therapy
@@ -469,9 +509,7 @@ define "Client is currently not receiving antiretroviral therapy":
 @internal: Immunologically stable Observation
 */
 define "Immunologically stable Observation":
-  Elements."Immunologically stable Observation" O
-    where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts same day or before Today)
+  Elements."Immunologically stable Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @input: Client is immunologically stable
@@ -491,9 +529,7 @@ define "Client is not immunologically stable":
 @internal: Immunologically stable Observation
 */
 define "TB infection test result Observation":
-  Elements."TB infection test result Observation" O
-    where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts same day or before Today)
+  Elements."TB infection test result Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @input: Client's TB infection test result is negative
@@ -520,9 +556,8 @@ define "Client's TB infection test result is positive":
 @internal: Clinically well Observation
 */
 define "Clinically well Observation":
-  Elements."Clinically well Observation" O
-    where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts same day or before Today)
+  Elements."Clinically well Observation".encounterOrOnBefore(EncounterId, Today)
+
 /*
 @input: Client is not clinically well
 @pseudocode: "Clinically well" = FALSE
@@ -541,9 +576,7 @@ define "Client is clinically well":
 @internal: Birth weight in grams Observation
 */
 define "Birth weight in grams Observation":
-  Elements."Birth weight in grams Observation" O
-    where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts same day or before Today)
+  Elements."Birth weight in grams Observation".encounterOrOnBefore(EncounterId, Today)
 
 define "Birth weight in grams Value":
   First("Birth weight in grams Observation").value as FHIR.Quantity
@@ -569,9 +602,7 @@ define "Client's weight at birth was below 2000 g":
 @internal: Preterm birth Observation
 */
 define "Preterm birth Observation":
-  Elements."Preterm birth Observation" O
-    where (O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts same day or before Today)
+  Elements."Preterm birth Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @input: Client was not a premature infant at birth
@@ -586,3 +617,9 @@ define "Client was not a premature infant at birth":
 */
 define "Client was a premature infant at birth":
   exists( "Preterm birth Observation" O where O.value = true )
+
+/*
+@internal: Completed the primary vaccination series Observation
+*/
+define "Completed the primary vaccination series Observation":
+  Elements."Completed the primary vaccination series Observation".encounterOrOnBefore(EncounterId, Today)

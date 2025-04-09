@@ -27,9 +27,7 @@ context Patient
 @internal: Polio containing Doses Administered to Patient
 */
 define "Polio Doses Administered to Patient":
-  PolioElements."Polio Doses Administered to Patient" I
-  where
-    I.occurrence.toInterval() same day or before Today
+  PolioElements."Polio Doses Administered to Patient".onOrBefore(Today)
 
 /*
 @internal: bOPV Doses Administered to Patient
@@ -67,9 +65,7 @@ define "Date of Latest IPV Dose":
 @internal: Polio containing Doses Administered to Patient that are in the Dose 0 (Birth) series
 */
 define "Polio Dose 0 Doses Administered to Patient":
-  PolioElements."Polio Dose 0 Doses Administered to Patient" I
-  where
-    I.occurrence.toInterval() same day or before Today
+  PolioElements."Polio Dose 0 Doses Administered to Patient".onOrBefore(Today)
 
 /*
 @internal: Number of Polio Dose 0 doses
@@ -95,9 +91,7 @@ define "bOPV birth dose (a zero dose) was administered":
 @internal: Polio containing Doses Administered to Patient that are in the Primary series
 */
 define "Polio Primary Series Doses Administered to Patient":
-  PolioElements."Polio Primary Series Doses Administered to Patient" I
-    where
-      I.occurrence.toInterval() same day or before Today
+  PolioElements."Polio Primary Series Doses Administered to Patient".onOrBefore(Today)
 
 /*
 @internal: Date and time of first Primary Series Polio dose
@@ -253,10 +247,7 @@ define "From the four doses administered, two are IPV and two are bOPV":
 @internal: Polio containing Doses Administered to Patient that are in the Booster series
 */
 define "Polio Booster Series Doses Administered to Patient":
-  PolioElements."Polio Booster Series Doses Administered to Patient" I
-    where
-      I.occurrence.toInterval() same day or before Today
-
+  PolioElements."Polio Booster Series Doses Administered to Patient".onOrBefore(Today)
 /*
 @internal: Number of Polio Booster Series doses
 */

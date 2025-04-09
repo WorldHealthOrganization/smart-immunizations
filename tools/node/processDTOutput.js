@@ -14,7 +14,7 @@ const getRange = ( nums ) => {
   return [ parseInt(start), parseInt(end) ]
 }
 
-let celloffset = 1
+let celloffset = 2
 
 var file, sheetname, rows, cols, prefix, dt;
 
@@ -73,7 +73,7 @@ include FHIRHelpers version '4.0.1'
 
 include IMMZ${prefix}${sheetdisplay}EncounterElements called Encounter
 
-parameter Today default Today()
+parameter Today Date default Today()
 
 context Patient
 

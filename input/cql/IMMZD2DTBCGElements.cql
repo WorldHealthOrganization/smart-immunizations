@@ -29,10 +29,8 @@ define "BCG Doses Administered to Patient":
 @internal: BCG containing Doses Administered to Patient that are in the Primary series
 */
 define "BCG Primary Series Doses Administered to Patient":
-  "BCG Doses Administered to Patient" I
-  where
-    exists( I.protocolApplied pa where pa.series = 'Primary series' )
-
+  "BCG Doses Administered to Patient".seriesPrimary()
+  
 /*
 @internal: Number of BCG Primary Series doses
 */

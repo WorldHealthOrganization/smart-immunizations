@@ -28,7 +28,7 @@ context Patient
 */
 define "Draft Medication Request for Hepatitis B dose":
   Encounter."Draft Medication Request for Patient" MR 
-    where MR.medication in Concepts."Hepatitis B-containing vaccines vaccines"
+    where MR.medication in Concepts."Hepatitis B-containing vaccines"
 
 /*
 @input: The client has history of severe allergic reactions

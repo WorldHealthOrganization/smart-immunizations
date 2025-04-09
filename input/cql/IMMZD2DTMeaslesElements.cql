@@ -29,25 +29,19 @@ define "MCV Doses Administered to Patient":
 @internal: MCV containing Doses Administered to Patient that are in the Primary series
 */
 define "MCV Primary Series Doses Administered to Patient":
-  "MCV Doses Administered to Patient" I
-  where
-    exists( I.protocolApplied pa where pa.series = 'Primary series' )
+  "MCV Doses Administered to Patient".seriesPrimary()
 
 /*
 @internal: MCV containing Doses Administered to Patient that are in the Dose 0 series
 */
 define "MCV Dose 0 Doses Administered to Patient":
-  "MCV Doses Administered to Patient" I
-  where
-    exists( I.protocolApplied pa where pa.series = 'Dose 0' )
+  "MCV Doses Administered to Patient".seriesDose0()
 
 /*
 @internal: MCV containing Doses Administered to Patient that are in the Supplementary series
 */
 define "MCV Supplementary Doses Administered to Patient":
-  "MCV Doses Administered to Patient" I
-  where
-    exists( I.protocolApplied pa where pa.series = 'Supplementary dose' )
+  "MCV Doses Administered to Patient".seriesSupplementary()
 
 /*
 @internal: Number of MCV Primary Series doses
@@ -126,9 +120,12 @@ define "Measles supplementary dose was administered":
 containing vaccines")
 */
 define "Measles routine immunization schedule is complete":
-  [Observation : Concepts."Completed the primary vaccination series"] O where O.value = true
-  or
   "MCV2 was administered"
+  or
+  Coalesce( 
+    "MCV Doses Administered to Patient" Dose
+    aggregate Result: Elements."Completed the primary vaccination series Observation".partOf.references(Dose) or Result, 
+    false ) 
 
 /*
 @input: Client's age is less than 6 months

@@ -12,7 +12,7 @@ include FHIRHelpers version '4.0.1'
 
 include IMMZD2DTBCGEncounterElements called Encounter
 
-parameter Today default Today()
+parameter Today Date default Today()
 
 context Patient
 

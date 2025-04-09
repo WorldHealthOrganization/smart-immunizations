@@ -61,9 +61,7 @@ define "Date of Latest IPV Dose":
 @internal: Polio containing Doses Administered to Patient that are in the Dose 0 (Birth) series
 */
 define "Polio Dose 0 Doses Administered to Patient":
-  "Polio Doses Administered to Patient" I
-  where
-    exists( I.protocolApplied pa where pa.series = 'Dose 0' )
+  "Polio Doses Administered to Patient".seriesDose0()
 
 /*
 @internal: Number of Polio Dose 0 doses
@@ -89,9 +87,7 @@ define "bOPV birth dose (a zero dose) was administered":
 @internal: Polio containing Doses Administered to Patient that are in the Primary series
 */
 define "Polio Primary Series Doses Administered to Patient":
-  "Polio Doses Administered to Patient" I
-  where
-    exists( I.protocolApplied pa where pa.series = 'Primary series' )
+  "Polio Doses Administered to Patient".seriesPrimary()
 
 /*
 @internal: Date and time of first Primary Series Polio dose
@@ -247,9 +243,7 @@ define "From the four doses administered, two are IPV and two are bOPV":
 @internal: Polio containing Doses Administered to Patient that are in the Booster series
 */
 define "Polio Booster Series Doses Administered to Patient":
-  "Polio Doses Administered to Patient" I
-  where
-    exists( I.protocolApplied pa where pa.series = 'Booster dose' )
+  "Polio Doses Administered to Patient".seriesBooster()
 
 /*
 @internal: Number of Polio Booster Series doses

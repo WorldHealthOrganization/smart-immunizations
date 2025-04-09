@@ -70,7 +70,7 @@ include IMMZConcepts called Concepts
 include IMMZEncounterElements called IE
 include IMMZD2DT${sheetdisplay}EncounterElements called Encounter
 
-parameter Today default Today()
+parameter Today Date default Today()
 
 context Patient
 

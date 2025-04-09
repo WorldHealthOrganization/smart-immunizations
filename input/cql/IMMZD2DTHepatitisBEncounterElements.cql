@@ -29,9 +29,7 @@ context Patient
 @internal: Hepatitis B containing Doses Administered to Patient
 */
 define "Hepatitis B Doses Administered to Patient":
-  HepatitisBElements."Hepatitis B Doses Administered to Patient" I
-  where
-    I.occurrence.toInterval() same day or before Today
+  HepatitisBElements."Hepatitis B Doses Administered to Patient".onOrBefore(Today)
 
 /*
 @internal: Date and time of last Hepatitis B dose
@@ -49,9 +47,7 @@ define "Date of First Hepatitis B Dose":
 @internal: Hepatitis B containing Doses Administered to Patient that are in the Dose 0 series
 */
 define "Hepatitis B Dose 0 Doses Administered to Patient":
-  HepatitisBElements."Hepatitis B Dose 0 Doses Administered to Patient" I
-  where
-    I.occurrence.toInterval() same day or before Today
+  HepatitisBElements."Hepatitis B Dose 0 Doses Administered to Patient".onOrBefore(Today)
 
 /*
 @internal: Number of Hepatitis B Dose 0 doses
@@ -77,9 +73,7 @@ define "Hepatitis B birth dose was administered":
 @internal: Hepatitis B containing Doses Administered to Patient that are in the Primary series
 */
 define "Hepatitis B Primary Series Doses Administered to Patient":
-  HepatitisBElements."Hepatitis B Primary Series Doses Administered to Patient" I
-  where
-    I.occurrence.toInterval() same day or before Today
+  HepatitisBElements."Hepatitis B Primary Series Doses Administered to Patient".onOrBefore(Today)
 
 /*
 @internal: Number of Hepatitis B Primary Series doses

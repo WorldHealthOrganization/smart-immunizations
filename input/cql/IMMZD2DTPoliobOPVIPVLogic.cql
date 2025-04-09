@@ -13,7 +13,7 @@ include FHIRHelpers version '4.0.1'
 include IMMZConcepts called Concepts
 include IMMZD2DTPolioEncounterElements called Encounter
 
-parameter Today default Today()
+parameter Today Date default Today()
 
 context Patient
 

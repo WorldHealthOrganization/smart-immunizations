@@ -44,9 +44,7 @@ define "Date of First Hepatitis B Dose":
 @internal: Hepatitis B containing Doses Administered to Patient that are in the Dose 0 (Birth) series
 */
 define "Hepatitis B Dose 0 Doses Administered to Patient":
-  "Hepatitis B Doses Administered to Patient" I
-  where
-    exists( I.protocolApplied pa where pa.series = 'Dose 0' )
+  "Hepatitis B Doses Administered to Patient".seriesDose0()
 
 /*
 @internal: Number of Hepatitis B Dose 0 doses
@@ -72,9 +70,7 @@ define "Hepatitis B birth dose was administered":
 @internal: Hepatitis B containing Doses Administered to Patient that are in the Primary series
 */
 define "Hepatitis B Primary Series Doses Administered to Patient":
-  "Hepatitis B Doses Administered to Patient" I
-  where
-    exists( I.protocolApplied pa where pa.series = 'Primary series' )
+  "Hepatitis B Doses Administered to Patient".seriesPrimary()
 
 /*
 @internal: Number of Hepatitis B Primary Series doses

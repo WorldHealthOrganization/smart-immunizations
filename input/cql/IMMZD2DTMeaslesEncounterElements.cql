@@ -27,17 +27,13 @@ context Patient
 @internal: MCV containing Doses Administered to Patient
 */
 define "MCV Doses Administered to Patient":
-  MeaslesElements."MCV Doses Administered to Patient" I
-  where
-    I.occurrence.toInterval() same day or before Today
+  MeaslesElements."MCV Doses Administered to Patient".onOrBefore(Today)
 
 /*
 @internal: MCV containing Doses Administered to Patient that are in the Primary series
 */
 define "MCV Primary Series Doses Administered to Patient":
-  MeaslesElements."MCV Primary Series Doses Administered to Patient" I
-  where
-    I.occurrence.toInterval() same day or before Today
+  MeaslesElements."MCV Primary Series Doses Administered to Patient".onOrBefore(Today)
 
 /*
 @internal: Date of most recent primary series dose
@@ -49,17 +45,13 @@ define "Date when the primary vaccination series completed":
 @internal: MCV containing Doses Administered to Patient that are in the Dose 0 series
 */
 define "MCV Dose 0 Doses Administered to Patient":
-  MeaslesElements."MCV Dose 0 Doses Administered to Patient" I
-  where
-    I.occurrence.toInterval() same day or before Today
+  MeaslesElements."MCV Dose 0 Doses Administered to Patient".onOrBefore(Today)
 
 /*
 @internal: MCV containing Doses Administered to Patient that are in the Supplementary dose
 */
 define "MCV Supplementary Doses Administered to Patient":
-  MeaslesElements."MCV Supplementary Doses Administered to Patient" I
-  where
-    I.occurrence.toInterval() same day or before Today
+  MeaslesElements."MCV Supplementary Doses Administered to Patient".onOrBefore(Today)
 
 /*
 @internal: Number of MCV Primary Series doses
@@ -139,10 +131,12 @@ define "Measles supplementary dose was administered":
 containing vaccines")
 */
 define "Measles routine immunization schedule is complete":
-  exists( [Observation : Concepts."Completed the primary vaccination series"] O where O.value = true and O.effective.toInterval() same day or before Today )
-  or
   "MCV2 was administered"
-
+  or
+  Coalesce( 
+    "MCV Doses Administered to Patient" Dose
+    aggregate Result: Encounter."Completed the primary vaccination series Observation".partOf.references(Dose) or Result, 
+    false ) 
 
 /*
 @input: Client's age is less than 6 months

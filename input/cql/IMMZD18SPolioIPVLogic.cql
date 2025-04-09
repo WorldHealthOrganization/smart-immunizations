@@ -16,7 +16,7 @@ include IMMZConcepts called Concepts
 include IMMZEncounterElements called IE
 include IMMZD2DTPolioEncounterElements called Encounter
 
-parameter Today default Today()
+parameter Today Date default Today()
 
 context Patient
 

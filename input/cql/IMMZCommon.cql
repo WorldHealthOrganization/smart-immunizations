@@ -3,6 +3,7 @@ library IMMZCommon
 using FHIR version '4.0.1'
 
 include FHIRHelpers version '4.0.1'
+include WHOCommon called WC
 
 /**
  * @description Fetches a singleton protocol applied from an immunization
@@ -83,9 +84,53 @@ define function ExtractMedicationInitiationDate(choice Choice<FHIR.dateTime, FHI
 	end
 
 /**
- * @description: Gets the typeOfDose extension value from an Immunization
+ * @description: Gets the type of antigen dose extension value from an Immunization
  */
 define fluent function typeOfDose(immz Immunization):
-  (singleton from (
+  (First(
     immz.extension E where E.url = 'http://smart.who.int/immunizations/StructureDefinition/IMMZTypeOfDose'
   )).value as FHIR.CodeableConcept
+
+/**
+ * @description: Gets immunizations on or before a date
+ */
+define fluent function onOrBefore(immunizations List<Immunization>, beforeDate Date):
+  immunizations I where
+    I.occurrence.toInterval() same day or before beforeDate
+
+
+/**
+ * @description: Gets observation from an encounter or on or before a date
+ */
+define fluent function encounterOrOnBefore(observations List<Observation>, EncounterId String, beforeDate Date):
+  observations O where
+    (O.encounter.references(EncounterId)
+      or O.effective.toInterval() starts same day or before beforeDate)
+
+/**
+ * @description: Gets the doses from the primary series
+ */
+define fluent function seriesPrimary(immunizations List<Immunization>):
+  immunizations I where
+    exists( I.protocolApplied pa where pa.series = 'Primary series' )
+
+/**
+ * @description: Gets the doses from the dose 0 series
+ */
+define fluent function seriesDose0(immunizations List<Immunization>):
+  immunizations I where
+    exists( I.protocolApplied pa where pa.series = 'Dose 0' )
+
+/**
+ * @description: Gets the doses from the Booster series
+ */
+define fluent function seriesBooster(immunizations List<Immunization>):
+  immunizations I where
+    exists( I.protocolApplied pa where pa.series = 'Booster dose' )
+
+/**
+ * @description: Gets the doses from the Supplementary series
+ */
+define fluent function seriesSupplementary(immunizations List<Immunization>):
+  immunizations I where
+    exists( I.protocolApplied pa where pa.series = 'Supplementary dose' )

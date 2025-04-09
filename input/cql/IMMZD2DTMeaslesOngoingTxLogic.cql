@@ -12,10 +12,9 @@ include FHIRHelpers version '4.0.1'
 
 include IMMZD2DTMeaslesEncounterElements called Encounter
 
-parameter Today default Today()
+parameter Today Date default Today()
 
 context Patient
-
 
 /*
 @dynamicValue: Guidance

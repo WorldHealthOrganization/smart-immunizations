@@ -109,6 +109,14 @@ define "Client's age is between 6 weeks and 3 months":
   and "Current Patient Age In Months" <= 3
 
 /*
+@input: Client's age is between 6 weeks and 1 year
+@pseudocode: 6 weeks ≤ Today's date − "Date of birth" < 1 year
+*/
+define "Client's age is between 6 weeks and 1 year":
+  "Current Patient Age In Weeks" >= 6
+  and "Current Patient Age In Years" < 1
+
+/*
 @input: Client's age is more than 3 months
 @pseudocode: Today's date − "Date of birth" > 3 months
 */
@@ -220,6 +228,56 @@ define "Client's age is more than or equal to 15 months":
 */
 define "Client's age is more than 5 years":
   "Current Patient Age In Years" >= 5
+
+/*
+@input: Client's age is less than 4 years
+@pseudocode: Today's date − "Date of birth" < 4 years
+*/
+define "Client's age is less than 4 years":
+  "Current Patient Age In Years" < 4
+
+/*
+@input: Client's age is more than or equal to 4 years
+@pseudocode: Today's date − "Date of birth" ≥ 4 years
+*/
+define "Client's age is more than or equal to 4 years":
+  "Current Patient Age In Years" >= 4
+
+/*
+@input: Client's age is less than 9 years
+@pseudocode: Today's date − "Date of birth" < 9 years
+*/
+define "Client's age is less than 9 years":
+  "Current Patient Age In Years" < 9
+
+/*
+@input: Client's age is more than or equal to 9 years
+@pseudocode: Today's date − "Date of birth" ≥ 9 years
+*/
+define "Client's age is more than or equal to 9 years":
+  "Current Patient Age In Years" >= 9
+
+/*
+@input: Client's age is less than 1 year
+@pseudocode: Today's date − "Date of birth" < 1 year
+*/
+define "Client's age is less than 1 year":
+  "Current Patient Age In Years" < 1
+
+/*
+@input: Client's age is between 1 year and 6 years
+@pseudocode: 1 year ≤  Today's date − "Date of birth" ≤  6 years
+*/
+define "Client's age is between 1 year and 6 years":
+  "Current Patient Age In Years" >= 1
+  and "Current Patient Age In Years" <= 6
+
+/*
+@input: Client's age is more than 6 years
+@pseudocode: Today's date − "Date of birth" >  6 years
+*/
+define "Client's age is more than 6 years":
+  "Current Patient Age In Years" > 6
 
 /*
 @input: No live vaccine was administered
@@ -334,7 +392,7 @@ define "Severely immunocompromised Observation":
 */
 define "Severely immunocompromised Condition":
   [Condition: Concepts."Severely immunocompromised"]
-  
+
 /*
 @input: The client is severely immunosuppressed
 @pseudocode: "Potential contraindications" = "Severely immunosuppressed"
@@ -578,4 +636,10 @@ define "Client was not a premature infant at birth":
 */
 define "Client was a premature infant at birth":
   exists( "Preterm birth Observation" O where O.value = true )
+
+/*
+@internal: Completed the primary vaccination series Observation
+*/
+define "Completed the primary vaccination series Observation":
+  ([Observation: Concepts."Completed the primary vaccination series"]).complete()
 
