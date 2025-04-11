@@ -139,7 +139,7 @@ const displayOutput = ( title, pseudo, expression, guidance ) => {
   logic.write( "  " + expression + "\n\n" )
   
   if ( guidance ) {
-    displayGuidance( title, "'"+guidance.replace(/'/, '\\\'')+"'", "\n@guidance: "+guidance )
+    displayGuidance( title, "'"+guidance.replace(/'/g, '\\\'')+"'", "\n@guidance: "+guidance )
   }
 }
 

@@ -25,8 +25,29 @@ for(let doc of docs) {
   if ( options.immunization ) {
     fs.mkdirSync(topDir+"/Immunization", {recursive: true})
     for( let immz in options.immunization ) {
-      let immzr = makeImmunization( immz, options.id, options.immunization[immz], options.birth )
-      fs.writeFileSync( topDir+"/Immunization/"+immzr.id+".json", Buffer.from( JSON.stringify(immzr,null,2)))
+      if ( options.immunization[immz].doses ) {
+        let doses = options.immunization[immz].doses
+        let newoptions = JSON.parse(JSON.stringify(options.immunization[immz]))
+        delete newoptions.doses
+        for( let series in doses ) {
+          let found = series.match(/([bps0])(\d?)/)
+          let paseries, padoses
+          if ( found[1] ) paseries = found[1]
+          if ( found[2] ) padoses = found[2]
+          for( let i in doses[series] ) {
+            let index = parseInt(i)+1
+            newoptions.dose = paseries + index
+            if ( padoses ) newoptions.dose += "/" + padoses
+            if ( !newoptions.fhir ) newoptions.fhir = {}
+            newoptions.fhir.occurrenceDateTime = doses[series][i]
+            let immzr = makeImmunization( immz+index, options.id, newoptions, options.birth )
+            fs.writeFileSync( topDir+"/Immunization/"+immzr.id+".json", Buffer.from( JSON.stringify(immzr,null,2)))
+          }
+        }
+      } else {
+        let immzr = makeImmunization( immz, options.id, options.immunization[immz], options.birth )
+        fs.writeFileSync( topDir+"/Immunization/"+immzr.id+".json", Buffer.from( JSON.stringify(immzr,null,2)))
+      }
     }
   }
   if ( options.condition ) {
@@ -141,6 +162,32 @@ function makeImmunization( immz, patient, options, birth ) {
   immunization.id = immz+"-"+patient
   immunization.patient.reference = "Patient/"+patient
   immunization.vaccineCode.coding[0] = options.vaccine
+  immunization.expirationDate - shiftDate( "1y", birth )
+  if ( options.dose ) {
+    let found = options.dose.match(/([pbs0]?)\.?(\d+)\/?(\d*)/)
+    let pa = {}
+    pa.doseNumberString = found[2]
+    if ( found[3] ) {
+      pa.seriesDosesString = found[3]
+    }
+    switch( found[1] ) {
+      case 'p':
+        pa.series = 'Primary series'
+        break
+      case 'b':
+        pa.series = 'Booster dose'
+        break
+      case 's':
+        pa.series = 'Supplementary dose'
+        break
+      case '0':
+        pa.series = 'Dose 0'
+        break
+      default:
+        pa.series = 'Primary series'
+    }
+    immunization.protocolApplied = [ pa ]
+  }
   copyFHIR( immunization, options, birth )
 
   return immunization

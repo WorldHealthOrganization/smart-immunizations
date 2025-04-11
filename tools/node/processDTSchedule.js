@@ -124,6 +124,24 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
 
   tests.push("    when Patient.id = '"+(r+2)+".' then \""+sname+"\"")
 
+  defaultdate = `if "${sname}" then
+  else null`
+  if ( due.startsWith("To be determined") ) {
+    duecode = "null"
+  } else {
+    duecode = defaultdate
+  }
+  if ( overdue.startsWith("To be determined") ) {
+    overduecode = "null"
+  } else {
+    overduecode = defaultdate
+  }
+  if ( expiration.startsWith("To be determined") ) {
+    expcode = "null"
+  } else {
+    expcode = defaultdate
+  }
+
   logic.write(`
 /*
 @output: ${sname}
@@ -148,28 +166,27 @@ define "${sname} Create":
 @pseudocode: ${due}
 */
 define "${sname} Due Date":
-  null
+  ${duecode}
 
 /*
 @dynamicValue: ${sname} Overdue
 @pseudocode: ${overdue}
 */
 define "${sname} Overdue":
-  null
+  ${overduecode}
 
 /*
 @dynamicValue: ${sname} Expiration
 @pseudocode: ${expiration}
 */
 define "${sname} Expiration":
-  null
-
+  ${expcode}
+  
 /*
 @complete: ${complete[0]}
 @pseudocode: ${complete[1]}
 */
 define "${complete[0]}":
- 
 
 `)
 

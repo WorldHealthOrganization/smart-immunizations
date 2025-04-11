@@ -18,9 +18,9 @@ context Patient
 
 
 /*
-@dynamicValue: Draft Medication Request ID for MCV dose
+@dynamicValue: Draft Medication Request ID for BCG dose
 */
-define "Draft Medication Request ID for MCV dose":
+define "Draft Medication Request ID for BCG dose":
 	First(Encounter."Draft Medication Request for BCG dose").id
 
 /*

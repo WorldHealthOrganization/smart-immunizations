@@ -269,6 +269,13 @@ define "Client's age is less than 1 year":
   "Current Patient Age In Years" < 1
 
 /*
+@input: Client's age is more than 1 year
+@pseudocode: Today's date − "Date of birth" > 1 year
+*/
+define "Client's age is more than 1 year":
+  "Current Patient Age In Years" > 1
+  
+/*
 @input: Client's age is between 1 year and 6 years
 @pseudocode: 1 year ≤  Today's date − "Date of birth" ≤  6 years
 */
@@ -320,7 +327,7 @@ define "The client is pregnant":
 define "Currently pregnant Observation":
   Elements."Currently pregnant Observation" O
     where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts after Today - 9 months
+      or O.effective.toInterval() starts same day or after Today - 9 months
 
 /*
 @internal: Condition for currently pregnant
@@ -474,6 +481,28 @@ define "Exposed to immunosuppressive treatment Observation":
 */
 define "Exposed to immunosuppressive treatment Condition":
   Elements."Exposed to immunosuppressive treatment Condition" C
+    where C.prevalenceInterval() includes Today
+
+/*
+@input: The client currently has a severe acute illness
+@pseudocode: "Potential contraindications" = "Severe acute illness"
+@decision: Potential contraindications
+*/
+define "The client currently has a severe acute illness":
+  exists "Severe acute illness Observation"
+    or exists "Severe acute illness Condition"
+    
+/*
+@internal: Observation for Severe acute illness
+*/
+define "Severe acute illness Observation":
+  Elements."Severe acute illness Observation".encounterOrOnBefore(EncounterId, Today)
+
+/*
+@internal: Condition for Severe acute illness
+*/
+define "Severe acute illness Condition":
+  Elements."Severe acute illness Condition" C
     where C.prevalenceInterval() includes Today
 
 /*

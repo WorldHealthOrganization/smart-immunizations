@@ -21,6 +21,10 @@ valueset "Hepatitis B-containing vaccines": 'http://smart.who.int/immunizations/
 valueset "Poliovirus-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE14'
 valueset "Oral polio vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE30'
 valueset "Inactivated polio vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE31'
+valueset "DTP-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE24'
+valueset "Tetanus and diphtheria-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE28'
+valueset "Pertussis-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE12'
+valueset "Tetanus-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE19'
 
 code "IPV": 'DE213' from "IMMZD" display 'IPV'
 code "bOPV": 'DE214' from "IMMZD" display 'bOPV'
@@ -48,3 +52,4 @@ code "Severely immunosuppressed": 'DE165' from "IMMZD" display 'Severely immunos
 code "Symptomatic HIV infection": 'DE168' from "IMMZD" display 'Symptomatic HIV infection'
 code "Immunodeficiency syndromes": 'DE187' from "IMMZD" display 'Immunodeficiency syndromes'
 code "Exposed to immunosuppressive treatment": 'DE164' from "IMMZD" display 'Exposed to immunosuppressive treatment'
+code "Severe acute illness": 'DE188' from "IMMZD" display 'Severe acute illness'

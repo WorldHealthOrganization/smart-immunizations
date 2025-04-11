@@ -265,6 +265,13 @@ define "Client's age is less than 1 year":
   "Current Patient Age In Years" < 1
 
 /*
+@input: Client's age is more than 1 year
+@pseudocode: Today's date − "Date of birth" >= 1 year
+*/
+define "Client's age is more than 1 year":
+  "Current Patient Age In Years" >= 1
+
+/*
 @input: Client's age is between 1 year and 6 years
 @pseudocode: 1 year ≤  Today's date − "Date of birth" ≤  6 years
 */
@@ -476,6 +483,27 @@ define "Exposed to immunosuppressive treatment Observation":
 */
 define "Exposed to immunosuppressive treatment Condition":
   [Condition: Concepts."Exposed to immunosuppressive treatment"]
+
+/*
+@input: The client currently has a severe acute illness
+@pseudocode: "Potential contraindications" = "Severe acute illness"
+*/
+define "The client currently has a severe acute illness":
+  exists "Severe acute illness Observation"
+    or exists "Severe acute illness Condition"
+    
+/*
+@internal: Observation for Severe acute illness
+*/
+define "Severe acute illness Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Severe acute illness"
+
+/*
+@internal: Condition for Severe acute illness
+*/
+define "Severe acute illness Condition":
+  [Condition: Concepts."Severe acute illness"]
 
 
 /*

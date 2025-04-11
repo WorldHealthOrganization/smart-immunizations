@@ -16,4 +16,4 @@ context Patient
 define "Pregnant Observation":
   Elements."Pregnant Observation" O
     where O.encounter.references(EncounterId)
-      or O.effective.toInterval() starts 9 months on or before day of AsOf
+      or O.effective.toInterval() starts same day or after AsOf - 9 months

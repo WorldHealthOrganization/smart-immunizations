@@ -33,6 +33,10 @@ var title, pseudo, rs, re, cs, ce
 
 [ cs, ce ] = getRange( cols );
 
+let tabledesc = sheet[0].data[rs-2][cs]
+if ( tabledesc == "Trigger" ) tabledesc = sheet[0].data[rs-1][cs]
+if ( tabledesc == "Inputs" ) tabledesc = null
+
 let eleoutput = {}
 let encoutput = {}
 for( let c = cs; c <= ce; c++ ) {
@@ -43,8 +47,10 @@ for( let c = cs; c <= ce; c++ ) {
       title = title.trim()
       if (!pseudo) pseudo = ""
       pseudo = pseudo.trim()
-      eleoutput[title+pseudo] = "/*\n@input: " + title + "\n@pseudocode: " + pseudo + "\n*/\ndefine \""+title+"\":\n  Elements.\""+title+"\"\n\n"
-      encoutput[title+pseudo] = "/*\n@input: " + title + "\n@pseudocode: " + pseudo + "\n*/\ndefine \""+title+"\":\n  Encounter.\""+title+"\"\n\n"
+      eleoutput[title+pseudo] = "/*\n@input: " + title + "\n@pseudocode: " + pseudo + "\n" 
+      + (tabledesc ? "@decision: " + tabledesc + "\n" : "" ) + "*/\ndefine \""+title+"\":\n  Elements.\""+title+"\"\n\n"
+      encoutput[title+pseudo] = "/*\n@input: " + title + "\n@pseudocode: " + pseudo + "\n"
+      + (tabledesc ? "@decision: " + tabledesc + "\n" : "" ) + "*/\ndefine \""+title+"\":\n  Encounter.\""+title+"\"\n\n"
     }
   }
 }
