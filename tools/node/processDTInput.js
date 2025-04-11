@@ -1,7 +1,7 @@
 const xlsx = require('node-xlsx')
 const fs = require('fs')
 
-const getRange = ( nums ) => {
+const getRange = ( nums, offset ) => {
   let match = nums.match(/(\d+)-(\d+)/)
   let start, end
   if ( match ) {
@@ -11,17 +11,18 @@ const getRange = ( nums ) => {
     start = nums
     end = nums
   }
-  return [ parseInt(start), parseInt(end) ]
+  return [ parseInt(start)-offset, parseInt(end)-offset ]
 }
 
 // node processDTInput.js FILE.xlsx ANTIGENTAB R-R C-C DID 
 // node processDTinput.js FILE.xlsx Measles 6-12 0-2 D2DT 
 // Sometimes the indices for the rows/cols are a bit off so may need to adjust for that
 
-var file, sheetname, rows, cols, prefix
+var file, sheetname, rowoffset, rows, cols, prefix
 
-[file, sheetname, rows, cols, prefix] = process.argv.slice(2)
+[file, sheetname, rowoffset, rows, cols, prefix] = process.argv.slice(2)
 let cqlname = sheetname.replace(/\s/,"")
+rowoffset = parseInt(rowoffset)
 
 
 const workbook = xlsx.parse( file )
@@ -29,9 +30,8 @@ let sheet = workbook.filter( (tab) => { return tab.name === sheetname } )
 
 var title, pseudo, rs, re, cs, ce
 
-[ rs, re ] = getRange( rows );
-
-[ cs, ce ] = getRange( cols );
+[ rs, re ] = getRange( rows, rowoffset );
+[ cs, ce ] = getRange( cols, 0 );
 
 let tabledesc = sheet[0].data[rs-2][cs]
 if ( tabledesc == "Trigger" ) tabledesc = sheet[0].data[rs-1][cs]
@@ -88,6 +88,26 @@ include IMMZElements called Elements
 
 context Patient
 
+/*
+@internal: ${cqlname} containing Doses Administered to Patient
+*/
+define "${cqlname} Doses Administered to Patient":
+  Elements."Doses Administered to Patient" I
+  where
+    I.vaccineCode in Concepts."${cqlname}-containing vaccines"
+
+/*
+@internal: ${cqlname} containing Doses Administered to Patient that are in the Primary series
+*/
+define "${cqlname} Primary Series Doses Administered to Patient":
+  "${cqlname} Doses Administered to Patient".seriesPrimary()
+
+/*
+@internal: Number of ${cqlname} Primary Series doses
+*/
+define "Number of ${cqlname} Primary Series Doses Administered":
+  Count("${cqlname} Primary Series Doses Administered to Patient")
+
 `)
 
 elements.write(Object.values(eleoutput).join(""))
@@ -131,6 +151,26 @@ parameter Today Date default Today()
 parameter EncounterId String
 
 context Patient
+
+/*
+@internal: ${cqlname} containing Doses Administered to Patient
+*/
+define "${cqlname} Doses Administered to Patient":
+  Encounter."Doses Administered to Patient" I
+  where
+    I.vaccineCode in Concepts."${cqlname}-containing vaccines"
+
+/*
+@internal: ${cqlname} containing Doses Administered to Patient that are in the Primary series
+*/
+define "${cqlname} Primary Series Doses Administered to Patient":
+  "${cqlname} Doses Administered to Patient".seriesPrimary()
+
+/*
+@internal: Number of ${cqlname} Primary Series doses
+*/
+define "Number of ${cqlname} Primary Series Doses Administered":
+  Count("${cqlname} Primary Series Doses Administered to Patient")
 
 `)
 

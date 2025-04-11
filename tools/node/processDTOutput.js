@@ -1,7 +1,7 @@
 const xlsx = require('node-xlsx')
 const fs = require('fs')
 
-const getRange = ( nums ) => {
+const getRange = ( nums, offset ) => {
   let match = nums.match(/(\d+)-(\d+)/)
   let start, end
   if ( match ) {
@@ -11,25 +11,24 @@ const getRange = ( nums ) => {
     start = nums
     end = nums
   }
-  return [ parseInt(start), parseInt(end) ]
+  return [ parseInt(start)-offset, parseInt(end)-offset ]
 }
 
-let celloffset = 2
+var file, sheetname, rowoffset, rows, cols, prefix, dt;
 
-var file, sheetname, rows, cols, prefix, dt;
-
-[file, sheetname, rows, cols, prefix, dt] = process.argv.slice(2);
+[file, sheetname, rowoffset, rows, cols, prefix, dt] = process.argv.slice(2);
 // output and guidance are expected to be +1 and +2 from the last column.  Even if blank, all columns should be listed.
+rowoffset = parseInt(rowoffset)
 
 const workbook = xlsx.parse( file )
 let sheet = workbook.filter( (tab) => { return tab.name === sheetname } );
 let sheetdisplay = sheetname.replace(/\s/,"")
 sheet = sheet[0].data
 
-let rs = getRange( rows )
-let cs = getRange( cols )
+let rs = getRange( rows, rowoffset )
+let cs = getRange( cols, 0 )
 
-let top = parseInt(rs[0])
+let top = rs[0]
 
 let table = sheet[top-2][cs[0]]
 let dtmod = 0
@@ -125,7 +124,7 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
     content[0] = content[0].trim()
     content[1] = content[1].trim()
     if ( !outputs[ content[0] ] ) outputs[ content[0] ] = []
-    outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2], testid: (r+celloffset) } )
+    outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2], testid: (r+rowoffset) } )
   }
 }
 
