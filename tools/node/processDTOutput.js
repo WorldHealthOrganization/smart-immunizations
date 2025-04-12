@@ -102,9 +102,12 @@ Usage: #definition
 let prevtitles = []
 let outputs = {}
 
+let yaml = fs.createWriteStream("output/examples.yaml")
 
 for ( let r = rs[0]; r <= rs[1]; r++ ) {
   let expression = [];
+  let testid = (r+rowoffset < 10 ? "0" : "" ) + (r+rowoffset) + "."
+  let examples = []
   for( let c = cs[0]; c <= cs[1]; c++ ) {
     let content = []
     //if ( sheet[r] && sheet[r][c] && sheet[r][c] != '-' ) {
@@ -114,9 +117,21 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
     }
     if ( !content[0] && !sheet[r][c] ) content[0] = prevtitles[c]
     if ( content[0] ) {
+      testid += c
       expression.push( 'Encounter."' + content[0].trim() + '"' )
+      examples.push( "#" + c + ". " + content[0] + "\n"+ ( content[1] ? "# " + content[1] : "" ) )
     }
   }
+
+  let exampletext = examples.join("\n")
+  yaml.write(`---
+${exampletext}
+id: ${testid}
+birth: 
+patient:
+  fhir:
+    gender: female
+`)
 
   let content = sheet[r][1+cs[1]].split( "\n", 2 );
   if ( content[0].trim().length > 3 ) {
@@ -124,9 +139,11 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
     content[0] = content[0].trim()
     content[1] = content[1].trim()
     if ( !outputs[ content[0] ] ) outputs[ content[0] ] = []
-    outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2], testid: (r+rowoffset) } )
+    outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2], 
+      testid: testid, testidx: (r+rowoffset) } )
   }
 }
+yaml.close()
 
 const displayGuidance = ( title, guidance, comment ) => {
   logic.write( "/*\n@output: " + title + " Guidance" + comment + "\n*/\ndefine \""+title+" Guidance\":\n")
@@ -152,7 +169,7 @@ for( let title in outputs ) {
 
   let output = outputs[title]
   if ( output.length === 1 ) {
-    tests[output[0].testid] = "    when Patient.id = '"+(output[0].testid)+".' then \""+output[0].content[0]+"\" and \"Guidance\" = '" + output[0].guidance.replace(/'/, '\\\'') + "'"
+    tests[output[0].testidx] = "    when Patient.id = '"+(output[0].testid)+".' then \""+output[0].content[0]+"\" and \"Guidance\" = '" + output[0].guidance.replace(/'/, '\\\'') + "'"
 
     displayOutput( output[0].content[0], output[0].content[1], output[0].expression, output[0].guidance )
 
@@ -164,7 +181,7 @@ for( let title in outputs ) {
       let display = parseInt(idx) + 1
       let title = output[idx].content[0] + " Case " + display
       displayOutput( title, output[idx].content[1], output[idx].expression )
-      tests[output[idx].testid] = "    when Patient.id = '"+output[idx].testid+".' then \""+title+"\" and \"Guidance\" = '" + output[idx].guidance.replace(/'/, '\\\'') + "'"
+      tests[output[idx].testidx] = "    when Patient.id = '"+output[idx].testid+".' then \""+title+"\" and \"Guidance\" = '" + output[idx].guidance.replace(/'/, '\\\'') + "'"
       guidances.push( "    when \""+ title + "\" then '" + output[idx].guidance.replace(/'/, '\\\'') + "'" )
       comment.push( "@guidance: " + output[idx].guidance )
       titles.push( "\"" + title + "\"" )

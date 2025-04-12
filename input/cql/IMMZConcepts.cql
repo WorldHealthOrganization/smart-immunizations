@@ -25,6 +25,7 @@ valueset "DTP-containing vaccines": 'http://smart.who.int/immunizations/ValueSet
 valueset "Tetanus and diphtheria-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE28'
 valueset "Pertussis-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE12'
 valueset "Tetanus-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE19'
+valueset "Hib-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE4'
 
 code "IPV": 'DE213' from "IMMZD" display 'IPV'
 code "bOPV": 'DE214' from "IMMZD" display 'bOPV'

@@ -70,7 +70,7 @@ define "Client's age is between 28 days and 5 years":
 @pseudocode: Today's date − "Date of birth" ≥ 5 years
 */
 define "Client's age is more than 5 years":
-  Elements."Client's age is more than 5 years"
+  Elements."Client's age is more than or equal to 5 years"
 
 /*
 @input: Client's HIV status is negative or unknown

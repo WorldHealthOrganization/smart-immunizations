@@ -115,6 +115,14 @@ define "Client's age is between 6 weeks and 1 year":
   and "Current Patient Age In Years" < 1
 
 /*
+@input: Client's age is between 6 weeks and 5 years
+@pseudocode: 6 weeks ≤ Today's date − "Date of birth" ≤ 5 years
+*/
+define "Client's age is between 6 weeks and 5 years":
+  "Current Patient Age In Weeks" >= 6
+  and "Current Patient Age In Years" <= 5
+
+/*
 @input: Client's age is more than or equal to 6 weeks
 @pseudocode: Today's date − "Date of birth" ≥ 6 weeks
 */
@@ -228,9 +236,16 @@ define "Client's age is more than or equal to 15 months":
 
 /*
 @input: Client's age is more than 5 years
-@pseudocode: Today's date − "Date of birth" ≥ 5 years
+@pseudocode: Today's date − "Date of birth" > 5 years
 */
 define "Client's age is more than 5 years":
+  "Current Patient Age In Years" > 5
+
+/*
+@input: Client's age is more than or equal to 5 years
+@pseudocode: Today's date − "Date of birth" ≥ 5 years
+*/
+define "Client's age is more than or equal to 5 years":
   "Current Patient Age In Years" >= 5
 
 /*

@@ -40,7 +40,7 @@ for(let doc of docs) {
             if ( padoses ) newoptions.dose += "/" + padoses
             if ( !newoptions.fhir ) newoptions.fhir = {}
             newoptions.fhir.occurrenceDateTime = doses[series][i]
-            let immzr = makeImmunization( immz+index, options.id, newoptions, options.birth )
+            let immzr = makeImmunization( immz+paseries+index, options.id, newoptions, options.birth )
             fs.writeFileSync( topDir+"/Immunization/"+immzr.id+".json", Buffer.from( JSON.stringify(immzr,null,2)))
           }
         }

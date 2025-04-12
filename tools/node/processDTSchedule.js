@@ -1,7 +1,7 @@
 const xlsx = require('node-xlsx')
 const fs = require('fs')
 
-const getRange = ( nums ) => {
+const getRange = ( nums, offset ) => {
   let match = nums.match(/(\d+)-(\d+)/)
   let start, end
   if ( match ) {
@@ -11,20 +11,21 @@ const getRange = ( nums ) => {
     start = nums
     end = nums
   }
-  return [ parseInt(start), parseInt(end) ]
+  return [ parseInt(start)-offset, parseInt(end)-offset ]
 }
 
-var file, sheetname, rows, col, prefix, dt;
+var file, sheetname, rowoffset, rows, col, prefix, dt;
 
-[file, sheetname, rows, col, prefix, dt] = process.argv.slice(2);
+[file, sheetname, rowoffset, rows, col, prefix, dt] = process.argv.slice(2);
 col = parseInt(col)
+rowoffset = parseInt(rowoffset)
 
 const workbook = xlsx.parse( file )
 let sheet = workbook.filter( (tab) => { return tab.name === sheetname } );
 let sheetdisplay = sheetname.replace(/\s/,"")
 sheet = sheet[0].data
 
-let rs = getRange( rows )
+let rs = getRange( rows, rowoffset )
 
 let top = parseInt(rs[0])
 let dtmod = 0
