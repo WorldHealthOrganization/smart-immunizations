@@ -188,7 +188,7 @@ define "Client's age is more than 5 years":
 @decision: 2 primary doses with a booster dose (2p+1)
 */
 define "Client's age was less than 1 year when first Hib dose was administered":
-  duration in years between Patient.birthDate and "Date of First Hib Dose" < 1
+  AgeInYearsAt("Date of First Hib Dose") < 1
 
 /*
 @input: Client's age was more than 1 year when first Hib dose was administered
@@ -198,7 +198,7 @@ define "Client's age was less than 1 year when first Hib dose was administered":
 @decision: 2 primary doses with a booster dose (2p+1)
 */
 define "Client's age was more than 1 year when first Hib dose was administered":
-  duration in years between Patient.birthDate and "Date of First Hib Dose" >= 1
+  AgeInYearsAt("Date of First Hib Dose") >= 1
 
 /*
 @input: The latest Hib dose was administered less than 4 weeks ago
@@ -208,7 +208,7 @@ define "Client's age was more than 1 year when first Hib dose was administered":
 */
 define "The latest Hib dose was administered less than 4 weeks ago":
   "Date of Latest Hib Dose" is not null
-    and duration in weeks between "Date of Latest Hib Dose" and Now() < 4
+    and duration in weeks between "Date of Latest Hib Dose" and Today < 4
 
 /*
 @input: The latest Hib dose was administered more than 4 weeks ago
@@ -226,7 +226,7 @@ define "The latest Hib dose was administered more than 4 weeks ago":
 */
 define "The latest Hib dose was administered less than 8 weeks ago":
   "Date of Latest Hib Dose" is not null
-    and duration in weeks between "Date of Latest Hib Dose" and Now() < 8
+    and duration in weeks between "Date of Latest Hib Dose" and Today < 8
 
 /*
 @input: The latest Hib dose was administered more than 8 weeks ago
@@ -244,7 +244,7 @@ define "The latest Hib dose was administered more than 8 weeks ago":
 */
 define "The latest Hib dose was administered less than 6 months ago":
   "Date of Latest Hib Dose" is not null
-    and duration in months between "Date of Latest Hib Dose" and Now() < 6
+    and duration in months between "Date of Latest Hib Dose" and Today < 6
 
 /*
 @input: The latest Hib dose was administered more than 6 months ago

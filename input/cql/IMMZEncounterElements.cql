@@ -221,6 +221,14 @@ define "Client's age is more than or equal to 12 months":
   "Current Patient Age In Months" >= 12
 
 /*
+@input: Client's age is more than or equal to 12 months and less than 24 months
+@pseudocode: 12 months ≤ Today's date − "Date of birth" < 24 months
+*/
+define "Client's age is more than or equal to 12 months and less than 24 months":
+  "Current Patient Age In Months" >= 12
+  and "Current Patient Age In Months" < 24
+
+/*
 @input: Client's age is less than 15 months
 @pseudocode: Today's date − "Date of birth" < 15 months
 */
@@ -235,6 +243,20 @@ define "Client's age is more than or equal to 15 months":
   "Current Patient Age In Months" >= 15
 
 /*
+@input: Client's age is less than 24 months
+@pseudocode: Today's date − "Date of birth" < 24 months
+*/
+define "Client's age is less than 24 months":
+  "Current Patient Age In Months" < 24
+
+/*
+@input: Client's age is more than or equal to 24 months
+@pseudocode: Today's date − "Date of birth" ≥ 24 months
+*/
+define "Client's age is more than or equal to 24 months":
+  "Current Patient Age In Months" >= 24
+
+/*
 @input: Client's age is more than 5 years
 @pseudocode: Today's date − "Date of birth" > 5 years
 */
@@ -247,6 +269,13 @@ define "Client's age is more than 5 years":
 */
 define "Client's age is more than or equal to 5 years":
   "Current Patient Age In Years" >= 5
+
+/*
+@input: Client's age is less than or equal to 5 years
+@pseudocode: 'Today's date − "Date of birth" ≤ 5 years
+*/
+define "Client's age is less than or equal to 5 years":
+  "Current Patient Age In Years" <= 5
 
 /*
 @input: Client's age is less than 4 years
@@ -501,7 +530,6 @@ define "Exposed to immunosuppressive treatment Condition":
 /*
 @input: The client currently has a severe acute illness
 @pseudocode: "Potential contraindications" = "Severe acute illness"
-@decision: Potential contraindications
 */
 define "The client currently has a severe acute illness":
   exists "Severe acute illness Observation"
@@ -667,3 +695,23 @@ define "Client was a premature infant at birth":
 */
 define "Completed the primary vaccination series Observation":
   Elements."Completed the primary vaccination series Observation".encounterOrOnBefore(EncounterId, Today)
+
+/*
+@internal: At high risk for pneumococcal infection Observation
+*/
+define "At high risk for pneumococcal infection Observation":
+  Elements."At high risk for pneumococcal infection Observation".encounterOrOnBefore(EncounterId, Today)
+
+/*
+@input: Client is at high risk for pneumococcal infection
+@pseudocode: "At high risk for pneumococcal infection" = TRUE
+*/
+define "Client is at high risk for pneumococcal infection":
+  exists( "At high risk for pneumococcal infection Observation" O where O.value = true )
+
+/*
+@input: Client is not at high risk for pneumococcal infection
+@pseudocode: "At high risk for pneumococcal infection" = FALSE
+*/
+define "Client is not at high risk for pneumococcal infection":
+  exists( "At high risk for pneumococcal infection Observation" O where O.value = false )

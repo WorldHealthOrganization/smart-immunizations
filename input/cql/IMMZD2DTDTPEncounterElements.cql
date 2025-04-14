@@ -319,7 +319,7 @@ define "Client's age is more than 6 years":
 */
 define "The latest DTP dose was administered less than 4 weeks ago":
   "Date of Latest DTP Dose" is not null
-    and duration in weeks between "Date of Latest DTP Dose" and Now() < 4
+    and duration in weeks between "Date of Latest DTP Dose" and Today < 4
 /*
 @input: The latest DTP dose was administered more than 4 weeks ago
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "DTP-containing vaccines") ≥ 4 weeks
@@ -337,7 +337,7 @@ define "The latest DTP dose was administered more than 4 weeks ago":
 */
 define "The latest DTP dose was administered less than 6 months ago":
   "Date of Latest DTP Dose" is not null
-    and duration in months between "Date of Latest DTP Dose" and Now() < 6
+    and duration in months between "Date of Latest DTP Dose" and Today < 6
 
 /*
 @input: The latest DTP dose was administered more than 6 months ago
@@ -355,7 +355,7 @@ define "The latest DTP dose was administered more than 6 months ago":
 */
 define "The latest DTP dose was administered less than 1 year ago":
   "Date of Latest DTP Dose" is not null
-    and duration in years between "Date of Latest DTP Dose" and Now() < 1
+    and duration in years between "Date of Latest DTP Dose" and Today < 1
     
 /*
 @input: The latest DTP dose was administered more than 1 year ago
@@ -373,7 +373,7 @@ define "The latest DTP dose was administered more than 1 year ago":
 */
 define "The latest tetanus and diphtheria dose was administered less than 4 weeks ago":
   "Date of Latest Td Dose" is not null
-    and duration in weeks between "Date of Latest Td Dose" and Now() < 4
+    and duration in weeks between "Date of Latest Td Dose" and Today < 4
 /*
 @input: The latest tetanus and diphtheria dose was administered more than 4 weeks ago
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Tetanus and diphtheria-containing
@@ -392,7 +392,7 @@ define "The latest tetanus and diphtheria dose was administered more than 4 week
 */
 define "The latest tetanus and diphtheria dose was administered less than 1 year ago":
   "Date of Latest Td Dose" is not null
-    and duration in years between "Date of Latest Td Dose" and Now() < 1
+    and duration in years between "Date of Latest Td Dose" and Today < 1
     
 /*
 @input: The latest tetanus and diphtheria dose was administered more than 1 year ago

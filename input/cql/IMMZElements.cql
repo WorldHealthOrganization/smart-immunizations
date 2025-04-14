@@ -125,6 +125,13 @@ define "Client's age is between 6 weeks and 5 years":
   and "Current Patient Age In Years" <= 5
 
 /*
+@input: Client's age is less than or equal to 5 years
+@pseudocode: 'Today's date − "Date of birth" ≤ 5 years
+*/
+define "Client's age is less than or equal to 5 years":
+  "Current Patient Age In Years" <= 5
+
+/*
 @input: Client's age is more than 3 months
 @pseudocode: Today's date − "Date of birth" > 3 months
 */
@@ -217,6 +224,14 @@ define "Client's age is more than or equal to 12 months":
   "Current Patient Age In Months" >= 12
 
 /*
+@input: Client's age is more than or equal to 12 months and less than 24 months
+@pseudocode: 12 months ≤ Today's date − "Date of birth" < 24 months
+*/
+define "Client's age is more than or equal to 12 months and less than 24 months":
+  "Current Patient Age In Months" >= 12
+  and "Current Patient Age In Months" < 24
+
+/*
 @input: Client's age is less than 15 months
 @pseudocode: Today's date − "Date of birth" < 15 months
 */
@@ -229,6 +244,20 @@ define "Client's age is less than 15 months":
 */
 define "Client's age is more than or equal to 15 months":
   "Current Patient Age In Months" >= 15
+
+/*
+@input: Client's age is less than 24 months
+@pseudocode: Today's date − "Date of birth" < 24 months
+*/
+define "Client's age is less than 24 months":
+  "Current Patient Age In Months" < 24
+
+/*
+@input: Client's age is more than or equal to 24 months
+@pseudocode: Today's date − "Date of birth" ≥ 24 months
+*/
+define "Client's age is more than or equal to 24 months":
+  "Current Patient Age In Months" >= 24
 
 /*
 @input: Client's age is more than 5 years
@@ -671,7 +700,7 @@ define "Preterm birth Observation":
 @pseudocode: "Preterm birth" ≠  TRUE
 */
 define "Client was not a premature infant at birth":
-  exists( "Preterm birth Observation" O where O.value = false )
+  not "Client was a premature infant at birth"
 
 /*
 @input: Client was a premature infant at birth
@@ -686,3 +715,22 @@ define "Client was a premature infant at birth":
 define "Completed the primary vaccination series Observation":
   ([Observation: Concepts."Completed the primary vaccination series"]).complete()
 
+/*
+@internal: At high risk for pneumococcal infection Observation
+*/
+define "At high risk for pneumococcal infection Observation":
+  ([Observation: Concepts."At high risk for pneumococcal infection"]).complete()
+
+/*
+@input: Client is at high risk for pneumococcal infection
+@pseudocode: "At high risk for pneumococcal infection" = TRUE
+*/
+define "Client is at high risk for pneumococcal infection":
+  exists( "At high risk for pneumococcal infection Observation" O where O.value = true )
+
+/*
+@input: Client is not at high risk for pneumococcal infection
+@pseudocode: "At high risk for pneumococcal infection" = FALSE
+*/
+define "Client is not at high risk for pneumococcal infection":
+  exists( "At high risk for pneumococcal infection Observation" O where O.value = false )

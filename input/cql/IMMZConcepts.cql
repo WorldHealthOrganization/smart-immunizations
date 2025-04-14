@@ -26,6 +26,7 @@ valueset "Tetanus and diphtheria-containing vaccines": 'http://smart.who.int/imm
 valueset "Pertussis-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE12'
 valueset "Tetanus-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE19'
 valueset "Hib-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE4'
+valueset "Pneumococcal vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE13'
 
 code "IPV": 'DE213' from "IMMZD" display 'IPV'
 code "bOPV": 'DE214' from "IMMZD" display 'bOPV'
@@ -43,6 +44,7 @@ code "TB-Negative": 'DE248' from "IMMZD" display 'Negative'
 code "Clinically well": 'DE250' from "IMMZD" display 'Clinically well'
 code "Birth weight in grams": 'DE211' from "IMMZD" display 'Birth weight in grams'
 code "Preterm birth": 'DE208' from "IMMZD" display 'Preterm birth'
+code "At high risk for pneumococcal infection": 'DE251' from "IMMZD" display 'At high risk for pneumococcal infection'
 
 code "Potential contraindications": 'DE161' from "IMMZD" display 'Potential contraindications'
 code "Currently pregnant": 'DE162' from "IMMZD" display 'Currently pregnant'

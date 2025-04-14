@@ -380,7 +380,7 @@ define "The latest IPV dose was administered more than 4 months ago":
 */
 define "The latest poliovirus dose was administered less than 4 weeks ago":
   "Date of Latest Polio Dose" is not null
-    and duration in weeks between "Date of Latest Polio Dose" and Now() < 4
+    and duration in weeks between "Date of Latest Polio Dose" and Today < 4
     
 /*
 @input: The latest poliovirus dose was administered more than 4 weeks ago
@@ -410,7 +410,7 @@ define "Client's age was 6 weeks when the primary series was started":
 */
 define "The latest poliovirus dose was administered less than 6 months ago":
   "Date of Latest Polio Dose" is not null
-    and duration in months between "Date of Latest Polio Dose" and Now() < 6
+    and duration in months between "Date of Latest Polio Dose" and Today < 6
 /*
 @input: The latest poliovirus dose was administered more than 6 months ago
 @pseudocode: Today's date − Latest "Date and time of vaccination" (where "Vaccine type" = "Poliovirus-containing vaccines") ≥ 6 months

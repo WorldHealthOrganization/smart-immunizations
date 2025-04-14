@@ -119,14 +119,15 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
     if ( content[0] ) {
       testid += c
       expression.push( 'Encounter."' + content[0].trim() + '"' )
-      examples.push( "#" + c + ". " + content[0] + "\n"+ ( content[1] ? "# " + content[1] : "" ) )
+      examples.push( "#" + c + ". " + content[0] + ( content[1] ? "\n#   " + content[1] : "" ) )
     }
   }
+  examples.push( "### " + sheet[r][cs[1]+1].split("\n").join("\n### ") )
 
   let exampletext = examples.join("\n")
   yaml.write(`---
 ${exampletext}
-id: ${testid}
+id: "${testid}"
 birth: 
 patient:
   fhir:
@@ -169,7 +170,7 @@ for( let title in outputs ) {
 
   let output = outputs[title]
   if ( output.length === 1 ) {
-    tests[output[0].testidx] = "    when Patient.id = '"+(output[0].testid)+".' then \""+output[0].content[0]+"\" and \"Guidance\" = '" + output[0].guidance.replace(/'/, '\\\'') + "'"
+    tests[output[0].testidx] = "    when Patient.id = '"+(output[0].testid)+"' then \""+output[0].content[0]+"\" and \"Guidance\" = '" + output[0].guidance.replace(/'/, '\\\'') + "'"
 
     displayOutput( output[0].content[0], output[0].content[1], output[0].expression, output[0].guidance )
 
@@ -181,7 +182,7 @@ for( let title in outputs ) {
       let display = parseInt(idx) + 1
       let title = output[idx].content[0] + " Case " + display
       displayOutput( title, output[idx].content[1], output[idx].expression )
-      tests[output[idx].testidx] = "    when Patient.id = '"+output[idx].testid+".' then \""+title+"\" and \"Guidance\" = '" + output[idx].guidance.replace(/'/, '\\\'') + "'"
+      tests[output[idx].testidx] = "    when Patient.id = '"+output[idx].testid+"' then \""+title+"\" and \"Guidance\" = '" + output[idx].guidance.replace(/'/, '\\\'') + "'"
       guidances.push( "    when \""+ title + "\" then '" + output[idx].guidance.replace(/'/, '\\\'') + "'" )
       comment.push( "@guidance: " + output[idx].guidance )
       titles.push( "\"" + title + "\"" )
