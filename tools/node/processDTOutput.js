@@ -133,6 +133,27 @@ patient:
   fhir:
     gender: female
 `)
+if ( dt == "CI" ) {
+  let ci = sheet[r][cs[0]].match(/.*"(.+)"$/)
+  let ciid = ci[1].replace(/\W/g, '').toLowerCase()
+  let mrname = sheetdisplay.toLowerCase()
+  yaml.write(`contraindication:
+  ${ciid}:
+    code: DE
+    display: "${ci[1]}"
+    effectiveDateTime: -1d
+medicationrequest:
+  ${mrname}:
+    medication:
+      code: 
+      system: "http://id.who.int/icd/release/11/mms"
+      display: ""
+    fhir:
+      authoredOn: 0d
+      status: draft
+      intent: proposal
+`)
+}
 
   let content = sheet[r][1+cs[1]].split( "\n", 2 );
   if ( content[0].trim().length > 3 ) {

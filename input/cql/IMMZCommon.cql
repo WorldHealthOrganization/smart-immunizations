@@ -92,12 +92,39 @@ define fluent function typeOfDose(immz Immunization):
   )).value as FHIR.CodeableConcept
 
 /**
+ * @description: Gets the type of antigen dose extension value from an Immunization
+ */
+define fluent function brand(immz Immunization):
+  (First(
+    immz.extension E where E.url = 'http://smart.who.int/immunizations/StructureDefinition/IMMZVaccineBrand'
+  )).value as FHIR.CodeableConcept
+
+/**
+ * @description: Gets a given immunization from a list that matches the dose number
+ */
+define fluent function getDose(immunizations List<Immunization>, doseNumber String):
+  immunizations I where
+    exists( I.protocolApplied pa where pa.doseNumber = doseNumber )
+
+/**
+ * @description: Gets a given immunization from a list that matches the dose number
+ */
+define fluent function getDose(immunizations List<Immunization>, doseNumber String):
+  immunizations I where
+    exists( I.protocolApplied pa where pa.doseNumber = doseNumber )
+
+/**
  * @description: Gets immunizations on or before a date
  */
 define fluent function onOrBefore(immunizations List<Immunization>, beforeDate Date):
   immunizations I where
     I.occurrence.toInterval() same day or before beforeDate
 
+/**
+ * @description: Gets the series doses from an immunization
+ */
+define fluent function seriesDoses(immunization Immunization):
+  First(immunization.protocolApplied pa where pa.seriesDoses is not null).seriesDoses
 
 /**
  * @description: Gets observation from an encounter or on or before a date

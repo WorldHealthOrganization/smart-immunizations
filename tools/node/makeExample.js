@@ -57,6 +57,31 @@ for(let doc of docs) {
       fs.writeFileSync( topDir+"/Condition/"+condr.id+".json", Buffer.from( JSON.stringify(condr,null,2)))
     }
   }
+  if ( options.contraindication ) {
+    if (!options.observation) options.observation = {}
+    for ( let ci in options.contraindication ) {
+      let ciopts = options.contraindication[ci]
+      options.observation["ci"+ci] = {
+        code: {
+          code: 'DE161',
+          system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.D',
+          display: 'Potential contraindications'
+        },
+        fhir: {
+          effectiveDateTime: ciopts.effectiveDateTime || '-1d',
+          valueCodeableConcept: {
+            coding: [
+              {
+                code: ciopts.code,
+                system: ciopts.system || 'http://smart.who.int/immunizations/CodeSystem/IMMZ.D',
+                display: ciopts.display
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
   if ( options.observation ) {
     fs.mkdirSync(topDir+"/Observation", {recursive: true})
     for( let obs in options.observation ) {

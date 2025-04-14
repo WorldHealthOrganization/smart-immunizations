@@ -117,6 +117,21 @@ define "Client's age is between 6 weeks and 1 year":
   and "Current Patient Age In Years" < 1
 
 /*
+@input: Client's age is between 6 weeks and 24 months
+@pseudocode: 6 weeks ≤ Today's date – "Date of birth" < 24 months
+*/
+define "Client's age is between 6 weeks and 24 months":
+  "Current Patient Age In Weeks" >= 6
+  and "Current Patient Age In Months" < 24
+
+/*
+@input: Client's age is more than 24 months
+@pseudocode: "Date of birth" > 24 months
+*/
+define "Client's age is more than 24 months":
+  "Current Patient Age In Months" >= 24 // Using >= to be consistent with other parts of the DAK
+
+/*
 @input: Client's age is between 6 weeks and 5 years
 @pseudocode: 6 weeks ≤ Today's date − "Date of birth" ≤ 5 years
 */
@@ -548,6 +563,309 @@ define "Severe acute illness Observation":
 */
 define "Severe acute illness Condition":
   [Condition: Concepts."Severe acute illness"]
+
+/*
+@input: The client has prior history of intussusception
+@pseudocode: "Potential contraindications" = "Prior history of intussusception"
+*/
+define "The client has prior history of intussusception":
+  exists "Prior history of intussusception Observation"
+    or exists "Prior history of intussusception Condition"
+    
+/*
+@internal: Observation for Prior history of intussusception
+*/
+define "Prior history of intussusception Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Prior history of intussusception"
+
+/*
+@internal: Condition for Prior history of intussusception
+*/
+define "Prior history of intussusception Condition":
+  [Condition: Concepts."Prior history of intussusception"]
+
+/*
+@input: The client has altered immunocompetence
+@pseudocode: "Potential contraindications" = "Altered immunocompetence"
+*/
+define "The client has altered immunocompetence":
+  exists "Altered immunocompetence Observation"
+    or exists "Altered immunocompetence Condition"
+    
+/*
+@internal: Observation for Altered immunocompetence
+*/
+define "Altered immunocompetence Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Altered immunocompetence"
+
+/*
+@internal: Condition for Altered immunocompetence
+*/
+define "Altered immunocompetence Condition":
+  [Condition: Concepts."Altered immunocompetence"]
+
+/*
+@input: The client has spina bifida
+@pseudocode: "Potential contraindications" = "Spina bifida"
+*/
+define "The client has spina bifida":
+  exists "Spina bifida Observation"
+    or exists "Spina bifida Condition"
+    
+/*
+@internal: Observation for Spina bifida
+*/
+define "Spina bifida Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Spina bifida"
+
+/*
+@internal: Condition for Spina bifida
+*/
+define "Spina bifida Condition":
+  [Condition: Concepts."Spina bifida"]
+
+/*
+@input: The client has bladder exstrophy
+@pseudocode: "Potential contraindications" = "Bladder exstrophy"
+*/
+define "The client has bladder exstrophy":
+  exists "Bladder exstrophy Observation"
+    or exists "Bladder exstrophy Condition"
+    
+/*
+@internal: Observation for Bladder exstrophy
+*/
+define "Bladder exstrophy Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Bladder exstrophy"
+
+/*
+@internal: Condition for Bladder exstrophy
+*/
+define "Bladder exstrophy Condition":
+  [Condition: Concepts."Bladder exstrophy"]
+
+/*
+@input: The client is known to be immunocompromised
+@pseudocode: "Potential contraindications" = "Immunocompromised"
+*/
+define "The client is known to be immunocompromised":
+  exists "Immunocompromised Observation"
+    or exists "Immunocompromised Condition"
+
+/*
+@internal: Observation for Immunocompromised
+*/
+define "Immunocompromised Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Immunocompromised"
+
+/*
+@internal: Condition for Immunocompromised
+*/
+define "Immunocompromised Condition":
+  [Condition: Concepts."Immunocompromised"]
+
+
+/*
+@input: The client's intention or desire is to become pregnant in the next month
+@pseudocode: "Potential contraindications" = "Planning to get pregnant in the next month"
+*/
+define "The client's intention or desire is to become pregnant in the next month":
+  exists "Planning to get pregnant in the next month Observation"
+    or exists "Planning to get pregnant in the next month Condition"
+
+/*
+@internal: Observation for Planning to get pregnant in the next month
+*/
+define "Planning to get pregnant in the next month Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Planning to get pregnant in the next month"
+
+/*
+@internal: Condition for Planning to get pregnant in the next month
+*/
+define "Planning to get pregnant in the next month Condition":
+  [Condition: Concepts."Planning to get pregnant in the next month"]
+
+
+/*
+@input: The client is receiving blood or blood-related products as part of a medical treatment.
+@pseudocode: "Potential contraindications" = "Receiving blood products"
+*/
+define "The client is receiving blood or blood-related products as part of a medical treatment.":
+  exists "Receiving blood products Observation"
+    or exists "Receiving blood products Condition"
+
+/*
+@internal: Observation for Receiving blood products
+*/
+define "Receiving blood products Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Receiving blood products"
+
+/*
+@internal: Condition for Receiving blood products
+*/
+define "Receiving blood products Condition":
+  [Condition: Concepts."Receiving blood products"]
+
+
+/*
+@input: The client has been diagnosed with tuberculosis (TB)
+@pseudocode: "Potential contraindications" = "TB disease"
+*/
+define "The client has been diagnosed with tuberculosis (TB)":
+  exists "TB disease Observation"
+    or exists "TB disease Condition"
+
+/*
+@internal: Observation for TB disease
+*/
+define "TB disease Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."TB disease"
+
+/*
+@internal: Condition for TB disease
+*/
+define "TB disease Condition":
+  [Condition: Concepts."TB disease"]
+
+
+/*
+@input: The client is currently breastfeeding
+@pseudocode: "Potential contraindications" = "Breastfeeding"
+*/
+define "The client is currently breastfeeding":
+  exists "Breastfeeding Observation"
+    or exists "Breastfeeding Condition"
+
+/*
+@internal: Observation for Breastfeeding
+*/
+define "Breastfeeding Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Breastfeeding"
+
+/*
+@internal: Condition for Breastfeeding
+*/
+define "Breastfeeding Condition":
+  [Condition: Concepts."Breastfeeding"]
+
+
+/*
+@input: The client has acute gastroenteritis
+@pseudocode: "Potential contraindications" = "Acute gastroenteritis"
+*/
+define "The client has acute gastroenteritis":
+  exists "Acute gastroenteritis Observation"
+    or exists "Acute gastroenteritis Condition"
+
+/*
+@internal: Observation for Acute gastroenteritis
+*/
+define "Acute gastroenteritis Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Acute gastroenteritis"
+
+/*
+@internal: Condition for Acute gastroenteritis
+*/
+define "Acute gastroenteritis Condition":
+  [Condition: Concepts."Acute gastroenteritis"]
+
+
+/*
+@input: The client has moderate to severe fever
+@pseudocode: "Potential contraindications" = "Moderate to severe fever"
+*/
+define "The client has moderate to severe fever":
+  exists "Moderate to severe fever Observation"
+    or exists "Moderate to severe fever Condition"
+
+/*
+@internal: Observation for Moderate to severe fever
+*/
+define "Moderate to severe fever Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Moderate to severe fever"
+
+/*
+@internal: Condition for Moderate to severe fever
+*/
+define "Moderate to severe fever Condition":
+  [Condition: Concepts."Moderate to severe fever"]
+
+
+/*
+@input: The client has heightened sensitivity or allergic reactions to specific components found in vaccines
+@pseudocode: "Potential contraindications" = "Hypersensitivity to vaccine components"
+*/
+define "The client has heightened sensitivity or allergic reactions to specific components found in vaccines":
+  exists "Hypersensitivity to vaccine components Observation"
+    or exists "Hypersensitivity to vaccine components Condition"
+
+/*
+@internal: Observation for Hypersensitivity to vaccine components
+*/
+define "Hypersensitivity to vaccine components Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Hypersensitivity to vaccine components"
+
+/*
+@internal: Condition for Hypersensitivity to vaccine components
+*/
+define "Hypersensitivity to vaccine components Condition":
+  [Condition: Concepts."Hypersensitivity to vaccine components"]
+
+
+/*
+@input: The client is currently taking antibiotics to treat certain infections
+@pseudocode: "Potential contraindications" = "Taking antibiotics"
+*/
+define "The client is currently taking antibiotics to treat certain infections":
+  exists "Taking antibiotics Observation"
+    or exists "Taking antibiotics Condition"
+
+/*
+@internal: Observation for Taking antibiotics
+*/
+define "Taking antibiotics Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Taking antibiotics"
+
+/*
+@internal: Condition for Taking antibiotics
+*/
+define "Taking antibiotics Condition":
+  [Condition: Concepts."Taking antibiotics"]
+
+/*
+@input: The client has chronic gastrointestinal disease
+@pseudocode: "Potential contraindications" = "Chronic gastrointestinal disease"
+*/
+define "The client has chronic gastrointestinal disease":
+  exists "Chronic gastrointestinal disease Observation"
+    or exists "Chronic gastrointestinal disease Condition"
+
+/*
+@internal: Observation for Chronic gastrointestinal disease
+*/
+define "Chronic gastrointestinal disease Observation":
+  "Potential contraindications" O
+    where O.value ~ Concepts."Chronic gastrointestinal disease"
+
+/*
+@internal: Condition for Chronic gastrointestinal disease
+*/
+define "Chronic gastrointestinal disease Condition":
+  [Condition: Concepts."Chronic gastrointestinal disease"]
+
 
 
 /*
