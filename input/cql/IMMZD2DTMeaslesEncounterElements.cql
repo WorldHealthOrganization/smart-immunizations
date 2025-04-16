@@ -143,56 +143,57 @@ define "Measles routine immunization schedule is complete":
 @pseudocode: Today's date − "Date of birth" < 6 months
 */
 define "Client's age is less than 6 months":
-  Encounter."Client's age is less than 6 months"
+  Encounter."Current Patient Age In Months" < 6
 
 /*
 @input: Client's age is between 6 months and 9 months
 @pseudocode: 6 months ≤ Today's date − "Date of birth" < 9 months
 */
 define "Client's age is between 6 months and 9 months":
-  Encounter."Client's age is between 6 months and 9 months"
+  6 <= Encounter."Current Patient Age In Months" 
+  and Encounter."Current Patient Age In Months" < 9
 
 /*
 @input: Client's age is less than 9 months
 @pseudocode: Today's date − "Date of birth" < 9 months
 */
 define "Client's age is less than 9 months":
-  Encounter."Client's age is less than 9 months"
+  Encounter."Current Patient Age In Months" < 9
 
 /*
 @input: Client's age is more than or equal to 9 months
 @pseudocode: Today's date − "Date of birth" ≥ 9 months
 */
 define "Client's age is more than or equal to 9 months":
-  Encounter."Client's age is more than or equal to 9 months"
+  Encounter."Current Patient Age In Months" >= 9
 
 /*
 @input: Client's age is less than 12 months
 @pseudocode: Today's date − "Date of birth" < 12 months
 */
 define "Client's age is less than 12 months":
-  Encounter."Client's age is less than 12 months"
+  Encounter."Current Patient Age In Months" < 12
 
 /*
 @input: Client's age is more than or equal to 12 months
 @pseudocode: Today's date − "Date of birth" ≥ 12 months
 */
 define "Client's age is more than or equal to 12 months":
-  Encounter."Client's age is more than or equal to 12 months"
+  Encounter."Current Patient Age In Months" >= 12
 
 /*
 @input: Client's age is less than 15 months
 @pseudocode: Today's date − "Date of birth" < 15 months
 */
 define "Client's age is less than 15 months":
-  Encounter."Client's age is less than 15 months"
+  Encounter."Current Patient Age In Months" < 15
   
 /*
 @input: Client's age is more than or equal to 15 months
 @pseudocode: Today's date − "Date of birth" ≥ 15 months
 */
 define "Client's age is more than or equal to 15 months":
-  Encounter."Client's age is more than or equal to 15 months"
+  Encounter."Current Patient Age In Months" >= 15
 
 /*
 @input: Live vaccine was administered in the last 4 weeks

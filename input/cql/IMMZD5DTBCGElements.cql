@@ -57,12 +57,12 @@ define "The client is exposed to immunosuppressive treatment":
 @pseudocode: "Age" < 1 year
 */
 define "Client's age is less than 1 year":
-  Elements."Client's age is less than 12 months"
+  Elements."Current Patient Age In Years" < 1
 
 /*
 @input: Client's age is more than or equal to 1 year
 @pseudocode: "Age" ≥ 1 year
 */
 define "Client's age is more than or equal to 1 year":
-  Elements."Client's age is more than or equal to 12 months"
+  Elements."Current Patient Age In Years" >= 1
 

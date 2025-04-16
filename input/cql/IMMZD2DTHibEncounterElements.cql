@@ -139,7 +139,7 @@ define "One Hib booster dose was administered":
 @decision: 2 primary doses with a booster dose (2p+1)
 */
 define "Client's age is less than 6 weeks":
-  Encounter."Client's age is less than 6 weeks"
+  Encounter."Current Patient Age In Weeks" < 6
 
 /*
 @input: Client's age is between 6 weeks and 5 years
@@ -149,7 +149,8 @@ define "Client's age is less than 6 weeks":
 @decision: 2 primary doses with a booster dose (2p+1)
 */
 define "Client's age is between 6 weeks and 5 years":
-  Encounter."Client's age is between 6 weeks and 5 years"
+  6 <= Encounter."Current Patient Age In Weeks" 
+  and Encounter."Current Patient Age In Years" <= 5
 
 /*
 @input: Client's age is at least 6 weeks and not more than 5 years
@@ -178,7 +179,7 @@ define "Client's age is between 6 weeks and not more than 5 years":
 @decision: 2 primary doses with a booster dose (2p+1)
 */
 define "Client's age is more than 5 years":
-  Encounter."Client's age is more than 5 years"
+  Encounter."Current Patient Age In Years" > 5
 
 /*
 @input: Client's age was less than 1 year when first Hib dose was administered

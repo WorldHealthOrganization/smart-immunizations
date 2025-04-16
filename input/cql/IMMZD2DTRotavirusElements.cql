@@ -76,21 +76,23 @@ define "Three rotavirus primary series doses were administered":
 @pseudocode: 'Today's date – "Date of birth" < 6 weeks
 */
 define "Client's age is less than 6 weeks":
-  Elements."Client's age is less than 6 weeks"
+  Elements."Current Patient Age In Weeks" < 6
 
 /*
 @input: Client's age is between 6 weeks and 24 months
 @pseudocode: 6 weeks ≤ Today's date – "Date of birth" < 24 months
 */
 define "Client's age is between 6 weeks and 24 months":
-  Elements."Client's age is between 6 weeks and 24 months"
+  6 <= Elements."Current Patient Age In Weeks" 
+  and Elements."Current Patient Age In Months" < 24
 
 /*
 @input: Client's age is more than 24 months
 @pseudocode: "Date of birth" > 24 months
+@note: This is >= to be consistent
 */
 define "Client's age is more than 24 months":
-  Elements."Client's age is more than 24 months"
+  Elements."Current Patient Age In Months" >= 24
 
 /*
 @input: No live vaccine was administered in the last 4 weeks

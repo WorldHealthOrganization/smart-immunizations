@@ -135,7 +135,7 @@ define "Two pneumococcal booster doses were administered":
 @decision: 3 primary doses (3p+0)
 */
 define "The client's age is less than 6 weeks":
-  Encounter."Client's age is less than 6 weeks"
+  Encounter."Current Patient Age In Weeks" < 6
 
 /*
 @input: The client's age is between 6 weeks and 5 years
@@ -144,7 +144,8 @@ define "The client's age is less than 6 weeks":
 @decision: 3 primary doses (3p+0)
 */
 define "The client's age is between 6 weeks and 5 years":
-  Encounter."Client's age is between 6 weeks and 5 years"
+  6 <= Encounter."Current Patient Age In Weeks" 
+  and Encounter."Current Patient Age In Years" <= 5
 
 /*
 @input: The client's age is less than or equal to 5 years
@@ -153,7 +154,7 @@ define "The client's age is between 6 weeks and 5 years":
 @decision: 3 primary doses (3p+0)
 */
 define "The client's age is less than or equal to 5 years":
-  Encounter."Client's age is less than or equal to 5 years"
+  Encounter."Current Patient Age In Years" <= 5
 
 /*
 @input: The client's age is less than or equal to five years
@@ -169,7 +170,7 @@ define "The client's age is less than or equal to five years":
 @decision: 2 primary doses with a booster dose (2p+1)
 */
 define "The client's age is less than 12 months":
-  Encounter."Client's age is less than 12 months"
+  Encounter."Current Patient Age In Months" < 12
 
 /*
 @input: The client's age is more than or equal to 12 months and less than 24 months
@@ -177,7 +178,8 @@ define "The client's age is less than 12 months":
 @decision: 2 primary doses with a booster dose (2p+1)
 */
 define "The client's age is more than or equal to 12 months and less than 24 months":
-  Encounter."Client's age is more than or equal to 12 months and less than 24 months"
+  12 <= Encounter."Current Patient Age In Months" 
+  and Encounter."Current Patient Age In Months" < 24
 
 /*
 @input: The client's age is less than 24 months
@@ -185,26 +187,26 @@ define "The client's age is more than or equal to 12 months and less than 24 mon
 @decision: 3 primary doses (3p+0)
 */
 define "The client's age is less than 24 months":
-  Encounter."Client's age is less than 24 months"
+  Encounter."Current Patient Age In Months" < 24
 
 /*
 @input: The client's age is more than or equal to 24 months
 @pseudocode: Today's date − "Date of birth" ≥ 24 months
 @decision: 2 primary doses with a booster dose (2p+1)
-@decision: 3 primary doses (3p+0)
 */
 define "The client's age is more than or equal to 24 months":
-  Encounter."Client's age is more than or equal to 24 months"
+  Encounter."Current Patient Age In Months" >= 24
 
 /*
 @input: The client's age is more than 5 years
 @pseudocode: Today's date − "Date of birth" > 5 years
 @decision: 2 primary doses with a booster dose (2p+1)
 @decision: 3 primary doses (3p+0)
+
 */
 define "The client's age is more than 5 years":
-  Encounter."Client's age is more than 5 years"
-
+  Encounter."Current Patient Age In Months" > 5
+  
 /*
 @input: The first pneumococcal dose was administered within 24 months post birth
 @pseudocode: "Date and time of vaccination" (where "Vaccine type" = "Pneumococcal vaccines") − "Date of birth" < 24 months

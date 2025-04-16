@@ -214,7 +214,7 @@ define "One pertussis booster dose was administered":
 @decision: DTP vaccination schedule, on-time start (at ≤ 12 months of age)
 */
 define "Client's age is less than 6 weeks":
-  Elements."Client's age is less than 6 weeks"
+  Elements."Current Patient Age In Weeks" < 6
 
 /*
 @input: Client's age is between 6 weeks and 1 year
@@ -222,7 +222,8 @@ define "Client's age is less than 6 weeks":
 @decision: DTP vaccination schedule, on-time start (at ≤ 12 months of age)
 */
 define "Client's age is between 6 weeks and 1 year":
-  Elements."Client's age is between 6 weeks and 1 year"
+  6 <= Elements."Current Patient Age In Weeks"
+  and Elements."Current Patient Age In Years" < 1
 
 /*
 @input: Client's age is less than 12 months
@@ -230,7 +231,7 @@ define "Client's age is between 6 weeks and 1 year":
 @decision: DTP vaccination schedule, on-time start (at ≤ 12 months of age)
 */
 define "Client's age is less than 12 months":
-  Elements."Client's age is less than 12 months"
+  Elements."Current Patient Age In Months" < 12
 
 /*
 @input: Client's age is more than or equal to 12 months
@@ -238,7 +239,7 @@ define "Client's age is less than 12 months":
 @decision: DTP vaccination schedule, on-time start (at ≤ 12 months of age)
 */
 define "Client's age is more than or equal to 12 months":
-  Elements."Client's age is more than or equal to 12 months"
+  Elements."Current Patient Age In Months" >= 12
 
 /*
 @input: Client's age is less than 4 years
@@ -246,7 +247,7 @@ define "Client's age is more than or equal to 12 months":
 @decision: DTP vaccination schedule, on-time start (at ≤ 12 months of age)
 */
 define "Client's age is less than 4 years":
-  Elements."Client's age is less than 4 years"
+  Elements."Current Patient Age In Years" < 4
 
 /*
 @input: Client's age is more than or equal to 4 years
@@ -254,7 +255,7 @@ define "Client's age is less than 4 years":
 @decision: DTP vaccination schedule, on-time start (at ≤ 12 months of age)
 */
 define "Client's age is more than or equal to 4 years":
-  Elements."Client's age is more than or equal to 4 years"
+  Elements."Current Patient Age In Years" >= 4
 
 /*
 @input: Client's age is less than 9 years
@@ -262,7 +263,7 @@ define "Client's age is more than or equal to 4 years":
 @decision: DTP vaccination schedule, on-time start (at ≤ 12 months of age)
 */
 define "Client's age is less than 9 years":
-  Elements."Client's age is less than 9 years"
+  Elements."Current Patient Age In Years" < 9
 
 /*
 @input: Client's age is more than or equal to 9 years
@@ -270,7 +271,7 @@ define "Client's age is less than 9 years":
 @decision: DTP vaccination schedule, on-time start (at ≤ 12 months of age)
 */
 define "Client's age is more than or equal to 9 years":
-  Elements."Client's age is more than or equal to 9 years"
+  Elements."Current Patient Age In Years" >= 9
 
 /*
 @input: Client's age is less than 1 year
@@ -278,7 +279,7 @@ define "Client's age is more than or equal to 9 years":
 @decision: DTP vaccination schedule, on-time start (at ≤ 12 months of age)
 */
 define "Client's age is less than 1 year":
-  Elements."Client's age is less than 1 year"
+  Elements."Current Patient Age In Years" < 1
 
 /*
 @input: Client's age is more than 1 year
@@ -286,7 +287,7 @@ define "Client's age is less than 1 year":
 @decision: DTP vaccination schedule for the following groups: children ≥ 1 year of age with no previous immunization, adolescents and adults with no previous immunization (including pregnant women) and supplementary immunization activities in high-risk areas, for women of reproductive age
 */
 define "Client's age is more than 1 year":
-  Elements."Client's age is more than 1 year"
+  Elements."Current Patient Age In Years" >= 1
 
 /*
 @input: Client's age is between 1 year and 6 years
@@ -295,7 +296,8 @@ define "Client's age is more than 1 year":
 @decision: DTP vaccination schedule for the following groups: children ≥ 1 year of age with no previous immunization, adolescents and adults with no previous immunization (including pregnant women) and supplementary immunization activities in high-risk areas, for women of reproductive age
 */
 define "Client's age is between 1 year and 6 years":
-  Elements."Client's age is between 1 year and 6 years"
+  1 <= Elements."Current Patient Age In Years" 
+  and Elements."Current Patient Age In Years" <= 6
 
 /*
 @input: Client's age is more than 6 years
@@ -304,7 +306,7 @@ define "Client's age is between 1 year and 6 years":
 @decision: DTP vaccination schedule for the following groups: children ≥ 1 year of age with no previous immunization, adolescents and adults with no previous immunization (including pregnant women) and supplementary immunization activities in high-risk areas, for women of reproductive age
 */
 define "Client's age is more than 6 years":
-  Elements."Client's age is more than 6 years"
+  Elements."Current Patient Age In Years" > 6
 
 /*
 @input: The latest DTP dose was administered less than 4 weeks ago

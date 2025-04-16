@@ -273,77 +273,79 @@ define "Polio booster dose was administered":
 @pseudocode: Today's date − "Date of birth" < 1 week
 */
 define "Client's age is less than 1 week":
-  Encounter."Client's age is less than 1 week"
+  Encounter."Current Patient Age In Weeks" < 1
 
 /*
 @input: Client's age is more than or equal to 1 week
 @pseudocode: Today's date − "Date of birth" ≥ 1 week
 */
 define "Client's age is more than or equal to 1 week":
-  Encounter."Client's age is more than or equal to 1 week"
+  Encounter."Current Patient Age In Weeks" >= 1
 
 /*
 @input: Client's age is less than 6 weeks
 @pseudocode: Today's date − "Date of birth" < 6 weeks
 */
 define "Client's age is less than 6 weeks":
-  Encounter."Client's age is less than 6 weeks"
+  Encounter."Current Patient Age In Weeks" < 6
 
 /*
 @input: Client's age is between 6 weeks and 3 months
 @pseudocode: 6 weeks ≤ Today's date − "Date of birth" ≤ 3 months
 */
 define "Client's age is between 6 weeks and 3 months":
-  Encounter."Client's age is between 6 weeks and 3 months"
+  6 <= Encounter."Current Patient Age In Weeks" 
+  and Encounter."Current Patient Age In Months" <= 3
 
 /*
 @input: Client's age is more than 3 months
 @pseudocode: Today's date − "Date of birth" > 3 months
 */
 define "Client's age is more than 3 months":
-  Encounter."Client's age is more than 3 months"
+  Encounter."Current Patient Age In Months" > 3
 
 /*
 @input: Client's age is between 6 weeks and 14 weeks
 @pseudocode: 6 weeks ≤ Today's date − "Date of birth" < 14 weeks
 */
 define "Client's age is between 6 weeks and 14 weeks":
-  Encounter."Client's age is between 6 weeks and 14 weeks"
+  6 <= Encounter."Current Patient Age In Weeks" 
+  and Encounter."Current Patient Age In Weeks" < 14
 
 /*
 @input: Client's age is more than or equal to 14 weeks
 @pseudocode: Today's date − "Date of birth" ≥ 14 weeks
 */
 define "Client's age is more than or equal to 14 weeks":
-  Encounter."Client's age is more than or equal to 14 weeks"
+  Encounter."Current Patient Age In Weeks" >= 14
 
 /*
 @input: Client's age is less than 14 weeks
 @pseudocode: Today's date − "Date of birth" < 14 weeks
 */
 define "Client's age is less than 14 weeks":
-  Encounter."Client's age is less than 14 weeks"
+  Encounter."Current Patient Age In Weeks" < 14
 
 /*
 @input: Client's age is less than 8 weeks
 @pseudocode: Today's date − "Date of birth" < 8 weeks
 */
 define "Client's age is less than 8 weeks":
-  Encounter."Client's age is less than 8 weeks"
+  Encounter."Current Patient Age In Weeks" < 8
 
 /*
 @input: Client's age is more than or equal to 8 weeks
 @pseudocode: Today's date − "Date of birth" ≥ 8 weeks
 */
 define "Client's age is more than or equal to 8 weeks":
-  Encounter."Client's age is more than or equal to 8 weeks"
+  Encounter."Current Patient Age In Weeks" >= 8
 
 /*
 @input: Client's age is more than or equal to 6 weeks
 @pseudocode: Today's date − "Date of birth" ≥ 6 weeks
 */
 define "Client's age is more than or equal to 6 weeks":
-  Encounter."Client's age is more than or equal to 6 weeks"
+  Encounter."Current Patient Age In Weeks" >= 6
 
 /*
 @input: The latest bOPV dose was administered less than 4 weeks ago

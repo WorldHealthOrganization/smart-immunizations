@@ -62,7 +62,7 @@ define "One rubella primary series dose was administered":
 @decision: Countries with high incidence and mortality from rubella
 */
 define "Client's age is less than 9 months":
-  Elements."Client's age is less than 9 months"
+  Elements."Current Patient Age In Months" < 9
 
 /*
 @input: Client's age is more than or equal to 9 months
@@ -70,7 +70,7 @@ define "Client's age is less than 9 months":
 @decision: Countries with high incidence and mortality from rubella
 */
 define "Client's age is more than or equal to 9 months":
-  Elements."Client's age is more than or equal to 9 months"
+  Elements."Current Patient Age In Months" >= 9
 
 /*
 @input: Client's age is less than 12 months
@@ -78,7 +78,7 @@ define "Client's age is more than or equal to 9 months":
 @decision: Countries with low incidence of rubella						
 */
 define "Client's age is less than 12 months":
-  Elements."Client's age is less than 12 months"
+  Elements."Current Patient Age In Months" < 12
 
 /*
 @input: Client's age is more than or equal to 12 months
@@ -86,7 +86,7 @@ define "Client's age is less than 12 months":
 @decision: Countries with low incidence of rubella						
 */
 define "Client's age is more than or equal to 12 months":
-  Elements."Client's age is more than or equal to 12 months"
+  Elements."Current Patient Age In Months" >= 12
 
 /*
 @input: No live vaccine was administered in the last 4 weeks

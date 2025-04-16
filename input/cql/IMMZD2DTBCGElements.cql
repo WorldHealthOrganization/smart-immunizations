@@ -56,21 +56,22 @@ define "One BCG primary series dose was administered":
 @pseudocode: Today's date − "Date of birth" ≤ 28 days
 */
 define "Client's age is less than or equal to 28 days":
-  Elements."Client's age is less than or equal to 28 days"
+  Elements."Current Patient Age In Days" <= 28
 
 /*
 @input: Client's age is between 28 days and 5 years
 @pseudocode: 28 days < Today's date − "Date of birth" < 5 years
 */
 define "Client's age is between 28 days and 5 years":
-  Elements."Client's age is between 28 days and 5 years"
+  28 < Elements."Current Patient Age In Days"
+  and Elements."Current Patient Age In Years" < 5
 
 /*
 @input: Client's age is more than 5 years
 @pseudocode: Today's date − "Date of birth" ≥ 5 years
 */
 define "Client's age is more than 5 years":
-  Elements."Client's age is more than or equal to 5 years"
+  Elements."Current Patient Age In Years" >= 5
 
 /*
 @input: Client's HIV status is negative or unknown
