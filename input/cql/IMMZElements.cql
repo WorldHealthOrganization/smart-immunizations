@@ -671,10 +671,10 @@ define "Immunocompromised Condition":
 
 
 /*
-@input: The client's intention or desire is to become pregnant in the next month
+@input: The client is planning to get pregnant in next month
 @pseudocode: "Potential contraindications" = "Planning to get pregnant in the next month"
 */
-define "The client's intention or desire is to become pregnant in the next month":
+define "The client is planning to get pregnant in next month":
   exists "Planning to get pregnant in the next month Observation"
     or exists "Planning to get pregnant in the next month Condition"
 
@@ -693,10 +693,10 @@ define "Planning to get pregnant in the next month Condition":
 
 
 /*
-@input: The client is receiving blood or blood-related products as part of a medical treatment.
+@input: The client is receiving blood products
 @pseudocode: "Potential contraindications" = "Receiving blood products"
 */
-define "The client is receiving blood or blood-related products as part of a medical treatment.":
+define "The client is receiving blood products":
   exists "Receiving blood products Observation"
     or exists "Receiving blood products Condition"
 
@@ -715,10 +715,10 @@ define "Receiving blood products Condition":
 
 
 /*
-@input: The client has been diagnosed with tuberculosis (TB)
+@input: The client has TB disease
 @pseudocode: "Potential contraindications" = "TB disease"
 */
-define "The client has been diagnosed with tuberculosis (TB)":
+define "The client has TB disease":
   exists "TB disease Observation"
     or exists "TB disease Condition"
 

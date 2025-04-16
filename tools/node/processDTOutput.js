@@ -58,6 +58,17 @@ enclib.close()
 
 let logic = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+"Logic.cql")
 
+let draftCI = ""
+if ( dt == "CI" ) {
+  draftCI = `/*
+  @dynamicValue: Draft Medication Request ID for ${sheetdisplay} dose
+  */
+  define "Draft Medication Request ID for ${sheetdisplay} dose":
+    First(Encounter."Draft Medication Request for ${sheetdisplay} dose").id
+
+`
+}
+
 logic.write(`
 /*
  * Library: IMMZ${prefix}${sheetdisplay}${dt}Logic (${did})
@@ -76,7 +87,7 @@ parameter Today Date default Today()
 
 context Patient
 
-
+${draftCI}
 `)
 
 let pdef = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+".fsh")

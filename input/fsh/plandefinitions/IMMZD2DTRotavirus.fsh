@@ -9,7 +9,7 @@ IMMZ.D2.DT.Rotavirus
 Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTRotavirus, 0.1.0 )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for BCG.]], [["""
+* insert PlanDefMedicationRequestAction( [[Determine if the client is due for Rotavirus.]], [["""
     Determine if the client is due for Rotavirus vaccine according to the national immunization protocol.
   """]], [["""WHO recommends that the first dose of rotavirus vaccine be administered as soon as possible after 6 weeks of age.
   A minimum interval of 4 weeks should be maintained between doses.  Note: The rotavirus vaccination series for each child should 

@@ -69,6 +69,39 @@ elelib.close()
 
 let elements = fs.createWriteStream("output/IMMZ"+prefix+cqlname+"Elements.cql")
 
+let D2orD5
+if ( prefix == "D2DT" ) {
+  D2orD5 = `/*
+@internal: ${cqlname} containing Doses Administered to Patient
+*/
+define "${cqlname} Doses Administered to Patient":
+  Elements."Doses Administered to Patient" I
+  where
+    I.vaccineCode in Concepts."${cqlname}-containing vaccines"
+
+/*
+@internal: ${cqlname} containing Doses Administered to Patient that are in the Primary series
+*/
+define "${cqlname} Primary Series Doses Administered to Patient":
+  "${cqlname} Doses Administered to Patient".seriesPrimary()
+
+/*
+@internal: Number of ${cqlname} Primary Series doses
+*/
+define "Number of ${cqlname} Primary Series Doses Administered":
+  Count("${cqlname} Primary Series Doses Administered to Patient")
+`
+
+} else if ( prefix == "D5DT" ) {
+  D2orD5 = `/*
+@internal: Draft Medication Request for ${cqlname} dose
+*/
+define "Draft Medication Request for ${cqlname} dose":
+  Elements."Draft Medication Request for Patient" MR 
+    where MR.medication in Concepts."${cqlname}-containing vaccines"
+`
+}
+
 elements.write(`
 /*
   * Library: IMMZ${prefix}${cqlname}Elements
@@ -88,25 +121,7 @@ include IMMZElements called Elements
 
 context Patient
 
-/*
-@internal: ${cqlname} containing Doses Administered to Patient
-*/
-define "${cqlname} Doses Administered to Patient":
-  Elements."Doses Administered to Patient" I
-  where
-    I.vaccineCode in Concepts."${cqlname}-containing vaccines"
-
-/*
-@internal: ${cqlname} containing Doses Administered to Patient that are in the Primary series
-*/
-define "${cqlname} Primary Series Doses Administered to Patient":
-  "${cqlname} Doses Administered to Patient".seriesPrimary()
-
-/*
-@internal: Number of ${cqlname} Primary Series doses
-*/
-define "Number of ${cqlname} Primary Series Doses Administered":
-  Count("${cqlname} Primary Series Doses Administered to Patient")
+${D2orD5}
 
 `)
 
@@ -126,6 +141,8 @@ Usage: #definition
 enclib.close()
 
 let encounter = fs.createWriteStream("output/IMMZ"+prefix+cqlname+"EncounterElements.cql")
+
+D2orD5 = D2orD5.replace(/Elements/g, 'Encounter')
 
 encounter.write(`
 /*
@@ -152,25 +169,7 @@ parameter EncounterId String
 
 context Patient
 
-/*
-@internal: ${cqlname} containing Doses Administered to Patient
-*/
-define "${cqlname} Doses Administered to Patient":
-  Encounter."Doses Administered to Patient" I
-  where
-    I.vaccineCode in Concepts."${cqlname}-containing vaccines"
-
-/*
-@internal: ${cqlname} containing Doses Administered to Patient that are in the Primary series
-*/
-define "${cqlname} Primary Series Doses Administered to Patient":
-  "${cqlname} Doses Administered to Patient".seriesPrimary()
-
-/*
-@internal: Number of ${cqlname} Primary Series doses
-*/
-define "Number of ${cqlname} Primary Series Doses Administered":
-  Count("${cqlname} Primary Series Doses Administered to Patient")
+${D2orD5}
 
 `)
 

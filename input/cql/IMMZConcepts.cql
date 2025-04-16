@@ -28,6 +28,7 @@ valueset "Tetanus-containing vaccines": 'http://smart.who.int/immunizations/Valu
 valueset "Hib-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE4'
 valueset "Pneumococcal vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE13'
 valueset "Rotavirus vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE16'
+valueset "Rubella-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE17'
 
 code "IPV": 'DE213' from "IMMZD" display 'IPV'
 code "bOPV": 'DE214' from "IMMZD" display 'bOPV'

@@ -118,7 +118,7 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
   let expiration = sheet[r][col+7].trim()
   let complete = sheet[r][col+8].trim().split(/\s*\n\s*/, 2)
 
-  let createmsg = "'" + create + "'"
+  let createmsg = "'" + create.replace(/'/g, '\\\'') + "'"
   if ( !due.startsWith('To be determined by Member States') ) createmsg += " + '\nDue Date: ' + ToString(\""+sname+" Due Date\")"
   if ( !overdue.startsWith('To be determined by Member States') ) createmsg += " + '\nOverdue: ' + ToString(\""+sname+" Overdue\")"
   if ( !expiration.startsWith('To be determined by Member States') ) createmsg += " + '\nExpiration: ' + ToString(\""+sname+" Expiration\")"

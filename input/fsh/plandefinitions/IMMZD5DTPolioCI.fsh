@@ -14,5 +14,5 @@ Usage: #definition
     Show Guidance for the patient regarding IMMZ.D5.DT.Polio contraindications.
   """]], Has Guidance, Guidance)
 * insert PlanDefMedicationRequestUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
-    Contraindication for measles immunization
+    Contraindication for bOPV immunization
   """]], Poliovirus vaccination with bOPV is contraindicated, IMMZD5DTPolioMR, Draft Medication Request ID for bOPV dose )
