@@ -107,13 +107,13 @@ define "The client is pregnant":
 */
 define "Currently pregnant Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Currently pregnant"
+    where O.value ~ Concepts."CI-Currently pregnant"
 
 /*
 @internal: Condition for currently pregnant
 */
 define "Currently pregnant Condition":
-  [Condition: Concepts."Currently pregnant"]
+  [Condition: Concepts."CI-Currently pregnant"]
 
 /*
 @input: The client has history of anaphylactic reactions
@@ -128,13 +128,13 @@ define "The client has history of anaphylactic reactions":
 */
 define "History of anaphylactic reactions Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."History of anaphylactic reactions"
+    where O.value ~ Concepts."CI-History of anaphylactic reactions"
 
 /*
 @internal: Condition for History of anaphylactic reactions
 */
 define "History of anaphylactic reactions Condition":
-  [Condition: Concepts."History of anaphylactic reactions"]
+  [Condition: Concepts."CI-History of anaphylactic reactions"]
 
 
 /*
@@ -150,13 +150,13 @@ define "The client has history of severe allergic reactions":
 */
 define "Severe allergic reactions Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Severe allergic reactions"
+    where O.value ~ Concepts."CI-Severe allergic reactions"
 
 /*
 @internal: Condition for Severe allergic reactions
 */
 define "Severe allergic reactions Condition":
-  [Condition: Concepts."Severe allergic reactions"]
+  [Condition: Concepts."CI-Severe allergic reactions"]
 
 /*
 @input: The client is severely immunocompromised
@@ -171,13 +171,13 @@ define "The client is severely immunocompromised":
 */
 define "Severely immunocompromised Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Severely immunocompromised"
+    where O.value ~ Concepts."CI-Severely immunocompromised"
 
 /*
 @internal: Condition for Severely immunocompromised
 */
 define "Severely immunocompromised Condition":
-  [Condition: Concepts."Severely immunocompromised"]
+  [Condition: Concepts."CI-Severely immunocompromised"]
 
 /*
 @input: The client is severely immunosuppressed
@@ -192,13 +192,13 @@ define "The client is severely immunosuppressed":
 */
 define "Severely immunosuppressed Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Severely immunosuppressed"
+    where O.value ~ Concepts."CI-Severely immunosuppressed"
 
 /*
 @internal: Condition for Severely immunosuppressed
 */
 define "Severely immunosuppressed Condition":
-  [Condition: Concepts."Severely immunosuppressed"]
+  [Condition: Concepts."CI-Severely immunosuppressed"]
 
 /*
 @input: The client has a symptomatic HIV infection
@@ -213,13 +213,13 @@ define "The client has a symptomatic HIV infection":
 */
 define "Symptomatic HIV infection Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Symptomatic HIV infection"
+    where O.value ~ Concepts."CI-Symptomatic HIV infection"
 
 /*
 @internal: Condition for Symptomatic HIV infection
 */
 define "Symptomatic HIV infection Condition":
-  [Condition: Concepts."Symptomatic HIV infection"]
+  [Condition: Concepts."CI-Symptomatic HIV infection"]
 
 /*
 @input: The client has immunodeficiency syndromes
@@ -234,13 +234,13 @@ define "The client has immunodeficiency syndromes":
 */
 define "Immunodeficiency syndromes Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Immunodeficiency syndromes"
+    where O.value ~ Concepts."CI-Immunodeficiency syndromes"
 
 /*
 @internal: Condition for Immunodeficiency syndromes
 */
 define "Immunodeficiency syndromes Condition":
-  [Condition: Concepts."Immunodeficiency syndromes"]
+  [Condition: Concepts."CI-Immunodeficiency syndromes"]
 
 /*
 @input: The client is exposed to immunosuppressive treatment
@@ -255,13 +255,13 @@ define "The client is exposed to immunosuppressive treatment":
 */
 define "Exposed to immunosuppressive treatment Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Exposed to immunosuppressive treatment"
+    where O.value ~ Concepts."CI-Exposed to immunosuppressive treatment"
 
 /*
 @internal: Condition for Exposed to immunosuppressive treatment
 */
 define "Exposed to immunosuppressive treatment Condition":
-  [Condition: Concepts."Exposed to immunosuppressive treatment"]
+  [Condition: Concepts."CI-Exposed to immunosuppressive treatment"]
 
 /*
 @input: The client currently has a severe acute illness
@@ -276,13 +276,13 @@ define "The client currently has a severe acute illness":
 */
 define "Severe acute illness Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Severe acute illness"
+    where O.value ~ Concepts."CI-Severe acute illness"
 
 /*
 @internal: Condition for Severe acute illness
 */
 define "Severe acute illness Condition":
-  [Condition: Concepts."Severe acute illness"]
+  [Condition: Concepts."CI-Severe acute illness"]
 
 /*
 @input: The client has prior history of intussusception
@@ -297,13 +297,13 @@ define "The client has prior history of intussusception":
 */
 define "Prior history of intussusception Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Prior history of intussusception"
+    where O.value ~ Concepts."CI-Prior history of intussusception"
 
 /*
 @internal: Condition for Prior history of intussusception
 */
 define "Prior history of intussusception Condition":
-  [Condition: Concepts."Prior history of intussusception"]
+  [Condition: Concepts."CI-Prior history of intussusception"]
 
 /*
 @input: The client has altered immunocompetence
@@ -318,13 +318,13 @@ define "The client has altered immunocompetence":
 */
 define "Altered immunocompetence Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Altered immunocompetence"
+    where O.value ~ Concepts."CI-Altered immunocompetence"
 
 /*
 @internal: Condition for Altered immunocompetence
 */
 define "Altered immunocompetence Condition":
-  [Condition: Concepts."Altered immunocompetence"]
+  [Condition: Concepts."CI-Altered immunocompetence"]
 
 /*
 @input: The client has spina bifida
@@ -339,13 +339,13 @@ define "The client has spina bifida":
 */
 define "Spina bifida Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Spina bifida"
+    where O.value ~ Concepts."CI-Spina bifida"
 
 /*
 @internal: Condition for Spina bifida
 */
 define "Spina bifida Condition":
-  [Condition: Concepts."Spina bifida"]
+  [Condition: Concepts."CI-Spina bifida"]
 
 /*
 @input: The client has bladder exstrophy
@@ -360,13 +360,13 @@ define "The client has bladder exstrophy":
 */
 define "Bladder exstrophy Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Bladder exstrophy"
+    where O.value ~ Concepts."CI-Bladder exstrophy"
 
 /*
 @internal: Condition for Bladder exstrophy
 */
 define "Bladder exstrophy Condition":
-  [Condition: Concepts."Bladder exstrophy"]
+  [Condition: Concepts."CI-Bladder exstrophy"]
 
 /*
 @input: The client is known to be immunocompromised
@@ -381,13 +381,13 @@ define "The client is known to be immunocompromised":
 */
 define "Immunocompromised Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Immunocompromised"
+    where O.value ~ Concepts."CI-Immunocompromised"
 
 /*
 @internal: Condition for Immunocompromised
 */
 define "Immunocompromised Condition":
-  [Condition: Concepts."Immunocompromised"]
+  [Condition: Concepts."CI-Immunocompromised"]
 
 
 /*
@@ -403,13 +403,13 @@ define "The client is planning to get pregnant in next month":
 */
 define "Planning to get pregnant in the next month Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Planning to get pregnant in the next month"
+    where O.value ~ Concepts."CI-Planning to get pregnant in the next month"
 
 /*
 @internal: Condition for Planning to get pregnant in the next month
 */
 define "Planning to get pregnant in the next month Condition":
-  [Condition: Concepts."Planning to get pregnant in the next month"]
+  [Condition: Concepts."CI-Planning to get pregnant in the next month"]
 
 
 /*
@@ -425,13 +425,13 @@ define "The client is receiving blood products":
 */
 define "Receiving blood products Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Receiving blood products"
+    where O.value ~ Concepts."CI-Receiving blood products"
 
 /*
 @internal: Condition for Receiving blood products
 */
 define "Receiving blood products Condition":
-  [Condition: Concepts."Receiving blood products"]
+  [Condition: Concepts."CI-Receiving blood products"]
 
 
 /*
@@ -447,13 +447,13 @@ define "The client has TB disease":
 */
 define "TB disease Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."TB disease"
+    where O.value ~ Concepts."CI-TB disease"
 
 /*
 @internal: Condition for TB disease
 */
 define "TB disease Condition":
-  [Condition: Concepts."TB disease"]
+  [Condition: Concepts."CI-TB disease"]
 
 
 /*
@@ -469,13 +469,13 @@ define "The client is currently breastfeeding":
 */
 define "Breastfeeding Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Breastfeeding"
+    where O.value ~ Concepts."CI-Breastfeeding"
 
 /*
 @internal: Condition for Breastfeeding
 */
 define "Breastfeeding Condition":
-  [Condition: Concepts."Breastfeeding"]
+  [Condition: Concepts."CI-Breastfeeding"]
 
 
 /*
@@ -491,13 +491,13 @@ define "The client has acute gastroenteritis":
 */
 define "Acute gastroenteritis Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Acute gastroenteritis"
+    where O.value ~ Concepts."CI-Acute gastroenteritis"
 
 /*
 @internal: Condition for Acute gastroenteritis
 */
 define "Acute gastroenteritis Condition":
-  [Condition: Concepts."Acute gastroenteritis"]
+  [Condition: Concepts."CI-Acute gastroenteritis"]
 
 
 /*
@@ -513,13 +513,13 @@ define "The client has moderate to severe fever":
 */
 define "Moderate to severe fever Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Moderate to severe fever"
+    where O.value ~ Concepts."CI-Moderate to severe fever"
 
 /*
 @internal: Condition for Moderate to severe fever
 */
 define "Moderate to severe fever Condition":
-  [Condition: Concepts."Moderate to severe fever"]
+  [Condition: Concepts."CI-Moderate to severe fever"]
 
 
 /*
@@ -535,13 +535,13 @@ define "The client has heightened sensitivity or allergic reactions to specific 
 */
 define "Hypersensitivity to vaccine components Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Hypersensitivity to vaccine components"
+    where O.value ~ Concepts."CI-Hypersensitivity to vaccine components"
 
 /*
 @internal: Condition for Hypersensitivity to vaccine components
 */
 define "Hypersensitivity to vaccine components Condition":
-  [Condition: Concepts."Hypersensitivity to vaccine components"]
+  [Condition: Concepts."CI-Hypersensitivity to vaccine components"]
 
 
 /*
@@ -557,13 +557,13 @@ define "The client is currently taking antibiotics to treat certain infections":
 */
 define "Taking antibiotics Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Taking antibiotics"
+    where O.value ~ Concepts."CI-Taking antibiotics"
 
 /*
 @internal: Condition for Taking antibiotics
 */
 define "Taking antibiotics Condition":
-  [Condition: Concepts."Taking antibiotics"]
+  [Condition: Concepts."CI-Taking antibiotics"]
 
 /*
 @input: The client has chronic gastrointestinal disease
@@ -578,13 +578,13 @@ define "The client has chronic gastrointestinal disease":
 */
 define "Chronic gastrointestinal disease Observation":
   "Potential contraindications" O
-    where O.value ~ Concepts."Chronic gastrointestinal disease"
+    where O.value ~ Concepts."CI-Chronic gastrointestinal disease"
 
 /*
 @internal: Condition for Chronic gastrointestinal disease
 */
 define "Chronic gastrointestinal disease Condition":
-  [Condition: Concepts."Chronic gastrointestinal disease"]
+  [Condition: Concepts."CI-Chronic gastrointestinal disease"]
 
 
 
