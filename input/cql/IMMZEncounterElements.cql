@@ -97,23 +97,23 @@ define "No live vaccine was administered in the last 4 weeks":
 @pseudocode: "Potential contraindications" = "Currently pregnant"
 */
 define "The client is pregnant":
-  exists "Currently pregnant Observation"
-  or exists "Currently pregnant Condition"
+  exists "CI Currently pregnant Observation"
+  or exists "CI Currently pregnant Condition"
   or exists WE."Pregnant Observation"
 
 /*
 @internal: Observation for currently pregnant
 */
-define "Currently pregnant Observation":
-  Elements."Currently pregnant Observation" O
+define "CI Currently pregnant Observation":
+  Elements."CI Currently pregnant Observation" O
     where O.encounter.references(EncounterId)
       or O.effective.toInterval() starts same day or after Today - 9 months
 
 /*
 @internal: Condition for currently pregnant
 */
-define "Currently pregnant Condition":
-  Elements."Currently pregnant Condition" C
+define "CI Currently pregnant Condition":
+  Elements."CI Currently pregnant Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -121,20 +121,20 @@ define "Currently pregnant Condition":
 @pseudocode: "Potential contraindications" = "History of anaphylactic reactions"
 */
 define "The client has history of anaphylactic reactions":
-  exists "History of anaphylactic reactions Observation"
-    or exists "History of anaphylactic reactions Condition"
+  exists "CI History of anaphylactic reactions Observation"
+    or exists "CI History of anaphylactic reactions Condition"
     
 /*
 @internal: Observation for History of anaphylactic reactions
 */
-define "History of anaphylactic reactions Observation":
-  Elements."History of anaphylactic reactions Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI History of anaphylactic reactions Observation":
+  Elements."CI History of anaphylactic reactions Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for History of anaphylactic reactions
 */
-define "History of anaphylactic reactions Condition":
-  Elements."History of anaphylactic reactions Condition" C
+define "CI History of anaphylactic reactions Condition":
+  Elements."CI History of anaphylactic reactions Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -142,20 +142,20 @@ define "History of anaphylactic reactions Condition":
 @pseudocode: "Potential contraindications" = "Severe allergic reactions"
 */
 define "The client has history of severe allergic reactions":
-  exists "Severe allergic reactions Observation"
-    or exists "Severe allergic reactions Condition"
+  exists "CI Severe allergic reactions Observation"
+    or exists "CI Severe allergic reactions Condition"
     
 /*
 @internal: Observation for Severe allergic reactions
 */
-define "Severe allergic reactions Observation":
-  Elements."Severe allergic reactions Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Severe allergic reactions Observation":
+  Elements."CI Severe allergic reactions Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Severe allergic reactions
 */
-define "Severe allergic reactions Condition":
-  Elements."Severe allergic reactions Condition" C
+define "CI Severe allergic reactions Condition":
+  Elements."CI Severe allergic reactions Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -163,20 +163,20 @@ define "Severe allergic reactions Condition":
 @pseudocode: "Potential contraindications" = "Severely immunocompromised"
 */
 define "The client is severely immunocompromised":
-  exists "Severely immunocompromised Observation"
-    or exists "Severely immunocompromised Condition"
+  exists "CI Severely immunocompromised Observation"
+    or exists "CI Severely immunocompromised Condition"
     
 /*
 @internal: Observation for Severely immunocompromised
 */
-define "Severely immunocompromised Observation":
-  Elements."Severely immunocompromised Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Severely immunocompromised Observation":
+  Elements."CI Severely immunocompromised Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Severely immunocompromised
 */
-define "Severely immunocompromised Condition":
-  Elements."Severely immunocompromised Condition" C
+define "CI Severely immunocompromised Condition":
+  Elements."CI Severely immunocompromised Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -184,20 +184,20 @@ define "Severely immunocompromised Condition":
 @pseudocode: "Potential contraindications" = "Severely immunosuppressed"
 */
 define "The client is severely immunosuppressed":
-  exists "Severely immunosuppressed Observation"
-    or exists "Severely immunosuppressed Condition"
+  exists "CI Severely immunosuppressed Observation"
+    or exists "CI Severely immunosuppressed Condition"
     
 /*
 @internal: Observation for Severely immunosuppressed
 */
-define "Severely immunosuppressed Observation":
-  Elements."Severely immunosuppressed Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Severely immunosuppressed Observation":
+  Elements."CI Severely immunosuppressed Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Severely immunosuppressed
 */
-define "Severely immunosuppressed Condition":
-  Elements."Severely immunosuppressed Condition" C
+define "CI Severely immunosuppressed Condition":
+  Elements."CI Severely immunosuppressed Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -205,20 +205,20 @@ define "Severely immunosuppressed Condition":
 @pseudocode: "Potential contraindications" = "Symptomatic HIV infection"
 */
 define "The client has a symptomatic HIV infection":
-  exists "Symptomatic HIV infection Observation"
-    or exists "Symptomatic HIV infection Condition"
+  exists "CI Symptomatic HIV infection Observation"
+    or exists "CI Symptomatic HIV infection Condition"
     
 /*
 @internal: Observation for Symptomatic HIV infection
 */
-define "Symptomatic HIV infection Observation":
-  Elements."Symptomatic HIV infection Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Symptomatic HIV infection Observation":
+  Elements."CI Symptomatic HIV infection Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Symptomatic HIV infection
 */
-define "Symptomatic HIV infection Condition":
-  Elements."Symptomatic HIV infection Condition" C
+define "CI Symptomatic HIV infection Condition":
+  Elements."CI Symptomatic HIV infection Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -226,20 +226,20 @@ define "Symptomatic HIV infection Condition":
 @pseudocode: "Potential contraindications" = "Immunodeficiency syndromes"
 */
 define "The client has immunodeficiency syndromes":
-  exists "Immunodeficiency syndromes Observation"
-    or exists "Immunodeficiency syndromes Condition"
+  exists "CI Immunodeficiency syndromes Observation"
+    or exists "CI Immunodeficiency syndromes Condition"
     
 /*
 @internal: Observation for Immunodeficiency syndromes
 */
-define "Immunodeficiency syndromes Observation":
-  Elements."Immunodeficiency syndromes Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Immunodeficiency syndromes Observation":
+  Elements."CI Immunodeficiency syndromes Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Immunodeficiency syndromes
 */
-define "Immunodeficiency syndromes Condition":
-  Elements."Immunodeficiency syndromes Condition" C
+define "CI Immunodeficiency syndromes Condition":
+  Elements."CI Immunodeficiency syndromes Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -247,20 +247,20 @@ define "Immunodeficiency syndromes Condition":
 @pseudocode: "Potential contraindications" = "Exposed to immunosuppressive treatment"
 */
 define "The client is exposed to immunosuppressive treatment":
-  exists "Exposed to immunosuppressive treatment Observation"
-    or exists "Exposed to immunosuppressive treatment Condition"
+  exists "CI Exposed to immunosuppressive treatment Observation"
+    or exists "CI Exposed to immunosuppressive treatment Condition"
     
 /*
 @internal: Observation for Exposed to immunosuppressive treatment
 */
-define "Exposed to immunosuppressive treatment Observation":
-  Elements."Exposed to immunosuppressive treatment Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Exposed to immunosuppressive treatment Observation":
+  Elements."CI Exposed to immunosuppressive treatment Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Exposed to immunosuppressive treatment
 */
-define "Exposed to immunosuppressive treatment Condition":
-  Elements."Exposed to immunosuppressive treatment Condition" C
+define "CI Exposed to immunosuppressive treatment Condition":
+  Elements."CI Exposed to immunosuppressive treatment Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -268,20 +268,20 @@ define "Exposed to immunosuppressive treatment Condition":
 @pseudocode: "Potential contraindications" = "Severe acute illness"
 */
 define "The client currently has a severe acute illness":
-  exists "Severe acute illness Observation"
-    or exists "Severe acute illness Condition"
+  exists "CI Severe acute illness Observation"
+    or exists "CI Severe acute illness Condition"
     
 /*
 @internal: Observation for Severe acute illness
 */
-define "Severe acute illness Observation":
-  Elements."Severe acute illness Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Severe acute illness Observation":
+  Elements."CI Severe acute illness Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Severe acute illness
 */
-define "Severe acute illness Condition":
-  Elements."Severe acute illness Condition" C
+define "CI Severe acute illness Condition":
+  Elements."CI Severe acute illness Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -289,20 +289,20 @@ define "Severe acute illness Condition":
 @pseudocode: "Potential contraindications" = "Prior history of intussusception"
 */
 define "The client has prior history of intussusception":
-  exists "Prior history of intussusception Observation"
-    or exists "Prior history of intussusception Condition"
+  exists "CI Prior history of intussusception Observation"
+    or exists "CI Prior history of intussusception Condition"
     
 /*
 @internal: Observation for Prior history of intussusception
 */
-define "Prior history of intussusception Observation":
-  Elements."Prior history of intussusception Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Prior history of intussusception Observation":
+  Elements."CI Prior history of intussusception Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Prior history of intussusception
 */
-define "Prior history of intussusception Condition":
-  Elements."Prior history of intussusception Condition" C
+define "CI Prior history of intussusception Condition":
+  Elements."CI Prior history of intussusception Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -310,20 +310,20 @@ define "Prior history of intussusception Condition":
 @pseudocode: "Potential contraindications" = "Altered immunocompetence"
 */
 define "The client has altered immunocompetence":
-  exists "Altered immunocompetence Observation"
-    or exists "Altered immunocompetence Condition"
+  exists "CI Altered immunocompetence Observation"
+    or exists "CI Altered immunocompetence Condition"
     
 /*
 @internal: Observation for Altered immunocompetence
 */
-define "Altered immunocompetence Observation":
-  Elements."Altered immunocompetence Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Altered immunocompetence Observation":
+  Elements."CI Altered immunocompetence Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Altered immunocompetence
 */
-define "Altered immunocompetence Condition":
-  Elements."Altered immunocompetence Condition" C
+define "CI Altered immunocompetence Condition":
+  Elements."CI Altered immunocompetence Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -331,20 +331,20 @@ define "Altered immunocompetence Condition":
 @pseudocode: "Potential contraindications" = "Spina bifida"
 */
 define "The client has spina bifida":
-  exists "Spina bifida Observation"
-    or exists "Spina bifida Condition"
+  exists "CI Spina bifida Observation"
+    or exists "CI Spina bifida Condition"
     
 /*
 @internal: Observation for Spina bifida
 */
-define "Spina bifida Observation":
-  Elements."Spina bifida Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Spina bifida Observation":
+  Elements."CI Spina bifida Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Spina bifida
 */
-define "Spina bifida Condition":
-  Elements."Spina bifida Condition" C
+define "CI Spina bifida Condition":
+  Elements."CI Spina bifida Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -352,20 +352,20 @@ define "Spina bifida Condition":
 @pseudocode: "Potential contraindications" = "Bladder exstrophy"
 */
 define "The client has bladder exstrophy":
-  exists "Bladder exstrophy Observation"
-    or exists "Bladder exstrophy Condition"
+  exists "CI Bladder exstrophy Observation"
+    or exists "CI Bladder exstrophy Condition"
     
 /*
 @internal: Observation for Bladder exstrophy
 */
-define "Bladder exstrophy Observation":
-  Elements."Bladder exstrophy Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Bladder exstrophy Observation":
+  Elements."CI Bladder exstrophy Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Bladder exstrophy
 */
-define "Bladder exstrophy Condition":
-  Elements."Bladder exstrophy Condition" C
+define "CI Bladder exstrophy Condition":
+  Elements."CI Bladder exstrophy Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -373,20 +373,20 @@ define "Bladder exstrophy Condition":
 @pseudocode: "Potential contraindications" = "Immunocompromised"
 */
 define "The client is known to be immunocompromised":
-  exists "Immunocompromised Observation"
-    or exists "Immunocompromised Condition"
+  exists "CI Immunocompromised Observation"
+    or exists "CI Immunocompromised Condition"
 
 /*
 @internal: Observation for Immunocompromised
 */
-define "Immunocompromised Observation":
-  Elements."Immunocompromised Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Immunocompromised Observation":
+  Elements."CI Immunocompromised Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Immunocompromised
 */
-define "Immunocompromised Condition":
-  Elements."Immunocompromised Condition" C
+define "CI Immunocompromised Condition":
+  Elements."CI Immunocompromised Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -394,20 +394,20 @@ define "Immunocompromised Condition":
 @pseudocode: "Potential contraindications" = "Planning to get pregnant in the next month"
 */
 define "The client is planning to get pregnant in next month":
-  exists "Planning to get pregnant in the next month Observation"
-    or exists "Planning to get pregnant in the next month Condition"
+  exists "CI Planning to get pregnant in the next month Observation"
+    or exists "CI Planning to get pregnant in the next month Condition"
 
 /*
 @internal: Observation for Planning to get pregnant in the next month
 */
-define "Planning to get pregnant in the next month Observation":
-  Elements."Planning to get pregnant in the next month Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Planning to get pregnant in the next month Observation":
+  Elements."CI Planning to get pregnant in the next month Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Planning to get pregnant in the next month
 */
-define "Planning to get pregnant in the next month Condition":
-  Elements."Planning to get pregnant in the next month Condition" C
+define "CI Planning to get pregnant in the next month Condition":
+  Elements."CI Planning to get pregnant in the next month Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -415,20 +415,20 @@ define "Planning to get pregnant in the next month Condition":
 @pseudocode: "Potential contraindications" = "Receiving blood products"
 */
 define "The client is receiving blood products":
-  exists "Receiving blood products Observation"
-    or exists "Receiving blood products Condition"
+  exists "CI Receiving blood products Observation"
+    or exists "CI Receiving blood products Condition"
 
 /*
 @internal: Observation for Receiving blood products
 */
-define "Receiving blood products Observation":
-  Elements."Receiving blood products Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Receiving blood products Observation":
+  Elements."CI Receiving blood products Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Receiving blood products
 */
-define "Receiving blood products Condition":
-  Elements."Receiving blood products Condition" C
+define "CI Receiving blood products Condition":
+  Elements."CI Receiving blood products Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -436,20 +436,20 @@ define "Receiving blood products Condition":
 @pseudocode: "Potential contraindications" = "TB disease"
 */
 define "The client has TB disease":
-  exists "TB disease Observation"
-    or exists "TB disease Condition"
+  exists "CI TB disease Observation"
+    or exists "CI TB disease Condition"
 
 /*
 @internal: Observation for TB disease
 */
-define "TB disease Observation":
-  Elements."TB disease Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI TB disease Observation":
+  Elements."CI TB disease Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for TB disease
 */
-define "TB disease Condition":
-  Elements."TB disease Condition" C
+define "CI TB disease Condition":
+  Elements."CI TB disease Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -457,20 +457,20 @@ define "TB disease Condition":
 @pseudocode: "Potential contraindications" = "Breastfeeding"
 */
 define "The client is currently breastfeeding":
-  exists "Breastfeeding Observation"
-    or exists "Breastfeeding Condition"
+  exists "CI Breastfeeding Observation"
+    or exists "CI Breastfeeding Condition"
 
 /*
 @internal: Observation for Breastfeeding
 */
-define "Breastfeeding Observation":
-  Elements."Breastfeeding Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Breastfeeding Observation":
+  Elements."CI Breastfeeding Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Breastfeeding
 */
-define "Breastfeeding Condition":
-  Elements."Breastfeeding Condition" C
+define "CI Breastfeeding Condition":
+  Elements."CI Breastfeeding Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -478,20 +478,20 @@ define "Breastfeeding Condition":
 @pseudocode: "Potential contraindications" = "Acute gastroenteritis"
 */
 define "The client has acute gastroenteritis":
-  exists "Acute gastroenteritis Observation"
-    or exists "Acute gastroenteritis Condition"
+  exists "CI Acute gastroenteritis Observation"
+    or exists "CI Acute gastroenteritis Condition"
 
 /*
 @internal: Observation for Acute gastroenteritis
 */
-define "Acute gastroenteritis Observation":
-  Elements."Acute gastroenteritis Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Acute gastroenteritis Observation":
+  Elements."CI Acute gastroenteritis Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Acute gastroenteritis
 */
-define "Acute gastroenteritis Condition":
-  Elements."Acute gastroenteritis Condition" C
+define "CI Acute gastroenteritis Condition":
+  Elements."CI Acute gastroenteritis Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -499,20 +499,20 @@ define "Acute gastroenteritis Condition":
 @pseudocode: "Potential contraindications" = "Moderate to severe fever"
 */
 define "The client has moderate to severe fever":
-  exists "Moderate to severe fever Observation"
-    or exists "Moderate to severe fever Condition"
+  exists "CI Moderate to severe fever Observation"
+    or exists "CI Moderate to severe fever Condition"
 
 /*
 @internal: Observation for Moderate to severe fever
 */
-define "Moderate to severe fever Observation":
-  Elements."Moderate to severe fever Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Moderate to severe fever Observation":
+  Elements."CI Moderate to severe fever Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Moderate to severe fever
 */
-define "Moderate to severe fever Condition":
-  Elements."Moderate to severe fever Condition" C
+define "CI Moderate to severe fever Condition":
+  Elements."CI Moderate to severe fever Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -520,20 +520,20 @@ define "Moderate to severe fever Condition":
 @pseudocode: "Potential contraindications" = "Hypersensitivity to vaccine components"
 */
 define "The client has heightened sensitivity or allergic reactions to specific components found in vaccines":
-  exists "Hypersensitivity to vaccine components Observation"
-    or exists "Hypersensitivity to vaccine components Condition"
+  exists "CI Hypersensitivity to vaccine components Observation"
+    or exists "CI Hypersensitivity to vaccine components Condition"
 
 /*
 @internal: Observation for Hypersensitivity to vaccine components
 */
-define "Hypersensitivity to vaccine components Observation":
-  Elements."Hypersensitivity to vaccine components Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Hypersensitivity to vaccine components Observation":
+  Elements."CI Hypersensitivity to vaccine components Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Hypersensitivity to vaccine components
 */
-define "Hypersensitivity to vaccine components Condition":
-  Elements."Hypersensitivity to vaccine components Condition" C
+define "CI Hypersensitivity to vaccine components Condition":
+  Elements."CI Hypersensitivity to vaccine components Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -541,20 +541,20 @@ define "Hypersensitivity to vaccine components Condition":
 @pseudocode: "Potential contraindications" = "Taking antibiotics"
 */
 define "The client is currently taking antibiotics to treat certain infections":
-  exists "Taking antibiotics Observation"
-    or exists "Taking antibiotics Condition"
+  exists "CI Taking antibiotics Observation"
+    or exists "CI Taking antibiotics Condition"
 
 /*
 @internal: Observation for Taking antibiotics
 */
-define "Taking antibiotics Observation":
-  Elements."Taking antibiotics Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Taking antibiotics Observation":
+  Elements."CI Taking antibiotics Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Taking antibiotics
 */
-define "Taking antibiotics Condition":
-  Elements."Taking antibiotics Condition" C
+define "CI Taking antibiotics Condition":
+  Elements."CI Taking antibiotics Condition" C
     where C.prevalenceInterval() includes Today
 
 /*
@@ -562,20 +562,20 @@ define "Taking antibiotics Condition":
 @pseudocode: "Potential contraindications" = "Chronic gastrointestinal disease"
 */
 define "The client has chronic gastrointestinal disease":
-  exists "Chronic gastrointestinal disease Observation"
-    or exists "Chronic gastrointestinal disease Condition"
+  exists "CI Chronic gastrointestinal disease Observation"
+    or exists "CI Chronic gastrointestinal disease Condition"
 
 /*
 @internal: Observation for Chronic gastrointestinal disease
 */
-define "Chronic gastrointestinal disease Observation":
-  Elements."Chronic gastrointestinal disease Observation".encounterOrOnBefore(EncounterId, Today)
+define "CI Chronic gastrointestinal disease Observation":
+  Elements."CI Chronic gastrointestinal disease Observation".encounterOrOnBefore(EncounterId, Today)
 
 /*
 @internal: Condition for Chronic gastrointestinal disease
 */
-define "Chronic gastrointestinal disease Condition":
-  Elements."Chronic gastrointestinal disease Condition" C
+define "CI Chronic gastrointestinal disease Condition":
+  Elements."CI Chronic gastrointestinal disease Condition" C
     where C.prevalenceInterval() includes Today
 
 
@@ -675,6 +675,28 @@ define "Client is not clinically well":
 */
 define "Client is clinically well":
   First( "Clinically well Observation" ).value = true 
+
+/*
+@internal: Immunocompromised Observation
+*/
+define "Immunocompromised Observation":
+  ([Observation: Concepts."Immunocompromised"] O
+    sort by end of effective.toInterval() desc).complete()
+
+/*
+@input: Client is immunocompromised
+@pseudocode: "Immunocompromised" = TRUE
+*/
+define "Client is immunocompromised":
+  exists( "Immunocompromised Observation" ) and
+  First( "Immunocompromised Observation" ).value = true 
+
+/*
+@input: Client is not immunocompromised
+@pseudocode: "Immunocompromised" ≠ TRUE
+*/
+define "Client is not immunocompromised":
+  not "Client is immunocompromised"
 
 /*
 @internal: Birth weight in grams Observation

@@ -48,6 +48,7 @@ code "Clinically well": 'DE250' from "IMMZD" display 'Clinically well'
 code "Birth weight in grams": 'DE211' from "IMMZD" display 'Birth weight in grams'
 code "Preterm birth": 'DE208' from "IMMZD" display 'Preterm birth'
 code "At high risk for pneumococcal infection": 'DE251' from "IMMZD" display 'At high risk for pneumococcal infection'
+code "Immunocompromised": 'DE209' from "IMMZD" display 'Immunocompromised'
 
 code "Potential contraindications": 'DE161' from "IMMZD" display 'Potential contraindications'
 code "CI-Currently pregnant": 'DE162' from "IMMZD" display 'Currently pregnant'

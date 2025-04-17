@@ -98,21 +98,21 @@ define "Potential contraindications":
 @pseudocode: "Potential contraindications" = "Currently pregnant"
 */
 define "The client is pregnant":
-  exists "Currently pregnant Observation"
-  or exists "Currently pregnant Condition"
+  exists "CI Currently pregnant Observation"
+  or exists "CI Currently pregnant Condition"
   or exists WE."Pregnant Observation"
 
 /*
 @internal: Observation for currently pregnant
 */
-define "Currently pregnant Observation":
+define "CI Currently pregnant Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Currently pregnant"
 
 /*
 @internal: Condition for currently pregnant
 */
-define "Currently pregnant Condition":
+define "CI Currently pregnant Condition":
   [Condition: Concepts."CI-Currently pregnant"]
 
 /*
@@ -120,20 +120,20 @@ define "Currently pregnant Condition":
 @pseudocode: "Potential contraindications" = "History of anaphylactic reactions"
 */
 define "The client has history of anaphylactic reactions":
-  exists "History of anaphylactic reactions Observation"
-    or exists "History of anaphylactic reactions Condition"
+  exists "CI History of anaphylactic reactions Observation"
+    or exists "CI History of anaphylactic reactions Condition"
 
 /*
 @internal: Observation for History of anaphylactic reactions
 */
-define "History of anaphylactic reactions Observation":
+define "CI History of anaphylactic reactions Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-History of anaphylactic reactions"
 
 /*
 @internal: Condition for History of anaphylactic reactions
 */
-define "History of anaphylactic reactions Condition":
+define "CI History of anaphylactic reactions Condition":
   [Condition: Concepts."CI-History of anaphylactic reactions"]
 
 
@@ -142,20 +142,20 @@ define "History of anaphylactic reactions Condition":
 @pseudocode: "Potential contraindications" = "Severe allergic reactions"
 */
 define "The client has history of severe allergic reactions":
-  exists "Severe allergic reactions Observation"
-    or exists "Severe allergic reactions Condition"
+  exists "CI Severe allergic reactions Observation"
+    or exists "CI Severe allergic reactions Condition"
     
 /*
 @internal: Observation for Severe allergic reactions
 */
-define "Severe allergic reactions Observation":
+define "CI Severe allergic reactions Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Severe allergic reactions"
 
 /*
 @internal: Condition for Severe allergic reactions
 */
-define "Severe allergic reactions Condition":
+define "CI Severe allergic reactions Condition":
   [Condition: Concepts."CI-Severe allergic reactions"]
 
 /*
@@ -163,20 +163,20 @@ define "Severe allergic reactions Condition":
 @pseudocode: "Potential contraindications" = "Severely immunocompromised"
 */
 define "The client is severely immunocompromised":
-  exists "Severely immunocompromised Observation"
-    or exists "Severely immunocompromised Condition"
+  exists "CI Severely immunocompromised Observation"
+    or exists "CI Severely immunocompromised Condition"
     
 /*
 @internal: Observation for Severely immunocompromised
 */
-define "Severely immunocompromised Observation":
+define "CI Severely immunocompromised Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Severely immunocompromised"
 
 /*
 @internal: Condition for Severely immunocompromised
 */
-define "Severely immunocompromised Condition":
+define "CI Severely immunocompromised Condition":
   [Condition: Concepts."CI-Severely immunocompromised"]
 
 /*
@@ -184,20 +184,20 @@ define "Severely immunocompromised Condition":
 @pseudocode: "Potential contraindications" = "Severely immunosuppressed"
 */
 define "The client is severely immunosuppressed":
-  exists "Severely immunosuppressed Observation"
-    or exists "Severely immunosuppressed Condition"
+  exists "CI Severely immunosuppressed Observation"
+    or exists "CI Severely immunosuppressed Condition"
     
 /*
 @internal: Observation for Severely immunosuppressed
 */
-define "Severely immunosuppressed Observation":
+define "CI Severely immunosuppressed Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Severely immunosuppressed"
 
 /*
 @internal: Condition for Severely immunosuppressed
 */
-define "Severely immunosuppressed Condition":
+define "CI Severely immunosuppressed Condition":
   [Condition: Concepts."CI-Severely immunosuppressed"]
 
 /*
@@ -205,20 +205,20 @@ define "Severely immunosuppressed Condition":
 @pseudocode: "Potential contraindications" = "Symptomatic HIV infection"
 */
 define "The client has a symptomatic HIV infection":
-  exists "Symptomatic HIV infection Observation"
-    or exists "Symptomatic HIV infection Condition"
+  exists "CI Symptomatic HIV infection Observation"
+    or exists "CI Symptomatic HIV infection Condition"
     
 /*
 @internal: Observation for Symptomatic HIV infection
 */
-define "Symptomatic HIV infection Observation":
+define "CI Symptomatic HIV infection Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Symptomatic HIV infection"
 
 /*
 @internal: Condition for Symptomatic HIV infection
 */
-define "Symptomatic HIV infection Condition":
+define "CI Symptomatic HIV infection Condition":
   [Condition: Concepts."CI-Symptomatic HIV infection"]
 
 /*
@@ -226,20 +226,20 @@ define "Symptomatic HIV infection Condition":
 @pseudocode: "Potential contraindications" = "Immunodeficiency syndromes"
 */
 define "The client has immunodeficiency syndromes":
-  exists "Immunodeficiency syndromes Observation"
-    or exists "Immunodeficiency syndromes Condition"
+  exists "CI Immunodeficiency syndromes Observation"
+    or exists "CI Immunodeficiency syndromes Condition"
     
 /*
 @internal: Observation for Immunodeficiency syndromes
 */
-define "Immunodeficiency syndromes Observation":
+define "CI Immunodeficiency syndromes Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Immunodeficiency syndromes"
 
 /*
 @internal: Condition for Immunodeficiency syndromes
 */
-define "Immunodeficiency syndromes Condition":
+define "CI Immunodeficiency syndromes Condition":
   [Condition: Concepts."CI-Immunodeficiency syndromes"]
 
 /*
@@ -247,20 +247,20 @@ define "Immunodeficiency syndromes Condition":
 @pseudocode: "Potential contraindications" = "Exposed to immunosuppressive treatment"
 */
 define "The client is exposed to immunosuppressive treatment":
-  exists "Exposed to immunosuppressive treatment Observation"
-    or exists "Exposed to immunosuppressive treatment Condition"
+  exists "CI Exposed to immunosuppressive treatment Observation"
+    or exists "CI Exposed to immunosuppressive treatment Condition"
     
 /*
 @internal: Observation for Exposed to immunosuppressive treatment
 */
-define "Exposed to immunosuppressive treatment Observation":
+define "CI Exposed to immunosuppressive treatment Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Exposed to immunosuppressive treatment"
 
 /*
 @internal: Condition for Exposed to immunosuppressive treatment
 */
-define "Exposed to immunosuppressive treatment Condition":
+define "CI Exposed to immunosuppressive treatment Condition":
   [Condition: Concepts."CI-Exposed to immunosuppressive treatment"]
 
 /*
@@ -268,20 +268,20 @@ define "Exposed to immunosuppressive treatment Condition":
 @pseudocode: "Potential contraindications" = "Severe acute illness"
 */
 define "The client currently has a severe acute illness":
-  exists "Severe acute illness Observation"
-    or exists "Severe acute illness Condition"
+  exists "CI Severe acute illness Observation"
+    or exists "CI Severe acute illness Condition"
     
 /*
 @internal: Observation for Severe acute illness
 */
-define "Severe acute illness Observation":
+define "CI Severe acute illness Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Severe acute illness"
 
 /*
 @internal: Condition for Severe acute illness
 */
-define "Severe acute illness Condition":
+define "CI Severe acute illness Condition":
   [Condition: Concepts."CI-Severe acute illness"]
 
 /*
@@ -289,20 +289,20 @@ define "Severe acute illness Condition":
 @pseudocode: "Potential contraindications" = "Prior history of intussusception"
 */
 define "The client has prior history of intussusception":
-  exists "Prior history of intussusception Observation"
-    or exists "Prior history of intussusception Condition"
+  exists "CI Prior history of intussusception Observation"
+    or exists "CI Prior history of intussusception Condition"
     
 /*
 @internal: Observation for Prior history of intussusception
 */
-define "Prior history of intussusception Observation":
+define "CI Prior history of intussusception Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Prior history of intussusception"
 
 /*
 @internal: Condition for Prior history of intussusception
 */
-define "Prior history of intussusception Condition":
+define "CI Prior history of intussusception Condition":
   [Condition: Concepts."CI-Prior history of intussusception"]
 
 /*
@@ -310,20 +310,20 @@ define "Prior history of intussusception Condition":
 @pseudocode: "Potential contraindications" = "Altered immunocompetence"
 */
 define "The client has altered immunocompetence":
-  exists "Altered immunocompetence Observation"
-    or exists "Altered immunocompetence Condition"
+  exists "CI Altered immunocompetence Observation"
+    or exists "CI Altered immunocompetence Condition"
     
 /*
 @internal: Observation for Altered immunocompetence
 */
-define "Altered immunocompetence Observation":
+define "CI Altered immunocompetence Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Altered immunocompetence"
 
 /*
 @internal: Condition for Altered immunocompetence
 */
-define "Altered immunocompetence Condition":
+define "CI Altered immunocompetence Condition":
   [Condition: Concepts."CI-Altered immunocompetence"]
 
 /*
@@ -331,20 +331,20 @@ define "Altered immunocompetence Condition":
 @pseudocode: "Potential contraindications" = "Spina bifida"
 */
 define "The client has spina bifida":
-  exists "Spina bifida Observation"
-    or exists "Spina bifida Condition"
+  exists "CI Spina bifida Observation"
+    or exists "CI Spina bifida Condition"
     
 /*
 @internal: Observation for Spina bifida
 */
-define "Spina bifida Observation":
+define "CI Spina bifida Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Spina bifida"
 
 /*
 @internal: Condition for Spina bifida
 */
-define "Spina bifida Condition":
+define "CI Spina bifida Condition":
   [Condition: Concepts."CI-Spina bifida"]
 
 /*
@@ -352,20 +352,20 @@ define "Spina bifida Condition":
 @pseudocode: "Potential contraindications" = "Bladder exstrophy"
 */
 define "The client has bladder exstrophy":
-  exists "Bladder exstrophy Observation"
-    or exists "Bladder exstrophy Condition"
+  exists "CI Bladder exstrophy Observation"
+    or exists "CI Bladder exstrophy Condition"
     
 /*
 @internal: Observation for Bladder exstrophy
 */
-define "Bladder exstrophy Observation":
+define "CI Bladder exstrophy Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Bladder exstrophy"
 
 /*
 @internal: Condition for Bladder exstrophy
 */
-define "Bladder exstrophy Condition":
+define "CI Bladder exstrophy Condition":
   [Condition: Concepts."CI-Bladder exstrophy"]
 
 /*
@@ -373,20 +373,20 @@ define "Bladder exstrophy Condition":
 @pseudocode: "Potential contraindications" = "Immunocompromised"
 */
 define "The client is known to be immunocompromised":
-  exists "Immunocompromised Observation"
-    or exists "Immunocompromised Condition"
+  exists "CI Immunocompromised Observation"
+    or exists "CI Immunocompromised Condition"
 
 /*
 @internal: Observation for Immunocompromised
 */
-define "Immunocompromised Observation":
+define "CI Immunocompromised Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Immunocompromised"
 
 /*
 @internal: Condition for Immunocompromised
 */
-define "Immunocompromised Condition":
+define "CI Immunocompromised Condition":
   [Condition: Concepts."CI-Immunocompromised"]
 
 
@@ -395,20 +395,20 @@ define "Immunocompromised Condition":
 @pseudocode: "Potential contraindications" = "Planning to get pregnant in the next month"
 */
 define "The client is planning to get pregnant in next month":
-  exists "Planning to get pregnant in the next month Observation"
-    or exists "Planning to get pregnant in the next month Condition"
+  exists "CI Planning to get pregnant in the next month Observation"
+    or exists "CI Planning to get pregnant in the next month Condition"
 
 /*
 @internal: Observation for Planning to get pregnant in the next month
 */
-define "Planning to get pregnant in the next month Observation":
+define "CI Planning to get pregnant in the next month Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Planning to get pregnant in the next month"
 
 /*
 @internal: Condition for Planning to get pregnant in the next month
 */
-define "Planning to get pregnant in the next month Condition":
+define "CI Planning to get pregnant in the next month Condition":
   [Condition: Concepts."CI-Planning to get pregnant in the next month"]
 
 
@@ -417,20 +417,20 @@ define "Planning to get pregnant in the next month Condition":
 @pseudocode: "Potential contraindications" = "Receiving blood products"
 */
 define "The client is receiving blood products":
-  exists "Receiving blood products Observation"
-    or exists "Receiving blood products Condition"
+  exists "CI Receiving blood products Observation"
+    or exists "CI Receiving blood products Condition"
 
 /*
 @internal: Observation for Receiving blood products
 */
-define "Receiving blood products Observation":
+define "CI Receiving blood products Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Receiving blood products"
 
 /*
 @internal: Condition for Receiving blood products
 */
-define "Receiving blood products Condition":
+define "CI Receiving blood products Condition":
   [Condition: Concepts."CI-Receiving blood products"]
 
 
@@ -439,20 +439,20 @@ define "Receiving blood products Condition":
 @pseudocode: "Potential contraindications" = "TB disease"
 */
 define "The client has TB disease":
-  exists "TB disease Observation"
-    or exists "TB disease Condition"
+  exists "CI TB disease Observation"
+    or exists "CI TB disease Condition"
 
 /*
 @internal: Observation for TB disease
 */
-define "TB disease Observation":
+define "CI TB disease Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-TB disease"
 
 /*
 @internal: Condition for TB disease
 */
-define "TB disease Condition":
+define "CI TB disease Condition":
   [Condition: Concepts."CI-TB disease"]
 
 
@@ -461,20 +461,20 @@ define "TB disease Condition":
 @pseudocode: "Potential contraindications" = "Breastfeeding"
 */
 define "The client is currently breastfeeding":
-  exists "Breastfeeding Observation"
-    or exists "Breastfeeding Condition"
+  exists "CI Breastfeeding Observation"
+    or exists "CI Breastfeeding Condition"
 
 /*
 @internal: Observation for Breastfeeding
 */
-define "Breastfeeding Observation":
+define "CI Breastfeeding Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Breastfeeding"
 
 /*
 @internal: Condition for Breastfeeding
 */
-define "Breastfeeding Condition":
+define "CI Breastfeeding Condition":
   [Condition: Concepts."CI-Breastfeeding"]
 
 
@@ -483,20 +483,20 @@ define "Breastfeeding Condition":
 @pseudocode: "Potential contraindications" = "Acute gastroenteritis"
 */
 define "The client has acute gastroenteritis":
-  exists "Acute gastroenteritis Observation"
-    or exists "Acute gastroenteritis Condition"
+  exists "CI Acute gastroenteritis Observation"
+    or exists "CI Acute gastroenteritis Condition"
 
 /*
 @internal: Observation for Acute gastroenteritis
 */
-define "Acute gastroenteritis Observation":
+define "CI Acute gastroenteritis Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Acute gastroenteritis"
 
 /*
 @internal: Condition for Acute gastroenteritis
 */
-define "Acute gastroenteritis Condition":
+define "CI Acute gastroenteritis Condition":
   [Condition: Concepts."CI-Acute gastroenteritis"]
 
 
@@ -505,20 +505,20 @@ define "Acute gastroenteritis Condition":
 @pseudocode: "Potential contraindications" = "Moderate to severe fever"
 */
 define "The client has moderate to severe fever":
-  exists "Moderate to severe fever Observation"
-    or exists "Moderate to severe fever Condition"
+  exists "CI Moderate to severe fever Observation"
+    or exists "CI Moderate to severe fever Condition"
 
 /*
 @internal: Observation for Moderate to severe fever
 */
-define "Moderate to severe fever Observation":
+define "CI Moderate to severe fever Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Moderate to severe fever"
 
 /*
 @internal: Condition for Moderate to severe fever
 */
-define "Moderate to severe fever Condition":
+define "CI Moderate to severe fever Condition":
   [Condition: Concepts."CI-Moderate to severe fever"]
 
 
@@ -527,20 +527,20 @@ define "Moderate to severe fever Condition":
 @pseudocode: "Potential contraindications" = "Hypersensitivity to vaccine components"
 */
 define "The client has heightened sensitivity or allergic reactions to specific components found in vaccines":
-  exists "Hypersensitivity to vaccine components Observation"
-    or exists "Hypersensitivity to vaccine components Condition"
+  exists "CI Hypersensitivity to vaccine components Observation"
+    or exists "CI Hypersensitivity to vaccine components Condition"
 
 /*
 @internal: Observation for Hypersensitivity to vaccine components
 */
-define "Hypersensitivity to vaccine components Observation":
+define "CI Hypersensitivity to vaccine components Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Hypersensitivity to vaccine components"
 
 /*
 @internal: Condition for Hypersensitivity to vaccine components
 */
-define "Hypersensitivity to vaccine components Condition":
+define "CI Hypersensitivity to vaccine components Condition":
   [Condition: Concepts."CI-Hypersensitivity to vaccine components"]
 
 
@@ -549,20 +549,20 @@ define "Hypersensitivity to vaccine components Condition":
 @pseudocode: "Potential contraindications" = "Taking antibiotics"
 */
 define "The client is currently taking antibiotics to treat certain infections":
-  exists "Taking antibiotics Observation"
-    or exists "Taking antibiotics Condition"
+  exists "CI Taking antibiotics Observation"
+    or exists "CI Taking antibiotics Condition"
 
 /*
 @internal: Observation for Taking antibiotics
 */
-define "Taking antibiotics Observation":
+define "CI Taking antibiotics Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Taking antibiotics"
 
 /*
 @internal: Condition for Taking antibiotics
 */
-define "Taking antibiotics Condition":
+define "CI Taking antibiotics Condition":
   [Condition: Concepts."CI-Taking antibiotics"]
 
 /*
@@ -570,20 +570,20 @@ define "Taking antibiotics Condition":
 @pseudocode: "Potential contraindications" = "Chronic gastrointestinal disease"
 */
 define "The client has chronic gastrointestinal disease":
-  exists "Chronic gastrointestinal disease Observation"
-    or exists "Chronic gastrointestinal disease Condition"
+  exists "CI Chronic gastrointestinal disease Observation"
+    or exists "CI Chronic gastrointestinal disease Condition"
 
 /*
 @internal: Observation for Chronic gastrointestinal disease
 */
-define "Chronic gastrointestinal disease Observation":
+define "CI Chronic gastrointestinal disease Observation":
   "Potential contraindications" O
     where O.value ~ Concepts."CI-Chronic gastrointestinal disease"
 
 /*
 @internal: Condition for Chronic gastrointestinal disease
 */
-define "Chronic gastrointestinal disease Condition":
+define "CI Chronic gastrointestinal disease Condition":
   [Condition: Concepts."CI-Chronic gastrointestinal disease"]
 
 
@@ -699,6 +699,28 @@ define "Client is not clinically well":
 */
 define "Client is clinically well":
   First( "Clinically well Observation" ).value = true 
+
+/*
+@internal: Immunocompromised Observation
+*/
+define "Immunocompromised Observation":
+  ([Observation: Concepts."Immunocompromised"] O
+    sort by end of effective.toInterval() desc).complete()
+
+/*
+@input: Client is immunocompromised
+@pseudocode: "Immunocompromised" = TRUE
+*/
+define "Client is immunocompromised":
+  exists( "Immunocompromised Observation" ) and
+  First( "Immunocompromised Observation" ).value = true 
+
+/*
+@input: Client is not immunocompromised
+@pseudocode: "Immunocompromised" ≠ TRUE
+*/
+define "Client is not immunocompromised":
+  not "Client is immunocompromised"
 
 /*
 @internal: Birth weight in grams Observation
