@@ -30,6 +30,7 @@ valueset "Pneumococcal vaccines": 'http://smart.who.int/immunizations/ValueSet/I
 valueset "Rotavirus vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE16'
 valueset "Rubella-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE17'
 valueset "HPV vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE7'
+valueset "Typhoid vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE21'
 
 code "IPV": 'DE213' from "IMMZD" display 'IPV'
 code "bOPV": 'DE214' from "IMMZD" display 'bOPV'

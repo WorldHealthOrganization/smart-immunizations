@@ -516,10 +516,10 @@ define "CI Moderate to severe fever Condition":
     where C.prevalenceInterval() includes Today
 
 /*
-@input: The client has heightened sensitivity or allergic reactions to specific components found in vaccines
+@input: The client has hypersensitivity to any component of the vaccine
 @pseudocode: "Potential contraindications" = "Hypersensitivity to vaccine components"
 */
-define "The client has heightened sensitivity or allergic reactions to specific components found in vaccines":
+define "The client has hypersensitivity to any component of the vaccine":
   exists "CI Hypersensitivity to vaccine components Observation"
     or exists "CI Hypersensitivity to vaccine components Condition"
 
@@ -537,10 +537,10 @@ define "CI Hypersensitivity to vaccine components Condition":
     where C.prevalenceInterval() includes Today
 
 /*
-@input: The client is currently taking antibiotics to treat certain infections
+@input: The client is currently taking antibiotics
 @pseudocode: "Potential contraindications" = "Taking antibiotics"
 */
-define "The client is currently taking antibiotics to treat certain infections":
+define "The client is currently taking antibiotics":
   exists "CI Taking antibiotics Observation"
     or exists "CI Taking antibiotics Condition"
 

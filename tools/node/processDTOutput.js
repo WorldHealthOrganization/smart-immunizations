@@ -145,15 +145,20 @@ patient:
     gender: female
 `)
 if ( dt == "CI" ) {
-  let ci = sheet[r][cs[0]].match(/.*"(.+)"$/)
-  let ciid = ci[1].replace(/\W/g, '').toLowerCase()
+  for( let c = cs[0]; c <= cs[1]; c++ ) {
+    if ( sheet[r][c].length < 3 ) continue
+    let ci = sheet[r][c].match(/.*"(.+)"$/)
+    if ( !ci ) ci = sheet[r][c].match(/.*"(.+)"[^"]*$/)
+    let ciid = ci[1].replace(/\W/g, '').toLowerCase()
+    yaml.write(`contraindication:
+    ${ciid}:
+      code: DE
+      display: "${ci[1]}"
+      effectiveDateTime: -1d
+`)
+  }
   let mrname = sheetdisplay.toLowerCase()
-  yaml.write(`contraindication:
-  ${ciid}:
-    code: DE
-    display: "${ci[1]}"
-    effectiveDateTime: -1d
-medicationrequest:
+  yaml.write(`medicationrequest:
   ${mrname}:
     medication:
       code: 

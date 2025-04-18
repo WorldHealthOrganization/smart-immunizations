@@ -94,16 +94,14 @@ define "MCV2 was administered":
 
 /*
 @input: MCV0 was not administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines
-" and "Type of dose" = "Dose 0") = 0
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Dose 0") = 0
 */
 define "MCV0 was not administered":
   "Number of MCV Dose 0 Doses Administered" = 0
 
 /*
 @input: MCV0 was administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines
-" and "Type of dose" = "Dose 0") = 1
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Dose 0") = 1
 */
 define "MCV0 was administered":
   "Number of MCV Dose 0 Doses Administered" = 1
