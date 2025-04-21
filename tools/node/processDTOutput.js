@@ -61,10 +61,10 @@ let logic = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+"Logic.cql
 let draftCI = ""
 if ( dt == "CI" ) {
   draftCI = `/*
-  @dynamicValue: Draft Medication Request ID for ${sheetdisplay} dose
+  @dynamicValue: Draft Medication Request ID for ${sheetname} dose
   */
-  define "Draft Medication Request ID for ${sheetdisplay} dose":
-    First(Encounter."Draft Medication Request for ${sheetdisplay} dose").id
+  define "Draft Medication Request ID for ${sheetname} dose":
+    First(Encounter."Draft Medication Request for ${sheetname} dose").id
 
 `
 }

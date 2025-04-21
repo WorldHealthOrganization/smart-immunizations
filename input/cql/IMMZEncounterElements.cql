@@ -454,10 +454,10 @@ define "CI TB disease Condition":
     where C.prevalenceInterval() includes Today
 
 /*
-@input: The client is currently breastfeeding
+@input: The client is lactating
 @pseudocode: "Potential contraindications" = "Breastfeeding"
 */
-define "The client is currently breastfeeding":
+define "The client is lactating":
   exists "CI Breastfeeding Observation"
     or exists "CI Breastfeeding Condition"
 

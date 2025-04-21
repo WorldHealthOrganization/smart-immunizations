@@ -72,33 +72,33 @@ let elements = fs.createWriteStream("output/IMMZ"+prefix+cqlname+"Elements.cql")
 let D2orD5
 if ( prefix == "D2DT" ) {
   D2orD5 = `/*
-@internal: ${cqlname} containing Doses Administered to Patient
+@internal: ${sheetname} containing Doses Administered to Patient
 */
-define "${cqlname} Doses Administered to Patient":
+define "${sheetname} Doses Administered to Patient":
   Elements."Doses Administered to Patient" I
   where
-    I.vaccineCode in Concepts."${cqlname}-containing vaccines"
+    I.vaccineCode in Concepts."${sheetname}-containing vaccines"
 
 /*
-@internal: ${cqlname} containing Doses Administered to Patient that are in the Primary series
+@internal: ${sheetname} containing Doses Administered to Patient that are in the Primary series
 */
-define "${cqlname} Primary Series Doses Administered to Patient":
-  "${cqlname} Doses Administered to Patient".seriesPrimary()
+define "${sheetname} Primary Series Doses Administered to Patient":
+  "${sheetname} Doses Administered to Patient".seriesPrimary()
 
 /*
-@internal: Number of ${cqlname} Primary Series doses
+@internal: Number of ${sheetname} Primary Series doses
 */
-define "Number of ${cqlname} Primary Series Doses Administered":
-  Count("${cqlname} Primary Series Doses Administered to Patient")
+define "Number of ${sheetname} Primary Series Doses Administered":
+  Count("${sheetname} Primary Series Doses Administered to Patient")
 `
 
 } else if ( prefix == "D5DT" ) {
   D2orD5 = `/*
-@internal: Draft Medication Request for ${cqlname} dose
+@internal: Draft Medication Request for ${sheetname} dose
 */
-define "Draft Medication Request for ${cqlname} dose":
+define "Draft Medication Request for ${sheetname} dose":
   Elements."Draft Medication Request for Patient" MR 
-    where MR.medication in Concepts."${cqlname}-containing vaccines"
+    where MR.medication in Concepts."${sheetname}-containing vaccines"
 `
 }
 
