@@ -31,6 +31,8 @@ valueset "Rotavirus vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ
 valueset "Rubella-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE17'
 valueset "HPV vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE7'
 valueset "Typhoid vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE21'
+valueset "JE vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE8'
+valueset "Yellow fever vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE23'
 
 code "IPV": 'DE213' from "IMMZD" display 'IPV'
 code "bOPV": 'DE214' from "IMMZD" display 'bOPV'

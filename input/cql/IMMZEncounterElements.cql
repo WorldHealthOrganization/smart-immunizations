@@ -369,11 +369,12 @@ define "CI Bladder exstrophy Condition":
     where C.prevalenceInterval() includes Today
 
 /*
-@input: The client is known to be immunocompromised
+@input: The client is immunocompromised
 @pseudocode: "Potential contraindications" = "Immunocompromised"
 */
-define "The client is known to be immunocompromised":
-  exists "CI Immunocompromised Observation"
+define "The client is immunocompromised":
+  "Client is immunocompromised"
+    or exists "CI Immunocompromised Observation"
     or exists "CI Immunocompromised Condition"
 
 /*

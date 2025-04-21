@@ -8,8 +8,7 @@
 ### TABLEDESC
 
 - [ ] In `tools/node` run: `node processDTInput.js ~/Documents/WHO/IMMZ\ DAK_decision-support\ logic.xlsx ANTIGEN ROWOFFSET ROWS(X-Y) COLUMNS(X-Y) D2DT`  (Use processDTCheck to make sure rows, cols, and offset are correct.)
-  - [ ] If first time: move cql files to `input/cql`, move fsh files to `input/fsh/libraries`
-  - [ ] If not first time: Review cql files to add new expressions to `IMMZD2DTANTIGENElements.cql` and `IMMZD2DTANTIGENEncounterElements.cql`
+  - [ ] **If first time**: move cql files to `input/cql`, move fsh files to `input/fsh/libraries`.  **If not first time**: Review cql files to add new expressions to `IMMZD2DTANTIGENElements.cql` and `IMMZD2DTANTIGENEncounterElements.cql`
   - [ ] Review expressions for generic ones that are across antigens and copy those to `IMMZElements.cql` or `IMMZEncounterElements.cql` and reference these from the ANTIGEN CQL.  Remove @decision comment from IMMZElements and IMMZEncounterElements.
   - [ ] Create code for expressions based on the pseudocode
 - [ ] In `tools/node` run: `node processDTOutput.js ~/Documents/WHO/IMMZ\ DAK_decision-support\ logic.xlsx ANTIGEN ROWOFFSET ROWS(X-Y) COLUMNS(X-Y) D2DT TABLEID` (use single if only one table)
