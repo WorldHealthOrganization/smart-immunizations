@@ -195,6 +195,7 @@ define "Pneumococcal second booster dose":
     or Encounter."Client had preterm birth"
   )
   and not "Second pneumococcal booster dose was administered"
+  and "Pneumococcal second booster dose Expiration" after day of Today
 
 /*
 @output: Pneumococcal second booster dose Create
@@ -229,8 +230,7 @@ define "Pneumococcal second booster dose Overdue":
 @pseudocode: "Date of birth" + 24 months
 */
 define "Pneumococcal second booster dose Expiration":
-  if "Pneumococcal second booster dose" then Patient.birthDate + 24 months
-  else null
+  Patient.birthDate + 24 months
   
 /*
 @complete: Second pneumococcal booster dose was administered

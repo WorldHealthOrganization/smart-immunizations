@@ -29,7 +29,7 @@ context Patient
 */
 define "Haemophilus influenzae type b (Hib) dose 1":
   Encounter."No Hib primary series doses were administered"
-  and not Encounter."Client's age is more than 5 years"
+  and "Haemophilus influenzae type b (Hib) dose 1 Expiration" after day of Today
 
 /*
 @output: Haemophilus influenzae type b (Hib) dose 1 Create
@@ -62,8 +62,7 @@ define "Haemophilus influenzae type b (Hib) dose 1 Overdue":
 @pseudocode: "Date of birth" + 6 years
 */
 define "Haemophilus influenzae type b (Hib) dose 1 Expiration":
-  if "Haemophilus influenzae type b (Hib) dose 1" then Patient.birthDate + 6 years
-  else null
+  Patient.birthDate + 6 years
   
 /*
 @complete: First Hib dose from the primary series was administered
@@ -84,6 +83,7 @@ define "Hib dose 2":
   and Encounter."Client's age was less than 1 year when first Hib dose was administered"
   and Encounter."Client's age is between 6 weeks and 5 years"
   and not "Second Hib dose from the primary series was administered"
+  and "Hib dose 2 Expiration" after day of Today
 
 /*
 @output: Hib dose 2 Create
@@ -116,8 +116,7 @@ define "Hib dose 2 Overdue":
 @pseudocode: "Date of birth" + 6 years
 */
 define "Hib dose 2 Expiration":
-  if "Hib dose 2" then Patient.birthDate + 6 years
-  else null
+  Patient.birthDate + 6 years
   
 /*
 @complete: Second Hib dose from the primary series was administered
@@ -137,6 +136,7 @@ define "Hib dose 3":
   "Second Hib dose from the primary series was administered"
   and Encounter."Client's age is between 6 weeks and 5 years"
   and not "Third Hib dose from the primary series was administered. The primary series has been completed"
+  and "Hib dose 3 Expiration" after day of Today
 
 /*
 @output: Hib dose 3 Create
@@ -169,8 +169,7 @@ define "Hib dose 3 Overdue":
 @pseudocode: "Date of birth" + 6 years
 */
 define "Hib dose 3 Expiration":
-  if "Hib dose 3" then Patient.birthDate + 6 years
-  else null
+  Patient.birthDate + 6 years
   
 /*
 @complete: Third Hib dose from the primary series was administered. The primary series has been completed
@@ -190,6 +189,7 @@ define "Hib booster dose":
   "Third Hib dose from the primary series was administered. The primary series has been completed"
   and Encounter."Client's age is between 6 weeks and 5 years"
   and not "One Hib booster dose was administered. Hib immunization schedule has been completed"
+  and "Hib booster dose Expiration" after day of Today
 
 /*
 @output: Hib booster dose Create
@@ -222,8 +222,7 @@ define "Hib booster dose Overdue":
 @pseudocode: "Date of birth" + 6 years
 */
 define "Hib booster dose Expiration":
-  if "Hib booster dose" then Patient.birthDate + 6 years
-  else null
+  Patient.birthDate + 6 years
   
 /*
 @complete: One Hib booster dose was administered. Hib immunization schedule has been completed

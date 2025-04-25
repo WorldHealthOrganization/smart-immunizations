@@ -233,7 +233,7 @@ define "Pneumococcal booster dose":
     Encounter."Client's HIV status is positive"
     or Encounter."Client had preterm birth"
   )
-  and Encounter."The client's age is less than 24 months" // Based on expiration date
+  and "Pneumococcal booster dose Expiration" after day of Today
   and not "One pneumococcal booster dose was administered."
 
 /*
@@ -269,8 +269,7 @@ define "Pneumococcal booster dose Overdue":
 @pseudocode: "Date of birth" +  24 months
 */
 define "Pneumococcal booster dose Expiration":
-  if "Pneumococcal booster dose" then Patient.birthDate + 24 months
-  else null
+  Patient.birthDate + 24 months
   
 /*
 @complete: One pneumococcal booster dose was administered.

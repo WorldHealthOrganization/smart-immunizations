@@ -30,6 +30,7 @@ context Patient
 define "TCV dose 1":
   Encounter."No typhoid primary series doses were administered"
   and not "One typhoid dose from primary series was administered. The primary series has been completed"
+  and "TCV dose 1 Expiration" after day of Today
 
 /*
 @output: TCV dose 1 Create
@@ -62,8 +63,7 @@ define "TCV dose 1 Overdue":
 @pseudocode: "Date of birth" + 45 years
 */
 define "TCV dose 1 Expiration":
-  if "TCV dose 1" then Patient.birthDate + 45 years
-  else null
+  Patient.birthDate + 45 years
   
 /*
 @complete: One typhoid dose from primary series was administered. The primary series has been completed

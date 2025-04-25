@@ -29,6 +29,7 @@ context Patient
 */
 define "DTP dose 1":
   Encounter."No DTP primary series doses were administered"
+  and "DTP dose 1 Expiration" after day of Today
 
 /*
 @output: DTP dose 1 Create
@@ -61,8 +62,7 @@ define "DTP dose 1 Overdue":
 @pseudocode: "Date of birth" + 1 year
 */
 define "DTP dose 1 Expiration":
-  if "DTP dose 1" then Patient.birthDate + 1 year
-  else null
+  Patient.birthDate + 1 year
 
 /*
 @complete: First DTP dose from the primary series was administered
@@ -343,6 +343,8 @@ define "Pertussis-containing vaccine booster dose":
   "Third DTP dose from the primary series was administered. The primary DTP series has been completed" and
   Encounter."Client's age is between 1 year and 6 years" and
   not "Pertussis-containing booster dose was administered. Pertussis immunization schedule has been completed"
+  and "Pertussis-containing vaccine booster dose Expiration" after day of Today
+
 
 /*
 @output: Pertussis-containing vaccine booster dose Create
@@ -378,8 +380,7 @@ define "Pertussis-containing vaccine booster dose Overdue":
 @pseudocode: "Date of birth" + 7 years
 */
 define "Pertussis-containing vaccine booster dose Expiration":
-  if "Pertussis-containing vaccine booster dose" then Patient.birthDate + 7 years
-  else null
+  Patient.birthDate + 7 years
 
 /*
 @complete: Pertussis-containing booster dose was administered. Pertussis immunization schedule has been completed

@@ -305,6 +305,7 @@ define "Second tetanus and diphtheria booster dose was administered. Tetanus and
 define "Pertussis-containing vaccine booster dose 1 (delayed start)":
   "Third DTP dose from the primary series was administered. The primary DTP series has been completed" and
   Encounter."Client's age is between 1 year and 6 years" and
+  "Pertussis-containing vaccine booster dose 1 (delayed start) Expiration" after day of Today and
   not "Pertussis-containing booster dose was administered. Pertussis immunization schedule has been completed"
 
 /*
@@ -340,8 +341,7 @@ define "Pertussis-containing vaccine booster dose 1 (delayed start) Overdue":
 @pseudocode: "Date of birth" + 7 years
 */
 define "Pertussis-containing vaccine booster dose 1 (delayed start) Expiration":
-  if "Pertussis-containing vaccine booster dose 1 (delayed start)" then Patient.birthDate + 7 years
-  else null
+  Patient.birthDate + 7 years
   
 /*
 @complete: Pertussis-containing booster dose was administered. Pertussis immunization schedule has been completed

@@ -29,7 +29,7 @@ context Patient
 */
 define "Rotavirus dose 1":
   Encounter."No rotavirus primary series doses were administered"
-  and not Encounter."Client's age is more than 24 months" // expiration
+  and "Rotavirus dose 1 Expiration" after day of Today
   and not "First rotavirus dose from the primary series was administered"
 
 /*
@@ -63,8 +63,7 @@ define "Rotavirus dose 1 Overdue":
 @pseudocode: "Date of birth" + 24 months
 */
 define "Rotavirus dose 1 Expiration":
-  if "Rotavirus dose 1" then Patient.birthDate + 24 months
-  else null
+  Patient.birthDate + 24 months
   
 /*
 @complete: First rotavirus dose from the primary series was administered
@@ -82,7 +81,7 @@ Count of vaccines administered (where "Vaccine type" = "Rotavirus vaccines" and 
 */
 define "Rotavirus dose 2":
   "First rotavirus dose from the primary series was administered"
-  and not Encounter."Client's age is more than 24 months" // expiration
+  and "Rotavirus dose 2 Expiration" after day of Today
   and not "Second rotavirus dose from the primary series was administered"
 
 /*
@@ -116,8 +115,7 @@ define "Rotavirus dose 2 Overdue":
 @pseudocode: "Date of birth" + 24 months
 */
 define "Rotavirus dose 2 Expiration":
-  if "Rotavirus dose 2" then Patient.birthDate + 24 months
-  else null
+  Patient.birthDate + 24 months
   
 /*
 @complete: Second rotavirus dose from the primary series was administered
@@ -140,7 +138,7 @@ define "Rotavirus dose 3":
     Encounter."The series administered to the client is a mixed series or a series with unknown vaccine products"
     or Encounter."The series contain more than two doses"
   )
-  and not Encounter."Client's age is more than 24 months" // expiration
+  and "Rotavirus dose 3 Expiration" after day of Today
   and not "Third rotavirus dose from the primary series was administered"
 
 /*
@@ -176,8 +174,7 @@ define "Rotavirus dose 3 Overdue":
 @pseudocode: "Date of birth" + 24 months
 */
 define "Rotavirus dose 3 Expiration":
-  if "Rotavirus dose 3" then Patient.birthDate + 24 months
-  else null
+  Patient.birthDate + 24 months
   
 /*
 @complete: Third rotavirus dose from the primary series was administered
