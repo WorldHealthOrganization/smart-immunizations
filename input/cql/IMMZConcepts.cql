@@ -39,6 +39,8 @@ code "IPV": 'DE213' from "IMMZD" display 'IPV'
 code "bOPV": 'DE214' from "IMMZD" display 'bOPV'
 
 code "Completed the primary vaccination series": 'DE203' from "IMMZD" display 'Completed the primary vaccination series'
+code "Completed the booster series": 'DE257' from "IMMZD" display 'Completed the booster series'
+code "Date when primary vaccination series was completed": 'DE221' from "IMMZD" display 'Date when primary vaccination series was completed'
 code "HIV status": 'DE204' from "IMMZD" display 'HIV status'
 code "HIV-positive": 'DE205' from "IMMZD" display 'HIV-positive'
 code "HIV-negative": 'DE206' from "IMMZD" display 'HIV-negative'

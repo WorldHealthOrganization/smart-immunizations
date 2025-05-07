@@ -770,3 +770,15 @@ define "Client is at high risk for pneumococcal infection":
 */
 define "Client is not at high risk for pneumococcal infection":
   exists( "At high risk for pneumococcal infection Observation" O where O.value = false )
+
+/*
+@internal: Date when primary vaccination series was completed Observation
+*/
+define "Date when primary vaccination series was completed Observation":
+  Elements."Date when primary vaccination series was completed Observation".encounterOrOnBefore(EncounterId, Today)
+
+/*
+@internal: Completed the booster series Observation
+*/
+define "Completed the booster series Observation":
+  Elements."Completed the booster series Observation".encounterOrOnBefore(EncounterId, Today)

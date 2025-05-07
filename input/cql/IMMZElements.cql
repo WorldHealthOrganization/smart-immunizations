@@ -795,3 +795,16 @@ define "Client is at high risk for pneumococcal infection":
 */
 define "Client is not at high risk for pneumococcal infection":
   exists( "At high risk for pneumococcal infection Observation" O where O.value = false )
+
+/*
+@internal: Date when primary vaccination series was completed Observation
+*/
+define "Date when primary vaccination series was completed Observation":
+  ([Observation: Concepts."Date when primary vaccination series was completed"] O
+    sort by end of effective.toInterval() desc).complete()
+
+/*
+@internal: Completed the booster series Observation
+*/
+define "Completed the booster series Observation":
+  ([Observation: Concepts."Completed the booster series"]).complete()

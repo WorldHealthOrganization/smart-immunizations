@@ -21,7 +21,7 @@ Description:  "Data elements for the IMMZ.D18.Determine time for next visit Data
 * dateTimeOfFollowUpAppointment 0..1 dateTime "Date/time of follow-up appointment" "Date the client is to return for next vaccination"
   * ^code[+] = IMMZ.D#DE185
   * ^code[+] = $SCT#185353001 "Appointment date (finding)"
-* recommendedFollowUpDate	 0..1 date "Recommended follow-up date	" "Date when follow-up is recommended based on vaccination schedule"
+* recommendedFollowUpDate	 0..1 date "Recommended follow-up date" "Date when follow-up is recommended based on vaccination schedule"
   * ^code[+] = IMMZ.D#DE186
   * ^code[+] = $LNC#39289-4 "Code LongName: Follow-up (referred to) provider/specialist, appointment date CPHS"
   * ^code[+] = $SCT#410671006 "Date (attribute)"

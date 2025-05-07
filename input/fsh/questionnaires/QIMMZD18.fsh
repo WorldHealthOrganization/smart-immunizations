@@ -16,7 +16,7 @@ Usage: #definition
 * item[=]
   * code[+] = IMMZ.D#DE185
   * code[+] = $SCT#185353001 "Appointment date (finding)"
-* insert Question(recommendedFollowUpDate	, Recommended follow-up date	, date, false, false)
+* insert Question(recommendedFollowUpDate, Recommended follow-up date, date, false, false)
 * item[=]
   * code[+] = IMMZ.D#DE186
   * code[+] = $LNC#39289-4 "Code LongName: Follow-up (referred to) provider/specialist, appointment date CPHS"
