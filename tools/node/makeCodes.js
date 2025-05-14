@@ -214,13 +214,13 @@ fs.createReadStream(csvFile)
   .on('end', () => {
     //console.log(model)
     for( let code in models ) {
-      let modelFile = fs.createWriteStream("output/"+code+".fsh")
+      let modelFile = fs.createWriteStream("output/models/"+code+".fsh")
       modelFile.write(models[code].join("\n"))
       modelFile.close()
     }
 
     for( let code in quests ) {
-      let questFile = fs.createWriteStream("output/Q"+code+".fsh")
+      let questFile = fs.createWriteStream("output/questionnaires/Q"+code+".fsh")
       for ( line of quests[code] ) {
         if ( line === "CONTAINED" ) {
           questFile.write(containeds[code].join("\n")+"\n")
@@ -233,10 +233,10 @@ fs.createReadStream(csvFile)
     }
 
     for( cs in codesystems ) {
-      let file = fs.createWriteStream("output/"+cs+".fsh")
+      let file = fs.createWriteStream("output/codesystems/"+cs+".fsh")
       file.write(codesystems[cs])
       file.close()
-      let cm = fs.createWriteStream("output/"+cs+".ConceptMap.fsh")
+      let cm = fs.createWriteStream("output/conceptmaps/"+cs+".ConceptMap.fsh")
       cm.write(conceptmaps[cs].header)
       cm.write(conceptmaps[cs].toicd11)
       cm.write(conceptmaps[cs].fromicd11)
@@ -251,7 +251,7 @@ fs.createReadStream(csvFile)
     }
 
     for( vs in valuesets ) {
-      let file = fs.createWriteStream("output/"+vs+".fsh")
+      let file = fs.createWriteStream("output/valuesets/"+vs+".fsh")
       file.write(valuesets[vs])
       file.close()
     }

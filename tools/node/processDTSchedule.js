@@ -39,7 +39,7 @@ if ( dt == "single" ) {
 
 let sid = sheet[top-5+dtmod][col+1]
 
-let enclib = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+"Logic.fsh")
+let enclib = fs.createWriteStream("output/libraries/IMMZ"+prefix+sheetdisplay+dt+"Logic.fsh")
 enclib.write(`
 Instance: IMMZ${prefix}${sheetdisplay}${dt}Logic
 InstanceOf: Library
@@ -51,7 +51,7 @@ Usage: #definition
 `)
 enclib.close()
 
-let logic = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+"Logic.cql")
+let logic = fs.createWriteStream("output/cql/IMMZ"+prefix+sheetdisplay+dt+"Logic.cql")
 
 logic.write(`
 /*
@@ -77,7 +77,7 @@ context Patient
 
 `)
 
-let pdef = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+".fsh")
+let pdef = fs.createWriteStream("output/plandefinitions/IMMZ"+prefix+sheetdisplay+dt+".fsh")
 
 pdef.write(`
 Instance: IMMZ${prefix}${sheetdisplay}${dt}

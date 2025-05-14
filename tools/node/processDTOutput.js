@@ -14,6 +14,10 @@ const getRange = ( nums, offset ) => {
   return [ parseInt(start)-offset, parseInt(end)-offset ]
 }
 
+const getInitials = ( str ) => {
+  return str.match(/\b(\w)/g).join('').toLowerCase()
+}
+
 var file, sheetname, rowoffset, rows, cols, prefix, dt;
 
 [file, sheetname, rowoffset, rows, cols, prefix, dt] = process.argv.slice(2);
@@ -44,7 +48,7 @@ let did = sheet[top-6+dtmod][cs[0]+1]
 let rule = sheet[top-5+dtmod][cs[0]+1]
 let trigger = sheet[top-4+dtmod][cs[0]+1]
 
-let enclib = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+"Logic.fsh")
+let enclib = fs.createWriteStream("output/libraries/IMMZ"+prefix+sheetdisplay+dt+"Logic.fsh")
 enclib.write(`
 Instance: IMMZ${prefix}${sheetdisplay}${dt}Logic
 InstanceOf: Library
@@ -56,7 +60,7 @@ Usage: #definition
 `)
 enclib.close()
 
-let logic = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+"Logic.cql")
+let logic = fs.createWriteStream("output/cql/IMMZ"+prefix+sheetdisplay+dt+"Logic.cql")
 
 let draftCI = ""
 if ( dt == "CI" ) {
@@ -90,7 +94,7 @@ context Patient
 ${draftCI}
 `)
 
-let pdef = fs.createWriteStream("output/IMMZ"+prefix+sheetdisplay+dt+".fsh")
+let pdef = fs.createWriteStream("output/plandefinitions/IMMZ"+prefix+sheetdisplay+dt+".fsh")
 
 pdef.write(`
 Instance: IMMZ${prefix}${sheetdisplay}${dt}
@@ -112,6 +116,35 @@ Usage: #definition
 
 let prevtitles = []
 let outputs = {}
+let codeinput = {}
+let codeoutput = {}
+
+const readCodes = ( type, cache ) => {
+  let fsh = fs.readFileSync("../../input/fsh/codesystems/IMMZ.D2.DT."+type+".fsh").toString().split("\n")
+  let notyet = true
+  let code = null
+  for( let line of fsh ) {
+    if ( line.startsWith("* #") ) {
+      notyet = false
+      let matches = line.match(/^\* #(\S+) "(.+)" "(.+)"$/)
+      code = matches[1]
+      cache[code] = {
+        display: matches[2],
+        definition: matches[3],
+        table: []
+      }
+      continue
+    }
+    if ( notyet ) continue
+
+    let matches = line.match(/  \* \^property\[=\].valueString = "(.+)"$/)
+    if ( matches ) cache[code].table.push( matches[1] )
+
+  }
+}
+
+readCodes("Inputs", codeinput)
+readCodes("Outputs", codeoutput)
 
 let yaml = fs.createWriteStream("output/examples.yaml")
 
@@ -124,13 +157,26 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
     //if ( sheet[r] && sheet[r][c] && sheet[r][c] != '-' ) {
     if ( sheet[r] && sheet[r][c] && sheet[r][c].trim().length > 3 ) {
       content = sheet[r][c].split( "\n", 2 )
-      prevtitles[c] = content[0].trim()
+      content[0] = content[0].trim()
+      content[1] = content[1].trim()
+      prevtitles[c] = content[0]
     }
     if ( !content[0] && !sheet[r][c] ) content[0] = prevtitles[c]
     if ( content[0] ) {
       testid += c
-      expression.push( 'Encounter."' + content[0].trim() + '"' )
+      expression.push( 'Encounter."' + content[0] + '"' )
       examples.push( "#" + c + ". " + content[0] + ( content[1] ? "\n#   " + content[1] : "" ) )
+      let inputid = getInitials(content[0])
+      if ( !codeinput[inputid] ) {
+        codeinput[inputid] = {
+          display: content[0],
+          definition: content[1],
+          table: [ did ]
+        }
+      } else {
+        codeinput[inputid].table.push( did )
+      }
+
     }
   }
   examples.push( "### " + sheet[r][cs[1]+1].split("\n").join("\n### ") )
@@ -173,12 +219,22 @@ if ( dt == "CI" ) {
 
   let content = sheet[r][1+cs[1]].split( "\n", 2 );
   if ( content[0].trim().length > 3 ) {
-  if ( !content[1] ) content[1] = ""
+    if ( !content[1] ) content[1] = ""
     content[0] = content[0].trim()
     content[1] = content[1].trim()
     if ( !outputs[ content[0] ] ) outputs[ content[0] ] = []
     outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2], 
       testid: testid, testidx: (r+rowoffset) } )
+    let outputid = getInitials(content[0])
+    if ( !codeoutput[outputid] ) {
+      codeoutput[outputid] = {
+        display: content[0],
+        definition: content[1],
+        table: [ did ]
+      }
+    } else {
+      codeoutput[outputid].table.push( did )
+    }
   }
 }
 yaml.close()
@@ -247,3 +303,50 @@ logic.write("    else 'No test case set'\n  end\n")
 //logic.write( "  '" + sheet[r][parseInt(cs[1])+2] + "'\n" )
 
 logic.close()
+
+let tablevsid = "IMMZ.D2.DT."+sheetdisplay
+if ( dt != "" ) tablevsid += "."+dt
+let tablevsname = did.replace(/[^A-Za-z0-9_]/g, "_")
+
+let tablevs = fs.createWriteStream("output/valuesets/"+tablevsid+".fsh")
+tablevs.write(`ValueSet: ${tablevsid}
+Title: "${tablevsid} ValueSet for Decision Table"
+Description: """
+ValueSet ${tablevsid} for ${did}.
+Business rule: ${rule}
+Trigger: ${trigger}
+Table: ${table}
+"""
+
+* ^status = #active
+* ^name = "${tablevsname}"
+
+`)
+
+let inputfile = fs.createWriteStream("output/codesystems/IMMZ.D2.DT.Inputs.fsh")
+
+for( let id in codeinput ) {
+  inputfile.write("* #"+id+" \"" + codeinput[id].display +"\" \""+codeinput[id].definition.replace(/([^\\])"/g, '$1\\"').replace(/^"/, '\\"')+"\"\n")
+  tablevs.write("* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #"+id+", [["+ codeinput[id].display +"]] )\n")
+  let tables = [...new Set(codeinput[id].table)]
+  for( let decid of tables ) {
+    inputfile.write(`  * ^property[+].code = #table
+  * ^property[=].valueString = "${decid}"
+`)
+  }
+}
+inputfile.close()
+
+let outputfile = fs.createWriteStream("output/codesystems/IMMZ.D2.DT.Outputs.fsh")
+
+for( let id in codeoutput ) {
+  outputfile.write("* #"+id+" \"" + codeoutput[id].display +"\" \""+codeoutput[id].definition.replace(/([^\\])"/g, '$1\\"').replace(/^"/, '\\"')+"\"\n")
+  tablevs.write("* insert AddWithExpandCanonical( IMMZ.D2.DT.Outputs, #"+id+", [["+ codeoutput[id].display +"]] )\n")
+  let tables = [...new Set(codeoutput[id].table)]
+  for( let decid of tables ) {
+    outputfile.write(`  * ^property[+].code = #table
+  * ^property[=].valueString = "${decid}"
+`)
+  }
+}
+outputfile.close()

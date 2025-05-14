@@ -55,7 +55,7 @@ for( let c = cs; c <= ce; c++ ) {
   }
 }
 
-let elelib = fs.createWriteStream("output/IMMZ"+prefix+cqlname+"Elements.fsh")
+let elelib = fs.createWriteStream("output/libraries/IMMZ"+prefix+cqlname+"Elements.fsh")
 elelib.write(`
 Instance: IMMZ${prefix}${cqlname}Elements
 InstanceOf: Library
@@ -67,7 +67,7 @@ Usage: #definition
 `)
 elelib.close()
 
-let elements = fs.createWriteStream("output/IMMZ"+prefix+cqlname+"Elements.cql")
+let elements = fs.createWriteStream("output/cql/IMMZ"+prefix+cqlname+"Elements.cql")
 
 let D2orD5
 if ( prefix == "D2DT" ) {
@@ -128,7 +128,7 @@ ${D2orD5}
 elements.write(Object.values(eleoutput).join(""))
 elements.close()
 
-let enclib = fs.createWriteStream("output/IMMZ"+prefix+cqlname+"EncounterElements.fsh")
+let enclib = fs.createWriteStream("output/libraries/IMMZ"+prefix+cqlname+"EncounterElements.fsh")
 enclib.write(`
 Instance: IMMZ${prefix}${cqlname}EncounterElements
 InstanceOf: Library
@@ -140,7 +140,7 @@ Usage: #definition
 `)
 enclib.close()
 
-let encounter = fs.createWriteStream("output/IMMZ"+prefix+cqlname+"EncounterElements.cql")
+let encounter = fs.createWriteStream("output/cql/IMMZ"+prefix+cqlname+"EncounterElements.cql")
 
 D2orD5 = D2orD5.replace(/Elements/g, 'Encounter')
 

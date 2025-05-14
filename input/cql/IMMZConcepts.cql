@@ -34,6 +34,7 @@ valueset "Typhoid vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z
 valueset "JE vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE8'
 valueset "Yellow fever vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE23'
 valueset "TBE vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE20'
+valueset "Meningococcal vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE10'
 
 code "IPV": 'DE213' from "IMMZD" display 'IPV'
 code "bOPV": 'DE214' from "IMMZD" display 'bOPV'
