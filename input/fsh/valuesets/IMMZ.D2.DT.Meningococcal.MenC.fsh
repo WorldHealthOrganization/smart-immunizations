@@ -10,14 +10,8 @@ Table: Monovalent MenC conjugate vaccine schedule
 * ^status = #active
 * ^name = "IMMZ_D2_DT_Meningococcal_Monovalent_MenC_conjugate_vaccine_"
 
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csailt9m, [[Client's age is less than 9 months]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #nmpsdwa, [[No meningococcal primary series dose was administered]] )
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csaimt9m, [[Client's age is more than 9 months]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #ompsdwa, [[One meningococcal primary series dose was administered]] )
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csailt3m, [[Client's age is less than 3 months]] )
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csaimtoet3m, [[Client's age is more than or equal to 3 months]] )
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #tlmdwalt8wa, [[The latest meningococcal dose was administered less than 8 weeks ago]] )
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #tlmdwamt8wa, [[The latest meningococcal dose was administered more than 8 weeks ago]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #tmpsdwa, [[Two meningococcal primary series doses were administered]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csailt2m, [[Client's age is less than 2 months]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csaimtoet2m, [[Client's age is more than or equal to 2 months]] )

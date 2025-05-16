@@ -17,6 +17,12 @@ Description:  "CodeSystem for Decision Table Outputs"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 2 doses"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 1 dose"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 2 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
 * #cidfmv "Client is due for meningococcal vaccination" "\"Immunization recommendation status\" = \"Due\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 1 dose"
@@ -24,6 +30,12 @@ Description:  "CodeSystem for Decision Table Outputs"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 2 doses"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 1 dose"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 2 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
 * #misic "Meningococcal immunization schedule is complete" "\"Immunization recommendation status\" = \"Complete\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 1 dose"
@@ -31,8 +43,22 @@ Description:  "CodeSystem for Decision Table Outputs"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 2 doses"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 1 dose"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 2 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
 * #tpsiccidfmbd "The primary series is complete. Client is due for meningococcal booster dose" "\"Immunization recommendation status\" = \"Due\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
+* #tpsiccindfmbd "The primary series is complete. Client is not due for meningococcal booster dose." "\"Immunization recommendation status\" = \"Not due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
+* #tpsiccjirfmbdcacn "The primary series is complete. Clinical judgement is required for meningococcal booster dose. Create a clinical note" "\"Immunization recommendation status\" = \"Further evaluation needed\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
+
+
 
 

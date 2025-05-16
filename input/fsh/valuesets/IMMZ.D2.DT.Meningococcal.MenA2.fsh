@@ -10,9 +10,7 @@ Table: MenA conjugate vaccine, 2-dose schedule (specific context where there is 
 * ^status = #active
 * ^name = "IMMZ_D2_DT_Meningococcal_MenA_conjugate_vaccine_2_doses"
 
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csailt9m, [[Client's age is less than 9 months]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #nmpsdwa, [[No meningococcal primary series dose was administered]] )
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csaimt9m, [[Client's age is more than 9 months]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #ompsdwa, [[One meningococcal primary series dose was administered]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csailt3m, [[Client's age is less than 3 months]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csaimtoet3m, [[Client's age is more than or equal to 3 months]] )

@@ -45,5 +45,5 @@
     - [ ] Run the Logic CQL file and ensure the Test Validation expression succeeds.
   - [ ] Move `output/IMMZD2DTANTIGENCILogic.fsh` to `input/fsh/libraries`
   - [ ] move `output/IMMZD2DTANTIGENCI.fsh` to `input/fsh/plandefinitions`
-  - [ ] Copy and add rule for each medicationrequest that needs to be set to do not perform based on the expressions from the logic file when an immunization is contraindicted.
+    - [ ] Copy and add rule for each medicationrequest that needs to be set to do not perform based on the expressions from the logic file when an immunization is contraindicted.
   - [ ] Copy and update from another activitydefinition for the update medicationrequest activity.  `input/fsh/activitydefintions/IMMZD5DTANTIGEN.fsh`
