@@ -129,7 +129,50 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #tlmdwamt3ya "The latest meningococcal dose was administered more than 3 years ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") ≥ 3 years"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
-
-
-
-
+* #csailt12m "Client's age is less than 12 months" "Today's date − \"Date of birth\" < 12 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 1 dose"
+* #nhapsdwa "No hepatitis A primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
+* #csaimtoet12m "Client's age is more than or equal to 12 months" "Today's date − \"Date of birth\" ≥ 12 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 1 dose"
+* #ohapsdwa "One hepatitis A primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 1 dose"
+* #tlhadwalt6ma "The latest Hepatitis A dose was administered less than 6 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\") < 6 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
+* #tlhadwamt6ma "The latest Hepatitis A dose was administered more than 6 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\") ≥ 6 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
+* #thapsdwa "Two hepatitis A primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
+* #nhapsdwa "No hepatitis A primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 1 dose"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"
+* #csailt18m "Client's age is less than 18 months" "Today's date − \"Date of birth\" < 18 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"
+* #csaimtoet18m "Client's age is more than or equal to 18 months" "Today's date − \"Date of birth\" ≥ 18 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"
+* #lvwaitl4w "Live vaccine was administered in the last 4 weeks" "Today's date − latest \"Date and time of vaccination\" (where \"Live vaccine\" = TRUE) < 4 weekS"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"
+* #nlvwaitl4w "No live vaccine was administered in the last 4 weeks" "Today's date − latest \"Date and time of vaccination\" (where \"Live vaccine\" = TRUE) ≥ 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"
+* #ohapsdwa "One Hepatitis A primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"

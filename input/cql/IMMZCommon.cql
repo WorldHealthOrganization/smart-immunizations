@@ -107,13 +107,6 @@ define fluent function getDose(immunizations List<Immunization>, doseNumber Stri
     exists( I.protocolApplied pa where pa.doseNumber = doseNumber )
 
 /**
- * @description: Gets a given immunization from a list that matches the dose number
- */
-define fluent function getDose(immunizations List<Immunization>, doseNumber String):
-  immunizations I where
-    exists( I.protocolApplied pa where pa.doseNumber = doseNumber )
-
-/**
  * @description: Gets immunizations on or before a date
  */
 define fluent function onOrBefore(immunizations List<Immunization>, beforeDate Date):

@@ -13,3 +13,13 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #tchhosar "The client has history of severe allergic reactions" "\"Potential contraindications\" = \"Severe allergic reactions\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Meningococcal contraindications"
+* #tcicp "The client is currently pregnant" "\"Potential contraindications\" = \"Currently pregnant\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Hepatitis A contraindications"
+* #tcisi "The client is severely immunocompromised" "\"Potential contraindications\" = \"Severely immunocompromised\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Hepatitis A contraindications"
+* #tchahosar "The client has a history of severe allergic reactions" "'\"Potential contraindications\" = \"Severe allergic reactions\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Hepatitis A contraindications"
+

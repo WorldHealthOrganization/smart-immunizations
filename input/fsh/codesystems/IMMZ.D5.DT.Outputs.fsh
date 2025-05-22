@@ -13,3 +13,10 @@ Description:  "CodeSystem for Decision Table Outputs"
 * #mvcbccjircacn "Meningococcal vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" "\"Immunization recommendation status\" (where \"Type of meningococcal dose\" = \"Polysaccharide vaccine\") = \"Further evaluation needed\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Meningococcal contraindications"
+* #lahacvic "Live attentuated Hepatitis A-containing vaccine is contraindicated" "\"Immunization recommendation status\" = \"Contraindicated\" (where \"Type of hepatitis A dose\" = \"Live attenuated hepatitis A vaccine\")"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Hepatitis A contraindications"
+* #havcbccjircacn "Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" "\"Immunization recommendation status\" = \"Further evaluation needed\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Hepatitis A contraindications"
+
