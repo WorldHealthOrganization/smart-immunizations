@@ -1,7 +1,7 @@
 # ANTIGEN
 
 - [ ] Add valueset for the antigen from IMMZ.Z to IMMZConcepts
-- [ ] Copy and update from another activitydefinition for the create medicationrequest activity.  `input/fsh/activitydefintions/IMMZD2DTANTIGEN.fsh`
+- [ ] Copy and update from another activitydefinition for the create medicationrequest activity.  `input/fsh/activitydefintions/IMMZD2DTANTIGENMR.fsh`
 
 ## For each decision/schedule table:
 

@@ -36,6 +36,7 @@ valueset "Yellow fever vaccines": 'http://smart.who.int/immunizations/ValueSet/I
 valueset "TBE vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE20'
 valueset "Meningococcal vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE10'
 valueset "Hepatitis A-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE5'
+valueset "Rabies vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE15'
 
 code "IPV": 'DE213' from "IMMZD" display 'IPV'
 code "bOPV": 'DE214' from "IMMZD" display 'bOPV'

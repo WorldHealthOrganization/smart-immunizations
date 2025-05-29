@@ -176,3 +176,18 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #ohapsdwa "One Hepatitis A primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"
+* #nrpsdwa "No rabies primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Rabies vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
+* #orpsdwa "One rabies primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Rabies vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
+* #tlrdwalt7da "The latest rabies dose was administered less than 7 days ago" "''Today's date - Latest \"Date of vaccination\" (where \"Vaccine type\" = \"Rabies vaccines\") < 7 days"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
+* #tlrdwamt7da "The latest rabies dose was administered more than 7 days ago" "''Today's date - Latest \"Date of vaccination\" (where \"Vaccine type\" = \"Rabies vaccines\") ≥ 7 days"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
+* #trpsdwa "Two rabies primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Rabies vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Rabies"

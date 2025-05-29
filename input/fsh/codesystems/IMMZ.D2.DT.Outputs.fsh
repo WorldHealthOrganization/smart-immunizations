@@ -79,3 +79,13 @@ Description:  "CodeSystem for Decision Table Outputs"
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 1 dose"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"
+* #cidfrv "Client is due for rabies vaccination" "\"Immunization recommendation status\" = \"Due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
+* #cindfrv "Client is not due for rabies vaccination" "\"Immunization recommendation status\" = \"Not due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
+* #risic "Rabies immunization schedule is complete" "\"Immunization recommendation status\" = \"Complete\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
+
