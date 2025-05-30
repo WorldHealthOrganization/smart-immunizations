@@ -37,6 +37,7 @@ valueset "TBE vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE2
 valueset "Meningococcal vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE10'
 valueset "Hepatitis A-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE5'
 valueset "Rabies vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE15'
+valueset "Dengue vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE25'
 
 code "IPV": 'DE213' from "IMMZD" display 'IPV'
 code "bOPV": 'DE214' from "IMMZD" display 'bOPV'
@@ -58,6 +59,10 @@ code "Birth weight in grams": 'DE211' from "IMMZD" display 'Birth weight in gram
 code "Preterm birth": 'DE208' from "IMMZD" display 'Preterm birth'
 code "At high risk for pneumococcal infection": 'DE251' from "IMMZD" display 'At high risk for pneumococcal infection'
 code "Immunocompromised": 'DE209' from "IMMZD" display 'Immunocompromised'
+code "Dengue serostatus": 'DE241' from "IMMZD" display 'Dengue serostatus'
+code "Dengue-Positive": 'DE264' from "IMMZD" display 'Positive'
+code "Dengue-Negative": 'DE265' from "IMMZD" display 'Negative'
+code "Dengue-Unknown": 'DE266' from "IMMZD" display 'Unknown'
 
 code "Potential contraindications": 'DE161' from "IMMZD" display 'Potential contraindications'
 code "CI-Currently pregnant": 'DE162' from "IMMZD" display 'Currently pregnant'

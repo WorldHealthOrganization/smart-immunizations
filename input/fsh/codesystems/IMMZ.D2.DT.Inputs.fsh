@@ -191,3 +191,54 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #trpsdwa "Two rabies primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Rabies vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
+* #csailt9y "Client's age is less than 9 years" "Today's date − \"Date of birth\" <  9 years"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
+* #csaimt45y "Client's age is more than 45 years" "Today's date − \"Date of birth\" > 45 years"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
+* #csdsin "Client's dengue serostatus is negative" "\"Dengue serostatus\" = \"Negative\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+* #ndpsdwa "No dengue primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Dengue vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
+* #csaib9ya45y "Client's age is between 9 years and 45 years" "9 years ≤ Today's date − \"Date of birth\" ≤  45 years"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
+* #csdsip "Client's dengue serostatus is positive" "\"Dengue serostatus\" = \"Positive\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+* #odpsdwa "One dengue primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Dengue vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
+* #tlddwalt6ma "The latest dengue dose was administered less than 6 months ago" "Today's date - Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Dengue vaccines\") < 6 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
+* #tlddwamt6ma "The latest dengue dose was administered more than 6 months ago" "Today's date - Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Dengue vaccines\") ≥ 6 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
+* #tdpsdwa "Two dengue primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Dengue vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
+* #tdpsdwa "Three dengue primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Dengue vaccines\" and \"Type of dose\" = \"Primary series\") = 3"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"

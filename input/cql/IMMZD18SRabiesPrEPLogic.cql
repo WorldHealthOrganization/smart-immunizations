@@ -28,6 +28,7 @@ context Patient
 @triggerDate: To be determined by Member States
 */
 define "Rabies dose 1":
+  // Member state must define the trigger for if the first dose is needed.
   Encounter."No rabies primary series doses were administered"
   and not "First rabies dose from the primary series was administered"
 

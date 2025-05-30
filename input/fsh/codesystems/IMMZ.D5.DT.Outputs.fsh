@@ -22,4 +22,9 @@ Description:  "CodeSystem for Decision Table Outputs"
 * #cjircacn "Clinical judgement is required. Create a clinical note" "\"Immunization recommendation status\" = \"Further evaluation needed\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Rabies contraindications"
-
+* #dvic "Dengue vaccination is contraindicated" "\"Immunization recommendation status\" = \"Contraindicated\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Dengue contraindications"
+* #dvcbccjircacn "Dengue vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." "\"Immunization recommendation status\" = \"Further evaluation needed\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Dengue contraindications"

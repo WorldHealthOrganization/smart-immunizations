@@ -88,4 +88,19 @@ Description:  "CodeSystem for Decision Table Outputs"
 * #risic "Rabies immunization schedule is complete" "\"Immunization recommendation status\" = \"Complete\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
+* #cindfdv "Client is not due for dengue vaccination" "\"Immunization recommendation status\" = \"Not due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
+* #cidfdv "Client is due for dengue vaccination" "\"Immunization recommendation status\" = \"Due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
+* #disic "Dengue immunization schedule is complete" "\"Immunization recommendation status\" = \"Complete\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
 
