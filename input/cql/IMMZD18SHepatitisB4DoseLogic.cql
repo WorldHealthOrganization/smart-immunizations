@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SHepatitisB4Dose (IMMZ.D18.S.Hepatitis B.4-dose schedule)
+ * Library: IMMZD18SHepatitisB4DoseLogic (IMMZ.D18.S.Hepatitis B.4-dose schedule)
  * Schedule Table: 4-dose schedule (birth dose + 3 primary series doses), on-time start
  */
-library IMMZD18SHepatitisB4Dose
+library IMMZD18SHepatitisB4DoseLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

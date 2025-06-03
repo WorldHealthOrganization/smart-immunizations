@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18STBEEnceVir (IMMZ.D18.S.TBE.EnceVir schedule)
+ * Library: IMMZD18STBEEnceVirLogic (IMMZ.D18.S.TBE.EnceVir schedule)
  * Schedule Table: EnceVir, 3-dose schedule
  */
-library IMMZD18STBEEnceVir
+library IMMZD18STBEEnceVirLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

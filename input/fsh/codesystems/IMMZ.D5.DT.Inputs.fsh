@@ -10,42 +10,46 @@ Description:  "CodeSystem for Decision Table Inputs"
 * ^property[=].description = "Contraindication Table ID"
 * ^property[=].type = #string
 
-* #tchhosar "The client has history of severe allergic reactions" "\"Potential contraindications\" = \"Severe allergic reactions\""
+* #tchhosar-51.63 "The client has history of severe allergic reactions" "\"Potential contraindications\" = \"Severe allergic reactions\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Meningococcal contraindications"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Rabies contraindications"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Dengue contraindications"
-* #tcicp "The client is currently pregnant" "\"Potential contraindications\" = \"Currently pregnant\""
+* #tcicp-32.56 "The client is currently pregnant" "\"Potential contraindications\" = \"Currently pregnant\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Hepatitis A contraindications"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Dengue contraindications"
-* #tcisi "The client is severely immunocompromised" "\"Potential contraindications\" = \"Severely immunocompromised\""
+* #tcisi-40.64 "The client is severely immunocompromised" "\"Potential contraindications\" = \"Severely immunocompromised\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Hepatitis A contraindications"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Dengue contraindications"
-* #tchahosar "The client has a history of severe allergic reactions" "'\"Potential contraindications\" = \"Severe allergic reactions\""
+* #tchahosar-53.64 "The client has a history of severe allergic reactions" "'\"Potential contraindications\" = \"Severe allergic reactions\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Hepatitis A contraindications"
-* #tcii "The client is immunocompromised" "\"Potential contraindications\" = \"Immunocompromised\""
+* #tcii-31.55 "The client is immunocompromised" "\"Potential contraindications\" = \"Immunocompromised\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Dengue contraindications"
-* #tcicl "The client is currently lactating" "'\"Potential contraindications\" = \"Breastfeeding\""
+* #tcicl-33.52 "The client is currently lactating" "'\"Potential contraindications\" = \"Breastfeeding\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Dengue contraindications"
-* #tchhoar "The client has history of anaphylactic reactions" "\"Potential contraindications\" =\"History of anaphylactic reactions\""
+* #tchhoar-48.70 "The client has history of anaphylactic reactions" "\"Potential contraindications\" =\"History of anaphylactic reactions\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Dengue contraindications"
-* #tchis "The client has immunodeficiency syndromes" "\"Potential contraindications\" = \"Immunodeficiency syndromes\""
+* #tchis-41.64 "The client has immunodeficiency syndromes" "\"Potential contraindications\" = \"Immunodeficiency syndromes\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Dengue contraindications"
-* #tcisi "The client is severely immunosuppressed" "\"Potential contraindications\" = \"Severely immunosuppressed\""
+* #tcisi-39.63 "The client is severely immunosuppressed" "\"Potential contraindications\" = \"Severely immunosuppressed\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Dengue contraindications"
-* #tchshi "The client has symptomatic HIV infection" "\"Potential contraindications\" = \"Symptomatic HIV infection\""
+* #tchshi-40.63 "The client has symptomatic HIV infection" "\"Potential contraindications\" = \"Symptomatic HIV infection\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Dengue contraindications"
+* #tchhtaotvc-64.72 "The client has hypersensitivity to any of the vaccine components" "\"Potential contraindications\" = \"Hypersensitivity to vaccine components\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Malaria contraindications"
+
 

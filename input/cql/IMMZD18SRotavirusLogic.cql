@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SRotavirus (IMMZ.D18.S.Rotavirus schedule)
+ * Library: IMMZD18SRotavirusLogic (IMMZ.D18.S.Rotavirus schedule)
  * Schedule Table: IMMZ.D18.S.Rotavirus schedule
  */
-library IMMZD18SRotavirus
+library IMMZD18SRotavirusLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

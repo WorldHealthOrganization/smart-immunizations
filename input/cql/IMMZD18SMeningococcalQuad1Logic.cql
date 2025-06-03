@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SMeningococcalQuad1 (IMMZ.D18.S.Meningococcal.Quadrivalent conjugate vaccines 1-dose schedule)
+ * Library: IMMZD18SMeningococcalQuad1Logic (IMMZ.D18.S.Meningococcal.Quadrivalent conjugate vaccines 1-dose schedule)
  * Schedule Table: Quadrivalent conjugate vaccines (A,C,W135,Y-D and A,C,W135,Y-CRM), 1-dose schedule
  */
-library IMMZD18SMeningococcalQuad1
+library IMMZD18SMeningococcalQuad1Logic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

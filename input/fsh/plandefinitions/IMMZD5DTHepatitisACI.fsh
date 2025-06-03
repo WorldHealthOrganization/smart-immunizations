@@ -9,7 +9,7 @@ Potential contraindications
 Usage: #definition
 
 * insert PlanDefMain( IMMZD5DTHepatitisACI, 0.1.0 )
-  * insert PlanDefMedicationRequestUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
+* insert PlanDefMedicationRequestUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
   Contraindication for HepatitisA immunization
 """]], Live attentuated Hepatitis A-containing vaccine is contraindicated, IMMZD5DTHepatitisAMR, Draft Medication Request ID for HepatitisA dose )
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D5.DT.Hepatitis A contraindications.]], [["""

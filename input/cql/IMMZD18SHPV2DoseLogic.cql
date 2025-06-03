@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SHPV2Dose (IMMZ.D18.S.HPV.2-dose schedule)
+ * Library: IMMZD18SHPV2DoseLogic (IMMZ.D18.S.HPV.2-dose schedule)
  * Schedule Table: 2-dose schedule
  */
-library IMMZD18SHPV2Dose
+library IMMZD18SHPV2DoseLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

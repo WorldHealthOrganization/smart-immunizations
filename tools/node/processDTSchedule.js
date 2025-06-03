@@ -55,10 +55,10 @@ let logic = fs.createWriteStream("output/cql/IMMZ"+prefix+sheetdisplay+dt+"Logic
 
 logic.write(`
 /*
- * Library: IMMZ${prefix}${sheetdisplay}${dt} (${sid})
+ * Library: IMMZ${prefix}${sheetdisplay}${dt}Logic (${sid})
  * Schedule Table: ${table}
  */
-library IMMZ${prefix}${sheetdisplay}${dt}
+library IMMZ${prefix}${sheetdisplay}${dt}Logic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

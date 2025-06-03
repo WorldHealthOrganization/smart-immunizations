@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SDTPDelayed (IMMZ.D18.S.DTP.Delayed or interrupted schedule)
+ * Library: IMMZD18SDTPDelayedLogic (IMMZ.D18.S.DTP.Delayed or interrupted schedule)
  * Schedule Table: Diphtheria–tetanus–pertussis (DTP) vaccination schedule for the following groups: children ≥ 1 year of age with no previous immunization, adolescents and adults with no previous immunization (including pregnant women) and supplementary immunization activities in high-risk areas, for women of reproductive age
  */
-library IMMZD18SDTPDelayed
+library IMMZD18SDTPDelayedLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SMeaslesSupplementary (IMMZ.D18.S.Measles.Supplementary dose schedule)
+ * Library: IMMZD18SMeaslesSupplementaryLogic (IMMZ.D18.S.Measles.Supplementary dose schedule)
  * Schedule Table: Measles supplementary dose schedule
  */
-library IMMZD18SMeaslesSupplementary
+library IMMZD18SMeaslesSupplementaryLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

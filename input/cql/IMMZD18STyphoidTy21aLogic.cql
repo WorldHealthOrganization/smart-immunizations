@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18STyphoidTy21a (IMMZ.D18.S.Typhoid.Ty21a schedule)
+ * Library: IMMZD18STyphoidTy21aLogic (IMMZ.D18.S.Typhoid.Ty21a schedule)
  * Schedule Table: Live attenuated Ty21a vaccine, 3-dose schedule
  */
-library IMMZD18STyphoidTy21a
+library IMMZD18STyphoidTy21aLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

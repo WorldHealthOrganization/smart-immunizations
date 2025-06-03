@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SDengue3Dose (IMMZ.D18.S.Dengue schedule)
+ * Library: IMMZD18SDengue3DoseLogic (IMMZ.D18.S.Dengue schedule)
  * Schedule Table: CYD-TDV (Dengvaxia), 3-dose schedule
  */
-library IMMZD18SDengue3Dose
+library IMMZD18SDengue3DoseLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

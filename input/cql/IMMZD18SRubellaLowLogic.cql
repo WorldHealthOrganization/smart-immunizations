@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SRubellaLow (IMMZ.D18.S.Rubella.Low incidence schedule)
+ * Library: IMMZD18SRubellaLowLogic (IMMZ.D18.S.Rubella.Low incidence schedule)
  * Schedule Table: Schedule for countries with low incidence of rubella		 							
  */
-library IMMZD18SRubellaLow
+library IMMZD18SRubellaLowLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

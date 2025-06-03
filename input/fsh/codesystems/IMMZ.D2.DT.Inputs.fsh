@@ -10,28 +10,12 @@ Description:  "CodeSystem for Decision Table Inputs"
 * ^property[=].description = "Decision Table ID"
 * ^property[=].type = #string
 
-* #csailt9m "Client's age is less than 9 months" "Today's date − \"Date of birth\" < 9 months"
+* #csailt9m-34.43 "Client's age is less than 9 months" "Today's date − \"Date of birth\" < 9 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 1 dose"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 2 doses"
-* #nmpsdwa "No meningococcal primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Meningococcal vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 1 dose"
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 2 doses"
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 1 dose"
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 2 doses"
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
-* #csaimt9m "Client's age is more than 9 months" "Today's date − \"Date of birth\" ≥ 9 months"
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 1 dose"
-* #ompsdwa "One meningococcal primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Meningococcal vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+* #nmpsdwa-53.130 "No meningococcal primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Meningococcal vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 1 dose"
   * ^property[+].code = #table
@@ -44,201 +28,270 @@ Description:  "CodeSystem for Decision Table Inputs"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 2 doses"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
-* #csailt3m "Client's age is less than 3 months" "Today's date − \"Date of birth\" < 3 months"
+* #csaimt9m-34.43 "Client's age is more than 9 months" "Today's date − \"Date of birth\" ≥ 9 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 1 dose"
+* #ompsdwa-54.130 "One meningococcal primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Meningococcal vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 1 dose"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 2 doses"
-* #csaimtoet3m "Client's age is more than or equal to 3 months" "Today's date − \"Date of birth\" ≥ 3 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 1 dose"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 2 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
+* #csailt3m-34.43 "Client's age is less than 3 months" "Today's date − \"Date of birth\" < 3 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 2 doses"
-* #tlmdwalt8wa "The latest meningococcal dose was administered less than 8 weeks ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") < 8 weeks"
+* #csaimtoet3m-46.43 "Client's age is more than or equal to 3 months" "Today's date − \"Date of birth\" ≥ 3 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 2 doses"
-* #tlmdwamt8wa "The latest meningococcal dose was administered more than 8 weeks ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") ≥ 8 weeks"
+* #tlmdwalt8wa-68.111 "The latest meningococcal dose was administered less than 8 weeks ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") < 8 weeks"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 2 doses"
-* #tmpsdwa "Two meningococcal primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Meningococcal vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+* #tlmdwamt8wa-68.111 "The latest meningococcal dose was administered more than 8 weeks ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") ≥ 8 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 2 doses"
+* #tmpsdwa-56.130 "Two meningococcal primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Meningococcal vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 2 doses"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 2 doses"
-* #csailt2m "Client's age is less than 2 months" "Today's date − \"Date of birth\" < 2 months"
+* #csailt2m-34.43 "Client's age is less than 2 months" "Today's date − \"Date of birth\" < 2 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
-* #csaimtoet2m "Client's age is more than or equal to 2 months" "Today's date − \"Date of birth\" ≥ 2 months"
+* #csaimtoet2m-46.43 "Client's age is more than or equal to 2 months" "Today's date − \"Date of birth\" ≥ 2 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
-* #csawltoet1mwtpsws "Client's age was less than or equal to 11 months when the primary series was started" "\"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") - \"Date of birth\" ≤ 11 months"
+* #csawltoet1mwtpsws-84.118 "Client's age was less than or equal to 11 months when the primary series was started" "\"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") - \"Date of birth\" ≤ 11 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
-* #tlmdwalt2ma "The latest meningococcal dose was administered less than 2 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") < 2 months"
+* #tlmdwalt2ma-69.112 "The latest meningococcal dose was administered less than 2 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") < 2 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
-* #tlmdwamt2ma "The latest meningococcal dose was administered more than 2 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") ≥ 2 months"
+* #tlmdwamt2ma-69.112 "The latest meningococcal dose was administered more than 2 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") ≥ 2 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
-* #csawmt1mwtpsws "Client's age was more than 11 months when the primary series was started" "\"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") - \"Date of birth\" > 11 months"
+* #csawmt1mwtpsws-72.118 "Client's age was more than 11 months when the primary series was started" "\"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") - \"Date of birth\" > 11 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
-* #tlmdwalt1ya "The latest meningococcal dose was administered less than 1 year ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") < 1 year"
+* #tlmdwalt1ya-67.117 "The latest meningococcal dose was administered less than 1 year ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") < 1 year"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
-* #nmbdwa "No meningococcal booster dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Meningococcal vaccines\" and \"Type of dose\" = \"Booster dose\") = 0"
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
-* #tlmdwamt1ya "The latest meningococcal dose was administered more than 1 year ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") ≥ 1 year"
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
-* #mbdwa "Meningococcal booster dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Meningococcal vaccines\" and \"Type of dose\" = \"Booster dose\") = 1"
+* #nmbdwa-46.128 "No meningococcal booster dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Meningococcal vaccines\" and \"Type of dose\" = \"Booster dose\") = 0"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
-* #csailt2y "Client's age is less than 2 years" "Today's date − \"Date of birth\" < 2 years"
+* #tlmdwamt1ya-67.117 "The latest meningococcal dose was administered more than 1 year ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") ≥ 1 year"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
+* #mbdwa-43.128 "Meningococcal booster dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Meningococcal vaccines\" and \"Type of dose\" = \"Booster dose\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
+* #csailt2y-33.42 "Client's age is less than 2 years" "Today's date − \"Date of birth\" < 2 years"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 1 dose"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
-* #csaimtoet2y "Client's age is more than or equal to 2 years" "Today's date − \"Date of birth\" ≥ 2 years"
+* #csaimtoet2y-45.42 "Client's age is more than or equal to 2 years" "Today's date − \"Date of birth\" ≥ 2 years"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 1 dose"
-* #csaimtoet9m "Client's age is more than or equal to 9 months" "Today's date − \"Date of birth\" ≥ 9 months"
+* #csaimtoet9m-46.43 "Client's age is more than or equal to 9 months" "Today's date − \"Date of birth\" ≥ 9 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 2 doses"
-* #csawltoet23mwtpsws "Client's age was less than or equal to 23 months when the primary series was started" "\"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") - \"Date of birth\" ≤ 23 months"
+* #csawltoet23mwtpsws-84.118 "Client's age was less than or equal to 23 months when the primary series was started" "\"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") - \"Date of birth\" ≤ 23 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 2 doses"
-* #tlmdwalt3ma "The latest meningococcal dose was administered less than 3 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") < 3 months"
+* #tlmdwalt3ma-69.112 "The latest meningococcal dose was administered less than 3 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") < 3 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 2 doses"
-* #tlmdwamt3ma "The latest meningococcal dose was administered more than 3 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") ≥ 3 months"
+* #tlmdwamt3ma-69.112 "The latest meningococcal dose was administered more than 3 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") ≥ 3 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 2 doses"
-* #csawmt23mwtpsws "Client's age was more than 23 months when the primary series was started" "\"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") - \"Date of birth\" > 23 months"
+* #csawmt23mwtpsws-72.118 "Client's age was more than 23 months when the primary series was started" "\"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") - \"Date of birth\" > 23 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 2 doses"
-* #csaimt2y "Client's age is more than 2 years" "Today's date − \"Date of birth\" ≥ 2 years"
+* #csaimt2y-33.42 "Client's age is more than 2 years" "Today's date − \"Date of birth\" ≥ 2 years"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
-* #tlmdwalt3ya "The latest meningococcal dose was administered less than 3 years ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") < 3 years"
+* #tlmdwalt3ya-68.111 "The latest meningococcal dose was administered less than 3 years ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") < 3 years"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
-* #tlmdwamt3ya "The latest meningococcal dose was administered more than 3 years ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") ≥ 3 years"
+* #tlmdwamt3ya-68.111 "The latest meningococcal dose was administered more than 3 years ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") ≥ 3 years"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
-* #csailt12m "Client's age is less than 12 months" "Today's date − \"Date of birth\" < 12 months"
+* #csailt12m-35.44 "Client's age is less than 12 months" "Today's date − \"Date of birth\" < 12 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 1 dose"
-* #nhapsdwa "No hepatitis A primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+* #nhapsdwa-53.139 "No hepatitis A primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
-* #csaimtoet12m "Client's age is more than or equal to 12 months" "Today's date − \"Date of birth\" ≥ 12 months"
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 1 dose"
-* #ohapsdwa "One hepatitis A primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+* #csaimtoet12m-47.44 "Client's age is more than or equal to 12 months" "Today's date − \"Date of birth\" ≥ 12 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 1 dose"
-* #tlhadwalt6ma "The latest Hepatitis A dose was administered less than 6 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\") < 6 months"
+* #ohapsdwa-52.139 "One Hepatitis A primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
-* #tlhadwamt6ma "The latest Hepatitis A dose was administered more than 6 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\") ≥ 6 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 1 dose"
+* #tlhadwalt6ma-67.121 "The latest Hepatitis A dose was administered less than 6 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\") < 6 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
-* #thapsdwa "Two hepatitis A primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+* #tlhadwamt6ma-67.121 "The latest Hepatitis A dose was administered more than 6 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\") ≥ 6 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
-* #nhapsdwa "No hepatitis A primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+* #thapsdwa-54.139 "Two hepatitis A primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses"
+* #nhapsdwa-51.139 "No hepatitis A primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Inactivated HAV 1 dose"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"
-* #csailt18m "Client's age is less than 18 months" "Today's date − \"Date of birth\" < 18 months"
+* #csailt18m-35.44 "Client's age is less than 18 months" "Today's date − \"Date of birth\" < 18 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"
-* #csaimtoet18m "Client's age is more than or equal to 18 months" "Today's date − \"Date of birth\" ≥ 18 months"
+* #csaimtoet18m-47.44 "Client's age is more than or equal to 18 months" "Today's date − \"Date of birth\" ≥ 18 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"
-* #lvwaitl4w "Live vaccine was administered in the last 4 weeks" "Today's date − latest \"Date and time of vaccination\" (where \"Live vaccine\" = TRUE) < 4 weekS"
+* #lvwaitl4w-49.96 "Live vaccine was administered in the last 4 weeks" "Today's date − latest \"Date and time of vaccination\" (where \"Live vaccine\" = TRUE) < 4 weekS"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"
-* #nlvwaitl4w "No live vaccine was administered in the last 4 weeks" "Today's date − latest \"Date and time of vaccination\" (where \"Live vaccine\" = TRUE) ≥ 4 weeks"
+* #nlvwaitl4w-52.96 "No live vaccine was administered in the last 4 weeks" "Today's date − latest \"Date and time of vaccination\" (where \"Live vaccine\" = TRUE) ≥ 4 weeks"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"
-* #ohapsdwa "One Hepatitis A primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis A-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose"
-* #nrpsdwa "No rabies primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Rabies vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+* #nrpsdwa-48.123 "No rabies primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Rabies vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
-* #orpsdwa "One rabies primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Rabies vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+* #orpsdwa-49.123 "One rabies primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Rabies vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
-* #tlrdwalt7da "The latest rabies dose was administered less than 7 days ago" "''Today's date - Latest \"Date of vaccination\" (where \"Vaccine type\" = \"Rabies vaccines\") < 7 days"
+* #tlrdwalt7da-60.103 "The latest rabies dose was administered less than 7 days ago" "''Today's date - Latest \"Date of vaccination\" (where \"Vaccine type\" = \"Rabies vaccines\") < 7 days"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
-* #tlrdwamt7da "The latest rabies dose was administered more than 7 days ago" "''Today's date - Latest \"Date of vaccination\" (where \"Vaccine type\" = \"Rabies vaccines\") ≥ 7 days"
+* #tlrdwamt7da-60.103 "The latest rabies dose was administered more than 7 days ago" "''Today's date - Latest \"Date of vaccination\" (where \"Vaccine type\" = \"Rabies vaccines\") ≥ 7 days"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
-* #trpsdwa "Two rabies primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Rabies vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+* #trpsdwa-49.123 "Two rabies primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Rabies vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
-* #csailt9y "Client's age is less than 9 years" "Today's date − \"Date of birth\" <  9 years"
+* #csailt9y-33.43 "Client's age is less than 9 years" "Today's date − \"Date of birth\" <  9 years"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
-* #csaimt45y "Client's age is more than 45 years" "Today's date − \"Date of birth\" > 45 years"
+* #csaimt45y-34.43 "Client's age is more than 45 years" "Today's date − \"Date of birth\" > 45 years"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
-* #csdsin "Client's dengue serostatus is negative" "\"Dengue serostatus\" = \"Negative\""
+* #csdsin-38.36 "Client's dengue serostatus is negative" "\"Dengue serostatus\" = \"Negative\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
-* #ndpsdwa "No dengue primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Dengue vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
-* #csaib9ya45y "Client's age is between 9 years and 45 years" "9 years ≤ Today's date − \"Date of birth\" ≤  45 years"
+* #ndpsdwa-48.123 "No dengue primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Dengue vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
-* #csdsip "Client's dengue serostatus is positive" "\"Dengue serostatus\" = \"Positive\""
-  * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
-* #odpsdwa "One dengue primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Dengue vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+* #csaib9ya45y-44.54 "Client's age is between 9 years and 45 years" "9 years ≤ Today's date − \"Date of birth\" ≤  45 years"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
-* #tlddwalt6ma "The latest dengue dose was administered less than 6 months ago" "Today's date - Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Dengue vaccines\") < 6 months"
+* #csdsip-38.36 "Client's dengue serostatus is positive" "\"Dengue serostatus\" = \"Positive\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+* #odpsdwa-47.123 "One dengue primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Dengue vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
-* #tlddwamt6ma "The latest dengue dose was administered more than 6 months ago" "Today's date - Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Dengue vaccines\") ≥ 6 months"
+* #tlddwalt6ma-62.112 "The latest dengue dose was administered less than 6 months ago" "Today's date - Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Dengue vaccines\") < 6 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
-* #tdpsdwa "Two dengue primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Dengue vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+* #tlddwamt6ma-62.112 "The latest dengue dose was administered more than 6 months ago" "Today's date - Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Dengue vaccines\") ≥ 6 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
-* #tdpsdwa "Three dengue primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Dengue vaccines\" and \"Type of dose\" = \"Primary series\") = 3"
+* #tdpsdwa-49.123 "Two dengue primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Dengue vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
+* #tdpsdwa-51.123 "Three dengue primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Dengue vaccines\" and \"Type of dose\" = \"Primary series\") = 3"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening"
+* #csailt5m-34.43 "Client's age is less than 5 months" "Today's date − \"Date of birth\" < 5 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #nmpsdwa-49.124 "No malaria primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Malaria vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #csaimtoet5m-46.43 "Client's age is more than or equal to 5 months" "Today's date − \"Date of birth\" ≥ 5 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #ompsdwa-48.124 "One malaria primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Malaria vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #tlmdwalt4wa-62.105 "The latest malaria dose was administered less than 4 weeks ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Malaria vaccines\") < 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #tlmdwamt4wa-62.112 "The latest malaria dose was administered more than 4 weeks ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Malaria vaccines\") ≥ 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #tmpsdwa-50.124 "Two malaria primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Malaria vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #tmpsdwa-52.124 "Three malaria primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Malaria vaccines\" and \"Type of dose\" = \"Primary series\") = 3"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #fmpsdwa-51.124 "Four malaria primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Malaria vaccines\" and \"Type of dose\" = \"Primary series\") = 4"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #csailt5m-34.41 "Client's age is less than 5 months" "Today's date − \"Date of birth\" < 5 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #nmpsdwa-49.116 "No malaria primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Malaria vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #csaimtoet5m-46.41 "Client's age is more than or equal to 5 months" "Today's date − \"Date of birth\" ≥ 5 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #ompsdwa-48.116 "One malaria primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Malaria vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #tlmdwalt4wa-62.99 "The latest malaria dose was administered less than 4 weeks ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Malaria vaccines\") < 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #tlmdwamt4wa-62.106 "The latest malaria dose was administered more than 4 weeks ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Malaria vaccines\") ≥ 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #tmpsdwa-50.116 "Two malaria primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Malaria vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #tmpsdwa-52.116 "Three malaria primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Malaria vaccines\" and \"Type of dose\" = \"Primary series\") = 3"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #fmpsdwa-51.116 "Four malaria primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Malaria vaccines\" and \"Type of dose\" = \"Primary series\") = 4"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Malaria"

@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SRabiesPrEP (IMMZ.D18.S.Rabies schedule)
+ * Library: IMMZD18SRabiesPrEPLogic (IMMZ.D18.S.Rabies schedule)
  * Schedule Table: Rabies schedule (2-dose scheme)
  */
-library IMMZD18SRabiesPrEP
+library IMMZD18SRabiesPrEPLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

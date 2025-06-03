@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SDTPPregnant4 (IMMZ.D18.S.DTP.Pregnancy starting with 4 doses schedule)
+ * Library: IMMZD18SDTPPregnant4Logic (IMMZ.D18.S.DTP.Pregnancy starting with 4 doses schedule)
  * Schedule Table: Diphtheria and tetanus vaccination schedule in pregnant women who received 4 childhood diphtheria–tetanus–pertussis (DTP) doses
  */
-library IMMZD18SDTPPregnant4
+library IMMZD18SDTPPregnant4Logic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

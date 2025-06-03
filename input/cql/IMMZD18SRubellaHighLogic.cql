@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SRubellaHigh (IMMZ.D18.S.Rubella.High incidence schedule)
+ * Library: IMMZD18SRubellaHighLogic (IMMZ.D18.S.Rubella.High incidence schedule)
  * Schedule Table: Schedule for countries with high incidence and mortality from rubella
  */
-library IMMZD18SRubellaHigh
+library IMMZD18SRubellaHighLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

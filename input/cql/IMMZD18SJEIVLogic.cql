@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SJEIV (IMMZ.D18.S.JE.Inactivated Vero cell-derived vaccination schedule)
+ * Library: IMMZD18SJEIVLogic (IMMZ.D18.S.JE.Inactivated Vero cell-derived vaccination schedule)
  * Schedule Table: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
  */
-library IMMZD18SJEIV
+library IMMZD18SJEIVLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

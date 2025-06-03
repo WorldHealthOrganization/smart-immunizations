@@ -10,5 +10,5 @@ Table: Potential contraindications
 * ^status = #active
 * ^name = "IMMZ_D5_DT_Meningococcal_contraindications"
 
-* insert AddWithExpandCanonical( IMMZ.D5.DT.Inputs, #tchhosar, [[The client has history of severe allergic reactions]] )
-* insert AddWithExpandCanonical( IMMZ.D5.DT.Outputs, #mvcbccjircacn, [[Meningococcal vaccination could be contraindicated. Clinical judgement is required. Create a clinical note]] )
+* insert AddWithExpandCanonical( IMMZ.D5.DT.Inputs, #tchhosar-51.63, [[The client has history of severe allergic reactions]] )
+* insert AddWithExpandCanonical( IMMZ.D5.DT.Outputs, #mvcbccjircacn-106.138, [[Meningococcal vaccination could be contraindicated. Clinical judgement is required. Create a clinical note]] )

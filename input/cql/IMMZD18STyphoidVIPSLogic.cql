@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18STyphoidVIPS (IMMZ.D18.S.Typhoid.ViPS schedule)
+ * Library: IMMZD18STyphoidVIPSLogic (IMMZ.D18.S.Typhoid.ViPS schedule)
  * Schedule Table: Unconjugated Vi polysaccharide (ViPS), 1 dose schedule
  */
-library IMMZD18STyphoidVIPS
+library IMMZD18STyphoidVIPSLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

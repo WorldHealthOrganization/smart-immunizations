@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SMeningococcalMenC (IMMZ.D18.S.Meningococcal.Monovalent MenC conjugate vaccine schedule)
+ * Library: IMMZD18SMeningococcalMenCLogic (IMMZ.D18.S.Meningococcal.Monovalent MenC conjugate vaccine schedule)
  * Schedule Table: Monovalent MenC conjugate schedule
  */
-library IMMZD18SMeningococcalMenC
+library IMMZD18SMeningococcalMenCLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

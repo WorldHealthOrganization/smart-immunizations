@@ -125,16 +125,21 @@ const readCodes = ( type, didputs, cache ) => {
   let fsh = fs.readFileSync("../../input/fsh/codesystems/"+didputs+"."+type+".fsh").toString().split("\n")
   let notyet = true
   let code = null
+  //let codeid = null
   for( let line of fsh ) {
     if ( line.startsWith("* #") ) {
       notyet = false
       let matches = line.match(/^\* #(\S+) "(.+)" "(.+)"$/)
       code = matches[1].trim()
-      display = matches[2].trim()
-      cache[display] = {
+      let display = matches[2].trim()
+      let definition = matches[3].trim()
+      
+      // Was used to update previous method.
+      //codeid = code+"-"+display.length+"."+definition.length
+      cache[code] = {
         code: code,
         display: display,
-        definition: matches[3].trim(),
+        definition: definition,
         table: []
       }
       continue
@@ -142,7 +147,7 @@ const readCodes = ( type, didputs, cache ) => {
     if ( notyet ) continue
 
     let matches = line.match(/  \* \^property\[=\].valueString = "(.+)"$/)
-    if ( matches ) cache[display].table.push( matches[1] )
+    if ( matches ) cache[code].table.push( matches[1] )
 
   }
 }
@@ -164,23 +169,24 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
       content = sheet[r][c].split( "\n", 2 )
       content[0] = content[0].trim()
       content[1] = content[1].trim()
-      prevtitles[c] = content[0]
+      prevtitles[c] = content
     }
-    if ( !content[0] && !sheet[r][c] ) content[0] = prevtitles[c]
+    if ( !content[0] && !sheet[r][c] ) content = prevtitles[c]
     if ( content[0] ) {
       testid += c
       expression.push( 'Encounter."' + content[0] + '"' )
       examples.push( "#" + c + ". " + content[0] + ( content[1] ? "\n#   " + content[1] : "" ) )
       let inputid = getInitials(content[0])
-      if ( !codeinput[content[0]] ) {
-        codeinput[content[0]] = {
-          code: inputid,
+      let codeid = inputid+"-"+content[0].length+"."+content[1].length
+      if ( !codeinput[codeid] ) {
+        codeinput[codeid] = {
+          code: codeid,
           display: content[0],
           definition: content[1],
           table: [ did ]
         }
       } else {
-        codeinput[content[0]].table.push( did )
+        codeinput[codeid].table.push( did )
       }
 
     }
@@ -232,15 +238,16 @@ if ( dt == "CI" ) {
     outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2], 
       testid: testid, testidx: (r+rowoffset) } )
     let outputid = getInitials(content[0])
-    if ( !codeoutput[content[0]] ) {
-      codeoutput[content[0]] = {
-        code: outputid,
+    let codeid = outputid+"-"+content[0].length+"."+content[1].length
+    if ( !codeoutput[codeid] ) {
+      codeoutput[codeid] = {
+        code: codeid,
         display: content[0],
         definition: content[1],
         table: [ did ]
       }
     } else {
-      codeoutput[content[0]].table.push( did )
+      codeoutput[codeid].table.push( did )
     }
   }
 }

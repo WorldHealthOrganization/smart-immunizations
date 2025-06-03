@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SDTPOnTime (IMMZ.D18.S.DTP.On-time start schedule)
+ * Library: IMMZD18SDTPOnTimeLogic (IMMZ.D18.S.DTP.On-time start schedule)
  * Schedule Table: Diphtheria–tetanus–pertussis (DTP) vaccination schedule, on-time start (at ≤ 12 months of age)
  */
-library IMMZD18SDTPOnTime
+library IMMZD18SDTPOnTimeLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

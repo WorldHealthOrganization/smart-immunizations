@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SHib3p1b (IMMZ.D18.S.Hib.3 doses with booster dose schedule)
+ * Library: IMMZD18SHib3p1bLogic (IMMZ.D18.S.Hib.3 doses with booster dose schedule)
  * Schedule Table: 3 primary doses with a booster dose (3p+1) schedule
  */
-library IMMZD18SHib3p1b
+library IMMZD18SHib3p1bLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

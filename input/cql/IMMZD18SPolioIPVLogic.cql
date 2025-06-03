@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SPolioIPV (IMMZ.D18.S.Polio.IPV-only schedule)
+ * Library: IMMZD18SPolioIPVLogic (IMMZ.D18.S.Polio.IPV-only schedule)
  * Schedule Table: Inactivated polio vaccine (IPV)-only schedule
  */
-library IMMZD18SPolioIPV
+library IMMZD18SPolioIPVLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

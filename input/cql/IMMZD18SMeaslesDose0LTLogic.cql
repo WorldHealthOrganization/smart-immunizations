@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SMeaslesDose0LT (IMMZ.D18.S.Measles.MCV dose 0 schedule)
+ * Library: IMMZD18SMeaslesDose0LTLogic (IMMZ.D18.S.Measles.MCV dose 0 schedule)
  * Schedule Table: Measles-containing vaccine dose 0 (MCV0) schedule Low Transmission
  */
-library IMMZD18SMeaslesDose0LT
+library IMMZD18SMeaslesDose0LTLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

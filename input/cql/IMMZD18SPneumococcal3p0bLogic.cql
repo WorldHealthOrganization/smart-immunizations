@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SPneumococcal3p0b (IMMZ.D18.S.Pneumococcal.3 doses schedule)
+ * Library: IMMZD18SPneumococcal3p0bLogic (IMMZ.D18.S.Pneumococcal.3 doses schedule)
  * Schedule Table: 3 primary doses (3p+0) schedule
  */
-library IMMZD18SPneumococcal3p0b
+library IMMZD18SPneumococcal3p0bLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

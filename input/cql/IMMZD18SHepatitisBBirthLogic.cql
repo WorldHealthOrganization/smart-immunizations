@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SHepatitisBBirth (IMMZ.D18.S.Hepatitis B.Birth dose schedule)
+ * Library: IMMZD18SHepatitisBBirthLogic (IMMZ.D18.S.Hepatitis B.Birth dose schedule)
  * Schedule Table: Birth dose schedule
  */
-library IMMZD18SHepatitisBBirth
+library IMMZD18SHepatitisBBirthLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

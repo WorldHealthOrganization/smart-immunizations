@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18STBEMoscow (IMMZ.D18.S.TBE.TBE-Moscow schedule)
+ * Library: IMMZD18STBEMoscowLogic (IMMZ.D18.S.TBE.TBE-Moscow schedule)
  * Schedule Table: TBE-Moscow, 3-dose schedule
  */
-library IMMZD18STBEMoscow
+library IMMZD18STBEMoscowLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

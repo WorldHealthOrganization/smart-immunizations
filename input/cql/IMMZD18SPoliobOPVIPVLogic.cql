@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SPoliobOPVIPV (IMMZ.D18.S.Polio.bOPV plus IPV schedule)
+ * Library: IMMZD18SPoliobOPVIPVLogic (IMMZ.D18.S.Polio.bOPV plus IPV schedule)
  * Schedule Table: Bivalent oral polio vaccine (bOPV) plus inactivated polio vaccine (IPV) schedule
  */
-library IMMZD18SPoliobOPVIPV
+library IMMZD18SPoliobOPVIPVLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

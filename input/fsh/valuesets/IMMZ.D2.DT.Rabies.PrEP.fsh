@@ -10,11 +10,11 @@ Table: Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus
 * ^status = #active
 * ^name = "IMMZ_D2_DT_Rabies"
 
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #nrpsdwa, [[No rabies primary series doses were administered]] )
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #orpsdwa, [[One rabies primary series doses were administered]] )
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #tlrdwalt7da, [[The latest rabies dose was administered less than 7 days ago]] )
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #tlrdwamt7da, [[The latest rabies dose was administered more than 7 days ago]] )
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #trpsdwa, [[Two rabies primary series doses were administered]] )
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Outputs, #cidfrv, [[Client is due for rabies vaccination]] )
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Outputs, #cindfrv, [[Client is not due for rabies vaccination]] )
-* insert AddWithExpandCanonical( IMMZ.D2.DT.Outputs, #risic, [[Rabies immunization schedule is complete]] )
+* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #nrpsdwa-48.123, [[No rabies primary series doses were administered]] )
+* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #orpsdwa-49.123, [[One rabies primary series doses were administered]] )
+* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #tlrdwalt7da-60.103, [[The latest rabies dose was administered less than 7 days ago]] )
+* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #tlrdwamt7da-60.103, [[The latest rabies dose was administered more than 7 days ago]] )
+* insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #trpsdwa-49.123, [[Two rabies primary series doses were administered]] )
+* insert AddWithExpandCanonical( IMMZ.D2.DT.Outputs, #cidfrv-36.48, [[Client is due for rabies vaccination]] )
+* insert AddWithExpandCanonical( IMMZ.D2.DT.Outputs, #cindfrv-40.52, [[Client is not due for rabies vaccination]] )
+* insert AddWithExpandCanonical( IMMZ.D2.DT.Outputs, #risic-40.53, [[Rabies immunization schedule is complete]] )

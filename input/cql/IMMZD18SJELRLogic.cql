@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SJELR (IMMZ.D18.S.JE.Live recombinant vaccination schedule)
+ * Library: IMMZD18SJELRLogic (IMMZ.D18.S.JE.Live recombinant vaccination schedule)
  * Schedule Table: Live recombinant vaccination schedule (1-dose scheme)
  */
-library IMMZD18SJELR
+library IMMZD18SJELRLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

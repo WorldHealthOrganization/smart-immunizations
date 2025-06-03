@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SHepatitisAIHAV1 (IMMZ.D18.S.Hepatitis A.Inactivated HAV 1-dose schedule)
+ * Library: IMMZD18SHepatitisAIHAV1Logic (IMMZ.D18.S.Hepatitis A.Inactivated HAV 1-dose schedule)
  * Schedule Table: Inactivated hepatitis A virus (HAV), 1-dose schedule
  */
-library IMMZD18SHepatitisAIHAV1
+library IMMZD18SHepatitisAIHAV1Logic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

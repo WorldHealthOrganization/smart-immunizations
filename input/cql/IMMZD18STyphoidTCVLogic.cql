@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18STyphoidTCV (IMMZ.D18.S.Typhoid.TCV schedule)
+ * Library: IMMZD18STyphoidTCVLogic (IMMZ.D18.S.Typhoid.TCV schedule)
  * Schedule Table: Typhoid conjugate vaccine (TCV), 1 dose schedule
  */
-library IMMZD18STyphoidTCV
+library IMMZD18STyphoidTCVLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SHepatitisB3Delayed (IMMZ.D18.S.Hepatitis B.Delayed start schedule)
+ * Library: IMMZD18SHepatitisB3DelayedLogic (IMMZ.D18.S.Hepatitis B.Delayed start schedule)
  * Schedule Table: 3-dose schedule (no birth dose + 3 doses), delayed start
  */
-library IMMZD18SHepatitisB3Delayed
+library IMMZD18SHepatitisB3DelayedLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

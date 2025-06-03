@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SYellowfever (IMMZ.D18.S.Yellow fever schedule)
+ * Library: IMMZD18SYellowfeverLogic (IMMZ.D18.S.Yellow fever schedule)
  * Schedule Table: IMMZ.D18.S.Yellow fever schedule
  */
-library IMMZD18SYellowfever
+library IMMZD18SYellowfeverLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

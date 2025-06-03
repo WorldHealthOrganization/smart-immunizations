@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SMeningococcalMenA2 (IMMZ.D18.S.Meningococcal.MenA conjugate vaccine 2-dose schedule)
+ * Library: IMMZD18SMeningococcalMenA2Logic (IMMZ.D18.S.Meningococcal.MenA conjugate vaccine 2-dose schedule)
  * Schedule Table: MenA conjugate vaccine, 2-dose schedule (specific context where there is a compelling reason to vaccinate infants aged under 9 months)
  */
-library IMMZD18SMeningococcalMenA2
+library IMMZD18SMeningococcalMenA2Logic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

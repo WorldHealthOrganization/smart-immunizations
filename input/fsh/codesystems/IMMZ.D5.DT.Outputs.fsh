@@ -10,21 +10,25 @@ Description:  "CodeSystem for Decision Table Outputs"
 * ^property[=].description = "Contraindication Table ID"
 * ^property[=].type = #string
 
-* #mvcbccjircacn "Meningococcal vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" "\"Immunization recommendation status\" (where \"Type of meningococcal dose\" = \"Polysaccharide vaccine\") = \"Further evaluation needed\""
+* #mvcbccjircacn-106.138 "Meningococcal vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" "\"Immunization recommendation status\" (where \"Type of meningococcal dose\" = \"Polysaccharide vaccine\") = \"Further evaluation needed\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Meningococcal contraindications"
-* #lahacvic "Live attentuated Hepatitis A-containing vaccine is contraindicated" "\"Immunization recommendation status\" = \"Contraindicated\" (where \"Type of hepatitis A dose\" = \"Live attenuated hepatitis A vaccine\")"
+* #lahacvic-66.139 "Live attentuated Hepatitis A-containing vaccine is contraindicated" "\"Immunization recommendation status\" = \"Contraindicated\" (where \"Type of hepatitis A dose\" = \"Live attenuated hepatitis A vaccine\")"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Hepatitis A contraindications"
-* #havcbccjircacn "Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" "\"Immunization recommendation status\" = \"Further evaluation needed\""
+* #havcbccjircacn-104.70 "Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" "\"Immunization recommendation status\" = \"Further evaluation needed\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Hepatitis A contraindications"
-* #cjircacn "Clinical judgement is required. Create a clinical note" "\"Immunization recommendation status\" = \"Further evaluation needed\""
+* #cjircacn-54.70 "Clinical judgement is required. Create a clinical note" "\"Immunization recommendation status\" = \"Further evaluation needed\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Rabies contraindications"
-* #dvic "Dengue vaccination is contraindicated" "\"Immunization recommendation status\" = \"Contraindicated\""
+* #dvic-37.60 "Dengue vaccination is contraindicated" "\"Immunization recommendation status\" = \"Contraindicated\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Dengue contraindications"
-* #dvcbccjircacn "Dengue vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." "\"Immunization recommendation status\" = \"Further evaluation needed\""
+* #dvcbccjircacn-100.70 "Dengue vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." "\"Immunization recommendation status\" = \"Further evaluation needed\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Dengue contraindications"
+* #mvcbccjircacn-100.67 "Malaria vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" "\"Immunization recommendation status\" =  \"Further evaluation needed\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Malaria contraindications"
+

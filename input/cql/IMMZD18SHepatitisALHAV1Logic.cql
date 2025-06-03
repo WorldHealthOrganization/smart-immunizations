@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SHepatitisALHAV1 (IMMZ.D18.S.Hepatitis A.Live attenuated HAV 1-dose schedule)
+ * Library: IMMZD18SHepatitisALHAV1Logic (IMMZ.D18.S.Hepatitis A.Live attenuated HAV 1-dose schedule)
  * Schedule Table: Live attenuated hepatitis A virus (HAV), 1 dose schedule
  */
-library IMMZD18SHepatitisALHAV1
+library IMMZD18SHepatitisALHAV1Logic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'

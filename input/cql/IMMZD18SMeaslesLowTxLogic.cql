@@ -1,9 +1,9 @@
 
 /*
- * Library: IMMZD18SMeaslesLowTx (IMMZ.D18.S.Measles.Low transmission schedule)
+ * Library: IMMZD18SMeaslesLowTxLogic (IMMZ.D18.S.Measles.Low transmission schedule)
  * Schedule Table: Schedule for countries with low levels of measles transmission (countries that provide first dose of measles-containing vaccine (MCV) at 12 months and second dose of MCV at 15 months)
  */
-library IMMZD18SMeaslesLowTx
+library IMMZD18SMeaslesLowTxLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
