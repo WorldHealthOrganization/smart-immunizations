@@ -39,6 +39,7 @@ valueset "Hepatitis A-containing vaccines": 'http://smart.who.int/immunizations/
 valueset "Rabies vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE15'
 valueset "Dengue vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE25'
 valueset "Malaria vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE27'
+valueset "Mumps-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE11'
 
 code "IPV": 'DE213' from "IMMZD" display 'IPV'
 code "bOPV": 'DE214' from "IMMZD" display 'bOPV'

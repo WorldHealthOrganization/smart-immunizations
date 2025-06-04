@@ -121,5 +121,12 @@ Description:  "CodeSystem for Decision Table Outputs"
 * #misic-41.49 "Malaria immunization schedule is complete" "\"Immunization recommendation status\" = \"Complete\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
-
-
+* #cindfmv-39.48 "Client is not due for mumps vaccination" "\"Immunization recommendation status\" = \"Not due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+* #cidfmv-35.44 "Client is due for mumps vaccination" "\"Immunization recommendation status\" = \"Due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+* #misic-39.49 "Mumps immunization schedule is complete" "\"Immunization recommendation status\" = \"Complete\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Mumps"

@@ -51,5 +51,15 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #tchhtaotvc-64.72 "The client has hypersensitivity to any of the vaccine components" "\"Potential contraindications\" = \"Hypersensitivity to vaccine components\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Malaria contraindications"
-
-
+* #tcicp-32.52 "The client is currently pregnant" "\"Potential contraindications\" = \"Currently pregnant\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Mumps contraindications"
+* #tchatvc-44.60 "The client has allergy to vaccine components" "'\"Potential contraindications\" = \"Severe allergic reactions\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Mumps contraindications"
+* #tchid-32.60 "The client has immune deficiency" "\"Potential contraindications\" = \"Immunodeficiency syndromes\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Mumps contraindications"
+* #tcisi-39.59 "The client is severely immunosuppressed" "\"Potential contraindications\" = \"Severely immunosuppressed\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Mumps contraindications"

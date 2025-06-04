@@ -295,3 +295,30 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #fmpsdwa-51.116 "Four malaria primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Malaria vaccines\" and \"Type of dose\" = \"Primary series\") = 4"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
+* #csailt12m-35.42 "Client's age is less than 12 months" "Today's date − \"Date of birth\" < 12 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+* #nmpsdwa-47.125 "No mumps primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Mumps-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+* #csaimtoet12m-47.42 "Client's age is more than or equal to 12 months" "Today's date − \"Date of birth\" ≥ 12 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+* #lvwaitp4w-49.92 "Live vaccine was administered in the past 4 weeks" "Today's date − latest \"Date and time of vaccination\" (where \"Live vaccine\" = TRUE) < 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+* #nlvwaitp4w-52.92 "No live vaccine was administered in the past 4 weeks" "Today's date − latest \"Date and time of vaccination\" (where \"Live vaccine\" = TRUE) ≥ 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+* #ompsdwa-46.125 "One mumps primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Mumps-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+* #tlmdwalt4wa-60.108 "The latest mumps dose was administered less than 4 weeks ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Mumps-containing vaccines\") < 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+* #tlmdwamt4wa-60.108 "The latest mumps dose was administered more than 4 weeks ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Mumps-containing vaccines\") ≥ 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+* #tmpsdwa-48.125 "Two mumps primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Mumps-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
