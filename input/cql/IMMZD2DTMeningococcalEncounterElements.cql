@@ -243,7 +243,7 @@ define "The latest meningococcal dose was administered more than 8 weeks ago":
 */
 define "The latest meningococcal dose was administered less than 2 months ago":
   "Date of Latest Meningococcal Dose" is not null
-  and duration in months between "Date of Latest Meningococcal Dose" and Now() < 2
+  and duration in months between "Date of Latest Meningococcal Dose" and Today < 2
 
 /*
 @input: The latest meningococcal dose was administered more than 2 months ago
@@ -260,7 +260,7 @@ define "The latest meningococcal dose was administered more than 2 months ago":
 */
 define "The latest meningococcal dose was administered less than 3 months ago":
   "Date of Latest Meningococcal Dose" is not null
-  and duration in months between "Date of Latest Meningococcal Dose" and Now() < 3
+  and duration in months between "Date of Latest Meningococcal Dose" and Today < 3
 /*
 @input: The latest meningococcal dose was administered more than 3 months ago
 @pseudocode: Today's date − "Date and time of vaccination" (where "Vaccine type" = "Meningococcal vaccines") ≥ 3 months
@@ -276,7 +276,7 @@ define "The latest meningococcal dose was administered more than 3 months ago":
 */
 define "The latest meningococcal dose was administered less than 1 year ago":
   "Date of Latest Meningococcal Dose" is not null
-  and duration in years between "Date of Latest Meningococcal Dose" and Now() < 1
+  and duration in years between "Date of Latest Meningococcal Dose" and Today < 1
 
 /*
 @input: The latest meningococcal dose was administered more than 1 year ago
@@ -295,7 +295,7 @@ s)
 */
 define "The latest meningococcal dose was administered less than 3 years ago":
   "Date of Latest Meningococcal Dose" is not null
-  and duration in years between "Date of Latest Meningococcal Dose" and Now() < 3
+  and duration in years between "Date of Latest Meningococcal Dose" and Today < 3
   
 /*
 @input: The latest meningococcal dose was administered more than 3 years ago

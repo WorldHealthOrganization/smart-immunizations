@@ -151,7 +151,7 @@ define "Client's biological sex is not female":
 */
 define "The latest HPV dose was administered less than 6 months ago":
   "Date of Latest HPV Dose" is not null
-    and duration in months between "Date of Latest HPV Dose" and Now() < 6
+    and duration in months between "Date of Latest HPV Dose" and Today < 6
 
 /*
 @input: The latest HPV dose was administered more than 6 months ago

@@ -322,3 +322,36 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #tmpsdwa-48.125 "Two mumps primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Mumps-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+* #csailt6m-34.41 "Client's age is less than 6 months" "Today's date − \"Date of birth\" < 6 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #nsipsdwa-60.127 "No seasonal influenza primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Seasonal influenza vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #csaimtoet6m-46.41 "Client's age is more than or equal to 6 months" "Today's date − \"Date of birth\" ≥ 6 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #osipsdwa-61.127 "One seasonal influenza primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Seasonal influenza vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #csailt9y-33.40 "Client's age is less than 9 years" "Today's date − \"Date of birth\" < 9 years"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #tlsidwalt4wa-73.110 "The latest seasonal influenza dose was administered less than 4 weeks ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Seasonal influenza vaccines\") < 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #tlsidwamt4wa-73.110 "The latest seasonal influenza dose was administered more than 4 weeks ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Seasonal influenza vaccines\") ≥ 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #csaimtoet9y-45.40 "Client's age is more than or equal to 9 years" "Today's date − \"Date of birth\" ≥ 9 years"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #tlsidwalt1ya-73.109 "The latest seasonal influenza dose was  administered less than 1 year ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Seasonal influenza vaccines\") < 1 year"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #tlsidwamt1ya-72.109 "The latest seasonal influenza dose was administered more than 1 year ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Seasonal influenza vaccines\") ≥ 1 year"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #tsipsdwa-61.127 "Two seasonal influenza primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Seasonal influenza vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"

@@ -109,7 +109,7 @@ define "Client's age is more than or equal to 12 months":
 */
 define "The latest Hepatitis A dose was administered less than 6 months ago":
   "Date of Latest Hepatitis A Dose" is not null 
-    and duration in months between "Date of Latest Hepatitis A Dose" and Now() < 6
+    and duration in months between "Date of Latest Hepatitis A Dose" and Today < 6
 
 /*
 @input: The latest Hepatitis A dose was administered more than 6 months ago

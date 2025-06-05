@@ -63,3 +63,10 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #tcisi-39.59 "The client is severely immunosuppressed" "\"Potential contraindications\" = \"Severely immunosuppressed\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Mumps contraindications"
+* #tchahoar-50.67 "The client has a history of anaphylactic reactions" "\"Potential contraindications\" = \"History of anaphylactic reactions\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Seasonal influenza contraindications"
+* #tchahosaraapdotavc-101.59 "The client has a history of severe allergic reactions after a previous dose or to a vaccine component" "\"Potential contraindications\" = \"Severe allergic reactions\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Seasonal influenza contraindications"
+

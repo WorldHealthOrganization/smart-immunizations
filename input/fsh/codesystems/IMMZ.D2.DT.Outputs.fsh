@@ -130,3 +130,16 @@ Description:  "CodeSystem for Decision Table Outputs"
 * #misic-39.49 "Mumps immunization schedule is complete" "\"Immunization recommendation status\" = \"Complete\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+* #cindfsiv-52.48 "Client is not due for seasonal influenza vaccination" "\"Immunization recommendation status\" = \"Not due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #cidfsiv-48.44 "Client is due for seasonal influenza vaccination" "\"Immunization recommendation status\" = \"Due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #tpsiccindfsiad-84.48 "The primary series is complete. Client is not due for seasonal influenza annual dose" "\"Immunization recommendation status\" = \"Not due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #tpsiccidfsiad-80.44 "The primary series is complete. Client is due for seasonal influenza annual dose" "\"Immunization recommendation status\" = \"Due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+

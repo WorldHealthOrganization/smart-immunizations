@@ -153,7 +153,7 @@ JE vaccination should be integrated into national immunization schedules in all 
 */
 define "The latest JE dose was administered less than 4 weeks ago":
   "Date of Latest JE Dose" is not null
-    and duration in weeks between "Date of Latest JE Dose" and Now() < 4
+    and duration in weeks between "Date of Latest JE Dose" and Today < 4
 
 /*
 @input: The latest JE dose was administered more than 4 weeks ago

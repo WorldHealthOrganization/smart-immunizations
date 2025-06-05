@@ -37,4 +37,7 @@ Description:  "CodeSystem for Decision Table Outputs"
 * #mvcbccjir-75.23 "Mumps vaccination could be contraindicated. Clinical judgement is required." "Create a clinical note."
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Mumps contraindications"
+* #sivcbccjircacn-111.67 "Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" "'\"Immunization recommendation status\" = \"Further evaluation needed\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Seasonal influenza contraindications"
 

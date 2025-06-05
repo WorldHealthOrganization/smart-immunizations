@@ -96,7 +96,7 @@ define "Client's age is more than or equal to 12 months":
 */
 define "The latest mumps dose was administered less than 4 weeks ago":
   "Date of Latest Mumps Dose" is not null 
-  and duration in weeks between "Date of Latest Mumps Dose" and Now() < 4
+  and duration in weeks between "Date of Latest Mumps Dose" and Today < 4
 
 /*
 @input: The latest mumps dose was administered more than 4 weeks ago

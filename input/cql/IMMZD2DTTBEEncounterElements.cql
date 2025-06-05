@@ -221,7 +221,7 @@ define "The latest TBE dose was administered more than 5 months ago":
 */
 define "The latest TBE dose was administered less than 9 months ago":
   "Date of Latest TBE Dose" is not null
-    and duration in months between "Date of Latest TBE Dose" and Now() < 9
+    and duration in months between "Date of Latest TBE Dose" and Today < 9
     
 /*
 @input: The latest TBE dose was administered more than 9 months ago
@@ -241,7 +241,7 @@ define "The latest TBE dose was administered more than 9 months ago":
 */
 define "The latest TBE dose was administered less than 12 months ago":
   "Date of Latest TBE Dose" is not null
-    and duration in months between "Date of Latest TBE Dose" and Now() < 12
+    and duration in months between "Date of Latest TBE Dose" and Today < 12
 
 /*
 @input: The latest TBE dose was administered more than 12 months ago
