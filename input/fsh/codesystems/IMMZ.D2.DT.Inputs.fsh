@@ -298,6 +298,10 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #csailt12m-35.42 "Client's age is less than 12 months" "Today's date − \"Date of birth\" < 12 months"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1 dose"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2 doses"
 * #nmpsdwa-47.125 "No mumps primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Mumps-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
@@ -307,9 +311,17 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #lvwaitp4w-49.92 "Live vaccine was administered in the past 4 weeks" "Today's date − latest \"Date and time of vaccination\" (where \"Live vaccine\" = TRUE) < 4 weeks"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1 dose"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2 doses"
 * #nlvwaitp4w-52.92 "No live vaccine was administered in the past 4 weeks" "Today's date − latest \"Date and time of vaccination\" (where \"Live vaccine\" = TRUE) ≥ 4 weeks"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1 dose"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2 doses"
 * #ompsdwa-46.125 "One mumps primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Mumps-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
@@ -355,3 +367,29 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #tsipsdwa-61.127 "Two seasonal influenza primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Seasonal influenza vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #nvpsdwa-49.129 "No varicella primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Varicella-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1 dose"
+* #csaimtoet12m-46.42 "Cient's age is more than or equal to 12 months" "Today's date − \"Date of birth\" ≥ 12 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1 dose"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2 doses"
+* #ovpsdwa-50.129 "One varicella primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Varicella-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1 dose"
+* #nvpsdwa-51.129 "No varicella primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Varicella-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2 doses"
+* #ovpsdwa-50.128 "One varicella primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Varicella-containing vaccines\" and \"Type of dose\" = \"Primary series\") =1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2 doses"
+* #tlvdalt4wa-60.112 "The latest varicella dose administered less than 4 weeks ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Varicella-containing vaccines\") < 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2 doses"
+* #tlvdamt4wa-60.112 "The latest varicella dose administered more than 4 weeks ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Varicella-containing vaccines\") ≥ 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2 doses"
+* #tvpsdwa-52.129 "Two varicella primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Varicella-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2 doses"

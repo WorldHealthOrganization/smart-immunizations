@@ -40,4 +40,16 @@ Description:  "CodeSystem for Decision Table Outputs"
 * #sivcbccjircacn-111.67 "Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" "'\"Immunization recommendation status\" = \"Further evaluation needed\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Seasonal influenza contraindications"
+* #vvic-40.56 "Varicella vaccination is contraindicated" "\"Immunization recommendation status\" = \"Contraindicated\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Varicella contraindications"
+* #cjirccn-52.66 "Clinical judgement is required. Create clinical note" "\"Immunization recommendation status\" = \"Further evaluation needed\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Varicella contraindications"
+* #vvcbccjirccn-100.66 "Varicella vaccination could be contraindicated. Clinical judgement is required. Create clinical note" "\"Immunization recommendation status\" = \"Further evaluation needed\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Varicella contraindications"
+* #cjirccn-52.67 "Clinical judgement is required. Create clinical note" "'\"Immunization recommendation status\" = \"Further evaluation needed\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.Varicella contraindications"
 

@@ -142,4 +142,19 @@ Description:  "CodeSystem for Decision Table Outputs"
 * #tpsiccidfsiad-80.44 "The primary series is complete. Client is due for seasonal influenza annual dose" "\"Immunization recommendation status\" = \"Due\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonal influenza"
+* #cindfvv-43.48 "Client is not due for varicella vaccination" "\"Immunization recommendation status\" = \"Not due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1 dose"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2 doses"
+* #cidfvv-39.44 "Client is due for varicella vaccination" "\"Immunization recommendation status\" = \"Due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1 dose"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2 doses"
+* #visic-43.49 "Varicella immunization schedule is complete" "\"Immunization recommendation status\" = \"Complete\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1 dose"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2 doses"
 

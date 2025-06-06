@@ -44,9 +44,12 @@ if ( dt == "single" ) {
   table = sheet[top-1][cs[0]]
   dtmod = 2
 }
-let did = sheet[top-6+dtmod][cs[0]+1]
-let rule = sheet[top-5+dtmod][cs[0]+1]
-let trigger = sheet[top-4+dtmod][cs[0]+1]
+
+const EXTRA = 0
+
+let did = sheet[top-6-EXTRA+dtmod][cs[0]+1]
+let rule = sheet[top-5-EXTRA+dtmod][cs[0]+1]
+let trigger = sheet[top-4-EXTRA+dtmod][cs[0]+1]
 
 let enclib = fs.createWriteStream("output/libraries/IMMZ"+prefix+sheetdisplay+dt+"Logic.fsh")
 enclib.write(`
