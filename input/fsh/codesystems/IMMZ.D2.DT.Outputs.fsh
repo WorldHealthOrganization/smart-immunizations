@@ -157,4 +157,39 @@ Description:  "CodeSystem for Decision Table Outputs"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1 dose"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2 doses"
+* #cindfcv-41.48 "Client is not due for cholera vaccination" "\"Immunization recommendation status\" = \"Not due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
+* #cidfcv-37.44 "Client is due for cholera vaccination" "\"Immunization recommendation status\" = \"Due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
+* #psiccindfcbd-70.48 "Primary series is complete. Client is not due for cholera booster dose" "\"Immunization recommendation status\" = \"Not due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+* #psiccidfcbd-66.44 "Primary series is complete. Client is due for cholera booster dose" "\"Immunization recommendation status\" = \"Due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
+* #cindfcbd-42.48 "Client is not due for cholera booster dose" "\"Immunization recommendation status\" = \"Not due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #cidfcbd-38.44 "Client is due for cholera booster dose" "\"Immunization recommendation status\" = \"Due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #bsic-26.81 "Booster series is complete" "\"Completed the booster series\" (where \"Vaccine type\" = \"Cholera vaccines\") = TRUE"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
 

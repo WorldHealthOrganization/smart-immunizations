@@ -18,6 +18,8 @@ include IMMZEncounterElements called Encounter
 
 include IMMZD2DTCholeraElements called CholeraElements
 
+parameter CholeraLowerLimitDays Integer default 150
+parameter CholeraExactIntervalDays Integer default 0
 parameter Today Date default Today()
 parameter EncounterId String
 
@@ -32,22 +34,10 @@ define "Cholera Doses Administered to Patient":
     I.vaccineCode in Concepts."Cholera vaccines"
 
 /*
-@internal: Date and time of last Cholera dose
-*/
-define "Date of Latest Cholera Dose":
-  date from start of "Cholera Doses Administered to Patient".mostRecent().occurrence.toInterval()
-
-/*
 @internal: Cholera containing Doses Administered to Patient that are in the Primary series
 */
 define "Cholera Primary Series Doses Administered to Patient":
   "Cholera Doses Administered to Patient".seriesPrimary()
-
-/*
-internal: Most Recent Cholera Primary Series Dose
-*/
-define "Most Recent Cholera Primary Series Dose":
-  "Cholera Primary Series Doses Administered to Patient".mostRecent()
 
 /*
 @internal: Number of Cholera Primary Series doses
@@ -62,16 +52,16 @@ define "Cholera Booster Series Doses Administered to Patient":
   "Cholera Doses Administered to Patient".seriesBooster()
 
 /*
-internal: Most Recent Cholera Booster Series Dose
-*/
-define "Most Recent Cholera Booster Series Dose":
-  "Cholera Booster Series Doses Administered to Patient".mostRecent()
-
-/*
 @internal: Number of Cholera Booster Series doses
 */
 define "Number of Cholera Booster Series Doses Administered":
   Count("Cholera Booster Series Doses Administered to Patient")
+
+/*
+@internal: Date and time of last Cholera dose
+*/
+define "Date of Latest Cholera Dose":
+  date from start of "Cholera Doses Administered to Patient".mostRecent().occurrence.toInterval()
 
 /*
 @input: Client's age is less than 1 year
@@ -90,130 +80,148 @@ define "Client's age is more than or equal to 1 year":
   Encounter."Current Patient Age In Years" >= 1
 
 /*
-@input: Primary series for cholera has not been completed
-@pseudocode: "Completed the primary vaccination series" (where "Vaccine type" = "Cholera vaccines") ≠ TRUE
+@input: Client's age is less than 2 years
+@pseudocode: Today's date − "Date of birth" < 2 years
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
+*/
+define "Client's age is less than 2 years":
+  Encounter."Current Patient Age In Years" < 2
+
+/*
+@input: Client's age is 2–5 years
+@pseudocode: 2 years ≤ Today's date − "Date of birth" ≤ 5 years
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
+*/
+define "Client's age is 2–5 years":
+  Encounter."Current Patient Age In Years" >= 2
+  and Encounter."Current Patient Age In Years" <= 5
+
+/*
+@input: Client's age is more than 5 years
+@pseudocode: Today's date − "Date of birth" > 5 years
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years
+*/
+define "Client's age is more than 5 years":
+  Encounter."Current Patient Age In Years" > 5
+
+/*
+@input: No cholera primary series dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Cholera vaccines" and "Type of dose" = "Primary series") = 0
+@decision: Whole-cell (WC) vaccines schedule
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years
+*/
+define "No cholera primary series dose was administered":
+  "Number of Cholera Primary Series Doses Administered" = 0
+
+/*
+@input: One cholera primary series dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Cholera vaccines" and "Type of dose" = "Primary series") = 1
 @decision: Whole-cell (WC) vaccines schedule
 */
-define "Primary series for cholera has not been completed":
-  not "Primary series for cholera has been completed"
+define "One cholera primary series dose was administered":
+  "Number of Cholera Primary Series Doses Administered" = 1
 
 /*
-@input: Primary series for cholera has been completed
-@pseudocode: "Completed the primary vaccination series" (where "Vaccine type" = "Cholera vaccines") = TRUE
+@input: At least one cholera primary series dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Cholera vaccines" and "Type of dose" = "Primary series") >= 1
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years
+*/
+define "At least one cholera primary series dose was administered":
+  "Number of Cholera Primary Series Doses Administered" >= 1
+
+/*
+@input: Two cholera primary series doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Cholera vaccines" and "Type of dose" = "Primary series") = 2
 @decision: Whole-cell (WC) vaccines schedule
 */
-define "Primary series for cholera has been completed":
-  Coalesce( 
-    "Cholera Doses Administered to Patient" Dose
-    aggregate Result: (Encounter."Completed the primary vaccination series Observation" O where O.value = true).partOf.references(Dose) or Result, 
-    false ) 
+define "Two cholera primary series doses were administered":
+  "Number of Cholera Primary Series Doses Administered" = 2
 
 /*
-@internal: Date when primary vaccination series was completed Observation
+@input: Dose number of the latest primary series dose is one
+@pseudocode: Latest "Dose number" (where "Vaccine type" = "Cholera vaccines" and "Type of dose" = "Primary series") = 1
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years
 */
-define "Date when primary vaccination series was completed Observation":
-  Encounter."Date when primary vaccination series was completed Observation" O
-    where Coalesce( 
-      "Cholera Doses Administered to Patient" Dose
-      aggregate Result: O.partOf.references(Dose) or Result, 
-      false ) = true
+define "Dose number of the latest primary series dose is one":
+  "Cholera Primary Series Doses Administered to Patient".mostRecent().getDose('1') is not null
 
 /*
-@internal: Date when primary vaccination series was completed
+@input: Dose number of the latest primary series dose is two
+@pseudocode: Latest "Dose number" (where "Vaccine type" = "Cholera vaccines" and "Type of dose" = "Primary series") = 2
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
 */
-define "Date when primary vaccination series was completed":
-  date from First("Date when primary vaccination series was completed Observation" O).value
+define "Dose number of the latest primary series dose is two":
+  "Cholera Primary Series Doses Administered to Patient".mostRecent().getDose('2') is not null
 
 /*
-@input: Cholera primary series was completed less than 3 years ago
-@pseudocode: Today's date − "Date when primary vaccination series was completed" (where "Vaccine type" = "Cholera vaccines") < 3 years
+@input: Dose number of the latest primary series dose is less than three
+@pseudocode: Latest "Dose number" (where "Vaccine type" = "Cholera vaccines" and "Type of dose" = "Primary series") < 3
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
+*/
+define "Dose number of the latest primary series dose is less than three":
+  (("Cholera Primary Series Doses Administered to Patient".mostRecent()) I
+    where exists( I.protocolApplied pa where ToInteger(pa.doseNumber) < 3)) is not null
+
+/*
+@input: Dose number of the latest primary series dose is more than or equal to two
+@pseudocode: Latest "Dose number" (where "Vaccine type" = "Cholera vaccines" and "Type of dose" = "Primary series") >= 2
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years
+*/
+define "Dose number of the latest primary series dose is more than or equal to two":
+  (("Cholera Primary Series Doses Administered to Patient".mostRecent()) I
+    where exists( I.protocolApplied pa where ToInteger(pa.doseNumber) >= 2)) is not null
+
+/*
+@input: Dose number of the latest primary series dose is three
+@pseudocode: Latest "Dose number" (where "Vaccine type" = "Cholera vaccines" and "Type of dose" = "Primary series") = 3
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
+*/
+define "Dose number of the latest primary series dose is three":
+  "Cholera Primary Series Doses Administered to Patient".mostRecent().getDose('3') is not null
+
+/*
+@input: No cholera booster series dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Cholera vaccines" and "Type of dose" = "Booster dose") = 0
 @decision: Whole-cell (WC) vaccines schedule
 */
-define "Cholera primary series was completed less than 3 years ago":
-  "Date when primary vaccination series was completed Observation" is not null
-    and duration in years between "Date when primary vaccination series was completed" and Today < 3
+define "No cholera booster series dose was administered":
+  "Number of Cholera Booster Series Doses Administered" = 0
 
 /*
-@input: Cholera primary series was completed more than 3 years ago
-@pseudocode: Today's date − "Date when primary vaccination series was completed" (where "Vaccine type" = "Cholera vaccines") ≥ 3 years
+@input: At least one booster series dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Cholera vaccines" and "Type of dose" = "Booster dose") >= 1
 @decision: Whole-cell (WC) vaccines schedule
 */
-define "Cholera primary series was completed more than 3 years ago":
-  "Date when primary vaccination series was completed Observation" is not null
-    and duration in years between "Date when primary vaccination series was completed" and Today >= 3
+define "At least one booster series dose was administered":
+  "Number of Cholera Booster Series Doses Administered" >= 1
 
 /*
-@input: Booster series for cholera is NOT completed
-@pseudocode: "Completed the booster series" (where "Vaccine type" = "Cholera vaccines") ≠ TRUE
+@input: Dose number of the latest dose is one
+@pseudocode: Latest "Dose number" (where "Vaccine type" = "Cholera vaccines") = 1
 @decision: Whole-cell (WC) vaccines schedule
 */
-define "Booster series for cholera is NOT completed":
-  not "Booster series for cholera is completed"
+define "Dose number of the latest dose is one":
+  "Cholera Doses Administered to Patient".mostRecent().getDose('1') is not null
 
 /*
-@input: Booster series for cholera is completed
-@pseudocode: "Completed the booster series" (where "Vaccine type" = "Cholera vaccines") = TRUE
+@input: Dose number of the latest dose is two
+@pseudocode: Latest "Dose number" (where "Vaccine type" = "Cholera vaccines") = 2
 @decision: Whole-cell (WC) vaccines schedule
 */
-define "Booster series for cholera is completed":
-  Coalesce( 
-    "Cholera Doses Administered to Patient" Dose
-    aggregate Result: (Encounter."Completed the booster series Observation" O where O.value = true).partOf.references(Dose) or Result, 
-    false )
+define "Dose number of the latest dose is two":
+  "Cholera Doses Administered to Patient".mostRecent().getDose('2') is not null
 
-/*
-@input: Latest cholera dose number is less than the total number of doses in the series
-@pseudocode: Latest "Dose number" (where "Vaccine type" = "Cholera vaccines") < "Total doses in series" (where "Vaccine type" = "Cholera vaccines")
-@decision: Whole-cell (WC) vaccines schedule
-*/
-define "Latest cholera dose number is less than the total number of doses in the series":
-  "Most Recent Cholera Primary Series Dose" is null
-  or (
-    "Most Recent Cholera Primary Series Dose" I
-      where exists( I.protocolApplied pa where ToInteger(pa.doseNumber) < ToInteger(pa.seriesDoses) )
-  ) is not null
-
-/*
-@input: Latest cholera dose number is equal to the total number of doses in the series
-@pseudocode: Latest "Dose number" (where "Vaccine type" = "Cholera vaccines") = "Total doses in series" (where "Vaccine type" = "Cholera vaccines")
-@decision: Whole-cell (WC) vaccines schedule
-*/
-define "Latest cholera dose number is equal to the total number of doses in the series":
-  (
-    "Most Recent Cholera Primary Series Dose" I
-      where exists( I.protocolApplied pa where ToInteger(pa.doseNumber) = ToInteger(pa.seriesDoses) )
-  ) is not null
-
-/*
-@input: Latest cholera booster dose number is less than the total number of doses in the series
-@pseudocode: Latest "Dose number" (where "Vaccine type" = "Cholera vaccines" and "Type of dose" = "Booster dose") < "Total doses in series" (where "Vaccine type" = "Cholera vaccines")
-@decision: Whole-cell (WC) vaccines schedule
-*/
-define "Latest cholera booster dose number is less than the total number of doses in the series":
-  "Most Recent Cholera Booster Series Dose" is null
-  or (
-    "Most Recent Cholera Booster Series Dose" I
-      where exists( I.protocolApplied pa where ToInteger(pa.doseNumber) < ToInteger(pa.seriesDoses) )
-  ) is not null
-
-/*
-@input: Latest cholera booster dose number is equal to the total number of doses in the series
-@pseudocode: Latest "Dose number" (where "Vaccine type" = "Cholera vaccines" and "Type of dose" = "Booster dose") = "Total doses in series" (where "Vaccine type" = "Cholera vaccines")
-@decision: Whole-cell (WC) vaccines schedule
-*/
-define "Latest cholera booster dose number is equal to the total number of doses in the series":
-  (
-    "Most Recent Cholera Booster Series Dose" I
-      where exists( I.protocolApplied pa where ToInteger(pa.doseNumber) = ToInteger(pa.seriesDoses) )
-  ) is not null
 /*
 @input: The latest cholera dose was administered less than 14 days ago
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Cholera vaccines") < 14 days
 @decision: Whole-cell (WC) vaccines schedule
 */
 define "The latest cholera dose was administered less than 14 days ago":
-	"Date of Latest Cholera Dose" is not null 
-    and duration in days between "Date of Latest Cholera Dose" and Today < 14
+  "Date of Latest Cholera Dose" is not null
+  and duration in days between "Date of Latest Cholera Dose" and Today < 14
 
 /*
 @input: The latest cholera dose was administered more than 14 days ago
@@ -221,8 +229,86 @@ define "The latest cholera dose was administered less than 14 days ago":
 @decision: Whole-cell (WC) vaccines schedule
 */
 define "The latest cholera dose was administered more than 14 days ago":
-	"Date of Latest Cholera Dose" is not null 
-    and duration in days between "Date of Latest Cholera Dose" and Today >= 14
+  not "The latest cholera dose was administered less than 14 days ago"
+
+
+/*
+@input: The latest cholera dose was administered less than 1 week ago
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Cholera vaccines") < 1 week
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years
+*/
+define "The latest cholera dose was administered less than 1 week ago":
+  "Date of Latest Cholera Dose" is not null
+  and duration in weeks between "Date of Latest Cholera Dose" and Today < 1
+
+/*
+@input: The latest cholera dose was administered more than 1 week and less than 6 weeks ago
+@pseudocode: 1 week ≤ Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Cholera vaccines") < 6 weeks
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years
+*/
+define "The latest cholera dose was administered more than 1 week and less than 6 weeks ago":
+  "Date of Latest Cholera Dose" is not null
+  and duration in weeks between "Date of Latest Cholera Dose" and Today >= 1
+  and duration in weeks between "Date of Latest Cholera Dose" and Today < 6
+
+/*
+@input: The latest cholera dose was administered more than 6 weeks ago
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Cholera vaccines") ≥ 6 weeks
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years
+*/
+define "The latest cholera dose was administered more than 6 weeks ago":
+  "Date of Latest Cholera Dose" is not null
+  and duration in weeks between "Date of Latest Cholera Dose" and Today >= 6
+
+/*
+@input: The latest cholera dose was administered less than {Member States defined lower limit} days ago
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Cholera vaccines") ≤ Member States defined lower limit
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
+*/
+define "The latest cholera dose was administered less than {Member States defined lower limit} days ago":
+  "Date of Latest Cholera Dose" is not null
+  and duration in days between "Date of Latest Cholera Dose" and Today <= CholeraLowerLimitDays
+
+/*
+@input: The latest cholera dose was administered approximately less than 6 months ago {Member States defined exact interval}
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Cholera vaccines") ≤ 6 months
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
+*/
+define "The latest cholera dose was administered approximately less than 6 months ago {Member States defined exact interval}":
+  "Date of Latest Cholera Dose" is not null
+  and duration in days between "Date of Latest Cholera Dose" and Today > CholeraLowerLimitDays
+  and duration in days between ("Date of Latest Cholera Dose" + 6 months) and Today <= CholeraExactIntervalDays
+
+/*
+@input: The latest cholera dose was administered approximately more than 6 months ago {Member States defined exact interval}
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Cholera vaccines") > 6 months
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
+*/
+define "The latest cholera dose was administered approximately more than 6 months ago {Member States defined exact interval}":
+  "Date of Latest Cholera Dose" is not null
+  and duration in days between ("Date of Latest Cholera Dose" + 6 months) and Today > CholeraExactIntervalDays
+
+/*
+@input: The latest cholera dose was administered approximately less than 2 years ago {Member States defined interval}
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Cholera vaccines") ≤ 2 years ± Member States defined interval
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years
+*/
+define "The latest cholera dose was administered approximately less than 2 years ago {Member States defined interval}":
+  "Date of Latest Cholera Dose" is not null
+  and duration in months between "Date of Latest Cholera Dose" and Today > 21
+  and duration in days between ("Date of Latest Cholera Dose" + 2 years) and Today <= CholeraExactIntervalDays
+
+/*
+@input: The latest cholera dose was administered approximately more than 2 years ago {Member States defined interval}
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Cholera vaccines") > 2 years ± Member States defined interval
+@decision: Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years
+*/
+define "The latest cholera dose was administered approximately more than 2 years ago {Member States defined interval}":
+  "Date of Latest Cholera Dose" is not null
+  and duration in days between ("Date of Latest Cholera Dose" + 2 years) and Today > CholeraExactIntervalDays
 
 /*
 @input: The latest cholera dose was administered less than 3 years ago
@@ -230,8 +316,8 @@ define "The latest cholera dose was administered more than 14 days ago":
 @decision: Whole-cell (WC) vaccines schedule
 */
 define "The latest cholera dose was administered less than 3 years ago":
-	"Date of Latest Cholera Dose" is not null 
-    and duration in years between "Date of Latest Cholera Dose" and Today < 3
+  "Date of Latest Cholera Dose" is not null
+  and duration in years between "Date of Latest Cholera Dose" and Today < 3
 
 /*
 @input: The latest cholera dose was administered more than 3 years ago
@@ -239,5 +325,13 @@ define "The latest cholera dose was administered less than 3 years ago":
 @decision: Whole-cell (WC) vaccines schedule
 */
 define "The latest cholera dose was administered more than 3 years ago":
-	"Date of Latest Cholera Dose" is not null 
-    and duration in years between "Date of Latest Cholera Dose" and Today >= 3
+  not "The latest cholera dose was administered less than 3 years ago"
+
+/*
+@input: The latest cholera dose was administered more than 14 days ago and less than 3 years ago
+@pseudocode: 14 days <= Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Cholera vaccines") <= 3 years
+@decision: Whole-cell (WC) vaccines schedule
+*/
+define "The latest cholera dose was administered more than 14 days ago and less than 3 years ago":
+  "The latest cholera dose was administered more than 14 days ago"
+  and "The latest cholera dose was administered less than 3 years ago"

@@ -173,7 +173,7 @@ function makeImmunization( immz, patient, options, birth ) {
     "vaccineCode": {
       "coding": []
     },
-    "expirationDate": "2024-12-31",
+    "expirationDate": "2026-12-31",
     "lotNumber": "123",
     "patient": {
       "reference": "Patient/"

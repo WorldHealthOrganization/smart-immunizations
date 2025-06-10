@@ -393,3 +393,110 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #tvpsdwa-52.129 "Two varicella primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Varicella-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2 doses"
+* #csailt1y-32.39 "Client's age is less than 1 year" "Today's date − \"Date of birth\" < 1 year"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #csaimtoet1y-44.39 "Client's age is more than or equal to 1 year" "Today's date − \"Date of birth\" ≥ 1 year"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #ncpsdwa-47.116 "No cholera primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Cholera vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
+* #ocpsdwa-48.116 "One cholera primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Cholera vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #tlcdwalt14da-62.106 "The latest cholera dose was administered less than 14 days ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Cholera vaccines\") < 14 days"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #tlcdwamt14da-62.106 "The latest cholera dose was administered more than 14 days ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Cholera vaccines\") ≥ 14 days"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #tcpsdwa-50.116 "Two cholera primary series doses were administered" "Count of vaccines administered (where \"Vaccine type\" = \"Cholera vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #ncbsdwa-47.114 "No cholera booster series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Cholera vaccines\" and \"Type of dose\" = \"Booster dose\") = 0"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #tlcdwalt3ya-62.106 "The latest cholera dose was administered less than 3 years ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Cholera vaccines\") < 3 years"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #tlcdwamt3ya-62.106 "The latest cholera dose was administered more than 3 years ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Cholera vaccines\") ≥ 3 years"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #alobsdwa-49.115 "At least one booster series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Cholera vaccines\" and \"Type of dose\" = \"Booster dose\") >= 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #dnotldio-37.68 "Dose number of the latest dose is one" "Latest \"Dose number\" (where \"Vaccine type\" = \"Cholera vaccines\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #tlcdwamt14daalt3ya-88.118 "The latest cholera dose was administered more than 14 days ago and less than 3 years ago" "14 days <= Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Cholera vaccines\") <= 3 years"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #dnotldit-37.68 "Dose number of the latest dose is two" "Latest \"Dose number\" (where \"Vaccine type\" = \"Cholera vaccines\") = 2"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
+* #csailt2y-33.40 "Client's age is less than 2 years" "Today's date − \"Date of birth\" < 2 years"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+* #csai25y-25.50 "Client's age is 2–5 years" "2 years ≤ Today's date − \"Date of birth\" ≤ 5 years"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+* #alocpsdwa-57.117 "At least one cholera primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Cholera vaccines\" and \"Type of dose\" = \"Primary series\") >= 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
+* #dnotlpsdio-52.106 "Dose number of the latest primary series dose is one" "Latest \"Dose number\" (where \"Vaccine type\" = \"Cholera vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
+* #tlcdwalt1wa-61.105 "The latest cholera dose was administered less than 1 week ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Cholera vaccines\") < 1 week"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
+* #tlcdwamt1walt6wa-83.115 "The latest cholera dose was administered more than 1 week and less than 6 weeks ago" "1 week ≤ Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Cholera vaccines\") < 6 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
+* #dnotlpsdit-52.106 "Dose number of the latest primary series dose is two" "Latest \"Dose number\" (where \"Vaccine type\" = \"Cholera vaccines\" and \"Type of dose\" = \"Primary series\") = 2"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+* #dnotlpsdiltt-64.106 "Dose number of the latest primary series dose is less than three" "Latest \"Dose number\" (where \"Vaccine type\" = \"Cholera vaccines\" and \"Type of dose\" = \"Primary series\") < 3"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+* #tlcdwamt6wa-62.106 "The latest cholera dose was administered more than 6 weeks ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Cholera vaccines\") ≥ 6 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
+* #dnotlpsdit-54.106 "Dose number of the latest primary series dose is three" "Latest \"Dose number\" (where \"Vaccine type\" = \"Cholera vaccines\" and \"Type of dose\" = \"Primary series\") = 3"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+* #tlcdwaltmsdllda-95.132 "The latest cholera dose was administered less than {Member States defined lower limit} days ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Cholera vaccines\") ≤ Member States defined lower limit"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+* #tlcdwaalt6mamsdei-116.107 "The latest cholera dose was administered approximately less than 6 months ago {Member States defined exact interval}" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Cholera vaccines\") ≤ 6 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+* #tlcdwaamt6mamsdei-116.107 "The latest cholera dose was administered approximately more than 6 months ago {Member States defined exact interval}" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Cholera vaccines\") > 6 months"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses"
+* #csaimt5y-33.40 "Client's age is more than 5 years" "Today's date − \"Date of birth\" > 5 years"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
+* #dnotlpsdimtoett-74.107 "Dose number of the latest primary series dose is more than or equal to two" "Latest \"Dose number\" (where \"Vaccine type\" = \"Cholera vaccines\" and \"Type of dose\" = \"Primary series\") >= 2"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
+* #tlcdwaalt2yamsdi-109.139 "The latest cholera dose was administered approximately less than 2 years ago {Member States defined interval}" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Cholera vaccines\") ≤ 2 years ± Member States defined interval"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
+* #tlcdwaamt2yamsdi-109.139 "The latest cholera dose was administered approximately more than 2 years ago {Member States defined interval}" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Cholera vaccines\") > 2 years ± Member States defined interval"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"

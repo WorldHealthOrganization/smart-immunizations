@@ -17,8 +17,12 @@ Whole-cell (WC) vaccines schedule
 * insert PlanDefMedicationRequestAction( [[Determine if the client is due for Cholera.]], [["""
 Determine if the client is due for Cholera vaccine according to the national immunization protocol.
 Whole-cell (WC) vaccines schedule
-"""]], [["""Revaccination is recommended where there is continued risk of Vibrio cholerae infection. 
-For WC vaccines, revaccination is recommended after 3 years.
+"""]], [["""Revaccination is recommended where there is continued risk of Vibrio cholerae infection. For WC vaccines, revaccination is recommended after 3 years.
+"""]], Primary series is complete. Client is due for cholera booster dose, IMMZD2DTCholeraMR )
+* insert PlanDefMedicationRequestAction( [[Determine if the client is due for Cholera.]], [["""
+Determine if the client is due for Cholera vaccine according to the national immunization protocol.
+Whole-cell (WC) vaccines schedule
+"""]], [["""Revaccination is recommended where there is continued risk of Vibrio cholerae infection. For WC vaccines, revaccination is recommended after 3 years.
 """]], Client is due for cholera booster dose, IMMZD2DTCholeraMR )
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.Cholera.WC vaccines.]], [["""
     Show Guidance for the patient regarding IMMZ.D2.DT.Cholera.WC vaccines.
