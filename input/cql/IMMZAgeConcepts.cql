@@ -18,8 +18,15 @@ code "P2W--P9999Y": 'P2W--P9999Y' from "ISO-8601-Derived Periods" display '>= 2 
 
 // Age groups for adolescent
 code "P0Y--P9Y": 'P0Y--P9Y' from "ISO-8601-Derived Periods" display '< 9 years'
-code "P9Y--P14Y": 'P9Y--P15Y' from "ISO-8601-Derived Periods" display '9 - 14 years'
+code "P9Y--P15Y": 'P9Y--P15Y' from "ISO-8601-Derived Periods" display '9 - 14 years'
 code "P15Y--P9999Y": 'P15Y--P9999Y' from "ISO-8601-Derived Periods" display '>= 15 years'
+
+// Age groups
+code "P0Y--P18Y": 'P0Y--P18Y' from "ISO-8601-Derived Periods" display '< 18 years'
+code "P18Y--P30Y": 'P18Y--P30Y' from "ISO-8601-Derived Periods" display '18 - 29 years'
+code "P30Y--P50Y": 'P30Y--P50Y' from "ISO-8601-Derived Periods" display '30 - 49 years'
+code "P50Y--P70Y": 'P50Y--P70Y' from "ISO-8601-Derived Periods" display '50 - 69 years'
+code "P70Y--P9999Y": 'P70Y--P9999Y' from "ISO-8601-Derived Periods" display '>= 70 years'
 
 // Age by year
 code "P2Y--P3Y": 'P2Y--P3Y' from "ISO-8601-Derived Periods" display '2 years'

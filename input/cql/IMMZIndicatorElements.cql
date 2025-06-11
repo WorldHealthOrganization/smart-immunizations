@@ -168,17 +168,29 @@ define "Toddler By Age Stratifier":
         else null
     end
 
-
 /* 
 @stratifier: Adolescent By Age Stratifiers
 */
 define "Adolescent By Age Stratifier":
     case 
         when AgeInYearsAt(end of "Measurement Period") < 9 then Age."P0Y--P9Y"
-        when AgeInYearsAt(end of "Measurement Period") <= 14 then Age."P9Y--P14Y"
+        when AgeInYearsAt(end of "Measurement Period") <= 14 then Age."P9Y--P15Y"
         when AgeInYearsAt(end of "Measurement Period") > 14 then Age."P15Y--P9999Y"
         else null
     end
+
+/*
+@stratifier: Age Group Stratifier
+*/
+define "By Age Group Stratifier":
+  case 
+    when AgeInYearsAt(end of "Measurement Period") < 18 then Age."P0Y--P18Y"
+    when AgeInYearsAt(end of "Measurement Period") < 30 then Age."P18Y--P30Y"
+    when AgeInYearsAt(end of "Measurement Period") < 50 then Age."P30Y--P50Y"
+    when AgeInYearsAt(end of "Measurement Period") < 70 then Age."P50Y--P70Y"
+    when AgeInYearsAt(end of "Measurement Period") >= 70 then Age."P70Y--P9999Y"
+    else null
+  end
 
 /*
 @stratifier: By Administrative Gender of Patient Stratifier

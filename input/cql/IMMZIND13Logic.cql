@@ -59,9 +59,8 @@ define "Denominator":
  */
 define "Numerator":
   exists (
-    Measles."MCV Primary Series Doses Administered to Patient" I
+    (Measles."MCV Primary Series Doses Administered to Patient".getDose('2')) I
       where I.occurrence.toInterval() starts during "Measurement Period"
-      and exists( I.protocolApplied pa where ToInteger(pa.doseNumber) = 2 )
   )
 
 /*
