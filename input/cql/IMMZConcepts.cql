@@ -42,6 +42,8 @@ valueset "Malaria vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z
 valueset "Mumps-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE11'
 valueset "Seasonal influenza vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE18'
 valueset "Varicella-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE22'
+valueset "Pentavalent vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE29'
+
 
 code "IPV": 'DE213' from "IMMZD" display 'IPV'
 code "bOPV": 'DE214' from "IMMZD" display 'bOPV'

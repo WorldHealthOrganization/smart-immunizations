@@ -254,6 +254,10 @@ define "Immunizations And Adverse Events During Measurement Period":
   where I.reaction.detail.references(O)
   return { immunization: I, adverseEvent: O }
 
+define "Pentavalent Doses Administered to Patient During Measurement Period":
+  "Doses Administered to Patient During Measurement Period" I 
+    where I.vaccineCode in Concepts."Pentavalent vaccines"
+
 /** 
  * @define Adverse events for immunizations which occurred during (or observed) during measurement period
  */

@@ -9,7 +9,7 @@ Potential contraindications
 Usage: #definition
 
 * insert PlanDefMain( IMMZD5DTVaricellaCI, 0.1.0 )
-  * insert PlanDefMedicationRequestUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
+* insert PlanDefMedicationRequestUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
   Contraindication for Varicella immunization
 """]], Varicella vaccination is contraindicated, IMMZD5DTVaricellaMR, Draft Medication Request ID for Varicella dose )
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D5.DT.Varicella contraindications.]], [["""

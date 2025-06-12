@@ -37,7 +37,7 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
 
   let ishort = iid.replace(/\./g, '')
 
-  let indmeas = fs.createWriteStream("output/measures/"+ishort+"Logic.fsh")
+  let indmeas = fs.createWriteStream("output/measures/"+ishort+".fsh")
   indmeas.write(`Instance: ${ishort}
 InstanceOf: http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/proportion-measure-cqfm
 Title: "${ishort}"
