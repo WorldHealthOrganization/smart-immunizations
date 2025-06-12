@@ -161,3 +161,11 @@ define fluent function seriesBooster(immunizations List<Immunization>):
 define fluent function seriesSupplementary(immunizations List<Immunization>):
   immunizations I where
     exists( I.protocolApplied pa where pa.series = 'Supplementary dose' )
+
+/**
+ * @description: Sorts a list and returns the requested index
+ */
+define fluent function sortedIndex(immunizations List<Immunization>, idx Integer):
+  if exists( immunizations ) then
+    (immunizations I sort by start of occurrence.toInterval())[idx]
+  else null
