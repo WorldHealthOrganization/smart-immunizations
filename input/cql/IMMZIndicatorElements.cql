@@ -169,6 +169,19 @@ define "Toddler By Age Stratifier":
     end
 
 /* 
+@stratifier: Child By Age Stratifiers
+*/
+define "Child By Age Stratifier":
+    case 
+        when AgeInYearsAt(end of "Measurement Period") < 1 then Age."P0Y--P1Y"
+        when AgeInYearsAt(end of "Measurement Period") < 3 then Age."P1Y--P3Y"
+        when AgeInYearsAt(end of "Measurement Period") < 6 then Age."P3Y--P6Y"
+        when AgeInYearsAt(end of "Measurement Period") < 13 then Age."P6Y--P13Y"
+        when AgeInYearsAt(end of "Measurement Period") >= 13 then Age."P13Y--P9999Y"
+        else null
+    end
+
+/* 
 @stratifier: Adolescent By Age Stratifiers
 */
 define "Adolescent By Age Stratifier":

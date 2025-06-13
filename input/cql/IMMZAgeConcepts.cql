@@ -16,6 +16,12 @@ code "PT0H--PT24H": 'PT0H--PT24H' from "ISO-8601-Derived Periods" display 'Withi
 code "PT24H--P2W": 'PT24H--P2W' from "ISO-8601-Derived Periods" display '< 2 Weeks'
 code "P2W--P9999Y": 'P2W--P9999Y' from "ISO-8601-Derived Periods" display '>= 2 Weeks'
 
+// Age groups for children
+code "P1Y--P3Y": 'P1Y--P3Y' from "ISO-8601-Derived Periods" display '1 - 2 years'
+code "P3Y--P6Y": 'P3Y--P6Y' from "ISO-8601-Derived Periods" display '3 - 5 years'
+code "P6Y--P13Y": 'P6Y--P13Y' from "ISO-8601-Derived Periods" display '6 - 12 years'
+code "P13Y--P9999Y": 'P13Y--P9999Y' from "ISO-8601-Derived Periods" display '>= 13 years'
+
 // Age groups for adolescent
 code "P0Y--P9Y": 'P0Y--P9Y' from "ISO-8601-Derived Periods" display '< 9 years'
 code "P9Y--P15Y": 'P9Y--P15Y' from "ISO-8601-Derived Periods" display '9 - 14 years'
