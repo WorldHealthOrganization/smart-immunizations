@@ -258,6 +258,10 @@ define "Pentavalent Doses Administered to Patient During Measurement Period":
   "Doses Administered to Patient During Measurement Period" I 
     where I.vaccineCode in Concepts."Pentavalent vaccines"
 
+define "Measles and Rubella Doses Administered to Patient During Measurement Period":
+  "Doses Administered to Patient During Measurement Period" I 
+    where I.vaccineCode in Concepts."Measles and rubella-containing vaccines"
+
 /** 
  * @define Adverse events for immunizations which occurred during (or observed) during measurement period
  */

@@ -56,13 +56,8 @@ define "Denominator":
 @pseudocode: COUNT of immunization events WHERE "Vaccine type" = "Measles and rubella-containing vaccines" for the 2nd dose in the primary series AND "Date and time of vaccination" is during the reporting period
 */
 define "Numerator":
-  exists (
-    (Measles."MCV Primary Series Doses Administered to Patient".getDose('2')) I
-      where I.occurrence.toInterval() starts during "Measurement Period"
-  ) and exists (
-    (Rubella."Rubella Primary Series Doses Administered to Patient".getDose('2')) I
-      where I.occurrence.toInterval() starts during "Measurement Period"
-  )
+  exists( Elements."Measles and Rubella Doses Administered to Patient During Measurement Period".getDose('2') )
+
 
 /*
 @disaggregation: Administrative area

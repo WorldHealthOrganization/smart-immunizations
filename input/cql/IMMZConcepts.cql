@@ -43,6 +43,7 @@ valueset "Mumps-containing vaccines": 'http://smart.who.int/immunizations/ValueS
 valueset "Seasonal influenza vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE18'
 valueset "Varicella-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE22'
 valueset "Pentavalent vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE29'
+valueset "Measles and rubella-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE32'
 
 
 code "IPV": 'DE213' from "IMMZD" display 'IPV'
