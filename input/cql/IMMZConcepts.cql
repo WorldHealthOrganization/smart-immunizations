@@ -44,6 +44,7 @@ valueset "Seasonal influenza vaccines": 'http://smart.who.int/immunizations/Valu
 valueset "Varicella-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE22'
 valueset "Pentavalent vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE29'
 valueset "Measles and rubella-containing vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE32'
+valueset "COVID-19 vaccines": 'http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE26'
 
 
 code "IPV": 'DE213' from "IMMZD" display 'IPV'

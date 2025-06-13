@@ -275,6 +275,10 @@ define "Measles and Rubella Doses Administered to Patient During Measurement Per
   "Doses Administered to Patient During Measurement Period" I 
     where I.vaccineCode in Concepts."Measles and rubella-containing vaccines"
 
+define "COVID-19 Doses Administered to Patient During Measurement Period":
+  "Doses Administered to Patient During Measurement Period" I 
+    where I.vaccineCode in Concepts."COVID-19 vaccines"
+
 /** 
  * @define Adverse events for immunizations which occurred during (or observed) during measurement period
  */
