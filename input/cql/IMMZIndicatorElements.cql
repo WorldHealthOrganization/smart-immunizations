@@ -303,3 +303,14 @@ define function GetGeographicRegionForImmunization(immunization Immunization):
     [Location] L
         where immunization.location.references(L)
   ).only().address.state
+
+/** 
+ * @function
+ * @param immunization The immunization record for which the location should be retrieved
+ * @return FHIR.name The name of the location that the immunization event occurred
+ */
+define function GetLocationNameForImmunization(immunization Immunization):
+  (
+    [Location] L
+        where immunization.location.references(L)
+  ).only().name

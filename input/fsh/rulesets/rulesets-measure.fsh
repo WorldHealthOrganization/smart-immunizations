@@ -5,7 +5,7 @@ RuleSet: Stratifier( idprefix, count, code )
   * criteria.language = #text/cql-identifier
   * criteria.expression = "Stratification {count}"
 
-RuleSet: MeasureProportion( description, library, version, date, idprefix)
+RuleSet: MeasureProportionBasic( description, library, version, date, idprefix)
 * description = "{description}"
 * version = "{version}"
 * status = #draft
@@ -35,6 +35,10 @@ RuleSet: MeasureProportion( description, library, version, date, idprefix)
     * code = $measure-population#numerator "Numerator"
     * criteria.language = #text/cql-identifier
     * criteria.expression = "Numerator"
+
+RuleSet: MeasureProportion( description, library, version, date, idprefix)
+* insert MeasureProportionBasic( [[{description}]], {library}, {version}, {date}, {idprefix} )
+* group[=]
   * insert Stratifier( {idprefix}, 1, IMMZ.I#DE32 "By-Administrative Area" )
   * insert Stratifier( {idprefix}, 2, IMMZ.I#DE31 "By-Sex" )
   * insert Stratifier( {idprefix}, 3, IMMZ.I#DE33 "By-Age group" )

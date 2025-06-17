@@ -57,6 +57,13 @@ for(let doc of docs) {
       fs.writeFileSync( topDir+"/Condition/"+condr.id+".json", Buffer.from( JSON.stringify(condr,null,2)))
     }
   }
+  if ( options.location ) {
+    fs.mkdirSync(topDir+"/Location", {recursive: true})
+    for( let loc in options.location ) {
+      let locr = makeLocation( loc, options.id, options.location[loc] )
+      fs.writeFileSync( topDir+"/Location/"+locr.id+".json", Buffer.from( JSON.stringify(locr,null,2)))
+    }
+  }
   if ( options.contraindication ) {
     if (!options.observation) options.observation = {}
     for ( let ci in options.contraindication ) {
@@ -101,7 +108,7 @@ for(let doc of docs) {
 
 function shiftDate( shift, birth ) {
 
-  if ( shift.match(/\d{4,4}-\d{2,2}-\{2,2}/) ) return shift
+  if ( shift.match(/\d{4,4}-\d{2,2}-\d{2,2}/) ) return shift
 
   let shifted
   let start = now
@@ -165,6 +172,25 @@ function makePatient ( id, options, birth ) {
   return patient
 }
 
+function makeLocation( loc, patient, options ) {
+  let location = {
+    "resourceType": "Location",
+    "id": "",
+    "name": "",
+    "status": "active",
+    "address": {
+      "state": ""
+    }
+  }
+  location.id = loc+"-"+patient
+  location.name = options.name
+  location.address.state = options.state
+
+  copyFHIR( location, options )
+
+  return location
+}
+
 function makeImmunization( immz, patient, options, birth ) {
   let immunization = {
     "resourceType": "Immunization",
@@ -188,6 +214,9 @@ function makeImmunization( immz, patient, options, birth ) {
   immunization.patient.reference = "Patient/"+patient
   immunization.vaccineCode.coding[0] = options.vaccine
   immunization.expirationDate - shiftDate( "1y", birth )
+  if ( options.location ) {
+    immunization.location.reference = "Location/"+options.location+"-"+patient
+  }
   if ( options.dose ) {
     let found = options.dose.match(/([pbs0]?)\.?(\d+)\/?(\d*)/)
     let pa = {}
