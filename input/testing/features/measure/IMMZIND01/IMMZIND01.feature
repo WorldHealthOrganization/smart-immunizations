@@ -11,7 +11,7 @@ Feature: IMMZ.IND.01 Immunization coverage for BCG vaccine
   Scenario: Evaluate the IND.01 measure
     Given url urlBase
     And path 'Measure/IMMZIND01/$evaluate-measure'
-    And request { periodStart: '2025-01-01', periodEnd: '2025-06-30' }
+    And params { periodStart: '2025-01-01', periodEnd: '2025-06-30' }
     When method get
     Then status 200
     And match response.group[0].population[?(@.id=='IMMZ.IND.01.IP')].count == [27]
