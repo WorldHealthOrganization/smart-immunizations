@@ -1,7 +1,7 @@
 Feature: IMMZ.IND.01 Immunization coverage for BCG vaccine
 
   Scenario: Load the data to be used for testing
-    * def databundle = read('Bundle-IMMZIND01Logic.json')
+    * def databundle = read('Bundle-IMMZIND01.json')
     Given url urlBase
     And request databundle
     When method post
@@ -19,7 +19,7 @@ Feature: IMMZ.IND.01 Immunization coverage for BCG vaccine
     And match response.group[0].population[?(@.id=='IMMZ.IND.01.N')].count == [1]
 
   Scenario: Delete the data after testing
-    * def delbundle = read('Bundle-DEL-IMMZIND01Logic.json')
+    * def delbundle = read('Bundle-DEL-IMMZIND01.json')
     Given url urlBase
     And request delbundle
     When method post
