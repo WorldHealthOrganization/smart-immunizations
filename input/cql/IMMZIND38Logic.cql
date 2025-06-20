@@ -45,15 +45,22 @@ define "Initial Population":
 /*
 @denominator: Number of clients in the target population who received dose 1 of malaria vaccine during the reporting period
 @pseudocode: COUNT clients with an immunization event WHERE "Vaccine type" = "Malaria vaccines" for the 1st dose in the primary series AND "Date and time of vaccination" is during the reporting period
-@note: Added 8 weeks to occurrence of dose 1 since that is the expected time to receive the 3rd dose
-*/
+@note: Updated to match the definition to only include those who are due for the 3rd dose.
+       If client ever received a 2nd dose the due date is 4 weeks after that.
+       If client has only received the 1st dose, the due date is 8 weeks after that.
+       Only include in the denominator those who are due during the measurement period.*/
 define "Denominator":
-  exists( (Malaria."Malaria Primary Series Doses Administered to Patient".getDose('1')) I
-    where (start of I.occurrence.toInterval() + 8 weeks) before end of "Measurement Period" )
+  if exists (Malaria."Malaria Primary Series Doses Administered to Patient".getDose('2'))
+  then exists( (Malaria."Malaria Primary Series Doses Administered to Patient".getDose('2')) I
+        where (start of I.occurrence.toInterval() + 4 weeks) during "Measurement Period" )
+  else exists( (Malaria."Malaria Primary Series Doses Administered to Patient".getDose('1')) I
+        where (start of I.occurrence.toInterval() + 8 weeks) during "Measurement Period" )
     
 /*
 @numerator: Number of clients who received a 1st dose of malaria vaccine during the reporting period who should have received (via scheduling logic) the 3rd dose of malaria vaccine during the reporting period but did not receive it
 @pseudocode: (COUNT of clients with an immunization event WHERE "Vaccine type" = "Malaria vaccines" for the 1st dose in the primary series AND "Date and time of vaccination" is during the reporting period) - (COUNT of clients with an immunization event WHERE "Vaccine type" = "Malaria vaccines" for the 3rd dose in the primary series AND "Date and time of vaccination" is during the reporting period)
+@note: Only include those from the denominator that did not receive a 3rd dose during the measurement period.
+        Those where the 3rd dose due date is during the period but have not received the 3rd dose.
 */
 define "Numerator":
   "Denominator"

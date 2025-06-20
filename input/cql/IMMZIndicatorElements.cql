@@ -267,13 +267,21 @@ define "Immunizations And Adverse Events During Measurement Period":
   where I.reaction.detail.references(O)
   return { immunization: I, adverseEvent: O }
 
-define "Pentavalent Doses Administered to Patient During Measurement Period":
-  "Doses Administered to Patient During Measurement Period" I 
+define "Pentavalent Doses Administered to Patient":
+  Elements."Doses Administered to Patient" I 
     where I.vaccineCode in Concepts."Pentavalent vaccines"
 
-define "Measles and Rubella Doses Administered to Patient During Measurement Period":
-  "Doses Administered to Patient During Measurement Period" I 
+define "Pentavalent Doses Administered to Patient During Measurement Period":
+  "Pentavalent Doses Administered to Patient" I
+    where I.occurrence.toInterval() starts during "Measurement Period"
+
+define "Measles and Rubella Doses Administered to Patient":
+  Elements."Doses Administered to Patient" I 
     where I.vaccineCode in Concepts."Measles and rubella-containing vaccines"
+
+define "Measles and Rubella Doses Administered to Patient During Measurement Period":
+  "Measles and Rubella Doses Administered to Patient" I
+    where I.occurrence.toInterval() starts during "Measurement Period"
 
 define "COVID-19 Doses Administered to Patient During Measurement Period":
   "Doses Administered to Patient During Measurement Period" I 

@@ -45,11 +45,12 @@ define "Initial Population":
 /*
 @denominator: Number of clients in the target population who received dose 3 of malaria vaccine during the reporting period
 @pseudocode: COUNT clients with an immunization event WHERE "Vaccine type" = "Malaria vaccines" for the 3rd dose in the primary series AND "Date and time of vaccination" is during the reporting period
-@note: Put 4 weeks as the minimum, but note the scheduling table recommends being at least a year.
+@note: Put 4 weeks as the minimum, but note the scheduling table recommends being at least a year so this may be better to be
+        a 12 month for the due date or even 18 months for the overdue date.
 */
 define "Denominator":
   exists( (Malaria."Malaria Primary Series Doses Administered to Patient".getDose('3')) I
-    where (start of I.occurrence.toInterval() + 4 weeks) before end of "Measurement Period" )
+    where (start of I.occurrence.toInterval() + 4 weeks) during "Measurement Period" )
 
 /*
 @numerator: Number of clients who received the 3rd dose of malaria vaccine during the reporting period who should have received (via scheduling logic) the 4th dose of malaria vaccine during the reporting period but did not receive it

@@ -45,16 +45,18 @@ define "Initial Population":
 /*
 @denominator: Number of clients in the target population who received BCG vaccine during the reporting period
 @pseudocode: COUNT clients with an immunization event WHERE "Vaccine type" = "BCG vaccines" AND "Date and time of vaccination" is during the reporting period
-@note: Only including those who are eligible for first dose of Measles/rubella at 9 months.
+@note: Only including those who are eligible for first dose of Measles/rubella at 9 months and who have 
+        received the BCG dose.  This is for high incidence of Measles/rubella.  For low incidence this should be 12 months.
 */
 define "Denominator":
-  exists( BCG."BCG Doses Administered to Patient" I
-    where I.occurrence.toInterval() starts during "Measurement Period" )
-  and AgeInMonthsAt(end of "Measurement Period") >= 9
+  exists( BCG."BCG Doses Administered to Patient" I )
+  and Patient.birthDate + 9 months during "Measurement Period" 
 
 /*
 @numerator: Number of clients who received BCG vaccine during the reporting period who should have received 1st dose of measles and rubella-containing vaccine during the reporting period but did not receive it
 @pseudocode: (COUNT of clients with an immunization event WHERE "Vaccine type"" = "BCG vaccines" AND "Date and time of vaccination" is during the reporting period) - (COUNT of clients with an immunization event WHERE "Vaccine type" = "Measles and rubella-containing vaccines" for the 1st dose in the primary series AND "Date and time of vaccination" is during the reporting period)
+@note: Only include those from the denominator that did not receive a measles/rubella 1st dose during the measurement period.
+        Those where the 1st dose due date is during the period but have not received the 1st dose.
 */
 define "Numerator":
   "Denominator"
