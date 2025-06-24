@@ -88,10 +88,7 @@ Due Date: ' + ToString("MCV2 Due Date")
 @pseudocode: "Date of birth" + 15 months
 */
 define "MCV2 Due Date":
-  if "MCV2" then WC.LatestOf({
-    Patient.birthDate + 15 months,
-    Encounter."Date of Latest Live Attenuated Vaccine" + 4 weeks
-  })
+  if "MCV2" then Patient.birthDate + 15 months
   else null
 
 /*
