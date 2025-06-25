@@ -48,3 +48,16 @@ Description:  "Data elements for the IMMZ.D17.Report AEFI Data Dictionary Activi
   * obeys IMMZ-D-reqReaction-1
   * ^code[+] = IMMZ.D#DE115
   * ^code[+] = $SCT#293104008 "Adverse reaction to component of vaccine product (disorder)"
+
+Mapping:    IMMZD17.to.Observation
+Source:     IMMZD17
+Target:     "http://smart.who.int/immunizations/StructureDefinition/IMMZAdverseEvent"
+Title:      "Mapping from the IMMZ.D17 to the IMMZAdverseEvent profile"
+
+* -> "AdverseEvent"
+* patient -> "AdverseEvent.subject"
+* reactionDate -> "AdverseEvent.date"
+* reactionManifestion -> "AdverseEvent.event"
+* typeOfReaction -> "AdverseEvent.seriousness"
+* otherImportantMedicalEvent -> "AdverseEvent.extension[otherMedicalEvent].valueString"
+* reactionOutcome -> "AdverseEvent.outcome"
