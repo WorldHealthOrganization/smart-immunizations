@@ -25,21 +25,21 @@ Usage:        #definition
 * group[+]
   * source = Canonical(IMMZ.D)
   * target = "http://terminology.hl7.org/CodeSystem/adverse-event-outcome"
-  * insertElementMap(DE116, fatal, equivalent)
-  * insertElementMap(DE117, resolved, equivalent)
-  * insertElementMap(DE118, resolvedWithSequelae, equivalent)
-  * insertElementMap(DE119, recovering, equivalent)
-  * insertElementMap(DE120, ongoing, equivalent)
-  * insertElementMap(DE121, unknown, equivalent)
+  * insert ElementMap(DE116, fatal, equivalent)
+  * insert ElementMap(DE117, resolved, equivalent)
+  * insert ElementMap(DE118, resolvedWithSequelae, equivalent)
+  * insert ElementMap(DE119, recovering, equivalent)
+  * insert ElementMap(DE120, ongoing, equivalent)
+  * insert ElementMap(DE121, unknown, equivalent)
 * group[+]
   * source = "http://terminology.hl7.org/CodeSystem/adverse-event-outcome"
   * target = Canonical(IMMZ.D)
-  * insertElementMap(fatal, DE116, equivalent)
-  * insertElementMap(resolved, DE117, equivalent)
-  * insertElementMap(resolvedWithSequelae, DE118, equivalent)
-  * insertElementMap(recovering, DE119, equivalent)
-  * insertElementMap(ongoing, DE120, equivalent)
-  * insertElementMap(unknown, DE121, equivalent)
+  * insert ElementMap(fatal, DE116, equivalent)
+  * insert ElementMap(resolved, DE117, equivalent)
+  * insert ElementMap(resolvedWithSequelae, DE118, equivalent)
+  * insert ElementMap(recovering, DE119, equivalent)
+  * insert ElementMap(ongoing, DE120, equivalent)
+  * insert ElementMap(unknown, DE121, equivalent)
 
 * group[+]
   * source = Canonical(IMMZ.D)

@@ -23,4 +23,4 @@ Description:  "AdverseEvent Profile for the Immunizations SMART Guidelines.  Fro
 * seriousness 1..1
 * seriousness from IMMZ.D.DE107 (required)
 * outcome 1..1
-* extension contains IMMZOtherMedicalEvent called otherMedicalEvent 0..1
+* extension contains IMMZOtherMedicalEvent named otherMedicalEvent 0..1
