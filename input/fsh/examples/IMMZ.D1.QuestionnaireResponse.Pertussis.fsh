@@ -13,6 +13,6 @@ Usage: #example
 * insert QRItem( Boolean, pretermBirth, false )
 * insert QRItem( Boolean, immunocompromised, false )
 * insert QRItem( Coding, vaccineType, IMMZ.Z#DE12 "Pertussis-containing vaccines" )
-* insert QRItem( DateTime, dateAndTimeOfVaccination, "2020-08-05")
+* insert QRItem( DateTime, dateAndTimeOfVaccination, "2020-08-05T04:00:00Z")
 * insert QRItem( Date, contactDate, "2020-08-05" )
 * insert QRItem( Integer, doseNumber, 1 )

@@ -15,6 +15,6 @@ Usage: #example
 * insert QRItem( Boolean, immunocompromised, false )
 * insert QRItem( Coding, typeOfPoliovirusDose, IMMZ.D#DE214 "bOPV" ) //
 * insert QRItem( Coding, vaccineType, IMMZ.Z#DE14 "Poliovirus-containing vaccines" )
-* insert QRItem( DateTime, dateAndTimeOfVaccination, "2020-06-18")
+* insert QRItem( DateTime, dateAndTimeOfVaccination, "2020-06-18T04:00:00Z")
 * insert QRItem( Date, contactDate, "2020-06-18" )
 * insert QRItem( Integer, doseNumber, 1 )

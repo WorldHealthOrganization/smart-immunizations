@@ -9,6 +9,7 @@ Table: Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus
 
 * ^status = #active
 * ^name = "IMMZ_D2_DT_Rabies"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #nrpsdwa-48.123, [[No rabies primary series doses were administered]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #orpsdwa-49.123, [[One rabies primary series doses were administered]] )

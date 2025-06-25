@@ -4,6 +4,7 @@ Description: "ValueSet for Diphtheria-containing vaccines for IMMZ.Z.DE3"
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE3"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE3, [[Diphtheria-containing vaccines]] )
 * insert AddWithExpand( $ICD11, #XM8AW3, [[Diphtheria vaccines]] )

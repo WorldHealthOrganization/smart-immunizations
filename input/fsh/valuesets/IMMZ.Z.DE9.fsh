@@ -4,6 +4,7 @@ Description: "ValueSet for Measles-containing vaccines for IMMZ.Z.DE9"
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE9"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE9, [[Measles-containing vaccines]] )
 * insert AddWithExpand( $ICD11, #XM28X5, [[Measles vaccines]] )

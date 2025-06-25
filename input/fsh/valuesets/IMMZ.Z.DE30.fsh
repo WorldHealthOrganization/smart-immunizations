@@ -4,6 +4,7 @@ Description: "ValueSet for Oral polio vaccines for IMMZ.Z.DE30"
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE30"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE30, [[Oral polio vaccines]] )
 * insert AddWithExpand( $ICD11, #XM0VX8, [[Poliomyelitis oral, monovalent live attenuated]] )

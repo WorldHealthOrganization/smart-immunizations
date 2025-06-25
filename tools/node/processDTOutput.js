@@ -18,6 +18,8 @@ const getInitials = ( str ) => {
   return str.match(/\b(\d+|\w)/g).join('').toLowerCase()
 }
 
+const runtime = new Date().toISOString()
+
 var file, sheetname, rowoffset, rows, cols, prefix, dt;
 
 [file, sheetname, rowoffset, rows, cols, prefix, dt] = process.argv.slice(2);
@@ -338,6 +340,7 @@ Table: ${table}
 
 * ^status = #active
 * ^name = "${tablevsname}"
+* ^expansion.timestamp = ${runtime}
 
 `)
 

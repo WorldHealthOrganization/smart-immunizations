@@ -4,6 +4,7 @@ Description: "ValueSet for Yellow fever vaccines for IMMZ.Z.DE23"
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE23"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE23, [[Yellow fever vaccines]] )
 * insert AddWithExpand( $ICD11, #XM0N24, [[Yellow fever vaccine]] )

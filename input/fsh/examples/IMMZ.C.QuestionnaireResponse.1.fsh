@@ -11,7 +11,7 @@ Usage: #example
 * insert QRItem( String, familyName, "Mbeki" )
 * insert QRItem( Coding, sex, IMMZ.C#DE6 "Male" )
 * insert QRItem( Date, dateOfBirth, "2020-06-18" )
-* insert QRItem( Integer, age, 4 )
+* insert QRItem( String, age, "4 years")
 * item[+]
   * linkId = "caregiversMultiple"
   * insert QRItem( String, caregiversFullName, "Zanele Mbeki" )

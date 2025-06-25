@@ -4,6 +4,7 @@ Description: "ValueSet for Reaction outcome for IMMZ.D.DE115"
 
 * ^status = #active
 * ^name = "IMMZ_D_DE115"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D, #DE116, Died )
 * insert AddWithExpandCanonical( IMMZ.D, #DE117, Recovered )

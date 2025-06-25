@@ -4,6 +4,7 @@ Description: "ValueSet for Hib-containing vaccines for IMMZ.Z.DE4"
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE4"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE4, [[Hib-containing vaccines]] )
 * insert AddWithExpand( $ICD11, #XM11V3, [[Haemophilus influenzae B vaccines]] )

@@ -9,6 +9,7 @@ Table: Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for cl
 
 * ^status = #active
 * ^name = "IMMZ_D2_DT_Cholera_WC_rBS_vaccine_2_doses"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #ncpsdwa-47.116, [[No cholera primary series dose was administered]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #alocpsdwa-57.117, [[At least one cholera primary series dose was administered]] )

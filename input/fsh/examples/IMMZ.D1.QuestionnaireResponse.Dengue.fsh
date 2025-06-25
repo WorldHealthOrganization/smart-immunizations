@@ -14,6 +14,6 @@ Usage: #example
 * insert QRItem( Boolean, immunocompromised, false )
 * insert QRItem( Coding, dengueSerostatus, IMMZ.D#DE265 "Negative" ) //
 * insert QRItem( Coding, vaccineType, IMMZ.Z#DE25 "Dengue vaccines" )
-* insert QRItem( DateTime, dateAndTimeOfVaccination, "2024-08-05")
+* insert QRItem( DateTime, dateAndTimeOfVaccination, "2024-08-05T04:00:00Z")
 * insert QRItem( Date, contactDate, "2024-08-05" )
 * insert QRItem( Integer, doseNumber, 1 )

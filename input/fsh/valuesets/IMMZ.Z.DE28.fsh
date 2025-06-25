@@ -4,6 +4,7 @@ Description: "ValueSet for Tetanus and diphtheria-containing vaccines for IMMZ.Z
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE28"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE28, [[Tetanus and diphtheria-containing vaccines]] )
 * insert AddWithExpand( $ICD11, #XM32Q5, [[Tetanus and diphtheria vaccines]] )

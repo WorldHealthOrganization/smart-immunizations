@@ -4,6 +4,7 @@ Description: "ValueSet for Pertussis-containing vaccines for IMMZ.Z.DE12"
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE12"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE12, [[Pertussis-containing vaccines]] )
 * insert AddWithExpand( $ICD11, #XM43M9, [[Pertussis vaccines]] )

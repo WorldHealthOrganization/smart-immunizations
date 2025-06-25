@@ -9,6 +9,7 @@ Table: 2-dose schedule (countries with mumps in schedule and low transmission of
 
 * ^status = #active
 * ^name = "IMMZ_D2_DT_Mumps"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csailt12m-35.42, [[Client's age is less than 12 months]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #nmpsdwa-47.125, [[No mumps primary series doses were administered]] )

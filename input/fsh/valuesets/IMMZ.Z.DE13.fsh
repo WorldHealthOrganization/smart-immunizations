@@ -4,6 +4,7 @@ Description: "ValueSet for Pneumococcal vaccines for IMMZ.Z.DE13"
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE13"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE13, [[Pneumococcal vaccines]] )
 * insert AddWithExpand( $ICD11, #XM9EM7, [[Pneumococcal vaccines]] )

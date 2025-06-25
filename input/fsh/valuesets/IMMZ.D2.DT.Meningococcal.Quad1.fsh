@@ -9,6 +9,7 @@ Table: Quadrivalent conjugate vaccines (A,C,W135,Y-CRM), 1-dose schedule
 
 * ^status = #active
 * ^name = "IMMZ_D2_DT_Meningococcal_Quadrivalent_conjugate_vaccines_1_dose"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #nmpsdwa-53.130, [[No meningococcal primary series dose was administered]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #ompsdwa-54.130, [[One meningococcal primary series dose was administered]] )

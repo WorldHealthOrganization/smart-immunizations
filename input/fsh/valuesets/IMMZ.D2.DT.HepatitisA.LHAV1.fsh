@@ -9,6 +9,7 @@ Table: Live attenuated hepatitis A virus (HAV), 1 dose schedule
 
 * ^status = #active
 * ^name = "IMMZ_D2_DT_Hepatitis_A_Live_attenuated_HAV_1_dose"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #nhapsdwa-51.139, [[No hepatitis A primary series dose was administered]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csailt18m-35.44, [[Client's age is less than 18 months]] )

@@ -6,6 +6,7 @@ const csvFile = process.argv[2]
 const camelCase = (str) => {
   return str.toLowerCase().replace(/[-_\W](.)/g, (match, char) => char.toUpperCase())
 }
+const runtime = new Date().toISOString()
 
 let codesystems = {}
 let conceptmaps = {}
@@ -160,7 +161,7 @@ fs.createReadStream(csvFile)
       if ( valuesets[deid] ) {
         console.error("Codes for "+deid+" already exists!!")
       }
-      valuesets[deid] = "ValueSet: "+deid+"\nTitle: \""+deid+" ValueSet for "+label+"\"\nDescription: \"ValueSet for "+label+" for "+deid+"\"\n\n* ^status = #active\n* ^name = \""+csName+"_"+dataelement+"\"\n\n"
+      valuesets[deid] = "ValueSet: "+deid+"\nTitle: \""+deid+" ValueSet for "+label+"\"\nDescription: \"ValueSet for "+label+" for "+deid+"\"\n\n* ^status = #active\n* ^name = \""+csName+"_"+dataelement+"\"\n* ^expansion.timestamp = "+runtime+"\n\n"
     }
     let icd11 = row['ICD-11\ncode'].trim()
     let loinc = row['LOINC version 2.68\ncode'].trim()

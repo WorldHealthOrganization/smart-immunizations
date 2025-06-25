@@ -16,6 +16,6 @@ Usage: #example
 * insert QRItem( Coding, typeOfHepatitisBDose, IMMZ.D#DE255 "Hepatitis B monovalent vaccine" ) //
 * insert QRItem( Decimal, birthWeightInGrams, 3255.7 ) //
 * insert QRItem( Coding, vaccineType, IMMZ.Z#DE6 "Hepatitis B-containing vaccines" )
-* insert QRItem( DateTime, dateAndTimeOfVaccination, "2020-06-25")
+* insert QRItem( DateTime, dateAndTimeOfVaccination, "2020-06-25T04:00:00Z")
 * insert QRItem( Date, contactDate, "2021-06-25" )
 * insert QRItem( Integer, doseNumber, 1 )

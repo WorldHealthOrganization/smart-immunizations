@@ -9,6 +9,7 @@ Table: Potential contraindications
 
 * ^status = #active
 * ^name = "IMMZ_D5_DT_Hepatitis_A_contraindications"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D5.DT.Inputs, #tcicp-32.56, [[The client is currently pregnant]] )
 * insert AddWithExpandCanonical( IMMZ.D5.DT.Inputs, #tcisi-40.64, [[The client is severely immunocompromised]] )

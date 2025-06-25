@@ -4,6 +4,7 @@ Description: "ValueSet for Poliovirus-containing vaccines for IMMZ.Z.DE14"
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE14"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE14, [[Poliovirus-containing vaccines]] )
 * insert AddWithExpand( $ICD11, #XM0N50, [[Poliomyelitis vaccines]] )

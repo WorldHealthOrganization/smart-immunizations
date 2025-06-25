@@ -4,6 +4,7 @@ Description: "ValueSet for Seasonal influenza vaccines for IMMZ.Z.DE18"
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE18"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE18, [[Seasonal influenza vaccines]] )
 * insert AddWithExpand( $ICD11, #XM1LR5, [[Influenza vaccines]] )

@@ -9,6 +9,7 @@ Table: Monovalent MenC conjugate vaccine schedule
 
 * ^status = #active
 * ^name = "IMMZ_D2_DT_Meningococcal_Monovalent_MenC_conjugate_vaccine_"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #nmpsdwa-53.130, [[No meningococcal primary series dose was administered]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #ompsdwa-54.130, [[One meningococcal primary series dose was administered]] )

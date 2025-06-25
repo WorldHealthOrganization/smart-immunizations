@@ -9,6 +9,7 @@ Table: Quadrivalent conjugate vaccines (A,C,W135,Y-D), 2-dose schedule
 
 * ^status = #active
 * ^name = "IMMZ_D2_DT_Meningococcal_Quadrivalent_conjugate_vaccines_2_doses"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csailt9m-34.43, [[Client's age is less than 9 months]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #nmpsdwa-53.130, [[No meningococcal primary series dose was administered]] )

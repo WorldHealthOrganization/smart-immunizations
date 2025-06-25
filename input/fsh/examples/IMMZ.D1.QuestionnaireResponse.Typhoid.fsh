@@ -15,6 +15,6 @@ Usage: #example
 * insert QRItem( Boolean, immunologicallyStable, true ) //
 * insert QRItem( Coding, typeOfTyphoidDose, IMMZ.D#DE226 "Typbar-TCV" ) //
 * insert QRItem( Coding, vaccineType, IMMZ.Z#DE21 "Typhoid vaccines" )
-* insert QRItem( DateTime, dateAndTimeOfVaccination, "2021-04-01")
+* insert QRItem( DateTime, dateAndTimeOfVaccination, "2021-04-01T04:00:00Z")
 * insert QRItem( Date, contactDate, "2021-04-01" )
 * insert QRItem( Integer, doseNumber, 1 )

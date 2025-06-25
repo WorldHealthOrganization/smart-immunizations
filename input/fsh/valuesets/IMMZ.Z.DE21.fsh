@@ -4,6 +4,7 @@ Description: "ValueSet for Typhoid vaccines for IMMZ.Z.DE21"
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE21"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE21, [[Typhoid vaccines]] )
 * insert AddWithExpand( $ICD11, #XM8BU8, [[Typhoid vaccines]] )

@@ -4,6 +4,7 @@ Description: "ValueSet for HPV vaccines for IMMZ.Z.DE7"
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE7"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE7, [[HPV vaccines]] )
 * insert AddWithExpand( $ICD11, #XM9QP0, [[Papillomavirus vaccine]] )

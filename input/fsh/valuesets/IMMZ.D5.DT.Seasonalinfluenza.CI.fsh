@@ -9,6 +9,7 @@ Table: Potential contraindications
 
 * ^status = #active
 * ^name = "IMMZ_D5_DT_Seasonal_influenza_contraindications"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D5.DT.Inputs, #tchahoar-50.67, [[The client has a history of anaphylactic reactions]] )
 * insert AddWithExpandCanonical( IMMZ.D5.DT.Inputs, #tchahosaraapdotavc-101.59, [[The client has a history of severe allergic reactions after a previous dose or to a vaccine component]] )

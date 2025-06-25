@@ -4,6 +4,7 @@ Description: "ValueSet for Immunization recommendation status for IMMZ.D.DE156"
 
 * ^status = #active
 * ^name = "IMMZ_D_DE156"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D, #DE157, Not due )
 * insert AddWithExpandCanonical( IMMZ.D, #DE158, Due )

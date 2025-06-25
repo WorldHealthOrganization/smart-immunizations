@@ -4,6 +4,7 @@ Description: "ValueSet for Client education and counselling on immunization for 
 
 * ^status = #active
 * ^name = "IMMZ_D_DE86"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D, #DE87, Counselling on functions of the immunological system )
 * insert AddWithExpandCanonical( IMMZ.D, #DE88, Advising about functions of the immunological system )

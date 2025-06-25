@@ -9,6 +9,7 @@ Table: CYD-TDV (Dengvaxia), 3-dose schedule without pre-vaccination screening [w
 
 * ^status = #active
 * ^name = "IMMZ_D2_DT_Dengue_3_doses_without_pre_vaccination_screening"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csailt9y-33.43, [[Client's age is less than 9 years]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csaimt45y-34.43, [[Client's age is more than 45 years]] )

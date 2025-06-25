@@ -15,6 +15,6 @@ Usage: #example
 * insert QRItem( Coding, typeOfMeningococcalDose, [[IMMZ.D#DE233 "MenA conjugate vaccine (5µg)"]] )
 * insert QRItem( Integer, ageInMonthsWhenClientReceivedFirstMeningococcalDose, 9 )
 * insert QRItem( Coding, vaccineType, IMMZ.Z#DE10 "Meningococcal vaccines" )
-* insert QRItem( DateTime, dateAndTimeOfVaccination, "2021-04-01")
+* insert QRItem( DateTime, dateAndTimeOfVaccination, "2021-04-01T04:00:00Z")
 * insert QRItem( Date, contactDate, "2021-04-01" )
 * insert QRItem( Integer, doseNumber, 1 )

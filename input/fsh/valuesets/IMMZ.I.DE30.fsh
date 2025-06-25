@@ -4,6 +4,7 @@ Description: "ValueSet for Disaggregation group for IMMZ.I.DE30"
 
 * ^status = #active
 * ^name = "IMMZ_I_DE30"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical(IMMZ.I, #DE31, [[By-Sex]])
 * insert AddWithExpandCanonical(IMMZ.I, #DE32, [[By-Administrative Area]])

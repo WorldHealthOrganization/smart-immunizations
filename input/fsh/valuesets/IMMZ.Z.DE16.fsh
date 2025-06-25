@@ -4,6 +4,7 @@ Description: "ValueSet for Rotavirus vaccines for IMMZ.Z.DE16"
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE16"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE16, [[Rotavirus vaccines]] )
 * insert AddWithExpand( $ICD11, #XM1CE0, [[Rotavirus diarrhoea vaccines]] )

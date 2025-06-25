@@ -4,6 +4,7 @@ Description: "ValueSet for Meningococcal vaccines for IMMZ.Z.DE10"
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE10"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE10, [[Meningococcal vaccines]] )
 * insert AddWithExpand( $ICD11, #XM2WV4, [[Meningococcal vaccines]] )

@@ -9,6 +9,7 @@ Table: 4-dose schedule (The RTS,S/AS01 malaria vaccine should be used for the pr
 
 * ^status = #active
 * ^name = "IMMZ_D2_DT_Malaria"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #csailt5m-34.43, [[Client's age is less than 5 months]] )
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #nmpsdwa-49.124, [[No malaria primary series doses were administered]] )

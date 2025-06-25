@@ -12,7 +12,7 @@ Usage: #example
 * insert QRItem( Date, dateWhenPrimaryVaccinationSeriesWasCompleted, "2020-07-01" )
 * insert QRItem( Coding, hivStatus, IMMZ.D#DE206 "HIV-negative" )
 * insert QRItem( Coding, vaccineType, IMMZ.Z#DE1 "BCG vaccines" )
-* insert QRItem( DateTime, dateAndTimeOfVaccination, "2020-07-01")
+* insert QRItem( DateTime, dateAndTimeOfVaccination, "2020-07-01T04:00:00Z")
 * insert QRItem( Date, contactDate, "2020-07-01" )
 * insert QRItem( Integer, doseNumber, 1 )
 * insert QRItem( Coding, immunizationEventStatus, IMMZ.D#DE2 "Completed" )

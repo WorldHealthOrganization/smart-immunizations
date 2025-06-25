@@ -4,6 +4,7 @@ Description: "ValueSet for Reaction manifestation for IMMZ.D.DE95"
 
 * ^status = #active
 * ^name = "IMMZ_D_DE95"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D, #DE96, Severe local reaction )
 * insert AddWithExpandCanonical( IMMZ.D, #DE98, Seizures )

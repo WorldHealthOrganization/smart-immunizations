@@ -15,6 +15,6 @@ Usage: #example
 * insert QRItem( Decimal, vnaLevel, 0.0) //
 * insert QRItem( Boolean, riskOfOccupationalExposureToRabiesVirus, true ) //
 * insert QRItem( Coding, vaccineType, IMMZ.Z#DE15 "Rabies vaccines" )
-* insert QRItem( DateTime, dateAndTimeOfVaccination, "2020-12-18")
+* insert QRItem( DateTime, dateAndTimeOfVaccination, "2020-12-18T04:00:00Z")
 * insert QRItem( Date, contactDate, "2020-12-18" )
 * insert QRItem( Integer, doseNumber, 1 )

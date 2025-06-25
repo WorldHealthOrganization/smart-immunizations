@@ -4,6 +4,7 @@ Description: "ValueSet for Disease targeted for IMMZ.D.DE126"
 
 * ^status = #active
 * ^name = "IMMZ_D_DE126"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D, #DE127, Typhoid )
 * insert AddWithExpandCanonical( IMMZ.D, #DE128, Influenza )

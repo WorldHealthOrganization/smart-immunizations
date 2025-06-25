@@ -4,6 +4,7 @@ Description: "ValueSet for DTP-containing vaccines for IMMZ.Z.DE24"
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE24"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE24, [[DTP-containing vaccines]] )
 * insert AddWithExpand( $ICD11, #XM31Q8, [[Tetanus, diphtheria, acellular pertussis vaccines]] )

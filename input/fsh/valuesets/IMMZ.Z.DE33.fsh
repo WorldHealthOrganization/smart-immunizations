@@ -4,12 +4,7 @@ Description: "ValueSet for Tetanus and diphtheria-containing vaccines (DT) for I
 
 * ^status = #active
 * ^name = "IMMZ_Z_DE33"
+* ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.Z, #DE33, [[Tetanus and diphtheria-containing vaccines (DT)]] )
-* ^expansion.contains[+].system = Canonical(IMMZ.Z)
-* ^expansion.contains[=].code = #DE33
-* ^expansion.contains[=].display = "Tetanus and diphtheria-containing vaccines (DT)"
 * insert AddWithExpand( $ICD11, #XM4039, [[Vaccines diphtheria with tetanus]] )
-* ^expansion.contains[+].system = $ICD11
-* ^expansion.contains[=].code = #XM4039
-* ^expansion.contains[=].display = "Vaccines diphtheria with tetanus"
