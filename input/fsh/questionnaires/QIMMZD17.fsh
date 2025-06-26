@@ -12,7 +12,7 @@ Usage: #definition
 * contained[+] = IMMZ.D.DE107
 * contained[+] = IMMZ.D.DE115
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
-* extension[=].valueCanonical = "http://smart.who.int/immunizations/StructureMap/"
+* extension[=].valueCanonical = "http://smart.who.int/immunizations/StructureMap/IMMZ.D17.QRToBundle"
 
 * insert Question(reactionReported, Reaction reported, boolean, false, false)
 * item[=]

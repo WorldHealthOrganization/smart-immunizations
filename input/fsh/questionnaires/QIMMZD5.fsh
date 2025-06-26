@@ -10,7 +10,7 @@ Usage: #definition
 * language = #en
 * contained[+] = IMMZ.D.DE161
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
-* extension[=].valueCanonical = "http://smart.who.int/immunizations/StructureMap/"
+* extension[=].valueCanonical = "http://smart.who.int/immunizations/StructureMap/IMMZ.D5.QRToBundle"
 
 * insert Question(potentialContraindications, Potential contraindications, choice, true, false)
 * item[=]

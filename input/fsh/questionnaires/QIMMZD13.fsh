@@ -34,7 +34,7 @@ Usage: #definition
 * contained[+] = IMMZ.Z.DE10
 * contained[+] = IMMZ.Z.DE5
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
-* extension[=].valueCanonical = "http://smart.who.int/immunizations/StructureMap/"
+* extension[=].valueCanonical = "http://smart.who.int/immunizations/StructureMap/IMMZ.D13.QRToBundle"
 
 * insert Question(birthDose, Birth dose, boolean, true, false)
 * item[=]

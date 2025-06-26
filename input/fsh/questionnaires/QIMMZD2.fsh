@@ -9,8 +9,6 @@ Usage: #definition
 * subjectType = #Patient
 * language = #en
 * contained[+] = IMMZ.D.DE156
-* extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
-* extension[=].valueCanonical = "http://smart.who.int/immunizations/StructureMap/"
 
 * insert Question(immunizationRecommendationStatus, Immunization recommendation status, choice, true, false)
 * item[=]

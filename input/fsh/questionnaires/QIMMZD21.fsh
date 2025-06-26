@@ -9,9 +9,6 @@ Usage: #definition
 * subjectType = #Patient
 * language = #en
 
-* extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
-* extension[=].valueCanonical = "http://smart.who.int/immunizations/StructureMap/"
-
 * insert Question(certificateIssuer, Certificate issuer, string, true, false)
 * item[=]
   * code[+] = IMMZ.D#DE151
