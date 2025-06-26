@@ -11,19 +11,22 @@ group QRespToIMMZD17 ( source qr : QResp, target immz : IMMZD17) {
 
   qr.subject as subject -> immz.patient = subject "setPatient";
 
-  qr.item as item where item.linkId = 'reactionDate' -> immz.reactionDate as field 
+  qr.item as item where linkId = 'reactionReported' -> immz.reactionReported as field 
+    then ItemToValue(item, field) "reactionReported";
+
+  qr.item as item where linkId = 'reactionDate' -> immz.reactionDate as field 
     then ItemToValue(item, field) "reactionDate";
 
-  qr.item as item where item.linkId = 'reactionManifestion' -> immz.reactionManifestion as field 
-    then ItemToCoding(item, field) "reactionManifestion";
+  qr.item as item where linkId = 'reactionManifestation' -> immz.reactionManifestation as field 
+    then ItemToCoding(item, field) "reactionManifestation";
 
-  qr.item as item where item.linkId = 'typeOfReaction' -> immz.typeOfReaction as field 
+  qr.item as item where linkId = 'typeOfReaction' -> immz.typeOfReaction as field 
     then ItemToCoding(item, field) "typeOfReaction";
 
-  qr.item as item where item.linkId = 'otherImportantMedicalEvent' -> immz.otherImportantMedicalEvent as field 
+  qr.item as item where linkId = 'otherImportantMedicalEvent' -> immz.otherImportantMedicalEvent as field 
     then ItemToValue(item, field) "otherImportantMedicalEvent";
 
-  qr.item as item where item.linkId = 'reactionOutcome' -> immz.reactionOutcome as field 
+  qr.item as item where linkId = 'reactionOutcome' -> immz.reactionOutcome as field 
     then ItemToCoding(item, field) "reactionOutcome";
 
 }
