@@ -104,6 +104,14 @@ for(let doc of docs) {
     }
   }
 
+  if ( options.adverseevent ) {
+    fs.mkdirSync(topDir+"/AdverseEvent", {recursive: true})
+    for( let ae in options.adverseevent ) {
+      let resource = makeAdverseEvent( ae, options.id, options.adverseevent[ae], options.birth )
+      fs.writeFileSync( topDir+"/AdverseEvent/"+resource.id+".json", Buffer.from( JSON.stringify(resource,null,2)))
+    }
+  }  
+
 }
 
 function shiftDate( shift, birth ) {
@@ -138,7 +146,7 @@ function copyFHIR( resource, options, birth ) {
   if ( options.fhir ) {
     let elements = options.fhir
     for( let element in elements ) {
-      if ( element.endsWith('Date') || element.endsWith('DateTime') || element == 'authoredOn' ) {
+      if ( element.endsWith('Date') || element.endsWith('DateTime') || element == 'authoredOn' || element == 'date' ) {
         elements[element] = shiftDate( elements[element], birth )
       }
       resource[element] = elements[element]
@@ -189,6 +197,36 @@ function makeLocation( loc, patient, options ) {
   copyFHIR( location, options )
 
   return location
+}
+
+function makeAdverseEvent( ae, patient, options, birth ) {
+  let aefi = {
+    "resourceType": "AdverseEvent",
+    "id": "",
+    "actuality": "actual",
+    "event": {},
+    "subject": {
+      "reference": "Patient/"
+    },
+    "seriousness": {},
+    "outcome": {},
+    "suspectEntity": [ {
+      "instance": {
+        "reference": "Immunization/"
+      }
+    } ],
+    "location": {}
+  }
+  aefi.id = ae + "-" + patient
+  aefi.subject.reference = "Patient/"+patient
+  if ( options.location ) {
+    aefi.location.reference = "Location/"+options.location+"-"+patient
+  }
+  aefi.suspectEntity[0].instance.reference = "Immunization/"+options.immunization+"-"+patient
+
+  copyFHIR( aefi, options, birth )
+
+  return aefi
 }
 
 function makeImmunization( immz, patient, options, birth ) {

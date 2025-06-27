@@ -257,8 +257,12 @@ define "Doses Administered to Patient During Measurement Period":
     where I.occurrence.toInterval() starts during "Measurement Period"
 
 define "Adverse Events During Measurement Period":
+  [AdverseEvent] AE
+    where AE.date.toInterval() starts during "Measurement Period"
+/*
   [Observation: WHOConcepts."Adverse Events"] O
     where O.effective.toInterval() during "Measurement Period"
+*/
 
 define "Immunizations And Adverse Events During Measurement Period":
   from
@@ -286,6 +290,10 @@ define "Measles and Rubella Doses Administered to Patient During Measurement Per
 define "COVID-19 Doses Administered to Patient During Measurement Period":
   "Doses Administered to Patient During Measurement Period" I 
     where I.vaccineCode in Concepts."COVID-19 vaccines"
+
+define "Adverse Events for Immunization":
+  [AdverseEvent] AE
+    where AE.actuality = 'actual'
 
 /** 
  * @define Adverse events for immunizations which occurred during (or observed) during measurement period
