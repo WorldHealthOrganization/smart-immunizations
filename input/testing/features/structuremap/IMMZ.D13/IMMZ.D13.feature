@@ -1,4 +1,4 @@
-Feature: IMMZ.C4 StructureMap
+Feature: IMMZ.D13 StructureMap
 
 
   Scenario Outline: Load supporting resources <path>
