@@ -17,7 +17,8 @@ campaigns.
 ### Overview of Key Business Processes 
 The following table describes the workflows of the included processes. 
 
-<table border="1" class="dataframe table table-striped table-bordered">
+<div>
+  <table border="1" class="dataframe table table-striped table-bordered">
   <thead>
     <tr class="header">
       <th><strong>#</strong> </th>
@@ -111,6 +112,7 @@ The following table describes the workflows of the included processes.
     </tr>
   </tbody>
 </table>
+</div>
 
 ### Workflows
 The workflows that follow depict processes that have been generalized across different contexts and may not reflect the variability and nuances across different settings. The simplicity of the workflow may not adequately illustrate the nonlinear steps that may occur.
@@ -118,40 +120,78 @@ The workflows that follow depict processes that have been generalized across dif
 #### Overview of key Immunization process flows
 The business processes included in the DAK are shown in the following figure. Processes included in the DAK start with a letter (e.g. "A.") and are shown using the "Activity with sub-process" shape, which includes a plus sign. 
 
-{% include immz-overview-business-process.svg %}
+<div style="max-width:1200px;">
+  {% include immz-overview-business-process.svg %}
+</div>
 
 ####  A.  Vaccination location registration  
 Objective: All vaccination locations (including private sector facilities, government centres and/or other entities involved in public health efforts) able to administer vaccines must be registered and uniquely identified to enable appropriate tracking of vaccine coverage and stock. In the case of a health-care facility with multiple vaccination locations, only the facility will be registered.
-{% include immz-a-vaccination-location-business-process.svg %}
+
+<div style="max-width:1200px;">
+  {% include immz-a-vaccination-location-business-process.svg %}
+</div>
+
 
 ####  B.  Plan service delivery  
 Objective: In preparation for a vaccination session, ensure sufficient supply and organize workload 
-{% include immz-b-plan-service-delivery-business-process.svg %}
+
+<div style="max-width:1200px;">
+  {% include immz-b-plan-service-delivery-business-process.svg %}
+</div>
+
 
 ####  C.  Client registration 
 Objective: Create and/or update the clients’ vaccine record by including personal data in the EIR to support future vaccine administration
-{% include immz-c-client-registration-business-process.svg %}
+
+<div style="max-width:1200px;">
+  {% include immz-c-client-registration-business-process.svg %}
+</div>
+
 
 ####  D.  Administer vaccine  
 Objective: To determine which vaccines a client needs, administer those and record the relevant necessary data both in the EIR as well as in the appropriate paper records
-{% include immz-d-administer-vaccine-business-process.svg %}
+
+<div style="max-width:1200px;">
+  {% include immz-d-administer-vaccine-business-process.svg %}
+</div>
+
 
 ####  E.  Client reminder  
 Objective: To remind clients it is time to return for a vaccine
-{% include immz-e-client-reminder-business-process.svg %}
+
+<div style="max-width:1200px;">
+  {% include immz-e-client-reminder-business-process.svg %}
+</div>
+
 
 ####  F.  Defaulter tracing  
 Objective: To identify those who are overdue for a vaccine and reach out to them to schedule their vaccination
-{% include immz-f-defaulter-tracing-business-process.svg %}
+
+<div style="max-width:1200px;">
+  {% include immz-f-defaulter-tracing-business-process.svg %}
+</div>
+
 
 ####  G.  Resolve duplicate client records  
 Objective: To identify duplicate client records and consolidate them into one most accurate/suitable record
-{% include immz-g-resolve-duplicate-client-v2-business-process.svg %}
+
+<div style="max-width:1200px;">
+  {% include immz-g-resolve-duplicate-client-v2-business-process.svg %}
+</div>
+
 
 ####  H .  Resolve duplicate vaccination events  
 Objective: To identify duplicate vaccination events within a client record and update into one event
-{% include immz-h-resolve-duplicate-vaccine-v2-business-process.svg %}
+
+<div style="max-width:1200px;">
+  {% include immz-h-resolve-duplicate-vaccine-v2-business-process.svg %}
+</div>
+
 
 ####  I.  Report generation  
 Objective: To provide the ability to access and analyse data and to improve immunization programme decision-making
-{% include immz-i-report-generation-business-process.svg %}
+
+<div style="max-width:1200px;">
+  {% include immz-i-report-generation-business-process.svg %}
+</div>
+
