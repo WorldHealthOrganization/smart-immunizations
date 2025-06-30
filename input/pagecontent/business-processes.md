@@ -17,102 +17,18 @@ campaigns.
 ### Overview of Key Business Processes 
 The following table describes the workflows of the included processes. 
 
-<div>
-  <table border="1" class="dataframe table table-striped table-bordered">
-  <thead>
-    <tr class="header">
-      <th><strong>#</strong> </th>
-      <th><strong>Process Name</strong> </th>
-      <th><strong>Process ID</strong> </th>
-      <th><strong>Personas</strong> </th>
-      <th><strong>Objectives</strong> </th>
-    </tr>
- </thead>
- <tbody>
-    <tr class="odd">
-      <td></td>
-      <td>Title </td>
-      <td>ID used to reference this process throughout the DAK </td>
-      <td>Individuals interacting to complete the process </td>
-      <td>A concrete statement describing what the process seeks to achieve </td>
-    </tr>
-    <tr class="even">
-      <td> A</td>
-      <td>Vaccination location registration </td>
-      <td>IMMZ.A</td>
-      <td>
-        <p>Electronic immunization registry (EIR) staff</p>
-      </td>
-      <td>All vaccination locations (including private sector facilities, government centres and/or other entities involved in public health efforts) able to administer vaccines must be registered and uniquely identified to enable appropriate tracking of vaccine coverage and stock. In the case of a health-care facility with multiple vaccination locations, only the facility will be registered.</td>
-    </tr>
-    <tr class="odd">
-      <td> B</td>
-      <td>Plan service delivery </td>
-      <td>IMMZ.B</td>
-      <td> Health worker</td>
-      <td>
-        <p>To prepare for vaccination session.</p>
-        <p>In preparation for a vaccination session, ensure sufficient supply and organize workload </p>
-      </td>
-    </tr>
-    <tr class="odd">
-      <td> C</td>
-      <td>Client registration </td>
-      <td> IMMZ.C</td>
-      <td>Client, health worker</td>
-      <td>Create and/or update the clients’ vaccine record by including personal data in the EIR to support future vaccine administration</td>
-    </tr>
-    <tr class="even">
-      <td> D</td>
-      <td>Administer vaccine </td>
-      <td> IMMZ.D</td>
-      <td>Health worker</td>
-      <td>To determine which vaccines a client needs, administer those and record the relevant necessary data both in the EIR as well as in the appropriate paper records</td>
-    </tr>
-    <tr class="even">
-      <td> D</td>
-      <td>Client reminder</td>
-      <td> IMMZ.E</td>
-      <td>Health worker</td>
-      <td>To remind clients it is time to return for a vaccine/td>
-    </tr>
-    <tr class="odd">
-      <td> F</td>
-      <td>Defaulter tracing </td>
-      <td> IMMZ.F</td>
-      <td>Health worker, community health worker</td>
-      <td>To identify those who are overdue for a vaccine and reach out to them to schedule their vaccination</td>
-    </tr>
-    <tr class="odd">
-      <td> G</td>
-      <td>Resolve duplicate client records </td>
-      <td>IMMZ.G</td>
-      <td>
-        <p>Health worker, EIR staff</p>
-      </td>
-      <td> To identify duplicate client records and consolidate them into one most accurate/suitable record</td>
-    </tr>
-    <tr class="even">
-      <td>H </td>
-      <td>Resolve duplicate vaccination events </td>
-      <td> IMMZ.H</td>
-      <td>
-        <p>Health worker, EIR staff</p>
-      </td>
-      <td>To identify duplicate vaccination events within a client record and update into one event</td>
-    </tr>
-    <tr class="odd">
-      <td> I</td>
-      <td>Report generation </td>
-      <td> IMMZ.I</td>
-      <td>
-        <p>Health worker, EIR staff</p>
-      </td>
-      <td>To provide the ability to access and analyse data and to improve immunization programme decision-making</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+|    # | Process Name | Process ID | Personas | Objectives |
+|---|---|---|---|---|
+| A | Vaccination location registration  | IMMZ.A | Electronic immunization registry (EIR) staff | All vaccination locations (including private sector facilities, government centres and/or other entities involved in public health efforts) able to administer vaccines must be registered and uniquely identified to enable appropriate tracking of vaccine coverage and stock. In the case of a health-care facility with multiple vaccination locations, only the facility will be registered. |
+| B | Plan service delivery  | IMMZ.B | Health worker | In preparation for a vaccination session, ensure sufficient supply and organize workload  |
+| C | Client registration | IMMZ.C | Client, health worker | Create and/or update the clients’ vaccine record by including personal data in the EIR to support future vaccine administration |
+| D | Administer vaccine  | IMMZ.D | Health worker | To determine which vaccines a client needs, administer those and record the relevant necessary data both in the EIR as well as in the appropriate paper records |
+| E | Client reminder  | IMMZ.E | Health worker | To remind clients it is time to return for a vaccine |
+| F | Defaulter tracing  | IMMZ.F | Health worker, community health worker | To identify those who are overdue for a vaccine and reach out to them to schedule their vaccination |
+| G | Resolve duplicate client records  | IMMZ.G | Health worker, EIR staff | To identify duplicate client records and consolidate them into one most accurate/suitable record |
+| H  | Resolve duplicate vaccination events  | IMMZ.H | Health worker, EIR staff | To identify duplicate vaccination events within a client record and update into one event |
+| I | Report generation  | IMMZ.I | Health worker | To provide the ability to access and analyse data and to improve immunization programme decision-making |
+{: .grid }
 
 ### Workflows
 The workflows that follow depict processes that have been generalized across different contexts and may not reflect the variability and nuances across different settings. The simplicity of the workflow may not adequately illustrate the nonlinear steps that may occur.
@@ -120,78 +36,88 @@ The workflows that follow depict processes that have been generalized across dif
 #### Overview of key Immunization process flows
 The business processes included in the DAK are shown in the following figure. Processes included in the DAK start with a letter (e.g. "A.") and are shown using the "Activity with sub-process" shape, which includes a plus sign. 
 
-<div style="max-width:1200px;">
+<figure>
   {% include immz-overview-business-process.svg %}
-</div>
+  <figcaption>IMMZ Overview business process</figcaption> 
+</figure>
 
 ####  A.  Vaccination location registration  
 Objective: All vaccination locations (including private sector facilities, government centres and/or other entities involved in public health efforts) able to administer vaccines must be registered and uniquely identified to enable appropriate tracking of vaccine coverage and stock. In the case of a health-care facility with multiple vaccination locations, only the facility will be registered.
 
-<div style="max-width:1200px;">
+<figure>
   {% include immz-a-vaccination-location-business-process.svg %}
-</div>
+  <figcaption>IMMZ.A. Vaccination location registration business process</figcaption> 
+</figure>
 
 
 ####  B.  Plan service delivery  
 Objective: In preparation for a vaccination session, ensure sufficient supply and organize workload 
 
-<div style="max-width:1200px;">
+<figure>
   {% include immz-b-plan-service-delivery-business-process.svg %}
-</div>
+  <figcaption>IMMZ.B. Plan service delivery business process</figcaption> 
+</figure>
 
 
 ####  C.  Client registration 
 Objective: Create and/or update the clients’ vaccine record by including personal data in the EIR to support future vaccine administration
 
-<div style="max-width:1200px;">
+<figure>
   {% include immz-c-client-registration-business-process.svg %}
-</div>
+  <figcaption>IMMZ.C. Client registrationbusiness process</figcaption> 
+</figure>
 
 
 ####  D.  Administer vaccine  
 Objective: To determine which vaccines a client needs, administer those and record the relevant necessary data both in the EIR as well as in the appropriate paper records
 
-<div style="max-width:1200px;">
+<figure>
   {% include immz-d-administer-vaccine-business-process.svg %}
-</div>
+  <figcaption>IMMZ.D. Administer vaccine business process</figcaption> 
+</figure>
 
 
 ####  E.  Client reminder  
 Objective: To remind clients it is time to return for a vaccine
 
-<div style="max-width:1200px;">
+<figure>
   {% include immz-e-client-reminder-business-process.svg %}
-</div>
+  <figcaption>IMMZ.E. Client reminder business process</figcaption> 
+</figure>
 
 
 ####  F.  Defaulter tracing  
 Objective: To identify those who are overdue for a vaccine and reach out to them to schedule their vaccination
 
-<div style="max-width:1200px;">
+<figure>
   {% include immz-f-defaulter-tracing-business-process.svg %}
-</div>
+  <figcaption>IMMZ.F. Defaulter tracing business process</figcaption> 
+</figure>
 
 
 ####  G.  Resolve duplicate client records  
 Objective: To identify duplicate client records and consolidate them into one most accurate/suitable record
 
-<div style="max-width:1200px;">
+<figure>
   {% include immz-g-resolve-duplicate-client-v2-business-process.svg %}
-</div>
+  <figcaption>IMMZ.G. Resolve duplicate client records business process</figcaption> 
+</figure>
 
 
 ####  H .  Resolve duplicate vaccination events  
 Objective: To identify duplicate vaccination events within a client record and update into one event
 
-<div style="max-width:1200px;">
+<figure>
   {% include immz-h-resolve-duplicate-vaccine-v2-business-process.svg %}
-</div>
+  <figcaption>IMMZ.H. Resolve duplicate vaccination events business process</figcaption> 
+</figure>
 
 
 ####  I.  Report generation  
 Objective: To provide the ability to access and analyse data and to improve immunization programme decision-making
 
-<div style="max-width:1200px;">
+<figure>
   {% include immz-i-report-generation-business-process.svg %}
-</div>
+  <figcaption>IMMZ.I. Report generation business process</figcaption> 
+</figure>
 
