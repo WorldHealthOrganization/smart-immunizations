@@ -1,4 +1,4 @@
-Key concepts and abbreviations are described here. Additional terms are defined in the Glossary and List of Abbreviations in the WHO Digital Adaptation Kit for <mark>[insert health domain here]</mark> (link forthcoming)
+Key concepts and abbreviations are described here. Additional terms are defined in the Glossary and List of Abbreviations in the WHO Digital Adaptation Kit for [WHO Digital Adaptation Kit for Immunizations](https://iris.who.int/handle/10665/380303).
 ### Concepts 
 
 <table class="list">

@@ -1,4 +1,4 @@
-This page lists and describes the human users and digital services that interact with the system, derived from the business requirements defined at the operational level (L2). For more details about end-users and related stakeholders, see the [Generic Personas](personas.html) and the WHO Digital Adaptation Kit for <mark>[insert health domain here]</mark>(link forthcoming).
+This page lists and describes the human users and digital services that interact with the system, derived from the business requirements defined at the operational level (L2). For more details about end-users and related stakeholders, see the [Generic Personas](personas.html) and the [WHO Digital Adaptation Kit for Immunizations](https://iris.who.int/handle/10665/380303).
 
 Systems managing clinical and patient information are expected to interact with a shared health record, laboratory information system or a longitudinal health record, as appropriate, and to synchronize with data collected in a clinical encounter.
 

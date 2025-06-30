@@ -27,7 +27,7 @@ key competencies are defined in the following table.
       <td>Health worker (HW)</td>
       <td>Health workers facilitate education sessions, administer immunizations, provide counselling when needed, record vaccinations administered, record stock movements and compile, generate, and submit reports.</td>
       <td>Nurse, registered nurse, practical nurse</td>
-      <td>3221 Nursing Associate Professional</td>
+      <td>3221 Nursing associate professional</td>
     </tr>
     <tr>
       <td>Community health worker</td>
