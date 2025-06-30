@@ -1,0 +1,406 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZCQRToLM> a fhir:StructureMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "IMMZCQRToLM"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><pre class=\"fml\">\r\n<b>map</b><span style=\"color: navy\"> &quot;</span>http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZCQRToLM<span style=\"color: navy\">&quot; = &quot;</span>IMMZCQRToLM<span style=\"color: navy\">&quot;\r\n\r\n</span><b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R4/questionnaireresponse.html\" title=\"QuestionnaireResponse\">http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse</a><span style=\"color: navy\">&quot; </span><b>alias </b>QResp <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"StructureDefinition-IMMZCRegisterClient.html\" title=\"IMMZ.C Register Client\">http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZCRegisterClient</a><span style=\"color: navy\">&quot; </span><b>alias </b>IMMZC <b>as </b><b>target</b>\r\n\r\n<b>group </b>QRespToIMMZC<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">qr</span><span style=\"color: navy\"> : </span>QResp, <b>target</b> <span style=\"color: maroon\">immzc</span><span style=\"color: navy\"> : </span>IMMZC<span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  qr.item<b> as </b><span style=\"color: maroon\">item</span><b> then</b><span style=\"color: navy\"> {\r\n</span>    item.answer first<b> as </b><span style=\"color: maroon\">answer</span><b> where </b>item.linkId = 'uniqueId'<b> then</b><span style=\"color: navy\"> {\r\n</span>      answer.value<b> as </b><span style=\"color: maroon\">content</span><span style=\"color: navy\"><b> -&gt; </b></span>immzc.uniqueId = <span style=\"color: maroon\">content</span> <i>&quot;SetIdentifier&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;FirstAnswerForIdentifier&quot;</i><span style=\"color: navy\">;</span>\r\n    item<b> where </b>item.linkId = 'name'<b> then </b>NameToIMMZC<span style=\"color: navy\">(</span><span style=\"color: maroon\">item</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">immzc</span><span style=\"color: navy\">)</span> <i>&quot;SetNames&quot;</i><span style=\"color: navy\">;</span>\r\n    item<b> where </b>item.linkId = 'caregiver'<span style=\"color: navy\"><b> -&gt; </b></span>immzc.caregiver<b> as </b><span style=\"color: maroon\">caregiver</span><b> then </b>NameToIMMZC<span style=\"color: navy\">(</span><span style=\"color: maroon\">item</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">caregiver</span><span style=\"color: navy\">)</span> <i>&quot;SetNames&quot;</i><span style=\"color: navy\">;</span>\r\n    item.answer first<b> as </b><span style=\"color: maroon\">answer</span><b> where </b>item.linkId = 'sex'<b> then</b><span style=\"color: navy\"> {\r\n</span>      answer.value<b> as </b><span style=\"color: maroon\">coding</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        coding.code<b> as </b><span style=\"color: maroon\">content</span><span style=\"color: navy\"><b> -&gt; </b></span>immzc.sex = <span style=\"color: maroon\">content</span> <i>&quot;SetSex&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;ProcessCoding&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;FirstAnswerForIdentifier&quot;</i><span style=\"color: navy\">;</span>\r\n    item.answer first<b> as </b><span style=\"color: maroon\">answer</span><b> where </b>item.linkId = 'birthDate'<b> then</b><span style=\"color: navy\"> {\r\n</span>      answer.value<b> as </b><span style=\"color: maroon\">content</span><span style=\"color: navy\"><b> -&gt; </b></span>immzc.birthDate = <span style=\"color: maroon\">content</span> <i>&quot;SetBirthDate2&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;FirstAnswerForBirthDate&quot;</i><span style=\"color: navy\">;</span>\r\n    item.answer<b> as </b><span style=\"color: maroon\">caregiver</span><b> where </b>item.linkId = 'caregiver'<span style=\"color: navy\"><b> -&gt; </b></span>immzc.caregiver<b> as </b><span style=\"color: maroon\">caretgt</span><b> then </b>NameToIMMZC<span style=\"color: navy\">(</span><span style=\"color: maroon\">caregiver</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">caretgt</span><span style=\"color: navy\">)</span> <i>&quot;SetCaregiver&quot;</i><span style=\"color: navy\">;</span>\r\n    item.answer first<b> as </b><span style=\"color: maroon\">answer</span><b> where </b>item.linkId = 'phone'<b> then</b><span style=\"color: navy\"> {\r\n</span>      answer.value<b> as </b><span style=\"color: maroon\">content</span><span style=\"color: navy\"><b> -&gt; </b></span>immzc.phone = <span style=\"color: maroon\">content</span> <i>&quot;SetPhone&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;FirstAnswerForPhone&quot;</i><span style=\"color: navy\">;</span>\r\n    item.answer first<b> as </b><span style=\"color: maroon\">answer</span><b> where </b>item.linkId = 'administrativeArea'<b> then</b><span style=\"color: navy\"> {\r\n</span>      answer.value<b> as </b><span style=\"color: maroon\">coding</span><span style=\"color: navy\"><b> -&gt; </b></span>immzc.administrativeArea<b> as </b><span style=\"color: maroon\">area</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        coding<span style=\"color: navy\"><b> -&gt; </b></span>area.coding = <span style=\"color: maroon\">coding</span> <i>&quot;SetCodingValue&quot;</i><span style=\"color: navy\">;</span>\r\n        coding.display<b> as </b><span style=\"color: maroon\">display</span><span style=\"color: navy\"><b> -&gt; </b></span>area.text = <span style=\"color: maroon\">display</span> <i>&quot;SetDisplay&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;SetCoding&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;FirstAnswerForAdministrativeArea&quot;</i><span style=\"color: navy\">;</span>\r\n    item.answer first<b> as </b><span style=\"color: maroon\">answer</span><b> where </b>item.linkId = 'healthWorker'<b> then</b><span style=\"color: navy\"> {\r\n</span>      answer.value<b> as </b><span style=\"color: maroon\">content</span><span style=\"color: navy\"><b> -&gt; </b></span>immzc.healthWorker = <span style=\"color: maroon\">content</span> <i>&quot;SetHealthWorker&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;FirstAnswerForHealthWorker&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;processItems&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span><b>group </b>NameToIMMZC<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">name</span>, <b>target</b> <span style=\"color: maroon\">immzc</span><span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  name.item<b> as </b><span style=\"color: maroon\">item</span><b> then</b><span style=\"color: navy\"> {\r\n</span>    item.answer first<b> as </b><span style=\"color: maroon\">answer</span><b> where </b>item.linkId = 'fullName'<b> then</b><span style=\"color: navy\"> {\r\n</span>      answer.value<b> as </b><span style=\"color: maroon\">content</span><span style=\"color: navy\"><b> -&gt; </b></span>immzc.name = <span style=\"color: maroon\">content</span> <i>&quot;SetFullName&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;FirstAnswerForFullName&quot;</i><span style=\"color: navy\">;</span>\r\n    item.answer first<b> as </b><span style=\"color: maroon\">answer</span><b> where </b>item.linkId = 'firstName'<b> then</b><span style=\"color: navy\"> {\r\n</span>      answer.value<b> as </b><span style=\"color: maroon\">content</span><span style=\"color: navy\"><b> -&gt; </b></span>immzc.firstName = <span style=\"color: maroon\">content</span> <i>&quot;SetFirstName&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;FirstAnswerForFirstName&quot;</i><span style=\"color: navy\">;</span>\r\n    item.answer first<b> as </b><span style=\"color: maroon\">answer</span><b> where </b>item.linkId = 'familyName'<b> then</b><span style=\"color: navy\"> {\r\n</span>      answer.value<b> as </b><span style=\"color: maroon\">content</span><span style=\"color: navy\"><b> -&gt; </b></span>immzc.familyName = <span style=\"color: maroon\">content</span> <i>&quot;SetFamilyName&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;FirstAnswerForFamilyName&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;processNameItems&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span></pre></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZCQRToLM"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "0.1.0"] ; # 
+  fhir:name [ fhir:v "IMMZCQRToLM"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:date [ fhir:v "2024-03-22T16:39:50+00:00"^^xsd:dateTime] ; # 
+  fhir:publisher [ fhir:v "World Health Organization (WHO)"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "World Health Organization (WHO)" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://www.who.int" ]
+     ] )
+  ] ) ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "001" ]
+     ] )
+  ] ) ; # 
+  fhir:structure ( [
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse>
+     ] ;
+     fhir:mode [ fhir:v "source" ] ;
+     fhir:alias [ fhir:v "QResp" ]
+  ] [
+     fhir:url [
+       fhir:v "http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZCRegisterClient"^^xsd:anyURI ;
+       fhir:link <http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZCRegisterClient>
+     ] ;
+     fhir:mode [ fhir:v "target" ] ;
+     fhir:alias [ fhir:v "IMMZC" ]
+  ] ) ; # 
+  fhir:group ( [
+     fhir:name [ fhir:v "QRespToIMMZC" ] ;
+     fhir:typeMode [ fhir:v "none" ] ;
+     fhir:input ( [
+       fhir:name [ fhir:v "qr" ] ;
+       fhir:type [ fhir:v "QResp" ] ;
+       fhir:mode [ fhir:v "source" ]
+     ] [
+       fhir:name [ fhir:v "immzc" ] ;
+       fhir:type [ fhir:v "IMMZC" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] ) ;
+     fhir:rule ( [
+       fhir:name [ fhir:v "processItems" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "qr" ] ;
+         fhir:element [ fhir:v "item" ] ;
+         fhir:variable [ fhir:v "item" ]
+       ] ) ;
+       fhir:rule ( [
+         fhir:name [ fhir:v "FirstAnswerForIdentifier" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'uniqueId'" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "SetIdentifier" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "value" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "immzc" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "uniqueId" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "content" ]
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "SetNames" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'name'" ]
+         ] ) ;
+         fhir:dependent ( [
+           fhir:name [ fhir:v "NameToIMMZC" ] ;
+           fhir:variable ( [ fhir:v "item" ] [ fhir:v "immzc" ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "SetNames" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'caregiver'" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "immzc" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "caregiver" ] ;
+           fhir:variable [ fhir:v "caregiver" ]
+         ] ) ;
+         fhir:dependent ( [
+           fhir:name [ fhir:v "NameToIMMZC" ] ;
+           fhir:variable ( [ fhir:v "item" ] [ fhir:v "caregiver" ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "FirstAnswerForIdentifier" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'sex'" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "ProcessCoding" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "value" ] ;
+             fhir:variable [ fhir:v "coding" ]
+           ] ) ;
+           fhir:rule ( [
+             fhir:name [ fhir:v "SetSex" ] ;
+             fhir:source ( [
+               fhir:context [ fhir:v "coding" ] ;
+               fhir:element [ fhir:v "code" ] ;
+               fhir:variable [ fhir:v "content" ]
+             ] ) ;
+             fhir:target ( [
+               fhir:context [ fhir:v "immzc" ] ;
+               fhir:contextType [ fhir:v "variable" ] ;
+               fhir:element [ fhir:v "sex" ] ;
+               fhir:transform [ fhir:v "copy" ] ;
+               fhir:parameter ( [
+                 fhir:value [ fhir:v "content" ]
+               ] )
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "FirstAnswerForBirthDate" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'birthDate'" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "SetBirthDate2" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "value" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "immzc" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "birthDate" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "content" ]
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "SetCaregiver" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:variable [ fhir:v "caregiver" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'caregiver'" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "immzc" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "caregiver" ] ;
+           fhir:variable [ fhir:v "caretgt" ]
+         ] ) ;
+         fhir:dependent ( [
+           fhir:name [ fhir:v "NameToIMMZC" ] ;
+           fhir:variable ( [ fhir:v "caregiver" ] [ fhir:v "caretgt" ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "FirstAnswerForPhone" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'phone'" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "SetPhone" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "value" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "immzc" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "phone" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "content" ]
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "FirstAnswerForAdministrativeArea" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'administrativeArea'" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "SetCoding" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "value" ] ;
+             fhir:variable [ fhir:v "coding" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "immzc" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "administrativeArea" ] ;
+             fhir:variable [ fhir:v "area" ]
+           ] ) ;
+           fhir:rule ( [
+             fhir:name [ fhir:v "SetCodingValue" ] ;
+             fhir:source ( [
+               fhir:context [ fhir:v "coding" ]
+             ] ) ;
+             fhir:target ( [
+               fhir:context [ fhir:v "area" ] ;
+               fhir:contextType [ fhir:v "variable" ] ;
+               fhir:element [ fhir:v "coding" ] ;
+               fhir:transform [ fhir:v "copy" ] ;
+               fhir:parameter ( [
+                 fhir:value [ fhir:v "coding" ]
+               ] )
+             ] )
+           ] [
+             fhir:name [ fhir:v "SetDisplay" ] ;
+             fhir:source ( [
+               fhir:context [ fhir:v "coding" ] ;
+               fhir:element [ fhir:v "display" ] ;
+               fhir:variable [ fhir:v "display" ]
+             ] ) ;
+             fhir:target ( [
+               fhir:context [ fhir:v "area" ] ;
+               fhir:contextType [ fhir:v "variable" ] ;
+               fhir:element [ fhir:v "text" ] ;
+               fhir:transform [ fhir:v "copy" ] ;
+               fhir:parameter ( [
+                 fhir:value [ fhir:v "display" ]
+               ] )
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "FirstAnswerForHealthWorker" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'healthWorker'" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "SetHealthWorker" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "value" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "immzc" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "healthWorker" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "content" ]
+             ] )
+           ] )
+         ] )
+       ] )
+     ] )
+  ] [
+     fhir:name [ fhir:v "NameToIMMZC" ] ;
+     fhir:typeMode [ fhir:v "none" ] ;
+     fhir:input ( [
+       fhir:name [ fhir:v "name" ] ;
+       fhir:mode [ fhir:v "source" ]
+     ] [
+       fhir:name [ fhir:v "immzc" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] ) ;
+     fhir:rule ( [
+       fhir:name [ fhir:v "processNameItems" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "name" ] ;
+         fhir:element [ fhir:v "item" ] ;
+         fhir:variable [ fhir:v "item" ]
+       ] ) ;
+       fhir:rule ( [
+         fhir:name [ fhir:v "FirstAnswerForFullName" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'fullName'" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "SetFullName" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "value" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "immzc" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "name" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "content" ]
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "FirstAnswerForFirstName" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'firstName'" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "SetFirstName" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "value" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "immzc" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "firstName" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "content" ]
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "FirstAnswerForFamilyName" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'familyName'" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "SetFamilyName" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "value" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "immzc" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "familyName" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "content" ]
+             ] )
+           ] )
+         ] )
+       ] )
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+
