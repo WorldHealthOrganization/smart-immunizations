@@ -37,7 +37,7 @@ The workflows that follow depict processes that have been generalized across dif
 The business processes included in the DAK are shown in the following figure. Processes included in the DAK start with a letter (e.g. "A.") and are shown using the "Activity with sub-process" shape, which includes a plus sign. 
 
 <figure>
-  {% include immz-overview-business-process.svg %}
+  <img src="immz-overview-business-process.svg">
   <figcaption>IMMZ Overview business process</figcaption> 
 </figure>
 
@@ -45,7 +45,7 @@ The business processes included in the DAK are shown in the following figure. Pr
 Objective: All vaccination locations (including private sector facilities, government centres and/or other entities involved in public health efforts) able to administer vaccines must be registered and uniquely identified to enable appropriate tracking of vaccine coverage and stock. In the case of a health-care facility with multiple vaccination locations, only the facility will be registered.
 
 <figure>
-  {% include immz-a-vaccination-location-business-process.svg %}
+  <img src="immz-a-vaccination-location-business-process.svg" />
   <figcaption>IMMZ.A. Vaccination location registration business process</figcaption> 
 </figure>
 
@@ -54,7 +54,7 @@ Objective: All vaccination locations (including private sector facilities, gover
 Objective: In preparation for a vaccination session, ensure sufficient supply and organize workload 
 
 <figure>
-  {% include immz-b-plan-service-delivery-business-process.svg %}
+  <img src="immz-b-plan-service-delivery-business-process.svg" />
   <figcaption>IMMZ.B. Plan service delivery business process</figcaption> 
 </figure>
 
@@ -63,7 +63,7 @@ Objective: In preparation for a vaccination session, ensure sufficient supply an
 Objective: Create and/or update the clients’ vaccine record by including personal data in the EIR to support future vaccine administration
 
 <figure>
-  {% include immz-c-client-registration-business-process.svg %}
+  <img src="immz-c-client-registration-business-process.svg" />
   <figcaption>IMMZ.C. Client registrationbusiness process</figcaption> 
 </figure>
 
@@ -72,7 +72,7 @@ Objective: Create and/or update the clients’ vaccine record by including perso
 Objective: To determine which vaccines a client needs, administer those and record the relevant necessary data both in the EIR as well as in the appropriate paper records
 
 <figure>
-  {% include immz-d-administer-vaccine-business-process.svg %}
+  <img src="immz-d-administer-vaccine-business-process.svg" />
   <figcaption>IMMZ.D. Administer vaccine business process</figcaption> 
 </figure>
 
@@ -81,7 +81,7 @@ Objective: To determine which vaccines a client needs, administer those and reco
 Objective: To remind clients it is time to return for a vaccine
 
 <figure>
-  {% include immz-e-client-reminder-business-process.svg %}
+  <img src="immz-e-client-reminder-business-process.svg" />
   <figcaption>IMMZ.E. Client reminder business process</figcaption> 
 </figure>
 
@@ -90,7 +90,7 @@ Objective: To remind clients it is time to return for a vaccine
 Objective: To identify those who are overdue for a vaccine and reach out to them to schedule their vaccination
 
 <figure>
-  {% include immz-f-defaulter-tracing-business-process.svg %}
+  <img src="immz-f-defaulter-tracing-business-process.svg" />
   <figcaption>IMMZ.F. Defaulter tracing business process</figcaption> 
 </figure>
 
@@ -99,7 +99,7 @@ Objective: To identify those who are overdue for a vaccine and reach out to them
 Objective: To identify duplicate client records and consolidate them into one most accurate/suitable record
 
 <figure>
-  {% include immz-g-resolve-duplicate-client-v2-business-process.svg %}
+  <img src="immz-g-resolve-duplicate-client-v2-business-process.svg" />
   <figcaption>IMMZ.G. Resolve duplicate client records business process</figcaption> 
 </figure>
 
@@ -108,7 +108,7 @@ Objective: To identify duplicate client records and consolidate them into one mo
 Objective: To identify duplicate vaccination events within a client record and update into one event
 
 <figure>
-  {% include immz-h-resolve-duplicate-vaccine-v2-business-process.svg %}
+  <img src="immz-h-resolve-duplicate-vaccine-v2-business-process.svg" />
   <figcaption>IMMZ.H. Resolve duplicate vaccination events business process</figcaption> 
 </figure>
 
@@ -117,7 +117,7 @@ Objective: To identify duplicate vaccination events within a client record and u
 Objective: To provide the ability to access and analyse data and to improve immunization programme decision-making
 
 <figure>
-  {% include immz-i-report-generation-business-process.svg %}
+  <img src="immz-i-report-generation-business-process.svg" />
   <figcaption>IMMZ.I. Report generation business process</figcaption> 
 </figure>
 
