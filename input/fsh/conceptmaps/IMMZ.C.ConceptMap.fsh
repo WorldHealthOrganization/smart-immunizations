@@ -22,7 +22,7 @@ Usage:        #definition
   * insert ElementMap(male, DE6, equivalent)
   * insert ElementMap(female, DE7, equivalent)
   * insert ElementMap(unknown, DE8, equivalent)
-  * insert ElementMap(other, DE9, narrower)
+  * insert ElementMapComment(other, DE9, narrower, The DAK only provides Intersex as other options so the other from the source may be something else.)
 
 * group[+]
   * source = Canonical(IMMZ.C)
@@ -51,7 +51,7 @@ Usage:        #definition
   * insert ElementMap(DE16, 45392-8, wider)
   * insert ElementMap(DE17, 45394-4, wider)
   * insert ElementMap(DE18, 42077-8, equivalent)
-  * insert ElementMap(DE19, 56799-0, narrower)
+  * insert ElementMapComment(DE19, 56799-0, narrower, Per the Immunizations DAK)
 * group[+]
   * source = $LNC
   * target = Canonical(IMMZ.C)
@@ -60,9 +60,9 @@ Usage:        #definition
   * insert ElementMap(45394-4, DE4, equivalent)
   * insert ElementMap(46098-0, DE5, equivalent)
   * insert ElementMap(21112-8, DE10, equivalent)
-  * insert ElementMap(63900-5, DE13, narrower)
-  * insert ElementMap(45392-8, DE16, narrower)
-  * insert ElementMap(45394-4, DE17, narrower)
+  * insert ElementMapComment(63900-5, DE13, narrower, Per the Immunizations DAK)
+  * insert ElementMapComment(45392-8, DE16, narrower, Per the Immunizations DAK)
+  * insert ElementMapComment(45394-4, DE17, narrower, Per the Immunizations DAK)
   * insert ElementMap(42077-8, DE18, equivalent)
   * insert ElementMap(56799-0, DE19, wider)
 
@@ -81,7 +81,7 @@ Usage:        #definition
   * insert ElementMap(DE14, 184140000, wider)
   * insert ElementMap(DE15, 184140000, wider)
   * insert ElementMap(DE18, 184103008, equivalent)
-  * insert ElementMap(DE19, 184097001, narrower)
+  * insert ElementMapComment(DE19, 184097001, narrower, Per the Immunizations DAK)
 * group[+]
   * source = $SCT
   * target = Canonical(IMMZ.C)
@@ -94,8 +94,8 @@ Usage:        #definition
   * insert ElementMap(772004004, DE8, relatedto)
   * insert ElementMap(15867007, DE9, equivalent)
   * insert ElementMap(184099003, DE10, equivalent)
-  * insert ElementMap(184140000, DE14, narrower)
-  * insert ElementMap(184140000, DE15, narrower)
+  * insert ElementMapComment(184140000, DE14, narrower, Per the Immunizations DAK)
+  * insert ElementMapComment(184140000, DE15, narrower, Per the Immunizations DAK)
   * insert ElementMap(184103008, DE18, equivalent)
   * insert ElementMap(184097001, DE19, wider)
 

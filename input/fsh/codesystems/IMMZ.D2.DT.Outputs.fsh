@@ -16,7 +16,7 @@ Description:  "CodeSystem for Decision Table Outputs"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 2 doses"
   * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 1 dose"
   * ^property[+].code = #table
@@ -29,7 +29,7 @@ Description:  "CodeSystem for Decision Table Outputs"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 2 doses"
   * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 1 dose"
   * ^property[+].code = #table
@@ -42,7 +42,7 @@ Description:  "CodeSystem for Decision Table Outputs"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 2 doses"
   * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 1 dose"
   * ^property[+].code = #table
@@ -51,7 +51,7 @@ Description:  "CodeSystem for Decision Table Outputs"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
 * #tpsiccidfmbd-76.48 "The primary series is complete. Client is due for meningococcal booster dose" "\"Immunization recommendation status\" = \"Due\""
   * ^property[+].code = #table
-  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine "
+  * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine"
 * #tpsiccindfmbd-81.52 "The primary series is complete. Client is not due for meningococcal booster dose." "\"Immunization recommendation status\" = \"Not due\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines"
