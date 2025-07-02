@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="279">
+         <a:s>/*
+ * Library: IMMZ.IND.44 Logic
+ * Adverse event following immunization (AEFI) cases
+ * The total number of adverse events following the administration of vaccines during the reporting period
+ * 
+ * Numerator: Number of AEFI cases during the reporting period
+ * Numerator Computation: COUNT of immunization events WHERE &quot;Reaction reported&quot; is &quot;Yes&quot; AND &quot;Date and time of vaccination&quot; is during the reporting period
+ * Denominator: Not applicable
+ * Denominator Computation: Not applicable
+ * 
+ * Disaggregation
+ *  - Vaccine type: BCG, OPV, etc.
+ *  - Vaccine manufacturer
+ *  - Type of reaction: non-serious, disability, etc.
+ *  - Administrative area
+ *  - Reaction manifestation: rash, vomiting, etc.
+ *
+ * References: WHO Immunization facility analysis guide (5)
+ * 
+ * Annotations: –
+ */
+library IMMZIND44Logic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZIND44Logic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="24:1-24:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="26:1-26:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="28:1-28:27" localIdentifier="WC" path="http://smart.who.int/immunizations/WHOCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>WHOCommon</a:s>
+               </a:s>
+               <a:s> called WC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="209" locator="30:1-30:32" localIdentifier="Common" path="http://smart.who.int/immunizations/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called Common</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="31:1-31:36" localIdentifier="Concepts" path="http://smart.who.int/immunizations/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called Concepts</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="211" locator="32:1-32:45" localIdentifier="Elements" path="http://smart.who.int/immunizations/IMMZIndicatorElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="211">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZIndicatorElements</a:s>
+               </a:s>
+               <a:s> called Elements</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="212" locator="35:1-35:88" name="Measurement Period" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>parameter &quot;Measurement Period&quot; </a:s>
+               <a:s r="224">
+                  <a:s>Interval&lt;</a:s>
+                  <a:s r="225">
+                     <a:s>Date</a:s>
+                  </a:s>
+                  <a:s>></a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="223">
+                  <a:s r="217">Interval[@2025-01-01, @2025-12-31]</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="223" locator="35:55-35:88" lowClosed="true" highClosed="true" xsi:type="Interval">
+            <low localId="217" locator="35:64-35:74" xsi:type="Date">
+               <year localId="214" valueType="t:Integer" value="2025" xsi:type="Literal"/>
+               <month localId="215" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               <day localId="216" valueType="t:Integer" value="1" xsi:type="Literal"/>
+            </low>
+            <high localId="222" locator="35:77-35:87" xsi:type="Date">
+               <year localId="219" valueType="t:Integer" value="2025" xsi:type="Literal"/>
+               <month localId="220" valueType="t:Integer" value="12" xsi:type="Literal"/>
+               <day localId="221" valueType="t:Integer" value="31" xsi:type="Literal"/>
+            </high>
+         </default>
+         <parameterTypeSpecifier localId="224" locator="35:32-35:45" xsi:type="IntervalTypeSpecifier">
+            <pointType localId="225" locator="35:41-35:44" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+         </parameterTypeSpecifier>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="229" locator="37:1-37:20" name="Immunization"/>
+   </contexts>
+   <statements>
+      <def localId="227" locator="37:1-37:20" name="Immunization" context="Immunization">
+         <expression localId="228" xsi:type="SingletonFrom">
+            <operand localId="226" locator="37:1-37:20" dataType="fhir:Immunization" templateId="http://hl7.org/fhir/StructureDefinition/Immunization" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="231" locator="42:1-43:6" name="Initial Population" context="Immunization" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="231">
+               <a:s r="232">/*
+ * As defined by Member State
+ */
+define &quot;Initial Population&quot;:
+  true</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="232" locator="43:3-43:6" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+      </def>
+      <def localId="234" locator="49:1-50:6" name="Denominator" context="Immunization" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="denominator" value="Not applicable"/>
+            <a:t name="pseudocode" value="Not applicable"/>
+            <a:s r="234">
+               <a:s r="235">/*
+@denominator: Not applicable
+@pseudocode: Not applicable
+*/
+define &quot;Denominator&quot;:
+  true</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="235" locator="50:3-50:6" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+      </def>
+      <def localId="237" locator="56:1-57:51" name="Numerator" context="Immunization" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="numerator" value="Number of AEFI cases during the reporting period"/>
+            <a:t name="pseudocode" value="&quot;Reaction reported&quot; is &quot;Yes&quot; AND &quot;Date and time of vaccination&quot; is during the reporting period"/>
+            <a:s r="237">
+               <a:s>/*
+@numerator: Number of AEFI cases during the reporting period
+@pseudocode: COUNT of immunization events WHERE &quot;Reaction reported&quot; is &quot;Yes&quot; AND &quot;Date and time of vaccination&quot; is during the reporting period
+*/
+define &quot;Numerator&quot;:
+  </a:s>
+               <a:s r="238">
+                  <a:s>exists </a:s>
+                  <a:s r="240">
+                     <a:s r="239">
+                        <a:s>Elements</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="240">
+                        <a:s>&quot;Adverse Events for Immunization&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="238" locator="57:3-57:51" xsi:type="Exists">
+            <operand localId="240" locator="57:10-57:51" name="Adverse Events for Immunization" libraryName="Elements" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="242" locator="66:1-67:42" name="Stratification 1" context="Immunization" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="disaggregation" value="Vaccine type: BCG, OPV, etc.&#xa;                 Vaccine manufacturer&#xa;                 Type of reaction: non-serious, disability, etc.&#xa;                 Administrative area&#xa;                 Reaction manifestation: rash, vomiting, etc."/>
+            <a:s r="242">
+               <a:s>/*
+@disaggregation: Vaccine type: BCG, OPV, etc.
+                 Vaccine manufacturer
+                 Type of reaction: non-serious, disability, etc.
+                 Administrative area
+                 Reaction manifestation: rash, vomiting, etc.
+*/
+define &quot;Stratification 1&quot;:
+  </a:s>
+               <a:s r="248">
+                  <a:s>First( </a:s>
+                  <a:s r="245">
+                     <a:s r="244">
+                        <a:s r="243">
+                           <a:s>Immunization</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="244">
+                           <a:s>vaccineCode</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="245">
+                        <a:s>coding</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> )</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="248" locator="67:3-67:42" xsi:type="First">
+            <source localId="245" locator="67:10-67:40" path="coding" xsi:type="Property">
+               <source localId="244" locator="67:10-67:33" path="vaccineCode" xsi:type="Property">
+                  <source localId="243" locator="67:10-67:21" name="Immunization" xsi:type="ExpressionRef"/>
+               </source>
+            </source>
+         </expression>
+      </def>
+      <def localId="250" locator="69:1-70:27" name="Stratification 2" context="Immunization" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="250">
+               <a:s>define &quot;Stratification 2&quot;:
+  </a:s>
+               <a:s r="252">
+                  <a:s r="251">
+                     <a:s>Immunization</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="252">
+                     <a:s>manufacturer</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="252" locator="70:3-70:27" path="manufacturer" xsi:type="Property">
+            <source localId="251" locator="70:3-70:14" name="Immunization" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="254" locator="72:1-73:81" name="Stratification 3" context="Immunization" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="254">
+               <a:s>define &quot;Stratification 3&quot;:
+  </a:s>
+               <a:s r="270">
+                  <a:s>First( </a:s>
+                  <a:s r="265">
+                     <a:s r="264">
+                        <a:s r="261">
+                           <a:s>First (</a:s>
+                           <a:s r="256">
+                              <a:s r="255">
+                                 <a:s>Elements</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="256">
+                                 <a:s>&quot;Adverse Events for Immunization&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> )</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="264">
+                           <a:s>seriousness</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="265">
+                        <a:s>coding</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> )</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="270" locator="73:3-73:81" xsi:type="First">
+            <signature localId="271" xsi:type="ListTypeSpecifier">
+               <elementType localId="272" name="fhir:Coding" xsi:type="NamedTypeSpecifier"/>
+            </signature>
+            <source localId="265" locator="73:10-73:79" path="coding" xsi:type="Property">
+               <source localId="264" locator="73:10-73:72" path="seriousness" xsi:type="Property">
+                  <source localId="261" locator="73:10-73:60" xsi:type="First">
+                     <signature localId="262" xsi:type="ListTypeSpecifier">
+                        <elementType localId="263" name="fhir:AdverseEvent" xsi:type="NamedTypeSpecifier"/>
+                     </signature>
+                     <source localId="256" locator="73:17-73:58" name="Adverse Events for Immunization" libraryName="Elements" xsi:type="ExpressionRef"/>
+                  </source>
+               </source>
+            </source>
+         </expression>
+      </def>
+      <def localId="274" locator="75:1-76:61" name="Stratification 4" context="Immunization" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="274">
+               <a:s>define &quot;Stratification 4&quot;:
+  </a:s>
+               <a:s r="277">
+                  <a:s r="275">
+                     <a:s>Elements</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="277">
+                     <a:s>GetGeographicRegionForImmunization( </a:s>
+                     <a:s r="276">
+                        <a:s>Immunization</a:s>
+                     </a:s>
+                     <a:s> )</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="277" locator="76:3-76:61" name="GetGeographicRegionForImmunization" libraryName="Elements" xsi:type="FunctionRef">
+            <operand localId="276" locator="76:48-76:59" name="Immunization" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="279" locator="78:1-79:75" name="Stratification 5" context="Immunization" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="279">
+               <a:s>define &quot;Stratification 5&quot;:
+  </a:s>
+               <a:s r="295">
+                  <a:s>First( </a:s>
+                  <a:s r="290">
+                     <a:s r="289">
+                        <a:s r="286">
+                           <a:s>First (</a:s>
+                           <a:s r="281">
+                              <a:s r="280">
+                                 <a:s>Elements</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="281">
+                                 <a:s>&quot;Adverse Events for Immunization&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> )</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="289">
+                           <a:s>event</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="290">
+                        <a:s>coding</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> )</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="295" locator="79:3-79:75" xsi:type="First">
+            <signature localId="296" xsi:type="ListTypeSpecifier">
+               <elementType localId="297" name="fhir:Coding" xsi:type="NamedTypeSpecifier"/>
+            </signature>
+            <source localId="290" locator="79:10-79:73" path="coding" xsi:type="Property">
+               <source localId="289" locator="79:10-79:66" path="event" xsi:type="Property">
+                  <source localId="286" locator="79:10-79:60" xsi:type="First">
+                     <signature localId="287" xsi:type="ListTypeSpecifier">
+                        <elementType localId="288" name="fhir:AdverseEvent" xsi:type="NamedTypeSpecifier"/>
+                     </signature>
+                     <source localId="281" locator="79:17-79:58" name="Adverse Events for Immunization" libraryName="Elements" xsi:type="ExpressionRef"/>
+                  </source>
+               </source>
+            </source>
+         </expression>
+      </def>
+   </statements>
+</library>

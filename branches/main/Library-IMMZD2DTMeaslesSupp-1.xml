@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="2.7.0" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="14">
+         <a:s>/*
+ * Library: IMMZD2DTMeaslesSupp (IMMZ.D2.DT.Measles.Supplementary dose)
+ * Rule: Determine if the client is due for a measles vaccination according to the national immunization schedule					
+ * Decision Table: Measles supplementary dose administration
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any
+ */
+library IMMZD2DTMeaslesSupp</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTMeaslesSupp" system="http://smart.who.int/ig/smart-immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="9:1-9:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="10:1-10:35" localIdentifier="FHIRHelpers" path="http://smart.who.int/ig/smart-immunizations/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="11:1-11:33" localIdentifier="IMMZCom" path="http://smart.who.int/ig/smart-immunizations/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="12:1-12:33" localIdentifier="IMMZc" path="http://smart.who.int/ig/smart-immunizations/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="13:1-13:33" localIdentifier="IMMZCon" path="http://smart.who.int/ig/smart-immunizations/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="14:1-14:40" localIdentifier="IMMZvl" path="http://smart.who.int/ig/smart-immunizations/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="7" locator="15:1-15:28" localIdentifier="FC" path="http://smart.who.int/ig/smart-immunizations/FHIRCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="7">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRCommon</a:s>
+               </a:s>
+               <a:s> called FC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="8" locator="16:1-16:41" localIdentifier="input" path="http://smart.who.int/ig/smart-immunizations/IMMZD2DTMeaslesInput">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="8">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTMeaslesInput</a:s>
+               </a:s>
+               <a:s> called input</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="19:1-19:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="19:1-19:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="11" locator="67:1-68:52" name="Measles schedule complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="11">
+               <a:s>/*
+@output: Measles schedule complete
+@pseudocode: &quot;Immunization recommendation status&quot; = 'Complete'	
+*/
+define &quot;Measles schedule complete&quot;:
+	</a:s>
+               <a:s r="10">
+                  <a:s r="9">
+                     <a:s>input</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="10">
+                     <a:s>&quot;Measles supplementary dose was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="10" locator="68:2-68:52" name="Measles supplementary dose was administered" libraryName="input" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="14" locator="74:1-75:90" name="Measles schedule complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="14">
+               <a:s>/*
+@output: Measles schedule complete Guidance
+@guidance: Measles immunization schedule is complete. Measles supplementary dose was administered.
+*/
+define &quot;Measles schedule complete Guidance&quot;:
+	</a:s>
+               <a:s r="13">
+                  <a:s>'Measles immunization schedule is complete. Measles supplementary dose was administered.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="13" locator="75:2-75:90" valueType="t:String" value="Measles immunization schedule is complete. Measles supplementary dose was administered." xsi:type="Literal"/>
+      </def>
+      <def localId="25" locator="52:1-55:65" name="Consider measles supplementary dose. Create a clinical note." context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="25">
+               <a:s>/*
+@output: Consider measles supplementary dose. Create a clinical note.
+@pseudocode: &quot;Immunization recommendation status&quot; = 'Further evaluation needed'	
+*/
+define &quot;Consider measles supplementary dose. Create a clinical note.&quot;:
+  </a:s>
+               <a:s r="24">
+                  <a:s r="21">
+                     <a:s r="18">
+                        <a:s r="17">
+                           <a:s>input</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="18">
+                           <a:s>&quot;Measles supplementary dose was not administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+	and </a:s>
+                     <a:s r="20">
+                        <a:s r="19">
+                           <a:s>input</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="20">
+                           <a:s>&quot;Measles routine immunization schedule is complete High Tx&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="23">
+                     <a:s r="22">
+                        <a:s>input</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="23">
+                        <a:s>&quot;No live vaccine was administered in the last 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="24" locator="53:3-55:65" xsi:type="And">
+            <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+            <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="21" locator="53:3-54:70" xsi:type="And">
+               <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+               <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="18" locator="53:3-53:57" name="Measles supplementary dose was not administered" libraryName="input" xsi:type="ExpressionRef"/>
+               <operand localId="20" locator="54:6-54:70" name="Measles routine immunization schedule is complete High Tx" libraryName="input" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="23" locator="55:6-55:65" name="No live vaccine was administered in the last 4 weeks" libraryName="input" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="28" locator="60:1-61:283" name="Consider measles supplementary dose. Create a clinical note. Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="28">
+               <a:s>/*
+@input: Consider measles supplementary dose. Create a clinical note. Guidance
+@guidance: May vaccinate client for measles supplementary dose as supplementary dose was not administered, measles routine immunization schedule is complete and no live vaccine administered in the last 4 weeks. Check if one of the measles supplementary dose specific scenarios is applicable.  
+*/
+define &quot;Consider measles supplementary dose. Create a clinical note. Guidance&quot;:
+	</a:s>
+               <a:s r="27">
+                  <a:s>'May vaccinate client for measles supplementary dose as supplementary dose was not administered, measles routine immunization schedule is complete and no live vaccine administered in the last 4 weeks. Check if one of the measles supplementary dose specific scenarios is applicable.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="27" locator="61:2-61:283" valueType="t:String" value="May vaccinate client for measles supplementary dose as supplementary dose was not administered, measles routine immunization schedule is complete and no live vaccine administered in the last 4 weeks. Check if one of the measles supplementary dose specific scenarios is applicable." xsi:type="Literal"/>
+      </def>
+      <def localId="39" locator="36:1-39:62" name="Client not due for measles supplementary dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="39">
+               <a:s>/*
+@output: Client not due for measles supplementary dose
+@pseudocode: &quot;Immunization recommendation status&quot; = 'Not due'
+*/
+define &quot;Client not due for measles supplementary dose&quot;:
+	</a:s>
+               <a:s r="38">
+                  <a:s r="35">
+                     <a:s r="32">
+                        <a:s r="31">
+                           <a:s>input</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="32">
+                           <a:s>&quot;Measles supplementary dose was not administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+	and </a:s>
+                     <a:s r="34">
+                        <a:s r="33">
+                           <a:s>input</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="34">
+                           <a:s>&quot;Measles routine immunization schedule is complete High Tx&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="37">
+                     <a:s r="36">
+                        <a:s>input</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="37">
+                        <a:s>&quot;Live vaccine was administered in the last 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="38" locator="37:2-39:62" xsi:type="And">
+            <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+            <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="35" locator="37:2-38:70" xsi:type="And">
+               <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+               <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="32" locator="37:2-37:56" name="Measles supplementary dose was not administered" libraryName="input" xsi:type="ExpressionRef"/>
+               <operand localId="34" locator="38:6-38:70" name="Measles routine immunization schedule is complete High Tx" libraryName="input" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="37" locator="39:6-39:62" name="Live vaccine was administered in the last 4 weeks" libraryName="input" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="42" locator="45:1-46:214" name="Client not due for measles supplementary dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="42">
+               <a:s>/*
+@output: Client not due for measles supplementary dose Guidance
+@guidance: Should not vaccinate client for measles supplementary dose as live vaccine was administered in the last 4 weeks. Check for any vaccines due, and inform the caregiver of when to come back for supplementary dose.
+*/
+define &quot;Client not due for measles supplementary dose Guidance&quot;:
+  </a:s>
+               <a:s r="41">
+                  <a:s>'Should not vaccinate client for measles supplementary dose as live vaccine was administered in the last 4 weeks. Check for any vaccines due, and inform the caregiver of when to come back for supplementary dose.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="41" locator="46:3-46:214" valueType="t:String" value="Should not vaccinate client for measles supplementary dose as live vaccine was administered in the last 4 weeks. Check for any vaccines due, and inform the caregiver of when to come back for supplementary dose." xsi:type="Literal"/>
+      </def>
+      <def localId="47" locator="24:1-30:4" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="47">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+	</a:s>
+               <a:s r="46">
+                  <a:s>case 
+		</a:s>
+                  <a:s r="16">
+                     <a:s>when </a:s>
+                     <a:s r="12">
+                        <a:s>&quot;Measles schedule complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="15">
+                        <a:s>&quot;Measles schedule complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+		</a:s>
+                  <a:s r="30">
+                     <a:s>when </a:s>
+                     <a:s r="26">
+                        <a:s>&quot;Consider measles supplementary dose. Create a clinical note.&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="29">
+                        <a:s>&quot;Consider measles supplementary dose. Create a clinical note. Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+		</a:s>
+                  <a:s r="44">
+                     <a:s>when </a:s>
+                     <a:s r="40">
+                        <a:s>&quot;Client not due for measles supplementary dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="43">
+                        <a:s>&quot;Client not due for measles supplementary dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="45">
+		else null
+	end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="46" locator="25:2-30:4" xsi:type="Case">
+            <caseItem localId="16" locator="26:3-26:76">
+               <when localId="12" locator="26:8-26:34" name="Measles schedule complete" xsi:type="ExpressionRef"/>
+               <then localId="15" locator="26:41-26:76" name="Measles schedule complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="30" locator="27:3-27:146">
+               <when localId="26" locator="27:8-27:69" name="Consider measles supplementary dose. Create a clinical note." xsi:type="ExpressionRef"/>
+               <then localId="29" locator="27:76-27:146" name="Consider measles supplementary dose. Create a clinical note. Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="44" locator="28:3-28:116">
+               <when localId="40" locator="28:8-28:54" name="Client not due for measles supplementary dose" xsi:type="ExpressionRef"/>
+               <then localId="43" locator="28:61-28:116" name="Client not due for measles supplementary dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else asType="t:String" xsi:type="As">
+               <operand localId="45" locator="29:8-29:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

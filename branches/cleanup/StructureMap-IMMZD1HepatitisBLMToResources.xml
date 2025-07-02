@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureMap xmlns="http://hl7.org/fhir">
+  <id value="IMMZD1HepatitisBLMToResources"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><pre class="fml">
+<b>map</b><span style="color: navy"> &quot;</span>http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1HepatitisBLMToResources<span style="color: navy">&quot; = &quot;</span>IMMZD1HepatitisBLMToResources<span style="color: navy">&quot;
+
+</span><span style="color: navy">// </span><span style="color: green">Hepatitis B Immunization Client History - Transform Logical Model to Patient resources</span>
+
+<b>uses</b><span style="color: navy"> &quot;</span><a href="StructureDefinition-IMMZD1ClientHistoryHepatitisB.html" title="IMMZ.D1 Capture Client History for Hepatitis B">http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZD1ClientHistoryHepatitisB</a><span style="color: navy">&quot; </span><b>alias </b>IMMZD1 <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/bundle.html" title="Bundle">http://hl7.org/fhir/StructureDefinition/Bundle</a><span style="color: navy">&quot; </span><b>alias </b>Bundle <b>as </b><b>target</b>
+
+<b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-IMMZD1LMToResources.html" title="IMMZD1LMToResources">http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1LMToResources</a><span style="color: navy">&quot;
+</span>
+<b>group </b>HepatitisBIMMZD1ToBundle<span style="color: navy">(</span><b>source</b> <span style="color: maroon">immz</span><span style="color: navy"> : </span>IMMZD1, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><b> extends </b>IMMZD1ToBundle<span style="color: navy"> {
+</span>  immz.patient<b> as </b><span style="color: maroon">patient</span><b> then</b><span style="color: navy"> {
+</span>    immz.birth<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">entry</span><span style="color: navy">, </span> entry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Observation'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">obs</span><b> then</b><span style="color: navy"> {
+</span>      patient<span style="color: navy"><b> -&gt; </b></span>obs.subject = <span style="color: maroon">patient</span> <i>&quot;SetPatient&quot;</i><span style="color: navy">;</span>
+      content<span style="color: navy"><b> -&gt; </b></span>obs.code<b> as </b><span style="color: maroon">code</span><b> then</b><span style="color: navy"> {
+</span>        content<span style="color: navy"><b> -&gt; </b></span>code.coding<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
+</span>          content<span style="color: navy"><b> -&gt; </b></span>coding.system = <span style="color: blue">'http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D1'</span> <i>&quot;SetObsSystem&quot;</i><span style="color: navy">;</span>
+          content<span style="color: navy"><b> -&gt; </b></span>coding.code = <span style="color: blue">'DE109'</span> <i>&quot;SetObsCode&quot;</i><span style="color: navy">;</span>
+        <span style="color: navy">}</span> <i>&quot;SetObsCoding&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;SetObsCode&quot;</i><span style="color: navy">;</span>
+      content<span style="color: navy"><b> -&gt; </b></span>obs.value = <span style="color: maroon">content</span> <i>&quot;SetValue&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;SetBirthObservation&quot;</i><span style="color: navy">;</span>
+    immz.birthweight<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">entry</span><span style="color: navy">, </span> entry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Observation'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">obs</span><b> then</b><span style="color: navy"> {
+</span>      patient<span style="color: navy"><b> -&gt; </b></span>obs.subject = <span style="color: maroon">patient</span> <i>&quot;SetPatient&quot;</i><span style="color: navy">;</span>
+      content<span style="color: navy"><b> -&gt; </b></span>obs.code<b> as </b><span style="color: maroon">code</span><b> then</b><span style="color: navy"> {
+</span>        content<span style="color: navy"><b> -&gt; </b></span>code.coding<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
+</span>          content<span style="color: navy"><b> -&gt; </b></span>coding.system = <span style="color: blue">'http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D1'</span> <i>&quot;SetObsSystem&quot;</i><span style="color: navy">;</span>
+          content<span style="color: navy"><b> -&gt; </b></span>coding.code = <span style="color: blue">'DE29'</span> <i>&quot;SetObsCode&quot;</i><span style="color: navy">;</span>
+        <span style="color: navy">}</span> <i>&quot;SetObsCoding&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;SetObsCode&quot;</i><span style="color: navy">;</span>
+      content<span style="color: navy"><b> -&gt; </b></span>obs.value = <span style="color: maroon">content</span> <i>&quot;SetValue&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;SetBirthWeightObservation&quot;</i><span style="color: navy">;</span>
+    immz.hepbtype<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">entry</span><span style="color: navy">, </span> entry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Observation'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">obs</span><b> then</b><span style="color: navy"> {
+</span>      patient<span style="color: navy"><b> -&gt; </b></span>obs.subject = <span style="color: maroon">patient</span> <i>&quot;SetPatient&quot;</i><span style="color: navy">;</span>
+      content<span style="color: navy"><b> -&gt; </b></span>obs.code<b> as </b><span style="color: maroon">code</span><b> then</b><span style="color: navy"> {
+</span>        content<span style="color: navy"><b> -&gt; </b></span>code.coding<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
+</span>          content<span style="color: navy"><b> -&gt; </b></span>coding.system = <span style="color: blue">'http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D1'</span> <i>&quot;SetObsSystem&quot;</i><span style="color: navy">;</span>
+          content<span style="color: navy"><b> -&gt; </b></span>coding.code = <span style="color: blue">'DE99'</span> <i>&quot;SetObsCode&quot;</i><span style="color: navy">;</span>
+        <span style="color: navy">}</span> <i>&quot;SetObsCoding&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;SetObsCode&quot;</i><span style="color: navy">;</span>
+      content<span style="color: navy"><b> -&gt; </b></span>obs.valueCodeableConcept<b> as </b><span style="color: maroon">code</span><b> then</b><span style="color: navy"> {
+</span>        content<span style="color: navy"><b> -&gt; </b></span>code.coding = <span style="color: maroon">content</span> <i>&quot;SetCoding&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;SetCodeableConcept&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;SetHepatitisBTypeObservation&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;GetPatient&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span></pre></div>
+  </text>
+  <url value="http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1HepatitisBLMToResources"/>
+  <version value="0.1.0"/>
+  <name value="IMMZD1HepatitisBLMToResources"/>
+  <status value="draft"/>
+  <date value="2024-04-04T07:29:23+00:00"/>
+  <publisher value="World Health Organization (WHO)"/>
+  <contact>
+    <name value="World Health Organization (WHO)"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.who.int"/>
+    </telecom>
+  </contact>
+  <description value="Hepatitis B Immunization Client History - Transform Logical Model to Patient resources"/>
+  <jurisdiction>
+    <coding>
+      <system value="http://unstats.un.org/unsd/methods/m49/m49.htm"/>
+      <code value="001"/>
+    </coding>
+  </jurisdiction>
+  <structure>
+    <url value="http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZD1ClientHistoryHepatitisB"/>
+    <mode value="source"/>
+    <alias value="IMMZD1"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Bundle"/>
+    <mode value="target"/>
+    <alias value="Bundle"/>
+  </structure>
+  <import value="http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1LMToResources"/>
+  <group>
+    <name value="HepatitisBIMMZD1ToBundle"/>
+    <extends value="IMMZD1ToBundle"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="immz"/>
+      <type value="IMMZD1"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="bundle"/>
+      <type value="Bundle"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="GetPatient"/>
+      <source>
+        <context value="immz"/>
+        <element value="patient"/>
+        <variable value="patient"/>
+      </source>
+      <rule>
+        <name value="SetBirthObservation"/>
+        <source>
+          <context value="immz"/>
+          <element value="birth"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <context value="bundle"/>
+          <contextType value="variable"/>
+          <element value="entry"/>
+          <variable value="entry"/>
+        </target>
+        <target>
+          <context value="entry"/>
+          <contextType value="variable"/>
+          <element value="resource"/>
+          <variable value="obs"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="Observation"/>
+          </parameter>
+        </target>
+        <rule>
+          <name value="SetPatient"/>
+          <source>
+            <context value="patient"/>
+          </source>
+          <target>
+            <context value="obs"/>
+            <contextType value="variable"/>
+            <element value="subject"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="patient"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="SetObsCode"/>
+          <source>
+            <context value="content"/>
+          </source>
+          <target>
+            <context value="obs"/>
+            <contextType value="variable"/>
+            <element value="code"/>
+            <variable value="code"/>
+          </target>
+          <rule>
+            <name value="SetObsCoding"/>
+            <source>
+              <context value="content"/>
+            </source>
+            <target>
+              <context value="code"/>
+              <contextType value="variable"/>
+              <element value="coding"/>
+              <variable value="coding"/>
+            </target>
+            <rule>
+              <name value="SetObsSystem"/>
+              <source>
+                <context value="content"/>
+              </source>
+              <target>
+                <context value="coding"/>
+                <contextType value="variable"/>
+                <element value="system"/>
+                <transform value="copy"/>
+                <parameter>
+                  <valueString value="http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D1"/>
+                </parameter>
+              </target>
+            </rule>
+            <rule>
+              <name value="SetObsCode"/>
+              <source>
+                <context value="content"/>
+              </source>
+              <target>
+                <context value="coding"/>
+                <contextType value="variable"/>
+                <element value="code"/>
+                <transform value="copy"/>
+                <parameter>
+                  <valueString value="DE109"/>
+                </parameter>
+              </target>
+            </rule>
+          </rule>
+        </rule>
+        <rule>
+          <name value="SetValue"/>
+          <source>
+            <context value="content"/>
+          </source>
+          <target>
+            <context value="obs"/>
+            <contextType value="variable"/>
+            <element value="value"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="SetBirthWeightObservation"/>
+        <source>
+          <context value="immz"/>
+          <element value="birthweight"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <context value="bundle"/>
+          <contextType value="variable"/>
+          <element value="entry"/>
+          <variable value="entry"/>
+        </target>
+        <target>
+          <context value="entry"/>
+          <contextType value="variable"/>
+          <element value="resource"/>
+          <variable value="obs"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="Observation"/>
+          </parameter>
+        </target>
+        <rule>
+          <name value="SetPatient"/>
+          <source>
+            <context value="patient"/>
+          </source>
+          <target>
+            <context value="obs"/>
+            <contextType value="variable"/>
+            <element value="subject"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="patient"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="SetObsCode"/>
+          <source>
+            <context value="content"/>
+          </source>
+          <target>
+            <context value="obs"/>
+            <contextType value="variable"/>
+            <element value="code"/>
+            <variable value="code"/>
+          </target>
+          <rule>
+            <name value="SetObsCoding"/>
+            <source>
+              <context value="content"/>
+            </source>
+            <target>
+              <context value="code"/>
+              <contextType value="variable"/>
+              <element value="coding"/>
+              <variable value="coding"/>
+            </target>
+            <rule>
+              <name value="SetObsSystem"/>
+              <source>
+                <context value="content"/>
+              </source>
+              <target>
+                <context value="coding"/>
+                <contextType value="variable"/>
+                <element value="system"/>
+                <transform value="copy"/>
+                <parameter>
+                  <valueString value="http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D1"/>
+                </parameter>
+              </target>
+            </rule>
+            <rule>
+              <name value="SetObsCode"/>
+              <source>
+                <context value="content"/>
+              </source>
+              <target>
+                <context value="coding"/>
+                <contextType value="variable"/>
+                <element value="code"/>
+                <transform value="copy"/>
+                <parameter>
+                  <valueString value="DE29"/>
+                </parameter>
+              </target>
+            </rule>
+          </rule>
+        </rule>
+        <rule>
+          <name value="SetValue"/>
+          <source>
+            <context value="content"/>
+          </source>
+          <target>
+            <context value="obs"/>
+            <contextType value="variable"/>
+            <element value="value"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="SetHepatitisBTypeObservation"/>
+        <source>
+          <context value="immz"/>
+          <element value="hepbtype"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <context value="bundle"/>
+          <contextType value="variable"/>
+          <element value="entry"/>
+          <variable value="entry"/>
+        </target>
+        <target>
+          <context value="entry"/>
+          <contextType value="variable"/>
+          <element value="resource"/>
+          <variable value="obs"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="Observation"/>
+          </parameter>
+        </target>
+        <rule>
+          <name value="SetPatient"/>
+          <source>
+            <context value="patient"/>
+          </source>
+          <target>
+            <context value="obs"/>
+            <contextType value="variable"/>
+            <element value="subject"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="patient"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="SetObsCode"/>
+          <source>
+            <context value="content"/>
+          </source>
+          <target>
+            <context value="obs"/>
+            <contextType value="variable"/>
+            <element value="code"/>
+            <variable value="code"/>
+          </target>
+          <rule>
+            <name value="SetObsCoding"/>
+            <source>
+              <context value="content"/>
+            </source>
+            <target>
+              <context value="code"/>
+              <contextType value="variable"/>
+              <element value="coding"/>
+              <variable value="coding"/>
+            </target>
+            <rule>
+              <name value="SetObsSystem"/>
+              <source>
+                <context value="content"/>
+              </source>
+              <target>
+                <context value="coding"/>
+                <contextType value="variable"/>
+                <element value="system"/>
+                <transform value="copy"/>
+                <parameter>
+                  <valueString value="http://smart.who.int/ig/smart-immunizations/CodeSystem/IMMZ.D1"/>
+                </parameter>
+              </target>
+            </rule>
+            <rule>
+              <name value="SetObsCode"/>
+              <source>
+                <context value="content"/>
+              </source>
+              <target>
+                <context value="coding"/>
+                <contextType value="variable"/>
+                <element value="code"/>
+                <transform value="copy"/>
+                <parameter>
+                  <valueString value="DE99"/>
+                </parameter>
+              </target>
+            </rule>
+          </rule>
+        </rule>
+        <rule>
+          <name value="SetCodeableConcept"/>
+          <source>
+            <context value="content"/>
+          </source>
+          <target>
+            <context value="obs"/>
+            <contextType value="variable"/>
+            <element value="valueCodeableConcept"/>
+            <variable value="code"/>
+          </target>
+          <rule>
+            <name value="SetCoding"/>
+            <source>
+              <context value="content"/>
+            </source>
+            <target>
+              <context value="code"/>
+              <contextType value="variable"/>
+              <element value="coding"/>
+              <transform value="copy"/>
+              <parameter>
+                <valueId value="content"/>
+              </parameter>
+            </target>
+          </rule>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+</StructureMap>

@@ -1,0 +1,3505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureMap xmlns="http://hl7.org/fhir">
+  <id value="IMMZ.Helpers"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: StructureMap IMMZ.Helpers</b></p><a name="IMMZ.Helpers"> </a><a name="hcIMMZ.Helpers"> </a><pre class="fml">
+<b>map</b><span style="color: navy"> &quot;</span>http://smart.who.int/immunizations/StructureMap/IMMZ.Helpers<span style="color: navy">&quot; = &quot;</span>IMMZ.Helpers<span style="color: navy">&quot;
+
+</span><span style="color: navy">// </span><span style="color: green">Immunization - Transform QuestionnaireResponse to Logical Model Helper groups</span>
+
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/questionnaireresponse.html" title="QuestionnaireResponse">http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse</a><span style="color: navy">&quot; </span><b>alias </b>QResp <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/bundle.html" title="Bundle">http://hl7.org/fhir/StructureDefinition/Bundle</a><span style="color: navy">&quot; </span><b>alias </b>Bundle <b>as </b><b>target</b>
+
+<b>group </b>ItemToValue<span style="color: navy">(</span><b>source</b> <span style="color: maroon">item</span>, <b>target</b> <span style="color: maroon">field</span><span style="color: navy">)</span><span style="color: navy"> {
+</span>  item.answer first<b> as </b><span style="color: maroon">answer</span><b> then</b><span style="color: navy"> {
+</span>    answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>field.value = <span style="color: maroon">content</span> <i>&quot;SetValue&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;FirstAnswer&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><b>group </b>ItemToCode<span style="color: navy">(</span><b>source</b> <span style="color: maroon">item</span>, <b>target</b> <span style="color: maroon">field</span><span style="color: navy">)</span><span style="color: navy"> {
+</span>  item.answer first<b> as </b><span style="color: maroon">answer</span><b> then</b><span style="color: navy"> {
+</span>    answer.value<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
+</span>      coding.code<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>field.value = <span style="color: maroon">content</span> <i>&quot;SetCode&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;Coding&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;FirstAnswer&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><b>group </b>ItemToCoding<span style="color: navy">(</span><b>source</b> <span style="color: maroon">item</span>, <b>target</b> <span style="color: maroon">field</span><span style="color: navy">)</span><span style="color: navy"> {
+</span>  item.answer first<b> as </b><span style="color: maroon">answer</span><b> then</b><span style="color: navy"> {
+</span>    answer.value<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
+</span>      coding.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>field.code = <span style="color: maroon">code</span> <i>&quot;SetCode&quot;</i><span style="color: navy">;</span>
+      coding.system<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>field.system = <span style="color: maroon">system</span> <i>&quot;SetSystem&quot;</i><span style="color: navy">;</span>
+      coding.display<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>field.display = <span style="color: maroon">display</span> <i>&quot;SetDisplay&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;Coding&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;FirstAnswer&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><b>group </b>D1andD13Questions<span style="color: navy">(</span><b>source</b> <span style="color: maroon">qr</span><span style="color: navy"> : </span>QResp, <b>target</b> <span style="color: maroon">immz</span><span style="color: navy">)</span><span style="color: navy"> {
+</span>  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'birthDose'<span style="color: navy"><b> -&gt; </b></span>immz.birthDose<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;birthDose&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'typeOfDose'<span style="color: navy"><b> -&gt; </b></span>immz.typeOfDose<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;typeOfDose&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'completedThePrimaryVaccinationSeries'<span style="color: navy"><b> -&gt; </b></span>immz.completedThePrimaryVaccinationSeries<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;completedThePrimaryVaccinationSeries&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'completedTheBoosterSeries'<span style="color: navy"><b> -&gt; </b></span>immz.completedTheBoosterSeries<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;completedTheBoosterSeries&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'dateWhenPrimaryVaccinationSeriesWasCompleted'<span style="color: navy"><b> -&gt; </b></span>immz.dateWhenPrimaryVaccinationSeriesWasCompleted<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;dateWhenPrimaryVaccinationSeriesWasCompleted&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'hivStatus'<span style="color: navy"><b> -&gt; </b></span>immz.hivStatus<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;hivStatus&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'typeOfPoliovirusDose'<span style="color: navy"><b> -&gt; </b></span>immz.typeOfPoliovirusDose<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;typeOfPoliovirusDose&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'typeOfJeDose'<span style="color: navy"><b> -&gt; </b></span>immz.typeOfJeDose<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;typeOfJeDose&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'typeOfTbeDose'<span style="color: navy"><b> -&gt; </b></span>immz.typeOfTbeDose<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;typeOfTbeDose&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'typeOfTyphoidDose'<span style="color: navy"><b> -&gt; </b></span>immz.typeOfTyphoidDose<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;typeOfTyphoidDose&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'typeOfCholeraDose'<span style="color: navy"><b> -&gt; </b></span>immz.typeOfCholeraDose<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;typeOfCholeraDose&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'typeOfMeningococcalDose'<span style="color: navy"><b> -&gt; </b></span>immz.typeOfMeningococcalDose<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;typeOfMeningococcalDose&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'typeOfHepatitisADose'<span style="color: navy"><b> -&gt; </b></span>immz.typeOfHepatitisADose<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;typeOfHepatitisADose&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'typeOfHepatitisBDose'<span style="color: navy"><b> -&gt; </b></span>immz.typeOfHepatitisBDose<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;typeOfHepatitisBDose&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'vaccineType'<span style="color: navy"><b> -&gt; </b></span>immz.vaccineType<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;vaccineType&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'dateAndTimeOfVaccination'<span style="color: navy"><b> -&gt; </b></span>immz.dateAndTimeOfVaccination<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;dateAndTimeOfVaccination&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'contactDate'<span style="color: navy"><b> -&gt; </b></span>immz.contactDate<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;contactDate&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'ancContactNumber'<span style="color: navy"><b> -&gt; </b></span>immz.ancContactNumber<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;ancContactNumber&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'doseNumber'<span style="color: navy"><b> -&gt; </b></span>immz.doseNumber<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;doseNumber&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><b>group </b>D1Questions<span style="color: navy">(</span><b>source</b> <span style="color: maroon">qr</span><span style="color: navy"> : </span>QResp, <b>target</b> <span style="color: maroon">immz</span><span style="color: navy">)</span><span style="color: navy"> {
+</span>  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'pretermBirth'<span style="color: navy"><b> -&gt; </b></span>immz.pretermBirth<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;pretermBirth&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'immunocompromised'<span style="color: navy"><b> -&gt; </b></span>immz.immunocompromised<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;immunocompromised&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'currentlyOnArt'<span style="color: navy"><b> -&gt; </b></span>immz.currentlyOnArt<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;currentlyOnArt&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'currentlyOnArt'<span style="color: navy"><b> -&gt; </b></span>immz.currentlyOnArt<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;currentlyOnArt&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'typeOfTbInfectionTestPerformed'<span style="color: navy"><b> -&gt; </b></span>immz.typeOfTbInfectionTestPerformed<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;typeOfTbInfectionTestPerformed&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'tbInfectionTestResult'<span style="color: navy"><b> -&gt; </b></span>immz.tbInfectionTestResult<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;tbInfectionTestResult&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'immunologicallyStable'<span style="color: navy"><b> -&gt; </b></span>immz.immunologicallyStable<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;immunologicallyStable&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'clinicallyWell'<span style="color: navy"><b> -&gt; </b></span>immz.clinicallyWell<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;clinicallyWell&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'birthWeightInGrams'<span style="color: navy"><b> -&gt; </b></span>immz.birthWeightInGrams<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;birthWeightInGrams&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'artStartDate'<span style="color: navy"><b> -&gt; </b></span>immz.artStartDate<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;artStartDate&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'highRiskOfPneumococcalInfection'<span style="color: navy"><b> -&gt; </b></span>immz.highRiskOfPneumococcalInfection<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;highRiskOfPneumococcalInfection&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'ageInMonthsWhenClientReceivedFirstMeningococcalDose'<span style="color: navy"><b> -&gt; </b></span>immz.ageInMonthsWhenClientReceivedFirstMeningococcalDose<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;ageInMonthsWhenClientReceivedFirstMeningococcalDose&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'vnaLevel'<span style="color: navy"><b> -&gt; </b></span>immz.vnaLevel<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;vnaLevel&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'riskOfOccupationalExposureToRabiesVirus'<span style="color: navy"><b> -&gt; </b></span>immz.riskOfOccupationalExposureToRabiesVirus<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;riskOfOccupationalExposureToRabiesVirus&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'dengueSerostatus'<span style="color: navy"><b> -&gt; </b></span>immz.dengueSerostatus<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;dengueSerostatus&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><b>group </b>D13Questions<span style="color: navy">(</span><b>source</b> <span style="color: maroon">qr</span><span style="color: navy"> : </span>QResp, <b>target</b> <span style="color: maroon">immz</span><span style="color: navy">)</span><span style="color: navy"> {
+</span>  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'immunizationEventStatus'<span style="color: navy"><b> -&gt; </b></span>immz.immunizationEventStatus<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;immunizationEventStatus&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'reasonVaccineWasNotAdministered'<span style="color: navy"><b> -&gt; </b></span>immz.reasonVaccineWasNotAdministered<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;reasonVaccineWasNotAdministered&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'vaccineBrand'<span style="color: navy"><b> -&gt; </b></span>immz.vaccineBrand<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;vaccineBrand&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'liveVaccine'<span style="color: navy"><b> -&gt; </b></span>immz.liveVaccine<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;liveVaccine&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'countryOfVaccination'<span style="color: navy"><b> -&gt; </b></span>immz.countryOfVaccination<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;countryOfVaccination&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'administrativeArea'<span style="color: navy"><b> -&gt; </b></span>immz.administrativeArea<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;administrativeArea&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'vaccineManufacturer'<span style="color: navy"><b> -&gt; </b></span>immz.vaccineManufacturer<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;vaccineManufacturer&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'vaccineBatchNumber'<span style="color: navy"><b> -&gt; </b></span>immz.vaccineBatchNumber<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;vaccineBatchNumber&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'vaccineMarketAuthorizationHolder'<span style="color: navy"><b> -&gt; </b></span>immz.vaccineMarketAuthorizationHolder<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;vaccineMarketAuthorizationHolder&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'expirationDate'<span style="color: navy"><b> -&gt; </b></span>immz.expirationDate<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;expirationDate&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'doseQuantity'<span style="color: navy"><b> -&gt; </b></span>immz.doseQuantity<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;doseQuantity&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'healthWorkerIdentifier'<span style="color: navy"><b> -&gt; </b></span>immz.healthWorkerIdentifier<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;healthWorkerIdentifier&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'totalDosesInSeries'<span style="color: navy"><b> -&gt; </b></span>immz.totalDosesInSeries<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;totalDosesInSeries&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'diseaseTargeted'<span style="color: navy"><b> -&gt; </b></span>immz.diseaseTargeted<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;diseaseTargeted&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>item.linkId = 'dueDateOfNextDose'<span style="color: navy"><b> -&gt; </b></span>immz.dueDateOfNextDose<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;dueDateOfNextDose&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><b>group </b>MakeImmzObservation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Reference, <b>source</b> <span style="color: maroon">immid</span>, <b>source</b> <span style="color: maroon">code</span><span style="color: navy"> : </span>Coding, <b>source</b> <span style="color: maroon">cat</span><span style="color: navy"> : </span>Coding, <b>source</b> <span style="color: maroon">value</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
+</span>  value<span style="color: navy"><b> -&gt; </b></span> <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">oid</span><span style="color: navy">, </span> bundle.entry<b> as </b><span style="color: maroon">entry</span><span style="color: navy">, </span> entry.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">oid</span><span style="color: navy">)</span><span style="color: navy">, </span> entry.request<b> as </b><span style="color: maroon">request</span><span style="color: navy">, </span> request.method = <span style="color: blue">'PUT'</span><span style="color: navy">, </span> request.url = <b>append</b><span style="color: navy">(</span><span style="color: blue">'Observation/'</span><span style="color: navy">, </span><span style="color: maroon">oid</span><span style="color: navy">)</span><span style="color: navy">, </span> entry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Observation'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">obs</span><b> then</b><span style="color: navy"> {
+</span>    value<span style="color: navy"><b> -&gt; </b></span>obs.id = <span style="color: maroon">oid</span> <i>&quot;SetId&quot;</i><span style="color: navy">;</span>
+    immid<span style="color: navy"><b> -&gt; </b></span> obs.partOf<b> as </b><span style="color: maroon">partOf</span><span style="color: navy">, </span> partOf.reference = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">)</span> <i>&quot;SetPartOf&quot;</i><span style="color: navy">;</span>
+    patient<span style="color: navy"><b> -&gt; </b></span>obs.subject = <span style="color: maroon">patient</span> <i>&quot;SetSubject&quot;</i><span style="color: navy">;</span>
+    code<span style="color: navy"><b> -&gt; </b></span>obs.code = <span style="color: maroon">code</span> <i>&quot;SetCode&quot;</i><span style="color: navy">;</span>
+    value<span style="color: navy"><b> -&gt; </b></span>obs.value = <span style="color: maroon">value</span> <i>&quot;SetValue&quot;</i><span style="color: navy">;</span>
+    cat<span style="color: navy"><b> -&gt; </b></span>obs.category = <span style="color: maroon">cat</span> <i>&quot;SetCategory&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;CreateObservation&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><b>group </b>MakeObservation<span style="color: navy">(</span><b>source</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Reference, <b>source</b> <span style="color: maroon">code</span><span style="color: navy"> : </span>Coding, <b>source</b> <span style="color: maroon">cat</span><span style="color: navy"> : </span>Coding, <b>source</b> <span style="color: maroon">value</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
+</span>  value<span style="color: navy"><b> -&gt; </b></span> <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">oid</span><span style="color: navy">, </span> bundle.entry<b> as </b><span style="color: maroon">entry</span><span style="color: navy">, </span> entry.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">oid</span><span style="color: navy">)</span><span style="color: navy">, </span> entry.request<b> as </b><span style="color: maroon">request</span><span style="color: navy">, </span> request.method = <span style="color: blue">'PUT'</span><span style="color: navy">, </span> request.url = <b>append</b><span style="color: navy">(</span><span style="color: blue">'Observation/'</span><span style="color: navy">, </span><span style="color: maroon">oid</span><span style="color: navy">)</span><span style="color: navy">, </span> entry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Observation'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">obs</span><b> then</b><span style="color: navy"> {
+</span>    value<span style="color: navy"><b> -&gt; </b></span>obs.id = <span style="color: maroon">oid</span> <i>&quot;SetId&quot;</i><span style="color: navy">;</span>
+    patient<span style="color: navy"><b> -&gt; </b></span>obs.subject = <span style="color: maroon">patient</span> <i>&quot;SetSubject&quot;</i><span style="color: navy">;</span>
+    code<span style="color: navy"><b> -&gt; </b></span>obs.code = <span style="color: maroon">code</span> <i>&quot;SetCode&quot;</i><span style="color: navy">;</span>
+    value<span style="color: navy"><b> -&gt; </b></span>obs.value = <span style="color: maroon">value</span> <i>&quot;SetValue&quot;</i><span style="color: navy">;</span>
+    cat<span style="color: navy"><b> -&gt; </b></span>obs.category = <span style="color: maroon">cat</span> <i>&quot;SetCategory&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;CreateObservation&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><b>group </b>TypeOfVaccineDose<span style="color: navy">(</span><b>source</b> <span style="color: maroon">typeof</span><span style="color: navy"> : </span>Coding, <b>target</b> <span style="color: maroon">ext</span><span style="color: navy"> : </span>Extension<span style="color: navy">)</span><span style="color: navy"> {
+</span>  typeof<span style="color: navy"><b> -&gt; </b></span>ext.url = <span style="color: blue">'http://smart.who.int/immunizations/StructureDefinition/IMMZTypeOfDose'</span> <i>&quot;SetURL&quot;</i><span style="color: navy">;</span>
+  typeof<span style="color: navy"><b> -&gt; </b></span>ext.value = <span style="color: maroon">typeof</span> <i>&quot;SetValue&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><b>group </b>MakeImmunization<span style="color: navy">(</span><b>source</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Reference, <b>source</b> <span style="color: maroon">immid</span>, <b>source</b> <span style="color: maroon">immz</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
+</span>  immz.vaccineType<b> as </b><span style="color: maroon">vaccineCode</span><span style="color: navy"><b> -&gt; </b></span> bundle.entry<b> as </b><span style="color: maroon">entry</span><span style="color: navy">, </span> entry.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">)</span><span style="color: navy">, </span> entry.request<b> as </b><span style="color: maroon">request</span><span style="color: navy">, </span> request.method = <span style="color: blue">'PUT'</span><span style="color: navy">, </span> request.url = <b>append</b><span style="color: navy">(</span><span style="color: blue">'Immunization/'</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">)</span><span style="color: navy">, </span> entry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'Immunization'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">imm</span><b> then</b><span style="color: navy"> {
+</span>    <span style="color: navy">// </span><span style="color: green">D1 and D13</span>
+    immid<span style="color: navy"><b> -&gt; </b></span>imm.id = <span style="color: maroon">immid</span> <i>&quot;SetId&quot;</i><span style="color: navy">;</span>
+    patient<span style="color: navy"><b> -&gt; </b></span>imm.patient = <span style="color: maroon">patient</span> <i>&quot;SetPatient&quot;</i><span style="color: navy">;</span>
+    vaccineCode<span style="color: navy"><b> -&gt; </b></span>imm.vaccineCode = <span style="color: maroon">vaccineCode</span> <i>&quot;vaccineCode&quot;</i><span style="color: navy">;</span>
+    immz.typeOfDose<b> as </b><span style="color: maroon">typeOfDose</span><span style="color: navy"><b> -&gt; </b></span>imm.protocolApplied<b> as </b><span style="color: maroon">pa</span><b> then</b><span style="color: navy"> {
+</span>      typeOfDose.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>pa.series = <span style="color: maroon">code</span> <i>&quot;SetSeriesToCode&quot;</i><span style="color: navy">;</span> <span style="color: navy">// </span><span style="color: green">if display is missing</span>
+      typeOfDose.display<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>pa.series = <span style="color: maroon">display</span> <i>&quot;SetSeriesToDisplay&quot;</i><span style="color: navy">;</span>
+      immz.doseNumber<b> as </b><span style="color: maroon">doseNumber</span><span style="color: navy"><b> -&gt; </b></span>pa.doseNumber = <span style="color: maroon">doseNumber</span> <i>&quot;SetDoseNumber&quot;</i><span style="color: navy">;</span>
+      immz.totalDosesInSeries<b> as </b><span style="color: maroon">totalDoses</span><span style="color: navy"><b> -&gt; </b></span>pa.seriesDoses = <span style="color: maroon">totalDoses</span><span style="color: navy">;</span>
+      immz.diseaseTargeted<b> as </b><span style="color: maroon">disease</span><span style="color: navy"><b> -&gt; </b></span>pa.targetDisease = <span style="color: maroon">disease</span><span style="color: navy">;</span>
+      immz.dueDateOfNextDose<b> as </b><span style="color: maroon">duedate</span><span style="color: navy"><b> -&gt; </b></span> pa.extension<b> as </b><span style="color: maroon">ext</span><span style="color: navy">, </span> ext.url = <span style="color: blue">'http://smart.who.int/immunizations/StructureDefinition/IMMZDueDateOfNextDose'</span><span style="color: navy">, </span> ext.value = <span style="color: maroon">duedate</span><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;protocolApplied&quot;</i><span style="color: navy">;</span>
+    immz.dateAndTimeOfVaccination<b> as </b><span style="color: maroon">occurrence</span><span style="color: navy"><b> -&gt; </b></span>imm.occurrence = <span style="color: maroon">occurrence</span><span style="color: navy">;</span>
+    immz.typeOfPoliovirusDose<b> as </b><span style="color: maroon">typeof</span><span style="color: navy"><b> -&gt; </b></span>imm.extension<b> as </b><span style="color: maroon">ext</span><b> then </b>TypeOfVaccineDose<span style="color: navy">(</span><span style="color: maroon">typeof</span><span style="color: navy">, </span><span style="color: maroon">ext</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.typeOfJeDose<b> as </b><span style="color: maroon">typeof</span><span style="color: navy"><b> -&gt; </b></span>imm.extension<b> as </b><span style="color: maroon">ext</span><b> then </b>TypeOfVaccineDose<span style="color: navy">(</span><span style="color: maroon">typeof</span><span style="color: navy">, </span><span style="color: maroon">ext</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.typeOfTbeDose<b> as </b><span style="color: maroon">typeof</span><span style="color: navy"><b> -&gt; </b></span>imm.extension<b> as </b><span style="color: maroon">ext</span><b> then </b>TypeOfVaccineDose<span style="color: navy">(</span><span style="color: maroon">typeof</span><span style="color: navy">, </span><span style="color: maroon">ext</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.typeOfTyphoidDose<b> as </b><span style="color: maroon">typeof</span><span style="color: navy"><b> -&gt; </b></span>imm.extension<b> as </b><span style="color: maroon">ext</span><b> then </b>TypeOfVaccineDose<span style="color: navy">(</span><span style="color: maroon">typeof</span><span style="color: navy">, </span><span style="color: maroon">ext</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.typeOfCholeraDose<b> as </b><span style="color: maroon">typeof</span><span style="color: navy"><b> -&gt; </b></span>imm.extension<b> as </b><span style="color: maroon">ext</span><b> then </b>TypeOfVaccineDose<span style="color: navy">(</span><span style="color: maroon">typeof</span><span style="color: navy">, </span><span style="color: maroon">ext</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.typeOfMeningococcalDose<b> as </b><span style="color: maroon">typeof</span><span style="color: navy"><b> -&gt; </b></span>imm.extension<b> as </b><span style="color: maroon">ext</span><b> then </b>TypeOfVaccineDose<span style="color: navy">(</span><span style="color: maroon">typeof</span><span style="color: navy">, </span><span style="color: maroon">ext</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.typeOfHepatitisADose<b> as </b><span style="color: maroon">typeof</span><span style="color: navy"><b> -&gt; </b></span>imm.extension<b> as </b><span style="color: maroon">ext</span><b> then </b>TypeOfVaccineDose<span style="color: navy">(</span><span style="color: maroon">typeof</span><span style="color: navy">, </span><span style="color: maroon">ext</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.typeOfHepatitisBDose<b> as </b><span style="color: maroon">typeof</span><span style="color: navy"><b> -&gt; </b></span>imm.extension<b> as </b><span style="color: maroon">ext</span><b> then </b>TypeOfVaccineDose<span style="color: navy">(</span><span style="color: maroon">typeof</span><span style="color: navy">, </span><span style="color: maroon">ext</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">D1</span>
+    immz<span style="color: navy"><b> -&gt; </b></span>imm.status = <span style="color: blue">'completed'</span> <i>&quot;SetDefaultStatus&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">// </span><span style="color: green">D13</span>
+    immz.immunizationEventStatus<b> as </b><span style="color: maroon">status</span><span style="color: navy"><b> -&gt; </b></span>imm.status = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">status</span><span style="color: navy">, </span><span style="color: blue">'http://smart.who.int/immunizations/ConceptMap/IMMZ.D.ConceptMap'</span><span style="color: navy">, </span><span style="color: blue">'code'</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.reasonVaccineWasNotAdministered<b> as </b><span style="color: maroon">reason</span><span style="color: navy"><b> -&gt; </b></span>imm.statusReason = <span style="color: maroon">reason</span><span style="color: navy">;</span>
+    immz.vaccineBrand<b> as </b><span style="color: maroon">brand</span><span style="color: navy"><b> -&gt; </b></span> imm.extension<b> as </b><span style="color: maroon">ext</span><span style="color: navy">, </span> ext.url = <span style="color: blue">'http://smart.who.int/immunizations/StructureDefinition/IMMZVaccineBrand'</span><span style="color: navy">, </span> ext.value = <span style="color: maroon">brand</span><span style="color: navy">;</span>
+    immz.liveVaccine<b> as </b><span style="color: maroon">live</span><span style="color: navy"><b> -&gt; </b></span> imm.extension<b> as </b><span style="color: maroon">ext</span><span style="color: navy">, </span> ext.url = <span style="color: blue">'http://smart.who.int/immunizations/StructureDefinition/IMMZLiveVaccine'</span><span style="color: navy">, </span> ext.value = <span style="color: maroon">live</span><span style="color: navy">;</span>
+    immz.countryOfVaccination<b> as </b><span style="color: maroon">country</span><span style="color: navy"><b> -&gt; </b></span> imm.extension<b> as </b><span style="color: maroon">ext</span><span style="color: navy">, </span> ext.url = <span style="color: blue">'http://smart.who.int/immunizations/StructureDefinition/IMMZCountryOfVaccination'</span><span style="color: navy">, </span> ext.value = <span style="color: maroon">country</span><span style="color: navy">;</span>
+    immz.administrativeArea<b> as </b><span style="color: maroon">area</span><span style="color: navy"><b> -&gt; </b></span> imm.extension<b> as </b><span style="color: maroon">ext</span><span style="color: navy">, </span> ext.url = <span style="color: blue">'http://smart.who.int/immunizations/StructureDefinition/IMMZAdministrativeArea'</span><span style="color: navy">, </span> ext.value = <span style="color: maroon">area</span><span style="color: navy">;</span>
+    immz.vaccineManufacturer<b> as </b><span style="color: maroon">vman</span><span style="color: navy"><b> -&gt; </b></span> imm.manufacturer<b> as </b><span style="color: maroon">manufacturer</span><span style="color: navy">, </span> manufacturer.identifier<b> as </b><span style="color: maroon">identifier</span><b> then</b><span style="color: navy"> {
+</span>      vman.system<b> as </b><span style="color: maroon">system</span><span style="color: navy"><b> -&gt; </b></span>identifier.system = <span style="color: maroon">system</span> <i>&quot;SetSystem&quot;</i><span style="color: navy">;</span>
+      vman.code<b> as </b><span style="color: maroon">code</span><span style="color: navy"><b> -&gt; </b></span>identifier.value = <span style="color: maroon">code</span> <i>&quot;SetValue&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span><span style="color: navy">;</span>
+    immz.vaccineBatchNumber<b> as </b><span style="color: maroon">batch</span><span style="color: navy"><b> -&gt; </b></span>imm.lotNumber = <span style="color: maroon">batch</span><span style="color: navy">;</span>
+    immz.vaccineMarketAuthorizationHolder<b> as </b><span style="color: maroon">market</span><span style="color: navy"><b> -&gt; </b></span> imm.extension<b> as </b><span style="color: maroon">ext</span><span style="color: navy">, </span> ext.url = <span style="color: blue">'http://smart.who.int/immunizations/StructureDefinition/IMMZMarketAuthorization'</span><span style="color: navy">, </span> ext.value = <span style="color: maroon">market</span><span style="color: navy">;</span>
+    immz.expirationDate<b> as </b><span style="color: maroon">expiration</span><span style="color: navy"><b> -&gt; </b></span>imm.expirationDate = <span style="color: maroon">expiration</span><span style="color: navy">;</span>
+    immz.doseQuantity<b> as </b><span style="color: maroon">dosequantity</span><span style="color: navy"><b> -&gt; </b></span>imm.doseQuantity = <span style="color: maroon">dosequantity</span><span style="color: navy">;</span>
+    immz.healthWorkerIdentifier<b> as </b><span style="color: maroon">hw</span><span style="color: navy"><b> -&gt; </b></span> imm.performer<b> as </b><span style="color: maroon">performer</span><span style="color: navy">, </span> performer.actor<b> as </b><span style="color: maroon">actor</span><span style="color: navy">, </span> actor.identifier<b> as </b><span style="color: maroon">identifier</span><span style="color: navy">, </span> identifier.value = <span style="color: maroon">hw</span><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;MakeImmunization&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><b>group </b>D1andD13Observations<span style="color: navy">(</span><b>source</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Reference, <b>source</b> <span style="color: maroon">immid</span>, <b>source</b> <span style="color: maroon">immz</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
+</span>  immz<span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style="color: navy">, </span><span style="color: blue">'survey'</span><span style="color: navy">, </span><span style="color: blue">'Survey'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">survey</span><b> then</b><span style="color: navy"> {
+</span>    immz.birthDose<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE263'</span><span style="color: navy">, </span><span style="color: blue">'Birth dose'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.completedThePrimaryVaccinationSeries<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE203'</span><span style="color: navy">, </span><span style="color: blue">'Completed the primary vaccination series'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.completedTheBoosterSeries<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE257'</span><span style="color: navy">, </span><span style="color: blue">'Completed the booster series'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.dateWhenPrimaryVaccinationSeriesWasCompleted<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE242'</span><span style="color: navy">, </span><span style="color: blue">'Date when primary vaccination series was completed'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.hivStatus<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE204'</span><span style="color: navy">, </span><span style="color: blue">'HIV status'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.contactDate<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE201'</span><span style="color: navy">, </span><span style="color: blue">'Contact date'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.ancContactNumber<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE202'</span><span style="color: navy">, </span><span style="color: blue">'ANC contact number'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;DefineCategory&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><b>group </b>D1Observations<span style="color: navy">(</span><b>source</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Reference, <b>source</b> <span style="color: maroon">immid</span>, <b>source</b> <span style="color: maroon">immz</span>, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
+</span>  immz<span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style="color: navy">, </span><span style="color: blue">'survey'</span><span style="color: navy">, </span><span style="color: blue">'Survey'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">survey</span><b> then</b><span style="color: navy"> {
+</span>    immz.pretermBirth<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE208'</span><span style="color: navy">, </span><span style="color: blue">'Preterm birth'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.immunocompromised<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE209'</span><span style="color: navy">, </span><span style="color: blue">'Immunocompromised'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.currentlyOnArt<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE210'</span><span style="color: navy">, </span><span style="color: blue">'Currently on ART'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.typeOfTbInfectionTestPerformed<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE243'</span><span style="color: navy">, </span><span style="color: blue">'Type of TB infection test performed'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.tbInfectionTestResult<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE246'</span><span style="color: navy">, </span><span style="color: blue">'TB infection test result'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.immunologicallyStable<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE249'</span><span style="color: navy">, </span><span style="color: blue">'Immunologically stable'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.clinicallyWell<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE250'</span><span style="color: navy">, </span><span style="color: blue">'Clinically well'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.birthWeightInGrams<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span> <b>create</b><span style="color: navy">(</span><span style="color: blue">'Quantity'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">content</span><span style="color: navy">, </span> content.system = <span style="color: blue">'http://unitsofmeasure.org'</span><span style="color: navy">, </span> content.code = <span style="color: blue">'g'</span><span style="color: navy">, </span> content.unit = <span style="color: blue">'g'</span><span style="color: navy">, </span> content.value = <span style="color: maroon">value</span><span style="color: navy">, </span> <b>c</b><span style="color: navy">(</span><span style="color: blue">'http://loinc.org'</span><span style="color: navy">, </span><span style="color: blue">'8339-4'</span><span style="color: navy">, </span><span style="color: blue">'Birth weight Measured'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">bwloinc</span><span style="color: navy">, </span> <b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE211'</span><span style="color: navy">, </span><span style="color: blue">'Birth weight in grams'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">bwdak</span><span style="color: navy">, </span> <b>create</b><span style="color: navy">(</span><span style="color: blue">'CodeableConcept'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><span style="color: navy">, </span> code.coding = <span style="color: maroon">bwloinc</span><span style="color: navy">, </span> code.coding = <span style="color: maroon">bwdak</span><span style="color: navy">, </span> <b>c</b><span style="color: navy">(</span><span style="color: blue">'http://terminology.hl7.org/CodeSystem/observation-category'</span><span style="color: navy">, </span><span style="color: blue">'vital-signs'</span><span style="color: navy">, </span><span style="color: blue">'Vital Signs'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">vital</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">vital</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.artStartDate<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE215'</span><span style="color: navy">, </span><span style="color: blue">'ART start date'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.highRiskOfPneumococcalInfection<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE251'</span><span style="color: navy">, </span><span style="color: blue">'High risk of pneumococcal infection'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.ageInMonthsWhenClientReceivedFirstMeningococcalDose<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span> <b>create</b><span style="color: navy">(</span><span style="color: blue">'Quantity'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">content</span><span style="color: navy">, </span> content.unit = <span style="color: blue">'mo'</span><span style="color: navy">, </span> content.value = <span style="color: maroon">value</span><span style="color: navy">, </span> <b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE236'</span><span style="color: navy">, </span><span style="color: blue">'Age in months when client received first meningococcal dose'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.vnaLevel<b> as </b><span style="color: maroon">value</span><span style="color: navy"><b> -&gt; </b></span> <b>create</b><span style="color: navy">(</span><span style="color: blue">'Quantity'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">content</span><span style="color: navy">, </span> content.system = <span style="color: blue">'http://unitsofmeasure.org'</span><span style="color: navy">, </span> content.code = <span style="color: blue">'[IU]/mL'</span><span style="color: navy">, </span> content.unit = <span style="color: blue">'[IU]/mL'</span><span style="color: navy">, </span> content.value = <span style="color: maroon">value</span><span style="color: navy">, </span> <b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE240'</span><span style="color: navy">, </span><span style="color: blue">'VNA level'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.riskOfOccupationalExposureToRabiesVirus<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE253'</span><span style="color: navy">, </span><span style="color: blue">'Risk of occupational exposure to rabies virus'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+    immz.dengueSerostatus<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span><b>c</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/immunizations/CodeSystem/IMMZ.D'</span><span style="color: navy">, </span><span style="color: blue">'DE241'</span><span style="color: navy">, </span><span style="color: blue">'Dengue serostatus'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">code</span><b> then </b>MakeImmzObservation<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">code</span><span style="color: navy">, </span><span style="color: maroon">survey</span><span style="color: navy">, </span><span style="color: maroon">content</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;DefineCategory&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span></pre></div>
+  </text>
+  <url value="http://smart.who.int/immunizations/StructureMap/IMMZ.Helpers"/>
+  <version value="0.2.0"/>
+  <name value="IMMZ.Helpers"/>
+  <status value="draft"/>
+  <date value="2025-06-25T20:08:00+00:00"/>
+  <publisher value="WHO"/>
+  <contact>
+    <name value="WHO"/>
+    <telecom>
+      <system value="url"/>
+      <value value="http://who.int"/>
+    </telecom>
+  </contact>
+  <description value="Immunization - Transform QuestionnaireResponse to Logical Model Helper groups"/>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
+    <mode value="source"/>
+    <alias value="QResp"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Bundle"/>
+    <mode value="target"/>
+    <alias value="Bundle"/>
+  </structure>
+  <group>
+    <name value="ItemToValue"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="item"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="field"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="FirstAnswer"/>
+      <source>
+        <context value="item"/>
+        <element value="answer"/>
+        <listMode value="first"/>
+        <variable value="answer"/>
+      </source>
+      <rule>
+        <name value="SetValue"/>
+        <source>
+          <context value="answer"/>
+          <element value="value"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <context value="field"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="content"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="ItemToCode"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="item"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="field"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="FirstAnswer"/>
+      <source>
+        <context value="item"/>
+        <element value="answer"/>
+        <listMode value="first"/>
+        <variable value="answer"/>
+      </source>
+      <rule>
+        <name value="Coding"/>
+        <source>
+          <context value="answer"/>
+          <element value="value"/>
+          <variable value="coding"/>
+        </source>
+        <rule>
+          <name value="SetCode"/>
+          <source>
+            <context value="coding"/>
+            <element value="code"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="field"/>
+            <contextType value="variable"/>
+            <element value="value"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="ItemToCoding"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="item"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="field"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="FirstAnswer"/>
+      <source>
+        <context value="item"/>
+        <element value="answer"/>
+        <listMode value="first"/>
+        <variable value="answer"/>
+      </source>
+      <rule>
+        <name value="Coding"/>
+        <source>
+          <context value="answer"/>
+          <element value="value"/>
+          <variable value="coding"/>
+        </source>
+        <rule>
+          <name value="SetCode"/>
+          <source>
+            <context value="coding"/>
+            <element value="code"/>
+            <variable value="code"/>
+          </source>
+          <target>
+            <context value="field"/>
+            <contextType value="variable"/>
+            <element value="code"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="code"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="SetSystem"/>
+          <source>
+            <context value="coding"/>
+            <element value="system"/>
+            <variable value="system"/>
+          </source>
+          <target>
+            <context value="field"/>
+            <contextType value="variable"/>
+            <element value="system"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="system"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="SetDisplay"/>
+          <source>
+            <context value="coding"/>
+            <element value="display"/>
+            <variable value="display"/>
+          </source>
+          <target>
+            <context value="field"/>
+            <contextType value="variable"/>
+            <element value="display"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="display"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="D1andD13Questions"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="qr"/>
+      <type value="QResp"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immz"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="birthDose"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'birthDose'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="birthDose"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="typeOfDose"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'typeOfDose'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="typeOfDose"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="completedThePrimaryVaccinationSeries"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'completedThePrimaryVaccinationSeries'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="completedThePrimaryVaccinationSeries"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="completedTheBoosterSeries"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'completedTheBoosterSeries'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="completedTheBoosterSeries"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="dateWhenPrimaryVaccinationSeriesWasCompleted"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'dateWhenPrimaryVaccinationSeriesWasCompleted'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="dateWhenPrimaryVaccinationSeriesWasCompleted"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="hivStatus"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'hivStatus'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="hivStatus"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="typeOfPoliovirusDose"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'typeOfPoliovirusDose'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="typeOfPoliovirusDose"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="typeOfJeDose"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'typeOfJeDose'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="typeOfJeDose"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="typeOfTbeDose"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'typeOfTbeDose'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="typeOfTbeDose"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="typeOfTyphoidDose"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'typeOfTyphoidDose'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="typeOfTyphoidDose"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="typeOfCholeraDose"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'typeOfCholeraDose'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="typeOfCholeraDose"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="typeOfMeningococcalDose"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'typeOfMeningococcalDose'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="typeOfMeningococcalDose"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="typeOfHepatitisADose"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'typeOfHepatitisADose'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="typeOfHepatitisADose"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="typeOfHepatitisBDose"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'typeOfHepatitisBDose'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="typeOfHepatitisBDose"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="vaccineType"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'vaccineType'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="vaccineType"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="dateAndTimeOfVaccination"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'dateAndTimeOfVaccination'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="dateAndTimeOfVaccination"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="contactDate"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'contactDate'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="contactDate"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="ancContactNumber"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'ancContactNumber'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="ancContactNumber"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="doseNumber"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'doseNumber'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="doseNumber"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+  </group>
+  <group>
+    <name value="D1Questions"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="qr"/>
+      <type value="QResp"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immz"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="pretermBirth"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'pretermBirth'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="pretermBirth"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="immunocompromised"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'immunocompromised'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="immunocompromised"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="currentlyOnArt"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'currentlyOnArt'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="currentlyOnArt"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="currentlyOnArt"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'currentlyOnArt'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="currentlyOnArt"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="typeOfTbInfectionTestPerformed"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'typeOfTbInfectionTestPerformed'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="typeOfTbInfectionTestPerformed"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="tbInfectionTestResult"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'tbInfectionTestResult'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="tbInfectionTestResult"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="immunologicallyStable"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'immunologicallyStable'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="immunologicallyStable"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="clinicallyWell"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'clinicallyWell'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="clinicallyWell"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="birthWeightInGrams"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'birthWeightInGrams'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="birthWeightInGrams"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="artStartDate"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'artStartDate'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="artStartDate"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="highRiskOfPneumococcalInfection"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'highRiskOfPneumococcalInfection'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="highRiskOfPneumococcalInfection"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="ageInMonthsWhenClientReceivedFirstMeningococcalDose"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'ageInMonthsWhenClientReceivedFirstMeningococcalDose'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="ageInMonthsWhenClientReceivedFirstMeningococcalDose"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="vnaLevel"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'vnaLevel'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="vnaLevel"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="riskOfOccupationalExposureToRabiesVirus"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'riskOfOccupationalExposureToRabiesVirus'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="riskOfOccupationalExposureToRabiesVirus"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="dengueSerostatus"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'dengueSerostatus'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="dengueSerostatus"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+  </group>
+  <group>
+    <name value="D13Questions"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="qr"/>
+      <type value="QResp"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immz"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="immunizationEventStatus"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'immunizationEventStatus'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="immunizationEventStatus"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="reasonVaccineWasNotAdministered"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'reasonVaccineWasNotAdministered'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="reasonVaccineWasNotAdministered"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="vaccineBrand"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'vaccineBrand'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="vaccineBrand"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="liveVaccine"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'liveVaccine'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="liveVaccine"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="countryOfVaccination"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'countryOfVaccination'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="countryOfVaccination"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="administrativeArea"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'administrativeArea'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="administrativeArea"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="vaccineManufacturer"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'vaccineManufacturer'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="vaccineManufacturer"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="vaccineBatchNumber"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'vaccineBatchNumber'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="vaccineBatchNumber"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="vaccineMarketAuthorizationHolder"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'vaccineMarketAuthorizationHolder'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="vaccineMarketAuthorizationHolder"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="expirationDate"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'expirationDate'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="expirationDate"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="doseQuantity"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'doseQuantity'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="doseQuantity"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="healthWorkerIdentifier"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'healthWorkerIdentifier'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="healthWorkerIdentifier"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="totalDosesInSeries"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'totalDosesInSeries'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="totalDosesInSeries"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="diseaseTargeted"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'diseaseTargeted'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="diseaseTargeted"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="dueDateOfNextDose"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="item.linkId = 'dueDateOfNextDose'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="dueDateOfNextDose"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+  </group>
+  <group>
+    <name value="MakeImmzObservation"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="patient"/>
+      <type value="Reference"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immid"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="code"/>
+      <type value="Coding"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="cat"/>
+      <type value="Coding"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="value"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="bundle"/>
+      <type value="Bundle"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="CreateObservation"/>
+      <source>
+        <context value="value"/>
+      </source>
+      <target>
+        <contextType value="variable"/>
+        <variable value="oid"/>
+        <transform value="uuid"/>
+      </target>
+      <target>
+        <context value="bundle"/>
+        <contextType value="variable"/>
+        <element value="entry"/>
+        <variable value="entry"/>
+      </target>
+      <target>
+        <context value="entry"/>
+        <contextType value="variable"/>
+        <element value="fullUrl"/>
+        <transform value="append"/>
+        <parameter>
+          <valueString value="urn:uuid:"/>
+        </parameter>
+        <parameter>
+          <valueId value="oid"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="entry"/>
+        <contextType value="variable"/>
+        <element value="request"/>
+        <variable value="request"/>
+      </target>
+      <target>
+        <context value="request"/>
+        <contextType value="variable"/>
+        <element value="method"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="PUT"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="request"/>
+        <contextType value="variable"/>
+        <element value="url"/>
+        <transform value="append"/>
+        <parameter>
+          <valueString value="Observation/"/>
+        </parameter>
+        <parameter>
+          <valueId value="oid"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="entry"/>
+        <contextType value="variable"/>
+        <element value="resource"/>
+        <variable value="obs"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Observation"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="SetId"/>
+        <source>
+          <context value="value"/>
+        </source>
+        <target>
+          <context value="obs"/>
+          <contextType value="variable"/>
+          <element value="id"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="oid"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="SetPartOf"/>
+        <source>
+          <context value="immid"/>
+        </source>
+        <target>
+          <context value="obs"/>
+          <contextType value="variable"/>
+          <element value="partOf"/>
+          <variable value="partOf"/>
+        </target>
+        <target>
+          <context value="partOf"/>
+          <contextType value="variable"/>
+          <element value="reference"/>
+          <transform value="append"/>
+          <parameter>
+            <valueString value="urn:uuid:"/>
+          </parameter>
+          <parameter>
+            <valueId value="immid"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="SetSubject"/>
+        <source>
+          <context value="patient"/>
+        </source>
+        <target>
+          <context value="obs"/>
+          <contextType value="variable"/>
+          <element value="subject"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="patient"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="SetCode"/>
+        <source>
+          <context value="code"/>
+        </source>
+        <target>
+          <context value="obs"/>
+          <contextType value="variable"/>
+          <element value="code"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="code"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="SetValue"/>
+        <source>
+          <context value="value"/>
+        </source>
+        <target>
+          <context value="obs"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="value"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="SetCategory"/>
+        <source>
+          <context value="cat"/>
+        </source>
+        <target>
+          <context value="obs"/>
+          <contextType value="variable"/>
+          <element value="category"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="cat"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="MakeObservation"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="patient"/>
+      <type value="Reference"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="code"/>
+      <type value="Coding"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="cat"/>
+      <type value="Coding"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="value"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="bundle"/>
+      <type value="Bundle"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="CreateObservation"/>
+      <source>
+        <context value="value"/>
+      </source>
+      <target>
+        <contextType value="variable"/>
+        <variable value="oid"/>
+        <transform value="uuid"/>
+      </target>
+      <target>
+        <context value="bundle"/>
+        <contextType value="variable"/>
+        <element value="entry"/>
+        <variable value="entry"/>
+      </target>
+      <target>
+        <context value="entry"/>
+        <contextType value="variable"/>
+        <element value="fullUrl"/>
+        <transform value="append"/>
+        <parameter>
+          <valueString value="urn:uuid:"/>
+        </parameter>
+        <parameter>
+          <valueId value="oid"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="entry"/>
+        <contextType value="variable"/>
+        <element value="request"/>
+        <variable value="request"/>
+      </target>
+      <target>
+        <context value="request"/>
+        <contextType value="variable"/>
+        <element value="method"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="PUT"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="request"/>
+        <contextType value="variable"/>
+        <element value="url"/>
+        <transform value="append"/>
+        <parameter>
+          <valueString value="Observation/"/>
+        </parameter>
+        <parameter>
+          <valueId value="oid"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="entry"/>
+        <contextType value="variable"/>
+        <element value="resource"/>
+        <variable value="obs"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Observation"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="SetId"/>
+        <source>
+          <context value="value"/>
+        </source>
+        <target>
+          <context value="obs"/>
+          <contextType value="variable"/>
+          <element value="id"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="oid"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="SetSubject"/>
+        <source>
+          <context value="patient"/>
+        </source>
+        <target>
+          <context value="obs"/>
+          <contextType value="variable"/>
+          <element value="subject"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="patient"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="SetCode"/>
+        <source>
+          <context value="code"/>
+        </source>
+        <target>
+          <context value="obs"/>
+          <contextType value="variable"/>
+          <element value="code"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="code"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="SetValue"/>
+        <source>
+          <context value="value"/>
+        </source>
+        <target>
+          <context value="obs"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="value"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="SetCategory"/>
+        <source>
+          <context value="cat"/>
+        </source>
+        <target>
+          <context value="obs"/>
+          <contextType value="variable"/>
+          <element value="category"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="cat"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="TypeOfVaccineDose"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="typeof"/>
+      <type value="Coding"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="ext"/>
+      <type value="Extension"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="SetURL"/>
+      <source>
+        <context value="typeof"/>
+      </source>
+      <target>
+        <context value="ext"/>
+        <contextType value="variable"/>
+        <element value="url"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="http://smart.who.int/immunizations/StructureDefinition/IMMZTypeOfDose"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="SetValue"/>
+      <source>
+        <context value="typeof"/>
+      </source>
+      <target>
+        <context value="ext"/>
+        <contextType value="variable"/>
+        <element value="value"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="typeof"/>
+        </parameter>
+      </target>
+    </rule>
+  </group>
+  <group>
+    <name value="MakeImmunization"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="patient"/>
+      <type value="Reference"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immid"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immz"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="bundle"/>
+      <type value="Bundle"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="MakeImmunization"/>
+      <source>
+        <context value="immz"/>
+        <element value="vaccineType"/>
+        <variable value="vaccineCode"/>
+      </source>
+      <target>
+        <context value="bundle"/>
+        <contextType value="variable"/>
+        <element value="entry"/>
+        <variable value="entry"/>
+      </target>
+      <target>
+        <context value="entry"/>
+        <contextType value="variable"/>
+        <element value="fullUrl"/>
+        <transform value="append"/>
+        <parameter>
+          <valueString value="urn:uuid:"/>
+        </parameter>
+        <parameter>
+          <valueId value="immid"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="entry"/>
+        <contextType value="variable"/>
+        <element value="request"/>
+        <variable value="request"/>
+      </target>
+      <target>
+        <context value="request"/>
+        <contextType value="variable"/>
+        <element value="method"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="PUT"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="request"/>
+        <contextType value="variable"/>
+        <element value="url"/>
+        <transform value="append"/>
+        <parameter>
+          <valueString value="Immunization/"/>
+        </parameter>
+        <parameter>
+          <valueId value="immid"/>
+        </parameter>
+      </target>
+      <target>
+        <context value="entry"/>
+        <contextType value="variable"/>
+        <element value="resource"/>
+        <variable value="imm"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="Immunization"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="SetId"/>
+        <source>
+          <context value="immid"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="id"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="immid"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="SetPatient"/>
+        <source>
+          <context value="patient"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="patient"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="patient"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="vaccineCode"/>
+        <source>
+          <context value="vaccineCode"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="vaccineCode"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="vaccineCode"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="protocolApplied"/>
+        <source>
+          <context value="immz"/>
+          <element value="typeOfDose"/>
+          <variable value="typeOfDose"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="protocolApplied"/>
+          <variable value="pa"/>
+        </target>
+        <rule>
+          <name value="SetSeriesToCode"/>
+          <source>
+            <context value="typeOfDose"/>
+            <element value="code"/>
+            <variable value="code"/>
+          </source>
+          <target>
+            <context value="pa"/>
+            <contextType value="variable"/>
+            <element value="series"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="code"/>
+            </parameter>
+          </target>
+          <documentation value="if display is missing"/>
+        </rule>
+        <rule>
+          <name value="SetSeriesToDisplay"/>
+          <source>
+            <context value="typeOfDose"/>
+            <element value="display"/>
+            <variable value="display"/>
+          </source>
+          <target>
+            <context value="pa"/>
+            <contextType value="variable"/>
+            <element value="series"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="display"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="SetDoseNumber"/>
+          <source>
+            <context value="immz"/>
+            <element value="doseNumber"/>
+            <variable value="doseNumber"/>
+          </source>
+          <target>
+            <context value="pa"/>
+            <contextType value="variable"/>
+            <element value="doseNumber"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="doseNumber"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="totalDosesInSeries"/>
+          <source>
+            <context value="immz"/>
+            <element value="totalDosesInSeries"/>
+            <variable value="totalDoses"/>
+          </source>
+          <target>
+            <context value="pa"/>
+            <contextType value="variable"/>
+            <element value="seriesDoses"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="totalDoses"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="diseaseTargeted"/>
+          <source>
+            <context value="immz"/>
+            <element value="diseaseTargeted"/>
+            <variable value="disease"/>
+          </source>
+          <target>
+            <context value="pa"/>
+            <contextType value="variable"/>
+            <element value="targetDisease"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="disease"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="dueDateOfNextDose"/>
+          <source>
+            <context value="immz"/>
+            <element value="dueDateOfNextDose"/>
+            <variable value="duedate"/>
+          </source>
+          <target>
+            <context value="pa"/>
+            <contextType value="variable"/>
+            <element value="extension"/>
+            <variable value="ext"/>
+          </target>
+          <target>
+            <context value="ext"/>
+            <contextType value="variable"/>
+            <element value="url"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueString value="http://smart.who.int/immunizations/StructureDefinition/IMMZDueDateOfNextDose"/>
+            </parameter>
+          </target>
+          <target>
+            <context value="ext"/>
+            <contextType value="variable"/>
+            <element value="value"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="duedate"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="dateAndTimeOfVaccination"/>
+        <source>
+          <context value="immz"/>
+          <element value="dateAndTimeOfVaccination"/>
+          <variable value="occurrence"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="occurrence"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="occurrence"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="typeOfPoliovirusDose"/>
+        <source>
+          <context value="immz"/>
+          <element value="typeOfPoliovirusDose"/>
+          <variable value="typeof"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="extension"/>
+          <variable value="ext"/>
+        </target>
+        <dependent>
+          <name value="TypeOfVaccineDose"/>
+          <variable value="typeof"/>
+          <variable value="ext"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="typeOfJeDose"/>
+        <source>
+          <context value="immz"/>
+          <element value="typeOfJeDose"/>
+          <variable value="typeof"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="extension"/>
+          <variable value="ext"/>
+        </target>
+        <dependent>
+          <name value="TypeOfVaccineDose"/>
+          <variable value="typeof"/>
+          <variable value="ext"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="typeOfTbeDose"/>
+        <source>
+          <context value="immz"/>
+          <element value="typeOfTbeDose"/>
+          <variable value="typeof"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="extension"/>
+          <variable value="ext"/>
+        </target>
+        <dependent>
+          <name value="TypeOfVaccineDose"/>
+          <variable value="typeof"/>
+          <variable value="ext"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="typeOfTyphoidDose"/>
+        <source>
+          <context value="immz"/>
+          <element value="typeOfTyphoidDose"/>
+          <variable value="typeof"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="extension"/>
+          <variable value="ext"/>
+        </target>
+        <dependent>
+          <name value="TypeOfVaccineDose"/>
+          <variable value="typeof"/>
+          <variable value="ext"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="typeOfCholeraDose"/>
+        <source>
+          <context value="immz"/>
+          <element value="typeOfCholeraDose"/>
+          <variable value="typeof"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="extension"/>
+          <variable value="ext"/>
+        </target>
+        <dependent>
+          <name value="TypeOfVaccineDose"/>
+          <variable value="typeof"/>
+          <variable value="ext"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="typeOfMeningococcalDose"/>
+        <source>
+          <context value="immz"/>
+          <element value="typeOfMeningococcalDose"/>
+          <variable value="typeof"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="extension"/>
+          <variable value="ext"/>
+        </target>
+        <dependent>
+          <name value="TypeOfVaccineDose"/>
+          <variable value="typeof"/>
+          <variable value="ext"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="typeOfHepatitisADose"/>
+        <source>
+          <context value="immz"/>
+          <element value="typeOfHepatitisADose"/>
+          <variable value="typeof"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="extension"/>
+          <variable value="ext"/>
+        </target>
+        <dependent>
+          <name value="TypeOfVaccineDose"/>
+          <variable value="typeof"/>
+          <variable value="ext"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="typeOfHepatitisBDose"/>
+        <source>
+          <context value="immz"/>
+          <element value="typeOfHepatitisBDose"/>
+          <variable value="typeof"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="extension"/>
+          <variable value="ext"/>
+        </target>
+        <dependent>
+          <name value="TypeOfVaccineDose"/>
+          <variable value="typeof"/>
+          <variable value="ext"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="SetDefaultStatus"/>
+        <source>
+          <context value="immz"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="status"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="completed"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="immunizationEventStatus"/>
+        <source>
+          <context value="immz"/>
+          <element value="immunizationEventStatus"/>
+          <variable value="status"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="status"/>
+          <transform value="translate"/>
+          <parameter>
+            <valueId value="status"/>
+          </parameter>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/ConceptMap/IMMZ.D.ConceptMap"/>
+          </parameter>
+          <parameter>
+            <valueString value="code"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="reasonVaccineWasNotAdministered"/>
+        <source>
+          <context value="immz"/>
+          <element value="reasonVaccineWasNotAdministered"/>
+          <variable value="reason"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="statusReason"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="reason"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="vaccineBrand"/>
+        <source>
+          <context value="immz"/>
+          <element value="vaccineBrand"/>
+          <variable value="brand"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="extension"/>
+          <variable value="ext"/>
+        </target>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="url"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/StructureDefinition/IMMZVaccineBrand"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="brand"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="liveVaccine"/>
+        <source>
+          <context value="immz"/>
+          <element value="liveVaccine"/>
+          <variable value="live"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="extension"/>
+          <variable value="ext"/>
+        </target>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="url"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/StructureDefinition/IMMZLiveVaccine"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="live"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="countryOfVaccination"/>
+        <source>
+          <context value="immz"/>
+          <element value="countryOfVaccination"/>
+          <variable value="country"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="extension"/>
+          <variable value="ext"/>
+        </target>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="url"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/StructureDefinition/IMMZCountryOfVaccination"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="country"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="administrativeArea"/>
+        <source>
+          <context value="immz"/>
+          <element value="administrativeArea"/>
+          <variable value="area"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="extension"/>
+          <variable value="ext"/>
+        </target>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="url"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/StructureDefinition/IMMZAdministrativeArea"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="area"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="vaccineManufacturer"/>
+        <source>
+          <context value="immz"/>
+          <element value="vaccineManufacturer"/>
+          <variable value="vman"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="manufacturer"/>
+          <variable value="manufacturer"/>
+        </target>
+        <target>
+          <context value="manufacturer"/>
+          <contextType value="variable"/>
+          <element value="identifier"/>
+          <variable value="identifier"/>
+        </target>
+        <rule>
+          <name value="SetSystem"/>
+          <source>
+            <context value="vman"/>
+            <element value="system"/>
+            <variable value="system"/>
+          </source>
+          <target>
+            <context value="identifier"/>
+            <contextType value="variable"/>
+            <element value="system"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="system"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="SetValue"/>
+          <source>
+            <context value="vman"/>
+            <element value="code"/>
+            <variable value="code"/>
+          </source>
+          <target>
+            <context value="identifier"/>
+            <contextType value="variable"/>
+            <element value="value"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="code"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="vaccineBatchNumber"/>
+        <source>
+          <context value="immz"/>
+          <element value="vaccineBatchNumber"/>
+          <variable value="batch"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="lotNumber"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="batch"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="vaccineMarketAuthorizationHolder"/>
+        <source>
+          <context value="immz"/>
+          <element value="vaccineMarketAuthorizationHolder"/>
+          <variable value="market"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="extension"/>
+          <variable value="ext"/>
+        </target>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="url"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/StructureDefinition/IMMZMarketAuthorization"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="ext"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="market"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="expirationDate"/>
+        <source>
+          <context value="immz"/>
+          <element value="expirationDate"/>
+          <variable value="expiration"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="expirationDate"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="expiration"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="doseQuantity"/>
+        <source>
+          <context value="immz"/>
+          <element value="doseQuantity"/>
+          <variable value="dosequantity"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="doseQuantity"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="dosequantity"/>
+          </parameter>
+        </target>
+      </rule>
+      <rule>
+        <name value="healthWorkerIdentifier"/>
+        <source>
+          <context value="immz"/>
+          <element value="healthWorkerIdentifier"/>
+          <variable value="hw"/>
+        </source>
+        <target>
+          <context value="imm"/>
+          <contextType value="variable"/>
+          <element value="performer"/>
+          <variable value="performer"/>
+        </target>
+        <target>
+          <context value="performer"/>
+          <contextType value="variable"/>
+          <element value="actor"/>
+          <variable value="actor"/>
+        </target>
+        <target>
+          <context value="actor"/>
+          <contextType value="variable"/>
+          <element value="identifier"/>
+          <variable value="identifier"/>
+        </target>
+        <target>
+          <context value="identifier"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="hw"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="D1andD13Observations"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="patient"/>
+      <type value="Reference"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immid"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immz"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="bundle"/>
+      <type value="Bundle"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="DefineCategory"/>
+      <source>
+        <context value="immz"/>
+      </source>
+      <target>
+        <contextType value="variable"/>
+        <variable value="survey"/>
+        <transform value="c"/>
+        <parameter>
+          <valueString value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+        </parameter>
+        <parameter>
+          <valueString value="survey"/>
+        </parameter>
+        <parameter>
+          <valueString value="Survey"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="birthDose"/>
+        <source>
+          <context value="immz"/>
+          <element value="birthDose"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE263"/>
+          </parameter>
+          <parameter>
+            <valueString value="Birth dose"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="completedThePrimaryVaccinationSeries"/>
+        <source>
+          <context value="immz"/>
+          <element value="completedThePrimaryVaccinationSeries"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE203"/>
+          </parameter>
+          <parameter>
+            <valueString value="Completed the primary vaccination series"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="completedTheBoosterSeries"/>
+        <source>
+          <context value="immz"/>
+          <element value="completedTheBoosterSeries"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE257"/>
+          </parameter>
+          <parameter>
+            <valueString value="Completed the booster series"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="dateWhenPrimaryVaccinationSeriesWasCompleted"/>
+        <source>
+          <context value="immz"/>
+          <element value="dateWhenPrimaryVaccinationSeriesWasCompleted"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE242"/>
+          </parameter>
+          <parameter>
+            <valueString value="Date when primary vaccination series was completed"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="hivStatus"/>
+        <source>
+          <context value="immz"/>
+          <element value="hivStatus"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE204"/>
+          </parameter>
+          <parameter>
+            <valueString value="HIV status"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="contactDate"/>
+        <source>
+          <context value="immz"/>
+          <element value="contactDate"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE201"/>
+          </parameter>
+          <parameter>
+            <valueString value="Contact date"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="ancContactNumber"/>
+        <source>
+          <context value="immz"/>
+          <element value="ancContactNumber"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE202"/>
+          </parameter>
+          <parameter>
+            <valueString value="ANC contact number"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="D1Observations"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="patient"/>
+      <type value="Reference"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immid"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immz"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="bundle"/>
+      <type value="Bundle"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="DefineCategory"/>
+      <source>
+        <context value="immz"/>
+      </source>
+      <target>
+        <contextType value="variable"/>
+        <variable value="survey"/>
+        <transform value="c"/>
+        <parameter>
+          <valueString value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+        </parameter>
+        <parameter>
+          <valueString value="survey"/>
+        </parameter>
+        <parameter>
+          <valueString value="Survey"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="pretermBirth"/>
+        <source>
+          <context value="immz"/>
+          <element value="pretermBirth"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE208"/>
+          </parameter>
+          <parameter>
+            <valueString value="Preterm birth"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="immunocompromised"/>
+        <source>
+          <context value="immz"/>
+          <element value="immunocompromised"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE209"/>
+          </parameter>
+          <parameter>
+            <valueString value="Immunocompromised"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="currentlyOnArt"/>
+        <source>
+          <context value="immz"/>
+          <element value="currentlyOnArt"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE210"/>
+          </parameter>
+          <parameter>
+            <valueString value="Currently on ART"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="typeOfTbInfectionTestPerformed"/>
+        <source>
+          <context value="immz"/>
+          <element value="typeOfTbInfectionTestPerformed"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE243"/>
+          </parameter>
+          <parameter>
+            <valueString value="Type of TB infection test performed"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="tbInfectionTestResult"/>
+        <source>
+          <context value="immz"/>
+          <element value="tbInfectionTestResult"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE246"/>
+          </parameter>
+          <parameter>
+            <valueString value="TB infection test result"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="immunologicallyStable"/>
+        <source>
+          <context value="immz"/>
+          <element value="immunologicallyStable"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE249"/>
+          </parameter>
+          <parameter>
+            <valueString value="Immunologically stable"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="clinicallyWell"/>
+        <source>
+          <context value="immz"/>
+          <element value="clinicallyWell"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE250"/>
+          </parameter>
+          <parameter>
+            <valueString value="Clinically well"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="birthWeightInGrams"/>
+        <source>
+          <context value="immz"/>
+          <element value="birthWeightInGrams"/>
+          <variable value="value"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="content"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="Quantity"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="content"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="http://unitsofmeasure.org"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="content"/>
+          <contextType value="variable"/>
+          <element value="code"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="g"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="content"/>
+          <contextType value="variable"/>
+          <element value="unit"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="g"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="content"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="value"/>
+          </parameter>
+        </target>
+        <target>
+          <contextType value="variable"/>
+          <variable value="bwloinc"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://loinc.org"/>
+          </parameter>
+          <parameter>
+            <valueString value="8339-4"/>
+          </parameter>
+          <parameter>
+            <valueString value="Birth weight Measured"/>
+          </parameter>
+        </target>
+        <target>
+          <contextType value="variable"/>
+          <variable value="bwdak"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE211"/>
+          </parameter>
+          <parameter>
+            <valueString value="Birth weight in grams"/>
+          </parameter>
+        </target>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="CodeableConcept"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="code"/>
+          <contextType value="variable"/>
+          <element value="coding"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="bwloinc"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="code"/>
+          <contextType value="variable"/>
+          <element value="coding"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="bwdak"/>
+          </parameter>
+        </target>
+        <target>
+          <contextType value="variable"/>
+          <variable value="vital"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+          </parameter>
+          <parameter>
+            <valueString value="vital-signs"/>
+          </parameter>
+          <parameter>
+            <valueString value="Vital Signs"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="vital"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="artStartDate"/>
+        <source>
+          <context value="immz"/>
+          <element value="artStartDate"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE215"/>
+          </parameter>
+          <parameter>
+            <valueString value="ART start date"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="highRiskOfPneumococcalInfection"/>
+        <source>
+          <context value="immz"/>
+          <element value="highRiskOfPneumococcalInfection"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE251"/>
+          </parameter>
+          <parameter>
+            <valueString value="High risk of pneumococcal infection"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="ageInMonthsWhenClientReceivedFirstMeningococcalDose"/>
+        <source>
+          <context value="immz"/>
+          <element value="ageInMonthsWhenClientReceivedFirstMeningococcalDose"/>
+          <variable value="value"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="content"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="Quantity"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="content"/>
+          <contextType value="variable"/>
+          <element value="unit"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="mo"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="content"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="value"/>
+          </parameter>
+        </target>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE236"/>
+          </parameter>
+          <parameter>
+            <valueString value="Age in months when client received first meningococcal dose"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="vnaLevel"/>
+        <source>
+          <context value="immz"/>
+          <element value="vnaLevel"/>
+          <variable value="value"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="content"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="Quantity"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="content"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="http://unitsofmeasure.org"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="content"/>
+          <contextType value="variable"/>
+          <element value="code"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="[IU]/mL"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="content"/>
+          <contextType value="variable"/>
+          <element value="unit"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="[IU]/mL"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="content"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="value"/>
+          </parameter>
+        </target>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE240"/>
+          </parameter>
+          <parameter>
+            <valueString value="VNA level"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="riskOfOccupationalExposureToRabiesVirus"/>
+        <source>
+          <context value="immz"/>
+          <element value="riskOfOccupationalExposureToRabiesVirus"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE253"/>
+          </parameter>
+          <parameter>
+            <valueString value="Risk of occupational exposure to rabies virus"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="dengueSerostatus"/>
+        <source>
+          <context value="immz"/>
+          <element value="dengueSerostatus"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="code"/>
+          <transform value="c"/>
+          <parameter>
+            <valueString value="http://smart.who.int/immunizations/CodeSystem/IMMZ.D"/>
+          </parameter>
+          <parameter>
+            <valueString value="DE241"/>
+          </parameter>
+          <parameter>
+            <valueString value="Dengue serostatus"/>
+          </parameter>
+        </target>
+        <dependent>
+          <name value="MakeImmzObservation"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="code"/>
+          <variable value="survey"/>
+          <variable value="content"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+    </rule>
+  </group>
+</StructureMap>
