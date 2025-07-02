@@ -1,6 +1,14 @@
 Instance: Example.IMMZ.C.QuestionnaireResponse.1
 InstanceOf: QuestionnaireResponse
+Title: "Example QuestionnaireResponse for Client Registration"
+Description: """
+Example QuestionnaireResponse for
+IMMZ.C4.Create client record
+OR
+IMMZ.C5.3.Update client details
+"""
 Usage: #example
+
 * status = #completed
 * authored = "2024-12-13T19:20:20.913Z"
 * questionnaire = Canonical(QIMMZC4)

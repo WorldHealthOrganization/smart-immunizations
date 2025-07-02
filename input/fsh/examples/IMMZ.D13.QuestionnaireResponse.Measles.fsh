@@ -1,5 +1,10 @@
 Instance: Example.IMMZ.D13.QuestionnaireResponse.Measles
 InstanceOf: QuestionnaireResponse
+Title: "Example QuestionnaireReponse for Update Client History for Measles"
+Description: """
+Example QuestionnaireReponse for IMMZ.D13.Update client record.
+For patient receiving Measles vaccine.
+"""
 Usage: #example
 * status = #completed
 * authored = "2025-01-30T19:20:20.913Z"

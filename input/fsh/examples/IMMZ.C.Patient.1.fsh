@@ -1,5 +1,7 @@
 Instance:   IMMZ.C.Patient.1
 InstanceOf: IMMZPatient
+Title:	    "Thabo Mbulelo Mbeki"
+Description:  "Example of a patient: Thabo Mbulelo Mbeki."
 Usage:      #example
 
 * identifier.value = "12345-ZA"

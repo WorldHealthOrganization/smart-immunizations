@@ -1,5 +1,9 @@
 Instance: Example.IMMZ.D5.QuestionnaireResponse.1
 InstanceOf: QuestionnaireResponse
+Title: "Example QuestionnaireReponse for Contraindications"
+Description: """
+Example QuestionnaireReponse for IMMZ.D5.Determine vaccine(s) to be administered based on contraindications.
+"""
 Usage: #example
 * status = #completed
 * authored = "2025-01-31T19:20:20.913Z"

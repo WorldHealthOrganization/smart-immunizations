@@ -1,5 +1,9 @@
 Instance: Example.IMMZ.D17.QuestionnaireResponse.1
 InstanceOf: QuestionnaireResponse
+Title: "Example QuestionnaireReponse for Report AEFI"
+Description: """
+Example QuestionnaireReponse for IMMZ.D17.Report AEFI.
+"""
 Usage: #example
 * status = #completed
 * authored = "2025-06-25T19:20:20.913Z"
