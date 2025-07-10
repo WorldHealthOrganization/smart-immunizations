@@ -5,7 +5,7 @@ Description:  "Value Set for Decision Logic For Decision Table IMMZ.D5.DT.TBEcon
 * ^experimental = false
 * include DecisionLogic#"The client is currently pregnant"
 * include DecisionLogic#"Clinical judgement is required. Create a clinical note"
-* include DecisionLogic#"Conduct a risk–benefit assessment considering the incidence of the disease,  consider risks of vaccination and make a clinical judgement."
+* include DecisionLogic#"Conduct a risk–benefit assessment considering the incidence of the disease, consider risks of vaccination and make a clinical judgement."
 * include DecisionLogic#"The client has moderate to severe fever"
 * include DecisionLogic#"Consider postponing the vaccination if the client has fever > 38.5°C or other signs of serious disease. Consider risks of vaccination and make a clinical judgement."
 

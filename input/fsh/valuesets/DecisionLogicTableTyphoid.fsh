@@ -4,12 +4,12 @@ Description:  "Value Set for Decision Logic For Decision Table IMMZ.D2.DT.Typhoi
 * ^status = #active
 * ^experimental = false
 * include DecisionLogic#"Live attenuated Ty21a vaccine schedule"
-* include DecisionLogic#"Client's age"
+* include DecisionLogic#"Clients age"
 * include DecisionLogic#""
-* include DecisionLogic#"Client's age is less than 6 years"
+* include DecisionLogic#"Clients age is less than 6 years"
 * include DecisionLogic#"Client is not due for Typhoid vaccination"
-* include DecisionLogic#"Should not vaccinate client with typhoid dose as client's age is less than 6 years."
-* include DecisionLogic#"Client's age is more than or equal to 6 years"
+* include DecisionLogic#"Should not vaccinate client with typhoid dose as clients age is less than 6 years."
+* include DecisionLogic#"Clients age is more than or equal to 6 years"
 * include DecisionLogic#"Client is due for Typhoid vaccination"
 * include DecisionLogic#"Prescribe the Ty21a primary series (if not done yet). Should vaccinate client with typhoid dose as primary series has not been completed and no live vaccines was administered in the past 4 weeks."
 * include DecisionLogic#"Should not vaccinate client with typhoid dose as live vaccine was administered in the past 4 weeks."

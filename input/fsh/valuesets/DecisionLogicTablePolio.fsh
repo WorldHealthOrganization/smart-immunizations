@@ -9,7 +9,7 @@ Description:  "Value Set for Decision Logic For Decision Table IMMZ.D5.DT.Polioc
 * include DecisionLogic#"Do not vaccinate client with inactivated polio vaccine (IPV) if client has had a previous severe reaction or known allergy to streptomycin, neomycin or polymyxin B."
 * include DecisionLogic#"The client is severely immunocompromised"
 * include DecisionLogic#"Poliovirus vaccination with bOPV is contraindicated"
-* include DecisionLogic#"For bOPV dose, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in severely immunocompromised clients."
+* include DecisionLogic#"For bOPV dose, do not vaccinate client for bOPV dose as bOPV vaccination is contranindicated in severely immunocompromised clients."
 * include DecisionLogic#"The client has immunodeficiency syndromes"
-* include DecisionLogic#"For bOPV dose, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in clients with immunodeficiency disorders."
+* include DecisionLogic#"For bOPV dose, do not vaccinate client for bOPV dose as bOPV vaccination is contranindicated in clients with immunodeficiency disorders."
 

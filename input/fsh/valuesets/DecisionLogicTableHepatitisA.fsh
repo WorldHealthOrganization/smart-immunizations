@@ -5,9 +5,9 @@ Description:  "Value Set for Decision Logic For Decision Table IMMZ.D5.DT.Hepati
 * ^experimental = false
 * include DecisionLogic#"The client is currently pregnant"
 * include DecisionLogic#"Live attentuated Hepatitis A-containing vaccine is contraindicated"
-* include DecisionLogic#"Do not vaccinate client with hepatitis A as hepatitis A  vaccination is contraindicated for pregnant client and may pose a theoretical risk to the developing fetus."
+* include DecisionLogic#"Do not vaccinate client with hepatitis A as hepatitis A vaccination is contraindicated for pregnant client and may pose a theoretical risk to the developing fetus."
 * include DecisionLogic#"The client is severely immunocompromised"
-* include DecisionLogic#"Do not vaccinate client with hepatitis A as hepatitis A  vaccination is contraindicated for severely immunocompromised clients."
+* include DecisionLogic#"Do not vaccinate client with hepatitis A as hepatitis A vaccination is contraindicated for severely immunocompromised clients."
 * include DecisionLogic#"The client has a history of severe allergic reactions"
 * include DecisionLogic#"Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note"
 * include DecisionLogic#"Do not vaccinate client with inactivated hepatitis A vaccination if client has had a severe allergic reaction to the previous dose."

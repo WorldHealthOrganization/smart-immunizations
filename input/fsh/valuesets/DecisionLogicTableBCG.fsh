@@ -13,8 +13,8 @@ Description:  "Value Set for Decision Logic For Decision Table IMMZ.D5.DT.BCGcon
 * include DecisionLogic#"BCG vaccination is contraindicated"
 * include DecisionLogic#"Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients with immunodeficiency syndromes"
 * include DecisionLogic#"The client is exposed to immunosuppressive treatment"
-* include DecisionLogic#"Client's age is less than 1 year"
+* include DecisionLogic#"Clients age is less than 1 year"
 * include DecisionLogic#"Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients undergoing immunosuppressive treatment"
-* include DecisionLogic#"Client's age is more than or equal to 1 year"
+* include DecisionLogic#"Clients age is more than or equal to 1 year"
 * include DecisionLogic#"Do not vaccinate client with BCG if client is exposed to or receives immunosuppressive treatment"
 
