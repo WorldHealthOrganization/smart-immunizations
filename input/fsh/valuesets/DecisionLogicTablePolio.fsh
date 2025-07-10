@@ -4,7 +4,6 @@ Description:  "Value Set for Decision Logic For Decision Table IMMZ.D5.DT.Polioc
 * ^status = #active
 * ^experimental = false
 * include DecisionLogic#"The client has history of severe allergic reactions"
-* include DecisionLogic#"–"
 * include DecisionLogic#"Poliovirus vaccination could be contraindicated. Clinical judgement required"
 * include DecisionLogic#"Do not vaccinate client with inactivated polio vaccine (IPV) if client has had a previous severe reaction or known allergy to streptomycin, neomycin or polymyxin B."
 * include DecisionLogic#"The client is severely immunocompromised"

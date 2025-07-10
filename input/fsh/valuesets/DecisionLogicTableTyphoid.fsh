@@ -5,7 +5,6 @@ Description:  "Value Set for Decision Logic For Decision Table IMMZ.D2.DT.Typhoi
 * ^experimental = false
 * include DecisionLogic#"Live attenuated Ty21a vaccine schedule"
 * include DecisionLogic#"Clients age"
-* include DecisionLogic#""
 * include DecisionLogic#"Clients age is less than 6 years"
 * include DecisionLogic#"Client is not due for Typhoid vaccination"
 * include DecisionLogic#"Should not vaccinate client with typhoid dose as clients age is less than 6 years."

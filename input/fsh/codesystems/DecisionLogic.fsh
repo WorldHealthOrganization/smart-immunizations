@@ -17,6 +17,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Number of BCG primary series doses administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "BCG vaccines" and "Type of dose" = "Primary series")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -28,6 +37,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Clients age":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date – "Date of birth"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -39,6 +57,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Clients HIV status":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client's HIV status
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -50,6 +77,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Clients antiretroviral therapy (ART) status":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client's antiretroviral therapy (ART) status
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -61,6 +97,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Is client immunologically stable":
+  //CQL AUTHORS: you need to insert stuff here
+  // Is client immunologically stable
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -72,6 +117,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Clients tuberculosos (TB) infection test result":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client's tuberculosos (TB) infection test result
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -83,6 +137,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Time passed since a live vaccine was administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -94,6 +157,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Is client clinically well":
+  //CQL AUTHORS: you need to insert stuff here
+  // Is client clinically well
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -105,6 +177,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "No BCG primary series dose was administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "BCG vaccines" and "Type of dose" = "Primary series") = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -116,6 +197,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Clients age is less than or equal to 28 days":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date − "Date of birth" ≤ 28 days
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -127,17 +217,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "IMMZ.D2.DT.BCG"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "BCG"
-* #"–" "–"
-  * ^definition = """–
-Referenced in the following locations:
- * Decision Tables: IMMZ.D2.DT.BCG
- * Tabs: BCG
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Clients HIV status is negative or unknown":
+  //CQL AUTHORS: you need to insert stuff here
+  // "HIV status" ≠ "HIV-positive"
+
 
 """
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -149,6 +237,14 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "No live vaccine was administered":
+  not exists("Live Attenuated Vaccines")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -160,6 +256,19 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTBCGLogic.cql
+
+define "Client is due for BCG vaccination":
+  "Client is due for BCG vaccination Case 1"
+    or "Client is due for BCG vaccination Case 2"
+    or "Client is due for BCG vaccination Case 3"
+    or "Client is due for BCG vaccination Case 4"
+    or "Client is due for BCG vaccination Case 5"
+    or "Client is due for BCG vaccination Case 6"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -171,6 +280,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Should vaccinate client with first BCG dose as no BCG dose was administered, client is within age range, HIV status is not positive and no live vaccine was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -182,6 +300,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Live vaccine was administered in the last four weeks":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -193,6 +320,29 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTBCGLogic.cql
+
+define "Client is not due for BCG vaccination":
+  "Client is not due for BCG vaccination Case 1"
+    or "Client is not due for BCG vaccination Case 2"
+    or "Client is not due for BCG vaccination Case 3"
+    or "Client is not due for BCG vaccination Case 4"
+    or "Client is not due for BCG vaccination Case 5"
+    or "Client is not due for BCG vaccination Case 6"
+    or "Client is not due for BCG vaccination Case 7"
+    or "Client is not due for BCG vaccination Case 8"
+    or "Client is not due for BCG vaccination Case 9"
+    or "Client is not due for BCG vaccination Case 10"
+    or "Client is not due for BCG vaccination Case 11"
+    or "Client is not due for BCG vaccination Case 12"
+    or "Client is not due for BCG vaccination Case 13"
+    or "Client is not due for BCG vaccination Case 14"
+    or "Client is not due for BCG vaccination Case 15"
+    or "Client is not due for BCG vaccination Case 16"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -204,6 +354,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -215,6 +374,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Clients HIV status is positive":
+  //CQL AUTHORS: you need to insert stuff here
+  // "HIV status" = "HIV-positive"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -226,6 +394,14 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "Client is currently receiving antiretroviral therapy":
+  First("Currently on ART Observation").value = true
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -237,6 +413,14 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "Client is immunologically stable":
+  First("Immunologically stable Observation").value = true
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -248,6 +432,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Should vaccinate client with first BCG dose as no BCG dose was administered, client is immunologically stable and no live vaccine was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -259,6 +452,14 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "Client is not immunologically stable":
+  First("Immunologically stable Observation").value = false
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -270,6 +471,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Should not vaccinate client with first BCG dose as client is not immunologically stable.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -281,6 +491,14 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "Client is currently not receiving antiretroviral therapy":
+  not "Client is currently receiving antiretroviral therapy"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -292,6 +510,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Should not vaccinate client with first BCG dose as ART has not been started.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -303,6 +530,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Clients age is between 28 days and 5 years":
+  //CQL AUTHORS: you need to insert stuff here
+  // 28 days < Today's date − "Date of birth" < 5 years
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -314,6 +550,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Clients TB infection test result is negative":
+  //CQL AUTHORS: you need to insert stuff here
+  // "TB infection test result" = "Negative"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -325,6 +570,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "No live vaccine was administered in the last four weeks":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -336,6 +590,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Should vaccinate client with first BCG dose as no BCG dose was administered, clients TB test result is negative and no live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -347,6 +610,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -358,6 +630,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Clients TB infection test result is unknown (test not done or no result yet)":
+  //CQL AUTHORS: you need to insert stuff here
+  // "TB infection test result" IS NULL
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -369,6 +650,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTBCGLogic.cql
+
+define "Clinical judgement is required. Create clinical note.":
+  "Clinical judgement is required. Create clinical note. Case 1"
+    or "Clinical judgement is required. Create clinical note. Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -380,6 +670,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Recommend the client to perform TB infection testing.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Re-evaluate client once the test result is available.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -391,6 +690,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Clients TB infection test result is positive":
+  //CQL AUTHORS: you need to insert stuff here
+  // "TB infection test result" = "Positive"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -402,6 +710,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Should not vaccinate client with first BCG dose as clients TB infection test result is positive. Consider evaluating for TB disease or for TB preventive treatment (TPT) eligibility (once TB disease is ruled out).":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with first BCG dose as client's TB infection test result is positive. Consider evaluating for TB disease or for TB preventive treatment (TPT) eligibility (once TB disease is ruled out).
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -413,6 +730,14 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "Client is not clinically well":
+  First( "Clinically well Observation" ).value = false 
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -424,6 +749,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Should not vaccinate client with first BCG dose as client is not clinically well.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -435,6 +769,14 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "Client is clinically well":
+  First( "Clinically well Observation" ).value = true 
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -446,6 +788,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Should vaccinate client with first BCG dose as no BCG dose was administered, client is receiving ART, clinically well and immunologically stable. No live vaccine was administered in the last 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -457,6 +808,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Should not vaccinate client with first BCG dose as client is not currently receiving ART.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -468,6 +828,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Clients age is more than 5 years":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date − "Date of birth" ≥ 5 years
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -479,6 +848,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Should not vaccinate client with first BCG dose as client is not immnologically stable.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -490,6 +868,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Should vaccinate client with first BCG dose as no BCG dose was administered, client is receiving ART, clinically well and immunologically stable. No live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -501,6 +888,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "One BCG primary series dose was administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "BCG vaccines" and "Type of dose" = "Primary series") = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -514,6 +910,14 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTBCGLogic.cql
+
+define "BCG immunization schedule is complete":
+  Encounter."One BCG primary series dose was administered"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -525,6 +929,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "BCG immunization schedule is complete. One BCG primary series dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.BCG"
   * ^property[+].code = #"tab"
@@ -536,6 +949,14 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTBCGElements.cql
+
+define "The client is pregnant":
+  Elements."The client is pregnant"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.BCGcontraindications"
   * ^property[+].code = #"tab"
@@ -547,6 +968,14 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTBCGCILogic.cql
+
+define "Bacille Calmette–Guérin (BCG) vaccination is contraindicated":
+  Encounter."The client is pregnant"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.BCGcontraindications"
   * ^property[+].code = #"tab"
@@ -558,6 +987,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Do not vaccinate client with BCG as BCG vaccination is not recommended during pregnancy":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with BCG as BCG vaccination is not recommended during pregnancy
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.BCGcontraindications"
   * ^property[+].code = #"tab"
@@ -569,6 +1007,14 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTHepatitisBElements.cql
+
+define "The client has history of severe allergic reactions":
+  Elements."The client has history of severe allergic reactions"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.BCGcontraindications"
   * ^property[+].code = #"tab"
@@ -580,6 +1026,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTBCGCILogic.cql
+
+define "BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.":
+  "BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 1"
+    or "BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.BCGcontraindications"
   * ^property[+].code = #"tab"
@@ -591,6 +1046,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Do not vaccinate client with BCG if the client had previous allergic reaction to any component of the vaccine":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with BCG if the client had previous allergic reaction to any component of the vaccine
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.BCGcontraindications"
   * ^property[+].code = #"tab"
@@ -602,6 +1066,14 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTBCGElements.cql
+
+define "The client has immunodeficiency syndromes":
+  Elements."The client has immunodeficiency syndromes"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.BCGcontraindications"
   * ^property[+].code = #"tab"
@@ -613,6 +1085,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTBCGCILogic.cql
+
+define "BCG vaccination is contraindicated":
+  "BCG vaccination is contraindicated Case 1"
+    or "BCG vaccination is contraindicated Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.BCGcontraindications"
   * ^property[+].code = #"tab"
@@ -624,6 +1105,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients with immunodeficiency syndromes":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients with immunodeficiency syndromes
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.BCGcontraindications"
   * ^property[+].code = #"tab"
@@ -635,6 +1125,14 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTBCGElements.cql
+
+define "The client is exposed to immunosuppressive treatment":
+  Elements."The client is exposed to immunosuppressive treatment"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.BCGcontraindications"
   * ^property[+].code = #"tab"
@@ -646,6 +1144,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Clients age is less than 1 year":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Age" < 1 year
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.BCGcontraindications"
   * ^property[+].code = #"tab"
@@ -657,6 +1164,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients undergoing immunosuppressive treatment":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients undergoing immunosuppressive treatment
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.BCGcontraindications"
   * ^property[+].code = #"tab"
@@ -668,6 +1184,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Clients age is more than or equal to 1 year":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Age" ≥ 1 year
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.BCGcontraindications"
   * ^property[+].code = #"tab"
@@ -679,6 +1204,15 @@ Referenced in the following locations:
  * Tabs: BCG
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsBCG.cql
+
+define "Do not vaccinate client with BCG if client is exposed to or receives immunosuppressive treatment":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with BCG if client is exposed to or receives immunosuppressive treatment
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.BCGcontraindications"
   * ^property[+].code = #"tab"
@@ -690,6 +1224,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Birth dose administration":
+  //CQL AUTHORS: you need to insert stuff here
+  // Birth dose administration
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Birthdose"
   * ^property[+].code = #"tab"
@@ -701,17 +1244,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Birthdose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "HepatitisB"
-* #"" ""
-  * ^definition = """
-Referenced in the following locations:
- * Decision Tables: IMMZ.D2.DT.HepatitisB.Birthdose
- * Tabs: HepatitisB
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Number of hepatitis B birth doses administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Birth dose" = TRUE)
+
 
 """
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Birthdose"
   * ^property[+].code = #"tab"
@@ -723,6 +1264,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Hepatitis B birth dose was not administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Birth dose" = TRUE) = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Birthdose"
   * ^property[+].code = #"tab"
@@ -734,6 +1284,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Client is due for hepatitis B monovalent vaccine":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due" (where "Type of hepatitis B dose" = "Hepatitis B monovalent vaccine")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Birthdose"
   * ^property[+].code = #"tab"
@@ -745,6 +1304,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Should vaccinate client with hepatitis B birth dose, as a monovalent dose. Check for contraindications.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should vaccinate client with hepatitis B birth dose, as a monovalent dose. Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Birthdose"
   * ^property[+].code = #"tab"
@@ -756,6 +1324,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Client should follow delayed-start decision logic":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client should follow delayed-start decision logic
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Birthdose"
   * ^property[+].code = #"tab"
@@ -767,6 +1344,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "The client has a delayed start. Please follow the delayed start schedule.":
+  //CQL AUTHORS: you need to insert stuff here
+  // The client has a delayed start. Please follow the delayed start schedule.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Birthdose"
   * ^property[+].code = #"tab"
@@ -778,6 +1364,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Hepatitis B birth dose was administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Birth dose" = TRUE) = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Birthdose"
   * ^property[+].code = #"tab"
@@ -789,6 +1384,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Client is not due for the hepatitis B birth dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Birthdose"
   * ^property[+].code = #"tab"
@@ -800,6 +1404,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Hepatitis B birth dose was already administered. Check hepatitis B immunization schedule.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Hepatitis B birth dose was already administered. Check hepatitis B immunization schedule.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Birthdose"
   * ^property[+].code = #"tab"
@@ -811,6 +1424,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "3-dose schedule (birth dose + 2 primary series doses), on-time start":
+  //CQL AUTHORS: you need to insert stuff here
+  // 3-dose schedule (birth dose + 2 primary series doses), on-time start
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -822,6 +1444,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Number of hepatitis B primary series doses administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -833,6 +1464,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "No hepatitis B primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -844,6 +1484,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Client is not due for a hepatitis B vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -855,6 +1504,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisB.cql
+
+define "Should not vaccinate client with first hepatitis B dose as clients age is not within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -866,6 +1524,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Client is due for a hepatitis B vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -877,6 +1544,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisB.cql
+
+define "Should vaccinate client with first hepatitis B dose as clients age is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -888,6 +1564,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "One hepatitis B primary series dose was administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -899,6 +1584,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -910,6 +1604,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -921,6 +1624,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Two hepatitis B primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -934,6 +1646,17 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Hepatitis B immunization schedule is complete":
+  //CQL AUTHORS: you need to insert stuff here
+  // '"Immunization recommendation status" = "Complete"
+
+   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Hepatitis B-containing vaccines")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -945,6 +1668,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Hepatitis B immunization schedule is complete for client whose weight at birth was over 2000 g and who was not premature infant. Two hepatitis B primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Hepatitis B immunization schedule is complete for client whose weight at birth was over 2000 g and who was not premature infant. Two hepatitis B primary series doses were administered.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -956,6 +1688,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Should not vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B-containing vaccine was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due, and inform the caregiver of when to come back for the third dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -967,6 +1708,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Should vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B-containing vaccine administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -978,6 +1728,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Should not vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -989,6 +1748,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Should vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -1000,6 +1768,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Three hepatitis B primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 3
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -1011,6 +1788,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "The hepatitis B immunization schedule is complete for client whose weight at birth was below 2000 g and who was a premature infant. Four hepatitis B primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.3doses"
   * ^property[+].code = #"tab"
@@ -1022,6 +1808,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "4-dose schedule (birth dose + 3 primary series doses), on-time start":
+  //CQL AUTHORS: you need to insert stuff here
+  // 4-dose schedule (birth dose + 3 primary series doses), on-time start
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.4doses"
   * ^property[+].code = #"tab"
@@ -1033,6 +1828,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "One hepatitis B primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.4doses"
   * ^property[+].code = #"tab"
@@ -1044,6 +1848,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Should not vaccinate client with third hepatitis B dose as the latest Hepatitis B dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due, and inform the caregiver of when to come back for the third dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.4doses"
   * ^property[+].code = #"tab"
@@ -1055,6 +1868,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Should vaccinate client with third hepatitis B dose as the latest Hepatitis B dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.4doses"
   * ^property[+].code = #"tab"
@@ -1066,6 +1888,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "The hepatitis B immunization schedule is complete. Three hepatitis B primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.4doses"
   * ^property[+].code = #"tab"
@@ -1077,6 +1908,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "3-dose schedule (no birth dose + 3 doses), delayed start":
+  //CQL AUTHORS: you need to insert stuff here
+  // 3-dose schedule (no birth dose + 3 doses), delayed start
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Delayedstart"
   * ^property[+].code = #"tab"
@@ -1088,6 +1928,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Number of hepatitis B doses administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Delayedstart"
   * ^property[+].code = #"tab"
@@ -1099,6 +1948,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "No hepatitis B doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines") = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Delayedstart"
   * ^property[+].code = #"tab"
@@ -1110,6 +1968,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Client is due for hepatitis B vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Delayedstart"
   * ^property[+].code = #"tab"
@@ -1121,6 +1988,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Should vaccinate client with first hepatitis B dose as hepatitis B birth dose was not administered. The first hepatitis B dose should be administered as soon as possible.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Delayedstart"
   * ^property[+].code = #"tab"
@@ -1132,6 +2008,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "One hepatitis B dose was administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines") = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Delayedstart"
   * ^property[+].code = #"tab"
@@ -1143,6 +2028,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Delayedstart"
   * ^property[+].code = #"tab"
@@ -1154,6 +2048,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Two hepatitis B doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines") = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Delayedstart"
   * ^property[+].code = #"tab"
@@ -1165,6 +2068,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. Two hepatitis B doses have been administered to the client.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Delayedstart"
   * ^property[+].code = #"tab"
@@ -1176,6 +2088,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Should not vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered less than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Delayedstart"
   * ^property[+].code = #"tab"
@@ -1187,6 +2108,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Should vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered more than 6 months ago and the latest hepatitis B dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Delayedstart"
   * ^property[+].code = #"tab"
@@ -1198,6 +2128,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Three hepatitis B doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines") = 3
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Delayedstart"
   * ^property[+].code = #"tab"
@@ -1209,6 +2148,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Hepatitis B immunization schedule is complete. Three hepatitis B primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisB.Delayedstart"
   * ^property[+].code = #"tab"
@@ -1220,6 +2168,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Hepatitis B vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.":
+  //CQL AUTHORS: you need to insert stuff here
+  // '"Immunization recommendation status" = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.HepatitisBcontraindications"
   * ^property[+].code = #"tab"
@@ -1231,6 +2188,15 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
+  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
+
+define "Do not vaccinate client with hepatitis B if the client had a history of serious allergic reactions to any of the vaccine components. Allergy to yeast is considered a contraindication to immunization with yeast-produced hepatitis B-containing vaccine.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with hepatitis B if the client had a history of serious allergic reactions to any of the vaccine components. Allergy to yeast is considered a contraindication to immunization with yeast-produced hepatitis B-containing vaccine.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.HepatitisBcontraindications"
   * ^property[+].code = #"tab"
@@ -1242,6 +2208,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Birth dose administration as part of bivalent oral polio vaccine (bOPV) plus inactivated polio vaccine (IPV) schedule (in countries that are poliomyelitis (polio)-endemic countries or at high risk of importation and subsequent spread of polio that follow the combined bOPV–IPV schedule)":
+  //CQL AUTHORS: you need to insert stuff here
+  // Birth dose administration as part of "bivalent oral polio vaccine (bOPV) plus inactivated polio vaccine (IPV)" schedule (in countries that are poliomyelitis (polio)-endemic countries or at high risk of importation and subsequent spread of polio that follow the combined bOPV–IPV schedule)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.Birthdose"
   * ^property[+].code = #"tab"
@@ -1253,6 +2228,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Number of poliovirus birth doses administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Dose 0" AND "Birth dose" = TRUE)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.Birthdose"
   * ^property[+].code = #"tab"
@@ -1264,6 +2248,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "bOPV birth dose (a zero dose) was not administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Dose 0" AND "Birth dose" = TRUE) = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.Birthdose"
   * ^property[+].code = #"tab"
@@ -1275,6 +2268,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Client is due for the bOPV birth dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due" (where "Type of poliovirus dose" = "bOPV")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.Birthdose"
   * ^property[+].code = #"tab"
@@ -1286,6 +2288,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with bOPV birth dose (a zero dose) as poliovirus birth dose was not administered and clients age is less than 1 week. Check for contraindications.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should vaccinate client with bOPV birth dose (a zero dose) as poliovirus birth dose was not administered and client's age is less than 1 week. Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.Birthdose"
   * ^property[+].code = #"tab"
@@ -1297,6 +2308,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Client is not due for the bOPV birth dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.Birthdose"
   * ^property[+].code = #"tab"
@@ -1308,6 +2328,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with bOPV birth dose (a zero dose) as clients age is more than or equal to 1 week. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with bOPV birth dose (a zero dose) as client's age is more than or equal to 1 week. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.Birthdose"
   * ^property[+].code = #"tab"
@@ -1319,6 +2348,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "bOPV birth dose (a zero dose) was administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Dose 0" AND "Birth dose" = TRUE) = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.Birthdose"
   * ^property[+].code = #"tab"
@@ -1330,6 +2368,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Poliovirus birth dose was already administered. Check poliovirus immunization schedule.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Poliovirus birth dose was already administered. Check poliovirus immunization schedule.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.Birthdose"
   * ^property[+].code = #"tab"
@@ -1341,6 +2388,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Bivalent oral polio vaccine (bOPV) plus inactivated polio vaccine (IPV) schedule (applicable for all countries)":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Bivalent oral polio vaccine (bOPV) plus inactivated polio vaccine (IPV)" schedule (applicable for all countries)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1352,6 +2408,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Number of poliovirus primary series doses administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Primary series")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1363,6 +2428,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Client is not due for bOPV vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1374,6 +2448,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with first bOPV dose as clients age is less than 6 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the first bOPV dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1385,6 +2468,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "No poliovirus primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Primary series") = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1396,6 +2488,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Client is due for bOPV vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due" (where "Type of poliovirus dose" = "bOPV")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1407,6 +2508,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with first bOPV dose as no poliovirus doses were administered and clients age is between 6 weeks and 3 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1418,6 +2528,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Client is due for bOPV and IPV vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due" (where "Type of poliovirus dose" = "bOPV") AND (where "Type of poliovirus dose" = "IPV")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1429,6 +2548,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with first bOPV dose and first IPV dose as clients age is more than 3 months and no poliovirus doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1440,6 +2568,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "One poliovirus primary series dose was administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Primary series") = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1451,6 +2588,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Client is not due for polio vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1462,6 +2608,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with poliovirus dose as the latest bOPV dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next poliovirus dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1473,6 +2628,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with second bOPV dose as the latest bOPV dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1484,6 +2648,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Client is due for IPV vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1495,6 +2668,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with first IPV dose as clients age is more than 14 weeks and the latest bOPV was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1506,6 +2688,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with first IPV dose and second bOPV dose as clients age is more than 14 weeks and the latest bOPV dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1517,6 +2708,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with first bOPV dose as clients age is more than 14 weeks, bOPV dose was not administered and the first IPV dose was administered less than 4 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1528,6 +2728,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with first bOPV dose and second IPV dose as clients age is more than 14 weeks, bOPV dose was not administered and the first IPV dose was administered more than 4 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1539,6 +2748,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Two poliovirus primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Primary series") = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1550,6 +2768,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with poliovirus dose as clients age is between 6 and 14 weeks, two bOPV doses were administered and the latest bOPV dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next poliovirus dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1561,6 +2788,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with third bOPV dose as clients age is between 6 and 14 weeks and the latest bOPV dose was administered more than 4 weeks ago. Check for contraindications.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should vaccinate client with third bOPV dose as client's age is between 6 and 14 weeks and the latest bOPV dose was administered more than 4 weeks ago. Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1572,6 +2808,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with first IPV dose as clients age is more than 14 weeks, IPV dose was not administered and the latest bOPV dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1583,6 +2828,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with first IPV dose and third bOPV dose as clients age is more than 14 weeks, two bOPV doses and no IPV dose were administered and the latest bOPV dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1594,6 +2848,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with poliovirus dose as the latest bOPV dose was administered less than 4 weeks ago and the latest IPV dose was administered less than 4 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next poliovirus dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1605,6 +2868,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with second IPV dose as one bOPV dose and one IPV dose were administered, the latest bOPV dose was administered less than 4 weeks ago and the latest IPV dose was administered more than 4 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1616,6 +2888,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with second bOPV dose as one bOPV dose and one IPV dose were administered, the latest bOPV dose was administered more than 4 weeks ago and the latest IPV dose was administered less than 4 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1627,6 +2908,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with second bOPV dose and second IPV dose as one bOPV dose and one IPV dose were administered, the latest bOPV dose was administered more than 4 weeks ago and the latest IPV dose was administered more than 4 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1638,6 +2928,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with first bOPV dose as bOPV dose was not administered and two IPV doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1649,6 +2948,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Three poliovirus primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Primary series") = 3
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1660,6 +2968,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with poliovirus dose as clients age is less than 14 weeks and three bOPV doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next poliovirus dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1671,6 +2988,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with first IPV dose as clients age is more than 14 weeks, three bOPV doses were administered and IPV dose was not administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1682,6 +3008,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with poliovirus dose as two bOPV doses and one IPV dose were administered, the latest bOPV dose was administered less than 4 weeks ago and the latest IPV dose was administered less than 4 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next poliovirus dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1693,6 +3028,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with second IPV dose as two bOPV doses and one IPV dose were administered, the latest bOPV dose was administered less than 4 weeks ago and the latest IPV dose was administered more than 4 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1704,6 +3048,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with third bOPV dose as two bOPV doses and one IPV dose were administered, the latest bOPV dose was administered more than 4 weeks ago and the latest IPV dose was administered less than 4 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1715,6 +3068,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with third bOPV dose and second IPV dose as two bOPV doses and one IPV dose were administered, the latest bOPV dose was administered more than 4 weeks ago and the latest IPV dose was administered more than 4 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1726,6 +3088,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with poliovirus dose as one bOPV dose and two IPV doses were administered and the latest bOPV dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next poliovirus dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1737,6 +3108,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with second bOPV dose as one bOPV dose and two IPV doses were administered and the latest bOPV dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1748,6 +3128,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Four poliovirus primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Primary series") = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1759,6 +3148,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with poliovirus dose as three bOPV doses and one IPV dose were administered and the latest IPV dose was administered less than 4 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next poliovirus dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1770,6 +3168,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with second IPV dose as three bOPV doses and one IPV dose were administered and the latest IPV dose was administered more than 4 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1781,6 +3188,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with poliovirus dose as two bOPV doses and two IPV doses were administered and the latest bOPV dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next poliovirus dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1792,6 +3208,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with third bOPV dose as two bOPV doses and two IPV doses were administered and the latest bOPV dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1803,6 +3228,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Five poliovirus primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Primary series") = 5
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1816,6 +3250,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Polio immunization schedule is complete":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Complete"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1827,6 +3270,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Polio routine immunization schedule is complete. Five poliovirus primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.bOPVplusIPV"
   * ^property[+].code = #"tab"
@@ -1838,6 +3290,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Sequential Bivalent oral polio vaccine (bOPV)–inactivated polio vaccine (IPV) schedule (in countries with high vaccination coverage [e.g. 90–95%] and low importation risk [where neighbouring countries and/or countries that share substantial population movement have a similarly high coverage])":
+  //CQL AUTHORS: you need to insert stuff here
+  // Sequential  "Bivalent oral polio vaccine (bOPV)–inactivated polio vaccine (IPV)" schedule (in countries with high vaccination coverage [e.g. 90–95%] and low importation risk [where neighbouring countries and/or countries that share substantial population movement have a similarly high coverage])
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.SequentialIPVbOPV"
   * ^property[+].code = #"tab"
@@ -1849,6 +3310,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Client is not due for IPV vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.SequentialIPVbOPV"
   * ^property[+].code = #"tab"
@@ -1860,6 +3330,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with first IPV dose as clients age is less than 8 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the first poliovirus dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.SequentialIPVbOPV"
   * ^property[+].code = #"tab"
@@ -1871,6 +3350,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with first IPV dose as client is within appropriate age range and IPV dose was not administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.SequentialIPVbOPV"
   * ^property[+].code = #"tab"
@@ -1882,6 +3370,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with second IPV dose as the latest IPV dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver when to come back for the second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.SequentialIPVbOPV"
   * ^property[+].code = #"tab"
@@ -1893,6 +3390,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with second IPV dose as the latest IPV dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.SequentialIPVbOPV"
   * ^property[+].code = #"tab"
@@ -1904,6 +3410,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with first bOPV dose as two IPV doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.SequentialIPVbOPV"
   * ^property[+].code = #"tab"
@@ -1915,6 +3430,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with second bOPV dose as the latest bOPV dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.SequentialIPVbOPV"
   * ^property[+].code = #"tab"
@@ -1928,6 +3452,17 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTyphoidElements.cql
+
+define "Primary series is complete":
+  "One typhoid primary series dose was administered"
+  or Coalesce( 
+    "Typhoid Doses Administered to Patient" Dose
+    aggregate Result: Elements."Completed the primary vaccination series Observation".partOf.references(Dose) or Result, 
+    false ) 
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.SequentialIPVbOPV"
   * ^property[+].code = #"tab"
@@ -1939,6 +3474,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Poliovirus primary series is complete. Assess if supplementary bOPV dose(s) are necessary and create a clinical note.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.SequentialIPVbOPV"
   * ^property[+].code = #"tab"
@@ -1950,6 +3494,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Inactivated polio vaccine (IPV)-only (in countries, in polio-free regions, with a very low risk of importation and sustained high routine immunization coverage (third dose of the diphtheria–tetanus–pertussis vaccine [DTP3] > 90%)":
+  //CQL AUTHORS: you need to insert stuff here
+  // Inactivated polio vaccine (IPV)-only (in countries, in polio-free regions, with a very low risk of importation and sustained high routine immunization coverage (third dose of the diphtheria–tetanus–pertussis vaccine [DTP3] > 90%)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.IPV-only"
   * ^property[+].code = #"tab"
@@ -1961,6 +3514,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Shold not vaccinate client with first IPV dose as clients age is less than 6 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the first IPV dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.IPV-only"
   * ^property[+].code = #"tab"
@@ -1972,6 +3534,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with first IPV dose as client is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.IPV-only"
   * ^property[+].code = #"tab"
@@ -1983,6 +3554,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with third IPV dose as the latest IPV dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver when to come back for the third dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.IPV-only"
   * ^property[+].code = #"tab"
@@ -1994,6 +3574,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with third IPV dose as the latest poliovirus dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.IPV-only"
   * ^property[+].code = #"tab"
@@ -2005,6 +3594,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Polio immunization schedule is complete as clients age was more than 6 weeks when the primary series was started. Three poliovirus primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Polio immunization schedule is complete as client's age was more than 6 weeks when the primary series was started. Three poliovirus primary series doses were administered.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.IPV-only"
   * ^property[+].code = #"tab"
@@ -2018,6 +3616,17 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Primary series is complete. Client is not due for IPV booster dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Poliovirus-containing vaccines")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.IPV-only"
   * ^property[+].code = #"tab"
@@ -2029,6 +3638,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should not vaccinate client with IPV booster dose as the latest poliovirus dose was administered less than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver when to come back for the booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.IPV-only"
   * ^property[+].code = #"tab"
@@ -2042,6 +3660,17 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Primary series is complete. Client is due for IPV booster dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Poliovirus-containing vaccines")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.IPV-only"
   * ^property[+].code = #"tab"
@@ -2053,6 +3682,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Should vaccinate client with IPV booster dose as three poliovirus primary series doses were administered, clients age was 6 weeks when the primary series was started and the latest poliovirus dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.IPV-only"
   * ^property[+].code = #"tab"
@@ -2064,6 +3702,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Polio immunization schedule is complete. Three poliovirus primary series doses and a booster dose were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Polio immunization schedule is complete. Three poliovirus primary series doses and a booster dose were administered.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Polio.IPV-only"
   * ^property[+].code = #"tab"
@@ -2075,6 +3722,14 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTPolioCILogic.cql
+
+define "Poliovirus vaccination could be contraindicated. Clinical judgement required":
+  Encounter."The client has history of severe allergic reactions"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Poliocontraindications"
   * ^property[+].code = #"tab"
@@ -2086,6 +3741,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "Do not vaccinate client with inactivated polio vaccine (IPV) if client has had a previous severe reaction or known allergy to streptomycin, neomycin or polymyxin B.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with oral polio vaccine (OPV) if client has had a allergic reaction to OPV or to the trace antibiotics contained.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Poliocontraindications"
   * ^property[+].code = #"tab"
@@ -2097,6 +3761,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "The client is severely immunocompromised":
+  exists "CI Severely immunocompromised Observation"
+    or exists "CI Severely immunocompromised Condition"
+    
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Poliocontraindications"
   * ^property[+].code = #"tab"
@@ -2110,6 +3783,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTPolioCILogic.cql
+
+define "Poliovirus vaccination with bOPV is contraindicated":
+  "Poliovirus vaccination with bOPV is contraindicated Case 1"
+    or "Poliovirus vaccination with bOPV is contraindicated Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Poliocontraindications"
   * ^property[+].code = #"tab"
@@ -2121,6 +3803,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "For bOPV dose, do not vaccinate client for bOPV dose as bOPV vaccination is contranindicated in severely immunocompromised clients.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Poliocontraindications"
   * ^property[+].code = #"tab"
@@ -2132,6 +3823,15 @@ Referenced in the following locations:
  * Tabs: Polio
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPolio.cql
+
+define "For bOPV dose, do not vaccinate client for bOPV dose as bOPV vaccination is contranindicated in clients with immunodeficiency disorders.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Poliocontraindications"
   * ^property[+].code = #"tab"
@@ -2143,6 +3843,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "DTP vaccination schedule, on-time start (at ≤ 12 months of age)":
+  //CQL AUTHORS: you need to insert stuff here
+  // DTP vaccination schedule, on-time start (at ≤ 12 months of age)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2154,6 +3863,14 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPElements.cql
+
+define "Number of DTP Primary Series Doses Administered":
+  Count("DTP Primary Series Doses Administered to Patient")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2165,6 +3882,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPDelayedLogic.cql
+
+define "Client is not due for DTP vaccination":
+  "Client is not due for DTP vaccination Case 1"
+    or "Client is not due for DTP vaccination Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2176,6 +3902,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should not vaccinate client with first DTP dose as client is less than 6 weeks old.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2187,6 +3922,14 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPElements.cql
+
+define "No DTP primary series doses were administered":
+  "Number of DTP Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2198,6 +3941,16 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPDelayedLogic.cql
+
+define "Client is due for DTP vaccination":
+  "Client is due for DTP vaccination Case 1"
+    or "Client is due for DTP vaccination Case 2"
+    or "Client is due for DTP vaccination Case 3"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2209,6 +3962,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDTP.cql
+
+define "Should vaccinate client with first DTP dose as no DTP doses were administered and and clients age is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2220,6 +3982,14 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPElements.cql
+
+define "One DTP primary series dose was administered":
+  "Number of DTP Primary Series Doses Administered" = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2231,6 +4001,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should not vaccinate client with second DTP dose as latest DTP dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2242,6 +4021,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should vaccinate client with second DTP dose as the latest DTP dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2253,6 +4041,14 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPElements.cql
+
+define "Two DTP primary series doses were administered":
+  "Number of DTP Primary Series Doses Administered" = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2264,6 +4060,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDTP.cql
+
+define "Should not vaccinate client with third DTP dose as the latest DTP dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2275,6 +4080,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should vaccinate client with third DTP dose as the latest DTP dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2286,6 +4100,14 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPElements.cql
+
+define "Three DTP primary series doses were administered":
+  "Number of DTP Primary Series Doses Administered" = 3
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2299,6 +4121,16 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPDelayedLogic.cql
+
+define "Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose":
+  Encounter."Three DTP primary series doses were administered"
+    and Encounter."No tetanus and diphtheria booster doses were administered"
+    and Encounter."The latest DTP dose was administered less than 1 year ago"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2310,6 +4142,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDTP.cql
+
+define "Should not vaccinate client with first tetanus and diphtheria booster dose as clients age is less than 12 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for first tetanus and diphtheria booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2323,6 +4164,16 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPDelayedLogic.cql
+
+define "Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose":
+  Encounter."Three DTP primary series doses were administered"
+    and Encounter."No tetanus and diphtheria booster doses were administered"
+    and Encounter."The latest DTP dose was administered more than 1 year ago"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2334,6 +4185,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should vaccinate client with first tetanus and diphtheria booster dose as client is at least 12 months old. Check for contraindications.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should vaccinate client with first tetanus and diphtheria booster dose as client is at least 12 months old. Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2345,6 +4205,16 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPDelayedLogic.cql
+
+define "Client is not due for tetanus and diphtheria booster dose":
+  Encounter."Three DTP primary series doses were administered"
+    and Encounter."One tetanus and diphtheria booster dose was administered"
+    and Encounter."The latest tetanus and diphtheria dose was administered less than 1 year ago"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2356,6 +4226,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDTP.cql
+
+define "Should not vaccinate client with second tetanus and diphtheria booster dose as clients age is less than 4 years.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for second tetanus and diphtheria booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2367,6 +4246,16 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPDelayedLogic.cql
+
+define "Client is due for tetanus and diphtheria booster dose":
+  Encounter."Three DTP primary series doses were administered"
+    and Encounter."One tetanus and diphtheria booster dose was administered"
+    and Encounter."The latest tetanus and diphtheria dose was administered more than 1 year ago"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2378,6 +4267,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should vaccinate client with second tetanus and diphtheria booster dose as client is within appropriate age range and the latest tetanus and diphtheria booster dose was administered more than 4 years ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2389,6 +4287,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDTP.cql
+
+define "Should not vaccinate client with third tetanus and diphtheria booster dose as clients age is less than 9 years.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due, and inform the caregiver of when to come back for third tetanus and diphtheria booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2400,6 +4307,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should vaccinate client with third tetanus and diphtheria booster dose as client is within appropriate age range and the latest tetanus and diphtheria dose was administered more than 4 years ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2411,6 +4327,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPDelayedLogic.cql
+
+define "Tetanus and diphtheria immunization schedule is complete":
+  Encounter."Three DTP primary series doses were administered"
+    and Encounter."Two tetanus and diphtheria booster doses were administered"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2422,6 +4347,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Tetanus and diphtheria immunization schedule is complete. Three DTP primary series doses and three tetanus and diphtheria booster doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2433,6 +4367,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Client is not due for pertussis booster dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2444,6 +4387,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDTP.cql
+
+define "Should not vaccinate client with pertussis booster dose as clients age is less than 1 year.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for pertussis booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2457,6 +4409,17 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPDelayedLogic.cql
+
+define "Primary DTP series is complete. Client is not due for pertussis booster dose":
+  Encounter."Three DTP primary series doses were administered"
+    and Encounter."No pertussis booster doses were administered"
+    and Encounter."Client's age is between 1 year and 6 years"
+    and Encounter."The latest DTP dose was administered less than 6 months ago"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2468,6 +4431,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should not vaccinate client with pertussis booster dose as the latest DTP dose was administered less than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for pertussis booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2481,6 +4453,17 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPDelayedLogic.cql
+
+define "Primary DTP series is complete. Client is due for pertussis booster dose":
+  Encounter."Three DTP primary series doses were administered"
+    and Encounter."No pertussis booster doses were administered"
+    and Encounter."Client's age is between 1 year and 6 years"
+    and Encounter."The latest DTP dose was administered more than 6 months ago"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2492,6 +4475,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should vaccinate client with pertussis booster dose as no pertussis booster dose was administered, client is within the appropriate age range and the latest DTP dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2503,6 +4495,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDTPDelayedLogic.cql
+
+define "Pertussis immunization schedule is complete":
+  "Pertussis immunization schedule is complete Case 1"
+    or "Pertussis immunization schedule is complete Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2514,6 +4515,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Pertussis immunization schedule is complete. Three DTP primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2525,6 +4535,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Pertussis immunization schedule is complete. Three DTP primary series doses and one pertussis booster dose were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.On-timestart"
   * ^property[+].code = #"tab"
@@ -2536,6 +4555,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "DTP vaccination schedule for the following groups: children ≥ 1 year of age with no previous immunization, adolescents and adults with no previous immunization (including pregnant women) and supplementary immunization activities in high-risk areas, for women of reproductive age":
+  //CQL AUTHORS: you need to insert stuff here
+  // DTP vaccination schedule for the following groups: children ≥ 1 year of age with no previous immunization, adolescents and adults with no previous immunization (including pregnant women) and supplementary immunization activities in high-risk areas, for women of reproductive age
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Delayedorinterruptedseries"
   * ^property[+].code = #"tab"
@@ -2547,6 +4575,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDTP.cql
+
+define "Should vaccinate client with first DTP dose as no DTP doses were administered and clients age is more than 1 year.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Delayedorinterruptedseries"
   * ^property[+].code = #"tab"
@@ -2558,6 +4595,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should not vaccinate client with second DTP dose as the latest DTP dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for second DTP dose
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Delayedorinterruptedseries"
   * ^property[+].code = #"tab"
@@ -2569,6 +4615,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should not vaccinate client with third DTP dose the latest DTP dose was administered less than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for third DTP dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Delayedorinterruptedseries"
   * ^property[+].code = #"tab"
@@ -2580,6 +4635,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should vaccinate client with third DTP dose as the latest DTP dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Delayedorinterruptedseries"
   * ^property[+].code = #"tab"
@@ -2591,6 +4655,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should not vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for first tetanus and diphtheria booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Delayedorinterruptedseries"
   * ^property[+].code = #"tab"
@@ -2602,6 +4675,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Delayedorinterruptedseries"
   * ^property[+].code = #"tab"
@@ -2613,6 +4695,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should not vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered less than 1 year ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for second tetanus and diphtheria booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Delayedorinterruptedseries"
   * ^property[+].code = #"tab"
@@ -2624,6 +4715,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered more than 1 year ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Delayedorinterruptedseries"
   * ^property[+].code = #"tab"
@@ -2635,6 +4735,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Tetanus and diphtheria immunization schedule is complete. Three DTP primary series doses and two tetanus and diphtheria booster doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Delayedorinterruptedseries"
   * ^property[+].code = #"tab"
@@ -2646,6 +4755,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should vaccinate client with pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Delayedorinterruptedseries"
   * ^property[+].code = #"tab"
@@ -2657,6 +4775,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Determine whether DTP-containing vaccines are needed for pregnant women":
+  //CQL AUTHORS: you need to insert stuff here
+  // Determine whether DTP-containing vaccines are needed for pregnant women
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancy"
   * ^property[+].code = #"tab"
@@ -2668,6 +4795,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDTP.cql
+
+define "Client should follow delayed or interrupted series decision logic":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client should follow 'delayed or interrupted series' decision logic
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancy"
   * ^property[+].code = #"tab"
@@ -2679,6 +4815,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDTP.cql
+
+define "The client has a delayed start. Please follow the delayed or interrupted schedule.":
+  //CQL AUTHORS: you need to insert stuff here
+  // The client has a delayed start. Please follow the 'delayed or interrupted' schedule.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancy"
   * ^property[+].code = #"tab"
@@ -2690,6 +4835,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDTP.cql
+
+define "Client should follow pregnancy starting with 3 doses decision logic":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client should follow 'pregnancy starting with 3 doses' decision logic
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancy"
   * ^property[+].code = #"tab"
@@ -2701,6 +4855,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDTP.cql
+
+define "The client has received 3 tetanus-contzining vaccine doses during childhood. Please follow the pregnancy starting with 3 doses schedule.":
+  //CQL AUTHORS: you need to insert stuff here
+  // The client has received 3 tetanus-contzining vaccine doses during childhood. Please follow the 'pregnancy starting with 3 doses' schedule.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancy"
   * ^property[+].code = #"tab"
@@ -2712,6 +4875,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDTP.cql
+
+define "Client should follow pregnancy starting with 4 doses decision logic":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client should follow 'pregnancy starting with 4 doses' decision logic
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancy"
   * ^property[+].code = #"tab"
@@ -2723,6 +4895,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDTP.cql
+
+define "The client has received 4 tetanus-containing vaccines doses during childhood or pre-adulthood. Please follow the pregnancy starting with 4 doses schedule.":
+  //CQL AUTHORS: you need to insert stuff here
+  // The client has received 4 tetanus-containing vaccines doses during childhood or pre-adulthood. Please follow the 'pregnancy starting with 4 doses' schedule.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancy"
   * ^property[+].code = #"tab"
@@ -2734,6 +4915,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Tetanus and diphtheria immunization schedule is complete.Three DTP primary series doses and two tetanus and diphtheria booster doses were administered. There is no need for any additional tetanus and diphtheria doses.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancy"
   * ^property[+].code = #"tab"
@@ -2745,6 +4935,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Tetanus and diphtheria immunization schedule is complete.Three DTP primary series doses and three tetanus and diphtheria booster doses were administered. There is no need for any additional tetanus and diphtheria doses.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancy"
   * ^property[+].code = #"tab"
@@ -2756,6 +4955,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Diphtheria and tetanus vaccination schedule in pregnant women who received 3 childhood DTP doses":
+  //CQL AUTHORS: you need to insert stuff here
+  // Diphtheria and tetanus vaccination schedule in pregnant women who received 3 childhood DTP doses
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancystartingwith3doses"
   * ^property[+].code = #"tab"
@@ -2767,6 +4975,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should vaccinate client with first tetanus and diphtheria booster dose as three DTP primary series doses were already administered and client is currently pregnant.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancystartingwith3doses"
   * ^property[+].code = #"tab"
@@ -2778,6 +4995,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should not vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and booster dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for second tetanus and diphtheria booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancystartingwith3doses"
   * ^property[+].code = #"tab"
@@ -2789,6 +5015,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should vaccinate client with second tetanus and diphtheria booster dose as client is currently pregnant and the latest tetanus and diphtheria dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancystartingwith3doses"
   * ^property[+].code = #"tab"
@@ -2800,6 +5035,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should not vaccinate client with third tetanus and diphtheria booster dose as the latest tetanus and booster dose was administered less than 1 year ago. This dose should be administered at least 1 year after second booster dose or during next pregnancy.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for third tetanus and diphtheria booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancystartingwith3doses"
   * ^property[+].code = #"tab"
@@ -2811,6 +5055,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should vaccinate client with third tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered more than 1 year ago. This dose should be administered at least 1 year after second booster dose or during next pregnancy.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancystartingwith3doses"
   * ^property[+].code = #"tab"
@@ -2822,6 +5075,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Diphtheria and tetanus vaccination schedule in pregnant women who received 4 childhood DTP doses":
+  //CQL AUTHORS: you need to insert stuff here
+  // Diphtheria and tetanus vaccination schedule in pregnant women who received 4 childhood DTP doses
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancystartingwith4doses"
   * ^property[+].code = #"tab"
@@ -2833,6 +5095,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Should vaccinate client with second tetanus and diphtheria booster dose as three DTP primary series doses and one tetanus and diphtheria booster dose were administered and client is currently pregnant.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.DTP.Pregnancystartingwith4doses"
   * ^property[+].code = #"tab"
@@ -2844,6 +5115,14 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTPneumococcalEncounterElements.cql
+
+define "The client has a history of anaphylactic reactions":
+  Encounter."The client has history of anaphylactic reactions"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.DTPcontraindications"
   * ^property[+].code = #"tab"
@@ -2859,6 +5138,14 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTDTPCILogic.cql
+
+define "Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
+  Encounter."The client has a history of anaphylactic reactions"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.DTPcontraindications"
   * ^property[+].code = #"tab"
@@ -2870,6 +5157,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Do not vaccinate client with pertussis and/or tetanus if the client has had a severe anaphylactic reaction to a vaccine component or reaction following a prior dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with pertussis and/or tetanus if the client has had a severe anaphylactic reaction to a vaccine component or reaction following a prior dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.DTPcontraindications"
   * ^property[+].code = #"tab"
@@ -2881,6 +5177,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "The client currently has a severe acute illness":
+  exists "CI Severe acute illness Observation"
+    or exists "CI Severe acute illness Condition"
+    
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.DTPcontraindications"
   * ^property[+].code = #"tab"
@@ -2892,6 +5197,14 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTDTPCILogic.cql
+
+define "Tetanus vaccination is contraindicated":
+  Encounter."The client currently has a severe acute illness"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.DTPcontraindications"
   * ^property[+].code = #"tab"
@@ -2903,6 +5216,15 @@ Referenced in the following locations:
  * Tabs: DTP
 
 """
+  * ^designation[+].value = """//Found in input/cql/DTPElements.cql
+
+define "Do not vaccinate client with tetanus as tetanus vaccination is contraindicated for clients with severe acute illness":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with tetanus as tetanus vaccination is contraindicated for clients with severe acute illness
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.DTPcontraindications"
   * ^property[+].code = #"tab"
@@ -2914,6 +5236,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "3 primary doses without a booster dose (3p)":
+  //CQL AUTHORS: you need to insert stuff here
+  // 3 primary doses without a booster dose (3p)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -2925,6 +5256,14 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHibEncounterElements.cql
+
+define "Number of Hib Primary Series Doses Administered":
+  Count("Hib Primary Series Doses Administered to Patient")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -2936,6 +5275,17 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHib3p1bLogic.cql
+
+define "Client is not due for Hib vaccination":
+  "Client is not due for Hib vaccination Case 1"
+    or "Client is not due for Hib vaccination Case 2"
+    or "Client is not due for Hib vaccination Case 3"
+    or "Client is not due for Hib vaccination Case 4"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -2947,6 +5297,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should not vaccinate client with first Hib dose as clients age is less than 6 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -2958,6 +5317,14 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHibEncounterElements.cql
+
+define "No Hib primary series doses were administered":
+  "Number of Hib Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -2969,6 +5336,16 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHib3p1bLogic.cql
+
+define "Client is due for Hib vaccination":
+  "Client is due for Hib vaccination Case 1"
+    or "Client is due for Hib vaccination Case 2"
+    or "Client is due for Hib vaccination Case 3"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -2980,6 +5357,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should vaccinate client with first Hib dose as no Hib doses were administered and client is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -2991,6 +5377,14 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHibEncounterElements.cql
+
+define "One Hib primary series dose was administered":
+  "Number of Hib Primary Series Doses Administered" = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -3002,6 +5396,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should not vaccinate client with second Hib dose as latest Hib dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -3013,6 +5416,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should vaccinate client with second Hib dose as clients age was less than 1 year when first Hib dose was administered and the latest Hib dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -3026,6 +5438,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHib3p1bLogic.cql
+
+define "Hib immunization schedule is complete":
+  "Hib immunization schedule is complete Case 1"
+    or "Hib immunization schedule is complete Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -3037,6 +5458,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Hib immunization schedule is complete as clients age was more than 1 year when first Hib dose was administered. One Hib primary series dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -3048,6 +5478,14 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHibEncounterElements.cql
+
+define "Two Hib primary series doses were administered":
+  "Number of Hib Primary Series Doses Administered" = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -3059,6 +5497,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should not vaccinate client with third Hib dose as latest Hib dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for third dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -3070,6 +5517,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should vaccinate client with third Hib dose as client is within appropriate age range and latest Hib dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -3081,6 +5537,14 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHibEncounterElements.cql
+
+define "Three Hib primary series doses were administered":
+  "Number of Hib Primary Series Doses Administered" = 3
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -3092,6 +5556,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Hib immunization schedule is complete. Three Hib primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -3103,6 +5576,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should not vaccinate client with Hib dose as client is more than 5 years old and Hib vaccination is not required for healthy children aged over 5 years.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doses"
   * ^property[+].code = #"tab"
@@ -3114,6 +5596,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "3 primary doses with a booster dose (3p+1)":
+  //CQL AUTHORS: you need to insert stuff here
+  // 3 primary doses with a booster dose (3p+1)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3125,6 +5616,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should not vaccinate client with first Hib dose as client is less than 6 weeks old.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3136,6 +5636,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should vaccinate client with first Hib dose as client is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3147,6 +5656,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Hib immunization schedule is complete as clients age was more than 1 year when first Hib dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3158,6 +5676,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should not vaccinate client with third Hib dose as the latest Hib dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for third dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3169,6 +5696,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should vaccinate client with third Hib dose as client is within appropriate age range and the latest Hib dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3182,6 +5718,17 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHib3p1bLogic.cql
+
+define "Primary series is complete. Client is not due for Hib booster dose":
+  Encounter."Three Hib primary series doses were administered"
+    and Encounter."No Hib booster doses were administered"
+    and Encounter."Client's age is between 6 weeks and 5 years"
+    and Encounter."The latest Hib dose was administered less than 6 months ago"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3193,6 +5740,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should not vaccinate client with Hib booster dose as the latest Hib dose was administered less than 6 months ago. Hib primary series is complete.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3206,6 +5762,17 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHib3p1bLogic.cql
+
+define "Primary series is complete. Client is due for Hib booster dose":
+  Encounter."Three Hib primary series doses were administered"
+    and Encounter."No Hib booster doses were administered"
+    and Encounter."Client's age is between 6 weeks and 5 years"
+    and Encounter."The latest Hib dose was administered more than 6 months ago"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3217,6 +5784,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should vaccinate client with Hib booster dose as primary series is complete and the latest Hib dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3228,6 +5804,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Hib immunization schedule is complete. Three Hib primary series doses and one booster dose have been administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.3doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3239,6 +5824,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "2 primary doses with a booster dose (2p+1)":
+  //CQL AUTHORS: you need to insert stuff here
+  // 2 primary doses with a booster dose (2p+1)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3250,6 +5844,14 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHibEncounterElements.cql
+
+define "One Hib primary series doses was administered":
+  "One Hib primary series dose was administered"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3261,6 +5863,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should not vaccinate client with second Hib dose as the latest Hib dose was administered less than 8 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3272,6 +5883,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should vaccinate client with second Hib dose as clients age was less than 1 year when first Hib dose was adminsitered and latest Hib dose was administered more than 8 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3283,6 +5903,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Should not vaccinate client with Hib booster dose as latest Hib dose was administered less than 6 months ago. Hib primary series is complete.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3294,6 +5923,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Hib immunization schedule is complete. Three Hib primary series doses and a booster dose were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Hib.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3305,6 +5943,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The client has a history of severe allergic reactions":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Potential contraindications" = "Severe allergic reactions"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Hibcontraindications"
   * ^property[+].code = #"tab"
@@ -3316,6 +5963,14 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTHibCILogic.cql
+
+define "Hib vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.":
+  Encounter."The client has a history of severe allergic reactions"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Hibcontraindications"
   * ^property[+].code = #"tab"
@@ -3327,6 +5982,15 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHib.cql
+
+define "Do not vaccinate client with Hib conjugate vaccine if client has had allergic reaction or known allergies to any component of the vaccine.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with Hib conjugate vaccine if client has had allergic reaction or known allergies to any component of the vaccine.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Hibcontraindications"
   * ^property[+].code = #"tab"
@@ -3338,6 +6002,14 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTPneumococcalElements.cql
+
+define "Number of Pneumococcal Primary Series Doses Administered":
+  Count("Pneumococcal Primary Series Doses Administered to Patient")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3349,6 +6021,16 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTPneumococcal2p1bLogic.cql
+
+define "Client is not due for pneumococcal vaccination":
+  "Client is not due for pneumococcal vaccination Case 1"
+    or "Client is not due for pneumococcal vaccination Case 2"
+    or "Client is not due for pneumococcal vaccination Case 3"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3360,6 +6042,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPneumococcal.cql
+
+define "Should not vaccinate client with first pneumococcal dose as clients age is less than 6 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with first pneumococcal dose as client's age is less than 6 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3371,6 +6062,14 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTPneumococcalElements.cql
+
+define "No pneumococcal primary series doses were administered":
+  "Number of Pneumococcal Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3382,6 +6081,16 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTPneumococcal2p1bLogic.cql
+
+define "Client is due for pneumococcal vaccination":
+  "Client is due for pneumococcal vaccination Case 1"
+    or "Client is due for pneumococcal vaccination Case 2"
+    or "Client is due for pneumococcal vaccination Case 3"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3393,6 +6102,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should vaccinate client with first pneumococcal dose as no pneumococcal doses were administered and client is within the appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3404,6 +6122,14 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTPneumococcalElements.cql
+
+define "One pneumococcal primary series dose was administered":
+  "Number of Pneumococcal Primary Series Doses Administered" = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3415,6 +6141,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3426,6 +6161,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3437,6 +6181,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago and client is at high risk for pneumococcal infection.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3448,6 +6201,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago and client is at high risk for pneumococcal infection.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3459,6 +6221,19 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTPneumococcal2p1bLogic.cql
+
+define "Pneumococcal immunization schedule is complete":
+  "Pneumococcal immunization schedule is complete Case 1"
+    or "Pneumococcal immunization schedule is complete Case 2"
+    or "Pneumococcal immunization schedule is complete Case 3"
+    or "Pneumococcal immunization schedule is complete Case 4"
+    or "Pneumococcal immunization schedule is complete Case 5"
+    or "Pneumococcal immunization schedule is complete Case 6"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3470,6 +6245,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Pneumococcal immunization schedule is complete. One primary series dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3481,6 +6265,14 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTPneumococcalElements.cql
+
+define "Two pneumococcal primary series doses were administered":
+  "Number of Pneumococcal Primary Series Doses Administered" = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3492,6 +6284,16 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTPneumococcal2p1bLogic.cql
+
+define "Client is due for pneumococcal booster dose":
+  "Client is due for pneumococcal booster dose Case 1"
+    or "Client is due for pneumococcal booster dose Case 2"
+    or "Client is due for pneumococcal booster dose Case 3"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3503,6 +6305,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should vaccinate client with first pneumococcal booster dose as first pneumococcal dose was administered within 12 months post birth.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3514,6 +6325,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3525,6 +6345,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTPneumococcal2p1bLogic.cql
+
+define "Client is not due for pneumococcal booster dose":
+  "Client is not due for pneumococcal booster dose Case 1"
+    or "Client is not due for pneumococcal booster dose Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3536,6 +6365,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPneumococcal.cql
+
+define "Should not vaccinate client with second pneumococcal booster dose as clients age is less than 12 months and client is HIV positive.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3547,6 +6385,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPneumococcal.cql
+
+define "Should not vaccinate client with second pneumococcal booster dose as clients age is less than 12 months and client had preterm birth.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3558,6 +6405,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should vaccinate client with second pneumococcal booster dose as client is HIV positive and latest pneumococcal dose was administered within 12 months post birth.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3569,6 +6425,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should vaccinate client with second pneumococcal booster dose as client had preterm birth and latest pneumococcal dose was administered within 12 months post birth.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3580,6 +6445,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPneumococcal.cql
+
+define "Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses and one booster dose were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3591,6 +6465,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses and two booster doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3602,6 +6485,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Clinical judgement is required. Create a clinical note":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3613,6 +6505,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Members States should update this action according to the national immunization programme.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Members States should update this action according to the national immunization programme.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
   * ^property[+].code = #"tab"
@@ -3624,6 +6525,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "3 primary doses (3p+0)":
+  //CQL AUTHORS: you need to insert stuff here
+  // 3 primary doses (3p+0)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3635,6 +6545,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPneumococcal.cql
+
+define "Should not vaccinate client with first pneumococcal dose as clients age is less than 6 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3646,6 +6565,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3657,6 +6585,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should vaccinate client with second pneumococcal dose as first dose was administered within 12 months post birth and latest pneumococcal dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3668,6 +6605,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3679,6 +6625,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 4 weeks ago and client is not at high risk for pneumococcal infection.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3690,6 +6645,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should vaccinate client with second pneumococcal dose as first dose was administered 24 months post birth, latest pneumococcal dose was administered more than 8 weeks ago and client is at high risk for pneumococcal infection.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3701,6 +6665,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Pneumococcal immunization schedule is complete. One pneumococcal dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3712,6 +6685,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPneumococcal.cql
+
+define "Should not vaccinate client with third pneumococcal dose as clients age is less than 5 years and latest pneumococcal dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next dose
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3723,6 +6705,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsPneumococcal.cql
+
+define "Should vaccinate client with third pneumococcal dose as clients age is less than 5 yers and latest pneumococcal dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3734,6 +6725,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Pneumococcal immunization schedule is complete. Two pneumococcal pneumococcal doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3745,6 +6745,14 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTPneumococcalElements.cql
+
+define "Three pneumococcal primary series doses were administered":
+  "Number of Pneumococcal Primary Series Doses Administered" = 3
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3756,6 +6764,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should not vaccinate client with pneumococcal booster dose as latest pneumococcal dose was administered within 12 months post birth and administered less than 8 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3767,6 +6784,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should vaccinate client with pneumococcal booster dose as client is HIV positive and latest pneumococcal dose was administered within 12 months post birth and administered more than 8 weeks ago .":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3778,6 +6804,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Should vaccinate client with pneumococcal booster dose as client had preterm birth and latest pneumococcal dose was administered within 12 months post birth and administered more than 8 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3789,6 +6824,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Pneumococcal immunization schedule is complete. Three pneumococcal primary serie doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3800,6 +6844,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Pneumococcal immunization schedule is complete. Three pneumococcal primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3811,6 +6864,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Pneumococcal immunization schedule is complete. Three pneumococcal primary series doses and one booster dose were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3822,6 +6884,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHPVAltLogic.cql
+
+define "Clinical judgement is required. Create a clinical note.":
+  Encounter."No HPV primary series doses were administered"
+    and Encounter."Client's age is more than 20 years"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3833,6 +6904,15 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
+
+define "Members States should update this action according to the national immunization programme":
+  //CQL AUTHORS: you need to insert stuff here
+  // Members States should update this action according to the national immunization programme
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Pneumococcal.3doses"
   * ^property[+].code = #"tab"
@@ -3844,6 +6924,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Number of rotavirus primary series doses administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Rotavirus vaccines" and "Type of dose" = "Primary series")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -3855,6 +6944,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The series administered to the client":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Vaccine brand" (where "Vaccine type" = "Rotavirus vaccines" AND "Dose number" = 1) = "Vaccine brand" (where "Vaccine type" = "Rotavirus vaccines" AND "Dose number" = 2)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -3866,6 +6964,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Total doses in series":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Total doses in series"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -3877,6 +6984,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Clients age is less than 6 weeks":
+  //CQL AUTHORS: you need to insert stuff here
+  // 'Today's date – "Date of birth" < 6 weeks
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -3888,6 +7004,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Client is not due for rotavirus vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -3899,6 +7024,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Should not vaccinate client with first rotavirus dose as clients age is less than 6 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with first rotavirus dose as client's age is less than 6 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -3910,6 +7044,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "No rotavirus primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Rotavirus vaccines" and "Type of dose" = "Primary series") = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -3921,6 +7064,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Clients age is between 6 weeks and 24 months":
+  //CQL AUTHORS: you need to insert stuff here
+  // 6 weeks ≤ Today's date – "Date of birth" < 24 months
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -3932,6 +7084,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "No live vaccine was administered in the last 4 weeks":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -3943,6 +7104,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Client is due for rotavirus vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -3954,6 +7124,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Should vaccinate client with first rotavirus dose as no rotavirus doses were administered, clients age is within appropriate age range and no live vaccine was administered in last 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -3965,6 +7144,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Live vaccine was administered in the last 4 weeks":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -3976,6 +7164,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Should not vaccinate client with first rotavirus dose as live vaccine was administered in last 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with  first rotavirus dose as live vaccine was administered in last 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -3987,6 +7184,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "One rotavirus primary series dose was administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Rotavirus vaccines" and "Type of dose" = "Primary series") = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -3998,17 +7204,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "Rotavirus"
-* #"-" "-"
-  * ^definition = """-
-Referenced in the following locations:
- * Decision Tables: IMMZ.D2.DT.Rotavirus
- * Tabs: Rotavirus
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Should vaccinate client with second rotavirus dose as clients age is within appropriate age range and no live vaccine was administered in the last 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
 
 """
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4020,6 +7224,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Should not vaccinate client with second rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with second rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4031,6 +7244,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Two rotavirus primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Rotavirus vaccines" and "Type of dose" = "Primary series") = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4042,6 +7264,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Clients age is between 6 months and 24 months":
+  //CQL AUTHORS: you need to insert stuff here
+  // 6 weeks ≤ Today's date – "Date of birth" ≤ 24 months
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4053,6 +7284,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The series administered to the client is a mixed series or a series with unknown vaccine products":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Vaccine brand" (where "Vaccine type" = "Rotavirus vaccines" AND "Dose number" = 1) ≠ "Vaccine brand" (where "Vaccine type" = "Rotavirus vaccines" AND "Dose number" = 2)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4064,6 +7304,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Should vaccinate client with third rotavirus dose as no live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4075,6 +7324,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Live vaccines was administered in the last 4 weeks":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4086,6 +7344,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4097,6 +7364,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "No live vaccine was administered in last 4 weeks":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4108,6 +7384,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The series administered to the client contains the same product":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Vaccine brand" (where "Vaccine type" = "Rotavirus vaccines" AND "Dose number" = 1) = "Vaccine brand" (where "Vaccine type" = "Rotavirus vaccines" AND "Dose number" = 2)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4119,6 +7404,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The series contain more than two doses":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Total doses in series" > 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4130,6 +7424,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Should vaccinate client with third rotavirus dose as series contains more than two doses and no live vaccine was administered in the last 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4141,6 +7444,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Live vaccine was administered in last 4 weeks":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4152,6 +7464,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4163,6 +7484,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The series contain less than or equal to two doses":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Total doses in series" ≤ 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4174,6 +7504,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Rotavirus immunization schedule is complete":
+  //CQL AUTHORS: you need to insert stuff here
+  // '"Immunization recommendation status" = "Complete"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4185,6 +7524,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Rotavirus immunization schedule is complete. Two rotavirus doses were administered. Check for any other vaccines due.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Rotavirus immunization schedule is complete. Two rotavirus doses were administered. Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4196,6 +7544,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Three rotavirus primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Rotavirus vaccines" and "Type of dose" = "Primary series") = 3
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4207,6 +7564,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Rotavirus immunization schedule is complete. Three rotavirus primary series doses were administered. Check for any other vaccines due.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Rotavirus immunization schedule is complete. Three rotavirus primary series doses were administered. Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4218,6 +7584,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Clients age is more than 24 months":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Date of birth" > 24 months
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4229,6 +7604,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Client is not due for rotavirus vaccination if immunization schedule is not complete.":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due" IF current "Immunization recommendation status" ≠ "Complete"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4240,6 +7624,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Should not vaccinate client with rotavirus dose as clients age is more than 24 months. Check for any other vaccines due.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with rotavirus dose as client's age is more than 24 months. Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
@@ -4251,6 +7644,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The client has prior history of intussusception":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Potential contraindications" = "Prior history of intussusception"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4262,6 +7664,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Rotavirus vaccination is contraindicated":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Contraindicated"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4273,6 +7684,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Do not vaccinate client with rotavirus as rotavirus vaccination is contraindicated for clients with prior history of intussusception.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with rotavirus as rotavirus vaccination is contraindicated for clients with prior history of intussusception.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4284,6 +7704,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The client has severe immunodeficiency":
+  //CQL AUTHORS: you need to insert stuff here
+  // '"Potential contraindications" = "Immunodeficiency syndromes"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4295,6 +7724,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Do not vaccinate client with rotavirus as rotavirus vaccincation is contraindicated for clients with severe immunodeficiency, including severe combined immunodeficiency.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with rotavirus as rotavirus vaccincation is contraindicated for clients with severe immunodeficiency, including severe combined immunodeficiency.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4306,6 +7744,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4317,6 +7764,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Do not vaccinate client with rotavirus if client had severe allergic reactions to a previous rotavirus vaccine dose or rotavirus vaccine components.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check if the client has no known severe hypersensitivity to rotavirus vaccines components.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4328,6 +7784,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The client has history of anaphylactic reactions":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Potential contraindications" = "History of anaphylactic reactions"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4339,6 +7804,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Do not vaccinate client with rotavirus if client has history of anaphylactic reaction to a previous rotavirus vaccine dose or rotavirus vaccine components.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with rotavirus if client has history of anaphylactic reaction to a previous rotavirus vaccine dose or rotavirus vaccine components.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4350,6 +7824,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The client has altered immunocompetence":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Potential contraindications" = "Altered immunocompetence"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4361,6 +7844,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Client has altered immunocompetence other than severe combined immunodeficiency, consider risks of vaccination and make a judgement.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client has altered immunocompetence other than severe combined immunodeficiency, consider risks of vaccination and make a judgement.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4372,6 +7864,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The client has spina bifida":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Potential contraindications" = "Spina bifida"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4383,6 +7884,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Client has spina bifida, consider risks of vaccination and make a judgement.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client has spina bifida, consider risks of vaccination and make a judgement.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4394,6 +7904,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The client has bladder exstrophy":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Potential contraindications" = "Bladder exstrophy"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4405,6 +7924,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Client has bladder exstrophy, consider risks of vaccination and make a judgement.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client has bladder exstrophy, consider risks of vaccination and make a judgement.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4416,6 +7944,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The client has chronic gastrointestinal disease":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Potential contraindications" = "Chronic gastrointestinal disease"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4427,6 +7964,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Client has chronic gastrointestinal disease, consider risks of vaccination and make a judgement.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client has chronic gastrointestinal disease, consider risks of vaccination and make a judgement.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4438,6 +7984,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The client has acute gastroenteritis":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Potential contraindications" = "Acute gastroenteritis"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4449,6 +8004,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Client has acute gastroenteritis, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client has acute gastroenteritis, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4460,6 +8024,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "The client has moderate to severe fever":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Potential contraindications" = "Moderate to severe fever"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4471,6 +8044,15 @@ Referenced in the following locations:
  * Tabs: Rotavirus
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRotavirus.cql
+
+define "Client has moderate to severe fever, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client has moderate to severe fever, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rotaviruscontraindications"
   * ^property[+].code = #"tab"
@@ -4482,6 +8064,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Countries with ongoing transmission in which the risk of measles mortality remains high (countries that provide first dose of measles-containing vaccine (MCV) at 9 months and second dose of MCV at 15 months)":
+  //CQL AUTHORS: you need to insert stuff here
+  // Countries with ongoing transmission in which the risk of measles mortality remains high (countries that provide first dose of measles-containing vaccine (MCV) at 9 months and second dose of MCV at 15 months)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4493,6 +8084,14 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesElements.cql
+
+define "Number of MCV Primary Series Doses Administered":
+  Count("MCV Primary Series Doses Administered to Patient")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4504,6 +8103,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Client is not due for first dose of measles-containing vaccine (MCV1)":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4515,6 +8123,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeasles.cql
+
+define "Should not vaccinate client as clients age is less than 9 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for MCV1.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4526,6 +8143,14 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesElements.cql
+
+define "No measles primary series doses were administered":
+  "Number of MCV Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4537,6 +8162,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Client is due for MCV1":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4548,6 +8182,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4559,6 +8202,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Client is not due for MCV1":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4570,6 +8222,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for MCV1.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4581,6 +8242,14 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD18SMeaslesOngoingTxLogic.cql
+
+define "MCV1 was administered":
+  Encounter."MCV1 was administered"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4592,6 +8261,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Client is not due for second dose of measles-containing vaccine (MCV2)":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4603,6 +8281,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeasles.cql
+
+define "Should not vaccinate client with MCV2 as clients age is less than 15 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for MCV2.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4614,6 +8301,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Client is due for MCV2":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4625,6 +8321,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4636,6 +8341,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Client is not due for MCV2":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4647,6 +8361,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for MCV2.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4658,6 +8381,14 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesElements.cql
+
+define "MCV2 was administered":
+  "Number of MCV Primary Series Doses Administered" = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4669,6 +8400,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Measles primary series is complete":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Measles-containing vaccines")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4680,6 +8420,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Measles primary series is complete. Two measles primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check if a measles supplementary dose is appropriate for the client.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Ongoingtransmission"
   * ^property[+].code = #"tab"
@@ -4691,6 +8440,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Countries with low levels of measles transmission (countries that provide first dose of measles-containing vaccine (MCV) at 12 months and second dose of MCV at 15 months)":
+  //CQL AUTHORS: you need to insert stuff here
+  // Countries with low levels of measles transmission (countries that provide first dose of measles-containing vaccine (MCV) at 12 months and second dose of MCV at 15 months)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Lowtransmission"
   * ^property[+].code = #"tab"
@@ -4702,6 +8460,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Number of measles primary series doses administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Lowtransmission"
   * ^property[+].code = #"tab"
@@ -4713,6 +8480,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeasles.cql
+
+define "Should not vaccinate client with MCV1 as clients age is less than 12 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for MCV1.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Lowtransmission"
   * ^property[+].code = #"tab"
@@ -4724,6 +8500,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Lowtransmission"
   * ^property[+].code = #"tab"
@@ -4735,6 +8520,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Measles-containing vaccine dose 0 (MCV0) administration":
+  //CQL AUTHORS: you need to insert stuff here
+  // Measles-containing vaccine dose 0 (MCV0) administration
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.MCVdose0"
   * ^property[+].code = #"tab"
@@ -4746,6 +8540,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Number of MCV0 doses administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Dose 0")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.MCVdose0"
   * ^property[+].code = #"tab"
@@ -4757,6 +8560,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Client is not due for MCV0":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.MCVdose0"
   * ^property[+].code = #"tab"
@@ -4768,6 +8580,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeasles.cql
+
+define "Should not vaccinate client with MCV0 as clients age is less than 6 months. Check for any vaccines due and inform the caregiver of when to come back for MCV0.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with MCV0 as client's age is less than 6 months. Check for any vaccines due and inform the caregiver of when to come back for MCV0.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.MCVdose0"
   * ^property[+].code = #"tab"
@@ -4779,6 +8600,14 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesElements.cql
+
+define "MCV0 was not administered":
+  "Number of MCV Dose 0 Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.MCVdose0"
   * ^property[+].code = #"tab"
@@ -4790,6 +8619,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Should not vaccinate client with MCV0 as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for MCV0.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with MCV0 as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for MCV0.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.MCVdose0"
   * ^property[+].code = #"tab"
@@ -4803,6 +8641,17 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Consider MCV0.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Create a clinical note.
+
+   // "Immunization recommendation status" = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.MCVdose0"
   * ^property[+].code = #"tab"
@@ -4814,6 +8663,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "May vaccinate client with MCV0 as client is within appropriate age range, MCV0 was not administered and no live vaccine was administered in the past 4 weeks. Check if one of the MCV0 specific scenarios is applicable.":
+  //CQL AUTHORS: you need to insert stuff here
+  // May vaccinate client with MCV0 as client is within appropriate age range, MCV0 was not administered and no live vaccine was administered in the past 4 weeks. Check if one of the MCV0 specific scenarios is applicable.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.MCVdose0"
   * ^property[+].code = #"tab"
@@ -4825,6 +8683,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeasles.cql
+
+define "Should not vaccinate client with MCV0 as clients age is more than 9 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check measles routine immunization schedule.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.MCVdose0"
   * ^property[+].code = #"tab"
@@ -4836,6 +8703,16 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD18SMeaslesDose0LTLogic.cql
+
+define "MCV0 was administered":
+  Encounter."MCV0 was administered"
+
+
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.MCVdose0"
   * ^property[+].code = #"tab"
@@ -4847,6 +8724,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "MCV0 was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check measles routine immunization schedule.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.MCVdose0"
   * ^property[+].code = #"tab"
@@ -4858,6 +8744,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Measles-containing vaccine (MCV) supplementary dose administration":
+  //CQL AUTHORS: you need to insert stuff here
+  // Measles-containing vaccine (MCV) supplementary dose administration
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -4869,6 +8764,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Number of measles supplementary doses administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Supplementary dose")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -4880,6 +8784,14 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesElements.cql
+
+define "Measles supplementary dose was not administered":
+  "Number of MCV Supplementary Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -4891,6 +8803,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Client is not due for measles supplementary dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -4902,6 +8823,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Should not vaccinate client with measles supplementary dose as live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for supplementary dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -4913,6 +8843,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Consider measles supplementary dose. Create a clinical note":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -4924,6 +8863,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "May vaccinate client with measles supplementary dose as supplementary dose was not administered, measles routine immunization schedule is complete and no live vaccine administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check if one of the measles supplementary dose specific scenarios is applicable.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -4935,6 +8883,14 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesElements.cql
+
+define "Measles supplementary dose was administered":
+  "Number of MCV Supplementary Doses Administered" = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -4946,6 +8902,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Measles immunization schedule is complete":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Complete"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -4957,6 +8922,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Measles immunization schedule is complete. Measles supplementary dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Measles immunization schedule is complete. Measles supplementary dose was administered.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -4968,6 +8942,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Decision ID":
+  //CQL AUTHORS: you need to insert stuff here
+  // Decision ID
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -4979,6 +8962,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Business rule":
+  //CQL AUTHORS: you need to insert stuff here
+  // Business rule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -4990,6 +8982,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Trigger":
+  //CQL AUTHORS: you need to insert stuff here
+  // Trigger
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5001,6 +9002,14 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "Potential contraindications":
+  ([Observation: Concepts."Potential contraindications"]).complete()
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5012,6 +9021,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Output":
+  //CQL AUTHORS: you need to insert stuff here
+  // Output
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5023,6 +9041,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Guidance displayed to health worker":
+  //CQL AUTHORS: you need to insert stuff here
+  // Guidance displayed to health worker
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5034,6 +9061,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Measles vaccination contraindicated":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Contraindicated"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5045,6 +9081,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Do not vaccinate client with measles as measles vaccination is contraindicated for pregnant client.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with measles as measles vaccination is contraindicated for pregnant client.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5056,6 +9101,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Measles vaccination could be contraindicated. Clinical judgement required. Create a clinical note":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5067,6 +9121,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Do not vaccinate client with measles if client has history of anaphylactic reaction to any component of the vaccine (e.g. neomycin or gelatin).":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with measles if client has history of anaphylactic reaction to any component of the vaccine (e.g. neomycin or gelatin).
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5078,6 +9141,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Clinical judgement required. Create a clinical note":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5089,6 +9161,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Do not vaccinate client with measles if client has history of severe allergic reactions to any component of the vaccine (e.g. neomycin or gelatin).":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with measles if client has history of severe allergic reactions to any component of the vaccine (e.g. neomycin or gelatin).
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5100,6 +9181,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "The client is severely immunosuppressed":
+  exists "CI Severely immunosuppressed Observation"
+    or exists "CI Severely immunosuppressed Condition"
+    
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5111,6 +9201,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Do not vaccinate client with measles as measles vaccination is contraindicated for severely immunosuppressed client.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with measles as measles vaccination is contraindicated for severely immunosuppressed client.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5122,6 +9221,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "The client has a symptomatic HIV infection":
+  exists "CI Symptomatic HIV infection Observation"
+    or exists "CI Symptomatic HIV infection Condition"
+    
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5133,6 +9241,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Client has symptomatic HIV infection. Measles vaccination may be considered if the client is not severely immunosuppressed according to conventional definitions, consider risks of vaccination and make a clinical judgement.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client has symptomatic HIV infection. Measles vaccination may be considered if the client is not severely immunosuppressed according to conventional definitions, consider risks of vaccination and make a clinical judgement.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5144,6 +9261,15 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
+  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
+
+define "Note: While vaccines are universally recommended, some clients may have contraindications to particular vaccines. Additional contraindications may be included in WHO position paper for the vaccine – Measles vaccines: WHO position paper (April 2017) (13).":
+  //CQL AUTHORS: you need to insert stuff here
+  // Note: While vaccines are universally recommended, some clients may have contraindications to particular vaccines. Additional contraindications may be included in WHO position paper for the vaccine – Measles vaccines: WHO position paper (April 2017) (13).
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
@@ -5155,6 +9281,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Countries with high incidence and mortality from rubella":
+  //CQL AUTHORS: you need to insert stuff here
+  // Countries with high incidence and mortality from rubella
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rubella.Highincidence"
   * ^property[+].code = #"tab"
@@ -5166,6 +9301,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTRubellaElements.cql
+
+define "Number of Rubella Primary Series Doses Administered":
+  Count("Rubella Primary Series Doses Administered to Patient")
+
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rubella.Highincidence"
   * ^property[+].code = #"tab"
@@ -5177,6 +9321,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Client is not due for rubella vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rubella.Highincidence"
   * ^property[+].code = #"tab"
@@ -5188,6 +9341,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRubella.cql
+
+define "Should not vaccinate client with rubella dose as clients age is less than 9 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rubella.Highincidence"
   * ^property[+].code = #"tab"
@@ -5199,6 +9361,14 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTRubellaElements.cql
+
+define "No rubella primary series dose was administered":
+  "Number of Rubella Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rubella.Highincidence"
   * ^property[+].code = #"tab"
@@ -5210,6 +9380,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Client is due for rubella vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rubella.Highincidence"
   * ^property[+].code = #"tab"
@@ -5221,6 +9400,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Should vaccinate client with rubella dose as no rubella doses were administered, client is within the appropriate age range and no live vaccine was administered in the last 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rubella.Highincidence"
   * ^property[+].code = #"tab"
@@ -5232,6 +9420,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Should not vaccinate client with rubella dose as live vaccine was administered in the last 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rubella.Highincidence"
   * ^property[+].code = #"tab"
@@ -5243,6 +9440,14 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTRubellaElements.cql
+
+define "One rubella primary series dose was administered":
+  "Number of Rubella Primary Series Doses Administered" = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rubella.Highincidence"
   * ^property[+].code = #"tab"
@@ -5256,6 +9461,19 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Rubella immunization schedule is complete":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Complete"
+
+   // 
+
+   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Rubella-containing vaccines")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rubella.Highincidence"
   * ^property[+].code = #"tab"
@@ -5267,6 +9485,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Rubella immunization schedule is complete. One rubella primary series dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rubella.Highincidence"
   * ^property[+].code = #"tab"
@@ -5278,6 +9505,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Countries with low incidence of rubella":
+  //CQL AUTHORS: you need to insert stuff here
+  // Countries with low incidence of rubella
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rubella.Lowincidence"
   * ^property[+].code = #"tab"
@@ -5289,6 +9525,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Should not vaccinate client with rubella dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rubella.Lowincidence"
   * ^property[+].code = #"tab"
@@ -5300,6 +9545,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Should vaccinate client with rubella dose as no rubella doses were administered, client is within appropriate age range and no live vaccine was administered in the last 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rubella.Lowincidence"
   * ^property[+].code = #"tab"
@@ -5311,6 +9565,14 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTMumpsElements.cql
+
+define "The client is currently pregnant":
+  Elements."The client is pregnant"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5322,6 +9584,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Rubella vaccination is contraindicated":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Contraindicated"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5333,6 +9604,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Do not vaccinate client with rubella as rubella vaccination is contraindicated for pregnant client.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with rubella as rubella vaccination is contraindicated for pregnant client.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5344,6 +9624,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "The client is planning to get pregnant in next month":
+  exists "CI Planning to get pregnant in the next month Observation"
+    or exists "CI Planning to get pregnant in the next month Condition"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5355,6 +9644,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Discuss pregnancy intentions with client, consider risks of vaccination and make a clinical judgement. Clients planning a pregnancy are advised to avoid pregnancy for 1 month after rubella vaccination.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Discuss pregnancy intentions with client, consider risks of vaccination and make a clinical judgement. Clients planning a pregnancy are advised to avoid pregnancy for 1 month after rubella vaccination.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5366,6 +9664,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "The client is receiving blood products":
+  exists "CI Receiving blood products Observation"
+    or exists "CI Receiving blood products Condition"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5377,6 +9684,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Do not vaccinate client with rubella as rubella vaccination is contraindicated until at least 3 months after stopping receiving blood products.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with rubella as rubella vaccination is contraindicated until at least 3 months after stopping receiving blood products.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5388,6 +9704,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5399,6 +9724,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Do not vaccinate client with rubella if client has experienced a severe allergic reaction after a previous vaccine dose or vaccine component.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with rubella if client has experienced a severe allergic reaction after a previous vaccine dose or vaccine component.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5410,6 +9744,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "The client has symptomatic HIV infection":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Potential contraindications" = "Symptomatic HIV infection"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5421,6 +9764,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with symptomatic HIV infection.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with symptomatic HIV infection.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5432,6 +9784,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "The client has TB disease":
+  exists "CI TB disease Observation"
+    or exists "CI TB disease Condition"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5443,6 +9804,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with active TB.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with active TB.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5454,6 +9824,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with severe immunodeficiency.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with severe immunodeficiency.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5465,6 +9844,15 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
+  * ^designation[+].value = """//Found in input/cql/RubellaElements.cql
+
+define "Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients receiving or exposed to immunosuppressive therapy.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients receiving or exposed to immunosuppressive therapy.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rubellacontraindications"
   * ^property[+].code = #"tab"
@@ -5476,6 +9864,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "2-dose schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // 2-dose schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5487,6 +9884,14 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHPVElements.cql
+
+define "Number of HPV Primary Series Doses Administered":
+  Count("HPV Primary Series Doses Administered to Patient")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5498,6 +9903,18 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHPVAltLogic.cql
+
+define "Client is not due for HPV vaccination":
+  "Client is not due for HPV vaccination Case 1"
+    or "Client is not due for HPV vaccination Case 2"
+    or "Client is not due for HPV vaccination Case 3"
+    or "Client is not due for HPV vaccination Case 4"
+    or "Client is not due for HPV vaccination Case 5"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5509,6 +9926,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHPV.cql
+
+define "Should not vaccinate client with first HPV dose as clients age is less than 9 years.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5520,6 +9946,14 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHPVElements.cql
+
+define "No HPV primary series doses were administered":
+  "Number of HPV Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5531,6 +9965,18 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHPVAltLogic.cql
+
+define "Client is due for HPV vaccination":
+  "Client is due for HPV vaccination Case 1"
+    or "Client is due for HPV vaccination Case 2"
+    or "Client is due for HPV vaccination Case 3"
+    or "Client is due for HPV vaccination Case 4"
+    or "Client is due for HPV vaccination Case 5"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5542,6 +9988,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Should vaccinate client with first HPV dose as no HPV doses were administered, client is female and within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5553,6 +10008,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Member States should update this guidance according to the national immunization programme.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Member States should update this guidance according to the national immunization programme.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5564,6 +10028,14 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHPVElements.cql
+
+define "One HPV primary series dose was administered":
+  "Number of HPV Primary Series Doses Administered" = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5575,6 +10047,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5586,6 +10067,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Should vaccinate client with second HPV dose as the latest HPV dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5597,6 +10087,14 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHPVElements.cql
+
+define "Two HPV primary series doses were administered":
+  "Number of HPV Primary Series Doses Administered" = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5608,6 +10106,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Should not vaccinate for third HPV dose as the latest HPV dose was administered less than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5619,6 +10126,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Should vaccinate for third HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5630,6 +10146,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Should vaccinate for third HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5641,6 +10166,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHPVAltLogic.cql
+
+define "HPV immunization schedule is complete":
+  "HPV immunization schedule is complete Case 1"
+    or "HPV immunization schedule is complete Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5652,6 +10186,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "HPV immunization schedule is complete. Two HPV primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5663,6 +10206,14 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHPVElements.cql
+
+define "Three HPV primary series doses were administered":
+  "Number of HPV Primary Series Doses Administered" = 3
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5674,6 +10225,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "HPV immunization schedule is complete. Three HPV primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.2doses"
   * ^property[+].code = #"tab"
@@ -5685,6 +10245,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Alternative single-dose schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // Alternative single-dose schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.Singledose"
   * ^property[+].code = #"tab"
@@ -5696,6 +10265,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Number of HPV primary seres doses administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "HPV vaccines" and "Type of dose" = "Primary series")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.Singledose"
   * ^property[+].code = #"tab"
@@ -5707,6 +10285,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Should vaccinate client with first HPV dose as no HPV doses were administered and client is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.Singledose"
   * ^property[+].code = #"tab"
@@ -5718,6 +10305,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Member States should update this action according to the national immunization programme.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Member States should update this action according to the national immunization programme.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.Singledose"
   * ^property[+].code = #"tab"
@@ -5729,6 +10325,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Should vaccinate client with second HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.Singledose"
   * ^property[+].code = #"tab"
@@ -5740,6 +10345,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Should vaccinate client with second HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.Singledose"
   * ^property[+].code = #"tab"
@@ -5751,6 +10365,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "HPV immunization schedule is complete. One HPV primary series dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.Singledose"
   * ^property[+].code = #"tab"
@@ -5762,6 +10385,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.Singledose"
   * ^property[+].code = #"tab"
@@ -5773,6 +10405,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Should vaccinate client with third HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.Singledose"
   * ^property[+].code = #"tab"
@@ -5784,6 +10425,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Should vaccinate client with third HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HPV.Singledose"
   * ^property[+].code = #"tab"
@@ -5795,6 +10445,14 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTHPVCILogic.cql
+
+define "Human papillomavirus (HPV) vaccination is contraindicated":
+  Encounter."The client is currently pregnant"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.HPVcontraindications"
   * ^property[+].code = #"tab"
@@ -5806,6 +10464,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Do not vaccinate client with HPV as HPV vaccination is contraindicated for pregnant client.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with HPV as HPV vaccination is contraindicated for pregnant client.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.HPVcontraindications"
   * ^property[+].code = #"tab"
@@ -5817,6 +10484,14 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTHPVCILogic.cql
+
+define "HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
+  Encounter."The client has history of severe allergic reactions"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.HPVcontraindications"
   * ^property[+].code = #"tab"
@@ -5828,6 +10503,15 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
+  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
+
+define "Do not vaccinate client with HPV if client has history of a severe allergic reaction after a previous HPV vaccine dose, or to a component of the vaccine.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with HPV if client has history of a severe allergic reaction after a previous HPV vaccine dose, or to a component of the vaccine.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.HPVcontraindications"
   * ^property[+].code = #"tab"
@@ -5839,6 +10523,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "Inactivated Vero cell-derived vaccination schedule (2-dose scheme)":
+  //CQL AUTHORS: you need to insert stuff here
+  // JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine"
   * ^property[+].code = #"tab"
@@ -5850,6 +10543,14 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTJEElements.cql
+
+define "Number of JE Primary Series Doses Administered":
+  Count("JE Primary Series Doses Administered to Patient")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine"
   * ^property[+].code = #"tab"
@@ -5861,6 +10562,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTJELALogic.cql
+
+define "Client is not due for JE vaccination":
+  "Client is not due for JE vaccination Case 1"
+    or "Client is not due for JE vaccination Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine"
   * ^property[+].code = #"tab"
@@ -5872,6 +10582,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsJE.cql
+
+define "Should not vaccinate client with first JE dose as clients age is under 6 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first JE dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine"
   * ^property[+].code = #"tab"
@@ -5883,6 +10602,14 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTJEElements.cql
+
+define "No JE primary series doses were administered":
+  "Number of JE Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine"
   * ^property[+].code = #"tab"
@@ -5894,6 +10621,16 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTJELALogic.cql
+
+define "Client is due for JE vaccination":
+  Encounter."No JE primary series doses were administered"
+    and Encounter."Client's age is more than or equal to 8 months"
+    and Encounter."No live vaccine was administered in the last 4 weeks"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine"
   * ^property[+].code = #"tab"
@@ -5905,6 +10642,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "Should vaccinate client with first JE dose as no JE doses were administered and client is within the appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine"
   * ^property[+].code = #"tab"
@@ -5916,6 +10662,14 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTJEElements.cql
+
+define "One JE primary series dose was administered":
+  "Number of JE Primary Series Doses Administered" = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine"
   * ^property[+].code = #"tab"
@@ -5927,6 +10681,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "Should not vaccinate client with second JE dose as the latest JE dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver when to come back for the second JE dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine"
   * ^property[+].code = #"tab"
@@ -5938,6 +10701,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "Should vaccinate client with second JE dose as the latest JE dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine"
   * ^property[+].code = #"tab"
@@ -5949,6 +10721,14 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTJEElements.cql
+
+define "Two JE primary series doses were administered":
+  "Number of JE Primary Series Doses Administered" = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine"
   * ^property[+].code = #"tab"
@@ -5962,6 +10742,14 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTJELALogic.cql
+
+define "JE immunization schedule is complete":
+  Encounter."One JE primary series dose was administered"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine"
   * ^property[+].code = #"tab"
@@ -5973,6 +10761,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "JE immunization schedule is complete. Two JE primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine"
   * ^property[+].code = #"tab"
@@ -5984,6 +10781,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "Live attenuated vaccination schedule (1-dose scheme)":
+  //CQL AUTHORS: you need to insert stuff here
+  // JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.Liveattenuatedvaccine"
   * ^property[+].code = #"tab"
@@ -5995,6 +10801,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsJE.cql
+
+define "Should not vaccinate client with JE dose as clients age is less than 8 months. Check for any vaccines due and inform the caregiver of when to come back for the first JE dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with JE dose as client's age is less than 8 months. Check for any vaccines due and inform the caregiver of when to come back for the first JE dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.Liveattenuatedvaccine"
   * ^property[+].code = #"tab"
@@ -6006,6 +10821,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "Should vaccinate client with JE dose as no JE dose was administered, client is within the appropriate age range and no live vaccine was administered in last 4 weeks. Check for contraindications.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should vaccinate client with JE dose as no JE dose was administered, client is within the appropriate age range and no live vaccine was administered in last 4 weeks. Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.Liveattenuatedvaccine"
   * ^property[+].code = #"tab"
@@ -6017,6 +10841,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first JE dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first JE dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.Liveattenuatedvaccine"
   * ^property[+].code = #"tab"
@@ -6028,6 +10861,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "JE immunization schedule is complete. One JE primary series dose was administered. Check for any other vaccines due.":
+  //CQL AUTHORS: you need to insert stuff here
+  // JE immunization schedule is complete. One JE primary series dose was administered. Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.Liveattenuatedvaccine"
   * ^property[+].code = #"tab"
@@ -6039,6 +10881,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "Live recombinant vaccination schedule (1-dose scheme)":
+  //CQL AUTHORS: you need to insert stuff here
+  // JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.Liverecombinantvaccine"
   * ^property[+].code = #"tab"
@@ -6050,6 +10901,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsJE.cql
+
+define "Should not vaccinate client with JE dose as clients age is less than 9 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first JE dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.Liverecombinantvaccine"
   * ^property[+].code = #"tab"
@@ -6061,6 +10921,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "Should vaccinate client with JE dose as no JE dose was administered, client is within the appropriate age range and no live vaccine was administered in past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.Liverecombinantvaccine"
   * ^property[+].code = #"tab"
@@ -6072,6 +10941,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the first JE dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.Liverecombinantvaccine"
   * ^property[+].code = #"tab"
@@ -6083,6 +10961,14 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTJEElements.cql
+
+define "One JE primary series doses were administered":
+  "One JE primary series dose was administered"
+  
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.Liverecombinantvaccine"
   * ^property[+].code = #"tab"
@@ -6094,6 +10980,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "JE immunization schedule is complete. One JE primary series dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.JE.Liverecombinantvaccine"
   * ^property[+].code = #"tab"
@@ -6105,6 +11000,14 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTJEElements.cql
+
+define "The client is immunocomprised":
+  Elements."The client is immunocompromised"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.JEcontraindications"
   * ^property[+].code = #"tab"
@@ -6116,6 +11019,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "The client is immunocompromised, consider risks of vaccination and make a judgement. Inactivated Vero cell-derived vaccines are preferred in immunocompromised clients.":
+  //CQL AUTHORS: you need to insert stuff here
+  // The client is immunocompromised, consider risks of vaccination and make a judgement. Inactivated Vero cell-derived vaccines are preferred in immunocompromised clients.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.JEcontraindications"
   * ^property[+].code = #"tab"
@@ -6127,6 +11039,15 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
+  * ^designation[+].value = """//Found in input/cql/JEElements.cql
+
+define "The client is currently pregnant, consider risks of vaccination and make a judgement. Inactivated Vero cell-derived vaccines are preferred over live attenuated or live recombinant vaccines.":
+  //CQL AUTHORS: you need to insert stuff here
+  // The client is currently pregnant, consider risks of vaccination and make a judgement. Inactivated Vero cell-derived vaccines are preferred over live attenuated or live recombinant vaccines.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.JEcontraindications"
   * ^property[+].code = #"tab"
@@ -6138,6 +11059,14 @@ Referenced in the following locations:
  * Tabs: Yellowfever
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTYellowfeverElements.cql
+
+define "Number of Yellow fever Primary Series Doses Administered":
+  Count("Yellow fever Primary Series Doses Administered to Patient")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Yellowfever"
   * ^property[+].code = #"tab"
@@ -6149,6 +11078,14 @@ Referenced in the following locations:
  * Tabs: Yellowfever
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTYellowfeverElements.cql
+
+define "No yellow fever primary series doses were administered":
+  "Number of Yellow fever Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Yellowfever"
   * ^property[+].code = #"tab"
@@ -6160,6 +11097,15 @@ Referenced in the following locations:
  * Tabs: Yellowfever
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsYellowfever.cql
+
+define "Clients age is less than 9 months":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date − "Date of birth" < 9 months
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Yellowfever"
   * ^property[+].code = #"tab"
@@ -6171,6 +11117,15 @@ Referenced in the following locations:
  * Tabs: Yellowfever
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTYellowfeverLogic.cql
+
+define "Client is not due for yellow fever vaccination":
+  "Client is not due for yellow fever vaccination Case 1"
+    or "Client is not due for yellow fever vaccination Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Yellowfever"
   * ^property[+].code = #"tab"
@@ -6182,6 +11137,15 @@ Referenced in the following locations:
  * Tabs: Yellowfever
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsYellowfever.cql
+
+define "Should not vaccinate client with yellow fever dose as clients age is less than 9 months. Check for any vaccines due and inform the caregiver of when to come back for the next dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with yellow fever dose as client's age is less than 9 months. Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Yellowfever"
   * ^property[+].code = #"tab"
@@ -6193,6 +11157,15 @@ Referenced in the following locations:
  * Tabs: Yellowfever
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsYellowfever.cql
+
+define "Clients age is more than or equal to 9 months":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date − "Date of birth" ≥ 9 months
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Yellowfever"
   * ^property[+].code = #"tab"
@@ -6204,6 +11177,14 @@ Referenced in the following locations:
  * Tabs: Yellowfever
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesElements.cql
+
+define "Live vaccine was administered in the past 4 weeks":
+  "Live vaccine was administered in the last 4 weeks"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Yellowfever"
   * ^property[+].code = #"tab"
@@ -6215,6 +11196,15 @@ Referenced in the following locations:
  * Tabs: Yellowfever
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsYellowfever.cql
+
+define "Should not vaccinate client with yellow fever dose as live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Yellowfever"
   * ^property[+].code = #"tab"
@@ -6226,6 +11216,14 @@ Referenced in the following locations:
  * Tabs: Yellowfever
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesElements.cql
+
+define "No live vaccine was administered in the past 4 weeks":
+  "No live vaccine was administered in the last 4 weeks"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Yellowfever"
   * ^property[+].code = #"tab"
@@ -6237,6 +11235,16 @@ Referenced in the following locations:
  * Tabs: Yellowfever
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTYellowfeverLogic.cql
+
+define "Client is due for yellow fever vaccination":
+  Encounter."No yellow fever primary series doses were administered"
+    and Encounter."Client's age is more than or equal to 9 months"
+    and Encounter."No live vaccine was administered in the past 4 weeks"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Yellowfever"
   * ^property[+].code = #"tab"
@@ -6248,6 +11256,15 @@ Referenced in the following locations:
  * Tabs: Yellowfever
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsYellowfever.cql
+
+define "Should vaccinate client with yellow fever dose as no yellow fever dose was administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Yellowfever"
   * ^property[+].code = #"tab"
@@ -6259,6 +11276,14 @@ Referenced in the following locations:
  * Tabs: Yellowfever
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTYellowfeverElements.cql
+
+define "One yellow fever primary series dose was administered":
+  "Number of Yellow fever Primary Series Doses Administered" = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Yellowfever"
   * ^property[+].code = #"tab"
@@ -6272,6 +11297,14 @@ Referenced in the following locations:
  * Tabs: Yellowfever
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTYellowfeverLogic.cql
+
+define "Yellow fever immunization schedule is complete":
+  Encounter."One yellow fever primary series dose was administered"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Yellowfever"
   * ^property[+].code = #"tab"
@@ -6283,6 +11316,15 @@ Referenced in the following locations:
  * Tabs: Yellowfever
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsYellowfever.cql
+
+define "Yellow fever immunization schedule is complete. One yellow fever primary series dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Yellowfever"
   * ^property[+].code = #"tab"
@@ -6294,6 +11336,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "FSME-Immun schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // (In areas where the disease is highly endemic, implying that there is a high individual risk of infection, WHO recommends that vaccination be offered to all age groups, including children)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6305,6 +11356,14 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTBEElements.cql
+
+define "Number of TBE Primary Series Doses Administered":
+  Count("TBE Primary Series Doses Administered to Patient")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6316,6 +11375,16 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTBEEncepurLogic.cql
+
+define "Client is not due for TBE vaccination":
+  "Client is not due for TBE vaccination Case 1"
+    or "Client is not due for TBE vaccination Case 2"
+    or "Client is not due for TBE vaccination Case 3"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6327,6 +11396,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsTBE.cql
+
+define "Should not vaccinate client with first TBE dose as clients age is less than 1 year.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6338,6 +11416,14 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTBEElements.cql
+
+define "No TBE primary series doses were administered":
+  "Number of TBE Primary Series Doses Administered"  = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6349,6 +11435,16 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTBEEncepurLogic.cql
+
+define "Client is due for TBE vaccination":
+  "Client is due for TBE vaccination Case 1"
+    or "Client is due for TBE vaccination Case 2"
+    or "Client is due for TBE vaccination Case 3"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6360,6 +11456,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsTBE.cql
+
+define "Should vaccinate client with first TBE dose as no TBE doses have been administered and clients age is more than 1 year.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6371,6 +11476,14 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTBEElements.cql
+
+define "One TBE primary series dose was administered":
+  "Number of TBE Primary Series Doses Administered"  = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6382,6 +11495,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago. Check for any vaccines due and inform the caregiver of when to come back for the next dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago. Check for any vaccines due and inform the caregiver of when to come back for the next dose
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6393,6 +11515,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Should vaccinate client with second TBE dose as the latest dose was administered more than 1 month ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6404,6 +11535,14 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTBEElements.cql
+
+define "Two TBE primary series doses were administered":
+  "Number of TBE Primary Series Doses Administered"  = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6415,6 +11554,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Should not vaccinate client with third TBE dose as the latest dose was administered less than 5 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6426,6 +11574,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Should vaccinate client with third TBE dose as the latest dose was administered more than 5 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6437,6 +11594,14 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTBEElements.cql
+
+define "Three TBE primary series doses were administered":
+  "Number of TBE Primary Series Doses Administered"  = 3
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6450,6 +11615,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTBEEnceVirLogic.cql
+
+define "Primary series is complete. Client is not due for TBE booster dose":
+  Encounter."Three TBE primary series doses were administered"
+    and Encounter."The latest TBE dose was administered less than 3 years ago"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6461,6 +11635,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Should not vaccinate client with TBE booster dose as the latest TBE dose was administered less than 3 years ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6474,6 +11657,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTBEEnceVirLogic.cql
+
+define "Primary series is complete. Client is due for TBE booster dose":
+  Encounter."Three TBE primary series doses were administered"
+    and Encounter."The latest TBE dose was administered more than 3 years ago"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6485,6 +11677,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Should vaccinate client with TBE booster dose as the latest TBE dose was administered more than 3 years ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6498,6 +11699,17 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Clinical judgement is required.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Create a clinical note
+
+   // "Immunization recommendation status" = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6509,6 +11721,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Assess if supplementary booster TBE dose(s) are necessary and create a clinical note.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.FSME-Immun"
   * ^property[+].code = #"tab"
@@ -6520,6 +11741,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Encepur schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // (In areas where the disease is highly endemic, implying that there is a high individual risk of infection, WHO recommends that vaccination be offered to all age groups, including children		)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.Encepur"
   * ^property[+].code = #"tab"
@@ -6531,6 +11761,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.Encepur"
   * ^property[+].code = #"tab"
@@ -6542,6 +11781,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Should not vaccinate client with third TBE dose as the latest dose was administered less than 9 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.Encepur"
   * ^property[+].code = #"tab"
@@ -6553,6 +11801,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Should vaccinate client with third TBE dose as the latest dose was administered more than 9 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.Encepur"
   * ^property[+].code = #"tab"
@@ -6566,6 +11823,16 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTBEEncepurLogic.cql
+
+define "The primary series is complete. Client is not due for TBE booster dose":
+  Encounter."Three TBE primary series doses were administered"
+    and Encounter."No TBE booster dose was administered"
+    and Encounter."The latest TBE dose was administered less than 3 years ago"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.Encepur"
   * ^property[+].code = #"tab"
@@ -6581,6 +11848,16 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTBEEncepurLogic.cql
+
+define "The primary series is complete":
+  Encounter."Three TBE primary series doses were administered"
+    and Encounter."No TBE booster dose was administered"
+    and Encounter."The latest TBE dose was administered more than 3 years ago"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.Encepur"
   * ^property[+].code = #"tab"
@@ -6592,6 +11869,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Should vaccinate client with TBE booster dose as the primary series has been completed and the latest TBE dose was administered more than 3 years ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.Encepur"
   * ^property[+].code = #"tab"
@@ -6603,6 +11889,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "TBE-Moscow schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // (In areas where the disease is highly endemic, implying that there is a high individual risk of infection, WHO recommends that vaccination be offered to all age groups, including children	)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.TBE-Moscow"
   * ^property[+].code = #"tab"
@@ -6614,6 +11909,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsTBE.cql
+
+define "Should not vaccinate client with first TBE dose as clients age is under 3 years.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.TBE-Moscow"
   * ^property[+].code = #"tab"
@@ -6625,6 +11929,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsTBE.cql
+
+define "Should vaccinate client with first TBE dose as no TBE doses have been administered and clients age is more than 3 years.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.TBE-Moscow"
   * ^property[+].code = #"tab"
@@ -6636,6 +11949,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Should not vaccinate client with third TBE dose as the latest dose was administered less than 12 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next dose
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.TBE-Moscow"
   * ^property[+].code = #"tab"
@@ -6647,6 +11969,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Should vaccinate client with third TBE dose as the latest dose was administered more than 12 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.TBE-Moscow"
   * ^property[+].code = #"tab"
@@ -6658,6 +11989,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "EnceVir schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // (In areas where the disease is highly endemic, implying that there is a high individual risk of infection, WHO recommends that vaccination be offered to all age groups, including children					)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.EnceVir"
   * ^property[+].code = #"tab"
@@ -6669,6 +12009,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsTBE.cql
+
+define "Should not vaccinate client with first TBE dose as clients age is less than 3 years.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.EnceVir"
   * ^property[+].code = #"tab"
@@ -6680,6 +12029,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Should not vaccinate client with second TBE dose as the latest dose was administered less than 5 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next dose
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.EnceVir"
   * ^property[+].code = #"tab"
@@ -6691,6 +12049,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Should vaccinate client with second TBE dose as the latest dose was administered more than 5 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.TBE.EnceVir"
   * ^property[+].code = #"tab"
@@ -6702,6 +12069,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsTBE.cql
+
+define "Conduct a risk–benefit assessment considering the incidence of the disease, consider risks of vaccination and make a clinical judgement.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Conduct a risk–benefit assessment considering the incidence of the disease,  consider risks of vaccination and make a clinical judgement.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.TBEcontraindications"
   * ^property[+].code = #"tab"
@@ -6713,6 +12089,15 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
+  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
+
+define "Consider postponing the vaccination if the client has fever > 38.5°C or other signs of serious disease. Consider risks of vaccination and make a clinical judgement.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Consider postponing the vaccination if the client has fever > 38.5°C or other signs of serious disease. Consider risks of vaccination and make a clinical judgement.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.TBEcontraindications"
   * ^property[+].code = #"tab"
@@ -6724,6 +12109,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Typhoid conjugate vaccine (TCV) schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // Typhoid conjugate vaccine (TCV) schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.TCV"
   * ^property[+].code = #"tab"
@@ -6735,6 +12129,14 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTyphoidElements.cql
+
+define "Number of Typhoid Primary Series Doses Administered":
+  Count("Typhoid Primary Series Doses Administered to Patient")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.TCV"
   * ^property[+].code = #"tab"
@@ -6746,6 +12148,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Client is not due for Typhoid vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.TCV"
   * ^property[+].code = #"tab"
@@ -6757,6 +12168,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsTyphoid.cql
+
+define "Should not vaccinate client with typhoid dose as clients age is less than 6 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.TCV"
   * ^property[+].code = #"tab"
@@ -6768,6 +12188,14 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTyphoidElements.cql
+
+define "No typhoid primary series doses were administered":
+  "Number of Typhoid Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.TCV"
   * ^property[+].code = #"tab"
@@ -6779,6 +12207,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Client is due for Typhoid vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.TCV"
   * ^property[+].code = #"tab"
@@ -6790,6 +12227,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Should vaccinate client with typhoid dose as no typhoid doses were administered and client is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.TCV"
   * ^property[+].code = #"tab"
@@ -6801,6 +12247,14 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTyphoidElements.cql
+
+define "One typhoid primary series dose was administered":
+  "Number of Typhoid Primary Series Doses Administered" = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.TCV"
   * ^property[+].code = #"tab"
@@ -6814,6 +12268,17 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Typhoid immunization schedule is complete":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Complete"
+
+   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Typhoid vaccines")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.TCV"
   * ^property[+].code = #"tab"
@@ -6825,6 +12290,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Typhoid immunization schedule is complete. One typhoid primary series dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.TCV"
   * ^property[+].code = #"tab"
@@ -6836,6 +12310,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Unconjugated Vi polysaccharide (ViPS) schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // Unconjugated Vi polysaccharide (ViPS) schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.ViPS"
   * ^property[+].code = #"tab"
@@ -6847,6 +12330,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsTyphoid.cql
+
+define "Should not vaccinate client with typhoid dose as clients age is less than 2 years.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.ViPS"
   * ^property[+].code = #"tab"
@@ -6860,6 +12352,17 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Primary series is complete. Client is not due for typhoid booster dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+   // "Completed the primary vaccination series" (where "Vaccine type" = "Typhoid vaccines") = TRUE
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.ViPS"
   * ^property[+].code = #"tab"
@@ -6871,6 +12374,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Should not vaccinate client with typhoid booster dose as the latest typhoid dose was administered less than 3 years ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.ViPS"
   * ^property[+].code = #"tab"
@@ -6884,6 +12396,17 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Primary series is complete. Client is due for typhoid booster dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+   // "Completed the primary vaccination series" (where "Vaccine type" = "Typhoid vaccines") = TRUE
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.ViPS"
   * ^property[+].code = #"tab"
@@ -6895,6 +12418,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Should vaccinate client with typhoid booster dose as the latest dose was administered more than 3 years ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.ViPS"
   * ^property[+].code = #"tab"
@@ -6906,6 +12438,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Live attenuated Ty21a vaccine schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // Live attenuated Ty21a vaccine schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.Ty21a"
   * ^property[+].code = #"tab"
@@ -6917,6 +12458,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsTyphoid.cql
+
+define "Clients age is less than 6 years":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date − "Date of birth" < 6 years
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.Ty21a"
   * ^property[+].code = #"tab"
@@ -6928,6 +12478,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsTyphoid.cql
+
+define "Should not vaccinate client with typhoid dose as clients age is less than 6 years.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.Ty21a"
   * ^property[+].code = #"tab"
@@ -6939,6 +12498,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsTyphoid.cql
+
+define "Clients age is more than or equal to 6 years":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date − "Date of birth" ≥ 6 years
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.Ty21a"
   * ^property[+].code = #"tab"
@@ -6950,6 +12518,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Prescribe the Ty21a primary series (if not done yet). Should vaccinate client with typhoid dose as primary series has not been completed and no live vaccines was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.Ty21a"
   * ^property[+].code = #"tab"
@@ -6961,6 +12538,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Should not vaccinate client with typhoid dose as live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for other vaccines due and inform the caregiver or the client when the next dose should be administered.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.Ty21a"
   * ^property[+].code = #"tab"
@@ -6972,6 +12558,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Client is not due for typhoid booster dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.Ty21a"
   * ^property[+].code = #"tab"
@@ -6983,6 +12578,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Client is due for typhoid booster dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.Ty21a"
   * ^property[+].code = #"tab"
@@ -6994,6 +12598,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Prescribe the Ty21a booster series. Should vaccinate client with typhoid booster dose as primary series has been completed, the latest typhoid dose was administered more than 3 years ago and no live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.Ty21a"
   * ^property[+].code = #"tab"
@@ -7005,6 +12618,15 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
+  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
+
+define "Should not vaccinate client with typhoid booster dose as live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Typhoid.Ty21a"
   * ^property[+].code = #"tab"
@@ -7016,6 +12638,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Whole-cell (WC) vaccines schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // Whole-cell (WC) vaccines schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7027,6 +12658,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Client is not due for cholera vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7038,6 +12678,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should not vaccinate client with cholera dose as clients age is under 1 year.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first cholera dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7051,6 +12700,17 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Client is due for cholera vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+   // "Completed the primary vaccination series" (where "Vaccine type" = "Cholera vaccines") = FALSE when dose 1 is administered
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7062,6 +12722,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should vaccinate client with cholera dose as no doses have been given.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should vaccinate client with cholera dose as no doses have been given.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7073,6 +12742,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should not vaccinate client with cholera dose as the latest cholera dose was administered less than 14 days ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7084,6 +12762,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should vaccinate client with cholera dose as the latest cholera dose was administered more than 14 days ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7097,6 +12784,17 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Primary series is complete. Client is not due for cholera booster dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+   // "Completed the booster series" (where "Vaccine type" = "Cholera vaccines") = TRUE
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7108,6 +12806,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should not vaccinate client with cholera booster dose as primary series was completed less than 3 years ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7121,6 +12828,17 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Primary series is complete. Client is due for cholera booster dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+   // "Completed the booster series" (where "Vaccine type" = "Cholera vaccines") = TRUE
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7132,6 +12850,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should vaccinate client with cholera dose as the primary series for cholera was completed more than 3 years ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7143,6 +12870,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Client is not due for cholera booster dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7154,6 +12890,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should not vaccinate client with cholera booster dose as the latest dose was administered less than 14 days ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7165,6 +12910,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Client is due for cholera booster dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7176,6 +12930,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should vaccinate client with cholera booster dose as the booster series is not completed and the latest cholera dose was administered more than 14 days ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7187,6 +12950,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Booster series is complete":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Completed the booster series" (where "Vaccine type" = "Cholera vaccines") = TRUE
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7198,6 +12970,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should not vaccinate client with cholera dose as the booster series for cholera was completed less than 3 years ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next booster series.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7209,6 +12990,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should vaccinate client with cholera dose as the booster series for cholera was completed more than 3 years ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WCvaccines"
   * ^property[+].code = #"tab"
@@ -7220,6 +13010,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years":
+  //CQL AUTHORS: you need to insert stuff here
+  // Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses"
   * ^property[+].code = #"tab"
@@ -7231,6 +13030,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Clients age is less than 2 years":
+  //CQL AUTHORS: you need to insert stuff here
+  // Today's date − "Date of birth" < 2 years
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses"
   * ^property[+].code = #"tab"
@@ -7242,6 +13050,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should not vaccinate client with cholera dose as clients age is less than 2 years.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first cholera dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses"
   * ^property[+].code = #"tab"
@@ -7253,6 +13070,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Clients age is 2–5 years":
+  //CQL AUTHORS: you need to insert stuff here
+  // 2 years ≤ Today's date − "Date of birth" ≤ 5 years
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses"
   * ^property[+].code = #"tab"
@@ -7264,6 +13090,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should vaccinate client with cholera dose as no cholera doses have been administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses"
   * ^property[+].code = #"tab"
@@ -7275,6 +13110,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should not vaccinate client with cholera dose as the latest cholera dose was administered less than 1 week ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses"
   * ^property[+].code = #"tab"
@@ -7286,6 +13130,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should vaccinate client with cholera dose as the latest cholera dose was administered in the last 1 to 6 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses"
   * ^property[+].code = #"tab"
@@ -7297,6 +13150,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should vaccinate client with cholera dose and restart primary series as the latest cholera dose was administered more than 6 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses"
   * ^property[+].code = #"tab"
@@ -7308,6 +13170,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should not vaccinate client with cholera dose as the latest cholera dose was administered less than {Member States defined lower limit} days ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses"
   * ^property[+].code = #"tab"
@@ -7319,6 +13190,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should vaccinate client with cholera booster dose as the latest cholera dose was administered less than approximately 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses"
   * ^property[+].code = #"tab"
@@ -7330,6 +13210,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should vaccinate client with cholera dose and restart primary series as the latest cholera dose was administered more than approximately 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses"
   * ^property[+].code = #"tab"
@@ -7341,6 +13230,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years":
+  //CQL AUTHORS: you need to insert stuff here
+  // Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBSvaccine2doses"
   * ^property[+].code = #"tab"
@@ -7352,6 +13250,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should vaccinate client with cholera booster dose as the latest cholera dose was administered approximately less than 2 years ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBSvaccine2doses"
   * ^property[+].code = #"tab"
@@ -7363,6 +13270,15 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsCholera.cql
+
+define "Should vaccinate client with cholera dose and restart primary series as the latest cholera dose was administered approximately more than 2 years ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBSvaccine2doses"
   * ^property[+].code = #"tab"
@@ -7374,6 +13290,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "MenA conjugate vaccine, 1-dose schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // MenA conjugate vaccine, 1-dose schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose"
   * ^property[+].code = #"tab"
@@ -7385,6 +13310,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Number of meningococcal primary series doses administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Meningococcal vaccines" and "Type of dose" = "Primary series")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose"
   * ^property[+].code = #"tab"
@@ -7396,6 +13330,16 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeningococcalMenCLogic.cql
+
+define "Client is not due for meningococcal vaccination":
+  "Client is not due for meningococcal vaccination Case 1"
+    or "Client is not due for meningococcal vaccination Case 2"
+    or "Client is not due for meningococcal vaccination Case 3"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose"
   * ^property[+].code = #"tab"
@@ -7407,6 +13351,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should not vaccinate client with meningococcal dose as clients age is under 9 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose"
   * ^property[+].code = #"tab"
@@ -7418,6 +13371,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "No meningococcal primary series dose was administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Meningococcal vaccines" and "Type of dose" = "Primary series") = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose"
   * ^property[+].code = #"tab"
@@ -7429,6 +13391,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeningococcalMenCLogic.cql
+
+define "Client is due for meningococcal vaccination":
+  "Client is due for meningococcal vaccination Case 1"
+    or "Client is due for meningococcal vaccination Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose"
   * ^property[+].code = #"tab"
@@ -7440,6 +13411,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should vaccinate client with meningococcal dose as no meningococcal dose was administered and client is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose"
   * ^property[+].code = #"tab"
@@ -7451,6 +13431,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "One meningococcal primary series dose was administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Meningococcal vaccines" and "Type of dose" = "Primary series") = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose"
   * ^property[+].code = #"tab"
@@ -7464,6 +13453,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeningococcalMenCLogic.cql
+
+define "Meningococcal immunization schedule is complete":
+  "Meningococcal immunization schedule is complete Case 1"
+    or "Meningococcal immunization schedule is complete Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose"
   * ^property[+].code = #"tab"
@@ -7475,6 +13473,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Meningococcal immunization schedule is complete. One meningococcal primary series dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose"
   * ^property[+].code = #"tab"
@@ -7486,6 +13493,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "MenA conjugate vaccine, 2-dose schedule (specific context where there is a compelling reason to vaccinate infants aged under 9 months)":
+  //CQL AUTHORS: you need to insert stuff here
+  // MenA conjugate vaccine, 2-dose schedule (specific context where there is a compelling reason to vaccinate infants aged under 9 months)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine2doses"
   * ^property[+].code = #"tab"
@@ -7497,6 +13513,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should not vaccinate client with first meningococcal dose as clients age is under 3 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine2doses"
   * ^property[+].code = #"tab"
@@ -7508,6 +13533,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should vaccinate client with first meningococcal dose as no meningococcal doses were administered and client is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine2doses"
   * ^property[+].code = #"tab"
@@ -7519,6 +13553,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 8 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine2doses"
   * ^property[+].code = #"tab"
@@ -7530,6 +13573,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should vaccinate client with second meningococcal dose as the latest meningococcal dose was administered more than 8 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine2doses"
   * ^property[+].code = #"tab"
@@ -7541,6 +13593,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Two meningococcal primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Meningococcal vaccines" and "Type of dose" = "Primary series") = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine2doses"
   * ^property[+].code = #"tab"
@@ -7552,6 +13613,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Meningococcal immunization schedule is complete. Two meningococcal primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine2doses"
   * ^property[+].code = #"tab"
@@ -7563,6 +13633,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Monovalent MenC conjugate vaccine schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // Monovalent MenC conjugate vaccine schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine"
   * ^property[+].code = #"tab"
@@ -7574,6 +13653,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should not vaccinate client with first meningococcal dose as clients age is under 2 months. Check for any vaccines due and inform the caregiver of when to come back for the first dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with first meningococcal dose as client's age is under 2 months. Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine"
   * ^property[+].code = #"tab"
@@ -7585,6 +13673,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should vaccinate client with first meningococcal dose as no meningococcal dose was administered and client is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine"
   * ^property[+].code = #"tab"
@@ -7596,6 +13693,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 2 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine"
   * ^property[+].code = #"tab"
@@ -7607,6 +13713,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should vaccinate client with second meningococcal dose as client was less than 11 months when primary series was started and latest meningococcal dose was administered more than 2 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine"
   * ^property[+].code = #"tab"
@@ -7618,6 +13733,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Meningococcal immunization schedule is complete as clients age was more than 11 months when primary series was started. One primary series dose was administered. Check for any other vaccines due.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Meningococcal immunization schedule is complete as client's age was more than 11 months when primary series was started. One primary series dose was administered. Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine"
   * ^property[+].code = #"tab"
@@ -7629,6 +13753,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should not vaccinate client with meningococcal booster dose as the latest meningococcal dose was administered less than 1 year ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine"
   * ^property[+].code = #"tab"
@@ -7642,6 +13775,16 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeningococcalMenCLogic.cql
+
+define "The primary series is complete. Client is due for meningococcal booster dose":
+  Encounter."Two meningococcal primary series doses were administered"
+    and Encounter."The latest meningococcal dose was administered more than 1 year ago"
+    and Encounter."No meningococcal booster dose was administered"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine"
   * ^property[+].code = #"tab"
@@ -7653,6 +13796,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should vaccinate client with Meningococcal booster dose as no meningococcal booster dose was administered and the latest meningococcal dose was administered more than 1 year ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine"
   * ^property[+].code = #"tab"
@@ -7664,6 +13816,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Meningococcal immunization schedule is complete. Two primary series doses and one booster dose were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine"
   * ^property[+].code = #"tab"
@@ -7675,6 +13836,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Quadrivalent conjugate vaccines (A,C,W135,Y-CRM), 1-dose schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // Quadrivalent conjugate vaccines (A,C,W135,Y-CRM), 1-dose schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatevaccines1dose"
   * ^property[+].code = #"tab"
@@ -7686,6 +13856,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should not vaccinate client with first meningococcal dose as clients age is less than 2 years.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatevaccines1dose"
   * ^property[+].code = #"tab"
@@ -7697,6 +13876,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should vaccinate client with first meningococcal dose as no meningococcal dose was administered and clients age is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatevaccines1dose"
   * ^property[+].code = #"tab"
@@ -7708,6 +13896,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Meningococcal immunization schedule is complete. One primary series dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatevaccines1dose"
   * ^property[+].code = #"tab"
@@ -7719,6 +13916,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Quadrivalent conjugate vaccines (A,C,W135,Y-D), 2-dose schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // Quadrivalent conjugate vaccines (A,C,W135,Y-D), 2-dose schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatevaccines2doses"
   * ^property[+].code = #"tab"
@@ -7730,6 +13936,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should not vaccinate client with first meningococcal dose as clients age is less than 9 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatevaccines2doses"
   * ^property[+].code = #"tab"
@@ -7741,6 +13956,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 3 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatevaccines2doses"
   * ^property[+].code = #"tab"
@@ -7752,6 +13976,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should vaccinate client with second meningococcal dose as clients age was less than 23 months when the primary series was started and the latest meningococcal dose was administered more than 3 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatevaccines2doses"
   * ^property[+].code = #"tab"
@@ -7763,6 +13996,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Meningococcal immunization schedule is complete as clients age was more than 23 months when primary series was started. One primary series dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatevaccines2doses"
   * ^property[+].code = #"tab"
@@ -7774,6 +14016,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Meningococcal immunization schedule is complete. Two primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatevaccines2doses"
   * ^property[+].code = #"tab"
@@ -7785,6 +14036,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Polysaccharide vaccines schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // (Polysaccharide vaccines can be used to control outbreaks in countries where limited economic resources or insufficient supply restrict the use of meningococcal conjugate vaccines)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharidevaccines"
   * ^property[+].code = #"tab"
@@ -7796,6 +14056,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should not vaccinate client with first meningococcal dose as clients age is less than 2 years. Check for any other vaccines due and inform the caregiver of when to come back for the first dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with first meningococcal dose as client's age is less than 2 years. Check for any other vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharidevaccines"
   * ^property[+].code = #"tab"
@@ -7809,6 +14078,17 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "The primary series is complete. Client is not due for meningococcal booster dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+   // "Completed the primary vaccination series" (where "Vaccine type" = "Meningococcal vaccines") = TRUE
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharidevaccines"
   * ^property[+].code = #"tab"
@@ -7820,6 +14100,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Should not vaccinate client with meningococcal booster dose as the latest meningococcal dose was administered less than 3 years ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the booster dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharidevaccines"
   * ^property[+].code = #"tab"
@@ -7833,6 +14122,17 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "The primary series is complete. Clinical judgement is required for meningococcal booster dose. Create a clinical note":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Further evaluation needed"
+
+   // "Completed the primary vaccination series" (where "Vaccine type" = "Meningococcal vaccines") = TRUE
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharidevaccines"
   * ^property[+].code = #"tab"
@@ -7844,6 +14144,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "May administer meningococcal booster dose if the client is considered to be at continued high risk of exposure. Evaluate the client and use clinical judgement.":
+  //CQL AUTHORS: you need to insert stuff here
+  // May administer meningococcal booster dose if the client is considered to be at continued high risk of exposure. Evaluate the client and use clinical judgement.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharidevaccines"
   * ^property[+].code = #"tab"
@@ -7855,6 +14164,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Meningococcal immunization schedule is complete. One primary series dose and one booster dose have been administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Meningococcal.Polysaccharidevaccines"
   * ^property[+].code = #"tab"
@@ -7866,6 +14184,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Meningococcal vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" (where "Type of meningococcal dose" = "Polysaccharide vaccine") = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Meningococcalcontraindications"
   * ^property[+].code = #"tab"
@@ -7877,6 +14204,15 @@ Referenced in the following locations:
  * Tabs: Meningococcal
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMeningococcal.cql
+
+define "Do not vaccinate client with meningococcal if client has history of severe allergic reaction to any component of the meningococcal vaccine.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with meningococcal if client has history of severe allergic reaction to any component of the meningococcal vaccine.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Meningococcalcontraindications"
   * ^property[+].code = #"tab"
@@ -7888,6 +14224,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Inactivated hepatitis A virus (HAV), 2-dose schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // Inactivated hepatitis A virus (HAV), 2-dose schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses"
   * ^property[+].code = #"tab"
@@ -7899,6 +14244,14 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisAElements.cql
+
+define "Number of Hepatitis A Primary Series Doses Administered":
+  Count("Hepatitis A Primary Series Doses Administered to Patient")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses"
   * ^property[+].code = #"tab"
@@ -7910,6 +14263,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisALHAV1Logic.cql
+
+define "Client is not due for Hepatitis A vaccination":
+  "Client is not due for Hepatitis A vaccination Case 1"
+    or "Client is not due for Hepatitis A vaccination Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses"
   * ^property[+].code = #"tab"
@@ -7921,6 +14283,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Should not vaccinate client with first hepatitis A dose as clients age is less than 12 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses"
   * ^property[+].code = #"tab"
@@ -7932,6 +14303,14 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisAElements.cql
+
+define "No hepatitis A primary series doses were administered":
+  "Number of Hepatitis A Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses"
   * ^property[+].code = #"tab"
@@ -7943,6 +14322,16 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisALHAV1Logic.cql
+
+define "Client is due for Hepatitis A vaccination":
+  Encounter."No hepatitis A primary series dose was administered"
+    and Encounter."Client's age is more than or equal to 18 months"
+    and Encounter."No live vaccine was administered in the last 4 weeks"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses"
   * ^property[+].code = #"tab"
@@ -7954,6 +14343,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Should vaccinate client with first hepatitis A dose as no Hepatitis A doses were administered and client is within the appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses"
   * ^property[+].code = #"tab"
@@ -7965,6 +14363,14 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisAElements.cql
+
+define "One hepatitis A primary series dose was administered":
+  "Number of Hepatitis A Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses"
   * ^property[+].code = #"tab"
@@ -7976,6 +14382,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Should not vaccinate client with second hepatitis A dose as the latest hepatitis A dose was administered less than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses"
   * ^property[+].code = #"tab"
@@ -7987,6 +14402,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Should vaccinate client with second hepatitis A dose as the latest hepatitis A dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses"
   * ^property[+].code = #"tab"
@@ -7998,6 +14422,14 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisAElements.cql
+
+define "Two hepatitis A primary series doses were administered":
+  "Number of Hepatitis A Primary Series Doses Administered" = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses"
   * ^property[+].code = #"tab"
@@ -8011,6 +14443,14 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisALHAV1Logic.cql
+
+define "Hepatitis A immunization schedule is complete":
+  Encounter."One hepatitis A primary series dose was administered"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses"
   * ^property[+].code = #"tab"
@@ -8022,6 +14462,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Hepatitis A immunization schedule is complete. Two hepatitis A primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses"
   * ^property[+].code = #"tab"
@@ -8033,6 +14482,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Inactivated hepatitis A virus (HAV), 1-dose schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // Inactivated hepatitis A virus (HAV), 1-dose schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV1dose"
   * ^property[+].code = #"tab"
@@ -8044,6 +14502,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Should not vaccinate client with Hepatitis A dose as clients age is less than 12 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV1dose"
   * ^property[+].code = #"tab"
@@ -8055,6 +14522,14 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisAElements.cql
+
+define "No hepatitis A primary series dose was administered":
+  "No hepatitis A primary series doses were administered"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV1dose"
   * ^property[+].code = #"tab"
@@ -8066,6 +14541,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Should vaccinate client with hepatitis A dose as no hepatitis A dose was administered and clients age is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV1dose"
   * ^property[+].code = #"tab"
@@ -8077,6 +14561,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Hepatitis A immunization schedule is complete. One hepatitis A primary series dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.InactivatedHAV1dose"
   * ^property[+].code = #"tab"
@@ -8088,6 +14581,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Live attenuated hepatitis A virus (HAV), 1 dose schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // Live attenuated hepatitis A virus (HAV), 1 dose schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.LiveattenuatedHAV1dose"
   * ^property[+].code = #"tab"
@@ -8099,6 +14601,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Should not vaccinate client with Hepatitis A dose as clients age is less than 18 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.LiveattenuatedHAV1dose"
   * ^property[+].code = #"tab"
@@ -8110,6 +14621,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Should not vaccinate client with Hepatitis A dose as live vaccine was administered in the last 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.LiveattenuatedHAV1dose"
   * ^property[+].code = #"tab"
@@ -8121,6 +14641,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Should vaccinate client with hepatitis A dose as no Hepatitis A dose was administered, client is within appropriate age range and no live vaccine was administered in the last 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.HepatitisA.LiveattenuatedHAV1dose"
   * ^property[+].code = #"tab"
@@ -8132,6 +14661,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Live attentuated Hepatitis A-containing vaccine is contraindicated":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Contraindicated" (where "Type of hepatitis A dose" = "Live attenuated hepatitis A vaccine")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.HepatitisAcontraindications"
   * ^property[+].code = #"tab"
@@ -8143,6 +14681,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Do not vaccinate client with hepatitis A as hepatitis A vaccination is contraindicated for pregnant client and may pose a theoretical risk to the developing fetus.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with hepatitis A as hepatitis A  vaccination is contraindicated for pregnant client and may pose a theoretical risk to the developing fetus.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.HepatitisAcontraindications"
   * ^property[+].code = #"tab"
@@ -8154,6 +14701,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Do not vaccinate client with hepatitis A as hepatitis A vaccination is contraindicated for severely immunocompromised clients.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with hepatitis A as hepatitis A  vaccination is contraindicated for severely immunocompromised clients.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.HepatitisAcontraindications"
   * ^property[+].code = #"tab"
@@ -8165,6 +14721,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.HepatitisAcontraindications"
   * ^property[+].code = #"tab"
@@ -8176,6 +14741,15 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsHepatitisA.cql
+
+define "Do not vaccinate client with inactivated hepatitis A vaccination if client has had a severe allergic reaction to the previous dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with live attenuated hepatitis A vaccination if client has severe allergy to components included in the live attenuated hepatitis A-containing vaccines.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.HepatitisAcontraindications"
   * ^property[+].code = #"tab"
@@ -8187,6 +14761,15 @@ Referenced in the following locations:
  * Tabs: Rabies
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRabies.cql
+
+define "Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure":
+  //CQL AUTHORS: you need to insert stuff here
+  // Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
   * ^property[+].code = #"tab"
@@ -8198,6 +14781,14 @@ Referenced in the following locations:
  * Tabs: Rabies
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTRabiesElements.cql
+
+define "Number of Rabies Primary Series Doses Administered":
+  Count("Rabies Primary Series Doses Administered to Patient")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
   * ^property[+].code = #"tab"
@@ -8209,6 +14800,14 @@ Referenced in the following locations:
  * Tabs: Rabies
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTRabiesElements.cql
+
+define "No rabies primary series doses were administered":
+  "Number of Rabies Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
   * ^property[+].code = #"tab"
@@ -8220,6 +14819,15 @@ Referenced in the following locations:
  * Tabs: Rabies
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRabies.cql
+
+define "Client is due for rabies vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
   * ^property[+].code = #"tab"
@@ -8231,6 +14839,15 @@ Referenced in the following locations:
  * Tabs: Rabies
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRabies.cql
+
+define "Should vaccinate client with first rabies dose as no rabies doses were administered and client is at high risk of exposure.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
   * ^property[+].code = #"tab"
@@ -8242,6 +14859,14 @@ Referenced in the following locations:
  * Tabs: Rabies
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTRabiesElements.cql
+
+define "One rabies primary series doses were administered":
+  "Number of Rabies Primary Series Doses Administered" = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
   * ^property[+].code = #"tab"
@@ -8253,6 +14878,15 @@ Referenced in the following locations:
  * Tabs: Rabies
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRabies.cql
+
+define "Client is not due for rabies vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
   * ^property[+].code = #"tab"
@@ -8264,6 +14898,15 @@ Referenced in the following locations:
  * Tabs: Rabies
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRabies.cql
+
+define "Should not vaccinate client with second rabies dose as the latest rabies dose was administered less than 7 days ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
   * ^property[+].code = #"tab"
@@ -8275,6 +14918,15 @@ Referenced in the following locations:
  * Tabs: Rabies
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRabies.cql
+
+define "Should vaccinate client with second rabies dose as the latest rabies dose was administerd 7 or more days ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
   * ^property[+].code = #"tab"
@@ -8286,6 +14938,14 @@ Referenced in the following locations:
  * Tabs: Rabies
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTRabiesElements.cql
+
+define "Two rabies primary series doses were administered":
+  "Number of Rabies Primary Series Doses Administered" = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
   * ^property[+].code = #"tab"
@@ -8299,6 +14959,17 @@ Referenced in the following locations:
  * Tabs: Rabies
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRabies.cql
+
+define "Rabies immunization schedule is complete":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Complete"
+
+   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Rabies vaccines")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
   * ^property[+].code = #"tab"
@@ -8310,6 +14981,15 @@ Referenced in the following locations:
  * Tabs: Rabies
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRabies.cql
+
+define "Rabies immunization schedule is complete. Two rabies primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Rabies"
   * ^property[+].code = #"tab"
@@ -8321,6 +15001,15 @@ Referenced in the following locations:
  * Tabs: Rabies
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsRabies.cql
+
+define "Check if the client has a history of severe hypersensitivity to any of the components or to excipients listed by the vaccine manufacturer. If so, provide an alternative rabies vaccine product for PreP.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check if the client has a history of severe hypersensitivity to any of the components or to excipients listed by the vaccine manufacturer. If so, provide an alternative rabies vaccine product for PreP.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Rabiescontraindications"
   * ^property[+].code = #"tab"
@@ -8332,6 +15021,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "CYD-TDV (Dengvaxia), 3-dose schedule with pre-vaccination screening, the recommended strategy where feasible (pre-vaccination screening whereby only those tested seropositive would be vaccinated)":
+  //CQL AUTHORS: you need to insert stuff here
+  // CYD-TDV (Dengvaxia), 3-dose schedule with pre-vaccination screening, the recommended strategy where feasible (pre-vaccination screening whereby only those tested seropositive would be vaccinated)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8343,6 +15041,14 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDengueEncounterElements.cql
+
+define "Number of Dengue Primary Series Doses Administered":
+  Count("Dengue Primary Series Doses Administered to Patient")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8354,6 +15060,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Client is not due for dengue vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8365,6 +15080,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDengue.cql
+
+define "Should not vaccinate client with first dengue dose as clients age is less than 9 years.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8376,6 +15100,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsDengue.cql
+
+define "Should not vaccinate client with first dengue dose as clients age is more than 45 years.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8387,6 +15120,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Should not vaccinate client with first dengue dose as client does not have evidence of past dengue infection.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8398,6 +15140,14 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDengueEncounterElements.cql
+
+define "No dengue primary series doses were administered":
+  "Number of Dengue Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8409,6 +15159,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Client is due for dengue vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8420,6 +15179,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Should vaccinate client with first dengue dose as no dengue doses were administered, client is within appropriate age range and has evidence of past dengue infection.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8431,6 +15199,14 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDengueEncounterElements.cql
+
+define "One dengue primary series dose was administered":
+  "Number of Dengue Primary Series Doses Administered" = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8442,6 +15218,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Should not vaccinate client with second dengue dose as latest dengue dose was administered less than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8453,6 +15238,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Should vaccinate client with second dengue dose as the latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8464,6 +15258,14 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDengueEncounterElements.cql
+
+define "Two dengue primary series doses were administered":
+  "Number of Dengue Primary Series Doses Administered" = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8475,6 +15277,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Should not vaccinate client with third dengue dose as latest dengue vaccine was administered less than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the third dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8486,6 +15297,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Should vaccinate client with third dengue dose as latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8497,6 +15317,14 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDengueEncounterElements.cql
+
+define "Three dengue primary series doses were administered":
+  "Number of Dengue Primary Series Doses Administered" = 3
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8510,6 +15338,17 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Dengue immunization schedule is complete":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Complete"
+
+   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Dengue vaccines")"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8521,6 +15360,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Dengue immunization schedule is complete. Three dengue primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8532,6 +15380,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "CYD-TDV (Dengvaxia), 3-dose schedule without pre-vaccination screening [when pre-vaccination screening is not feasible and in areas with recent documentation of seroprevalence rates of at least 80% by age 9 years]":
+  //CQL AUTHORS: you need to insert stuff here
+  // CYD-TDV (Dengvaxia), 3-dose schedule without pre-vaccination screening [when pre-vaccination screening is not feasible and in areas with recent documentation of seroprevalence rates of at least 80% by age 9 years]
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8543,6 +15400,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Should vaccinate client with first dengue dose as no dengue doses were administered and client is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8554,6 +15420,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Should vaccinate client with second dengue dose as latest dengue dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8565,6 +15440,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Should vaccinate client with third dengue dose as latest dengue dose was administered more than 6 months ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccinationscreening"
   * ^property[+].code = #"tab"
@@ -8576,6 +15460,16 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
+
+define "The client is immunocompromised":
+  "Client is immunocompromised"
+    or exists "CI Immunocompromised Observation"
+    or exists "CI Immunocompromised Condition"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Denguecontraindications"
   * ^property[+].code = #"tab"
@@ -8587,6 +15481,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Dengue vaccination is contraindicated":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Contraindicated"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Denguecontraindications"
   * ^property[+].code = #"tab"
@@ -8598,6 +15501,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Do not vaccinate client with dengue as dengue vaccination is contraindicated in immunocompromised individuals":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with dengue as dengue vaccination is contraindicated in immunocompromised individuals
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Denguecontraindications"
   * ^property[+].code = #"tab"
@@ -8609,6 +15521,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Do not vaccinate client with dengue as dengue vaccination is contraindicated for pregnant women.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with dengue as dengue vaccination is contraindicated for pregnant women.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Denguecontraindications"
   * ^property[+].code = #"tab"
@@ -8620,6 +15541,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "The client is currently lactating":
+  //CQL AUTHORS: you need to insert stuff here
+  // '"Potential contraindications" = "Breastfeeding"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Denguecontraindications"
   * ^property[+].code = #"tab"
@@ -8631,6 +15561,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Do not vaccinate client with dengue as dengue vaccination is contraindicated for lactating women.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with dengue as dengue vaccination is contraindicated for lactating women.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Denguecontraindications"
   * ^property[+].code = #"tab"
@@ -8642,6 +15581,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Dengue vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Denguecontraindications"
   * ^property[+].code = #"tab"
@@ -8653,6 +15601,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Do not vaccinate client with dengue if client has had a severe allergic reaction to any component of the dengue vaccine or after prior administration of the dengue vaccine.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with dengue if client has had a severe allergic reaction to any component of the dengue vaccine or after prior administration of the dengue vaccine.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Denguecontraindications"
   * ^property[+].code = #"tab"
@@ -8664,6 +15621,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Do not vaccinate for dengue if client has had a severe allergic reaction to any component of the dengue vaccine or after prior administration of the dengue vaccine.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate for dengue if client has had a severe allergic reaction to any component of the dengue vaccine or after prior administration of the dengue vaccine.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Denguecontraindications"
   * ^property[+].code = #"tab"
@@ -8675,6 +15641,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Do not vaccinate client with dengue as dengue vaccination is contraindicated in severely immunosuppresed individuals.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with dengue as dengue vaccination is contraindicated in severely immunosuppresed individuals.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Denguecontraindications"
   * ^property[+].code = #"tab"
@@ -8686,6 +15661,15 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
+  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
+
+define "Do not vaccinate client with dengue as dengue vaccination is contraindicated in individuals with symptomatic HIV.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with dengue as dengue vaccination is contraindicated in individuals with symptomatic HIV.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Denguecontraindications"
   * ^property[+].code = #"tab"
@@ -8697,6 +15681,15 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
+
+define "4-dose schedule (The RTS,S/AS01 malaria vaccine should be used for the prevention of Plasmodium falciparum malaria in children living in regions with moderate to high malaria transmission, as defined by WHO)":
+  //CQL AUTHORS: you need to insert stuff here
+  // 4-dose schedule (The RTS,S/AS01 malaria vaccine should be used for the prevention of Plasmodium falciparum malaria in children living in regions with moderate to high malaria transmission, as defined by WHO)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8708,6 +15701,14 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMalariaElements.cql
+
+define "Number of Malaria Primary Series Doses Administered":
+  Count("Malaria Primary Series Doses Administered to Patient")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8719,6 +15720,15 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
+
+define "Client is not due for malaria vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8730,6 +15740,15 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMalaria.cql
+
+define "Should not vaccinate client with first malaria dose as clients age is less than 5 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8741,6 +15760,14 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMalariaElements.cql
+
+define "No malaria primary series doses were administered":
+  "Number of Malaria Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8752,6 +15779,15 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
+
+define "Client is due for malaria vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8763,6 +15799,15 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
+
+define "Should vaccinate client with first malaria dose as no malaria doses were administered and client is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8774,6 +15819,14 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMalariaElements.cql
+
+define "One malaria primary series dose was administered":
+  "Number of Malaria Primary Series Doses Administered" = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8785,6 +15838,15 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
+
+define "Should not vaccinate client with second malaria dose as the latest malaria dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8796,6 +15858,15 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
+
+define "Should vaccinate client with second malaria dose as the latest malaria dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8807,6 +15878,14 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMalariaElements.cql
+
+define "Two malaria primary series doses were administered":
+  "Number of Malaria Primary Series Doses Administered" = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8818,6 +15897,15 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
+
+define "Should not vaccinate client with third malaria dose as the latest malaria dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the third dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8829,6 +15917,15 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
+
+define "Should vaccinate client with third malaria dose as the latest malaria dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8840,6 +15937,14 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMalariaElements.cql
+
+define "Three malaria primary series doses were administered":
+  "Number of Malaria Primary Series Doses Administered" = 3
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8851,6 +15956,15 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
+
+define "Should not vaccinate client with fourth malaria dose as the latest malaria dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the fourth dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8862,6 +15976,15 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
+
+define "Should vaccinate client with fourth malaria dose as the latest malaria dose was administered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8873,6 +15996,14 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMalariaElements.cql
+
+define "Four malaria primary series doses were administered":
+  "Number of Malaria Primary Series Doses Administered" = 4
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8886,6 +16017,17 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
+
+define "Malaria immunization schedule is complete":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Complete"
+
+   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Malaria vaccines")"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8897,6 +16039,15 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
+
+define "Malaria immunization schedule is complete. Four malaria primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Malaria"
   * ^property[+].code = #"tab"
@@ -8908,6 +16059,15 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
+
+define "The client has hypersensitivity to any of the vaccine components":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Potential contraindications" = "Hypersensitivity to vaccine components"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Malariacontraindications"
   * ^property[+].code = #"tab"
@@ -8919,6 +16079,14 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTMalariaCILogic.cql
+
+define "Malaria vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
+  Encounter."The client has hypersensitivity to any of the vaccine components"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Malariacontraindications"
   * ^property[+].code = #"tab"
@@ -8930,6 +16098,15 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
+  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
+
+define "Do not vaccinate client with RTS,S/AS01 vaccine if client has severe hypersensitivity to any of the vaccine components.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with RTS,S/AS01 vaccine if client has severe hypersensitivity to any of the vaccine components.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Malariacontraindications"
   * ^property[+].code = #"tab"
@@ -8941,6 +16118,15 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMumps.cql
+
+define "2-dose schedule (countries with mumps in schedule and low transmission of measles)":
+  //CQL AUTHORS: you need to insert stuff here
+  // 2-dose schedule (countries with mumps in schedule and low transmission of measles)
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -8952,6 +16138,14 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMumpsEncounterElements.cql
+
+define "Number of Mumps Primary Series Doses Administered":
+  Count("Mumps Primary Series Doses Administered to Patient")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -8963,6 +16157,17 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMumps2DoseLogic.cql
+
+define "Client is not due for mumps vaccination":
+  "Client is not due for mumps vaccination Case 1"
+    or "Client is not due for mumps vaccination Case 2"
+    or "Client is not due for mumps vaccination Case 3"
+    or "Client is not due for mumps vaccination Case 4"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -8974,6 +16179,15 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMumps.cql
+
+define "Should not vaccinate client with first mumps dose as clients age is less than 12 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -8985,6 +16199,14 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMumpsEncounterElements.cql
+
+define "No mumps primary series doses were administered":
+  "Number of Mumps Primary Series Doses Administered" = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -8996,6 +16218,15 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMumps.cql
+
+define "Should not vaccinate client with first mumps dose as live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -9007,6 +16238,15 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMumps2DoseLogic.cql
+
+define "Client is due for mumps vaccination":
+  "Client is due for mumps vaccination Case 1"
+    or "Client is due for mumps vaccination Case 2"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -9018,6 +16258,15 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMumps.cql
+
+define "Should vaccinate client with first mumps dose as the client is within appropriate age range and no live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -9029,6 +16278,14 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMumpsEncounterElements.cql
+
+define "One mumps primary series dose was administered":
+  "Number of Mumps Primary Series Doses Administered" = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -9040,6 +16297,15 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMumps.cql
+
+define "Should not vaccinate client with second mumps dose as latest mumps dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -9051,6 +16317,15 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMumps.cql
+
+define "Should not vaccinate client with second mumps dose as live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -9062,6 +16337,15 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMumps.cql
+
+define "Should vaccinate client with second mumps dose as latest mumps dose was administered more than 4 weeks ago and no live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -9073,6 +16357,14 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMumpsEncounterElements.cql
+
+define "Two mumps primary series doses were administered":
+  "Number of Mumps Primary Series Doses Administered" = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -9086,6 +16378,14 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMumps2DoseLogic.cql
+
+define "Mumps immunization schedule is complete":
+  Encounter."Two mumps primary series doses were administered"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -9097,6 +16397,15 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMumps.cql
+
+define "Mumps immunization schedule is complete. Two mumps primary series doses were administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Mumps"
   * ^property[+].code = #"tab"
@@ -9108,6 +16417,16 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTMumpsCILogic.cql
+
+define "Mumps vaccination is contraindicated":
+  "Mumps vaccination is contraindicated Case 1"
+    or "Mumps vaccination is contraindicated Case 2"
+    or "Mumps vaccination is contraindicated Case 3"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Mumpscontraindications"
   * ^property[+].code = #"tab"
@@ -9119,6 +16438,15 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMumps.cql
+
+define "Do not vaccinate client with mumps as mumps vaccination is contraindicated for pregnant individuals.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with mumps as mumps vaccination is contraindicated for pregnant individuals.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Mumpscontraindications"
   * ^property[+].code = #"tab"
@@ -9130,6 +16458,14 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTMumpsElements.cql
+
+define "The client has allergy to vaccine components":
+  Elements."The client has history of severe allergic reactions"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Mumpscontraindications"
   * ^property[+].code = #"tab"
@@ -9143,6 +16479,14 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTMumpsCILogic.cql
+
+define "Mumps vaccination could be contraindicated. Clinical judgement is required.":
+  Encounter."The client has allergy to vaccine components"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Mumpscontraindications"
   * ^property[+].code = #"tab"
@@ -9154,6 +16498,15 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMumps.cql
+
+define "Do not vaccinate client with mumps if client has allergy to vaccine components, such as neomycin and gelatin.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with mumps if client has allergy to vaccine components, such as neomycin and gelatin.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Mumpscontraindications"
   * ^property[+].code = #"tab"
@@ -9165,6 +16518,14 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTMumpsElements.cql
+
+define "The client has immune deficiency":
+  Elements."The client has immunodeficiency syndromes"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Mumpscontraindications"
   * ^property[+].code = #"tab"
@@ -9176,6 +16537,15 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMumps.cql
+
+define "Do not vaccinate client with mumps as mumps vaccination is contraindicated in individuals with immunodeficiency syndromes.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with mumps as mumps vaccination is contraindicated in individuals with immunodeficiency syndromes.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Mumpscontraindications"
   * ^property[+].code = #"tab"
@@ -9187,6 +16557,15 @@ Referenced in the following locations:
  * Tabs: Mumps
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsMumps.cql
+
+define "Do not vaccinate client with mumps as mumps vaccination is contraindicated in immunosuppressed individuals.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with mumps as mumps vaccination is contraindicated in immunosuppressed individuals.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Mumpscontraindications"
   * ^property[+].code = #"tab"
@@ -9198,6 +16577,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "Inactivated trivalent and quadrivalent vaccines, 2-dose schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9209,6 +16597,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "Number of seasonal influenza primary series doses administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Seasonal influenza vaccines" and "Type of dose" = "Primary series")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9220,6 +16617,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "Client is not due for seasonal influenza vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9231,6 +16637,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsSeasonalinfluenza.cql
+
+define "Should not vaccinate client with first seasonal influenza dose as clients age is less than 6 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for first dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9242,6 +16657,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "No seasonal influenza primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Seasonal influenza vaccines" and "Type of dose" = "Primary series") = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9253,6 +16677,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "Client is due for seasonal influenza vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9264,6 +16697,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "Should vaccinate client with first seasonal influenza dose as no seasonal infuenza doses were administered and client is within appropriate age range.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9275,6 +16717,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "One seasonal influenza primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Seasonal influenza vaccines" and "Type of dose" = "Primary series") = 1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9286,6 +16737,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "Should not vaccinate client with second seasonal influenza dose as latest seasonal influenza dose was administered less than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9297,6 +16757,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "Should vaccinate client with second seasonal influenza dose as client is within appropriate age range and latest seasonal influenza dose was administerered more than 4 weeks ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9310,6 +16779,17 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "The primary series is complete. Client is not due for seasonal influenza annual dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+   // "Completed the primary vaccination series" (where "Vaccine type" = "Seasonal influenza vaccines") = TRUE
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9321,6 +16801,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "Should not vaccinate client with annual dose as the latest seasonal influenza dose was administered less than 1 year ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9334,6 +16823,17 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "The primary series is complete. Client is due for seasonal influenza annual dose":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+   // "Completed the primary vaccination series" (where "Vaccine type" = "Seasonal influenza vaccines") = TRUE
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9345,6 +16845,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "Should vaccinate client with annual dose as the latest seasonal influenza dose was administered more than 1 year ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9356,6 +16865,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "Two seasonal influenza primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Seasonal influenza vaccines" and "Type of dose" = "Primary series") = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9367,6 +16885,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "Should not vaccinate client with annual dose as latest seasonal influenza dose was administered less than 1 year ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9378,6 +16905,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsSeasonalinfluenza.cql
+
+define "Should vaccinate client with annual dose as latest seasonal influenza dose was administered more than 1 year ago.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Seasonalinfluenza"
   * ^property[+].code = #"tab"
@@ -9389,6 +16925,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
+  //CQL AUTHORS: you need to insert stuff here
+  // '"Immunization recommendation status" = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Seasonalinfluenzacontraindications"
   * ^property[+].code = #"tab"
@@ -9400,6 +16945,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Seasonalinfluenzacontraindications"
   * ^property[+].code = #"tab"
@@ -9411,6 +16965,15 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
+  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
+
+define "The client has a history of severe allergic reactions after a previous dose or to a vaccine component":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Potential contraindications" = "Severe allergic reactions"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Seasonalinfluenzacontraindications"
   * ^property[+].code = #"tab"
@@ -9422,6 +16985,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Countries where varicella is an important public health burden could consider introducing varicella vaccination in the routine childhood immunization programme. However, resources should be sufficient to ensure reaching and sustaining vaccine coverage ≥ 80%. Decision-making on childhood varicella vaccination should also include consideration of the possible impact on herpes zoster.":
+  //CQL AUTHORS: you need to insert stuff here
+  // The number of doses recommended is dependent on the goal of the vaccination programme. One dose is sufficient to reduce mortality and severe morbidity from varicella but not to prevent limited virus circulation and outbreaks. Two doses have higher effectiveness and should therefore be recommended in countries where the programmatic goal is, in addition to decreasing mortality and severe morbidity, to further reduce the number of cases and outbreaks.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1dose"
   * ^property[+].code = #"tab"
@@ -9433,6 +17005,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "1-dose schedule":
+  //CQL AUTHORS: you need to insert stuff here
+  // 1-dose schedule
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1dose"
   * ^property[+].code = #"tab"
@@ -9444,6 +17025,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Number of varicella primary series doses administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Varicella-containing vaccines" and "Type of dose" = "Primary series")
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1dose"
   * ^property[+].code = #"tab"
@@ -9455,6 +17045,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Client is not due for varicella vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Not due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1dose"
   * ^property[+].code = #"tab"
@@ -9466,6 +17065,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsVaricella.cql
+
+define "Should not vaccinate client with varicella dose as clients age is less than 12 months.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first varicella dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1dose"
   * ^property[+].code = #"tab"
@@ -9477,6 +17085,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "No varicella primary series dose was administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Varicella-containing vaccines" and "Type of dose" = "Primary series") = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1dose"
   * ^property[+].code = #"tab"
@@ -9488,6 +17105,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Should not vaccinate client with varicella dose as live vaccine was administered in the past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due and inform the caregiver of when to come back for the first varicella dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1dose"
   * ^property[+].code = #"tab"
@@ -9499,6 +17125,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Client is due for varicella vaccination":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Due"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1dose"
   * ^property[+].code = #"tab"
@@ -9510,6 +17145,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Should vaccinate client with varicella dose as no varicella dose was administered, client is within the appropriate age range and no live vaccine was administered in past 4 weeks.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1dose"
   * ^property[+].code = #"tab"
@@ -9521,6 +17165,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "One varicella primary series dose was administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Varicella-containing vaccines" and "Type of dose" = "Primary series") =1
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1dose"
   * ^property[+].code = #"tab"
@@ -9532,6 +17185,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Varicella immunization schedule is complete":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Complete"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1dose"
   * ^property[+].code = #"tab"
@@ -9543,6 +17205,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Varicella immunization schedule is complete. One varicella primary series dose was administered.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Check for any vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.1dose"
   * ^property[+].code = #"tab"
@@ -9554,6 +17225,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/DecisionLogicElementsVaricella.cql
+
+define "Should not vaccinate client with first varicella dose as clients age is less than 12 months. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with first varicella dose as client's age is less than 12 months. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2doses"
   * ^property[+].code = #"tab"
@@ -9565,6 +17245,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "No varicella primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Varicella-containing vaccines" and "Type of dose" = "Primary series") = 0
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2doses"
   * ^property[+].code = #"tab"
@@ -9576,6 +17265,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2doses"
   * ^property[+].code = #"tab"
@@ -9587,6 +17285,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2doses"
   * ^property[+].code = #"tab"
@@ -9598,6 +17305,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2doses"
   * ^property[+].code = #"tab"
@@ -9609,6 +17325,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2doses"
   * ^property[+].code = #"tab"
@@ -9620,6 +17345,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2doses"
   * ^property[+].code = #"tab"
@@ -9631,6 +17365,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Two varicella primary series doses were administered":
+  //CQL AUTHORS: you need to insert stuff here
+  // Count of vaccines administered (where "Vaccine type" = "Varicella-containing vaccines" and "Type of dose" = "Primary series") = 2
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2doses"
   * ^property[+].code = #"tab"
@@ -9642,6 +17385,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Varicella immunization schedule is complete. Two varicella primary series doses were administered. Check for any other vaccines due.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Varicella immunization schedule is complete. Two varicella primary series doses were administered. Check for any other vaccines due.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D2.DT.Varicella.2doses"
   * ^property[+].code = #"tab"
@@ -9653,6 +17405,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Varicella vaccination is contraindicated":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Contraindicated"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Varicellacontraindications"
   * ^property[+].code = #"tab"
@@ -9664,6 +17425,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Do not vaccinate client with varicella as varicella vaccination is contraindicated for pregnant client.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Do not vaccinate client with varicella as varicella vaccination is contraindicated for pregnant client.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Varicellacontraindications"
   * ^property[+].code = #"tab"
@@ -9675,6 +17445,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "The client is planning to get pregnant in the next month":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Potential contraindications" = "Planning to get pregnant in the next month"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Varicellacontraindications"
   * ^property[+].code = #"tab"
@@ -9686,6 +17465,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Clinical judgement is required. Create clinical note":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Varicellacontraindications"
   * ^property[+].code = #"tab"
@@ -9697,6 +17485,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Discuss pregnancy intentions, consider risks of vaccination and make a clinical judgement. It is recommended to delay pregnancy for 4 weeks after vaccination.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Discuss pregnancy intentions, consider risks of vaccination and make a clinical judgement. It is recommended to delay pregnancy for 4 weeks after vaccination.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Varicellacontraindications"
   * ^property[+].code = #"tab"
@@ -9708,6 +17505,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Varicella vaccination could be contraindicated. Clinical judgement is required. Create clinical note":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Further evaluation needed"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Varicellacontraindications"
   * ^property[+].code = #"tab"
@@ -9719,6 +17525,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Varicella vaccination is usually contraindicated in clients with congenital or acquired immune deficiencies. Consider risks of vaccination and make a judgement.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Varicella vaccination is usually contraindicated in clients with congenital or acquired immune deficiencies. Consider risks of vaccination and make a judgement.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Varicellacontraindications"
   * ^property[+].code = #"tab"
@@ -9730,6 +17545,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Client is immunocompromised, consider risks of vaccination and make a judgement. Consider 2 dose schedule.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client is immunocompromised, consider risks of vaccination and make a judgement. Consider 2 dose schedule.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Varicellacontraindications"
   * ^property[+].code = #"tab"
@@ -9741,6 +17565,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "The client is receiving or has received medications that may be immunosuppressive":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Potential contraindications" = "Exposed to immunosuppressive treatment"
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Varicellacontraindications"
   * ^property[+].code = #"tab"
@@ -9752,6 +17585,15 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
+  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
+
+define "Client is receiving or has received medications that may be immunosuppressive, consider risks of vaccination and make a judgement.":
+  //CQL AUTHORS: you need to insert stuff here
+  // Client is receiving or has received medications that may be immunosuppressive, consider risks of vaccination and make a judgement.
+
+
+"""
+  * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
   * ^property[=].valueString = "IMMZ.D5.DT.Varicellacontraindications"
   * ^property[+].code = #"tab"

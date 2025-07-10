@@ -5,7 +5,6 @@ Description:  "Value Set for Decision Logic For Decision Table IMMZ.D2.DT.Choler
 * ^experimental = false
 * include DecisionLogic#"Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years"
 * include DecisionLogic#"Clients age"
-* include DecisionLogic#""
 * include DecisionLogic#"Clients age is more than 5 years"
 * include DecisionLogic#"Client is due for cholera vaccination"
 * include DecisionLogic#"Should vaccinate client with cholera dose as no cholera doses have been administered."

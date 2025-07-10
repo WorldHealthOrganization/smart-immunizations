@@ -5,8 +5,6 @@ Description:  "Value Set for Decision Logic For Tab Seasonalinfluenza. Autogener
 * ^experimental = false
 * include DecisionLogic#"Inactivated trivalent and quadrivalent vaccines, 2-dose schedule"
 * include DecisionLogic#"Number of seasonal influenza primary series doses administered"
-* include DecisionLogic#""
-* include DecisionLogic#"–"
 * include DecisionLogic#"Client is not due for seasonal influenza vaccination"
 * include DecisionLogic#"Should not vaccinate client with first seasonal influenza dose as clients age is less than 6 months."
 * include DecisionLogic#"No seasonal influenza primary series doses were administered"

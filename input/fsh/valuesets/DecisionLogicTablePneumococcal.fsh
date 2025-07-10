@@ -5,8 +5,6 @@ Description:  "Value Set for Decision Logic For Decision Table IMMZ.D2.DT.Pneumo
 * ^experimental = false
 * include DecisionLogic#"3 primary doses (3p+0)"
 * include DecisionLogic#"Number of pneumococcal primary series doses administered"
-* include DecisionLogic#""
-* include DecisionLogic#"–"
 * include DecisionLogic#"Client is not due for pneumococcal vaccination"
 * include DecisionLogic#"Should not vaccinate client with first pneumococcal dose as clients age is less than 6 weeks."
 * include DecisionLogic#"No pneumococcal primary series doses were administered"
