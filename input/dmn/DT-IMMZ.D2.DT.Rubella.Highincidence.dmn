@@ -1,0 +1,106 @@
+<dmn:definitions xmlns:dmn="https://www.omg.org/spec/DMN/20240513/MODEL/" namespace="http://smart.who.int/immunizations" name="DT-IMMZ.D2.DT.Rubella.Highincidence" id="httpsmart.who.intimmunizationsdmnDT-IMMZ.D2.DT.Rubella.Highincidence.dmn">
+  <dmn:decision id="DT-IMMZ.D2.DT.Rubella.Highincidence" name="DT-IMMZ.D2.DT.Rubella.Highincidence">
+    <dmn:question>Determine if the client is due for a rubella vaccination according to the national immunization schedule</dmn:question>
+    <dmn:usingTask href="http://smart.who.int/immunizations/bpmn/IMMZ.D2.bpmn#Determine%20required%20vaccination%28s%29%20if%20any"/>
+    <dmn:decisionTable>
+      <dmn:input id="input.IMMZ.D2.DT.Rubella.Highincidence.Countrieswithhighincidenceandmortalityfromrubella" label="Countries with high incidence and mortality from rubella">
+        <dmn:inputExpression id="inputExpression.IMMZ.D2.DT.Rubella.Highincidence.Countrieswithhighincidenceandmortalityfromrubella" typeRef="string">
+          <dmn:text>Countries with high incidence and mortality from rubella</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="output.IMMZ.D2.DT.Rubella.Highincidence.CarePlan" label="Care Plan">
+        <dmn:description>Produce a suggested Care Plan for consideration by health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.IMMZ.D2.DT.Rubella.Highincidence.Guidancedisplayedtohealthworker" label="Guidance displayed to health worker">
+        <dmn:description>Request to communicate guidance to the health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.IMMZ.D2.DT.Rubella.Highincidence.Annotations" label="Annotations">
+        <dmn:description>Additional information for the health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.IMMZ.D2.DT.Rubella.Highincidence.References" label="Reference(s)">
+        <dmn:description>Reference for the source content (L1)</dmn:description>
+      </dmn:output>
+      <dmn:rule id="rule.dt.IMMZ.D2.DT.Rubella.Highincidence.2">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Rubella-containing vaccines" and "Type of dose" = "Primary series")</dmn:description>
+          <dmn:text>Number of rubella primary series doses administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:text/>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.dt.IMMZ.D2.DT.Rubella.Highincidence.3">
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for rubella vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any vaccines due and inform the caregiver of when to come back for the first dose.</dmn:description>
+          <dmn:text>Should not vaccinate client with rubella dose as clients age is less than 9 months.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>The first dose of rubella-containing vaccine can be delivered at 9 months of age, due to a high level of measles virus transmission.</dmn:text>
+        </dmn:annotationEntry>
+        <dmn:annotationEntry>
+          <dmn:text>WHO recommendations for routine immunization – summary tables (March 2023) (1)</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.dt.IMMZ.D2.DT.Rubella.Highincidence.4">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Rubella-containing vaccines" and "Type of dose" = "Primary series") = 0</dmn:description>
+          <dmn:text>No rubella primary series dose was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Due"</dmn:description>
+          <dmn:text>Client is due for rubella vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should vaccinate client with rubella dose as no rubella doses were administered, client is within the appropriate age range and no live vaccine was administered in the last 4 weeks.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>The first dose of rubella-containing vaccine can be delivered at 9 months of age, due to a high level of measles virus transmission.</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.dt.IMMZ.D2.DT.Rubella.Highincidence.5">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Rubella-containing vaccines" and "Type of dose" = "Primary series") = 0</dmn:description>
+          <dmn:text>No rubella primary series dose was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for rubella vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any other vaccines due.</dmn:description>
+          <dmn:text>Should not vaccinate client with rubella dose as live vaccine was administered in the last 4 weeks.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Live vaccines should be given either simultaneously with rubella-containing vaccines, or at least 4 weeks apart. An exception to this is oral poliovirus vaccine, which can be given at any time before or after rubella-containing vaccines without interfering in the response to either vaccine. WHO recommends co-administration of rubella-containing vaccines and yellow fever-containing vaccines.</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.dt.IMMZ.D2.DT.Rubella.Highincidence.6">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Rubella-containing vaccines" and "Type of dose" = "Primary series") = 1</dmn:description>
+          <dmn:text>One rubella primary series dose was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Complete"
+"Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Rubella-containing vaccines")</dmn:description>
+          <dmn:text>Rubella immunization schedule is complete</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any other vaccines due.</dmn:description>
+          <dmn:text>Rubella immunization schedule is complete. One rubella primary series dose was administered.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>–</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+</dmn:definitions>

@@ -1,0 +1,172 @@
+<dmn:definitions xmlns:dmn="https://www.omg.org/spec/DMN/20240513/MODEL/" namespace="http://smart.who.int/immunizations" name="DT-IMMZ.D2.DT.TBE.EnceVir" id="httpsmart.who.intimmunizationsdmnDT-IMMZ.D2.DT.TBE.EnceVir.dmn">
+  <dmn:decision id="DT-IMMZ.D2.DT.TBE.EnceVir" name="DT-IMMZ.D2.DT.TBE.EnceVir">
+    <dmn:question>Determine if the client is due for a tick-borne encephalitis (TBE) vaccination according to the national immunization schedule</dmn:question>
+    <dmn:usingTask href="http://smart.who.int/immunizations/bpmn/IMMZ.D2.bpmn#Determine%20required%20vaccination%28s%29%20if%20any"/>
+    <dmn:decisionTable>
+      <dmn:input id="input.IMMZ.D2.DT.TBE.EnceVir.EnceVirschedule" label="EnceVir schedule">
+        <dmn:inputExpression id="inputExpression.IMMZ.D2.DT.TBE.EnceVir.EnceVirschedule" typeRef="string">
+          <dmn:text>(In areas where the disease is highly endemic, implying that there is a high individual risk of infection, WHO recommends that vaccination be offered to all age groups, including children					)</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="output.IMMZ.D2.DT.TBE.EnceVir.CarePlan" label="Care Plan">
+        <dmn:description>Produce a suggested Care Plan for consideration by health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.IMMZ.D2.DT.TBE.EnceVir.Guidancedisplayedtohealthworker" label="Guidance displayed to health worker">
+        <dmn:description>Request to communicate guidance to the health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.IMMZ.D2.DT.TBE.EnceVir.Annotations" label="Annotations">
+        <dmn:description>Additional information for the health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.IMMZ.D2.DT.TBE.EnceVir.References" label="Reference(s)">
+        <dmn:description>Reference for the source content (L1)</dmn:description>
+      </dmn:output>
+      <dmn:rule id="rule.dt.IMMZ.D2.DT.TBE.EnceVir.2">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "TBE vaccines" and "Type of dose" = "Primary series")</dmn:description>
+          <dmn:text>Number of TBE primary series doses administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:text/>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.dt.IMMZ.D2.DT.TBE.EnceVir.3">
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for TBE vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any vaccines due and inform the caregiver of when to come back for the first dose.</dmn:description>
+          <dmn:text>Should not vaccinate client with first TBE dose as clients age is less than 3 years.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>The EnceVir vaccine is not licensed for use in children aged under 3 years1;</dmn:text>
+        </dmn:annotationEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Vaccines against tick-borne encephalitis: WHO position paper (June 2011) (19)</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.dt.IMMZ.D2.DT.TBE.EnceVir.4">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "TBE vaccines" and "Type of dose" = "Primary series") = 0</dmn:description>
+          <dmn:text>No TBE primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Due"</dmn:description>
+          <dmn:text>Client is due for TBE vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should vaccinate client with first TBE dose as no TBE doses have been administered and clients age is more than 3 years.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>The EnceVir vaccine is licensed for use in people aged 3 years and older.</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.dt.IMMZ.D2.DT.TBE.EnceVir.5">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "TBE vaccines" and "Type of dose" = "Primary series") = 1</dmn:description>
+          <dmn:text>One TBE primary series dose was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for TBE vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any vaccines due and inform the caregiver of when to come back for the next dose</dmn:description>
+          <dmn:text>Should not vaccinate client with second TBE dose as the latest dose was administered less than 5 months ago.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>The manufacturer of EnceVir recommends 2 doses given at an interval of 5–7 months. For EnceVir, there is a rapid schedule for emergency situations: an interval of 1–2 months between the first 2 doses. </dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.dt.IMMZ.D2.DT.TBE.EnceVir.6">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "TBE vaccines" and "Type of dose" = "Primary series") = 1</dmn:description>
+          <dmn:text>One TBE primary series dose was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Due"</dmn:description>
+          <dmn:text>Client is due for TBE vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should vaccinate client with second TBE dose as the latest dose was administered more than 5 months ago.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>The manufacturer of EnceVir recommends 2 doses given at an interval of 5-7 months.</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.dt.IMMZ.D2.DT.TBE.EnceVir.7">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "TBE vaccines" and "Type of dose" = "Primary series") = 2</dmn:description>
+          <dmn:text>Two TBE primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for TBE vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any vaccines due and inform the caregiver of when to come back for the next dose</dmn:description>
+          <dmn:text>Should not vaccinate client with third TBE dose as the latest dose was administered less than 12 months ago.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>The recommended interval is 12 months between the second and third doses.</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.dt.IMMZ.D2.DT.TBE.EnceVir.8">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "TBE vaccines" and "Type of dose" = "Primary series") = 2</dmn:description>
+          <dmn:text>Two TBE primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Due"</dmn:description>
+          <dmn:text>Client is due for TBE vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should vaccinate client with third TBE dose as the latest dose was administered more than 12 months ago.</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.dt.IMMZ.D2.DT.TBE.EnceVir.9">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "TBE vaccines" and "Type of dose" = "Primary series") = 3</dmn:description>
+          <dmn:text>Three TBE primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"
+"Completed the primary vaccination series" = TRUE (where "Vaccine type" = "TBE vaccines")</dmn:description>
+          <dmn:text>Primary series is complete. Client is not due for TBE booster dose</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should not vaccinate client with TBE booster dose as the latest TBE dose was administered less than 3 years ago.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Further booster doses are recommended at 3-year intervals.</dmn:text>
+        </dmn:annotationEntry>
+        <dmn:annotationEntry>
+          <dmn:text>WHO recommendations for routine immunization – summary tables (March 2023) (1)</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.dt.IMMZ.D2.DT.TBE.EnceVir.10">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "TBE vaccines" and "Type of dose" = "Primary series") = 3</dmn:description>
+          <dmn:text>Three TBE primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Due"
+"Completed the primary vaccination series" = TRUE (where "Vaccine type" = "TBE vaccines")</dmn:description>
+          <dmn:text>Primary series is complete. Client is due for TBE booster dose</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should vaccinate client with TBE booster dose as the primary series has been completed and the latest TBE dose was administered more than 3 years ago.</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+</dmn:definitions>
