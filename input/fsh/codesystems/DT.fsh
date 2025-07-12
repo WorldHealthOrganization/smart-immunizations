@@ -32,14 +32,6 @@ define "Number of BCG Primary Series Doses Administered":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Number of BCG primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "BCG vaccines" and "Type of dose" = "Primary series")
-
-
-
 //Found in input/cql/IMMZD2DTBCGElements.cql
 
 define "Number of BCG Primary Series Doses Administered":
@@ -163,14 +155,6 @@ define "Is client immunologically stable":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Is client immunologically stable":
-  //CQL AUTHORS: you need to insert stuff here
-  // Is client immunologically stable
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -221,31 +205,7 @@ define "Time passed since a live vaccine was administered":
 
 
 
-//Found in input/cql/YellowfeverElements.cql
-
-define "Time passed since a live vaccine was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE)
-
-
-
-//Found in input/cql/BCGElements.cql
-
-define "Time passed since a live vaccine was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE)
-
-
-
 //Found in input/cql/DTElements-Rotavirus.cql
-
-define "Time passed since a live vaccine was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE)
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Time passed since a live vaccine was administered":
   //CQL AUTHORS: you need to insert stuff here
@@ -267,14 +227,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "Is client clinically well":
-  //CQL AUTHORS: you need to insert stuff here
-  // Is client clinically well
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "Is client clinically well":
   //CQL AUTHORS: you need to insert stuff here
@@ -307,14 +259,6 @@ define "No BCG primary series dose was administered":
 
 define "No BCG primary series dose was administered":
   "Number of BCG Primary Series Doses Administered" = 0
-
-
-
-//Found in input/cql/BCGElements.cql
-
-define "No BCG primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "BCG vaccines" and "Type of dose" = "Primary series") = 0
 
 
 
@@ -402,14 +346,6 @@ define "No live vaccine was administered":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "No live vaccine was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) IS NULL
-
-
-
 //Found in input/cql/IMMZEncounterElements.cql
 
 define "No live vaccine was administered":
@@ -457,14 +393,6 @@ define "Client is due for BCG vaccination":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Client is due for BCG vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -479,14 +407,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "Should vaccinate client with first BCG dose as no BCG dose was administered, client is within age range, HIV status is not positive and no live vaccine was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "Should vaccinate client with first BCG dose as no BCG dose was administered, client is within age range, HIV status is not positive and no live vaccine was administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -519,14 +439,6 @@ define "Live vaccine was administered in the last four weeks":
 
 define "Live vaccine was administered in the last four weeks":
   Encounter."Live vaccine was administered in the last 4 weeks"
-
-
-
-//Found in input/cql/BCGElements.cql
-
-define "Live vaccine was administered in the last four weeks":
-  //CQL AUTHORS: you need to insert stuff here
-  // Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
 
 
 
@@ -580,14 +492,6 @@ define "Client is not due for BCG vaccination":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Client is not due for BCG vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -602,14 +506,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -673,14 +569,6 @@ define "Client is currently receiving antiretroviral therapy":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Client is currently receiving antiretroviral therapy":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Currently on ART" = TRUE
-
-
-
 //Found in input/cql/IMMZEncounterElements.cql
 
 define "Client is currently receiving antiretroviral therapy":
@@ -730,14 +618,6 @@ define "Client is immunologically stable":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Client is immunologically stable":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunologically stable" = TRUE
-
-
-
 //Found in input/cql/IMMZEncounterElements.cql
 
 define "Client is immunologically stable":
@@ -766,14 +646,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "Should vaccinate client with first BCG dose as no BCG dose was administered, client is immunologically stable and no live vaccine was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "Should vaccinate client with first BCG dose as no BCG dose was administered, client is immunologically stable and no live vaccine was administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -816,14 +688,6 @@ define "Client is not immunologically stable":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Client is not immunologically stable":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunologically stable" = FALSE
-
-
-
 //Found in input/cql/IMMZEncounterElements.cql
 
 define "Client is not immunologically stable":
@@ -852,14 +716,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "Should not vaccinate client with first BCG dose as client is not immunologically stable.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "Should not vaccinate client with first BCG dose as client is not immunologically stable.":
   //CQL AUTHORS: you need to insert stuff here
@@ -902,14 +758,6 @@ define "Client is currently not receiving antiretroviral therapy":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Client is currently not receiving antiretroviral therapy":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Currently on ART" = FALSE
-
-
-
 //Found in input/cql/IMMZEncounterElements.cql
 
 define "Client is currently not receiving antiretroviral therapy":
@@ -938,14 +786,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "Should not vaccinate client with first BCG dose as ART has not been started.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "Should not vaccinate client with first BCG dose as ART has not been started.":
   //CQL AUTHORS: you need to insert stuff here
@@ -1023,14 +863,6 @@ define "No live vaccine was administered in the last four weeks":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "No live vaccine was administered in the last four weeks":
-  //CQL AUTHORS: you need to insert stuff here
-  // Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks
-
-
-
 //Found in input/cql/IMMZD2DTBCGElements.cql
 
 define "No live vaccine was administered in the last four weeks":
@@ -1073,14 +905,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -1138,14 +962,6 @@ define "Clinical judgement is required. Create clinical note.":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Clinical judgement is required. Create clinical note.":
-  //CQL AUTHORS: you need to insert stuff here
-  // '"Immunization recommendation status" = "Further evaluation needed"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -1160,14 +976,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "Recommend the client to perform TB infection testing.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Re-evaluate client once the test result is available.
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "Recommend the client to perform TB infection testing.":
   //CQL AUTHORS: you need to insert stuff here
@@ -1252,14 +1060,6 @@ define "Client is not clinically well":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Client is not clinically well":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Clinically well" = FALSE
-
-
-
 //Found in input/cql/IMMZEncounterElements.cql
 
 define "Client is not clinically well":
@@ -1287,14 +1087,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "Should not vaccinate client with first BCG dose as client is not clinically well.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "Should not vaccinate client with first BCG dose as client is not clinically well.":
   //CQL AUTHORS: you need to insert stuff here
@@ -1337,14 +1129,6 @@ define "Client is clinically well":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Client is clinically well":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Clinically well" = TRUE
-
-
-
 //Found in input/cql/IMMZEncounterElements.cql
 
 define "Client is clinically well":
@@ -1380,14 +1164,6 @@ define "Should vaccinate client with first BCG dose as no BCG dose was administe
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Should vaccinate client with first BCG dose as no BCG dose was administered, client is receiving ART, clinically well and immunologically stable. No live vaccine was administered in the last 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -1402,14 +1178,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "Should not vaccinate client with first BCG dose as client is not currently receiving ART.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "Should not vaccinate client with first BCG dose as client is not currently receiving ART.":
   //CQL AUTHORS: you need to insert stuff here
@@ -1467,14 +1235,6 @@ define "Should not vaccinate client with first BCG dose as client is not immnolo
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Should not vaccinate client with first BCG dose as client is not immnologically stable.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -1489,14 +1249,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "Should vaccinate client with first BCG dose as no BCG dose was administered, client is receiving ART, clinically well and immunologically stable. No live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "Should vaccinate client with first BCG dose as no BCG dose was administered, client is receiving ART, clinically well and immunologically stable. No live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -1529,14 +1281,6 @@ define "One BCG primary series dose was administered":
 
 define "One BCG primary series dose was administered":
   "Number of BCG Primary Series Doses Administered" = 1
-
-
-
-//Found in input/cql/BCGElements.cql
-
-define "One BCG primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "BCG vaccines" and "Type of dose" = "Primary series") = 1
 
 
 
@@ -1579,16 +1323,6 @@ define "BCG immunization schedule is complete":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "BCG immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // '"Immunization recommendation status" = "Complete"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "BCG vaccines")
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -1603,14 +1337,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "BCG immunization schedule is complete. One BCG primary series dose was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due.
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "BCG immunization schedule is complete. One BCG primary series dose was administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -1644,14 +1370,6 @@ define "The client is pregnant":
   exists "CI Currently pregnant Observation"
   or exists "CI Currently pregnant Condition"
   or exists WE."Pregnant Observation"
-
-
-
-//Found in input/cql/MeaslesElements.cql
-
-define "The client is pregnant":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Currently pregnant"
 
 
 
@@ -1692,14 +1410,6 @@ define "The client is pregnant":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "The client is pregnant":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Currently pregnant"
-
-
-
 //Found in input/cql/IMMZEncounterElements.cql
 
 define "The client is pregnant":
@@ -1737,14 +1447,6 @@ define "Bacille Calmette–Guérin (BCG) vaccination is contraindicated":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Bacille Calmette–Guérin (BCG) vaccination is contraindicated":
-  //CQL AUTHORS: you need to insert stuff here
-  // '"Immunization recommendation status" = "Contraindicated"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -1759,14 +1461,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "Do not vaccinate client with BCG as BCG vaccination is not recommended during pregnancy":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with BCG as BCG vaccination is not recommended during pregnancy
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "Do not vaccinate client with BCG as BCG vaccination is not recommended during pregnancy":
   //CQL AUTHORS: you need to insert stuff here
@@ -1817,26 +1511,10 @@ define "The client has history of severe allergic reactions":
 
 
 
-//Found in input/cql/DengueElements.cql
-
-define "The client has history of severe allergic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severe allergic reactions"
-
-
-
 //Found in input/cql/IMMZD5DTRabiesElements.cql
 
 define "The client has history of severe allergic reactions":
   Elements."The client has history of severe allergic reactions"
-
-
-
-//Found in input/cql/HepatitisBElements.cql
-
-define "The client has history of severe allergic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severe allergic reactions"
 
 
 
@@ -1848,22 +1526,6 @@ define "The client has history of severe allergic reactions":
 
 
 //Found in input/cql/DTElements-Rubella.cql
-
-define "The client has history of severe allergic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severe allergic reactions"
-
-
-
-//Found in input/cql/RubellaElements.cql
-
-define "The client has history of severe allergic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severe allergic reactions"
-
-
-
-//Found in input/cql/MeaslesElements.cql
 
 define "The client has history of severe allergic reactions":
   //CQL AUTHORS: you need to insert stuff here
@@ -1901,14 +1563,6 @@ define "The client has history of severe allergic reactions":
 
 
 //Found in input/cql/DTElements-Measles.cql
-
-define "The client has history of severe allergic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severe allergic reactions"
-
-
-
-//Found in input/cql/HPVElements.cql
 
 define "The client has history of severe allergic reactions":
   //CQL AUTHORS: you need to insert stuff here
@@ -1982,26 +1636,10 @@ define "The client has history of severe allergic reactions":
 
 
 
-//Found in input/cql/RabiesElements.cql
-
-define "The client has history of severe allergic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severe allergic reactions"
-
-
-
 //Found in input/cql/IMMZD5DTDengueElements.cql
 
 define "The client has history of severe allergic reactions":
   Elements."The client has history of severe allergic reactions"
-
-
-
-//Found in input/cql/BCGElements.cql
-
-define "The client has history of severe allergic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // '"Potential contraindications" = "Severe allergic reactions"
 
 
 
@@ -2017,14 +1655,6 @@ define "The client has history of severe allergic reactions":
 
 define "The client has history of severe allergic reactions":
   Elements."The client has history of severe allergic reactions"
-
-
-
-//Found in input/cql/MeningococcalElements.cql
-
-define "The client has history of severe allergic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severe allergic reactions"
 
 
 
@@ -2065,14 +1695,6 @@ define "The client has history of severe allergic reactions":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "The client has history of severe allergic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severe allergic reactions"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -2102,14 +1724,6 @@ define "BCG vaccination could be contraindicated. Clinical judgement is required
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.":
-  //CQL AUTHORS: you need to insert stuff here
-  // '"Immunization recommendation status" = "Further evaluation needed"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -2124,14 +1738,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "Do not vaccinate client with BCG if the client had previous allergic reaction to any component of the vaccine":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with BCG if the client had previous allergic reaction to any component of the vaccine
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "Do not vaccinate client with BCG if the client had previous allergic reaction to any component of the vaccine":
   //CQL AUTHORS: you need to insert stuff here
@@ -2167,23 +1773,7 @@ define "The client has immunodeficiency syndromes":
     
 
 
-//Found in input/cql/DengueElements.cql
-
-define "The client has immunodeficiency syndromes":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Immunodeficiency syndromes"
-
-
-
 //Found in input/cql/DTElements-Rubella.cql
-
-define "The client has immunodeficiency syndromes":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Immunodeficiency syndromes"
-
-
-
-//Found in input/cql/RubellaElements.cql
 
 define "The client has immunodeficiency syndromes":
   //CQL AUTHORS: you need to insert stuff here
@@ -2249,14 +1839,6 @@ define "The client has immunodeficiency syndromes":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "The client has immunodeficiency syndromes":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Immunodeficiency syndromes"
-
-
-
 //Found in input/cql/DTElements-Polio.cql
 
 define "The client has immunodeficiency syndromes":
@@ -2278,14 +1860,6 @@ define "The client has immunodeficiency syndromes":
   exists "CI Immunodeficiency syndromes Observation"
     or exists "CI Immunodeficiency syndromes Condition"
     
-
-
-//Found in input/cql/PolioElements.cql
-
-define "The client has immunodeficiency syndromes":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Immunodeficiency syndromes"
-
 
 
 """
@@ -2317,14 +1891,6 @@ define "BCG vaccination is contraindicated":
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "BCG vaccination is contraindicated":
-  //CQL AUTHORS: you need to insert stuff here
-  // '"Immunization recommendation status" = "Contraindicated"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -2339,14 +1905,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-BCG.cql
-
-define "Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients with immunodeficiency syndromes":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients with immunodeficiency syndromes
-
-
-
-//Found in input/cql/BCGElements.cql
 
 define "Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients with immunodeficiency syndromes":
   //CQL AUTHORS: you need to insert stuff here
@@ -2390,14 +1948,6 @@ define "The client is exposed to immunosuppressive treatment":
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "The client is exposed to immunosuppressive treatment":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Exposed to immunosuppressive treatment"
-
-
-
 //Found in input/cql/DTElements-BCG.cql
 
 define "The client is exposed to immunosuppressive treatment":
@@ -2417,14 +1967,6 @@ define "The client is exposed to immunosuppressive treatment":
 
 define "The client is exposed to immunosuppressive treatment":
   Elements."The client is exposed to immunosuppressive treatment"
-
-
-
-//Found in input/cql/BCGElements.cql
-
-define "The client is exposed to immunosuppressive treatment":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Exposed to immunosuppressive treatment"
 
 
 
@@ -2493,14 +2035,6 @@ define "Do not vaccinate client with BCG as BCG vaccination is contraindicated f
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients undergoing immunosuppressive treatment":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients undergoing immunosuppressive treatment
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -2551,14 +2085,6 @@ define "Do not vaccinate client with BCG if client is exposed to or receives imm
 
 
 
-//Found in input/cql/BCGElements.cql
-
-define "Do not vaccinate client with BCG if client is exposed to or receives immunosuppressive treatment":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with BCG if client is exposed to or receives immunosuppressive treatment
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -2572,15 +2098,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Birth dose administration":
-  //CQL AUTHORS: you need to insert stuff here
-  // Birth dose administration
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Birth dose administration":
   //CQL AUTHORS: you need to insert stuff here
@@ -2601,15 +2119,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Number of hepatitis B birth doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Birth dose" = TRUE)
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Number of hepatitis B birth doses administered":
   //CQL AUTHORS: you need to insert stuff here
@@ -2630,15 +2140,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Hepatitis B birth dose was not administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Birth dose" = TRUE) = 0
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
 
 define "Hepatitis B birth dose was not administered":
   "Number of Hepatitis B Dose 0 Doses Administered" = 0
@@ -2673,15 +2175,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Client is due for hepatitis B monovalent vaccine":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due" (where "Type of hepatitis B dose" = "Hepatitis B monovalent vaccine")
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Client is due for hepatitis B monovalent vaccine":
   //CQL AUTHORS: you need to insert stuff here
@@ -2710,15 +2204,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Should vaccinate client with hepatitis B birth dose, as a monovalent dose. Check for contraindications.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should vaccinate client with hepatitis B birth dose, as a monovalent dose. Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Should vaccinate client with hepatitis B birth dose, as a monovalent dose. Check for contraindications.":
   //CQL AUTHORS: you need to insert stuff here
@@ -2739,15 +2225,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Client should follow delayed-start decision logic":
-  //CQL AUTHORS: you need to insert stuff here
-  // Client should follow delayed-start decision logic
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Client should follow delayed-start decision logic":
   //CQL AUTHORS: you need to insert stuff here
@@ -2776,15 +2254,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "The client has a delayed start. Please follow the delayed start schedule.":
-  //CQL AUTHORS: you need to insert stuff here
-  // The client has a delayed start. Please follow the delayed start schedule.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "The client has a delayed start. Please follow the delayed start schedule.":
   //CQL AUTHORS: you need to insert stuff here
@@ -2805,15 +2275,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Hepatitis B birth dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Birth dose" = TRUE) = 1
-
-
-
-//Found in input/cql/IMMZD18SHepatitisBBirthLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD18SHepatitisBBirthLogic.cql
 
 define "Hepatitis B birth dose was administered":
   Encounter."Hepatitis B birth dose was administered"
@@ -2856,15 +2318,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Client is not due for the hepatitis B birth dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Client is not due for the hepatitis B birth dose":
   //CQL AUTHORS: you need to insert stuff here
@@ -2892,15 +2346,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Hepatitis B birth dose was already administered. Check hepatitis B immunization schedule.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Hepatitis B birth dose was already administered. Check hepatitis B immunization schedule.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Hepatitis B birth dose was already administered. Check hepatitis B immunization schedule.":
   //CQL AUTHORS: you need to insert stuff here
@@ -2921,15 +2367,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "3-dose schedule (birth dose + 2 primary series doses), on-time start":
-  //CQL AUTHORS: you need to insert stuff here
-  // 3-dose schedule (birth dose + 2 primary series doses), on-time start
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "3-dose schedule (birth dose + 2 primary series doses), on-time start":
   //CQL AUTHORS: you need to insert stuff here
@@ -2950,15 +2388,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Number of hepatitis B primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series")
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
 
 define "Number of Hepatitis B Primary Series Doses Administered":
   Count("Hepatitis B Primary Series Doses Administered to Patient")
@@ -2993,15 +2423,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "No hepatitis B primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
 
 define "No hepatitis B primary series doses were administered":
   "Number of Hepatitis B Primary Series Doses Administered" = 0
@@ -3036,15 +2458,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Client is not due for a hepatitis B vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisB3DelayedLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisB3DelayedLogic.cql
 
 define "Client is not due for a hepatitis B vaccination":
   "Client is not due for a hepatitis B vaccination Case 1"
@@ -3114,15 +2528,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Client is due for a hepatitis B vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisB3DelayedLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisB3DelayedLogic.cql
 
 define "Client is due for a hepatitis B vaccination":
   "Client is due for a hepatitis B vaccination Case 1"
@@ -3191,15 +2597,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "One hepatitis B primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 1
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
 
 define "One hepatitis B primary series dose was administered":
   "Number of Hepatitis B Primary Series Doses Administered" = 1
@@ -3232,15 +2630,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -3261,15 +2651,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -3290,15 +2672,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Two hepatitis B primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 2
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
 
 define "Two hepatitis B primary series doses were administered":
   "Number of Hepatitis B Primary Series Doses Administered" = 2
@@ -3335,17 +2709,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Hepatitis B immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // '"Immunization recommendation status" = "Complete"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Hepatitis B-containing vaccines")
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisB3DelayedLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisB3DelayedLogic.cql
 
 define "Hepatitis B immunization schedule is complete":
   Encounter."Three hepatitis B doses were administered"
@@ -3390,15 +2754,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Hepatitis B immunization schedule is complete for client whose weight at birth was over 2000 g and who was not premature infant. Two hepatitis B primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Hepatitis B immunization schedule is complete for client whose weight at birth was over 2000 g and who was not premature infant. Two hepatitis B primary series doses were administered.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Hepatitis B immunization schedule is complete for client whose weight at birth was over 2000 g and who was not premature infant. Two hepatitis B primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -3419,15 +2775,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Should not vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B-containing vaccine was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due, and inform the caregiver of when to come back for the third dose.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Should not vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B-containing vaccine was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -3448,15 +2796,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Should vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B-containing vaccine administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Should vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B-containing vaccine administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -3477,15 +2817,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Should not vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Should not vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -3506,15 +2838,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Should vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Should vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -3535,15 +2859,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Three hepatitis B primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 3
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
 
 define "Three hepatitis B primary series doses were administered":
   "Number of Hepatitis B Primary Series Doses Administered" = 3
@@ -3578,15 +2894,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "The hepatitis B immunization schedule is complete for client whose weight at birth was below 2000 g and who was a premature infant. Four hepatitis B primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "The hepatitis B immunization schedule is complete for client whose weight at birth was below 2000 g and who was a premature infant. Four hepatitis B primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -3607,15 +2915,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "4-dose schedule (birth dose + 3 primary series doses), on-time start":
-  //CQL AUTHORS: you need to insert stuff here
-  // 4-dose schedule (birth dose + 3 primary series doses), on-time start
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "4-dose schedule (birth dose + 3 primary series doses), on-time start":
   //CQL AUTHORS: you need to insert stuff here
@@ -3636,15 +2936,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "One hepatitis B primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 1
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
 
 define "One hepatitis B primary series doses were administered":
   "One hepatitis B primary series dose was administered"
@@ -3679,15 +2971,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Should not vaccinate client with third hepatitis B dose as the latest Hepatitis B dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due, and inform the caregiver of when to come back for the third dose.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Should not vaccinate client with third hepatitis B dose as the latest Hepatitis B dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -3708,15 +2992,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Should vaccinate client with third hepatitis B dose as the latest Hepatitis B dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Should vaccinate client with third hepatitis B dose as the latest Hepatitis B dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -3737,15 +3013,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "The hepatitis B immunization schedule is complete. Three hepatitis B primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "The hepatitis B immunization schedule is complete. Three hepatitis B primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -3766,15 +3034,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "3-dose schedule (no birth dose + 3 doses), delayed start":
-  //CQL AUTHORS: you need to insert stuff here
-  // 3-dose schedule (no birth dose + 3 doses), delayed start
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "3-dose schedule (no birth dose + 3 doses), delayed start":
   //CQL AUTHORS: you need to insert stuff here
@@ -3795,15 +3055,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Number of hepatitis B doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines")
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
 
 define "Number of Hepatitis B Doses Administered":
   Count("Hepatitis B Doses Administered to Patient")
@@ -3838,15 +3090,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "No hepatitis B doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines") = 0
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
 
 define "No hepatitis B doses were administered":
   "Number of Hepatitis B Doses Administered" = 0
@@ -3881,15 +3125,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Client is due for hepatitis B vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisB3DelayedLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisB3DelayedLogic.cql
 
 define "Client is due for hepatitis B vaccination":
   Encounter."No hepatitis B doses were administered"
@@ -3918,15 +3154,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Should vaccinate client with first hepatitis B dose as hepatitis B birth dose was not administered. The first hepatitis B dose should be administered as soon as possible.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Should vaccinate client with first hepatitis B dose as hepatitis B birth dose was not administered. The first hepatitis B dose should be administered as soon as possible.":
   //CQL AUTHORS: you need to insert stuff here
@@ -3947,15 +3175,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "One hepatitis B dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines") = 1
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
 
 define "One hepatitis B dose was administered":
   "Number of Hepatitis B Doses Administered" = 1
@@ -3990,15 +3210,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -4019,15 +3231,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Two hepatitis B doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines") = 2
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
 
 define "Two hepatitis B doses were administered":
   "Number of Hepatitis B Doses Administered" = 2
@@ -4062,15 +3266,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. Two hepatitis B doses have been administered to the client.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. Two hepatitis B doses have been administered to the client.":
   //CQL AUTHORS: you need to insert stuff here
@@ -4091,15 +3287,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Should not vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered less than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Should not vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered less than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -4120,15 +3308,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Should vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered more than 6 months ago and the latest hepatitis B dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Should vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered more than 6 months ago and the latest hepatitis B dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -4149,15 +3329,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Three hepatitis B doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines") = 3
-
-
-
-//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTHepatitisBEncounterElements.cql
 
 define "Three hepatitis B doses were administered":
   "Number of Hepatitis B Doses Administered" = 3
@@ -4192,15 +3364,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Hepatitis B immunization schedule is complete. Three hepatitis B primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Hepatitis B immunization schedule is complete. Three hepatitis B primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -4221,15 +3385,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Hepatitis B vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.":
-  //CQL AUTHORS: you need to insert stuff here
-  // '"Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/IMMZD5DTHepatitisBCILogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTHepatitisBCILogic.cql
 
 define "Hepatitis B vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.":
   Encounter."The client has history of severe allergic reactions"
@@ -4257,15 +3413,7 @@ Referenced in the following locations:
  * Tabs: HepatitisB
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisBElements.cql
-
-define "Do not vaccinate client with hepatitis B if the client had a history of serious allergic reactions to any of the vaccine components. Allergy to yeast is considered a contraindication to immunization with yeast-produced hepatitis B-containing vaccine.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with hepatitis B if the client had a history of serious allergic reactions to any of the vaccine components. Allergy to yeast is considered a contraindication to immunization with yeast-produced hepatitis B-containing vaccine.
-
-
-
-//Found in input/cql/DTElements-HepatitisB.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisB.cql
 
 define "Do not vaccinate client with hepatitis B if the client had a history of serious allergic reactions to any of the vaccine components. Allergy to yeast is considered a contraindication to immunization with yeast-produced hepatitis B-containing vaccine.":
   //CQL AUTHORS: you need to insert stuff here
@@ -4315,14 +3463,6 @@ define "Number of poliovirus birth doses administered":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Number of poliovirus birth doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Dose 0" AND "Birth dose" = TRUE)
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -4348,14 +3488,6 @@ define "bOPV birth dose (a zero dose) was not administered":
 
 define "bOPV birth dose (a zero dose) was not administered":
   "Number of Polio Dose 0 Doses Administered" = 0
-
-
-
-//Found in input/cql/PolioElements.cql
-
-define "bOPV birth dose (a zero dose) was not administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Dose 0" AND "Birth dose" = TRUE) = 0
 
 
 
@@ -4392,14 +3524,6 @@ define "Client is due for the bOPV birth dose":
 define "Client is due for the bOPV birth dose":
   Encounter."bOPV birth dose (a zero dose) was not administered"
     and Encounter."Client's age is less than 1 week"
-
-
-
-//Found in input/cql/PolioElements.cql
-
-define "Client is due for the bOPV birth dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due" (where "Type of poliovirus dose" = "bOPV")
 
 
 
@@ -4453,14 +3577,6 @@ define "Client is not due for the bOPV birth dose":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Client is not due for the bOPV birth dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -4510,14 +3626,6 @@ define "bOPV birth dose (a zero dose) was administered":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "bOPV birth dose (a zero dose) was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Dose 0" AND "Birth dose" = TRUE) = 1
-
-
-
 //Found in input/cql/IMMZD2DTPolioEncounterElements.cql
 
 define "bOPV birth dose (a zero dose) was administered":
@@ -4539,14 +3647,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Poliovirus birth dose was already administered. Check poliovirus immunization schedule.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Poliovirus birth dose was already administered. Check poliovirus immunization schedule.
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Poliovirus birth dose was already administered. Check poliovirus immunization schedule.":
   //CQL AUTHORS: you need to insert stuff here
@@ -4596,14 +3696,6 @@ define "Number of poliovirus primary series doses administered":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Number of poliovirus primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Primary series")
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -4629,14 +3721,6 @@ define "Client is not due for bOPV vaccination":
 
 define "Client is not due for bOPV vaccination":
   Encounter."Client's age is less than 6 weeks"
-
-
-
-//Found in input/cql/PolioElements.cql
-
-define "Client is not due for bOPV vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
 
 
 
@@ -4697,14 +3781,6 @@ define "No poliovirus primary series doses were administered":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "No poliovirus primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
 //Found in input/cql/IMMZD2DTPolioEncounterElements.cql
 
 define "No poliovirus primary series doses were administered":
@@ -4745,14 +3821,6 @@ define "Client is due for bOPV vaccination":
     or "Client is due for bOPV vaccination Case 7"
     or "Client is due for bOPV vaccination Case 8"
     or "Client is due for bOPV vaccination Case 9"
-
-
-
-//Found in input/cql/PolioElements.cql
-
-define "Client is due for bOPV vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due" (where "Type of poliovirus dose" = "bOPV")
 
 
 
@@ -4818,14 +3886,6 @@ define "Client is due for bOPV and IPV vaccination":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Client is due for bOPV and IPV vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due" (where "Type of poliovirus dose" = "bOPV") AND (where "Type of poliovirus dose" = "IPV")
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -4875,14 +3935,6 @@ define "One poliovirus primary series dose was administered":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "One poliovirus primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Primary series") = 1
-
-
-
 //Found in input/cql/IMMZD2DTPolioEncounterElements.cql
 
 define "One poliovirus primary series dose was administered":
@@ -4925,14 +3977,6 @@ define "Client is not due for polio vaccination":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Client is not due for polio vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -4954,14 +3998,6 @@ define "Should not vaccinate client with poliovirus dose as the latest bOPV dose
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Should not vaccinate client with poliovirus dose as the latest bOPV dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the next poliovirus dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -4976,14 +4012,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Should vaccinate client with second bOPV dose as the latest bOPV dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Should vaccinate client with second bOPV dose as the latest bOPV dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -5030,14 +4058,6 @@ define "Client is due for IPV vaccination":
   "Client is due for IPV vaccination Case 1"
     or "Client is due for IPV vaccination Case 2"
     or "Client is due for IPV vaccination Case 3"
-
-
-
-//Found in input/cql/PolioElements.cql
-
-define "Client is due for IPV vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
 
 
 
@@ -5161,14 +4181,6 @@ define "Two poliovirus primary series doses were administered":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Two poliovirus primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Primary series") = 2
-
-
-
 //Found in input/cql/IMMZD2DTPolioEncounterElements.cql
 
 define "Two poliovirus primary series doses were administered":
@@ -5281,14 +4293,6 @@ define "Should not vaccinate client with poliovirus dose as the latest bOPV dose
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Should not vaccinate client with poliovirus dose as the latest bOPV dose was administered less than 4 weeks ago and the latest IPV dose was administered less than 4 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the next poliovirus dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -5303,14 +4307,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Should vaccinate client with second IPV dose as one bOPV dose and one IPV dose were administered, the latest bOPV dose was administered less than 4 weeks ago and the latest IPV dose was administered more than 4 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Should vaccinate client with second IPV dose as one bOPV dose and one IPV dose were administered, the latest bOPV dose was administered less than 4 weeks ago and the latest IPV dose was administered more than 4 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -5339,14 +4335,6 @@ define "Should vaccinate client with second bOPV dose as one bOPV dose and one I
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Should vaccinate client with second bOPV dose as one bOPV dose and one IPV dose were administered, the latest bOPV dose was administered more than 4 weeks ago and the latest IPV dose was administered less than 4 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -5368,14 +4356,6 @@ define "Should vaccinate client with second bOPV dose and second IPV dose as one
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Should vaccinate client with second bOPV dose and second IPV dose as one bOPV dose and one IPV dose were administered, the latest bOPV dose was administered more than 4 weeks ago and the latest IPV dose was administered more than 4 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -5390,14 +4370,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Should vaccinate client with first bOPV dose as bOPV dose was not administered and two IPV doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Should vaccinate client with first bOPV dose as bOPV dose was not administered and two IPV doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -5430,14 +4402,6 @@ define "Three poliovirus primary series doses were administered":
 
 define "Three poliovirus primary series doses were administered":
   "Number of Polio Primary Series Doses Administered" = 3
-
-
-
-//Found in input/cql/PolioElements.cql
-
-define "Three poliovirus primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Primary series") = 3
 
 
 
@@ -5511,14 +4475,6 @@ define "Should not vaccinate client with poliovirus dose as two bOPV doses and o
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Should not vaccinate client with poliovirus dose as two bOPV doses and one IPV dose were administered, the latest bOPV dose was administered less than 4 weeks ago and the latest IPV dose was administered less than 4 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the next poliovirus dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -5533,14 +4489,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Should vaccinate client with second IPV dose as two bOPV doses and one IPV dose were administered, the latest bOPV dose was administered less than 4 weeks ago and the latest IPV dose was administered more than 4 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Should vaccinate client with second IPV dose as two bOPV doses and one IPV dose were administered, the latest bOPV dose was administered less than 4 weeks ago and the latest IPV dose was administered more than 4 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -5569,14 +4517,6 @@ define "Should vaccinate client with third bOPV dose as two bOPV doses and one I
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Should vaccinate client with third bOPV dose as two bOPV doses and one IPV dose were administered, the latest bOPV dose was administered more than 4 weeks ago and the latest IPV dose was administered less than 4 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -5591,14 +4531,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Should vaccinate client with third bOPV dose and second IPV dose as two bOPV doses and one IPV dose were administered, the latest bOPV dose was administered more than 4 weeks ago and the latest IPV dose was administered more than 4 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Should vaccinate client with third bOPV dose and second IPV dose as two bOPV doses and one IPV dose were administered, the latest bOPV dose was administered more than 4 weeks ago and the latest IPV dose was administered more than 4 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -5627,14 +4559,6 @@ define "Should not vaccinate client with poliovirus dose as one bOPV dose and tw
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Should not vaccinate client with poliovirus dose as one bOPV dose and two IPV doses were administered and the latest bOPV dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the next poliovirus dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -5649,14 +4573,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Should vaccinate client with second bOPV dose as one bOPV dose and two IPV doses were administered and the latest bOPV dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Should vaccinate client with second bOPV dose as one bOPV dose and two IPV doses were administered and the latest bOPV dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -5692,14 +4608,6 @@ define "Four poliovirus primary series doses were administered":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Four poliovirus primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Primary series") = 1
-
-
-
 //Found in input/cql/IMMZD2DTPolioEncounterElements.cql
 
 define "Four poliovirus primary series doses were administered":
@@ -5728,14 +4636,6 @@ define "Should not vaccinate client with poliovirus dose as three bOPV doses and
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Should not vaccinate client with poliovirus dose as three bOPV doses and one IPV dose were administered and the latest IPV dose was administered less than 4 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the next poliovirus dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -5750,14 +4650,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Should vaccinate client with second IPV dose as three bOPV doses and one IPV dose were administered and the latest IPV dose was administered more than 4 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Should vaccinate client with second IPV dose as three bOPV doses and one IPV dose were administered and the latest IPV dose was administered more than 4 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -5786,14 +4678,6 @@ define "Should not vaccinate client with poliovirus dose as two bOPV doses and t
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Should not vaccinate client with poliovirus dose as two bOPV doses and two IPV doses were administered and the latest bOPV dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the next poliovirus dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -5808,14 +4692,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Should vaccinate client with third bOPV dose as two bOPV doses and two IPV doses were administered and the latest bOPV dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Should vaccinate client with third bOPV dose as two bOPV doses and two IPV doses were administered and the latest bOPV dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -5848,14 +4724,6 @@ define "Five poliovirus primary series doses were administered":
 
 define "Five poliovirus primary series doses were administered":
   "Number of Polio Primary Series Doses Administered" = 5
-
-
-
-//Found in input/cql/PolioElements.cql
-
-define "Five poliovirus primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Primary series") = 5
 
 
 
@@ -5904,14 +4772,6 @@ define "Polio immunization schedule is complete":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Polio immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -5926,14 +4786,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Polio routine immunization schedule is complete. Five poliovirus primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due.
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Polio routine immunization schedule is complete. Five poliovirus primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -5992,14 +4844,6 @@ define "Client is not due for IPV vaccination":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Client is not due for IPV vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
 //Found in input/cql/IMMZD2DTPolioSequentialLogic.cql
 
 define "Client is not due for IPV vaccination":
@@ -6050,14 +4894,6 @@ define "Should vaccinate client with first IPV dose as client is within appropri
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Should vaccinate client with first IPV dose as client is within appropriate age range and IPV dose was not administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -6072,14 +4908,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Should not vaccinate client with second IPV dose as the latest IPV dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver when to come back for the second dose.
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Should not vaccinate client with second IPV dose as the latest IPV dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -6108,14 +4936,6 @@ define "Should vaccinate client with second IPV dose as the latest IPV dose was 
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Should vaccinate client with second IPV dose as the latest IPV dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -6137,14 +4957,6 @@ define "Should vaccinate client with first bOPV dose as two IPV doses were admin
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Should vaccinate client with first bOPV dose as two IPV doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -6159,14 +4971,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Should not vaccinate client with second bOPV dose as the latest bOPV dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Should not vaccinate client with second bOPV dose as the latest bOPV dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -6220,16 +5024,6 @@ define "Primary series is complete":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Primary series is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Poliovirus-containing vaccines")
-
-
-
 //Found in input/cql/IMMZD2DTPolioSequentialLogic.cql
 
 define "Primary series is complete":
@@ -6258,14 +5052,6 @@ define "Poliovirus primary series is complete. Assess if supplementary bOPV dose
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Poliovirus primary series is complete. Assess if supplementary bOPV dose(s) are necessary and create a clinical note.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -6280,14 +5066,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Inactivated polio vaccine (IPV)-only (in countries, in polio-free regions, with a very low risk of importation and sustained high routine immunization coverage (third dose of the diphtheria–tetanus–pertussis vaccine [DTP3] > 90%)":
-  //CQL AUTHORS: you need to insert stuff here
-  // Inactivated polio vaccine (IPV)-only (in countries, in polio-free regions, with a very low risk of importation and sustained high routine immunization coverage (third dose of the diphtheria–tetanus–pertussis vaccine [DTP3] > 90%)
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Inactivated polio vaccine (IPV)-only (in countries, in polio-free regions, with a very low risk of importation and sustained high routine immunization coverage (third dose of the diphtheria–tetanus–pertussis vaccine [DTP3] > 90%)":
   //CQL AUTHORS: you need to insert stuff here
@@ -6337,14 +5115,6 @@ define "Should vaccinate client with first IPV dose as client is within appropri
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Should vaccinate client with first IPV dose as client is within appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -6366,14 +5136,6 @@ define "Should not vaccinate client with third IPV dose as the latest IPV dose w
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Should not vaccinate client with third IPV dose as the latest IPV dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver when to come back for the third dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -6388,14 +5150,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Should vaccinate client with third IPV dose as the latest poliovirus dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Should vaccinate client with third IPV dose as the latest poliovirus dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -6459,16 +5213,6 @@ define "Primary series is complete. Client is not due for IPV booster dose":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Primary series is complete. Client is not due for IPV booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Poliovirus-containing vaccines")
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -6483,14 +5227,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Should not vaccinate client with IPV booster dose as the latest poliovirus dose was administered less than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver when to come back for the booster dose.
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Should not vaccinate client with IPV booster dose as the latest poliovirus dose was administered less than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -6530,16 +5266,6 @@ define "Primary series is complete. Client is due for IPV booster dose":
     and Encounter."Client's age was 6 weeks when the primary series was started"
     and Encounter."The latest poliovirus dose was administered more than 6 months ago"
     and Encounter."No polio booster dose was administered"
-
-
-
-//Found in input/cql/PolioElements.cql
-
-define "Primary series is complete. Client is due for IPV booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Poliovirus-containing vaccines")
 
 
 
@@ -6585,14 +5311,6 @@ define "Polio immunization schedule is complete. Three poliovirus primary series
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Polio immunization schedule is complete. Three poliovirus primary series doses and a booster dose were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Polio immunization schedule is complete. Three poliovirus primary series doses and a booster dose were administered.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -6621,14 +5339,6 @@ define "Poliovirus vaccination could be contraindicated. Clinical judgement requ
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "Poliovirus vaccination could be contraindicated. Clinical judgement required":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -6643,14 +5353,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Polio.cql
-
-define "Do not vaccinate client with inactivated polio vaccine (IPV) if client has had a previous severe reaction or known allergy to streptomycin, neomycin or polymyxin B.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with oral polio vaccine (OPV) if client has had a allergic reaction to OPV or to the trace antibiotics contained.
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Do not vaccinate client with inactivated polio vaccine (IPV) if client has had a previous severe reaction or known allergy to streptomycin, neomycin or polymyxin B.":
   //CQL AUTHORS: you need to insert stuff here
@@ -6679,14 +5381,6 @@ define "The client is severely immunocompromised":
     
 
 
-//Found in input/cql/DengueElements.cql
-
-define "The client is severely immunocompromised":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severely immunocompromised"
-
-
-
 //Found in input/cql/IMMZD5DTPolioElements.cql
 
 define "The client is severely immunocompromised":
@@ -6698,14 +5392,6 @@ define "The client is severely immunocompromised":
 
 define "The client is severely immunocompromised":
   Encounter."The client is severely immunocompromised"
-
-
-
-//Found in input/cql/HepatitisAElements.cql
-
-define "The client is severely immunocompromised":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severely immunocompromised"
 
 
 
@@ -6783,14 +5469,6 @@ define "The client is severely immunocompromised":
 
 
 
-//Found in input/cql/PolioElements.cql
-
-define "The client is severely immunocompromised":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severely immunocompromised"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -6815,16 +5493,6 @@ define "Poliovirus vaccination with bOPV is contraindicated":
 
 
 //Found in input/cql/DTElements-Polio.cql
-
-define "Poliovirus vaccination with bOPV is contraindicated":
-  //CQL AUTHORS: you need to insert stuff here
-  // Clinical judgement is required if vaccination with IPV is considered
-
-   // "Immunization recommendation status" =  "Contraindicated" (where "Type of poliovirus dose" = "bOPV") AND "Immunization recommendation status" = "Further evaluation needed" (where "Type of poliovirus dose" = "IPV")
-
-
-
-//Found in input/cql/PolioElements.cql
 
 define "Poliovirus vaccination with bOPV is contraindicated":
   //CQL AUTHORS: you need to insert stuff here
@@ -8964,14 +7632,6 @@ define "The client has a history of anaphylactic reactions":
 
 
 
-//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "The client has a history of anaphylactic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "History of anaphylactic reactions"
-
-
-
 //Found in input/cql/DTPElements.cql
 
 define "The client has a history of anaphylactic reactions":
@@ -9238,15 +7898,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "3 primary doses without a booster dose (3p)":
-  //CQL AUTHORS: you need to insert stuff here
-  // 3 primary doses without a booster dose (3p)
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "3 primary doses without a booster dose (3p)":
   //CQL AUTHORS: you need to insert stuff here
@@ -9271,14 +7923,6 @@ Referenced in the following locations:
 
 define "Number of Hib Primary Series Doses Administered":
   Count("Hib Primary Series Doses Administered to Patient")
-
-
-
-//Found in input/cql/HibElements.cql
-
-define "Number of Hib primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hib-containing vaccines" and "Type of dose" = "Primary series")
 
 
 
@@ -9327,14 +7971,6 @@ define "Client is not due for Hib vaccination":
     or "Client is not due for Hib vaccination Case 2"
     or "Client is not due for Hib vaccination Case 3"
     or "Client is not due for Hib vaccination Case 4"
-
-
-
-//Found in input/cql/HibElements.cql
-
-define "Client is not due for Hib vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
 
 
 
@@ -9396,14 +8032,6 @@ define "No Hib primary series doses were administered":
 
 
 
-//Found in input/cql/HibElements.cql
-
-define "No Hib primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hib-containing vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
 //Found in input/cql/IMMZD2DTHibElements.cql
 
 define "No Hib primary series doses were administered":
@@ -9450,14 +8078,6 @@ define "Client is due for Hib vaccination":
 
 
 
-//Found in input/cql/HibElements.cql
-
-define "Client is due for Hib vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
 //Found in input/cql/IMMZD2DTHib2p1bLogic.cql
 
 define "Client is due for Hib vaccination":
@@ -9487,15 +8107,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Should vaccinate client with first Hib dose as no Hib doses were administered and client is within appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Should vaccinate client with first Hib dose as no Hib doses were administered and client is within appropriate age range.":
   //CQL AUTHORS: you need to insert stuff here
@@ -9520,14 +8132,6 @@ Referenced in the following locations:
 
 define "One Hib primary series dose was administered":
   "Number of Hib Primary Series Doses Administered" = 1
-
-
-
-//Found in input/cql/HibElements.cql
-
-define "One Hib primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hib-containing vaccines" and "Type of dose"= "Primary series") = 1
 
 
 
@@ -9559,15 +8163,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Should not vaccinate client with second Hib dose as latest Hib dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for second dose.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Should not vaccinate client with second Hib dose as latest Hib dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -9624,14 +8220,6 @@ define "Hib immunization schedule is complete":
 define "Hib immunization schedule is complete":
   "Hib immunization schedule is complete Case 1"
     or "Hib immunization schedule is complete Case 2"
-
-
-
-//Found in input/cql/HibElements.cql
-
-define "Hib immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
 
 
 
@@ -9692,14 +8280,6 @@ define "Two Hib primary series doses were administered":
 
 
 
-//Found in input/cql/HibElements.cql
-
-define "Two Hib primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hib-containing vaccines" and "Type of dose"= "Primary series") = 2
-
-
-
 //Found in input/cql/IMMZD2DTHibElements.cql
 
 define "Two Hib primary series doses were administered":
@@ -9728,15 +8308,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Should not vaccinate client with third Hib dose as latest Hib dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for third dose.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Should not vaccinate client with third Hib dose as latest Hib dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -9757,15 +8329,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Should vaccinate client with third Hib dose as client is within appropriate age range and latest Hib dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Should vaccinate client with third Hib dose as client is within appropriate age range and latest Hib dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -9790,14 +8354,6 @@ Referenced in the following locations:
 
 define "Three Hib primary series doses were administered":
   "Number of Hib Primary Series Doses Administered" = 3
-
-
-
-//Found in input/cql/HibElements.cql
-
-define "Three Hib primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hib-containing vaccines" and "Type of dose"= "Primary series") = 3
 
 
 
@@ -9829,15 +8385,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Hib immunization schedule is complete. Three Hib primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Hib immunization schedule is complete. Three Hib primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -9858,15 +8406,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Should not vaccinate client with Hib dose as client is more than 5 years old and Hib vaccination is not required for healthy children aged over 5 years.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Should not vaccinate client with Hib dose as client is more than 5 years old and Hib vaccination is not required for healthy children aged over 5 years.":
   //CQL AUTHORS: you need to insert stuff here
@@ -9887,15 +8427,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "3 primary doses with a booster dose (3p+1)":
-  //CQL AUTHORS: you need to insert stuff here
-  // 3 primary doses with a booster dose (3p+1)
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "3 primary doses with a booster dose (3p+1)":
   //CQL AUTHORS: you need to insert stuff here
@@ -9916,15 +8448,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Should not vaccinate client with first Hib dose as client is less than 6 weeks old.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for first dose.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Should not vaccinate client with first Hib dose as client is less than 6 weeks old.":
   //CQL AUTHORS: you need to insert stuff here
@@ -9945,15 +8469,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Should vaccinate client with first Hib dose as client is within appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Should vaccinate client with first Hib dose as client is within appropriate age range.":
   //CQL AUTHORS: you need to insert stuff here
@@ -9995,15 +8511,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Should not vaccinate client with third Hib dose as the latest Hib dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for third dose.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Should not vaccinate client with third Hib dose as the latest Hib dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -10024,15 +8532,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Should vaccinate client with third Hib dose as client is within appropriate age range and the latest Hib dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Should vaccinate client with third Hib dose as client is within appropriate age range and the latest Hib dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -10062,16 +8562,6 @@ define "Primary series is complete. Client is not due for Hib booster dose":
     and Encounter."No Hib booster doses were administered"
     and Encounter."Client's age is between 6 weeks and 5 years"
     and Encounter."The latest Hib dose was administered less than 6 months ago"
-
-
-
-//Found in input/cql/HibElements.cql
-
-define "Primary series is complete. Client is not due for Hib booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Hib-containing vaccines")
 
 
 
@@ -10108,15 +8598,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Should not vaccinate client with Hib booster dose as the latest Hib dose was administered less than 6 months ago. Hib primary series is complete.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for booster dose.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Should not vaccinate client with Hib booster dose as the latest Hib dose was administered less than 6 months ago. Hib primary series is complete.":
   //CQL AUTHORS: you need to insert stuff here
@@ -10146,16 +8628,6 @@ define "Primary series is complete. Client is due for Hib booster dose":
     and Encounter."No Hib booster doses were administered"
     and Encounter."Client's age is between 6 weeks and 5 years"
     and Encounter."The latest Hib dose was administered more than 6 months ago"
-
-
-
-//Found in input/cql/HibElements.cql
-
-define "Primary series is complete. Client is due for Hib booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Hib-containing vaccines")
 
 
 
@@ -10193,15 +8665,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Should vaccinate client with Hib booster dose as primary series is complete and the latest Hib dose was administered more than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Should vaccinate client with Hib booster dose as primary series is complete and the latest Hib dose was administered more than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -10222,15 +8686,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Hib immunization schedule is complete. Three Hib primary series doses and one booster dose have been administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Hib immunization schedule is complete. Three Hib primary series doses and one booster dose have been administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -10251,23 +8707,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "2 primary doses with a booster dose (2p+1)":
-  //CQL AUTHORS: you need to insert stuff here
-  // 2 primary doses with a booster dose (2p+1)
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
-
-define "2 primary doses with a booster dose (2p+1)":
-  //CQL AUTHORS: you need to insert stuff here
-  // 2 primary doses with a booster dose (2p+1)
-
-
-
-//Found in input/cql/HibElements.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "2 primary doses with a booster dose (2p+1)":
   //CQL AUTHORS: you need to insert stuff here
@@ -10303,14 +8743,6 @@ define "One Hib primary series doses was administered":
 
 
 
-//Found in input/cql/HibElements.cql
-
-define "One Hib primary series doses was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hib-containing vaccines" and "Type of dose"= "Primary series") = 1
-
-
-
 //Found in input/cql/IMMZD2DTHibElements.cql
 
 define "One Hib primary series doses was administered":
@@ -10339,15 +8771,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Should not vaccinate client with second Hib dose as the latest Hib dose was administered less than 8 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for second dose.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Should not vaccinate client with second Hib dose as the latest Hib dose was administered less than 8 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -10389,15 +8813,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Should not vaccinate client with Hib booster dose as latest Hib dose was administered less than 6 months ago. Hib primary series is complete.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for booster dose.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Should not vaccinate client with Hib booster dose as latest Hib dose was administered less than 6 months ago. Hib primary series is complete.":
   //CQL AUTHORS: you need to insert stuff here
@@ -10418,15 +8834,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Hib immunization schedule is complete. Three Hib primary series doses and a booster dose were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Hib immunization schedule is complete. Three Hib primary series doses and a booster dose were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -10465,14 +8873,6 @@ define "The client has a history of severe allergic reactions":
 
 define "The client has a history of severe allergic reactions":
   Elements."The client has history of severe allergic reactions"
-
-
-
-//Found in input/cql/HepatitisAElements.cql
-
-define "The client has a history of severe allergic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // '"Potential contraindications" = "Severe allergic reactions"
 
 
 
@@ -10519,14 +8919,6 @@ define "The client has a history of severe allergic reactions":
 
 
 
-//Found in input/cql/HibElements.cql
-
-define "The client has a history of severe allergic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severe allergic reactions"
-
-
-
 //Found in input/cql/IMMZD5DTHepatitisAEncounterElements.cql
 
 define "The client has a history of severe allergic reactions":
@@ -10557,14 +8949,6 @@ define "The client has a history of severe allergic reactions":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The client has a history of severe allergic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severe allergic reactions"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -10582,14 +8966,6 @@ Referenced in the following locations:
 
 define "Hib vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.":
   Encounter."The client has a history of severe allergic reactions"
-
-
-
-//Found in input/cql/HibElements.cql
-
-define "Hib vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
 
 
 
@@ -10614,15 +8990,7 @@ Referenced in the following locations:
  * Tabs: Hib
 
 """
-  * ^designation[+].value = """//Found in input/cql/HibElements.cql
-
-define "Do not vaccinate client with Hib conjugate vaccine if client has had allergic reaction or known allergies to any component of the vaccine.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with Hib conjugate vaccine if client has had allergic reaction or known allergies to any component of the vaccine.
-
-
-
-//Found in input/cql/DTElements-Hib.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Hib.cql
 
 define "Do not vaccinate client with Hib conjugate vaccine if client has had allergic reaction or known allergies to any component of the vaccine.":
   //CQL AUTHORS: you need to insert stuff here
@@ -10647,14 +9015,6 @@ Referenced in the following locations:
 
 define "Number of Pneumococcal Primary Series Doses Administered":
   Count("Pneumococcal Primary Series Doses Administered to Patient")
-
-
-
-//Found in input/cql/PneumococcalElements.cql
-
-define "Number of pneumococcal primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Pneumococcal vaccines" and "Type of dose" = "Primary series")
 
 
 
@@ -10692,14 +9052,6 @@ define "Client is not due for pneumococcal vaccination":
   "Client is not due for pneumococcal vaccination Case 1"
     or "Client is not due for pneumococcal vaccination Case 2"
     or "Client is not due for pneumococcal vaccination Case 3"
-
-
-
-//Found in input/cql/PneumococcalElements.cql
-
-define "Client is not due for pneumococcal vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
 
 
 
@@ -10764,14 +9116,6 @@ define "No pneumococcal primary series doses were administered":
 
 
 
-//Found in input/cql/PneumococcalElements.cql
-
-define "No pneumococcal primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Pneumococcal vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
 //Found in input/cql/IMMZD2DTPneumococcalEncounterElements.cql
 
 define "No pneumococcal primary series doses were administered":
@@ -10809,14 +9153,6 @@ define "Client is due for pneumococcal vaccination":
 
 
 
-//Found in input/cql/PneumococcalElements.cql
-
-define "Client is due for pneumococcal vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
 //Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Client is due for pneumococcal vaccination":
@@ -10850,15 +9186,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should vaccinate client with first pneumococcal dose as no pneumococcal doses were administered and client is within the appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should vaccinate client with first pneumococcal dose as no pneumococcal doses were administered and client is within the appropriate age range.":
   //CQL AUTHORS: you need to insert stuff here
@@ -10883,14 +9211,6 @@ Referenced in the following locations:
 
 define "One pneumococcal primary series dose was administered":
   "Number of Pneumococcal Primary Series Doses Administered" = 1
-
-
-
-//Found in input/cql/PneumococcalElements.cql
-
-define "One pneumococcal primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Pneumococcal vaccines" and "Type of dose" = "Primary series") = 1
 
 
 
@@ -10922,15 +9242,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -10951,15 +9263,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -10980,15 +9284,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago and client is at high risk for pneumococcal infection.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago and client is at high risk for pneumococcal infection.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11009,15 +9305,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago and client is at high risk for pneumococcal infection.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago and client is at high risk for pneumococcal infection.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11047,14 +9335,6 @@ define "Pneumococcal immunization schedule is complete":
     or "Pneumococcal immunization schedule is complete Case 4"
     or "Pneumococcal immunization schedule is complete Case 5"
     or "Pneumococcal immunization schedule is complete Case 6"
-
-
-
-//Found in input/cql/PneumococcalElements.cql
-
-define "Pneumococcal immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
 
 
 
@@ -11091,15 +9371,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Pneumococcal immunization schedule is complete. One primary series dose was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Pneumococcal immunization schedule is complete. One primary series dose was administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11124,14 +9396,6 @@ Referenced in the following locations:
 
 define "Two pneumococcal primary series doses were administered":
   "Number of Pneumococcal Primary Series Doses Administered" = 2
-
-
-
-//Found in input/cql/PneumococcalElements.cql
-
-define "Two pneumococcal primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Pneumococcal vaccines" and "Type of dose" = "Primary series") = 2
 
 
 
@@ -11172,14 +9436,6 @@ define "Client is due for pneumococcal booster dose":
 
 
 
-//Found in input/cql/PneumococcalElements.cql
-
-define "Client is due for pneumococcal booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
 //Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Client is due for pneumococcal booster dose":
@@ -11209,15 +9465,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should vaccinate client with first pneumococcal booster dose as first pneumococcal dose was administered within 12 months post birth.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should vaccinate client with first pneumococcal booster dose as first pneumococcal dose was administered within 12 months post birth.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11238,15 +9486,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11272,14 +9512,6 @@ Referenced in the following locations:
 define "Client is not due for pneumococcal booster dose":
   "Client is not due for pneumococcal booster dose Case 1"
     or "Client is not due for pneumococcal booster dose Case 2"
-
-
-
-//Found in input/cql/PneumococcalElements.cql
-
-define "Client is not due for pneumococcal booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
 
 
 
@@ -11354,15 +9586,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should vaccinate client with second pneumococcal booster dose as client is HIV positive and latest pneumococcal dose was administered within 12 months post birth.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should vaccinate client with second pneumococcal booster dose as client is HIV positive and latest pneumococcal dose was administered within 12 months post birth.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11383,15 +9607,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should vaccinate client with second pneumococcal booster dose as client had preterm birth and latest pneumococcal dose was administered within 12 months post birth.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should vaccinate client with second pneumococcal booster dose as client had preterm birth and latest pneumococcal dose was administered within 12 months post birth.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11433,15 +9649,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses and two booster doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses and two booster doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11469,14 +9677,6 @@ define "Clinical judgement is required. Create a clinical note":
 
 
 
-//Found in input/cql/TyphoidElements.cql
-
-define "Clinical judgement is required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
 //Found in input/cql/IMMZD5DTJECILogic.cql
 
 define "Clinical judgement is required. Create a clinical note":
@@ -11500,14 +9700,6 @@ define "Clinical judgement is required. Create a clinical note":
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "Clinical judgement is required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
 //Found in input/cql/IMMZD2DTTBEEncepurLogic.cql
 
 define "Clinical judgement is required. Create a clinical note":
@@ -11521,22 +9713,6 @@ define "Clinical judgement is required. Create a clinical note":
 define "Clinical judgement is required. Create a clinical note":
   "Clinical judgement is required. Create a clinical note Case 1"
     or "Clinical judgement is required. Create a clinical note Case 2"
-
-
-
-//Found in input/cql/TBEElements.cql
-
-define "Clinical judgement is required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/PneumococcalElements.cql
-
-define "Clinical judgement is required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
 
 
 
@@ -11573,23 +9749,7 @@ define "Clinical judgement is required. Create a clinical note":
 
 
 
-//Found in input/cql/RabiesElements.cql
-
-define "Clinical judgement is required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
 //Found in input/cql/DTElements-Typhoid.cql
-
-define "Clinical judgement is required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/JEElements.cql
 
 define "Clinical judgement is required. Create a clinical note":
   //CQL AUTHORS: you need to insert stuff here
@@ -11641,14 +9801,6 @@ define "Clinical judgement is required. Create a clinical note":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "Clinical judgement is required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -11662,15 +9814,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Members States should update this action according to the national immunization programme.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Members States should update this action according to the national immunization programme.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Members States should update this action according to the national immunization programme.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11691,15 +9835,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "3 primary doses (3p+0)":
-  //CQL AUTHORS: you need to insert stuff here
-  // 3 primary doses (3p+0)
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "3 primary doses (3p+0)":
   //CQL AUTHORS: you need to insert stuff here
@@ -11741,15 +9877,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11770,15 +9898,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should vaccinate client with second pneumococcal dose as first dose was administered within 12 months post birth and latest pneumococcal dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should vaccinate client with second pneumococcal dose as first dose was administered within 12 months post birth and latest pneumococcal dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11799,15 +9919,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11828,15 +9940,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 4 weeks ago and client is not at high risk for pneumococcal infection.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 4 weeks ago and client is not at high risk for pneumococcal infection.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11857,15 +9961,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should vaccinate client with second pneumococcal dose as first dose was administered 24 months post birth, latest pneumococcal dose was administered more than 8 weeks ago and client is at high risk for pneumococcal infection.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should vaccinate client with second pneumococcal dose as first dose was administered 24 months post birth, latest pneumococcal dose was administered more than 8 weeks ago and client is at high risk for pneumococcal infection.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11886,15 +9982,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Pneumococcal immunization schedule is complete. One pneumococcal dose was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Pneumococcal immunization schedule is complete. One pneumococcal dose was administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11957,15 +10045,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Pneumococcal immunization schedule is complete. Two pneumococcal pneumococcal doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Pneumococcal immunization schedule is complete. Two pneumococcal pneumococcal doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -11990,14 +10070,6 @@ Referenced in the following locations:
 
 define "Three pneumococcal primary series doses were administered":
   "Number of Pneumococcal Primary Series Doses Administered" = 3
-
-
-
-//Found in input/cql/PneumococcalElements.cql
-
-define "Three pneumococcal primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Pneumococcal vaccines" and "Type of dose" = "Primary series") = 3
 
 
 
@@ -12029,15 +10101,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should not vaccinate client with pneumococcal booster dose as latest pneumococcal dose was administered within 12 months post birth and administered less than 8 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should not vaccinate client with pneumococcal booster dose as latest pneumococcal dose was administered within 12 months post birth and administered less than 8 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -12058,15 +10122,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should vaccinate client with pneumococcal booster dose as client is HIV positive and latest pneumococcal dose was administered within 12 months post birth and administered more than 8 weeks ago .":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should vaccinate client with pneumococcal booster dose as client is HIV positive and latest pneumococcal dose was administered within 12 months post birth and administered more than 8 weeks ago .":
   //CQL AUTHORS: you need to insert stuff here
@@ -12087,15 +10143,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Should vaccinate client with pneumococcal booster dose as client had preterm birth and latest pneumococcal dose was administered within 12 months post birth and administered more than 8 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Should vaccinate client with pneumococcal booster dose as client had preterm birth and latest pneumococcal dose was administered within 12 months post birth and administered more than 8 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -12116,15 +10164,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Pneumococcal immunization schedule is complete. Three pneumococcal primary serie doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Pneumococcal immunization schedule is complete. Three pneumococcal primary serie doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -12145,15 +10185,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Pneumococcal immunization schedule is complete. Three pneumococcal primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Pneumococcal immunization schedule is complete. Three pneumococcal primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -12174,15 +10206,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Pneumococcal immunization schedule is complete. Three pneumococcal primary series doses and one booster dose were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Pneumococcal immunization schedule is complete. Three pneumococcal primary series doses and one booster dose were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -12208,22 +10232,6 @@ Referenced in the following locations:
 define "Clinical judgement is required. Create a clinical note.":
   Encounter."No HPV primary series doses were administered"
     and Encounter."Client's age is more than 20 years"
-
-
-
-//Found in input/cql/HPVElements.cql
-
-define "Clinical judgement is required. Create a clinical note.":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/PneumococcalElements.cql
-
-define "Clinical judgement is required. Create a clinical note.":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
 
 
 
@@ -12271,15 +10279,7 @@ Referenced in the following locations:
  * Tabs: Pneumococcal
 
 """
-  * ^designation[+].value = """//Found in input/cql/PneumococcalElements.cql
-
-define "Members States should update this action according to the national immunization programme":
-  //CQL AUTHORS: you need to insert stuff here
-  // Members States should update this action according to the national immunization programme
-
-
-
-//Found in input/cql/DTElements-Pneumococcal.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Pneumococcal.cql
 
 define "Members States should update this action according to the national immunization programme":
   //CQL AUTHORS: you need to insert stuff here
@@ -12322,14 +10322,6 @@ define "Number of rotavirus primary series doses administered":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "Number of rotavirus primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Rotavirus vaccines" and "Type of dose" = "Primary series")
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -12351,14 +10343,6 @@ define "The series administered to the client":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The series administered to the client":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Vaccine brand" (where "Vaccine type" = "Rotavirus vaccines" AND "Dose number" = 1) = "Vaccine brand" (where "Vaccine type" = "Rotavirus vaccines" AND "Dose number" = 2)
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -12373,14 +10357,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Total doses in series":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Total doses in series"
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Total doses in series":
   //CQL AUTHORS: you need to insert stuff here
@@ -12441,14 +10417,6 @@ define "Client is not due for rotavirus vaccination":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "Client is not due for rotavirus vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -12498,14 +10466,6 @@ define "No rotavirus primary series doses were administered":
 
 
 //Found in input/cql/DTElements-Rotavirus.cql
-
-define "No rotavirus primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Rotavirus vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "No rotavirus primary series doses were administered":
   //CQL AUTHORS: you need to insert stuff here
@@ -12637,14 +10597,6 @@ define "No live vaccine was administered in the last 4 weeks":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "No live vaccine was administered in the last 4 weeks":
-  //CQL AUTHORS: you need to insert stuff here
-  // Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -12669,14 +10621,6 @@ define "Client is due for rotavirus vaccination":
 
 
 //Found in input/cql/DTElements-Rotavirus.cql
-
-define "Client is due for rotavirus vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Client is due for rotavirus vaccination":
   //CQL AUTHORS: you need to insert stuff here
@@ -12810,14 +10754,6 @@ define "Live vaccine was administered in the last 4 weeks":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "Live vaccine was administered in the last 4 weeks":
-  //CQL AUTHORS: you need to insert stuff here
-  // Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -12874,14 +10810,6 @@ define "One rotavirus primary series dose was administered":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "One rotavirus primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Rotavirus vaccines" and "Type of dose" = "Primary series") = 1
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -12924,14 +10852,6 @@ define "Should not vaccinate client with second rotavirus dose as live vaccine w
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "Should not vaccinate client with second rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should not vaccinate client with second rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -12960,14 +10880,6 @@ define "Two rotavirus primary series doses were administered":
 
 
 //Found in input/cql/DTElements-Rotavirus.cql
-
-define "Two rotavirus primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Rotavirus vaccines" and "Type of dose" = "Primary series") = 2
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Two rotavirus primary series doses were administered":
   //CQL AUTHORS: you need to insert stuff here
@@ -13031,14 +10943,6 @@ define "The series administered to the client is a mixed series or a series with
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The series administered to the client is a mixed series or a series with unknown vaccine products":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Vaccine brand" (where "Vaccine type" = "Rotavirus vaccines" AND "Dose number" = 1) ≠ "Vaccine brand" (where "Vaccine type" = "Rotavirus vaccines" AND "Dose number" = 2)
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -13053,14 +10957,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Should vaccinate client with third rotavirus dose as no live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Should vaccinate client with third rotavirus dose as no live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series.":
   //CQL AUTHORS: you need to insert stuff here
@@ -13103,14 +10999,6 @@ define "Live vaccines was administered in the last 4 weeks":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "Live vaccines was administered in the last 4 weeks":
-  //CQL AUTHORS: you need to insert stuff here
-  // Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -13125,14 +11013,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose":
   //CQL AUTHORS: you need to insert stuff here
@@ -13168,14 +11048,6 @@ define "No live vaccine was administered in last 4 weeks":
 
 
 //Found in input/cql/DTElements-Rotavirus.cql
-
-define "No live vaccine was administered in last 4 weeks":
-  //CQL AUTHORS: you need to insert stuff here
-  // Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "No live vaccine was administered in last 4 weeks":
   //CQL AUTHORS: you need to insert stuff here
@@ -13220,14 +11092,6 @@ define "The series administered to the client contains the same product":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The series administered to the client contains the same product":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Vaccine brand" (where "Vaccine type" = "Rotavirus vaccines" AND "Dose number" = 1) = "Vaccine brand" (where "Vaccine type" = "Rotavirus vaccines" AND "Dose number" = 2)
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -13263,14 +11127,6 @@ define "The series contain more than two doses":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The series contain more than two doses":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Total doses in series" > 2
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -13285,14 +11141,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Should vaccinate client with third rotavirus dose as series contains more than two doses and no live vaccine was administered in the last 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Should vaccinate client with third rotavirus dose as series contains more than two doses and no live vaccine was administered in the last 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -13335,14 +11183,6 @@ define "Live vaccine was administered in last 4 weeks":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "Live vaccine was administered in last 4 weeks":
-  //CQL AUTHORS: you need to insert stuff here
-  // Today's date - latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -13357,14 +11197,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.":
   //CQL AUTHORS: you need to insert stuff here
@@ -13407,14 +11239,6 @@ define "The series contain less than or equal to two doses":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The series contain less than or equal to two doses":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Total doses in series" ≤ 2
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -13444,14 +11268,6 @@ define "Rotavirus immunization schedule is complete":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "Rotavirus immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // '"Immunization recommendation status" = "Complete"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -13466,14 +11282,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Rotavirus immunization schedule is complete. Two rotavirus doses were administered. Check for any other vaccines due.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Rotavirus immunization schedule is complete. Two rotavirus doses were administered. Check for any other vaccines due.
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Rotavirus immunization schedule is complete. Two rotavirus doses were administered. Check for any other vaccines due.":
   //CQL AUTHORS: you need to insert stuff here
@@ -13516,14 +11324,6 @@ define "Three rotavirus primary series doses were administered":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "Three rotavirus primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Rotavirus vaccines" and "Type of dose" = "Primary series") = 3
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -13538,14 +11338,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Rotavirus immunization schedule is complete. Three rotavirus primary series doses were administered. Check for any other vaccines due.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Rotavirus immunization schedule is complete. Three rotavirus primary series doses were administered. Check for any other vaccines due.
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Rotavirus immunization schedule is complete. Three rotavirus primary series doses were administered. Check for any other vaccines due.":
   //CQL AUTHORS: you need to insert stuff here
@@ -13595,14 +11387,6 @@ define "Client is not due for rotavirus vaccination if immunization schedule is 
 
 
 //Found in input/cql/DTElements-Rotavirus.cql
-
-define "Client is not due for rotavirus vaccination if immunization schedule is not complete.":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due" IF current "Immunization recommendation status" ≠ "Complete"
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Client is not due for rotavirus vaccination if immunization schedule is not complete.":
   //CQL AUTHORS: you need to insert stuff here
@@ -13682,14 +11466,6 @@ define "The client has prior history of intussusception":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The client has prior history of intussusception":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Prior history of intussusception"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -13719,14 +11495,6 @@ define "Rotavirus vaccination is contraindicated":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "Rotavirus vaccination is contraindicated":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Contraindicated"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -13741,14 +11509,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Do not vaccinate client with rotavirus as rotavirus vaccination is contraindicated for clients with prior history of intussusception.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with rotavirus as rotavirus vaccination is contraindicated for clients with prior history of intussusception.
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Do not vaccinate client with rotavirus as rotavirus vaccination is contraindicated for clients with prior history of intussusception.":
   //CQL AUTHORS: you need to insert stuff here
@@ -13791,14 +11551,6 @@ define "The client has severe immunodeficiency":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The client has severe immunodeficiency":
-  //CQL AUTHORS: you need to insert stuff here
-  // '"Potential contraindications" = "Immunodeficiency syndromes"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -13813,14 +11565,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Do not vaccinate client with rotavirus as rotavirus vaccincation is contraindicated for clients with severe immunodeficiency, including severe combined immunodeficiency.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with rotavirus as rotavirus vaccincation is contraindicated for clients with severe immunodeficiency, including severe combined immunodeficiency.
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Do not vaccinate client with rotavirus as rotavirus vaccincation is contraindicated for clients with severe immunodeficiency, including severe combined immunodeficiency.":
   //CQL AUTHORS: you need to insert stuff here
@@ -13857,14 +11601,6 @@ define "Rotavirus vaccination could be contraindicated. Clinical judgement is re
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -13879,14 +11615,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Do not vaccinate client with rotavirus if client had severe allergic reactions to a previous rotavirus vaccine dose or rotavirus vaccine components.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check if the client has no known severe hypersensitivity to rotavirus vaccines components.
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Do not vaccinate client with rotavirus if client had severe allergic reactions to a previous rotavirus vaccine dose or rotavirus vaccine components.":
   //CQL AUTHORS: you need to insert stuff here
@@ -13912,22 +11640,6 @@ Referenced in the following locations:
 define "The client has history of anaphylactic reactions":
   exists "CI History of anaphylactic reactions Observation"
     or exists "CI History of anaphylactic reactions Condition"
-
-
-
-//Found in input/cql/DengueElements.cql
-
-define "The client has history of anaphylactic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" ="History of anaphylactic reactions"
-
-
-
-//Found in input/cql/MeaslesElements.cql
-
-define "The client has history of anaphylactic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "History of anaphylactic reactions"
 
 
 
@@ -14005,14 +11717,6 @@ define "The client has history of anaphylactic reactions":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The client has history of anaphylactic reactions":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "History of anaphylactic reactions"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -14027,14 +11731,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Do not vaccinate client with rotavirus if client has history of anaphylactic reaction to a previous rotavirus vaccine dose or rotavirus vaccine components.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with rotavirus if client has history of anaphylactic reaction to a previous rotavirus vaccine dose or rotavirus vaccine components.
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Do not vaccinate client with rotavirus if client has history of anaphylactic reaction to a previous rotavirus vaccine dose or rotavirus vaccine components.":
   //CQL AUTHORS: you need to insert stuff here
@@ -14093,14 +11789,6 @@ define "The client has altered immunocompetence":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The client has altered immunocompetence":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Altered immunocompetence"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -14115,14 +11803,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Client has altered immunocompetence other than severe combined immunodeficiency, consider risks of vaccination and make a judgement.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Client has altered immunocompetence other than severe combined immunodeficiency, consider risks of vaccination and make a judgement.
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Client has altered immunocompetence other than severe combined immunodeficiency, consider risks of vaccination and make a judgement.":
   //CQL AUTHORS: you need to insert stuff here
@@ -14181,14 +11861,6 @@ define "The client has spina bifida":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The client has spina bifida":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Spina bifida"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -14203,14 +11875,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Client has spina bifida, consider risks of vaccination and make a judgement.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Client has spina bifida, consider risks of vaccination and make a judgement.
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Client has spina bifida, consider risks of vaccination and make a judgement.":
   //CQL AUTHORS: you need to insert stuff here
@@ -14269,14 +11933,6 @@ define "The client has bladder exstrophy":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The client has bladder exstrophy":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Bladder exstrophy"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -14291,14 +11947,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Client has bladder exstrophy, consider risks of vaccination and make a judgement.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Client has bladder exstrophy, consider risks of vaccination and make a judgement.
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Client has bladder exstrophy, consider risks of vaccination and make a judgement.":
   //CQL AUTHORS: you need to insert stuff here
@@ -14357,14 +12005,6 @@ define "The client has chronic gastrointestinal disease":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The client has chronic gastrointestinal disease":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Chronic gastrointestinal disease"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -14379,14 +12019,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Client has chronic gastrointestinal disease, consider risks of vaccination and make a judgement.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Client has chronic gastrointestinal disease, consider risks of vaccination and make a judgement.
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Client has chronic gastrointestinal disease, consider risks of vaccination and make a judgement.":
   //CQL AUTHORS: you need to insert stuff here
@@ -14445,14 +12077,6 @@ define "The client has acute gastroenteritis":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The client has acute gastroenteritis":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Acute gastroenteritis"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -14467,14 +12091,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rotavirus.cql
-
-define "Client has acute gastroenteritis, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Client has acute gastroenteritis, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.
-
-
-
-//Found in input/cql/RotavirusElements.cql
 
 define "Client has acute gastroenteritis, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.":
   //CQL AUTHORS: you need to insert stuff here
@@ -14500,14 +12116,6 @@ Referenced in the following locations:
 define "The client has moderate to severe fever":
   exists "CI Moderate to severe fever Observation"
     or exists "CI Moderate to severe fever Condition"
-
-
-
-//Found in input/cql/TBEElements.cql
-
-define "The client has moderate to severe fever":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Moderate to severe fever"
 
 
 
@@ -14563,14 +12171,6 @@ define "The client has moderate to severe fever":
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "The client has moderate to severe fever":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Moderate to severe fever"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -14592,14 +12192,6 @@ define "Client has moderate to severe fever, consider risks of vaccination and m
 
 
 
-//Found in input/cql/RotavirusElements.cql
-
-define "Client has moderate to severe fever, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Client has moderate to severe fever, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -14613,15 +12205,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Countries with ongoing transmission in which the risk of measles mortality remains high (countries that provide first dose of measles-containing vaccine (MCV) at 9 months and second dose of MCV at 15 months)":
-  //CQL AUTHORS: you need to insert stuff here
-  // Countries with ongoing transmission in which the risk of measles mortality remains high (countries that provide first dose of measles-containing vaccine (MCV) at 9 months and second dose of MCV at 15 months)
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Countries with ongoing transmission in which the risk of measles mortality remains high (countries that provide first dose of measles-containing vaccine (MCV) at 9 months and second dose of MCV at 15 months)":
   //CQL AUTHORS: you need to insert stuff here
@@ -14646,14 +12230,6 @@ Referenced in the following locations:
 
 define "Number of MCV Primary Series Doses Administered":
   Count("MCV Primary Series Doses Administered to Patient")
-
-
-
-//Found in input/cql/MeaslesElements.cql
-
-define "Number of MCV primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series")
 
 
 
@@ -14685,15 +12261,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Client is not due for first dose of measles-containing vaccine (MCV1)":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/IMMZD2DTMeaslesOngoingTxLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesOngoingTxLogic.cql
 
 define "Client is not due for first dose of measles-containing vaccine (MCV1)":
   Encounter."Client's age is less than 9 months"
@@ -14749,14 +12317,6 @@ define "No measles primary series doses were administered":
 
 
 
-//Found in input/cql/MeaslesElements.cql
-
-define "No measles primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
 //Found in input/cql/DTElements-Measles.cql
 
 define "No measles primary series doses were administered":
@@ -14785,15 +12345,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Client is due for MCV1":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
-//Found in input/cql/IMMZD2DTMeaslesOngoingTxLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesOngoingTxLogic.cql
 
 define "Client is due for MCV1":
   Encounter."No measles primary series doses were administered"
@@ -14832,15 +12384,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -14861,15 +12405,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Client is not due for MCV1":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/IMMZD2DTMeaslesOngoingTxLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesOngoingTxLogic.cql
 
 define "Client is not due for MCV1":
   Encounter."No measles primary series doses were administered"
@@ -14907,15 +12443,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for MCV1.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -14947,14 +12475,6 @@ define "MCV1 was administered":
 
 define "MCV1 was administered":
   "Number of MCV Primary Series Doses Administered" = 1
-
-
-
-//Found in input/cql/MeaslesElements.cql
-
-define "MCV1 was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 1
 
 
 
@@ -14993,15 +12513,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Client is not due for second dose of measles-containing vaccine (MCV2)":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/IMMZD2DTMeaslesOngoingTxLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesOngoingTxLogic.cql
 
 define "Client is not due for second dose of measles-containing vaccine (MCV2)":
   Encounter."MCV1 was administered"
@@ -15051,15 +12563,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Client is due for MCV2":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
-//Found in input/cql/IMMZD2DTMeaslesOngoingTxLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesOngoingTxLogic.cql
 
 define "Client is due for MCV2":
   Encounter."MCV1 was administered"
@@ -15098,15 +12602,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -15127,15 +12623,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Client is not due for MCV2":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/IMMZD2DTMeaslesOngoingTxLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesOngoingTxLogic.cql
 
 define "Client is not due for MCV2":
   Encounter."MCV1 was administered"
@@ -15173,15 +12661,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for MCV2.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -15206,14 +12686,6 @@ Referenced in the following locations:
 
 define "MCV2 was administered":
   "Number of MCV Primary Series Doses Administered" = 2
-
-
-
-//Found in input/cql/MeaslesElements.cql
-
-define "MCV2 was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 2
 
 
 
@@ -15245,15 +12717,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Measles primary series is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Measles-containing vaccines")
-
-
-
-//Found in input/cql/IMMZD2DTMeaslesOngoingTxLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTMeaslesOngoingTxLogic.cql
 
 define "Measles primary series is complete":
   Encounter."MCV2 was administered"
@@ -15288,15 +12752,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Measles primary series is complete. Two measles primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check if a measles supplementary dose is appropriate for the client.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Measles primary series is complete. Two measles primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -15317,15 +12773,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Countries with low levels of measles transmission (countries that provide first dose of measles-containing vaccine (MCV) at 12 months and second dose of MCV at 15 months)":
-  //CQL AUTHORS: you need to insert stuff here
-  // Countries with low levels of measles transmission (countries that provide first dose of measles-containing vaccine (MCV) at 12 months and second dose of MCV at 15 months)
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Countries with low levels of measles transmission (countries that provide first dose of measles-containing vaccine (MCV) at 12 months and second dose of MCV at 15 months)":
   //CQL AUTHORS: you need to insert stuff here
@@ -15346,15 +12794,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Number of measles primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series")
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Number of measles primary series doses administered":
   //CQL AUTHORS: you need to insert stuff here
@@ -15396,15 +12836,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -15425,15 +12857,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Measles-containing vaccine dose 0 (MCV0) administration":
-  //CQL AUTHORS: you need to insert stuff here
-  // Measles-containing vaccine dose 0 (MCV0) administration
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Measles-containing vaccine dose 0 (MCV0) administration":
   //CQL AUTHORS: you need to insert stuff here
@@ -15454,15 +12878,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Number of MCV0 doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Dose 0")
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Number of MCV0 doses administered":
   //CQL AUTHORS: you need to insert stuff here
@@ -15483,15 +12899,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Client is not due for MCV0":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Client is not due for MCV0":
   //CQL AUTHORS: you need to insert stuff here
@@ -15550,14 +12958,6 @@ define "MCV0 was not administered":
 
 
 
-//Found in input/cql/MeaslesElements.cql
-
-define "MCV0 was not administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Dose 0") = 0
-
-
-
 //Found in input/cql/DTElements-Measles.cql
 
 define "MCV0 was not administered":
@@ -15586,15 +12986,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Should not vaccinate client with MCV0 as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for MCV0.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should not vaccinate client with MCV0 as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for MCV0.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Should not vaccinate client with MCV0 as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for MCV0.":
   //CQL AUTHORS: you need to insert stuff here
@@ -15617,17 +13009,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Consider MCV0.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Create a clinical note.
-
-   // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Consider MCV0.":
   //CQL AUTHORS: you need to insert stuff here
@@ -15659,15 +13041,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "May vaccinate client with MCV0 as client is within appropriate age range, MCV0 was not administered and no live vaccine was administered in the past 4 weeks. Check if one of the MCV0 specific scenarios is applicable.":
-  //CQL AUTHORS: you need to insert stuff here
-  // May vaccinate client with MCV0 as client is within appropriate age range, MCV0 was not administered and no live vaccine was administered in the past 4 weeks. Check if one of the MCV0 specific scenarios is applicable.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "May vaccinate client with MCV0 as client is within appropriate age range, MCV0 was not administered and no live vaccine was administered in the past 4 weeks. Check if one of the MCV0 specific scenarios is applicable.":
   //CQL AUTHORS: you need to insert stuff here
@@ -15725,14 +13099,6 @@ define "MCV0 was administered":
 
 
 
-//Found in input/cql/MeaslesElements.cql
-
-define "MCV0 was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Dose 0") = 1
-
-
-
 //Found in input/cql/DTElements-Measles.cql
 
 define "MCV0 was administered":
@@ -15770,15 +13136,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "MCV0 was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check measles routine immunization schedule.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "MCV0 was administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -15799,15 +13157,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Measles-containing vaccine (MCV) supplementary dose administration":
-  //CQL AUTHORS: you need to insert stuff here
-  // Measles-containing vaccine (MCV) supplementary dose administration
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Measles-containing vaccine (MCV) supplementary dose administration":
   //CQL AUTHORS: you need to insert stuff here
@@ -15828,15 +13178,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Number of measles supplementary doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Supplementary dose")
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Number of measles supplementary doses administered":
   //CQL AUTHORS: you need to insert stuff here
@@ -15861,14 +13203,6 @@ Referenced in the following locations:
 
 define "Measles supplementary dose was not administered":
   "Number of MCV Supplementary Doses Administered" = 0
-
-
-
-//Found in input/cql/MeaslesElements.cql
-
-define "Measles supplementary dose was not administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Supplementary dose") = 0
 
 
 
@@ -15900,15 +13234,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Client is not due for measles supplementary dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Client is not due for measles supplementary dose":
   //CQL AUTHORS: you need to insert stuff here
@@ -15938,15 +13264,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Should not vaccinate client with measles supplementary dose as live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for supplementary dose.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Should not vaccinate client with measles supplementary dose as live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -15967,15 +13285,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Consider measles supplementary dose. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Consider measles supplementary dose. Create a clinical note":
   //CQL AUTHORS: you need to insert stuff here
@@ -16005,15 +13315,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "May vaccinate client with measles supplementary dose as supplementary dose was not administered, measles routine immunization schedule is complete and no live vaccine administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check if one of the measles supplementary dose specific scenarios is applicable.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "May vaccinate client with measles supplementary dose as supplementary dose was not administered, measles routine immunization schedule is complete and no live vaccine administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -16038,14 +13340,6 @@ Referenced in the following locations:
 
 define "Measles supplementary dose was administered":
   "Number of MCV Supplementary Doses Administered" = 1
-
-
-
-//Found in input/cql/MeaslesElements.cql
-
-define "Measles supplementary dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Supplementary dose") = 1
 
 
 
@@ -16077,15 +13371,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Measles immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Measles immunization schedule is complete":
   //CQL AUTHORS: you need to insert stuff here
@@ -16113,15 +13399,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Measles immunization schedule is complete. Measles supplementary dose was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Measles immunization schedule is complete. Measles supplementary dose was administered.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Measles immunization schedule is complete. Measles supplementary dose was administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -16142,15 +13420,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Decision ID":
-  //CQL AUTHORS: you need to insert stuff here
-  // Decision ID
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Decision ID":
   //CQL AUTHORS: you need to insert stuff here
@@ -16171,15 +13441,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Business rule":
-  //CQL AUTHORS: you need to insert stuff here
-  // Business rule
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Business rule":
   //CQL AUTHORS: you need to insert stuff here
@@ -16200,15 +13462,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Trigger":
-  //CQL AUTHORS: you need to insert stuff here
-  // Trigger
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Trigger":
   //CQL AUTHORS: you need to insert stuff here
@@ -16236,14 +13490,6 @@ define "Potential contraindications":
 
 
 
-//Found in input/cql/MeaslesElements.cql
-
-define "Potential contraindications":
-  //CQL AUTHORS: you need to insert stuff here
-  // Potential contraindications
-
-
-
 //Found in input/cql/DTElements-Measles.cql
 
 define "Potential contraindications":
@@ -16265,15 +13511,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Output":
-  //CQL AUTHORS: you need to insert stuff here
-  // Output
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Output":
   //CQL AUTHORS: you need to insert stuff here
@@ -16294,15 +13532,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Guidance displayed to health worker":
-  //CQL AUTHORS: you need to insert stuff here
-  // Guidance displayed to health worker
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Guidance displayed to health worker":
   //CQL AUTHORS: you need to insert stuff here
@@ -16323,15 +13553,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Measles vaccination contraindicated":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Contraindicated"
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Measles vaccination contraindicated":
   //CQL AUTHORS: you need to insert stuff here
@@ -16360,15 +13582,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Do not vaccinate client with measles as measles vaccination is contraindicated for pregnant client.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with measles as measles vaccination is contraindicated for pregnant client.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Do not vaccinate client with measles as measles vaccination is contraindicated for pregnant client.":
   //CQL AUTHORS: you need to insert stuff here
@@ -16389,15 +13603,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Measles vaccination could be contraindicated. Clinical judgement required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Measles vaccination could be contraindicated. Clinical judgement required. Create a clinical note":
   //CQL AUTHORS: you need to insert stuff here
@@ -16425,15 +13631,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Do not vaccinate client with measles if client has history of anaphylactic reaction to any component of the vaccine (e.g. neomycin or gelatin).":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with measles if client has history of anaphylactic reaction to any component of the vaccine (e.g. neomycin or gelatin).
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Do not vaccinate client with measles if client has history of anaphylactic reaction to any component of the vaccine (e.g. neomycin or gelatin).":
   //CQL AUTHORS: you need to insert stuff here
@@ -16454,15 +13652,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Clinical judgement required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Clinical judgement required. Create a clinical note":
   //CQL AUTHORS: you need to insert stuff here
@@ -16491,15 +13681,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Do not vaccinate client with measles if client has history of severe allergic reactions to any component of the vaccine (e.g. neomycin or gelatin).":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with measles if client has history of severe allergic reactions to any component of the vaccine (e.g. neomycin or gelatin).
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Do not vaccinate client with measles if client has history of severe allergic reactions to any component of the vaccine (e.g. neomycin or gelatin).":
   //CQL AUTHORS: you need to insert stuff here
@@ -16535,23 +13717,7 @@ define "The client is severely immunosuppressed":
 
 
 
-//Found in input/cql/DengueElements.cql
-
-define "The client is severely immunosuppressed":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severely immunosuppressed"
-
-
-
 //Found in input/cql/DTElements-Mumps.cql
-
-define "The client is severely immunosuppressed":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severely immunosuppressed"
-
-
-
-//Found in input/cql/MeaslesElements.cql
 
 define "The client is severely immunosuppressed":
   //CQL AUTHORS: you need to insert stuff here
@@ -16603,14 +13769,6 @@ define "The client is severely immunosuppressed":
 
 
 
-//Found in input/cql/MumpsElements.cql
-
-define "The client is severely immunosuppressed":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severely immunosuppressed"
-
-
-
 //Found in input/cql/IMMZD5DTMumpsEncounterElements.cql
 
 define "The client is severely immunosuppressed":
@@ -16639,15 +13797,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Do not vaccinate client with measles as measles vaccination is contraindicated for severely immunosuppressed client.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with measles as measles vaccination is contraindicated for severely immunosuppressed client.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Do not vaccinate client with measles as measles vaccination is contraindicated for severely immunosuppressed client.":
   //CQL AUTHORS: you need to insert stuff here
@@ -16674,14 +13824,6 @@ define "The client has a symptomatic HIV infection":
   exists "CI Symptomatic HIV infection Observation"
     or exists "CI Symptomatic HIV infection Condition"
     
-
-
-//Found in input/cql/MeaslesElements.cql
-
-define "The client has a symptomatic HIV infection":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Symptomatic HIV infection"
-
 
 
 //Found in input/cql/DTElements-Measles.cql
@@ -16726,15 +13868,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Client has symptomatic HIV infection. Measles vaccination may be considered if the client is not severely immunosuppressed according to conventional definitions, consider risks of vaccination and make a clinical judgement.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Client has symptomatic HIV infection. Measles vaccination may be considered if the client is not severely immunosuppressed according to conventional definitions, consider risks of vaccination and make a clinical judgement.
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Client has symptomatic HIV infection. Measles vaccination may be considered if the client is not severely immunosuppressed according to conventional definitions, consider risks of vaccination and make a clinical judgement.":
   //CQL AUTHORS: you need to insert stuff here
@@ -16755,15 +13889,7 @@ Referenced in the following locations:
  * Tabs: Measles
 
 """
-  * ^designation[+].value = """//Found in input/cql/MeaslesElements.cql
-
-define "Note: While vaccines are universally recommended, some clients may have contraindications to particular vaccines. Additional contraindications may be included in WHO position paper for the vaccine – Measles vaccines: WHO position paper (April 2017) (13).":
-  //CQL AUTHORS: you need to insert stuff here
-  // Note: While vaccines are universally recommended, some clients may have contraindications to particular vaccines. Additional contraindications may be included in WHO position paper for the vaccine – Measles vaccines: WHO position paper (April 2017) (13).
-
-
-
-//Found in input/cql/DTElements-Measles.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Measles.cql
 
 define "Note: While vaccines are universally recommended, some clients may have contraindications to particular vaccines. Additional contraindications may be included in WHO position paper for the vaccine – Measles vaccines: WHO position paper (April 2017) (13).":
   //CQL AUTHORS: you need to insert stuff here
@@ -16785,14 +13911,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rubella.cql
-
-define "Countries with high incidence and mortality from rubella":
-  //CQL AUTHORS: you need to insert stuff here
-  // Countries with high incidence and mortality from rubella
-
-
-
-//Found in input/cql/RubellaElements.cql
 
 define "Countries with high incidence and mortality from rubella":
   //CQL AUTHORS: you need to insert stuff here
@@ -16829,14 +13947,6 @@ define "Number of rubella primary series doses administered":
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "Number of rubella primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Rubella-containing vaccines" and "Type of dose" = "Primary series")
-
-
-
 //Found in input/cql/IMMZD2DTRubellaEncounterElements.cql
 
 define "Number of Rubella Primary Series Doses Administered":
@@ -16859,14 +13969,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rubella.cql
-
-define "Client is not due for rubella vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/RubellaElements.cql
 
 define "Client is not due for rubella vaccination":
   //CQL AUTHORS: you need to insert stuff here
@@ -16939,14 +14041,6 @@ define "No rubella primary series dose was administered":
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "No rubella primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Rubella-containing vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
 //Found in input/cql/IMMZD2DTRubellaEncounterElements.cql
 
 define "No rubella primary series dose was administered":
@@ -16968,14 +14062,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rubella.cql
-
-define "Client is due for rubella vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
-//Found in input/cql/RubellaElements.cql
 
 define "Client is due for rubella vaccination":
   //CQL AUTHORS: you need to insert stuff here
@@ -17022,14 +14108,6 @@ define "Should vaccinate client with rubella dose as no rubella doses were admin
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "Should vaccinate client with rubella dose as no rubella doses were administered, client is within the appropriate age range and no live vaccine was administered in the last 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -17044,14 +14122,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rubella.cql
-
-define "Should not vaccinate client with rubella dose as live vaccine was administered in the last 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/RubellaElements.cql
 
 define "Should not vaccinate client with rubella dose as live vaccine was administered in the last 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -17087,14 +14157,6 @@ define "One rubella primary series dose was administered":
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "One rubella primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Rubella-containing vaccines" and "Type of dose" = "Primary series") = 1
-
-
-
 //Found in input/cql/IMMZD2DTRubellaEncounterElements.cql
 
 define "One rubella primary series dose was administered":
@@ -17118,18 +14180,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rubella.cql
-
-define "Rubella immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
-
-   // 
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Rubella-containing vaccines")
-
-
-
-//Found in input/cql/RubellaElements.cql
 
 define "Rubella immunization schedule is complete":
   //CQL AUTHORS: you need to insert stuff here
@@ -17176,14 +14226,6 @@ define "Rubella immunization schedule is complete. One rubella primary series do
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "Rubella immunization schedule is complete. One rubella primary series dose was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -17198,14 +14240,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rubella.cql
-
-define "Countries with low incidence of rubella":
-  //CQL AUTHORS: you need to insert stuff here
-  // Countries with low incidence of rubella
-
-
-
-//Found in input/cql/RubellaElements.cql
 
 define "Countries with low incidence of rubella":
   //CQL AUTHORS: you need to insert stuff here
@@ -17234,14 +14268,6 @@ define "Should not vaccinate client with rubella dose.":
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "Should not vaccinate client with rubella dose.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the first dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -17256,14 +14282,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rubella.cql
-
-define "Should vaccinate client with rubella dose as no rubella doses were administered, client is within appropriate age range and no live vaccine was administered in the last 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/RubellaElements.cql
 
 define "Should vaccinate client with rubella dose as no rubella doses were administered, client is within appropriate age range and no live vaccine was administered in the last 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -17291,31 +14309,7 @@ define "The client is currently pregnant":
 
 
 
-//Found in input/cql/DengueElements.cql
-
-define "The client is currently pregnant":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Currently pregnant"
-
-
-
-//Found in input/cql/VaricellaElements.cql
-
-define "The client is currently pregnant":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Currently pregnant"
-
-
-
 //Found in input/cql/DTElements-Rubella.cql
-
-define "The client is currently pregnant":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Currently pregnant"
-
-
-
-//Found in input/cql/RubellaElements.cql
 
 define "The client is currently pregnant":
   //CQL AUTHORS: you need to insert stuff here
@@ -17345,14 +14339,6 @@ define "The client is currently pregnant":
 
 
 
-//Found in input/cql/HPVElements.cql
-
-define "The client is currently pregnant":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Currently pregnant"
-
-
-
 //Found in input/cql/IMMZD5DTHPVEncounterElements.cql
 
 define "The client is currently pregnant":
@@ -17368,22 +14354,6 @@ define "The client is currently pregnant":
 
 
 //Found in input/cql/DTElements-Varicella.cql
-
-define "The client is currently pregnant":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Currently pregnant"
-
-
-
-//Found in input/cql/TBEElements.cql
-
-define "The client is currently pregnant":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Currently pregnant"
-
-
-
-//Found in input/cql/HepatitisAElements.cql
 
 define "The client is currently pregnant":
   //CQL AUTHORS: you need to insert stuff here
@@ -17460,22 +14430,6 @@ define "The client is currently pregnant":
 
 define "The client is currently pregnant":
   Elements."The client is pregnant"
-
-
-
-//Found in input/cql/JEElements.cql
-
-define "The client is currently pregnant":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Currently pregnant"
-
-
-
-//Found in input/cql/MumpsElements.cql
-
-define "The client is currently pregnant":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Currently pregnant"
 
 
 
@@ -17573,14 +14527,6 @@ define "Rubella vaccination is contraindicated":
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "Rubella vaccination is contraindicated":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Contraindicated"
-
-
-
 //Found in input/cql/IMMZD5DTRubellaCILogic.cql
 
 define "Rubella vaccination is contraindicated":
@@ -17614,14 +14560,6 @@ define "Do not vaccinate client with rubella as rubella vaccination is contraind
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "Do not vaccinate client with rubella as rubella vaccination is contraindicated for pregnant client.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with rubella as rubella vaccination is contraindicated for pregnant client.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -17644,14 +14582,6 @@ define "The client is planning to get pregnant in next month":
 
 
 //Found in input/cql/DTElements-Rubella.cql
-
-define "The client is planning to get pregnant in next month":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Planning to get pregnant in the next month"
-
-
-
-//Found in input/cql/RubellaElements.cql
 
 define "The client is planning to get pregnant in next month":
   //CQL AUTHORS: you need to insert stuff here
@@ -17702,14 +14632,6 @@ define "Discuss pregnancy intentions with client, consider risks of vaccination 
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "Discuss pregnancy intentions with client, consider risks of vaccination and make a clinical judgement. Clients planning a pregnancy are advised to avoid pregnancy for 1 month after rubella vaccination.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Discuss pregnancy intentions with client, consider risks of vaccination and make a clinical judgement. Clients planning a pregnancy are advised to avoid pregnancy for 1 month after rubella vaccination.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -17732,14 +14654,6 @@ define "The client is receiving blood products":
 
 
 //Found in input/cql/DTElements-Rubella.cql
-
-define "The client is receiving blood products":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Receiving blood products"
-
-
-
-//Found in input/cql/RubellaElements.cql
 
 define "The client is receiving blood products":
   //CQL AUTHORS: you need to insert stuff here
@@ -17790,14 +14704,6 @@ define "Do not vaccinate client with rubella as rubella vaccination is contraind
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "Do not vaccinate client with rubella as rubella vaccination is contraindicated until at least 3 months after stopping receiving blood products.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with rubella as rubella vaccination is contraindicated until at least 3 months after stopping receiving blood products.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -17812,14 +14718,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rubella.cql
-
-define "Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/RubellaElements.cql
 
 define "Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
   //CQL AUTHORS: you need to insert stuff here
@@ -17855,14 +14753,6 @@ define "Do not vaccinate client with rubella if client has experienced a severe 
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "Do not vaccinate client with rubella if client has experienced a severe allergic reaction after a previous vaccine dose or vaccine component.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with rubella if client has experienced a severe allergic reaction after a previous vaccine dose or vaccine component.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -17876,23 +14766,7 @@ Referenced in the following locations:
  * Tabs: Rubella
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "The client has symptomatic HIV infection":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Symptomatic HIV infection"
-
-
-
-//Found in input/cql/DTElements-Rubella.cql
-
-define "The client has symptomatic HIV infection":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Symptomatic HIV infection"
-
-
-
-//Found in input/cql/RubellaElements.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Rubella.cql
 
 define "The client has symptomatic HIV infection":
   //CQL AUTHORS: you need to insert stuff here
@@ -17957,14 +14831,6 @@ define "Do not vaccinate client with rubella as rubella vaccination is contraind
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with symptomatic HIV infection.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with symptomatic HIV infection.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -17987,14 +14853,6 @@ define "The client has TB disease":
 
 
 //Found in input/cql/DTElements-Rubella.cql
-
-define "The client has TB disease":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "TB disease"
-
-
-
-//Found in input/cql/RubellaElements.cql
 
 define "The client has TB disease":
   //CQL AUTHORS: you need to insert stuff here
@@ -18045,14 +14903,6 @@ define "Do not vaccinate client with rubella as rubella vaccination is contraind
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with active TB.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with active TB.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -18067,14 +14917,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rubella.cql
-
-define "Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with severe immunodeficiency.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with severe immunodeficiency.
-
-
-
-//Found in input/cql/RubellaElements.cql
 
 define "Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with severe immunodeficiency.":
   //CQL AUTHORS: you need to insert stuff here
@@ -18103,14 +14945,6 @@ define "Do not vaccinate client with rubella as rubella vaccination is contraind
 
 
 
-//Found in input/cql/RubellaElements.cql
-
-define "Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients receiving or exposed to immunosuppressive therapy.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients receiving or exposed to immunosuppressive therapy.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -18124,23 +14958,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "2-dose schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // 2-dose schedule
-
-
-
-//Found in input/cql/HPVElements.cql
-
-define "2-dose schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // 2-dose schedule
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "2-dose schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -18173,14 +14991,6 @@ Referenced in the following locations:
 
 define "Number of HPV Primary Series Doses Administered":
   Count("HPV Primary Series Doses Administered to Patient")
-
-
-
-//Found in input/cql/HPVElements.cql
-
-define "Number of HPV primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "HPV vaccines" and "Type of dose" = "Primary series")
 
 
 
@@ -18220,14 +15030,6 @@ define "Client is not due for HPV vaccination":
     or "Client is not due for HPV vaccination Case 3"
     or "Client is not due for HPV vaccination Case 4"
     or "Client is not due for HPV vaccination Case 5"
-
-
-
-//Found in input/cql/HPVElements.cql
-
-define "Client is not due for HPV vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
 
 
 
@@ -18290,14 +15092,6 @@ define "No HPV primary series doses were administered":
 
 
 
-//Found in input/cql/HPVElements.cql
-
-define "No HPV primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "HPV vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
 //Found in input/cql/IMMZD2DTHPVEncounterElements.cql
 
 define "No HPV primary series doses were administered":
@@ -18337,14 +15131,6 @@ define "Client is due for HPV vaccination":
 
 
 
-//Found in input/cql/HPVElements.cql
-
-define "Client is due for HPV vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
 //Found in input/cql/IMMZD2DTHPV2DoseLogic.cql
 
 define "Client is due for HPV vaccination":
@@ -18376,15 +15162,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Should vaccinate client with first HPV dose as no HPV doses were administered, client is female and within appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Should vaccinate client with first HPV dose as no HPV doses were administered, client is female and within appropriate age range.":
   //CQL AUTHORS: you need to insert stuff here
@@ -18405,15 +15183,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Member States should update this guidance according to the national immunization programme.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Member States should update this guidance according to the national immunization programme.
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Member States should update this guidance according to the national immunization programme.":
   //CQL AUTHORS: you need to insert stuff here
@@ -18438,14 +15208,6 @@ Referenced in the following locations:
 
 define "One HPV primary series dose was administered":
   "Number of HPV Primary Series Doses Administered" = 1
-
-
-
-//Found in input/cql/HPVElements.cql
-
-define "One HPV primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "HPV vaccines" and "Type of dose" = "Primary series") = 1
 
 
 
@@ -18477,15 +15239,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -18506,15 +15260,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Should vaccinate client with second HPV dose as the latest HPV dose was administered more than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Should vaccinate client with second HPV dose as the latest HPV dose was administered more than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -18539,14 +15285,6 @@ Referenced in the following locations:
 
 define "Two HPV primary series doses were administered":
   "Number of HPV Primary Series Doses Administered" = 2
-
-
-
-//Found in input/cql/HPVElements.cql
-
-define "Two HPV primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "HPV vaccines" and "Type of dose" = "Primary series") = 2
 
 
 
@@ -18578,15 +15316,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Should not vaccinate for third HPV dose as the latest HPV dose was administered less than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Should not vaccinate for third HPV dose as the latest HPV dose was administered less than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -18607,15 +15337,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Should vaccinate for third HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Should vaccinate for third HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -18636,15 +15358,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Should vaccinate for third HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Should vaccinate for third HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -18670,14 +15384,6 @@ Referenced in the following locations:
 define "HPV immunization schedule is complete":
   "HPV immunization schedule is complete Case 1"
     or "HPV immunization schedule is complete Case 2"
-
-
-
-//Found in input/cql/HPVElements.cql
-
-define "HPV immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
 
 
 
@@ -18710,15 +15416,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "HPV immunization schedule is complete. Two HPV primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "HPV immunization schedule is complete. Two HPV primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -18743,14 +15441,6 @@ Referenced in the following locations:
 
 define "Three HPV primary series doses were administered":
   "Number of HPV Primary Series Doses Administered" = 3
-
-
-
-//Found in input/cql/HPVElements.cql
-
-define "Three HPV primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "HPV vaccines" and "Type of dose" = "Primary series") = 3
 
 
 
@@ -18782,15 +15472,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "HPV immunization schedule is complete. Three HPV primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "HPV immunization schedule is complete. Three HPV primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -18811,15 +15493,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Alternative single-dose schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // Alternative single-dose schedule
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Alternative single-dose schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -18840,15 +15514,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Number of HPV primary seres doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "HPV vaccines" and "Type of dose" = "Primary series")
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Number of HPV primary seres doses administered":
   //CQL AUTHORS: you need to insert stuff here
@@ -18869,15 +15535,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Should vaccinate client with first HPV dose as no HPV doses were administered and client is within appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Should vaccinate client with first HPV dose as no HPV doses were administered and client is within appropriate age range.":
   //CQL AUTHORS: you need to insert stuff here
@@ -18898,23 +15556,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Member States should update this action according to the national immunization programme.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Member States should update this action according to the national immunization programme.
-
-
-
-//Found in input/cql/HPVElements.cql
-
-define "Member States should update this action according to the national immunization programme.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Member States should update this action according to the national immunization programme.
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Member States should update this action according to the national immunization programme.":
   //CQL AUTHORS: you need to insert stuff here
@@ -18943,15 +15585,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Should vaccinate client with second HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Should vaccinate client with second HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -18972,15 +15606,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Should vaccinate client with second HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Should vaccinate client with second HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19001,15 +15627,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "HPV immunization schedule is complete. One HPV primary series dose was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "HPV immunization schedule is complete. One HPV primary series dose was administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19030,15 +15648,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19059,15 +15669,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Should vaccinate client with third HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Should vaccinate client with third HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19088,15 +15690,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Should vaccinate client with third HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Should vaccinate client with third HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19124,14 +15718,6 @@ define "Human papillomavirus (HPV) vaccination is contraindicated":
 
 
 
-//Found in input/cql/HPVElements.cql
-
-define "Human papillomavirus (HPV) vaccination is contraindicated":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Contraindicated"
-
-
-
 //Found in input/cql/DTElements-HPV.cql
 
 define "Human papillomavirus (HPV) vaccination is contraindicated":
@@ -19153,15 +15739,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Do not vaccinate client with HPV as HPV vaccination is contraindicated for pregnant client.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with HPV as HPV vaccination is contraindicated for pregnant client.
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Do not vaccinate client with HPV as HPV vaccination is contraindicated for pregnant client.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19189,14 +15767,6 @@ define "HPV vaccination could be contraindicated. Clinical judgement is required
 
 
 
-//Found in input/cql/HPVElements.cql
-
-define "HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
 //Found in input/cql/DTElements-HPV.cql
 
 define "HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
@@ -19218,15 +15788,7 @@ Referenced in the following locations:
  * Tabs: HPV
 
 """
-  * ^designation[+].value = """//Found in input/cql/HPVElements.cql
-
-define "Do not vaccinate client with HPV if client has history of a severe allergic reaction after a previous HPV vaccine dose, or to a component of the vaccine.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with HPV if client has history of a severe allergic reaction after a previous HPV vaccine dose, or to a component of the vaccine.
-
-
-
-//Found in input/cql/DTElements-HPV.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HPV.cql
 
 define "Do not vaccinate client with HPV if client has history of a severe allergic reaction after a previous HPV vaccine dose, or to a component of the vaccine.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19247,15 +15809,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "Inactivated Vero cell-derived vaccination schedule (2-dose scheme)":
-  //CQL AUTHORS: you need to insert stuff here
-  // JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "Inactivated Vero cell-derived vaccination schedule (2-dose scheme)":
   //CQL AUTHORS: you need to insert stuff here
@@ -19287,14 +15841,6 @@ define "Number of JE Primary Series Doses Administered":
 
 define "Number of JE Primary Series Doses Administered":
   Count("JE Primary Series Doses Administered to Patient")
-
-
-
-//Found in input/cql/JEElements.cql
-
-define "Number of JE primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "JE vaccines" and "Type of dose" = "Primary series")
 
 
 
@@ -19340,14 +15886,6 @@ define "Client is not due for JE vaccination":
 define "Client is not due for JE vaccination":
   "Client is not due for JE vaccination Case 1"
     or "Client is not due for JE vaccination Case 2"
-
-
-
-//Found in input/cql/JEElements.cql
-
-define "Client is not due for JE vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
 
 
 
@@ -19407,14 +15945,6 @@ define "No JE primary series doses were administered":
 
 
 
-//Found in input/cql/JEElements.cql
-
-define "No JE primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "JE vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
 //Found in input/cql/DTElements-JE.cql
 
 define "No JE primary series doses were administered":
@@ -19462,14 +15992,6 @@ define "Client is due for JE vaccination":
 
 
 
-//Found in input/cql/JEElements.cql
-
-define "Client is due for JE vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
 //Found in input/cql/DTElements-JE.cql
 
 define "Client is due for JE vaccination":
@@ -19491,15 +16013,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "Should vaccinate client with first JE dose as no JE doses were administered and client is within the appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "Should vaccinate client with first JE dose as no JE doses were administered and client is within the appropriate age range.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19541,14 +16055,6 @@ define "One JE primary series dose was administered":
 
 
 
-//Found in input/cql/JEElements.cql
-
-define "One JE primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "JE vaccines" and "Type of dose" = "Primary series") = 1
-
-
-
 //Found in input/cql/DTElements-JE.cql
 
 define "One JE primary series dose was administered":
@@ -19570,15 +16076,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "Should not vaccinate client with second JE dose as the latest JE dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver when to come back for the second JE dose.
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "Should not vaccinate client with second JE dose as the latest JE dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19599,15 +16097,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "Should vaccinate client with second JE dose as the latest JE dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "Should vaccinate client with second JE dose as the latest JE dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19639,14 +16129,6 @@ define "Two JE primary series doses were administered":
 
 define "Two JE primary series doses were administered":
   "Number of JE Primary Series Doses Administered" = 2
-
-
-
-//Found in input/cql/JEElements.cql
-
-define "Two JE primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "JE vaccines" and "Type of dose" = "Primary series") = 2
 
 
 
@@ -19694,16 +16176,6 @@ define "JE immunization schedule is complete":
 
 
 
-//Found in input/cql/JEElements.cql
-
-define "JE immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "JE vaccines")
-
-
-
 //Found in input/cql/DTElements-JE.cql
 
 define "JE immunization schedule is complete":
@@ -19727,15 +16199,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "JE immunization schedule is complete. Two JE primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "JE immunization schedule is complete. Two JE primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19756,15 +16220,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "Live attenuated vaccination schedule (1-dose scheme)":
-  //CQL AUTHORS: you need to insert stuff here
-  // JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "Live attenuated vaccination schedule (1-dose scheme)":
   //CQL AUTHORS: you need to insert stuff here
@@ -19806,15 +16262,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "Should vaccinate client with JE dose as no JE dose was administered, client is within the appropriate age range and no live vaccine was administered in last 4 weeks. Check for contraindications.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should vaccinate client with JE dose as no JE dose was administered, client is within the appropriate age range and no live vaccine was administered in last 4 weeks. Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "Should vaccinate client with JE dose as no JE dose was administered, client is within the appropriate age range and no live vaccine was administered in last 4 weeks. Check for contraindications.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19835,15 +16283,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first JE dose.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first JE dose.
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first JE dose.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19864,15 +16304,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "JE immunization schedule is complete. One JE primary series dose was administered. Check for any other vaccines due.":
-  //CQL AUTHORS: you need to insert stuff here
-  // JE immunization schedule is complete. One JE primary series dose was administered. Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "JE immunization schedule is complete. One JE primary series dose was administered. Check for any other vaccines due.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19893,15 +16325,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "Live recombinant vaccination schedule (1-dose scheme)":
-  //CQL AUTHORS: you need to insert stuff here
-  // JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "Live recombinant vaccination schedule (1-dose scheme)":
   //CQL AUTHORS: you need to insert stuff here
@@ -19943,15 +16367,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "Should vaccinate client with JE dose as no JE dose was administered, client is within the appropriate age range and no live vaccine was administered in past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "Should vaccinate client with JE dose as no JE dose was administered, client is within the appropriate age range and no live vaccine was administered in past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -19972,15 +16388,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the first JE dose.
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -20015,14 +16423,6 @@ define "One JE primary series doses were administered":
 
 
 
-//Found in input/cql/JEElements.cql
-
-define "One JE primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "JE vaccines" and "Type of dose" = "Primary series") = 1
-
-
-
 //Found in input/cql/DTElements-JE.cql
 
 define "One JE primary series doses were administered":
@@ -20044,15 +16444,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "JE immunization schedule is complete. One JE primary series dose was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "JE immunization schedule is complete. One JE primary series dose was administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -20087,14 +16479,6 @@ define "The client is immunocomprised":
 
 
 
-//Found in input/cql/JEElements.cql
-
-define "The client is immunocomprised":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Immunocompromised"
-
-
-
 //Found in input/cql/DTElements-JE.cql
 
 define "The client is immunocomprised":
@@ -20116,15 +16500,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "The client is immunocompromised, consider risks of vaccination and make a judgement. Inactivated Vero cell-derived vaccines are preferred in immunocompromised clients.":
-  //CQL AUTHORS: you need to insert stuff here
-  // The client is immunocompromised, consider risks of vaccination and make a judgement. Inactivated Vero cell-derived vaccines are preferred in immunocompromised clients.
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "The client is immunocompromised, consider risks of vaccination and make a judgement. Inactivated Vero cell-derived vaccines are preferred in immunocompromised clients.":
   //CQL AUTHORS: you need to insert stuff here
@@ -20145,15 +16521,7 @@ Referenced in the following locations:
  * Tabs: JE
 
 """
-  * ^designation[+].value = """//Found in input/cql/JEElements.cql
-
-define "The client is currently pregnant, consider risks of vaccination and make a judgement. Inactivated Vero cell-derived vaccines are preferred over live attenuated or live recombinant vaccines.":
-  //CQL AUTHORS: you need to insert stuff here
-  // The client is currently pregnant, consider risks of vaccination and make a judgement. Inactivated Vero cell-derived vaccines are preferred over live attenuated or live recombinant vaccines.
-
-
-
-//Found in input/cql/DTElements-JE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-JE.cql
 
 define "The client is currently pregnant, consider risks of vaccination and make a judgement. Inactivated Vero cell-derived vaccines are preferred over live attenuated or live recombinant vaccines.":
   //CQL AUTHORS: you need to insert stuff here
@@ -20189,14 +16557,6 @@ define "Number of yellow fever primary series doses administered":
 
 
 
-//Found in input/cql/YellowfeverElements.cql
-
-define "Number of yellow fever primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Yellow fever vaccines" and "Type of dose" = "Primary series")
-
-
-
 //Found in input/cql/IMMZD2DTYellowfeverEncounterElements.cql
 
 define "Number of Yellow fever Primary Series Doses Administered":
@@ -20225,14 +16585,6 @@ define "No yellow fever primary series doses were administered":
 
 
 //Found in input/cql/DTElements-Yellowfever.cql
-
-define "No yellow fever primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Yellow fever vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
-//Found in input/cql/YellowfeverElements.cql
 
 define "No yellow fever primary series doses were administered":
   //CQL AUTHORS: you need to insert stuff here
@@ -20290,14 +16642,6 @@ define "Client is not due for yellow fever vaccination":
 
 
 //Found in input/cql/DTElements-Yellowfever.cql
-
-define "Client is not due for yellow fever vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/YellowfeverElements.cql
 
 define "Client is not due for yellow fever vaccination":
   //CQL AUTHORS: you need to insert stuff here
@@ -20410,14 +16754,6 @@ define "Live vaccine was administered in the past 4 weeks":
 
 
 
-//Found in input/cql/YellowfeverElements.cql
-
-define "Live vaccine was administered in the past 4 weeks":
-  //CQL AUTHORS: you need to insert stuff here
-  // Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
-
-
-
 //Found in input/cql/IMMZD2DTYellowfeverEncounterElements.cql
 
 define "Live vaccine was administered in the past 4 weeks":
@@ -20446,14 +16782,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Yellowfever.cql
-
-define "Should not vaccinate client with yellow fever dose as live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the first dose.
-
-
-
-//Found in input/cql/YellowfeverElements.cql
 
 define "Should not vaccinate client with yellow fever dose as live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -20524,14 +16852,6 @@ define "No live vaccine was administered in the past 4 weeks":
 
 
 
-//Found in input/cql/YellowfeverElements.cql
-
-define "No live vaccine was administered in the past 4 weeks":
-  //CQL AUTHORS: you need to insert stuff here
-  // Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks
-
-
-
 //Found in input/cql/IMMZD2DTYellowfeverEncounterElements.cql
 
 define "No live vaccine was administered in the past 4 weeks":
@@ -20576,14 +16896,6 @@ define "Client is due for yellow fever vaccination":
 
 
 
-//Found in input/cql/YellowfeverElements.cql
-
-define "Client is due for yellow fever vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -20598,14 +16910,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Yellowfever.cql
-
-define "Should vaccinate client with yellow fever dose as no yellow fever dose was administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/YellowfeverElements.cql
 
 define "Should vaccinate client with yellow fever dose as no yellow fever dose was administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -20634,14 +16938,6 @@ define "One yellow fever primary series dose was administered":
 
 
 //Found in input/cql/DTElements-Yellowfever.cql
-
-define "One yellow fever primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Yellow fever vaccines" and "Type of dose" = "Primary series") = 1
-
-
-
-//Found in input/cql/YellowfeverElements.cql
 
 define "One yellow fever primary series dose was administered":
   //CQL AUTHORS: you need to insert stuff here
@@ -20688,16 +16984,6 @@ define "Yellow fever immunization schedule is complete":
 
 
 
-//Found in input/cql/YellowfeverElements.cql
-
-define "Yellow fever immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Yellow fever vaccines")
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -20719,14 +17005,6 @@ define "Yellow fever immunization schedule is complete. One yellow fever primary
 
 
 
-//Found in input/cql/YellowfeverElements.cql
-
-define "Yellow fever immunization schedule is complete. One yellow fever primary series dose was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -20740,15 +17018,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "FSME-Immun schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // (In areas where the disease is highly endemic, implying that there is a high individual risk of infection, WHO recommends that vaccination be offered to all age groups, including children)
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "FSME-Immun schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -20773,14 +17043,6 @@ Referenced in the following locations:
 
 define "Number of TBE Primary Series Doses Administered":
   Count("TBE Primary Series Doses Administered to Patient")
-
-
-
-//Found in input/cql/TBEElements.cql
-
-define "Number of TBE primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "TBE vaccines" and "Type of dose" = "Primary series")
 
 
 
@@ -20827,14 +17089,6 @@ define "Client is not due for TBE vaccination":
   "Client is not due for TBE vaccination Case 1"
     or "Client is not due for TBE vaccination Case 2"
     or "Client is not due for TBE vaccination Case 3"
-
-
-
-//Found in input/cql/TBEElements.cql
-
-define "Client is not due for TBE vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
 
 
 
@@ -20905,14 +17159,6 @@ define "No TBE primary series doses were administered":
 
 
 
-//Found in input/cql/TBEElements.cql
-
-define "No TBE primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "TBE vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
 //Found in input/cql/IMMZD2DTTBEEncounterElements.cql
 
 define "No TBE primary series doses were administered":
@@ -20956,14 +17202,6 @@ define "Client is due for TBE vaccination":
   "Client is due for TBE vaccination Case 1"
     or "Client is due for TBE vaccination Case 2"
     or "Client is due for TBE vaccination Case 3"
-
-
-
-//Found in input/cql/TBEElements.cql
-
-define "Client is due for TBE vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
 
 
 
@@ -21034,14 +17272,6 @@ define "One TBE primary series dose was administered":
 
 
 
-//Found in input/cql/TBEElements.cql
-
-define "One TBE primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "TBE vaccines" and "Type of dose" = "Primary series") = 1
-
-
-
 //Found in input/cql/IMMZD2DTTBEEncounterElements.cql
 
 define "One TBE primary series dose was administered":
@@ -21070,15 +17300,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago. Check for any vaccines due and inform the caregiver of when to come back for the next dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago. Check for any vaccines due and inform the caregiver of when to come back for the next dose
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago. Check for any vaccines due and inform the caregiver of when to come back for the next dose":
   //CQL AUTHORS: you need to insert stuff here
@@ -21099,15 +17321,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Should vaccinate client with second TBE dose as the latest dose was administered more than 1 month ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Should vaccinate client with second TBE dose as the latest dose was administered more than 1 month ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -21132,14 +17346,6 @@ Referenced in the following locations:
 
 define "Two TBE primary series doses were administered":
   "Number of TBE Primary Series Doses Administered"  = 2
-
-
-
-//Found in input/cql/TBEElements.cql
-
-define "Two TBE primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "TBE vaccines" and "Type of dose" = "Primary series") = 2
 
 
 
@@ -21171,15 +17377,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Should not vaccinate client with third TBE dose as the latest dose was administered less than 5 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Should not vaccinate client with third TBE dose as the latest dose was administered less than 5 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -21200,15 +17398,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Should vaccinate client with third TBE dose as the latest dose was administered more than 5 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Should vaccinate client with third TBE dose as the latest dose was administered more than 5 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -21233,14 +17423,6 @@ Referenced in the following locations:
 
 define "Three TBE primary series doses were administered":
   "Number of TBE Primary Series Doses Administered"  = 3
-
-
-
-//Found in input/cql/TBEElements.cql
-
-define "Three TBE primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "TBE vaccines" and "Type of dose" = "Primary series") = 3
 
 
 
@@ -21279,16 +17461,6 @@ Referenced in the following locations:
 define "Primary series is complete. Client is not due for TBE booster dose":
   Encounter."Three TBE primary series doses were administered"
     and Encounter."The latest TBE dose was administered less than 3 years ago"
-
-
-
-//Found in input/cql/TBEElements.cql
-
-define "Primary series is complete. Client is not due for TBE booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "TBE vaccines")
 
 
 
@@ -21332,15 +17504,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Should not vaccinate client with TBE booster dose as the latest TBE dose was administered less than 3 years ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Should not vaccinate client with TBE booster dose as the latest TBE dose was administered less than 3 years ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -21368,16 +17532,6 @@ Referenced in the following locations:
 define "Primary series is complete. Client is due for TBE booster dose":
   Encounter."Three TBE primary series doses were administered"
     and Encounter."The latest TBE dose was administered more than 3 years ago"
-
-
-
-//Found in input/cql/TBEElements.cql
-
-define "Primary series is complete. Client is due for TBE booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "TBE vaccines")
 
 
 
@@ -21421,15 +17575,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Should vaccinate client with TBE booster dose as the latest TBE dose was administered more than 3 years ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Should vaccinate client with TBE booster dose as the latest TBE dose was administered more than 3 years ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -21452,17 +17598,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Clinical judgement is required.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Create a clinical note
-
-   // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/IMMZD2DTTBEFSMELogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTBEFSMELogic.cql
 
 define "Clinical judgement is required.":
   Encounter."Three TBE primary series doses were administered"
@@ -21493,15 +17629,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Assess if supplementary booster TBE dose(s) are necessary and create a clinical note.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due.
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Assess if supplementary booster TBE dose(s) are necessary and create a clinical note.":
   //CQL AUTHORS: you need to insert stuff here
@@ -21522,15 +17650,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Encepur schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // (In areas where the disease is highly endemic, implying that there is a high individual risk of infection, WHO recommends that vaccination be offered to all age groups, including children		)
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Encepur schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -21551,15 +17671,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -21580,15 +17692,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Should not vaccinate client with third TBE dose as the latest dose was administered less than 9 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Should not vaccinate client with third TBE dose as the latest dose was administered less than 9 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -21609,15 +17713,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Should vaccinate client with third TBE dose as the latest dose was administered more than 9 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Should vaccinate client with third TBE dose as the latest dose was administered more than 9 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -21646,16 +17742,6 @@ define "The primary series is complete. Client is not due for TBE booster dose":
   Encounter."Three TBE primary series doses were administered"
     and Encounter."No TBE booster dose was administered"
     and Encounter."The latest TBE dose was administered less than 3 years ago"
-
-
-
-//Found in input/cql/TBEElements.cql
-
-define "The primary series is complete. Client is not due for TBE booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "TBE vaccines")
 
 
 
@@ -21695,18 +17781,6 @@ define "The primary series is complete":
 
 
 
-//Found in input/cql/TBEElements.cql
-
-define "The primary series is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // Client is due for TBE booster dose
-
-   // "Immunization recommendation status" = "Due"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "TBE vaccines")
-
-
-
 //Found in input/cql/DTElements-TBE.cql
 
 define "The primary series is complete":
@@ -21732,15 +17806,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Should vaccinate client with TBE booster dose as the primary series has been completed and the latest TBE dose was administered more than 3 years ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Should vaccinate client with TBE booster dose as the primary series has been completed and the latest TBE dose was administered more than 3 years ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -21761,15 +17827,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "TBE-Moscow schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // (In areas where the disease is highly endemic, implying that there is a high individual risk of infection, WHO recommends that vaccination be offered to all age groups, including children	)
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "TBE-Moscow schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -21832,15 +17890,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Should not vaccinate client with third TBE dose as the latest dose was administered less than 12 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the next dose
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Should not vaccinate client with third TBE dose as the latest dose was administered less than 12 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -21861,15 +17911,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Should vaccinate client with third TBE dose as the latest dose was administered more than 12 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Should vaccinate client with third TBE dose as the latest dose was administered more than 12 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -21890,15 +17932,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "EnceVir schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // (In areas where the disease is highly endemic, implying that there is a high individual risk of infection, WHO recommends that vaccination be offered to all age groups, including children					)
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "EnceVir schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -21940,15 +17974,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Should not vaccinate client with second TBE dose as the latest dose was administered less than 5 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the next dose
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Should not vaccinate client with second TBE dose as the latest dose was administered less than 5 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -21969,15 +17995,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Should vaccinate client with second TBE dose as the latest dose was administered more than 5 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Should vaccinate client with second TBE dose as the latest dose was administered more than 5 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -22019,15 +18037,7 @@ Referenced in the following locations:
  * Tabs: TBE
 
 """
-  * ^designation[+].value = """//Found in input/cql/TBEElements.cql
-
-define "Consider postponing the vaccination if the client has fever > 38.5°C or other signs of serious disease. Consider risks of vaccination and make a clinical judgement.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Consider postponing the vaccination if the client has fever > 38.5°C or other signs of serious disease. Consider risks of vaccination and make a clinical judgement.
-
-
-
-//Found in input/cql/DTElements-TBE.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-TBE.cql
 
 define "Consider postponing the vaccination if the client has fever > 38.5°C or other signs of serious disease. Consider risks of vaccination and make a clinical judgement.":
   //CQL AUTHORS: you need to insert stuff here
@@ -22048,15 +18058,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Typhoid conjugate vaccine (TCV) schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // Typhoid conjugate vaccine (TCV) schedule
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Typhoid conjugate vaccine (TCV) schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -22081,14 +18083,6 @@ Referenced in the following locations:
 
 define "Number of Typhoid Primary Series Doses Administered":
   Count("Typhoid Primary Series Doses Administered to Patient")
-
-
-
-//Found in input/cql/TyphoidElements.cql
-
-define "Number of typhoid primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Typhoid vaccines" and "Type of dose" = "Primary series")
 
 
 
@@ -22120,15 +18114,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Client is not due for Typhoid vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/IMMZD2DTTyphoidTy21aLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTyphoidTy21aLogic.cql
 
 define "Client is not due for Typhoid vaccination":
   "Client is not due for Typhoid vaccination Case 1"
@@ -22199,14 +18185,6 @@ define "No typhoid primary series doses were administered":
 
 
 
-//Found in input/cql/TyphoidElements.cql
-
-define "No typhoid primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Typhoid vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
 //Found in input/cql/DTElements-Typhoid.cql
 
 define "No typhoid primary series doses were administered":
@@ -22235,15 +18213,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Client is due for Typhoid vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
-//Found in input/cql/IMMZD2DTTyphoidTy21aLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTyphoidTy21aLogic.cql
 
 define "Client is due for Typhoid vaccination":
   Encounter."Client's age is more than or equal to 6 years"
@@ -22289,15 +18259,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Should vaccinate client with typhoid dose as no typhoid doses were administered and client is within appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Should vaccinate client with typhoid dose as no typhoid doses were administered and client is within appropriate age range.":
   //CQL AUTHORS: you need to insert stuff here
@@ -22322,14 +18284,6 @@ Referenced in the following locations:
 
 define "One typhoid primary series dose was administered":
   "Number of Typhoid Primary Series Doses Administered" = 1
-
-
-
-//Found in input/cql/TyphoidElements.cql
-
-define "One typhoid primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Typhoid vaccines" and "Type of dose" = "Primary series") = 1
 
 
 
@@ -22363,17 +18317,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Typhoid immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Typhoid vaccines")
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Typhoid immunization schedule is complete":
   //CQL AUTHORS: you need to insert stuff here
@@ -22403,15 +18347,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Typhoid immunization schedule is complete. One typhoid primary series dose was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Typhoid immunization schedule is complete. One typhoid primary series dose was administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -22432,15 +18368,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Unconjugated Vi polysaccharide (ViPS) schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // Unconjugated Vi polysaccharide (ViPS) schedule
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Unconjugated Vi polysaccharide (ViPS) schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -22484,17 +18412,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Primary series is complete. Client is not due for typhoid booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-   // "Completed the primary vaccination series" (where "Vaccine type" = "Typhoid vaccines") = TRUE
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Primary series is complete. Client is not due for typhoid booster dose":
   //CQL AUTHORS: you need to insert stuff here
@@ -22525,15 +18443,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Should not vaccinate client with typhoid booster dose as the latest typhoid dose was administered less than 3 years ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered.
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Should not vaccinate client with typhoid booster dose as the latest typhoid dose was administered less than 3 years ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -22556,17 +18466,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Primary series is complete. Client is due for typhoid booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-   // "Completed the primary vaccination series" (where "Vaccine type" = "Typhoid vaccines") = TRUE
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Primary series is complete. Client is due for typhoid booster dose":
   //CQL AUTHORS: you need to insert stuff here
@@ -22597,15 +18497,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Should vaccinate client with typhoid booster dose as the latest dose was administered more than 3 years ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Should vaccinate client with typhoid booster dose as the latest dose was administered more than 3 years ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -22626,15 +18518,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Live attenuated Ty21a vaccine schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // Live attenuated Ty21a vaccine schedule
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Live attenuated Ty21a vaccine schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -22718,15 +18602,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Prescribe the Ty21a primary series (if not done yet). Should vaccinate client with typhoid dose as primary series has not been completed and no live vaccines was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Prescribe the Ty21a primary series (if not done yet). Should vaccinate client with typhoid dose as primary series has not been completed and no live vaccines was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -22747,15 +18623,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Should not vaccinate client with typhoid dose as live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for other vaccines due and inform the caregiver or the client when the next dose should be administered.
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Should not vaccinate client with typhoid dose as live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -22776,15 +18644,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Client is not due for typhoid booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/IMMZD2DTTyphoidTy21aLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTyphoidTy21aLogic.cql
 
 define "Client is not due for typhoid booster dose":
   "Client is not due for typhoid booster dose Case 1"
@@ -22813,15 +18673,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Client is due for typhoid booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
-//Found in input/cql/IMMZD2DTTyphoidTy21aLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTTyphoidTy21aLogic.cql
 
 define "Client is due for typhoid booster dose":
   Encounter."Client's age is more than or equal to 6 years"
@@ -22852,15 +18704,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Prescribe the Ty21a booster series. Should vaccinate client with typhoid booster dose as primary series has been completed, the latest typhoid dose was administered more than 3 years ago and no live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Prescribe the Ty21a booster series. Should vaccinate client with typhoid booster dose as primary series has been completed, the latest typhoid dose was administered more than 3 years ago and no live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -22881,15 +18725,7 @@ Referenced in the following locations:
  * Tabs: Typhoid
 
 """
-  * ^designation[+].value = """//Found in input/cql/TyphoidElements.cql
-
-define "Should not vaccinate client with typhoid booster dose as live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered
-
-
-
-//Found in input/cql/DTElements-Typhoid.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Typhoid.cql
 
 define "Should not vaccinate client with typhoid booster dose as live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -22910,15 +18746,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Whole-cell (WC) vaccines schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // Whole-cell (WC) vaccines schedule
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Whole-cell (WC) vaccines schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -22953,14 +18781,6 @@ define "Client is not due for cholera vaccination":
   "Client is not due for cholera vaccination Case 1"
     or "Client is not due for cholera vaccination Case 2"
     or "Client is not due for cholera vaccination Case 3"
-
-
-
-//Found in input/cql/CholeraElements.cql
-
-define "Client is not due for cholera vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
 
 
 
@@ -23038,16 +18858,6 @@ define "Client is due for cholera vaccination":
 
 
 
-//Found in input/cql/CholeraElements.cql
-
-define "Client is due for cholera vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-   // "Completed the primary vaccination series" (where "Vaccine type" = "Cholera vaccines") = FALSE when dose 1 is administered
-
-
-
 //Found in input/cql/DTElements-Cholera.cql
 
 define "Client is due for cholera vaccination":
@@ -23081,15 +18891,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should vaccinate client with cholera dose as no doses have been given.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should vaccinate client with cholera dose as no doses have been given.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should vaccinate client with cholera dose as no doses have been given.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23110,15 +18912,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should not vaccinate client with cholera dose as the latest cholera dose was administered less than 14 days ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should not vaccinate client with cholera dose as the latest cholera dose was administered less than 14 days ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23139,15 +18933,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should vaccinate client with cholera dose as the latest cholera dose was administered more than 14 days ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should vaccinate client with cholera dose as the latest cholera dose was administered more than 14 days ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23190,16 +18976,6 @@ define "Primary series is complete. Client is not due for cholera booster dose":
 
 
 
-//Found in input/cql/CholeraElements.cql
-
-define "Primary series is complete. Client is not due for cholera booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-   // "Completed the booster series" (where "Vaccine type" = "Cholera vaccines") = TRUE
-
-
-
 //Found in input/cql/DTElements-Cholera.cql
 
 define "Primary series is complete. Client is not due for cholera booster dose":
@@ -23223,15 +18999,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should not vaccinate client with cholera booster dose as primary series was completed less than 3 years ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the first booster dose.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should not vaccinate client with cholera booster dose as primary series was completed less than 3 years ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23274,16 +19042,6 @@ define "Primary series is complete. Client is due for cholera booster dose":
 
 
 
-//Found in input/cql/CholeraElements.cql
-
-define "Primary series is complete. Client is due for cholera booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-   // "Completed the booster series" (where "Vaccine type" = "Cholera vaccines") = TRUE
-
-
-
 //Found in input/cql/DTElements-Cholera.cql
 
 define "Primary series is complete. Client is due for cholera booster dose":
@@ -23317,15 +19075,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should vaccinate client with cholera dose as the primary series for cholera was completed more than 3 years ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should vaccinate client with cholera dose as the primary series for cholera was completed more than 3 years ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23357,14 +19107,6 @@ define "Client is not due for cholera booster dose":
 
 
 
-//Found in input/cql/CholeraElements.cql
-
-define "Client is not due for cholera booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
 //Found in input/cql/DTElements-Cholera.cql
 
 define "Client is not due for cholera booster dose":
@@ -23386,15 +19128,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should not vaccinate client with cholera booster dose as the latest dose was administered less than 14 days ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should not vaccinate client with cholera booster dose as the latest dose was administered less than 14 days ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23426,14 +19160,6 @@ define "Client is due for cholera booster dose":
 
 
 
-//Found in input/cql/CholeraElements.cql
-
-define "Client is due for cholera booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
 //Found in input/cql/DTElements-Cholera.cql
 
 define "Client is due for cholera booster dose":
@@ -23455,15 +19181,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should vaccinate client with cholera booster dose as the booster series is not completed and the latest cholera dose was administered more than 14 days ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should vaccinate client with cholera booster dose as the booster series is not completed and the latest cholera dose was administered more than 14 days ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23495,14 +19213,6 @@ define "Booster series is complete":
 
 
 
-//Found in input/cql/CholeraElements.cql
-
-define "Booster series is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Completed the booster series" (where "Vaccine type" = "Cholera vaccines") = TRUE
-
-
-
 //Found in input/cql/DTElements-Cholera.cql
 
 define "Booster series is complete":
@@ -23524,15 +19234,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should not vaccinate client with cholera dose as the booster series for cholera was completed less than 3 years ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the next booster series.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should not vaccinate client with cholera dose as the booster series for cholera was completed less than 3 years ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23553,15 +19255,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should vaccinate client with cholera dose as the booster series for cholera was completed more than 3 years ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should vaccinate client with cholera dose as the booster series for cholera was completed more than 3 years ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23582,15 +19276,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years":
-  //CQL AUTHORS: you need to insert stuff here
-  // Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years":
   //CQL AUTHORS: you need to insert stuff here
@@ -23674,15 +19360,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should vaccinate client with cholera dose as no cholera doses have been administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should vaccinate client with cholera dose as no cholera doses have been administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23703,15 +19381,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should not vaccinate client with cholera dose as the latest cholera dose was administered less than 1 week ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should not vaccinate client with cholera dose as the latest cholera dose was administered less than 1 week ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23732,15 +19402,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should vaccinate client with cholera dose as the latest cholera dose was administered in the last 1 to 6 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should vaccinate client with cholera dose as the latest cholera dose was administered in the last 1 to 6 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23761,15 +19423,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should vaccinate client with cholera dose and restart primary series as the latest cholera dose was administered more than 6 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should vaccinate client with cholera dose and restart primary series as the latest cholera dose was administered more than 6 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23790,15 +19444,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should not vaccinate client with cholera dose as the latest cholera dose was administered less than {Member States defined lower limit} days ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should not vaccinate client with cholera dose as the latest cholera dose was administered less than {Member States defined lower limit} days ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23819,15 +19465,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should vaccinate client with cholera booster dose as the latest cholera dose was administered less than approximately 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should vaccinate client with cholera booster dose as the latest cholera dose was administered less than approximately 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23848,15 +19486,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should vaccinate client with cholera dose and restart primary series as the latest cholera dose was administered more than approximately 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should vaccinate client with cholera dose and restart primary series as the latest cholera dose was administered more than approximately 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23877,15 +19507,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years":
-  //CQL AUTHORS: you need to insert stuff here
-  // Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Whole cell-recombinant B subunit (WC-rBS) vaccine, 2-dose schedule for clients aged over 5 years":
   //CQL AUTHORS: you need to insert stuff here
@@ -23906,15 +19528,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should vaccinate client with cholera booster dose as the latest cholera dose was administered approximately less than 2 years ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should vaccinate client with cholera booster dose as the latest cholera dose was administered approximately less than 2 years ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23935,15 +19549,7 @@ Referenced in the following locations:
  * Tabs: Cholera
 
 """
-  * ^designation[+].value = """//Found in input/cql/CholeraElements.cql
-
-define "Should vaccinate client with cholera dose and restart primary series as the latest cholera dose was administered approximately more than 2 years ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Cholera.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Cholera.cql
 
 define "Should vaccinate client with cholera dose and restart primary series as the latest cholera dose was administered approximately more than 2 years ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -23965,14 +19571,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Meningococcal.cql
-
-define "MenA conjugate vaccine, 1-dose schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // MenA conjugate vaccine, 1-dose schedule
-
-
-
-//Found in input/cql/MeningococcalElements.cql
 
 define "MenA conjugate vaccine, 1-dose schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -24005,14 +19603,6 @@ define "Number of meningococcal primary series doses administered":
 
 define "Number of Meningococcal Primary Series Doses Administered":
   Count("Meningococcal Primary Series Doses Administered to Patient")
-
-
-
-//Found in input/cql/MeningococcalElements.cql
-
-define "Number of meningococcal primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Meningococcal vaccines" and "Type of dose" = "Primary series")
 
 
 
@@ -24064,14 +19654,6 @@ define "Client is not due for meningococcal vaccination":
 
 define "Client is not due for meningococcal vaccination":
   Encounter."Client's age is less than 2 years"
-
-
-
-//Found in input/cql/MeningococcalElements.cql
-
-define "Client is not due for meningococcal vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
 
 
 
@@ -24147,14 +19729,6 @@ define "No meningococcal primary series dose was administered":
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "No meningococcal primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Meningococcal vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
 //Found in input/cql/IMMZD2DTMeningococcalEncounterElements.cql
 
 define "No meningococcal primary series dose was administered":
@@ -24207,14 +19781,6 @@ define "Client is due for meningococcal vaccination":
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Client is due for meningococcal vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
 //Found in input/cql/IMMZD2DTMeningococcalPolyLogic.cql
 
 define "Client is due for meningococcal vaccination":
@@ -24260,14 +19826,6 @@ define "Should vaccinate client with meningococcal dose as no meningococcal dose
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Should vaccinate client with meningococcal dose as no meningococcal dose was administered and client is within appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -24293,14 +19851,6 @@ define "One meningococcal primary series dose was administered":
 
 define "One meningococcal primary series dose was administered":
   "Number of Meningococcal Primary Series Doses Administered" = 1
-
-
-
-//Found in input/cql/MeningococcalElements.cql
-
-define "One meningococcal primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Meningococcal vaccines" and "Type of dose" = "Primary series") = 1
 
 
 
@@ -24356,14 +19906,6 @@ define "Meningococcal immunization schedule is complete":
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Meningococcal immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
-
-
-
 //Found in input/cql/IMMZD2DTMeningococcalPolyLogic.cql
 
 define "Meningococcal immunization schedule is complete":
@@ -24409,14 +19951,6 @@ define "Meningococcal immunization schedule is complete. One meningococcal prima
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Meningococcal immunization schedule is complete. One meningococcal primary series dose was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -24431,14 +19965,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Meningococcal.cql
-
-define "MenA conjugate vaccine, 2-dose schedule (specific context where there is a compelling reason to vaccinate infants aged under 9 months)":
-  //CQL AUTHORS: you need to insert stuff here
-  // MenA conjugate vaccine, 2-dose schedule (specific context where there is a compelling reason to vaccinate infants aged under 9 months)
-
-
-
-//Found in input/cql/MeningococcalElements.cql
 
 define "MenA conjugate vaccine, 2-dose schedule (specific context where there is a compelling reason to vaccinate infants aged under 9 months)":
   //CQL AUTHORS: you need to insert stuff here
@@ -24488,14 +20014,6 @@ define "Should vaccinate client with first meningococcal dose as no meningococca
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Should vaccinate client with first meningococcal dose as no meningococcal doses were administered and client is within appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -24517,14 +20035,6 @@ define "Should not vaccinate client with second meningococcal dose as the latest
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 8 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the second dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -24539,14 +20049,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Meningococcal.cql
-
-define "Should vaccinate client with second meningococcal dose as the latest meningococcal dose was administered more than 8 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/MeningococcalElements.cql
 
 define "Should vaccinate client with second meningococcal dose as the latest meningococcal dose was administered more than 8 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -24582,14 +20084,6 @@ define "Two meningococcal primary series doses were administered":
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Two meningococcal primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Meningococcal vaccines" and "Type of dose" = "Primary series") = 2
-
-
-
 //Found in input/cql/IMMZD2DTMeningococcalEncounterElements.cql
 
 define "Two meningococcal primary series doses were administered":
@@ -24618,14 +20112,6 @@ define "Meningococcal immunization schedule is complete. Two meningococcal prima
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Meningococcal immunization schedule is complete. Two meningococcal primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -24640,14 +20126,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Meningococcal.cql
-
-define "Monovalent MenC conjugate vaccine schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // Monovalent MenC conjugate vaccine schedule
-
-
-
-//Found in input/cql/MeningococcalElements.cql
 
 define "Monovalent MenC conjugate vaccine schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -24697,14 +20175,6 @@ define "Should vaccinate client with first meningococcal dose as no meningococca
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Should vaccinate client with first meningococcal dose as no meningococcal dose was administered and client is within appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -24726,14 +20196,6 @@ define "Should not vaccinate client with second meningococcal dose as the latest
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 2 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the second dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -24748,14 +20210,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Meningococcal.cql
-
-define "Should vaccinate client with second meningococcal dose as client was less than 11 months when primary series was started and latest meningococcal dose was administered more than 2 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/MeningococcalElements.cql
 
 define "Should vaccinate client with second meningococcal dose as client was less than 11 months when primary series was started and latest meningococcal dose was administered more than 2 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -24805,14 +20259,6 @@ define "Should not vaccinate client with meningococcal booster dose as the lates
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Should not vaccinate client with meningococcal booster dose as the latest meningococcal dose was administered less than 1 year ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the booster dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -24847,16 +20293,6 @@ define "The primary series is complete. Client is due for meningococcal booster 
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "The primary series is complete. Client is due for meningococcal booster dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-   // "Completed the primary vaccination series" (where "Vaccine type" = "Meningococcal vaccines") = TRUE
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -24871,14 +20307,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Meningococcal.cql
-
-define "Should vaccinate client with Meningococcal booster dose as no meningococcal booster dose was administered and the latest meningococcal dose was administered more than 1 year ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/MeningococcalElements.cql
 
 define "Should vaccinate client with Meningococcal booster dose as no meningococcal booster dose was administered and the latest meningococcal dose was administered more than 1 year ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -24907,14 +20335,6 @@ define "Meningococcal immunization schedule is complete. Two primary series dose
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Meningococcal immunization schedule is complete. Two primary series doses and one booster dose were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -24929,14 +20349,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Meningococcal.cql
-
-define "Quadrivalent conjugate vaccines (A,C,W135,Y-CRM), 1-dose schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // Quadrivalent conjugate vaccines (A,C,W135,Y-CRM), 1-dose schedule
-
-
-
-//Found in input/cql/MeningococcalElements.cql
 
 define "Quadrivalent conjugate vaccines (A,C,W135,Y-CRM), 1-dose schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -25007,14 +20419,6 @@ define "Meningococcal immunization schedule is complete. One primary series dose
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Meningococcal immunization schedule is complete. One primary series dose was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -25029,14 +20433,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Meningococcal.cql
-
-define "Quadrivalent conjugate vaccines (A,C,W135,Y-D), 2-dose schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // Quadrivalent conjugate vaccines (A,C,W135,Y-D), 2-dose schedule
-
-
-
-//Found in input/cql/MeningococcalElements.cql
 
 define "Quadrivalent conjugate vaccines (A,C,W135,Y-D), 2-dose schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -25079,14 +20475,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Meningococcal.cql
-
-define "Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 3 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
-
-
-
-//Found in input/cql/MeningococcalElements.cql
 
 define "Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 3 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -25157,14 +20545,6 @@ define "Meningococcal immunization schedule is complete. Two primary series dose
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Meningococcal immunization schedule is complete. Two primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -25179,14 +20559,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Meningococcal.cql
-
-define "Polysaccharide vaccines schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // (Polysaccharide vaccines can be used to control outbreaks in countries where limited economic resources or insufficient supply restrict the use of meningococcal conjugate vaccines)
-
-
-
-//Found in input/cql/MeningococcalElements.cql
 
 define "Polysaccharide vaccines schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -25240,16 +20612,6 @@ define "The primary series is complete. Client is not due for meningococcal boos
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "The primary series is complete. Client is not due for meningococcal booster dose.":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-   // "Completed the primary vaccination series" (where "Vaccine type" = "Meningococcal vaccines") = TRUE
-
-
-
 //Found in input/cql/IMMZD2DTMeningococcalPolyLogic.cql
 
 define "The primary series is complete. Client is not due for meningococcal booster dose.":
@@ -25279,14 +20641,6 @@ define "Should not vaccinate client with meningococcal booster dose as the lates
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Should not vaccinate client with meningococcal booster dose as the latest meningococcal dose was administered less than 3 years ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the booster dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -25303,16 +20657,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Meningococcal.cql
-
-define "The primary series is complete. Clinical judgement is required for meningococcal booster dose. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-   // "Completed the primary vaccination series" (where "Vaccine type" = "Meningococcal vaccines") = TRUE
-
-
-
-//Found in input/cql/MeningococcalElements.cql
 
 define "The primary series is complete. Clinical judgement is required for meningococcal booster dose. Create a clinical note":
   //CQL AUTHORS: you need to insert stuff here
@@ -25352,14 +20696,6 @@ define "May administer meningococcal booster dose if the client is considered to
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "May administer meningococcal booster dose if the client is considered to be at continued high risk of exposure. Evaluate the client and use clinical judgement.":
-  //CQL AUTHORS: you need to insert stuff here
-  // May administer meningococcal booster dose if the client is considered to be at continued high risk of exposure. Evaluate the client and use clinical judgement.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -25381,14 +20717,6 @@ define "Meningococcal immunization schedule is complete. One primary series dose
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Meningococcal immunization schedule is complete. One primary series dose and one booster dose have been administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -25403,14 +20731,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Meningococcal.cql
-
-define "Meningococcal vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" (where "Type of meningococcal dose" = "Polysaccharide vaccine") = "Further evaluation needed"
-
-
-
-//Found in input/cql/MeningococcalElements.cql
 
 define "Meningococcal vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
   //CQL AUTHORS: you need to insert stuff here
@@ -25446,14 +20766,6 @@ define "Do not vaccinate client with meningococcal if client has history of seve
 
 
 
-//Found in input/cql/MeningococcalElements.cql
-
-define "Do not vaccinate client with meningococcal if client has history of severe allergic reaction to any component of the meningococcal vaccine.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with meningococcal if client has history of severe allergic reaction to any component of the meningococcal vaccine.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -25467,15 +20779,7 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisAElements.cql
-
-define "Inactivated hepatitis A virus (HAV), 2-dose schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // Inactivated hepatitis A virus (HAV), 2-dose schedule
-
-
-
-//Found in input/cql/DTElements-HepatitisA.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisA.cql
 
 define "Inactivated hepatitis A virus (HAV), 2-dose schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -25500,14 +20804,6 @@ Referenced in the following locations:
 
 define "Number of Hepatitis A Primary Series Doses Administered":
   Count("Hepatitis A Primary Series Doses Administered to Patient")
-
-
-
-//Found in input/cql/HepatitisAElements.cql
-
-define "Number of hepatitis A primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis A-containing vaccines" and "Type of dose" = "Primary series")
 
 
 
@@ -25552,14 +20848,6 @@ define "Client is not due for Hepatitis A vaccination":
 define "Client is not due for Hepatitis A vaccination":
   "Client is not due for Hepatitis A vaccination Case 1"
     or "Client is not due for Hepatitis A vaccination Case 2"
-
-
-
-//Found in input/cql/HepatitisAElements.cql
-
-define "Client is not due for Hepatitis A vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
 
 
 
@@ -25619,14 +20907,6 @@ define "No hepatitis A primary series doses were administered":
 
 
 
-//Found in input/cql/HepatitisAElements.cql
-
-define "No hepatitis A primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis A-containing vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
 //Found in input/cql/DTElements-HepatitisA.cql
 
 define "No hepatitis A primary series doses were administered":
@@ -25672,14 +20952,6 @@ define "Client is due for Hepatitis A vaccination":
 
 
 
-//Found in input/cql/HepatitisAElements.cql
-
-define "Client is due for Hepatitis A vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
 //Found in input/cql/DTElements-HepatitisA.cql
 
 define "Client is due for Hepatitis A vaccination":
@@ -25709,15 +20981,7 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisAElements.cql
-
-define "Should vaccinate client with first hepatitis A dose as no Hepatitis A doses were administered and client is within the appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HepatitisA.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisA.cql
 
 define "Should vaccinate client with first hepatitis A dose as no Hepatitis A doses were administered and client is within the appropriate age range.":
   //CQL AUTHORS: you need to insert stuff here
@@ -25742,14 +21006,6 @@ Referenced in the following locations:
 
 define "One hepatitis A primary series dose was administered":
   "Number of Hepatitis A Primary Series Doses Administered" = 0
-
-
-
-//Found in input/cql/HepatitisAElements.cql
-
-define "One hepatitis A primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis A-containing vaccines" and "Type of dose" = "Primary series") = 1
 
 
 
@@ -25781,15 +21037,7 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisAElements.cql
-
-define "Should not vaccinate client with second hepatitis A dose as the latest hepatitis A dose was administered less than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the second dose.
-
-
-
-//Found in input/cql/DTElements-HepatitisA.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisA.cql
 
 define "Should not vaccinate client with second hepatitis A dose as the latest hepatitis A dose was administered less than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -25810,15 +21058,7 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisAElements.cql
-
-define "Should vaccinate client with second hepatitis A dose as the latest hepatitis A dose was administered more than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HepatitisA.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisA.cql
 
 define "Should vaccinate client with second hepatitis A dose as the latest hepatitis A dose was administered more than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -25843,14 +21083,6 @@ Referenced in the following locations:
 
 define "Two hepatitis A primary series doses were administered":
   "Number of Hepatitis A Primary Series Doses Administered" = 2
-
-
-
-//Found in input/cql/HepatitisAElements.cql
-
-define "Two hepatitis A primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis A-containing vaccines" and "Type of dose" = "Primary series") = 2
 
 
 
@@ -25898,16 +21130,6 @@ define "Hepatitis A immunization schedule is complete":
 
 
 
-//Found in input/cql/HepatitisAElements.cql
-
-define "Hepatitis A immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Hepatitis A-containing vaccines")
-
-
-
 //Found in input/cql/DTElements-HepatitisA.cql
 
 define "Hepatitis A immunization schedule is complete":
@@ -25938,15 +21160,7 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisAElements.cql
-
-define "Hepatitis A immunization schedule is complete. Two hepatitis A primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-HepatitisA.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisA.cql
 
 define "Hepatitis A immunization schedule is complete. Two hepatitis A primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -25967,15 +21181,7 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisAElements.cql
-
-define "Inactivated hepatitis A virus (HAV), 1-dose schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // Inactivated hepatitis A virus (HAV), 1-dose schedule
-
-
-
-//Found in input/cql/DTElements-HepatitisA.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisA.cql
 
 define "Inactivated hepatitis A virus (HAV), 1-dose schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -26021,14 +21227,6 @@ Referenced in the following locations:
 
 define "No hepatitis A primary series dose was administered":
   "No hepatitis A primary series doses were administered"
-
-
-
-//Found in input/cql/HepatitisAElements.cql
-
-define "No hepatitis A primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Hepatitis A-containing vaccines" and "Type of dose" = "Primary series") = 0
 
 
 
@@ -26081,15 +21279,7 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisAElements.cql
-
-define "Hepatitis A immunization schedule is complete. One hepatitis A primary series dose was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-HepatitisA.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisA.cql
 
 define "Hepatitis A immunization schedule is complete. One hepatitis A primary series dose was administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -26110,15 +21300,7 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisAElements.cql
-
-define "Live attenuated hepatitis A virus (HAV), 1 dose schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // Live attenuated hepatitis A virus (HAV), 1 dose schedule
-
-
-
-//Found in input/cql/DTElements-HepatitisA.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisA.cql
 
 define "Live attenuated hepatitis A virus (HAV), 1 dose schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -26160,15 +21342,7 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisAElements.cql
-
-define "Should not vaccinate client with Hepatitis A dose as live vaccine was administered in the last 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the first dose.
-
-
-
-//Found in input/cql/DTElements-HepatitisA.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisA.cql
 
 define "Should not vaccinate client with Hepatitis A dose as live vaccine was administered in the last 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -26189,15 +21363,7 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisAElements.cql
-
-define "Should vaccinate client with hepatitis A dose as no Hepatitis A dose was administered, client is within appropriate age range and no live vaccine was administered in the last 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-HepatitisA.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisA.cql
 
 define "Should vaccinate client with hepatitis A dose as no Hepatitis A dose was administered, client is within appropriate age range and no live vaccine was administered in the last 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -26218,15 +21384,7 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisAElements.cql
-
-define "Live attentuated Hepatitis A-containing vaccine is contraindicated":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Contraindicated" (where "Type of hepatitis A dose" = "Live attenuated hepatitis A vaccine")
-
-
-
-//Found in input/cql/IMMZD5DTHepatitisACILogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTHepatitisACILogic.cql
 
 define "Live attentuated Hepatitis A-containing vaccine is contraindicated":
   "Live attentuated Hepatitis A-containing vaccine is contraindicated Case 1"
@@ -26297,15 +21455,7 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisAElements.cql
-
-define "Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/IMMZD5DTHepatitisACILogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTHepatitisACILogic.cql
 
 define "Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
   Encounter."The client has a history of severe allergic reactions"
@@ -26333,15 +21483,7 @@ Referenced in the following locations:
  * Tabs: HepatitisA
 
 """
-  * ^designation[+].value = """//Found in input/cql/HepatitisAElements.cql
-
-define "Do not vaccinate client with inactivated hepatitis A vaccination if client has had a severe allergic reaction to the previous dose.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with live attenuated hepatitis A vaccination if client has severe allergy to components included in the live attenuated hepatitis A-containing vaccines.
-
-
-
-//Found in input/cql/DTElements-HepatitisA.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-HepatitisA.cql
 
 define "Do not vaccinate client with inactivated hepatitis A vaccination if client has had a severe allergic reaction to the previous dose.":
   //CQL AUTHORS: you need to insert stuff here
@@ -26363,14 +21505,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rabies.cql
-
-define "Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure":
-  //CQL AUTHORS: you need to insert stuff here
-  // Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure
-
-
-
-//Found in input/cql/RabiesElements.cql
 
 define "Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure":
   //CQL AUTHORS: you need to insert stuff here
@@ -26413,14 +21547,6 @@ define "Number of Rabies primary series doses administered":
 
 
 
-//Found in input/cql/RabiesElements.cql
-
-define "Number of Rabies primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Rabies vaccines" and "Type of dose" = "Primary series")
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -26449,14 +21575,6 @@ define "No rabies primary series doses were administered":
 
 
 //Found in input/cql/DTElements-Rabies.cql
-
-define "No rabies primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Rabies vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
-//Found in input/cql/RabiesElements.cql
 
 define "No rabies primary series doses were administered":
   //CQL AUTHORS: you need to insert stuff here
@@ -26493,14 +21611,6 @@ define "Client is due for rabies vaccination":
 
 
 
-//Found in input/cql/RabiesElements.cql
-
-define "Client is due for rabies vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -26515,14 +21625,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rabies.cql
-
-define "Should vaccinate client with first rabies dose as no rabies doses were administered and client is at high risk of exposure.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/RabiesElements.cql
 
 define "Should vaccinate client with first rabies dose as no rabies doses were administered and client is at high risk of exposure.":
   //CQL AUTHORS: you need to insert stuff here
@@ -26565,14 +21667,6 @@ define "One rabies primary series doses were administered":
 
 
 
-//Found in input/cql/RabiesElements.cql
-
-define "One rabies primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Rabies vaccines" and "Type of dose" = "Primary series") = 1
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -26602,14 +21696,6 @@ define "Client is not due for rabies vaccination":
 
 
 
-//Found in input/cql/RabiesElements.cql
-
-define "Client is not due for rabies vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -26631,14 +21717,6 @@ define "Should not vaccinate client with second rabies dose as the latest rabies
 
 
 
-//Found in input/cql/RabiesElements.cql
-
-define "Should not vaccinate client with second rabies dose as the latest rabies dose was administered less than 7 days ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -26653,14 +21731,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rabies.cql
-
-define "Should vaccinate client with second rabies dose as the latest rabies dose was administerd 7 or more days ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/RabiesElements.cql
 
 define "Should vaccinate client with second rabies dose as the latest rabies dose was administerd 7 or more days ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -26703,14 +21773,6 @@ define "Two rabies primary series doses were administered":
 
 
 
-//Found in input/cql/RabiesElements.cql
-
-define "Two rabies primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Rabies vaccines" and "Type of dose" = "Primary series") = 2
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -26743,16 +21805,6 @@ define "Rabies immunization schedule is complete":
 
 
 
-//Found in input/cql/RabiesElements.cql
-
-define "Rabies immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Rabies vaccines")
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -26767,14 +21819,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Rabies.cql
-
-define "Rabies immunization schedule is complete. Two rabies primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/RabiesElements.cql
 
 define "Rabies immunization schedule is complete. Two rabies primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -26803,14 +21847,6 @@ define "Check if the client has a history of severe hypersensitivity to any of t
 
 
 
-//Found in input/cql/RabiesElements.cql
-
-define "Check if the client has a history of severe hypersensitivity to any of the components or to excipients listed by the vaccine manufacturer. If so, provide an alternative rabies vaccine product for PreP.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check if the client has a history of severe hypersensitivity to any of the components or to excipients listed by the vaccine manufacturer. If so, provide an alternative rabies vaccine product for PreP.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -26824,15 +21860,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "CYD-TDV (Dengvaxia), 3-dose schedule with pre-vaccination screening, the recommended strategy where feasible (pre-vaccination screening whereby only those tested seropositive would be vaccinated)":
-  //CQL AUTHORS: you need to insert stuff here
-  // CYD-TDV (Dengvaxia), 3-dose schedule with pre-vaccination screening, the recommended strategy where feasible (pre-vaccination screening whereby only those tested seropositive would be vaccinated)
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "CYD-TDV (Dengvaxia), 3-dose schedule with pre-vaccination screening, the recommended strategy where feasible (pre-vaccination screening whereby only those tested seropositive would be vaccinated)":
   //CQL AUTHORS: you need to insert stuff here
@@ -26857,14 +21885,6 @@ Referenced in the following locations:
 
 define "Number of Dengue Primary Series Doses Administered":
   Count("Dengue Primary Series Doses Administered to Patient")
-
-
-
-//Found in input/cql/DengueElements.cql
-
-define "Number of dengue primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Dengue vaccines" and "Type of dose" = "Primary series")
 
 
 
@@ -26896,15 +21916,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Client is not due for dengue vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/IMMZD2DTDengueSeroposLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDengueSeroposLogic.cql
 
 define "Client is not due for dengue vaccination":
   "Client is not due for dengue vaccination Case 1"
@@ -26988,15 +22000,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Should not vaccinate client with first dengue dose as client does not have evidence of past dengue infection.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Should not vaccinate client with first dengue dose as client does not have evidence of past dengue infection.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27021,14 +22025,6 @@ Referenced in the following locations:
 
 define "No dengue primary series doses were administered":
   "Number of Dengue Primary Series Doses Administered" = 0
-
-
-
-//Found in input/cql/DengueElements.cql
-
-define "No dengue primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Dengue vaccines" and "Type of dose" = "Primary series") = 0
 
 
 
@@ -27060,15 +22056,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Client is due for dengue vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
-//Found in input/cql/IMMZD2DTDengueSeroposLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDengueSeroposLogic.cql
 
 define "Client is due for dengue vaccination":
   "Client is due for dengue vaccination Case 1"
@@ -27107,15 +22095,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Should vaccinate client with first dengue dose as no dengue doses were administered, client is within appropriate age range and has evidence of past dengue infection.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Should vaccinate client with first dengue dose as no dengue doses were administered, client is within appropriate age range and has evidence of past dengue infection.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27140,14 +22120,6 @@ Referenced in the following locations:
 
 define "One dengue primary series dose was administered":
   "Number of Dengue Primary Series Doses Administered" = 1
-
-
-
-//Found in input/cql/DengueElements.cql
-
-define "One dengue primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Dengue vaccines" and "Type of dose" = "Primary series") = 1
 
 
 
@@ -27179,15 +22151,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Should not vaccinate client with second dengue dose as latest dengue dose was administered less than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Should not vaccinate client with second dengue dose as latest dengue dose was administered less than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27208,15 +22172,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Should vaccinate client with second dengue dose as the latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Should vaccinate client with second dengue dose as the latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27241,14 +22197,6 @@ Referenced in the following locations:
 
 define "Two dengue primary series doses were administered":
   "Number of Dengue Primary Series Doses Administered" = 2
-
-
-
-//Found in input/cql/DengueElements.cql
-
-define "Two dengue primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Dengue vaccines" and "Type of dose" = "Primary series") = 2
 
 
 
@@ -27280,15 +22228,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Should not vaccinate client with third dengue dose as latest dengue vaccine was administered less than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the third dose.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Should not vaccinate client with third dengue dose as latest dengue vaccine was administered less than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27309,15 +22249,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Should vaccinate client with third dengue dose as latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Should vaccinate client with third dengue dose as latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27342,14 +22274,6 @@ Referenced in the following locations:
 
 define "Three dengue primary series doses were administered":
   "Number of Dengue Primary Series Doses Administered" = 3
-
-
-
-//Found in input/cql/DengueElements.cql
-
-define "Three dengue primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Dengue vaccines" and "Type of dose" = "Primary series") = 3
 
 
 
@@ -27383,17 +22307,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Dengue immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Dengue vaccines")"
-
-
-
-//Found in input/cql/IMMZD2DTDengueSeroposLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTDengueSeroposLogic.cql
 
 define "Dengue immunization schedule is complete":
   Encounter."Three dengue primary series doses were administered"
@@ -27432,15 +22346,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Dengue immunization schedule is complete. Three dengue primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Dengue immunization schedule is complete. Three dengue primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27461,15 +22367,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "CYD-TDV (Dengvaxia), 3-dose schedule without pre-vaccination screening [when pre-vaccination screening is not feasible and in areas with recent documentation of seroprevalence rates of at least 80% by age 9 years]":
-  //CQL AUTHORS: you need to insert stuff here
-  // CYD-TDV (Dengvaxia), 3-dose schedule without pre-vaccination screening [when pre-vaccination screening is not feasible and in areas with recent documentation of seroprevalence rates of at least 80% by age 9 years]
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "CYD-TDV (Dengvaxia), 3-dose schedule without pre-vaccination screening [when pre-vaccination screening is not feasible and in areas with recent documentation of seroprevalence rates of at least 80% by age 9 years]":
   //CQL AUTHORS: you need to insert stuff here
@@ -27490,15 +22388,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Should vaccinate client with first dengue dose as no dengue doses were administered and client is within appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Should vaccinate client with first dengue dose as no dengue doses were administered and client is within appropriate age range.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27519,15 +22409,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Should vaccinate client with second dengue dose as latest dengue dose was administered more than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Should vaccinate client with second dengue dose as latest dengue dose was administered more than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27548,15 +22430,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Should vaccinate client with third dengue dose as latest dengue dose was administered more than 6 months ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Should vaccinate client with third dengue dose as latest dengue dose was administered more than 6 months ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27583,22 +22457,6 @@ define "The client is immunocompromised":
   "Client is immunocompromised"
     or exists "CI Immunocompromised Observation"
     or exists "CI Immunocompromised Condition"
-
-
-
-//Found in input/cql/DengueElements.cql
-
-define "The client is immunocompromised":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Immunocompromised"
-
-
-
-//Found in input/cql/VaricellaElements.cql
-
-define "The client is immunocompromised":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Immunocompromised"
 
 
 
@@ -27668,15 +22526,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Dengue vaccination is contraindicated":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Contraindicated"
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Dengue vaccination is contraindicated":
   //CQL AUTHORS: you need to insert stuff here
@@ -27710,15 +22560,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Do not vaccinate client with dengue as dengue vaccination is contraindicated in immunocompromised individuals":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with dengue as dengue vaccination is contraindicated in immunocompromised individuals
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Do not vaccinate client with dengue as dengue vaccination is contraindicated in immunocompromised individuals":
   //CQL AUTHORS: you need to insert stuff here
@@ -27739,15 +22581,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Do not vaccinate client with dengue as dengue vaccination is contraindicated for pregnant women.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with dengue as dengue vaccination is contraindicated for pregnant women.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Do not vaccinate client with dengue as dengue vaccination is contraindicated for pregnant women.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27768,15 +22602,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "The client is currently lactating":
-  //CQL AUTHORS: you need to insert stuff here
-  // '"Potential contraindications" = "Breastfeeding"
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "The client is currently lactating":
   //CQL AUTHORS: you need to insert stuff here
@@ -27811,15 +22637,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Do not vaccinate client with dengue as dengue vaccination is contraindicated for lactating women.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with dengue as dengue vaccination is contraindicated for lactating women.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Do not vaccinate client with dengue as dengue vaccination is contraindicated for lactating women.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27840,15 +22658,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Dengue vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Dengue vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27877,15 +22687,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Do not vaccinate client with dengue if client has had a severe allergic reaction to any component of the dengue vaccine or after prior administration of the dengue vaccine.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with dengue if client has had a severe allergic reaction to any component of the dengue vaccine or after prior administration of the dengue vaccine.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Do not vaccinate client with dengue if client has had a severe allergic reaction to any component of the dengue vaccine or after prior administration of the dengue vaccine.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27906,15 +22708,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Do not vaccinate for dengue if client has had a severe allergic reaction to any component of the dengue vaccine or after prior administration of the dengue vaccine.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate for dengue if client has had a severe allergic reaction to any component of the dengue vaccine or after prior administration of the dengue vaccine.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Do not vaccinate for dengue if client has had a severe allergic reaction to any component of the dengue vaccine or after prior administration of the dengue vaccine.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27935,15 +22729,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Do not vaccinate client with dengue as dengue vaccination is contraindicated in severely immunosuppresed individuals.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with dengue as dengue vaccination is contraindicated in severely immunosuppresed individuals.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Do not vaccinate client with dengue as dengue vaccination is contraindicated in severely immunosuppresed individuals.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27964,15 +22750,7 @@ Referenced in the following locations:
  * Tabs: Dengue
 
 """
-  * ^designation[+].value = """//Found in input/cql/DengueElements.cql
-
-define "Do not vaccinate client with dengue as dengue vaccination is contraindicated in individuals with symptomatic HIV.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with dengue as dengue vaccination is contraindicated in individuals with symptomatic HIV.
-
-
-
-//Found in input/cql/DTElements-Dengue.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Dengue.cql
 
 define "Do not vaccinate client with dengue as dengue vaccination is contraindicated in individuals with symptomatic HIV.":
   //CQL AUTHORS: you need to insert stuff here
@@ -27993,15 +22771,7 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
-  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
-
-define "4-dose schedule (The RTS,S/AS01 malaria vaccine should be used for the prevention of Plasmodium falciparum malaria in children living in regions with moderate to high malaria transmission, as defined by WHO)":
-  //CQL AUTHORS: you need to insert stuff here
-  // 4-dose schedule (The RTS,S/AS01 malaria vaccine should be used for the prevention of Plasmodium falciparum malaria in children living in regions with moderate to high malaria transmission, as defined by WHO)
-
-
-
-//Found in input/cql/DTElements-Malaria.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Malaria.cql
 
 define "4-dose schedule (The RTS,S/AS01 malaria vaccine should be used for the prevention of Plasmodium falciparum malaria in children living in regions with moderate to high malaria transmission, as defined by WHO)":
   //CQL AUTHORS: you need to insert stuff here
@@ -28026,14 +22796,6 @@ Referenced in the following locations:
 
 define "Number of Malaria Primary Series Doses Administered":
   Count("Malaria Primary Series Doses Administered to Patient")
-
-
-
-//Found in input/cql/MalariaElements.cql
-
-define "Number of malaria primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series")
 
 
 
@@ -28065,15 +22827,7 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
-  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
-
-define "Client is not due for malaria vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/DTElements-Malaria.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Malaria.cql
 
 define "Client is not due for malaria vaccination":
   //CQL AUTHORS: you need to insert stuff here
@@ -28132,14 +22886,6 @@ define "No malaria primary series doses were administered":
 
 
 
-//Found in input/cql/MalariaElements.cql
-
-define "No malaria primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
 //Found in input/cql/DTElements-Malaria.cql
 
 define "No malaria primary series doses were administered":
@@ -28168,15 +22914,7 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
-  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
-
-define "Client is due for malaria vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
-//Found in input/cql/DTElements-Malaria.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Malaria.cql
 
 define "Client is due for malaria vaccination":
   //CQL AUTHORS: you need to insert stuff here
@@ -28207,15 +22945,7 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
-  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
-
-define "Should vaccinate client with first malaria dose as no malaria doses were administered and client is within appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Malaria.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Malaria.cql
 
 define "Should vaccinate client with first malaria dose as no malaria doses were administered and client is within appropriate age range.":
   //CQL AUTHORS: you need to insert stuff here
@@ -28240,14 +22970,6 @@ Referenced in the following locations:
 
 define "One malaria primary series dose was administered":
   "Number of Malaria Primary Series Doses Administered" = 1
-
-
-
-//Found in input/cql/MalariaElements.cql
-
-define "One malaria primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series") = 1
 
 
 
@@ -28279,15 +23001,7 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
-  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
-
-define "Should not vaccinate client with second malaria dose as the latest malaria dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
-
-
-
-//Found in input/cql/DTElements-Malaria.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Malaria.cql
 
 define "Should not vaccinate client with second malaria dose as the latest malaria dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -28308,15 +23022,7 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
-  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
-
-define "Should vaccinate client with second malaria dose as the latest malaria dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Malaria.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Malaria.cql
 
 define "Should vaccinate client with second malaria dose as the latest malaria dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -28341,14 +23047,6 @@ Referenced in the following locations:
 
 define "Two malaria primary series doses were administered":
   "Number of Malaria Primary Series Doses Administered" = 2
-
-
-
-//Found in input/cql/MalariaElements.cql
-
-define "Two malaria primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series") = 2
 
 
 
@@ -28380,15 +23078,7 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
-  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
-
-define "Should not vaccinate client with third malaria dose as the latest malaria dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the third dose.
-
-
-
-//Found in input/cql/DTElements-Malaria.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Malaria.cql
 
 define "Should not vaccinate client with third malaria dose as the latest malaria dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -28409,15 +23099,7 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
-  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
-
-define "Should vaccinate client with third malaria dose as the latest malaria dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Malaria.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Malaria.cql
 
 define "Should vaccinate client with third malaria dose as the latest malaria dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -28442,14 +23124,6 @@ Referenced in the following locations:
 
 define "Three malaria primary series doses were administered":
   "Number of Malaria Primary Series Doses Administered" = 3
-
-
-
-//Found in input/cql/MalariaElements.cql
-
-define "Three malaria primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series") = 3
 
 
 
@@ -28481,15 +23155,7 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
-  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
-
-define "Should not vaccinate client with fourth malaria dose as the latest malaria dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the fourth dose.
-
-
-
-//Found in input/cql/DTElements-Malaria.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Malaria.cql
 
 define "Should not vaccinate client with fourth malaria dose as the latest malaria dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -28510,15 +23176,7 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
-  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
-
-define "Should vaccinate client with fourth malaria dose as the latest malaria dose was administered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Malaria.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Malaria.cql
 
 define "Should vaccinate client with fourth malaria dose as the latest malaria dose was administered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -28543,14 +23201,6 @@ Referenced in the following locations:
 
 define "Four malaria primary series doses were administered":
   "Number of Malaria Primary Series Doses Administered" = 4
-
-
-
-//Found in input/cql/MalariaElements.cql
-
-define "Four malaria primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series") = 4
 
 
 
@@ -28584,17 +23234,7 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
-  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
-
-define "Malaria immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Malaria vaccines")"
-
-
-
-//Found in input/cql/DTElements-Malaria.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Malaria.cql
 
 define "Malaria immunization schedule is complete":
   //CQL AUTHORS: you need to insert stuff here
@@ -28624,15 +23264,7 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
-  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
-
-define "Malaria immunization schedule is complete. Four malaria primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-Malaria.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Malaria.cql
 
 define "Malaria immunization schedule is complete. Four malaria primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -28653,15 +23285,7 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
-  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
-
-define "The client has hypersensitivity to any of the vaccine components":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Hypersensitivity to vaccine components"
-
-
-
-//Found in input/cql/DTElements-Malaria.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Malaria.cql
 
 define "The client has hypersensitivity to any of the vaccine components":
   //CQL AUTHORS: you need to insert stuff here
@@ -28703,14 +23327,6 @@ define "Malaria vaccination could be contraindicated. Clinical judgement is requ
 
 
 
-//Found in input/cql/MalariaElements.cql
-
-define "Malaria vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" =  "Further evaluation needed"
-
-
-
 //Found in input/cql/DTElements-Malaria.cql
 
 define "Malaria vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
@@ -28732,15 +23348,7 @@ Referenced in the following locations:
  * Tabs: Malaria
 
 """
-  * ^designation[+].value = """//Found in input/cql/MalariaElements.cql
-
-define "Do not vaccinate client with RTS,S/AS01 vaccine if client has severe hypersensitivity to any of the vaccine components.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with RTS,S/AS01 vaccine if client has severe hypersensitivity to any of the vaccine components.
-
-
-
-//Found in input/cql/DTElements-Malaria.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Malaria.cql
 
 define "Do not vaccinate client with RTS,S/AS01 vaccine if client has severe hypersensitivity to any of the vaccine components.":
   //CQL AUTHORS: you need to insert stuff here
@@ -28762,14 +23370,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Mumps.cql
-
-define "2-dose schedule (countries with mumps in schedule and low transmission of measles)":
-  //CQL AUTHORS: you need to insert stuff here
-  // 2-dose schedule (countries with mumps in schedule and low transmission of measles)
-
-
-
-//Found in input/cql/MumpsElements.cql
 
 define "2-dose schedule (countries with mumps in schedule and low transmission of measles)":
   //CQL AUTHORS: you need to insert stuff here
@@ -28812,14 +23412,6 @@ define "Number of Mumps Primary Series Doses Administered":
 
 
 
-//Found in input/cql/MumpsElements.cql
-
-define "Number of mumps primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Mumps-containing vaccines" and "Type of dose" = "Primary series")
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -28844,14 +23436,6 @@ define "Client is not due for mumps vaccination":
 
 
 //Found in input/cql/DTElements-Mumps.cql
-
-define "Client is not due for mumps vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/MumpsElements.cql
 
 define "Client is not due for mumps vaccination":
   //CQL AUTHORS: you need to insert stuff here
@@ -28915,14 +23499,6 @@ define "No mumps primary series doses were administered":
 
 
 
-//Found in input/cql/MumpsElements.cql
-
-define "No mumps primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Mumps-containing vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -28937,14 +23513,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Mumps.cql
-
-define "Should not vaccinate client with first mumps dose as live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for first dose.
-
-
-
-//Found in input/cql/MumpsElements.cql
 
 define "Should not vaccinate client with first mumps dose as live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -28981,14 +23549,6 @@ define "Client is due for mumps vaccination":
 
 
 
-//Found in input/cql/MumpsElements.cql
-
-define "Client is due for mumps vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -29003,14 +23563,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Mumps.cql
-
-define "Should vaccinate client with first mumps dose as the client is within appropriate age range and no live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/MumpsElements.cql
 
 define "Should vaccinate client with first mumps dose as the client is within appropriate age range and no live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -29053,14 +23605,6 @@ define "One mumps primary series dose was administered":
 
 
 
-//Found in input/cql/MumpsElements.cql
-
-define "One mumps primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Mumps-containing vaccines" and "Type of dose" = "Primary series") = 1
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -29075,14 +23619,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Mumps.cql
-
-define "Should not vaccinate client with second mumps dose as latest mumps dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
-
-
-
-//Found in input/cql/MumpsElements.cql
 
 define "Should not vaccinate client with second mumps dose as latest mumps dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -29111,14 +23647,6 @@ define "Should not vaccinate client with second mumps dose as live vaccine was a
 
 
 
-//Found in input/cql/MumpsElements.cql
-
-define "Should not vaccinate client with second mumps dose as live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -29133,14 +23661,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Mumps.cql
-
-define "Should vaccinate client with second mumps dose as latest mumps dose was administered more than 4 weeks ago and no live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/MumpsElements.cql
 
 define "Should vaccinate client with second mumps dose as latest mumps dose was administered more than 4 weeks ago and no live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -29183,14 +23703,6 @@ define "Two mumps primary series doses were administered":
 
 
 
-//Found in input/cql/MumpsElements.cql
-
-define "Two mumps primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Mumps-containing vaccines" and "Type of dose" = "Primary series") = 2
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -29223,16 +23735,6 @@ define "Mumps immunization schedule is complete":
 
 
 
-//Found in input/cql/MumpsElements.cql
-
-define "Mumps immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
-
-   // "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Mumps-containing vaccines")"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -29247,14 +23749,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Mumps.cql
-
-define "Mumps immunization schedule is complete. Two mumps primary series doses were administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due.
-
-
-
-//Found in input/cql/MumpsElements.cql
 
 define "Mumps immunization schedule is complete. Two mumps primary series doses were administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -29292,14 +23786,6 @@ define "Mumps vaccination is contraindicated":
 
 
 
-//Found in input/cql/MumpsElements.cql
-
-define "Mumps vaccination is contraindicated":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Contraindicated"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -29314,14 +23800,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Mumps.cql
-
-define "Do not vaccinate client with mumps as mumps vaccination is contraindicated for pregnant individuals.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with mumps as mumps vaccination is contraindicated for pregnant individuals.
-
-
-
-//Found in input/cql/MumpsElements.cql
 
 define "Do not vaccinate client with mumps as mumps vaccination is contraindicated for pregnant individuals.":
   //CQL AUTHORS: you need to insert stuff here
@@ -29350,14 +23828,6 @@ define "The client has allergy to vaccine components":
 
 
 //Found in input/cql/DTElements-Mumps.cql
-
-define "The client has allergy to vaccine components":
-  //CQL AUTHORS: you need to insert stuff here
-  // '"Potential contraindications" = "Severe allergic reactions"
-
-
-
-//Found in input/cql/MumpsElements.cql
 
 define "The client has allergy to vaccine components":
   //CQL AUTHORS: you need to insert stuff here
@@ -29404,16 +23874,6 @@ define "Mumps vaccination could be contraindicated. Clinical judgement is requir
 
 
 
-//Found in input/cql/MumpsElements.cql
-
-define "Mumps vaccination could be contraindicated. Clinical judgement is required.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Create a clinical note.
-
-   // Immunization recommendation status = "Further evaluation needed"
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -29428,14 +23888,6 @@ Referenced in the following locations:
 
 """
   * ^designation[+].value = """//Found in input/cql/DTElements-Mumps.cql
-
-define "Do not vaccinate client with mumps if client has allergy to vaccine components, such as neomycin and gelatin.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with mumps if client has allergy to vaccine components, such as neomycin and gelatin.
-
-
-
-//Found in input/cql/MumpsElements.cql
 
 define "Do not vaccinate client with mumps if client has allergy to vaccine components, such as neomycin and gelatin.":
   //CQL AUTHORS: you need to insert stuff here
@@ -29463,14 +23915,6 @@ define "The client has immune deficiency":
 
 
 
-//Found in input/cql/VaricellaElements.cql
-
-define "The client has immune deficiency":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Immunodeficiency syndromes"
-
-
-
 //Found in input/cql/DTElements-Mumps.cql
 
 define "The client has immune deficiency":
@@ -29494,14 +23938,6 @@ define "The client has immune deficiency":
 
 
 //Found in input/cql/DTElements-Varicella.cql
-
-define "The client has immune deficiency":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Immunodeficiency syndromes"
-
-
-
-//Found in input/cql/MumpsElements.cql
 
 define "The client has immune deficiency":
   //CQL AUTHORS: you need to insert stuff here
@@ -29537,14 +23973,6 @@ define "Do not vaccinate client with mumps as mumps vaccination is contraindicat
 
 
 
-//Found in input/cql/MumpsElements.cql
-
-define "Do not vaccinate client with mumps as mumps vaccination is contraindicated in individuals with immunodeficiency syndromes.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with mumps as mumps vaccination is contraindicated in individuals with immunodeficiency syndromes.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -29566,14 +23994,6 @@ define "Do not vaccinate client with mumps as mumps vaccination is contraindicat
 
 
 
-//Found in input/cql/MumpsElements.cql
-
-define "Do not vaccinate client with mumps as mumps vaccination is contraindicated in immunosuppressed individuals.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with mumps as mumps vaccination is contraindicated in immunosuppressed individuals.
-
-
-
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
@@ -29587,15 +24007,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "Inactivated trivalent and quadrivalent vaccines, 2-dose schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
-
-
-
-//Found in input/cql/DTElements-Seasonalinfluenza.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Seasonalinfluenza.cql
 
 define "Inactivated trivalent and quadrivalent vaccines, 2-dose schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -29616,15 +24028,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "Number of seasonal influenza primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Seasonal influenza vaccines" and "Type of dose" = "Primary series")
-
-
-
-//Found in input/cql/IMMZD2DTSeasonalinfluenzaElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTSeasonalinfluenzaElements.cql
 
 define "Number of Seasonal influenza Primary Series Doses Administered":
   Count("Seasonal influenza Primary Series Doses Administered to Patient")
@@ -29659,15 +24063,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "Client is not due for seasonal influenza vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/IMMZD2DTSeasonalinfluenza2DoseLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTSeasonalinfluenza2DoseLogic.cql
 
 define "Client is not due for seasonal influenza vaccination":
   "Client is not due for seasonal influenza vaccination Case 1"
@@ -29717,15 +24113,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "No seasonal influenza primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Seasonal influenza vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
-//Found in input/cql/IMMZD2DTSeasonalinfluenzaElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTSeasonalinfluenzaElements.cql
 
 define "No seasonal influenza primary series doses were administered":
   "Number of Seasonal influenza Primary Series Doses Administered" = 0
@@ -29760,15 +24148,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "Client is due for seasonal influenza vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
-//Found in input/cql/IMMZD2DTSeasonalinfluenza2DoseLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTSeasonalinfluenza2DoseLogic.cql
 
 define "Client is due for seasonal influenza vaccination":
   "Client is due for seasonal influenza vaccination Case 1"
@@ -29797,15 +24177,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "Should vaccinate client with first seasonal influenza dose as no seasonal infuenza doses were administered and client is within appropriate age range.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Seasonalinfluenza.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Seasonalinfluenza.cql
 
 define "Should vaccinate client with first seasonal influenza dose as no seasonal infuenza doses were administered and client is within appropriate age range.":
   //CQL AUTHORS: you need to insert stuff here
@@ -29826,15 +24198,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "One seasonal influenza primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Seasonal influenza vaccines" and "Type of dose" = "Primary series") = 1
-
-
-
-//Found in input/cql/IMMZD2DTSeasonalinfluenzaElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTSeasonalinfluenzaElements.cql
 
 define "One seasonal influenza primary series doses were administered":
   "Number of Seasonal influenza Primary Series Doses Administered" = 1
@@ -29869,15 +24233,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "Should not vaccinate client with second seasonal influenza dose as latest seasonal influenza dose was administered less than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
-
-
-
-//Found in input/cql/DTElements-Seasonalinfluenza.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Seasonalinfluenza.cql
 
 define "Should not vaccinate client with second seasonal influenza dose as latest seasonal influenza dose was administered less than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -29898,15 +24254,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "Should vaccinate client with second seasonal influenza dose as client is within appropriate age range and latest seasonal influenza dose was administerered more than 4 weeks ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Seasonalinfluenza.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Seasonalinfluenza.cql
 
 define "Should vaccinate client with second seasonal influenza dose as client is within appropriate age range and latest seasonal influenza dose was administerered more than 4 weeks ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -29929,17 +24277,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "The primary series is complete. Client is not due for seasonal influenza annual dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-   // "Completed the primary vaccination series" (where "Vaccine type" = "Seasonal influenza vaccines") = TRUE
-
-
-
-//Found in input/cql/IMMZD2DTSeasonalinfluenza2DoseLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTSeasonalinfluenza2DoseLogic.cql
 
 define "The primary series is complete. Client is not due for seasonal influenza annual dose":
   "The primary series is complete. Client is not due for seasonal influenza annual dose Case 1"
@@ -29970,15 +24308,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "Should not vaccinate client with annual dose as the latest seasonal influenza dose was administered less than 1 year ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-Seasonalinfluenza.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Seasonalinfluenza.cql
 
 define "Should not vaccinate client with annual dose as the latest seasonal influenza dose was administered less than 1 year ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -30001,17 +24331,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "The primary series is complete. Client is due for seasonal influenza annual dose":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-   // "Completed the primary vaccination series" (where "Vaccine type" = "Seasonal influenza vaccines") = TRUE
-
-
-
-//Found in input/cql/IMMZD2DTSeasonalinfluenza2DoseLogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTSeasonalinfluenza2DoseLogic.cql
 
 define "The primary series is complete. Client is due for seasonal influenza annual dose":
   "The primary series is complete. Client is due for seasonal influenza annual dose Case 1"
@@ -30042,15 +24362,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "Should vaccinate client with annual dose as the latest seasonal influenza dose was administered more than 1 year ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Seasonalinfluenza.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Seasonalinfluenza.cql
 
 define "Should vaccinate client with annual dose as the latest seasonal influenza dose was administered more than 1 year ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -30071,15 +24383,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "Two seasonal influenza primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Seasonal influenza vaccines" and "Type of dose" = "Primary series") = 2
-
-
-
-//Found in input/cql/IMMZD2DTSeasonalinfluenzaElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTSeasonalinfluenzaElements.cql
 
 define "Two seasonal influenza primary series doses were administered":
   "Number of Seasonal influenza Primary Series Doses Administered" = 2
@@ -30114,15 +24418,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "Should not vaccinate client with annual dose as latest seasonal influenza dose was administered less than 1 year ago.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
-
-
-
-//Found in input/cql/DTElements-Seasonalinfluenza.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Seasonalinfluenza.cql
 
 define "Should not vaccinate client with annual dose as latest seasonal influenza dose was administered less than 1 year ago.":
   //CQL AUTHORS: you need to insert stuff here
@@ -30164,15 +24460,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // '"Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/IMMZD5DTSeasonalinfluenzaCILogic.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTSeasonalinfluenzaCILogic.cql
 
 define "Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
   "Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1"
@@ -30201,15 +24489,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component.
-
-
-
-//Found in input/cql/DTElements-Seasonalinfluenza.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Seasonalinfluenza.cql
 
 define "Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component.":
   //CQL AUTHORS: you need to insert stuff here
@@ -30230,15 +24510,7 @@ Referenced in the following locations:
  * Tabs: Seasonalinfluenza
 
 """
-  * ^designation[+].value = """//Found in input/cql/SeasonalinfluenzaElements.cql
-
-define "The client has a history of severe allergic reactions after a previous dose or to a vaccine component":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Severe allergic reactions"
-
-
-
-//Found in input/cql/IMMZD5DTSeasonalinfluenzaEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTSeasonalinfluenzaEncounterElements.cql
 
 define "The client has a history of severe allergic reactions after a previous dose or to a vaccine component":
   Encounter."The client has history of severe allergic reactions"
@@ -30273,15 +24545,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Countries where varicella is an important public health burden could consider introducing varicella vaccination in the routine childhood immunization programme. However, resources should be sufficient to ensure reaching and sustaining vaccine coverage ≥ 80%. Decision-making on childhood varicella vaccination should also include consideration of the possible impact on herpes zoster.":
-  //CQL AUTHORS: you need to insert stuff here
-  // The number of doses recommended is dependent on the goal of the vaccination programme. One dose is sufficient to reduce mortality and severe morbidity from varicella but not to prevent limited virus circulation and outbreaks. Two doses have higher effectiveness and should therefore be recommended in countries where the programmatic goal is, in addition to decreasing mortality and severe morbidity, to further reduce the number of cases and outbreaks.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Countries where varicella is an important public health burden could consider introducing varicella vaccination in the routine childhood immunization programme. However, resources should be sufficient to ensure reaching and sustaining vaccine coverage ≥ 80%. Decision-making on childhood varicella vaccination should also include consideration of the possible impact on herpes zoster.":
   //CQL AUTHORS: you need to insert stuff here
@@ -30302,15 +24566,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "1-dose schedule":
-  //CQL AUTHORS: you need to insert stuff here
-  // 1-dose schedule
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "1-dose schedule":
   //CQL AUTHORS: you need to insert stuff here
@@ -30331,15 +24587,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Number of varicella primary series doses administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Varicella-containing vaccines" and "Type of dose" = "Primary series")
-
-
-
-//Found in input/cql/IMMZD2DTVaricellaElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTVaricellaElements.cql
 
 define "Number of Varicella Primary Series Doses Administered":
   Count("Varicella Primary Series Doses Administered to Patient")
@@ -30374,15 +24622,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Client is not due for varicella vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Not due"
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Client is not due for varicella vaccination":
   //CQL AUTHORS: you need to insert stuff here
@@ -30442,15 +24682,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "No varicella primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Varicella-containing vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
-//Found in input/cql/IMMZD2DTVaricellaElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTVaricellaElements.cql
 
 define "No varicella primary series dose was administered":
   "Number of Varicella Primary Series Doses Administered" = 0
@@ -30485,15 +24717,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Should not vaccinate client with varicella dose as live vaccine was administered in the past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due and inform the caregiver of when to come back for the first varicella dose.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Should not vaccinate client with varicella dose as live vaccine was administered in the past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -30514,15 +24738,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Client is due for varicella vaccination":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Due"
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Client is due for varicella vaccination":
   //CQL AUTHORS: you need to insert stuff here
@@ -30560,15 +24776,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Should vaccinate client with varicella dose as no varicella dose was administered, client is within the appropriate age range and no live vaccine was administered in past 4 weeks.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Should vaccinate client with varicella dose as no varicella dose was administered, client is within the appropriate age range and no live vaccine was administered in past 4 weeks.":
   //CQL AUTHORS: you need to insert stuff here
@@ -30589,15 +24797,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "One varicella primary series dose was administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Varicella-containing vaccines" and "Type of dose" = "Primary series") =1
-
-
-
-//Found in input/cql/IMMZD2DTVaricellaElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTVaricellaElements.cql
 
 define "One varicella primary series dose was administered":
   "Number of Varicella Primary Series Doses Administered" = 1
@@ -30632,15 +24832,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Varicella immunization schedule is complete":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Complete"
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Varicella immunization schedule is complete":
   //CQL AUTHORS: you need to insert stuff here
@@ -30675,15 +24867,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Varicella immunization schedule is complete. One varicella primary series dose was administered.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for any vaccines due.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Varicella immunization schedule is complete. One varicella primary series dose was administered.":
   //CQL AUTHORS: you need to insert stuff here
@@ -30725,15 +24909,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "No varicella primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Varicella-containing vaccines" and "Type of dose" = "Primary series") = 0
-
-
-
-//Found in input/cql/IMMZD2DTVaricellaElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTVaricellaElements.cql
 
 define "No varicella primary series doses were administered":
   "No varicella primary series dose was administered"
@@ -30768,15 +24944,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.":
   //CQL AUTHORS: you need to insert stuff here
@@ -30797,15 +24965,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications.":
   //CQL AUTHORS: you need to insert stuff here
@@ -30826,15 +24986,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose.":
   //CQL AUTHORS: you need to insert stuff here
@@ -30855,15 +25007,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose.":
   //CQL AUTHORS: you need to insert stuff here
@@ -30884,15 +25028,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications.":
   //CQL AUTHORS: you need to insert stuff here
@@ -30913,15 +25049,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Two varicella primary series doses were administered":
-  //CQL AUTHORS: you need to insert stuff here
-  // Count of vaccines administered (where "Vaccine type" = "Varicella-containing vaccines" and "Type of dose" = "Primary series") = 2
-
-
-
-//Found in input/cql/IMMZD2DTVaricellaElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD2DTVaricellaElements.cql
 
 define "Two varicella primary series doses were administered":
   "Number of Varicella Primary Series Doses Administered" = 2
@@ -30956,15 +25084,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Varicella immunization schedule is complete. Two varicella primary series doses were administered. Check for any other vaccines due.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Varicella immunization schedule is complete. Two varicella primary series doses were administered. Check for any other vaccines due.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Varicella immunization schedule is complete. Two varicella primary series doses were administered. Check for any other vaccines due.":
   //CQL AUTHORS: you need to insert stuff here
@@ -30985,15 +25105,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Varicella vaccination is contraindicated":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Contraindicated"
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Varicella vaccination is contraindicated":
   //CQL AUTHORS: you need to insert stuff here
@@ -31021,15 +25133,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Do not vaccinate client with varicella as varicella vaccination is contraindicated for pregnant client.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with varicella as varicella vaccination is contraindicated for pregnant client.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Do not vaccinate client with varicella as varicella vaccination is contraindicated for pregnant client.":
   //CQL AUTHORS: you need to insert stuff here
@@ -31050,15 +25154,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "The client is planning to get pregnant in the next month":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Planning to get pregnant in the next month"
-
-
-
-//Found in input/cql/IMMZD5DTVaricellaEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTVaricellaEncounterElements.cql
 
 define "The client is planning to get pregnant in the next month":
   Encounter."The client is planning to get pregnant in next month"
@@ -31093,15 +25189,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Clinical judgement is required. Create clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Clinical judgement is required. Create clinical note":
   //CQL AUTHORS: you need to insert stuff here
@@ -31131,15 +25219,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Discuss pregnancy intentions, consider risks of vaccination and make a clinical judgement. It is recommended to delay pregnancy for 4 weeks after vaccination.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Discuss pregnancy intentions, consider risks of vaccination and make a clinical judgement. It is recommended to delay pregnancy for 4 weeks after vaccination.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Discuss pregnancy intentions, consider risks of vaccination and make a clinical judgement. It is recommended to delay pregnancy for 4 weeks after vaccination.":
   //CQL AUTHORS: you need to insert stuff here
@@ -31160,15 +25240,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Varicella vaccination could be contraindicated. Clinical judgement is required. Create clinical note":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Further evaluation needed"
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Varicella vaccination could be contraindicated. Clinical judgement is required. Create clinical note":
   //CQL AUTHORS: you need to insert stuff here
@@ -31196,15 +25268,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Varicella vaccination is usually contraindicated in clients with congenital or acquired immune deficiencies. Consider risks of vaccination and make a judgement.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Varicella vaccination is usually contraindicated in clients with congenital or acquired immune deficiencies. Consider risks of vaccination and make a judgement.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Varicella vaccination is usually contraindicated in clients with congenital or acquired immune deficiencies. Consider risks of vaccination and make a judgement.":
   //CQL AUTHORS: you need to insert stuff here
@@ -31225,15 +25289,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Client is immunocompromised, consider risks of vaccination and make a judgement. Consider 2 dose schedule.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Client is immunocompromised, consider risks of vaccination and make a judgement. Consider 2 dose schedule.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Client is immunocompromised, consider risks of vaccination and make a judgement. Consider 2 dose schedule.":
   //CQL AUTHORS: you need to insert stuff here
@@ -31254,15 +25310,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "The client is receiving or has received medications that may be immunosuppressive":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Exposed to immunosuppressive treatment"
-
-
-
-//Found in input/cql/IMMZD5DTVaricellaEncounterElements.cql
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTVaricellaEncounterElements.cql
 
 define "The client is receiving or has received medications that may be immunosuppressive":
   Encounter."The client is exposed to immunosuppressive treatment"
@@ -31297,15 +25345,7 @@ Referenced in the following locations:
  * Tabs: Varicella
 
 """
-  * ^designation[+].value = """//Found in input/cql/VaricellaElements.cql
-
-define "Client is receiving or has received medications that may be immunosuppressive, consider risks of vaccination and make a judgement.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Client is receiving or has received medications that may be immunosuppressive, consider risks of vaccination and make a judgement.
-
-
-
-//Found in input/cql/DTElements-Varicella.cql
+  * ^designation[+].value = """//Found in input/cql/DTElements-Varicella.cql
 
 define "Client is receiving or has received medications that may be immunosuppressive, consider risks of vaccination and make a judgement.":
   //CQL AUTHORS: you need to insert stuff here
