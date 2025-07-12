@@ -1,0 +1,2256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="472">
+         <a:s>/*
+ * Library: IMMZD2DTRotavirusLogic (IMMZ.D2.DT.Rotavirus)
+ * Rule: Determine if the client is due for a rotavirus vaccination according to the national immunization schedule
+ * Decision Table: IMMZ.D2.DT.Rotavirus
+ * Trigger: IMMZ.D2  Determine required vaccination(s) if any
+ */
+library IMMZD2DTRotavirusLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTRotavirusLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="12:1-12:32" localIdentifier="Common" path="http://smart.who.int/immunizations/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called Common</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="209" locator="13:1-13:59" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTRotavirusEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTRotavirusEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="210" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>parameter Today </a:s>
+               <a:s r="214">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="213">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="213" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="214" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="218" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="216" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="217" xsi:type="SingletonFrom">
+            <operand localId="215" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="230" locator="39:1-40:47" name="Client is not due for rotavirus vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for rotavirus vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="230">
+               <a:s>/*
+@output: Client is not due for rotavirus vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for rotavirus vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="232">
+                  <a:s r="231">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="232">
+                     <a:s>&quot;Client's age is less than 6 weeks&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="232" locator="40:3-40:47" name="Client's age is less than 6 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="235" locator="46:1-49:69" name="Client is not due for rotavirus vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for rotavirus vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="235">
+               <a:s>/*
+@output: Client is not due for rotavirus vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for rotavirus vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="236">
+                  <a:s r="237">
+                     <a:s r="239">
+                        <a:s r="238">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="239">
+                           <a:s>&quot;No rotavirus primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="241">
+                        <a:s r="240">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="241">
+                           <a:s>&quot;Client's age is between 6 weeks and 24 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="243">
+                     <a:s r="242">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="243">
+                        <a:s>&quot;Live vaccine was administered in the last 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="236" locator="47:3-49:69" xsi:type="And">
+            <operand localId="237" locator="47:3-48:65" xsi:type="And">
+               <operand localId="239" locator="47:3-47:65" name="No rotavirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="241" locator="48:9-48:65" name="Client's age is between 6 weeks and 24 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="243" locator="49:9-49:69" name="Live vaccine was administered in the last 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="246" locator="55:1-58:69" name="Client is not due for rotavirus vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for rotavirus vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="246">
+               <a:s>/*
+@output: Client is not due for rotavirus vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for rotavirus vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="247">
+                  <a:s r="248">
+                     <a:s r="250">
+                        <a:s r="249">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="250">
+                           <a:s>&quot;One rotavirus primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="252">
+                        <a:s r="251">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="252">
+                           <a:s>&quot;Client's age is between 6 weeks and 24 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="254">
+                     <a:s r="253">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="254">
+                        <a:s>&quot;Live vaccine was administered in the last 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="247" locator="56:3-58:69" xsi:type="And">
+            <operand localId="248" locator="56:3-57:65" xsi:type="And">
+               <operand localId="250" locator="56:3-56:64" name="One rotavirus primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="252" locator="57:9-57:65" name="Client's age is between 6 weeks and 24 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="254" locator="58:9-58:69" name="Live vaccine was administered in the last 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="257" locator="64:1-68:117" name="Client is not due for rotavirus vaccination Case 4" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for rotavirus vaccination Case 4"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="257">
+               <a:s>/*
+@output: Client is not due for rotavirus vaccination Case 4
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for rotavirus vaccination Case 4&quot;:
+  </a:s>
+               <a:s r="258">
+                  <a:s r="259">
+                     <a:s r="260">
+                        <a:s r="262">
+                           <a:s r="261">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="262">
+                              <a:s>&quot;Two rotavirus primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="264">
+                           <a:s r="263">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="264">
+                              <a:s>&quot;Client's age is between 6 weeks and 24 months&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="266">
+                        <a:s r="265">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="266">
+                           <a:s>&quot;Live vaccines was administered in the last 4 weeks&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="268">
+                     <a:s r="267">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="268">
+                        <a:s>&quot;The series administered to the client is a mixed series or a series with unknown vaccine products&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="258" locator="65:3-68:117" xsi:type="And">
+            <operand localId="259" locator="65:3-67:70" xsi:type="And">
+               <operand localId="260" locator="65:3-66:65" xsi:type="And">
+                  <operand localId="262" locator="65:3-65:66" name="Two rotavirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="264" locator="66:9-66:65" name="Client's age is between 6 weeks and 24 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="266" locator="67:9-67:70" name="Live vaccines was administered in the last 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="268" locator="68:9-68:117" name="The series administered to the client is a mixed series or a series with unknown vaccine products" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="271" locator="74:1-79:58" name="Client is not due for rotavirus vaccination Case 5" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for rotavirus vaccination Case 5"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="271">
+               <a:s>/*
+@output: Client is not due for rotavirus vaccination Case 5
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for rotavirus vaccination Case 5&quot;:
+  </a:s>
+               <a:s r="272">
+                  <a:s r="273">
+                     <a:s r="274">
+                        <a:s r="275">
+                           <a:s r="277">
+                              <a:s r="276">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="277">
+                                 <a:s>&quot;Two rotavirus primary series doses were administered&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+    and </a:s>
+                           <a:s r="279">
+                              <a:s r="278">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="279">
+                                 <a:s>&quot;Client's age is between 6 weeks and 24 months&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="281">
+                           <a:s r="280">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="281">
+                              <a:s>&quot;Live vaccine was administered in last 4 weeks&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="283">
+                        <a:s r="282">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="283">
+                           <a:s>&quot;The series administered to the client contains the same product&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="285">
+                     <a:s r="284">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="285">
+                        <a:s>&quot;The series contain more than two doses&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="272" locator="75:3-79:58" xsi:type="And">
+            <operand localId="273" locator="75:3-78:83" xsi:type="And">
+               <operand localId="274" locator="75:3-77:65" xsi:type="And">
+                  <operand localId="275" locator="75:3-76:65" xsi:type="And">
+                     <operand localId="277" locator="75:3-75:66" name="Two rotavirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                     <operand localId="279" locator="76:9-76:65" name="Client's age is between 6 weeks and 24 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="281" locator="77:9-77:65" name="Live vaccine was administered in last 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="283" locator="78:9-78:83" name="The series administered to the client contains the same product" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="285" locator="79:9-79:58" name="The series contain more than two doses" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="224" locator="85:1-90:59" name="Client is not due for rotavirus vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for rotavirus vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="224">
+               <a:s>/*
+@output: Client is not due for rotavirus vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for rotavirus vaccination&quot;:
+  </a:s>
+               <a:s r="225">
+                  <a:s r="226">
+                     <a:s r="227">
+                        <a:s r="228">
+                           <a:s r="233">
+                              <a:s>&quot;Client is not due for rotavirus vaccination Case 1&quot;</a:s>
+                           </a:s>
+                           <a:s>
+    or </a:s>
+                           <a:s r="244">
+                              <a:s>&quot;Client is not due for rotavirus vaccination Case 2&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    or </a:s>
+                        <a:s r="255">
+                           <a:s>&quot;Client is not due for rotavirus vaccination Case 3&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="269">
+                        <a:s>&quot;Client is not due for rotavirus vaccination Case 4&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="286">
+                     <a:s>&quot;Client is not due for rotavirus vaccination Case 5&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="86:3-90:59" xsi:type="Or">
+            <operand localId="226" locator="86:3-89:59" xsi:type="Or">
+               <operand localId="227" locator="86:3-88:59" xsi:type="Or">
+                  <operand localId="228" locator="86:3-87:59" xsi:type="Or">
+                     <operand localId="233" locator="86:3-86:54" name="Client is not due for rotavirus vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="244" locator="87:8-87:59" name="Client is not due for rotavirus vaccination Case 2" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="255" locator="88:8-88:59" name="Client is not due for rotavirus vaccination Case 3" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="269" locator="89:8-89:59" name="Client is not due for rotavirus vaccination Case 4" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="286" locator="90:8-90:59" name="Client is not due for rotavirus vaccination Case 5" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="289" locator="100:1-108:5" name="Client is not due for rotavirus vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for rotavirus vaccination Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with first rotavirus dose as client's age is less than 6 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with  first rotavirus dose as live vaccine was administered in last 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with second rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose"/>
+            <a:t name="guidance" value="Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose"/>
+            <a:t name="guidance" value="Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose."/>
+            <a:s r="289">
+               <a:s>/*
+@output: Client is not due for rotavirus vaccination Guidance
+@guidance: Should not vaccinate client with first rotavirus dose as client's age is less than 6 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first dose.
+@guidance: Should not vaccinate client with  first rotavirus dose as live vaccine was administered in last 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+@guidance: Should not vaccinate client with second rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose
+@guidance: Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose
+@guidance: Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+*/
+define &quot;Client is not due for rotavirus vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="290">
+                  <a:s>case
+    </a:s>
+                  <a:s r="291">
+                     <a:s>when </a:s>
+                     <a:s r="292">
+                        <a:s>&quot;Client is not due for rotavirus vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="293">
+                        <a:s>'Should not vaccinate client with first rotavirus dose as client\'s age is less than 6 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="294">
+                     <a:s>when </a:s>
+                     <a:s r="295">
+                        <a:s>&quot;Client is not due for rotavirus vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="296">
+                        <a:s>'Should not vaccinate client with  first rotavirus dose as live vaccine was administered in last 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="297">
+                     <a:s>when </a:s>
+                     <a:s r="298">
+                        <a:s>&quot;Client is not due for rotavirus vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="299">
+                        <a:s>'Should not vaccinate client with second rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="300">
+                     <a:s>when </a:s>
+                     <a:s r="301">
+                        <a:s>&quot;Client is not due for rotavirus vaccination Case 4&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="302">
+                        <a:s>'Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="303">
+                     <a:s>when </a:s>
+                     <a:s r="304">
+                        <a:s>&quot;Client is not due for rotavirus vaccination Case 5&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="305">
+                        <a:s>'Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="306">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="290" locator="101:3-108:5" xsi:type="Case">
+            <caseItem localId="291" locator="102:5-102:260">
+               <when localId="292" locator="102:10-102:61" name="Client is not due for rotavirus vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="293" locator="102:68-102:260" valueType="t:String" value="Should not vaccinate client with first rotavirus dose as client's age is less than 6 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="294" locator="103:5-103:266">
+               <when localId="295" locator="103:10-103:61" name="Client is not due for rotavirus vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="296" locator="103:68-103:266" valueType="t:String" value="Should not vaccinate client with  first rotavirus dose as live vaccine was administered in last 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="297" locator="104:5-104:274">
+               <when localId="298" locator="104:10-104:61" name="Client is not due for rotavirus vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="299" locator="104:68-104:274" valueType="t:String" value="Should not vaccinate client with second rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose" xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="300" locator="105:5-105:336">
+               <when localId="301" locator="105:10-105:61" name="Client is not due for rotavirus vaccination Case 4" xsi:type="ExpressionRef"/>
+               <then localId="302" locator="105:68-105:336" valueType="t:String" value="Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose" xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="303" locator="106:5-106:274">
+               <when localId="304" locator="106:10-106:61" name="Client is not due for rotavirus vaccination Case 5" xsi:type="ExpressionRef"/>
+               <then localId="305" locator="106:68-106:274" valueType="t:String" value="Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="306" locator="107:10-107:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="315" locator="114:1-117:72" name="Client is due for rotavirus vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for rotavirus vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="315">
+               <a:s>/*
+@output: Client is due for rotavirus vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for rotavirus vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="316">
+                  <a:s r="317">
+                     <a:s r="319">
+                        <a:s r="318">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="319">
+                           <a:s>&quot;No rotavirus primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="321">
+                        <a:s r="320">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="321">
+                           <a:s>&quot;Client's age is between 6 weeks and 24 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="323">
+                     <a:s r="322">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="323">
+                        <a:s>&quot;No live vaccine was administered in the last 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="316" locator="115:3-117:72" xsi:type="And">
+            <operand localId="317" locator="115:3-116:65" xsi:type="And">
+               <operand localId="319" locator="115:3-115:65" name="No rotavirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="321" locator="116:9-116:65" name="Client's age is between 6 weeks and 24 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="323" locator="117:9-117:72" name="No live vaccine was administered in the last 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="326" locator="123:1-126:72" name="Client is due for rotavirus vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for rotavirus vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="326">
+               <a:s>/*
+@output: Client is due for rotavirus vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for rotavirus vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="327">
+                  <a:s r="328">
+                     <a:s r="330">
+                        <a:s r="329">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="330">
+                           <a:s>&quot;One rotavirus primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="332">
+                        <a:s r="331">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="332">
+                           <a:s>&quot;Client's age is between 6 weeks and 24 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="334">
+                     <a:s r="333">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="334">
+                        <a:s>&quot;No live vaccine was administered in the last 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="327" locator="124:3-126:72" xsi:type="And">
+            <operand localId="328" locator="124:3-125:65" xsi:type="And">
+               <operand localId="330" locator="124:3-124:64" name="One rotavirus primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="332" locator="125:9-125:65" name="Client's age is between 6 weeks and 24 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="334" locator="126:9-126:72" name="No live vaccine was administered in the last 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="337" locator="132:1-136:117" name="Client is due for rotavirus vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for rotavirus vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="337">
+               <a:s>/*
+@output: Client is due for rotavirus vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for rotavirus vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="338">
+                  <a:s r="339">
+                     <a:s r="340">
+                        <a:s r="342">
+                           <a:s r="341">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="342">
+                              <a:s>&quot;Two rotavirus primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="344">
+                           <a:s r="343">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="344">
+                              <a:s>&quot;Client's age is between 6 weeks and 24 months&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="346">
+                        <a:s r="345">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="346">
+                           <a:s>&quot;No live vaccine was administered in the last 4 weeks&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="348">
+                     <a:s r="347">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="348">
+                        <a:s>&quot;The series administered to the client is a mixed series or a series with unknown vaccine products&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="338" locator="133:3-136:117" xsi:type="And">
+            <operand localId="339" locator="133:3-135:72" xsi:type="And">
+               <operand localId="340" locator="133:3-134:65" xsi:type="And">
+                  <operand localId="342" locator="133:3-133:66" name="Two rotavirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="344" locator="134:9-134:65" name="Client's age is between 6 weeks and 24 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="346" locator="135:9-135:72" name="No live vaccine was administered in the last 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="348" locator="136:9-136:117" name="The series administered to the client is a mixed series or a series with unknown vaccine products" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="351" locator="142:1-147:58" name="Client is due for rotavirus vaccination Case 4" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for rotavirus vaccination Case 4"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="351">
+               <a:s>/*
+@output: Client is due for rotavirus vaccination Case 4
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for rotavirus vaccination Case 4&quot;:
+  </a:s>
+               <a:s r="352">
+                  <a:s r="353">
+                     <a:s r="354">
+                        <a:s r="355">
+                           <a:s r="357">
+                              <a:s r="356">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="357">
+                                 <a:s>&quot;Two rotavirus primary series doses were administered&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+    and </a:s>
+                           <a:s r="359">
+                              <a:s r="358">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="359">
+                                 <a:s>&quot;Client's age is between 6 weeks and 24 months&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="361">
+                           <a:s r="360">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="361">
+                              <a:s>&quot;No live vaccine was administered in last 4 weeks&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="363">
+                        <a:s r="362">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="363">
+                           <a:s>&quot;The series administered to the client contains the same product&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="365">
+                     <a:s r="364">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="365">
+                        <a:s>&quot;The series contain more than two doses&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="352" locator="143:3-147:58" xsi:type="And">
+            <operand localId="353" locator="143:3-146:83" xsi:type="And">
+               <operand localId="354" locator="143:3-145:68" xsi:type="And">
+                  <operand localId="355" locator="143:3-144:65" xsi:type="And">
+                     <operand localId="357" locator="143:3-143:66" name="Two rotavirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                     <operand localId="359" locator="144:9-144:65" name="Client's age is between 6 weeks and 24 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="361" locator="145:9-145:68" name="No live vaccine was administered in last 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="363" locator="146:9-146:83" name="The series administered to the client contains the same product" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="365" locator="147:9-147:58" name="The series contain more than two doses" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="310" locator="153:1-157:55" name="Client is due for rotavirus vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for rotavirus vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="310">
+               <a:s>/*
+@output: Client is due for rotavirus vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for rotavirus vaccination&quot;:
+  </a:s>
+               <a:s r="311">
+                  <a:s r="312">
+                     <a:s r="313">
+                        <a:s r="324">
+                           <a:s>&quot;Client is due for rotavirus vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s>
+    or </a:s>
+                        <a:s r="335">
+                           <a:s>&quot;Client is due for rotavirus vaccination Case 2&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="349">
+                        <a:s>&quot;Client is due for rotavirus vaccination Case 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="366">
+                     <a:s>&quot;Client is due for rotavirus vaccination Case 4&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="311" locator="154:3-157:55" xsi:type="Or">
+            <operand localId="312" locator="154:3-156:55" xsi:type="Or">
+               <operand localId="313" locator="154:3-155:55" xsi:type="Or">
+                  <operand localId="324" locator="154:3-154:50" name="Client is due for rotavirus vaccination Case 1" xsi:type="ExpressionRef"/>
+                  <operand localId="335" locator="155:8-155:55" name="Client is due for rotavirus vaccination Case 2" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="349" locator="156:8-156:55" name="Client is due for rotavirus vaccination Case 3" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="366" locator="157:8-157:55" name="Client is due for rotavirus vaccination Case 4" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="369" locator="170:1-181:5" name="Client is due for rotavirus vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for rotavirus vaccination Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with  first rotavirus dose as no rotavirus doses were administered, client's age is within appropriate age range and no live vaccine was administered in last 4 weeks.&#xa;Check for contraindications."/>
+            <a:t name="guidance" value="Should vaccinate client with second rotavirus dose as client's age is within appropriate age range and no live vaccine was administered in the last 4 weeks.&#xa;Check for contraindications."/>
+            <a:t name="guidance" value="Should vaccinate client with third rotavirus dose as no live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series.&#xa;Check for contraindications."/>
+            <a:t name="guidance" value="Should vaccinate client with third rotavirus dose as series contains more than two doses and no live vaccine was administered in the last 4 weeks.&#xa;Check for contraindications."/>
+            <a:s r="369">
+               <a:s>/*
+@output: Client is due for rotavirus vaccination Guidance
+@guidance: Should vaccinate client with  first rotavirus dose as no rotavirus doses were administered, client's age is within appropriate age range and no live vaccine was administered in last 4 weeks.
+Check for contraindications.
+@guidance: Should vaccinate client with second rotavirus dose as client's age is within appropriate age range and no live vaccine was administered in the last 4 weeks.
+Check for contraindications.
+@guidance: Should vaccinate client with third rotavirus dose as no live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series.
+Check for contraindications.
+@guidance: Should vaccinate client with third rotavirus dose as series contains more than two doses and no live vaccine was administered in the last 4 weeks.
+Check for contraindications.
+*/
+define &quot;Client is due for rotavirus vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="370">
+                  <a:s>case
+    </a:s>
+                  <a:s r="371">
+                     <a:s>when </a:s>
+                     <a:s r="372">
+                        <a:s>&quot;Client is due for rotavirus vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="373">
+                        <a:s>'Should vaccinate client with  first rotavirus dose as no rotavirus doses were administered, client\'s age is within appropriate age range and no live vaccine was administered in last 4 weeks.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="374">
+                     <a:s>when </a:s>
+                     <a:s r="375">
+                        <a:s>&quot;Client is due for rotavirus vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="376">
+                        <a:s>'Should vaccinate client with second rotavirus dose as client\'s age is within appropriate age range and no live vaccine was administered in the last 4 weeks.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="377">
+                     <a:s>when </a:s>
+                     <a:s r="378">
+                        <a:s>&quot;Client is due for rotavirus vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="379">
+                        <a:s>'Should vaccinate client with third rotavirus dose as no live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="380">
+                     <a:s>when </a:s>
+                     <a:s r="381">
+                        <a:s>&quot;Client is due for rotavirus vaccination Case 4&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="382">
+                        <a:s>'Should vaccinate client with third rotavirus dose as series contains more than two doses and no live vaccine was administered in the last 4 weeks.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="383">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="370" locator="171:3-181:5" xsi:type="Case">
+            <caseItem localId="371" locator="172:5-172:285">
+               <when localId="372" locator="172:10-172:57" name="Client is due for rotavirus vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="373" locator="172:64-172:285" valueType="t:String" value="Should vaccinate client with  first rotavirus dose as no rotavirus doses were administered, client's age is within appropriate age range and no live vaccine was administered in last 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="374" locator="174:5-174:251">
+               <when localId="375" locator="174:10-174:57" name="Client is due for rotavirus vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="376" locator="174:64-174:251" valueType="t:String" value="Should vaccinate client with second rotavirus dose as client's age is within appropriate age range and no live vaccine was administered in the last 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="377" locator="176:5-176:263">
+               <when localId="378" locator="176:10-176:57" name="Client is due for rotavirus vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="379" locator="176:64-176:263" valueType="t:String" value="Should vaccinate client with third rotavirus dose as no live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="380" locator="178:5-178:240">
+               <when localId="381" locator="178:10-178:57" name="Client is due for rotavirus vaccination Case 4" xsi:type="ExpressionRef"/>
+               <then localId="382" locator="178:64-178:240" valueType="t:String" value="Should vaccinate client with third rotavirus dose as series contains more than two doses and no live vaccine was administered in the last 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="383" locator="180:10-180:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="390" locator="187:1-191:70" name="Rotavirus immunization schedule is complete Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rotavirus immunization schedule is complete Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="390">
+               <a:s>/*
+@output: Rotavirus immunization schedule is complete Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Rotavirus immunization schedule is complete Case 1&quot;:
+  </a:s>
+               <a:s r="391">
+                  <a:s r="392">
+                     <a:s r="393">
+                        <a:s r="395">
+                           <a:s r="394">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="395">
+                              <a:s>&quot;Two rotavirus primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="397">
+                           <a:s r="396">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="397">
+                              <a:s>&quot;Client's age is between 6 weeks and 24 months&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="399">
+                        <a:s r="398">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="399">
+                           <a:s>&quot;The series administered to the client contains the same product&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="401">
+                     <a:s r="400">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="401">
+                        <a:s>&quot;The series contain less than or equal to two doses&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="391" locator="188:3-191:70" xsi:type="And">
+            <operand localId="392" locator="188:3-190:83" xsi:type="And">
+               <operand localId="393" locator="188:3-189:65" xsi:type="And">
+                  <operand localId="395" locator="188:3-188:66" name="Two rotavirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="397" locator="189:9-189:65" name="Client's age is between 6 weeks and 24 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="399" locator="190:9-190:83" name="The series administered to the client contains the same product" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="401" locator="191:9-191:70" name="The series contain less than or equal to two doses" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="404" locator="197:1-198:68" name="Rotavirus immunization schedule is complete Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rotavirus immunization schedule is complete Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="404">
+               <a:s>/*
+@output: Rotavirus immunization schedule is complete Case 2
+@pseudocode: '&quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Rotavirus immunization schedule is complete Case 2&quot;:
+  </a:s>
+               <a:s r="406">
+                  <a:s r="405">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="406">
+                     <a:s>&quot;Three rotavirus primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="406" locator="198:3-198:68" name="Three rotavirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="387" locator="204:1-206:59" name="Rotavirus immunization schedule is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rotavirus immunization schedule is complete"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="387">
+               <a:s>/*
+@output: Rotavirus immunization schedule is complete
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Rotavirus immunization schedule is complete&quot;:
+  </a:s>
+               <a:s r="388">
+                  <a:s r="402">
+                     <a:s>&quot;Rotavirus immunization schedule is complete Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="407">
+                     <a:s>&quot;Rotavirus immunization schedule is complete Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="388" locator="205:3-206:59" xsi:type="Or">
+            <operand localId="402" locator="205:3-205:54" name="Rotavirus immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="407" locator="206:8-206:59" name="Rotavirus immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="410" locator="213:1-218:5" name="Rotavirus immunization schedule is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rotavirus immunization schedule is complete Guidance"/>
+            <a:t name="guidance" value="Rotavirus immunization schedule is complete. Two rotavirus doses were administered. Check for any other vaccines due."/>
+            <a:t name="guidance" value="Rotavirus immunization schedule is complete. Three rotavirus primary series doses were administered. Check for any other vaccines due."/>
+            <a:s r="410">
+               <a:s>/*
+@output: Rotavirus immunization schedule is complete Guidance
+@guidance: Rotavirus immunization schedule is complete. Two rotavirus doses were administered. Check for any other vaccines due.
+@guidance: Rotavirus immunization schedule is complete. Three rotavirus primary series doses were administered. Check for any other vaccines due.
+*/
+define &quot;Rotavirus immunization schedule is complete Guidance&quot;:
+  </a:s>
+               <a:s r="411">
+                  <a:s>case
+    </a:s>
+                  <a:s r="412">
+                     <a:s>when </a:s>
+                     <a:s r="413">
+                        <a:s>&quot;Rotavirus immunization schedule is complete Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="414">
+                        <a:s>'Rotavirus immunization schedule is complete. Two rotavirus doses were administered. Check for any other vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="415">
+                     <a:s>when </a:s>
+                     <a:s r="416">
+                        <a:s>&quot;Rotavirus immunization schedule is complete Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="417">
+                        <a:s>'Rotavirus immunization schedule is complete. Three rotavirus primary series doses were administered. Check for any other vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="418">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="411" locator="214:3-218:5" xsi:type="Case">
+            <caseItem localId="412" locator="215:5-215:186">
+               <when localId="413" locator="215:10-215:61" name="Rotavirus immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+               <then localId="414" locator="215:68-215:186" valueType="t:String" value="Rotavirus immunization schedule is complete. Two rotavirus doses were administered. Check for any other vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="415" locator="216:5-216:203">
+               <when localId="416" locator="216:10-216:61" name="Rotavirus immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+               <then localId="417" locator="216:68-216:203" valueType="t:String" value="Rotavirus immunization schedule is complete. Three rotavirus primary series doses were administered. Check for any other vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="418" locator="217:10-217:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="422" locator="224:1-225:49" name="Client is not due for rotavirus vaccination if immunization schedule is not complete." context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for rotavirus vaccination if immunization schedule is not complete."/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot; IF current &quot;Immunization recommendation status&quot; ≠ &quot;Complete&quot;"/>
+            <a:s r="422">
+               <a:s>/*
+@output: Client is not due for rotavirus vaccination if immunization schedule is not complete.
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot; IF current &quot;Immunization recommendation status&quot; ≠ &quot;Complete&quot;
+*/
+define &quot;Client is not due for rotavirus vaccination if immunization schedule is not complete.&quot;:
+  </a:s>
+               <a:s r="424">
+                  <a:s r="423">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="424">
+                     <a:s>&quot;Client's age is more than 24 months&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="424" locator="225:3-225:49" name="Client's age is more than 24 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="427" locator="231:1-232:126" name="Client is not due for rotavirus vaccination if immunization schedule is not complete. Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for rotavirus vaccination if immunization schedule is not complete. Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with rotavirus dose as client's age is more than 24 months. Check for any other vaccines due."/>
+            <a:s r="427">
+               <a:s>/*
+@output: Client is not due for rotavirus vaccination if immunization schedule is not complete. Guidance
+@guidance: Should not vaccinate client with rotavirus dose as client's age is more than 24 months. Check for any other vaccines due.
+*/
+define &quot;Client is not due for rotavirus vaccination if immunization schedule is not complete. Guidance&quot;:
+  </a:s>
+               <a:s r="428">
+                  <a:s>'Should not vaccinate client with rotavirus dose as client\'s age is more than 24 months. Check for any other vaccines due.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="428" locator="232:3-232:126" valueType="t:String" value="Should not vaccinate client with rotavirus dose as client's age is more than 24 months. Check for any other vaccines due." xsi:type="Literal"/>
+      </def>
+      <def localId="220" locator="23:1-30:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="220">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="221">
+                  <a:s>case
+    </a:s>
+                  <a:s r="222">
+                     <a:s>when </a:s>
+                     <a:s r="287">
+                        <a:s>&quot;Client is not due for rotavirus vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="307">
+                        <a:s>&quot;Client is not due for rotavirus vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="308">
+                     <a:s>when </a:s>
+                     <a:s r="367">
+                        <a:s>&quot;Client is due for rotavirus vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="384">
+                        <a:s>&quot;Client is due for rotavirus vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="385">
+                     <a:s>when </a:s>
+                     <a:s r="408">
+                        <a:s>&quot;Rotavirus immunization schedule is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="419">
+                        <a:s>&quot;Rotavirus immunization schedule is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="420">
+                     <a:s>when </a:s>
+                     <a:s r="425">
+                        <a:s>&quot;Client is not due for rotavirus vaccination if immunization schedule is not complete.&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="429">
+                        <a:s>&quot;Client is not due for rotavirus vaccination if immunization schedule is not complete. Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="430">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="221" locator="24:3-30:5" xsi:type="Case">
+            <caseItem localId="222" locator="25:5-25:114">
+               <when localId="287" locator="25:10-25:54" name="Client is not due for rotavirus vaccination" xsi:type="ExpressionRef"/>
+               <then localId="307" locator="25:61-25:114" name="Client is not due for rotavirus vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="308" locator="26:5-26:106">
+               <when localId="367" locator="26:10-26:50" name="Client is due for rotavirus vaccination" xsi:type="ExpressionRef"/>
+               <then localId="384" locator="26:57-26:106" name="Client is due for rotavirus vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="385" locator="27:5-27:114">
+               <when localId="408" locator="27:10-27:54" name="Rotavirus immunization schedule is complete" xsi:type="ExpressionRef"/>
+               <then localId="419" locator="27:61-27:114" name="Rotavirus immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="420" locator="28:5-28:198">
+               <when localId="425" locator="28:10-28:96" name="Client is not due for rotavirus vaccination if immunization schedule is not complete." xsi:type="ExpressionRef"/>
+               <then localId="429" locator="28:103-28:198" name="Client is not due for rotavirus vaccination if immunization schedule is not complete. Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="430" locator="29:10-29:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="432" locator="32:1-33:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="432">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="433">
+                  <a:s r="436">
+                     <a:s r="434">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="442">
+                     <a:s r="438">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="439">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="433" locator="33:3-33:45" xsi:type="And">
+            <operand localId="436" locator="33:3-33:24" xsi:type="Not">
+               <operand localId="435" locator="33:3-33:24" xsi:type="IsNull">
+                  <operand localId="434" locator="33:3-33:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="442" locator="33:30-33:45" xsi:type="Not">
+               <operand localId="437" locator="33:30-33:45" xsi:type="Equal">
+                  <signature localId="440" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="441" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="438" locator="33:30-33:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="439" locator="33:44-33:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="444" locator="234:1-235:77" name="test1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="444">
+               <a:s>define &quot;test1&quot;:
+  </a:s>
+               <a:s r="446">
+                  <a:s r="445">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="446">
+                     <a:s>&quot;The series administered to the client contains the same product&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="446" locator="235:3-235:77" name="The series administered to the client contains the same product" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="448" locator="237:1-238:115" name="test2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="448">
+               <a:s>define &quot;test2&quot;:
+  </a:s>
+               <a:s r="449">
+                  <a:s>singleton from </a:s>
+                  <a:s r="469">
+                     <a:s r="461">
+                        <a:s>(</a:s>
+                        <a:s r="461">
+                           <a:s r="460">
+                              <a:s>(</a:s>
+                              <a:s r="460">
+                                 <a:s r="459">
+                                    <a:s>First(</a:s>
+                                    <a:s r="453">
+                                       <a:s r="451">
+                                          <a:s r="450">
+                                             <a:s>Encounter</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="451">
+                                             <a:s>&quot;Rotavirus Doses Administered to Patient&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="453">
+                                          <a:s>getDose(</a:s>
+                                          <a:s r="452">
+                                             <a:s>'1'</a:s>
+                                          </a:s>
+                                          <a:s>)</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="460">
+                                    <a:s>brand()</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="461">
+                              <a:s>coding</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="469">
+                        <a:s>display</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="449" locator="238:3-238:115" xsi:type="SingletonFrom">
+            <operand localId="469" locator="238:18-238:115" xsi:type="Query">
+               <source localId="468" alias="$this">
+                  <expression localId="461" locator="238:18-238:107" path="coding" xsi:type="Property">
+                     <source localId="460" locator="238:19-238:99" name="brand" libraryName="Common" xsi:type="FunctionRef">
+                        <operand localId="459" locator="238:20-238:90" xsi:type="First">
+                           <source localId="453" locator="238:26-238:89" name="getDose" libraryName="Common" xsi:type="FunctionRef">
+                              <signature localId="454" xsi:type="ListTypeSpecifier">
+                                 <elementType localId="455" name="fhir:Immunization" xsi:type="NamedTypeSpecifier"/>
+                              </signature>
+                              <signature localId="456" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                              <operand localId="451" locator="238:26-238:76" name="Rotavirus Doses Administered to Patient" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                              <operand localId="452" locator="238:86-238:88" valueType="t:String" value="1" xsi:type="Literal"/>
+                           </source>
+                        </operand>
+                     </source>
+                  </expression>
+               </source>
+               <where localId="465" xsi:type="Not">
+                  <operand localId="464" xsi:type="IsNull">
+                     <operand localId="463" path="display" xsi:type="Property">
+                        <source localId="462" name="$this" xsi:type="AliasRef"/>
+                     </operand>
+                  </operand>
+               </where>
+               <return localId="470" distinct="false">
+                  <expression localId="467" path="display" xsi:type="Property">
+                     <source localId="466" name="$this" xsi:type="AliasRef"/>
+                  </expression>
+               </return>
+            </operand>
+         </expression>
+      </def>
+      <def localId="472" locator="243:1-262:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="472">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="473">
+                  <a:s>case
+    </a:s>
+                  <a:s r="474">
+                     <a:s>when </a:s>
+                     <a:s r="475">
+                        <a:s r="477">
+                           <a:s r="476">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="477">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="478">
+                           <a:s>'07.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="483">
+                        <a:s r="484">
+                           <a:s>&quot;Client is not due for rotavirus vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="485">
+                           <a:s r="486">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="487">
+                              <a:s>'Should not vaccinate client with first rotavirus dose as client\'s age is less than 6 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="490">
+                     <a:s>when </a:s>
+                     <a:s r="491">
+                        <a:s r="493">
+                           <a:s r="492">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="493">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="494">
+                           <a:s>'08.012'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="499">
+                        <a:s r="500">
+                           <a:s>&quot;Client is due for rotavirus vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="501">
+                           <a:s r="502">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="503">
+                              <a:s>'Should vaccinate client with  first rotavirus dose as no rotavirus doses were administered, client\'s age is within appropriate age range and no live vaccine was administered in last 4 weeks.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="506">
+                     <a:s>when </a:s>
+                     <a:s r="507">
+                        <a:s r="509">
+                           <a:s r="508">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="509">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="510">
+                           <a:s>'09.012'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="515">
+                        <a:s r="516">
+                           <a:s>&quot;Client is not due for rotavirus vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="517">
+                           <a:s r="518">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="519">
+                              <a:s>'Should not vaccinate client with  first rotavirus dose as live vaccine was administered in last 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="522">
+                     <a:s>when </a:s>
+                     <a:s r="523">
+                        <a:s r="525">
+                           <a:s r="524">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="525">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="526">
+                           <a:s>'10.012'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="531">
+                        <a:s r="532">
+                           <a:s>&quot;Client is due for rotavirus vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="533">
+                           <a:s r="534">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="535">
+                              <a:s>'Should vaccinate client with second rotavirus dose as client\'s age is within appropriate age range and no live vaccine was administered in the last 4 weeks.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="538">
+                     <a:s>when </a:s>
+                     <a:s r="539">
+                        <a:s r="541">
+                           <a:s r="540">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="541">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="542">
+                           <a:s>'11.012'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="547">
+                        <a:s r="548">
+                           <a:s>&quot;Client is not due for rotavirus vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="549">
+                           <a:s r="550">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="551">
+                              <a:s>'Should not vaccinate client with second rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="554">
+                     <a:s>when </a:s>
+                     <a:s r="555">
+                        <a:s r="557">
+                           <a:s r="556">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="557">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="558">
+                           <a:s>'12.0123'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="563">
+                        <a:s r="564">
+                           <a:s>&quot;Client is due for rotavirus vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="565">
+                           <a:s r="566">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="567">
+                              <a:s>'Should vaccinate client with third rotavirus dose as no live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="570">
+                     <a:s>when </a:s>
+                     <a:s r="571">
+                        <a:s r="573">
+                           <a:s r="572">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="573">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="574">
+                           <a:s>'13.0123'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="579">
+                        <a:s r="580">
+                           <a:s>&quot;Client is not due for rotavirus vaccination Case 4&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="581">
+                           <a:s r="582">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="583">
+                              <a:s>'Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="586">
+                     <a:s>when </a:s>
+                     <a:s r="587">
+                        <a:s r="589">
+                           <a:s r="588">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="589">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="590">
+                           <a:s>'14.01234'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="595">
+                        <a:s r="596">
+                           <a:s>&quot;Client is due for rotavirus vaccination Case 4&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="597">
+                           <a:s r="598">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="599">
+                              <a:s>'Should vaccinate client with third rotavirus dose as series contains more than two doses and no live vaccine was administered in the last 4 weeks.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="602">
+                     <a:s>when </a:s>
+                     <a:s r="603">
+                        <a:s r="605">
+                           <a:s r="604">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="605">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="606">
+                           <a:s>'15.01234'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="611">
+                        <a:s r="612">
+                           <a:s>&quot;Client is not due for rotavirus vaccination Case 5&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="613">
+                           <a:s r="614">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="615">
+                              <a:s>'Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="618">
+                     <a:s>when </a:s>
+                     <a:s r="619">
+                        <a:s r="621">
+                           <a:s r="620">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="621">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="622">
+                           <a:s>'16.0134'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="627">
+                        <a:s r="628">
+                           <a:s>&quot;Rotavirus immunization schedule is complete Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="629">
+                           <a:s r="630">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="631">
+                              <a:s>'Rotavirus immunization schedule is complete. Two rotavirus doses were administered. Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="634">
+                     <a:s>when </a:s>
+                     <a:s r="635">
+                        <a:s r="637">
+                           <a:s r="636">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="637">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="638">
+                           <a:s>'17.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="643">
+                        <a:s r="644">
+                           <a:s>&quot;Rotavirus immunization schedule is complete Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="645">
+                           <a:s r="646">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="647">
+                              <a:s>'Rotavirus immunization schedule is complete. Three rotavirus primary series doses were administered. Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="650">
+                     <a:s>when </a:s>
+                     <a:s r="651">
+                        <a:s r="653">
+                           <a:s r="652">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="653">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="654">
+                           <a:s>'18.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="659">
+                        <a:s r="660">
+                           <a:s>&quot;Client is not due for rotavirus vaccination if immunization schedule is not complete.&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="661">
+                           <a:s r="662">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="663">
+                              <a:s>'Should not vaccinate client with rotavirus dose as client\'s age is more than 24 months. Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="666">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="473" locator="244:3-262:5" xsi:type="Case">
+            <caseItem localId="474" locator="245:5-245:297">
+               <when localId="475" locator="245:10-245:28" xsi:type="Equal">
+                  <signature localId="481" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="482" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="479" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="480" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="477" locator="245:10-245:19" path="id" xsi:type="Property">
+                        <source localId="476" locator="245:10-245:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="478" locator="245:23-245:28" valueType="t:String" value="07.1" xsi:type="Literal"/>
+               </when>
+               <then localId="667" xsi:type="As">
+                  <operand localId="483" locator="245:35-245:297" xsi:type="And">
+                     <operand localId="484" locator="245:35-245:86" name="Client is not due for rotavirus vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="485" locator="245:92-245:297" xsi:type="Equal">
+                        <signature localId="488" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="489" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="486" locator="245:92-245:101" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="487" locator="245:105-245:297" valueType="t:String" value="Should not vaccinate client with first rotavirus dose as client's age is less than 6 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="668" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="669" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="670" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="490" locator="246:5-246:324">
+               <when localId="491" locator="246:10-246:30" xsi:type="Equal">
+                  <signature localId="497" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="498" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="495" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="496" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="493" locator="246:10-246:19" path="id" xsi:type="Property">
+                        <source localId="492" locator="246:10-246:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="494" locator="246:23-246:30" valueType="t:String" value="08.012" xsi:type="Literal"/>
+               </when>
+               <then localId="671" xsi:type="As">
+                  <operand localId="499" locator="246:37-246:324" xsi:type="And">
+                     <operand localId="500" locator="246:37-246:84" name="Client is due for rotavirus vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="501" locator="246:90-246:324" xsi:type="Equal">
+                        <signature localId="504" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="505" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="502" locator="246:90-246:99" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="503" locator="246:103-246:324" valueType="t:String" value="Should vaccinate client with  first rotavirus dose as no rotavirus doses were administered, client's age is within appropriate age range and no live vaccine was administered in last 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="672" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="673" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="674" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="506" locator="248:5-248:305">
+               <when localId="507" locator="248:10-248:30" xsi:type="Equal">
+                  <signature localId="513" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="514" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="511" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="512" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="509" locator="248:10-248:19" path="id" xsi:type="Property">
+                        <source localId="508" locator="248:10-248:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="510" locator="248:23-248:30" valueType="t:String" value="09.012" xsi:type="Literal"/>
+               </when>
+               <then localId="675" xsi:type="As">
+                  <operand localId="515" locator="248:37-248:305" xsi:type="And">
+                     <operand localId="516" locator="248:37-248:88" name="Client is not due for rotavirus vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="517" locator="248:94-248:305" xsi:type="Equal">
+                        <signature localId="520" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="521" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="518" locator="248:94-248:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="519" locator="248:107-248:305" valueType="t:String" value="Should not vaccinate client with  first rotavirus dose as live vaccine was administered in last 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="676" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="677" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="678" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="522" locator="249:5-249:290">
+               <when localId="523" locator="249:10-249:30" xsi:type="Equal">
+                  <signature localId="529" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="530" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="527" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="528" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="525" locator="249:10-249:19" path="id" xsi:type="Property">
+                        <source localId="524" locator="249:10-249:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="526" locator="249:23-249:30" valueType="t:String" value="10.012" xsi:type="Literal"/>
+               </when>
+               <then localId="679" xsi:type="As">
+                  <operand localId="531" locator="249:37-249:290" xsi:type="And">
+                     <operand localId="532" locator="249:37-249:84" name="Client is due for rotavirus vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="533" locator="249:90-249:290" xsi:type="Equal">
+                        <signature localId="536" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="537" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="534" locator="249:90-249:99" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="535" locator="249:103-249:290" valueType="t:String" value="Should vaccinate client with second rotavirus dose as client's age is within appropriate age range and no live vaccine was administered in the last 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="680" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="681" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="682" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="538" locator="251:5-251:313">
+               <when localId="539" locator="251:10-251:30" xsi:type="Equal">
+                  <signature localId="545" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="546" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="543" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="544" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="541" locator="251:10-251:19" path="id" xsi:type="Property">
+                        <source localId="540" locator="251:10-251:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="542" locator="251:23-251:30" valueType="t:String" value="11.012" xsi:type="Literal"/>
+               </when>
+               <then localId="683" xsi:type="As">
+                  <operand localId="547" locator="251:37-251:313" xsi:type="And">
+                     <operand localId="548" locator="251:37-251:88" name="Client is not due for rotavirus vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="549" locator="251:94-251:313" xsi:type="Equal">
+                        <signature localId="552" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="553" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="550" locator="251:94-251:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="551" locator="251:107-251:313" valueType="t:String" value="Should not vaccinate client with second rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="684" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="685" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="686" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="554" locator="252:5-252:303">
+               <when localId="555" locator="252:10-252:31" xsi:type="Equal">
+                  <signature localId="561" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="562" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="559" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="560" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="557" locator="252:10-252:19" path="id" xsi:type="Property">
+                        <source localId="556" locator="252:10-252:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="558" locator="252:23-252:31" valueType="t:String" value="12.0123" xsi:type="Literal"/>
+               </when>
+               <then localId="687" xsi:type="As">
+                  <operand localId="563" locator="252:38-252:303" xsi:type="And">
+                     <operand localId="564" locator="252:38-252:85" name="Client is due for rotavirus vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="565" locator="252:91-252:303" xsi:type="Equal">
+                        <signature localId="568" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="569" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="566" locator="252:91-252:100" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="567" locator="252:104-252:303" valueType="t:String" value="Should vaccinate client with third rotavirus dose as no live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="688" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="689" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="690" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="570" locator="254:5-254:376">
+               <when localId="571" locator="254:10-254:31" xsi:type="Equal">
+                  <signature localId="577" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="578" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="575" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="576" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="573" locator="254:10-254:19" path="id" xsi:type="Property">
+                        <source localId="572" locator="254:10-254:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="574" locator="254:23-254:31" valueType="t:String" value="13.0123" xsi:type="Literal"/>
+               </when>
+               <then localId="691" xsi:type="As">
+                  <operand localId="579" locator="254:38-254:376" xsi:type="And">
+                     <operand localId="580" locator="254:38-254:89" name="Client is not due for rotavirus vaccination Case 4" xsi:type="ExpressionRef"/>
+                     <operand localId="581" locator="254:95-254:376" xsi:type="Equal">
+                        <signature localId="584" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="585" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="582" locator="254:95-254:104" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="583" locator="254:108-254:376" valueType="t:String" value="Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="692" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="693" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="694" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="586" locator="255:5-255:281">
+               <when localId="587" locator="255:10-255:32" xsi:type="Equal">
+                  <signature localId="593" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="594" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="591" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="592" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="589" locator="255:10-255:19" path="id" xsi:type="Property">
+                        <source localId="588" locator="255:10-255:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="590" locator="255:23-255:32" valueType="t:String" value="14.01234" xsi:type="Literal"/>
+               </when>
+               <then localId="695" xsi:type="As">
+                  <operand localId="595" locator="255:39-255:281" xsi:type="And">
+                     <operand localId="596" locator="255:39-255:86" name="Client is due for rotavirus vaccination Case 4" xsi:type="ExpressionRef"/>
+                     <operand localId="597" locator="255:92-255:281" xsi:type="Equal">
+                        <signature localId="600" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="601" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="598" locator="255:92-255:101" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="599" locator="255:105-255:281" valueType="t:String" value="Should vaccinate client with third rotavirus dose as series contains more than two doses and no live vaccine was administered in the last 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="696" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="697" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="698" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="602" locator="257:5-257:315">
+               <when localId="603" locator="257:10-257:32" xsi:type="Equal">
+                  <signature localId="609" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="610" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="607" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="608" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="605" locator="257:10-257:19" path="id" xsi:type="Property">
+                        <source localId="604" locator="257:10-257:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="606" locator="257:23-257:32" valueType="t:String" value="15.01234" xsi:type="Literal"/>
+               </when>
+               <then localId="699" xsi:type="As">
+                  <operand localId="611" locator="257:39-257:315" xsi:type="And">
+                     <operand localId="612" locator="257:39-257:90" name="Client is not due for rotavirus vaccination Case 5" xsi:type="ExpressionRef"/>
+                     <operand localId="613" locator="257:96-257:315" xsi:type="Equal">
+                        <signature localId="616" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="617" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="614" locator="257:96-257:105" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="615" locator="257:109-257:315" valueType="t:String" value="Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="700" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="701" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="702" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="618" locator="258:5-258:226">
+               <when localId="619" locator="258:10-258:31" xsi:type="Equal">
+                  <signature localId="625" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="626" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="623" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="624" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="621" locator="258:10-258:19" path="id" xsi:type="Property">
+                        <source localId="620" locator="258:10-258:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="622" locator="258:23-258:31" valueType="t:String" value="16.0134" xsi:type="Literal"/>
+               </when>
+               <then localId="703" xsi:type="As">
+                  <operand localId="627" locator="258:38-258:226" xsi:type="And">
+                     <operand localId="628" locator="258:38-258:89" name="Rotavirus immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="629" locator="258:95-258:226" xsi:type="Equal">
+                        <signature localId="632" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="633" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="630" locator="258:95-258:104" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="631" locator="258:108-258:226" valueType="t:String" value="Rotavirus immunization schedule is complete. Two rotavirus doses were administered. Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="704" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="705" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="706" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="634" locator="259:5-259:240">
+               <when localId="635" locator="259:10-259:28" xsi:type="Equal">
+                  <signature localId="641" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="642" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="639" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="640" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="637" locator="259:10-259:19" path="id" xsi:type="Property">
+                        <source localId="636" locator="259:10-259:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="638" locator="259:23-259:28" valueType="t:String" value="17.0" xsi:type="Literal"/>
+               </when>
+               <then localId="707" xsi:type="As">
+                  <operand localId="643" locator="259:35-259:240" xsi:type="And">
+                     <operand localId="644" locator="259:35-259:86" name="Rotavirus immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="645" locator="259:92-259:240" xsi:type="Equal">
+                        <signature localId="648" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="649" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="646" locator="259:92-259:101" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="647" locator="259:105-259:240" valueType="t:String" value="Rotavirus immunization schedule is complete. Three rotavirus primary series doses were administered. Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="708" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="709" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="710" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="650" locator="260:5-260:263">
+               <when localId="651" locator="260:10-260:28" xsi:type="Equal">
+                  <signature localId="657" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="658" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="655" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="656" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="653" locator="260:10-260:19" path="id" xsi:type="Property">
+                        <source localId="652" locator="260:10-260:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="654" locator="260:23-260:28" valueType="t:String" value="18.1" xsi:type="Literal"/>
+               </when>
+               <then localId="711" xsi:type="As">
+                  <operand localId="659" locator="260:35-260:263" xsi:type="And">
+                     <operand localId="660" locator="260:35-260:121" name="Client is not due for rotavirus vaccination if immunization schedule is not complete." xsi:type="ExpressionRef"/>
+                     <operand localId="661" locator="260:127-260:263" xsi:type="Equal">
+                        <signature localId="664" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="665" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="662" locator="260:127-260:136" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="663" locator="260:140-260:263" valueType="t:String" value="Should not vaccinate client with rotavirus dose as client's age is more than 24 months. Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="712" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="713" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="714" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="715" xsi:type="As">
+               <operand localId="666" locator="261:10-261:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="716" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="717" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="718" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>
