@@ -1,6 +1,7 @@
 /*
 @libname: DTElements-Mumps
 @libid: DTElements-Mumps
+@description: This library contains Decision Table elements from the decision table <a href='DTIMMZ.D5.DT.Mumpscontraindications.html'>IMMZ.D5.DT.Mumpscontraindications</a>
 */
 library DTElements-Mumps
 

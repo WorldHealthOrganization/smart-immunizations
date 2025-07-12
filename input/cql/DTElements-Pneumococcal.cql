@@ -1,6 +1,7 @@
 /*
 @libname: DTElements-Pneumococcal
 @libid: DTElements-Pneumococcal
+@description: This library contains Decision Table elements from the decision table <a href='DTIMMZ.D2.DT.Pneumococcal.3doses.html'>IMMZ.D2.DT.Pneumococcal.3doses</a>
 */
 library DTElements-Pneumococcal
 

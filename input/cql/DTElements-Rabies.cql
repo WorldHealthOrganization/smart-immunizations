@@ -1,6 +1,7 @@
 /*
 @libname: DTElements-Rabies
 @libid: DTElements-Rabies
+@description: This library contains Decision Table elements from the decision table <a href='DTIMMZ.D5.DT.Rabiescontraindications.html'>IMMZ.D5.DT.Rabiescontraindications</a>
 */
 library DTElements-Rabies
 

@@ -1,6 +1,7 @@
 /*
 @libname: DTElements-Rubella
 @libid: DTElements-Rubella
+@description: This library contains Decision Table elements from the decision table <a href='DTIMMZ.D5.DT.Rubellacontraindications.html'>IMMZ.D5.DT.Rubellacontraindications</a>
 */
 library DTElements-Rubella
 

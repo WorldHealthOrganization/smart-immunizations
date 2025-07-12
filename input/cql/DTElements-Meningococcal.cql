@@ -1,6 +1,7 @@
 /*
 @libname: DTElements-Meningococcal
 @libid: DTElements-Meningococcal
+@description: This library contains Decision Table elements from the decision table <a href='DTIMMZ.D5.DT.Meningococcalcontraindications.html'>IMMZ.D5.DT.Meningococcalcontraindications</a>
 */
 library DTElements-Meningococcal
 

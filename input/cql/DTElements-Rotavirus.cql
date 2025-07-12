@@ -1,6 +1,7 @@
 /*
 @libname: DTElements-Rotavirus
 @libid: DTElements-Rotavirus
+@description: This library contains Decision Table elements from the decision table <a href='DTIMMZ.D5.DT.Rotaviruscontraindications.html'>IMMZ.D5.DT.Rotaviruscontraindications</a>
 */
 library DTElements-Rotavirus
 

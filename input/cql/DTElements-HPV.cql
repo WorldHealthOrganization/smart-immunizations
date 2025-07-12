@@ -1,6 +1,7 @@
 /*
 @libname: DTElements-HPV
 @libid: DTElements-HPV
+@description: This library contains Decision Table elements from the decision table <a href='DTIMMZ.D5.DT.HPVcontraindications.html'>IMMZ.D5.DT.HPVcontraindications</a>
 */
 library DTElements-HPV
 

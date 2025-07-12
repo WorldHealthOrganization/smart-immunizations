@@ -1,6 +1,7 @@
 /*
 @libname: DTElements-Typhoid
 @libid: DTElements-Typhoid
+@description: This library contains Decision Table elements from the decision table <a href='DTIMMZ.D2.DT.Typhoid.Ty21a.html'>IMMZ.D2.DT.Typhoid.Ty21a</a>
 */
 library DTElements-Typhoid
 

@@ -1,6 +1,7 @@
 /*
 @libname: DTElements-Seasonalinfluenza
 @libid: DTElements-Seasonalinfluenza
+@description: This library contains Decision Table elements from the decision table <a href='DTIMMZ.D5.DT.Seasonalinfluenzacontraindications.html'>IMMZ.D5.DT.Seasonalinfluenzacontraindications</a>
 */
 library DTElements-Seasonalinfluenza
 

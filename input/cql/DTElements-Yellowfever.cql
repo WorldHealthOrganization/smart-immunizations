@@ -1,6 +1,7 @@
 /*
 @libname: DTElements-Yellowfever
 @libid: DTElements-Yellowfever
+@description: This library contains Decision Table elements from the decision table <a href='DTIMMZ.D2.DT.Yellowfever.html'>IMMZ.D2.DT.Yellowfever</a>
 */
 library DTElements-Yellowfever
 

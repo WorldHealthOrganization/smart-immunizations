@@ -1,6 +1,7 @@
 /*
 @libname: DTElements-JE
 @libid: DTElements-JE
+@description: This library contains Decision Table elements from the decision table <a href='DTIMMZ.D5.DT.JEcontraindications.html'>IMMZ.D5.DT.JEcontraindications</a>
 */
 library DTElements-JE
 

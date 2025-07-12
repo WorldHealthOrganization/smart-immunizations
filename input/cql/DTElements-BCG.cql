@@ -1,6 +1,7 @@
 /*
 @libname: DTElements-BCG
 @libid: DTElements-BCG
+@description: This library contains Decision Table elements from the decision table <a href='DTIMMZ.D5.DT.BCGcontraindications.html'>IMMZ.D5.DT.BCGcontraindications</a>
 */
 library DTElements-BCG
 

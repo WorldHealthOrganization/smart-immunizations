@@ -1,6 +1,7 @@
 /*
 @libname: DTElements-Cholera
 @libid: DTElements-Cholera
+@description: This library contains Decision Table elements from the decision table <a href='DTIMMZ.D2.DT.Cholera.WC-rBSvaccine2doses.html'>IMMZ.D2.DT.Cholera.WC-rBSvaccine2doses</a>
 */
 library DTElements-Cholera
 

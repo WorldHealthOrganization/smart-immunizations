@@ -1,6 +1,7 @@
 /*
 @libname: DTElements-Measles
 @libid: DTElements-Measles
+@description: This library contains Decision Table elements from the decision table <a href='DTIMMZ.D5.DT.Measlescontraindications.html'>IMMZ.D5.DT.Measlescontraindications</a>
 */
 library DTElements-Measles
 
