@@ -1,0 +1,77 @@
+Profile: DT.IMMZ.D2.DT.HepatitisB.3doses
+Parent: $SGDecisionTable
+Title: "Decision Table Determine required vaccinations"
+Description: """Determine required vaccinations"""
+* insert SGDecisionTable( IMMZ.D2.DT.HepatitisB.3doses,"Determine required vaccinations",0.2.0)
+
+
+* insert SGDecisionTableOutput("Client is due for a hepatitis B vaccination","Client is due for a hepatitis B vaccination","""""")
+* insert SGDecisionTableCondition("No hepatitis B primary series doses were administered")
+* insert SGDecisionTableCondition("Client's age is more than or equal to {Member States defined lower limit}")
+* insert SGDecisionTableGuidance("""Should vaccinate client with first hepatitis B dose as client's age is within appropriate age range. 
+Check for contraindications.""")
+* insert SGDecisionTableCondition("No hepatitis B primary series doses were administered")
+* insert SGDecisionTableCondition("Client's age is more than or equal to {Member States defined lower limit}")
+* insert SGDecisionTableOutput("Client is not due for a hepatitis B vaccination","Client is not due for a hepatitis B vaccination","""""")
+* insert SGDecisionTableCondition("One hepatitis B primary series dose was administered")
+* insert SGDecisionTableCondition("The latest hepatitis B dose was administered less than 4 weeks ago")
+* insert SGDecisionTableGuidance("""Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the third dose.""")
+* insert SGDecisionTableCondition("One hepatitis B primary series dose was administered")
+* insert SGDecisionTableCondition("The latest hepatitis B dose was administered less than 4 weeks ago")
+* insert SGDecisionTableOutput("Client is due for a hepatitis B vaccination","Client is due for a hepatitis B vaccination","""""")
+* insert SGDecisionTableCondition("One hepatitis B primary series dose was administered")
+* insert SGDecisionTableCondition("The latest hepatitis B dose was administered more than 4 weeks ago")
+* insert SGDecisionTableGuidance("""Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered more than 4 weeks ago. 
+Check for contraindications.""")
+* insert SGDecisionTableCondition("One hepatitis B primary series dose was administered")
+* insert SGDecisionTableCondition("The latest hepatitis B dose was administered more than 4 weeks ago")
+* insert SGDecisionTableOutput("Hepatitis B immunization schedule is complete","Hepatitis B immunization schedule is complete","""–""")
+* insert SGDecisionTableCondition("Two hepatitis B primary series doses were administered")
+* insert SGDecisionTableCondition("Client's weight at birth was over 2000 g")
+* insert SGDecisionTableCondition("Client was not a premature infant at birth")
+* insert SGDecisionTableGuidance("""Hepatitis B immunization schedule is complete for client whose weight at birth was over 2000 g and who was not premature infant. Two hepatitis B primary series doses were administered.""")
+* insert SGDecisionTableCondition("Two hepatitis B primary series doses were administered")
+* insert SGDecisionTableCondition("Client's weight at birth was over 2000 g")
+* insert SGDecisionTableCondition("Client was not a premature infant at birth")
+* insert SGDecisionTableOutput("Client is not due for a hepatitis B vaccination","Client is not due for a hepatitis B vaccination","""A birth dose of hepatitis B-containing vaccine can be given to low-birth-weight \(<2000 g\) and premature infants. For these infants, the birth dose should not count as part of the primary 3-dose series; the 3 doses of the standard primary series should be given according to the national vaccination schedule.""")
+* insert SGDecisionTableCondition("Two hepatitis B primary series doses were administered")
+* insert SGDecisionTableCondition("Client's weight at birth was below 2000 g")
+* insert SGDecisionTableCondition("The latest hepatitis B dose was administered less than 4 weeks ago")
+* insert SGDecisionTableGuidance("""Should not vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B-containing vaccine was administered less than 4 weeks ago. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the third dose.""")
+* insert SGDecisionTableCondition("Two hepatitis B primary series doses were administered")
+* insert SGDecisionTableCondition("Client's weight at birth was below 2000 g")
+* insert SGDecisionTableCondition("The latest hepatitis B dose was administered less than 4 weeks ago")
+* insert SGDecisionTableOutput("Client is due for a hepatitis B vaccination","Client is due for a hepatitis B vaccination","""""")
+* insert SGDecisionTableCondition("Two hepatitis B primary series doses were administered")
+* insert SGDecisionTableCondition("Client's weight at birth was below 2000 g")
+* insert SGDecisionTableCondition("The latest hepatitis B dose was administered more than 4 weeks ago")
+* insert SGDecisionTableGuidance("""Should vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B-containing vaccine administered more than 4 weeks ago. 
+Check for contraindications.""")
+* insert SGDecisionTableCondition("Two hepatitis B primary series doses were administered")
+* insert SGDecisionTableCondition("Client's weight at birth was below 2000 g")
+* insert SGDecisionTableCondition("The latest hepatitis B dose was administered more than 4 weeks ago")
+* insert SGDecisionTableOutput("Client is not due for a hepatitis B vaccination","Client is not due for a hepatitis B vaccination","""""")
+* insert SGDecisionTableCondition("Two hepatitis B primary series doses were administered")
+* insert SGDecisionTableCondition("Client was a premature infant at birth")
+* insert SGDecisionTableCondition("The latest hepatitis B dose was administered less than 4 weeks ago")
+* insert SGDecisionTableGuidance("""Should not vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.""")
+* insert SGDecisionTableCondition("Two hepatitis B primary series doses were administered")
+* insert SGDecisionTableCondition("Client was a premature infant at birth")
+* insert SGDecisionTableCondition("The latest hepatitis B dose was administered less than 4 weeks ago")
+* insert SGDecisionTableOutput("Client is due for a hepatitis B vaccination","Client is due for a hepatitis B vaccination","""""")
+* insert SGDecisionTableCondition("Two hepatitis B primary series doses were administered")
+* insert SGDecisionTableCondition("Client was a premature infant at birth")
+* insert SGDecisionTableCondition("The latest hepatitis B dose was administered more than 4 weeks ago")
+* insert SGDecisionTableGuidance("""Should vaccinate client with third hepatitis B dose as the client was a low-birth-weight infant and the latest hepatitis B dose was administered more than 4 weeks ago. 
+Check for contraindications.""")
+* insert SGDecisionTableCondition("Two hepatitis B primary series doses were administered")
+* insert SGDecisionTableCondition("Client was a premature infant at birth")
+* insert SGDecisionTableCondition("The latest hepatitis B dose was administered more than 4 weeks ago")
+* insert SGDecisionTableOutput("Hepatitis B immunization schedule is complete","Hepatitis B immunization schedule is complete","""–""")
+* insert SGDecisionTableCondition("Three hepatitis B primary series doses were administered")
+* insert SGDecisionTableGuidance("""The hepatitis B immunization schedule is complete for client whose weight at birth was below 2000 g and who was a premature infant. Four hepatitis B primary series doses were administered. 
+Check for any other vaccines due.""")
+* insert SGDecisionTableCondition("Three hepatitis B primary series doses were administered")

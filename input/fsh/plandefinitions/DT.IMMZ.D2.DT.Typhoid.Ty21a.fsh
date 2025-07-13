@@ -1,0 +1,57 @@
+Profile: DT.IMMZ.D2.DT.Typhoid.Ty21a
+Parent: $SGDecisionTable
+Title: "Decision Table Determine required vaccinations"
+Description: """Determine required vaccinations"""
+* insert SGDecisionTable( IMMZ.D2.DT.Typhoid.Ty21a,"Determine required vaccinations",0.2.0)
+
+* insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables \(March 2023\) \(1\)
+Typhoid vaccines: WHO position paper \(March 2018\) \(16\)""")
+* insert SGDecisionTableOutput("Client is due for Typhoid vaccination","Client is due for Typhoid vaccination","""For Ty21a, a 3-dose oral immunization schedule, administering the vaccine every second \(alternate\) day, is recommended above 6 years of age. If interruption between doses is > 21 days, restart primary series.""")
+* insert SGDecisionTableCondition("Client's age is more than or equal to 6 years")
+* insert SGDecisionTableCondition("Primary series is not complete")
+* insert SGDecisionTableCondition("No live vaccine, other than typhoid, was administered in the past 4 weeks")
+* insert SGDecisionTableGuidance("""Prescribe the Ty21a primary series \(if not done yet\). Should vaccinate client with typhoid dose as primary series has not been completed and no live vaccines was administered in the past 4 weeks.
+Check for contraindications.""")
+* insert SGDecisionTableCondition("Client's age is more than or equal to 6 years")
+* insert SGDecisionTableCondition("Primary series is not complete")
+* insert SGDecisionTableCondition("No live vaccine, other than typhoid, was administered in the past 4 weeks")
+* insert SGDecisionTableOutput("Client is not due for Typhoid vaccination","Client is not due for Typhoid vaccination","""As a general rule, any live vaccine may be given either simultaneously or at an interval of 4 weeks.""")
+* insert SGDecisionTableCondition("Client's age is more than or equal to 6 years")
+* insert SGDecisionTableCondition("Primary series is not complete")
+* insert SGDecisionTableCondition("Live vaccine, other than typhoid, was administered in the past 4 weeks")
+* insert SGDecisionTableGuidance("""Should not vaccinate client with typhoid dose as live vaccine was administered in the past 4 weeks.
+Check for other vaccines due and inform the caregiver or the client when the next dose should be administered.""")
+* insert SGDecisionTableCondition("Client's age is more than or equal to 6 years")
+* insert SGDecisionTableCondition("Primary series is not complete")
+* insert SGDecisionTableCondition("Live vaccine, other than typhoid, was administered in the past 4 weeks")
+* insert SGDecisionTableOutput("Client is not due for typhoid booster dose","Client is not due for typhoid booster dose","""Revaccination is recommended every 3–7 years for Ty21a \(every 1 to 7 years for travellers from non-endemic to endemic areas, depending on national policies\). As a general rule, any live vaccine may be given either simultaneously or at an interval of 4 weeks.""")
+* insert SGDecisionTableCondition("Client's age is more than or equal to 6 years")
+* insert SGDecisionTableCondition("Primary series is complete")
+* insert SGDecisionTableCondition("The latest typhoid dose was administered less than 3 years ago")
+* insert SGDecisionTableGuidance("""Should not vaccinate client with typhoid booster dose as the latest typhoid dose was administered less than 3 years ago.
+Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered.""")
+* insert SGDecisionTableCondition("Client's age is more than or equal to 6 years")
+* insert SGDecisionTableCondition("Primary series is complete")
+* insert SGDecisionTableCondition("The latest typhoid dose was administered less than 3 years ago")
+* insert SGDecisionTableOutput("Client is due for typhoid booster dose","Client is due for typhoid booster dose","""""")
+* insert SGDecisionTableCondition("Client's age is more than or equal to 6 years")
+* insert SGDecisionTableCondition("Primary series is complete")
+* insert SGDecisionTableCondition("The latest typhoid dose was administered more than 3 years ago")
+* insert SGDecisionTableCondition("No live vaccine, other than typhoid, was administered in the past 4 weeks")
+* insert SGDecisionTableGuidance("""Prescribe the Ty21a booster series. Should vaccinate client with typhoid booster dose as primary series has been completed, the latest typhoid dose was administered more than 3 years ago and no live vaccine was administered in the past 4 weeks.
+Check for contraindications.""")
+* insert SGDecisionTableCondition("Client's age is more than or equal to 6 years")
+* insert SGDecisionTableCondition("Primary series is complete")
+* insert SGDecisionTableCondition("The latest typhoid dose was administered more than 3 years ago")
+* insert SGDecisionTableCondition("No live vaccine, other than typhoid, was administered in the past 4 weeks")
+* insert SGDecisionTableOutput("Client is not due for typhoid booster dose","Client is not due for typhoid booster dose","""""")
+* insert SGDecisionTableCondition("Client's age is more than or equal to 6 years")
+* insert SGDecisionTableCondition("Primary series is complete")
+* insert SGDecisionTableCondition("The latest typhoid dose was administered more than 3 years ago")
+* insert SGDecisionTableCondition("Live vaccine, other than typhoid, was administered in the past 4 weeks")
+* insert SGDecisionTableGuidance("""Should not vaccinate client with typhoid booster dose as live vaccine was administered in the past 4 weeks.
+Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered""")
+* insert SGDecisionTableCondition("Client's age is more than or equal to 6 years")
+* insert SGDecisionTableCondition("Primary series is complete")
+* insert SGDecisionTableCondition("The latest typhoid dose was administered more than 3 years ago")
+* insert SGDecisionTableCondition("Live vaccine, other than typhoid, was administered in the past 4 weeks")

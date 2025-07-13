@@ -19,3 +19,19 @@ Alias: $SGActor = http://smart.who.int/base/StructureDefinition/SGActor
 Alias: $DHIClassificationv1 = http://smart.who.int/base/CodeSystem/DHIv1
 
 Alias: $DHIClassificationv2 = http://smart.who.int/base/CodeSystem/DHIv2
+
+Alias: $SGActivityDefinition = http://smart.who.int/base/StructureDefinition/SGActivityDefinition
+
+Alias: $SGcode = http://smart.who.int/base/StructureDefinition/SGcode
+
+Alias: $SGPlanDefinition = http://smart.who.int/base/StructureDefinition/SGPlanDefinition
+
+Alias: $DecisionTableActions = http://smart.who.int/base/CodeSystem/DecisionTableActions
+
+Alias: $DocumentationSection = http://smart.who.int/base/CodeSystem/DocumentationSection
+
+Alias: $SGActorExt = http://smart.who.int/base/StructureDefinition/SGActorExt
+
+Alias: $SGDecisionTable = http://smart.who.int/base/StructureDefinition/SGDecisionTable
+
+Alias: $SatisfiesExt = http://smart.who.int/trust-phw/StructureDefinition/Satisfies

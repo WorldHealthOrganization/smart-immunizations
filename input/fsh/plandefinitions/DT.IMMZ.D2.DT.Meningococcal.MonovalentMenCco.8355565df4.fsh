@@ -1,0 +1,66 @@
+Profile: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+Parent: $SGDecisionTable
+Title: "Decision Table Determine required vaccinations"
+Description: """Determine required vaccinations"""
+* insert SGDecisionTable( IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine,"Determine required vaccinations",0.2.0)
+
+* insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables \(March 2023\) 
+Meningococcal vaccines: WHO position paper \(November 2011\)""")
+* insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables \(March 2023\) \(1\)""")
+* insert SGDecisionTableOutput("Client is due for meningococcal vaccination","Client is due for meningococcal vaccination","""For monovalent MenC conjugate vaccine, one single intramuscular dose is recommended for children aged ≥ 12 months, teenagers and adults. Children aged 2–11 months require 2 doses administered.""")
+* insert SGDecisionTableCondition("No meningococcal primary series dose was administered")
+* insert SGDecisionTableCondition("Client's age is more than or equal to 2 months")
+* insert SGDecisionTableGuidance("""Should vaccinate client with first meningococcal dose as no meningococcal dose was administered and client is within appropriate age range.
+Check for contraindications.""")
+* insert SGDecisionTableCondition("No meningococcal primary series dose was administered")
+* insert SGDecisionTableCondition("Client's age is more than or equal to 2 months")
+* insert SGDecisionTableOutput("Client is not due for meningococcal vaccination","Client is not due for meningococcal vaccination","""Children aged 2–11 months require 2 doses administered at an interval of at least 2 months.""")
+* insert SGDecisionTableCondition("One meningococcal primary series dose was administered")
+* insert SGDecisionTableCondition("Client's age was less than or equal to 11 months when the primary series was started")
+* insert SGDecisionTableCondition("The latest meningococcal dose was administered less than 2 months ago")
+* insert SGDecisionTableGuidance("""Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 2 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the second dose.""")
+* insert SGDecisionTableCondition("One meningococcal primary series dose was administered")
+* insert SGDecisionTableCondition("Client's age was less than or equal to 11 months when the primary series was started")
+* insert SGDecisionTableCondition("The latest meningococcal dose was administered less than 2 months ago")
+* insert SGDecisionTableOutput("Client is due for meningococcal vaccination","Client is due for meningococcal vaccination","""""")
+* insert SGDecisionTableCondition("One meningococcal primary series dose was administered")
+* insert SGDecisionTableCondition("Client's age was less than or equal to 11 months when the primary series was started")
+* insert SGDecisionTableCondition("The latest meningococcal dose was administered more than 2 months ago")
+* insert SGDecisionTableGuidance("""Should vaccinate client with second meningococcal dose as client was less than 11 months when primary series was started and latest meningococcal dose was administered more than 2 months ago. 
+Check for contraindications.""")
+* insert SGDecisionTableCondition("One meningococcal primary series dose was administered")
+* insert SGDecisionTableCondition("Client's age was less than or equal to 11 months when the primary series was started")
+* insert SGDecisionTableCondition("The latest meningococcal dose was administered more than 2 months ago")
+* insert SGDecisionTableOutput("Meningococcal immunization schedule is complete","Meningococcal immunization schedule is complete","""For monovalent MenC conjugate vaccine, one single intramuscular dose is recommended for children aged ≥ 12 months, teenagers and adults.
+It is not yet known whether booster doses will be needed for long-term protection in healthy individuals who received primary vaccination when aged ≥ 12 months.""")
+* insert SGDecisionTableCondition("One meningococcal primary series dose was administered")
+* insert SGDecisionTableCondition("Client's age was more than 11 months when the primary series was started")
+* insert SGDecisionTableGuidance("""Meningococcal immunization schedule is complete as client's age was more than 11 months when primary series was started. One primary series dose was administered. Check for any other vaccines due.""")
+* insert SGDecisionTableCondition("One meningococcal primary series dose was administered")
+* insert SGDecisionTableCondition("Client's age was more than 11 months when the primary series was started")
+* insert SGDecisionTableOutput("Client is not due for meningococcal vaccination","Client is not due for meningococcal vaccination","""Children aged 2–11 months require 2 doses administered at an interval of at least 2 months and a booster about 1 year after.""")
+* insert SGDecisionTableCondition("Two meningococcal primary series doses were administered")
+* insert SGDecisionTableCondition("The latest meningococcal dose was administered less than 1 year ago")
+* insert SGDecisionTableCondition("No meningococcal booster dose was administered")
+* insert SGDecisionTableGuidance("""Should not vaccinate client with meningococcal booster dose as the latest meningococcal dose was administered less than 1 year ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the booster dose.""")
+* insert SGDecisionTableCondition("Two meningococcal primary series doses were administered")
+* insert SGDecisionTableCondition("The latest meningococcal dose was administered less than 1 year ago")
+* insert SGDecisionTableCondition("No meningococcal booster dose was administered")
+* insert SGDecisionTableOutput("The primary series is complete. Client is due for meningococcal booster dose","The primary series is complete. Client is due for meningococcal booster dose","""""")
+* insert SGDecisionTableCondition("Two meningococcal primary series doses were administered")
+* insert SGDecisionTableCondition("The latest meningococcal dose was administered more than 1 year ago")
+* insert SGDecisionTableCondition("No meningococcal booster dose was administered")
+* insert SGDecisionTableGuidance("""Should vaccinate client with Meningococcal booster dose as no meningococcal booster dose was administered and the latest meningococcal dose was administered more than 1 year ago. 
+Check for contraindications.""")
+* insert SGDecisionTableCondition("Two meningococcal primary series doses were administered")
+* insert SGDecisionTableCondition("The latest meningococcal dose was administered more than 1 year ago")
+* insert SGDecisionTableCondition("No meningococcal booster dose was administered")
+* insert SGDecisionTableOutput("Meningococcal immunization schedule is complete","Meningococcal immunization schedule is complete","""–""")
+* insert SGDecisionTableCondition("Two meningococcal primary series doses were administered")
+* insert SGDecisionTableCondition("Meningococcal booster dose was administered")
+* insert SGDecisionTableGuidance("""Meningococcal immunization schedule is complete. Two primary series doses and one booster dose were administered. 
+Check for any vaccines due.""")
+* insert SGDecisionTableCondition("Two meningococcal primary series doses were administered")
+* insert SGDecisionTableCondition("Meningococcal booster dose was administered")
