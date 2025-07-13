@@ -8,8 +8,9 @@ RuleSet: LogicLibrary( library )
   * valueCode = #computable
 * name = "{library}"
 * status = #draft
-* experimental = true
+* experimental = false
 * publisher = "World Health Organization (WHO)"
 * type = $library-type#logic-library
 * content
   * id = "ig-loader-{library}.cql"
+
