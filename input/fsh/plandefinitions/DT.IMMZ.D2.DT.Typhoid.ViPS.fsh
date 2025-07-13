@@ -1,0 +1,28 @@
+Profile: DT.IMMZ.D2.DT.Typhoid.ViPS
+Parent: $SGDecisionTable
+Title: "Decision Table Determine required vaccinations"
+Description: """Determine required vaccinations """
+* insert SGDecisionTable( IMMZ.D2.DT.Typhoid.ViPS,"0.2.0)
+* insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
+* insert SGDecisionTableOutput(DTO.ClientisnotdueforTyphoidvaccination,"Client is not due for Typhoid vaccination","""Countries may consider the routine use of ViPS vaccine in individuals aged 2 years and older.  """)
+* insert SGDecisionTableCondition("Clientsageislessthan2years")
+* insert SGDecisionTableGuidance("""Should not vaccinate client with typhoid dose as clients age is less than 2 years.\nCheck for any other vaccines due and inform the caregiver of when to come back for the first dose. """)
+* insert SGDecisionTableCondition("Clientsageislessthan2years")
+* insert SGDecisionTableOutput(DTO.ClientisdueforTyphoidvaccination,"Client is due for Typhoid vaccination","""  """)
+* insert SGDecisionTableCondition("Notyphoidprimaryseriesdoseswereadministered")
+* insert SGDecisionTableCondition("Clientsageismorethanorequalto2years")
+* insert SGDecisionTableGuidance("""Should vaccinate client with typhoid dose as no typhoid doses were administered and client is within appropriate age range.\nCheck for contraindications. """)
+* insert SGDecisionTableCondition("Notyphoidprimaryseriesdoseswereadministered")
+* insert SGDecisionTableCondition("Clientsageismorethanorequalto2years")
+* insert SGDecisionTableOutput(DTO.Primaryseriesiscomplete.Clientisnotduefo.5b22c9f7b3,"Primary series is complete. Client is not due for typhoid booster dose","""–  """)
+* insert SGDecisionTableCondition("Onetyphoidprimaryseriesdosewasadministered")
+* insert SGDecisionTableCondition("Thelatesttyphoiddosewasadministeredlessthan3yearsago")
+* insert SGDecisionTableGuidance("""Should not vaccinate client with typhoid booster dose as the latest typhoid dose was administered less than 3 years ago.\nCheck for any other vaccines due and inform the caregiver of when to come back for the next dose. """)
+* insert SGDecisionTableCondition("Onetyphoidprimaryseriesdosewasadministered")
+* insert SGDecisionTableCondition("Thelatesttyphoiddosewasadministeredlessthan3yearsago")
+* insert SGDecisionTableOutput(DTO.Primaryseriesiscomplete.Clientisdueforty.bc65e0f313,"Primary series is complete. Client is due for typhoid booster dose","""Revaccination is recommended every 3 years for ViPS.  """)
+* insert SGDecisionTableCondition("Onetyphoidprimaryseriesdosewasadministered")
+* insert SGDecisionTableCondition("Thelatesttyphoiddosewasadministeredmorethan3yearsago")
+* insert SGDecisionTableGuidance("""Should vaccinate client with typhoid booster dose as the latest dose was administered more than 3 years ago.\nCheck for contraindications. """)
+* insert SGDecisionTableCondition("Onetyphoidprimaryseriesdosewasadministered")
+* insert SGDecisionTableCondition("Thelatesttyphoiddosewasadministeredmorethan3yearsago")
