@@ -1,7 +1,0 @@
-Profile: DTO.ShouldnotvaccinateclientwithsecondTBEdos.15916aa703
-Parent: $SGActivityDefinition
-Title: "Decision Table Output Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago. Check for any vaccines due and inform the caregiver of when to come back for the next dose"
-Description: """Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago. Check for any vaccines due and inform the caregiver of when to come back for the next dose
-"""
-* ^abstract = true
-
