@@ -2,26 +2,391 @@ Profile: DT.IMMZ.D2.DT.Malaria
 Parent: $SGDecisionTable
 Title: "Decision Table Determine required vaccinations"
 Description: """Determine required vaccinations """
-* insert SGDecisionTable( DT.IMMZ.D2.DT.Malaria,0.2.0)
+Usage: #definition
+* ^abstract = true
+* meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareableplandefinition"
+* meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishableplandefinition"
+* library = Canonical(DT.IMMZ.D2.DT.Malaria)
+* extension[+]
+  * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
+  * valueCode = #computable
+* version = "{version}"
+* name = "DT.IMMZ.D2.DT.Malaria"
+* status = #draft
+* experimental = false
+* publisher = "WHO"
 
-* insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
+* relatedArtifact[+]
+  * type = #citation
+  * citation = """WHO recommendations for routine immunization – summary tables (March 2023) (1)"""
 
-* insert SGDecisionTableOutput(DTO.Clientisnotdueformalariavaccination,"Client is not due for malaria vaccination","""WHO recommends that the first dose of vaccine be administered from 5 months of age.  """)
-* insert SGDecisionTableGuidance("""Should not vaccinate client with first malaria dose as clients age is less than 5 months. \nCheck for any other vaccines due and inform the caregiver of when to come back for first dose. """)
-* insert SGDecisionTableOutput(DTO.Clientisdueformalariavaccination,"Client is due for malaria vaccination",""" """)
-* insert SGDecisionTableGuidance("""Should vaccinate client with first malaria dose as no malaria doses were administered and client is within appropriate age range. \nCheck for contraindications. """)
-* insert SGDecisionTableOutput(DTO.Clientisnotdueformalariavaccination,"Client is not due for malaria vaccination","""The vaccine should be administered in a 3-dose primary schedule\, with a fourth dose provided approximately 12–18 months after the third dose to prolong the duration of protection. There should be a minimum interval of 4 weeks between doses.  """)
-* insert SGDecisionTableGuidance("""Should not vaccinate client with second malaria dose as the latest malaria dose was administered less than 4 weeks ago. \nCheck for any other vaccines due and inform the caregiver of when to come back for the second dose. """)
-* insert SGDecisionTableOutput(DTO.Clientisdueformalariavaccination,"Client is due for malaria vaccination",""" """)
-* insert SGDecisionTableGuidance("""Should vaccinate client with second malaria dose as the latest malaria dose was administered more than 4 weeks ago. \nCheck for contraindications. """)
-* insert SGDecisionTableOutput(DTO.Clientisnotdueformalariavaccination,"Client is not due for malaria vaccination",""" """)
-* insert SGDecisionTableGuidance("""Should not vaccinate client with third malaria dose as the latest malaria dose was administered less than 4 weeks ago. \nCheck for any other vaccines due and inform the caregiver of when to come back for the third dose. """)
-* insert SGDecisionTableOutput(DTO.Clientisdueformalariavaccination,"Client is due for malaria vaccination",""" """)
-* insert SGDecisionTableGuidance("""Should vaccinate client with third malaria dose as the latest malaria dose was administered more than 4 weeks ago. \nCheck for contraindications. """)
-* insert SGDecisionTableOutput(DTO.Clientisnotdueformalariavaccination,"Client is not due for malaria vaccination",""" """)
-* insert SGDecisionTableGuidance("""Should not vaccinate client with fourth malaria dose as the latest malaria dose was administered less than 4 weeks ago. \nCheck for any other vaccines due and inform the caregiver of when to come back for the fourth dose. """)
-* insert SGDecisionTableOutput(DTO.Clientisdueformalariavaccination,"Client is due for malaria vaccination",""" """)
-* insert SGDecisionTableGuidance("""Should vaccinate client with fourth malaria dose as the latest malaria dose was administered more than 4 weeks ago. \nCheck for contraindications. """)
-* insert SGDecisionTableOutput(DTO.Malariaimmunizationscheduleiscomplete,"Malaria immunization schedule is complete","""–  """)
-* insert SGDecisionTableGuidance("""Malaria immunization schedule is complete. Four malaria primary series doses were administered. \nCheck for any other vaccines due. """)
+  * action[output]
+  * title = WHO recommends that the first dose of vaccine be administered from 5 months of age. 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.Clientisnotdueformalariavaccination)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should not vaccinate client with first malaria dose as client's age is less than 5 months. 
+Check for any other vaccines due and inform the caregiver of when to come back for first dose."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.Clientisdueformalariavaccination)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should vaccinate client with first malaria dose as no malaria doses were administered and client is within appropriate age range. 
+Check for contraindications."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = The vaccine should be administered in a 3-dose primary schedule, with a fourth dose provided approximately 12–18 months after the third dose to prolong the duration of protection. There should be a minimum interval of 4 weeks between doses. 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.Clientisnotdueformalariavaccination)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should not vaccinate client with second malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the second dose."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.Clientisdueformalariavaccination)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should vaccinate client with second malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
+Check for contraindications."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.Clientisnotdueformalariavaccination)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should not vaccinate client with third malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the third dose."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.Clientisdueformalariavaccination)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should vaccinate client with third malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
+Check for contraindications."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.Clientisnotdueformalariavaccination)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should not vaccinate client with fourth malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the fourth dose."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.Clientisdueformalariavaccination)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should vaccinate client with fourth malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
+Check for contraindications."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = – 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.Malariaimmunizationscheduleiscomplete)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Malaria immunization schedule is complete. Four malaria primary series doses were administered. 
+Check for any other vaccines due."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
 

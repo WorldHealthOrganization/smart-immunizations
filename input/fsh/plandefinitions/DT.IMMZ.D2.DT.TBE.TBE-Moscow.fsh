@@ -2,27 +2,359 @@ Profile: DT.IMMZ.D2.DT.TBE.TBE-Moscow
 Parent: $SGDecisionTable
 Title: "Decision Table Determine required vaccinations"
 Description: """Determine required vaccinations """
-* insert SGDecisionTable( DT.IMMZ.D2.DT.TBE.TBE-Moscow,0.2.0)
+Usage: #definition
+* ^abstract = true
+* meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareableplandefinition"
+* meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishableplandefinition"
+* library = Canonical(DT.IMMZ.D2.DT.TBE.TBE-Moscow)
+* extension[+]
+  * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
+  * valueCode = #computable
+* version = "{version}"
+* name = "DT.IMMZ.D2.DT.TBE.TBE-Moscow"
+* status = #draft
+* experimental = false
+* publisher = "WHO"
 
-* insert SGDecisionTableCitation("""Vaccines against tick-borne encephalitis: WHO position paper June 2011 19 """)
-* insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
-* insert SGDecisionTableCitation("""Vaccines against tick-borne encephalitis: WHO position paper June 2011 19 """)
-* insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
+* relatedArtifact[+]
+  * type = #citation
+  * citation = """Vaccines against tick-borne encephalitis: WHO position paper (June 2011) (19)"""
+* relatedArtifact[+]
+  * type = #citation
+  * citation = """WHO recommendations for routine immunization – summary tables (March 2023) (1)"""
+* relatedArtifact[+]
+  * type = #citation
+  * citation = """Vaccines against tick-borne encephalitis: WHO position paper (June 2011) (19)"""
+* relatedArtifact[+]
+  * type = #citation
+  * citation = """WHO recommendations for routine immunization – summary tables (March 2023) (1)"""
 
-* insert SGDecisionTableOutput(DTO.ClientisnotdueforTBEvaccination,"Client is not due for TBE vaccination","""The TBE-Moscow vaccine is not licensed for use in children aged under 3 years.  """)
-* insert SGDecisionTableGuidance("""Should not vaccinate client with first TBE dose as clients age is under 3 years.\nCheck for any vaccines due and inform the caregiver of when to come back for the first dose. """)
-* insert SGDecisionTableOutput(DTO.ClientisdueforTBEvaccination,"Client is due for TBE vaccination","""The TBE-Moscow vaccine is licensed for use in people aged 3 years or older.  """)
-* insert SGDecisionTableGuidance("""Should vaccinate client with first TBE dose as no TBE doses have been administered and clients age is more than 3 years.\nCheck for contraindications. """)
-* insert SGDecisionTableOutput(DTO.ClientisnotdueforTBEvaccination,"Client is not due for TBE vaccination","""The manufacturer of TBE-Moscow recommends a standard primary immunization schedule of 2 doses given at an interval of 1–7 months.  """)
-* insert SGDecisionTableGuidance("""Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago.\nCheck for any vaccines due and inform the caregiver of when to come back for the next dose. """)
-* insert SGDecisionTableOutput(DTO.ClientisdueforTBEvaccination,"Client is due for TBE vaccination",""" """)
-* insert SGDecisionTableGuidance("""Should vaccinate client with second TBE dose as the latest dose was administered more than 1 month ago.\nCheck for contraindications. """)
-* insert SGDecisionTableOutput(DTO.ClientisnotdueforTBEvaccination,"Client is not due for TBE vaccination","""The recommended interval is 12 months between the second and third doses.  """)
-* insert SGDecisionTableGuidance("""Should not vaccinate client with third TBE dose as the latest dose was administered less than 12 months ago.\nCheck for any vaccines due and inform the caregiver of when to come back for the next dose """)
-* insert SGDecisionTableOutput(DTO.ClientisdueforTBEvaccination,"Client is due for TBE vaccination",""" """)
-* insert SGDecisionTableGuidance("""Should vaccinate client with third TBE dose as the latest dose was administered more than 12 months ago.\nCheck for contraindications. """)
-* insert SGDecisionTableOutput(DTO.Primaryseriesiscomplete.Clientisnotduefo.f1ec96683f,"Primary series is complete. Client is not due for TBE booster dose","""Further booster doses are recommended at 3-year intervals.  """)
-* insert SGDecisionTableGuidance("""Should not vaccinate client with TBE booster dose as the latest TBE dose was administered less than 3 years ago.\nCheck for contraindications. """)
-* insert SGDecisionTableOutput(DTO.Primaryseriesiscomplete.ClientisdueforTB.bd94866b73,"Primary series is complete. Client is due for TBE booster dose",""" """)
-* insert SGDecisionTableGuidance("""Should vaccinate client with TBE booster dose as the primary series has been completed and the latest TBE dose was administered more than 3 years ago.\nCheck for contraindications. """)
+  * action[output]
+  * title = The TBE-Moscow vaccine is not licensed for use in children aged under 3 years. 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.ClientisnotdueforTBEvaccination)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should not vaccinate client with first TBE dose as client's age is under 3 years.
+Check for any vaccines due and inform the caregiver of when to come back for the first dose."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = The TBE-Moscow vaccine is licensed for use in people aged 3 years or older. 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.ClientisdueforTBEvaccination)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should vaccinate client with first TBE dose as no TBE doses have been administered and client's age is more than 3 years.
+Check for contraindications."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = The manufacturer of TBE-Moscow recommends a standard primary immunization schedule of 2 doses given at an interval of 1–7 months. 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.ClientisnotdueforTBEvaccination)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago.
+Check for any vaccines due and inform the caregiver of when to come back for the next dose."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.ClientisdueforTBEvaccination)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should vaccinate client with second TBE dose as the latest dose was administered more than 1 month ago.
+Check for contraindications."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = The recommended interval is 12 months between the second and third doses. 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.ClientisnotdueforTBEvaccination)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should not vaccinate client with third TBE dose as the latest dose was administered less than 12 months ago.
+Check for any vaccines due and inform the caregiver of when to come back for the next dose"""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.ClientisdueforTBEvaccination)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should vaccinate client with third TBE dose as the latest dose was administered more than 12 months ago.
+Check for contraindications."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = Further booster doses are recommended at 3-year intervals. 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotduefo.f1ec96683f)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should not vaccinate client with TBE booster dose as the latest TBE dose was administered less than 3 years ago.
+Check for contraindications."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * action[output]
+  * title = 
+   * description = {description}
+   * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.ClientisdueforTB.bd94866b73)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+    * language = #text/cql-expression
+    * expression = "draft"
+  * dynamicValue[+]
+    * path = "intent"
+    * expression
+      * language = #text/cql-expression
+      * expression = "proposal"
+* action[guidance]
+  * title = "Health worker guidance"
+  * description = "Communicate guidance to the health worker"
+  * definitionCanonical = Canonical(SGDecisionTableGuidance)
+  * dynamicValue[+]
+    * path = "status"
+    * expression
+      * language = #text/cql-expression
+      * expression = 'active'
+  * dynamicValue[+]
+    * path = "payload.contentString"
+    * expression
+      * language = #text/cql-identifier
+      * expression = """Should vaccinate client with TBE booster dose as the primary series has been completed and the latest TBE dose was administered more than 3 years ago.
+Check for contraindications."""
+ * dynamicValue[+]
+   * path = "category.coding"
+   * expression
+     * description = "Category of communication"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+ * dynamicValue[+]
+   * path = "priority"
+   * expression
+     * description = "Alert priority"
+     * language = #text/cql-expression
+     * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
 
