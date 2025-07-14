@@ -16946,365 +16946,10 @@ define "Measles immunization schedule is complete. Measles supplementary dose wa
   * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Measles"
-* #"`" "`"
-  * ^definition = """`
-Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
- * Tabs: DTs.Measles
-
-"""
-  * ^designation[+].value = """//Found in input/cql/DTs.Measles.cql
-
-define "`":
-  //CQL AUTHORS: you need to insert stuff here
-  // `
-
-
-
-"""
-  * ^designation[=].language = #CQL
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "DTs.Measles"
-* #"None" "None"
-  * ^definition = """None
-Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
- * Tabs: DTs.Measles
-
-"""
-  * ^designation[+].value = """//Found in input/cql/DTs.Measles.cql
-
-define "None":
-  //CQL AUTHORS: you need to insert stuff here
-  // None
-
-
-
-"""
-  * ^designation[=].language = #CQL
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "DTs.Measles"
-* #"Decision ID" "Decision ID"
-  * ^definition = """Decision ID
-Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
- * Tabs: DTs.Measles
-
-"""
-  * ^designation[+].value = """//Found in input/cql/DTs.Measles.cql
-
-define "Decision ID":
-  //CQL AUTHORS: you need to insert stuff here
-  // Decision ID
-
-
-
-"""
-  * ^designation[=].language = #CQL
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "DTs.Measles"
-* #"IMMZ.D5.DT.Measles contraindications" "IMMZ.D5.DT.Measles contraindications"
-  * ^definition = """IMMZ.D5.DT.Measles contraindications
-Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
- * Tabs: DTs.Measles
-
-"""
-  * ^designation[+].value = """//Found in input/cql/DTs.Measles.cql
-
-define "IMMZ.D5.DT.Measles contraindications":
-  //CQL AUTHORS: you need to insert stuff here
-  // IMMZ.D5.DT.Measles contraindications
-
-
-
-"""
-  * ^designation[=].language = #CQL
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "DTs.Measles"
-* #"Business rule" "Business rule"
-  * ^definition = """Business rule
-Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
- * Tabs: DTs.Measles
-
-"""
-  * ^designation[+].value = """//Found in input/cql/DTs.Measles.cql
-
-define "Business rule":
-  //CQL AUTHORS: you need to insert stuff here
-  // Business rule
-
-
-
-"""
-  * ^designation[=].language = #CQL
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "DTs.Measles"
-* #"Check for contraindications before administering the vaccine(s) due" "Check for contraindications before administering the vaccine(s) due"
-  * ^definition = """Check for contraindications before administering the vaccine(s) due
-Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
- * Tabs: DTs.Measles
-
-"""
-  * ^designation[+].value = """//Found in input/cql/DTs.Measles.cql
-
-define "Check for contraindications before administering the vaccine(s) due":
-  //CQL AUTHORS: you need to insert stuff here
-  // Check for contraindications before administering the vaccine(s) due
-
-
-
-"""
-  * ^designation[=].language = #CQL
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "DTs.Measles"
-* #"Trigger" "Trigger"
-  * ^definition = """Trigger
-Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
- * Tabs: DTs.Measles
-
-"""
-  * ^designation[+].value = """//Found in input/cql/DTs.Measles.cql
-
-define "Trigger":
-  //CQL AUTHORS: you need to insert stuff here
-  // Trigger
-
-
-
-"""
-  * ^designation[=].language = #CQL
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "DTs.Measles"
-* #"IMMZ.D5 Determine vaccine(s) to be administered based on contraindications" "IMMZ.D5 Determine vaccine(s) to be administered based on contraindications"
-  * ^definition = """IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
-Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
- * Tabs: DTs.Measles
-
-"""
-  * ^designation[+].value = """//Found in input/cql/DTs.Measles.cql
-
-define "IMMZ.D5 Determine vaccine(s) to be administered based on contraindications":
-  //CQL AUTHORS: you need to insert stuff here
-  // IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
-
-
-
-"""
-  * ^designation[=].language = #CQL
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "DTs.Measles"
-* #"Potential contraindications" "Potential contraindications"
-  * ^definition = """Potential contraindications
-Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
- * Tabs: DTs.Measles
-
-"""
-  * ^designation[+].value = """//Found in input/cql/IMMZElements.cql
-
-define "Potential contraindications":
-  ([Observation: Concepts."Potential contraindications"]).complete()
-
-
-
-//Found in input/cql/DTs.Measles.cql
-
-define "Potential contraindications":
-  //CQL AUTHORS: you need to insert stuff here
-  // Potential contraindications
-
-
-
-"""
-  * ^designation[=].language = #CQL
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "DTs.Measles"
-* #"Output" "Output"
-  * ^definition = """Output
-Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
- * Tabs: DTs.Measles
-
-"""
-  * ^designation[+].value = """//Found in input/cql/DTs.Measles.cql
-
-define "Output":
-  //CQL AUTHORS: you need to insert stuff here
-  // Output
-
-
-
-"""
-  * ^designation[=].language = #CQL
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "DTs.Measles"
-* #"Guidance displayed to health worker" "Guidance displayed to health worker"
-  * ^definition = """Guidance displayed to health worker
-Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
- * Tabs: DTs.Measles
-
-"""
-  * ^designation[+].value = """//Found in input/cql/DTs.Measles.cql
-
-define "Guidance displayed to health worker":
-  //CQL AUTHORS: you need to insert stuff here
-  // Guidance displayed to health worker
-
-
-
-"""
-  * ^designation[=].language = #CQL
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "DTs.Measles"
-* #"The client is pregnant" "\"Potential contraindications\" = \"Currently pregnant\""
-  * ^definition = """"Potential contraindications" = "Currently pregnant"
-Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
- * Tabs: DTs.Measles
-
-"""
-  * ^designation[+].value = """//Found in input/cql/IMMZD5DTBCGElements.cql
-
-define "The client is pregnant":
-  Elements."The client is pregnant"
-
-
-
-//Found in input/cql/IMMZElements.cql
-
-define "The client is pregnant":
-  exists "CI Currently pregnant Observation"
-  or exists "CI Currently pregnant Condition"
-  or exists WE."Pregnant Observation"
-
-
-
-//Found in input/cql/IMMZD5DTBCGEncounterElements.cql
-
-define "The client is pregnant":
-  Encounter."The client is pregnant"
-
-
-
-//Found in input/cql/IMMZD5DTMeaslesEncounterElements.cql
-
-define "The client is pregnant":
-  Encounter."The client is pregnant"
-
-
-
-//Found in input/cql/IMMZD5DTMeaslesElements.cql
-
-define "The client is pregnant":
-  Elements."The client is pregnant"
-
-
-
-//Found in input/cql/DTs.Measles.cql
-
-define "The client is pregnant":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Potential contraindications" = "Currently pregnant"
-
-
-
-//Found in input/cql/IMMZEncounterElements.cql
-
-define "The client is pregnant":
-  exists "CI Currently pregnant Observation"
-  or exists "CI Currently pregnant Condition"
-  or exists WE."Pregnant Observation"
-
-
-
-"""
-  * ^designation[=].language = #CQL
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "DTs.Measles"
-* #"Measles vaccination contraindicated" "\"Immunization recommendation status\" = \"Contraindicated\""
-  * ^definition = """"Immunization recommendation status" = "Contraindicated"
-Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
- * Tabs: DTs.Measles
-
-"""
-  * ^designation[+].value = """//Found in input/cql/IMMZD5DTMeaslesCILogic.cql
-
-define "Measles vaccination contraindicated":
-  "Measles vaccination contraindicated Case 1"
-    or "Measles vaccination contraindicated Case 2"
-
-
-
-//Found in input/cql/DTs.Measles.cql
-
-define "Measles vaccination contraindicated":
-  //CQL AUTHORS: you need to insert stuff here
-  // "Immunization recommendation status" = "Contraindicated"
-
-
-
-"""
-  * ^designation[=].language = #CQL
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "DTs.Measles"
-* #"Do not vaccinate client with measles as measles vaccination is contraindicated for pregnant client." "Do not vaccinate client with measles as measles vaccination is contraindicated for pregnant client."
-  * ^definition = """Do not vaccinate client with measles as measles vaccination is contraindicated for pregnant client.
-Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
- * Tabs: DTs.Measles
-
-"""
-  * ^designation[+].value = """//Found in input/cql/DTs.Measles.cql
-
-define "Do not vaccinate client with measles as measles vaccination is contraindicated for pregnant client.":
-  //CQL AUTHORS: you need to insert stuff here
-  // Do not vaccinate client with measles as measles vaccination is contraindicated for pregnant client.
-
-
-
-"""
-  * ^designation[=].language = #CQL
-  * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
-  * ^property[+].code = #"tab"
-  * ^property[=].valueString = "DTs.Measles"
 * #"Measles vaccination could be contraindicated. Clinical judgement required. Create a clinical note" "\"Immunization recommendation status\" = \"Further evaluation needed\""
   * ^definition = """"Immunization recommendation status" = "Further evaluation needed"
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
+ * Decision Tables: DT.IMMZ.D5.DT.Measlescontraindications
  * Tabs: DTs.Measles
 
 """
@@ -17326,13 +16971,13 @@ define "Measles vaccination could be contraindicated. Clinical judgement require
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
+  * ^property[=].valueString = "DT.IMMZ.D5.DT.Measlescontraindications"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Measles"
 * #"Do not vaccinate client with measles if client has history of anaphylactic reaction to any component of the vaccine (e.g. neomycin or gelatin)." "Do not vaccinate client with measles if client has history of anaphylactic reaction to any component of the vaccine (e.g. neomycin or gelatin)."
   * ^definition = """Do not vaccinate client with measles if client has history of anaphylactic reaction to any component of the vaccine (e.g. neomycin or gelatin).
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
+ * Decision Tables: DT.IMMZ.D5.DT.Measlescontraindications
  * Tabs: DTs.Measles
 
 """
@@ -17347,13 +16992,13 @@ define "Do not vaccinate client with measles if client has history of anaphylact
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
+  * ^property[=].valueString = "DT.IMMZ.D5.DT.Measlescontraindications"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Measles"
 * #"Clinical judgement required. Create a clinical note" "\"Immunization recommendation status\" = \"Further evaluation needed\""
   * ^definition = """"Immunization recommendation status" = "Further evaluation needed"
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
+ * Decision Tables: DT.IMMZ.D5.DT.Measlescontraindications
  * Tabs: DTs.Measles
 
 """
@@ -17376,13 +17021,13 @@ define "Clinical judgement required. Create a clinical note":
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
+  * ^property[=].valueString = "DT.IMMZ.D5.DT.Measlescontraindications"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Measles"
 * #"Do not vaccinate client with measles if client has history of severe allergic reactions to any component of the vaccine (e.g. neomycin or gelatin)." "Do not vaccinate client with measles if client has history of severe allergic reactions to any component of the vaccine (e.g. neomycin or gelatin)."
   * ^definition = """Do not vaccinate client with measles if client has history of severe allergic reactions to any component of the vaccine (e.g. neomycin or gelatin).
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
+ * Decision Tables: DT.IMMZ.D5.DT.Measlescontraindications
  * Tabs: DTs.Measles
 
 """
@@ -17397,13 +17042,13 @@ define "Do not vaccinate client with measles if client has history of severe all
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
+  * ^property[=].valueString = "DT.IMMZ.D5.DT.Measlescontraindications"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Measles"
 * #"The client is severely immunosuppressed" "\"Potential contraindications\" = \"Severely immunosuppressed\""
   * ^definition = """"Potential contraindications" = "Severely immunosuppressed"
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
+ * Decision Tables: DT.IMMZ.D5.DT.Measlescontraindications
  * Tabs: DTs.Measles
 
 """
@@ -17492,13 +17137,42 @@ define "The client is severely immunosuppressed":
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
+  * ^property[=].valueString = "DT.IMMZ.D5.DT.Measlescontraindications"
+  * ^property[+].code = #"tab"
+  * ^property[=].valueString = "DTs.Measles"
+* #"Measles vaccination contraindicated" "\"Immunization recommendation status\" = \"Contraindicated\""
+  * ^definition = """"Immunization recommendation status" = "Contraindicated"
+Referenced in the following locations:
+ * Decision Tables: DT.IMMZ.D5.DT.Measlescontraindications
+ * Tabs: DTs.Measles
+
+"""
+  * ^designation[+].value = """//Found in input/cql/IMMZD5DTMeaslesCILogic.cql
+
+define "Measles vaccination contraindicated":
+  "Measles vaccination contraindicated Case 1"
+    or "Measles vaccination contraindicated Case 2"
+
+
+
+//Found in input/cql/DTs.Measles.cql
+
+define "Measles vaccination contraindicated":
+  //CQL AUTHORS: you need to insert stuff here
+  // "Immunization recommendation status" = "Contraindicated"
+
+
+
+"""
+  * ^designation[=].language = #CQL
+  * ^property[+].code = #"table"
+  * ^property[=].valueString = "DT.IMMZ.D5.DT.Measlescontraindications"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Measles"
 * #"Do not vaccinate client with measles as measles vaccination is contraindicated for severely immunosuppressed client." "Do not vaccinate client with measles as measles vaccination is contraindicated for severely immunosuppressed client."
   * ^definition = """Do not vaccinate client with measles as measles vaccination is contraindicated for severely immunosuppressed client.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
+ * Decision Tables: DT.IMMZ.D5.DT.Measlescontraindications
  * Tabs: DTs.Measles
 
 """
@@ -17513,13 +17187,13 @@ define "Do not vaccinate client with measles as measles vaccination is contraind
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
+  * ^property[=].valueString = "DT.IMMZ.D5.DT.Measlescontraindications"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Measles"
 * #"The client has a symptomatic HIV infection" "\"Potential contraindications\" = \"Symptomatic HIV infection\""
   * ^definition = """"Potential contraindications" = "Symptomatic HIV infection"
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
+ * Decision Tables: DT.IMMZ.D5.DT.Measlescontraindications
  * Tabs: DTs.Measles
 
 """
@@ -17563,13 +17237,13 @@ define "The client has a symptomatic HIV infection":
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
+  * ^property[=].valueString = "DT.IMMZ.D5.DT.Measlescontraindications"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Measles"
 * #"Client has symptomatic HIV infection. Measles vaccination may be considered if the client is not severely immunosuppressed according to conventional definitions, consider risks of vaccination and make a clinical judgement." "Client has symptomatic HIV infection. Measles vaccination may be considered if the client is not severely immunosuppressed according to conventional definitions, consider risks of vaccination and make a clinical judgement."
   * ^definition = """Client has symptomatic HIV infection. Measles vaccination may be considered if the client is not severely immunosuppressed according to conventional definitions, consider risks of vaccination and make a clinical judgement.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Measles.Supplementarydose
+ * Decision Tables: DT.IMMZ.D5.DT.Measlescontraindications
  * Tabs: DTs.Measles
 
 """
@@ -17584,7 +17258,7 @@ define "Client has symptomatic HIV infection. Measles vaccination may be conside
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
+  * ^property[=].valueString = "DT.IMMZ.D5.DT.Measlescontraindications"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Measles"
 * #"Number of rubella primary series doses administered" "Count of vaccines administered (where \"Vaccine type\" = \"Rubella-containing vaccines\" and \"Type of dose\" = \"Primary series\")"
