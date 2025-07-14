@@ -1,6 +1,5 @@
 
 RuleSet: SGDecisionTable( library, version )
-* ^abstract = true
 * meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareableplandefinition"
 * meta.profile[+] = "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishableplandefinition"
 * library = Canonical({library})
@@ -12,6 +11,7 @@ RuleSet: SGDecisionTable( library, version )
 * status = #draft
 * experimental = false
 * publisher = "World Health Organization (WHO)"
+* ^abstract = true
 
 RuleSet: SGDecisionTableCitation( citation )
 * relatedArtifact[+]
