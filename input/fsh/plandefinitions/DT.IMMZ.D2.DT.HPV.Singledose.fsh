@@ -5,9 +5,6 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTable( DT.IMMZ.D2.DT.HPV.Singledose,0.2.0)
 
 * insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
-* insert SGDecisionTableCitation("""References """)
-* insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
-* insert SGDecisionTableCitation("""Human papillomavirus vaccines: WHO position paper December 2022 15 """)
 
 * insert SGDecisionTableOutput(DTO.ClientisnotdueforHPVvaccination,"Client is not due for HPV vaccination","""As an off-label option\, a single-dose schedule can be used in girls and boys aged 9–20 years.  """)
 * insert SGDecisionTableGuidance("""Should not vaccinate client with first HPV dose as clients age is less than 9 years. \nCheck for any vaccines due and inform the caregiver of when to come back for the next dose. """)
@@ -35,14 +32,4 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTableGuidance("""Should vaccinate client with third HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago. \nCheck for contraindications """)
 * insert SGDecisionTableOutput(DTO.HPVimmunizationscheduleiscomplete,"HPV immunization schedule is complete","""-  """)
 * insert SGDecisionTableGuidance("""HPV immunization schedule is complete. Three HPV primary series doses were administered. \nCheck for any other vaccines due. """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.Output,"Output","""Annotations  """)
-* insert SGDecisionTableGuidance("""Guidance displayed to health worker """)
-* insert SGDecisionTableOutput(DTO.HumanpapillomavirusHPVvaccinationiscontraindicated,"Human papillomavirus HPV vaccination is contraindicated","""As a precaution\, HPV vaccine is not recommended in pregnancy. If pregnancy occurs following the first dose of vaccination\, the subsequent dose should be delayed until after the pregnancy. Termination of pregnancy is not indicated if vaccination was carried out inadvertently during pregnancy.  """)
-* insert SGDecisionTableGuidance("""Do not vaccinate client with HPV as HPV vaccination is contraindicated for pregnant client. """)
-* insert SGDecisionTableOutput(DTO.HPVvaccinationcouldbecontraindicated.Cli.2b0f8dbe93,"HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note","""–  """)
-* insert SGDecisionTableGuidance("""Do not vaccinate client with HPV if client has history of a severe allergic reaction after a previous HPV vaccine dose\, or to a component of the vaccine. """)
-* insert SGDecisionTableOutput(DTO.None,"None","""Note: While vaccines are universally recommended\, some clients may have contraindications to particular vaccines. Additional contraindications may be included in WHO position paper for the vaccine – Human papillomavirus vaccines: WHO position paper December 2022 15.  """)
 

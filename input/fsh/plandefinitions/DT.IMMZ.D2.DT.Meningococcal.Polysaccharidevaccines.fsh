@@ -9,8 +9,6 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
 * insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
 * insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
-* insert SGDecisionTableCitation("""References """)
-* insert SGDecisionTableCitation("""Meningococcal vaccines: WHO position paper November 2011 22 """)
 
 * insert SGDecisionTableOutput(DTO.Clientisnotdueformeningococcalvaccination,"Client is not due for meningococcal vaccination","""Polysaccharide vaccines should be administered to individuals aged ≥ 2 years as one single dose.  """)
 * insert SGDecisionTableGuidance("""Should not vaccinate client with first meningococcal dose as clients age is less than 2 years. Check for any other vaccines due and inform the caregiver of when to come back for the first dose. """)
@@ -22,12 +20,4 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTableGuidance("""May administer meningococcal booster dose if the client is considered to be at continued high risk of exposure. Evaluate the client and use clinical judgement. """)
 * insert SGDecisionTableOutput(DTO.Meningococcalimmunizationscheduleiscomplete,"Meningococcal immunization schedule is complete","""–  """)
 * insert SGDecisionTableGuidance("""Meningococcal immunization schedule is complete. One primary series dose and one booster dose have been administered.\nCheck for any other vaccines due. """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.Output,"Output","""Annotations  """)
-* insert SGDecisionTableGuidance("""Guidance displayed to health worker """)
-* insert SGDecisionTableOutput(DTO.Meningococcalvaccinationcouldbecontraind.2e64b2b5b9,"Meningococcal vaccination could be contraindicated. Clinical judgement is required. Create a clinical note","""–  """)
-* insert SGDecisionTableGuidance("""Do not vaccinate client with meningococcal if client has history of severe allergic reaction to any component of the meningococcal vaccine. """)
-* insert SGDecisionTableOutput(DTO.None,"None","""Note: While vaccines are universally recommended\, some clients may have contraindications to particular vaccines. Additional contraindications may be included in WHO position papers for the vaccine – Meningococcal A conjugate vaccine: updated guidance Feburary 2015 21 and Meningococcal vaccines: WHO position paper November 2011 22.  """)
 

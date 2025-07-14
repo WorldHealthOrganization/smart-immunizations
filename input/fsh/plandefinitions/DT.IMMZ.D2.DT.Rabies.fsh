@@ -5,8 +5,6 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTable( DT.IMMZ.D2.DT.Rabies,0.2.0)
 
 * insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
-* insert SGDecisionTableCitation("""References """)
-* insert SGDecisionTableCitation("""Rabies vaccines: WHO position paper April 2018 24 """)
 
 * insert SGDecisionTableOutput(DTO.Clientisdueforrabiesvaccination,"Client is due for rabies vaccination","""The schedule is for a 2-site intradermal vaccine administered on days 0 and 7. If intramuscular administration is used\, WHO recommends a 1-site intramuscular vaccine administration on days 0 and 7.\n\nNote: This PrEP dose is recommended for individuals at high risk of rabies virus exposure. These include subpopulations in highly endemic settings with limited access to timely and adequate PrEP\, individuals at occupational risk and travellers who may be at risk of exposure. WHO recommendations apply only to inactivated modern\, concentrated\, purified cell culture and embryonated egg-based rabies vaccines CCEEVs.  """)
 * insert SGDecisionTableGuidance("""Should vaccinate client with first rabies dose as no rabies doses were administered and client is at high risk of exposure. \nCheck for contraindications. """)
@@ -16,12 +14,4 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTableGuidance("""Should vaccinate client with second rabies dose as the latest rabies dose was administerd 7 or more days ago. \nCheck for contraindications. """)
 * insert SGDecisionTableOutput(DTO.Rabiesimmunizationscheduleiscomplete,"Rabies immunization schedule is complete","""No further PrEP booster doses following a primary series of PrEP or PEP are required for individuals living in\, or travelling to\, high-risk areas.\nProfessionals who are at continual or frequent risk of exposure through their activities should have regular serological monitoring.  """)
 * insert SGDecisionTableGuidance("""Rabies immunization schedule is complete. Two rabies primary series doses were administered. \nCheck for any other vaccines due. """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.Output,"Output","""Annotations  """)
-* insert SGDecisionTableGuidance("""Guidance displayed to health worker """)
-* insert SGDecisionTableOutput(DTO.Clinicaljudgementisrequired.Createaclinicalnote,"Clinical judgement is required. Create a clinical note","""Individuals with a history of severe hypersensitivity to any of the components or to excipients listed by the vaccine manufacturer should receive an alternative rabies vaccine product for pre-exposure prophylaxis PreP.\n\nIn view of the almost invariably fatal outcome of rabies\, there is no contraindication to PrEP vaccination.\n\nWHO recommendations apply only to inactivated modern\, concentrated\, purified cell culture and embryonated egg-based rabies vaccines CCEEVs.  """)
-* insert SGDecisionTableGuidance("""Check if the client has a history of severe hypersensitivity to any of the components or to excipients listed by the vaccine manufacturer. If so\, provide an alternative rabies vaccine product for PreP. """)
-* insert SGDecisionTableOutput(DTO.None,"None","""Note: While vaccines are universally recommended\, some clients may have contraindications to particular vaccines. Additional contraindications may be included in WHO position paper for the vaccine –  Rabies vaccines: WHO position paper April 2018 24.  """)
 

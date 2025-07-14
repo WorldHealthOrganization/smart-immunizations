@@ -5,8 +5,6 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTable( DT.IMMZ.D2.DT.Hib.2doseswithboosterdose,0.2.0)
 
 * insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
-* insert SGDecisionTableCitation("""References """)
-* insert SGDecisionTableCitation("""Haemophilus influenzae type b Hib vaccination: WHO position paper July 2013 """)
 
 * insert SGDecisionTableOutput(DTO.ClientisnotdueforHibvaccination,"Client is not due for Hib vaccination","""Because serious Hib disease occurs most commonly in children aged between 4 months and 18 months\, immunization should start from 6 weeks of age\, or as early as possible thereafter.\nThe interval between doses should be at least 8 weeks if 2 primary doses are given.\nHib-containing vaccine is not required for healthy children aged over 5 years.  """)
 * insert SGDecisionTableGuidance("""Should not vaccinate client with first Hib dose as clients age is less than 6 weeks. \nCheck for any other vaccines due and inform the caregiver of when to come back for first dose. """)
@@ -26,12 +24,4 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTableGuidance("""Hib immunization schedule is complete. Three Hib primary series doses and a booster dose were administered. \nCheck for any vaccines due. """)
 * insert SGDecisionTableOutput(DTO.ClientisnotdueforHibvaccination,"Client is not due for Hib vaccination","""–  """)
 * insert SGDecisionTableGuidance("""Should not vaccinate client with Hib dose as client is more than 5 years old and Hib vaccination is not required for healthy children aged over 5 years. \nCheck for any other vaccines due. """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.Output,"Output","""Annotations  """)
-* insert SGDecisionTableGuidance("""Guidance displayed to health worker """)
-* insert SGDecisionTableOutput(DTO.Hibvaccinationcouldbecontraindicated.Cli.78de018c17,"Hib vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.","""Hib conjugate vaccine is contraindicated in people with known allergies to any component of the vaccine.  """)
-* insert SGDecisionTableGuidance("""Do not vaccinate client with Hib conjugate vaccine if client has had allergic reaction or known allergies to any component of the vaccine. """)
-* insert SGDecisionTableOutput(DTO.None,"None","""Note: While vaccines are universally recommended\, some clients may have contraindications to particular vaccines. Additional contraindications may be included in WHO position papers for the vaccine – Haemophilus influenzae type b Hib vaccination: WHO position paper July 2013 9.  """)
 

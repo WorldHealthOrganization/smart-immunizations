@@ -6,8 +6,6 @@ Description: """Determine required vaccinations """
 
 * insert SGDecisionTableCitation("""Vaccines against influenza: WHO position paper May 2022 28 """)
 * insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
-* insert SGDecisionTableCitation("""References """)
-* insert SGDecisionTableCitation("""Vaccines against influenza: WHO position paper May 2022 28 """)
 
 * insert SGDecisionTableOutput(DTO.Clientisnotdueforseasonalinfluenzavaccination,"Client is not due for seasonal influenza vaccination","""Influenza vaccines are safe and effective in children from 6 months of age. Children aged under 6 months can be protected through maternal immunization during pregnancy.  """)
 * insert SGDecisionTableGuidance("""Should not vaccinate client with first seasonal influenza dose as clients age is less than 6 months. \nCheck for any other vaccines due and inform the caregiver of when to come back for first dose. """)
@@ -25,14 +23,4 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTableGuidance("""Should not vaccinate client with annual dose as latest seasonal influenza dose was administered less than 1 year ago. \nCheck for any other vaccines due and inform the caregiver of when to come back for the next dose. """)
 * insert SGDecisionTableOutput(DTO.Theprimaryseriesiscomplete.Clientisduefo.041c5bfa9e,"The primary series is complete. Client is due for seasonal influenza annual dose",""" """)
 * insert SGDecisionTableGuidance("""Should vaccinate client with  annual dose as latest seasonal influenza dose was administered more than 1 year ago. \nCheck for contraindications. """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.Output,"Output","""Annotations  """)
-* insert SGDecisionTableGuidance("""Guidance displayed to health worker """)
-* insert SGDecisionTableOutput(DTO.Seasonalinfluenzavaccinationcouldbecontr.1f17932ddc,"Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note","""People with known egg allergies may be given egg-based influenza vaccine provided they are observed for at least 15 minutes afterwards in a setting where appropriate medical care is available.  """)
-* insert SGDecisionTableGuidance("""Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction e.g. anaphylaxis after a previous dose or to a vaccine component. """)
-* insert SGDecisionTableOutput(DTO.Seasonalinfluenzavaccinationcouldbecontr.1f17932ddc,"Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note",""" """)
-* insert SGDecisionTableGuidance("""Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction e.g. anaphylaxis after a previous dose or to a vaccine component. """)
-* insert SGDecisionTableOutput(DTO.None,"None","""Note: While vaccines are universally recommended\, some clients may have contraindications to particular vaccines. Additional contraindications may be included in WHO position paper for the vaccine – Vaccines against influenza: WHO position paper May 2022 28.  """)
 

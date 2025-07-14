@@ -5,8 +5,6 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTable( DT.IMMZ.D2.DT.Malaria,0.2.0)
 
 * insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
-* insert SGDecisionTableCitation("""References """)
-* insert SGDecisionTableCitation("""Malaria vaccine: WHO position paper March 2022 26 """)
 
 * insert SGDecisionTableOutput(DTO.Clientisnotdueformalariavaccination,"Client is not due for malaria vaccination","""WHO recommends that the first dose of vaccine be administered from 5 months of age.  """)
 * insert SGDecisionTableGuidance("""Should not vaccinate client with first malaria dose as clients age is less than 5 months. \nCheck for any other vaccines due and inform the caregiver of when to come back for first dose. """)
@@ -26,12 +24,4 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTableGuidance("""Should vaccinate client with fourth malaria dose as the latest malaria dose was administered more than 4 weeks ago. \nCheck for contraindications. """)
 * insert SGDecisionTableOutput(DTO.Malariaimmunizationscheduleiscomplete,"Malaria immunization schedule is complete","""–  """)
 * insert SGDecisionTableGuidance("""Malaria immunization schedule is complete. Four malaria primary series doses were administered. \nCheck for any other vaccines due. """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.Output,"Output","""Annotations  """)
-* insert SGDecisionTableGuidance("""Guidance displayed to health worker """)
-* insert SGDecisionTableOutput(DTO.Malariavaccinationcouldbecontraindicated.d45ef3db95,"Malaria vaccination could be contraindicated. Clinical judgement is required. Create a clinical note","""–  """)
-* insert SGDecisionTableGuidance("""Do not vaccinate client with RTS\,S/AS01 vaccine if client has severe hypersensitivity to any of the vaccine components. """)
-* insert SGDecisionTableOutput(DTO.None,"None","""Notes: While vaccines are universally recommended\, some clients may have contraindications to particular vaccines. Additional contraindications may be included in WHO position paper for the vaccine – Malaria vaccine: WHO position paper March 2022 26.  """)
 

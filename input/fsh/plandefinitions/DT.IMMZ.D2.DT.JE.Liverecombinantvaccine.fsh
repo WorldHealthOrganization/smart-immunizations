@@ -5,8 +5,6 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTable( DT.IMMZ.D2.DT.JE.Liverecombinantvaccine,0.2.0)
 
 * insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
-* insert SGDecisionTableCitation("""References """)
-* insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
 
 * insert SGDecisionTableOutput(DTO.ClientisnotdueforJEvaccination,"Client is not due for JE vaccination","""Live recombinant vaccine: Single dose administered at ≥ 9 months of age.  """)
 * insert SGDecisionTableGuidance("""Should not vaccinate client with JE dose as clients age is less than 9 months. \nCheck for any vaccines due and inform the caregiver of when to come back for the first JE dose. """)
@@ -16,14 +14,4 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTableGuidance("""Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks. \nCheck for any other vaccines due and inform the caregiver of when to come back for the first JE dose. """)
 * insert SGDecisionTableOutput(DTO.JEimmunizationscheduleiscomplete,"JE immunization schedule is complete","""–  """)
 * insert SGDecisionTableGuidance("""JE immunization schedule is complete. One JE primary series dose was administered. \nCheck for any other vaccines due. """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.Output,"Output","""Annotations  """)
-* insert SGDecisionTableGuidance("""Guidance displayed to health worker """)
-* insert SGDecisionTableOutput(DTO.Clinicaljudgementisrequired.Createaclinicalnote,"Clinical judgement is required. Create a clinical note","""Inactivated Vero cell-derived vaccines should be used preferentially over live attenuated or live recombinant vaccines in immunocompromised persons. HIV testing is not a prerequisite for vaccination.  """)
-* insert SGDecisionTableGuidance("""The client is immunocompromised\, consider risks of vaccination and make a judgement. Inactivated Vero cell-derived vaccines are preferred in immunocompromised clients. """)
-* insert SGDecisionTableOutput(DTO.Clinicaljudgementisrequired.Createaclinicalnote,"Clinical judgement is required. Create a clinical note","""If the Japanese encephalitis JE risk is sufficient to warrant vaccination of pregnant women\, inactivated Vero cell-derived vaccines should be used preferentially over live attenuated or live recombinant vaccines based on the general precautionary principle against using live vaccines in pregnant women\, especially if alternative types of vaccines are available. Pregnancy testing is not a prerequisite for JE vaccination. Inadvertent administration of live attenuated or live recombinant JE vaccine to a pregnant woman is not an indication for termination of the pregnancy.  """)
-* insert SGDecisionTableGuidance("""The client is currently pregnant\, consider risks of vaccination and make a judgement. Inactivated Vero cell-derived vaccines are preferred over live attenuated or live recombinant vaccines. """)
-* insert SGDecisionTableOutput(DTO.None,"None","""Note: While vaccines are universally recommended\, some clients may have contraindications to particular vaccines. Additional contraindications may be included in WHO position paper for the vaccine – Japanese encephalitis vaccines: WHO position paper February 2015 17.  """)
 

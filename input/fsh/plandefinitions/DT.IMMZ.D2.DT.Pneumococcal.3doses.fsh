@@ -7,8 +7,6 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
 * insert SGDecisionTableCitation("""Pneumococcal conjugate vaccines in infants and children under 5 years of age : WHO position paper Feburary 2019 10 """)
 * insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
-* insert SGDecisionTableCitation("""References """)
-* insert SGDecisionTableCitation("""Pneumococcal conjugate vaccines in infants and children under 5 years of age : WHO position paper Feburary 2019 10 """)
 
 * insert SGDecisionTableOutput(DTO.Clientisnotdueforpneumococcalvaccination,"Client is not due for pneumococcal vaccination","""For administration of pneumococcal vaccine to infants\, WHO recommends a 3-dose schedule administered either as 2p+1 or as 3p+0\, starting as early as 6 weeks of age.  """)
 * insert SGDecisionTableGuidance("""Should not vaccinate client with first pneumococcal dose as clients age is less than 6 weeks. \nCheck for any other vaccines due and inform the caregiver of when to come back for the next dose. """)
@@ -56,14 +54,4 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTableGuidance("""Pneumococcal immunization schedule is complete. Three pneumococcal primary series doses and one booster dose were administered. \nCheck for any other vaccines due. """)
 * insert SGDecisionTableOutput(DTO.Clinicaljudgementisrequired.Createaclinicalnote.,"Clinical judgement is required. Create a clinical note.","""WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals over 5 years of age.\nFor considerations on pneumococcal vaccination in older adults\, see the concept note Considerations for pneumococcal vaccination in older adults 11.  """)
 * insert SGDecisionTableGuidance("""Members States should update this action according to the national immunization programme """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.Output,"Output","""Annotations  """)
-* insert SGDecisionTableGuidance("""Guidance displayed to health worker """)
-* insert SGDecisionTableOutput(DTO.Pneumococcalvaccinationcouldbecontraindi.edfe1e868f,"Pneumococcal vaccination could be contraindicated. Clinical judgement is required. Create a clinical note","""–  """)
-* insert SGDecisionTableGuidance("""Do not vaccinate client with pneumococcal if client has a history of anaphylactic reaction to any component of the vaccine. """)
-* insert SGDecisionTableOutput(DTO.Pneumococcalvaccinationcouldbecontraindi.2e1aa27c74,"Pneumococcal vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.","""–  """)
-* insert SGDecisionTableGuidance("""Do not vaccinate client with pneumococcal if client has a history of severe allergic reactions to any component of the vaccine. """)
-* insert SGDecisionTableOutput(DTO.None,"None","""Note: While vaccines are universally recommended\, some clients may have contraindications to particular vaccines. Additional contraindications may be included in WHO position papers for the vaccine – Pneumococcal conjugate vaccines in infants and children under 5 years of age : WHO position paper Feburary 2019 10 and Considerations for pneumococcal vaccination in older adults June 2021 11.  """)
 

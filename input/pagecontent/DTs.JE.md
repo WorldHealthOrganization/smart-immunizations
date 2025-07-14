@@ -1,10 +1,10 @@
 ### Decision Tables for Tab  DTs.JE
 #### Decision Table DT.IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine
-{% include DT.DT.IMMZ.D5.DT.HPVcontraindications.html %}
+{% include DT.IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine.html %}
 #### Decision Table DT.IMMZ.D2.DT.JE.Liveattenuatedvaccine
-{% include DT.DT.IMMZ.D5.DT.HPVcontraindications.html %}
+{% include DT.IMMZ.D2.DT.JE.Liveattenuatedvaccine.html %}
 #### Decision Table DT.IMMZ.D2.DT.JE.Liverecombinantvaccine
-{% include DT.DT.IMMZ.D5.DT.HPVcontraindications.html %}
+{% include DT.IMMZ.D2.DT.JE.Liverecombinantvaccine.html %}
 #### Decision Table DT.IMMZ.D5.DT.JEcontraindications
-{% include DT.DT.IMMZ.D5.DT.HPVcontraindications.html %}
+{% include DT.IMMZ.D5.DT.JEcontraindications.html %}
 

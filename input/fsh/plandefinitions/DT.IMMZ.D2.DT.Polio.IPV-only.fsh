@@ -5,8 +5,6 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTable( DT.IMMZ.D2.DT.Polio.IPV-only,0.2.0)
 
 * insert SGDecisionTableCitation("""WHO recommendations for routine immunization – summary tables March 2023 1 """)
-* insert SGDecisionTableCitation("""References """)
-* insert SGDecisionTableCitation("""Polio vaccines: WHO position paper June 2022 4 """)
 
 * insert SGDecisionTableOutput(DTO.ClientisnotdueforIPVvaccination,"Client is not due for IPV vaccination","""A primary 3-dose series of IPV administered beginning at 6 or 8 weeks of age\, with a minimum 4-week interval between doses\, is recommended.  """)
 * insert SGDecisionTableGuidance("""Shold not vaccinate client with first IPV dose as clients age is less than 6 weeks. \nCheck for any other vaccines due and inform the caregiver of when to come back for the first IPV dose. """)
@@ -28,16 +26,4 @@ Description: """Determine required vaccinations """
 * insert SGDecisionTableGuidance("""Should vaccinate client with IPV booster dose as three poliovirus primary series doses were administered\, clients age was 6 weeks when the primary series was started and the latest poliovirus dose was administered more than 6 months ago. \nCheck for contraindications. """)
 * insert SGDecisionTableOutput(DTO.Polioimmunizationscheduleiscomplete,"Polio immunization schedule is complete",""" """)
 * insert SGDecisionTableGuidance("""Polio immunization schedule is complete. Three poliovirus primary series doses and a booster dose were administered. """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.None,"None",""" """)
-* insert SGDecisionTableOutput(DTO.Output,"Output","""Annotations  """)
-* insert SGDecisionTableGuidance("""Guidance displayed to health worker """)
-* insert SGDecisionTableOutput(DTO.Poliovirusvaccinationcouldbecontraindica.4ca57decd9,"Poliovirus vaccination could be contraindicated. Clinical judgement required","""–  """)
-* insert SGDecisionTableGuidance("""Do not vaccinate client with inactivated polio vaccine IPV if client has had a previous severe reaction or known allergy to streptomycin\, neomycin or polymyxin B.\nDo not vaccinate client with oral polio vaccine OPV if client has had a allergic reaction to OPV or to the trace antibiotics contained. """)
-* insert SGDecisionTableOutput(DTO.PoliovirusvaccinationwithbOPViscontraindicated,"Poliovirus vaccination with bOPV is contraindicated","""bOPV is contraindicated in severely immunocompromised patients with known underlying conditions. Such conditions include disorders of the thymus\, symptomatic HIV infection or low CD4 T cell values\, malignant neoplasm treated with chemotherapy\, recent haematopoietic stem cell transplantation\, drugs with known immunosuppressive or immunomodulatory properties e.g. high-dose systemic corticosteroids\, alkylating drugs\, antimetabolites\, TNFα inhibitors\, IL-1 blocking agent or other monoclonal antibodies targeting immune cells\, and current or recent radiation therapies targeting immune cells. These populations can safely receive IPV.  """)
-* insert SGDecisionTableGuidance("""For bOPV dose\, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in severely immunocompromised clients. \nCheck if vaccination with IPV is appropriate for the client\, consider risks of vaccination and make a clinical judgement. """)
-* insert SGDecisionTableOutput(DTO.PoliovirusvaccinationwithbOPViscontraindicated,"Poliovirus vaccination with bOPV is contraindicated","""Individuals with primary immunodeficiency disorders should not be vaccinated with OPV and\, instead\, should receive IPV alone.  """)
-* insert SGDecisionTableGuidance("""For bOPV dose\, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in clients with immunodeficiency disorders.\nCheck if vaccination with IPV is appropriate for the client\, consider risks of vaccination and make a clinical judgement. """)
-* insert SGDecisionTableOutput(DTO.None,"None","""Note: While vaccines are universally recommended\, some clients may have contraindications to particular vaccines. Additional contraindications may be included in WHO position paper for the vaccine – Polio vaccines: WHO position paper June 2022 4.  """)
 
