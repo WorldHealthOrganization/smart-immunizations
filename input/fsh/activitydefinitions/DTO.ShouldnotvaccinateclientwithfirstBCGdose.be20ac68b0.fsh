@@ -1,7 +1,19 @@
-Profile: DTO.ShouldnotvaccinateclientwithfirstBCGdose.be20ac68b0
-Parent: $SGActivityDefinition
+Instance: DTO.ShouldnotvaccinateclientwithfirstBCGdose.be20ac68b0
+InstanceOf: $SGActivityDefinition
 Title: "Decision Table Output Should not vaccinate client with first BCG dose as client is not immnologically stable."
 Description: """Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.
 """
-* ^abstract = true
+Usage: #definition
+* publisher = "World Health Organization (WHO)"
+* experimental = false
+* version = "0.2.0"
+* name = "Should not vaccinate client with first BCG dose as client is not immnologically stable."
+* status = #draft
+* contact[+]
+  * telecom[+]
+    * system = #url
+    * value = "https://who.int"
+* kind = #CommunicationRequest
+* intent = #proposal
+* doNotPerform = false
 

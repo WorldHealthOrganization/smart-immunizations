@@ -1,8 +1,20 @@
-Profile: DTO.Mumpsimmunizationscheduleiscomplete
-Parent: $SGActivityDefinition
+Instance: DTO.Mumpsimmunizationscheduleiscomplete
+InstanceOf: $SGActivityDefinition
 Title: "Decision Table Output Mumps immunization schedule is complete"
 Description: """"Immunization recommendation status" = "Complete"
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Mumps-containing vaccines")"
 """
-* ^abstract = true
+Usage: #definition
+* publisher = "World Health Organization (WHO)"
+* experimental = false
+* version = "0.2.0"
+* name = "Mumps immunization schedule is complete"
+* status = #draft
+* contact[+]
+  * telecom[+]
+    * system = #url
+    * value = "https://who.int"
+* kind = #CommunicationRequest
+* intent = #proposal
+* doNotPerform = false
 

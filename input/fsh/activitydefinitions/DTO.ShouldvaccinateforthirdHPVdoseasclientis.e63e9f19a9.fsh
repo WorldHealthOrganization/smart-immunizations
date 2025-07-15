@@ -1,7 +1,19 @@
-Profile: DTO.ShouldvaccinateforthirdHPVdoseasclientis.e63e9f19a9
-Parent: $SGActivityDefinition
+Instance: DTO.ShouldvaccinateforthirdHPVdoseasclientis.e63e9f19a9
+InstanceOf: $SGActivityDefinition
 Title: "Decision Table Output Should vaccinate for third HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago."
 Description: """Check for contraindications.
 """
-* ^abstract = true
+Usage: #definition
+* publisher = "World Health Organization (WHO)"
+* experimental = false
+* version = "0.2.0"
+* name = "Should vaccinate for third HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago."
+* status = #draft
+* contact[+]
+  * telecom[+]
+    * system = #url
+    * value = "https://who.int"
+* kind = #CommunicationRequest
+* intent = #proposal
+* doNotPerform = false
 

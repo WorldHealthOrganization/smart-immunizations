@@ -1,7 +1,19 @@
-Profile: DTO.Pneumococcalimmunizationscheduleiscomple.99cd3fc331
-Parent: $SGActivityDefinition
+Instance: DTO.Pneumococcalimmunizationscheduleiscomple.99cd3fc331
+InstanceOf: $SGActivityDefinition
 Title: "Decision Table Output Pneumococcal immunization schedule is complete. Three pneumococcal primary serie doses were administered."
 Description: """Check for any other vaccines due.
 """
-* ^abstract = true
+Usage: #definition
+* publisher = "World Health Organization (WHO)"
+* experimental = false
+* version = "0.2.0"
+* name = "Pneumococcal immunization schedule is complete. Three pneumococcal primary serie doses were administered."
+* status = #draft
+* contact[+]
+  * telecom[+]
+    * system = #url
+    * value = "https://who.int"
+* kind = #CommunicationRequest
+* intent = #proposal
+* doNotPerform = false
 

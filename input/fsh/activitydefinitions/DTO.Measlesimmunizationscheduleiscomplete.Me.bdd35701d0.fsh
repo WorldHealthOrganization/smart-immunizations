@@ -1,7 +1,19 @@
-Profile: DTO.Measlesimmunizationscheduleiscomplete.Me.bdd35701d0
-Parent: $SGActivityDefinition
+Instance: DTO.Measlesimmunizationscheduleiscomplete.Me.bdd35701d0
+InstanceOf: $SGActivityDefinition
 Title: "Decision Table Output Measles immunization schedule is complete. Measles supplementary dose was administered."
 Description: """Measles immunization schedule is complete. Measles supplementary dose was administered.
 """
-* ^abstract = true
+Usage: #definition
+* publisher = "World Health Organization (WHO)"
+* experimental = false
+* version = "0.2.0"
+* name = "Measles immunization schedule is complete. Measles supplementary dose was administered."
+* status = #draft
+* contact[+]
+  * telecom[+]
+    * system = #url
+    * value = "https://who.int"
+* kind = #CommunicationRequest
+* intent = #proposal
+* doNotPerform = false
 

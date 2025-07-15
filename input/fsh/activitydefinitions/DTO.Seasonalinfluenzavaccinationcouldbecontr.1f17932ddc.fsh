@@ -1,7 +1,19 @@
-Profile: DTO.Seasonalinfluenzavaccinationcouldbecontr.1f17932ddc
-Parent: $SGActivityDefinition
+Instance: DTO.Seasonalinfluenzavaccinationcouldbecontr.1f17932ddc
+InstanceOf: $SGActivityDefinition
 Title: "Decision Table Output Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note"
 Description: """'"Immunization recommendation status" = "Further evaluation needed"
 """
-* ^abstract = true
+Usage: #definition
+* publisher = "World Health Organization (WHO)"
+* experimental = false
+* version = "0.2.0"
+* name = "Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note"
+* status = #draft
+* contact[+]
+  * telecom[+]
+    * system = #url
+    * value = "https://who.int"
+* kind = #CommunicationRequest
+* intent = #proposal
+* doNotPerform = false
 

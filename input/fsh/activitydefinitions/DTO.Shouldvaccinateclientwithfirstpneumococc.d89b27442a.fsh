@@ -1,7 +1,19 @@
-Profile: DTO.Shouldvaccinateclientwithfirstpneumococc.d89b27442a
-Parent: $SGActivityDefinition
+Instance: DTO.Shouldvaccinateclientwithfirstpneumococc.d89b27442a
+InstanceOf: $SGActivityDefinition
 Title: "Decision Table Output Should vaccinate client with first pneumococcal booster dose as first pneumococcal dose was administered within 12 months post birth."
 Description: """Check for contraindications.
 """
-* ^abstract = true
+Usage: #definition
+* publisher = "World Health Organization (WHO)"
+* experimental = false
+* version = "0.2.0"
+* name = "Should vaccinate client with first pneumococcal booster dose as first pneumococcal dose was administered within 12 months post birth."
+* status = #draft
+* contact[+]
+  * telecom[+]
+    * system = #url
+    * value = "https://who.int"
+* kind = #CommunicationRequest
+* intent = #proposal
+* doNotPerform = false
 

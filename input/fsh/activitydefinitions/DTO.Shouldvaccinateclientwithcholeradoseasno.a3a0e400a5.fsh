@@ -1,7 +1,19 @@
-Profile: DTO.Shouldvaccinateclientwithcholeradoseasno.a3a0e400a5
-Parent: $SGActivityDefinition
+Instance: DTO.Shouldvaccinateclientwithcholeradoseasno.a3a0e400a5
+InstanceOf: $SGActivityDefinition
 Title: "Decision Table Output Should vaccinate client with cholera dose as no doses have been given."
 Description: """Should vaccinate client with cholera dose as no doses have been given.
 """
-* ^abstract = true
+Usage: #definition
+* publisher = "World Health Organization (WHO)"
+* experimental = false
+* version = "0.2.0"
+* name = "Should vaccinate client with cholera dose as no doses have been given."
+* status = #draft
+* contact[+]
+  * telecom[+]
+    * system = #url
+    * value = "https://who.int"
+* kind = #CommunicationRequest
+* intent = #proposal
+* doNotPerform = false
 

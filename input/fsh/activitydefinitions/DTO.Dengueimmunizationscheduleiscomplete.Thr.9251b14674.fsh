@@ -1,7 +1,19 @@
-Profile: DTO.Dengueimmunizationscheduleiscomplete.Thr.9251b14674
-Parent: $SGActivityDefinition
+Instance: DTO.Dengueimmunizationscheduleiscomplete.Thr.9251b14674
+InstanceOf: $SGActivityDefinition
 Title: "Decision Table Output Dengue immunization schedule is complete. Three dengue primary series doses were administered."
 Description: """Check for any other vaccines due.
 """
-* ^abstract = true
+Usage: #definition
+* publisher = "World Health Organization (WHO)"
+* experimental = false
+* version = "0.2.0"
+* name = "Dengue immunization schedule is complete. Three dengue primary series doses were administered."
+* status = #draft
+* contact[+]
+  * telecom[+]
+    * system = #url
+    * value = "https://who.int"
+* kind = #CommunicationRequest
+* intent = #proposal
+* doNotPerform = false
 

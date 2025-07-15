@@ -1,7 +1,19 @@
-Profile: DTO.Shouldvaccinateclientwithsecondhepatitis.142bf0de56
-Parent: $SGActivityDefinition
+Instance: DTO.Shouldvaccinateclientwithsecondhepatitis.142bf0de56
+InstanceOf: $SGActivityDefinition
 Title: "Decision Table Output Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered more than 4 weeks ago."
 Description: """Check for contraindications.
 """
-* ^abstract = true
+Usage: #definition
+* publisher = "World Health Organization (WHO)"
+* experimental = false
+* version = "0.2.0"
+* name = "Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered more than 4 weeks ago."
+* status = #draft
+* contact[+]
+  * telecom[+]
+    * system = #url
+    * value = "https://who.int"
+* kind = #CommunicationRequest
+* intent = #proposal
+* doNotPerform = false
 

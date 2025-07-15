@@ -1,7 +1,19 @@
-Profile: DTO.Clientshouldfollowpregnancystartingwith4.0e10237d53
-Parent: $SGActivityDefinition
+Instance: DTO.Clientshouldfollowpregnancystartingwith4.0e10237d53
+InstanceOf: $SGActivityDefinition
 Title: "Decision Table Output Client should follow pregnancy starting with 4 doses decision logic"
 Description: """Client should follow 'pregnancy starting with 4 doses' decision logic
 """
-* ^abstract = true
+Usage: #definition
+* publisher = "World Health Organization (WHO)"
+* experimental = false
+* version = "0.2.0"
+* name = "Client should follow pregnancy starting with 4 doses decision logic"
+* status = #draft
+* contact[+]
+  * telecom[+]
+    * system = #url
+    * value = "https://who.int"
+* kind = #CommunicationRequest
+* intent = #proposal
+* doNotPerform = false
 

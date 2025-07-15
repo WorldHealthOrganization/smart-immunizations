@@ -1,7 +1,19 @@
-Profile: DTO.Donotvaccinateclientwithrubellaasrubella.87e0a157d5
-Parent: $SGActivityDefinition
+Instance: DTO.Donotvaccinateclientwithrubellaasrubella.87e0a157d5
+InstanceOf: $SGActivityDefinition
 Title: "Decision Table Output Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with active TB."
 Description: """Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with active TB.
 """
-* ^abstract = true
+Usage: #definition
+* publisher = "World Health Organization (WHO)"
+* experimental = false
+* version = "0.2.0"
+* name = "Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with active TB."
+* status = #draft
+* contact[+]
+  * telecom[+]
+    * system = #url
+    * value = "https://who.int"
+* kind = #CommunicationRequest
+* intent = #proposal
+* doNotPerform = false
 

@@ -1,7 +1,19 @@
-Profile: DTO.Shouldvaccinateclientwithsecondpneumococ.cee316ef5c
-Parent: $SGActivityDefinition
+Instance: DTO.Shouldvaccinateclientwithsecondpneumococ.cee316ef5c
+InstanceOf: $SGActivityDefinition
 Title: "Decision Table Output Should vaccinate client with second pneumococcal booster dose as client is HIV positive and latest pneumococcal dose was administered within 12 months post birth."
 Description: """Check for contraindications.
 """
-* ^abstract = true
+Usage: #definition
+* publisher = "World Health Organization (WHO)"
+* experimental = false
+* version = "0.2.0"
+* name = "Should vaccinate client with second pneumococcal booster dose as client is HIV positive and latest pneumococcal dose was administered within 12 months post birth."
+* status = #draft
+* contact[+]
+  * telecom[+]
+    * system = #url
+    * value = "https://who.int"
+* kind = #CommunicationRequest
+* intent = #proposal
+* doNotPerform = false
 

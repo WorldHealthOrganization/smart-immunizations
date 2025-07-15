@@ -35,3 +35,9 @@ Alias: $SGActorExt = http://smart.who.int/base/StructureDefinition/SGActorExt
 Alias: $SGDecisionTable = http://smart.who.int/base/StructureDefinition/SGDecisionTable
 
 Alias: $SatisfiesExt = http://smart.who.int/trust-phw/StructureDefinition/Satisfies
+
+Alias: $CPGKC = http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability
+
+Alias: $CPGCR = http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-communicationactivity
+
+Alias: $SGDecisionTableGuidance = http://smart.who.int/base/CommunicationRequest-SGDecisionTableGuidance
