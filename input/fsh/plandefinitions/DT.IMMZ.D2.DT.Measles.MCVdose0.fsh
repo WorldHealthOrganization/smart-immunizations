@@ -119,7 +119,7 @@ As a general rule, live vaccines should be given either simultaneously or at int
 Create a clinical note.
 "Immunization recommendation status" = "Further evaluation needed"
 """
-  * definitionCanonical = Canonical(DTO.ConsiderMCV0.)
+  * definitionCanonical = Canonical(DTO.ConsiderMCV0)
   * dynamicValue[+]
     * path = "status"
     * expression

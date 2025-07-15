@@ -373,7 +373,7 @@ Check for any vaccines due and inform the caregiver of when to come back for the
   * description = """Clinical judgement is required. Create clinical note.
 "Immunization recommendation status" = "Further evaluation needed"
 """
-  * definitionCanonical = Canonical(DTO.Clinicaljudgementisrequired.Createclinicalnote.)
+  * definitionCanonical = Canonical(DTO.Clinicaljudgementisrequired.Createclinicalnote)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -761,7 +761,7 @@ Check for any vaccines due, and inform the caregiver of when to come back for th
   * description = """Clinical judgement is required. Create clinical note.
 '"Immunization recommendation status" = "Further evaluation needed"
 """
-  * definitionCanonical = Canonical(DTO.Clinicaljudgementisrequired.Createclinicalnote.)
+  * definitionCanonical = Canonical(DTO.Clinicaljudgementisrequired.Createclinicalnote)
   * dynamicValue[+]
     * path = "status"
     * expression

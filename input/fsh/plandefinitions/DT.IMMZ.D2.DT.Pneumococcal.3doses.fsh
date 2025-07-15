@@ -990,7 +990,7 @@ Check for any other vaccines due."""
 
 WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals over 5 years of age.
 For considerations on pneumococcal vaccination in older adults, see the concept note Considerations for pneumococcal vaccination in older adults (11). """
-  * definitionCanonical = Canonical(DTO.Clinicaljudgementisrequired.Createaclinicalnote.)
+  * definitionCanonical = Canonical(DTO.Clinicaljudgementisrequired.Createaclinicalnote)
   * dynamicValue[+]
     * path = "status"
     * expression

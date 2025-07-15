@@ -113,7 +113,7 @@ Check for contraindications."""
 "Immunization recommendation status" = "Further evaluation needed"
 
 Vaccination of secondary target populations (e.g. females aged ≥15 years, boys, older males or men who have sex with men) is recommended only if this is feasible and affordable, and does not divert resources from vaccination of the primary target population or effective cervical cancer screening programmes. """
-  * definitionCanonical = Canonical(DTO.Clinicaljudgementisrequired.Createaclinicalnote.)
+  * definitionCanonical = Canonical(DTO.Clinicaljudgementisrequired.Createaclinicalnote)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -155,7 +155,7 @@ Vaccination of secondary target populations (e.g. females aged ≥15 years, boys
   * description = """Clinical judgement is required. Create a clinical note.
 "Immunization recommendation status" = "Further evaluation needed"
 """
-  * definitionCanonical = Canonical(DTO.Clinicaljudgementisrequired.Createaclinicalnote.)
+  * definitionCanonical = Canonical(DTO.Clinicaljudgementisrequired.Createaclinicalnote)
   * dynamicValue[+]
     * path = "status"
     * expression

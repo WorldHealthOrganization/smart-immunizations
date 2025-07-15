@@ -293,7 +293,7 @@ From 7 years of age, only Td combinations should be used.
 Age-appropriate combinations-containing pertussis vaccine with low-dose diphtheria antigen are also available. Only aP-containing vaccines should be used for vaccination of persons aged 7 years and older.
 
 National vaccination schedules can be adjusted within the age limits specified above to enable programmes to tailor their schedules based on local epidemiology, the objectives of the immunization programme, any particular programmatic issues and to better align tetanus vaccination with the immunological requirements of other vaccines (particularly for pertussis and diphtheria). """
-  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisnotdu.96abddfbd3)
+  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisnotdue96abddfbd3)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -337,7 +337,7 @@ Check for any other vaccines due and inform the caregiver of when to come back f
 "Immunization recommendation status" = "Due" (where "Vaccine type" = "Tetanus and diphtheria-containing vaccines")
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "DTP-containing vaccines")
 """
-  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisduefo.d01b3687e4)
+  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisdueford01b3687e4)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -641,7 +641,7 @@ Check for any other vaccines due and inform the caregiver of when to come back f
 "Immunization recommendation status" = "Not due" (where "Vaccine type" = "Pertussis-containing vaccines")
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "DTP-containing vaccines")
 """
-  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisnotdu.f5aeffc5ac)
+  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisnotduef5aeffc5ac)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -685,7 +685,7 @@ Check for any other vaccines due and inform the caregiver of when to come back f
 "Immunization recommendation status" = "Due" (where "Vaccine type" = "Pertussis-containing vaccines")
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "DTP-containing vaccines")
 """
-  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisduefo.eb4b6446d8)
+  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisdueforeb4b6446d8)
   * dynamicValue[+]
     * path = "status"
     * expression

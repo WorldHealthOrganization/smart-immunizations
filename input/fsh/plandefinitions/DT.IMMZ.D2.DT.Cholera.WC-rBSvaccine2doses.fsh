@@ -200,7 +200,7 @@ Check for contraindications."""
 "Completed the booster series" (where "Vaccine type" = "Cholera vaccines") = TRUE
 
 For those aged ≥6 years, if less than 2 years have passed, 1 dose for revaccination. If more than 2 years have passed, the primary series of 2 doses should be repeated. """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisdueforch.16a4e0f1c7)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisdueforcho16a4e0f1c7)
   * dynamicValue[+]
     * path = "status"
     * expression

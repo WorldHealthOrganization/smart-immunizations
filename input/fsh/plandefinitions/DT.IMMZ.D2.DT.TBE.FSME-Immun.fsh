@@ -286,7 +286,7 @@ Check for contraindications."""
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "TBE vaccines")
 
 For both vaccines (FSME-Immun and Encepur), the manufacturers recommend a booster dose to be administered 3 years after completion of the primary series. Although there is a strong indication that the spacing of boosters could be expanded considerably from the intervals currently recommended by the manufacturers (every 3–5 years), the evidence is still insufficient for a definitive recommendation on the optimal frequency and number of booster doses. """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotduefo.f1ec96683f)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotdueforf1ec96683f)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -330,7 +330,7 @@ Check for any vaccines due and inform the caregiver of when to come back for the
 "Immunization recommendation status" = "Due"
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "TBE vaccines")
 """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.ClientisdueforTB.bd94866b73)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.ClientisdueforTBEbd94866b73)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -375,7 +375,7 @@ Create a clinical note
 "Immunization recommendation status" = "Further evaluation needed"
 
 Vaccination against the disease requires a primary series of 3 doses; those who will continue to be at risk should probably have ≥1 booster doses. Although there is a strong indication that the spacing of boosters could be expanded considerably from the intervals currently recommended by the manufacturers (every 3–5 years), the evidence is still insufficient for a definitive recommendation on the optimal frequency and number of booster doses. """
-  * definitionCanonical = Canonical(DTO.Clinicaljudgementisrequired.)
+  * definitionCanonical = Canonical(DTO.Clinicaljudgementisrequired)
   * dynamicValue[+]
     * path = "status"
     * expression

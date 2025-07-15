@@ -257,7 +257,7 @@ Check for contraindications."""
 "Immunization recommendation status" = "Not due" (where "Vaccine type" = "Tetanus and diphtheria-containing vaccines")
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "DTP-containing vaccines")
 """
-  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisnotdu.96abddfbd3)
+  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisnotdue96abddfbd3)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -301,7 +301,7 @@ Check for any other vaccines due and inform the caregiver of when to come back f
 "Immunization recommendation status" = "Due" (where "Vaccine type" = "Tetanus and diphtheria-containing vaccines")
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "DTP-containing vaccines")
 """
-  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisduefo.d01b3687e4)
+  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisdueford01b3687e4)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -480,7 +480,7 @@ This schedule should provide protection for at least 6 years for countries using
 
 Although a booster dose in adolescence was shown to decrease disease in adolescents, this is not generally recommended as a means of controlling pertussis in infants.
 A decision to introduce adolescent and/or adult boosters should only be taken after careful assessment of local epidemiology, estimation of the contribution of adolescents as source of infections of young infants, and selection of adolescents and/or adults as target groups for vaccination. Decisions concerning such programmes should be based on the incidence and cost–effectiveness data. High coverage of routine immunization in infants must be in place prior to the introduction of vaccination of adolescents and adults. """
-  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisnotdu.f5aeffc5ac)
+  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisnotduef5aeffc5ac)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -524,7 +524,7 @@ Check for any other vaccines due and inform the caregiver of when to come back f
 "Immunization recommendation status" = "Due" (where "Vaccine type" = "Pertussis-containing vaccines")
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "DTP-containing vaccines")
 """
-  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisduefo.eb4b6446d8)
+  * definitionCanonical = Canonical(DTO.PrimaryDTPseriesiscomplete.Clientisdueforeb4b6446d8)
   * dynamicValue[+]
     * path = "status"
     * expression

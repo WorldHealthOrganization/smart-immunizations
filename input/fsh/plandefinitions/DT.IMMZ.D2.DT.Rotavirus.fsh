@@ -498,7 +498,7 @@ Check for contraindications."""
 "Immunization recommendation status" = "Not due" IF current "Immunization recommendation status" ≠ "Complete"
 
 Because of the typical age distribution of rotavirus gastroenteritis, rotavirus vaccination of children aged over 24 months is not recommended. """
-  * definitionCanonical = Canonical(DTO.Clientisnotdueforrotavirusvaccinationifi.f228e9445e)
+  * definitionCanonical = Canonical(DTO.Clientisnotdueforrotavirusvaccinationifimfbd6dcba7b)
   * dynamicValue[+]
     * path = "status"
     * expression

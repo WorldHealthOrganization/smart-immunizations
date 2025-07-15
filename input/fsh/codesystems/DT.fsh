@@ -9596,7 +9596,7 @@ define "Should vaccinate client with second tetanus and diphtheria booster dose 
   * ^property[=].valueString = "DT.IMMZ.D2.DT.DTP.Pregnancystartingwith3doses"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.DTP"
-* #"Should not vaccinate client with third tetanus and diphtheria booster dose as the latest tetanus and booster dose was administered less than 1 year ago. This dose should be administered at least 1 year after second booster dose or dur.11a7b127d9" "Check for any other vaccines due and inform the caregiver of when to come back for third tetanus and diphtheria booster dose."
+* #"Should not vaccinate client with third tetanus and diphtheria booster dose as the latest tetanus and booster dose was administered less than 1 year ago. This dose should be administered at least 1 year after second booster dose or duri11a7b127d9" "Check for any other vaccines due and inform the caregiver of when to come back for third tetanus and diphtheria booster dose."
   * ^definition = """Check for any other vaccines due and inform the caregiver of when to come back for third tetanus and diphtheria booster dose.
 Referenced in the following locations:
  * Decision Tables: DT.IMMZ.D2.DT.DTP.Pregnancystartingwith3doses
@@ -9605,7 +9605,7 @@ Referenced in the following locations:
 """
   * ^designation[+].value = """//Found in input/cql/DTs.DTP.cql
 
-define "Should not vaccinate client with third tetanus and diphtheria booster dose as the latest tetanus and booster dose was administered less than 1 year ago. This dose should be administered at least 1 year after second booster dose or dur.11a7b127d9":
+define "Should not vaccinate client with third tetanus and diphtheria booster dose as the latest tetanus and booster dose was administered less than 1 year ago. This dose should be administered at least 1 year after second booster dose or duri11a7b127d9":
   //CQL AUTHORS: you need to insert stuff here
   // Check for any other vaccines due and inform the caregiver of when to come back for third tetanus and diphtheria booster dose.
 
@@ -9617,7 +9617,7 @@ define "Should not vaccinate client with third tetanus and diphtheria booster do
   * ^property[=].valueString = "DT.IMMZ.D2.DT.DTP.Pregnancystartingwith3doses"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.DTP"
-* #"Should vaccinate client with third tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered more than 1 year ago. This dose should be administered at least 1 year after second booster dose or duri.7158e3e2fd" "Check for contraindications."
+* #"Should vaccinate client with third tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered more than 1 year ago. This dose should be administered at least 1 year after second booster dose or durin7158e3e2fd" "Check for contraindications."
   * ^definition = """Check for contraindications.
 Referenced in the following locations:
  * Decision Tables: DT.IMMZ.D2.DT.DTP.Pregnancystartingwith3doses
@@ -9626,7 +9626,7 @@ Referenced in the following locations:
 """
   * ^designation[+].value = """//Found in input/cql/DTs.DTP.cql
 
-define "Should vaccinate client with third tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered more than 1 year ago. This dose should be administered at least 1 year after second booster dose or duri.7158e3e2fd":
+define "Should vaccinate client with third tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered more than 1 year ago. This dose should be administered at least 1 year after second booster dose or durin7158e3e2fd":
   //CQL AUTHORS: you need to insert stuff here
   // Check for contraindications.
 
@@ -14113,7 +14113,7 @@ define "Live vaccines was administered in the last 4 weeks":
   * ^property[=].valueString = "DT.IMMZ.D2.DT.Rotavirus"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Rotavirus"
-* #"Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of wh.8e0e140bfc" "Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose"
+* #"Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of whe8e0e140bfc" "Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose"
   * ^definition = """Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose
 Referenced in the following locations:
  * Decision Tables: DT.IMMZ.D2.DT.Rotavirus
@@ -14122,7 +14122,7 @@ Referenced in the following locations:
 """
   * ^designation[+].value = """//Found in input/cql/DTs.Rotavirus.cql
 
-define "Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of wh.8e0e140bfc":
+define "Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of whe8e0e140bfc":
   //CQL AUTHORS: you need to insert stuff here
   // Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of when to come back for the next dose
 
@@ -25289,7 +25289,7 @@ define "Meningococcal immunization schedule is complete. Two meningococcal prima
 * #"Number of meningococcal booster doses administered" "Count of vaccines administered (where \"Vaccine type\" = \"Meningococcal vaccines\" and \"Type of dose\" = \"Booster dose\")"
   * ^definition = """Count of vaccines administered (where "Vaccine type" = "Meningococcal vaccines" and "Type of dose" = "Booster dose")
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25304,13 +25304,13 @@ define "Number of meningococcal booster doses administered":
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Clients age is less than 2 months" "Today's date − \"Date of birth\" < 2 months"
   * ^definition = """Today's date − "Date of birth" < 2 months
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25325,13 +25325,13 @@ define "Clients age is less than 2 months":
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Should not vaccinate client with first meningococcal dose as clients age is under 2 months. Check for any vaccines due and inform the caregiver of when to come back for the first dose." "Should not vaccinate client with first meningococcal dose as client's age is under 2 months. Check for any vaccines due and inform the caregiver of when to come back for the first dose."
   * ^definition = """Should not vaccinate client with first meningococcal dose as client's age is under 2 months. Check for any vaccines due and inform the caregiver of when to come back for the first dose.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25346,13 +25346,13 @@ define "Should not vaccinate client with first meningococcal dose as clients age
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Clients age is more than or equal to 2 months" "Today's date − \"Date of birth\" ≥ 2 months"
   * ^definition = """Today's date − "Date of birth" ≥ 2 months
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25367,13 +25367,13 @@ define "Clients age is more than or equal to 2 months":
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Should vaccinate client with first meningococcal dose as no meningococcal dose was administered and client is within appropriate age range." "Check for contraindications."
   * ^definition = """Check for contraindications.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25388,13 +25388,13 @@ define "Should vaccinate client with first meningococcal dose as no meningococca
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Clients age was less than or equal to 11 months when the primary series was started" "\"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") - \"Date of birth\" ≤ 11 months"
   * ^definition = """"Date and time of vaccination" (where "Vaccine type" = "Meningococcal vaccines") - "Date of birth" ≤ 11 months
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25409,13 +25409,13 @@ define "Clients age was less than or equal to 11 months when the primary series 
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"The latest meningococcal dose was administered less than 2 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") < 2 months"
   * ^definition = """Today's date − "Date and time of vaccination" (where "Vaccine type" = "Meningococcal vaccines") < 2 months
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25446,13 +25446,13 @@ define "The latest meningococcal dose was administered less than 2 months ago":
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 2 months ago." "Check for any vaccines due and inform the caregiver of when to come back for the second dose."
   * ^definition = """Check for any vaccines due and inform the caregiver of when to come back for the second dose.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25467,13 +25467,13 @@ define "Should not vaccinate client with second meningococcal dose as the latest
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"The latest meningococcal dose was administered more than 2 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") ≥ 2 months"
   * ^definition = """Today's date − "Date and time of vaccination" (where "Vaccine type" = "Meningococcal vaccines") ≥ 2 months
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25502,13 +25502,13 @@ define "The latest meningococcal dose was administered more than 2 months ago":
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Should vaccinate client with second meningococcal dose as client was less than 11 months when primary series was started and latest meningococcal dose was administered more than 2 months ago." "Check for contraindications."
   * ^definition = """Check for contraindications.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25523,13 +25523,13 @@ define "Should vaccinate client with second meningococcal dose as client was les
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Clients age was more than 11 months when the primary series was started" "\"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") - \"Date of birth\" > 11 months"
   * ^definition = """"Date and time of vaccination" (where "Vaccine type" = "Meningococcal vaccines") - "Date of birth" > 11 months
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25544,13 +25544,13 @@ define "Clients age was more than 11 months when the primary series was started"
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Meningococcal immunization schedule is complete as clients age was more than 11 months when primary series was started. One primary series dose was administered. Check for any other vaccines due." "Meningococcal immunization schedule is complete as client's age was more than 11 months when primary series was started. One primary series dose was administered. Check for any other vaccines due."
   * ^definition = """Meningococcal immunization schedule is complete as client's age was more than 11 months when primary series was started. One primary series dose was administered. Check for any other vaccines due.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25565,13 +25565,13 @@ define "Meningococcal immunization schedule is complete as clients age was more 
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"The latest meningococcal dose was administered less than 1 year ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") < 1 year"
   * ^definition = """Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Meningococcal vaccines") < 1 year
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25602,13 +25602,13 @@ define "The latest meningococcal dose was administered less than 1 year ago":
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"No meningococcal booster dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Meningococcal vaccines\" and \"Type of dose\" = \"Booster dose\") = 0"
   * ^definition = """Count of vaccines administered (where "Vaccine type" = "Meningococcal vaccines" and "Type of dose" = "Booster dose") = 0
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25637,13 +25637,13 @@ define "No meningococcal booster dose was administered":
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Should not vaccinate client with meningococcal booster dose as the latest meningococcal dose was administered less than 1 year ago." "Check for any vaccines due and inform the caregiver of when to come back for the booster dose."
   * ^definition = """Check for any vaccines due and inform the caregiver of when to come back for the booster dose.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25658,13 +25658,13 @@ define "Should not vaccinate client with meningococcal booster dose as the lates
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"The latest meningococcal dose was administered more than 1 year ago" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") ≥ 1 year"
   * ^definition = """Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Meningococcal vaccines") ≥ 1 year
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25693,7 +25693,7 @@ define "The latest meningococcal dose was administered more than 1 year ago":
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"The primary series is complete. Client is due for meningococcal booster dose" "\"Immunization recommendation status\" = \"Due\"
@@ -25701,7 +25701,7 @@ define "The latest meningococcal dose was administered more than 1 year ago":
   * ^definition = """"Immunization recommendation status" = "Due"
 "Completed the primary vaccination series" (where "Vaccine type" = "Meningococcal vaccines") = TRUE
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25727,13 +25727,13 @@ define "The primary series is complete. Client is due for meningococcal booster 
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Should vaccinate client with Meningococcal booster dose as no meningococcal booster dose was administered and the latest meningococcal dose was administered more than 1 year ago." "Check for contraindications."
   * ^definition = """Check for contraindications.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25748,13 +25748,13 @@ define "Should vaccinate client with Meningococcal booster dose as no meningococ
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Meningococcal booster dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Meningococcal vaccines\" and \"Type of dose\" = \"Booster dose\") = 1"
   * ^definition = """Count of vaccines administered (where "Vaccine type" = "Meningococcal vaccines" and "Type of dose" = "Booster dose") = 1
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25781,13 +25781,13 @@ define "Meningococcal booster dose was administered":
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Meningococcal immunization schedule is complete. Two primary series doses and one booster dose were administered." "Check for any vaccines due."
   * ^definition = """Check for any vaccines due.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4
  * Tabs: DTs.Meningococcal
 
 """
@@ -25802,13 +25802,13 @@ define "Meningococcal immunization schedule is complete. Two primary series dose
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCco.8355565df4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.MonovalentMenCcon8355565df4"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Should not vaccinate client with first meningococcal dose as clients age is less than 2 years." "Check for any vaccines due and inform the caregiver of when to come back for the first dose."
   * ^definition = """Check for any vaccines due and inform the caregiver of when to come back for the first dose.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.f681913040
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju3a1ac7c4f8
  * Tabs: DTs.Meningococcal
 
 """
@@ -25823,13 +25823,13 @@ define "Should not vaccinate client with first meningococcal dose as clients age
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.f681913040"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju3a1ac7c4f8"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Should vaccinate client with first meningococcal dose as no meningococcal dose was administered and clients age is within appropriate age range." "Check for contraindications."
   * ^definition = """Check for contraindications.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.f681913040
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju3a1ac7c4f8
  * Tabs: DTs.Meningococcal
 
 """
@@ -25844,13 +25844,13 @@ define "Should vaccinate client with first meningococcal dose as no meningococca
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.f681913040"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju3a1ac7c4f8"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Meningococcal immunization schedule is complete. One primary series dose was administered." "Check for any other vaccines due."
   * ^definition = """Check for any other vaccines due.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.f681913040
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju3a1ac7c4f8
  * Tabs: DTs.Meningococcal
 
 """
@@ -25865,13 +25865,13 @@ define "Meningococcal immunization schedule is complete. One primary series dose
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.f681913040"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju3a1ac7c4f8"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Should not vaccinate client with first meningococcal dose as clients age is less than 9 months." "Check for any vaccines due and inform the caregiver of when to come back for the first dose."
   * ^definition = """Check for any vaccines due and inform the caregiver of when to come back for the first dose.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47
  * Tabs: DTs.Meningococcal
 
 """
@@ -25886,13 +25886,13 @@ define "Should not vaccinate client with first meningococcal dose as clients age
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Clients age was less than or equal to 23 months when the primary series was started" "\"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") - \"Date of birth\" ≤ 23 months"
   * ^definition = """"Date and time of vaccination" (where "Vaccine type" = "Meningococcal vaccines") - "Date of birth" ≤ 23 months
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47
  * Tabs: DTs.Meningococcal
 
 """
@@ -25907,13 +25907,13 @@ define "Clients age was less than or equal to 23 months when the primary series 
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"The latest meningococcal dose was administered less than 3 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") < 3 months"
   * ^definition = """Today's date − "Date and time of vaccination" (where "Vaccine type" = "Meningococcal vaccines") < 3 months
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47
  * Tabs: DTs.Meningococcal
 
 """
@@ -25942,13 +25942,13 @@ define "The latest meningococcal dose was administered less than 3 months ago":
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 3 months ago." "Check for any other vaccines due and inform the caregiver of when to come back for the second dose."
   * ^definition = """Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47
  * Tabs: DTs.Meningococcal
 
 """
@@ -25963,13 +25963,13 @@ define "Should not vaccinate client with second meningococcal dose as the latest
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"The latest meningococcal dose was administered more than 3 months ago" "Today's date − \"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") ≥ 3 months"
   * ^definition = """Today's date − "Date and time of vaccination" (where "Vaccine type" = "Meningococcal vaccines") ≥ 3 months
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47
  * Tabs: DTs.Meningococcal
 
 """
@@ -25998,13 +25998,13 @@ define "The latest meningococcal dose was administered more than 3 months ago":
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Should vaccinate client with second meningococcal dose as clients age was less than 23 months when the primary series was started and the latest meningococcal dose was administered more than 3 months ago." "Check for contraindications."
   * ^definition = """Check for contraindications.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47
  * Tabs: DTs.Meningococcal
 
 """
@@ -26019,13 +26019,13 @@ define "Should vaccinate client with second meningococcal dose as clients age wa
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Clients age was more than 23 months when the primary series was started" "\"Date and time of vaccination\" (where \"Vaccine type\" = \"Meningococcal vaccines\") - \"Date of birth\" > 23 months"
   * ^definition = """"Date and time of vaccination" (where "Vaccine type" = "Meningococcal vaccines") - "Date of birth" > 23 months
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47
  * Tabs: DTs.Meningococcal
 
 """
@@ -26040,13 +26040,13 @@ define "Clients age was more than 23 months when the primary series was started"
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Meningococcal immunization schedule is complete as clients age was more than 23 months when primary series was started. One primary series dose was administered." "Check for any other vaccines due."
   * ^definition = """Check for any other vaccines due.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47
  * Tabs: DTs.Meningococcal
 
 """
@@ -26061,13 +26061,13 @@ define "Meningococcal immunization schedule is complete as clients age was more 
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Meningococcal immunization schedule is complete. Two primary series doses were administered." "Check for any other vaccines due."
   * ^definition = """Check for any other vaccines due.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4
+ * Decision Tables: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47
  * Tabs: DTs.Meningococcal
 
 """
@@ -26082,7 +26082,7 @@ define "Meningococcal immunization schedule is complete. Two primary series dose
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconj.91af5edee4"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Meningococcal"
 * #"Should not vaccinate client with first meningococcal dose as clients age is less than 2 years. Check for any other vaccines due and inform the caregiver of when to come back for the first dose." "Should not vaccinate client with first meningococcal dose as client's age is less than 2 years. Check for any other vaccines due and inform the caregiver of when to come back for the first dose."
@@ -28198,7 +28198,7 @@ define "Dengue immunization schedule is complete. Three dengue primary series do
 * #"Should vaccinate client with first dengue dose as no dengue doses were administered and client is within appropriate age range." "Check for contraindications."
   * ^definition = """Check for contraindications.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccin.084185ec80
+ * Decision Tables: DT.IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccina084185ec80
  * Tabs: DTs.Dengue
 
 """
@@ -28213,13 +28213,13 @@ define "Should vaccinate client with first dengue dose as no dengue doses were a
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccin.084185ec80"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccina084185ec80"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Dengue"
 * #"Should vaccinate client with second dengue dose as latest dengue dose was administered more than 6 months ago." "Check for contraindications."
   * ^definition = """Check for contraindications.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccin.084185ec80
+ * Decision Tables: DT.IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccina084185ec80
  * Tabs: DTs.Dengue
 
 """
@@ -28234,13 +28234,13 @@ define "Should vaccinate client with second dengue dose as latest dengue dose wa
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccin.084185ec80"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccina084185ec80"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Dengue"
 * #"Should vaccinate client with third dengue dose as latest dengue dose was administered more than 6 months ago." "Check for contraindications."
   * ^definition = """Check for contraindications.
 Referenced in the following locations:
- * Decision Tables: DT.IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccin.084185ec80
+ * Decision Tables: DT.IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccina084185ec80
  * Tabs: DTs.Dengue
 
 """
@@ -28255,7 +28255,7 @@ define "Should vaccinate client with third dengue dose as latest dengue dose was
 """
   * ^designation[=].language = #CQL
   * ^property[+].code = #"table"
-  * ^property[=].valueString = "DT.IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccin.084185ec80"
+  * ^property[=].valueString = "DT.IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccina084185ec80"
   * ^property[+].code = #"tab"
   * ^property[=].valueString = "DTs.Dengue"
 * #"Dengue vaccination is contraindicated" "\"Immunization recommendation status\" = \"Contraindicated\""

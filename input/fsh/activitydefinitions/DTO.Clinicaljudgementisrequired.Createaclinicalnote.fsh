@@ -1,13 +1,13 @@
 Instance: DTO.Clinicaljudgementisrequired.Createaclinicalnote
 InstanceOf: $SGActivityDefinition
-Title: "Decision Table Output Clinical judgement is required. Create a clinical note"
+Title: "Decision Table Output Clinical judgement is required. Create a clinical note."
 Description: """"Immunization recommendation status" = "Further evaluation needed"
 """
 Usage: #definition
 * publisher = "World Health Organization (WHO)"
 * experimental = false
 * version = "0.2.0"
-* name = "Clinical judgement is required. Create a clinical note"
+* name = "Clinical judgement is required. Create a clinical note."
 * status = #draft
 * contact[+]
   * telecom[+]

@@ -304,7 +304,7 @@ Check for contraindications."""
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "TBE vaccines")
 
 Vaccination against the disease requires a primary series of 3 doses; those who will continue to be at risk should probably have ≥1 booster doses. For both vaccines (FSME-Immun and Encepur) the manufacturers recommend a booster dose to be administered 3 years after completion of the primary series. """
-  * definitionCanonical = Canonical(DTO.Theprimaryseriesiscomplete.Clientisnotdu.c8ed11f7bd)
+  * definitionCanonical = Canonical(DTO.Theprimaryseriesiscomplete.Clientisnotduec8ed11f7bd)
   * dynamicValue[+]
     * path = "status"
     * expression

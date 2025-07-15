@@ -199,7 +199,7 @@ Check for contraindications."""
 "Completed the primary vaccination series" (where "Vaccine type" = "Cholera vaccines") = TRUE
 
 Revaccination is recommended where there is continued risk of Vibrio cholerae infection. For WC vaccines, revaccination is recommended after 3 years. """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotduefo.3e43cbd132)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotduefor3e43cbd132)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -243,7 +243,7 @@ Check for any vaccines due and inform the caregiver of when to come back for the
 "Immunization recommendation status" = "Due"
 "Completed the primary vaccination series" (where "Vaccine type" = "Cholera vaccines") = TRUE
 """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisdueforch.16a4e0f1c7)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisdueforcho16a4e0f1c7)
   * dynamicValue[+]
     * path = "status"
     * expression

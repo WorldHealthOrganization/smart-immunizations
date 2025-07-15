@@ -204,7 +204,7 @@ Check for contraindications."""
 "Completed the primary vaccination series" (where "Vaccine type" = "Seasonal influenza vaccines") = TRUE
 
 A single dose is appropriate for children aged ≥ 9 years and healthy adults. Those who have previously been vaccinated at least once should subsequently receive an annual dose, as should children and adolescents aged 9 years or over and healthy adults. """
-  * definitionCanonical = Canonical(DTO.Theprimaryseriesiscomplete.Clientisnotdu.909a9041b0)
+  * definitionCanonical = Canonical(DTO.Theprimaryseriesiscomplete.Clientisnotdue909a9041b0)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -248,7 +248,7 @@ Check for any other vaccines due and inform the caregiver of when to come back f
 "Immunization recommendation status" = "Due"
 "Completed the primary vaccination series" (where "Vaccine type" = "Seasonal influenza vaccines") = TRUE
 """
-  * definitionCanonical = Canonical(DTO.Theprimaryseriesiscomplete.Clientisduefo.041c5bfa9e)
+  * definitionCanonical = Canonical(DTO.Theprimaryseriesiscomplete.Clientisduefor041c5bfa9e)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -292,7 +292,7 @@ Check for contraindications."""
 "Immunization recommendation status" = "Not due"
 "Completed the primary vaccination series" (where "Vaccine type" = "Seasonal influenza vaccines") = TRUE
 """
-  * definitionCanonical = Canonical(DTO.Theprimaryseriesiscomplete.Clientisnotdu.909a9041b0)
+  * definitionCanonical = Canonical(DTO.Theprimaryseriesiscomplete.Clientisnotdue909a9041b0)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -336,7 +336,7 @@ Check for any other vaccines due and inform the caregiver of when to come back f
 "Immunization recommendation status" = "Due"
 "Completed the primary vaccination series" (where "Vaccine type" = "Seasonal influenza vaccines") = TRUE
 """
-  * definitionCanonical = Canonical(DTO.Theprimaryseriesiscomplete.Clientisduefo.041c5bfa9e)
+  * definitionCanonical = Canonical(DTO.Theprimaryseriesiscomplete.Clientisduefor041c5bfa9e)
   * dynamicValue[+]
     * path = "status"
     * expression

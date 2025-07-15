@@ -26,7 +26,7 @@ Description:  "Value Set for Decision Tables For Tab DTs.Rotavirus. Autogenerate
 * include DT#"The series administered to the client is a mixed series or a series with unknown vaccine products"
 * include DT#"Should vaccinate client with third rotavirus dose as no live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series."
 * include DT#"Live vaccines was administered in the last 4 weeks"
-* include DT#"Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of wh.8e0e140bfc"
+* include DT#"Should not vaccinate client with third rotavirus dose as live vaccine was administered in the last 4 weeks and series administered to client is a mixed or unknown series. Check for any other vaccines due and inform the caregiver of whe8e0e140bfc"
 * include DT#"No live vaccine was administered in last 4 weeks"
 * include DT#"The series administered to the client contains the same product"
 * include DT#"The series contain more than two doses"

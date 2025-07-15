@@ -113,7 +113,7 @@ Check for contraindications."""
 "Completed the primary vaccination series" (where "Vaccine type" = "Typhoid vaccines") = TRUE
 
 – """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotduefo.5b22c9f7b3)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotduefor5b22c9f7b3)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -158,7 +158,7 @@ Check for any other vaccines due and inform the caregiver of when to come back f
 "Completed the primary vaccination series" (where "Vaccine type" = "Typhoid vaccines") = TRUE
 
 Revaccination is recommended every 3 years for ViPS. """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisdueforty.bc65e0f313)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisduefortypbc65e0f313)
   * dynamicValue[+]
     * path = "status"
     * expression

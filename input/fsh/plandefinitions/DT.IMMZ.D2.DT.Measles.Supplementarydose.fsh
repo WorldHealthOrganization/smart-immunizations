@@ -69,7 +69,7 @@ Check for any vaccines due and inform the caregiver of when to come back for sup
   * description = """Consider measles supplementary dose. Create a clinical note
 "Immunization recommendation status" = "Further evaluation needed"
 """
-  * definitionCanonical = Canonical(DTO.Considermeaslessupplementarydose.Createa.99fa2f04d3)
+  * definitionCanonical = Canonical(DTO.Considermeaslessupplementarydose.Createac99fa2f04d3)
   * dynamicValue[+]
     * path = "status"
     * expression

@@ -331,7 +331,7 @@ Check for contraindications."""
 "Completed the booster series" (where "Vaccine type" = "Cholera vaccines") = TRUE
 
 Revaccination is recommended where there is continued risk of Vibrio cholerae infection. For WC-rBS vaccine, children aged 2–5 years revaccination is recommended within 6 months. If less than 6 months have passed, 1 dose for revaccination. """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotduefo.3e43cbd132)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotduefor3e43cbd132)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -375,7 +375,7 @@ Check for any vaccines due and inform the caregiver of when to come back for the
 "Immunization recommendation status" = "Due"
 "Completed the booster series" (where "Vaccine type" = "Cholera vaccines") = TRUE
 """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisdueforch.16a4e0f1c7)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisdueforcho16a4e0f1c7)
   * dynamicValue[+]
     * path = "status"
     * expression

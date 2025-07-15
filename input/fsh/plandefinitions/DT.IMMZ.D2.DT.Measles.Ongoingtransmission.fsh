@@ -26,7 +26,7 @@ Usage: #definition
 
 In countries with ongoing transmission in which the risk of measles mortality remains high, MCV1 should be given at 9 months of age.
 As a general rule, live vaccines should be given either simultaneously or at intervals of 4 weeks. An exception to this rule is oral poliovirus vaccine (OPV), which can be given at any time before or after measles vaccination without interference in the response to either vaccine. """
-  * definitionCanonical = Canonical(DTO.Clientisnotdueforfirstdoseofmeasles-cont.cebb90c9c1)
+  * definitionCanonical = Canonical(DTO.Clientisnotdueforfirstdoseofmeasles-contacebb90c9c1)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -157,7 +157,7 @@ Check for any vaccines due and inform the caregiver of when to come back for MCV
 
 In countries with ongoing transmission in which the risk of measles mortality remains high, MCV2 should be given at 15–18 months. The minimum interval between MCV1 and MCV2 is 4 weeks.
 As a general rule, live vaccines should be given either simultaneously or at intervals of 4 weeks. An exception to this rule is OPV, which can be given at any time before or after measles vaccination without interference in the response to either vaccine. """
-  * definitionCanonical = Canonical(DTO.Clientisnotdueforseconddoseofmeasles-con.ed6bf2ffcc)
+  * definitionCanonical = Canonical(DTO.Clientisnotdueforseconddoseofmeasles-conted6bf2ffcc)
   * dynamicValue[+]
     * path = "status"
     * expression

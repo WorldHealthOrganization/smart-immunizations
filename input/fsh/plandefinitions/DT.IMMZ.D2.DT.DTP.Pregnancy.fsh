@@ -25,7 +25,7 @@ Tetanus vaccines: WHO position paper (February 2017) (7)"""
   * description = """Client should follow 'delayed or interrupted series' decision logic
 
 If tetanus vaccination is started during adolescence or adulthood, including pregnancy, a total of only 5 appropriately spaced doses are required to obtain lifelong protection. """
-  * definitionCanonical = Canonical(DTO.Clientshouldfollowdelayedorinterruptedse.fc00accaf2)
+  * definitionCanonical = Canonical(DTO.Clientshouldfollowdelayedorinterruptedserfc00accaf2)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -67,7 +67,7 @@ If tetanus vaccination is started during adolescence or adulthood, including pre
   * description = """Client should follow 'pregnancy starting with 3 doses' decision logic
 
 Pregnant women who have received only 3 doses of tetanus-containing vaccines during childhood without booster doses should receive 2 doses of tetanus-containing vaccines at the earliest opportunity during pregnancy with a minimal interval of 4 weeks between doses and the second dose at least 2 weeks before giving birth. To provide lifelong protection, a sixth dose would be needed at least 1 year after the fifth dose, or during the next pregnancy. """
-  * definitionCanonical = Canonical(DTO.Clientshouldfollowpregnancystartingwith3.ee3e2c3bc3)
+  * definitionCanonical = Canonical(DTO.Clientshouldfollowpregnancystartingwith3dee3e2c3bc3)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -109,7 +109,7 @@ Pregnant women who have received only 3 doses of tetanus-containing vaccines dur
   * description = """Client should follow 'pregnancy starting with 4 doses' decision logic
 
 Pregnant women who received 4 tetanus-containing vaccine doses during childhood or pre-adulthood need only 1 booster dose, which should be given at the first opportunity. To provide lifelong protection, a sixth dose would be needed at least 1 year after the fifth dose, or duing the next pregnancy. """
-  * definitionCanonical = Canonical(DTO.Clientshouldfollowpregnancystartingwith4.0e10237d53)
+  * definitionCanonical = Canonical(DTO.Clientshouldfollowpregnancystartingwith4d0e10237d53)
   * dynamicValue[+]
     * path = "status"
     * expression

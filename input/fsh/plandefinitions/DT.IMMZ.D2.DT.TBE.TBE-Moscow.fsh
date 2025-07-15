@@ -297,7 +297,7 @@ Check for contraindications."""
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "TBE vaccines")
 
 Further booster doses are recommended at 3-year intervals. """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotduefo.f1ec96683f)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotdueforf1ec96683f)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -341,7 +341,7 @@ Check for contraindications."""
 "Immunization recommendation status" = "Due"
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "TBE vaccines")
 """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.ClientisdueforTB.bd94866b73)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.ClientisdueforTBEbd94866b73)
   * dynamicValue[+]
     * path = "status"
     * expression

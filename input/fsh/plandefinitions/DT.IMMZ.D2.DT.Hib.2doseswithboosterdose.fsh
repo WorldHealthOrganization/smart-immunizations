@@ -246,7 +246,7 @@ Check for any other vaccines due."""
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Hib-containing vaccines")
 
 Booster doses should be administered at least 6 months after completion of the primary series. """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotduefo.9da7c6cb7c)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotduefor9da7c6cb7c)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -290,7 +290,7 @@ Check for any other vaccines due and inform the caregiver of when to come back f
 "Immunization recommendation status" = "Due"
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Hib-containing vaccines")
 """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.ClientisdueforHi.92f09369aa)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.ClientisdueforHib92f09369aa)
   * dynamicValue[+]
     * path = "status"
     * expression

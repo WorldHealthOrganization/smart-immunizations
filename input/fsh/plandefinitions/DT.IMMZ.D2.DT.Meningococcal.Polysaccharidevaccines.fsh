@@ -124,7 +124,7 @@ Check for contraindications."""
 "Completed the primary vaccination series" (where "Vaccine type" = "Meningococcal vaccines") = TRUE
 
 One booster 3–5 years after the primary dose may be given to persons considered to be a continued high risk of exposure, including some health workers. """
-  * definitionCanonical = Canonical(DTO.Theprimaryseriesiscomplete.Clientisnotdu.bfb6550297)
+  * definitionCanonical = Canonical(DTO.Theprimaryseriesiscomplete.Clientisnotduecccefec9f2)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -168,7 +168,7 @@ Check for any other vaccines due and inform the caregiver of when to come back f
 "Immunization recommendation status" = "Further evaluation needed"
 "Completed the primary vaccination series" (where "Vaccine type" = "Meningococcal vaccines") = TRUE
 """
-  * definitionCanonical = Canonical(DTO.Theprimaryseriesiscomplete.Clinicaljudge.77268b793a)
+  * definitionCanonical = Canonical(DTO.Theprimaryseriesiscomplete.Clinicaljudgem77268b793a)
   * dynamicValue[+]
     * path = "status"
     * expression

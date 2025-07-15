@@ -111,7 +111,7 @@ Check for contraindications."""
   * description = """Clinical judgement is required. Create a clinical note.
 "Immunization recommendation status" = "Further evaluation needed"
 """
-  * definitionCanonical = Canonical(DTO.Clinicaljudgementisrequired.Createaclinicalnote.)
+  * definitionCanonical = Canonical(DTO.Clinicaljudgementisrequired.Createaclinicalnote)
   * dynamicValue[+]
     * path = "status"
     * expression

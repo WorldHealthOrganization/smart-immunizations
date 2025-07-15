@@ -328,7 +328,7 @@ If the primary series begins at 6 weeks, a booster dose should be given 6 months
 "Immunization recommendation status" = "Not due"
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Poliovirus-containing vaccines")
 """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotduefo.2ba6131350)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.Clientisnotduefor2ba6131350)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -372,7 +372,7 @@ Check for any other vaccines due and inform the caregiver when to come back for 
 "Immunization recommendation status" = "Due"
 "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Poliovirus-containing vaccines")
 """
-  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.ClientisdueforIP.db4102d0dd)
+  * definitionCanonical = Canonical(DTO.Primaryseriesiscomplete.ClientisdueforIPVdb4102d0dd)
   * dynamicValue[+]
     * path = "status"
     * expression
