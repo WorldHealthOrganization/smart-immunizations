@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="277">
+         <a:s>/*
+ * Library: IMMZD2DTPolioBirthLogic (IMMZ.D2.DT.Polio.Birth dose)
+ * Rule: Determine if the client is due for a poliovirus vaccination according to the national immunization schedule
+ * Decision Table: Birth dose administration as part of &quot;bivalent oral polio vaccine (bOPV) plus inactivated polio vaccine (IPV)&quot; schedule (in countries that are poliomyelitis (polio)-endemic countries or at high risk of importation and subsequent spread of polio that follow the combined bOPV–IPV schedule)
+ * Trigger: IMMZ.D2  Determine required vaccination(s) if any
+ */
+library IMMZD2DTPolioBirthLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTPolioBirthLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="13:1-13:55" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTPolioEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTPolioEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="209" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>parameter Today </a:s>
+               <a:s r="213">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="212">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="212" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="213" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="217" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="215" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="216" xsi:type="SingletonFrom">
+            <operand localId="214" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="223" locator="37:1-39:52" name="Client is due for the bOPV birth dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for the bOPV birth dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;)"/>
+            <a:s r="223">
+               <a:s>/*
+@output: Client is due for the bOPV birth dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;)
+*/
+define &quot;Client is due for the bOPV birth dose&quot;:
+  </a:s>
+               <a:s r="224">
+                  <a:s r="226">
+                     <a:s r="225">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="226">
+                        <a:s>&quot;bOPV birth dose (a zero dose) was not administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="228">
+                     <a:s r="227">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="228">
+                        <a:s>&quot;Client's age is less than 1 week&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="224" locator="38:3-39:52" xsi:type="And">
+            <operand localId="226" locator="38:3-38:64" name="bOPV birth dose (a zero dose) was not administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="228" locator="39:9-39:52" name="Client's age is less than 1 week" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="231" locator="45:1-46:176" name="Client is due for the bOPV birth dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for the bOPV birth dose Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with bOPV birth dose (a zero dose) as poliovirus birth dose was not administered and client's age is less than 1 week. Check for contraindications."/>
+            <a:s r="231">
+               <a:s>/*
+@output: Client is due for the bOPV birth dose Guidance
+@guidance: Should vaccinate client with bOPV birth dose (a zero dose) as poliovirus birth dose was not administered and client's age is less than 1 week. Check for contraindications.
+*/
+define &quot;Client is due for the bOPV birth dose Guidance&quot;:
+  </a:s>
+               <a:s r="232">
+                  <a:s>'Should vaccinate client with bOPV birth dose (a zero dose) as poliovirus birth dose was not administered and client\'s age is less than 1 week. Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="232" locator="46:3-46:176" valueType="t:String" value="Should vaccinate client with bOPV birth dose (a zero dose) as poliovirus birth dose was not administered and client's age is less than 1 week. Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="239" locator="52:1-54:64" name="Client is not due for the bOPV birth dose Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for the bOPV birth dose Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="239">
+               <a:s>/*
+@output: Client is not due for the bOPV birth dose Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for the bOPV birth dose Case 1&quot;:
+  </a:s>
+               <a:s r="240">
+                  <a:s r="242">
+                     <a:s r="241">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="242">
+                        <a:s>&quot;bOPV birth dose (a zero dose) was not administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="244">
+                     <a:s r="243">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="244">
+                        <a:s>&quot;Client's age is more than or equal to 1 week&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="240" locator="53:3-54:64" xsi:type="And">
+            <operand localId="242" locator="53:3-53:64" name="bOPV birth dose (a zero dose) was not administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="244" locator="54:9-54:64" name="Client's age is more than or equal to 1 week" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="247" locator="60:1-61:60" name="Client is not due for the bOPV birth dose Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for the bOPV birth dose Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="247">
+               <a:s>/*
+@output: Client is not due for the bOPV birth dose Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for the bOPV birth dose Case 2&quot;:
+  </a:s>
+               <a:s r="249">
+                  <a:s r="248">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="249">
+                     <a:s>&quot;bOPV birth dose (a zero dose) was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="249" locator="61:3-61:60" name="bOPV birth dose (a zero dose) was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="236" locator="67:1-69:57" name="Client is not due for the bOPV birth dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for the bOPV birth dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="236">
+               <a:s>/*
+@output: Client is not due for the bOPV birth dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for the bOPV birth dose&quot;:
+  </a:s>
+               <a:s r="237">
+                  <a:s r="245">
+                     <a:s>&quot;Client is not due for the bOPV birth dose Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="250">
+                     <a:s>&quot;Client is not due for the bOPV birth dose Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="237" locator="68:3-69:57" xsi:type="Or">
+            <operand localId="245" locator="68:3-68:52" name="Client is not due for the bOPV birth dose Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="250" locator="69:8-69:57" name="Client is not due for the bOPV birth dose Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="253" locator="76:1-81:5" name="Client is not due for the bOPV birth dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for the bOPV birth dose Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with bOPV birth dose (a zero dose) as client's age is more than or equal to 1 week. Check for any other vaccines due and inform the caregiver of when to come back for the next dose."/>
+            <a:t name="guidance" value="Poliovirus birth dose was already administered. Check poliovirus immunization schedule."/>
+            <a:s r="253">
+               <a:s>/*
+@output: Client is not due for the bOPV birth dose Guidance
+@guidance: Should not vaccinate client with bOPV birth dose (a zero dose) as client's age is more than or equal to 1 week. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+@guidance: Poliovirus birth dose was already administered. Check poliovirus immunization schedule.
+*/
+define &quot;Client is not due for the bOPV birth dose Guidance&quot;:
+  </a:s>
+               <a:s r="254">
+                  <a:s>case
+    </a:s>
+                  <a:s r="255">
+                     <a:s>when </a:s>
+                     <a:s r="256">
+                        <a:s>&quot;Client is not due for the bOPV birth dose Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="257">
+                        <a:s>'Should not vaccinate client with bOPV birth dose (a zero dose) as client\'s age is more than or equal to 1 week. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="258">
+                     <a:s>when </a:s>
+                     <a:s r="259">
+                        <a:s>&quot;Client is not due for the bOPV birth dose Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="260">
+                        <a:s>'Poliovirus birth dose was already administered. Check poliovirus immunization schedule.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="261">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="254" locator="77:3-81:5" xsi:type="Case">
+            <caseItem localId="255" locator="78:5-78:277">
+               <when localId="256" locator="78:10-78:59" name="Client is not due for the bOPV birth dose Case 1" xsi:type="ExpressionRef"/>
+               <then localId="257" locator="78:66-78:277" valueType="t:String" value="Should not vaccinate client with bOPV birth dose (a zero dose) as client's age is more than or equal to 1 week. Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="258" locator="79:5-79:154">
+               <when localId="259" locator="79:10-79:59" name="Client is not due for the bOPV birth dose Case 2" xsi:type="ExpressionRef"/>
+               <then localId="260" locator="79:66-79:154" valueType="t:String" value="Poliovirus birth dose was already administered. Check poliovirus immunization schedule." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="261" locator="80:10-80:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="219" locator="23:1-28:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="219">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="220">
+                  <a:s>case
+    </a:s>
+                  <a:s r="221">
+                     <a:s>when </a:s>
+                     <a:s r="229">
+                        <a:s>&quot;Client is due for the bOPV birth dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="233">
+                        <a:s>&quot;Client is due for the bOPV birth dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="234">
+                     <a:s>when </a:s>
+                     <a:s r="251">
+                        <a:s>&quot;Client is not due for the bOPV birth dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="262">
+                        <a:s>&quot;Client is not due for the bOPV birth dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="263">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="220" locator="24:3-28:5" xsi:type="Case">
+            <caseItem localId="221" locator="25:5-25:102">
+               <when localId="229" locator="25:10-25:48" name="Client is due for the bOPV birth dose" xsi:type="ExpressionRef"/>
+               <then localId="233" locator="25:55-25:102" name="Client is due for the bOPV birth dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="234" locator="26:5-26:110">
+               <when localId="251" locator="26:10-26:52" name="Client is not due for the bOPV birth dose" xsi:type="ExpressionRef"/>
+               <then localId="262" locator="26:59-26:110" name="Client is not due for the bOPV birth dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="263" locator="27:10-27:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="265" locator="30:1-31:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="265">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="266">
+                  <a:s r="269">
+                     <a:s r="267">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="275">
+                     <a:s r="271">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="272">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="266" locator="31:3-31:45" xsi:type="And">
+            <operand localId="269" locator="31:3-31:24" xsi:type="Not">
+               <operand localId="268" locator="31:3-31:24" xsi:type="IsNull">
+                  <operand localId="267" locator="31:3-31:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="275" locator="31:30-31:45" xsi:type="Not">
+               <operand localId="270" locator="31:30-31:45" xsi:type="Equal">
+                  <signature localId="273" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="274" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="271" locator="31:30-31:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="272" locator="31:44-31:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="277" locator="87:1-93:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="277">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="278">
+                  <a:s>case
+    </a:s>
+                  <a:s r="279">
+                     <a:s>when </a:s>
+                     <a:s r="280">
+                        <a:s r="282">
+                           <a:s r="281">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="282">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="283">
+                           <a:s>'08.Alt1w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="288">
+                        <a:s r="289">
+                           <a:s>&quot;Client is due for the bOPV birth dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="290">
+                           <a:s r="291">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="292">
+                              <a:s>'Should vaccinate client with bOPV birth dose (a zero dose) as poliovirus birth dose was not administered and client\'s age is less than 1 week. Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="295">
+                     <a:s>when </a:s>
+                     <a:s r="296">
+                        <a:s r="298">
+                           <a:s r="297">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="298">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="299">
+                           <a:s>'09.Agt1w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="304">
+                        <a:s r="305">
+                           <a:s>&quot;Client is not due for the bOPV birth dose Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="306">
+                           <a:s r="307">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="308">
+                              <a:s>'Should not vaccinate client with bOPV birth dose (a zero dose) as client\'s age is more than or equal to 1 week. Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="311">
+                     <a:s>when </a:s>
+                     <a:s r="312">
+                        <a:s r="314">
+                           <a:s r="313">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="314">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="315">
+                           <a:s>'10.D1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="320">
+                        <a:s r="321">
+                           <a:s>&quot;Client is not due for the bOPV birth dose Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="322">
+                           <a:s r="323">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="324">
+                              <a:s>'Poliovirus birth dose was already administered. Check poliovirus immunization schedule.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="327">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="278" locator="88:3-93:5" xsi:type="Case">
+            <caseItem localId="279" locator="89:5-89:269">
+               <when localId="280" locator="89:10-89:32" xsi:type="Equal">
+                  <signature localId="286" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="287" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="284" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="285" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="282" locator="89:10-89:19" path="id" xsi:type="Property">
+                        <source localId="281" locator="89:10-89:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="283" locator="89:23-89:32" valueType="t:String" value="08.Alt1w" xsi:type="Literal"/>
+               </when>
+               <then localId="328" xsi:type="As">
+                  <operand localId="288" locator="89:39-89:269" xsi:type="And">
+                     <operand localId="289" locator="89:39-89:77" name="Client is due for the bOPV birth dose" xsi:type="ExpressionRef"/>
+                     <operand localId="290" locator="89:83-89:269" xsi:type="Equal">
+                        <signature localId="293" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="294" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="291" locator="89:83-89:92" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="292" locator="89:96-89:269" valueType="t:String" value="Should vaccinate client with bOPV birth dose (a zero dose) as poliovirus birth dose was not administered and client's age is less than 1 week. Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="329" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="330" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="331" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="295" locator="90:5-90:318">
+               <when localId="296" locator="90:10-90:32" xsi:type="Equal">
+                  <signature localId="302" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="303" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="300" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="301" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="298" locator="90:10-90:19" path="id" xsi:type="Property">
+                        <source localId="297" locator="90:10-90:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="299" locator="90:23-90:32" valueType="t:String" value="09.Agt1w" xsi:type="Literal"/>
+               </when>
+               <then localId="332" xsi:type="As">
+                  <operand localId="304" locator="90:39-90:318" xsi:type="And">
+                     <operand localId="305" locator="90:39-90:88" name="Client is not due for the bOPV birth dose Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="306" locator="90:94-90:318" xsi:type="Equal">
+                        <signature localId="309" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="310" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="307" locator="90:94-90:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="308" locator="90:107-90:318" valueType="t:String" value="Should not vaccinate client with bOPV birth dose (a zero dose) as client's age is more than or equal to 1 week. Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="333" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="334" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="335" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="311" locator="91:5-91:192">
+               <when localId="312" locator="91:10-91:29" xsi:type="Equal">
+                  <signature localId="318" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="319" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="316" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="317" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="314" locator="91:10-91:19" path="id" xsi:type="Property">
+                        <source localId="313" locator="91:10-91:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="315" locator="91:23-91:29" valueType="t:String" value="10.D1" xsi:type="Literal"/>
+               </when>
+               <then localId="336" xsi:type="As">
+                  <operand localId="320" locator="91:36-91:192" xsi:type="And">
+                     <operand localId="321" locator="91:36-91:85" name="Client is not due for the bOPV birth dose Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="322" locator="91:91-91:192" xsi:type="Equal">
+                        <signature localId="325" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="326" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="323" locator="91:91-91:100" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="324" locator="91:104-91:192" valueType="t:String" value="Poliovirus birth dose was already administered. Check poliovirus immunization schedule." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="337" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="338" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="339" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="340" xsi:type="As">
+               <operand localId="327" locator="92:10-92:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="341" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="342" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="343" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>
