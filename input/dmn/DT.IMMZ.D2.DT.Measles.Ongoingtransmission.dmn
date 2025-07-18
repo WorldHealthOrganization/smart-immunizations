@@ -1,0 +1,203 @@
+<dmn:definitions xmlns:dmn="https://www.omg.org/spec/DMN/20240513/MODEL/" namespace="http://smart.who.int/immunizations" label="IMMZ.D2 Determine required vaccination(s) if any" id="DT.IMMZ.D2.DT.Measles.Ongoingtransmission">
+  <dmn:decision id="DT.IMMZ.D2.DT.Measles.Ongoingtransmission" label="IMMZ.D2 Determine required vaccination(s) if any">
+    <dmn:question>IMMZ.D2 Determine required vaccination(s) if any</dmn:question>
+    <dmn:usingTask href="http://smart.who.int/immunizations/bpmn/Determine.bpmn#if%20the%20client%20is%20due%20for%20a%20measles%20vaccination%20according%20to%20the%20national%20immunization%20schedule"/>
+    <dmn:decisionTable id="DT.IMMZ.D2.DT.Measles.Ongoingtransmission">
+      <dmn:input id="input.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.NumberofMCVprimaryseriesdosesadministered" label="Number of MCV primary series doses administered">
+        <dmn:inputExpression id="inputExpression.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.NumberofMCVprimaryseriesdosesadministered" typeRef="string">
+          <dmn:text>Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series")</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="input.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.Clientsage" label="Clients age">
+        <dmn:inputExpression id="inputExpression.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.Clientsage" typeRef="string">
+          <dmn:text>Today's date − "Date of birth"</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="input.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.Timepassedsincealivevaccinewasadministered" label="Time passed since a live vaccine was administered">
+        <dmn:inputExpression id="inputExpression.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.Timepassedsincealivevaccinewasadministered" typeRef="string">
+          <dmn:text>Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE)</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="output.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.CarePlan" label="Care Plan">
+        <dmn:description>Produce a suggested Care Plan for consideration by health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.Guidancedisplayedtohealthworker" label="Guidance displayed to health worker">
+        <dmn:description>Request to communicate guidance to the health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.Annotations" label="Annotations">
+        <dmn:description>Additional information for the health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.References" label="Reference(s)">
+        <dmn:description>Reference for the source content (L1)</dmn:description>
+      </dmn:output>
+      <dmn:rule id="rule.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.rul8b107059dd">
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date of birth" &lt; 9 months</dmn:description>
+          <dmn:text>Clients age is less than 9 months</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for first dose of measles-containing vaccine (MCV1)</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any vaccines due and inform the caregiver of when to come back for MCV1.</dmn:description>
+          <dmn:text>Should not vaccinate client as clients age is less than 9 months.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>In countries with ongoing transmission in which the risk of measles mortality remains high, MCV1 should be given at 9 months of age.
+As a general rule, live vaccines should be given either simultaneously or at intervals of 4 weeks. An exception to this rule is oral poliovirus vaccine (OPV), which can be given at any time before or after measles vaccination without interference in the response to either vaccine.</dmn:text>
+        </dmn:annotationEntry>
+        <dmn:annotationEntry>
+          <dmn:text>WHO recommendations for routine immunization – summary tables (March 2023) (1)</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.rulef746128f1">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 0</dmn:description>
+          <dmn:text>No measles primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date of birth" ≥ 9 months</dmn:description>
+          <dmn:text>Clients age is more than or equal to 9 months</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks</dmn:description>
+          <dmn:text>No live vaccine was administered in the last 4 weeks</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Due"</dmn:description>
+          <dmn:text>Client is due for MCV1</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine administered in the past 4 weeks.</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.rul9bb83fc755">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 0</dmn:description>
+          <dmn:text>No measles primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date of birth" ≥ 9 months</dmn:description>
+          <dmn:text>Clients age is more than or equal to 9 months</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) &lt; 4 weeks</dmn:description>
+          <dmn:text>Live vaccine was administered in the last 4 weeks</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for MCV1</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any vaccines due and inform the caregiver of when to come back for MCV1.</dmn:description>
+          <dmn:text>Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.rula7aabdfa1b">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 1</dmn:description>
+          <dmn:text>MCV1 was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date of birth" &lt; 15 months</dmn:description>
+          <dmn:text>Clients age is less than 15 months</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for second dose of measles-containing vaccine (MCV2)</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any vaccines due and inform the caregiver of when to come back for MCV2.</dmn:description>
+          <dmn:text>Should not vaccinate client with MCV2 as clients age is less than 15 months.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>In countries with ongoing transmission in which the risk of measles mortality remains high, MCV2 should be given at 15–18 months. The minimum interval between MCV1 and MCV2 is 4 weeks.
+As a general rule, live vaccines should be given either simultaneously or at intervals of 4 weeks. An exception to this rule is OPV, which can be given at any time before or after measles vaccination without interference in the response to either vaccine.</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.rulef97dad14f">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 1</dmn:description>
+          <dmn:text>MCV1 was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date of birth" ≥ 15 months</dmn:description>
+          <dmn:text>Clients age is more than or equal to 15 months</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks</dmn:description>
+          <dmn:text>No live vaccine was administered in the last 4 weeks</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Due"</dmn:description>
+          <dmn:text>Client is due for MCV2</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.rul1264debe0c">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 1</dmn:description>
+          <dmn:text>MCV1 was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date of birth" ≥ 15 months</dmn:description>
+          <dmn:text>Clients age is more than or equal to 15 months</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) &lt; 4 weeks</dmn:description>
+          <dmn:text>Live vaccine was administered in the last 4 weeks</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for MCV2</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any vaccines due and inform the caregiver of when to come back for MCV2.</dmn:description>
+          <dmn:text>Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DT.IMMZ.D2.DT.Measles.Ongoingtransmission.rul5668f46b0e">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 2</dmn:description>
+          <dmn:text>MCV2 was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Measles-containing vaccines")</dmn:description>
+          <dmn:text>Measles primary series is complete</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check if a measles supplementary dose is appropriate for the client.</dmn:description>
+          <dmn:text>Measles primary series is complete. Two measles primary series doses were administered.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>An additional dose of MCV should be administered to children infected with HIV receiving highly active antiretroviral therapy (HAART) following immune reconstitution. If CD4+ T lymphocyte counts are monitored, an additional dose of MCV should be administered when immune reconstitution has been achieved (e.g. when the CD4+ T lymphocyte count reaches 20–25%). Where CD4+ T lymphocyte monitoring is not available, children should receive an additional dose of MCV 6–12 months after initiation of HAART.</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+</dmn:definitions>
