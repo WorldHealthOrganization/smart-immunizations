@@ -1,39 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="5a6183d" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.7.0">
   <bpmn:collaboration id="gather_contra_info" name="Workflow D: administer vaccine business process">
-    <bpmn:participant id="participant_id" name="Workflow D: administer vaccine business process" processRef="Procesid" />
+    <bpmn:participant id="participant_id" name="Workflow D: administer vaccine business process" processRef="WorkflowDadministervaccinebusinessprocess" />
     <bpmn:textAnnotation id="TextAnnotation_0t002em">
       <bpmn:text>this is maybe a collapsible task w/ all the questionnaires? or a single questionnaire across all vaccines which only shows contradication questions if a vaccine is due?</bpmn:text>
     </bpmn:textAnnotation>
-    <bpmn:association id="Association_09grjkd" associationDirection="None" sourceRef="Checkcontraindications" targetRef="TextAnnotation_0t002em" />
     <bpmn:textAnnotation id="TextAnnotation_1wz9urs">
       <bpmn:text>this is a long display name.  camunda will not resize task.  we can put a short name and full name in this comment perhaps.  or not use camunda.  
 Some arrogance there:
 https://forum.bpmn.io/t/cannot-resize-task-to-fit-large-text-content/247</bpmn:text>
     </bpmn:textAnnotation>
-    <bpmn:association id="Association_0m4dx87" associationDirection="None" sourceRef="Determinevaccinestobeadministeredbasedoncontraindications" targetRef="TextAnnotation_1wz9urs" />
+    <bpmn:association id="Association_09grjkd" associationDirection="None" sourceRef="IMMZ.D4" targetRef="TextAnnotation_0t002em" />
+    <bpmn:association id="Association_0m4dx87" associationDirection="None" sourceRef="IMMZ.D5" targetRef="TextAnnotation_1wz9urs" />
   </bpmn:collaboration>
-  <bpmn:process id="Procesid" name="processname" isExecutable="true">
+  <bpmn:process id="WorkflowDadministervaccinebusinessprocess" name="Workflow D: administer vaccine business process" isExecutable="true">
     <bpmn:laneSet id="LaneSet_076poi9">
       <bpmn:lane id="VaccinationlocationHealthworker" name="Vaccination location Health worker">
         <bpmn:documentation>landedoc</bpmn:documentation>
-        <bpmn:flowNodeRef>Activity_0hqzno8</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Determinerequiredvaccinationsifany</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Checkcontraindications</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IMMZ.D12</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_07kmnk3</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Determinevaccinestobeadministeredbasedoncontraindications</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IMMZ.D4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IMMZ.D2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IMMZ.D5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IMMZ.D13</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IMMZ.D1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_013crdi</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:task id="Activity_0hqzno8" name="1. Capture or&#10;update client&#10;history">
-      <bpmn:incoming>Flow_01hsvp3</bpmn:incoming>
-      <bpmn:outgoing>Flow_1n32veh</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:startEvent id="StartEvent_1" name="Start workflow">
       <bpmn:documentation>out-start-doc</bpmn:documentation>
       <bpmn:outgoing>Flow_01hsvp3</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:subProcess id="Determinerequiredvaccinationsifany" name="2. Determine required vaccination(s) if any">
+    <bpmn:manualTask id="IMMZ.D12" name="Dispose of waste">
+      <bpmn:incoming>Flow_0smzeui</bpmn:incoming>
+      <bpmn:outgoing>Flow_0oqs6ja</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:endEvent id="Event_07kmnk3" name="end workflow">
+      <bpmn:incoming>Flow_0hf39rg</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:subProcess id="IMMZ.D2" name="Determine required vaccination(s) if any">
       <bpmn:documentation>parallel-multi-instance-task-doc</bpmn:documentation>
       <bpmn:extensionElements>
         <zeebe:ioMapping>
@@ -331,11 +337,7 @@ https://forum.bpmn.io/t/cannot-resize-task-to-fit-large-text-content/247</bpmn:t
       <bpmn:sequenceFlow id="Flow_14qct5s" sourceRef="IMMZ.D2.DT.Measles" targetRef="Gateway_1bps2hc" />
       <bpmn:sequenceFlow id="Flow_0fhbeea" sourceRef="IMMZ.D2.DT.Dengue" targetRef="Gateway_1bps2hc" />
     </bpmn:subProcess>
-    <bpmn:sequenceFlow id="Flow_01hsvp3" sourceRef="StartEvent_1" targetRef="Activity_0hqzno8" />
-    <bpmn:sequenceFlow id="Flow_1n32veh" sourceRef="Activity_0hqzno8" targetRef="Determinerequiredvaccinationsifany" />
-    <bpmn:sequenceFlow id="Flow_15fnxou" sourceRef="Determinerequiredvaccinationsifany" targetRef="Checkcontraindications" />
-    <bpmn:sequenceFlow id="Flow_0hf39rg" sourceRef="Determinevaccinestobeadministeredbasedoncontraindications" targetRef="Event_07kmnk3" />
-    <bpmn:userTask id="Checkcontraindications" name="4. Check contraindications">
+    <bpmn:userTask id="IMMZ.D4" name="Check contraindications">
       <bpmn:extensionElements>
         <zeebe:userTask />
         <zeebe:formDefinition externalReference="&#34;external form refernce for check contrad&#34;" />
@@ -343,13 +345,9 @@ https://forum.bpmn.io/t/cannot-resize-task-to-fit-large-text-content/247</bpmn:t
       <bpmn:incoming>Flow_15fnxou</bpmn:incoming>
       <bpmn:outgoing>Flow_10fc0g1</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_10fc0g1" sourceRef="Checkcontraindications" targetRef="Determinevaccinestobeadministeredbasedoncontraindications" />
-    <bpmn:endEvent id="Event_07kmnk3" name="end workflow">
-      <bpmn:incoming>Flow_0hf39rg</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:subProcess id="Determinevaccinestobeadministeredbasedoncontraindications" name="5. Determine&#10;vaccine(s) to be&#10;administered based&#10;on contraindications">
+    <bpmn:subProcess id="IMMZ.D5" name="Determine vaccine(s) to be administered based on contraindications">
       <bpmn:incoming>Flow_10fc0g1</bpmn:incoming>
-      <bpmn:outgoing>Flow_0hf39rg</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0smzeui</bpmn:outgoing>
       <bpmn:startEvent id="Event_0q226xh" name="inner end">
         <bpmn:outgoing>Flow_18qv6cw</bpmn:outgoing>
       </bpmn:startEvent>
@@ -387,85 +385,130 @@ https://forum.bpmn.io/t/cannot-resize-task-to-fit-large-text-content/247</bpmn:t
       <bpmn:sequenceFlow id="Flow_0e4k00i" sourceRef="Gateway_19quzyo" targetRef="IMMZ.D5.DT.Polio" />
       <bpmn:sequenceFlow id="Flow_1fdvw5a" sourceRef="IMMZ.D5.DT.Polio" targetRef="Gateway_0gywyyw" />
     </bpmn:subProcess>
+    <bpmn:sequenceFlow id="Flow_01hsvp3" sourceRef="StartEvent_1" targetRef="IMMZ.D1" />
+    <bpmn:sequenceFlow id="Flow_1n32veh" sourceRef="IMMZ.D1" targetRef="IMMZ.D2" />
+    <bpmn:sequenceFlow id="Flow_0smzeui" sourceRef="IMMZ.D5" targetRef="IMMZ.D12" />
+    <bpmn:sequenceFlow id="Flow_0oqs6ja" sourceRef="IMMZ.D12" targetRef="IMMZ.D13" />
+    <bpmn:sequenceFlow id="Flow_0hf39rg" sourceRef="IMMZ.D13" targetRef="Event_07kmnk3" />
+    <bpmn:sequenceFlow id="Flow_15fnxou" sourceRef="IMMZ.D2" targetRef="IMMZ.D4" />
+    <bpmn:sequenceFlow id="Flow_10fc0g1" sourceRef="IMMZ.D4" targetRef="IMMZ.D5" />
+    <bpmn:userTask id="IMMZ.D13" name="Update client record">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0oqs6ja</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hf39rg</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="IMMZ.D1" name="Capture or update client history">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_01hsvp3</bpmn:incoming>
+      <bpmn:outgoing>Flow_1n32veh</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:boundaryEvent id="Event_013crdi" attachedToRef="IMMZ.D5">
+      <bpmn:conditionalEventDefinition id="ConditionalEventDefinition_0a3vmk2">
+        <bpmn:condition xsi:type="bpmn:tFormalExpression" />
+      </bpmn:conditionalEventDefinition>
+    </bpmn:boundaryEvent>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="gather_contra_info">
       <bpmndi:BPMNShape id="Participant_160rjb3_di" bpmnElement="participant_id" isHorizontal="true">
-        <dc:Bounds x="160" y="80" width="1260" height="420" />
+        <dc:Bounds x="155" y="100" width="1585" height="420" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_14kqgtc_di" bpmnElement="VaccinationlocationHealthworker" isHorizontal="true">
-        <dc:Bounds x="190" y="80" width="1230" height="420" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0hqzno8_di" bpmnElement="Activity_0hqzno8">
-        <dc:Bounds x="510" y="270" width="100" height="80" />
+        <dc:Bounds x="185" y="100" width="1555" height="420" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
-        <dc:Bounds x="312" y="292" width="36" height="36" />
+        <dc:Bounds x="307" y="312" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="296" y="335" width="70" height="14" />
+          <dc:Bounds x="291" y="355" width="70" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1pooz8c_di" bpmnElement="Determinerequiredvaccinationsifany" isExpanded="false">
-        <dc:Bounds x="710" y="270" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0m8b83a_di" bpmnElement="Checkcontraindications">
-        <dc:Bounds x="870" y="270" width="100" height="80" />
+      <bpmndi:BPMNShape id="Activity_13mi2ar_di" bpmnElement="IMMZ.D12">
+        <dc:Bounds x="1060" y="290" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_07kmnk3_di" bpmnElement="Event_07kmnk3">
-        <dc:Bounds x="1252" y="292" width="36" height="36" />
+        <dc:Bounds x="1432" y="312" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1238" y="335" width="65" height="14" />
+          <dc:Bounds x="1418" y="355" width="65" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0sc7xc0_di" bpmnElement="Determinevaccinestobeadministeredbasedoncontraindications">
-        <dc:Bounds x="1050" y="270" width="100" height="80" />
+      <bpmndi:BPMNShape id="Activity_1pooz8c_di" bpmnElement="IMMZ.D2" isExpanded="false">
+        <dc:Bounds x="570" y="290" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0m8b83a_di" bpmnElement="IMMZ.D4">
+        <dc:Bounds x="730" y="290" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0sc7xc0_di" bpmnElement="IMMZ.D5">
+        <dc:Bounds x="910" y="290" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16rym4z_di" bpmnElement="IMMZ.D13">
+        <dc:Bounds x="1250" y="290" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0p9hdfi_di" bpmnElement="IMMZ.D1">
+        <dc:Bounds x="410" y="290" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_013crdi_di" bpmnElement="Event_013crdi">
+        <dc:Bounds x="942" y="352" width="36" height="36" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_01hsvp3_di" bpmnElement="Flow_01hsvp3">
-        <di:waypoint x="348" y="310" />
-        <di:waypoint x="510" y="310" />
+        <di:waypoint x="343" y="330" />
+        <di:waypoint x="410" y="330" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1n32veh_di" bpmnElement="Flow_1n32veh">
-        <di:waypoint x="610" y="310" />
-        <di:waypoint x="710" y="310" />
+        <di:waypoint x="510" y="330" />
+        <di:waypoint x="570" y="330" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_15fnxou_di" bpmnElement="Flow_15fnxou">
-        <di:waypoint x="810" y="310" />
-        <di:waypoint x="870" y="310" />
+      <bpmndi:BPMNEdge id="Flow_0smzeui_di" bpmnElement="Flow_0smzeui">
+        <di:waypoint x="1010" y="330" />
+        <di:waypoint x="1060" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0oqs6ja_di" bpmnElement="Flow_0oqs6ja">
+        <di:waypoint x="1160" y="330" />
+        <di:waypoint x="1250" y="330" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0hf39rg_di" bpmnElement="Flow_0hf39rg">
-        <di:waypoint x="1150" y="310" />
-        <di:waypoint x="1252" y="310" />
+        <di:waypoint x="1350" y="330" />
+        <di:waypoint x="1432" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15fnxou_di" bpmnElement="Flow_15fnxou">
+        <di:waypoint x="670" y="330" />
+        <di:waypoint x="730" y="330" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_10fc0g1_di" bpmnElement="Flow_10fc0g1">
-        <di:waypoint x="970" y="310" />
-        <di:waypoint x="1050" y="310" />
+        <di:waypoint x="830" y="330" />
+        <di:waypoint x="910" y="330" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="TextAnnotation_0t002em_di" bpmnElement="TextAnnotation_0t002em">
-        <dc:Bounds x="750" y="120" width="247" height="94" />
+        <dc:Bounds x="410" y="120" width="247" height="94" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1wz9urs_di" bpmnElement="TextAnnotation_1wz9urs">
-        <dc:Bounds x="1190" y="120" width="220" height="140" />
+        <dc:Bounds x="850" y="120" width="220" height="140" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_09grjkd_di" bpmnElement="Association_09grjkd">
-        <di:waypoint x="883" y="270" />
-        <di:waypoint x="832" y="214" />
+        <di:waypoint x="730" y="306" />
+        <di:waypoint x="544" y="214" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_0m4dx87_di" bpmnElement="Association_0m4dx87">
-        <di:waypoint x="1132" y="270" />
-        <di:waypoint x="1190" y="198" />
+        <di:waypoint x="930" y="290" />
+        <di:waypoint x="908" y="260" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
   <bpmndi:BPMNDiagram id="BPMNDiagram_0lrjwf2">
-    <bpmndi:BPMNPlane id="BPMNPlane_0xiigf8" bpmnElement="Determinerequiredvaccinationsifany">
+    <bpmndi:BPMNPlane id="BPMNPlane_0xiigf8" bpmnElement="IMMZ.D2">
       <bpmndi:BPMNShape id="Event_0g35flo_di" bpmnElement="inner-start-id">
         <dc:Bounds x="202" y="452" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -854,7 +897,7 @@ https://forum.bpmn.io/t/cannot-resize-task-to-fit-large-text-content/247</bpmn:t
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1sb80e8">
-    <bpmndi:BPMNPlane id="BPMNPlane_0rjbtiy" bpmnElement="Determinevaccinestobeadministeredbasedoncontraindications">
+    <bpmndi:BPMNPlane id="BPMNPlane_0rjbtiy" bpmnElement="IMMZ.D5">
       <bpmndi:BPMNShape id="Event_0q226xh_di" bpmnElement="Event_0q226xh">
         <dc:Bounds x="152" y="212" width="36" height="36" />
         <bpmndi:BPMNLabel>
