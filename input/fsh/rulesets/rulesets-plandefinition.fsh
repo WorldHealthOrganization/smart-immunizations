@@ -6,8 +6,8 @@ RuleSet: PlanDefMain( library, version )
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "{library}"
+* version = "v1"
+//* name = "{library}"
 * status = #draft
 * experimental = false
 * publisher = "World Health Organization (WHO)"

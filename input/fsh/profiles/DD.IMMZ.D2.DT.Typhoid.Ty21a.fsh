@@ -1,4 +1,4 @@
-Profile: DT.DD.IMMZ.D2.DT.Typhoid.Ty21a
+Profile: DD.IMMZ.D2.DT.Typhoid.Ty21a
 Parent: $SGDecisionTable
 Title: "Determine required vaccinations"
 * name = "Decision Table profile: Determine required vaccinations"

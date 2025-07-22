@@ -2,8 +2,8 @@ RuleSet: MedicationRequestActivityDefinition( antigen, version, date, doNotPerfo
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "IMMZ{antigen}MedicationRequest"
+* version = "v1"
+//* name = "IMMZ{antigen}MedicationRequest"
 * status = #draft
 * experimental = false
 * date = {date}

@@ -13,7 +13,7 @@ Usage: #definition
 * status = #draft
 * publisher = "World Health Organization (WHO)"
 * experimental = false
-* extension[task][+] = $SGTasks#manualTask
+* extension[task][+].valueCoding = $SGTasks#manualTask
 * contact[+]
   * telecom[+]
     * system = #url

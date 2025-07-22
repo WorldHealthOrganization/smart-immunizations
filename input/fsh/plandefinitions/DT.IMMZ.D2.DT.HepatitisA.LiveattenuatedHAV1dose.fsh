@@ -9,8 +9,8 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.HepatitisA.LiveattenuatedHAV1dose"
+* version = "v1"
+//* name = "DT.IMMZ.D2.DT.HepatitisA.LiveattenuatedHAV1dose"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
