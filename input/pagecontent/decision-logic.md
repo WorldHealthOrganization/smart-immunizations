@@ -16,146 +16,146 @@ The table below provides an overview of the decision-support tables and algorith
       </tr>
     </thead>
     <tbody style="text-align: left; vertical-align: top">
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
+      <tr><td>IMMZ.D2.DT.BCG</td><td>Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule<br/>(<a href="#IMMZ.D2.DT.BCG">View</a>,<a href="IMMZ.D2.DT.BCG.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.BCGcontraindications</td><td>Performing a contraindication check for BCG vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.BCGcontraindications">View</a>,<a href="IMMZ.D5.DT.BCGcontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.BCGschedule</td><td>Recommended vaccination schedule for BCG as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.BCGschedule">View</a>,<a href="IMMZ.D18.S.BCGschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.HepatitisB.Birthdose</td><td>Recommended administration of the birth dose for hepatitis B as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.HepatitisB.Birthdose">View</a>,<a href="IMMZ.D2.DT.HepatitisB.Birthdose.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.HepatitisB.3doses</td><td>Recommended vaccinations for hepatitis B following the 3-dose schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.HepatitisB.3doses">View</a>,<a href="IMMZ.D2.DT.HepatitisB.3doses.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.HepatitisB.4doses</td><td>Recommended vaccinations for hepatitis B following the 4-dose schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.HepatitisB.4doses">View</a>,<a href="IMMZ.D2.DT.HepatitisB.4doses.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.HepatitisB.Delayedstart</td><td>Recommended vaccinations for hepatitis B following the delayed start schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.HepatitisB.Delayedstart">View</a>,<a href="IMMZ.D2.DT.HepatitisB.Delayedstart.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.HepatitisBcontraindications</td><td>Performing a contraindication check for hepatitis B vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.HepatitisBcontraindications">View</a>,<a href="IMMZ.D5.DT.HepatitisBcontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.HepatitisB.Birthdoseschedule</td><td>Recommended birth dose vaccination schedule for hepatitis B as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.HepatitisB.Birthdoseschedule">View</a>,<a href="IMMZ.D18.S.HepatitisB.Birthdoseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.HepatitisB.3-doseschedule</td><td>Recommended 3-dose vaccination schedule for hepatitis B as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.HepatitisB.3-doseschedule">View</a>,<a href="IMMZ.D18.S.HepatitisB.3-doseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.HepatitisB.4-doseschedule</td><td>Recommended 4-dose vaccination schedule for hepatitis B as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.HepatitisB.4-doseschedule">View</a>,<a href="IMMZ.D18.S.HepatitisB.4-doseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.HepatitisB.Delayedstartschedule</td><td>Recommended delayed start vaccination schedule for hepatitis B as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.HepatitisB.Delayedstartschedule">View</a>,<a href="IMMZ.D18.S.HepatitisB.Delayedstartschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Polio.Birthdose</td><td>Recommended administration of the birth dose for poliomyelitis (polio) as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Polio.Birthdose">View</a>,<a href="IMMZ.D2.DT.Polio.Birthdose.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Polio.bOPVplusIPV</td><td>Recommended vaccinations for polio following the bivalent oral polio vaccine (bOPV) plus inactivated polio vaccine (IPV) schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Polio.bOPVplusIPV">View</a>,<a href="IMMZ.D2.DT.Polio.bOPVplusIPV.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Polio.SequentialIPVbOPV</td><td>Recommended vaccinations for polio following the sequential IPV–bOPV schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Polio.SequentialIPVbOPV">View</a>,<a href="IMMZ.D2.DT.Polio.SequentialIPVbOPV.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Polio.IPV-only</td><td>Recommended vaccinations for polio following the IPV-only schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Polio.IPV-only">View</a>,<a href="IMMZ.D2.DT.Polio.IPV-only.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Poliocontraindications</td><td>Performing a contraindication check for poliovirus-containing vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Poliocontraindications">View</a>,<a href="IMMZ.D5.DT.Poliocontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Polio.Birthdoseschedule</td><td>Recommended birth dose vaccination schedule for polio as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Polio.Birthdoseschedule">View</a>,<a href="IMMZ.D18.S.Polio.Birthdoseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Polio.bOPVplusIPVschedule</td><td>Recommended bOPV plus IPV vaccination schedule for polio as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Polio.bOPVplusIPVschedule">View</a>,<a href="IMMZ.D18.S.Polio.bOPVplusIPVschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Polio.SequentialIPVbOPVschedule</td><td>Recommended sequential IPV–bOPV vaccination schedule for polio as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Polio.SequentialIPVbOPVschedule">View</a>,<a href="IMMZ.D18.S.Polio.SequentialIPVbOPVschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Polio.IPV-onlyschedule</td><td>Recommended IPV-only vaccination schedule for polio as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Polio.IPV-onlyschedule">View</a>,<a href="IMMZ.D18.S.Polio.IPV-onlyschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.DTP.On-timestart</td><td>Recommended vaccinations for diphtheria–tetanus–pertussis (DTP) following the on-time start schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.DTP.On-timestart">View</a>,<a href="IMMZ.D2.DT.DTP.On-timestart.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.DTP.Delayedorinterruptedseries</td><td>Recommended vaccinations for DTP following the delayed start or interrupted series schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.DTP.Delayedorinterruptedseries">View</a>,<a href="IMMZ.D2.DT.DTP.Delayedorinterruptedseries.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.DTP.Pregnancy</td><td>Determine whether DTP vaccinations are needed for pregnant women as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.DTP.Pregnancy">View</a>,<a href="IMMZ.D2.DT.DTP.Pregnancy.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.DTP.Pregnancystartingwith3doses</td><td>Recommended vaccinations for diphtheria and tetanus following the schedule outlined for pregnant women who have received three childhood DTP doses as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.DTP.Pregnancystartingwith3doses">View</a>,<a href="IMMZ.D2.DT.DTP.Pregnancystartingwith3doses.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.DTP.Pregnancystartingwith4doses</td><td>Recommended vaccinations for diphtheria and tetanus following the schedule outlined for pregnant women who have received four childhood DTP doses as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.DTP.Pregnancystartingwith4doses">View</a>,<a href="IMMZ.D2.DT.DTP.Pregnancystartingwith4doses.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.DTPcontraindications</td><td>Performing a contraindication check for DTP vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.DTPcontraindications">View</a>,<a href="IMMZ.D5.DT.DTPcontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.DTP.On-timestartschedule</td><td>Recommended on-time start (at ≤ 12 months of age) vaccination schedule for DTP as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.DTP.On-timestartschedule">View</a>,<a href="IMMZ.D18.S.DTP.On-timestartschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.DTP.Delayedorinterruptedschedule</td><td>Recommended delayed or interrupted series vaccination schedule for DTP as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.DTP.Delayedorinterruptedschedule">View</a>,<a href="IMMZ.D18.S.DTP.Delayedorinterruptedschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.DTP.Pregnancystartingwith3dosesschedule</td><td>Recommended vaccination schedule for pregnant women who received 3 childhood DTP doses as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.DTP.Pregnancystartingwith3dosesschedule">View</a>,<a href="IMMZ.D18.S.DTP.Pregnancystartingwith3dosesschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.DTP.Pregnancystartingwith4dosesschedule</td><td>Recommended vaccination schedule for pregnant women who received 4 childhood DTP doses as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.DTP.Pregnancystartingwith4dosesschedule">View</a>,<a href="IMMZ.D18.S.DTP.Pregnancystartingwith4dosesschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Hib.3doses</td><td>Recommended vaccinations for Haemophilus influenzae type b (Hib) following the 3 primary doses without a booster schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Hib.3doses">View</a>,<a href="IMMZ.D2.DT.Hib.3doses.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Hib.3doseswithboosterdose</td><td>Recommended vaccinations for Hib following the 3 primary doses with a booster schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Hib.3doseswithboosterdose">View</a>,<a href="IMMZ.D2.DT.Hib.3doseswithboosterdose.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Hib.2doseswithboosterdose</td><td>Recommended vaccinations for Hib following the 2 primary doses with a booster schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Hib.2doseswithboosterdose">View</a>,<a href="IMMZ.D2.DT.Hib.2doseswithboosterdose.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Hibcontraindications</td><td>Performing a contraindication check for Hib vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Hibcontraindications">View</a>,<a href="IMMZ.D5.DT.Hibcontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Hib.3dosesschedule</td><td>Recommended 3 primary doses without a booster vaccination schedule for Hib as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Hib.3dosesschedule">View</a>,<a href="IMMZ.D18.S.Hib.3dosesschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Hib.3doseswithboosterdoseschedule</td><td>Recommended 3 primary doses with a booster vaccination schedule for Hib as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Hib.3doseswithboosterdoseschedule">View</a>,<a href="IMMZ.D18.S.Hib.3doseswithboosterdoseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Hib.2doseswithboosterdoseschedule</td><td>Recommended 2 primary doses with a booster vaccination schedule for Hib as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Hib.2doseswithboosterdoseschedule">View</a>,<a href="IMMZ.D18.S.Hib.2doseswithboosterdoseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose</td><td>Recommended vaccinations for pneumococcal following the 2 primary doses with a booster schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose">View</a>,<a href="IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Pneumococcal.3doses</td><td>Recommended vaccinations for pneumococcal following the 3 primary doses schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Pneumococcal.3doses">View</a>,<a href="IMMZ.D2.DT.Pneumococcal.3doses.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Pneumococcalcontraindications</td><td>Performing a contraindication check for pneumococcal vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Pneumococcalcontraindications">View</a>,<a href="IMMZ.D5.DT.Pneumococcalcontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Pneumococcal.2doseswithboosterdoseschedule</td><td>Recommended 2 primary doses with a booster vaccination schedule for pneumococcal as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Pneumococcal.2doseswithboosterdoseschedule">View</a>,<a href="IMMZ.D18.S.Pneumococcal.2doseswithboosterdoseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Pneumococcal.3dosesschedule</td><td>Recommended 3 primary doses vaccination schedule for pneumococcal as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Pneumococcal.3dosesschedule">View</a>,<a href="IMMZ.D18.S.Pneumococcal.3dosesschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Rotavirus</td><td>Recommended vaccinations for rotavirus as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Rotavirus">View</a>,<a href="IMMZ.D2.DT.Rotavirus.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Rotaviruscontraindications</td><td>Performing a contraindication check for rotavirus vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Rotaviruscontraindications">View</a>,<a href="IMMZ.D5.DT.Rotaviruscontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Rotavirusschedule</td><td>Recommended vaccination schedule for rotavirus as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Rotavirusschedule">View</a>,<a href="IMMZ.D18.S.Rotavirusschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Measles.Ongoingtransmission</td><td>Recommended vaccinations for measles following the ongoing transmission schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Measles.Ongoingtransmission">View</a>,<a href="IMMZ.D2.DT.Measles.Ongoingtransmission.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Measles.Lowtransmission</td><td>Recommended vaccinations for measles following the low levels of measles transmission schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Measles.Lowtransmission">View</a>,<a href="IMMZ.D2.DT.Measles.Lowtransmission.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Measles.MCVdose0</td><td>Recommended administration of dose 0 for measles as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Measles.MCVdose0">View</a>,<a href="IMMZ.D2.DT.Measles.MCVdose0.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Measles.Supplementarydose</td><td>Recommended administration of supplementary dose for measles as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Measles.Supplementarydose">View</a>,<a href="IMMZ.D2.DT.Measles.Supplementarydose.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Measlescontraindications</td><td>Performing a contraindication check for measles-containing vaccines (MCV) as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Measlescontraindications">View</a>,<a href="IMMZ.D5.DT.Measlescontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Measles.Ongoingtransmissionschedule</td><td>Recommended ongoing transmission vaccination schedule for measles as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Measles.Ongoingtransmissionschedule">View</a>,<a href="IMMZ.D18.S.Measles.Ongoingtransmissionschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Measles.Lowtransmissionschedule</td><td>Recommended low levels of measles transmission vaccination schedule for measles as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Measles.Lowtransmissionschedule">View</a>,<a href="IMMZ.D18.S.Measles.Lowtransmissionschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Measles.MCVdose0schedule</td><td>Recommended measles dose 0 vaccination schedule for measles as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Measles.MCVdose0schedule">View</a>,<a href="IMMZ.D18.S.Measles.MCVdose0schedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Measles.Supplementarydoseschedule</td><td>Recommended measles supplementary dose vaccination schedule for measles as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Measles.Supplementarydoseschedule">View</a>,<a href="IMMZ.D18.S.Measles.Supplementarydoseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Rubella.Highincidence</td><td>Recommended vaccinations for rubella following the high incidence of measles schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Rubella.Highincidence">View</a>,<a href="IMMZ.D2.DT.Rubella.Highincidence.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Rubella.Lowincidence</td><td>Recommended vaccinations for rubella following the low incidence of measles schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Rubella.Lowincidence">View</a>,<a href="IMMZ.D2.DT.Rubella.Lowincidence.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Rubellacontraindications</td><td>Performing a contraindication check for rubella vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Rubellacontraindications">View</a>,<a href="IMMZ.D5.DT.Rubellacontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Rubella.Highincidenceschedule</td><td>Recommended vaccination schedule for rubella for countries with high incidence of measles as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Rubella.Highincidenceschedule">View</a>,<a href="IMMZ.D18.S.Rubella.Highincidenceschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Rubella.Lowincidenceschedule</td><td>Recommended vaccination schedule for rubella for countries with low incidence of measles as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Rubella.Lowincidenceschedule">View</a>,<a href="IMMZ.D18.S.Rubella.Lowincidenceschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.HPV.2doses</td><td>Recommended vaccinations for human papillomavirus (HPV) following the 2-dose schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.HPV.2doses">View</a>,<a href="IMMZ.D2.DT.HPV.2doses.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.HPV.Singledose</td><td>Recommended vaccinations for HPV following the single-dose schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.HPV.Singledose">View</a>,<a href="IMMZ.D2.DT.HPV.Singledose.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.HPVcontraindications</td><td>Performing a contraindication check for HPV vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.HPVcontraindications">View</a>,<a href="IMMZ.D5.DT.HPVcontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.HPV.2-doseschedule</td><td>Recommended 2-dose vaccination schedule for HPV as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.HPV.2-doseschedule">View</a>,<a href="IMMZ.D18.S.HPV.2-doseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.HPV.Single-doseschedule</td><td>Recommended single-dose vaccination schedule for HPV as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.HPV.Single-doseschedule">View</a>,<a href="IMMZ.D18.S.HPV.Single-doseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine</td><td>Recommended vaccinations for Japanese encephalitis (JE) following the inactivated Vero cell-derived vaccine schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine">View</a>,<a href="IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.JE.Liveattenuatedvaccine</td><td>Recommended vaccinations for JE following the live attenuated vaccine schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.JE.Liveattenuatedvaccine">View</a>,<a href="IMMZ.D2.DT.JE.Liveattenuatedvaccine.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.JE.Liverecombinantvaccine</td><td>Recommended vaccinations for JE following the live recombinant vaccine schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.JE.Liverecombinantvaccine">View</a>,<a href="IMMZ.D2.DT.JE.Liverecombinantvaccine.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.JEcontraindications</td><td>Performing a contraindication check for JE vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.JEcontraindications">View</a>,<a href="IMMZ.D5.DT.JEcontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.JE.InactivatedVerocell-derivedvacc91866bc1e5</td><td>Recommended inactivated Vero cell-derived vaccination schedule for JE as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.JE.InactivatedVerocell-derivedvacc91866bc1e5">View</a>,<a href="IMMZ.D18.S.JE.InactivatedVerocell-derivedvacc91866bc1e5.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.JE.Liveattenuatedvaccineschedule</td><td>Recommended live attenuated vaccination schedule for JE as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.JE.Liveattenuatedvaccineschedule">View</a>,<a href="IMMZ.D18.S.JE.Liveattenuatedvaccineschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.JE.Liverecombinantvaccineschedule</td><td>Recommended live recombinant vaccination schedule for JE as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.JE.Liverecombinantvaccineschedule">View</a>,<a href="IMMZ.D18.S.JE.Liverecombinantvaccineschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Yellowfever</td><td>Recommended vaccinations for yellow fever as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Yellowfever">View</a>,<a href="IMMZ.D2.DT.Yellowfever.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Yellowfevercontraindications</td><td>Performing a contraindication check for yellow fever vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Yellowfevercontraindications">View</a>,<a href="IMMZ.D5.DT.Yellowfevercontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Yellowfeverschedule</td><td>Recommended vaccination schedule for yellow fever as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Yellowfeverschedule">View</a>,<a href="IMMZ.D18.S.Yellowfeverschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.TBE.FSME-Immun</td><td>Recommended vaccinations for tick-borne encephalitis (TBE) following the FSME-Immun schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.TBE.FSME-Immun">View</a>,<a href="IMMZ.D2.DT.TBE.FSME-Immun.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.TBE.Encepur</td><td>Recommended vaccinations for TBE following the Encepur schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.TBE.Encepur">View</a>,<a href="IMMZ.D2.DT.TBE.Encepur.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.TBE.TBE-Moscow</td><td>Recommended vaccinations for TBE following the TBE-Moscow schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.TBE.TBE-Moscow">View</a>,<a href="IMMZ.D2.DT.TBE.TBE-Moscow.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.TBE.EnceVir</td><td>Recommended vaccinations for TBE following the EnceVir schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.TBE.EnceVir">View</a>,<a href="IMMZ.D2.DT.TBE.EnceVir.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.TBEcontraindications</td><td>Performing a contraindication check for TBE vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.TBEcontraindications">View</a>,<a href="IMMZ.D5.DT.TBEcontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.TBE.FSME-Immunschedule</td><td>Recommended FSME-Immun vaccination schedule for TBE as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.TBE.FSME-Immunschedule">View</a>,<a href="IMMZ.D18.S.TBE.FSME-Immunschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.TBE.Encepurschedule</td><td>Recommended Encepur vaccination schedule for TBE as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.TBE.Encepurschedule">View</a>,<a href="IMMZ.D18.S.TBE.Encepurschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.TBE.TBE-Moscowschedule</td><td>Recommended TBE-Moscow vaccination schedule for TBE as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.TBE.TBE-Moscowschedule">View</a>,<a href="IMMZ.D18.S.TBE.TBE-Moscowschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.TBE.EnceVir</td><td>Recommended EnceVir vaccination schedule for TBE as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.TBE.EnceVir">View</a>,<a href="IMMZ.D18.S.TBE.EnceVir.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Typhoid.TCV</td><td>Recommended vaccinations for typhoid following the typhoid conjugate vaccine (TCV) schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Typhoid.TCV">View</a>,<a href="IMMZ.D2.DT.Typhoid.TCV.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Typhoid.ViPS</td><td>Recommended vaccinations for typhoid following the unconjugated Vi polysaccharide (ViPS) schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Typhoid.ViPS">View</a>,<a href="IMMZ.D2.DT.Typhoid.ViPS.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Typhoid.Ty21a</td><td>Recommended vaccinations for typhoid following the live attenuated Ty21a vaccine schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Typhoid.Ty21a">View</a>,<a href="IMMZ.D2.DT.Typhoid.Ty21a.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Typhoidcontraindications</td><td>Performing a contraindication check for typhoid vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Typhoidcontraindications">View</a>,<a href="IMMZ.D5.DT.Typhoidcontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Typhoid.TCVschedule</td><td>Recommended TCV vaccination schedule for typhoid as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Typhoid.TCVschedule">View</a>,<a href="IMMZ.D18.S.Typhoid.TCVschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Typhoid.ViPSschedule</td><td>Recommended unconjugated ViPS vaccination schedule for typhoid as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Typhoid.ViPSschedule">View</a>,<a href="IMMZ.D18.S.Typhoid.ViPSschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Typhoid.Ty21aschedule</td><td>Recommended live attenuated Ty21a vaccination schedule for typhoid as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Typhoid.Ty21aschedule">View</a>,<a href="IMMZ.D18.S.Typhoid.Ty21aschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Cholera.WCvaccines</td><td>Recommended vaccinations for cholera following the whole-cell (WC) vaccines schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Cholera.WCvaccines">View</a>,<a href="IMMZ.D2.DT.Cholera.WCvaccines.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses</td><td>Recommended vaccinations for cholera following the WC-recombinant B subunit (WC-rBS) vaccine 3 doses schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses">View</a>,<a href="IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Cholera.WC-rBSvaccine2doses</td><td>Recommended vaccinations for cholera following the WC-rBS vaccine 2 doses schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Cholera.WC-rBSvaccine2doses">View</a>,<a href="IMMZ.D2.DT.Cholera.WC-rBSvaccine2doses.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Cholera.WCvaccinesschedule</td><td>Recommended WC vaccination schedule for cholera as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Cholera.WCvaccinesschedule">View</a>,<a href="IMMZ.D18.S.Cholera.WCvaccinesschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Cholera.WC-rBSvaccine3doseschedule</td><td>Recommended WC-rBS vaccine 3 doses vaccination schedule for cholera as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Cholera.WC-rBSvaccine3doseschedule">View</a>,<a href="IMMZ.D18.S.Cholera.WC-rBSvaccine3doseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Cholera.WC-rBSvaccineboosterdosefo1eecdb6117</td><td>Recommended WC-rBS vaccine booster dose for children aged 2–5 years vaccination schedule for cholera as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Cholera.WC-rBSvaccineboosterdosefo1eecdb6117">View</a>,<a href="IMMZ.D18.S.Cholera.WC-rBSvaccineboosterdosefo1eecdb6117.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Cholera.WC-rBSvaccine2doseschedule</td><td>Recommended WC-rBS vaccine 2 dose vaccination schedule for cholera as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Cholera.WC-rBSvaccine2doseschedule">View</a>,<a href="IMMZ.D18.S.Cholera.WC-rBSvaccine2doseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Cholera.WC-rBSvaccineboosterdosemob4c42f1488</td><td>Recommended WC-rBS vaccine booster dose aged over 6 years vaccination schedule for cholera as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Cholera.WC-rBSvaccineboosterdosemob4c42f1488">View</a>,<a href="IMMZ.D18.S.Cholera.WC-rBSvaccineboosterdosemob4c42f1488.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose</td><td>Recommended vaccinations for meningococcal following the monovalent serogroup A (MenA) conjugate vaccine 1-dose schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose">View</a>,<a href="IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine2doses</td><td>Recommended vaccinations for meningococcal following the MenA conjugate vaccine 2-dose schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine2doses">View</a>,<a href="IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine2doses.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine</td><td>Recommended vaccinations for meningococcal following the monovalent MenC conjugate vaccine schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine">View</a>,<a href="IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatb67e5e7efb</td><td>Recommended vaccinations for meningococcal following the quadrivalent conjugate vaccines 1-dose schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatb67e5e7efb">View</a>,<a href="IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatb67e5e7efb.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Meningococcal.Quadrivalentconjugat88e1c8c0bb</td><td>Recommended vaccinations for meningococcal following the quadrivalent conjugate vaccines 2-dose schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Meningococcal.Quadrivalentconjugat88e1c8c0bb">View</a>,<a href="IMMZ.D2.DT.Meningococcal.Quadrivalentconjugat88e1c8c0bb.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Meningococcal.Polysaccharidevaccines</td><td>Recommended vaccinations for meningococcal following the polysaccharide vaccines schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Meningococcal.Polysaccharidevaccines">View</a>,<a href="IMMZ.D2.DT.Meningococcal.Polysaccharidevaccines.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Meningococcalcontraindications</td><td>Performing a contraindication check for meningococcal vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Meningococcalcontraindications">View</a>,<a href="IMMZ.D5.DT.Meningococcalcontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Meningococcal.MenAconjugatevaccine08ec0e799c</td><td>Recommended MenA conjugate vaccine 1-dose vaccination schedule for meningococcal as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Meningococcal.MenAconjugatevaccine08ec0e799c">View</a>,<a href="IMMZ.D18.S.Meningococcal.MenAconjugatevaccine08ec0e799c.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Meningococcal.MenAconjugatevaccine50b379d5f8</td><td>Recommended MenA conjugate vaccine 2-dose vaccination schedule for meningococcal as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Meningococcal.MenAconjugatevaccine50b379d5f8">View</a>,<a href="IMMZ.D18.S.Meningococcal.MenAconjugatevaccine50b379d5f8.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Meningococcal.MonovalentMenCconjug7be8a5378c</td><td>Recommended monovalent MenC conjugate vaccination schedule for meningococcal as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Meningococcal.MonovalentMenCconjug7be8a5378c">View</a>,<a href="IMMZ.D18.S.Meningococcal.MonovalentMenCconjug7be8a5378c.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Meningococcal.Quadrivalentconjugat72f183dcc9</td><td>Recommended quadrivalent conjugate vaccines 1-dose vaccination schedule for meningococcal as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Meningococcal.Quadrivalentconjugat72f183dcc9">View</a>,<a href="IMMZ.D18.S.Meningococcal.Quadrivalentconjugat72f183dcc9.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Meningococcal.Quadrivalentconjugat1a001dc325</td><td>Recommended quadrivalent conjugate vaccines 2-dose vaccination schedule for meningococcal as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Meningococcal.Quadrivalentconjugat1a001dc325">View</a>,<a href="IMMZ.D18.S.Meningococcal.Quadrivalentconjugat1a001dc325.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Meningococcal.Polysaccharidevaccinesschedule</td><td>Recommended polysaccharide vaccination schedule for meningococcal as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Meningococcal.Polysaccharidevaccinesschedule">View</a>,<a href="IMMZ.D18.S.Meningococcal.Polysaccharidevaccinesschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses</td><td>Recommended vaccinations for hepatitis A following the inactivated hepatitis A virus (HAV) 2-dose schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses">View</a>,<a href="IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.HepatitisA.InactivatedHAV1dose</td><td>Recommended vaccinations for hepatitis A following the inactivated HAV 1-dose schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.HepatitisA.InactivatedHAV1dose">View</a>,<a href="IMMZ.D2.DT.HepatitisA.InactivatedHAV1dose.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.HepatitisA.LiveattenuatedHAV1dose</td><td>Recommended vaccinations for hepatitis A following the live attenuated HAV 1-dose schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.HepatitisA.LiveattenuatedHAV1dose">View</a>,<a href="IMMZ.D2.DT.HepatitisA.LiveattenuatedHAV1dose.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.HepatitisAcontraindications</td><td>Performing a contraindication check for hepatitis A vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.HepatitisAcontraindications">View</a>,<a href="IMMZ.D5.DT.HepatitisAcontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.HepatitisA.InactivatedHAV2-doseschedule</td><td>Recommended inactivated HAV 2-dose vaccination schedule for hepatitis A as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.HepatitisA.InactivatedHAV2-doseschedule">View</a>,<a href="IMMZ.D18.S.HepatitisA.InactivatedHAV2-doseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.HepatitisA.InactivatedHAV1-doseschedule</td><td>Recommended inactivated HAV 1-dose vaccination schedule for hepatitis A as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.HepatitisA.InactivatedHAV1-doseschedule">View</a>,<a href="IMMZ.D18.S.HepatitisA.InactivatedHAV1-doseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.HepatitisA.LiveattenuatedHAV1-doseschedule</td><td>Recommended live attenuated HAV 1-dose vaccination schedule for hepatitis A as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.HepatitisA.LiveattenuatedHAV1-doseschedule">View</a>,<a href="IMMZ.D18.S.HepatitisA.LiveattenuatedHAV1-doseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Rabies</td><td>Recommended vaccinations for rabies as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Rabies">View</a>,<a href="IMMZ.D2.DT.Rabies.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Rabiescontraindications</td><td>Performing a contraindication check for rabies vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Rabiescontraindications">View</a>,<a href="IMMZ.D5.DT.Rabiescontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Rabiesschedule</td><td>Recommended vaccination schedule for rabies as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Rabiesschedule">View</a>,<a href="IMMZ.D18.S.Rabiesschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening</td><td>Recommended vaccinations for dengue following the 3-dose schedule with pre-vaccination screening as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening">View</a>,<a href="IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccinationscreening</td><td>Recommended vaccinations for dengue following the 3-dose schedule without pre-vaccination screening as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccinationscreening">View</a>,<a href="IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccinationscreening.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Denguecontraindications</td><td>Performing a contraindication check for dengue vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Denguecontraindications">View</a>,<a href="IMMZ.D5.DT.Denguecontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Dengueschedule</td><td>Recommended vaccination schedule for dengue as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Dengueschedule">View</a>,<a href="IMMZ.D18.S.Dengueschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Malaria</td><td>Recommended vaccinations for malaria as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Malaria">View</a>,<a href="IMMZ.D2.DT.Malaria.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Malariacontraindications</td><td>Performing a contraindication check for malaria vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Malariacontraindications">View</a>,<a href="IMMZ.D5.DT.Malariacontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Malariaschedule</td><td>Recommended vaccination schedule for malaria as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Malariaschedule">View</a>,<a href="IMMZ.D18.S.Malariaschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Mumps</td><td>Recommended vaccinations for mumps as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Mumps">View</a>,<a href="IMMZ.D2.DT.Mumps.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Mumpscontraindications</td><td>Performing a contraindication check for mumps vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Mumpscontraindications">View</a>,<a href="IMMZ.D5.DT.Mumpscontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Mumpsschedule</td><td>Recommended vaccination schedule for mumps as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Mumpsschedule">View</a>,<a href="IMMZ.D18.S.Mumpsschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Seasonalinfluenza</td><td>Recommended vaccinations for seasonal influenza as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Seasonalinfluenza">View</a>,<a href="IMMZ.D2.DT.Seasonalinfluenza.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Seasonalinfluenzacontraindications</td><td>Performing a contraindication check for seasonal influenza vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Seasonalinfluenzacontraindications">View</a>,<a href="IMMZ.D5.DT.Seasonalinfluenzacontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Seasonalinfluenzaschedule</td><td>Recommended vaccination schedule for seasonal influenza as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Seasonalinfluenzaschedule">View</a>,<a href="IMMZ.D18.S.Seasonalinfluenzaschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Varicella.1dose</td><td>Recommended vaccinations for varicella following the 1-dose schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Varicella.1dose">View</a>,<a href="IMMZ.D2.DT.Varicella.1dose.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D2.DT.Varicella.2doses</td><td>Recommended vaccinations for varicella following the 2-dose schedule as per WHO recommendations<br/>(<a href="#IMMZ.D2.DT.Varicella.2doses">View</a>,<a href="IMMZ.D2.DT.Varicella.2doses.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D5.DT.Varicellacontraindications</td><td>Performing a contraindication check for varicella vaccines as per WHO recommendations<br/>(<a href="#IMMZ.D5.DT.Varicellacontraindications">View</a>,<a href="IMMZ.D5.DT.Varicellacontraindications.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Varicella.1-doseschedule</td><td>Recommended 1-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.1-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.1-doseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
+      <tr><td>IMMZ.D18.S.Varicella.2-doseschedule</td><td>Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>)</td><td>WHO recommendations for routine immunization – summary tables (March 2023) (1)</td></tr>
 
   </tbody>
 </table>
@@ -163,424 +163,284 @@ The table below provides an overview of the decision-support tables and algorith
 
 ## Decision logic support tables
 
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.BCG'> </ a>
-{% include 'IMMZ.D2.DT.BCG.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.BCGcontraindications'> </ a>
-{% include 'IMMZ.D5.DT.BCGcontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.BCGschedule'> </ a>
-{% include 'IMMZ.D18.S.BCGschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.HepatitisB.Birthdose'> </ a>
-{% include 'IMMZ.D2.DT.HepatitisB.Birthdose.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.HepatitisB.3doses'> </ a>
-{% include 'IMMZ.D2.DT.HepatitisB.3doses.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.HepatitisB.4doses'> </ a>
-{% include 'IMMZ.D2.DT.HepatitisB.4doses.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.HepatitisB.Delayedstart'> </ a>
-{% include 'IMMZ.D2.DT.HepatitisB.Delayedstart.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.HepatitisBcontraindications'> </ a>
-{% include 'IMMZ.D5.DT.HepatitisBcontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.HepatitisB.Birthdoseschedule'> </ a>
-{% include 'IMMZ.D18.S.HepatitisB.Birthdoseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.HepatitisB.3-doseschedule'> </ a>
-{% include 'IMMZ.D18.S.HepatitisB.3-doseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.HepatitisB.4-doseschedule'> </ a>
-{% include 'IMMZ.D18.S.HepatitisB.4-doseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.HepatitisB.Delayedstartschedule'> </ a>
-{% include 'IMMZ.D18.S.HepatitisB.Delayedstartschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Polio.Birthdose'> </ a>
-{% include 'IMMZ.D2.DT.Polio.Birthdose.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Polio.bOPVplusIPV'> </ a>
-{% include 'IMMZ.D2.DT.Polio.bOPVplusIPV.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Polio.SequentialIPVbOPV'> </ a>
-{% include 'IMMZ.D2.DT.Polio.SequentialIPVbOPV.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Polio.IPV-only'> </ a>
-{% include 'IMMZ.D2.DT.Polio.IPV-only.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Poliocontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Poliocontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Polio.Birthdoseschedule'> </ a>
-{% include 'IMMZ.D18.S.Polio.Birthdoseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Polio.bOPVplusIPVschedule'> </ a>
-{% include 'IMMZ.D18.S.Polio.bOPVplusIPVschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Polio.SequentialIPVbOPVschedule'> </ a>
-{% include 'IMMZ.D18.S.Polio.SequentialIPVbOPVschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Polio.IPV-onlyschedule'> </ a>
-{% include 'IMMZ.D18.S.Polio.IPV-onlyschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.DTP.On-timestart'> </ a>
-{% include 'IMMZ.D2.DT.DTP.On-timestart.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.DTP.Delayedorinterruptedseries'> </ a>
-{% include 'IMMZ.D2.DT.DTP.Delayedorinterruptedseries.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.DTP.Pregnancy'> </ a>
-{% include 'IMMZ.D2.DT.DTP.Pregnancy.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.DTP.Pregnancystartingwith3doses'> </ a>
-{% include 'IMMZ.D2.DT.DTP.Pregnancystartingwith3doses.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.DTP.Pregnancystartingwith4doses'> </ a>
-{% include 'IMMZ.D2.DT.DTP.Pregnancystartingwith4doses.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.DTPcontraindications'> </ a>
-{% include 'IMMZ.D5.DT.DTPcontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.DTP.On-timestartschedule'> </ a>
-{% include 'IMMZ.D18.S.DTP.On-timestartschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.DTP.Delayedorinterruptedschedule'> </ a>
-{% include 'IMMZ.D18.S.DTP.Delayedorinterruptedschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.DTP.Pregnancystartingwith3dosesschedule'> </ a>
-{% include 'IMMZ.D18.S.DTP.Pregnancystartingwith3dosesschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.DTP.Pregnancystartingwith4dosesschedule'> </ a>
-{% include 'IMMZ.D18.S.DTP.Pregnancystartingwith4dosesschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Hib.3doses'> </ a>
-{% include 'IMMZ.D2.DT.Hib.3doses.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Hib.3doseswithboosterdose'> </ a>
-{% include 'IMMZ.D2.DT.Hib.3doseswithboosterdose.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Hib.2doseswithboosterdose'> </ a>
-{% include 'IMMZ.D2.DT.Hib.2doseswithboosterdose.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Hibcontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Hibcontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Hib.3dosesschedule'> </ a>
-{% include 'IMMZ.D18.S.Hib.3dosesschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Hib.3doseswithboosterdoseschedule'> </ a>
-{% include 'IMMZ.D18.S.Hib.3doseswithboosterdoseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Hib.2doseswithboosterdoseschedule'> </ a>
-{% include 'IMMZ.D18.S.Hib.2doseswithboosterdoseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose'> </ a>
-{% include 'IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Pneumococcal.3doses'> </ a>
-{% include 'IMMZ.D2.DT.Pneumococcal.3doses.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Pneumococcalcontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Pneumococcalcontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Pneumococcal.2doseswithboosterdoseschedule'> </ a>
-{% include 'IMMZ.D18.S.Pneumococcal.2doseswithboosterdoseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Pneumococcal.3dosesschedule'> </ a>
-{% include 'IMMZ.D18.S.Pneumococcal.3dosesschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Rotavirus'> </ a>
-{% include 'IMMZ.D2.DT.Rotavirus.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Rotaviruscontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Rotaviruscontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Rotavirusschedule'> </ a>
-{% include 'IMMZ.D18.S.Rotavirusschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Measles.Ongoingtransmission'> </ a>
-{% include 'IMMZ.D2.DT.Measles.Ongoingtransmission.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Measles.Lowtransmission'> </ a>
-{% include 'IMMZ.D2.DT.Measles.Lowtransmission.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Measles.MCVdose0'> </ a>
-{% include 'IMMZ.D2.DT.Measles.MCVdose0.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Measles.Supplementarydose'> </ a>
-{% include 'IMMZ.D2.DT.Measles.Supplementarydose.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Measlescontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Measlescontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Measles.Ongoingtransmissionschedule'> </ a>
-{% include 'IMMZ.D18.S.Measles.Ongoingtransmissionschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Measles.Lowtransmissionschedule'> </ a>
-{% include 'IMMZ.D18.S.Measles.Lowtransmissionschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Measles.MCVdose0schedule'> </ a>
-{% include 'IMMZ.D18.S.Measles.MCVdose0schedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Measles.Supplementarydoseschedule'> </ a>
-{% include 'IMMZ.D18.S.Measles.Supplementarydoseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Rubella.Highincidence'> </ a>
-{% include 'IMMZ.D2.DT.Rubella.Highincidence.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Rubella.Lowincidence'> </ a>
-{% include 'IMMZ.D2.DT.Rubella.Lowincidence.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Rubellacontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Rubellacontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Rubella.Highincidenceschedule'> </ a>
-{% include 'IMMZ.D18.S.Rubella.Highincidenceschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Rubella.Lowincidenceschedule'> </ a>
-{% include 'IMMZ.D18.S.Rubella.Lowincidenceschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.HPV.2doses'> </ a>
-{% include 'IMMZ.D2.DT.HPV.2doses.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.HPV.Singledose'> </ a>
-{% include 'IMMZ.D2.DT.HPV.Singledose.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.HPVcontraindications'> </ a>
-{% include 'IMMZ.D5.DT.HPVcontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.HPV.2-doseschedule'> </ a>
-{% include 'IMMZ.D18.S.HPV.2-doseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.HPV.Single-doseschedule'> </ a>
-{% include 'IMMZ.D18.S.HPV.Single-doseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine'> </ a>
-{% include 'IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.JE.Liveattenuatedvaccine'> </ a>
-{% include 'IMMZ.D2.DT.JE.Liveattenuatedvaccine.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.JE.Liverecombinantvaccine'> </ a>
-{% include 'IMMZ.D2.DT.JE.Liverecombinantvaccine.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.JEcontraindications'> </ a>
-{% include 'IMMZ.D5.DT.JEcontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.JE.InactivatedVerocell-derivedvacc91866bc1e5'> </ a>
-{% include 'IMMZ.D18.S.JE.InactivatedVerocell-derivedvacc91866bc1e5.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.JE.Liveattenuatedvaccineschedule'> </ a>
-{% include 'IMMZ.D18.S.JE.Liveattenuatedvaccineschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.JE.Liverecombinantvaccineschedule'> </ a>
-{% include 'IMMZ.D18.S.JE.Liverecombinantvaccineschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Yellowfever'> </ a>
-{% include 'IMMZ.D2.DT.Yellowfever.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Yellowfevercontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Yellowfevercontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Yellowfeverschedule'> </ a>
-{% include 'IMMZ.D18.S.Yellowfeverschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.TBE.FSME-Immun'> </ a>
-{% include 'IMMZ.D2.DT.TBE.FSME-Immun.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.TBE.Encepur'> </ a>
-{% include 'IMMZ.D2.DT.TBE.Encepur.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.TBE.TBE-Moscow'> </ a>
-{% include 'IMMZ.D2.DT.TBE.TBE-Moscow.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.TBE.EnceVir'> </ a>
-{% include 'IMMZ.D2.DT.TBE.EnceVir.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.TBEcontraindications'> </ a>
-{% include 'IMMZ.D5.DT.TBEcontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.TBE.FSME-Immunschedule'> </ a>
-{% include 'IMMZ.D18.S.TBE.FSME-Immunschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.TBE.Encepurschedule'> </ a>
-{% include 'IMMZ.D18.S.TBE.Encepurschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.TBE.TBE-Moscowschedule'> </ a>
-{% include 'IMMZ.D18.S.TBE.TBE-Moscowschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.TBE.EnceVir'> </ a>
-{% include 'IMMZ.D18.S.TBE.EnceVir.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Typhoid.TCV'> </ a>
-{% include 'IMMZ.D2.DT.Typhoid.TCV.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Typhoid.ViPS'> </ a>
-{% include 'IMMZ.D2.DT.Typhoid.ViPS.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Typhoid.Ty21a'> </ a>
-{% include 'IMMZ.D2.DT.Typhoid.Ty21a.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Typhoidcontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Typhoidcontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Typhoid.TCVschedule'> </ a>
-{% include 'IMMZ.D18.S.Typhoid.TCVschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Typhoid.ViPSschedule'> </ a>
-{% include 'IMMZ.D18.S.Typhoid.ViPSschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Typhoid.Ty21aschedule'> </ a>
-{% include 'IMMZ.D18.S.Typhoid.Ty21aschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Cholera.WCvaccines'> </ a>
-{% include 'IMMZ.D2.DT.Cholera.WCvaccines.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses'> </ a>
-{% include 'IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Cholera.WC-rBSvaccine2doses'> </ a>
-{% include 'IMMZ.D2.DT.Cholera.WC-rBSvaccine2doses.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Cholera.WCvaccinesschedule'> </ a>
-{% include 'IMMZ.D18.S.Cholera.WCvaccinesschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Cholera.WC-rBSvaccine3doseschedule'> </ a>
-{% include 'IMMZ.D18.S.Cholera.WC-rBSvaccine3doseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Cholera.WC-rBSvaccineboosterdosefo1eecdb6117'> </ a>
-{% include 'IMMZ.D18.S.Cholera.WC-rBSvaccineboosterdosefo1eecdb6117.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Cholera.WC-rBSvaccine2doseschedule'> </ a>
-{% include 'IMMZ.D18.S.Cholera.WC-rBSvaccine2doseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Cholera.WC-rBSvaccineboosterdosemob4c42f1488'> </ a>
-{% include 'IMMZ.D18.S.Cholera.WC-rBSvaccineboosterdosemob4c42f1488.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose'> </ a>
-{% include 'IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine2doses'> </ a>
-{% include 'IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine2doses.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine'> </ a>
-{% include 'IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatb67e5e7efb'> </ a>
-{% include 'IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatb67e5e7efb.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Meningococcal.Quadrivalentconjugat88e1c8c0bb'> </ a>
-{% include 'IMMZ.D2.DT.Meningococcal.Quadrivalentconjugat88e1c8c0bb.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Meningococcal.Polysaccharidevaccines'> </ a>
-{% include 'IMMZ.D2.DT.Meningococcal.Polysaccharidevaccines.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Meningococcalcontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Meningococcalcontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Meningococcal.MenAconjugatevaccine08ec0e799c'> </ a>
-{% include 'IMMZ.D18.S.Meningococcal.MenAconjugatevaccine08ec0e799c.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Meningococcal.MenAconjugatevaccine50b379d5f8'> </ a>
-{% include 'IMMZ.D18.S.Meningococcal.MenAconjugatevaccine50b379d5f8.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Meningococcal.MonovalentMenCconjug7be8a5378c'> </ a>
-{% include 'IMMZ.D18.S.Meningococcal.MonovalentMenCconjug7be8a5378c.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Meningococcal.Quadrivalentconjugat72f183dcc9'> </ a>
-{% include 'IMMZ.D18.S.Meningococcal.Quadrivalentconjugat72f183dcc9.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Meningococcal.Quadrivalentconjugat1a001dc325'> </ a>
-{% include 'IMMZ.D18.S.Meningococcal.Quadrivalentconjugat1a001dc325.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Meningococcal.Polysaccharidevaccinesschedule'> </ a>
-{% include 'IMMZ.D18.S.Meningococcal.Polysaccharidevaccinesschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses'> </ a>
-{% include 'IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.HepatitisA.InactivatedHAV1dose'> </ a>
-{% include 'IMMZ.D2.DT.HepatitisA.InactivatedHAV1dose.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.HepatitisA.LiveattenuatedHAV1dose'> </ a>
-{% include 'IMMZ.D2.DT.HepatitisA.LiveattenuatedHAV1dose.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.HepatitisAcontraindications'> </ a>
-{% include 'IMMZ.D5.DT.HepatitisAcontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.HepatitisA.InactivatedHAV2-doseschedule'> </ a>
-{% include 'IMMZ.D18.S.HepatitisA.InactivatedHAV2-doseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.HepatitisA.InactivatedHAV1-doseschedule'> </ a>
-{% include 'IMMZ.D18.S.HepatitisA.InactivatedHAV1-doseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.HepatitisA.LiveattenuatedHAV1-doseschedule'> </ a>
-{% include 'IMMZ.D18.S.HepatitisA.LiveattenuatedHAV1-doseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Rabies'> </ a>
-{% include 'IMMZ.D2.DT.Rabies.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Rabiescontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Rabiescontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Rabiesschedule'> </ a>
-{% include 'IMMZ.D18.S.Rabiesschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening'> </ a>
-{% include 'IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccinationscreening'> </ a>
-{% include 'IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccinationscreening.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Denguecontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Denguecontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Dengueschedule'> </ a>
-{% include 'IMMZ.D18.S.Dengueschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Malaria'> </ a>
-{% include 'IMMZ.D2.DT.Malaria.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Malariacontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Malariacontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Malariaschedule'> </ a>
-{% include 'IMMZ.D18.S.Malariaschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Mumps'> </ a>
-{% include 'IMMZ.D2.DT.Mumps.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Mumpscontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Mumpscontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Mumpsschedule'> </ a>
-{% include 'IMMZ.D18.S.Mumpsschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Seasonalinfluenza'> </ a>
-{% include 'IMMZ.D2.DT.Seasonalinfluenza.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Seasonalinfluenzacontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Seasonalinfluenzacontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Seasonalinfluenzaschedule'> </ a>
-{% include 'IMMZ.D18.S.Seasonalinfluenzaschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Varicella.1dose'> </ a>
-{% include 'IMMZ.D2.DT.Varicella.1dose.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D2.DT.Varicella.2doses'> </ a>
-{% include 'IMMZ.D2.DT.Varicella.2doses.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D5.DT.Varicellacontraindications'> </ a>
-{% include 'IMMZ.D5.DT.Varicellacontraindications.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Varicella.1-doseschedule'> </ a>
-{% include 'IMMZ.D18.S.Varicella.1-doseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
-### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href= <a name='IMMZ.D18.S.Varicella.2-doseschedule'> </ a>
-{% include 'IMMZ.D18.S.Varicella.2-doseschedule.xml' %}
-      <tr><td>{dt_id}</td><td>{dt_desc}</td><td>{dt_src}</td></tr>
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.BCG'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.BCGcontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.BCGschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.HepatitisB.Birthdose'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.HepatitisB.3doses'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.HepatitisB.4doses'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.HepatitisB.Delayedstart'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.HepatitisBcontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.HepatitisB.Birthdoseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.HepatitisB.3-doseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.HepatitisB.4-doseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.HepatitisB.Delayedstartschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Polio.Birthdose'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Polio.bOPVplusIPV'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Polio.SequentialIPVbOPV'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Polio.IPV-only'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Poliocontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Polio.Birthdoseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Polio.bOPVplusIPVschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Polio.SequentialIPVbOPVschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Polio.IPV-onlyschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.DTP.On-timestart'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.DTP.Delayedorinterruptedseries'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.DTP.Pregnancy'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.DTP.Pregnancystartingwith3doses'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.DTP.Pregnancystartingwith4doses'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.DTPcontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.DTP.On-timestartschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.DTP.Delayedorinterruptedschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.DTP.Pregnancystartingwith3dosesschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.DTP.Pregnancystartingwith4dosesschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Hib.3doses'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Hib.3doseswithboosterdose'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Hib.2doseswithboosterdose'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Hibcontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Hib.3dosesschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Hib.3doseswithboosterdoseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Hib.2doseswithboosterdoseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Pneumococcal.3doses'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Pneumococcalcontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Pneumococcal.2doseswithboosterdoseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Pneumococcal.3dosesschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Rotavirus'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Rotaviruscontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Rotavirusschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Measles.Ongoingtransmission'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Measles.Lowtransmission'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Measles.MCVdose0'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Measles.Supplementarydose'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Measlescontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Measles.Ongoingtransmissionschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Measles.Lowtransmissionschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Measles.MCVdose0schedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Measles.Supplementarydoseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Rubella.Highincidence'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Rubella.Lowincidence'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Rubellacontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Rubella.Highincidenceschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Rubella.Lowincidenceschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.HPV.2doses'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.HPV.Singledose'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.HPVcontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.HPV.2-doseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.HPV.Single-doseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.JE.Liveattenuatedvaccine'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.JE.Liverecombinantvaccine'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.JEcontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.JE.InactivatedVerocell-derivedvacc91866bc1e5'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.JE.Liveattenuatedvaccineschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.JE.Liverecombinantvaccineschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Yellowfever'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Yellowfevercontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Yellowfeverschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.TBE.FSME-Immun'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.TBE.Encepur'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.TBE.TBE-Moscow'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.TBE.EnceVir'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.TBEcontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.TBE.FSME-Immunschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.TBE.Encepurschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.TBE.TBE-Moscowschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.TBE.EnceVir'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Typhoid.TCV'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Typhoid.ViPS'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Typhoid.Ty21a'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Typhoidcontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Typhoid.TCVschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Typhoid.ViPSschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Typhoid.Ty21aschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Cholera.WCvaccines'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Cholera.WC-rBSvaccine3doses'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Cholera.WC-rBSvaccine2doses'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Cholera.WCvaccinesschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Cholera.WC-rBSvaccine3doseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Cholera.WC-rBSvaccineboosterdosefo1eecdb6117'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Cholera.WC-rBSvaccine2doseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Cholera.WC-rBSvaccineboosterdosemob4c42f1488'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine2doses'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Meningococcal.MonovalentMenCconjugatevaccine'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Meningococcal.Quadrivalentconjugatb67e5e7efb'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Meningococcal.Quadrivalentconjugat88e1c8c0bb'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Meningococcal.Polysaccharidevaccines'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Meningococcalcontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Meningococcal.MenAconjugatevaccine08ec0e799c'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Meningococcal.MenAconjugatevaccine50b379d5f8'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Meningococcal.MonovalentMenCconjug7be8a5378c'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Meningococcal.Quadrivalentconjugat72f183dcc9'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Meningococcal.Quadrivalentconjugat1a001dc325'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Meningococcal.Polysaccharidevaccinesschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.HepatitisA.InactivatedHAV1dose'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.HepatitisA.LiveattenuatedHAV1dose'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.HepatitisAcontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.HepatitisA.InactivatedHAV2-doseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.HepatitisA.InactivatedHAV1-doseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.HepatitisA.LiveattenuatedHAV1-doseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Rabies'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Rabiescontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Rabiesschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Dengue.3doseswithpre-vaccinationscreening'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccinationscreening'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Denguecontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Dengueschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Malaria'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Malariacontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Malariaschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Mumps'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Mumpscontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Mumpsschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Seasonalinfluenza'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Seasonalinfluenzacontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Seasonalinfluenzaschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Varicella.1dose'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D2.DT.Varicella.2doses'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D5.DT.Varicellacontraindications'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Varicella.1-doseschedule'> </ a>
+This decision table has not been associated to a DMN table
+### Recommended 2-dose vaccination schedule for varicella as per WHO recommendations<br/>(<a href="#IMMZ.D18.S.Varicella.2-doseschedule">View</a>,<a href="IMMZ.D18.S.Varicella.2-doseschedule.dmn">DMN</a>) <a name='IMMZ.D18.S.Varicella.2-doseschedule'> </ a>
+This decision table has not been associated to a DMN table
 

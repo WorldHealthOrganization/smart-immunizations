@@ -79,7 +79,7 @@ The actor participates in the following processes:
 """
 Usage: #definition
 * name = "Vaccination location Health worker"
-* type = #non-system
+* type = #person
 * status = #draft
 * publisher = "World Health Organization (WHO)"
 * experimental = false
