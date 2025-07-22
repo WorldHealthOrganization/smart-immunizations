@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Rabies"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -38,6 +37,12 @@ Note: This PrEP dose is recommended for individuals at high risk of rabies virus
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Norabiesprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Norabiesprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -65,6 +70,12 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Norabiesprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Norabiesprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Client is not due for rabies vaccination"
   * description = """Client is not due for rabies vaccination
@@ -82,6 +93,18 @@ PrEP schedule: 2-site intradermal vaccine administered on days 0 and 7. If intra
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onerabiesprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onerabiesprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestrabiesdosewasadministeredlessthan7daysago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestrabiesdosewasadministeredlessthan7daysago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -109,6 +132,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onerabiesprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onerabiesprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestrabiesdosewasadministeredlessthan7daysago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestrabiesdosewasadministeredlessthan7daysago"""
 * action[+]
   * title = "Client is due for rabies vaccination"
   * description = """Client is due for rabies vaccination
@@ -127,6 +162,18 @@ The schedule is for a 2-site intradermal vaccine administered on days 0 and 7. I
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onerabiesprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onerabiesprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestrabiesdosewasadministeredmorethan7daysago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestrabiesdosewasadministeredmorethan7daysago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -154,6 +201,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onerabiesprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onerabiesprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestrabiesdosewasadministeredmorethan7daysago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestrabiesdosewasadministeredmorethan7daysago"""
 * action[+]
   * title = "Rabies immunization schedule is complete"
   * description = """Rabies immunization schedule is complete
@@ -173,6 +232,12 @@ Professionals who are at continual or frequent risk of exposure through their ac
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Tworabiesprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Tworabiesprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -200,4 +265,10 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Tworabiesprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Tworabiesprimaryseriesdoseswereadministered"""
 

@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.DTP.Delayedorinterruptedseries"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -52,6 +51,18 @@ For children aged under 7 years, diphtheria and tetanus toxoids and whole-cell p
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan1year"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan1year"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -79,6 +90,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan1year"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan1year"""
 * action[+]
   * title = "Client is not due for DTP vaccination"
   * description = """Client is not due for DTP vaccination
@@ -95,6 +118,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneDTPprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneDTPprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -122,6 +157,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneDTPprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneDTPprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Client is due for DTP vaccination"
   * description = """Client is due for DTP vaccination
@@ -138,6 +185,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneDTPprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneDTPprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -165,6 +224,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneDTPprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneDTPprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Client is not due for DTP vaccination"
   * description = """Client is not due for DTP vaccination
@@ -181,6 +252,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredlessthan6monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -208,6 +291,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredlessthan6monthsago"""
 * action[+]
   * title = "Client is due for DTP vaccination"
   * description = """Client is due for DTP vaccination
@@ -224,6 +319,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredmorethan6monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -251,6 +358,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredmorethan6monthsago"""
 * action[+]
   * title = "Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose"
   * description = """Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose
@@ -268,6 +387,24 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Notetanusanddiphtheriaboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Notetanusanddiphtheriaboosterdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredlessthan1yearago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredlessthan1yearago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -295,6 +432,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Notetanusanddiphtheriaboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Notetanusanddiphtheriaboosterdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredlessthan1yearago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredlessthan1yearago"""
 * action[+]
   * title = "Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose"
   * description = """Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose
@@ -312,6 +467,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Notetanusanddiphtheriaboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Notetanusanddiphtheriaboosterdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredmorethan1yearago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredmorethan1yearago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -339,6 +512,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Notetanusanddiphtheriaboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Notetanusanddiphtheriaboosterdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredmorethan1yearago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredmorethan1yearago"""
 * action[+]
   * title = "Client is not due for tetanus and diphtheria booster dose"
   * description = """Client is not due for tetanus and diphtheria booster dose
@@ -355,6 +546,24 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onetetanusanddiphtheriaboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onetetanusanddiphtheriaboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatesttetanusanddiphtheriadosewasadministeaed189e865"""
+      * language = #text/cql-identifier
+      * expression = """Thelatesttetanusanddiphtheriadosewasadministeaed189e865"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -382,6 +591,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onetetanusanddiphtheriaboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onetetanusanddiphtheriaboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatesttetanusanddiphtheriadosewasadministeaed189e865"""
+      * language = #text/cql-identifier
+      * expression = """Thelatesttetanusanddiphtheriadosewasadministeaed189e865"""
 * action[+]
   * title = "Client is due for tetanus and diphtheria booster dose"
   * description = """Client is due for tetanus and diphtheria booster dose
@@ -398,6 +625,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onetetanusanddiphtheriaboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onetetanusanddiphtheriaboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatesttetanusanddiphtheriadosewasadministe8bdf44f0dd"""
+      * language = #text/cql-identifier
+      * expression = """Thelatesttetanusanddiphtheriadosewasadministe8bdf44f0dd"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -425,6 +670,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onetetanusanddiphtheriaboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onetetanusanddiphtheriaboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatesttetanusanddiphtheriadosewasadministe8bdf44f0dd"""
+      * language = #text/cql-identifier
+      * expression = """Thelatesttetanusanddiphtheriadosewasadministe8bdf44f0dd"""
 * action[+]
   * title = "Tetanus and diphtheria immunization schedule is complete"
   * description = """Tetanus and diphtheria immunization schedule is complete
@@ -441,6 +704,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twotetanusanddiphtheriaboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twotetanusanddiphtheriaboosterdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -468,6 +743,18 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twotetanusanddiphtheriaboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twotetanusanddiphtheriaboosterdoseswereadministered"""
 * action[+]
   * title = "Primary DTP series is complete. Client is not due for pertussis booster dose"
   * description = """Primary DTP series is complete. Client is not due for pertussis booster dose
@@ -491,6 +778,30 @@ A decision to introduce adolescent and/or adult boosters should only be taken af
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopertussisboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopertussisboosterdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween1yearand6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween1yearand6years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredlessthan6monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -518,6 +829,30 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopertussisboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopertussisboosterdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween1yearand6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween1yearand6years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredlessthan6monthsago"""
 * action[+]
   * title = "Primary DTP series is complete. Client is due for pertussis booster dose"
   * description = """Primary DTP series is complete. Client is due for pertussis booster dose
@@ -535,6 +870,30 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopertussisboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopertussisboosterdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween1yearand6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween1yearand6years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredmorethan6monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -562,6 +921,30 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopertussisboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopertussisboosterdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween1yearand6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween1yearand6years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestDTPdosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestDTPdosewasadministeredmorethan6monthsago"""
 * action[+]
   * title = "Pertussis immunization schedule is complete"
   * description = """Pertussis immunization schedule is complete
@@ -578,6 +961,24 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopertussisboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopertussisboosterdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan6years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -605,6 +1006,24 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopertussisboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopertussisboosterdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan6years"""
 * action[+]
   * title = "Pertussis immunization schedule is complete"
   * description = """Pertussis immunization schedule is complete
@@ -621,6 +1040,18 @@ Check for any other vaccines due."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepertussisboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepertussisboosterdosewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -648,4 +1079,16 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepertussisboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepertussisboosterdosewasadministered"""
 

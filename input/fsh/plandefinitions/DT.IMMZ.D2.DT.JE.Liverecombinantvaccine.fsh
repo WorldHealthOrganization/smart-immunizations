@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.JE.Liverecombinantvaccine"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,12 @@ Live recombinant vaccine: Single dose administered at ≥ 9 months of age. """
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -63,6 +68,12 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9months"""
 * action[+]
   * title = "Client is due for JE vaccination"
   * description = """Client is due for JE vaccination
@@ -79,6 +90,24 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoJEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoJEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -106,6 +135,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoJEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoJEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Client is not due for JE vaccination"
   * description = """Client is not due for JE vaccination
@@ -123,6 +170,24 @@ Live recombinant vaccine: Single dose administered at ≥ 9 months of age. As a 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoJEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoJEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -150,6 +215,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoJEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoJEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "JE immunization schedule is complete"
   * description = """JE immunization schedule is complete
@@ -168,6 +251,12 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneJEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneJEprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -195,4 +284,10 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneJEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneJEprimaryseriesdoseswereadministered"""
 

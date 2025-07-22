@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Varicella.2doses"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,12 @@ Depending on the goal of the vaccination programme, 1–2 doses should be given 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan12months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan12months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -62,6 +67,12 @@ Depending on the goal of the vaccination programme, 1–2 doses should be given 
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan12months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan12months"""
 * action[+]
   * title = "Client is not due for varicella vaccination"
   * description = """Client is not due for varicella vaccination
@@ -79,6 +90,24 @@ Varicella-containing vaccine can be administered concomitantly with other vaccin
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Novaricellaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Novaricellaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Cientsageismorethanorequalto12months"""
+      * language = #text/cql-identifier
+      * expression = """Cientsageismorethanorequalto12months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -105,6 +134,24 @@ Varicella-containing vaccine can be administered concomitantly with other vaccin
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Novaricellaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Novaricellaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Cientsageismorethanorequalto12months"""
+      * language = #text/cql-identifier
+      * expression = """Cientsageismorethanorequalto12months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Client is due for varicella vaccination"
   * description = """Client is due for varicella vaccination
@@ -121,6 +168,24 @@ Varicella-containing vaccine can be administered concomitantly with other vaccin
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Novaricellaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Novaricellaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Cientsageismorethanorequalto12months"""
+      * language = #text/cql-identifier
+      * expression = """Cientsageismorethanorequalto12months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -147,6 +212,24 @@ Varicella-containing vaccine can be administered concomitantly with other vaccin
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Novaricellaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Novaricellaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Cientsageismorethanorequalto12months"""
+      * language = #text/cql-identifier
+      * expression = """Cientsageismorethanorequalto12months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Client is not due for varicella vaccination"
   * description = """Client is not due for varicella vaccination
@@ -164,6 +247,18 @@ The minimum interval between doses should be as recommended by the manufacturer,
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onevaricellaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onevaricellaprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestvaricelladoseadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestvaricelladoseadministeredlessthan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -190,6 +285,18 @@ The minimum interval between doses should be as recommended by the manufacturer,
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onevaricellaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onevaricellaprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestvaricelladoseadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestvaricelladoseadministeredlessthan4weeksago"""
 * action[+]
   * title = "Client is not due for varicella vaccination"
   * description = """Client is not due for varicella vaccination
@@ -207,6 +314,24 @@ Varicella-containing vaccine can be administered concomitantly with other vaccin
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onevaricellaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onevaricellaprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestvaricelladoseadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestvaricelladoseadministeredmorethan4weeksago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -233,6 +358,24 @@ Varicella-containing vaccine can be administered concomitantly with other vaccin
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onevaricellaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onevaricellaprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestvaricelladoseadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestvaricelladoseadministeredmorethan4weeksago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Client is due for varicella vaccination"
   * description = """Client is due for varicella vaccination
@@ -249,6 +392,24 @@ Varicella-containing vaccine can be administered concomitantly with other vaccin
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onevaricellaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onevaricellaprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestvaricelladoseadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestvaricelladoseadministeredmorethan4weeksago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -275,6 +436,24 @@ Varicella-containing vaccine can be administered concomitantly with other vaccin
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onevaricellaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onevaricellaprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestvaricelladoseadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestvaricelladoseadministeredmorethan4weeksago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Varicella immunization schedule is complete"
   * description = """Varicella immunization schedule is complete
@@ -292,6 +471,12 @@ Varicella-containing vaccine can be administered concomitantly with other vaccin
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twovaricellaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twovaricellaprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -318,4 +503,10 @@ Varicella-containing vaccine can be administered concomitantly with other vaccin
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twovaricellaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twovaricellaprimaryseriesdoseswereadministered"""
 

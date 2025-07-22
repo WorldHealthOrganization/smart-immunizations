@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Typhoid.ViPS"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,12 @@ Countries may consider the routine use of ViPS vaccine in individuals aged 2 yea
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan2years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan2years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -63,6 +68,12 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan2years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan2years"""
 * action[+]
   * title = "Client is due for Typhoid vaccination"
   * description = """Client is due for Typhoid vaccination
@@ -79,6 +90,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Notyphoidprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Notyphoidprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto2years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto2years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -106,6 +129,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Notyphoidprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Notyphoidprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto2years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto2years"""
 * action[+]
   * title = "Primary series is complete. Client is not due for typhoid booster dose"
   * description = """Primary series is complete. Client is not due for typhoid booster dose
@@ -124,6 +159,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onetyphoidprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onetyphoidprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatesttyphoiddosewasadministeredlessthan3yearsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatesttyphoiddosewasadministeredlessthan3yearsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -151,6 +198,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onetyphoidprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onetyphoidprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatesttyphoiddosewasadministeredlessthan3yearsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatesttyphoiddosewasadministeredlessthan3yearsago"""
 * action[+]
   * title = "Primary series is complete. Client is due for typhoid booster dose"
   * description = """Primary series is complete. Client is due for typhoid booster dose
@@ -169,6 +228,18 @@ Revaccination is recommended every 3 years for ViPS. """
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onetyphoidprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onetyphoidprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatesttyphoiddosewasadministeredmorethan3yearsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatesttyphoiddosewasadministeredmorethan3yearsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -196,4 +267,16 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onetyphoidprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onetyphoidprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatesttyphoiddosewasadministeredmorethan3yearsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatesttyphoiddosewasadministeredmorethan3yearsago"""
 

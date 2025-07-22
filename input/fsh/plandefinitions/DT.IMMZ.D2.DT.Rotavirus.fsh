@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Rotavirus"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,12 @@ WHO recommends that the first dose of rotavirus vaccine be administered as soon 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan6weeks"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan6weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -62,6 +67,12 @@ WHO recommends that the first dose of rotavirus vaccine be administered as soon 
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan6weeks"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan6weeks"""
 * action[+]
   * title = "Client is due for rotavirus vaccination"
   * description = """Client is due for rotavirus vaccination
@@ -78,6 +89,24 @@ WHO recommends that the first dose of rotavirus vaccine be administered as soon 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Norotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Norotavirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -105,6 +134,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Norotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Norotavirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Client is not due for rotavirus vaccination"
   * description = """Client is not due for rotavirus vaccination
@@ -121,6 +168,24 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Norotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Norotavirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -147,6 +212,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Norotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Norotavirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Client is due for rotavirus vaccination"
   * description = """Client is due for rotavirus vaccination
@@ -166,6 +249,24 @@ Note: The rotavirus vaccination series for each child should be completed with t
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onerotavirusprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onerotavirusprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -193,6 +294,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onerotavirusprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onerotavirusprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Client is not due for rotavirus vaccination"
   * description = """Client is not due for rotavirus vaccination
@@ -209,6 +328,24 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onerotavirusprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onerotavirusprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -235,6 +372,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onerotavirusprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onerotavirusprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Client is due for rotavirus vaccination"
   * description = """Client is due for rotavirus vaccination
@@ -252,6 +407,30 @@ For a mixed series or a series with any unknown vaccine products, a total of 3 d
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Tworotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Tworotavirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6monthsand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6monthsand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriesadministeredtotheclientisamixedserie5005705dfd"""
+      * language = #text/cql-identifier
+      * expression = """Theseriesadministeredtotheclientisamixedserie5005705dfd"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -279,6 +458,30 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Tworotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Tworotavirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6monthsand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6monthsand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriesadministeredtotheclientisamixedserie5005705dfd"""
+      * language = #text/cql-identifier
+      * expression = """Theseriesadministeredtotheclientisamixedserie5005705dfd"""
 * action[+]
   * title = "Client is not due for rotavirus vaccination"
   * description = """Client is not due for rotavirus vaccination
@@ -295,6 +498,30 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Tworotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Tworotavirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6monthsand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6monthsand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccineswasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccineswasadministeredinthelast4weeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriesadministeredtotheclientisamixedserie5005705dfd"""
+      * language = #text/cql-identifier
+      * expression = """Theseriesadministeredtotheclientisamixedserie5005705dfd"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -321,6 +548,30 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Tworotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Tworotavirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6monthsand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6monthsand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccineswasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccineswasadministeredinthelast4weeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriesadministeredtotheclientisamixedserie5005705dfd"""
+      * language = #text/cql-identifier
+      * expression = """Theseriesadministeredtotheclientisamixedserie5005705dfd"""
 * action[+]
   * title = "Client is due for rotavirus vaccination"
   * description = """Client is due for rotavirus vaccination
@@ -338,6 +589,36 @@ RotaTeq, Rotavac and Rotasiil should be administered in a 3-dose schedule, while
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Tworotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Tworotavirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6monthsand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6monthsand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinlast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinlast4weeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriesadministeredtotheclientcontainsthesameproduct"""
+      * language = #text/cql-identifier
+      * expression = """Theseriesadministeredtotheclientcontainsthesameproduct"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriescontainmorethantwodoses"""
+      * language = #text/cql-identifier
+      * expression = """Theseriescontainmorethantwodoses"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -365,6 +646,36 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Tworotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Tworotavirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6monthsand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6monthsand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinlast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinlast4weeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriesadministeredtotheclientcontainsthesameproduct"""
+      * language = #text/cql-identifier
+      * expression = """Theseriesadministeredtotheclientcontainsthesameproduct"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriescontainmorethantwodoses"""
+      * language = #text/cql-identifier
+      * expression = """Theseriescontainmorethantwodoses"""
 * action[+]
   * title = "Client is not due for rotavirus vaccination"
   * description = """Client is not due for rotavirus vaccination
@@ -381,6 +692,36 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Tworotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Tworotavirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6monthsand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6monthsand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinlast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinlast4weeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriesadministeredtotheclientcontainsthesameproduct"""
+      * language = #text/cql-identifier
+      * expression = """Theseriesadministeredtotheclientcontainsthesameproduct"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriescontainmorethantwodoses"""
+      * language = #text/cql-identifier
+      * expression = """Theseriescontainmorethantwodoses"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -407,6 +748,36 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Tworotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Tworotavirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6monthsand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6monthsand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinlast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinlast4weeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriesadministeredtotheclientcontainsthesameproduct"""
+      * language = #text/cql-identifier
+      * expression = """Theseriesadministeredtotheclientcontainsthesameproduct"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriescontainmorethantwodoses"""
+      * language = #text/cql-identifier
+      * expression = """Theseriescontainmorethantwodoses"""
 * action[+]
   * title = "Rotavirus immunization schedule is complete"
   * description = """Rotavirus immunization schedule is complete
@@ -423,6 +794,30 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Tworotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Tworotavirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6monthsand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6monthsand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriesadministeredtotheclientcontainsthesameproduct"""
+      * language = #text/cql-identifier
+      * expression = """Theseriesadministeredtotheclientcontainsthesameproduct"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriescontainlessthanorequaltotwodoses"""
+      * language = #text/cql-identifier
+      * expression = """Theseriescontainlessthanorequaltotwodoses"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -449,6 +844,30 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Tworotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Tworotavirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6monthsand24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6monthsand24months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriesadministeredtotheclientcontainsthesameproduct"""
+      * language = #text/cql-identifier
+      * expression = """Theseriesadministeredtotheclientcontainsthesameproduct"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theseriescontainlessthanorequaltotwodoses"""
+      * language = #text/cql-identifier
+      * expression = """Theseriescontainlessthanorequaltotwodoses"""
 * action[+]
   * title = "Rotavirus immunization schedule is complete"
   * description = """Rotavirus immunization schedule is complete
@@ -466,6 +885,12 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Threerotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Threerotavirusprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -492,6 +917,12 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Threerotavirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Threerotavirusprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Client is not due for rotavirus vaccination if immunization schedule is not complete."
   * description = """Client is not due for rotavirus vaccination if immunization schedule is not complete.
@@ -509,6 +940,12 @@ Because of the typical age distribution of rotavirus gastroenteritis, rotavirus 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan24months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -535,4 +972,10 @@ Because of the typical age distribution of rotavirus gastroenteritis, rotavirus 
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan24months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan24months"""
 

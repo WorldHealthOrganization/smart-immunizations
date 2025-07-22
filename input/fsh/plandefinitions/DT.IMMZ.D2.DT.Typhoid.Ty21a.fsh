@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Typhoid.Ty21a"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -40,6 +39,12 @@ Countries may consider the routine use of Ty21a vaccine for individuals aged ove
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan6years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -67,6 +72,12 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan6years"""
 * action[+]
   * title = "Client is due for Typhoid vaccination"
   * description = """Client is due for Typhoid vaccination
@@ -84,6 +95,24 @@ For Ty21a, a 3-dose oral immunization schedule, administering the vaccine every 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto6years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Primaryseriesisnotcomplete"""
+      * language = #text/cql-identifier
+      * expression = """Primaryseriesisnotcomplete"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccineotherthantyphoidwasadministeredi9c94b586c8"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccineotherthantyphoidwasadministeredi9c94b586c8"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -111,6 +140,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto6years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Primaryseriesisnotcomplete"""
+      * language = #text/cql-identifier
+      * expression = """Primaryseriesisnotcomplete"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccineotherthantyphoidwasadministeredi9c94b586c8"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccineotherthantyphoidwasadministeredi9c94b586c8"""
 * action[+]
   * title = "Client is not due for Typhoid vaccination"
   * description = """Client is not due for Typhoid vaccination
@@ -128,6 +175,24 @@ As a general rule, any live vaccine may be given either simultaneously or at an 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto6years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Primaryseriesisnotcomplete"""
+      * language = #text/cql-identifier
+      * expression = """Primaryseriesisnotcomplete"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccineotherthantyphoidwasadministeredint35a1ec33ee"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccineotherthantyphoidwasadministeredint35a1ec33ee"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -155,6 +220,24 @@ Check for other vaccines due and inform the caregiver or the client when the nex
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto6years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Primaryseriesisnotcomplete"""
+      * language = #text/cql-identifier
+      * expression = """Primaryseriesisnotcomplete"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccineotherthantyphoidwasadministeredint35a1ec33ee"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccineotherthantyphoidwasadministeredint35a1ec33ee"""
 * action[+]
   * title = "Client is not due for typhoid booster dose"
   * description = """Client is not due for typhoid booster dose
@@ -172,6 +255,24 @@ Revaccination is recommended every 3–7 years for Ty21a (every 1 to 7 years for
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto6years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Primaryseriesiscomplete"""
+      * language = #text/cql-identifier
+      * expression = """Primaryseriesiscomplete"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatesttyphoiddosewasadministeredlessthan3yearsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatesttyphoiddosewasadministeredlessthan3yearsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -199,6 +300,24 @@ Check for any other vaccines due and inform the caregiver or the client when the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto6years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Primaryseriesiscomplete"""
+      * language = #text/cql-identifier
+      * expression = """Primaryseriesiscomplete"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatesttyphoiddosewasadministeredlessthan3yearsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatesttyphoiddosewasadministeredlessthan3yearsago"""
 * action[+]
   * title = "Client is due for typhoid booster dose"
   * description = """Client is due for typhoid booster dose
@@ -215,6 +334,30 @@ Check for any other vaccines due and inform the caregiver or the client when the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto6years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Primaryseriesiscomplete"""
+      * language = #text/cql-identifier
+      * expression = """Primaryseriesiscomplete"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatesttyphoiddosewasadministeredmorethan3yearsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatesttyphoiddosewasadministeredmorethan3yearsago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccineotherthantyphoidwasadministeredi9c94b586c8"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccineotherthantyphoidwasadministeredi9c94b586c8"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -242,6 +385,30 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto6years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Primaryseriesiscomplete"""
+      * language = #text/cql-identifier
+      * expression = """Primaryseriesiscomplete"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatesttyphoiddosewasadministeredmorethan3yearsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatesttyphoiddosewasadministeredmorethan3yearsago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccineotherthantyphoidwasadministeredi9c94b586c8"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccineotherthantyphoidwasadministeredi9c94b586c8"""
 * action[+]
   * title = "Client is not due for typhoid booster dose"
   * description = """Client is not due for typhoid booster dose
@@ -258,6 +425,30 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto6years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Primaryseriesiscomplete"""
+      * language = #text/cql-identifier
+      * expression = """Primaryseriesiscomplete"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatesttyphoiddosewasadministeredmorethan3yearsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatesttyphoiddosewasadministeredmorethan3yearsago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccineotherthantyphoidwasadministeredint35a1ec33ee"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccineotherthantyphoidwasadministeredint35a1ec33ee"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -285,4 +476,28 @@ Check for any other vaccines due and inform the caregiver or the client when the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto6years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto6years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Primaryseriesiscomplete"""
+      * language = #text/cql-identifier
+      * expression = """Primaryseriesiscomplete"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatesttyphoiddosewasadministeredmorethan3yearsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatesttyphoiddosewasadministeredmorethan3yearsago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccineotherthantyphoidwasadministeredint35a1ec33ee"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccineotherthantyphoidwasadministeredint35a1ec33ee"""
 

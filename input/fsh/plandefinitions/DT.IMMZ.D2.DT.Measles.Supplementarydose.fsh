@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Measles.Supplementarydose"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -37,6 +36,24 @@ As a general rule, live vaccines should be given either simultaneously or at int
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Measlessupplementarydosewasnotadministered"""
+      * language = #text/cql-identifier
+      * expression = """Measlessupplementarydosewasnotadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Measlesroutineimmunizationscheduleiscomplete"""
+      * language = #text/cql-identifier
+      * expression = """Measlesroutineimmunizationscheduleiscomplete"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -64,6 +81,24 @@ Check for any vaccines due and inform the caregiver of when to come back for sup
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Measlessupplementarydosewasnotadministered"""
+      * language = #text/cql-identifier
+      * expression = """Measlessupplementarydosewasnotadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Measlesroutineimmunizationscheduleiscomplete"""
+      * language = #text/cql-identifier
+      * expression = """Measlesroutineimmunizationscheduleiscomplete"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Consider measles supplementary dose. Create a clinical note"
   * description = """Consider measles supplementary dose. Create a clinical note
@@ -80,6 +115,24 @@ Check for any vaccines due and inform the caregiver of when to come back for sup
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Measlessupplementarydosewasnotadministered"""
+      * language = #text/cql-identifier
+      * expression = """Measlessupplementarydosewasnotadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Measlesroutineimmunizationscheduleiscomplete"""
+      * language = #text/cql-identifier
+      * expression = """Measlesroutineimmunizationscheduleiscomplete"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -107,6 +160,24 @@ Check if one of the measles supplementary dose specific scenarios is applicable.
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Measlessupplementarydosewasnotadministered"""
+      * language = #text/cql-identifier
+      * expression = """Measlessupplementarydosewasnotadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Measlesroutineimmunizationscheduleiscomplete"""
+      * language = #text/cql-identifier
+      * expression = """Measlesroutineimmunizationscheduleiscomplete"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Measles immunization schedule is complete"
   * description = """Measles immunization schedule is complete
@@ -123,6 +194,12 @@ Check if one of the measles supplementary dose specific scenarios is applicable.
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Measlessupplementarydosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Measlessupplementarydosewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -149,4 +226,10 @@ Check if one of the measles supplementary dose specific scenarios is applicable.
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Measlessupplementarydosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Measlessupplementarydosewasadministered"""
 

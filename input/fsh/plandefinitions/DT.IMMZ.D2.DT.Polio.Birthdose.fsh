@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Polio.Birthdose"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -37,6 +36,18 @@ Additionally, a birth dose of bOPV administered while infants are still protecte
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """bOPVbirthdoseazerodosewasnotadministered"""
+      * language = #text/cql-identifier
+      * expression = """bOPVbirthdoseazerodosewasnotadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan1week"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan1week"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -63,6 +74,18 @@ Additionally, a birth dose of bOPV administered while infants are still protecte
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """bOPVbirthdoseazerodosewasnotadministered"""
+      * language = #text/cql-identifier
+      * expression = """bOPVbirthdoseazerodosewasnotadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan1week"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan1week"""
 * action[+]
   * title = "Client is not due for the bOPV birth dose"
   * description = """Client is not due for the bOPV birth dose
@@ -79,6 +102,18 @@ Additionally, a birth dose of bOPV administered while infants are still protecte
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """bOPVbirthdoseazerodosewasnotadministered"""
+      * language = #text/cql-identifier
+      * expression = """bOPVbirthdoseazerodosewasnotadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto1week"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto1week"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -105,6 +140,18 @@ Additionally, a birth dose of bOPV administered while infants are still protecte
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """bOPVbirthdoseazerodosewasnotadministered"""
+      * language = #text/cql-identifier
+      * expression = """bOPVbirthdoseazerodosewasnotadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto1week"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto1week"""
 * action[+]
   * title = "Client is not due for the bOPV birth dose"
   * description = """Client is not due for the bOPV birth dose
@@ -121,6 +168,12 @@ Additionally, a birth dose of bOPV administered while infants are still protecte
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """bOPVbirthdoseazerodosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """bOPVbirthdoseazerodosewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -147,4 +200,10 @@ Additionally, a birth dose of bOPV administered while infants are still protecte
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """bOPVbirthdoseazerodosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """bOPVbirthdoseazerodosewasadministered"""
 

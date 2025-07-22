@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Cholera.WC-rBSvaccine2doses"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,18 @@ For WC-rBS vaccine (Dukoral), 2 doses should be given to children aged ≥6 year
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nocholeraprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nocholeraprimaryseriesdosewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -63,6 +74,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nocholeraprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nocholeraprimaryseriesdosewasadministered"""
 * action[+]
   * title = "Client is not due for cholera vaccination"
   * description = """Client is not due for cholera vaccination
@@ -79,6 +102,30 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Atleastonecholeraprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Atleastonecholeraprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Dosenumberofthelatestprimaryseriesdoseisone"""
+      * language = #text/cql-identifier
+      * expression = """Dosenumberofthelatestprimaryseriesdoseisone"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestcholeradosewasadministeredlessthan1weekago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestcholeradosewasadministeredlessthan1weekago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -106,6 +153,30 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Atleastonecholeraprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Atleastonecholeraprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Dosenumberofthelatestprimaryseriesdoseisone"""
+      * language = #text/cql-identifier
+      * expression = """Dosenumberofthelatestprimaryseriesdoseisone"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestcholeradosewasadministeredlessthan1weekago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestcholeradosewasadministeredlessthan1weekago"""
 * action[+]
   * title = "Client is due for cholera vaccination"
   * description = """Client is due for cholera vaccination
@@ -122,6 +193,30 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Atleastonecholeraprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Atleastonecholeraprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Dosenumberofthelatestprimaryseriesdoseisone"""
+      * language = #text/cql-identifier
+      * expression = """Dosenumberofthelatestprimaryseriesdoseisone"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestcholeradosewasadministeredmorethan1wd5fc548d1f"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestcholeradosewasadministeredmorethan1wd5fc548d1f"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -149,6 +244,30 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Atleastonecholeraprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Atleastonecholeraprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Dosenumberofthelatestprimaryseriesdoseisone"""
+      * language = #text/cql-identifier
+      * expression = """Dosenumberofthelatestprimaryseriesdoseisone"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestcholeradosewasadministeredmorethan1wd5fc548d1f"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestcholeradosewasadministeredmorethan1wd5fc548d1f"""
 * action[+]
   * title = "Client is due for cholera vaccination"
   * description = """Client is due for cholera vaccination
@@ -166,6 +285,30 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Atleastonecholeraprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Atleastonecholeraprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Dosenumberofthelatestprimaryseriesdoseisone"""
+      * language = #text/cql-identifier
+      * expression = """Dosenumberofthelatestprimaryseriesdoseisone"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestcholeradosewasadministeredmorethan6weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestcholeradosewasadministeredmorethan6weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -193,6 +336,30 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Atleastonecholeraprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Atleastonecholeraprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Dosenumberofthelatestprimaryseriesdoseisone"""
+      * language = #text/cql-identifier
+      * expression = """Dosenumberofthelatestprimaryseriesdoseisone"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestcholeradosewasadministeredmorethan6weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestcholeradosewasadministeredmorethan6weeksago"""
 * action[+]
   * title = "Primary series is complete. Client is due for cholera booster dose"
   * description = """Primary series is complete. Client is due for cholera booster dose
@@ -211,6 +378,30 @@ For those aged ≥6 years, if less than 2 years have passed, 1 dose for revaccin
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Atleastonecholeraprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Atleastonecholeraprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Dosenumberofthelatestprimaryseriesdoseismoret9b9aad1ae4"""
+      * language = #text/cql-identifier
+      * expression = """Dosenumberofthelatestprimaryseriesdoseismoret9b9aad1ae4"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestcholeradosewasadministeredapproximat42bbdc7505"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestcholeradosewasadministeredapproximat42bbdc7505"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -238,6 +429,30 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Atleastonecholeraprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Atleastonecholeraprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Dosenumberofthelatestprimaryseriesdoseismoret9b9aad1ae4"""
+      * language = #text/cql-identifier
+      * expression = """Dosenumberofthelatestprimaryseriesdoseismoret9b9aad1ae4"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestcholeradosewasadministeredapproximat42bbdc7505"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestcholeradosewasadministeredapproximat42bbdc7505"""
 * action[+]
   * title = "Client is due for cholera vaccination"
   * description = """Client is due for cholera vaccination
@@ -255,6 +470,30 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Atleastonecholeraprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Atleastonecholeraprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Dosenumberofthelatestprimaryseriesdoseismoret9b9aad1ae4"""
+      * language = #text/cql-identifier
+      * expression = """Dosenumberofthelatestprimaryseriesdoseismoret9b9aad1ae4"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestcholeradosewasadministeredapproximat2b531ad557"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestcholeradosewasadministeredapproximat2b531ad557"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -282,4 +521,28 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Atleastonecholeraprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Atleastonecholeraprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Dosenumberofthelatestprimaryseriesdoseismoret9b9aad1ae4"""
+      * language = #text/cql-identifier
+      * expression = """Dosenumberofthelatestprimaryseriesdoseismoret9b9aad1ae4"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestcholeradosewasadministeredapproximat2b531ad557"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestcholeradosewasadministeredapproximat2b531ad557"""
 

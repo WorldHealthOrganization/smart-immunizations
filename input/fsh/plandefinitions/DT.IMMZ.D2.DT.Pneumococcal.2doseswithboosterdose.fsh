@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Pneumococcal.2doseswithboosterdose"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -42,6 +41,12 @@ For administration of pneumococcal vaccine to infants, WHO recommends a 3-dose s
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthan6weeks"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthan6weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -68,6 +73,12 @@ For administration of pneumococcal vaccine to infants, WHO recommends a 3-dose s
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthan6weeks"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthan6weeks"""
 * action[+]
   * title = "Client is due for pneumococcal vaccination"
   * description = """Client is due for pneumococcal vaccination
@@ -84,6 +95,18 @@ For administration of pneumococcal vaccine to infants, WHO recommends a 3-dose s
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageisbetween6weeksand5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageisbetween6weeksand5years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -111,6 +134,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageisbetween6weeksand5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageisbetween6weeksand5years"""
 * action[+]
   * title = "Client is not due for pneumococcal vaccination"
   * description = """Client is not due for pneumococcal vaccination
@@ -128,6 +163,30 @@ If the 2p+1 schedule is selected, an interval of ≥8 weeks is recommended betwe
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthanorequalto5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthanorequalto5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thefirstpneumococcaldosewasadministeredwithin477c42fea2"""
+      * language = #text/cql-identifier
+      * expression = """Thefirstpneumococcaldosewasadministeredwithin477c42fea2"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpneumococcaldosewasadministeredlesst3ac08f4c59"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpneumococcaldosewasadministeredlesst3ac08f4c59"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -155,6 +214,30 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthanorequalto5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthanorequalto5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thefirstpneumococcaldosewasadministeredwithin477c42fea2"""
+      * language = #text/cql-identifier
+      * expression = """Thefirstpneumococcaldosewasadministeredwithin477c42fea2"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpneumococcaldosewasadministeredlesst3ac08f4c59"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpneumococcaldosewasadministeredlesst3ac08f4c59"""
 * action[+]
   * title = "Client is due for pneumococcal vaccination"
   * description = """Client is due for pneumococcal vaccination
@@ -171,6 +254,30 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthanorequalto5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthanorequalto5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thefirstpneumococcaldosewasadministeredwithin477c42fea2"""
+      * language = #text/cql-identifier
+      * expression = """Thefirstpneumococcaldosewasadministeredwithin477c42fea2"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpneumococcaldosewasadministeredmoret23b657edda"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpneumococcaldosewasadministeredmoret23b657edda"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -198,6 +305,30 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthanorequalto5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthanorequalto5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thefirstpneumococcaldosewasadministeredwithin477c42fea2"""
+      * language = #text/cql-identifier
+      * expression = """Thefirstpneumococcaldosewasadministeredwithin477c42fea2"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpneumococcaldosewasadministeredmoret23b657edda"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpneumococcaldosewasadministeredmoret23b657edda"""
 * action[+]
   * title = "Client is not due for pneumococcal vaccination"
   * description = """Client is not due for pneumococcal vaccination
@@ -215,6 +346,36 @@ Unvaccinated children aged 1–5 years who are at high risk for pneumococcal inf
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthanorequalto5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthanorequalto5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thefirstpneumococcaldosewasadministeredafter213a541f758"""
+      * language = #text/cql-identifier
+      * expression = """Thefirstpneumococcaldosewasadministeredafter213a541f758"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpneumococcaldosewasadministeredlesst3ac08f4c59"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpneumococcaldosewasadministeredlesst3ac08f4c59"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisathighriskforpneumococcalinfection"""
+      * language = #text/cql-identifier
+      * expression = """Clientisathighriskforpneumococcalinfection"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -242,6 +403,36 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthanorequalto5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthanorequalto5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thefirstpneumococcaldosewasadministeredafter213a541f758"""
+      * language = #text/cql-identifier
+      * expression = """Thefirstpneumococcaldosewasadministeredafter213a541f758"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpneumococcaldosewasadministeredlesst3ac08f4c59"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpneumococcaldosewasadministeredlesst3ac08f4c59"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisathighriskforpneumococcalinfection"""
+      * language = #text/cql-identifier
+      * expression = """Clientisathighriskforpneumococcalinfection"""
 * action[+]
   * title = "Client is due for pneumococcal vaccination"
   * description = """Client is due for pneumococcal vaccination
@@ -258,6 +449,36 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthanorequalto5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthanorequalto5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thefirstpneumococcaldosewasadministeredafter213a541f758"""
+      * language = #text/cql-identifier
+      * expression = """Thefirstpneumococcaldosewasadministeredafter213a541f758"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpneumococcaldosewasadministeredmoret23b657edda"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpneumococcaldosewasadministeredmoret23b657edda"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisathighriskforpneumococcalinfection"""
+      * language = #text/cql-identifier
+      * expression = """Clientisathighriskforpneumococcalinfection"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -285,6 +506,36 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthanorequalto5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthanorequalto5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thefirstpneumococcaldosewasadministeredafter213a541f758"""
+      * language = #text/cql-identifier
+      * expression = """Thefirstpneumococcaldosewasadministeredafter213a541f758"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpneumococcaldosewasadministeredmoret23b657edda"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpneumococcaldosewasadministeredmoret23b657edda"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisathighriskforpneumococcalinfection"""
+      * language = #text/cql-identifier
+      * expression = """Clientisathighriskforpneumococcalinfection"""
 * action[+]
   * title = "Pneumococcal immunization schedule is complete"
   * description = """Pneumococcal immunization schedule is complete
@@ -303,6 +554,30 @@ Catch-up vaccination can be done with a single dose of vaccine for children aged
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthanorequalto5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthanorequalto5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thefirstpneumococcaldosewasadministeredafter213a541f758"""
+      * language = #text/cql-identifier
+      * expression = """Thefirstpneumococcaldosewasadministeredafter213a541f758"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisnotathighriskforpneumococcalinfection"""
+      * language = #text/cql-identifier
+      * expression = """Clientisnotathighriskforpneumococcalinfection"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -330,6 +605,30 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthanorequalto5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthanorequalto5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thefirstpneumococcaldosewasadministeredafter213a541f758"""
+      * language = #text/cql-identifier
+      * expression = """Thefirstpneumococcaldosewasadministeredafter213a541f758"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisnotathighriskforpneumococcalinfection"""
+      * language = #text/cql-identifier
+      * expression = """Clientisnotathighriskforpneumococcalinfection"""
 * action[+]
   * title = "Client is due for pneumococcal booster dose"
   * description = """Client is due for pneumococcal booster dose
@@ -347,6 +646,30 @@ For the 2p+1 schedule, the booster dose should be given at 9–18 months of age,
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthanorequalto5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthanorequalto5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thefirstpneumococcaldosewasadministeredwithin6428b56fee"""
+      * language = #text/cql-identifier
+      * expression = """Thefirstpneumococcaldosewasadministeredwithin6428b56fee"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -374,6 +697,30 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthanorequalto5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthanorequalto5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thefirstpneumococcaldosewasadministeredwithin6428b56fee"""
+      * language = #text/cql-identifier
+      * expression = """Thefirstpneumococcaldosewasadministeredwithin6428b56fee"""
 * action[+]
   * title = "Pneumococcal immunization schedule is complete"
   * description = """Pneumococcal immunization schedule is complete
@@ -392,6 +739,30 @@ Doses for those who start vaccination late: 2 doses for children aged 12–24 mo
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthanorequalto5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthanorequalto5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thefirstpneumococcaldosewasadministeredafter1246bd6e5dd"""
+      * language = #text/cql-identifier
+      * expression = """Thefirstpneumococcaldosewasadministeredafter1246bd6e5dd"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -419,6 +790,30 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthanorequalto5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthanorequalto5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thefirstpneumococcaldosewasadministeredafter1246bd6e5dd"""
+      * language = #text/cql-identifier
+      * expression = """Thefirstpneumococcaldosewasadministeredafter1246bd6e5dd"""
 * action[+]
   * title = "Client is not due for pneumococcal booster dose"
   * description = """Client is not due for pneumococcal booster dose
@@ -437,6 +832,30 @@ and the booster dose. """
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthan12months"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthan12months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -464,6 +883,30 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthan12months"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthan12months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
 * action[+]
   * title = "Client is not due for pneumococcal booster dose"
   * description = """Client is not due for pneumococcal booster dose
@@ -480,6 +923,30 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthan12months"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthan12months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clienthadpretermbirth"""
+      * language = #text/cql-identifier
+      * expression = """Clienthadpretermbirth"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -507,6 +974,30 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageislessthan12months"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageislessthan12months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clienthadpretermbirth"""
+      * language = #text/cql-identifier
+      * expression = """Clienthadpretermbirth"""
 * action[+]
   * title = "Client is due for pneumococcal booster dose"
   * description = """Client is due for pneumococcal booster dose
@@ -523,6 +1014,36 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageismorethanorequalto12monthsandlea2a2ef4e18"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageismorethanorequalto12monthsandlea2a2ef4e18"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpneumococcaldosewasadministeredwithia9c6b634e9"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpneumococcaldosewasadministeredwithia9c6b634e9"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -550,6 +1071,36 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageismorethanorequalto12monthsandlea2a2ef4e18"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageismorethanorequalto12monthsandlea2a2ef4e18"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpneumococcaldosewasadministeredwithia9c6b634e9"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpneumococcaldosewasadministeredwithia9c6b634e9"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
 * action[+]
   * title = "Client is due for pneumococcal booster dose"
   * description = """Client is due for pneumococcal booster dose
@@ -566,6 +1117,36 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageismorethanorequalto12monthsandlea2a2ef4e18"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageismorethanorequalto12monthsandlea2a2ef4e18"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpneumococcaldosewasadministeredwithia9c6b634e9"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpneumococcaldosewasadministeredwithia9c6b634e9"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clienthadpretermbirth"""
+      * language = #text/cql-identifier
+      * expression = """Clienthadpretermbirth"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -593,6 +1174,36 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageismorethanorequalto12monthsandlea2a2ef4e18"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageismorethanorequalto12monthsandlea2a2ef4e18"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpneumococcaldosewasadministeredwithia9c6b634e9"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpneumococcaldosewasadministeredwithia9c6b634e9"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clienthadpretermbirth"""
+      * language = #text/cql-identifier
+      * expression = """Clienthadpretermbirth"""
 * action[+]
   * title = "Pneumococcal immunization schedule is complete"
   * description = """Pneumococcal immunization schedule is complete
@@ -609,6 +1220,30 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageismorethanorequalto12monthsandlea2a2ef4e18"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageismorethanorequalto12monthsandlea2a2ef4e18"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpneumococcaldosewasadministeredafter61726bfb88"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpneumococcaldosewasadministeredafter61726bfb88"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -636,6 +1271,30 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageismorethanorequalto12monthsandlea2a2ef4e18"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageismorethanorequalto12monthsandlea2a2ef4e18"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpneumococcaldosewasadministeredafter61726bfb88"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpneumococcaldosewasadministeredafter61726bfb88"""
 * action[+]
   * title = "Pneumococcal immunization schedule is complete"
   * description = """Pneumococcal immunization schedule is complete
@@ -653,6 +1312,30 @@ Check for any other vaccines due."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientdidnothavepretermbirth"""
+      * language = #text/cql-identifier
+      * expression = """Clientdidnothavepretermbirth"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -680,6 +1363,30 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientdidnothavepretermbirth"""
+      * language = #text/cql-identifier
+      * expression = """Clientdidnothavepretermbirth"""
 * action[+]
   * title = "Pneumococcal immunization schedule is complete"
   * description = """Pneumococcal immunization schedule is complete
@@ -696,6 +1403,24 @@ Check for any other vaccines due."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageismorethanorequalto24months"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageismorethanorequalto24months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -723,6 +1448,24 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepneumococcalboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepneumococcalboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageismorethanorequalto24months"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageismorethanorequalto24months"""
 * action[+]
   * title = "Pneumococcal immunization schedule is complete"
   * description = """Pneumococcal immunization schedule is complete
@@ -739,6 +1482,18 @@ Check for any other vaccines due."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalboosterdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -766,6 +1521,18 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopneumococcalboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopneumococcalboosterdoseswereadministered"""
 * action[+]
   * title = "Clinical judgement is required. Create a clinical note"
   * description = """Clinical judgement is required. Create a clinical note
@@ -784,6 +1551,12 @@ For considerations on pneumococcal vaccination in older adults, see the WHO posi
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageismorethan5years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -810,4 +1583,10 @@ For considerations on pneumococcal vaccination in older adults, see the WHO posi
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Theclientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Theclientsageismorethan5years"""
 

@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Rubella.Highincidence"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,12 @@ The first dose of rubella-containing vaccine can be delivered at 9 months of age
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -63,6 +68,12 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9months"""
 * action[+]
   * title = "Client is due for rubella vaccination"
   * description = """Client is due for rubella vaccination
@@ -80,6 +91,24 @@ The first dose of rubella-containing vaccine can be delivered at 9 months of age
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Norubellaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Norubellaprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -107,6 +136,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Norubellaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Norubellaprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Client is not due for rubella vaccination"
   * description = """Client is not due for rubella vaccination
@@ -124,6 +171,24 @@ Live vaccines should be given either simultaneously with rubella-containing vacc
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Norubellaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Norubellaprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -151,6 +216,24 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Norubellaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Norubellaprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Rubella immunization schedule is complete"
   * description = """Rubella immunization schedule is complete
@@ -169,6 +252,12 @@ Check for any other vaccines due."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onerubellaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onerubellaprimaryseriesdosewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -196,4 +285,10 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onerubellaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onerubellaprimaryseriesdosewasadministered"""
 

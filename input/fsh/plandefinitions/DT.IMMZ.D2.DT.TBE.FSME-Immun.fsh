@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.TBE.FSME-Immun"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,12 @@ The vaccines manufactured in Austria and Germany (FSME-Immun and Encepur) can be
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan1year"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan1year"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -63,6 +68,12 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan1year"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan1year"""
 * action[+]
   * title = "Client is due for TBE vaccination"
   * description = """Client is due for TBE vaccination
@@ -79,6 +90,18 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoTBEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoTBEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto1year"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto1year"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -106,6 +129,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoTBEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoTBEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto1year"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto1year"""
 * action[+]
   * title = "Client is not due for TBE vaccination"
   * description = """Client is not due for TBE vaccination
@@ -123,6 +158,18 @@ For the vaccines manufactured in Austria and Germany (FSME-Immun and Encepur), a
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneTBEprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneTBEprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestTBEdosewasadministeredlessthan1monthago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestTBEdosewasadministeredlessthan1monthago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -149,6 +196,18 @@ For the vaccines manufactured in Austria and Germany (FSME-Immun and Encepur), a
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneTBEprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneTBEprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestTBEdosewasadministeredlessthan1monthago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestTBEdosewasadministeredlessthan1monthago"""
 * action[+]
   * title = "Client is due for TBE vaccination"
   * description = """Client is due for TBE vaccination
@@ -166,6 +225,18 @@ For the vaccines manufactured in Austria and Germany (FSME-Immun and Encepur), a
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneTBEprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneTBEprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestTBEdosewasadministeredmorethan1monthago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestTBEdosewasadministeredmorethan1monthago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -193,6 +264,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneTBEprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneTBEprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestTBEdosewasadministeredmorethan1monthago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestTBEdosewasadministeredmorethan1monthago"""
 * action[+]
   * title = "Client is not due for TBE vaccination"
   * description = """Client is not due for TBE vaccination
@@ -209,6 +292,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoTBEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoTBEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestTBEdosewasadministeredlessthan5monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestTBEdosewasadministeredlessthan5monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -236,6 +331,18 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoTBEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoTBEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestTBEdosewasadministeredlessthan5monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestTBEdosewasadministeredlessthan5monthsago"""
 * action[+]
   * title = "Client is due for TBE vaccination"
   * description = """Client is due for TBE vaccination
@@ -252,6 +359,18 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoTBEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoTBEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestTBEdosewasadministeredmorethan5monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestTBEdosewasadministeredmorethan5monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -279,6 +398,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoTBEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoTBEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestTBEdosewasadministeredmorethan5monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestTBEdosewasadministeredmorethan5monthsago"""
 * action[+]
   * title = "Primary series is complete. Client is not due for TBE booster dose"
   * description = """Primary series is complete. Client is not due for TBE booster dose
@@ -297,6 +428,24 @@ For both vaccines (FSME-Immun and Encepur), the manufacturers recommend a booste
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeTBEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeTBEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoTBEboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoTBEboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestTBEdosewasadministeredlessthan3yearsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestTBEdosewasadministeredlessthan3yearsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -324,6 +473,24 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeTBEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeTBEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoTBEboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoTBEboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestTBEdosewasadministeredlessthan3yearsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestTBEdosewasadministeredlessthan3yearsago"""
 * action[+]
   * title = "Primary series is complete. Client is due for TBE booster dose"
   * description = """Primary series is complete. Client is due for TBE booster dose
@@ -341,6 +508,24 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeTBEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeTBEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoTBEboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoTBEboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestTBEdosewasadministeredmorethan3yearsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestTBEdosewasadministeredmorethan3yearsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -368,6 +553,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeTBEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeTBEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoTBEboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoTBEboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestTBEdosewasadministeredmorethan3yearsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestTBEdosewasadministeredmorethan3yearsago"""
 * action[+]
   * title = "Clinical judgement is required."
   * description = """Clinical judgement is required.
@@ -386,6 +589,18 @@ Vaccination against the disease requires a primary series of 3 doses; those who 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeTBEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeTBEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Atleastoneboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Atleastoneboosterdosewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -413,4 +628,16 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeTBEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeTBEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Atleastoneboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Atleastoneboosterdosewasadministered"""
 

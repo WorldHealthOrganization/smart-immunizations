@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.HepatitisB.Delayedstart"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,18 @@ If delayed or interrupted scheduling of vaccination for children, adolescents an
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NohepatitisBdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NohepatitisBdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsageismorethanMemberStatesdefinedlowerlimit"""
+      * language = #text/cql-identifier
+      * expression = """ClientsageismorethanMemberStatesdefinedlowerlimit"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -63,6 +74,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NohepatitisBdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NohepatitisBdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsageismorethanMemberStatesdefinedlowerlimit"""
+      * language = #text/cql-identifier
+      * expression = """ClientsageismorethanMemberStatesdefinedlowerlimit"""
 * action[+]
   * title = "Client is not due for a hepatitis B vaccination"
   * description = """Client is not due for a hepatitis B vaccination
@@ -79,6 +102,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OnehepatitisBdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OnehepatitisBdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatesthepatitisBdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatesthepatitisBdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -106,6 +141,18 @@ Check for any other vaccines due, and inform the caregiver of when to come back 
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OnehepatitisBdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OnehepatitisBdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatesthepatitisBdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatesthepatitisBdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Client is due for a hepatitis B vaccination"
   * description = """Client is due for a hepatitis B vaccination
@@ -122,6 +169,18 @@ Check for any other vaccines due, and inform the caregiver of when to come back 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OnehepatitisBdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OnehepatitisBdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatesthepatitisBdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatesthepatitisBdosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -149,6 +208,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OnehepatitisBdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OnehepatitisBdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatesthepatitisBdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatesthepatitisBdosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Client is not due for a hepatitis B vaccination"
   * description = """Client is not due for a hepatitis B vaccination
@@ -165,6 +236,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwohepatitisBdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwohepatitisBdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatesthepatitisBdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatesthepatitisBdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -192,6 +275,18 @@ Check for any other vaccines due, and inform the caregiver of when to come back 
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwohepatitisBdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwohepatitisBdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatesthepatitisBdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatesthepatitisBdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Client is not due for a hepatitis B vaccination"
   * description = """Client is not due for a hepatitis B vaccination
@@ -208,6 +303,24 @@ Check for any other vaccines due, and inform the caregiver of when to come back 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwohepatitisBdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwohepatitisBdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatesthepatitisBdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatesthepatitisBdosewasadministeredmorethan4weeksago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThefirsthepatitisBdosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThefirsthepatitisBdosewasadministeredlessthan6monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -235,6 +348,24 @@ Check for any other vaccines due, and inform the caregiver of when to come back 
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwohepatitisBdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwohepatitisBdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatesthepatitisBdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatesthepatitisBdosewasadministeredmorethan4weeksago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThefirsthepatitisBdosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThefirsthepatitisBdosewasadministeredlessthan6monthsago"""
 * action[+]
   * title = "Client is due for a hepatitis B vaccination"
   * description = """Client is due for a hepatitis B vaccination
@@ -251,6 +382,24 @@ Check for any other vaccines due, and inform the caregiver of when to come back 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwohepatitisBdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwohepatitisBdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatesthepatitisBdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatesthepatitisBdosewasadministeredmorethan4weeksago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThefirsthepatitisBdosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThefirsthepatitisBdosewasadministeredmorethan6monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -278,6 +427,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwohepatitisBdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwohepatitisBdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatesthepatitisBdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatesthepatitisBdosewasadministeredmorethan4weeksago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThefirsthepatitisBdosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThefirsthepatitisBdosewasadministeredmorethan6monthsago"""
 * action[+]
   * title = "Hepatitis B immunization schedule is complete"
   * description = """Hepatitis B immunization schedule is complete
@@ -296,6 +463,12 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreehepatitisBdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreehepatitisBdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -323,4 +496,10 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreehepatitisBdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreehepatitisBdoseswereadministered"""
 

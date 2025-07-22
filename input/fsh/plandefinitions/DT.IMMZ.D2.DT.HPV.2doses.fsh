@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.HPV.2doses"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,12 @@ The current evidence supports the recommendation that a 2-dose schedule be used 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -63,6 +68,12 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9years"""
 * action[+]
   * title = "Client is due for HPV vaccination"
   * description = """Client is due for HPV vaccination
@@ -80,6 +91,24 @@ The WHO-recommended primary target population for HPV vaccination is girls aged 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween9and14years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween9and14years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsbiologicalsexisfemale"""
+      * language = #text/cql-identifier
+      * expression = """Clientsbiologicalsexisfemale"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -107,6 +136,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween9and14years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween9and14years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsbiologicalsexisfemale"""
+      * language = #text/cql-identifier
+      * expression = """Clientsbiologicalsexisfemale"""
 * action[+]
   * title = "Clinical judgement is required. Create a clinical note."
   * description = """Clinical judgement is required. Create a clinical note.
@@ -124,6 +171,24 @@ Vaccination of secondary target populations (e.g. females aged ≥15 years, boys
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsagemorethanorequalto15years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsagemorethanorequalto15years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsbiologicalsexisfemale"""
+      * language = #text/cql-identifier
+      * expression = """Clientsbiologicalsexisfemale"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -150,6 +215,24 @@ Vaccination of secondary target populations (e.g. females aged ≥15 years, boys
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsagemorethanorequalto15years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsagemorethanorequalto15years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsbiologicalsexisfemale"""
+      * language = #text/cql-identifier
+      * expression = """Clientsbiologicalsexisfemale"""
 * action[+]
   * title = "Clinical judgement is required. Create a clinical note."
   * description = """Clinical judgement is required. Create a clinical note.
@@ -166,6 +249,18 @@ Vaccination of secondary target populations (e.g. females aged ≥15 years, boys
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsbiologicalsexisnotfemale"""
+      * language = #text/cql-identifier
+      * expression = """Clientsbiologicalsexisnotfemale"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -192,6 +287,18 @@ Vaccination of secondary target populations (e.g. females aged ≥15 years, boys
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsbiologicalsexisnotfemale"""
+      * language = #text/cql-identifier
+      * expression = """Clientsbiologicalsexisnotfemale"""
 * action[+]
   * title = "Client is not due for HPV vaccination"
   * description = """Client is not due for HPV vaccination
@@ -209,6 +316,18 @@ The minimum interval between first and second dose is 6 months. A 12-month sched
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneHPVprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneHPVprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHPVdosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHPVdosewasadministeredlessthan6monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -236,6 +355,18 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneHPVprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneHPVprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHPVdosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHPVdosewasadministeredlessthan6monthsago"""
 * action[+]
   * title = "Client is due for HPV vaccination"
   * description = """Client is due for HPV vaccination
@@ -252,6 +383,18 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneHPVprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneHPVprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHPVdosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHPVdosewasadministeredmorethan6monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -279,6 +422,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneHPVprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneHPVprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHPVdosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHPVdosewasadministeredmorethan6monthsago"""
 * action[+]
   * title = "Client is not due for HPV vaccination"
   * description = """Client is not due for HPV vaccination
@@ -296,6 +451,24 @@ Individuals known to be immunocompromised or infected with HIV (regardless of ag
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHPVdosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHPVdosewasadministeredlessthan6monthsago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -323,6 +496,24 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHPVdosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHPVdosewasadministeredlessthan6monthsago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
 * action[+]
   * title = "Client is due for HPV vaccination"
   * description = """Client is due for HPV vaccination
@@ -339,6 +530,24 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHPVdosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHPVdosewasadministeredmorethan6monthsago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -366,6 +575,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHPVdosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHPVdosewasadministeredmorethan6monthsago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
 * action[+]
   * title = "Client is not due for HPV vaccination"
   * description = """Client is not due for HPV vaccination
@@ -382,6 +609,24 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHPVdosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHPVdosewasadministeredlessthan6monthsago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunocompromised"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunocompromised"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -409,6 +654,24 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHPVdosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHPVdosewasadministeredlessthan6monthsago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunocompromised"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunocompromised"""
 * action[+]
   * title = "Client is due for HPV vaccination"
   * description = """Client is due for HPV vaccination
@@ -425,6 +688,24 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHPVdosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHPVdosewasadministeredmorethan6monthsago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunocompromised"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunocompromised"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -452,6 +733,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHPVdosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHPVdosewasadministeredmorethan6monthsago"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunocompromised"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunocompromised"""
 * action[+]
   * title = "HPV immunization schedule is complete"
   * description = """HPV immunization schedule is complete
@@ -469,6 +768,24 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisnotimmunocompromised"""
+      * language = #text/cql-identifier
+      * expression = """Clientisnotimmunocompromised"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -496,6 +813,24 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoHPVprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisnotimmunocompromised"""
+      * language = #text/cql-identifier
+      * expression = """Clientisnotimmunocompromised"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
 * action[+]
   * title = "HPV immunization schedule is complete"
   * description = """HPV immunization schedule is complete
@@ -512,6 +847,12 @@ Check for any other vaccines due."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeHPVprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -539,4 +880,10 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeHPVprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeHPVprimaryseriesdoseswereadministered"""
 

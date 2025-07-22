@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -37,6 +36,12 @@ A,C,W135,Y-D is also licensed for children aged 9–23 months and given as a 2-d
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -64,6 +69,12 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9months"""
 * action[+]
   * title = "Client is due for meningococcal vaccination"
   * description = """Client is due for meningococcal vaccination
@@ -80,6 +91,18 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nomeningococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nomeningococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -107,6 +130,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nomeningococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nomeningococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
 * action[+]
   * title = "Client is not due for meningococcal vaccination"
   * description = """Client is not due for meningococcal vaccination
@@ -123,6 +158,24 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onemeningococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onemeningococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsagewaslessthanorequalto23monthswhenthe4726ccffea"""
+      * language = #text/cql-identifier
+      * expression = """Clientsagewaslessthanorequalto23monthswhenthe4726ccffea"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmeningococcaldosewasadministeredlesse921e7d38e"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmeningococcaldosewasadministeredlesse921e7d38e"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -150,6 +203,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onemeningococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onemeningococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsagewaslessthanorequalto23monthswhenthe4726ccffea"""
+      * language = #text/cql-identifier
+      * expression = """Clientsagewaslessthanorequalto23monthswhenthe4726ccffea"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmeningococcaldosewasadministeredlesse921e7d38e"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmeningococcaldosewasadministeredlesse921e7d38e"""
 * action[+]
   * title = "Client is due for meningococcal vaccination"
   * description = """Client is due for meningococcal vaccination
@@ -166,6 +237,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onemeningococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onemeningococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsagewaslessthanorequalto23monthswhenthe4726ccffea"""
+      * language = #text/cql-identifier
+      * expression = """Clientsagewaslessthanorequalto23monthswhenthe4726ccffea"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmeningococcaldosewasadministeredmore1847a634bc"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmeningococcaldosewasadministeredmore1847a634bc"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -193,6 +282,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onemeningococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onemeningococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsagewaslessthanorequalto23monthswhenthe4726ccffea"""
+      * language = #text/cql-identifier
+      * expression = """Clientsagewaslessthanorequalto23monthswhenthe4726ccffea"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmeningococcaldosewasadministeredmore1847a634bc"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmeningococcaldosewasadministeredmore1847a634bc"""
 * action[+]
   * title = "Meningococcal immunization schedule is complete"
   * description = """Meningococcal immunization schedule is complete
@@ -210,6 +317,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onemeningococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onemeningococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsagewasmorethan23monthswhentheprimaryse2b57d6a349"""
+      * language = #text/cql-identifier
+      * expression = """Clientsagewasmorethan23monthswhentheprimaryse2b57d6a349"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -237,6 +356,18 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onemeningococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onemeningococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsagewasmorethan23monthswhentheprimaryse2b57d6a349"""
+      * language = #text/cql-identifier
+      * expression = """Clientsagewasmorethan23monthswhentheprimaryse2b57d6a349"""
 * action[+]
   * title = "Meningococcal immunization schedule is complete"
   * description = """Meningococcal immunization schedule is complete
@@ -254,6 +385,12 @@ Check for any other vaccines due."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twomeningococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twomeningococcalprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -281,4 +418,10 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twomeningococcalprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twomeningococcalprimaryseriesdoseswereadministered"""
 

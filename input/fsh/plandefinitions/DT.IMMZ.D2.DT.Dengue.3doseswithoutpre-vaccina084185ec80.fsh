@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Dengue.3doseswithoutpre-vaccina084185ec80"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -37,6 +36,12 @@ Currently, the dengue vaccine should be used within the indicated age range, whi
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -64,6 +69,12 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9years"""
 * action[+]
   * title = "Client is not due for dengue vaccination"
   * description = """Client is not due for dengue vaccination
@@ -80,6 +91,12 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan45years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -107,6 +124,12 @@ Check for any vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan45years"""
 * action[+]
   * title = "Client is due for dengue vaccination"
   * description = """Client is due for dengue vaccination
@@ -124,6 +147,18 @@ If pre-vaccination screening is not feasible, vaccination without individual scr
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nodengueprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nodengueprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween9yearsand45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween9yearsand45years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -151,6 +186,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nodengueprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nodengueprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween9yearsand45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween9yearsand45years"""
 * action[+]
   * title = "Client is not due for dengue vaccination"
   * description = """Client is not due for dengue vaccination
@@ -168,6 +215,24 @@ CYD-TDV is recommended as a 3-dose series given 6 months apart. Should a vaccine
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onedengueprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onedengueprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween9yearsand45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween9yearsand45years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestdenguedosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestdenguedosewasadministeredlessthan6monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -195,6 +260,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onedengueprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onedengueprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween9yearsand45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween9yearsand45years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestdenguedosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestdenguedosewasadministeredlessthan6monthsago"""
 * action[+]
   * title = "Client is due for dengue vaccination"
   * description = """Client is due for dengue vaccination
@@ -211,6 +294,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onedengueprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onedengueprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween9yearsand45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween9yearsand45years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestdenguedosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestdenguedosewasadministeredmorethan6monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -238,6 +339,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onedengueprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onedengueprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween9yearsand45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween9yearsand45years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestdenguedosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestdenguedosewasadministeredmorethan6monthsago"""
 * action[+]
   * title = "Client is not due for dengue vaccination"
   * description = """Client is not due for dengue vaccination
@@ -254,6 +373,24 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twodengueprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twodengueprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween9yearsand45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween9yearsand45years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestdenguedosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestdenguedosewasadministeredlessthan6monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -281,6 +418,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twodengueprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twodengueprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween9yearsand45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween9yearsand45years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestdenguedosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestdenguedosewasadministeredlessthan6monthsago"""
 * action[+]
   * title = "Client is due for dengue vaccination"
   * description = """Client is due for dengue vaccination
@@ -297,6 +452,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twodengueprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twodengueprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween9yearsand45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween9yearsand45years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestdenguedosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestdenguedosewasadministeredmorethan6monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -324,6 +497,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twodengueprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twodengueprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween9yearsand45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween9yearsand45years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestdenguedosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestdenguedosewasadministeredmorethan6monthsago"""
 * action[+]
   * title = "Dengue immunization schedule is complete"
   * description = """Dengue immunization schedule is complete
@@ -342,6 +533,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Threedengueprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Threedengueprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween9yearsand45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween9yearsand45years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -369,4 +572,16 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Threedengueprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Threedengueprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween9yearsand45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween9yearsand45years"""
 

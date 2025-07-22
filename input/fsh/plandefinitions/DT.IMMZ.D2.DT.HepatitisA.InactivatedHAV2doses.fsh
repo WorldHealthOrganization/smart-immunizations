@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.HepatitisA.InactivatedHAV2doses"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -38,6 +37,12 @@ With a 2-dose schedule, the first dose should be given from ≥ 12 months of age
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan12months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan12months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -65,6 +70,12 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan12months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan12months"""
 * action[+]
   * title = "Client is due for Hepatitis A vaccination"
   * description = """Client is due for Hepatitis A vaccination
@@ -82,6 +93,18 @@ With a 2-dose schedule, the first dose should be given from ≥ 12 months of age
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NohepatitisAprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NohepatitisAprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto12months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto12months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -109,6 +132,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NohepatitisAprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NohepatitisAprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto12months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto12months"""
 * action[+]
   * title = "Client is not due for Hepatitis A vaccination"
   * description = """Client is not due for Hepatitis A vaccination
@@ -126,6 +161,18 @@ The interval between doses is flexible, from 6 months to 4–5 years or more, bu
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OnehepatitisAprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OnehepatitisAprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHepatitisAdosewasadministeredlesstha82041d6219"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHepatitisAdosewasadministeredlesstha82041d6219"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -153,6 +200,18 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OnehepatitisAprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OnehepatitisAprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHepatitisAdosewasadministeredlesstha82041d6219"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHepatitisAdosewasadministeredlesstha82041d6219"""
 * action[+]
   * title = "Client is due for Hepatitis A vaccination"
   * description = """Client is due for Hepatitis A vaccination
@@ -169,6 +228,18 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OnehepatitisAprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OnehepatitisAprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHepatitisAdosewasadministeredmorethafac7f56bd0"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHepatitisAdosewasadministeredmorethafac7f56bd0"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -196,6 +267,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OnehepatitisAprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OnehepatitisAprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHepatitisAdosewasadministeredmorethafac7f56bd0"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHepatitisAdosewasadministeredmorethafac7f56bd0"""
 * action[+]
   * title = "Hepatitis A immunization schedule is complete"
   * description = """Hepatitis A immunization schedule is complete
@@ -214,6 +297,12 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwohepatitisAprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwohepatitisAprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -241,4 +330,10 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwohepatitisAprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwohepatitisAprimaryseriesdoseswereadministered"""
 

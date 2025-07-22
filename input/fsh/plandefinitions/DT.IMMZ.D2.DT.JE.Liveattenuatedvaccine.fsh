@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.JE.Liveattenuatedvaccine"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,12 @@ Live attenuated vaccine: Single dose administered at ≥ 8 months of age. """
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan8months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan8months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -62,6 +67,12 @@ Live attenuated vaccine: Single dose administered at ≥ 8 months of age. """
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan8months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan8months"""
 * action[+]
   * title = "Client is due for JE vaccination"
   * description = """Client is due for JE vaccination
@@ -78,6 +89,24 @@ Live attenuated vaccine: Single dose administered at ≥ 8 months of age. """
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoJEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoJEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto8months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto8months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -104,6 +133,24 @@ Live attenuated vaccine: Single dose administered at ≥ 8 months of age. """
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoJEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoJEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto8months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto8months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Client is not due for JE vaccination"
   * description = """Client is not due for JE vaccination
@@ -121,6 +168,24 @@ Live attenuated vaccine: Single dose administered at ≥8 months of age. As a ge
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoJEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoJEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto8months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto8months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -147,6 +212,24 @@ Live attenuated vaccine: Single dose administered at ≥8 months of age. As a ge
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoJEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoJEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto8months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto8months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "JE immunization schedule is complete"
   * description = """JE immunization schedule is complete
@@ -165,6 +248,12 @@ Live attenuated vaccine: Single dose administered at ≥8 months of age. As a ge
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneJEprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneJEprimaryseriesdosewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -191,4 +280,10 @@ Live attenuated vaccine: Single dose administered at ≥8 months of age. As a ge
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneJEprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneJEprimaryseriesdosewasadministered"""
 

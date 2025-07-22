@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Typhoid.TCV"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -39,6 +38,12 @@ WHO recommends the TCV as a 0.5 mL single dose for infants and children from 6 m
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan6months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan6months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -66,6 +71,12 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan6months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan6months"""
 * action[+]
   * title = "Client is due for Typhoid vaccination"
   * description = """Client is due for Typhoid vaccination
@@ -83,6 +94,18 @@ WHO recommends the TCV as a 0.5 mL single dose for infants and children from 6 m
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Notyphoidprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Notyphoidprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6monthsand45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6monthsand45years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -110,6 +133,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Notyphoidprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Notyphoidprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6monthsand45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6monthsand45years"""
 * action[+]
   * title = "Clinical judgement is required. Create a clinical note"
   * description = """Clinical judgement is required. Create a clinical note
@@ -126,6 +161,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Notyphoidprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Notyphoidprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto45years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -152,6 +199,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Notyphoidprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Notyphoidprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto45years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto45years"""
 * action[+]
   * title = "Typhoid immunization schedule is complete"
   * description = """Typhoid immunization schedule is complete
@@ -170,6 +229,12 @@ Routine typhoid immunization schedule is complete. The potential need for revacc
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onetyphoidprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onetyphoidprimaryseriesdosewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -197,4 +262,10 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onetyphoidprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onetyphoidprimaryseriesdosewasadministered"""
 

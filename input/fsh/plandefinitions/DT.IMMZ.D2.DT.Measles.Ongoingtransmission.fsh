@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Measles.Ongoingtransmission"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -37,6 +36,12 @@ As a general rule, live vaccines should be given either simultaneously or at int
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -64,6 +69,12 @@ Check for any vaccines due and inform the caregiver of when to come back for MCV
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9months"""
 * action[+]
   * title = "Client is due for MCV1"
   * description = """Client is due for MCV1
@@ -80,6 +91,24 @@ Check for any vaccines due and inform the caregiver of when to come back for MCV
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nomeaslesprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nomeaslesprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -107,6 +136,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nomeaslesprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nomeaslesprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Client is not due for MCV1"
   * description = """Client is not due for MCV1
@@ -123,6 +170,24 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nomeaslesprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nomeaslesprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -150,6 +215,24 @@ Check for any vaccines due and inform the caregiver of when to come back for MCV
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nomeaslesprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nomeaslesprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Client is not due for second dose of measles-containing vaccine (MCV2)"
   * description = """Client is not due for second dose of measles-containing vaccine (MCV2)
@@ -168,6 +251,18 @@ As a general rule, live vaccines should be given either simultaneously or at int
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """MCV1wasadministered"""
+      * language = #text/cql-identifier
+      * expression = """MCV1wasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan15months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan15months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -195,6 +290,18 @@ Check for any vaccines due and inform the caregiver of when to come back for MCV
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """MCV1wasadministered"""
+      * language = #text/cql-identifier
+      * expression = """MCV1wasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan15months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan15months"""
 * action[+]
   * title = "Client is due for MCV2"
   * description = """Client is due for MCV2
@@ -211,6 +318,24 @@ Check for any vaccines due and inform the caregiver of when to come back for MCV
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """MCV1wasadministered"""
+      * language = #text/cql-identifier
+      * expression = """MCV1wasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto15months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto15months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -238,6 +363,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """MCV1wasadministered"""
+      * language = #text/cql-identifier
+      * expression = """MCV1wasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto15months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto15months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Client is not due for MCV2"
   * description = """Client is not due for MCV2
@@ -254,6 +397,24 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """MCV1wasadministered"""
+      * language = #text/cql-identifier
+      * expression = """MCV1wasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto15months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto15months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -281,6 +442,24 @@ Check for any vaccines due and inform the caregiver of when to come back for MCV
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """MCV1wasadministered"""
+      * language = #text/cql-identifier
+      * expression = """MCV1wasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto15months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto15months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelast4weeks"""
 * action[+]
   * title = "Measles primary series is complete"
   * description = """Measles primary series is complete
@@ -298,6 +477,12 @@ An additional dose of MCV should be administered to children infected with HIV r
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """MCV2wasadministered"""
+      * language = #text/cql-identifier
+      * expression = """MCV2wasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -325,4 +510,10 @@ Check if a measles supplementary dose is appropriate for the client."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """MCV2wasadministered"""
+      * language = #text/cql-identifier
+      * expression = """MCV2wasadministered"""
 

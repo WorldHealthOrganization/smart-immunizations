@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Hib.3doseswithboosterdose"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,12 @@ Because serious Hib disease occurs most commonly in children aged 4–18 months,
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan6weeks"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan6weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -63,6 +68,12 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan6weeks"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan6weeks"""
 * action[+]
   * title = "Client is due for Hib vaccination"
   * description = """Client is due for Hib vaccination
@@ -79,6 +90,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoHibprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoHibprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksand5years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -106,6 +129,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoHibprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoHibprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksand5years"""
 * action[+]
   * title = "Client is not due for Hib vaccination"
   * description = """Client is not due for Hib vaccination
@@ -122,6 +157,30 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneHibprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneHibprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisatleast6weeksandnotmorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisatleast6weeksandnotmorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsagewaslessthan1yearwhenfirstHibdosewasd21c5a4782"""
+      * language = #text/cql-identifier
+      * expression = """Clientsagewaslessthan1yearwhenfirstHibdosewasd21c5a4782"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHibdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHibdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -149,6 +208,30 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneHibprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneHibprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisatleast6weeksandnotmorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisatleast6weeksandnotmorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsagewaslessthan1yearwhenfirstHibdosewasd21c5a4782"""
+      * language = #text/cql-identifier
+      * expression = """Clientsagewaslessthan1yearwhenfirstHibdosewasd21c5a4782"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHibdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHibdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Client is due for Hib vaccination"
   * description = """Client is due for Hib vaccination
@@ -165,6 +248,30 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneHibprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneHibprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisatleast6weeksandnotmorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisatleast6weeksandnotmorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsagewaslessthan1yearwhenfirstHibdosewasd21c5a4782"""
+      * language = #text/cql-identifier
+      * expression = """Clientsagewaslessthan1yearwhenfirstHibdosewasd21c5a4782"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHibdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHibdosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -192,6 +299,30 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneHibprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneHibprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisatleast6weeksandnotmorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisatleast6weeksandnotmorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsagewaslessthan1yearwhenfirstHibdosewasd21c5a4782"""
+      * language = #text/cql-identifier
+      * expression = """Clientsagewaslessthan1yearwhenfirstHibdosewasd21c5a4782"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHibdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHibdosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Hib immunization schedule is complete"
   * description = """Hib immunization schedule is complete
@@ -210,6 +341,24 @@ When a first dose is given to a child older than 12 months of age, only one dose
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneHibprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneHibprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisatleast6weeksandnotmorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisatleast6weeksandnotmorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsagewasmorethan1yearwhenfirstHibdosewas80c81c688c"""
+      * language = #text/cql-identifier
+      * expression = """Clientsagewasmorethan1yearwhenfirstHibdosewas80c81c688c"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -237,6 +386,24 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneHibprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneHibprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisatleast6weeksandnotmorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisatleast6weeksandnotmorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsagewasmorethan1yearwhenfirstHibdosewas80c81c688c"""
+      * language = #text/cql-identifier
+      * expression = """Clientsagewasmorethan1yearwhenfirstHibdosewas80c81c688c"""
 * action[+]
   * title = "Client is not due for Hib vaccination"
   * description = """Client is not due for Hib vaccination
@@ -254,6 +421,24 @@ The interval between doses should be at least 4 weeks if 3 primary doses are giv
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoHibprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoHibprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksandnotmorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksandnotmorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHibdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHibdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -281,6 +466,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoHibprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoHibprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksandnotmorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksandnotmorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHibdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHibdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Client is due for Hib vaccination"
   * description = """Client is due for Hib vaccination
@@ -297,6 +500,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoHibprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoHibprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksandnotmorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksandnotmorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHibdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHibdosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -324,6 +545,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoHibprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoHibprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksandnotmorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksandnotmorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHibdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHibdosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Primary series is complete. Client is not due for Hib booster dose"
   * description = """Primary series is complete. Client is not due for Hib booster dose
@@ -342,6 +581,30 @@ Booster doses should be administered at least 6 months after completion of the p
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeHibprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeHibprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoHibboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoHibboosterdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHibdosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHibdosewasadministeredlessthan6monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -369,6 +632,30 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeHibprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeHibprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoHibboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoHibboosterdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHibdosewasadministeredlessthan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHibdosewasadministeredlessthan6monthsago"""
 * action[+]
   * title = "Primary series is complete. Client is due for Hib booster dose"
   * description = """Primary series is complete. Client is due for Hib booster dose
@@ -386,6 +673,30 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeHibprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeHibprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoHibboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoHibboosterdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHibdosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHibdosewasadministeredmorethan6monthsago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -413,6 +724,30 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeHibprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeHibprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoHibboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoHibboosterdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween6weeksand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween6weeksand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestHibdosewasadministeredmorethan6monthsago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestHibdosewasadministeredmorethan6monthsago"""
 * action[+]
   * title = "Hib immunization schedule is complete"
   * description = """Hib immunization schedule is complete
@@ -430,6 +765,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeHibprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeHibprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneHibboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneHibboosterdosewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -457,6 +804,18 @@ Check for any vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeHibprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeHibprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneHibboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneHibboosterdosewasadministered"""
 * action[+]
   * title = "Client is not due for Hib vaccination"
   * description = """Client is not due for Hib vaccination
@@ -474,6 +833,12 @@ Check for any vaccines due."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -501,4 +866,10 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
 

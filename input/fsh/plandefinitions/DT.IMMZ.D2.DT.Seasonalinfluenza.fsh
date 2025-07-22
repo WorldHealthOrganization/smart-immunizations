@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Seasonalinfluenza"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -39,6 +38,12 @@ Influenza vaccines are safe and effective in children from 6 months of age. Chil
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan6months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan6months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -66,6 +71,12 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan6months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan6months"""
 * action[+]
   * title = "Client is due for seasonal influenza vaccination"
   * description = """Client is due for seasonal influenza vaccination
@@ -83,6 +94,18 @@ Children aged 6 months to 8 years should receive 2 doses at least 4 weeks apart.
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Noseasonalinfluenzaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Noseasonalinfluenzaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto6months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto6months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -110,6 +133,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Noseasonalinfluenzaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Noseasonalinfluenzaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto6months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto6months"""
 * action[+]
   * title = "Client is not due for seasonal influenza vaccination"
   * description = """Client is not due for seasonal influenza vaccination
@@ -127,6 +162,24 @@ Children aged 6 months to 8 years should receive 2 doses at least 4 weeks apart.
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestseasonalinfluenzadosewasadministered9c4d21f688"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestseasonalinfluenzadosewasadministered9c4d21f688"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -154,6 +207,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestseasonalinfluenzadosewasadministered9c4d21f688"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestseasonalinfluenzadosewasadministered9c4d21f688"""
 * action[+]
   * title = "Client is due for seasonal influenza vaccination"
   * description = """Client is due for seasonal influenza vaccination
@@ -170,6 +241,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestseasonalinfluenzadosewasadministered5ab3aa42a0"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestseasonalinfluenzadosewasadministered5ab3aa42a0"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -197,6 +286,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestseasonalinfluenzadosewasadministered5ab3aa42a0"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestseasonalinfluenzadosewasadministered5ab3aa42a0"""
 * action[+]
   * title = "The primary series is complete. Client is not due for seasonal influenza annual dose"
   * description = """The primary series is complete. Client is not due for seasonal influenza annual dose
@@ -215,6 +322,24 @@ A single dose is appropriate for children aged ≥ 9 years and healthy adults. T
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestseasonalinfluenzadosewasadministered3d3f6f67ed"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestseasonalinfluenzadosewasadministered3d3f6f67ed"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -242,6 +367,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestseasonalinfluenzadosewasadministered3d3f6f67ed"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestseasonalinfluenzadosewasadministered3d3f6f67ed"""
 * action[+]
   * title = "The primary series is complete. Client is due for seasonal influenza annual dose"
   * description = """The primary series is complete. Client is due for seasonal influenza annual dose
@@ -259,6 +402,24 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestseasonalinfluenzadosewasadministered3e2f31df81"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestseasonalinfluenzadosewasadministered3e2f31df81"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -286,6 +447,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Oneseasonalinfluenzaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestseasonalinfluenzadosewasadministered3e2f31df81"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestseasonalinfluenzadosewasadministered3e2f31df81"""
 * action[+]
   * title = "The primary series is complete. Client is not due for seasonal influenza annual dose"
   * description = """The primary series is complete. Client is not due for seasonal influenza annual dose
@@ -303,6 +482,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twoseasonalinfluenzaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twoseasonalinfluenzaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestseasonalinfluenzadosewasadministered3d3f6f67ed"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestseasonalinfluenzadosewasadministered3d3f6f67ed"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -330,6 +521,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twoseasonalinfluenzaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twoseasonalinfluenzaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestseasonalinfluenzadosewasadministered3d3f6f67ed"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestseasonalinfluenzadosewasadministered3d3f6f67ed"""
 * action[+]
   * title = "The primary series is complete. Client is due for seasonal influenza annual dose"
   * description = """The primary series is complete. Client is due for seasonal influenza annual dose
@@ -347,6 +550,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twoseasonalinfluenzaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twoseasonalinfluenzaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestseasonalinfluenzadosewasadministered3e2f31df81"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestseasonalinfluenzadosewasadministered3e2f31df81"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -374,4 +589,16 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twoseasonalinfluenzaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twoseasonalinfluenzaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestseasonalinfluenzadosewasadministered3e2f31df81"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestseasonalinfluenzadosewasadministered3e2f31df81"""
 

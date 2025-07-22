@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Polio.SequentialIPVbOPV"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -37,6 +36,18 @@ Where a sequential IPV–bOPV schedule is used, the initial administration of 2 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopoliovirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopoliovirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan8weeks"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan8weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -64,6 +75,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopoliovirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopoliovirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan8weeks"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan8weeks"""
 * action[+]
   * title = "Client is due for IPV vaccination"
   * description = """Client is due for IPV vaccination
@@ -80,6 +103,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopoliovirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopoliovirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto8weeks"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto8weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -107,6 +142,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nopoliovirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nopoliovirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto8weeks"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto8weeks"""
 * action[+]
   * title = "Client is not due for IPV vaccination"
   * description = """Client is not due for IPV vaccination
@@ -123,6 +170,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepoliovirusprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepoliovirusprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpoliovirusdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpoliovirusdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -150,6 +209,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepoliovirusprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepoliovirusprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpoliovirusdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpoliovirusdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Client is due for IPV vaccination"
   * description = """Client is due for IPV vaccination
@@ -166,6 +237,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepoliovirusprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepoliovirusprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpoliovirusdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpoliovirusdosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -193,6 +276,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onepoliovirusprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onepoliovirusprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpoliovirusdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpoliovirusdosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Client is due for bOPV vaccination"
   * description = """Client is due for bOPV vaccination
@@ -209,6 +304,12 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopoliovirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopoliovirusprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -236,6 +337,12 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twopoliovirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twopoliovirusprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Client is not due for bOPV vaccination"
   * description = """Client is not due for bOPV vaccination
@@ -252,6 +359,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Threepoliovirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Threepoliovirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpoliovirusdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpoliovirusdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -279,6 +398,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Threepoliovirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Threepoliovirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpoliovirusdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpoliovirusdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Client is due for bOPV vaccination"
   * description = """Client is due for bOPV vaccination
@@ -295,6 +426,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Threepoliovirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Threepoliovirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpoliovirusdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpoliovirusdosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -322,6 +465,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Threepoliovirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Threepoliovirusprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestpoliovirusdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestpoliovirusdosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Primary series is complete"
   * description = """Primary series is complete
@@ -339,6 +494,12 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Fourpoliovirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Fourpoliovirusprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -366,4 +527,10 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Fourpoliovirusprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Fourpoliovirusprimaryseriesdoseswereadministered"""
 

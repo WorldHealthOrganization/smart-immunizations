@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Yellowfever"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,18 @@ The vaccine is contraindicated in children aged under 6 months and is not recomm
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Noyellowfeverprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Noyellowfeverprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -62,6 +73,18 @@ The vaccine is contraindicated in children aged under 6 months and is not recomm
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Noyellowfeverprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Noyellowfeverprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9months"""
 * action[+]
   * title = "Client is not due for yellow fever vaccination"
   * description = """Client is not due for yellow fever vaccination
@@ -79,6 +102,24 @@ As a general rule, any live vaccine may be given either simultaneously or at an 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Noyellowfeverprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Noyellowfeverprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -106,6 +147,24 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Noyellowfeverprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Noyellowfeverprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Client is due for yellow fever vaccination"
   * description = """Client is due for yellow fever vaccination
@@ -129,6 +188,24 @@ As a general rule, any live vaccine may be given either simultaneously or at an 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Noyellowfeverprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Noyellowfeverprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -156,6 +233,24 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Noyellowfeverprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Noyellowfeverprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto9months"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthepast4weeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthepast4weeks"""
 * action[+]
   * title = "Yellow fever immunization schedule is complete"
   * description = """Yellow fever immunization schedule is complete
@@ -174,6 +269,12 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Oneyellowfeverprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Oneyellowfeverprimaryseriesdosewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -201,4 +302,10 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Oneyellowfeverprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Oneyellowfeverprimaryseriesdosewasadministered"""
 

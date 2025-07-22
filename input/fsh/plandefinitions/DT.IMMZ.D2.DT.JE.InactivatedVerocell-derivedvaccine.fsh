@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.JE.InactivatedVerocell-derivedvaccine"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,12 @@ Inactivated Vero cell-derived vaccine: Primary series according to manufacturerâ
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan6months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan6months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -63,6 +68,12 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan6months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan6months"""
 * action[+]
   * title = "Client is due for JE vaccination"
   * description = """Client is due for JE vaccination
@@ -79,6 +90,18 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoJEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoJEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto6months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto6months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -106,6 +129,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoJEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoJEprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto6months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto6months"""
 * action[+]
   * title = "Client is not due for JE vaccination"
   * description = """Client is not due for JE vaccination
@@ -122,6 +157,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneJEprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneJEprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestJEdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestJEdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -149,6 +196,18 @@ Check for any other vaccines due and inform the caregiver when to come back for 
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneJEprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneJEprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestJEdosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestJEdosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Client is due for JE vaccination"
   * description = """Client is due for JE vaccination
@@ -165,6 +224,18 @@ Check for any other vaccines due and inform the caregiver when to come back for 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneJEprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneJEprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestJEdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestJEdosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -192,6 +263,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneJEprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneJEprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThelatestJEdosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """ThelatestJEdosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "JE immunization schedule is complete"
   * description = """JE immunization schedule is complete
@@ -210,6 +293,12 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoJEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoJEprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -237,4 +326,10 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """TwoJEprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """TwoJEprimaryseriesdoseswereadministered"""
 

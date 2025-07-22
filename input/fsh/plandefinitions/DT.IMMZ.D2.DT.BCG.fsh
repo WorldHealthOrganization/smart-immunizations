@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.BCG"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,30 @@ Neonates born to women of unknown HIV status should be vaccinated as the benefit
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthanorequalto28days"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthanorequalto28days"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -63,6 +86,30 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthanorequalto28days"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthanorequalto28days"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministered"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -79,6 +126,30 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthanorequalto28days"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthanorequalto28days"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelastfourweeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -106,6 +177,30 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthanorequalto28days"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthanorequalto28days"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelastfourweeks"""
 * action[+]
   * title = "Client is due for BCG vaccination"
   * description = """Client is due for BCG vaccination
@@ -124,6 +219,42 @@ Moderate-to-late preterm infants (gestational age > 31 weeks) and low-birth-weig
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthanorequalto28days"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthanorequalto28days"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunologicallystable"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -151,6 +282,42 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthanorequalto28days"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthanorequalto28days"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunologicallystable"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministered"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -167,6 +334,42 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthanorequalto28days"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthanorequalto28days"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunologicallystable"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelastfourweeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -194,6 +397,42 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthanorequalto28days"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthanorequalto28days"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunologicallystable"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelastfourweeks"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -211,6 +450,36 @@ For neonates with HIV infection confirmed by early virological testing, BCG vacc
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthanorequalto28days"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthanorequalto28days"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisnotimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisnotimmunologicallystable"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -238,6 +507,36 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthanorequalto28days"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthanorequalto28days"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisnotimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisnotimmunologicallystable"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -254,6 +553,30 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthanorequalto28days"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthanorequalto28days"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlynotreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlynotreceivingantiretroviraltherapy"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -281,6 +604,30 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthanorequalto28days"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthanorequalto28days"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlynotreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlynotreceivingantiretroviraltherapy"""
 * action[+]
   * title = "Client is due for BCG vaccination"
   * description = """Client is due for BCG vaccination
@@ -298,6 +645,36 @@ BCG vaccination is also recommended for unvaccinated older children negative for
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultisnegative"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultisnegative"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelastfourweeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -325,6 +702,36 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultisnegative"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultisnegative"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelastfourweeks"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -341,6 +748,36 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultisnegative"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultisnegative"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelastfourweeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -368,6 +805,36 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultisnegative"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultisnegative"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelastfourweeks"""
 * action[+]
   * title = "Clinical judgement is required. Create clinical note."
   * description = """Clinical judgement is required. Create clinical note.
@@ -384,6 +851,30 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultisunknowntestnotdd2a9874787"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultisunknowntestnotdd2a9874787"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -411,6 +902,30 @@ Re-evaluate client once the test result is available."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultisunknowntestnotdd2a9874787"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultisunknowntestnotdd2a9874787"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -427,6 +942,30 @@ Re-evaluate client once the test result is available."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultispositive"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -453,6 +992,30 @@ Re-evaluate client once the test result is available."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultispositive"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -470,6 +1033,36 @@ If children infected with HIV are receiving ART and are clinically well and immu
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisnotimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisnotimmunologicallystable"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -497,6 +1090,36 @@ Check for any vaccines due, and inform the caregiver of when to come back for th
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisnotimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisnotimmunologicallystable"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -513,6 +1136,36 @@ Check for any vaccines due, and inform the caregiver of when to come back for th
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisnotclinicallywell"""
+      * language = #text/cql-identifier
+      * expression = """Clientisnotclinicallywell"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -540,6 +1193,36 @@ Check for any vaccines due, and inform the caregiver of when to come back for th
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisnotclinicallywell"""
+      * language = #text/cql-identifier
+      * expression = """Clientisnotclinicallywell"""
 * action[+]
   * title = "Client is due for BCG vaccination"
   * description = """Client is due for BCG vaccination
@@ -556,6 +1239,48 @@ Check for any vaccines due, and inform the caregiver of when to come back for th
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunologicallystable"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelastfourweeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisclinicallywell"""
+      * language = #text/cql-identifier
+      * expression = """Clientisclinicallywell"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -583,6 +1308,48 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunologicallystable"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelastfourweeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisclinicallywell"""
+      * language = #text/cql-identifier
+      * expression = """Clientisclinicallywell"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -599,6 +1366,48 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunologicallystable"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelastfourweeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisclinicallywell"""
+      * language = #text/cql-identifier
+      * expression = """Clientisclinicallywell"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -626,6 +1435,48 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunologicallystable"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelastfourweeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisclinicallywell"""
+      * language = #text/cql-identifier
+      * expression = """Clientisclinicallywell"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -642,6 +1493,30 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlynotreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlynotreceivingantiretroviraltherapy"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -669,6 +1544,30 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageisbetween28daysand5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageisbetween28daysand5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlynotreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlynotreceivingantiretroviraltherapy"""
 * action[+]
   * title = "Client is due for BCG vaccination"
   * description = """Client is due for BCG vaccination
@@ -686,6 +1585,36 @@ BCG vaccination is also recommended for unvaccinated older children, adolescents
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultisnegative"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultisnegative"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelastfourweeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -713,6 +1642,36 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultisnegative"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultisnegative"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelastfourweeks"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -729,6 +1688,36 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultisnegative"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultisnegative"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelastfourweeks"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -756,6 +1745,36 @@ Check for any vaccines due, and inform the caregiver of when to come back for th
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultisnegative"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultisnegative"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelastfourweeks"""
 * action[+]
   * title = "Clinical judgement is required. Create clinical note."
   * description = """Clinical judgement is required. Create clinical note.
@@ -772,6 +1791,30 @@ Check for any vaccines due, and inform the caregiver of when to come back for th
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultisunknowntestnotdd2a9874787"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultisunknowntestnotdd2a9874787"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -799,6 +1842,30 @@ Re-evaluate client once the test result is available."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultisunknowntestnotdd2a9874787"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultisunknowntestnotdd2a9874787"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -815,6 +1882,30 @@ Re-evaluate client once the test result is available."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultispositive"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -841,6 +1932,30 @@ Re-evaluate client once the test result is available."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusisnegativeorunknown"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusisnegativeorunknown"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsTBinfectiontestresultispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsTBinfectiontestresultispositive"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -858,6 +1973,36 @@ If individuals infected with HIV are receiving ART, are clinically well and immu
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisnotimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisnotimmunologicallystable"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -885,6 +2030,36 @@ Check for any vaccines due, and inform the caregiver of when to come back for th
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisnotimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisnotimmunologicallystable"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -901,6 +2076,36 @@ Check for any vaccines due, and inform the caregiver of when to come back for th
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisnotclinicallywell"""
+      * language = #text/cql-identifier
+      * expression = """Clientisnotclinicallywell"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -928,6 +2133,36 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisnotclinicallywell"""
+      * language = #text/cql-identifier
+      * expression = """Clientisnotclinicallywell"""
 * action[+]
   * title = "Client is due for BCG vaccination"
   * description = """Client is due for BCG vaccination
@@ -944,6 +2179,48 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunologicallystable"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelastfourweeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisclinicallywell"""
+      * language = #text/cql-identifier
+      * expression = """Clientisclinicallywell"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -971,6 +2248,48 @@ Check for contraindications"""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunologicallystable"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nolivevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Nolivevaccinewasadministeredinthelastfourweeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisclinicallywell"""
+      * language = #text/cql-identifier
+      * expression = """Clientisclinicallywell"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -987,6 +2306,48 @@ Check for contraindications"""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunologicallystable"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelastfourweeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisclinicallywell"""
+      * language = #text/cql-identifier
+      * expression = """Clientisclinicallywell"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -1014,6 +2375,48 @@ Check for any vaccines due, and inform the caregiver of when to come back for th
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlyreceivingantiretroviraltherapy"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisimmunologicallystable"""
+      * language = #text/cql-identifier
+      * expression = """Clientisimmunologicallystable"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Livevaccinewasadministeredinthelastfourweeks"""
+      * language = #text/cql-identifier
+      * expression = """Livevaccinewasadministeredinthelastfourweeks"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientisclinicallywell"""
+      * language = #text/cql-identifier
+      * expression = """Clientisclinicallywell"""
 * action[+]
   * title = "Client is not due for BCG vaccination"
   * description = """Client is not due for BCG vaccination
@@ -1031,6 +2434,30 @@ Check for any vaccines due, and inform the caregiver of when to come back for th
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlynotreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlynotreceivingantiretroviraltherapy"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -1058,6 +2485,30 @@ Check for any vaccines due and inform the caregiver of when to come back for the
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoBCGprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan5years"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan5years"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsHIVstatusispositive"""
+      * language = #text/cql-identifier
+      * expression = """ClientsHIVstatusispositive"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlynotreceivingantiretroviraltherapy"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlynotreceivingantiretroviraltherapy"""
 * action[+]
   * title = "BCG immunization schedule is complete"
   * description = """BCG immunization schedule is complete
@@ -1076,6 +2527,12 @@ Check for any vaccines due and inform the caregiver of when to come back for the
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneBCGprimaryseriesdosewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -1103,4 +2560,10 @@ Check for any vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """OneBCGprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """OneBCGprimaryseriesdosewasadministered"""
 

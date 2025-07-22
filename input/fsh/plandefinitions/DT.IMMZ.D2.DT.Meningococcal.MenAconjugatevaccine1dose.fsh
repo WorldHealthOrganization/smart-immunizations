@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Meningococcal.MenAconjugatevaccine1dose"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -40,6 +39,12 @@ MenAfriVac 10 µg should be used for catch-up and periodic campaigns from 12 mon
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -67,6 +72,12 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan9months"""
 * action[+]
   * title = "Client is due for meningococcal vaccination"
   * description = """Client is due for meningococcal vaccination
@@ -83,6 +94,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nomeningococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nomeningococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan9months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -110,6 +133,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nomeningococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nomeningococcalprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethan9months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethan9months"""
 * action[+]
   * title = "Meningococcal immunization schedule is complete"
   * description = """Meningococcal immunization schedule is complete
@@ -128,6 +163,12 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onemeningococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onemeningococcalprimaryseriesdosewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -155,4 +196,10 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onemeningococcalprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onemeningococcalprimaryseriesdosewasadministered"""
 

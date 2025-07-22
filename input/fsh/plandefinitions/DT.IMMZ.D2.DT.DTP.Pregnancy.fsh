@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.DTP.Pregnancy"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,18 @@ If tetanus vaccination is started during adolescence or adulthood, including pre
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlypregnant"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlypregnant"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -62,6 +73,18 @@ If tetanus vaccination is started during adolescence or adulthood, including pre
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """NoDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """NoDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlypregnant"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlypregnant"""
 * action[+]
   * title = "Client should follow 'pregnancy starting with 3 doses' decision logic"
   * description = """Client should follow 'pregnancy starting with 3 doses' decision logic
@@ -78,6 +101,24 @@ Pregnant women who have received only 3 doses of tetanus-containing vaccines dur
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Notetanusanddiphtheriaboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Notetanusanddiphtheriaboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlypregnant"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlypregnant"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -104,6 +145,24 @@ Pregnant women who have received only 3 doses of tetanus-containing vaccines dur
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Notetanusanddiphtheriaboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Notetanusanddiphtheriaboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlypregnant"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlypregnant"""
 * action[+]
   * title = "Client should follow 'pregnancy starting with 4 doses' decision logic"
   * description = """Client should follow 'pregnancy starting with 4 doses' decision logic
@@ -120,6 +179,24 @@ Pregnant women who received 4 tetanus-containing vaccine doses during childhood 
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onetetanusanddiphtheriaboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onetetanusanddiphtheriaboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlypregnant"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlypregnant"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -146,6 +223,24 @@ Pregnant women who received 4 tetanus-containing vaccine doses during childhood 
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onetetanusanddiphtheriaboosterdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onetetanusanddiphtheriaboosterdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientiscurrentlypregnant"""
+      * language = #text/cql-identifier
+      * expression = """Clientiscurrentlypregnant"""
 * action[+]
   * title = "Tetanus and diphtheria immunization schedule is complete"
   * description = """Tetanus and diphtheria immunization schedule is complete
@@ -165,6 +260,18 @@ In countries where maternal and neonatal tetanus remains a public health problem
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twotetanusanddiphtheriaboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twotetanusanddiphtheriaboosterdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -192,6 +299,18 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twotetanusanddiphtheriaboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twotetanusanddiphtheriaboosterdoseswereadministered"""
 * action[+]
   * title = "Tetanus and diphtheria immunization schedule is complete"
   * description = """Tetanus and diphtheria immunization schedule is complete
@@ -209,6 +328,18 @@ Pregnant women who have received only 3 doses of tetanus-containing vaccines dur
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Threetetanusanddiphtheriaboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Threetetanusanddiphtheriaboosterdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -236,4 +367,16 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ThreeDTPprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """ThreeDTPprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Threetetanusanddiphtheriaboosterdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Threetetanusanddiphtheriaboosterdoseswereadministered"""
 

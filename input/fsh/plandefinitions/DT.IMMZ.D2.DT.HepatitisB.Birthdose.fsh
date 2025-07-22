@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.HepatitisB.Birthdose"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -38,6 +37,18 @@ If administration within 24 hours is not feasible, a late birth dose has some ef
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """HepatitisBbirthdosewasnotadministered"""
+      * language = #text/cql-identifier
+      * expression = """HepatitisBbirthdosewasnotadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsageislessthanMemberStatesdefinedupperlimit"""
+      * language = #text/cql-identifier
+      * expression = """ClientsageislessthanMemberStatesdefinedupperlimit"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -64,6 +75,18 @@ If administration within 24 hours is not feasible, a late birth dose has some ef
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """HepatitisBbirthdosewasnotadministered"""
+      * language = #text/cql-identifier
+      * expression = """HepatitisBbirthdosewasnotadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsageislessthanMemberStatesdefinedupperlimit"""
+      * language = #text/cql-identifier
+      * expression = """ClientsageislessthanMemberStatesdefinedupperlimit"""
 * action[+]
   * title = "Client should follow delayed-start decision logic"
   * description = """Client should follow delayed-start decision logic
@@ -79,6 +102,18 @@ If administration within 24 hours is not feasible, a late birth dose has some ef
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """HepatitisBbirthdosewasnotadministered"""
+      * language = #text/cql-identifier
+      * expression = """HepatitisBbirthdosewasnotadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsageismorethanMemberStatesdefinedupperlimit"""
+      * language = #text/cql-identifier
+      * expression = """ClientsageismorethanMemberStatesdefinedupperlimit"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -105,6 +140,18 @@ If administration within 24 hours is not feasible, a late birth dose has some ef
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """HepatitisBbirthdosewasnotadministered"""
+      * language = #text/cql-identifier
+      * expression = """HepatitisBbirthdosewasnotadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """ClientsageismorethanMemberStatesdefinedupperlimit"""
+      * language = #text/cql-identifier
+      * expression = """ClientsageismorethanMemberStatesdefinedupperlimit"""
 * action[+]
   * title = "Client is not due for the hepatitis B birth dose"
   * description = """Client is not due for the hepatitis B birth dose
@@ -121,6 +168,12 @@ If administration within 24 hours is not feasible, a late birth dose has some ef
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """HepatitisBbirthdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """HepatitisBbirthdosewasadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -147,4 +200,10 @@ If administration within 24 hours is not feasible, a late birth dose has some ef
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """HepatitisBbirthdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """HepatitisBbirthdosewasadministered"""
 

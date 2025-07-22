@@ -9,8 +9,7 @@ Usage: #definition
 * extension[+]
   * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability"
   * valueCode = #computable
-* version = "{version}"
-* name = "DT.IMMZ.D2.DT.Malaria"
+* version = "0.2.0"
 * status = #draft
 * experimental = false
 * publisher = "WHO"
@@ -36,6 +35,12 @@ WHO recommends that the first dose of vaccine be administered from 5 months of a
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan5months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan5months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -63,6 +68,12 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageislessthan5months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageislessthan5months"""
 * action[+]
   * title = "Client is due for malaria vaccination"
   * description = """Client is due for malaria vaccination
@@ -79,6 +90,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nomalariaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nomalariaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto5months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto5months"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -106,6 +129,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Nomalariaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Nomalariaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Clientsageismorethanorequalto5months"""
+      * language = #text/cql-identifier
+      * expression = """Clientsageismorethanorequalto5months"""
 * action[+]
   * title = "Client is not due for malaria vaccination"
   * description = """Client is not due for malaria vaccination
@@ -123,6 +158,18 @@ The vaccine should be administered in a 3-dose primary schedule, with a fourth d
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onemalariaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onemalariaprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmalariadosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmalariadosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -150,6 +197,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onemalariaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onemalariaprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmalariadosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmalariadosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Client is due for malaria vaccination"
   * description = """Client is due for malaria vaccination
@@ -166,6 +225,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onemalariaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onemalariaprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmalariadosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmalariadosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -193,6 +264,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Onemalariaprimaryseriesdosewasadministered"""
+      * language = #text/cql-identifier
+      * expression = """Onemalariaprimaryseriesdosewasadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmalariadosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmalariadosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Client is not due for malaria vaccination"
   * description = """Client is not due for malaria vaccination
@@ -209,6 +292,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twomalariaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twomalariaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmalariadosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmalariadosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -236,6 +331,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twomalariaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twomalariaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmalariadosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmalariadosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Client is due for malaria vaccination"
   * description = """Client is due for malaria vaccination
@@ -252,6 +359,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twomalariaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twomalariaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmalariadosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmalariadosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -279,6 +398,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Twomalariaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Twomalariaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmalariadosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmalariadosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Client is not due for malaria vaccination"
   * description = """Client is not due for malaria vaccination
@@ -295,6 +426,18 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Threemalariaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Threemalariaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmalariadosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmalariadosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -322,6 +465,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Threemalariaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Threemalariaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmalariadosewasadministeredlessthan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmalariadosewasadministeredlessthan4weeksago"""
 * action[+]
   * title = "Client is due for malaria vaccination"
   * description = """Client is due for malaria vaccination
@@ -338,6 +493,18 @@ Check for any other vaccines due and inform the caregiver of when to come back f
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Threemalariaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Threemalariaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmalariadosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmalariadosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -365,6 +532,18 @@ Check for contraindications."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Threemalariaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Threemalariaprimaryseriesdoseswereadministered"""
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Thelatestmalariadosewasadministeredmorethan4weeksago"""
+      * language = #text/cql-identifier
+      * expression = """Thelatestmalariadosewasadministeredmorethan4weeksago"""
 * action[+]
   * title = "Malaria immunization schedule is complete"
   * description = """Malaria immunization schedule is complete
@@ -383,6 +562,12 @@ Check for contraindications."""
     * expression
       * language = #text/cql-expression
       * expression = "proposal"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Fourmalariaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Fourmalariaprimaryseriesdoseswereadministered"""
 * action[+]
   * title = "Health worker guidance"
   * description = "Communicate guidance to the health worker"
@@ -410,4 +595,10 @@ Check for any other vaccines due."""
       * description = "Alert priority"
       * language = #text/cql-expression
       * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+  * condition[+]
+    * kind = #applicability
+    * expression
+      * description = """Fourmalariaprimaryseriesdoseswereadministered"""
+      * language = #text/cql-identifier
+      * expression = """Fourmalariaprimaryseriesdoseswereadministered"""
 
