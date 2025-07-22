@@ -1,5 +1,5 @@
 Instance: DT.IMMZ.D2.DT.TBE.TBE-Moscow
-InstanceOf: DD-{dt_id}
+InstanceOf: DD.IMMZ.D2.DT.TBE.TBE-Moscow
 Title: "Decision Table Determine required vaccinations"
 Description: """Determine required vaccinations """
 Usage: #definition

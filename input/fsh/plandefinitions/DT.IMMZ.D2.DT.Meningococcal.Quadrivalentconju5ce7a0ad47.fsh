@@ -1,5 +1,5 @@
 Instance: DT.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5ce7a0ad47
-InstanceOf: DD-{dt_id}
+InstanceOf: DD.IMMZ.D2.DT.Meningococcal.Quadrivalentconju5c910cd5b1
 Title: "Decision Table Determine required vaccinations"
 Description: """Determine required vaccinations """
 Usage: #definition

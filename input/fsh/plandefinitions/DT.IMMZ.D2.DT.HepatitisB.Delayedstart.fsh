@@ -1,5 +1,5 @@
 Instance: DT.IMMZ.D2.DT.HepatitisB.Delayedstart
-InstanceOf: DD-{dt_id}
+InstanceOf: DD.IMMZ.D2.DT.HepatitisB.Delayedstart
 Title: "Decision Table Determine required vaccinations"
 Description: """Determine required vaccinations """
 Usage: #definition

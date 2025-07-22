@@ -1,5 +1,5 @@
 Instance: DT.IMMZ.D2.DT.Rubella.Lowincidence
-InstanceOf: DD-{dt_id}
+InstanceOf: DD.IMMZ.D2.DT.Rubella.Lowincidence
 Title: "Decision Table Determine required vaccinations"
 Description: """Determine required vaccinations """
 Usage: #definition

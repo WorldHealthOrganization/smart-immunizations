@@ -43,3 +43,7 @@ Alias: $CPGCR = http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-communication
 Alias: $SGDecisionTableGuidance = http://smart.who.int/base/CommunicationRequest-SGDecisionTableGuidance
 
 Alias: $SGTasks = http://smart.who.int/base/CodeSystem/SGTasks
+
+Alias: $SGQuestionnaire = http://smart.who.int/base/StructureDefinition/SGQuestionnaire
+
+Alias: $SGRequirements = http://smart.who.int/base/StructureDefinition/SGRequirements

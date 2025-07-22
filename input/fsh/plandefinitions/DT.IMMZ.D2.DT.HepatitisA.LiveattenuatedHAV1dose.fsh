@@ -1,5 +1,5 @@
 Instance: DT.IMMZ.D2.DT.HepatitisA.LiveattenuatedHAV1dose
-InstanceOf: DD-{dt_id}
+InstanceOf: DD.IMMZ.D2.DT.HepatitisA.LiveattenuatedHAV1dose
 Title: "Decision Table Determine required vaccinations"
 Description: """Determine required vaccinations """
 Usage: #definition

@@ -1,5 +1,5 @@
 Instance: DT.IMMZ.D2.DT.DTP.Pregnancystartingwith4doses
-InstanceOf: DD-{dt_id}
+InstanceOf: DD.IMMZ.D2.DT.DTP.Pregnancystartingwith4doses
 Title: "Decision Table Determine required vaccinations"
 Description: """Determine required vaccinations """
 Usage: #definition

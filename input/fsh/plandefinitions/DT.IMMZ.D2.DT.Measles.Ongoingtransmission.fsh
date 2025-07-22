@@ -1,5 +1,5 @@
 Instance: DT.IMMZ.D2.DT.Measles.Ongoingtransmission
-InstanceOf: DD-{dt_id}
+InstanceOf: DD.IMMZ.D2.DT.Measles.Ongoingtransmission
 Title: "Decision Table Determine required vaccinations"
 Description: """Determine required vaccinations """
 Usage: #definition

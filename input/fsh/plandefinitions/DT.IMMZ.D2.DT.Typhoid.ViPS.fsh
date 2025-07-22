@@ -1,5 +1,5 @@
 Instance: DT.IMMZ.D2.DT.Typhoid.ViPS
-InstanceOf: DD-{dt_id}
+InstanceOf: DD.IMMZ.D2.DT.Typhoid.ViPS
 Title: "Decision Table Determine required vaccinations"
 Description: """Determine required vaccinations """
 Usage: #definition
