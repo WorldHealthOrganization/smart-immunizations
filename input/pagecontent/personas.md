@@ -92,3 +92,6 @@ medical records and handles medical billing.</td>
     </tr>
   </tbody>
 </table>
+
+## Persona List
+{% include personas-list.md %}
