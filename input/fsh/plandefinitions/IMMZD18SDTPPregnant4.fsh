@@ -19,10 +19,10 @@ Trigger date: First ANC contact date
 Create condition: Women who received 4 tetanus-containing vaccine doses during childhood or pre-adulthood need only 1 booster dose, which should be given at the first opportunity.
 """]], [[Tetanus and diphtheria-containing vaccine booster dose 2 (during pregnancy)]], [[Tetanus and diphtheria-containing vaccine booster dose 2 (during pregnancy) Create]])
 
-* insert PlanDefCommunicationRequestAction([[Tetanus and diphtheria-containing vaccine  booster dose 3]], [["""
+* insert PlanDefCommunicationRequestAction([[Tetanus and diphtheria-containing vaccine booster dose 3]], [["""
 Provision of tetanus and diphtheria booster dose 3 for pregnant women who received 4 tetanus-containing vaccines doses during childhood or pre-adulthood
-Trigger event: Second tetanus and diphtheria  booster dose was administered 
+Trigger event: Second tetanus and diphtheria booster dose was administered 
 Count of vaccines administered (where "Vaccine type" = "Tetanus and diphtheria-containing vaccines" and "Type of dose" = "Booster dose") = 2
 Trigger date: Latest "Date and time of vaccination" where "Vaccine type" = "Tetanus and diphtheria-containing vaccines"
-Create condition: To provide lifelong protection for tetanus, a sixth dose should be provided  at least 1 year after the fifth dose, or in next pregnancy.
-"""]], [[Tetanus and diphtheria-containing vaccine  booster dose 3]], [[Tetanus and diphtheria-containing vaccine  booster dose 3 Create]])
+Create condition: To provide lifelong protection for tetanus, a sixth dose should be provided at least 1 year after the fifth dose, or in next pregnancy.
+"""]], [[Tetanus and diphtheria-containing vaccine booster dose 3]], [[Tetanus and diphtheria-containing vaccine booster dose 3 Create]])

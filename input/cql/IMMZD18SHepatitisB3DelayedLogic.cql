@@ -51,7 +51,7 @@ define "Hepatitis B dose 1 Due Date":
 
 /*
 @dynamicValue: Hepatitis B dose 1 Overdue
-@pseudocode: Today's date − "Date of birth"  > Member States defined lower limit
+@pseudocode: Today's date − "Date of birth" > Member States defined lower limit
 */
 define "Hepatitis B dose 1 Overdue":
   Patient.birthDate + (Encounter.HepBLowerLimitWeeks * 1 weeks)
@@ -121,46 +121,46 @@ define "Second hepatitis B dose was administered":
   Encounter."Two hepatitis B primary series doses were administered" 
 
 /*
-@output: Hepatitis B  dose 3
+@output: Hepatitis B dose 3
 @description: Provision of hepatitis B dose 3
 @trigger: Second hepatitis B dose was administered
 Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines") = 2
 @triggerDate: "Date and time of vaccination" (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Dose number" = 1)
 */
-define "Hepatitis B  dose 3":
+define "Hepatitis B dose 3":
   "Second hepatitis B dose was administered"
   and not "Third hepatitis B dose was administered. The primary series has been completed"
 
 /*
-@output: Hepatitis B  dose 3 Create
+@output: Hepatitis B dose 3 Create
 @create: If delayed or interrupted scheduling of vaccination for children, adolescents and adults, 3 doses are recommended, with the second dose administered at least 1 month after the first, and the third dose 6 months after the first dose.
 */
-define "Hepatitis B  dose 3 Create":
-  if "Hepatitis B  dose 3" 
+define "Hepatitis B dose 3 Create":
+  if "Hepatitis B dose 3" 
   then 'If delayed or interrupted scheduling of vaccination for children, adolescents and adults, 3 doses are recommended, with the second dose administered at least 1 month after the first, and the third dose 6 months after the first dose.' + '
-Due Date: ' + ToString("Hepatitis B  dose 3 Due Date")
+Due Date: ' + ToString("Hepatitis B dose 3 Due Date")
   else ''
 
 /*
-@dynamicValue: Hepatitis B  dose 3 Due Date
+@dynamicValue: Hepatitis B dose 3 Due Date
 @pseudocode: "Date and time of vaccination" (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Dose number" = 1) + 6 months
 */
-define "Hepatitis B  dose 3 Due Date":
-  if "Hepatitis B  dose 3" then Encounter."Date of First Hepatitis B Dose" + 6 months
+define "Hepatitis B dose 3 Due Date":
+  if "Hepatitis B dose 3" then Encounter."Date of First Hepatitis B Dose" + 6 months
   else null
 
 /*
-@dynamicValue: Hepatitis B  dose 3 Overdue
+@dynamicValue: Hepatitis B dose 3 Overdue
 @pseudocode: To be determined by Member States; however, there is no recommended overdue date.
 */
-define "Hepatitis B  dose 3 Overdue":
+define "Hepatitis B dose 3 Overdue":
   null
 
 /*
-@dynamicValue: Hepatitis B  dose 3 Expiration
+@dynamicValue: Hepatitis B dose 3 Expiration
 @pseudocode: To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated.
 */
-define "Hepatitis B  dose 3 Expiration":
+define "Hepatitis B dose 3 Expiration":
   null
 
 /*
@@ -178,9 +178,9 @@ define "Test Validation":
     when Patient.id = '50.Agt1d' then "Hepatitis B dose 1"
     when Patient.id = '51.D1HBltww' then "Hepatitis B dose 2"
     when Patient.id = '52.D1HBgt4w' then "Hepatitis B dose 2"
-    when Patient.id = '53.D2HBlt4w' then "Hepatitis B  dose 3"
-    when Patient.id = '54.D2HBgt4wFDlt6m' then "Hepatitis B  dose 3"
-    when Patient.id = '55.D2HBgt4wFDgt6m' then "Hepatitis B  dose 3"
-    when Patient.id = '56.D3' then not "Hepatitis B  dose 3" and "Third hepatitis B dose was administered. The primary series has been completed"
+    when Patient.id = '53.D2HBlt4w' then "Hepatitis B dose 3"
+    when Patient.id = '54.D2HBgt4wFDlt6m' then "Hepatitis B dose 3"
+    when Patient.id = '55.D2HBgt4wFDgt6m' then "Hepatitis B dose 3"
+    when Patient.id = '56.D3' then not "Hepatitis B dose 3" and "Third hepatitis B dose was administered. The primary series has been completed"
     else 'No test case set'
   end

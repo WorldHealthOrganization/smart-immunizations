@@ -1,5 +1,5 @@
 Instance: IMMZD2DTRabiesMR
-InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity
+InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity|2.0.0
 Title: "IMMZ.D2.DT.Rabies.MR"
 Description: "Provide Rabies immunization"
 Usage: #definition

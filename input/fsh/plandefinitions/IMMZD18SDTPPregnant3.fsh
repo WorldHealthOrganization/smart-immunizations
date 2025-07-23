@@ -20,16 +20,16 @@ Create condition: Pregnant women who have received only 3 doses of tetanus-conta
 
 * insert PlanDefCommunicationRequestAction([[Tetanus and diphtheria-containing vaccine booster dose 2 (during pregnancy)]], [["""
 Provision of tetanus and diphtheria booster dose 2 for pregnant women who received only 3 doses of DTP during childhood without booster doses
-Trigger event: First tetanus and diphtheria  booster dose was administered 
+Trigger event: First tetanus and diphtheria booster dose was administered 
 Count of vaccines administered (where "Vaccine type" = "Tetanus and diphtheria-containing vaccines" and "Type of dose" = "Booster dose") = 1
 Trigger date: Latest "Date and time of vaccination" where "Vaccine type" = "Tetanus and diphtheria-containing vaccines"
 Create condition: Pregnant women who have received only 3 doses of tetanus-containing vaccines during childhood without booster doses should receive 2 doses of tetanus-containing vaccines at the earliest opportunity during pregnancy with a minimal interval of 4 weeks between doses and the second dose at least 2 weeks before giving birth.
 """]], [[Tetanus and diphtheria-containing vaccine booster dose 2 (during pregnancy)]], [[Tetanus and diphtheria-containing vaccine booster dose 2 (during pregnancy) Create]])
 
-* insert PlanDefCommunicationRequestAction([[Tetanus and diphtheria-containing vaccine  booster dose 3]], [["""
+* insert PlanDefCommunicationRequestAction([[Tetanus and diphtheria-containing vaccine booster dose 3]], [["""
 Provision of tetanus and diphtheria booster dose 3 for pregnant women who received only 3 doses of DTP during childhood without booster doses
-Trigger event: Second tetanus and diphtheria  booster dose was administered 
+Trigger event: Second tetanus and diphtheria booster dose was administered 
 Count of vaccines administered (where "Vaccine type" = "Tetanus and diphtheria-containing vaccines" and "Type of dose" = "Booster dose") = 2
 Trigger date: Latest "Date and time of vaccination" where "Vaccine type" = "Tetanus and diphtheria-containing vaccines"
 Create condition: A sixth dose would be needed at least 1 year after the fifth dose, or during the next pregnancy.
-"""]], [[Tetanus and diphtheria-containing vaccine  booster dose 3]], [[Tetanus and diphtheria-containing vaccine  booster dose 3 Create]])
+"""]], [[Tetanus and diphtheria-containing vaccine booster dose 3]], [[Tetanus and diphtheria-containing vaccine booster dose 3 Create]])

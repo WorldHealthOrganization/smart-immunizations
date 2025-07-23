@@ -31,7 +31,7 @@ context Patient
 define "Tetanus and diphtheria-containing vaccine booster dose 1 (during pregnancy)":
   Encounter."Three DTP primary series doses were administered"
   and Encounter."Client is currently pregnant"
-  and not("First tetanus and diphtheria  booster dose was administered")
+  and not("First tetanus and diphtheria booster dose was administered")
 
 /*
 @output: Tetanus and diphtheria-containing vaccine booster dose 1 (during pregnancy) Create
@@ -71,23 +71,23 @@ define "Tetanus and diphtheria-containing vaccine booster dose 1 (during pregnan
   else null
   
 /*
-@complete: First tetanus and diphtheria  booster dose was administered
+@complete: First tetanus and diphtheria booster dose was administered
 @pseudocode: Count of vaccines administered (where "Vaccine type" = "Tetanus and diphtheria-containing vaccines" and "Type of dose" = "Booster dose") = 1
 */
-define "First tetanus and diphtheria  booster dose was administered":
+define "First tetanus and diphtheria booster dose was administered":
   Encounter."One tetanus and diphtheria booster dose was administered"
 
 /*
 @output: Tetanus and diphtheria-containing vaccine booster dose 2 (during pregnancy)
 @description: Provision of tetanus and diphtheria booster dose 2 for pregnant women who received only 3 doses of DTP during childhood without booster doses
-@trigger: First tetanus and diphtheria  booster dose was administered 
+@trigger: First tetanus and diphtheria booster dose was administered 
 Count of vaccines administered (where "Vaccine type" = "Tetanus and diphtheria-containing vaccines" and "Type of dose" = "Booster dose") = 1
 @triggerDate: Latest "Date and time of vaccination" where "Vaccine type" = "Tetanus and diphtheria-containing vaccines"
 */
 define "Tetanus and diphtheria-containing vaccine booster dose 2 (during pregnancy)":
-  "First tetanus and diphtheria  booster dose was administered" and
+  "First tetanus and diphtheria booster dose was administered" and
   Encounter."Client is currently pregnant" and
-  not "Second tetanus and diphtheria  booster dose was administered"
+  not "Second tetanus and diphtheria booster dose was administered"
 
 /*
 @output: Tetanus and diphtheria-containing vaccine booster dose 2 (during pregnancy) Create
@@ -127,53 +127,53 @@ define "Tetanus and diphtheria-containing vaccine booster dose 2 (during pregnan
   else null
   
 /*
-@complete: Second tetanus and diphtheria  booster dose was administered
+@complete: Second tetanus and diphtheria booster dose was administered
 @pseudocode: Count of vaccines administered (where "Vaccine type" = "Tetanus and diphtheria-containing vaccines" and "Type of dose" = "Booster dose") = 2
 */
-define "Second tetanus and diphtheria  booster dose was administered":
+define "Second tetanus and diphtheria booster dose was administered":
   Encounter."Two tetanus and diphtheria booster doses were administered"
 
 /*
-@output: Tetanus and diphtheria-containing vaccine  booster dose 3
+@output: Tetanus and diphtheria-containing vaccine booster dose 3
 @description: Provision of tetanus and diphtheria booster dose 3 for pregnant women who received only 3 doses of DTP during childhood without booster doses
-@trigger: Second tetanus and diphtheria  booster dose was administered 
+@trigger: Second tetanus and diphtheria booster dose was administered 
 Count of vaccines administered (where "Vaccine type" = "Tetanus and diphtheria-containing vaccines" and "Type of dose" = "Booster dose") = 2
 @triggerDate: Latest "Date and time of vaccination" where "Vaccine type" = "Tetanus and diphtheria-containing vaccines"
 */
-define "Tetanus and diphtheria-containing vaccine  booster dose 3":
-  "Second tetanus and diphtheria  booster dose was administered" and
+define "Tetanus and diphtheria-containing vaccine booster dose 3":
+  "Second tetanus and diphtheria booster dose was administered" and
   not "Third tetanus and diphtheria-containing booster dose was administered. Tetanus and diphtheria immunization schedule has been completed"
 
 /*
-@output: Tetanus and diphtheria-containing vaccine  booster dose 3 Create
+@output: Tetanus and diphtheria-containing vaccine booster dose 3 Create
 @create: A sixth dose would be needed at least 1 year after the fifth dose, or during the next pregnancy.
 */
-define "Tetanus and diphtheria-containing vaccine  booster dose 3 Create":
-  if "Tetanus and diphtheria-containing vaccine  booster dose 3" 
+define "Tetanus and diphtheria-containing vaccine booster dose 3 Create":
+  if "Tetanus and diphtheria-containing vaccine booster dose 3" 
   then 'A sixth dose would be needed at least 1 year after the fifth dose, or during the next pregnancy.' + '
-Due Date: ' + ToString("Tetanus and diphtheria-containing vaccine  booster dose 3 Due Date")
+Due Date: ' + ToString("Tetanus and diphtheria-containing vaccine booster dose 3 Due Date")
   else ''
 
 /*
-@dynamicValue: Tetanus and diphtheria-containing vaccine  booster dose 3 Due Date
+@dynamicValue: Tetanus and diphtheria-containing vaccine booster dose 3 Due Date
 @pseudocode: Latest "Date and time of vaccination" (where "Vaccine type" = "Tetanus and diphtheria-containing vaccines") + 1 year or during next pregnancy
 */
-define "Tetanus and diphtheria-containing vaccine  booster dose 3 Due Date":
-  if "Tetanus and diphtheria-containing vaccine  booster dose 3" then Encounter."Date of Latest Td Dose" + 1 year
+define "Tetanus and diphtheria-containing vaccine booster dose 3 Due Date":
+  if "Tetanus and diphtheria-containing vaccine booster dose 3" then Encounter."Date of Latest Td Dose" + 1 year
   else null
 
 /*
-@dynamicValue: Tetanus and diphtheria-containing vaccine  booster dose 3 Overdue
+@dynamicValue: Tetanus and diphtheria-containing vaccine booster dose 3 Overdue
 @pseudocode: To be determined by Member States
 */
-define "Tetanus and diphtheria-containing vaccine  booster dose 3 Overdue":
+define "Tetanus and diphtheria-containing vaccine booster dose 3 Overdue":
   null
 
 /*
-@dynamicValue: Tetanus and diphtheria-containing vaccine  booster dose 3 Expiration
+@dynamicValue: Tetanus and diphtheria-containing vaccine booster dose 3 Expiration
 @pseudocode: To be determined by Member States. However, there is no recommended expiration date and individuals remain eligible to be vaccinated.
 */
-define "Tetanus and diphtheria-containing vaccine  booster dose 3 Expiration":
+define "Tetanus and diphtheria-containing vaccine booster dose 3 Expiration":
   null
   
 /*
@@ -191,8 +191,8 @@ define "Test Validation":
     when Patient.id = '66.DTP3Td0PT' then "Tetanus and diphtheria-containing vaccine booster dose 1 (during pregnancy)"
     when Patient.id = '67.DTP3Td1PTTdlt4w' then "Tetanus and diphtheria-containing vaccine booster dose 2 (during pregnancy)"
     when Patient.id = '68.DTP3Td1PTTdgt4w' then "Tetanus and diphtheria-containing vaccine booster dose 2 (during pregnancy)"
-    when Patient.id = '69.DTP3Td2PTTdlt1y' then "Tetanus and diphtheria-containing vaccine  booster dose 3"
-    when Patient.id = '70.DTP3Td2PTTdgt1y' then "Tetanus and diphtheria-containing vaccine  booster dose 3"
+    when Patient.id = '69.DTP3Td2PTTdlt1y' then "Tetanus and diphtheria-containing vaccine booster dose 3"
+    when Patient.id = '70.DTP3Td2PTTdgt1y' then "Tetanus and diphtheria-containing vaccine booster dose 3"
     when Patient.id = '71.DTP3Td3' then "Third tetanus and diphtheria-containing booster dose was administered. Tetanus and diphtheria immunization schedule has been completed"
     else 'No test case set'
   end

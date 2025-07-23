@@ -1,5 +1,5 @@
 Instance: IMMZD2DTPolioOPVMR
-InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity
+InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity|2.0.0
 Title: "IMMZ.D2.DT.Polio.OPV.MR"
 Description: "Provide measles OPV immunization"
 Usage: #definition

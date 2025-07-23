@@ -1,5 +1,5 @@
 Instance: IMMZD2DTBCGMR
-InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity
+InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity|2.0.0
 Title: "IMMZ.D2.DT.BCG.MR"
 Description: "Provide BCG immunization"
 Usage: #definition

@@ -116,11 +116,11 @@ define "The latest seasonal influenza dose was administered more than 4 weeks ag
   not "The latest seasonal influenza dose was administered less than 4 weeks ago"
 
 /*
-@input: The latest seasonal influenza dose was  administered less than 1 year ago
+@input: The latest seasonal influenza dose was administered less than 1 year ago
 @pseudocode: Today's date − "Date and time of vaccination" (where "Vaccine type" = "Seasonal influenza vaccines") < 1 year
 @decision: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
 */
-define "The latest seasonal influenza dose was  administered less than 1 year ago":
+define "The latest seasonal influenza dose was administered less than 1 year ago":
   "Date of Latest Seasonal influenza Dose" is not null 
   and duration in years between "Date of Latest Seasonal influenza Dose" and Now() < 1
 
@@ -130,5 +130,5 @@ define "The latest seasonal influenza dose was  administered less than 1 year ag
 @decision: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
 */
 define "The latest seasonal influenza dose was administered more than 1 year ago":
-  not "The latest seasonal influenza dose was  administered less than 1 year ago"
+  not "The latest seasonal influenza dose was administered less than 1 year ago"
 

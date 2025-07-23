@@ -25,10 +25,10 @@ Trigger date: Latest "Date and time of vaccination" (where "Vaccine type" = "Hep
 Create condition: If delayed or interrupted scheduling of vaccination for children, adolescents and adults, 3 doses are recommended, with the second dose administered at least 1 month after the first, and the third dose 6 months after the first dose.
 """]], [[Hepatitis B dose 2]], [[Hepatitis B dose 2 Create]])
 
-* insert PlanDefCommunicationRequestAction([[Hepatitis B  dose 3]], [["""
+* insert PlanDefCommunicationRequestAction([[Hepatitis B dose 3]], [["""
 Provision of hepatitis B dose 3
 Trigger event: Second hepatitis B dose was administered
 Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines") = 2
 Trigger date: "Date and time of vaccination" (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Dose number" = 1)
 Create condition: If delayed or interrupted scheduling of vaccination for children, adolescents and adults, 3 doses are recommended, with the second dose administered at least 1 month after the first, and the third dose 6 months after the first dose.
-"""]], [[Hepatitis B  dose 3]], [[Hepatitis B  dose 3 Create]])
+"""]], [[Hepatitis B dose 3]], [[Hepatitis B dose 3 Create]])

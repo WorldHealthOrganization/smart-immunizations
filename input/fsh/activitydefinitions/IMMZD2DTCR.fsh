@@ -1,5 +1,5 @@
 Instance: IMMZD2DTCR
-InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-communicationactivity
+InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-communicationactivity|2.0.0
 Title: "IMMZ.D2.DT.CR"
 Description: "Provide immunization communication"
 Usage: #definition

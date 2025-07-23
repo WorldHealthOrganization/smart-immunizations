@@ -1,5 +1,5 @@
 Instance: IMMZD5DTRotavirusMR
-InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity
+InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity|2.0.0
 Title: "IMMZ.D5.DT.Rotavirus.MR"
 Description: "Immunization Contraindication"
 Usage: #definition

@@ -1,5 +1,5 @@
 Instance: IMMZD5DTMeaslesMR
-InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity
+InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity|2.0.0
 Title: "IMMZ.D5.DT.Measles.MR"
 Description: "Immunization Contraindication"
 Usage: #definition

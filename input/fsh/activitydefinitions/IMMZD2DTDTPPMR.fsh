@@ -1,5 +1,5 @@
 Instance: IMMZD2DTDTPPMR
-InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity
+InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity|2.0.0
 Title: "IMMZ.D2.DT.DTP.Pertussis.MR"
 Description: "Provide Pertussis immunization"
 Usage: #definition

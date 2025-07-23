@@ -1,5 +1,5 @@
 Instance: IMMZD2DTYellowfeverMR
-InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity
+InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity|2.0.0
 Title: "IMMZ.D2.DT.Yellowfever.MR"
 Description: "Provide Yellowfever immunization"
 Usage: #definition
