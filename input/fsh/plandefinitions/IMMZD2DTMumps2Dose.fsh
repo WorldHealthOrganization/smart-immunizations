@@ -11,7 +11,7 @@ Usage: #definition
 * insert PlanDefMain( IMMZD2DTMumps2Dose, 0.1.0 )
 * insert PlanDefMedicationRequestAction( [[Determine if the client is due for Mumps.]], [["""
 Determine if the client is due for Mumps vaccine according to the national immunization protocol.
-2-dose schedule (countries with mumps in schedule and low transmission of measles)									
+2-dose schedule (countries with mumps in schedule and low transmission of measles)
 """]], [["""The first dose of the mumps-containing vaccine (monovalent or MMR [measles, mumps and rubella]) 
 should be given at the age of 12–18 months. As a general rule, live vaccines should be given either simultaneously 
 or at intervals of 4 weeks.

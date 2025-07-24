@@ -36,7 +36,7 @@ Usage: #definition
   * code[+] = IMMZ.C#DE5
   * code[+] = $LNC#46098-0 "Sex"
   * code[+] = $SCT#184100006 "Patient sex (observable entity)"
-* insert Question(dateOfBirth , Date of birth , date, true, false)
+* insert Question(dateOfBirth , Date of birth, date, true, false)
 * item[=]
   * code[+] = IMMZ.C#DE10
   * code[+] = $LNC#21112-8 "Birth date"

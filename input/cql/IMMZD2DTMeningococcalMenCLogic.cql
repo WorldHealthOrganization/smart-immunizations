@@ -1,6 +1,6 @@
 
 /*
- * Library: IMMZD2DTMeningococcalMenCLogic (IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine )
+ * Library: IMMZD2DTMeningococcalMenCLogic (IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine)
  * Rule: Determine if the client is due for a meningococcal vaccination according to the national immunization schedule
  * Decision Table: Monovalent MenC conjugate vaccine schedule
  * Trigger: IMMZ.D2 Determine required vaccination(s) if any  

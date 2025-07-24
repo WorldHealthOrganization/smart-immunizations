@@ -1,9 +1,9 @@
 
 Instance: IMMZD2DTTBEEncepur
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
-Title: "IMMZ.D2.DT.TBE.Encepur "
+Title: "IMMZ.D2.DT.TBE.Encepur"
 Description: """
-IMMZ.D2.DT.TBE.Encepur 
+IMMZ.D2.DT.TBE.Encepur
 Encepur schedule
 (In areas where the disease is highly endemic, implying that there is a high individual risk of infection, WHO recommends that vaccination be offered to all age groups, including children		)
 """
@@ -33,6 +33,6 @@ probably have ≥1 booster doses. Although there is a strong indication that the
 considerably from the intervals currently recommended by the manufacturers (every 3–5 years), the evidence is still
 insufficient for a definitive recommendation on the optimal frequency and number of booster doses.
 """]], The primary series is complete, IMMZD2DTTBEMR )
-* insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.TBE.Encepur .]], [["""
-    Show Guidance for the patient regarding IMMZ.D2.DT.TBE.Encepur .
+* insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.TBE.Encepur.]], [["""
+    Show Guidance for the patient regarding IMMZ.D2.DT.TBE.Encepur.
   """]], Has Guidance, Guidance)

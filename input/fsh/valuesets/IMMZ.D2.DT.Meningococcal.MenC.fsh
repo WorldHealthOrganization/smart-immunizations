@@ -1,14 +1,14 @@
 ValueSet: IMMZ.D2.DT.Meningococcal.MenC
 Title: "IMMZ.D2.DT.Meningococcal.MenC ValueSet for Decision Table"
 Description: """
-ValueSet IMMZ.D2.DT.Meningococcal.MenC for IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine .
+ValueSet IMMZ.D2.DT.Meningococcal.MenC for IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine.
 Business rule: Determine if the client is due for a meningococcal vaccination according to the national immunization schedule
 Trigger: IMMZ.D2 Determine required vaccination(s) if any  
 Table: Monovalent MenC conjugate vaccine schedule
 """
 
 * ^status = #active
-* ^name = "IMMZ_D2_DT_Meningococcal_Monovalent_MenC_conjugate_vaccine_"
+* ^name = "IMMZ_D2_DT_Meningococcal_Monovalent_MenC_conjugate_vaccine"
 * ^expansion.timestamp = 2025-06-25T16:39:07.092Z
 
 * insert AddWithExpandCanonical( IMMZ.D2.DT.Inputs, #nmpsdwa-53.130, [[No meningococcal primary series dose was administered]] )

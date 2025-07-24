@@ -50,7 +50,7 @@ Description:  "Data elements for the IMMZ.C4.Create client record Data Dictionar
   * ^code[+] = IMMZ.C#DE5
   * ^code[+] = $LNC#46098-0 "Sex"
   * ^code[+] = $SCT#184100006 "Patient sex (observable entity)"
-* dateOfBirth  1..1 string "Date of birth " "Client's date of birth (DOB) if known; if unknown, use assigned DOB for administrative purposes"
+* dateOfBirth  1..1 string "Date of birth" "Client's date of birth (DOB) if known; if unknown, use assigned DOB for administrative purposes"
   * ^code[+] = IMMZ.C#DE10
   * ^code[+] = $LNC#21112-8 "Birth date"
   * ^code[+] = $SCT#184099003 "Date of birth (observable entity)"

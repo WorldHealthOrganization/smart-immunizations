@@ -1,6 +1,6 @@
 
 /*
- * Library: IMMZD2DTTBEEncepurLogic (IMMZ.D2.DT.TBE.Encepur )
+ * Library: IMMZD2DTTBEEncepurLogic (IMMZ.D2.DT.TBE.Encepur)
  * Rule: Determine if the client is due for a tick-borne encephalitis (TBE) vaccination according to the national immunization schedule
  * Decision Table: Encepur schedule
 (In areas where the disease is highly endemic, implying that there is a high individual risk of infection, WHO recommends that vaccination be offered to all age groups, including children		)

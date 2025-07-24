@@ -11,7 +11,7 @@ Usage: #definition
 * insert PlanDefMain( IMMZD2DTTyphoidTCV, 0.1.0 )
 * insert PlanDefMedicationRequestAction( [[Determine if the client is due for Typhoid.]], [["""
     Determine if the client is due for Typhoid vaccine according to the national immunization protocol.
-    Typhoid conjugate vaccine (TCV) schedule      
+    Typhoid conjugate vaccine (TCV) schedule
   """]], [["""WHO recommends the TCV as a 0.5 mL single dose for infants and children from 6 months of 
   age and in adults up to 45 years in typhoid endemic regions.
   """]], Client is due for Typhoid vaccination, IMMZD2DTTyphoidMR )
