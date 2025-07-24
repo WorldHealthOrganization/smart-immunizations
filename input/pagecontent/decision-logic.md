@@ -7,4 +7,4 @@ The table below provides an overview of the decision-support tables and algorith
 
 ### Overview of decision logic support tables
 
-{% include decision-log-list.md %}
+{% include decision-logic-list.md %}
