@@ -1,0 +1,1524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="357">
+         <a:s>/*
+ * Library: IMMZD5DTRotavirusCILogic (IMMZ.D5.DT.Rotavirus contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due	
+ * Decision Table: Potential contraindications
+ * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
+ */
+library IMMZD5DTRotavirusCILogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD5DTRotavirusCILogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="13:1-13:59" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD5DTRotavirusEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD5DTRotavirusEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="209" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>parameter Today </a:s>
+               <a:s r="213">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="212">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="212" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="213" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="217" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="215" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="216" xsi:type="SingletonFrom">
+            <operand localId="214" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="219" locator="22:1-23:66" name="Draft Medication Request ID for Rotavirus dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Draft Medication Request ID for Rotavirus dose"/>
+            <a:s r="219">
+               <a:s>/*
+@dynamicValue: Draft Medication Request ID for Rotavirus dose
+*/
+define &quot;Draft Medication Request ID for Rotavirus dose&quot;:
+	</a:s>
+               <a:s r="225">
+                  <a:s r="224">
+                     <a:s>First(</a:s>
+                     <a:s r="221">
+                        <a:s r="220">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="221">
+                           <a:s>&quot;Draft Medication Request for Rotavirus dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="225">
+                     <a:s>id</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="23:2-23:66" path="id" xsi:type="Property">
+            <source localId="224" locator="23:2-23:63" xsi:type="First">
+               <source localId="221" locator="23:8-23:62" name="Draft Medication Request for Rotavirus dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </source>
+         </expression>
+      </def>
+      <def localId="234" locator="43:1-44:61" name="Rotavirus vaccination is contraindicated Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rotavirus vaccination is contraindicated Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="234">
+               <a:s>/*
+@output: Rotavirus vaccination is contraindicated Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;Rotavirus vaccination is contraindicated Case 1&quot;:
+  </a:s>
+               <a:s r="236">
+                  <a:s r="235">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="236">
+                     <a:s>&quot;The client has prior history of intussusception&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="236" locator="44:3-44:61" name="The client has prior history of intussusception" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="239" locator="50:1-51:52" name="Rotavirus vaccination is contraindicated Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rotavirus vaccination is contraindicated Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="239">
+               <a:s>/*
+@output: Rotavirus vaccination is contraindicated Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;Rotavirus vaccination is contraindicated Case 2&quot;:
+  </a:s>
+               <a:s r="241">
+                  <a:s r="240">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="241">
+                     <a:s>&quot;The client has severe immunodeficiency&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="241" locator="51:3-51:52" name="The client has severe immunodeficiency" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="231" locator="57:1-59:56" name="Rotavirus vaccination is contraindicated" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rotavirus vaccination is contraindicated"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="231">
+               <a:s>/*
+@output: Rotavirus vaccination is contraindicated
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;Rotavirus vaccination is contraindicated&quot;:
+  </a:s>
+               <a:s r="232">
+                  <a:s r="237">
+                     <a:s>&quot;Rotavirus vaccination is contraindicated Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="242">
+                     <a:s>&quot;Rotavirus vaccination is contraindicated Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="232" locator="58:3-59:56" xsi:type="Or">
+            <operand localId="237" locator="58:3-58:51" name="Rotavirus vaccination is contraindicated Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="242" locator="59:8-59:56" name="Rotavirus vaccination is contraindicated Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="245" locator="66:1-71:5" name="Rotavirus vaccination is contraindicated Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rotavirus vaccination is contraindicated Guidance"/>
+            <a:t name="guidance" value="Do not vaccinate client with rotavirus as rotavirus vaccination is contraindicated for clients with prior history of intussusception."/>
+            <a:t name="guidance" value="Do not vaccinate client with rotavirus as rotavirus vaccincation is contraindicated for clients with severe immunodeficiency, including severe combined immunodeficiency."/>
+            <a:s r="245">
+               <a:s>/*
+@output: Rotavirus vaccination is contraindicated Guidance
+@guidance: Do not vaccinate client with rotavirus as rotavirus vaccination is contraindicated for clients with prior history of intussusception.
+@guidance: Do not vaccinate client with rotavirus as rotavirus vaccincation is contraindicated for clients with severe immunodeficiency, including severe combined immunodeficiency.
+*/
+define &quot;Rotavirus vaccination is contraindicated Guidance&quot;:
+  </a:s>
+               <a:s r="246">
+                  <a:s>case
+    </a:s>
+                  <a:s r="247">
+                     <a:s>when </a:s>
+                     <a:s r="248">
+                        <a:s>&quot;Rotavirus vaccination is contraindicated Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="249">
+                        <a:s>'Do not vaccinate client with rotavirus as rotavirus vaccination is contraindicated for clients with prior history of intussusception.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="250">
+                     <a:s>when </a:s>
+                     <a:s r="251">
+                        <a:s>&quot;Rotavirus vaccination is contraindicated Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="252">
+                        <a:s>'Do not vaccinate client with rotavirus as rotavirus vaccincation is contraindicated for clients with severe immunodeficiency, including severe combined immunodeficiency.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="253">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="246" locator="67:3-71:5" xsi:type="Case">
+            <caseItem localId="247" locator="68:5-68:199">
+               <when localId="248" locator="68:10-68:58" name="Rotavirus vaccination is contraindicated Case 1" xsi:type="ExpressionRef"/>
+               <then localId="249" locator="68:65-68:199" valueType="t:String" value="Do not vaccinate client with rotavirus as rotavirus vaccination is contraindicated for clients with prior history of intussusception." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="250" locator="69:5-69:235">
+               <when localId="251" locator="69:10-69:58" name="Rotavirus vaccination is contraindicated Case 2" xsi:type="ExpressionRef"/>
+               <then localId="252" locator="69:65-69:235" valueType="t:String" value="Do not vaccinate client with rotavirus as rotavirus vaccincation is contraindicated for clients with severe immunodeficiency, including severe combined immunodeficiency." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="253" locator="70:10-70:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="260" locator="77:1-78:67" name="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="260">
+               <a:s>/*
+@output: Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1&quot;:
+  </a:s>
+               <a:s r="262">
+                  <a:s r="261">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="262">
+                     <a:s>&quot;The client has a history of severe allergic reactions&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="262" locator="78:3-78:67" name="The client has a history of severe allergic reactions" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="265" locator="84:1-85:62" name="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="265">
+               <a:s>/*
+@output: Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2&quot;:
+  </a:s>
+               <a:s r="267">
+                  <a:s r="266">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="267">
+                     <a:s>&quot;The client has history of anaphylactic reactions&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="267" locator="85:3-85:62" name="The client has history of anaphylactic reactions" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="257" locator="91:1-93:118" name="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="257">
+               <a:s>/*
+@output: Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;:
+  </a:s>
+               <a:s r="258">
+                  <a:s r="263">
+                     <a:s>&quot;Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="268">
+                     <a:s>&quot;Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="258" locator="92:3-93:118" xsi:type="Or">
+            <operand localId="263" locator="92:3-92:113" name="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="268" locator="93:8-93:118" name="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="271" locator="101:1-107:5" name="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance"/>
+            <a:t name="guidance" value="Do not vaccinate client with rotavirus if client had severe allergic reactions to a previous rotavirus vaccine dose or rotavirus vaccine components.&#xa;Check if the client has no known severe hypersensitivity to rotavirus vaccines components."/>
+            <a:t name="guidance" value="Do not vaccinate client with rotavirus if client has history of anaphylactic reaction to a previous rotavirus vaccine dose or rotavirus vaccine components."/>
+            <a:s r="271">
+               <a:s>/*
+@output: Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance
+@guidance: Do not vaccinate client with rotavirus if client had severe allergic reactions to a previous rotavirus vaccine dose or rotavirus vaccine components.
+Check if the client has no known severe hypersensitivity to rotavirus vaccines components.
+@guidance: Do not vaccinate client with rotavirus if client has history of anaphylactic reaction to a previous rotavirus vaccine dose or rotavirus vaccine components.
+*/
+define &quot;Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance&quot;:
+  </a:s>
+               <a:s r="272">
+                  <a:s>case
+    </a:s>
+                  <a:s r="273">
+                     <a:s>when </a:s>
+                     <a:s r="274">
+                        <a:s>&quot;Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="275">
+                        <a:s>'Do not vaccinate client with rotavirus if client had severe allergic reactions to a previous rotavirus vaccine dose or rotavirus vaccine components.
+Check if the client has no known severe hypersensitivity to rotavirus vaccines components.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="276">
+                     <a:s>when </a:s>
+                     <a:s r="277">
+                        <a:s>&quot;Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="278">
+                        <a:s>'Do not vaccinate client with rotavirus if client has history of anaphylactic reaction to a previous rotavirus vaccine dose or rotavirus vaccine components.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="279">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="272" locator="102:3-107:5" xsi:type="Case">
+            <caseItem localId="273" locator="103:5-103:367">
+               <when localId="274" locator="103:10-103:120" name="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1" xsi:type="ExpressionRef"/>
+               <then localId="275" locator="103:127-103:367" valueType="t:String" value="Do not vaccinate client with rotavirus if client had severe allergic reactions to a previous rotavirus vaccine dose or rotavirus vaccine components.&#xa;Check if the client has no known severe hypersensitivity to rotavirus vaccines components." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="276" locator="105:5-105:283">
+               <when localId="277" locator="105:10-105:120" name="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2" xsi:type="ExpressionRef"/>
+               <then localId="278" locator="105:127-105:283" valueType="t:String" value="Do not vaccinate client with rotavirus if client has history of anaphylactic reaction to a previous rotavirus vaccine dose or rotavirus vaccine components." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="279" locator="106:10-106:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="290" locator="113:1-114:53" name="Clinical judgement is required. Create a clinical note Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Clinical judgement is required. Create a clinical note Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="290">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note Case 1&quot;:
+  </a:s>
+               <a:s r="292">
+                  <a:s r="291">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="292">
+                     <a:s>&quot;The client has altered immunocompetence&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="292" locator="114:3-114:53" name="The client has altered immunocompetence" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="295" locator="120:1-121:41" name="Clinical judgement is required. Create a clinical note Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Clinical judgement is required. Create a clinical note Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="295">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note Case 2&quot;:
+  </a:s>
+               <a:s r="297">
+                  <a:s r="296">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="297">
+                     <a:s>&quot;The client has spina bifida&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="297" locator="121:3-121:41" name="The client has spina bifida" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="300" locator="127:1-128:46" name="Clinical judgement is required. Create a clinical note Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Clinical judgement is required. Create a clinical note Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="300">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note Case 3&quot;:
+  </a:s>
+               <a:s r="302">
+                  <a:s r="301">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="302">
+                     <a:s>&quot;The client has bladder exstrophy&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="302" locator="128:3-128:46" name="The client has bladder exstrophy" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="305" locator="134:1-135:61" name="Clinical judgement is required. Create a clinical note Case 4" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Clinical judgement is required. Create a clinical note Case 4"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="305">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note Case 4
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note Case 4&quot;:
+  </a:s>
+               <a:s r="307">
+                  <a:s r="306">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="307">
+                     <a:s>&quot;The client has chronic gastrointestinal disease&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="307" locator="135:3-135:61" name="The client has chronic gastrointestinal disease" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="310" locator="141:1-142:50" name="Clinical judgement is required. Create a clinical note Case 5" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Clinical judgement is required. Create a clinical note Case 5"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="310">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note Case 5
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note Case 5&quot;:
+  </a:s>
+               <a:s r="312">
+                  <a:s r="311">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="312">
+                     <a:s>&quot;The client has acute gastroenteritis&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="312" locator="142:3-142:50" name="The client has acute gastroenteritis" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="315" locator="148:1-149:53" name="Clinical judgement is required. Create a clinical note Case 6" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Clinical judgement is required. Create a clinical note Case 6"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="315">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note Case 6
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note Case 6&quot;:
+  </a:s>
+               <a:s r="317">
+                  <a:s r="316">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="317">
+                     <a:s>&quot;The client has moderate to severe fever&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="317" locator="149:3-149:53" name="The client has moderate to severe fever" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="283" locator="155:1-161:70" name="Clinical judgement is required. Create a clinical note" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Clinical judgement is required. Create a clinical note"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="283">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note&quot;:
+  </a:s>
+               <a:s r="284">
+                  <a:s r="285">
+                     <a:s r="286">
+                        <a:s r="287">
+                           <a:s r="288">
+                              <a:s r="293">
+                                 <a:s>&quot;Clinical judgement is required. Create a clinical note Case 1&quot;</a:s>
+                              </a:s>
+                              <a:s>
+    or </a:s>
+                              <a:s r="298">
+                                 <a:s>&quot;Clinical judgement is required. Create a clinical note Case 2&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+    or </a:s>
+                           <a:s r="303">
+                              <a:s>&quot;Clinical judgement is required. Create a clinical note Case 3&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    or </a:s>
+                        <a:s r="308">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note Case 4&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="313">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note Case 5&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="318">
+                     <a:s>&quot;Clinical judgement is required. Create a clinical note Case 6&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="284" locator="156:3-161:70" xsi:type="Or">
+            <operand localId="285" locator="156:3-160:70" xsi:type="Or">
+               <operand localId="286" locator="156:3-159:70" xsi:type="Or">
+                  <operand localId="287" locator="156:3-158:70" xsi:type="Or">
+                     <operand localId="288" locator="156:3-157:70" xsi:type="Or">
+                        <operand localId="293" locator="156:3-156:65" name="Clinical judgement is required. Create a clinical note Case 1" xsi:type="ExpressionRef"/>
+                        <operand localId="298" locator="157:8-157:70" name="Clinical judgement is required. Create a clinical note Case 2" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="303" locator="158:8-158:70" name="Clinical judgement is required. Create a clinical note Case 3" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="308" locator="159:8-159:70" name="Clinical judgement is required. Create a clinical note Case 4" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="313" locator="160:8-160:70" name="Clinical judgement is required. Create a clinical note Case 5" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="318" locator="161:8-161:70" name="Clinical judgement is required. Create a clinical note Case 6" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="321" locator="172:1-181:5" name="Clinical judgement is required. Create a clinical note Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Clinical judgement is required. Create a clinical note Guidance"/>
+            <a:t name="guidance" value="Client has altered immunocompetence other than severe combined immunodeficiency, consider risks of vaccination and make a judgement."/>
+            <a:t name="guidance" value="Client has spina bifida, consider risks of vaccination and make a judgement."/>
+            <a:t name="guidance" value="Client has bladder exstrophy, consider risks of vaccination and make a judgement."/>
+            <a:t name="guidance" value="Client has chronic gastrointestinal disease, consider risks of vaccination and make a judgement."/>
+            <a:t name="guidance" value="Client has acute gastroenteritis, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination."/>
+            <a:t name="guidance" value="Client has moderate to severe fever, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination."/>
+            <a:s r="321">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note Guidance
+@guidance: Client has altered immunocompetence other than severe combined immunodeficiency, consider risks of vaccination and make a judgement.
+@guidance: Client has spina bifida, consider risks of vaccination and make a judgement.
+@guidance: Client has bladder exstrophy, consider risks of vaccination and make a judgement.
+@guidance: Client has chronic gastrointestinal disease, consider risks of vaccination and make a judgement.
+@guidance: Client has acute gastroenteritis, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.
+@guidance: Client has moderate to severe fever, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.
+*/
+define &quot;Clinical judgement is required. Create a clinical note Guidance&quot;:
+  </a:s>
+               <a:s r="322">
+                  <a:s>case
+    </a:s>
+                  <a:s r="323">
+                     <a:s>when </a:s>
+                     <a:s r="324">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="325">
+                        <a:s>'Client has altered immunocompetence other than severe combined immunodeficiency, consider risks of vaccination and make a judgement.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="326">
+                     <a:s>when </a:s>
+                     <a:s r="327">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="328">
+                        <a:s>'Client has spina bifida, consider risks of vaccination and make a judgement.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="329">
+                     <a:s>when </a:s>
+                     <a:s r="330">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="331">
+                        <a:s>'Client has bladder exstrophy, consider risks of vaccination and make a judgement.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="332">
+                     <a:s>when </a:s>
+                     <a:s r="333">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note Case 4&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="334">
+                        <a:s>'Client has chronic gastrointestinal disease, consider risks of vaccination and make a judgement.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="335">
+                     <a:s>when </a:s>
+                     <a:s r="336">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note Case 5&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="337">
+                        <a:s>'Client has acute gastroenteritis, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="338">
+                     <a:s>when </a:s>
+                     <a:s r="339">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note Case 6&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="340">
+                        <a:s>'Client has moderate to severe fever, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="341">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="322" locator="173:3-181:5" xsi:type="Case">
+            <caseItem localId="323" locator="174:5-174:212">
+               <when localId="324" locator="174:10-174:72" name="Clinical judgement is required. Create a clinical note Case 1" xsi:type="ExpressionRef"/>
+               <then localId="325" locator="174:79-174:212" valueType="t:String" value="Client has altered immunocompetence other than severe combined immunodeficiency, consider risks of vaccination and make a judgement." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="326" locator="175:5-175:156">
+               <when localId="327" locator="175:10-175:72" name="Clinical judgement is required. Create a clinical note Case 2" xsi:type="ExpressionRef"/>
+               <then localId="328" locator="175:79-175:156" valueType="t:String" value="Client has spina bifida, consider risks of vaccination and make a judgement." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="329" locator="176:5-176:161">
+               <when localId="330" locator="176:10-176:72" name="Clinical judgement is required. Create a clinical note Case 3" xsi:type="ExpressionRef"/>
+               <then localId="331" locator="176:79-176:161" valueType="t:String" value="Client has bladder exstrophy, consider risks of vaccination and make a judgement." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="332" locator="177:5-177:176">
+               <when localId="333" locator="177:10-177:72" name="Clinical judgement is required. Create a clinical note Case 4" xsi:type="ExpressionRef"/>
+               <then localId="334" locator="177:79-177:176" valueType="t:String" value="Client has chronic gastrointestinal disease, consider risks of vaccination and make a judgement." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="335" locator="178:5-178:206">
+               <when localId="336" locator="178:10-178:72" name="Clinical judgement is required. Create a clinical note Case 5" xsi:type="ExpressionRef"/>
+               <then localId="337" locator="178:79-178:206" valueType="t:String" value="Client has acute gastroenteritis, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="338" locator="179:5-179:209">
+               <when localId="339" locator="179:10-179:72" name="Clinical judgement is required. Create a clinical note Case 6" xsi:type="ExpressionRef"/>
+               <then localId="340" locator="179:79-179:209" valueType="t:String" value="Client has moderate to severe fever, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="341" locator="180:10-180:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="227" locator="28:1-34:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="227">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="228">
+                  <a:s>case
+    </a:s>
+                  <a:s r="229">
+                     <a:s>when </a:s>
+                     <a:s r="243">
+                        <a:s>&quot;Rotavirus vaccination is contraindicated&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="254">
+                        <a:s>&quot;Rotavirus vaccination is contraindicated Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="255">
+                     <a:s>when </a:s>
+                     <a:s r="269">
+                        <a:s>&quot;Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="280">
+                        <a:s>&quot;Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="281">
+                     <a:s>when </a:s>
+                     <a:s r="319">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="342">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="343">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="228" locator="29:3-34:5" xsi:type="Case">
+            <caseItem localId="229" locator="30:5-30:108">
+               <when localId="243" locator="30:10-30:51" name="Rotavirus vaccination is contraindicated" xsi:type="ExpressionRef"/>
+               <then localId="254" locator="30:58-30:108" name="Rotavirus vaccination is contraindicated Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="255" locator="31:5-31:232">
+               <when localId="269" locator="31:10-31:113" name="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+               <then localId="280" locator="31:120-31:232" name="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="281" locator="32:5-32:136">
+               <when localId="319" locator="32:10-32:65" name="Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+               <then localId="342" locator="32:72-32:136" name="Clinical judgement is required. Create a clinical note Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="343" locator="33:10-33:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="345" locator="36:1-37:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="345">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="346">
+                  <a:s r="349">
+                     <a:s r="347">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="355">
+                     <a:s r="351">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="352">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="346" locator="37:3-37:45" xsi:type="And">
+            <operand localId="349" locator="37:3-37:24" xsi:type="Not">
+               <operand localId="348" locator="37:3-37:24" xsi:type="IsNull">
+                  <operand localId="347" locator="37:3-37:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="355" locator="37:30-37:45" xsi:type="Not">
+               <operand localId="350" locator="37:30-37:45" xsi:type="Equal">
+                  <signature localId="353" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="354" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="351" locator="37:30-37:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="352" locator="37:44-37:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="357" locator="187:1-201:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="357">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="358">
+                  <a:s>case
+    </a:s>
+                  <a:s r="359">
+                     <a:s>when </a:s>
+                     <a:s r="360">
+                        <a:s r="362">
+                           <a:s r="361">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="362">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="363">
+                           <a:s>'25.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="368">
+                        <a:s r="369">
+                           <a:s>&quot;Rotavirus vaccination is contraindicated Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="370">
+                           <a:s r="371">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="372">
+                              <a:s>'Do not vaccinate client with rotavirus as rotavirus vaccination is contraindicated for clients with prior history of intussusception.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="375">
+                     <a:s>when </a:s>
+                     <a:s r="376">
+                        <a:s r="378">
+                           <a:s r="377">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="378">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="379">
+                           <a:s>'26.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="384">
+                        <a:s r="385">
+                           <a:s>&quot;Rotavirus vaccination is contraindicated Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="386">
+                           <a:s r="387">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="388">
+                              <a:s>'Do not vaccinate client with rotavirus as rotavirus vaccincation is contraindicated for clients with severe immunodeficiency, including severe combined immunodeficiency.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="391">
+                     <a:s>when </a:s>
+                     <a:s r="392">
+                        <a:s r="394">
+                           <a:s r="393">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="394">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="395">
+                           <a:s>'27.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="400">
+                        <a:s r="401">
+                           <a:s>&quot;Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="402">
+                           <a:s r="403">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="404">
+                              <a:s>'Do not vaccinate client with rotavirus if client had severe allergic reactions to a previous rotavirus vaccine dose or rotavirus vaccine components.
+Check if the client has no known severe hypersensitivity to rotavirus vaccines components.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="407">
+                     <a:s>when </a:s>
+                     <a:s r="408">
+                        <a:s r="410">
+                           <a:s r="409">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="410">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="411">
+                           <a:s>'28.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="416">
+                        <a:s r="417">
+                           <a:s>&quot;Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="418">
+                           <a:s r="419">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="420">
+                              <a:s>'Do not vaccinate client with rotavirus if client has history of anaphylactic reaction to a previous rotavirus vaccine dose or rotavirus vaccine components.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="423">
+                     <a:s>when </a:s>
+                     <a:s r="424">
+                        <a:s r="426">
+                           <a:s r="425">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="426">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="427">
+                           <a:s>'29.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="432">
+                        <a:s r="433">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="434">
+                           <a:s r="435">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="436">
+                              <a:s>'Client has altered immunocompetence other than severe combined immunodeficiency, consider risks of vaccination and make a judgement.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="439">
+                     <a:s>when </a:s>
+                     <a:s r="440">
+                        <a:s r="442">
+                           <a:s r="441">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="442">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="443">
+                           <a:s>'30.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="448">
+                        <a:s r="449">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="450">
+                           <a:s r="451">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="452">
+                              <a:s>'Client has spina bifida, consider risks of vaccination and make a judgement.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="455">
+                     <a:s>when </a:s>
+                     <a:s r="456">
+                        <a:s r="458">
+                           <a:s r="457">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="458">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="459">
+                           <a:s>'31.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="464">
+                        <a:s r="465">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="466">
+                           <a:s r="467">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="468">
+                              <a:s>'Client has bladder exstrophy, consider risks of vaccination and make a judgement.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="471">
+                     <a:s>when </a:s>
+                     <a:s r="472">
+                        <a:s r="474">
+                           <a:s r="473">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="474">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="475">
+                           <a:s>'32.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="480">
+                        <a:s r="481">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note Case 4&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="482">
+                           <a:s r="483">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="484">
+                              <a:s>'Client has chronic gastrointestinal disease, consider risks of vaccination and make a judgement.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="487">
+                     <a:s>when </a:s>
+                     <a:s r="488">
+                        <a:s r="490">
+                           <a:s r="489">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="490">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="491">
+                           <a:s>'33.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="496">
+                        <a:s r="497">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note Case 5&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="498">
+                           <a:s r="499">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="500">
+                              <a:s>'Client has acute gastroenteritis, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="503">
+                     <a:s>when </a:s>
+                     <a:s r="504">
+                        <a:s r="506">
+                           <a:s r="505">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="506">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="507">
+                           <a:s>'34.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="512">
+                        <a:s r="513">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note Case 6&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="514">
+                           <a:s r="515">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="516">
+                              <a:s>'Client has moderate to severe fever, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="519">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="358" locator="188:3-201:5" xsi:type="Case">
+            <caseItem localId="359" locator="189:5-189:236">
+               <when localId="360" locator="189:10-189:28" xsi:type="Equal">
+                  <signature localId="366" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="367" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="364" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="365" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="362" locator="189:10-189:19" path="id" xsi:type="Property">
+                        <source localId="361" locator="189:10-189:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="363" locator="189:23-189:28" valueType="t:String" value="25.0" xsi:type="Literal"/>
+               </when>
+               <then localId="520" xsi:type="As">
+                  <operand localId="368" locator="189:35-189:236" xsi:type="And">
+                     <operand localId="369" locator="189:35-189:83" name="Rotavirus vaccination is contraindicated Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="370" locator="189:89-189:236" xsi:type="Equal">
+                        <signature localId="373" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="374" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="371" locator="189:89-189:98" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="372" locator="189:102-189:236" valueType="t:String" value="Do not vaccinate client with rotavirus as rotavirus vaccination is contraindicated for clients with prior history of intussusception." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="521" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="522" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="523" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="375" locator="190:5-190:272">
+               <when localId="376" locator="190:10-190:28" xsi:type="Equal">
+                  <signature localId="382" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="383" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="380" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="381" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="378" locator="190:10-190:19" path="id" xsi:type="Property">
+                        <source localId="377" locator="190:10-190:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="379" locator="190:23-190:28" valueType="t:String" value="26.0" xsi:type="Literal"/>
+               </when>
+               <then localId="524" xsi:type="As">
+                  <operand localId="384" locator="190:35-190:272" xsi:type="And">
+                     <operand localId="385" locator="190:35-190:83" name="Rotavirus vaccination is contraindicated Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="386" locator="190:89-190:272" xsi:type="Equal">
+                        <signature localId="389" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="390" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="387" locator="190:89-190:98" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="388" locator="190:102-190:272" valueType="t:String" value="Do not vaccinate client with rotavirus as rotavirus vaccincation is contraindicated for clients with severe immunodeficiency, including severe combined immunodeficiency." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="525" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="526" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="527" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="391" locator="191:5-191:404">
+               <when localId="392" locator="191:10-191:28" xsi:type="Equal">
+                  <signature localId="398" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="399" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="396" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="397" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="394" locator="191:10-191:19" path="id" xsi:type="Property">
+                        <source localId="393" locator="191:10-191:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="395" locator="191:23-191:28" valueType="t:String" value="27.0" xsi:type="Literal"/>
+               </when>
+               <then localId="528" xsi:type="As">
+                  <operand localId="400" locator="191:35-191:404" xsi:type="And">
+                     <operand localId="401" locator="191:35-191:145" name="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="402" locator="191:151-191:404" xsi:type="Equal">
+                        <signature localId="405" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="406" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="403" locator="191:151-191:160" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="404" locator="191:164-191:404" valueType="t:String" value="Do not vaccinate client with rotavirus if client had severe allergic reactions to a previous rotavirus vaccine dose or rotavirus vaccine components.&#xa;Check if the client has no known severe hypersensitivity to rotavirus vaccines components." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="529" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="530" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="531" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="407" locator="193:5-193:320">
+               <when localId="408" locator="193:10-193:28" xsi:type="Equal">
+                  <signature localId="414" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="415" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="412" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="413" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="410" locator="193:10-193:19" path="id" xsi:type="Property">
+                        <source localId="409" locator="193:10-193:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="411" locator="193:23-193:28" valueType="t:String" value="28.0" xsi:type="Literal"/>
+               </when>
+               <then localId="532" xsi:type="As">
+                  <operand localId="416" locator="193:35-193:320" xsi:type="And">
+                     <operand localId="417" locator="193:35-193:145" name="Rotavirus vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="418" locator="193:151-193:320" xsi:type="Equal">
+                        <signature localId="421" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="422" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="419" locator="193:151-193:160" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="420" locator="193:164-193:320" valueType="t:String" value="Do not vaccinate client with rotavirus if client has history of anaphylactic reaction to a previous rotavirus vaccine dose or rotavirus vaccine components." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="533" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="534" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="535" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="423" locator="194:5-194:249">
+               <when localId="424" locator="194:10-194:28" xsi:type="Equal">
+                  <signature localId="430" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="431" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="428" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="429" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="426" locator="194:10-194:19" path="id" xsi:type="Property">
+                        <source localId="425" locator="194:10-194:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="427" locator="194:23-194:28" valueType="t:String" value="29.0" xsi:type="Literal"/>
+               </when>
+               <then localId="536" xsi:type="As">
+                  <operand localId="432" locator="194:35-194:249" xsi:type="And">
+                     <operand localId="433" locator="194:35-194:97" name="Clinical judgement is required. Create a clinical note Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="434" locator="194:103-194:249" xsi:type="Equal">
+                        <signature localId="437" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="438" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="435" locator="194:103-194:112" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="436" locator="194:116-194:249" valueType="t:String" value="Client has altered immunocompetence other than severe combined immunodeficiency, consider risks of vaccination and make a judgement." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="537" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="538" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="539" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="439" locator="195:5-195:193">
+               <when localId="440" locator="195:10-195:28" xsi:type="Equal">
+                  <signature localId="446" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="447" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="444" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="445" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="442" locator="195:10-195:19" path="id" xsi:type="Property">
+                        <source localId="441" locator="195:10-195:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="443" locator="195:23-195:28" valueType="t:String" value="30.0" xsi:type="Literal"/>
+               </when>
+               <then localId="540" xsi:type="As">
+                  <operand localId="448" locator="195:35-195:193" xsi:type="And">
+                     <operand localId="449" locator="195:35-195:97" name="Clinical judgement is required. Create a clinical note Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="450" locator="195:103-195:193" xsi:type="Equal">
+                        <signature localId="453" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="454" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="451" locator="195:103-195:112" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="452" locator="195:116-195:193" valueType="t:String" value="Client has spina bifida, consider risks of vaccination and make a judgement." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="541" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="542" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="543" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="455" locator="196:5-196:198">
+               <when localId="456" locator="196:10-196:28" xsi:type="Equal">
+                  <signature localId="462" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="463" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="460" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="461" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="458" locator="196:10-196:19" path="id" xsi:type="Property">
+                        <source localId="457" locator="196:10-196:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="459" locator="196:23-196:28" valueType="t:String" value="31.0" xsi:type="Literal"/>
+               </when>
+               <then localId="544" xsi:type="As">
+                  <operand localId="464" locator="196:35-196:198" xsi:type="And">
+                     <operand localId="465" locator="196:35-196:97" name="Clinical judgement is required. Create a clinical note Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="466" locator="196:103-196:198" xsi:type="Equal">
+                        <signature localId="469" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="470" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="467" locator="196:103-196:112" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="468" locator="196:116-196:198" valueType="t:String" value="Client has bladder exstrophy, consider risks of vaccination and make a judgement." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="545" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="546" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="547" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="471" locator="197:5-197:213">
+               <when localId="472" locator="197:10-197:28" xsi:type="Equal">
+                  <signature localId="478" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="479" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="476" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="477" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="474" locator="197:10-197:19" path="id" xsi:type="Property">
+                        <source localId="473" locator="197:10-197:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="475" locator="197:23-197:28" valueType="t:String" value="32.0" xsi:type="Literal"/>
+               </when>
+               <then localId="548" xsi:type="As">
+                  <operand localId="480" locator="197:35-197:213" xsi:type="And">
+                     <operand localId="481" locator="197:35-197:97" name="Clinical judgement is required. Create a clinical note Case 4" xsi:type="ExpressionRef"/>
+                     <operand localId="482" locator="197:103-197:213" xsi:type="Equal">
+                        <signature localId="485" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="486" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="483" locator="197:103-197:112" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="484" locator="197:116-197:213" valueType="t:String" value="Client has chronic gastrointestinal disease, consider risks of vaccination and make a judgement." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="549" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="550" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="551" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="487" locator="198:5-198:243">
+               <when localId="488" locator="198:10-198:28" xsi:type="Equal">
+                  <signature localId="494" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="495" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="492" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="493" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="490" locator="198:10-198:19" path="id" xsi:type="Property">
+                        <source localId="489" locator="198:10-198:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="491" locator="198:23-198:28" valueType="t:String" value="33.0" xsi:type="Literal"/>
+               </when>
+               <then localId="552" xsi:type="As">
+                  <operand localId="496" locator="198:35-198:243" xsi:type="And">
+                     <operand localId="497" locator="198:35-198:97" name="Clinical judgement is required. Create a clinical note Case 5" xsi:type="ExpressionRef"/>
+                     <operand localId="498" locator="198:103-198:243" xsi:type="Equal">
+                        <signature localId="501" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="502" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="499" locator="198:103-198:112" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="500" locator="198:116-198:243" valueType="t:String" value="Client has acute gastroenteritis, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="553" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="554" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="555" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="503" locator="199:5-199:246">
+               <when localId="504" locator="199:10-199:28" xsi:type="Equal">
+                  <signature localId="510" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="511" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="508" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="509" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="506" locator="199:10-199:19" path="id" xsi:type="Property">
+                        <source localId="505" locator="199:10-199:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="507" locator="199:23-199:28" valueType="t:String" value="34.0" xsi:type="Literal"/>
+               </when>
+               <then localId="556" xsi:type="As">
+                  <operand localId="512" locator="199:35-199:246" xsi:type="And">
+                     <operand localId="513" locator="199:35-199:97" name="Clinical judgement is required. Create a clinical note Case 6" xsi:type="ExpressionRef"/>
+                     <operand localId="514" locator="199:103-199:246" xsi:type="Equal">
+                        <signature localId="517" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="518" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="515" locator="199:103-199:112" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="516" locator="199:116-199:246" valueType="t:String" value="Client has moderate to severe fever, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="557" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="558" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="559" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="560" xsi:type="As">
+               <operand localId="519" locator="200:10-200:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="561" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="562" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="563" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

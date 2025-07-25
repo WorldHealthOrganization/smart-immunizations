@@ -1,0 +1,2707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="486">
+         <a:s>/*
+ * Library: IMMZD18SPoliobOPVIPVLogic (IMMZ.D18.S.Polio.bOPV plus IPV schedule)
+ * Schedule Table: Bivalent oral polio vaccine (bOPV) plus inactivated polio vaccine (IPV) schedule
+ */
+library IMMZD18SPoliobOPVIPVLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD18SPoliobOPVIPVLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="11:1-11:27" localIdentifier="WC" path="http://smart.who.int/immunizations/WHOCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>WHOCommon</a:s>
+               </a:s>
+               <a:s> called WC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="209" locator="13:1-13:32" localIdentifier="Common" path="http://smart.who.int/immunizations/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called Common</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="14:1-14:36" localIdentifier="Concepts" path="http://smart.who.int/immunizations/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called Concepts</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="211" locator="16:1-16:39" localIdentifier="IE" path="http://smart.who.int/immunizations/IMMZEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="211">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZEncounterElements</a:s>
+               </a:s>
+               <a:s> called IE</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="212" locator="17:1-17:55" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTPolioEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTPolioEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="213" locator="19:1-19:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="213">
+               <a:s>parameter Today </a:s>
+               <a:s r="217">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="216">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="216" locator="19:30-19:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="217" locator="19:17-19:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="21:1-21:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="21:1-21:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="21:1-21:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="226" locator="69:1-70:73" name="First bOPV dose from the primary series was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="First bOPV dose from the primary series was administered"/>
+            <a:t name="pseudocode" value="&quot;Type of dose&quot; = &quot;Primary series&quot; and &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;) = 1"/>
+            <a:s r="226">
+               <a:s>/*
+@complete: First bOPV dose from the primary series was administered
+@pseudocode: Count of vaccines administered (where &quot;Type of dose&quot; = &quot;Primary series&quot; and &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;) = 1
+*/
+define &quot;First bOPV dose from the primary series was administered&quot;:
+  </a:s>
+               <a:s r="227">
+                  <a:s r="229">
+                     <a:s r="228">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="229">
+                        <a:s>&quot;Number of Polio bOPV Primary Series Doses Administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="230"> >= 1</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="227" locator="70:3-70:73" xsi:type="GreaterOrEqual">
+            <signature localId="231" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="232" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="229" locator="70:3-70:68" name="Number of Polio bOPV Primary Series Doses Administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="230" locator="70:73" valueType="t:Integer" value="1" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="223" locator="30:1-31:64" name="bOPV dose 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="bOPV dose 1"/>
+            <a:t name="description" value="Provision of bOPV dose 1"/>
+            <a:t name="trigger" value="Child's birth"/>
+            <a:t name="triggerDate" value="&quot;Date of birth&quot;"/>
+            <a:s r="223">
+               <a:s>/*
+@output: bOPV dose 1
+@description: Provision of bOPV dose 1
+@trigger: Child's birth
+@triggerDate: &quot;Date of birth&quot;
+*/
+define &quot;bOPV dose 1&quot;:
+  </a:s>
+               <a:s r="224">
+                  <a:s>not </a:s>
+                  <a:s r="233">
+                     <a:s>&quot;First bOPV dose from the primary series was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="224" locator="31:3-31:64" xsi:type="Not">
+            <operand localId="233" locator="31:7-31:64" name="First bOPV dose from the primary series was administered" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="246" locator="47:1-49:11" name="bOPV dose 1 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="bOPV dose 1 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 6 weeks"/>
+            <a:s r="246">
+               <a:s>/*
+@dynamicValue: bOPV dose 1 Due Date
+@pseudocode: &quot;Date of birth&quot; + 6 weeks
+*/
+define &quot;bOPV dose 1 Due Date&quot;:
+  </a:s>
+               <a:s r="247">
+                  <a:s>if </a:s>
+                  <a:s r="248">
+                     <a:s>&quot;bOPV dose 1&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="249">
+                     <a:s r="251">
+                        <a:s r="250">
+                           <a:s>Patient</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="251">
+                           <a:s>birthDate</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="252">
+                        <a:s>6 weeks</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="256">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="247" locator="48:3-49:11" xsi:type="If">
+            <condition localId="248" locator="48:6-48:18" name="bOPV dose 1" xsi:type="ExpressionRef"/>
+            <then localId="249" locator="48:25-48:51" xsi:type="Add">
+               <signature localId="254" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="255" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="253" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="251" locator="48:25-48:41" path="birthDate" xsi:type="Property">
+                     <source localId="250" locator="48:25-48:31" name="Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="252" locator="48:45-48:51" value="6" unit="weeks" xsi:type="Quantity"/>
+            </then>
+            <else localId="257" asType="t:Date" xsi:type="As">
+               <operand localId="256" locator="49:8-49:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="235" locator="37:1-41:9" name="bOPV dose 1 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="bOPV dose 1 Create"/>
+            <a:t name="create" value="The preferred schedule is to administer the 3 doses of bOPV starting from the minimum age of 6 weeks, with at least a 4 week-interval between doses."/>
+            <a:s r="235">
+               <a:s>/*
+@output: bOPV dose 1 Create
+@create: The preferred schedule is to administer the 3 doses of bOPV starting from the minimum age of 6 weeks, with at least a 4 week-interval between doses.
+*/
+define &quot;bOPV dose 1 Create&quot;:
+  </a:s>
+               <a:s r="236">
+                  <a:s>if </a:s>
+                  <a:s r="237">
+                     <a:s>&quot;bOPV dose 1&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="266">
+                     <a:s r="244">
+                        <a:s r="240">
+                           <a:s>'The preferred schedule is to administer the 3 doses of bOPV starting from the minimum age of 6 weeks, with at least a 4 week-interval between doses.'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="241">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="262">
+                        <a:s>ToString(</a:s>
+                        <a:s r="258">
+                           <a:s>&quot;bOPV dose 1 Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="267">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="236" locator="38:3-41:9" xsi:type="If">
+            <condition localId="237" locator="38:6-38:18" name="bOPV dose 1" xsi:type="ExpressionRef"/>
+            <then localId="266" locator="39:8-40:46" xsi:type="Concatenate">
+               <operand localId="244" locator="39:8-39:173" xsi:type="Concatenate">
+                  <operand localId="240" locator="39:8-39:157" valueType="t:String" value="The preferred schedule is to administer the 3 doses of bOPV starting from the minimum age of 6 weeks, with at least a 4 week-interval between doses." xsi:type="Literal"/>
+                  <operand localId="241" locator="39:161-39:173" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="262" locator="40:15-40:46" xsi:type="ToString">
+                  <signature localId="263" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="258" locator="40:24-40:45" name="bOPV dose 1 Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="267" locator="41:8-41:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="269" locator="55:1-56:6" name="bOPV dose 1 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="bOPV dose 1 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated."/>
+            <a:s r="269">
+               <a:s r="270">/*
+@dynamicValue: bOPV dose 1 Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
+*/
+define &quot;bOPV dose 1 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="270" locator="56:3-56:6" xsi:type="Null"/>
+      </def>
+      <def localId="272" locator="62:1-63:6" name="bOPV dose 1 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="bOPV dose 1 Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated."/>
+            <a:s r="272">
+               <a:s r="273">/*
+@dynamicValue: bOPV dose 1 Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
+*/
+define &quot;bOPV dose 1 Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="273" locator="63:3-63:6" xsi:type="Null"/>
+      </def>
+      <def localId="278" locator="118:1-119:72" name="First IPV dose from the primary series was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="First IPV dose from the primary series was administered"/>
+            <a:t name="pseudocode" value="&quot;Type of poliovirus dose&quot; = &quot;IPV&quot;) = 1"/>
+            <a:s r="278">
+               <a:s>/*
+@complete: First IPV dose from the primary series was administered
+@pseudocode: Count of vaccines administered (where &quot;Type of poliovirus dose&quot; = &quot;IPV&quot;) = 1
+*/
+define &quot;First IPV dose from the primary series was administered&quot;:
+  </a:s>
+               <a:s r="279">
+                  <a:s r="281">
+                     <a:s r="280">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="281">
+                        <a:s>&quot;Number of Polio IPV Primary Series Doses Administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="282"> >= 1</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="279" locator="119:3-119:72" xsi:type="GreaterOrEqual">
+            <signature localId="283" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="284" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="281" locator="119:3-119:67" name="Number of Polio IPV Primary Series Doses Administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="282" locator="119:72" valueType="t:Integer" value="1" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="275" locator="79:1-80:63" name="IPV dose 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="IPV dose 1"/>
+            <a:t name="description" value="Provision of IPV dose 1"/>
+            <a:t name="trigger" value="Child's birth"/>
+            <a:t name="triggerDate" value="&quot;Date of birth&quot;"/>
+            <a:s r="275">
+               <a:s>/*
+@output: IPV dose 1
+@description: Provision of IPV dose 1
+@trigger: Child's birth
+@triggerDate: &quot;Date of birth&quot;
+*/
+define &quot;IPV dose 1&quot;:
+  </a:s>
+               <a:s r="276">
+                  <a:s>not </a:s>
+                  <a:s r="285">
+                     <a:s>&quot;First IPV dose from the primary series was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="276" locator="80:3-80:63" xsi:type="Not">
+            <operand localId="285" locator="80:7-80:63" name="First IPV dose from the primary series was administered" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="298" locator="96:1-98:11" name="IPV dose 1 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="IPV dose 1 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 14 weeks"/>
+            <a:s r="298">
+               <a:s>/*
+@dynamicValue: IPV dose 1 Due Date
+@pseudocode: &quot;Date of birth&quot; + 14 weeks
+*/
+define &quot;IPV dose 1 Due Date&quot;:
+  </a:s>
+               <a:s r="299">
+                  <a:s>if </a:s>
+                  <a:s r="300">
+                     <a:s>&quot;IPV dose 1&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="301">
+                     <a:s r="303">
+                        <a:s r="302">
+                           <a:s>Patient</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="303">
+                           <a:s>birthDate</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="304">
+                        <a:s>14 weeks</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="308">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="299" locator="97:3-98:11" xsi:type="If">
+            <condition localId="300" locator="97:6-97:17" name="IPV dose 1" xsi:type="ExpressionRef"/>
+            <then localId="301" locator="97:24-97:51" xsi:type="Add">
+               <signature localId="306" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="307" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="305" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="303" locator="97:24-97:40" path="birthDate" xsi:type="Property">
+                     <source localId="302" locator="97:24-97:30" name="Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="304" locator="97:44-97:51" value="14" unit="weeks" xsi:type="Quantity"/>
+            </then>
+            <else localId="309" asType="t:Date" xsi:type="As">
+               <operand localId="308" locator="98:8-98:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="287" locator="86:1-90:9" name="IPV dose 1 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="IPV dose 1 Create"/>
+            <a:t name="create" value="The first IPV dose should be administered from a minimum of 14 weeks of age."/>
+            <a:s r="287">
+               <a:s>/*
+@output: IPV dose 1 Create
+@create: The first IPV dose should be administered from a minimum of 14 weeks of age.
+*/
+define &quot;IPV dose 1 Create&quot;:
+  </a:s>
+               <a:s r="288">
+                  <a:s>if </a:s>
+                  <a:s r="289">
+                     <a:s>&quot;IPV dose 1&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="318">
+                     <a:s r="296">
+                        <a:s r="292">
+                           <a:s>'The first IPV dose should be administered from a minimum of 14 weeks of age.'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="293">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="314">
+                        <a:s>ToString(</a:s>
+                        <a:s r="310">
+                           <a:s>&quot;IPV dose 1 Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="319">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="288" locator="87:3-90:9" xsi:type="If">
+            <condition localId="289" locator="87:6-87:17" name="IPV dose 1" xsi:type="ExpressionRef"/>
+            <then localId="318" locator="88:8-89:45" xsi:type="Concatenate">
+               <operand localId="296" locator="88:8-88:101" xsi:type="Concatenate">
+                  <operand localId="292" locator="88:8-88:85" valueType="t:String" value="The first IPV dose should be administered from a minimum of 14 weeks of age." xsi:type="Literal"/>
+                  <operand localId="293" locator="88:89-88:101" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="314" locator="89:15-89:45" xsi:type="ToString">
+                  <signature localId="315" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="310" locator="89:24-89:44" name="IPV dose 1 Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="319" locator="90:8-90:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="321" locator="104:1-105:6" name="IPV dose 1 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="IPV dose 1 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated."/>
+            <a:s r="321">
+               <a:s r="322">/*
+@dynamicValue: IPV dose 1 Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
+*/
+define &quot;IPV dose 1 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="322" locator="105:3-105:6" xsi:type="Null"/>
+      </def>
+      <def localId="324" locator="111:1-112:6" name="IPV dose 1 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="IPV dose 1 Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated."/>
+            <a:s r="324">
+               <a:s r="325">/*
+@dynamicValue: IPV dose 1 Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
+*/
+define &quot;IPV dose 1 Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="325" locator="112:3-112:6" xsi:type="Null"/>
+      </def>
+      <def localId="332" locator="168:1-169:73" name="Second bOPV dose from the primary series was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Second bOPV dose from the primary series was administered"/>
+            <a:t name="pseudocode" value="&quot;Type of dose&quot; = &quot;Primary series&quot; and &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;) = 2"/>
+            <a:s r="332">
+               <a:s>/*
+@complete: Second bOPV dose from the primary series was administered
+@pseudocode: Count of vaccines administered (where &quot;Type of dose&quot; = &quot;Primary series&quot; and &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;) = 2
+*/
+define &quot;Second bOPV dose from the primary series was administered&quot;:
+  </a:s>
+               <a:s r="333">
+                  <a:s r="335">
+                     <a:s r="334">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="335">
+                        <a:s>&quot;Number of Polio bOPV Primary Series Doses Administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="336"> >= 2</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="333" locator="169:3-169:73" xsi:type="GreaterOrEqual">
+            <signature localId="337" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="338" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="335" locator="169:3-169:68" name="Number of Polio bOPV Primary Series Doses Administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="336" locator="169:73" valueType="t:Integer" value="2" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="327" locator="129:1-130:128" name="bOPV dose 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="bOPV dose 2"/>
+            <a:t name="description" value="Provision of bOPV dose 2"/>
+            <a:t name="trigger" value="&quot;Type of dose&quot; = &quot;Primary series&quot; and &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;) = 1"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;)"/>
+            <a:s r="327">
+               <a:s>/*
+@output: bOPV dose 2
+@description: Provision of bOPV dose 2
+@trigger: First bOPV dose from the primary series was administered
+Count of vaccines administered (where &quot;Type of dose&quot; = &quot;Primary series&quot; and &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;) = 1
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;)
+*/
+define &quot;bOPV dose 2&quot;:
+  </a:s>
+               <a:s r="328">
+                  <a:s r="329">
+                     <a:s>&quot;First bOPV dose from the primary series was administered&quot;</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="330">
+                     <a:s>not </a:s>
+                     <a:s r="339">
+                        <a:s>&quot;Second bOPV dose from the primary series was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="328" locator="130:3-130:128" xsi:type="And">
+            <operand localId="329" locator="130:3-130:60" name="First bOPV dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            <operand localId="330" locator="130:66-130:128" xsi:type="Not">
+               <operand localId="339" locator="130:70-130:128" name="Second bOPV dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="352" locator="146:1-148:11" name="bOPV dose 2 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="bOPV dose 2 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;) + 4 weeks"/>
+            <a:s r="352">
+               <a:s>/*
+@dynamicValue: bOPV dose 2 Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;) + 4 weeks
+*/
+define &quot;bOPV dose 2 Due Date&quot;:
+  </a:s>
+               <a:s r="353">
+                  <a:s>if </a:s>
+                  <a:s r="354">
+                     <a:s>&quot;bOPV dose 2&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="355">
+                     <a:s r="357">
+                        <a:s r="356">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="357">
+                           <a:s>&quot;Date of Latest bOPV Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="358">
+                        <a:s>4 weeks</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="361">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="353" locator="147:3-148:11" xsi:type="If">
+            <condition localId="354" locator="147:6-147:18" name="bOPV dose 2" xsi:type="ExpressionRef"/>
+            <then localId="355" locator="147:25-147:70" xsi:type="Add">
+               <signature localId="359" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="360" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="357" locator="147:25-147:60" name="Date of Latest bOPV Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="358" locator="147:64-147:70" value="4" unit="weeks" xsi:type="Quantity"/>
+            </then>
+            <else localId="362" asType="t:Date" xsi:type="As">
+               <operand localId="361" locator="148:8-148:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="341" locator="136:1-140:9" name="bOPV dose 2 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="bOPV dose 2 Create"/>
+            <a:t name="create" value="The preferred schedule is to administer the 3 doses of bOPV starting from the minimum age of 6 weeks, with at least a 4 week-interval between doses."/>
+            <a:s r="341">
+               <a:s>/*
+@output: bOPV dose 2 Create
+@create: The preferred schedule is to administer the 3 doses of bOPV starting from the minimum age of 6 weeks, with at least a 4 week-interval between doses.
+*/
+define &quot;bOPV dose 2 Create&quot;:
+  </a:s>
+               <a:s r="342">
+                  <a:s>if </a:s>
+                  <a:s r="343">
+                     <a:s>&quot;bOPV dose 2&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="371">
+                     <a:s r="350">
+                        <a:s r="346">
+                           <a:s>'The preferred schedule is to administer the 3 doses of bOPV starting from the minimum age of 6 weeks, with at least a 4 week-interval between doses.'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="347">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="367">
+                        <a:s>ToString(</a:s>
+                        <a:s r="363">
+                           <a:s>&quot;bOPV dose 2 Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="372">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="342" locator="137:3-140:9" xsi:type="If">
+            <condition localId="343" locator="137:6-137:18" name="bOPV dose 2" xsi:type="ExpressionRef"/>
+            <then localId="371" locator="138:8-139:46" xsi:type="Concatenate">
+               <operand localId="350" locator="138:8-138:173" xsi:type="Concatenate">
+                  <operand localId="346" locator="138:8-138:157" valueType="t:String" value="The preferred schedule is to administer the 3 doses of bOPV starting from the minimum age of 6 weeks, with at least a 4 week-interval between doses." xsi:type="Literal"/>
+                  <operand localId="347" locator="138:161-138:173" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="367" locator="139:15-139:46" xsi:type="ToString">
+                  <signature localId="368" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="363" locator="139:24-139:45" name="bOPV dose 2 Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="372" locator="140:8-140:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="374" locator="154:1-155:6" name="bOPV dose 2 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="bOPV dose 2 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated."/>
+            <a:s r="374">
+               <a:s r="375">/*
+@dynamicValue: bOPV dose 2 Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
+*/
+define &quot;bOPV dose 2 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="375" locator="155:3-155:6" xsi:type="Null"/>
+      </def>
+      <def localId="377" locator="161:1-162:6" name="bOPV dose 2 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="bOPV dose 2 Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated."/>
+            <a:s r="377">
+               <a:s r="378">/*
+@dynamicValue: bOPV dose 2 Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
+*/
+define &quot;bOPV dose 2 Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="378" locator="162:3-162:6" xsi:type="Null"/>
+      </def>
+      <def localId="385" locator="217:1-218:72" name="Second IPV dose from the primary series was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Second IPV dose from the primary series was administered"/>
+            <a:t name="pseudocode" value="&quot;Type of poliovirus dose&quot; = &quot;IPV&quot;) = 2"/>
+            <a:s r="385">
+               <a:s>/*
+@complete: Second IPV dose from the primary series was administered
+@pseudocode: Count of vaccines administered (where &quot;Type of poliovirus dose&quot; = &quot;IPV&quot;) = 2
+*/
+define &quot;Second IPV dose from the primary series was administered&quot;:
+  </a:s>
+               <a:s r="386">
+                  <a:s r="388">
+                     <a:s r="387">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="388">
+                        <a:s>&quot;Number of Polio IPV Primary Series Doses Administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="389"> >= 2</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="386" locator="218:3-218:72" xsi:type="GreaterOrEqual">
+            <signature localId="390" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="391" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="388" locator="218:3-218:67" name="Number of Polio IPV Primary Series Doses Administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="389" locator="218:72" valueType="t:Integer" value="2" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="380" locator="178:1-179:126" name="IPV dose 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="IPV dose 2"/>
+            <a:t name="description" value="Provision of IPV dose 2"/>
+            <a:t name="trigger" value="&quot;Type of poliovirus dose&quot; = &quot;IPV&quot;) = 1"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Type of poliovirus dose&quot; = &quot;IPV&quot;)"/>
+            <a:s r="380">
+               <a:s>/*
+@output: IPV dose 2
+@description: Provision of IPV dose 2
+@trigger: First IPV dose from the primary series was administered
+Count of vaccines administered (where &quot;Type of poliovirus dose&quot; = &quot;IPV&quot;) = 1
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Type of poliovirus dose&quot; = &quot;IPV&quot;)
+*/
+define &quot;IPV dose 2&quot;:
+  </a:s>
+               <a:s r="381">
+                  <a:s r="382">
+                     <a:s>&quot;First IPV dose from the primary series was administered&quot;</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="383">
+                     <a:s>not </a:s>
+                     <a:s r="392">
+                        <a:s>&quot;Second IPV dose from the primary series was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="381" locator="179:3-179:126" xsi:type="And">
+            <operand localId="382" locator="179:3-179:59" name="First IPV dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            <operand localId="383" locator="179:65-179:126" xsi:type="Not">
+               <operand localId="392" locator="179:69-179:126" name="Second IPV dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="405" locator="195:1-197:11" name="IPV dose 2 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="IPV dose 2 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Type of poliovirus dose&quot; = &quot;IPV&quot;) + 4 months"/>
+            <a:s r="405">
+               <a:s>/*
+@dynamicValue: IPV dose 2 Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Type of poliovirus dose&quot; = &quot;IPV&quot;) + 4 months
+*/
+define &quot;IPV dose 2 Due Date&quot;:
+  </a:s>
+               <a:s r="406">
+                  <a:s>if </a:s>
+                  <a:s r="407">
+                     <a:s>&quot;IPV dose 2&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="408">
+                     <a:s r="410">
+                        <a:s r="409">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="410">
+                           <a:s>&quot;Date of Latest IPV Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="411">
+                        <a:s>4 months</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="414">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="406" locator="196:3-197:11" xsi:type="If">
+            <condition localId="407" locator="196:6-196:17" name="IPV dose 2" xsi:type="ExpressionRef"/>
+            <then localId="408" locator="196:24-196:69" xsi:type="Add">
+               <signature localId="412" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="413" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="410" locator="196:24-196:58" name="Date of Latest IPV Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="411" locator="196:62-196:69" value="4" unit="months" xsi:type="Quantity"/>
+            </then>
+            <else localId="415" asType="t:Date" xsi:type="As">
+               <operand localId="414" locator="197:8-197:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="394" locator="185:1-189:9" name="IPV dose 2 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="IPV dose 2 Create"/>
+            <a:t name="create" value="The first IPV dose should be administered from a minimum of 14 weeks of age (with the third dose of the diphtheria–tetanus–pertussis vaccine [DTP3] or pentavalent vaccine [penta3]), with the second IPV dose being given at least 4 months later (possibly coinciding with other vaccines administered at 9 months of age)."/>
+            <a:s r="394">
+               <a:s>/*
+@output: IPV dose 2 Create
+@create: The first IPV dose should be administered from a minimum of 14 weeks of age (with the third dose of the diphtheria–tetanus–pertussis vaccine [DTP3] or pentavalent vaccine [penta3]), with the second IPV dose being given at least 4 months later (possibly coinciding with other vaccines administered at 9 months of age).
+*/
+define &quot;IPV dose 2 Create&quot;:
+  </a:s>
+               <a:s r="395">
+                  <a:s>if </a:s>
+                  <a:s r="396">
+                     <a:s>&quot;IPV dose 2&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="424">
+                     <a:s r="403">
+                        <a:s r="399">
+                           <a:s>'The first IPV dose should be administered from a minimum of 14 weeks of age (with the third dose of the diphtheria–tetanus–pertussis vaccine [DTP3] or pentavalent vaccine [penta3]), with the second IPV dose being given at least 4 months later (possibly coinciding with other vaccines administered at 9 months of age).'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="400">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="420">
+                        <a:s>ToString(</a:s>
+                        <a:s r="416">
+                           <a:s>&quot;IPV dose 2 Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="425">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="395" locator="186:3-189:9" xsi:type="If">
+            <condition localId="396" locator="186:6-186:17" name="IPV dose 2" xsi:type="ExpressionRef"/>
+            <then localId="424" locator="187:8-188:45" xsi:type="Concatenate">
+               <operand localId="403" locator="187:8-187:342" xsi:type="Concatenate">
+                  <operand localId="399" locator="187:8-187:326" valueType="t:String" value="The first IPV dose should be administered from a minimum of 14 weeks of age (with the third dose of the diphtheria–tetanus–pertussis vaccine [DTP3] or pentavalent vaccine [penta3]), with the second IPV dose being given at least 4 months later (possibly coinciding with other vaccines administered at 9 months of age)." xsi:type="Literal"/>
+                  <operand localId="400" locator="187:330-187:342" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="420" locator="188:15-188:45" xsi:type="ToString">
+                  <signature localId="421" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="416" locator="188:24-188:44" name="IPV dose 2 Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="425" locator="189:8-189:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="427" locator="203:1-204:6" name="IPV dose 2 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="IPV dose 2 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated."/>
+            <a:s r="427">
+               <a:s r="428">/*
+@dynamicValue: IPV dose 2 Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
+*/
+define &quot;IPV dose 2 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="428" locator="204:3-204:6" xsi:type="Null"/>
+      </def>
+      <def localId="430" locator="210:1-211:6" name="IPV dose 2 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="IPV dose 2 Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated."/>
+            <a:s r="430">
+               <a:s r="431">/*
+@dynamicValue: IPV dose 2 Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
+*/
+define &quot;IPV dose 2 Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="431" locator="211:3-211:6" xsi:type="Null"/>
+      </def>
+      <def localId="438" locator="266:1-267:73" name="Third bOPV dose from the primary series was administered. The primary series has been completed" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Third bOPV dose from the primary series was administered. The primary series has been completed"/>
+            <a:t name="pseudocode" value="&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Poliovirus-containing vaccines&quot;)"/>
+            <a:s r="438">
+               <a:s>/*
+@complete: Third bOPV dose from the primary series was administered. The primary series has been completed
+@pseudocode: &quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Poliovirus-containing vaccines&quot;)
+*/
+define &quot;Third bOPV dose from the primary series was administered. The primary series has been completed&quot;:
+  </a:s>
+               <a:s r="439">
+                  <a:s r="441">
+                     <a:s r="440">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="441">
+                        <a:s>&quot;Number of Polio bOPV Primary Series Doses Administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="442"> >= 3</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="439" locator="267:3-267:73" xsi:type="GreaterOrEqual">
+            <signature localId="443" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="444" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="441" locator="267:3-267:68" name="Number of Polio bOPV Primary Series Doses Administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="442" locator="267:73" valueType="t:Integer" value="3" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="433" locator="227:1-228:167" name="bOPV dose 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="bOPV dose 3"/>
+            <a:t name="description" value="Provision of bOPV dose 3"/>
+            <a:t name="trigger" value="&quot;Type of dose&quot; = &quot;Primary series&quot; and &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;) = 2"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;)"/>
+            <a:s r="433">
+               <a:s>/*
+@output: bOPV dose 3
+@description: Provision of bOPV dose 3
+@trigger: Second bOPV dose from the primary series was administered
+Count of vaccines administered (where &quot;Type of dose&quot; = &quot;Primary series&quot; and &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;) = 2
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;)
+*/
+define &quot;bOPV dose 3&quot;:
+  </a:s>
+               <a:s r="434">
+                  <a:s r="435">
+                     <a:s>&quot;Second bOPV dose from the primary series was administered&quot;</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="436">
+                     <a:s>not </a:s>
+                     <a:s r="445">
+                        <a:s>&quot;Third bOPV dose from the primary series was administered. The primary series has been completed&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="434" locator="228:3-228:167" xsi:type="And">
+            <operand localId="435" locator="228:3-228:61" name="Second bOPV dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            <operand localId="436" locator="228:67-228:167" xsi:type="Not">
+               <operand localId="445" locator="228:71-228:167" name="Third bOPV dose from the primary series was administered. The primary series has been completed" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="458" locator="244:1-246:11" name="bOPV dose 3 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="bOPV dose 3 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;) + 4 weeks"/>
+            <a:s r="458">
+               <a:s>/*
+@dynamicValue: bOPV dose 3 Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Type of poliovirus dose&quot; = &quot;bOPV&quot;) + 4 weeks
+*/
+define &quot;bOPV dose 3 Due Date&quot;:
+  </a:s>
+               <a:s r="459">
+                  <a:s>if </a:s>
+                  <a:s r="460">
+                     <a:s>&quot;bOPV dose 3&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="461">
+                     <a:s r="463">
+                        <a:s r="462">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="463">
+                           <a:s>&quot;Date of Latest bOPV Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="464">
+                        <a:s>4 weeks</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="467">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="459" locator="245:3-246:11" xsi:type="If">
+            <condition localId="460" locator="245:6-245:18" name="bOPV dose 3" xsi:type="ExpressionRef"/>
+            <then localId="461" locator="245:25-245:70" xsi:type="Add">
+               <signature localId="465" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="466" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="463" locator="245:25-245:60" name="Date of Latest bOPV Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="464" locator="245:64-245:70" value="4" unit="weeks" xsi:type="Quantity"/>
+            </then>
+            <else localId="468" asType="t:Date" xsi:type="As">
+               <operand localId="467" locator="246:8-246:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="447" locator="234:1-238:9" name="bOPV dose 3 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="bOPV dose 3 Create"/>
+            <a:t name="create" value="The preferred schedule is to administer the 3 doses of bOPV starting from the minimum age of 6 weeks, with at least a 4 week-interval between doses."/>
+            <a:s r="447">
+               <a:s>/*
+@output: bOPV dose 3 Create
+@create: The preferred schedule is to administer the 3 doses of bOPV starting from the minimum age of 6 weeks, with at least a 4 week-interval between doses.
+*/
+define &quot;bOPV dose 3 Create&quot;:
+  </a:s>
+               <a:s r="448">
+                  <a:s>if </a:s>
+                  <a:s r="449">
+                     <a:s>&quot;bOPV dose 3&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="477">
+                     <a:s r="456">
+                        <a:s r="452">
+                           <a:s>'The preferred schedule is to administer the 3 doses of bOPV starting from the minimum age of 6 weeks, with at least a 4 week-interval between doses.'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="453">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="473">
+                        <a:s>ToString(</a:s>
+                        <a:s r="469">
+                           <a:s>&quot;bOPV dose 3 Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="478">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="448" locator="235:3-238:9" xsi:type="If">
+            <condition localId="449" locator="235:6-235:18" name="bOPV dose 3" xsi:type="ExpressionRef"/>
+            <then localId="477" locator="236:8-237:46" xsi:type="Concatenate">
+               <operand localId="456" locator="236:8-236:173" xsi:type="Concatenate">
+                  <operand localId="452" locator="236:8-236:157" valueType="t:String" value="The preferred schedule is to administer the 3 doses of bOPV starting from the minimum age of 6 weeks, with at least a 4 week-interval between doses." xsi:type="Literal"/>
+                  <operand localId="453" locator="236:161-236:173" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="473" locator="237:15-237:46" xsi:type="ToString">
+                  <signature localId="474" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="469" locator="237:24-237:45" name="bOPV dose 3 Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="478" locator="238:8-238:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="480" locator="252:1-253:6" name="bOPV dose 3 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="bOPV dose 3 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated."/>
+            <a:s r="480">
+               <a:s r="481">/*
+@dynamicValue: bOPV dose 3 Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
+*/
+define &quot;bOPV dose 3 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="481" locator="253:3-253:6" xsi:type="Null"/>
+      </def>
+      <def localId="483" locator="259:1-260:6" name="bOPV dose 3 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="bOPV dose 3 Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated."/>
+            <a:s r="483">
+               <a:s r="484">/*
+@dynamicValue: bOPV dose 3 Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
+*/
+define &quot;bOPV dose 3 Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="484" locator="260:3-260:6" xsi:type="Null"/>
+      </def>
+      <def localId="486" locator="272:1-307:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="486">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="487">
+                  <a:s>case
+    </a:s>
+                  <a:s r="488">
+                     <a:s>when </a:s>
+                     <a:s r="489">
+                        <a:s r="491">
+                           <a:s r="490">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="491">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="492">
+                           <a:s>'18.Alt6w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="497">
+                        <a:s r="498">
+                           <a:s>&quot;bOPV dose 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="499">
+                           <a:s>&quot;IPV dose 1&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="500">
+                     <a:s>when </a:s>
+                     <a:s r="501">
+                        <a:s r="503">
+                           <a:s r="502">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="503">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="504">
+                           <a:s>'19.D0Abt6w3m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="509">
+                        <a:s r="510">
+                           <a:s>&quot;bOPV dose 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="511">
+                           <a:s>&quot;IPV dose 1&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="512">
+                     <a:s>when </a:s>
+                     <a:s r="513">
+                        <a:s r="515">
+                           <a:s r="514">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="515">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="516">
+                           <a:s>'21.D1Abt6w14wBlt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="521">
+                        <a:s r="522">
+                           <a:s>&quot;IPV dose 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="523">
+                           <a:s>&quot;bOPV dose 2&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="524">
+                     <a:s>when </a:s>
+                     <a:s r="525">
+                        <a:s r="527">
+                           <a:s r="526">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="527">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="528">
+                           <a:s>'22.D1Abt6w14wBgt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="533">
+                        <a:s r="534">
+                           <a:s>&quot;IPV dose 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="535">
+                           <a:s>&quot;bOPV dose 2&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="536">
+                     <a:s>when </a:s>
+                     <a:s r="537">
+                        <a:s r="539">
+                           <a:s r="538">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="539">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="540">
+                           <a:s>'23.Db1Agt14wBlt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="545">
+                        <a:s r="546">
+                           <a:s>&quot;IPV dose 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="547">
+                           <a:s>&quot;bOPV dose 2&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="548">
+                     <a:s>when </a:s>
+                     <a:s r="549">
+                        <a:s r="551">
+                           <a:s r="550">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="551">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="552">
+                           <a:s>'24.Db1Agt14wBgt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="557">
+                        <a:s r="558">
+                           <a:s>&quot;IPV dose 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="559">
+                           <a:s>&quot;bOPV dose 2&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="560">
+                     <a:s>when </a:s>
+                     <a:s r="561">
+                        <a:s r="563">
+                           <a:s r="562">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="563">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="564">
+                           <a:s>'25.DI1Agt14wIlt4m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="569">
+                        <a:s r="570">
+                           <a:s>&quot;IPV dose 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="571">
+                           <a:s>&quot;bOPV dose 1&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="572">
+                     <a:s>when </a:s>
+                     <a:s r="573">
+                        <a:s r="575">
+                           <a:s r="574">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="575">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="576">
+                           <a:s>'26.DI1Agt14wIgt4m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="581">
+                        <a:s r="582">
+                           <a:s>&quot;IPV dose 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="583">
+                           <a:s>&quot;bOPV dose 1&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="584">
+                     <a:s>when </a:s>
+                     <a:s r="585">
+                        <a:s r="587">
+                           <a:s r="586">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="587">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="588">
+                           <a:s>'27.DB2Abt6w14wBlt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="593">
+                        <a:s r="594">
+                           <a:s>&quot;IPV dose 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="595">
+                           <a:s>&quot;bOPV dose 3&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="596">
+                     <a:s>when </a:s>
+                     <a:s r="597">
+                        <a:s r="599">
+                           <a:s r="598">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="599">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="600">
+                           <a:s>'28.DB2Abt6w14wBgt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="605">
+                        <a:s r="606">
+                           <a:s>&quot;IPV dose 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="607">
+                           <a:s>&quot;bOPV dose 3&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="608">
+                     <a:s>when </a:s>
+                     <a:s r="609">
+                        <a:s r="611">
+                           <a:s r="610">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="611">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="612">
+                           <a:s>'29.DB2Agt14wBlt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="617">
+                        <a:s r="618">
+                           <a:s>&quot;IPV dose 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="619">
+                           <a:s>&quot;bOPV dose 3&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="620">
+                     <a:s>when </a:s>
+                     <a:s r="621">
+                        <a:s r="623">
+                           <a:s r="622">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="623">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="624">
+                           <a:s>'30.DB2Agt14wBgt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="629">
+                        <a:s r="630">
+                           <a:s>&quot;IPV dose 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="631">
+                           <a:s>&quot;bOPV dose 3&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="632">
+                     <a:s>when </a:s>
+                     <a:s r="633">
+                        <a:s r="635">
+                           <a:s r="634">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="635">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="636">
+                           <a:s>'31.DB1I1Blt4wIlt4m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="641">
+                        <a:s r="642">
+                           <a:s>&quot;IPV dose 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="643">
+                           <a:s>&quot;bOPV dose 2&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="644">
+                     <a:s>when </a:s>
+                     <a:s r="645">
+                        <a:s r="647">
+                           <a:s r="646">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="647">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="648">
+                           <a:s>'32.DB1I1Blt4wIgt4m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="653">
+                        <a:s r="654">
+                           <a:s>&quot;IPV dose 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="655">
+                           <a:s>&quot;bOPV dose 2&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="656">
+                     <a:s>when </a:s>
+                     <a:s r="657">
+                        <a:s r="659">
+                           <a:s r="658">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="659">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="660">
+                           <a:s>'33.DB1I1Bgt4wIlt4m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="665">
+                        <a:s r="666">
+                           <a:s>&quot;IPV dose 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="667">
+                           <a:s>&quot;bOPV dose 2&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="668">
+                     <a:s>when </a:s>
+                     <a:s r="669">
+                        <a:s r="671">
+                           <a:s r="670">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="671">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="672">
+                           <a:s>'34.DB1I1Bgt4wIgt4m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="677">
+                        <a:s r="678">
+                           <a:s>&quot;IPV dose 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="679">
+                           <a:s>&quot;bOPV dose 2&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="680">
+                     <a:s>when </a:s>
+                     <a:s r="681">
+                        <a:s r="683">
+                           <a:s r="682">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="683">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="684">
+                           <a:s>'35.DI2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="689">
+                        <a:s>&quot;bOPV dose 1&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="690">
+                     <a:s>when </a:s>
+                     <a:s r="691">
+                        <a:s r="693">
+                           <a:s r="692">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="693">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="694">
+                           <a:s>'36.DB3Alt14w.'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="699">
+                        <a:s>&quot;IPV dose 1&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="700">
+                     <a:s>when </a:s>
+                     <a:s r="701">
+                        <a:s r="703">
+                           <a:s r="702">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="703">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="704">
+                           <a:s>'37.DB3Agt14w.'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="709">
+                        <a:s>&quot;IPV dose 1&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="710">
+                     <a:s>when </a:s>
+                     <a:s r="711">
+                        <a:s r="713">
+                           <a:s r="712">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="713">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="714">
+                           <a:s>'38.DB2I1Blt4wIlt4m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="719">
+                        <a:s r="720">
+                           <a:s>&quot;IPV dose 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="721">
+                           <a:s>&quot;bOPV dose 3&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="722">
+                     <a:s>when </a:s>
+                     <a:s r="723">
+                        <a:s r="725">
+                           <a:s r="724">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="725">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="726">
+                           <a:s>'39.DB2I1Blt4wIgt4m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="731">
+                        <a:s r="732">
+                           <a:s>&quot;IPV dose 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="733">
+                           <a:s>&quot;bOPV dose 3&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="734">
+                     <a:s>when </a:s>
+                     <a:s r="735">
+                        <a:s r="737">
+                           <a:s r="736">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="737">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="738">
+                           <a:s>'40.DB2I1Bgt4wIlt4m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="743">
+                        <a:s r="744">
+                           <a:s>&quot;IPV dose 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="745">
+                           <a:s>&quot;bOPV dose 3&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="746">
+                     <a:s>when </a:s>
+                     <a:s r="747">
+                        <a:s r="749">
+                           <a:s r="748">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="749">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="750">
+                           <a:s>'41.DB2I1Bgt4wIgt4m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="755">
+                        <a:s r="756">
+                           <a:s>&quot;IPV dose 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="757">
+                           <a:s>&quot;bOPV dose 3&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="758">
+                     <a:s>when </a:s>
+                     <a:s r="759">
+                        <a:s r="761">
+                           <a:s r="760">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="761">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="762">
+                           <a:s>'42.DB1I2Blt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="767">
+                        <a:s>&quot;bOPV dose 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="768">
+                     <a:s>when </a:s>
+                     <a:s r="769">
+                        <a:s r="771">
+                           <a:s r="770">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="771">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="772">
+                           <a:s>'43.DB1I2Bgt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="777">
+                        <a:s>&quot;bOPV dose 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="778">
+                     <a:s>when </a:s>
+                     <a:s r="779">
+                        <a:s r="781">
+                           <a:s r="780">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="781">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="782">
+                           <a:s>'44.DB3I1Ilt4m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="787">
+                        <a:s>&quot;IPV dose 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="788">
+                     <a:s>when </a:s>
+                     <a:s r="789">
+                        <a:s r="791">
+                           <a:s r="790">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="791">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="792">
+                           <a:s>'45.DB3I1Igt4m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="797">
+                        <a:s>&quot;IPV dose 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="798">
+                     <a:s>when </a:s>
+                     <a:s r="799">
+                        <a:s r="801">
+                           <a:s r="800">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="801">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="802">
+                           <a:s>'46.DB2I2Blt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="807">
+                        <a:s>&quot;bOPV dose 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="808">
+                     <a:s>when </a:s>
+                     <a:s r="809">
+                        <a:s r="811">
+                           <a:s r="810">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="811">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="812">
+                           <a:s>'47.DB2I2Bgt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="817">
+                        <a:s>&quot;bOPV dose 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="818">
+                     <a:s>when </a:s>
+                     <a:s r="819">
+                        <a:s r="821">
+                           <a:s r="820">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="821">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="822">
+                           <a:s>'48.DB3I2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="827">
+                        <a:s r="828">
+                           <a:s>&quot;Third bOPV dose from the primary series was administered. The primary series has been completed&quot;</a:s>
+                        </a:s>
+                        <a:s>
+      and </a:s>
+                        <a:s r="829">
+                           <a:s>&quot;Second IPV dose from the primary series was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+
+    else </a:s>
+                  <a:s r="830">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="487" locator="273:3-307:5" xsi:type="Case">
+            <caseItem localId="488" locator="274:5-274:68">
+               <when localId="489" locator="274:10-274:32" xsi:type="Equal">
+                  <signature localId="495" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="496" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="493" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="494" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="491" locator="274:10-274:19" path="id" xsi:type="Property">
+                        <source localId="490" locator="274:10-274:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="492" locator="274:23-274:32" valueType="t:String" value="18.Alt6w" xsi:type="Literal"/>
+               </when>
+               <then localId="831" xsi:type="As">
+                  <operand localId="497" locator="274:39-274:68" xsi:type="And">
+                     <operand localId="498" locator="274:39-274:51" name="bOPV dose 1" xsi:type="ExpressionRef"/>
+                     <operand localId="499" locator="274:57-274:68" name="IPV dose 1" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="832" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="833" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="834" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="500" locator="275:5-275:72">
+               <when localId="501" locator="275:10-275:36" xsi:type="Equal">
+                  <signature localId="507" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="508" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="505" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="506" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="503" locator="275:10-275:19" path="id" xsi:type="Property">
+                        <source localId="502" locator="275:10-275:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="504" locator="275:23-275:36" valueType="t:String" value="19.D0Abt6w3m" xsi:type="Literal"/>
+               </when>
+               <then localId="835" xsi:type="As">
+                  <operand localId="509" locator="275:43-275:72" xsi:type="And">
+                     <operand localId="510" locator="275:43-275:55" name="bOPV dose 1" xsi:type="ExpressionRef"/>
+                     <operand localId="511" locator="275:61-275:72" name="IPV dose 1" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="836" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="837" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="838" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="512" locator="276:5-276:78">
+               <when localId="513" locator="276:10-276:42" xsi:type="Equal">
+                  <signature localId="519" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="520" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="517" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="518" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="515" locator="276:10-276:19" path="id" xsi:type="Property">
+                        <source localId="514" locator="276:10-276:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="516" locator="276:23-276:42" valueType="t:String" value="21.D1Abt6w14wBlt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="839" xsi:type="As">
+                  <operand localId="521" locator="276:49-276:78" xsi:type="And">
+                     <operand localId="522" locator="276:49-276:60" name="IPV dose 1" xsi:type="ExpressionRef"/>
+                     <operand localId="523" locator="276:66-276:78" name="bOPV dose 2" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="840" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="841" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="842" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="524" locator="277:5-277:78">
+               <when localId="525" locator="277:10-277:42" xsi:type="Equal">
+                  <signature localId="531" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="532" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="529" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="530" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="527" locator="277:10-277:19" path="id" xsi:type="Property">
+                        <source localId="526" locator="277:10-277:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="528" locator="277:23-277:42" valueType="t:String" value="22.D1Abt6w14wBgt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="843" xsi:type="As">
+                  <operand localId="533" locator="277:49-277:78" xsi:type="And">
+                     <operand localId="534" locator="277:49-277:60" name="IPV dose 1" xsi:type="ExpressionRef"/>
+                     <operand localId="535" locator="277:66-277:78" name="bOPV dose 2" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="844" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="845" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="846" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="536" locator="278:5-278:77">
+               <when localId="537" locator="278:10-278:41" xsi:type="Equal">
+                  <signature localId="543" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="544" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="541" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="542" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="539" locator="278:10-278:19" path="id" xsi:type="Property">
+                        <source localId="538" locator="278:10-278:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="540" locator="278:23-278:41" valueType="t:String" value="23.Db1Agt14wBlt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="847" xsi:type="As">
+                  <operand localId="545" locator="278:48-278:77" xsi:type="And">
+                     <operand localId="546" locator="278:48-278:59" name="IPV dose 1" xsi:type="ExpressionRef"/>
+                     <operand localId="547" locator="278:65-278:77" name="bOPV dose 2" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="848" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="849" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="850" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="548" locator="279:5-279:77">
+               <when localId="549" locator="279:10-279:41" xsi:type="Equal">
+                  <signature localId="555" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="556" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="553" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="554" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="551" locator="279:10-279:19" path="id" xsi:type="Property">
+                        <source localId="550" locator="279:10-279:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="552" locator="279:23-279:41" valueType="t:String" value="24.Db1Agt14wBgt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="851" xsi:type="As">
+                  <operand localId="557" locator="279:48-279:77" xsi:type="And">
+                     <operand localId="558" locator="279:48-279:59" name="IPV dose 1" xsi:type="ExpressionRef"/>
+                     <operand localId="559" locator="279:65-279:77" name="bOPV dose 2" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="852" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="853" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="854" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="560" locator="280:5-280:77">
+               <when localId="561" locator="280:10-280:41" xsi:type="Equal">
+                  <signature localId="567" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="568" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="565" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="566" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="563" locator="280:10-280:19" path="id" xsi:type="Property">
+                        <source localId="562" locator="280:10-280:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="564" locator="280:23-280:41" valueType="t:String" value="25.DI1Agt14wIlt4m" xsi:type="Literal"/>
+               </when>
+               <then localId="855" xsi:type="As">
+                  <operand localId="569" locator="280:48-280:77" xsi:type="And">
+                     <operand localId="570" locator="280:48-280:59" name="IPV dose 2" xsi:type="ExpressionRef"/>
+                     <operand localId="571" locator="280:65-280:77" name="bOPV dose 1" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="856" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="857" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="858" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="572" locator="281:5-281:77">
+               <when localId="573" locator="281:10-281:41" xsi:type="Equal">
+                  <signature localId="579" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="580" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="577" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="578" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="575" locator="281:10-281:19" path="id" xsi:type="Property">
+                        <source localId="574" locator="281:10-281:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="576" locator="281:23-281:41" valueType="t:String" value="26.DI1Agt14wIgt4m" xsi:type="Literal"/>
+               </when>
+               <then localId="859" xsi:type="As">
+                  <operand localId="581" locator="281:48-281:77" xsi:type="And">
+                     <operand localId="582" locator="281:48-281:59" name="IPV dose 2" xsi:type="ExpressionRef"/>
+                     <operand localId="583" locator="281:65-281:77" name="bOPV dose 1" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="860" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="861" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="862" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="584" locator="282:5-282:79">
+               <when localId="585" locator="282:10-282:43" xsi:type="Equal">
+                  <signature localId="591" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="592" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="589" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="590" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="587" locator="282:10-282:19" path="id" xsi:type="Property">
+                        <source localId="586" locator="282:10-282:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="588" locator="282:23-282:43" valueType="t:String" value="27.DB2Abt6w14wBlt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="863" xsi:type="As">
+                  <operand localId="593" locator="282:50-282:79" xsi:type="And">
+                     <operand localId="594" locator="282:50-282:61" name="IPV dose 1" xsi:type="ExpressionRef"/>
+                     <operand localId="595" locator="282:67-282:79" name="bOPV dose 3" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="864" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="865" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="866" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="596" locator="283:5-283:79">
+               <when localId="597" locator="283:10-283:43" xsi:type="Equal">
+                  <signature localId="603" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="604" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="601" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="602" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="599" locator="283:10-283:19" path="id" xsi:type="Property">
+                        <source localId="598" locator="283:10-283:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="600" locator="283:23-283:43" valueType="t:String" value="28.DB2Abt6w14wBgt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="867" xsi:type="As">
+                  <operand localId="605" locator="283:50-283:79" xsi:type="And">
+                     <operand localId="606" locator="283:50-283:61" name="IPV dose 1" xsi:type="ExpressionRef"/>
+                     <operand localId="607" locator="283:67-283:79" name="bOPV dose 3" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="868" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="869" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="870" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="608" locator="284:5-284:77">
+               <when localId="609" locator="284:10-284:41" xsi:type="Equal">
+                  <signature localId="615" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="616" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="613" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="614" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="611" locator="284:10-284:19" path="id" xsi:type="Property">
+                        <source localId="610" locator="284:10-284:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="612" locator="284:23-284:41" valueType="t:String" value="29.DB2Agt14wBlt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="871" xsi:type="As">
+                  <operand localId="617" locator="284:48-284:77" xsi:type="And">
+                     <operand localId="618" locator="284:48-284:59" name="IPV dose 1" xsi:type="ExpressionRef"/>
+                     <operand localId="619" locator="284:65-284:77" name="bOPV dose 3" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="872" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="873" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="874" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="620" locator="285:5-285:77">
+               <when localId="621" locator="285:10-285:41" xsi:type="Equal">
+                  <signature localId="627" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="628" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="625" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="626" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="623" locator="285:10-285:19" path="id" xsi:type="Property">
+                        <source localId="622" locator="285:10-285:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="624" locator="285:23-285:41" valueType="t:String" value="30.DB2Agt14wBgt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="875" xsi:type="As">
+                  <operand localId="629" locator="285:48-285:77" xsi:type="And">
+                     <operand localId="630" locator="285:48-285:59" name="IPV dose 1" xsi:type="ExpressionRef"/>
+                     <operand localId="631" locator="285:65-285:77" name="bOPV dose 3" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="876" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="877" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="878" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="632" locator="286:5-286:78">
+               <when localId="633" locator="286:10-286:42" xsi:type="Equal">
+                  <signature localId="639" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="640" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="637" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="638" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="635" locator="286:10-286:19" path="id" xsi:type="Property">
+                        <source localId="634" locator="286:10-286:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="636" locator="286:23-286:42" valueType="t:String" value="31.DB1I1Blt4wIlt4m" xsi:type="Literal"/>
+               </when>
+               <then localId="879" xsi:type="As">
+                  <operand localId="641" locator="286:49-286:78" xsi:type="And">
+                     <operand localId="642" locator="286:49-286:60" name="IPV dose 2" xsi:type="ExpressionRef"/>
+                     <operand localId="643" locator="286:66-286:78" name="bOPV dose 2" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="880" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="881" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="882" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="644" locator="287:5-287:78">
+               <when localId="645" locator="287:10-287:42" xsi:type="Equal">
+                  <signature localId="651" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="652" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="649" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="650" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="647" locator="287:10-287:19" path="id" xsi:type="Property">
+                        <source localId="646" locator="287:10-287:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="648" locator="287:23-287:42" valueType="t:String" value="32.DB1I1Blt4wIgt4m" xsi:type="Literal"/>
+               </when>
+               <then localId="883" xsi:type="As">
+                  <operand localId="653" locator="287:49-287:78" xsi:type="And">
+                     <operand localId="654" locator="287:49-287:60" name="IPV dose 2" xsi:type="ExpressionRef"/>
+                     <operand localId="655" locator="287:66-287:78" name="bOPV dose 2" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="884" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="885" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="886" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="656" locator="288:5-288:78">
+               <when localId="657" locator="288:10-288:42" xsi:type="Equal">
+                  <signature localId="663" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="664" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="661" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="662" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="659" locator="288:10-288:19" path="id" xsi:type="Property">
+                        <source localId="658" locator="288:10-288:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="660" locator="288:23-288:42" valueType="t:String" value="33.DB1I1Bgt4wIlt4m" xsi:type="Literal"/>
+               </when>
+               <then localId="887" xsi:type="As">
+                  <operand localId="665" locator="288:49-288:78" xsi:type="And">
+                     <operand localId="666" locator="288:49-288:60" name="IPV dose 2" xsi:type="ExpressionRef"/>
+                     <operand localId="667" locator="288:66-288:78" name="bOPV dose 2" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="888" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="889" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="890" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="668" locator="289:5-289:78">
+               <when localId="669" locator="289:10-289:42" xsi:type="Equal">
+                  <signature localId="675" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="676" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="673" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="674" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="671" locator="289:10-289:19" path="id" xsi:type="Property">
+                        <source localId="670" locator="289:10-289:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="672" locator="289:23-289:42" valueType="t:String" value="34.DB1I1Bgt4wIgt4m" xsi:type="Literal"/>
+               </when>
+               <then localId="891" xsi:type="As">
+                  <operand localId="677" locator="289:49-289:78" xsi:type="And">
+                     <operand localId="678" locator="289:49-289:60" name="IPV dose 2" xsi:type="ExpressionRef"/>
+                     <operand localId="679" locator="289:66-289:78" name="bOPV dose 2" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="892" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="893" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="894" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="680" locator="290:5-290:49">
+               <when localId="681" locator="290:10-290:30" xsi:type="Equal">
+                  <signature localId="687" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="688" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="685" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="686" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="683" locator="290:10-290:19" path="id" xsi:type="Property">
+                        <source localId="682" locator="290:10-290:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="684" locator="290:23-290:30" valueType="t:String" value="35.DI2" xsi:type="Literal"/>
+               </when>
+               <then localId="895" xsi:type="As">
+                  <operand localId="689" locator="290:37-290:49" name="bOPV dose 1" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="896" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="897" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="898" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="690" locator="291:5-291:55">
+               <when localId="691" locator="291:10-291:37" xsi:type="Equal">
+                  <signature localId="697" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="698" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="695" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="696" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="693" locator="291:10-291:19" path="id" xsi:type="Property">
+                        <source localId="692" locator="291:10-291:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="694" locator="291:23-291:37" valueType="t:String" value="36.DB3Alt14w." xsi:type="Literal"/>
+               </when>
+               <then localId="899" xsi:type="As">
+                  <operand localId="699" locator="291:44-291:55" name="IPV dose 1" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="900" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="901" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="902" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="700" locator="292:5-292:55">
+               <when localId="701" locator="292:10-292:37" xsi:type="Equal">
+                  <signature localId="707" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="708" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="705" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="706" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="703" locator="292:10-292:19" path="id" xsi:type="Property">
+                        <source localId="702" locator="292:10-292:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="704" locator="292:23-292:37" valueType="t:String" value="37.DB3Agt14w." xsi:type="Literal"/>
+               </when>
+               <then localId="903" xsi:type="As">
+                  <operand localId="709" locator="292:44-292:55" name="IPV dose 1" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="904" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="905" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="906" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="710" locator="293:5-293:78">
+               <when localId="711" locator="293:10-293:42" xsi:type="Equal">
+                  <signature localId="717" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="718" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="715" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="716" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="713" locator="293:10-293:19" path="id" xsi:type="Property">
+                        <source localId="712" locator="293:10-293:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="714" locator="293:23-293:42" valueType="t:String" value="38.DB2I1Blt4wIlt4m" xsi:type="Literal"/>
+               </when>
+               <then localId="907" xsi:type="As">
+                  <operand localId="719" locator="293:49-293:78" xsi:type="And">
+                     <operand localId="720" locator="293:49-293:60" name="IPV dose 2" xsi:type="ExpressionRef"/>
+                     <operand localId="721" locator="293:66-293:78" name="bOPV dose 3" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="908" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="909" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="910" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="722" locator="294:5-294:78">
+               <when localId="723" locator="294:10-294:42" xsi:type="Equal">
+                  <signature localId="729" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="730" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="727" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="728" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="725" locator="294:10-294:19" path="id" xsi:type="Property">
+                        <source localId="724" locator="294:10-294:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="726" locator="294:23-294:42" valueType="t:String" value="39.DB2I1Blt4wIgt4m" xsi:type="Literal"/>
+               </when>
+               <then localId="911" xsi:type="As">
+                  <operand localId="731" locator="294:49-294:78" xsi:type="And">
+                     <operand localId="732" locator="294:49-294:60" name="IPV dose 2" xsi:type="ExpressionRef"/>
+                     <operand localId="733" locator="294:66-294:78" name="bOPV dose 3" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="912" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="913" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="914" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="734" locator="295:5-295:78">
+               <when localId="735" locator="295:10-295:42" xsi:type="Equal">
+                  <signature localId="741" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="742" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="739" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="740" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="737" locator="295:10-295:19" path="id" xsi:type="Property">
+                        <source localId="736" locator="295:10-295:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="738" locator="295:23-295:42" valueType="t:String" value="40.DB2I1Bgt4wIlt4m" xsi:type="Literal"/>
+               </when>
+               <then localId="915" xsi:type="As">
+                  <operand localId="743" locator="295:49-295:78" xsi:type="And">
+                     <operand localId="744" locator="295:49-295:60" name="IPV dose 2" xsi:type="ExpressionRef"/>
+                     <operand localId="745" locator="295:66-295:78" name="bOPV dose 3" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="916" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="917" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="918" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="746" locator="296:5-296:78">
+               <when localId="747" locator="296:10-296:42" xsi:type="Equal">
+                  <signature localId="753" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="754" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="751" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="752" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="749" locator="296:10-296:19" path="id" xsi:type="Property">
+                        <source localId="748" locator="296:10-296:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="750" locator="296:23-296:42" valueType="t:String" value="41.DB2I1Bgt4wIgt4m" xsi:type="Literal"/>
+               </when>
+               <then localId="919" xsi:type="As">
+                  <operand localId="755" locator="296:49-296:78" xsi:type="And">
+                     <operand localId="756" locator="296:49-296:60" name="IPV dose 2" xsi:type="ExpressionRef"/>
+                     <operand localId="757" locator="296:66-296:78" name="bOPV dose 3" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="920" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="921" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="922" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="758" locator="297:5-297:56">
+               <when localId="759" locator="297:10-297:37" xsi:type="Equal">
+                  <signature localId="765" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="766" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="763" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="764" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="761" locator="297:10-297:19" path="id" xsi:type="Property">
+                        <source localId="760" locator="297:10-297:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="762" locator="297:23-297:37" valueType="t:String" value="42.DB1I2Blt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="923" xsi:type="As">
+                  <operand localId="767" locator="297:44-297:56" name="bOPV dose 2" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="924" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="925" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="926" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="768" locator="298:5-298:56">
+               <when localId="769" locator="298:10-298:37" xsi:type="Equal">
+                  <signature localId="775" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="776" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="773" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="774" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="771" locator="298:10-298:19" path="id" xsi:type="Property">
+                        <source localId="770" locator="298:10-298:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="772" locator="298:23-298:37" valueType="t:String" value="43.DB1I2Bgt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="927" xsi:type="As">
+                  <operand localId="777" locator="298:44-298:56" name="bOPV dose 2" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="928" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="929" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="930" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="778" locator="299:5-299:55">
+               <when localId="779" locator="299:10-299:37" xsi:type="Equal">
+                  <signature localId="785" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="786" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="783" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="784" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="781" locator="299:10-299:19" path="id" xsi:type="Property">
+                        <source localId="780" locator="299:10-299:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="782" locator="299:23-299:37" valueType="t:String" value="44.DB3I1Ilt4m" xsi:type="Literal"/>
+               </when>
+               <then localId="931" xsi:type="As">
+                  <operand localId="787" locator="299:44-299:55" name="IPV dose 2" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="932" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="933" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="934" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="788" locator="300:5-300:55">
+               <when localId="789" locator="300:10-300:37" xsi:type="Equal">
+                  <signature localId="795" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="796" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="793" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="794" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="791" locator="300:10-300:19" path="id" xsi:type="Property">
+                        <source localId="790" locator="300:10-300:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="792" locator="300:23-300:37" valueType="t:String" value="45.DB3I1Igt4m" xsi:type="Literal"/>
+               </when>
+               <then localId="935" xsi:type="As">
+                  <operand localId="797" locator="300:44-300:55" name="IPV dose 2" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="936" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="937" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="938" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="798" locator="301:5-301:56">
+               <when localId="799" locator="301:10-301:37" xsi:type="Equal">
+                  <signature localId="805" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="806" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="803" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="804" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="801" locator="301:10-301:19" path="id" xsi:type="Property">
+                        <source localId="800" locator="301:10-301:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="802" locator="301:23-301:37" valueType="t:String" value="46.DB2I2Blt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="939" xsi:type="As">
+                  <operand localId="807" locator="301:44-301:56" name="bOPV dose 3" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="940" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="941" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="942" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="808" locator="302:5-302:56">
+               <when localId="809" locator="302:10-302:37" xsi:type="Equal">
+                  <signature localId="815" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="816" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="813" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="814" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="811" locator="302:10-302:19" path="id" xsi:type="Property">
+                        <source localId="810" locator="302:10-302:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="812" locator="302:23-302:37" valueType="t:String" value="47.DB2I2Bgt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="943" xsi:type="As">
+                  <operand localId="817" locator="302:44-302:56" name="bOPV dose 3" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="944" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="945" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="946" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="818" locator="303:5-304:68">
+               <when localId="819" locator="303:10-303:32" xsi:type="Equal">
+                  <signature localId="825" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="826" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="823" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="824" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="821" locator="303:10-303:19" path="id" xsi:type="Property">
+                        <source localId="820" locator="303:10-303:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="822" locator="303:23-303:32" valueType="t:String" value="48.DB3I2" xsi:type="Literal"/>
+               </when>
+               <then localId="947" xsi:type="As">
+                  <operand localId="827" locator="303:39-304:68" xsi:type="And">
+                     <operand localId="828" locator="303:39-303:135" name="Third bOPV dose from the primary series was administered. The primary series has been completed" xsi:type="ExpressionRef"/>
+                     <operand localId="829" locator="304:11-304:68" name="Second IPV dose from the primary series was administered" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="948" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="949" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="950" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="951" xsi:type="As">
+               <operand localId="830" locator="306:10-306:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="952" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="953" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="954" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>
