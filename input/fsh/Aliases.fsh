@@ -47,3 +47,7 @@ Alias: $SGTasks = http://smart.who.int/base/CodeSystem/SGTasks
 Alias: $SGQuestionnaire = http://smart.who.int/base/StructureDefinition/SGQuestionnaire
 
 Alias: $SGRequirements = http://smart.who.int/base/StructureDefinition/SGRequirements
+
+Alias: $PersonaType = http://smart.who.int/base/CodeSystem/PersonaType
+
+Alias: $SGPersonaTypes = http://smart.who.int/base/CodeSystem/SGPersonaTypes

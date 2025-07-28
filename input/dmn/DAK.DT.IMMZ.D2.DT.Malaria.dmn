@@ -1,0 +1,246 @@
+<dmn:definitions xmlns:dmn="https://www.omg.org/spec/DMN/20240513/MODEL/" namespace="http://smart.who.int/immunizations" label="IMMZ.D2 Determine required vaccination(s) if any  " id="DAK.DT.IMMZ.D2.DT.Malaria">
+  <dmn:decision id="DAK.DT.IMMZ.D2.DT.Malaria" label="IMMZ.D2 Determine required vaccination(s) if any  ">
+    <dmn:question>IMMZ.D2 Determine required vaccination(s) if any  </dmn:question>
+    <dmn:usingTask href="http://smart.who.int/immunizations/bpmn/Determine.bpmn#if%20the%20client%20is%20due%20for%20a%20malaria%20vaccination%20according%20to%20the%20national%20immunization%20schedule"/>
+    <dmn:decisionTable id="DAK.DT.IMMZ.D2.DT.Malaria">
+      <dmn:input id="input.DAK.DT.IMMZ.D2.DT.Malaria.Numberofmalariaprimaryseriesdosesadministered" label="Number of malaria primary series doses administered">
+        <dmn:inputExpression id="inputExpression.DAK.DT.IMMZ.D2.DT.Malaria.Numberofmalariaprimaryseriesdosesadministered" typeRef="string">
+          <dmn:text>Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series")</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="input.DAK.DT.IMMZ.D2.DT.Malaria.Clientsage" label="Clients age">
+        <dmn:inputExpression id="inputExpression.DAK.DT.IMMZ.D2.DT.Malaria.Clientsage" typeRef="string">
+          <dmn:text>Today's date − "Date of birth"</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="input.DAK.DT.IMMZ.D2.DT.Malaria.Timepassedsincelastmalariadosewasadministered" label="Time passed since last malaria dose was administered">
+        <dmn:inputExpression id="inputExpression.DAK.DT.IMMZ.D2.DT.Malaria.Timepassedsincelastmalariadosewasadministered" typeRef="string">
+          <dmn:text>Today's date − "Date and time of vaccination" (where "Vaccine type" = "Malaria vaccines")</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="output.DAK.DT.IMMZ.D2.DT.Malaria.CarePlan" label="Care Plan">
+        <dmn:description>Produce a suggested Care Plan for consideration by health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.DAK.DT.IMMZ.D2.DT.Malaria.Guidancedisplayedtohealthworker" label="Guidance displayed to health worker">
+        <dmn:description>Request to communicate guidance to the health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.DAK.DT.IMMZ.D2.DT.Malaria.Annotations" label="Annotations">
+        <dmn:description>Additional information for the health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.DAK.DT.IMMZ.D2.DT.Malaria.References" label="Reference(s)">
+        <dmn:description>Reference for the source content (L1)</dmn:description>
+      </dmn:output>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Malaria.rule.Clientsageislefdb2fd8c09">
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date of birth" &lt; 5 months</dmn:description>
+          <dmn:text>Clients age is less than 5 months</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for malaria vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any other vaccines due and inform the caregiver of when to come back for first dose.</dmn:description>
+          <dmn:text>Should not vaccinate client with first malaria dose as clients age is less than 5 months.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>WHO recommends that the first dose of vaccine be administered from 5 months of age.</dmn:text>
+        </dmn:annotationEntry>
+        <dmn:annotationEntry>
+          <dmn:text>WHO recommendations for routine immunization – summary tables (March 2023) (1)</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Malaria.rule.Nomalariaprimafb5f32a2c5">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series") = 0</dmn:description>
+          <dmn:text>No malaria primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date of birth" ≥ 5 months</dmn:description>
+          <dmn:text>Clients age is more than or equal to 5 months</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Due"</dmn:description>
+          <dmn:text>Client is due for malaria vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should vaccinate client with first malaria dose as no malaria doses were administered and client is within appropriate age range.</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Malaria.rule.Onemalariaprim2e13c544bd">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series") = 1</dmn:description>
+          <dmn:text>One malaria primary series dose was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date and time of vaccination" (where "Vaccine type" = "Malaria vaccines") &lt; 4 weeks</dmn:description>
+          <dmn:text>The latest malaria dose was administered less than 4 weeks ago</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for malaria vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any other vaccines due and inform the caregiver of when to come back for the second dose.</dmn:description>
+          <dmn:text>Should not vaccinate client with second malaria dose as the latest malaria dose was administered less than 4 weeks ago.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>The vaccine should be administered in a 3-dose primary schedule, with a fourth dose provided approximately 12–18 months after the third dose to prolong the duration of protection. There should be a minimum interval of 4 weeks between doses.</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Malaria.rule.Onemalariaprim1573cdf870">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series") = 1</dmn:description>
+          <dmn:text>One malaria primary series dose was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Malaria vaccines") ≥ 4 weeks</dmn:description>
+          <dmn:text>The latest malaria dose was administered more than 4 weeks ago</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Due"</dmn:description>
+          <dmn:text>Client is due for malaria vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should vaccinate client with second malaria dose as the latest malaria dose was administered more than 4 weeks ago.</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Malaria.rule.Twomalariaprim9584638f13">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series") = 2</dmn:description>
+          <dmn:text>Two malaria primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date and time of vaccination" (where "Vaccine type" = "Malaria vaccines") &lt; 4 weeks</dmn:description>
+          <dmn:text>The latest malaria dose was administered less than 4 weeks ago</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for malaria vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any other vaccines due and inform the caregiver of when to come back for the third dose.</dmn:description>
+          <dmn:text>Should not vaccinate client with third malaria dose as the latest malaria dose was administered less than 4 weeks ago.</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Malaria.rule.Twomalariaprimb2897c1639">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series") = 2</dmn:description>
+          <dmn:text>Two malaria primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Malaria vaccines") ≥ 4 weeks</dmn:description>
+          <dmn:text>The latest malaria dose was administered more than 4 weeks ago</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Due"</dmn:description>
+          <dmn:text>Client is due for malaria vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should vaccinate client with third malaria dose as the latest malaria dose was administered more than 4 weeks ago.</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Malaria.rule.Threemalariapr66113ceced">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series") = 3</dmn:description>
+          <dmn:text>Three malaria primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date and time of vaccination" (where "Vaccine type" = "Malaria vaccines") &lt; 4 weeks</dmn:description>
+          <dmn:text>The latest malaria dose was administered less than 4 weeks ago</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for malaria vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any other vaccines due and inform the caregiver of when to come back for the fourth dose.</dmn:description>
+          <dmn:text>Should not vaccinate client with fourth malaria dose as the latest malaria dose was administered less than 4 weeks ago.</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Malaria.rule.Threemalariapr21f74c54a0">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series") = 3</dmn:description>
+          <dmn:text>Three malaria primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Malaria vaccines") ≥ 4 weeks</dmn:description>
+          <dmn:text>The latest malaria dose was administered more than 4 weeks ago</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Due"</dmn:description>
+          <dmn:text>Client is due for malaria vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should vaccinate client with fourth malaria dose as the latest malaria dose was administered more than 4 weeks ago.</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Malaria.rule.Fourmalariapri6911f1ddd0">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Malaria vaccines" and "Type of dose" = "Primary series") = 4</dmn:description>
+          <dmn:text>Four malaria primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Complete"
+"Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Malaria vaccines")"</dmn:description>
+          <dmn:text>Malaria immunization schedule is complete</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any other vaccines due.</dmn:description>
+          <dmn:text>Malaria immunization schedule is complete. Four malaria primary series doses were administered.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>–</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+</dmn:definitions>
