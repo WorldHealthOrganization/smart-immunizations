@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="5a6183d" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.7.0">
+  <bpmn:collaboration id="gather_contra_info" name="Workflow D: administer vaccine business process">
+    <bpmn:participant id="participant_id" name="Workflow D: administer vaccine business process" processRef="WorkflowDadministervaccinebusinessprocess" />
+    <bpmn:textAnnotation id="TextAnnotation_0t002em">
+      <bpmn:text>this is maybe a collapsible task w/ all the questionnaires? or a single questionnaire across all vaccines which only shows contradication questions if a vaccine is due?</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1wz9urs">
+      <bpmn:text>this is a long display name.  camunda will not resize task.  we can put a short name and full name in this comment perhaps.  or not use camunda.  
+Some arrogance there:
+https://forum.bpmn.io/t/cannot-resize-task-to-fit-large-text-content/247</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_09grjkd" associationDirection="None" sourceRef="IMMZ.D4" targetRef="TextAnnotation_0t002em" />
+    <bpmn:association id="Association_0m4dx87" associationDirection="None" sourceRef="IMMZ.D5" targetRef="TextAnnotation_1wz9urs" />
+  </bpmn:collaboration>
+  <bpmn:process id="WorkflowDadministervaccinebusinessprocess" name="Workflow D: administer vaccine business process" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_076poi9">
+      <bpmn:lane id="VaccinationlocationHealthworker" name="Vaccination location Health worker">
+        <bpmn:documentation>landedoc</bpmn:documentation>
+        <bpmn:flowNodeRef>StartEvent1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IMMZ.D12</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IMMZ.D4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IMMZ.D2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IMMZ.D5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IMMZ.D13</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IMMZ.D1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:userTask id="IMMZ.D1" name="Capture or update client history">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_01hsvp3</bpmn:incoming>
+      <bpmn:outgoing>Flow_1n32veh</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="IMMZ.D4" name="Check contraindications">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition externalReference="&#34;external form refernce for check contrad&#34;" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_15fnxou</bpmn:incoming>
+      <bpmn:outgoing>Flow_10fc0g1</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:subProcess id="IMMZ.D2" name="Determine required vaccination(s) if any">
+      <bpmn:documentation>parallel-multi-instance-task-doc</bpmn:documentation>
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:input source="=&#34;-multi-instance-activity-inputs-var-1 assigngment value&#34;" target="-multi-instance-activity-inputs-var-1" />
+          <zeebe:input source="=&#34;-multi-instance-activity-inputs-var-2 value&#34;" target="-multi-instance-activity-inputs-var-2" />
+          <zeebe:output source="=&#34;-multi-instance-activity-outputs-var-1 assign,emt value&#34;" target="-multi-instance-activity-outputs-var-1" />
+        </zeebe:ioMapping>
+        <zeebe:executionListeners>
+          <zeebe:executionListener eventType="start" retries="&#34;-multu-instnace-event-listenced-retries&#34;" type="&#34;-multu-instnace-event-listenced&#34;" />
+        </zeebe:executionListeners>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1n32veh</bpmn:incoming>
+      <bpmn:outgoing>Flow_15fnxou</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics>
+        <bpmn:extensionElements>
+          <zeebe:loopCharacteristics inputCollection="=[&#34;BCG&#34;, &#34;Polio&#34;,&#34;BLAH&#34;]" inputElement="input-elment-multi-instance-activity" outputCollection="output-collection-multi-instance-activity" outputElement="=&#34;output elment-multi-instance-activity&#34;" />
+        </bpmn:extensionElements>
+        <bpmn:completionCondition xsi:type="bpmn:tFormalExpression">="output -elment completion condition -multi-instance-activity"</bpmn:completionCondition>
+      </bpmn:multiInstanceLoopCharacteristics>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.BCG" name="Determine required BCG vaccination(s) if any">
+        <bpmn:documentation>bcg-documentation-element</bpmn:documentation>
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.BCG" resultVariable="result-variable" />
+          <zeebe:ioMapping>
+            <zeebe:input source="=&#34;FEEL EXPRESSION FOR BCG IN VAR1&#34;" target="input-bcg-variable-in-1" />
+            <zeebe:input source="=&#34;FEEL EXPRESSION FOR BCG IN VAR1&#34;" target="input-bcg-variable-in-2" />
+            <zeebe:output source="=&#34;FEEL EXPRESSION FOR BCG OUT VAR1&#34;" target="input-bcg-variable-out-1" />
+          </zeebe:ioMapping>
+          <zeebe:executionListeners>
+            <zeebe:executionListener eventType="start" retries="bcg-execution-listenrt-retries" type="bcg-execution-listenrt-type" />
+          </zeebe:executionListeners>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_01t1ugm</bpmn:incoming>
+        <bpmn:outgoing>Flow_0q8qcmb</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Cholera" name="Determine required Cholera vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Cholera" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_18ieg5w</bpmn:incoming>
+        <bpmn:outgoing>Flow_0zbxkow</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Dengue" name="Determine required Dengue vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Dengue" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_03ztw7z</bpmn:incoming>
+        <bpmn:outgoing>Flow_0fhbeea</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.DTP" name="Determine required DTP vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.DTP" resultVariable="dtprest" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0d8jf1m</bpmn:incoming>
+        <bpmn:outgoing>Flow_1qtnahg</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.HepatitisA" name="Determine required Hepatitis A vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Hepatitis A" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_02u66zo</bpmn:incoming>
+        <bpmn:outgoing>Flow_03jjh0r</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Hepatitis" name="Determine required Hepatitis B vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Hepatitis B" resultVariable="hepbresult" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1enonzn</bpmn:incoming>
+        <bpmn:outgoing>Flow_15jhn3y</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Hib" name="Determine required Hib vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Hib" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0owk6yk</bpmn:incoming>
+        <bpmn:outgoing>Flow_1yqxzke</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.HPV" name="Determine required HPV vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.HPV" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_06q0od1</bpmn:incoming>
+        <bpmn:outgoing>Flow_0fdt2py</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.JE" name="Determine required JE vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.JE" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1tjql05</bpmn:incoming>
+        <bpmn:outgoing>Flow_04y6a6u</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Malaria" name="Determine required Malaria vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Malaria" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1lo4xyw</bpmn:incoming>
+        <bpmn:outgoing>Flow_1bevuzm</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Measles" name="Determine required Measles vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Measles" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0d8zs9v</bpmn:incoming>
+        <bpmn:outgoing>Flow_14qct5s</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Meningococcal" name="Determine required Meningococcal vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Meningococcal" resultVariable="resultvarresultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0sjs0vp</bpmn:incoming>
+        <bpmn:outgoing>Flow_1c4nvib</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Mumps" name="Determine required Mumps vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Mumps" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0oixyvr</bpmn:incoming>
+        <bpmn:outgoing>Flow_1g2i6yi</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Pneumococcal" name="Determine required Pneumococcal vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Pneumococcal" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_10mey3k</bpmn:incoming>
+        <bpmn:outgoing>Flow_1jn9anz</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Polio" name="Determine required Polio vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Polio" resultVariable="poilioresult" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0je7apa</bpmn:incoming>
+        <bpmn:outgoing>Flow_138kf1g</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Rabies" name="Determine required Rabies vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Rabies" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0hq8o3l</bpmn:incoming>
+        <bpmn:outgoing>Flow_1bbx784</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Rotavirus" name="Determine required Rotavirus vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Rotavirus" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0i0ttte</bpmn:incoming>
+        <bpmn:outgoing>Flow_19e7yih</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Rubella" name="Determine required Rubella vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Rubella" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0o9xl41</bpmn:incoming>
+        <bpmn:outgoing>Flow_1q10wym</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Seasonalinfluenza" name="Determine required Seasonal influenza vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Seasonal influenza" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1wtk2tp</bpmn:incoming>
+        <bpmn:outgoing>Flow_0zgq5dg</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.TBE" name="Determine required TBE vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.TBE" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_06hej8h</bpmn:incoming>
+        <bpmn:outgoing>Flow_1xa8fga</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Typhoid" name="Determine required Typhoid vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Typhoid" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_05so0uo</bpmn:incoming>
+        <bpmn:outgoing>Flow_1ftncs5</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Varicella" name="Determine required Varicella vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Varicella" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0mk298t</bpmn:incoming>
+        <bpmn:outgoing>Flow_01k8fhi</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D2.DT.Yellowfever" name="Determine required Yellow fever vaccination(s) if any">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="IMMZ.D2.DT.Yellow fever" resultVariable="resultvar" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1i9ssnz</bpmn:incoming>
+        <bpmn:outgoing>Flow_09ncbru</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:endEvent id="Event0001pfd" name="end">
+        <bpmn:incoming>Flow_0b6je52</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_01k8fhi" sourceRef="IMMZ.D2.DT.Varicella" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_01t1ugm" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.BCG" />
+      <bpmn:sequenceFlow id="Flow_02u66zo" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.HepatitisA" />
+      <bpmn:sequenceFlow id="Flow_03jjh0r" sourceRef="IMMZ.D2.DT.HepatitisA" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_03ztw7z" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Dengue" />
+      <bpmn:sequenceFlow id="Flow_04sm6b5" sourceRef="inner-start-id" targetRef="Gateway_01q7vm6" />
+      <bpmn:sequenceFlow id="Flow_04y6a6u" sourceRef="IMMZ.D2.DT.JE" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_05so0uo" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Typhoid" />
+      <bpmn:sequenceFlow id="Flow_06hej8h" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.TBE" />
+      <bpmn:sequenceFlow id="Flow_06q0od1" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.HPV" />
+      <bpmn:sequenceFlow id="Flow_09ncbru" sourceRef="IMMZ.D2.DT.Yellowfever" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_0b6je52" sourceRef="Gateway1bps2hc" targetRef="Event0001pfd" />
+      <bpmn:sequenceFlow id="Flow_0d8jf1m" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.DTP" />
+      <bpmn:sequenceFlow id="Flow_0d8zs9v" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Measles" />
+      <bpmn:sequenceFlow id="Flow_0fdt2py" sourceRef="IMMZ.D2.DT.HPV" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_0fhbeea" sourceRef="IMMZ.D2.DT.Dengue" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_0hq8o3l" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Rabies" />
+      <bpmn:sequenceFlow id="Flow_0i0ttte" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Rotavirus" />
+      <bpmn:sequenceFlow id="Flow_0je7apa" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Polio" />
+      <bpmn:sequenceFlow id="Flow_0mk298t" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Varicella" />
+      <bpmn:sequenceFlow id="Flow_0o9xl41" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Rubella" />
+      <bpmn:sequenceFlow id="Flow_0oixyvr" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Mumps" />
+      <bpmn:sequenceFlow id="Flow_0owk6yk" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Hib" />
+      <bpmn:sequenceFlow id="Flow_0q8qcmb" sourceRef="IMMZ.D2.DT.BCG" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_0sjs0vp" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Meningococcal" />
+      <bpmn:sequenceFlow id="Flow_0zbxkow" sourceRef="IMMZ.D2.DT.Cholera" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_0zgq5dg" sourceRef="IMMZ.D2.DT.Seasonalinfluenza" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_10mey3k" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Pneumococcal" />
+      <bpmn:sequenceFlow id="Flow_138kf1g" sourceRef="IMMZ.D2.DT.Polio" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_14qct5s" sourceRef="IMMZ.D2.DT.Measles" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_15jhn3y" sourceRef="IMMZ.D2.DT.Hepatitis" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_18ieg5w" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Cholera" />
+      <bpmn:sequenceFlow id="Flow_19e7yih" sourceRef="IMMZ.D2.DT.Rotavirus" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_1bbx784" sourceRef="IMMZ.D2.DT.Rabies" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_1bevuzm" sourceRef="IMMZ.D2.DT.Malaria" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_1c4nvib" sourceRef="IMMZ.D2.DT.Meningococcal" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_1enonzn" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Hepatitis" />
+      <bpmn:sequenceFlow id="Flow_1ftncs5" sourceRef="IMMZ.D2.DT.Typhoid" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_1g2i6yi" sourceRef="IMMZ.D2.DT.Mumps" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_1i9ssnz" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Yellowfever" />
+      <bpmn:sequenceFlow id="Flow_1jn9anz" sourceRef="IMMZ.D2.DT.Pneumococcal" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_1lo4xyw" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Malaria" />
+      <bpmn:sequenceFlow id="Flow_1q10wym" sourceRef="IMMZ.D2.DT.Rubella" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_1qtnahg" sourceRef="IMMZ.D2.DT.DTP" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_1tjql05" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.JE" />
+      <bpmn:sequenceFlow id="Flow_1wtk2tp" sourceRef="Gateway_01q7vm6" targetRef="IMMZ.D2.DT.Seasonalinfluenza" />
+      <bpmn:sequenceFlow id="Flow_1xa8fga" sourceRef="IMMZ.D2.DT.TBE" targetRef="Gateway1bps2hc" />
+      <bpmn:sequenceFlow id="Flow_1yqxzke" sourceRef="IMMZ.D2.DT.Hib" targetRef="Gateway1bps2hc" />
+      <bpmn:parallelGateway id="Gateway_01q7vm6">
+        <bpmn:incoming>Flow_04sm6b5</bpmn:incoming>
+        <bpmn:outgoing>Flow_01t1ugm</bpmn:outgoing>
+        <bpmn:outgoing>Flow_06hej8h</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0mk298t</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1wtk2tp</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0oixyvr</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1lo4xyw</bpmn:outgoing>
+        <bpmn:outgoing>Flow_05so0uo</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1tjql05</bpmn:outgoing>
+        <bpmn:outgoing>Flow_06q0od1</bpmn:outgoing>
+        <bpmn:outgoing>Flow_18ieg5w</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0o9xl41</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0sjs0vp</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0d8zs9v</bpmn:outgoing>
+        <bpmn:outgoing>Flow_02u66zo</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0hq8o3l</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0i0ttte</bpmn:outgoing>
+        <bpmn:outgoing>Flow_03ztw7z</bpmn:outgoing>
+        <bpmn:outgoing>Flow_10mey3k</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1i9ssnz</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0d8jf1m</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0je7apa</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1enonzn</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0owk6yk</bpmn:outgoing>
+      </bpmn:parallelGateway>
+      <bpmn:parallelGateway id="Gateway1bps2hc">
+        <bpmn:incoming>Flow_138kf1g</bpmn:incoming>
+        <bpmn:incoming>Flow_04y6a6u</bpmn:incoming>
+        <bpmn:incoming>Flow_09ncbru</bpmn:incoming>
+        <bpmn:incoming>Flow_1yqxzke</bpmn:incoming>
+        <bpmn:incoming>Flow_1qtnahg</bpmn:incoming>
+        <bpmn:incoming>Flow_0fdt2py</bpmn:incoming>
+        <bpmn:incoming>Flow_1q10wym</bpmn:incoming>
+        <bpmn:incoming>Flow_0q8qcmb</bpmn:incoming>
+        <bpmn:incoming>Flow_15jhn3y</bpmn:incoming>
+        <bpmn:incoming>Flow_19e7yih</bpmn:incoming>
+        <bpmn:incoming>Flow_1c4nvib</bpmn:incoming>
+        <bpmn:incoming>Flow_0zbxkow</bpmn:incoming>
+        <bpmn:incoming>Flow_1ftncs5</bpmn:incoming>
+        <bpmn:incoming>Flow_1xa8fga</bpmn:incoming>
+        <bpmn:incoming>Flow_01k8fhi</bpmn:incoming>
+        <bpmn:incoming>Flow_0zgq5dg</bpmn:incoming>
+        <bpmn:incoming>Flow_1g2i6yi</bpmn:incoming>
+        <bpmn:incoming>Flow_03jjh0r</bpmn:incoming>
+        <bpmn:incoming>Flow_1bevuzm</bpmn:incoming>
+        <bpmn:incoming>Flow_1jn9anz</bpmn:incoming>
+        <bpmn:incoming>Flow_1bbx784</bpmn:incoming>
+        <bpmn:incoming>Flow_14qct5s</bpmn:incoming>
+        <bpmn:incoming>Flow_0fhbeea</bpmn:incoming>
+        <bpmn:outgoing>Flow_0b6je52</bpmn:outgoing>
+      </bpmn:parallelGateway>
+      <bpmn:startEvent id="inner-start-id" name="inner-start-name">
+        <bpmn:documentation>inner-start-doc</bpmn:documentation>
+        <bpmn:outgoing>Flow_04sm6b5</bpmn:outgoing>
+      </bpmn:startEvent>
+    </bpmn:subProcess>
+    <bpmn:subProcess id="IMMZ.D5" name="Determine vaccine(s) to be administered based on contraindications">
+      <bpmn:incoming>Flow_10fc0g1</bpmn:incoming>
+      <bpmn:outgoing>Flow_0smzeui</bpmn:outgoing>
+      <bpmn:businessRuleTask id="IMMZ.D5.DT.BCG" name="Check for BCG contraindications before administering the vaccine">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="bgc-contra-id" resultVariable="bgc-contra-id-result-var" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1u0a6ad</bpmn:incoming>
+        <bpmn:outgoing>Flow_0zl8jd9</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="IMMZ.D5.DT.Polio" name="Check for Polio contraindications before administering the vaccine">
+        <bpmn:extensionElements>
+          <zeebe:calledDecision decisionId="bgc-contra-id" resultVariable="bgc-contra-id-result-var" />
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_0e4k00i</bpmn:incoming>
+        <bpmn:outgoing>Flow_1fdvw5a</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:sequenceFlow id="Flow_0e4k00i" sourceRef="Gateway19quzyo" targetRef="IMMZ.D5.DT.Polio" />
+      <bpmn:sequenceFlow id="Flow_0zl8jd9" sourceRef="IMMZ.D5.DT.BCG" targetRef="Gateway0gywyyw" />
+      <bpmn:sequenceFlow id="start2" sourceRef="Event0q226xh" targetRef="Gateway19quzyo" />
+      <bpmn:sequenceFlow id="Flow_1fdvw5a" sourceRef="IMMZ.D5.DT.Polio" targetRef="Gateway0gywyyw" />
+      <bpmn:sequenceFlow id="Flow_1k9hbsd" sourceRef="Gateway0gywyyw" targetRef="end2" />
+      <bpmn:sequenceFlow id="Flow_1u0a6ad" sourceRef="Gateway19quzyo" targetRef="IMMZ.D5.DT.BCG" />
+      <bpmn:parallelGateway id="Gateway0gywyyw">
+        <bpmn:incoming>Flow_0zl8jd9</bpmn:incoming>
+        <bpmn:incoming>Flow_1fdvw5a</bpmn:incoming>
+        <bpmn:outgoing>Flow_1k9hbsd</bpmn:outgoing>
+      </bpmn:parallelGateway>
+      <bpmn:parallelGateway id="Gateway19quzyo">
+        <bpmn:incoming>start2</bpmn:incoming>
+        <bpmn:outgoing>Flow_1u0a6ad</bpmn:outgoing>
+        <bpmn:outgoing>Flow_0e4k00i</bpmn:outgoing>
+      </bpmn:parallelGateway>
+      <bpmn:startEvent id="Event0q226xh" name="inner end">
+        <bpmn:outgoing>start2</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:endEvent id="end2" name="outer end">
+        <bpmn:incoming>Flow_1k9hbsd</bpmn:incoming>
+      </bpmn:endEvent>
+    </bpmn:subProcess>
+    <bpmn:manualTask id="IMMZ.D12" name="Dispose of waste">
+      <bpmn:incoming>Flow_0smzeui</bpmn:incoming>
+      <bpmn:outgoing>Flow_0oqs6ja</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:endEvent id="End1" name="end workflow">
+      <bpmn:incoming>Flow_0hf39rg</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_01hsvp3" sourceRef="StartEvent1" targetRef="IMMZ.D1" />
+    <bpmn:sequenceFlow id="Flow_0hf39rg" sourceRef="IMMZ.D13" targetRef="End1" />
+    <bpmn:sequenceFlow id="Flow_0oqs6ja" sourceRef="IMMZ.D12" targetRef="IMMZ.D13" />
+    <bpmn:sequenceFlow id="Flow_0smzeui" sourceRef="IMMZ.D5" targetRef="IMMZ.D12" />
+    <bpmn:sequenceFlow id="Flow_10fc0g1" sourceRef="IMMZ.D4" targetRef="IMMZ.D5" />
+    <bpmn:sequenceFlow id="Flow_15fnxou" sourceRef="IMMZ.D2" targetRef="IMMZ.D4" />
+    <bpmn:sequenceFlow id="Flow_1n32veh" sourceRef="IMMZ.D1" targetRef="IMMZ.D2" />
+    <bpmn:startEvent id="StartEvent1" name="Start workflow">
+      <bpmn:documentation>out-start-doc</bpmn:documentation>
+      <bpmn:outgoing>Flow_01hsvp3</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="IMMZ.D13" name="Update client record">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0oqs6ja</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hf39rg</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="gather_contra_info">
+      <bpmndi:BPMNShape id="Participant_160rjb3_di" bpmnElement="participant_id" isHorizontal="true">
+        <dc:Bounds x="155" y="100" width="1585" height="420" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_14kqgtc_di" bpmnElement="VaccinationlocationHealthworker" isHorizontal="true">
+        <dc:Bounds x="185" y="100" width="1555" height="420" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0p9hdfi_di" bpmnElement="IMMZ.D1">
+        <dc:Bounds x="410" y="290" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0m8b83a_di" bpmnElement="IMMZ.D4">
+        <dc:Bounds x="730" y="290" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pooz8c_di" bpmnElement="IMMZ.D2" isExpanded="false">
+        <dc:Bounds x="570" y="290" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0sc7xc0_di" bpmnElement="IMMZ.D5">
+        <dc:Bounds x="910" y="290" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13mi2ar_di" bpmnElement="IMMZ.D12">
+        <dc:Bounds x="1060" y="290" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_07kmnk3_di" bpmnElement="End1">
+        <dc:Bounds x="1432" y="312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1418" y="355" width="65" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent1">
+        <dc:Bounds x="307" y="312" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="291" y="355" width="70" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16rym4z_di" bpmnElement="IMMZ.D13">
+        <dc:Bounds x="1250" y="290" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01hsvp3_di" bpmnElement="Flow_01hsvp3">
+        <di:waypoint x="343" y="330" />
+        <di:waypoint x="410" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hf39rg_di" bpmnElement="Flow_0hf39rg">
+        <di:waypoint x="1350" y="330" />
+        <di:waypoint x="1432" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0oqs6ja_di" bpmnElement="Flow_0oqs6ja">
+        <di:waypoint x="1160" y="330" />
+        <di:waypoint x="1250" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0smzeui_di" bpmnElement="Flow_0smzeui">
+        <di:waypoint x="1010" y="330" />
+        <di:waypoint x="1060" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10fc0g1_di" bpmnElement="Flow_10fc0g1">
+        <di:waypoint x="830" y="330" />
+        <di:waypoint x="910" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15fnxou_di" bpmnElement="Flow_15fnxou">
+        <di:waypoint x="670" y="330" />
+        <di:waypoint x="730" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1n32veh_di" bpmnElement="Flow_1n32veh">
+        <di:waypoint x="510" y="330" />
+        <di:waypoint x="570" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0t002em_di" bpmnElement="TextAnnotation_0t002em">
+        <dc:Bounds x="410" y="120" width="247" height="94" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1wz9urs_di" bpmnElement="TextAnnotation_1wz9urs">
+        <dc:Bounds x="850" y="120" width="220" height="140" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_09grjkd_di" bpmnElement="Association_09grjkd">
+        <di:waypoint x="730" y="306" />
+        <di:waypoint x="544" y="214" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0m4dx87_di" bpmnElement="Association_0m4dx87">
+        <di:waypoint x="930" y="290" />
+        <di:waypoint x="908" y="260" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_0lrjwf2">
+    <bpmndi:BPMNPlane id="BPMNPlane_0xiigf8" bpmnElement="IMMZ.D2">
+      <bpmndi:BPMNShape id="Activity_0skf9sk_di" bpmnElement="IMMZ.D2.DT.BCG">
+        <dc:Bounds x="340" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_02urpnv" bpmnElement="IMMZ.D2.DT.Cholera">
+        <dc:Bounds x="570" y="500" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1qradsv" bpmnElement="IMMZ.D2.DT.Dengue">
+        <dc:Bounds x="570" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1syi6zr" bpmnElement="IMMZ.D2.DT.DTP">
+        <dc:Bounds x="455" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0r78dkc" bpmnElement="IMMZ.D2.DT.HepatitisA">
+        <dc:Bounds x="680" y="630" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0bc180b" bpmnElement="IMMZ.D2.DT.Hepatitis">
+        <dc:Bounds x="570" y="100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0aonrq2" bpmnElement="IMMZ.D2.DT.Hib">
+        <dc:Bounds x="680" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1cumdmk" bpmnElement="IMMZ.D2.DT.HPV">
+        <dc:Bounds x="455" y="360" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0efgoyv" bpmnElement="IMMZ.D2.DT.JE">
+        <dc:Bounds x="340" y="360" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0mfl668" bpmnElement="IMMZ.D2.DT.Malaria">
+        <dc:Bounds x="340" y="770" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_17on3n1" bpmnElement="IMMZ.D2.DT.Measles">
+        <dc:Bounds x="680" y="360" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1xi4y4g" bpmnElement="IMMZ.D2.DT.Meningococcal">
+        <dc:Bounds x="680" y="500" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_12ulh15" bpmnElement="IMMZ.D2.DT.Mumps">
+        <dc:Bounds x="570" y="630" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1hnmqth" bpmnElement="IMMZ.D2.DT.Pneumococcal">
+        <dc:Bounds x="455" y="770" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0284j5z" bpmnElement="IMMZ.D2.DT.Polio">
+        <dc:Bounds x="455" y="100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0xvv8xr" bpmnElement="IMMZ.D2.DT.Rabies">
+        <dc:Bounds x="570" y="770" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_19hweaf" bpmnElement="IMMZ.D2.DT.Rotavirus">
+        <dc:Bounds x="680" y="100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1mgrsyw" bpmnElement="IMMZ.D2.DT.Rubella">
+        <dc:Bounds x="570" y="360" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0sewpdo" bpmnElement="IMMZ.D2.DT.Seasonalinfluenza">
+        <dc:Bounds x="455" y="630" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_002ip3f" bpmnElement="IMMZ.D2.DT.TBE">
+        <dc:Bounds x="340" y="500" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1x6q7cs" bpmnElement="IMMZ.D2.DT.Typhoid">
+        <dc:Bounds x="455" y="500" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0muiuyj" bpmnElement="IMMZ.D2.DT.Varicella">
+        <dc:Bounds x="340" y="630" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_03fotrl" bpmnElement="IMMZ.D2.DT.Yellowfever">
+        <dc:Bounds x="340" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0001pfd_di" bpmnElement="Event0001pfd">
+        <dc:Bounds x="902" y="452" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="911" y="495" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_01q7vm6_di" bpmnElement="Gateway_01q7vm6">
+        <dc:Bounds x="285" y="445" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1bps2hc_di" bpmnElement="Gateway1bps2hc">
+        <dc:Bounds x="805" y="445" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0g35flo_di" bpmnElement="inner-start-id">
+        <dc:Bounds x="202" y="452" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="180" y="495" width="81" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01k8fhi_di" bpmnElement="Flow_01k8fhi">
+        <di:waypoint x="390" y="630" />
+        <di:waypoint x="390" y="610" />
+        <di:waypoint x="830" y="610" />
+        <di:waypoint x="830" y="495" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01t1ugm_di" bpmnElement="Flow_01t1ugm">
+        <di:waypoint x="310" y="445" />
+        <di:waypoint x="310" y="210" />
+        <di:waypoint x="390" y="210" />
+        <di:waypoint x="390" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02u66zo_di" bpmnElement="Flow_02u66zo">
+        <di:waypoint x="310" y="495" />
+        <di:waypoint x="310" y="740" />
+        <di:waypoint x="730" y="740" />
+        <di:waypoint x="730" y="710" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03jjh0r_di" bpmnElement="Flow_03jjh0r">
+        <di:waypoint x="730" y="630" />
+        <di:waypoint x="730" y="610" />
+        <di:waypoint x="830" y="610" />
+        <di:waypoint x="830" y="495" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03ztw7z_di" bpmnElement="Flow_03ztw7z">
+        <di:waypoint x="310" y="445" />
+        <di:waypoint x="310" y="210" />
+        <di:waypoint x="620" y="210" />
+        <di:waypoint x="620" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04sm6b5_di" bpmnElement="Flow_04sm6b5">
+        <di:waypoint x="238" y="470" />
+        <di:waypoint x="285" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04y6a6u_di" bpmnElement="Flow_04y6a6u">
+        <di:waypoint x="390" y="360" />
+        <di:waypoint x="390" y="340" />
+        <di:waypoint x="830" y="340" />
+        <di:waypoint x="830" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05so0uo_di" bpmnElement="Flow_05so0uo">
+        <di:waypoint x="335" y="470" />
+        <di:waypoint x="505" y="470" />
+        <di:waypoint x="505" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06hej8h_di" bpmnElement="Flow_06hej8h">
+        <di:waypoint x="335" y="470" />
+        <di:waypoint x="390" y="470" />
+        <di:waypoint x="390" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06q0od1_di" bpmnElement="Flow_06q0od1">
+        <di:waypoint x="335" y="470" />
+        <di:waypoint x="505" y="470" />
+        <di:waypoint x="505" y="440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09ncbru_di" bpmnElement="Flow_09ncbru">
+        <di:waypoint x="390" y="320" />
+        <di:waypoint x="390" y="340" />
+        <di:waypoint x="830" y="340" />
+        <di:waypoint x="830" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0b6je52_di" bpmnElement="Flow_0b6je52">
+        <di:waypoint x="855" y="470" />
+        <di:waypoint x="902" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d8jf1m_di" bpmnElement="Flow_0d8jf1m">
+        <di:waypoint x="310" y="445" />
+        <di:waypoint x="310" y="210" />
+        <di:waypoint x="505" y="210" />
+        <di:waypoint x="505" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d8zs9v_di" bpmnElement="Flow_0d8zs9v">
+        <di:waypoint x="335" y="470" />
+        <di:waypoint x="730" y="470" />
+        <di:waypoint x="730" y="440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fdt2py_di" bpmnElement="Flow_0fdt2py">
+        <di:waypoint x="505" y="360" />
+        <di:waypoint x="505" y="340" />
+        <di:waypoint x="830" y="340" />
+        <di:waypoint x="830" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fhbeea_di" bpmnElement="Flow_0fhbeea">
+        <di:waypoint x="620" y="320" />
+        <di:waypoint x="620" y="340" />
+        <di:waypoint x="830" y="340" />
+        <di:waypoint x="830" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hq8o3l_di" bpmnElement="Flow_0hq8o3l">
+        <di:waypoint x="310" y="495" />
+        <di:waypoint x="310" y="740" />
+        <di:waypoint x="620" y="740" />
+        <di:waypoint x="620" y="770" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0i0ttte_di" bpmnElement="Flow_0i0ttte">
+        <di:waypoint x="310" y="445" />
+        <di:waypoint x="310" y="210" />
+        <di:waypoint x="730" y="210" />
+        <di:waypoint x="730" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0je7apa_di" bpmnElement="Flow_0je7apa">
+        <di:waypoint x="310" y="445" />
+        <di:waypoint x="310" y="210" />
+        <di:waypoint x="505" y="210" />
+        <di:waypoint x="505" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mk298t_di" bpmnElement="Flow_0mk298t">
+        <di:waypoint x="310" y="495" />
+        <di:waypoint x="310" y="740" />
+        <di:waypoint x="390" y="740" />
+        <di:waypoint x="390" y="710" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0o9xl41_di" bpmnElement="Flow_0o9xl41">
+        <di:waypoint x="335" y="470" />
+        <di:waypoint x="620" y="470" />
+        <di:waypoint x="620" y="440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0oixyvr_di" bpmnElement="Flow_0oixyvr">
+        <di:waypoint x="310" y="495" />
+        <di:waypoint x="310" y="740" />
+        <di:waypoint x="620" y="740" />
+        <di:waypoint x="620" y="710" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0owk6yk_di" bpmnElement="Flow_0owk6yk">
+        <di:waypoint x="310" y="445" />
+        <di:waypoint x="310" y="210" />
+        <di:waypoint x="730" y="210" />
+        <di:waypoint x="730" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0q8qcmb_di" bpmnElement="Flow_0q8qcmb">
+        <di:waypoint x="390" y="100" />
+        <di:waypoint x="390" y="80" />
+        <di:waypoint x="830" y="80" />
+        <di:waypoint x="830" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0sjs0vp_di" bpmnElement="Flow_0sjs0vp">
+        <di:waypoint x="335" y="470" />
+        <di:waypoint x="730" y="470" />
+        <di:waypoint x="730" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zbxkow_di" bpmnElement="Flow_0zbxkow">
+        <di:waypoint x="620" y="580" />
+        <di:waypoint x="620" y="610" />
+        <di:waypoint x="830" y="610" />
+        <di:waypoint x="830" y="495" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zgq5dg_di" bpmnElement="Flow_0zgq5dg">
+        <di:waypoint x="505" y="630" />
+        <di:waypoint x="505" y="610" />
+        <di:waypoint x="830" y="610" />
+        <di:waypoint x="830" y="495" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10mey3k_di" bpmnElement="Flow_10mey3k">
+        <di:waypoint x="310" y="495" />
+        <di:waypoint x="310" y="740" />
+        <di:waypoint x="505" y="740" />
+        <di:waypoint x="505" y="770" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_138kf1g_di" bpmnElement="Flow_138kf1g">
+        <di:waypoint x="505" y="100" />
+        <di:waypoint x="505" y="80" />
+        <di:waypoint x="830" y="80" />
+        <di:waypoint x="830" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14qct5s_di" bpmnElement="Flow_14qct5s">
+        <di:waypoint x="730" y="360" />
+        <di:waypoint x="730" y="340" />
+        <di:waypoint x="830" y="340" />
+        <di:waypoint x="830" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15jhn3y_di" bpmnElement="Flow_15jhn3y">
+        <di:waypoint x="620" y="100" />
+        <di:waypoint x="620" y="80" />
+        <di:waypoint x="830" y="80" />
+        <di:waypoint x="830" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18ieg5w_di" bpmnElement="Flow_18ieg5w">
+        <di:waypoint x="335" y="470" />
+        <di:waypoint x="620" y="470" />
+        <di:waypoint x="620" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19e7yih_di" bpmnElement="Flow_19e7yih">
+        <di:waypoint x="730" y="100" />
+        <di:waypoint x="730" y="80" />
+        <di:waypoint x="830" y="80" />
+        <di:waypoint x="830" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bbx784_di" bpmnElement="Flow_1bbx784">
+        <di:waypoint x="620" y="850" />
+        <di:waypoint x="620" y="870" />
+        <di:waypoint x="830" y="870" />
+        <di:waypoint x="830" y="495" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bevuzm_di" bpmnElement="Flow_1bevuzm">
+        <di:waypoint x="390" y="850" />
+        <di:waypoint x="390" y="870" />
+        <di:waypoint x="830" y="870" />
+        <di:waypoint x="830" y="495" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1c4nvib_di" bpmnElement="Flow_1c4nvib">
+        <di:waypoint x="730" y="580" />
+        <di:waypoint x="730" y="610" />
+        <di:waypoint x="830" y="610" />
+        <di:waypoint x="830" y="495" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1enonzn_di" bpmnElement="Flow_1enonzn">
+        <di:waypoint x="310" y="445" />
+        <di:waypoint x="310" y="210" />
+        <di:waypoint x="620" y="210" />
+        <di:waypoint x="620" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ftncs5_di" bpmnElement="Flow_1ftncs5">
+        <di:waypoint x="505" y="580" />
+        <di:waypoint x="505" y="610" />
+        <di:waypoint x="830" y="610" />
+        <di:waypoint x="830" y="495" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1g2i6yi_di" bpmnElement="Flow_1g2i6yi">
+        <di:waypoint x="620" y="630" />
+        <di:waypoint x="620" y="610" />
+        <di:waypoint x="830" y="610" />
+        <di:waypoint x="830" y="495" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1i9ssnz_di" bpmnElement="Flow_1i9ssnz">
+        <di:waypoint x="310" y="445" />
+        <di:waypoint x="310" y="210" />
+        <di:waypoint x="390" y="210" />
+        <di:waypoint x="390" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jn9anz_di" bpmnElement="Flow_1jn9anz">
+        <di:waypoint x="505" y="850" />
+        <di:waypoint x="505" y="870" />
+        <di:waypoint x="830" y="870" />
+        <di:waypoint x="830" y="495" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lo4xyw_di" bpmnElement="Flow_1lo4xyw">
+        <di:waypoint x="310" y="495" />
+        <di:waypoint x="310" y="740" />
+        <di:waypoint x="390" y="740" />
+        <di:waypoint x="390" y="770" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1q10wym_di" bpmnElement="Flow_1q10wym">
+        <di:waypoint x="620" y="360" />
+        <di:waypoint x="620" y="340" />
+        <di:waypoint x="830" y="340" />
+        <di:waypoint x="830" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qtnahg_di" bpmnElement="Flow_1qtnahg">
+        <di:waypoint x="505" y="320" />
+        <di:waypoint x="505" y="340" />
+        <di:waypoint x="830" y="340" />
+        <di:waypoint x="830" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tjql05_di" bpmnElement="Flow_1tjql05">
+        <di:waypoint x="335" y="470" />
+        <di:waypoint x="390" y="470" />
+        <di:waypoint x="390" y="440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wtk2tp_di" bpmnElement="Flow_1wtk2tp">
+        <di:waypoint x="310" y="495" />
+        <di:waypoint x="310" y="740" />
+        <di:waypoint x="505" y="740" />
+        <di:waypoint x="505" y="710" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xa8fga_di" bpmnElement="Flow_1xa8fga">
+        <di:waypoint x="390" y="580" />
+        <di:waypoint x="390" y="610" />
+        <di:waypoint x="830" y="610" />
+        <di:waypoint x="830" y="495" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yqxzke_di" bpmnElement="Flow_1yqxzke">
+        <di:waypoint x="730" y="320" />
+        <di:waypoint x="730" y="340" />
+        <di:waypoint x="830" y="340" />
+        <di:waypoint x="830" y="445" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1sb80e8">
+    <bpmndi:BPMNPlane id="BPMNPlane_0rjbtiy" bpmnElement="IMMZ.D5">
+      <bpmndi:BPMNShape id="Activity_15zafy0_di" bpmnElement="IMMZ.D5.DT.BCG">
+        <dc:Bounds x="400" y="100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1iig8ln" bpmnElement="IMMZ.D5.DT.Polio">
+        <dc:Bounds x="400" y="250" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0gywyyw_di" bpmnElement="Gateway0gywyyw">
+        <dc:Bounds x="635" y="205" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_19quzyo_di" bpmnElement="Gateway19quzyo">
+        <dc:Bounds x="245" y="205" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0q226xh_di" bpmnElement="Event0q226xh">
+        <dc:Bounds x="152" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="147" y="255" width="46" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_09i21ru_di" bpmnElement="end2">
+        <dc:Bounds x="742" y="222" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="737" y="265" width="47" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0e4k00i_di" bpmnElement="Flow_0e4k00i">
+        <di:waypoint x="270" y="255" />
+        <di:waypoint x="270" y="290" />
+        <di:waypoint x="400" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zl8jd9_di" bpmnElement="Flow_0zl8jd9">
+        <di:waypoint x="500" y="140" />
+        <di:waypoint x="660" y="140" />
+        <di:waypoint x="660" y="205" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18qv6cw_di" bpmnElement="start2">
+        <di:waypoint x="188" y="230" />
+        <di:waypoint x="245" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fdvw5a_di" bpmnElement="Flow_1fdvw5a">
+        <di:waypoint x="500" y="290" />
+        <di:waypoint x="660" y="290" />
+        <di:waypoint x="660" y="255" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1k9hbsd_di" bpmnElement="Flow_1k9hbsd">
+        <di:waypoint x="685" y="230" />
+        <di:waypoint x="714" y="230" />
+        <di:waypoint x="714" y="240" />
+        <di:waypoint x="742" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1u0a6ad_di" bpmnElement="Flow_1u0a6ad">
+        <di:waypoint x="270" y="205" />
+        <di:waypoint x="270" y="140" />
+        <di:waypoint x="400" y="140" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
