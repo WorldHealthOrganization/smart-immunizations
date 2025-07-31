@@ -192,4 +192,18 @@ Description:  "CodeSystem for Decision Table Outputs"
 * #bsic-26.81 "Booster series is complete" "\"Completed the booster series\" (where \"Vaccine type\" = \"Cholera vaccines\") = TRUE"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC vaccines"
-
+* #cidfbv-33.44 "Client is due for BCG vaccination" "\"Immunization recommendation status\" = \"Due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #cindfbv-37.48 "Client is not due for BCG vaccination" "\"Immunization recommendation status\" = \"Not due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #cjirccn-53.66 "Clinical judgement is required. Create clinical note." "\"Immunization recommendation status\" = \"Further evaluation needed\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #cjirccn-53.67 "Clinical judgement is required. Create clinical note." "'\"Immunization recommendation status\" = \"Further evaluation needed\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #bisic-37.50 "BCG immunization schedule is complete" "'\"Immunization recommendation status\" = \"Complete\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"

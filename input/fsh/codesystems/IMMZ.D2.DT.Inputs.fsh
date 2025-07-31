@@ -491,6 +491,8 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #csaimt5y-33.40 "Client's age is more than 5 years" "Today's date − \"Date of birth\" > 5 years"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
 * #dnotlpsdimtoett-74.107 "Dose number of the latest primary series dose is more than or equal to two" "Latest \"Dose number\" (where \"Vaccine type\" = \"Cholera vaccines\" and \"Type of dose\" = \"Primary series\") >= 2"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
@@ -500,3 +502,57 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #tlcdwaamt2yamsdi-109.139 "The latest cholera dose was administered approximately more than 2 years ago {Member States defined interval}" "Today's date − latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Cholera vaccines\") > 2 years ± Member States defined interval"
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses"
+* #nbpsdwa-43.112 "No BCG primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"BCG vaccines\" and \"Type of dose\" = \"Primary series\") = 0"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #csailtoet28d-45.40 "Client's age is less than or equal to 28 days" "Today's date − \"Date of birth\" ≤ 28 days"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #cshsinou-42.29 "Client's HIV status is negative or unknown" "\"HIV status\" ≠ \"HIV-positive\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #nlvwa-32.90 "No live vaccine was administered" "Today's date − latest \"Date and time of vaccination\" (where \"Live vaccine\" = TRUE) IS NULL"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #lvwaitlfw-52.92 "Live vaccine was administered in the last four weeks" "Today's date − latest \"Date and time of vaccination\" (where \"Live vaccine\" = TRUE) < 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #cshsip-31.29 "Client's HIV status is positive" "\"HIV status\" = \"HIV-positive\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #cicrat-52.25 "Client is currently receiving antiretroviral therapy" "\"Currently on ART\" = TRUE"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #ciis-32.31 "Client is immunologically stable" "\"Immunologically stable\" = TRUE"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #cinis-36.32 "Client is not immunologically stable" "\"Immunologically stable\" = FALSE"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #cicnrat-56.26 "Client is currently not receiving antiretroviral therapy" "\"Currently on ART\" = FALSE"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #csaib28da5y-43.50 "Client's age is between 28 days and 5 years" "28 days < Today's date − \"Date of birth\" < 5 years"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #cstitrin-45.39 "Client's TB infection test result is negative" "\"TB infection test result\" = \"Negative\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #nlvwaitlfw-55.92 "No live vaccine was administered in the last four weeks" "Today's date − latest \"Date and time of vaccination\" (where \"Live vaccine\" = TRUE) ≥ 4 weeks"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #cstitriutndonry-77.34 "Client's TB infection test result is unknown (test not done or no result yet)" "\"TB infection test result\" IS NULL"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #cstitrip-45.39 "Client's TB infection test result is positive" "\"TB infection test result\" = \"Positive\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #cincw-29.25 "Client is not clinically well" "\"Clinically well\" = FALSE"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #cicw-25.24 "Client is clinically well" "\"Clinically well\" = TRUE"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #obpsdwa-44.112 "One BCG primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"BCG vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"

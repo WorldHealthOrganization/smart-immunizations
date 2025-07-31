@@ -47,7 +47,7 @@ if ( dt == "single" ) {
   dtmod = 2
 }
 
-const EXTRA = 0
+const EXTRA = -1
 
 let did = sheet[top-6-EXTRA+dtmod][cs[0]+1]
 let rule = sheet[top-5-EXTRA+dtmod][cs[0]+1]
@@ -118,6 +118,16 @@ Usage: #definition
   """]], Has Guidance, Guidance)
 `)
 
+let feature = fs.createWriteStream("output/tests/IMMZ"+prefix+sheetdisplay+dt+".feature")
+feature.write(`
+Feature: ${did} Decision Table ${table}
+
+  Background: Set the date to use for all tests
+    Given call read('../IMMZD2DT.feature@defaults')
+    And resultWithMedication.contained[2].medicationCodeableConcept.coding.code = ""
+
+`)
+
 
 let prevtitles = []
 let outputs = {}
@@ -161,12 +171,13 @@ let didputs = "IMMZ."+prefix.slice(0,2)+"."+prefix.slice(-2)
 readCodes("Inputs", didputs, codeinput)
 readCodes("Outputs", didputs, codeoutput)
 
-let yaml = fs.createWriteStream("output/examples.yaml")
+let yaml = fs.createWriteStream("output/tests/examples.yaml")
 
 for ( let r = rs[0]; r <= rs[1]; r++ ) {
   let expression = [];
-  let testid = (r+rowoffset < 10 ? "0" : "" ) + (r+rowoffset) + "."
+  let testid = sheetdisplay + (r+rowoffset < 10 ? "0" : "" ) + (r+rowoffset) + "."
   let examples = []
+  let scenario = []
   for( let c = cs[0]; c <= cs[1]; c++ ) {
     let content = []
     //if ( sheet[r] && sheet[r][c] && sheet[r][c] != '-' ) {
@@ -180,6 +191,7 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
     if ( content[0] ) {
       testid += c
       expression.push( 'Encounter."' + content[0] + '"' )
+      scenario.push(content[0])
       examples.push( "#" + c + ". " + content[0] + ( content[1] ? "\n#   " + content[1] : "" ) )
       let inputid = getInitials(content[0])
       let codeid = inputid+"-"+content[0].length+"."+content[1].length
@@ -196,6 +208,29 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
 
     }
   }
+
+  scenario[scenario.length-1] = "and " + scenario[scenario.length-1]
+  let scenariotext = scenario.join(", ") + ": " + sheet[r][cs[1]+1].split("\n")[0]
+
+  feature.write(`
+  @patient=${testid}
+  Scenario: ${scenariotext}
+    Given call read('../../IMMZ.feature@create') { "file": "./data/tests-${testid}-bundle.json" }
+
+    And url urlBase
+    And path 'PlanDefinition/IMMZD2DTBCG/$apply'
+    And applyParams.parameter[0].valueString = 'Patient/${testid}'
+    And request applyParams
+    When method post
+    Then status 200
+    And resultWithMedication.contained[0].subject.reference = 'Patient/${testid}'
+    And resultWithMedication.contained[1].payload.contentString = "${sheet[r][cs[1]+2].replace(/\n/, "\\n").replace(/"/, '\"')}"
+    And match response contains deep RESULT
+
+    And call read('../../IMMZ.feature@delete') { "file": "./data/del-${testid}-bundle.json" }
+  
+`)
+
   examples.push( "### " + sheet[r][cs[1]+1].split("\n").join("\n### ") )
 
   let exampletext = examples.join("\n")

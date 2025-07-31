@@ -74,8 +74,31 @@ define "One BCG dose from the primary series was administered. The primary serie
 */
 define "Test Validation":
   case
-    when Patient.id = '06.newborn' then "Bacille Calmette–Guérin (BCG) dose 1"
-    when Patient.id = '06.D1' then not "Bacille Calmette–Guérin (BCG) dose 1" 
+    when Patient.id = 'BCG07.0126' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG08.0126' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG09.012346' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG10.012346' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG11.01234' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG12.0123' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG13.01256' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG14.01256' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG15.0125' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG16.0125' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG17.01234' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG18.01237' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG19.0123467' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG20.0123467' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG21.0123' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG22.01256' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG23.01256' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG24.0125' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG25.0125' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG26.01234' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG27.01237' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG28.0123467' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG29.0123467' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG30.0123' then "Bacille Calmette–Guérin (BCG) dose 1"
+    when Patient.id = 'BCG31.0' then not "Bacille Calmette–Guérin (BCG) dose 1" 
       and "One BCG dose from the primary series was administered. The primary series has been completed"
     else 'No test case set'
   end
