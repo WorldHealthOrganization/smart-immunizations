@@ -47,7 +47,7 @@ if ( dt == "single" ) {
   dtmod = 2
 }
 
-const EXTRA = -1
+const EXTRA = 0
 
 let did = sheet[top-6-EXTRA+dtmod][cs[0]+1]
 let rule = sheet[top-5-EXTRA+dtmod][cs[0]+1]
@@ -123,13 +123,15 @@ feature.write(`
 Feature: ${did} Decision Table ${table}
 
   Background: Set the date to use for all tests
-    Given call read('../IMMZD2DT.feature@defaults')
+    Given call read('../IMMZ${prefix}.feature@defaults')
+    And applyParams.parameter[1].resource.parameter[0].valueDate = "202X-XX-XX"
     And resultWithMedication.contained[2].medicationCodeableConcept.coding.code = ""
 
 `)
 
 
 let prevtitles = []
+let prevci = []
 let outputs = {}
 let codeinput = {}
 let codeoutput = {}
@@ -209,8 +211,15 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
     }
   }
 
-  scenario[scenario.length-1] = "and " + scenario[scenario.length-1]
-  let scenariotext = scenario.join(", ") + ": " + sheet[r][cs[1]+1].split("\n")[0]
+  let scenariotext = ""
+  if ( scenario.length > 2 ) {
+    scenario[scenario.length-1] = "and " + scenario[scenario.length-1]
+    scenariotext = scenario.join(", ")
+  } else if ( scenario.length > 1 ) scenariotext = scenario.join(" and ")
+  else scenariotext = scenario.join(" ")
+
+  scenariotext += ": " + sheet[r][cs[1]+1].split("\n")[0]
+
 
   feature.write(`
   @patient=${testid}
@@ -218,7 +227,7 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
     Given call read('../../IMMZ.feature@create') { "file": "./data/tests-${testid}-bundle.json" }
 
     And url urlBase
-    And path 'PlanDefinition/IMMZD2DTBCG/$apply'
+    And path 'PlanDefinition/IMMZ${prefix}${sheetdisplay}${dt}/$apply'
     And applyParams.parameter[0].valueString = 'Patient/${testid}'
     And request applyParams
     When method post
@@ -244,7 +253,9 @@ patient:
 `)
 if ( dt == "CI" ) {
   for( let c = cs[0]; c <= cs[1]; c++ ) {
+    if ( !sheet[r][c] ) sheet[r][c] = prevci[c]
     if ( sheet[r][c].length < 3 ) continue
+    prevci[c] = sheet[r][c]
     let ci = sheet[r][c].match(/.*"(.+)"$/)
     if ( !ci ) ci = sheet[r][c].match(/.*"(.+)"[^"]*$/)
     let ciid = ci[1].replace(/\W/g, '').toLowerCase()

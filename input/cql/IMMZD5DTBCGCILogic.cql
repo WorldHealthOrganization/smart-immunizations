@@ -127,10 +127,11 @@ define "BCG vaccination is contraindicated Guidance":
 */
 define "Test Validation":
   case
-    when Patient.id = '37.CI162' then "Bacille Calmette–Guérin (BCG) vaccination is contraindicated" and "Guidance" = 'Do not vaccinate client with BCG as BCG vaccination is not recommended during pregnancy'
-    when Patient.id = '38.CI167' then "BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 1" and "Guidance" = 'Do not vaccinate client with BCG if the client had previous allergic reaction to any component of the vaccine'
-    when Patient.id = '39.CI187' then "BCG vaccination is contraindicated Case 1" and "Guidance" = 'Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients with immunodeficiency syndromes'
-    when Patient.id = '40.Alt1YCI164' then "BCG vaccination is contraindicated Case 2" and "Guidance" = 'Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients undergoing immunosuppressive treatment'
-    when Patient.id = '41.Agt1YCI164' then "BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 2" and "Guidance" = 'Do not vaccinate client with BCG if client is exposed to or receives immunosuppressive treatment'
+    when Patient.id = 'BCG37.0' then "Bacille Calmette–Guérin (BCG) vaccination is contraindicated" and "Guidance" = 'Do not vaccinate client with BCG as BCG vaccination is not recommended during pregnancy'
+    when Patient.id = 'BCG38.0' then "BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 1" and "Guidance" = 'Do not vaccinate client with BCG if the client had previous allergic reaction to any component of the vaccine'
+    when Patient.id = 'BCG39.0' then "BCG vaccination is contraindicated Case 1" and "Guidance" = 'Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients with immunodeficiency syndromes'
+    when Patient.id = 'BCG40.01' then "BCG vaccination is contraindicated Case 2" and "Guidance" = 'Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients undergoing immunosuppressive treatment'
+    when Patient.id = 'BCG41.01' then "BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 2" and "Guidance" = 'Do not vaccinate client with BCG if client is exposed to or receives immunosuppressive treatment'
     else 'No test case set'
   end
+

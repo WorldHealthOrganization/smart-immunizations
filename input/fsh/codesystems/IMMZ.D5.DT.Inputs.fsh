@@ -82,4 +82,24 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #tcirohrmtmbi-81.72 "The client is receiving or has received medications that may be immunosuppressive" "\"Potential contraindications\" = \"Exposed to immunosuppressive treatment\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Varicella contraindications"
-
+* #tcip-22.52 "The client is pregnant" "\"Potential contraindications\" = \"Currently pregnant\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.BCG contraindications"
+* #tchhosar-51.60 "The client has history of severe allergic reactions" "'\"Potential contraindications\" = \"Severe allergic reactions\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.BCG contraindications"
+* #tchis-41.60 "The client has immunodeficiency syndromes" "\"Potential contraindications\" = \"Immunodeficiency syndromes\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.BCG contraindications"
+* #tcietit-52.72 "The client is exposed to immunosuppressive treatment" "\"Potential contraindications\" = \"Exposed to immunosuppressive treatment\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.BCG contraindications"
+* #csailt1y-32.14 "Client's age is less than 1 year" "\"Age\" < 1 year"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.BCG contraindications"
+* #t-1.1 "T" "h"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.BCG contraindications"
+* #csaimtoet1y-44.14 "Client's age is more than or equal to 1 year" "\"Age\" ≥ 1 year"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.BCG contraindications"

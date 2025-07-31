@@ -1,5 +1,5 @@
 @ignore
-Feature: Scenarios for IMMZ.D2.DT PlanDefinitions
+Feature: Scenarios for IMMZ.D5.DT PlanDefinitions
   
   @defaults
   Scenario: Set the date to use for all tests
@@ -60,7 +60,7 @@ Feature: Scenarios for IMMZ.D2.DT PlanDefinitions
         },
         {
           "resourceType": "MedicationRequest",
-          "doNotPerform": false,
+          "doNotPerform": true,
           "medicationCodeableConcept": {
             "coding": {
               "code": "#string"

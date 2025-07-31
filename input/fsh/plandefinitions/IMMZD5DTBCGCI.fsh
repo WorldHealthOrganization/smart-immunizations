@@ -15,7 +15,7 @@ Usage: #definition
   """]], Has Guidance, Guidance)
 * insert PlanDefMedicationRequestUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
     Contraindication for BCG immunization
-  """]], BCG vaccination is contraindicated, IMMZD5DTMeaslesMR, Draft Medication Request ID for BCG dose )
+  """]], BCG vaccination is contraindicated, IMMZD5DTBCGMR, Draft Medication Request ID for BCG dose )
 * insert PlanDefMedicationRequestUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
     Contraindication for BCG immunization
-  """]], [[Bacille Calmette–Guérin (BCG) vaccination is contraindicated]], IMMZD5DTMeaslesMR, Draft Medication Request ID for BCG dose )
+  """]], [[Bacille Calmette–Guérin (BCG) vaccination is contraindicated]], IMMZD5DTBCGMR, Draft Medication Request ID for BCG dose )

@@ -1,5 +1,5 @@
 @ignore
-Feature: Scenarios for IMMZ.D2.DT PlanDefinitions
+Feature: Scenarios for IMMZ.D18.S PlanDefinitions
   
   @defaults
   Scenario: Set the date to use for all tests
@@ -21,7 +21,7 @@ Feature: Scenarios for IMMZ.D2.DT PlanDefinitions
       ] 
     }
     """
-    And def resultWithoutMedication =
+    And def resultSchedule =
     """
     {
       "resourceType": "CarePlan",
@@ -41,7 +41,7 @@ Feature: Scenarios for IMMZ.D2.DT PlanDefinitions
       ]
     }
     """
-    And def resultWithMedication =
+    And def resultNoSchedule =
     """
     {
       "resourceType": "CarePlan",
@@ -50,21 +50,6 @@ Feature: Scenarios for IMMZ.D2.DT PlanDefinitions
           "resourceType": "RequestGroup",
           "subject": {
             "reference": "#string"
-          }
-        },
-        {
-          "resourceType": "CommunicationRequest",
-          "payload": {
-            "contentString": "#string"
-          }
-        },
-        {
-          "resourceType": "MedicationRequest",
-          "doNotPerform": false,
-          "medicationCodeableConcept": {
-            "coding": {
-              "code": "#string"
-            }
           }
         }
       ]

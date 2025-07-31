@@ -52,4 +52,12 @@ Description:  "CodeSystem for Decision Table Outputs"
 * #cjirccn-52.67 "Clinical judgement is required. Create clinical note" "'\"Immunization recommendation status\" = \"Further evaluation needed\""
   * ^property[+].code = #table
   * ^property[=].valueString = "IMMZ.D5.DT.Varicella contraindications"
-
+* #bcgrbvic-60.57 "Bacille Calmette–Guérin (BCG) vaccination is contraindicated" "'\"Immunization recommendation status\" = \"Contraindicated\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.BCG contraindications"
+* #bvcbccjircacn-97.67 "BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." "'\"Immunization recommendation status\" = \"Further evaluation needed\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.BCG contraindications"
+* #bvic-34.57 "BCG vaccination is contraindicated" "'\"Immunization recommendation status\" = \"Contraindicated\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D5.DT.BCG contraindications"

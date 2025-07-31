@@ -416,7 +416,7 @@ Feature: Determine if the client is due for a bacille Calmette–Guérin (BCG) v
   
 
   @patient=BCG31.0
-  Scenario: and One BCG primary series dose was administered: BCG immunization schedule is complete
+  Scenario: One BCG primary series dose was administered: BCG immunization schedule is complete
     Given call read('../../IMMZ.feature@create') { "file": "./data/tests-BCG31.0-bundle.json" }
 
     And url urlBase
