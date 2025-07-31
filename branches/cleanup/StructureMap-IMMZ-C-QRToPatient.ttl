@@ -1,0 +1,413 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-QRToPatient> a fhir:StructureMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "IMMZ-C-QRToPatient"] ; # 
+  fhir:meta [
+     fhir:versionId [ fhir:v "6" ] ;
+     fhir:lastUpdated [ fhir:v "2023-08-09T20:36:05.234+00:00"^^xsd:dateTime ]
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Placeholder</div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-QRToPatient"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "0.1.0"] ; # 
+  fhir:name [ fhir:v "IMMZ-C-QRToPatient"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:date [ fhir:v "2023-09-27T13:52:37+00:00"^^xsd:dateTime] ; # 
+  fhir:publisher [ fhir:v "World Health Organization (WHO)"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "World Health Organization (WHO)" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://www.who.int" ]
+     ] )
+  ] ) ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "001" ]
+     ] )
+  ] ) ; # 
+  fhir:structure ( [
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse>
+     ] ;
+     fhir:mode [ fhir:v "source" ] ;
+     fhir:alias [ fhir:v "QResp" ]
+  ] [
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/Patient>
+     ] ;
+     fhir:mode [ fhir:v "target" ] ;
+     fhir:alias [ fhir:v "Patient" ]
+  ] ) ; # 
+  fhir:group ( [
+     fhir:name [ fhir:v "QRespToIMMZC" ] ;
+     fhir:typeMode [ fhir:v "none" ] ;
+     fhir:input ( [
+       fhir:name [ fhir:v "qr" ] ;
+       fhir:type [ fhir:v "QResp" ] ;
+       fhir:mode [ fhir:v "source" ]
+     ] [
+       fhir:name [ fhir:v "patient" ] ;
+       fhir:type [ fhir:v "Patient" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] ) ;
+     fhir:rule ( [
+       fhir:name [ fhir:v "process items" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "qr" ] ;
+         fhir:element [ fhir:v "item" ] ;
+         fhir:variable [ fhir:v "item" ]
+       ] ) ;
+       fhir:rule ( [
+         fhir:name [ fhir:v "first answer for identifier" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'uniqueId'" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "patient" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "identifier" ] ;
+           fhir:variable [ fhir:v "identifier" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "set identifier" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "valueString" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "identifier" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "value" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "content" ]
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "set names" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:variable [ fhir:v "name" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'name'" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "patient" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "name" ] ;
+           fhir:variable [ fhir:v "pname" ]
+         ] ) ;
+         fhir:dependent ( [
+           fhir:name [ fhir:v "NameToHumanName" ] ;
+           fhir:variable ( [ fhir:v "name" ] [ fhir:v "pname" ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "first answer for identifier" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'sex'" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "process coding" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "valueCoding" ] ;
+             fhir:variable [ fhir:v "coding" ]
+           ] ) ;
+           fhir:rule ( [
+             fhir:name [ fhir:v "set sex" ] ;
+             fhir:source ( [
+               fhir:context [ fhir:v "coding" ] ;
+               fhir:element [ fhir:v "code" ] ;
+               fhir:variable [ fhir:v "content" ]
+             ] ) ;
+             fhir:target ( [
+               fhir:context [ fhir:v "patient" ] ;
+               fhir:contextType [ fhir:v "variable" ] ;
+               fhir:element [ fhir:v "gender" ] ;
+               fhir:transform [ fhir:v "translate" ] ;
+               fhir:parameter ( [
+                 fhir:value [ fhir:v "content" ]
+               ] [
+                 fhir:value [ fhir:v "http://fhir.org/guides/who/smart-immunization/ConceptMap/IMMZ.C.SexToAdministrativeGender" ]
+               ] [
+                 fhir:value [ fhir:v "code" ]
+               ] )
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "first answer for birthDate" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'birthDate'" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "set birthDate" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "valueDate" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "patient" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "birthDate" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "content" ]
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "set caregiver" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:variable [ fhir:v "caregiver" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'caregiver'" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "patient" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "contact" ] ;
+           fhir:variable [ fhir:v "contact" ]
+         ] [
+           fhir:context [ fhir:v "contact" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "name" ] ;
+           fhir:variable [ fhir:v "hname" ]
+         ] ) ;
+         fhir:dependent ( [
+           fhir:name [ fhir:v "NameToHumanName" ] ;
+           fhir:variable ( [ fhir:v "caregiver" ] [ fhir:v "hname" ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "first answer for phone" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'phone'" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "patient" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "telecom" ] ;
+           fhir:variable [ fhir:v "telecom" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "set phone" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "valueString" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "telecom" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "value" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "content" ]
+             ] )
+           ] [
+             fhir:context [ fhir:v "telecom" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "system" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "phone" ]
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "first answer for administrativeArea" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'administrativeArea'" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "patient" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "address" ] ;
+           fhir:variable [ fhir:v "address" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "set address text" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "valueCoding" ] ;
+             fhir:listMode [ fhir:v "first" ] ;
+             fhir:variable [ fhir:v "coding" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "address" ]
+             ] )
+           ] ) ;
+           fhir:rule ( [
+             fhir:name [ fhir:v "set address to code" ] ;
+             fhir:source ( [
+               fhir:context [ fhir:v "coding" ] ;
+               fhir:element [ fhir:v "code" ] ;
+               fhir:variable [ fhir:v "content" ]
+             ] ) ;
+             fhir:target ( [
+               fhir:context [ fhir:v "address" ] ;
+               fhir:contextType [ fhir:v "variable" ] ;
+               fhir:element [ fhir:v "text" ] ;
+               fhir:transform [ fhir:v "copy" ] ;
+               fhir:parameter ( [
+                 fhir:value [ fhir:v "content" ]
+               ] )
+             ] )
+           ] [
+             fhir:name [ fhir:v "set address to display" ] ;
+             fhir:source ( [
+               fhir:context [ fhir:v "coding" ] ;
+               fhir:element [ fhir:v "display" ] ;
+               fhir:variable [ fhir:v "content" ]
+             ] ) ;
+             fhir:target ( [
+               fhir:context [ fhir:v "address" ] ;
+               fhir:contextType [ fhir:v "variable" ] ;
+               fhir:element [ fhir:v "text" ] ;
+               fhir:transform [ fhir:v "copy" ] ;
+               fhir:parameter ( [
+                 fhir:value [ fhir:v "content" ]
+               ] )
+             ] )
+           ] )
+         ] )
+       ] )
+     ] )
+  ] [
+     fhir:name [ fhir:v "NameToHumanName" ] ;
+     fhir:typeMode [ fhir:v "none" ] ;
+     fhir:input ( [
+       fhir:name [ fhir:v "name" ] ;
+       fhir:mode [ fhir:v "source" ]
+     ] [
+       fhir:name [ fhir:v "hname" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] ) ;
+     fhir:rule ( [
+       fhir:name [ fhir:v "process name items" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "name" ] ;
+         fhir:element [ fhir:v "item" ] ;
+         fhir:variable [ fhir:v "item" ]
+       ] ) ;
+       fhir:rule ( [
+         fhir:name [ fhir:v "first answer for full name" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'fullName'" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "set full name" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "valueString" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "hname" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "text" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "content" ]
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "first answer for first name" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'firstName'" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "set first name" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "valueString" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "hname" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "given" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "content" ]
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "first answer for family name" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "item" ] ;
+           fhir:element [ fhir:v "answer" ] ;
+           fhir:listMode [ fhir:v "first" ] ;
+           fhir:variable [ fhir:v "answer" ] ;
+           fhir:condition [ fhir:v "item.linkId = 'familyName'" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "set family name" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "answer" ] ;
+             fhir:element [ fhir:v "valueString" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "hname" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "family" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [ fhir:v "content" ]
+             ] )
+           ] )
+         ] )
+       ] )
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+
