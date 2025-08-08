@@ -556,3 +556,15 @@ Description:  "CodeSystem for Decision Table Inputs"
 * #obpsdwa-44.112 "One BCG primary series dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"BCG vaccines\" and \"Type of dose\" = \"Primary series\") = 1"
   * ^property[+].code = #table
   * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #hbbdwna-43.117 "Hepatitis B birth dose was not administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\" and \"Birth dose\" = TRUE) = 0"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis B.Birth dose"
+* #csailtmsdul-61.66 "Client's age is less than {Member States defined upper limit}" "Today's date − \"Date of birth\" < Member States defined upper limit"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis B.Birth dose"
+* #csaimtmsdul-61.66 "Client's age is more than {Member States defined upper limit}" "Today's date - \"Date of birth\" > Member States defined upper limit"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis B.Birth dose"
+* #hbbdwa-39.117 "Hepatitis B birth dose was administered" "Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\" and \"Birth dose\" = TRUE) = 1"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis B.Birth dose"

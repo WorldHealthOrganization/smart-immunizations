@@ -207,3 +207,12 @@ Description:  "CodeSystem for Decision Table Outputs"
 * #bisic-37.50 "BCG immunization schedule is complete" "'\"Immunization recommendation status\" = \"Complete\""
   * ^property[+].code = #table
   * ^property[=].valueString = "Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule"
+* #cidfhbmv-48.114 "Client is due for hepatitis B monovalent vaccine" "\"Immunization recommendation status\" = \"Due\" (where \"Type of hepatitis B dose\" = \"Hepatitis B monovalent vaccine\")"
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis B.Birth dose"
+* #csfdsdl-49.0 "Client should follow delayed-start decision logic" ""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis B.Birth dose"
+* #cindfthbbd-48.48 "Client is not due for the hepatitis B birth dose" "\"Immunization recommendation status\" = \"Not due\""
+  * ^property[+].code = #table
+  * ^property[=].valueString = "IMMZ.D2.DT.Hepatitis B.Birth dose"
