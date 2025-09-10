@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="57">
+         <a:s>/*
+ * Library: IMMZDT18 (IMMZ.DT.18.Rabies)
+ * Rule: If patient  has not been vaccinated, give Rabies vaccine 
+ * Trigger: Patient has never been vaccinated and is at high risk of exposure to RABV and/or patient has been exposed to RABV
+ */
+library IMMZDT18</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT18" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZCon" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="8" locator="14:1-14:77" name="Individual is at high risk of RABV exposure" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="8">
+               <a:s>// End Skeleton CQL
+parameter &quot;Individual is at high risk of RABV exposure&quot; </a:s>
+               <a:s r="7">
+                  <a:s>Boolean</a:s>
+               </a:s>
+               <a:s r="6"> default false</a:s>
+            </a:s>
+         </annotation>
+         <default localId="6" locator="14:73-14:77" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+         <parameterTypeSpecifier localId="7" locator="14:57-14:63" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+      </def>
+      <def localId="11" locator="15:1-15:107" name="Individual has continual or frequent risk of exposure (i.e. occupational)" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="11">
+               <a:s>parameter &quot;Individual has continual or frequent risk of exposure (i.e. occupational)&quot; </a:s>
+               <a:s r="10">
+                  <a:s>Boolean</a:s>
+               </a:s>
+               <a:s r="9"> default false</a:s>
+            </a:s>
+         </annotation>
+         <default localId="9" locator="15:103-15:107" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+         <parameterTypeSpecifier localId="10" locator="15:87-15:93" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <statements>
+      <def locator="17:1-17:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="14" locator="22:1-23:47" name="Rabies vaccine immunization history" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="14">
+               <a:s>/* 
+ * @dataElement Rabies vaccine immunization history
+ */
+define &quot;Rabies vaccine immunization history&quot;:
+	</a:s>
+               <a:s r="13">
+                  <a:s r="12">
+                     <a:s>IMMZCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="13">
+                     <a:s>&quot;Rabies Doses Administered to Patient&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="13" locator="23:2-23:47" name="Rabies Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="18" locator="28:1-29:50" name="No-doses" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="18">
+               <a:s>/* 
+ * @dataElement No-doses
+ */
+define &quot;No-doses&quot;:
+	</a:s>
+               <a:s r="17">
+                  <a:s>not </a:s>
+                  <a:s r="16">
+                     <a:s>exists</a:s>
+                     <a:s r="15">
+                        <a:s>(</a:s>
+                        <a:s r="15">
+                           <a:s>&quot;Rabies vaccine immunization history&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="17" locator="29:2-29:50" xsi:type="Not">
+            <operand localId="16" locator="29:6-29:50" xsi:type="Exists">
+               <operand localId="15" locator="29:12-29:50" name="Rabies vaccine immunization history" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="23" locator="34:1-35:61" name="1 dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="23">
+               <a:s>/* 
+ * @dataElement 1 dose
+ */
+define &quot;1 dose&quot;:
+	</a:s>
+               <a:s r="22">
+                  <a:s r="20">
+                     <a:s r="19">
+                        <a:s>IMMZCom</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="20">
+                        <a:s>&quot;Number of Rabies Doses Administered to Patient&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="21"> = 1</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="22" locator="35:2-35:61" xsi:type="Equal">
+            <operand localId="20" locator="35:2-35:57" name="Number of Rabies Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+            <operand localId="21" locator="35:61" valueType="t:Integer" value="1" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="36" locator="40:1-42:104" name="Date last Rabies dose given >= 7 days" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="36">
+               <a:s>/* 
+ * @dataElement Date last Rabies dose given >= 7 days
+ */
+define &quot;Date last Rabies dose given >= 7 days&quot;:
+	</a:s>
+               <a:s r="35">
+                  <a:s r="29">
+                     <a:s r="26">
+                        <a:s>
+                           <a:s r="25">
+                              <a:s r="24">
+                                 <a:s>
+                                    <a:s>IMMZCom.&quot;Date last Rabies dose given Dose Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> equal</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="29">
+                        <a:s r="28">
+                           <a:s>7 'days'</a:s>
+                        </a:s>
+                        <a:s> before</a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="27">
+                        <a:s>Today()</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	or </a:s>
+                  <a:s r="34">
+                     <a:s r="31">
+                        <a:s r="30">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="31">
+                           <a:s>&quot;Date last Rabies dose given Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="34">
+                        <a:s>more than </a:s>
+                        <a:s r="33">
+                           <a:s>7 'days'</a:s>
+                        </a:s>
+                        <a:s> before</a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="32">
+                        <a:s>Today()</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="35" locator="41:2-42:104" xsi:type="Or">
+            <operand localId="29" locator="41:2-41:97" xsi:type="SameAs">
+               <operand localId="26" locator="41:2-41:73" xsi:type="Query">
+                  <source localId="25" locator="41:2-41:73" alias="equal">
+                     <expression localId="24" locator="41:2-41:67" name="Date last Rabies dose given Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </source>
+               </operand>
+               <operand locator="41:91-41:97" xsi:type="Subtract">
+                  <operand localId="27" locator="41:91-41:97" xsi:type="Today"/>
+                  <operand localId="28" locator="41:75-41:82" value="7" unit="days" xsi:type="Quantity"/>
+               </operand>
+            </operand>
+            <operand localId="34" locator="42:5-42:104" xsi:type="Before">
+               <operand localId="31" locator="42:5-42:70" name="Date last Rabies dose given Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand locator="42:98-42:104" xsi:type="Subtract">
+                  <operand localId="32" locator="42:98-42:104" xsi:type="Today"/>
+                  <operand localId="33" locator="42:82-42:89" value="7" unit="days" xsi:type="Quantity"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="44" locator="57:1-58:131" name="Should vaccinate patient with Rabies vaccine (PrEP strategy) on 2 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="44">
+               <a:s>/*
+ * Rule: Should vaccinate patient with Rabies vaccine (PrEP strategy) on 2 dose scheme
+ * Annotations:
+ * 	 - Provide Rabies immunizations – using the &quot;PrEP vaccination strategy – NO PREVIOUS&quot; schedule (2 dose scheme)
+ * 	 - Provide Rabies immunizations – using the &quot;PrEP vaccination strategy – 1 PREVIOUS&quot; schedule (2 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Rabies (PrEP strategy) - No Doses
+ * 	 - Immunize Patient for Rabies (PrEP strategy) - 1 Dose
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Rabies vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Individual is at high risk of RABV exposure&quot; = true)) or ((&quot;Rabies vaccine immunization history&quot; = &quot;1 dose&quot;) and (&quot;Date last Rabies dose given&quot; >= &quot;7 days&quot; = true)))
+ */
+define &quot;Should vaccinate patient with Rabies vaccine (PrEP strategy) on 2 dose scheme&quot;:
+	</a:s>
+               <a:s r="43">
+                  <a:s>(</a:s>
+                  <a:s r="43">
+                     <a:s r="39">
+                        <a:s>(</a:s>
+                        <a:s r="39">
+                           <a:s r="37">
+                              <a:s>(</a:s>
+                              <a:s r="37">
+                                 <a:s>&quot;No-doses&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="38">
+                              <a:s>(</a:s>
+                              <a:s r="38">
+                                 <a:s>&quot;Individual is at high risk of RABV exposure&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                     <a:s> or </a:s>
+                     <a:s r="42">
+                        <a:s>(</a:s>
+                        <a:s r="42">
+                           <a:s r="40">
+                              <a:s>(</a:s>
+                              <a:s r="40">
+                                 <a:s>&quot;1 dose&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="41">
+                              <a:s>(</a:s>
+                              <a:s r="41">
+                                 <a:s>&quot;Date last Rabies dose given >= 7 days&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>)</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="43" locator="58:2-58:131" xsi:type="Or">
+            <operand localId="39" locator="58:3-58:68" xsi:type="And">
+               <operand localId="37" locator="58:4-58:15" name="No-doses" xsi:type="ExpressionRef"/>
+               <operand localId="38" locator="58:21-58:67" name="Individual is at high risk of RABV exposure" xsi:type="ParameterRef"/>
+            </operand>
+            <operand localId="42" locator="58:73-58:130" xsi:type="And">
+               <operand localId="40" locator="58:74-58:83" name="1 dose" xsi:type="ExpressionRef"/>
+               <operand localId="41" locator="58:89-58:129" name="Date last Rabies dose given >= 7 days" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="51" locator="64:1-67:25" name="VNA levels" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="51">
+               <a:s>/* 
+ * @dataElement VNA levels
+ */
+define &quot;VNA levels&quot;:
+	</a:s>
+               <a:s r="50">
+                  <a:s r="48">
+                     <a:s r="47">
+                        <a:s>First(
+		</a:s>
+                        <a:s r="46">
+                           <a:s r="45">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="46">
+                              <a:s>&quot;VNA Test Results&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+	)</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="48">
+                        <a:s>value</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> as </a:s>
+                  <a:s r="49">
+                     <a:s>FHIR.Quantity</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="50" locator="65:2-67:25" strict="false" xsi:type="As">
+            <operand localId="48" locator="65:2-67:8" path="value" xsi:type="Property">
+               <source localId="47" locator="65:2-67:2" xsi:type="First">
+                  <source localId="46" locator="66:3-66:28" name="VNA Test Results" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </source>
+            </operand>
+            <asTypeSpecifier localId="49" locator="67:13-67:25" name="fhir:Quantity" xsi:type="NamedTypeSpecifier"/>
+         </expression>
+      </def>
+      <def localId="57" locator="80:1-81:115" name="Should vaccinate patient with Rabies vaccine Booster (PrEP strategy)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="57">
+               <a:s>/*
+ * Rule: Should vaccinate patient with Rabies vaccine Booster (PrEP strategy)
+ * Annotations:
+ * 	 - Provide Rabies immunizations – using the &quot;PrEP vaccination strategy – BOOSTER&quot; schedule (1 dose booster)
+ * Outputs:
+ * 	 - Immunize Patient for Rabies vaccine Booster (PrEP strategy)
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((&quot;Individual has continual or frequent risk of exposure (i.e. occupational)&quot; = true) and (&quot;VNA levels&quot; &lt; &quot;0.5 IU/mL&quot;))
+ */
+define &quot;Should vaccinate patient with Rabies vaccine Booster (PrEP strategy)&quot;:
+	</a:s>
+               <a:s r="56">
+                  <a:s>(</a:s>
+                  <a:s r="56">
+                     <a:s r="52">
+                        <a:s>(</a:s>
+                        <a:s r="52">
+                           <a:s>&quot;Individual has continual or frequent risk of exposure (i.e. occupational)&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                     <a:s> and </a:s>
+                     <a:s r="55">
+                        <a:s>(</a:s>
+                        <a:s r="55">
+                           <a:s r="53">
+                              <a:s>&quot;VNA levels&quot;</a:s>
+                           </a:s>
+                           <a:s> &lt; </a:s>
+                           <a:s r="54">
+                              <a:s>0.5 '[iU]/mL'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>)</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="56" locator="81:2-81:115" xsi:type="And">
+            <operand localId="52" locator="81:3-81:79" name="Individual has continual or frequent risk of exposure (i.e. occupational)" xsi:type="ParameterRef"/>
+            <operand localId="55" locator="81:85-81:114" xsi:type="Less">
+               <operand name="ToQuantity" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="53" locator="81:86-81:97" name="VNA levels" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="54" locator="81:101-81:113" value="0.5" unit="[iU]/mL" xsi:type="Quantity"/>
+            </operand>
+         </expression>
+      </def>
+   </statements>
+</library>

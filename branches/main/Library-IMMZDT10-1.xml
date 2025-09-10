@@ -1,0 +1,1377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="206">
+         <a:s>/*
+ * Library: IMMZDT10 (IMMZ.DT.10.HPV)
+ * Rule: If child or person has not been vaccinated, give HPV vaccine according to the defined schedule 
+ * Trigger: Patient has never received HPV vaccination
+ */
+library IMMZDT10</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT10" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:33" localIdentifier="IMMZCon" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="13:1-13:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="7" locator="14:1-14:28" localIdentifier="FC" path="http://fhir.org/guides/who/smart-immunization/FHIRCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="7">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRCommon</a:s>
+               </a:s>
+               <a:s> called FC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="16:1-16:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="21" locator="28:1-31:60" name="Should vaccinate Patient for HPV because no doses on a two-dose schedule" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="21">
+               <a:s>/*
+ * Rule: Should vaccinate Patient for HPV because no doses on a two-dose schedule
+ * Annotations:
+ * 	 - Provide HPV immunizations - using the &quot;HPV vaccine immunization - NO PREVIOUS&quot; schedule (2 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for HPV - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;HPV vaccine history&quot; = &quot;No-doses&quot;) and (&quot;Sex&quot; = &quot;Female&quot;)) and (&quot;Current Patient Age in Years&quot; >= 9)) and (&quot;Current Patient Age in Years&quot; &lt;= 14))
+ */
+define &quot;Should vaccinate Patient for HPV because no doses on a two-dose schedule&quot;:
+	</a:s>
+               <a:s r="20">
+                  <a:s r="14">
+                     <a:s r="9">
+                        <a:s r="8">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="9">
+                           <a:s>&quot;No HPV Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="13">
+                        <a:s r="11">
+                           <a:s r="10">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="11">
+                              <a:s>&quot;Patient Biological Sex&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="12">
+                           <a:s>'female'</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="19">
+                     <a:s r="16">
+                        <a:s r="15">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="16">
+                           <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="17"> between 9 and 14</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="20" locator="29:2-31:60" xsi:type="And">
+            <operand localId="14" locator="29:2-30:48" xsi:type="And">
+               <operand localId="9" locator="29:2-29:47" name="No HPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="13" locator="30:6-30:48" xsi:type="Equal">
+                  <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="11" locator="30:6-30:37" name="Patient Biological Sex" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="12" locator="30:41-30:48" valueType="t:String" value="female" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="19" locator="31:6-31:60" xsi:type="And">
+               <operand xsi:type="GreaterOrEqual">
+                  <operand localId="16" locator="31:6-31:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="17" locator="31:53" valueType="t:Integer" value="9" xsi:type="Literal"/>
+               </operand>
+               <operand xsi:type="LessOrEqual">
+                  <operand localId="16" locator="31:6-31:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="18" locator="31:59-31:60" valueType="t:Integer" value="14" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="49" locator="44:1-49:91" name="Should vaccinate Patient for HPV a second time on a two-dose schedule" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="49">
+               <a:s>/*
+ * Rule: Should vaccinate Patient for HPV a second time on a two-dose schedule
+ * Annotations:
+ * 	 - Provide HPV immunizations - using &quot;HPV vaccine immunization - 1 PREVIOUS&quot; schedule (2 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for HPV - 1 Dose
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((((&quot;HPV vaccine history&quot; = &quot;1 dose&quot;) and (&quot;Sex&quot; = &quot;Female&quot;)) and (&quot;Current Patient Age in Years&quot; >=  9)) and (&quot;Current Patient Age in Years&quot; &lt;= 14)) and (&quot;Date last HPV dose given&quot; >= &quot;6 months&quot;)) and (&quot;Date last HPV dose given&quot; &lt;= &quot;12 months&quot;))
+ */
+define &quot;Should vaccinate Patient for HPV a second time on a two-dose schedule&quot;:
+	</a:s>
+               <a:s r="48">
+                  <a:s r="42">
+                     <a:s r="36">
+                        <a:s r="30">
+                           <a:s r="25">
+                              <a:s r="23">
+                                 <a:s r="22">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="23">
+                                    <a:s>&quot;Number of HPV Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="24"> = 1</a:s>
+                           </a:s>
+                           <a:s>
+	and </a:s>
+                           <a:s r="29">
+                              <a:s r="27">
+                                 <a:s r="26">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="27">
+                                    <a:s>&quot;Patient Biological Sex&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> = </a:s>
+                              <a:s r="28">
+                                 <a:s>'female'</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="35">
+                           <a:s r="32">
+                              <a:s r="31">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="32">
+                                 <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="33"> between 9 and 14</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+	and </a:s>
+                     <a:s r="41">
+                        <a:s r="38">
+                           <a:s r="37">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="38">
+                              <a:s>&quot;Date Last HPV Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="41">
+                           <a:s>more than </a:s>
+                           <a:s r="40">
+                              <a:s>6 month</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="39">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+	and </a:s>
+                  <a:s r="47">
+                     <a:s r="44">
+                        <a:s r="43">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="44">
+                           <a:s>&quot;Date Last HPV Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="47">
+                        <a:s>less than </a:s>
+                        <a:s r="46">
+                           <a:s>12 month</a:s>
+                        </a:s>
+                        <a:s> before</a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="45">
+                        <a:s>Today()</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="48" locator="45:2-49:91" xsi:type="And">
+            <operand localId="42" locator="45:2-48:90" xsi:type="And">
+               <operand localId="36" locator="45:2-47:60" xsi:type="And">
+                  <operand localId="30" locator="45:2-46:48" xsi:type="And">
+                     <operand localId="25" locator="45:2-45:58" xsi:type="Equal">
+                        <operand localId="23" locator="45:2-45:54" name="Number of HPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="24" locator="45:58" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="29" locator="46:6-46:48" xsi:type="Equal">
+                        <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                           <operand localId="27" locator="46:6-46:37" name="Patient Biological Sex" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        </operand>
+                        <operand localId="28" locator="46:41-46:48" valueType="t:String" value="female" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <operand localId="35" locator="47:6-47:60" xsi:type="And">
+                     <operand xsi:type="GreaterOrEqual">
+                        <operand localId="32" locator="47:6-47:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="33" locator="47:53" valueType="t:Integer" value="9" xsi:type="Literal"/>
+                     </operand>
+                     <operand xsi:type="LessOrEqual">
+                        <operand localId="32" locator="47:6-47:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="34" locator="47:59-47:60" valueType="t:Integer" value="14" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="41" locator="48:6-48:90" xsi:type="Before">
+                  <operand localId="38" locator="48:6-48:57" name="Date Last HPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="48:84-48:90" xsi:type="Subtract">
+                     <operand localId="39" locator="48:84-48:90" xsi:type="Today"/>
+                     <operand localId="40" locator="48:69-48:75" value="6" unit="month" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="47" locator="49:6-49:91" xsi:type="In">
+               <operand localId="44" locator="49:6-49:57" name="Date Last HPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand locator="49:59-49:76" lowClosed="false" highClosed="false" xsi:type="Interval">
+                  <low locator="49:85-49:91" xsi:type="Subtract">
+                     <operand localId="45" locator="49:85-49:91" xsi:type="Today"/>
+                     <operand localId="46" locator="49:69-49:76" value="12" unit="month" xsi:type="Quantity"/>
+                  </low>
+                  <high localId="45" locator="49:85-49:91" xsi:type="Today"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="82" locator="54:1-57:145" name="Time between first and second HPV doses less than 5 months" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="82">
+               <a:s>/* 
+ * @dataElement Time between first and second HPV doses in Months
+ */
+define &quot;Time between first and second HPV doses less than 5 months&quot;:
+	</a:s>
+               <a:s r="81">
+                  <a:s r="64">
+                     <a:s>First(</a:s>
+                     <a:s r="63">
+                        <a:s>
+                           <a:s r="51">
+                              <a:s r="50">
+                                 <a:s>
+                                    <a:s>IMMZCom.&quot;HPV Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> I</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="57">
+                           <a:s>where </a:s>
+                           <a:s r="57">
+                              <a:s r="55">
+                                 <a:s r="54">
+                                    <a:s>(</a:s>
+                                    <a:s r="54">
+                                       <a:s>singleton from </a:s>
+                                       <a:s r="53">
+                                          <a:s r="52">
+                                             <a:s>I</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="53">
+                                             <a:s>protocolApplied</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="55">
+                                    <a:s>doseNumber</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="56"> = 2</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="62">
+                           <a:s>return </a:s>
+                           <a:s r="61">
+                              <a:s r="58">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="61">
+                                 <a:s>ToDate(</a:s>
+                                 <a:s r="60">
+                                    <a:s r="59">
+                                       <a:s>I</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="60">
+                                       <a:s>occurrence</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>)</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s> 
+	</a:s>
+                  <a:s r="81">
+                     <a:s>less than </a:s>
+                     <a:s r="80">
+                        <a:s>5 month</a:s>
+                     </a:s>
+                     <a:s> after</a:s>
+                  </a:s>
+                  <a:s> 
+	</a:s>
+                  <a:s r="79">
+                     <a:s>First(</a:s>
+                     <a:s r="78">
+                        <a:s>
+                           <a:s r="66">
+                              <a:s r="65">
+                                 <a:s>
+                                    <a:s>IMMZCom.&quot;HPV Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> I</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="72">
+                           <a:s>where </a:s>
+                           <a:s r="72">
+                              <a:s r="70">
+                                 <a:s r="69">
+                                    <a:s>(</a:s>
+                                    <a:s r="69">
+                                       <a:s>singleton from </a:s>
+                                       <a:s r="68">
+                                          <a:s r="67">
+                                             <a:s>I</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="68">
+                                             <a:s>protocolApplied</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="70">
+                                    <a:s>doseNumber</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="71"> = 1</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="77">
+                           <a:s>return </a:s>
+                           <a:s r="76">
+                              <a:s r="73">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="76">
+                                 <a:s>ToDate(</a:s>
+                                 <a:s r="75">
+                                    <a:s r="74">
+                                       <a:s>I</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="75">
+                                       <a:s>occurrence</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>)</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="81" locator="55:2-57:145" xsi:type="In">
+            <operand name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="64" locator="55:2-55:145" xsi:type="First">
+                  <source localId="63" locator="55:8-55:144" xsi:type="Query">
+                     <source localId="51" locator="55:8-55:52" alias="I">
+                        <expression localId="50" locator="55:8-55:50" name="HPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     </source>
+                     <where localId="57" locator="55:54-55:108" xsi:type="Equal">
+                        <operand xsi:type="ToInteger">
+                           <operand localId="55" locator="55:60-55:104" path="doseNumber" xsi:type="Property">
+                              <source localId="54" locator="55:60-55:93" xsi:type="SingletonFrom">
+                                 <operand localId="53" locator="55:76-55:92" path="protocolApplied" scope="I" xsi:type="Property"/>
+                              </source>
+                           </operand>
+                        </operand>
+                        <operand localId="56" locator="55:108" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                     </where>
+                     <return localId="62" locator="55:110-55:144">
+                        <expression localId="61" locator="55:117-55:144" name="ToDate" libraryName="IMMZCom" xsi:type="FunctionRef">
+                           <operand xsi:type="As">
+                              <operand asType="fhir:string" xsi:type="As">
+                                 <operand localId="60" locator="55:132-55:143" path="occurrence" scope="I" xsi:type="Property"/>
+                              </operand>
+                              <asTypeSpecifier xsi:type="ChoiceTypeSpecifier">
+                                 <choice name="fhir:date" xsi:type="NamedTypeSpecifier"/>
+                                 <choice name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                              </asTypeSpecifier>
+                           </operand>
+                        </expression>
+                     </return>
+                  </source>
+               </operand>
+            </operand>
+            <operand locator="56:2-56:18" lowClosed="false" highClosed="false" xsi:type="Interval">
+               <low name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="79" locator="57:2-57:145" xsi:type="First">
+                     <source localId="78" locator="57:8-57:144" xsi:type="Query">
+                        <source localId="66" locator="57:8-57:52" alias="I">
+                           <expression localId="65" locator="57:8-57:50" name="HPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        </source>
+                        <where localId="72" locator="57:54-57:108" xsi:type="Equal">
+                           <operand xsi:type="ToInteger">
+                              <operand localId="70" locator="57:60-57:104" path="doseNumber" xsi:type="Property">
+                                 <source localId="69" locator="57:60-57:93" xsi:type="SingletonFrom">
+                                    <operand localId="68" locator="57:76-57:92" path="protocolApplied" scope="I" xsi:type="Property"/>
+                                 </source>
+                              </operand>
+                           </operand>
+                           <operand localId="71" locator="57:108" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                        </where>
+                        <return localId="77" locator="57:110-57:144">
+                           <expression localId="76" locator="57:117-57:144" name="ToDate" libraryName="IMMZCom" xsi:type="FunctionRef">
+                              <operand xsi:type="As">
+                                 <operand asType="fhir:string" xsi:type="As">
+                                    <operand localId="75" locator="57:132-57:143" path="occurrence" scope="I" xsi:type="Property"/>
+                                 </operand>
+                                 <asTypeSpecifier xsi:type="ChoiceTypeSpecifier">
+                                    <choice name="fhir:date" xsi:type="NamedTypeSpecifier"/>
+                                    <choice name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                                 </asTypeSpecifier>
+                              </operand>
+                           </expression>
+                        </return>
+                     </source>
+                  </operand>
+               </low>
+               <high locator="57:2-57:145" xsi:type="Add">
+                  <operand name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="79" locator="57:2-57:145" xsi:type="First">
+                        <source localId="78" locator="57:8-57:144" xsi:type="Query">
+                           <source localId="66" locator="57:8-57:52" alias="I">
+                              <expression localId="65" locator="57:8-57:50" name="HPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           </source>
+                           <where localId="72" locator="57:54-57:108" xsi:type="Equal">
+                              <operand xsi:type="ToInteger">
+                                 <operand localId="70" locator="57:60-57:104" path="doseNumber" xsi:type="Property">
+                                    <source localId="69" locator="57:60-57:93" xsi:type="SingletonFrom">
+                                       <operand localId="68" locator="57:76-57:92" path="protocolApplied" scope="I" xsi:type="Property"/>
+                                    </source>
+                                 </operand>
+                              </operand>
+                              <operand localId="71" locator="57:108" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                           </where>
+                           <return localId="77" locator="57:110-57:144">
+                              <expression localId="76" locator="57:117-57:144" name="ToDate" libraryName="IMMZCom" xsi:type="FunctionRef">
+                                 <operand xsi:type="As">
+                                    <operand asType="fhir:string" xsi:type="As">
+                                       <operand localId="75" locator="57:132-57:143" path="occurrence" scope="I" xsi:type="Property"/>
+                                    </operand>
+                                    <asTypeSpecifier xsi:type="ChoiceTypeSpecifier">
+                                       <choice name="fhir:date" xsi:type="NamedTypeSpecifier"/>
+                                       <choice name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                                    </asTypeSpecifier>
+                                 </operand>
+                              </expression>
+                           </return>
+                        </source>
+                     </operand>
+                  </operand>
+                  <operand localId="80" locator="56:12-56:18" value="5" unit="month" xsi:type="Quantity"/>
+               </high>
+            </operand>
+         </expression>
+      </def>
+      <def localId="101" locator="62:1-64:34" name="Time since initial HPV dose more than 6 months" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="101">
+               <a:s>/* 
+ * @dataElement Time since initial HPV dose in Months
+ */
+define &quot;Time since initial HPV dose more than 6 months&quot;:
+	</a:s>
+               <a:s r="100">
+                  <a:s r="97">
+                     <a:s>First(</a:s>
+                     <a:s r="96">
+                        <a:s>
+                           <a:s r="84">
+                              <a:s r="83">
+                                 <a:s>
+                                    <a:s>IMMZCom.&quot;HPV Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> I</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="90">
+                           <a:s>where </a:s>
+                           <a:s r="90">
+                              <a:s r="88">
+                                 <a:s r="87">
+                                    <a:s>(</a:s>
+                                    <a:s r="87">
+                                       <a:s>singleton from </a:s>
+                                       <a:s r="86">
+                                          <a:s r="85">
+                                             <a:s>I</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="86">
+                                             <a:s>protocolApplied</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="88">
+                                    <a:s>doseNumber</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="89"> = 1</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="95">
+                           <a:s>return </a:s>
+                           <a:s r="94">
+                              <a:s r="91">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="94">
+                                 <a:s>ToDate(</a:s>
+                                 <a:s r="93">
+                                    <a:s r="92">
+                                       <a:s>I</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="93">
+                                       <a:s>occurrence</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>)</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s> 
+	</a:s>
+                  <a:s r="100">
+                     <a:s>more than </a:s>
+                     <a:s r="99">
+                        <a:s>6 months</a:s>
+                     </a:s>
+                     <a:s> before</a:s>
+                  </a:s>
+                  <a:s> </a:s>
+                  <a:s r="98">
+                     <a:s>Today()</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="100" locator="63:2-64:34" xsi:type="Before">
+            <operand name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="97" locator="63:2-63:145" xsi:type="First">
+                  <source localId="96" locator="63:8-63:144" xsi:type="Query">
+                     <source localId="84" locator="63:8-63:52" alias="I">
+                        <expression localId="83" locator="63:8-63:50" name="HPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     </source>
+                     <where localId="90" locator="63:54-63:108" xsi:type="Equal">
+                        <operand xsi:type="ToInteger">
+                           <operand localId="88" locator="63:60-63:104" path="doseNumber" xsi:type="Property">
+                              <source localId="87" locator="63:60-63:93" xsi:type="SingletonFrom">
+                                 <operand localId="86" locator="63:76-63:92" path="protocolApplied" scope="I" xsi:type="Property"/>
+                              </source>
+                           </operand>
+                        </operand>
+                        <operand localId="89" locator="63:108" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                     </where>
+                     <return localId="95" locator="63:110-63:144">
+                        <expression localId="94" locator="63:117-63:144" name="ToDate" libraryName="IMMZCom" xsi:type="FunctionRef">
+                           <operand xsi:type="As">
+                              <operand asType="fhir:string" xsi:type="As">
+                                 <operand localId="93" locator="63:132-63:143" path="occurrence" scope="I" xsi:type="Property"/>
+                              </operand>
+                              <asTypeSpecifier xsi:type="ChoiceTypeSpecifier">
+                                 <choice name="fhir:date" xsi:type="NamedTypeSpecifier"/>
+                                 <choice name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                              </asTypeSpecifier>
+                           </operand>
+                        </expression>
+                     </return>
+                  </source>
+               </operand>
+            </operand>
+            <operand locator="64:28-64:34" xsi:type="Subtract">
+               <operand localId="98" locator="64:28-64:34" xsi:type="Today"/>
+               <operand localId="99" locator="64:12-64:19" value="6" unit="months" xsi:type="Quantity"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="121" locator="77:1-82:60" name="Should vaccinate Patient for HPV Dose 3 - due to short interval between first and second dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="121">
+               <a:s>/*
+ * Rule: Should vaccinate Patient for HPV Dose 3 - due to short interval between first and second dose
+ * Annotations:
+ * 	 - Provide additional HPV immunizations - using &quot;HPV vaccination immunization - 2 PREVIOUS&quot; schedule (2+1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for HPV - 2 Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((((&quot;HPV vaccine history&quot; = &quot;2 doses&quot;) and (&quot;Sex&quot; = &quot;Female&quot;)) and (&quot;Time between first and second HPV doses in Months&quot; &lt; 5)) and (&quot;Time since initial HPV dose in Months&quot; >= 6)) and (&quot;Current Patient Age in Years&quot; >= 9)) and (&quot;Current Patient Age in Years&quot; &lt;= 14))
+ */
+define &quot;Should vaccinate Patient for HPV Dose 3 - due to short interval between first and second dose&quot;:
+	</a:s>
+               <a:s r="120">
+                  <a:s r="114">
+                     <a:s r="112">
+                        <a:s r="110">
+                           <a:s r="105">
+                              <a:s r="103">
+                                 <a:s r="102">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="103">
+                                    <a:s>&quot;Number of HPV Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="104"> = 2</a:s>
+                           </a:s>
+                           <a:s>
+	and </a:s>
+                           <a:s r="109">
+                              <a:s r="107">
+                                 <a:s r="106">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="107">
+                                    <a:s>&quot;Patient Biological Sex&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> = </a:s>
+                              <a:s r="108">
+                                 <a:s>'female'</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="111">
+                           <a:s>&quot;Time between first and second HPV doses less than 5 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="113">
+                        <a:s>&quot;Time since initial HPV dose more than 6 months&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="119">
+                     <a:s r="116">
+                        <a:s r="115">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="116">
+                           <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="117"> between 9 and 14</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="120" locator="78:2-82:60" xsi:type="And">
+            <operand localId="114" locator="78:2-81:53" xsi:type="And">
+               <operand localId="112" locator="78:2-80:65" xsi:type="And">
+                  <operand localId="110" locator="78:2-79:48" xsi:type="And">
+                     <operand localId="105" locator="78:2-78:58" xsi:type="Equal">
+                        <operand localId="103" locator="78:2-78:54" name="Number of HPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="104" locator="78:58" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="109" locator="79:6-79:48" xsi:type="Equal">
+                        <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                           <operand localId="107" locator="79:6-79:37" name="Patient Biological Sex" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        </operand>
+                        <operand localId="108" locator="79:41-79:48" valueType="t:String" value="female" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <operand localId="111" locator="80:6-80:65" name="Time between first and second HPV doses less than 5 months" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="113" locator="81:6-81:53" name="Time since initial HPV dose more than 6 months" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="119" locator="82:6-82:60" xsi:type="And">
+               <operand xsi:type="GreaterOrEqual">
+                  <operand localId="116" locator="82:6-82:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="117" locator="82:53" valueType="t:Integer" value="9" xsi:type="Literal"/>
+               </operand>
+               <operand xsi:type="LessOrEqual">
+                  <operand localId="116" locator="82:6-82:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="118" locator="82:59-82:60" valueType="t:Integer" value="14" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="142" locator="95:1-106:2" name="Should vaccinate Patient for HPV because no doses on a three-dose schedule" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="142">
+               <a:s>/*
+ * Rule: Should vaccinate Patient for HPV because no doses on a three-dose schedule
+ * Annotations:
+ * 	 - Provide HPV immunizations - using the &quot;HPV vaccine immunization - NO PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for HPV - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;HPV vaccine history&quot; = &quot;No-doses&quot;) and (&quot;Sex&quot; = &quot;Female&quot;)) and (&quot;Current Patient Age in Years&quot; >= 15)) or ((((&quot;HPV vaccine history&quot; = &quot;No-doses&quot;) and (&quot;Sex&quot; = &quot;Female&quot;)) and (&quot;Current Patient Age in Years&quot; &lt; 15)) and (&quot;Immunocompromised&quot; = &quot;True&quot;)))
+ */
+define &quot;Should vaccinate Patient for HPV because no doses on a three-dose schedule&quot;:
+	</a:s>
+               <a:s r="141">
+                  <a:s r="128">
+                     <a:s r="123">
+                        <a:s r="122">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="123">
+                           <a:s>&quot;No HPV Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="127">
+                        <a:s r="125">
+                           <a:s r="124">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="125">
+                              <a:s>&quot;Patient Biological Sex&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="126">
+                           <a:s>'female'</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and 
+	</a:s>
+                  <a:s r="140">
+                     <a:s>(
+		</a:s>
+                     <a:s r="140">
+                        <a:s r="132">
+                           <a:s r="130">
+                              <a:s r="129">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="130">
+                                 <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="131"> >= 15</a:s>
+                        </a:s>
+                        <a:s>
+		or 
+		</a:s>
+                        <a:s r="139">
+                           <a:s>(
+			</a:s>
+                           <a:s r="139">
+                              <a:s r="136">
+                                 <a:s r="134">
+                                    <a:s r="133">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="134">
+                                       <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s r="135"> &lt; 15</a:s>
+                              </a:s>
+                              <a:s>
+			and </a:s>
+                              <a:s r="138">
+                                 <a:s r="137">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="138">
+                                    <a:s>&quot;Immunocompromised = True&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="141" locator="96:2-106:2" xsi:type="And">
+            <operand localId="128" locator="96:2-97:48" xsi:type="And">
+               <operand localId="123" locator="96:2-96:47" name="No HPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="127" locator="97:6-97:48" xsi:type="Equal">
+                  <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="125" locator="97:6-97:37" name="Patient Biological Sex" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="126" locator="97:41-97:48" valueType="t:String" value="female" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="140" locator="99:2-106:2" xsi:type="Or">
+               <operand localId="132" locator="100:3-100:46" xsi:type="GreaterOrEqual">
+                  <operand localId="130" locator="100:3-100:40" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="131" locator="100:45-100:46" valueType="t:Integer" value="15" xsi:type="Literal"/>
+               </operand>
+               <operand localId="139" locator="102:3-105:3" xsi:type="And">
+                  <operand localId="136" locator="103:4-103:46" xsi:type="Less">
+                     <operand localId="134" locator="103:4-103:41" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="135" locator="103:45-103:46" valueType="t:Integer" value="15" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="138" locator="104:8-104:41" name="Immunocompromised = True" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="177" locator="123:1-135:2" name="Should vaccinate Patient for HPV because one dose on a three-dose schedule" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="177">
+               <a:s>/*
+ * Rule: Should vaccinate Patient for HPV because one dose on a three-dose schedule
+ * Annotations:
+ * 	 - Provide HPV immunizations - using the &quot;HPV vaccine immunization -  ONE PREVIOUS&quot; schedule (3 dose scheme)
+ * 	 - 
+ * Outputs:
+ * 	 - Immunize Patient for HPV - 1 Dose
+ * 	 - 
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- 
+ * Logic:
+ *	 ((((((&quot;HPV vaccine history&quot; = &quot;1 dose&quot;) and (&quot;Sex&quot; = &quot;Female&quot;)) and (&quot;Current Patient Age in  Years&quot; >= 15)) and (&quot;Date last HPV dose given&quot; >= &quot;1 month&quot;)) and (&quot;Date last HPV does given&quot; &lt;= &quot;2 months&quot;)) or ((((((&quot;HPV vaccine history&quot; = &quot;1 dose&quot;) and (&quot;Sex&quot; = &quot;Female&quot;)) and (&quot;Current Patient Age in Years&quot; &lt; 15)) and (&quot;Immunocompromised&quot; = &quot;True&quot;)) and (&quot;Date last HPV dose given&quot; >= &quot;1 month&quot;)) and (&quot;Date last HPV dose given&quot; &lt;= &quot;2 months&quot;)))
+ */
+define &quot;Should vaccinate Patient for HPV because one dose on a three-dose schedule&quot;:
+	</a:s>
+               <a:s r="176">
+                  <a:s r="163">
+                     <a:s r="157">
+                        <a:s r="151">
+                           <a:s r="146">
+                              <a:s r="144">
+                                 <a:s r="143">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="144">
+                                    <a:s>&quot;Number of HPV Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="145"> = 1</a:s>
+                           </a:s>
+                           <a:s>
+	and </a:s>
+                           <a:s r="150">
+                              <a:s r="148">
+                                 <a:s r="147">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="148">
+                                    <a:s>&quot;Patient Biological Sex&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> = </a:s>
+                              <a:s r="149">
+                                 <a:s>'female'</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="156">
+                           <a:s r="153">
+                              <a:s r="152">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="153">
+                                 <a:s>&quot;Date Last HPV Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="156">
+                              <a:s>more than </a:s>
+                              <a:s r="155">
+                                 <a:s>1 month</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="154">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+	and </a:s>
+                     <a:s r="162">
+                        <a:s r="159">
+                           <a:s r="158">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="159">
+                              <a:s>&quot;Date Last HPV Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="162">
+                           <a:s>less than </a:s>
+                           <a:s r="161">
+                              <a:s>2 month</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="160">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and 
+	</a:s>
+                  <a:s r="175">
+                     <a:s>(
+		</a:s>
+                     <a:s r="175">
+                        <a:s r="167">
+                           <a:s r="165">
+                              <a:s r="164">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="165">
+                                 <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="166"> >= 15</a:s>
+                        </a:s>
+                        <a:s>
+		or </a:s>
+                        <a:s r="174">
+                           <a:s>(
+			</a:s>
+                           <a:s r="174">
+                              <a:s r="171">
+                                 <a:s r="169">
+                                    <a:s r="168">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="169">
+                                       <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s r="170"> &lt; 15</a:s>
+                              </a:s>
+                              <a:s>
+			and </a:s>
+                              <a:s r="173">
+                                 <a:s r="172">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="173">
+                                    <a:s>&quot;Immunocompromised = True&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="176" locator="124:2-135:2" xsi:type="And">
+            <operand localId="163" locator="124:2-127:90" xsi:type="And">
+               <operand localId="157" locator="124:2-126:90" xsi:type="And">
+                  <operand localId="151" locator="124:2-125:48" xsi:type="And">
+                     <operand localId="146" locator="124:2-124:58" xsi:type="Equal">
+                        <operand localId="144" locator="124:2-124:54" name="Number of HPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="145" locator="124:58" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="150" locator="125:6-125:48" xsi:type="Equal">
+                        <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                           <operand localId="148" locator="125:6-125:37" name="Patient Biological Sex" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        </operand>
+                        <operand localId="149" locator="125:41-125:48" valueType="t:String" value="female" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <operand localId="156" locator="126:6-126:90" xsi:type="Before">
+                     <operand localId="153" locator="126:6-126:57" name="Date Last HPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="126:84-126:90" xsi:type="Subtract">
+                        <operand localId="154" locator="126:84-126:90" xsi:type="Today"/>
+                        <operand localId="155" locator="126:69-126:75" value="1" unit="month" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="162" locator="127:6-127:90" xsi:type="In">
+                  <operand localId="159" locator="127:6-127:57" name="Date Last HPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="127:59-127:75" lowClosed="false" highClosed="false" xsi:type="Interval">
+                     <low locator="127:84-127:90" xsi:type="Subtract">
+                        <operand localId="160" locator="127:84-127:90" xsi:type="Today"/>
+                        <operand localId="161" locator="127:69-127:75" value="2" unit="month" xsi:type="Quantity"/>
+                     </low>
+                     <high localId="160" locator="127:84-127:90" xsi:type="Today"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="175" locator="129:2-135:2" xsi:type="Or">
+               <operand localId="167" locator="130:3-130:46" xsi:type="GreaterOrEqual">
+                  <operand localId="165" locator="130:3-130:40" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="166" locator="130:45-130:46" valueType="t:Integer" value="15" xsi:type="Literal"/>
+               </operand>
+               <operand localId="174" locator="131:6-134:3" xsi:type="And">
+                  <operand localId="171" locator="132:4-132:46" xsi:type="Less">
+                     <operand localId="169" locator="132:4-132:41" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="170" locator="132:45-132:46" valueType="t:Integer" value="15" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="173" locator="133:8-133:41" name="Immunocompromised = True" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="206" locator="150:1-161:2" name="Should vaccinate Patient for HPV because two doses on a three-dose schedule" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>/*
+ * Rule: Should vaccinate Patient for HPV because two doses on a three-dose schedule
+ * Annotations:
+ * 	 - Provide HPV immunizations - using the &quot;HPV vaccine immunization -  TWO PREVIOUS&quot; schedule (3 dose scheme)
+ * 	 - 
+ * Outputs:
+ * 	 - Immunize Patient for HPV - 2 Doses
+ * 	 - 
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- 
+ * Logic:
+ *	 (((((&quot;HPV vaccine history&quot; = &quot;2 doses&quot;) and (&quot;Sex&quot; = &quot;Female&quot;)) and (&quot;Current Patient Age in Years&quot; >= 15)) and (&quot;Date last HPV dose given&quot; >= &quot;6 months&quot;)) or (((((&quot;HPV vaccine history&quot; = &quot;2 doses&quot;) and (&quot;Sex&quot; = &quot;Female&quot;)) and (&quot;Current Patient Age in Years&quot; &lt; 15)) and (&quot;Immunocompromised&quot; = &quot;True&quot;)) and (&quot;Date last HPV dose given&quot; >= &quot;6 months&quot;)))
+ */
+define &quot;Should vaccinate Patient for HPV because two doses on a three-dose schedule&quot;:
+	</a:s>
+               <a:s r="205">
+                  <a:s r="192">
+                     <a:s r="186">
+                        <a:s r="181">
+                           <a:s r="179">
+                              <a:s r="178">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="179">
+                                 <a:s>&quot;Number of HPV Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="180"> = 2</a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="185">
+                           <a:s r="183">
+                              <a:s r="182">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="183">
+                                 <a:s>&quot;Patient Biological Sex&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="184">
+                              <a:s>'female'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="191">
+                        <a:s r="188">
+                           <a:s r="187">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="188">
+                              <a:s>&quot;Date Last HPV Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="191">
+                           <a:s>more than </a:s>
+                           <a:s r="190">
+                              <a:s>6 month</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="189">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and 
+	</a:s>
+                  <a:s r="204">
+                     <a:s>(
+		</a:s>
+                     <a:s r="204">
+                        <a:s r="196">
+                           <a:s r="194">
+                              <a:s r="193">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="194">
+                                 <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="195"> >= 15</a:s>
+                        </a:s>
+                        <a:s>
+		or </a:s>
+                        <a:s r="203">
+                           <a:s>(
+			</a:s>
+                           <a:s r="203">
+                              <a:s r="200">
+                                 <a:s r="198">
+                                    <a:s r="197">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="198">
+                                       <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s r="199"> &lt; 15</a:s>
+                              </a:s>
+                              <a:s>
+			and </a:s>
+                              <a:s r="202">
+                                 <a:s r="201">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="202">
+                                    <a:s>&quot;Immunocompromised = True&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="205" locator="151:2-161:2" xsi:type="And">
+            <operand localId="192" locator="151:2-153:90" xsi:type="And">
+               <operand localId="186" locator="151:2-152:48" xsi:type="And">
+                  <operand localId="181" locator="151:2-151:58" xsi:type="Equal">
+                     <operand localId="179" locator="151:2-151:54" name="Number of HPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="180" locator="151:58" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="185" locator="152:6-152:48" xsi:type="Equal">
+                     <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <operand localId="183" locator="152:6-152:37" name="Patient Biological Sex" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="184" locator="152:41-152:48" valueType="t:String" value="female" xsi:type="Literal"/>
+                  </operand>
+               </operand>
+               <operand localId="191" locator="153:6-153:90" xsi:type="Before">
+                  <operand localId="188" locator="153:6-153:57" name="Date Last HPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="153:84-153:90" xsi:type="Subtract">
+                     <operand localId="189" locator="153:84-153:90" xsi:type="Today"/>
+                     <operand localId="190" locator="153:69-153:75" value="6" unit="month" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="204" locator="155:2-161:2" xsi:type="Or">
+               <operand localId="196" locator="156:3-156:46" xsi:type="GreaterOrEqual">
+                  <operand localId="194" locator="156:3-156:40" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="195" locator="156:45-156:46" valueType="t:Integer" value="15" xsi:type="Literal"/>
+               </operand>
+               <operand localId="203" locator="157:6-160:3" xsi:type="And">
+                  <operand localId="200" locator="158:4-158:46" xsi:type="Less">
+                     <operand localId="198" locator="158:4-158:41" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="199" locator="158:45-158:46" valueType="t:Integer" value="15" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="202" locator="159:8-159:41" name="Immunocompromised = True" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+   </statements>
+</library>

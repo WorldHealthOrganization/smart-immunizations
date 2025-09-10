@@ -1,0 +1,1195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="372">
+         <a:s>/*
+ * Library: IMMZD2DTTyphoidTy21aLogic (IMMZ.D2.DT.Typhoid.Ty21a)
+ * Rule: Determine if the client is due for a typhoid vaccination according to the national immunization schedule
+ * Decision Table: Live attenuated Ty21a vaccine schedule
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any  
+ */
+library IMMZD2DTTyphoidTy21aLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTTyphoidTy21aLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="13:1-13:57" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTTyphoidEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTTyphoidEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="212" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>parameter Today </a:s>
+               <a:s r="216">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="215">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="215" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="216" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="233" locator="39:1-40:47" name="Client is not due for Typhoid vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for Typhoid vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="233">
+               <a:s>/*
+@output: Client is not due for Typhoid vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for Typhoid vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="235">
+                  <a:s r="234">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="235">
+                     <a:s>&quot;Client's age is less than 6 years&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="235" locator="40:3-40:47" name="Client's age is less than 6 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="239" locator="46:1-49:90" name="Client is not due for Typhoid vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for Typhoid vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="239">
+               <a:s>/*
+@output: Client is not due for Typhoid vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for Typhoid vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="240">
+                  <a:s r="241">
+                     <a:s r="243">
+                        <a:s r="242">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="243">
+                           <a:s>&quot;Client's age is more than or equal to 6 years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="245">
+                        <a:s r="244">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="245">
+                           <a:s>&quot;Primary series is not complete&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="247">
+                     <a:s r="246">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="247">
+                        <a:s>&quot;Live vaccine, other than typhoid, was administered in the past 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="240" locator="47:3-49:90" xsi:type="And">
+            <operand localId="241" locator="47:3-48:50" xsi:type="And">
+               <operand localId="243" locator="47:3-47:59" name="Client's age is more than or equal to 6 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="245" locator="48:9-48:50" name="Primary series is not complete" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="247" locator="49:9-49:90" name="Live vaccine, other than typhoid, was administered in the past 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="229" locator="55:1-57:57" name="Client is not due for Typhoid vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for Typhoid vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="229">
+               <a:s>/*
+@output: Client is not due for Typhoid vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for Typhoid vaccination&quot;:
+  </a:s>
+               <a:s r="230">
+                  <a:s r="236">
+                     <a:s>&quot;Client is not due for Typhoid vaccination Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="248">
+                     <a:s>&quot;Client is not due for Typhoid vaccination Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="230" locator="56:3-57:57" xsi:type="Or">
+            <operand localId="236" locator="56:3-56:52" name="Client is not due for Typhoid vaccination Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="248" locator="57:8-57:57" name="Client is not due for Typhoid vaccination Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="252" locator="66:1-73:5" name="Client is not due for Typhoid vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for Typhoid vaccination Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with typhoid dose as client's age is less than 6 years.&#xa;Check for any other vaccines due and inform the caregiver of when to come back for the first dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with typhoid dose as live vaccine was administered in the past 4 weeks.&#xa;Check for other vaccines due and inform the caregiver or the client when the next dose should be administered."/>
+            <a:s r="252">
+               <a:s>/*
+@output: Client is not due for Typhoid vaccination Guidance
+@guidance: Should not vaccinate client with typhoid dose as client's age is less than 6 years.
+Check for any other vaccines due and inform the caregiver of when to come back for the first dose.
+@guidance: Should not vaccinate client with typhoid dose as live vaccine was administered in the past 4 weeks.
+Check for other vaccines due and inform the caregiver or the client when the next dose should be administered.
+*/
+define &quot;Client is not due for Typhoid vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="253">
+                  <a:s>case
+    </a:s>
+                  <a:s r="254">
+                     <a:s>when </a:s>
+                     <a:s r="255">
+                        <a:s>&quot;Client is not due for Typhoid vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="256">
+                        <a:s>'Should not vaccinate client with typhoid dose as client\'s age is less than 6 years.
+Check for any other vaccines due and inform the caregiver of when to come back for the first dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="258">
+                     <a:s>when </a:s>
+                     <a:s r="259">
+                        <a:s>&quot;Client is not due for Typhoid vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="260">
+                        <a:s>'Should not vaccinate client with typhoid dose as live vaccine was administered in the past 4 weeks.
+Check for other vaccines due and inform the caregiver or the client when the next dose should be administered.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="262">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="253" locator="67:3-73:5" xsi:type="Case">
+            <caseItem localId="254" locator="68:5-68:250">
+               <when localId="255" locator="68:10-68:59" name="Client is not due for Typhoid vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="256" locator="68:66-68:250" valueType="t:String" value="Should not vaccinate client with typhoid dose as client's age is less than 6 years.&#xa;Check for any other vaccines due and inform the caregiver of when to come back for the first dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="258" locator="70:5-70:277">
+               <when localId="259" locator="70:10-70:59" name="Client is not due for Typhoid vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="260" locator="70:66-70:277" valueType="t:String" value="Should not vaccinate client with typhoid dose as live vaccine was administered in the past 4 weeks.&#xa;Check for other vaccines due and inform the caregiver or the client when the next dose should be administered." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="262" locator="72:10-72:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="268" locator="79:1-82:93" name="Client is due for Typhoid vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for Typhoid vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="268">
+               <a:s>/*
+@output: Client is due for Typhoid vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for Typhoid vaccination&quot;:
+  </a:s>
+               <a:s r="269">
+                  <a:s r="270">
+                     <a:s r="272">
+                        <a:s r="271">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="272">
+                           <a:s>&quot;Client's age is more than or equal to 6 years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="274">
+                        <a:s r="273">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="274">
+                           <a:s>&quot;Primary series is not complete&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="276">
+                     <a:s r="275">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="276">
+                        <a:s>&quot;No live vaccine, other than typhoid, was administered in the past 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="269" locator="80:3-82:93" xsi:type="And">
+            <operand localId="270" locator="80:3-81:50" xsi:type="And">
+               <operand localId="272" locator="80:3-80:59" name="Client's age is more than or equal to 6 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="274" locator="81:9-81:50" name="Primary series is not complete" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="276" locator="82:9-82:93" name="No live vaccine, other than typhoid, was administered in the past 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="280" locator="89:1-90:228" name="Client is due for Typhoid vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for Typhoid vaccination Guidance"/>
+            <a:t name="guidance" value="Prescribe the Ty21a primary series (if not done yet). Should vaccinate client with typhoid dose as primary series has not been completed and no live vaccines was administered in the past 4 weeks.&#xa;Check for contraindications."/>
+            <a:s r="280">
+               <a:s>/*
+@output: Client is due for Typhoid vaccination Guidance
+@guidance: Prescribe the Ty21a primary series (if not done yet). Should vaccinate client with typhoid dose as primary series has not been completed and no live vaccines was administered in the past 4 weeks.
+Check for contraindications.
+*/
+define &quot;Client is due for Typhoid vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="281">
+                  <a:s>'Prescribe the Ty21a primary series (if not done yet). Should vaccinate client with typhoid dose as primary series has not been completed and no live vaccines was administered in the past 4 weeks.
+Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="281" locator="90:3-90:228" valueType="t:String" value="Prescribe the Ty21a primary series (if not done yet). Should vaccinate client with typhoid dose as primary series has not been completed and no live vaccines was administered in the past 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="291" locator="97:1-100:82" name="Client is not due for typhoid booster dose Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for typhoid booster dose Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="291">
+               <a:s>/*
+@output: Client is not due for typhoid booster dose Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for typhoid booster dose Case 1&quot;:
+  </a:s>
+               <a:s r="292">
+                  <a:s r="293">
+                     <a:s r="295">
+                        <a:s r="294">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="295">
+                           <a:s>&quot;Client's age is more than or equal to 6 years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="297">
+                        <a:s r="296">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="297">
+                           <a:s>&quot;Primary series is complete&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="299">
+                     <a:s r="298">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="299">
+                        <a:s>&quot;The latest typhoid dose was administered less than 3 years ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="292" locator="98:3-100:82" xsi:type="And">
+            <operand localId="293" locator="98:3-99:46" xsi:type="And">
+               <operand localId="295" locator="98:3-98:59" name="Client's age is more than or equal to 6 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="297" locator="99:9-99:46" name="Primary series is complete" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="299" locator="100:9-100:82" name="The latest typhoid dose was administered less than 3 years ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="303" locator="106:1-110:90" name="Client is not due for typhoid booster dose Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for typhoid booster dose Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="303">
+               <a:s>/*
+@output: Client is not due for typhoid booster dose Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for typhoid booster dose Case 2&quot;:
+  </a:s>
+               <a:s r="304">
+                  <a:s r="305">
+                     <a:s r="306">
+                        <a:s r="308">
+                           <a:s r="307">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="308">
+                              <a:s>&quot;Client's age is more than or equal to 6 years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="310">
+                           <a:s r="309">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="310">
+                              <a:s>&quot;Primary series is complete&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="312">
+                        <a:s r="311">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="312">
+                           <a:s>&quot;The latest typhoid dose was administered more than 3 years ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="314">
+                     <a:s r="313">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="314">
+                        <a:s>&quot;Live vaccine, other than typhoid, was administered in the past 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="304" locator="107:3-110:90" xsi:type="And">
+            <operand localId="305" locator="107:3-109:82" xsi:type="And">
+               <operand localId="306" locator="107:3-108:46" xsi:type="And">
+                  <operand localId="308" locator="107:3-107:59" name="Client's age is more than or equal to 6 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="310" locator="108:9-108:46" name="Primary series is complete" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="312" locator="109:9-109:82" name="The latest typhoid dose was administered more than 3 years ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="314" locator="110:9-110:90" name="Live vaccine, other than typhoid, was administered in the past 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="287" locator="116:1-118:58" name="Client is not due for typhoid booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for typhoid booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="287">
+               <a:s>/*
+@output: Client is not due for typhoid booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for typhoid booster dose&quot;:
+  </a:s>
+               <a:s r="288">
+                  <a:s r="300">
+                     <a:s>&quot;Client is not due for typhoid booster dose Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="315">
+                     <a:s>&quot;Client is not due for typhoid booster dose Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="288" locator="117:3-118:58" xsi:type="Or">
+            <operand localId="300" locator="117:3-117:53" name="Client is not due for typhoid booster dose Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="315" locator="118:8-118:58" name="Client is not due for typhoid booster dose Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="319" locator="127:1-134:5" name="Client is not due for typhoid booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for typhoid booster dose Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with typhoid booster dose as the latest typhoid dose was administered less than 3 years ago.&#xa;Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered."/>
+            <a:t name="guidance" value="Should not vaccinate client with typhoid booster dose as live vaccine was administered in the past 4 weeks.&#xa;Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered"/>
+            <a:s r="319">
+               <a:s>/*
+@output: Client is not due for typhoid booster dose Guidance
+@guidance: Should not vaccinate client with typhoid booster dose as the latest typhoid dose was administered less than 3 years ago.
+Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered.
+@guidance: Should not vaccinate client with typhoid booster dose as live vaccine was administered in the past 4 weeks.
+Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered
+*/
+define &quot;Client is not due for typhoid booster dose Guidance&quot;:
+  </a:s>
+               <a:s r="320">
+                  <a:s>case
+    </a:s>
+                  <a:s r="321">
+                     <a:s>when </a:s>
+                     <a:s r="322">
+                        <a:s>&quot;Client is not due for typhoid booster dose Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="323">
+                        <a:s>'Should not vaccinate client with typhoid booster dose as the latest typhoid dose was administered less than 3 years ago.
+Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="325">
+                     <a:s>when </a:s>
+                     <a:s r="326">
+                        <a:s>&quot;Client is not due for typhoid booster dose Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="327">
+                        <a:s>'Should not vaccinate client with typhoid booster dose as live vaccine was administered in the past 4 weeks.
+Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="329">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="320" locator="128:3-134:5" xsi:type="Case">
+            <caseItem localId="321" locator="129:5-129:303">
+               <when localId="322" locator="129:10-129:60" name="Client is not due for typhoid booster dose Case 1" xsi:type="ExpressionRef"/>
+               <then localId="323" locator="129:67-129:303" valueType="t:String" value="Should not vaccinate client with typhoid booster dose as the latest typhoid dose was administered less than 3 years ago.&#xa;Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="325" locator="131:5-131:289">
+               <when localId="326" locator="131:10-131:60" name="Client is not due for typhoid booster dose Case 2" xsi:type="ExpressionRef"/>
+               <then localId="327" locator="131:67-131:289" valueType="t:String" value="Should not vaccinate client with typhoid booster dose as live vaccine was administered in the past 4 weeks.&#xa;Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered" xsi:type="Literal"/>
+            </caseItem>
+            <else localId="329" locator="133:10-133:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="335" locator="140:1-144:93" name="Client is due for typhoid booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for typhoid booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="335">
+               <a:s>/*
+@output: Client is due for typhoid booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for typhoid booster dose&quot;:
+  </a:s>
+               <a:s r="336">
+                  <a:s r="337">
+                     <a:s r="338">
+                        <a:s r="340">
+                           <a:s r="339">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="340">
+                              <a:s>&quot;Client's age is more than or equal to 6 years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="342">
+                           <a:s r="341">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="342">
+                              <a:s>&quot;Primary series is complete&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="344">
+                        <a:s r="343">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="344">
+                           <a:s>&quot;The latest typhoid dose was administered more than 3 years ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="346">
+                     <a:s r="345">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="346">
+                        <a:s>&quot;No live vaccine, other than typhoid, was administered in the past 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="336" locator="141:3-144:93" xsi:type="And">
+            <operand localId="337" locator="141:3-143:82" xsi:type="And">
+               <operand localId="338" locator="141:3-142:46" xsi:type="And">
+                  <operand localId="340" locator="141:3-141:59" name="Client's age is more than or equal to 6 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="342" locator="142:9-142:46" name="Primary series is complete" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="344" locator="143:9-143:82" name="The latest typhoid dose was administered more than 3 years ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="346" locator="144:9-144:93" name="No live vaccine, other than typhoid, was administered in the past 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="350" locator="151:1-152:277" name="Client is due for typhoid booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for typhoid booster dose Guidance"/>
+            <a:t name="guidance" value="Prescribe the Ty21a booster series. Should vaccinate client with typhoid booster dose as primary series has been completed, the latest typhoid dose was administered more than 3 years ago and no live vaccine was administered in the past 4 weeks.&#xa;Check for contraindications."/>
+            <a:s r="350">
+               <a:s>/*
+@output: Client is due for typhoid booster dose Guidance
+@guidance: Prescribe the Ty21a booster series. Should vaccinate client with typhoid booster dose as primary series has been completed, the latest typhoid dose was administered more than 3 years ago and no live vaccine was administered in the past 4 weeks.
+Check for contraindications.
+*/
+define &quot;Client is due for typhoid booster dose Guidance&quot;:
+  </a:s>
+               <a:s r="351">
+                  <a:s>'Prescribe the Ty21a booster series. Should vaccinate client with typhoid booster dose as primary series has been completed, the latest typhoid dose was administered more than 3 years ago and no live vaccine was administered in the past 4 weeks.
+Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="351" locator="152:3-152:277" valueType="t:String" value="Prescribe the Ty21a booster series. Should vaccinate client with typhoid booster dose as primary series has been completed, the latest typhoid dose was administered more than 3 years ago and no live vaccine was administered in the past 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="224" locator="23:1-30:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="224">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="225">
+                  <a:s>case
+    </a:s>
+                  <a:s r="226">
+                     <a:s>when </a:s>
+                     <a:s r="249">
+                        <a:s>&quot;Client is not due for Typhoid vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="264">
+                        <a:s>&quot;Client is not due for Typhoid vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="265">
+                     <a:s>when </a:s>
+                     <a:s r="277">
+                        <a:s>&quot;Client is due for Typhoid vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="283">
+                        <a:s>&quot;Client is due for Typhoid vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="284">
+                     <a:s>when </a:s>
+                     <a:s r="316">
+                        <a:s>&quot;Client is not due for typhoid booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="331">
+                        <a:s>&quot;Client is not due for typhoid booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="332">
+                     <a:s>when </a:s>
+                     <a:s r="347">
+                        <a:s>&quot;Client is due for typhoid booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="353">
+                        <a:s>&quot;Client is due for typhoid booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="354">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="24:3-30:5" xsi:type="Case">
+            <caseItem localId="226" locator="25:5-25:110">
+               <when localId="249" locator="25:10-25:52" name="Client is not due for Typhoid vaccination" xsi:type="ExpressionRef"/>
+               <then localId="264" locator="25:59-25:110" name="Client is not due for Typhoid vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="265" locator="26:5-26:102">
+               <when localId="277" locator="26:10-26:48" name="Client is due for Typhoid vaccination" xsi:type="ExpressionRef"/>
+               <then localId="283" locator="26:55-26:102" name="Client is due for Typhoid vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="284" locator="27:5-27:112">
+               <when localId="316" locator="27:10-27:53" name="Client is not due for typhoid booster dose" xsi:type="ExpressionRef"/>
+               <then localId="331" locator="27:60-27:112" name="Client is not due for typhoid booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="332" locator="28:5-28:104">
+               <when localId="347" locator="28:10-28:49" name="Client is due for typhoid booster dose" xsi:type="ExpressionRef"/>
+               <then localId="353" locator="28:56-28:104" name="Client is due for typhoid booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="354" locator="29:10-29:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="358" locator="32:1-33:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="358">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="359">
+                  <a:s r="362">
+                     <a:s r="360">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="369">
+                     <a:s r="364">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="365">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="359" locator="33:3-33:45" xsi:type="And">
+            <operand localId="362" locator="33:3-33:24" xsi:type="Not">
+               <operand localId="361" locator="33:3-33:24" xsi:type="IsNull">
+                  <operand localId="360" locator="33:3-33:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="369" locator="33:30-33:45" xsi:type="Not">
+               <operand localId="363" locator="33:30-33:45" xsi:type="Equal">
+                  <signature localId="367" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="368" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="364" locator="33:30-33:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="365" locator="33:44-33:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="372" locator="159:1-174:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="372">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="373">
+                  <a:s>case
+    </a:s>
+                  <a:s r="374">
+                     <a:s>when </a:s>
+                     <a:s r="375">
+                        <a:s r="377">
+                           <a:s r="376">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="377">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="378">
+                           <a:s>'30.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="384">
+                        <a:s r="385">
+                           <a:s>&quot;Client is not due for Typhoid vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="386">
+                           <a:s r="387">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="388">
+                              <a:s>'Should not vaccinate client with typhoid dose as client\'s age is less than 6 years.
+Check for any other vaccines due and inform the caregiver of when to come back for the first dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="392">
+                     <a:s>when </a:s>
+                     <a:s r="393">
+                        <a:s r="395">
+                           <a:s r="394">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="395">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="396">
+                           <a:s>'31.124'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="402">
+                        <a:s r="403">
+                           <a:s>&quot;Client is due for Typhoid vaccination&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="404">
+                           <a:s r="405">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="406">
+                              <a:s>'Prescribe the Ty21a primary series (if not done yet). Should vaccinate client with typhoid dose as primary series has not been completed and no live vaccines was administered in the past 4 weeks.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="410">
+                     <a:s>when </a:s>
+                     <a:s r="411">
+                        <a:s r="413">
+                           <a:s r="412">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="413">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="414">
+                           <a:s>'32.124'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="420">
+                        <a:s r="421">
+                           <a:s>&quot;Client is not due for Typhoid vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="422">
+                           <a:s r="423">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="424">
+                              <a:s>'Should not vaccinate client with typhoid dose as live vaccine was administered in the past 4 weeks.
+Check for other vaccines due and inform the caregiver or the client when the next dose should be administered.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="428">
+                     <a:s>when </a:s>
+                     <a:s r="429">
+                        <a:s r="431">
+                           <a:s r="430">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="431">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="432">
+                           <a:s>'33.123'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="438">
+                        <a:s r="439">
+                           <a:s>&quot;Client is not due for typhoid booster dose Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="440">
+                           <a:s r="441">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="442">
+                              <a:s>'Should not vaccinate client with typhoid booster dose as the latest typhoid dose was administered less than 3 years ago.
+Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="446">
+                     <a:s>when </a:s>
+                     <a:s r="447">
+                        <a:s r="449">
+                           <a:s r="448">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="449">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="450">
+                           <a:s>'34.1234'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="456">
+                        <a:s r="457">
+                           <a:s>&quot;Client is due for typhoid booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="458">
+                           <a:s r="459">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="460">
+                              <a:s>'Prescribe the Ty21a booster series. Should vaccinate client with typhoid booster dose as primary series has been completed, the latest typhoid dose was administered more than 3 years ago and no live vaccine was administered in the past 4 weeks.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="464">
+                     <a:s>when </a:s>
+                     <a:s r="465">
+                        <a:s r="467">
+                           <a:s r="466">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="467">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="468">
+                           <a:s>'35.1234'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="474">
+                        <a:s r="475">
+                           <a:s>&quot;Client is not due for typhoid booster dose Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="476">
+                           <a:s r="477">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="478">
+                              <a:s>'Should not vaccinate client with typhoid booster dose as live vaccine was administered in the past 4 weeks.
+Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="482">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="373" locator="160:3-174:5" xsi:type="Case">
+            <caseItem localId="374" locator="161:5-161:287">
+               <when localId="375" locator="161:10-161:28" xsi:type="Equal">
+                  <signature localId="382" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="383" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="380" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="381" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="377" locator="161:10-161:19" path="id" xsi:type="Property">
+                        <source localId="376" locator="161:10-161:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="378" locator="161:23-161:28" valueType="t:String" value="30.1" xsi:type="Literal"/>
+               </when>
+               <then localId="484" xsi:type="As">
+                  <operand localId="384" locator="161:35-161:287" xsi:type="And">
+                     <operand localId="385" locator="161:35-161:84" name="Client is not due for Typhoid vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="386" locator="161:90-161:287" xsi:type="Equal">
+                        <signature localId="390" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="391" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="387" locator="161:90-161:99" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="388" locator="161:103-161:287" valueType="t:String" value="Should not vaccinate client with typhoid dose as client's age is less than 6 years.&#xa;Check for any other vaccines due and inform the caregiver of when to come back for the first dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="485" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="486" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="487" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="392" locator="163:5-163:319">
+               <when localId="393" locator="163:10-163:30" xsi:type="Equal">
+                  <signature localId="400" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="401" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="398" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="399" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="395" locator="163:10-163:19" path="id" xsi:type="Property">
+                        <source localId="394" locator="163:10-163:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="396" locator="163:23-163:30" valueType="t:String" value="31.124" xsi:type="Literal"/>
+               </when>
+               <then localId="488" xsi:type="As">
+                  <operand localId="402" locator="163:37-163:319" xsi:type="And">
+                     <operand localId="403" locator="163:37-163:75" name="Client is due for Typhoid vaccination" xsi:type="ExpressionRef"/>
+                     <operand localId="404" locator="163:81-163:319" xsi:type="Equal">
+                        <signature localId="408" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="409" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="405" locator="163:81-163:90" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="406" locator="163:94-163:319" valueType="t:String" value="Prescribe the Ty21a primary series (if not done yet). Should vaccinate client with typhoid dose as primary series has not been completed and no live vaccines was administered in the past 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="489" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="490" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="491" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="410" locator="165:5-165:316">
+               <when localId="411" locator="165:10-165:30" xsi:type="Equal">
+                  <signature localId="418" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="419" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="416" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="417" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="413" locator="165:10-165:19" path="id" xsi:type="Property">
+                        <source localId="412" locator="165:10-165:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="414" locator="165:23-165:30" valueType="t:String" value="32.124" xsi:type="Literal"/>
+               </when>
+               <then localId="492" xsi:type="As">
+                  <operand localId="420" locator="165:37-165:316" xsi:type="And">
+                     <operand localId="421" locator="165:37-165:86" name="Client is not due for Typhoid vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="422" locator="165:92-165:316" xsi:type="Equal">
+                        <signature localId="426" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="427" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="423" locator="165:92-165:101" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="424" locator="165:105-165:316" valueType="t:String" value="Should not vaccinate client with typhoid dose as live vaccine was administered in the past 4 weeks.&#xa;Check for other vaccines due and inform the caregiver or the client when the next dose should be administered." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="493" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="494" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="495" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="428" locator="167:5-167:342">
+               <when localId="429" locator="167:10-167:30" xsi:type="Equal">
+                  <signature localId="436" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="437" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="434" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="435" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="431" locator="167:10-167:19" path="id" xsi:type="Property">
+                        <source localId="430" locator="167:10-167:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="432" locator="167:23-167:30" valueType="t:String" value="33.123" xsi:type="Literal"/>
+               </when>
+               <then localId="496" xsi:type="As">
+                  <operand localId="438" locator="167:37-167:342" xsi:type="And">
+                     <operand localId="439" locator="167:37-167:87" name="Client is not due for typhoid booster dose Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="440" locator="167:93-167:342" xsi:type="Equal">
+                        <signature localId="444" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="445" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="441" locator="167:93-167:102" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="442" locator="167:106-167:342" valueType="t:String" value="Should not vaccinate client with typhoid booster dose as the latest typhoid dose was administered less than 3 years ago.&#xa;Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="497" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="498" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="499" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="446" locator="169:5-169:370">
+               <when localId="447" locator="169:10-169:31" xsi:type="Equal">
+                  <signature localId="454" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="455" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="452" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="453" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="449" locator="169:10-169:19" path="id" xsi:type="Property">
+                        <source localId="448" locator="169:10-169:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="450" locator="169:23-169:31" valueType="t:String" value="34.1234" xsi:type="Literal"/>
+               </when>
+               <then localId="500" xsi:type="As">
+                  <operand localId="456" locator="169:38-169:370" xsi:type="And">
+                     <operand localId="457" locator="169:38-169:77" name="Client is due for typhoid booster dose" xsi:type="ExpressionRef"/>
+                     <operand localId="458" locator="169:83-169:370" xsi:type="Equal">
+                        <signature localId="462" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="463" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="459" locator="169:83-169:92" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="460" locator="169:96-169:370" valueType="t:String" value="Prescribe the Ty21a booster series. Should vaccinate client with typhoid booster dose as primary series has been completed, the latest typhoid dose was administered more than 3 years ago and no live vaccine was administered in the past 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="501" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="502" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="503" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="464" locator="171:5-171:329">
+               <when localId="465" locator="171:10-171:31" xsi:type="Equal">
+                  <signature localId="472" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="473" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="470" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="471" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="467" locator="171:10-171:19" path="id" xsi:type="Property">
+                        <source localId="466" locator="171:10-171:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="468" locator="171:23-171:31" valueType="t:String" value="35.1234" xsi:type="Literal"/>
+               </when>
+               <then localId="504" xsi:type="As">
+                  <operand localId="474" locator="171:38-171:329" xsi:type="And">
+                     <operand localId="475" locator="171:38-171:88" name="Client is not due for typhoid booster dose Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="476" locator="171:94-171:329" xsi:type="Equal">
+                        <signature localId="480" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="481" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="477" locator="171:94-171:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="478" locator="171:107-171:329" valueType="t:String" value="Should not vaccinate client with typhoid booster dose as live vaccine was administered in the past 4 weeks.&#xa;Check for any other vaccines due and inform the caregiver or the client when the next dose should be administered" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="505" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="506" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="507" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="508" xsi:type="As">
+               <operand localId="482" locator="173:10-173:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="509" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="510" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="511" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

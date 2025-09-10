@@ -1,0 +1,992 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="2.7.0" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="128">
+         <a:s>/*
+ * Library: IMMZD2DTDTP (IMMZ.D5.DT.DTP contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due
+ * Decision Table: Potential contraindications
+ * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
+ */
+library IMMZD5DTDTP</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD5DTDTP" system="http://smart.who.int/ig/smart-immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://smart.who.int/ig/smart-immunizations/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="12:1-12:33" localIdentifier="IMMZCom" path="http://smart.who.int/ig/smart-immunizations/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="13:1-13:33" localIdentifier="IMMZc" path="http://smart.who.int/ig/smart-immunizations/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="14:1-14:33" localIdentifier="IMMZCon" path="http://smart.who.int/ig/smart-immunizations/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="15:1-15:40" localIdentifier="IMMZvl" path="http://smart.who.int/ig/smart-immunizations/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="7" locator="16:1-16:28" localIdentifier="FC" path="http://smart.who.int/ig/smart-immunizations/FHIRCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="7">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRCommon</a:s>
+               </a:s>
+               <a:s> called FC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="8" locator="17:1-17:37" localIdentifier="input" path="http://smart.who.int/ig/smart-immunizations/IMMZD2DTDTPInput">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="8">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTDTPInput</a:s>
+               </a:s>
+               <a:s> called input</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="20:1-20:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="20:1-20:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="27" locator="25:1-27:53" name="Draft Medication Request for DTP dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="27">
+               <a:s>/*
+@internal: Draft Medication Request for DTP dose
+*/
+define &quot;Draft Medication Request for DTP dose&quot;:
+	</a:s>
+               <a:s r="26">
+                  <a:s>
+                     <a:s r="10">
+                        <a:s r="9">
+                           <a:s r="9">
+                              <a:s>[MedicationRequest: </a:s>
+                              <a:s>
+                                 <a:s>IMMZc.&quot;DTP Vaccine&quot;</a:s>
+                              </a:s>
+                              <a:s>]</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> MR</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> </a:s>
+                  <a:s r="19">
+                     <a:s>where </a:s>
+                     <a:s r="19">
+                        <a:s r="14">
+                           <a:s r="12">
+                              <a:s r="11">
+                                 <a:s>MR</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="12">
+                                 <a:s>status</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="13">
+                              <a:s>'draft'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="18">
+                           <a:s r="16">
+                              <a:s r="15">
+                                 <a:s>MR</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="16">
+                                 <a:s>intent</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="17">
+                              <a:s>'proposal'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	</a:s>
+                  <a:s r="25">
+                     <a:s>sort by </a:s>
+                     <a:s r="24">
+                        <a:s r="23">
+                           <a:s>date from </a:s>
+                           <a:s r="22">
+                              <a:s>(</a:s>
+                              <a:s r="22">
+                                 <a:s r="20">
+                                    <a:s>authoredOn</a:s>
+                                 </a:s>
+                                 <a:s> as </a:s>
+                                 <a:s r="21">
+                                    <a:s>FHIR.dateTime</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> desc</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="26" locator="26:2-27:53" xsi:type="Query">
+            <source localId="10" locator="26:2-26:44" alias="MR">
+               <expression localId="9" locator="26:2-26:41" xsi:type="Union">
+                  <signature xsi:type="ListTypeSpecifier">
+                     <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+                  </signature>
+                  <signature xsi:type="ListTypeSpecifier">
+                     <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+                  </signature>
+                  <operand dataType="fhir:MedicationRequest" templateId="http://hl7.org/fhir/StructureDefinition/MedicationRequest" codeProperty="medication" codeComparator="in" xsi:type="Retrieve">
+                     <codes locator="26:22-26:40" name="DTP Vaccine" libraryName="IMMZc" xsi:type="ValueSetRef"/>
+                  </operand>
+                  <operand locator="26:2-26:41" dataType="fhir:MedicationRequest" templateId="http://hl7.org/fhir/StructureDefinition/MedicationRequest" codeProperty="medication" codeComparator="in" xsi:type="Retrieve">
+                     <codes locator="26:22-26:40" name="DTP Vaccine" libraryName="IMMZc" xsi:type="ValueSetRef"/>
+                  </operand>
+               </expression>
+            </source>
+            <where localId="19" locator="26:46-26:97" xsi:type="And">
+               <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+               <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="14" locator="26:52-26:70" xsi:type="Equal">
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature name="fhir:MedicationRequestStatus" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="12" locator="26:52-26:60" path="status" scope="MR" xsi:type="Property"/>
+                  </operand>
+                  <operand localId="13" locator="26:64-26:70" valueType="t:String" value="draft" xsi:type="Literal"/>
+               </operand>
+               <operand localId="18" locator="26:76-26:97" xsi:type="Equal">
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature name="fhir:MedicationRequestIntent" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="16" locator="26:76-26:84" path="intent" scope="MR" xsi:type="Property"/>
+                  </operand>
+                  <operand localId="17" locator="26:88-26:97" valueType="t:String" value="proposal" xsi:type="Literal"/>
+               </operand>
+            </where>
+            <sort localId="25" locator="27:2-27:53">
+               <by localId="24" locator="27:10-27:53" direction="desc" xsi:type="ByExpression">
+                  <expression localId="23" locator="27:10-27:48" xsi:type="DateFrom">
+                     <signature name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                     <operand name="ToDateTime" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <signature name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="22" locator="27:20-27:48" strict="false" xsi:type="As">
+                           <operand localId="20" locator="27:21-27:30" name="authoredOn" xsi:type="IdentifierRef"/>
+                           <asTypeSpecifier localId="21" locator="27:35-27:47" name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+                        </operand>
+                     </operand>
+                  </expression>
+               </by>
+            </sort>
+         </expression>
+      </def>
+      <def localId="46" locator="32:1-34:53" name="Draft Medication Request for Tetanus and Diphtheria Vaccine dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="46">
+               <a:s>/*
+@internal: Draft Medication Request for Tetanus and Diphtheria Vaccine dose
+*/
+define &quot;Draft Medication Request for Tetanus and Diphtheria Vaccine dose&quot;:
+	</a:s>
+               <a:s r="45">
+                  <a:s>
+                     <a:s r="29">
+                        <a:s r="28">
+                           <a:s r="28">
+                              <a:s>[MedicationRequest: </a:s>
+                              <a:s>
+                                 <a:s>IMMZc.&quot;Tetanus and Diphtheria Vaccine&quot;</a:s>
+                              </a:s>
+                              <a:s>]</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> MR</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> </a:s>
+                  <a:s r="38">
+                     <a:s>where </a:s>
+                     <a:s r="38">
+                        <a:s r="33">
+                           <a:s r="31">
+                              <a:s r="30">
+                                 <a:s>MR</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="31">
+                                 <a:s>status</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="32">
+                              <a:s>'draft'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="37">
+                           <a:s r="35">
+                              <a:s r="34">
+                                 <a:s>MR</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="35">
+                                 <a:s>intent</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="36">
+                              <a:s>'proposal'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	</a:s>
+                  <a:s r="44">
+                     <a:s>sort by </a:s>
+                     <a:s r="43">
+                        <a:s r="42">
+                           <a:s>date from </a:s>
+                           <a:s r="41">
+                              <a:s>(</a:s>
+                              <a:s r="41">
+                                 <a:s r="39">
+                                    <a:s>authoredOn</a:s>
+                                 </a:s>
+                                 <a:s> as </a:s>
+                                 <a:s r="40">
+                                    <a:s>FHIR.dateTime</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> desc</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="45" locator="33:2-34:53" xsi:type="Query">
+            <source localId="29" locator="33:2-33:63" alias="MR">
+               <expression localId="28" locator="33:2-33:60" xsi:type="Union">
+                  <signature xsi:type="ListTypeSpecifier">
+                     <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+                  </signature>
+                  <signature xsi:type="ListTypeSpecifier">
+                     <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+                  </signature>
+                  <operand dataType="fhir:MedicationRequest" templateId="http://hl7.org/fhir/StructureDefinition/MedicationRequest" codeProperty="medication" codeComparator="in" xsi:type="Retrieve">
+                     <codes locator="33:22-33:59" name="Tetanus and Diphtheria Vaccine" libraryName="IMMZc" xsi:type="ValueSetRef"/>
+                  </operand>
+                  <operand locator="33:2-33:60" dataType="fhir:MedicationRequest" templateId="http://hl7.org/fhir/StructureDefinition/MedicationRequest" codeProperty="medication" codeComparator="in" xsi:type="Retrieve">
+                     <codes locator="33:22-33:59" name="Tetanus and Diphtheria Vaccine" libraryName="IMMZc" xsi:type="ValueSetRef"/>
+                  </operand>
+               </expression>
+            </source>
+            <where localId="38" locator="33:65-33:116" xsi:type="And">
+               <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+               <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="33" locator="33:71-33:89" xsi:type="Equal">
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature name="fhir:MedicationRequestStatus" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="31" locator="33:71-33:79" path="status" scope="MR" xsi:type="Property"/>
+                  </operand>
+                  <operand localId="32" locator="33:83-33:89" valueType="t:String" value="draft" xsi:type="Literal"/>
+               </operand>
+               <operand localId="37" locator="33:95-33:116" xsi:type="Equal">
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature name="fhir:MedicationRequestIntent" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="35" locator="33:95-33:103" path="intent" scope="MR" xsi:type="Property"/>
+                  </operand>
+                  <operand localId="36" locator="33:107-33:116" valueType="t:String" value="proposal" xsi:type="Literal"/>
+               </operand>
+            </where>
+            <sort localId="44" locator="34:2-34:53">
+               <by localId="43" locator="34:10-34:53" direction="desc" xsi:type="ByExpression">
+                  <expression localId="42" locator="34:10-34:48" xsi:type="DateFrom">
+                     <signature name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                     <operand name="ToDateTime" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <signature name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="41" locator="34:20-34:48" strict="false" xsi:type="As">
+                           <operand localId="39" locator="34:21-34:30" name="authoredOn" xsi:type="IdentifierRef"/>
+                           <asTypeSpecifier localId="40" locator="34:35-34:47" name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+                        </operand>
+                     </operand>
+                  </expression>
+               </by>
+            </sort>
+         </expression>
+      </def>
+      <def localId="65" locator="39:1-41:53" name="Draft Medication Request for Pertussis dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="65">
+               <a:s>/*
+@internal: Draft Medication Request for Pertussis dose
+*/
+define &quot;Draft Medication Request for Pertussis dose&quot;:
+	</a:s>
+               <a:s r="64">
+                  <a:s>
+                     <a:s r="48">
+                        <a:s r="47">
+                           <a:s r="47">
+                              <a:s>[MedicationRequest: </a:s>
+                              <a:s>
+                                 <a:s>IMMZc.&quot;Pertussis Vaccine&quot;</a:s>
+                              </a:s>
+                              <a:s>]</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> MR</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> </a:s>
+                  <a:s r="57">
+                     <a:s>where </a:s>
+                     <a:s r="57">
+                        <a:s r="52">
+                           <a:s r="50">
+                              <a:s r="49">
+                                 <a:s>MR</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="50">
+                                 <a:s>status</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="51">
+                              <a:s>'draft'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="56">
+                           <a:s r="54">
+                              <a:s r="53">
+                                 <a:s>MR</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="54">
+                                 <a:s>intent</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="55">
+                              <a:s>'proposal'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	</a:s>
+                  <a:s r="63">
+                     <a:s>sort by </a:s>
+                     <a:s r="62">
+                        <a:s r="61">
+                           <a:s>date from </a:s>
+                           <a:s r="60">
+                              <a:s>(</a:s>
+                              <a:s r="60">
+                                 <a:s r="58">
+                                    <a:s>authoredOn</a:s>
+                                 </a:s>
+                                 <a:s> as </a:s>
+                                 <a:s r="59">
+                                    <a:s>FHIR.dateTime</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> desc</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="64" locator="40:2-41:53" xsi:type="Query">
+            <source localId="48" locator="40:2-40:50" alias="MR">
+               <expression localId="47" locator="40:2-40:47" xsi:type="Union">
+                  <signature xsi:type="ListTypeSpecifier">
+                     <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+                  </signature>
+                  <signature xsi:type="ListTypeSpecifier">
+                     <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+                  </signature>
+                  <operand dataType="fhir:MedicationRequest" templateId="http://hl7.org/fhir/StructureDefinition/MedicationRequest" codeProperty="medication" codeComparator="in" xsi:type="Retrieve">
+                     <codes locator="40:22-40:46" name="Pertussis Vaccine" libraryName="IMMZc" xsi:type="ValueSetRef"/>
+                  </operand>
+                  <operand locator="40:2-40:47" dataType="fhir:MedicationRequest" templateId="http://hl7.org/fhir/StructureDefinition/MedicationRequest" codeProperty="medication" codeComparator="in" xsi:type="Retrieve">
+                     <codes locator="40:22-40:46" name="Pertussis Vaccine" libraryName="IMMZc" xsi:type="ValueSetRef"/>
+                  </operand>
+               </expression>
+            </source>
+            <where localId="57" locator="40:52-40:103" xsi:type="And">
+               <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+               <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="52" locator="40:58-40:76" xsi:type="Equal">
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature name="fhir:MedicationRequestStatus" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="50" locator="40:58-40:66" path="status" scope="MR" xsi:type="Property"/>
+                  </operand>
+                  <operand localId="51" locator="40:70-40:76" valueType="t:String" value="draft" xsi:type="Literal"/>
+               </operand>
+               <operand localId="56" locator="40:82-40:103" xsi:type="Equal">
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature name="fhir:MedicationRequestIntent" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="54" locator="40:82-40:90" path="intent" scope="MR" xsi:type="Property"/>
+                  </operand>
+                  <operand localId="55" locator="40:94-40:103" valueType="t:String" value="proposal" xsi:type="Literal"/>
+               </operand>
+            </where>
+            <sort localId="63" locator="41:2-41:53">
+               <by localId="62" locator="41:10-41:53" direction="desc" xsi:type="ByExpression">
+                  <expression localId="61" locator="41:10-41:48" xsi:type="DateFrom">
+                     <signature name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                     <operand name="ToDateTime" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <signature name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="60" locator="41:20-41:48" strict="false" xsi:type="As">
+                           <operand localId="58" locator="41:21-41:30" name="authoredOn" xsi:type="IdentifierRef"/>
+                           <asTypeSpecifier localId="59" locator="41:35-41:47" name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+                        </operand>
+                     </operand>
+                  </expression>
+               </by>
+            </sort>
+         </expression>
+      </def>
+      <def localId="86" locator="46:1-52:5" name="Draft Medication Request ID for DTP dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="86">
+               <a:s>/*
+@dynamicValue: Draft Medication Request ID for DTP dose
+*/
+define &quot;Draft Medication Request ID for DTP dose&quot;:
+  </a:s>
+               <a:s r="85">
+                  <a:s>case
+    </a:s>
+                  <a:s r="71">
+                     <a:s>when </a:s>
+                     <a:s r="67">
+                        <a:s>exists</a:s>
+                        <a:s r="66">
+                           <a:s>(</a:s>
+                           <a:s r="66">
+                              <a:s>&quot;Draft Medication Request for DTP dose&quot;</a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="70">
+                        <a:s r="69">
+                           <a:s>First(</a:s>
+                           <a:s r="68">
+                              <a:s>&quot;Draft Medication Request for DTP dose&quot;</a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="70">
+                           <a:s>id</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="77">
+                     <a:s>when </a:s>
+                     <a:s r="73">
+                        <a:s>exists</a:s>
+                        <a:s r="72">
+                           <a:s>(</a:s>
+                           <a:s r="72">
+                              <a:s>&quot;Draft Medication Request for Tetanus and Diphtheria Vaccine dose&quot;</a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="76">
+                        <a:s r="75">
+                           <a:s>First(</a:s>
+                           <a:s r="74">
+                              <a:s>&quot;Draft Medication Request for Tetanus and Diphtheria Vaccine dose&quot;</a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="76">
+                           <a:s>id</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="83">
+                     <a:s>when </a:s>
+                     <a:s r="79">
+                        <a:s>exists</a:s>
+                        <a:s r="78">
+                           <a:s>(</a:s>
+                           <a:s r="78">
+                              <a:s>&quot;Draft Medication Request for Pertussis dose&quot;</a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="82">
+                        <a:s r="81">
+                           <a:s>First(</a:s>
+                           <a:s r="80">
+                              <a:s>&quot;Draft Medication Request for Pertussis dose&quot;</a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="82">
+                           <a:s>id</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="84">
+    else null
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="85" locator="47:3-52:5" xsi:type="Case">
+            <caseItem localId="71" locator="48:5-48:111">
+               <when localId="67" locator="48:10-48:56" xsi:type="Exists">
+                  <signature xsi:type="ListTypeSpecifier">
+                     <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+                  </signature>
+                  <operand localId="66" locator="48:16-48:56" name="Draft Medication Request for DTP dose" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="70" locator="48:63-48:111" path="id" xsi:type="Property">
+                  <source localId="69" locator="48:63-48:108" xsi:type="First">
+                     <signature xsi:type="ListTypeSpecifier">
+                        <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+                     </signature>
+                     <source localId="68" locator="48:69-48:107" name="Draft Medication Request for DTP dose" xsi:type="ExpressionRef"/>
+                  </source>
+               </then>
+            </caseItem>
+            <caseItem localId="77" locator="49:5-49:165">
+               <when localId="73" locator="49:10-49:83" xsi:type="Exists">
+                  <signature xsi:type="ListTypeSpecifier">
+                     <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+                  </signature>
+                  <operand localId="72" locator="49:16-49:83" name="Draft Medication Request for Tetanus and Diphtheria Vaccine dose" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="76" locator="49:90-49:165" path="id" xsi:type="Property">
+                  <source localId="75" locator="49:90-49:162" xsi:type="First">
+                     <signature xsi:type="ListTypeSpecifier">
+                        <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+                     </signature>
+                     <source localId="74" locator="49:96-49:161" name="Draft Medication Request for Tetanus and Diphtheria Vaccine dose" xsi:type="ExpressionRef"/>
+                  </source>
+               </then>
+            </caseItem>
+            <caseItem localId="83" locator="50:5-50:123">
+               <when localId="79" locator="50:10-50:62" xsi:type="Exists">
+                  <signature xsi:type="ListTypeSpecifier">
+                     <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+                  </signature>
+                  <operand localId="78" locator="50:16-50:62" name="Draft Medication Request for Pertussis dose" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="82" locator="50:69-50:123" path="id" xsi:type="Property">
+                  <source localId="81" locator="50:69-50:120" xsi:type="First">
+                     <signature xsi:type="ListTypeSpecifier">
+                        <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+                     </signature>
+                     <source localId="80" locator="50:75-50:119" name="Draft Medication Request for Pertussis dose" xsi:type="ExpressionRef"/>
+                  </source>
+               </then>
+            </caseItem>
+            <else asType="fhir:id" xsi:type="As">
+               <operand localId="84" locator="51:10-51:13" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="89" locator="69:1-70:60" name="Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="89">
+               <a:s>/*
+@output: Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis containing vaccines&quot;)
+*/
+define &quot;Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.&quot;:
+  </a:s>
+               <a:s r="88">
+                  <a:s r="87">
+                     <a:s>input</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="88">
+                     <a:s>&quot;The client has a history of anaphylactic reactions&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="88" locator="70:3-70:60" name="The client has a history of anaphylactic reactions" libraryName="input" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="92" locator="76:1-77:168" name="Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="92">
+               <a:s>/*
+@output: Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance
+@guidance: Do not vaccinate client for pertussis and/or tetanus if the client has had a severe anaphylactic reaction to a vaccine component or reaction following a prior dose.
+*/
+define &quot;Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance&quot;:
+  </a:s>
+               <a:s r="91">
+                  <a:s>'Do not vaccinate client for pertussis and/or tetanus if the client has had a severe anaphylactic reaction to a vaccine component or reaction following a prior dose.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="91" locator="77:3-77:168" valueType="t:String" value="Do not vaccinate client for pertussis and/or tetanus if the client has had a severe anaphylactic reaction to a vaccine component or reaction following a prior dose." xsi:type="Literal"/>
+      </def>
+      <def localId="97" locator="83:1-84:57" name="Tetanus vaccination is contraindicated" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="97">
+               <a:s>/*
+@output: Tetanus vaccination is contraindicated
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus  containing vaccines&quot;)
+*/
+define &quot;Tetanus vaccination is contraindicated&quot;:
+  </a:s>
+               <a:s r="96">
+                  <a:s r="95">
+                     <a:s>input</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="96">
+                     <a:s>&quot;The client currently has a severe acute illness&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="96" locator="84:3-84:57" name="The client currently has a severe acute illness" libraryName="input" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="100" locator="90:1-91:119" name="Tetanus vaccination is contraindicated Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="100">
+               <a:s>/*
+@output: Tetanus vaccination is contraindicated Guidance
+@guidance: Do not vaccinate client for tetanus as tetanus vaccination is contraindicated for clients with severe acute illness
+*/
+define &quot;Tetanus vaccination is contraindicated Guidance&quot;:
+  </a:s>
+               <a:s r="99">
+                  <a:s>'Do not vaccinate client for tetanus as tetanus vaccination is contraindicated for clients with severe acute illness'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="99" locator="91:3-91:119" valueType="t:String" value="Do not vaccinate client for tetanus as tetanus vaccination is contraindicated for clients with severe acute illness" xsi:type="Literal"/>
+      </def>
+      <def localId="105" locator="58:1-63:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="105">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="104">
+                  <a:s>case
+    </a:s>
+                  <a:s r="94">
+                     <a:s>when </a:s>
+                     <a:s r="90">
+                        <a:s>&quot;Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="93">
+                        <a:s>&quot;Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="102">
+                     <a:s>when </a:s>
+                     <a:s r="98">
+                        <a:s>&quot;Tetanus vaccination is contraindicated&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="101">
+                        <a:s>&quot;Tetanus vaccination is contraindicated Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="103">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="104" locator="59:3-63:5" xsi:type="Case">
+            <caseItem localId="94" locator="60:5-60:258">
+               <when localId="90" locator="60:10-60:126" name="Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." xsi:type="ExpressionRef"/>
+               <then localId="93" locator="60:133-60:258" name="Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="102" locator="61:5-61:104">
+               <when localId="98" locator="61:10-61:49" name="Tetanus vaccination is contraindicated" xsi:type="ExpressionRef"/>
+               <then localId="101" locator="61:56-61:104" name="Tetanus vaccination is contraindicated Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="103" locator="62:10-62:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="128" locator="97:1-102:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="128">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="127">
+                  <a:s>case
+    </a:s>
+                  <a:s r="115">
+                     <a:s>when </a:s>
+                     <a:s r="109">
+                        <a:s r="107">
+                           <a:s r="106">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="107">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="108">
+                           <a:s>'88.anaplylactic'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="114">
+                        <a:s r="110">
+                           <a:s>&quot;Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="113">
+                           <a:s r="111">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="112">
+                              <a:s>'Do not vaccinate client for pertussis and/or tetanus if the client has had a severe anaphylactic reaction to a vaccine component or reaction following a prior dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="125">
+                     <a:s>when </a:s>
+                     <a:s r="119">
+                        <a:s r="117">
+                           <a:s r="116">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="117">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="118">
+                           <a:s>'89.illness'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="124">
+                        <a:s r="120">
+                           <a:s>&quot;Tetanus vaccination is contraindicated&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="123">
+                           <a:s r="121">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="122">
+                              <a:s>'Do not vaccinate client for tetanus as tetanus vaccination is contraindicated for clients with severe acute illness'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="126">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="127" locator="98:3-102:5" xsi:type="Case">
+            <caseItem localId="115" locator="99:5-99:346">
+               <when localId="109" locator="99:10-99:39" xsi:type="Equal">
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="107" locator="99:10-99:19" path="id" xsi:type="Property">
+                        <source localId="106" locator="99:10-99:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="108" locator="99:23-99:39" valueType="t:String" value="88.anaplylactic" xsi:type="Literal"/>
+               </when>
+               <then xsi:type="As">
+                  <operand localId="114" locator="99:46-99:346" xsi:type="And">
+                     <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="110" locator="99:46-99:162" name="Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." xsi:type="ExpressionRef"/>
+                     <operand localId="113" locator="99:168-99:346" xsi:type="Equal">
+                        <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="111" locator="99:168-99:177" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="112" locator="99:181-99:346" valueType="t:String" value="Do not vaccinate client for pertussis and/or tetanus if the client has had a severe anaphylactic reaction to a vaccine component or reaction following a prior dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier xsi:type="ChoiceTypeSpecifier">
+                     <choice name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="125" locator="100:5-100:215">
+               <when localId="119" locator="100:10-100:34" xsi:type="Equal">
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="117" locator="100:10-100:19" path="id" xsi:type="Property">
+                        <source localId="116" locator="100:10-100:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="118" locator="100:23-100:34" valueType="t:String" value="89.illness" xsi:type="Literal"/>
+               </when>
+               <then xsi:type="As">
+                  <operand localId="124" locator="100:41-100:215" xsi:type="And">
+                     <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="120" locator="100:41-100:80" name="Tetanus vaccination is contraindicated" xsi:type="ExpressionRef"/>
+                     <operand localId="123" locator="100:86-100:215" xsi:type="Equal">
+                        <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="121" locator="100:86-100:95" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="122" locator="100:99-100:215" valueType="t:String" value="Do not vaccinate client for tetanus as tetanus vaccination is contraindicated for clients with severe acute illness" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier xsi:type="ChoiceTypeSpecifier">
+                     <choice name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else xsi:type="As">
+               <operand localId="126" locator="101:10-101:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier xsi:type="ChoiceTypeSpecifier">
+                  <choice name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>
