@@ -146,7 +146,8 @@ const readCodes = ( type, didputs, cache ) => {
   for( let line of fsh ) {
     if ( line.startsWith("* #") ) {
       notyet = false
-      let matches = line.match(/^\* #(\S+) "(.+)" "(.+)"$/)
+      let matches = line.match(/^\* #(\S+) "(.+)" "(.*)"$/)
+      console.log(line,matches)
       code = matches[1].trim()
       let display = matches[2].trim()
       let definition = matches[3].trim()
@@ -195,8 +196,9 @@ for ( let r = rs[0]; r <= rs[1]; r++ ) {
       expression.push( 'Encounter."' + content[0] + '"' )
       scenario.push(content[0])
       examples.push( "#" + c + ". " + content[0] + ( content[1] ? "\n#   " + content[1] : "" ) )
-      let inputid = getInitials(content[0])
-      let codeid = inputid+"-"+content[0].length+"."+content[1].length
+//      let inputid = getInitials(content[0])
+//      let codeid = inputid+"-"+content[0].length+"."+content[1].length
+      let codeid = content[0]
       if ( !codeinput[codeid] ) {
         codeinput[codeid] = {
           code: codeid,
@@ -251,23 +253,23 @@ patient:
   fhir:
     gender: female
 `)
-if ( dt == "CI" ) {
-  for( let c = cs[0]; c <= cs[1]; c++ ) {
-    if ( !sheet[r][c] ) sheet[r][c] = prevci[c]
-    if ( sheet[r][c].length < 3 ) continue
-    prevci[c] = sheet[r][c]
-    let ci = sheet[r][c].match(/.*"(.+)"$/)
-    if ( !ci ) ci = sheet[r][c].match(/.*"(.+)"[^"]*$/)
-    let ciid = ci[1].replace(/\W/g, '').toLowerCase()
-    yaml.write(`contraindication:
-    ${ciid}:
-      code: DE
-      display: "${ci[1]}"
-      effectiveDateTime: -1d
+  if ( dt == "CI" ) {
+    for( let c = cs[0]; c <= cs[1]; c++ ) {
+      if ( !sheet[r][c] ) sheet[r][c] = prevci[c]
+      if ( sheet[r][c].length < 3 ) continue
+      prevci[c] = sheet[r][c]
+      let ci = sheet[r][c].match(/.*"(.+)"$/)
+      if ( !ci ) ci = sheet[r][c].match(/.*"(.+)"[^"]*$/)
+      let ciid = ci[1].replace(/\W/g, '').toLowerCase()
+      yaml.write(`contraindication:
+      ${ciid}:
+        code: DE
+        display: "${ci[1]}"
+        effectiveDateTime: -1d
 `)
-  }
-  let mrname = sheetdisplay.toLowerCase()
-  yaml.write(`medicationrequest:
+    }
+    let mrname = sheetdisplay.toLowerCase()
+    yaml.write(`medicationrequest:
   ${mrname}:
     medication:
       code: 
@@ -278,7 +280,7 @@ if ( dt == "CI" ) {
       status: draft
       intent: proposal
 `)
-}
+  }
 
   let content = sheet[r][1+cs[1]].split( "\n", 2 );
   if ( content[0].trim().length > 3 ) {
@@ -288,8 +290,10 @@ if ( dt == "CI" ) {
     if ( !outputs[ content[0] ] ) outputs[ content[0] ] = []
     outputs[ content[0] ].push( { content, expression: expression.join("\n    and "), guidance: sheet[r][parseInt(cs[1])+2], 
       testid: testid, testidx: (r+rowoffset) } )
-    let outputid = getInitials(content[0])
-    let codeid = outputid+"-"+content[0].length+"."+content[1].length
+//    let outputid = getInitials(content[0])
+//    let codeid = outputid+"-"+content[0].length+"."+content[1].length
+    let codeid = content[0]
+
     if ( !codeoutput[codeid] ) {
       codeoutput[codeid] = {
         code: codeid,

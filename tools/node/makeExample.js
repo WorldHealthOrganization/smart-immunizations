@@ -13,7 +13,7 @@ let directory = "."
 if ( process.argv[3] ) directory = process.argv[3] 
 
 for(let doc of docs) {
-  let options = doc.toJS()
+  let options = doc.toJSON()
   
   options.birth = shiftDate(options.birth)
   const topDir = directory + "/" + options.id
