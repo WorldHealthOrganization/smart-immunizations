@@ -1,7 +1,7 @@
 
 Instance: IMMZD18SMeaslesSupplementary
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
-Title: "IMMZD18SMeaslesSupplementary"
+Title: "IMMZ.D18.S.Measles.Supplementary dose schedule"
 Description: """
 IMMZ.D18.S.Measles.Supplementary dose schedule
 Measles supplementary dose schedule

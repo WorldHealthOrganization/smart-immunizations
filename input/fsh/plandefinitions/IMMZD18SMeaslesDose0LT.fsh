@@ -1,7 +1,7 @@
 
 Instance: IMMZD18SMeaslesDose0LT
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
-Title: "IMMZD18SMeaslesDose0LT"
+Title: "IMMZ.D18.S.Measles.MCV dose 0 schedule"
 Description: """
 IMMZ.D18.S.Measles.MCV dose 0 schedule
 Measles-containing vaccine dose 0 (MCV0) schedule

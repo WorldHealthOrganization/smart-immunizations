@@ -1,7 +1,7 @@
 
 Instance: IMMZD18SMeaslesLowTx
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
-Title: "IMMZD18SMeaslesLowTx"
+Title: "IMMZ.D18.S.Measles.Low transmission schedule"
 Description: """
 IMMZ.D18.S.Measles.Low transmission schedule
 Schedule for countries with low levels of measles transmission (countries that provide first dose of measles-containing vaccine (MCV) at 12 months and second dose of MCV at 15 months)

@@ -1,7 +1,7 @@
 
 Instance: IMMZD18SMeaslesOngoingTx
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
-Title: "IMMZD18SMeaslesOngoingTx"
+Title: "IMMZ.D18.S.Measles.Ongoing transmission schedule"
 Description: """
 IMMZ.D18.S.Measles.Ongoing transmission schedule
 Countries with ongoing transmission in which the risk of measles mortality remains high (countries that provide first dose of measles-containing vaccine (MCV) at 9 months and second dose of MCV at 15 months)
