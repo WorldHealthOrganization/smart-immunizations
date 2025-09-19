@@ -1,0 +1,3315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="640">
+         <a:s>/*
+ * Library: IMMZD2DTPneumococcal2p1bLogic (IMMZ.D2.DT.Pneumococcal.2 doses with booster dose)
+ * Rule: Determine if the client is due for a pneumococcal vaccination according to the national immunization schedule
+ * Decision Table: 2 primary doses with a booster dose (2p+1)
+ * Trigger: IMMZ.D2  Determine required vaccination(s) if any
+ */
+library IMMZD2DTPneumococcal2p1bLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTPneumococcal2p1bLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="13:1-13:62" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTPneumococcalEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTPneumococcalEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="212" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>parameter Today </a:s>
+               <a:s r="216">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="215">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="215" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="216" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="234" locator="41:1-42:51" name="Client is not due for pneumococcal vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for pneumococcal vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="234">
+               <a:s>/*
+@output: Client is not due for pneumococcal vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for pneumococcal vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="236">
+                  <a:s r="235">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="236">
+                     <a:s>&quot;The client's age is less than 6 weeks&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="236" locator="42:3-42:51" name="The client's age is less than 6 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="240" locator="48:1-52:87" name="Client is not due for pneumococcal vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for pneumococcal vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="240">
+               <a:s>/*
+@output: Client is not due for pneumococcal vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for pneumococcal vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="241">
+                  <a:s r="242">
+                     <a:s r="243">
+                        <a:s r="245">
+                           <a:s r="244">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="245">
+                              <a:s>&quot;One pneumococcal primary series dose was administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="247">
+                           <a:s r="246">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="247">
+                              <a:s>&quot;The client's age is less than or equal to 5 years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="249">
+                        <a:s r="248">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="249">
+                           <a:s>&quot;The first pneumococcal dose was administered within 24 months post birth&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="251">
+                     <a:s r="250">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="251">
+                        <a:s>&quot;The latest pneumococcal dose was administered less than 8 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="241" locator="49:3-52:87" xsi:type="And">
+            <operand localId="242" locator="49:3-51:92" xsi:type="And">
+               <operand localId="243" locator="49:3-50:69" xsi:type="And">
+                  <operand localId="245" locator="49:3-49:67" name="One pneumococcal primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="247" locator="50:9-50:69" name="The client's age is less than or equal to 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="249" locator="51:9-51:92" name="The first pneumococcal dose was administered within 24 months post birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="251" locator="52:9-52:87" name="The latest pneumococcal dose was administered less than 8 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="255" locator="58:1-63:69" name="Client is not due for pneumococcal vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for pneumococcal vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="255">
+               <a:s>/*
+@output: Client is not due for pneumococcal vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for pneumococcal vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="256">
+                  <a:s r="257">
+                     <a:s r="258">
+                        <a:s r="259">
+                           <a:s r="261">
+                              <a:s r="260">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="261">
+                                 <a:s>&quot;One pneumococcal primary series dose was administered&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+    and </a:s>
+                           <a:s r="263">
+                              <a:s r="262">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="263">
+                                 <a:s>&quot;The client's age is less than or equal to 5 years&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="265">
+                           <a:s r="264">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="265">
+                              <a:s>&quot;The first pneumococcal dose was administered after 24 months post birth&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="267">
+                        <a:s r="266">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="267">
+                           <a:s>&quot;The latest pneumococcal dose was administered less than 8 weeks ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="269">
+                     <a:s r="268">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="269">
+                        <a:s>&quot;Client is at high risk for pneumococcal infection&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="256" locator="59:3-63:69" xsi:type="And">
+            <operand localId="257" locator="59:3-62:87" xsi:type="And">
+               <operand localId="258" locator="59:3-61:91" xsi:type="And">
+                  <operand localId="259" locator="59:3-60:69" xsi:type="And">
+                     <operand localId="261" locator="59:3-59:67" name="One pneumococcal primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                     <operand localId="263" locator="60:9-60:69" name="The client's age is less than or equal to 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="265" locator="61:9-61:91" name="The first pneumococcal dose was administered after 24 months post birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="267" locator="62:9-62:87" name="The latest pneumococcal dose was administered less than 8 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="269" locator="63:9-63:69" name="Client is at high risk for pneumococcal infection" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="229" locator="69:1-72:62" name="Client is not due for pneumococcal vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for pneumococcal vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="229">
+               <a:s>/*
+@output: Client is not due for pneumococcal vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for pneumococcal vaccination&quot;:
+  </a:s>
+               <a:s r="230">
+                  <a:s r="231">
+                     <a:s r="237">
+                        <a:s>&quot;Client is not due for pneumococcal vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="252">
+                        <a:s>&quot;Client is not due for pneumococcal vaccination Case 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="270">
+                     <a:s>&quot;Client is not due for pneumococcal vaccination Case 3&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="230" locator="70:3-72:62" xsi:type="Or">
+            <operand localId="231" locator="70:3-71:62" xsi:type="Or">
+               <operand localId="237" locator="70:3-70:57" name="Client is not due for pneumococcal vaccination Case 1" xsi:type="ExpressionRef"/>
+               <operand localId="252" locator="71:8-71:62" name="Client is not due for pneumococcal vaccination Case 2" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="270" locator="72:8-72:62" name="Client is not due for pneumococcal vaccination Case 3" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="274" locator="82:1-90:5" name="Client is not due for pneumococcal vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for pneumococcal vaccination Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with first pneumococcal dose as client's age is less than 6 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago and client is at high risk for pneumococcal infection. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose."/>
+            <a:s r="274">
+               <a:s>/*
+@output: Client is not due for pneumococcal vaccination Guidance
+@guidance: Should not vaccinate client with first pneumococcal dose as client's age is less than 6 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+@guidance: Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+@guidance: Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago and client is at high risk for pneumococcal infection. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+*/
+define &quot;Client is not due for pneumococcal vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="275">
+                  <a:s>case
+    </a:s>
+                  <a:s r="276">
+                     <a:s>when </a:s>
+                     <a:s r="277">
+                        <a:s>&quot;Client is not due for pneumococcal vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="278">
+                        <a:s>'Should not vaccinate client with first pneumococcal dose as client\'s age is less than 6 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="280">
+                     <a:s>when </a:s>
+                     <a:s r="281">
+                        <a:s>&quot;Client is not due for pneumococcal vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="282">
+                        <a:s>'Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="284">
+                     <a:s>when </a:s>
+                     <a:s r="285">
+                        <a:s>&quot;Client is not due for pneumococcal vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="286">
+                        <a:s>'Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago and client is at high risk for pneumococcal infection. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="288">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="275" locator="83:3-90:5" xsi:type="Case">
+            <caseItem localId="276" locator="84:5-84:260">
+               <when localId="277" locator="84:10-84:64" name="Client is not due for pneumococcal vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="278" locator="84:71-84:260" valueType="t:String" value="Should not vaccinate client with first pneumococcal dose as client's age is less than 6 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="280" locator="85:5-85:300">
+               <when localId="281" locator="85:10-85:64" name="Client is not due for pneumococcal vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="282" locator="85:71-85:300" valueType="t:String" value="Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="284" locator="87:5-87:354">
+               <when localId="285" locator="87:10-87:64" name="Client is not due for pneumococcal vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="286" locator="87:71-87:354" valueType="t:String" value="Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago and client is at high risk for pneumococcal infection. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="288" locator="89:10-89:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="299" locator="96:1-98:67" name="Client is due for pneumococcal vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for pneumococcal vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="299">
+               <a:s>/*
+@output: Client is due for pneumococcal vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for pneumococcal vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="300">
+                  <a:s r="302">
+                     <a:s r="301">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="302">
+                        <a:s>&quot;No pneumococcal primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="304">
+                     <a:s r="303">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="304">
+                        <a:s>&quot;The client's age is between 6 weeks and 5 years&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="300" locator="97:3-98:67" xsi:type="And">
+            <operand localId="302" locator="97:3-97:68" name="No pneumococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="304" locator="98:9-98:67" name="The client's age is between 6 weeks and 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="308" locator="104:1-108:87" name="Client is due for pneumococcal vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for pneumococcal vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="308">
+               <a:s>/*
+@output: Client is due for pneumococcal vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for pneumococcal vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="309">
+                  <a:s r="310">
+                     <a:s r="311">
+                        <a:s r="313">
+                           <a:s r="312">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="313">
+                              <a:s>&quot;One pneumococcal primary series dose was administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="315">
+                           <a:s r="314">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="315">
+                              <a:s>&quot;The client's age is less than or equal to 5 years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="317">
+                        <a:s r="316">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="317">
+                           <a:s>&quot;The first pneumococcal dose was administered within 24 months post birth&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="319">
+                     <a:s r="318">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="319">
+                        <a:s>&quot;The latest pneumococcal dose was administered more than 8 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="309" locator="105:3-108:87" xsi:type="And">
+            <operand localId="310" locator="105:3-107:92" xsi:type="And">
+               <operand localId="311" locator="105:3-106:69" xsi:type="And">
+                  <operand localId="313" locator="105:3-105:67" name="One pneumococcal primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="315" locator="106:9-106:69" name="The client's age is less than or equal to 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="317" locator="107:9-107:92" name="The first pneumococcal dose was administered within 24 months post birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="319" locator="108:9-108:87" name="The latest pneumococcal dose was administered more than 8 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="323" locator="114:1-119:69" name="Client is due for pneumococcal vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for pneumococcal vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="323">
+               <a:s>/*
+@output: Client is due for pneumococcal vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for pneumococcal vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="324">
+                  <a:s r="325">
+                     <a:s r="326">
+                        <a:s r="327">
+                           <a:s r="329">
+                              <a:s r="328">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="329">
+                                 <a:s>&quot;One pneumococcal primary series dose was administered&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+    and </a:s>
+                           <a:s r="331">
+                              <a:s r="330">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="331">
+                                 <a:s>&quot;The client's age is less than or equal to 5 years&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="333">
+                           <a:s r="332">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="333">
+                              <a:s>&quot;The first pneumococcal dose was administered after 24 months post birth&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="335">
+                        <a:s r="334">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="335">
+                           <a:s>&quot;The latest pneumococcal dose was administered more than 8 weeks ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="337">
+                     <a:s r="336">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="337">
+                        <a:s>&quot;Client is at high risk for pneumococcal infection&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="324" locator="115:3-119:69" xsi:type="And">
+            <operand localId="325" locator="115:3-118:87" xsi:type="And">
+               <operand localId="326" locator="115:3-117:91" xsi:type="And">
+                  <operand localId="327" locator="115:3-116:69" xsi:type="And">
+                     <operand localId="329" locator="115:3-115:67" name="One pneumococcal primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                     <operand localId="331" locator="116:9-116:69" name="The client's age is less than or equal to 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="333" locator="117:9-117:91" name="The first pneumococcal dose was administered after 24 months post birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="335" locator="118:9-118:87" name="The latest pneumococcal dose was administered more than 8 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="337" locator="119:9-119:69" name="Client is at high risk for pneumococcal infection" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="294" locator="125:1-128:58" name="Client is due for pneumococcal vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for pneumococcal vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="294">
+               <a:s>/*
+@output: Client is due for pneumococcal vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for pneumococcal vaccination&quot;:
+  </a:s>
+               <a:s r="295">
+                  <a:s r="296">
+                     <a:s r="305">
+                        <a:s>&quot;Client is due for pneumococcal vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="320">
+                        <a:s>&quot;Client is due for pneumococcal vaccination Case 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="338">
+                     <a:s>&quot;Client is due for pneumococcal vaccination Case 3&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="295" locator="126:3-128:58" xsi:type="Or">
+            <operand localId="296" locator="126:3-127:58" xsi:type="Or">
+               <operand localId="305" locator="126:3-126:53" name="Client is due for pneumococcal vaccination Case 1" xsi:type="ExpressionRef"/>
+               <operand localId="320" locator="127:8-127:58" name="Client is due for pneumococcal vaccination Case 2" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="338" locator="128:8-128:58" name="Client is due for pneumococcal vaccination Case 3" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="342" locator="139:1-148:5" name="Client is due for pneumococcal vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for pneumococcal vaccination Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with first pneumococcal dose as no pneumococcal doses were administered and client is within the appropriate age range.&#xa;Check for contraindications."/>
+            <a:t name="guidance" value="Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago. &#xa;Check for contraindications."/>
+            <a:t name="guidance" value="Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago and client is at high risk for pneumococcal infection. &#xa;Check for contraindications."/>
+            <a:s r="342">
+               <a:s>/*
+@output: Client is due for pneumococcal vaccination Guidance
+@guidance: Should vaccinate client with first pneumococcal dose as no pneumococcal doses were administered and client is within the appropriate age range.
+Check for contraindications.
+@guidance: Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago. 
+Check for contraindications.
+@guidance: Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago and client is at high risk for pneumococcal infection. 
+Check for contraindications.
+*/
+define &quot;Client is due for pneumococcal vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="343">
+                  <a:s>case
+    </a:s>
+                  <a:s r="344">
+                     <a:s>when </a:s>
+                     <a:s r="345">
+                        <a:s>&quot;Client is due for pneumococcal vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="346">
+                        <a:s>'Should vaccinate client with first pneumococcal dose as no pneumococcal doses were administered and client is within the appropriate age range.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="348">
+                     <a:s>when </a:s>
+                     <a:s r="349">
+                        <a:s>&quot;Client is due for pneumococcal vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="350">
+                        <a:s>'Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="352">
+                     <a:s>when </a:s>
+                     <a:s r="353">
+                        <a:s>&quot;Client is due for pneumococcal vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="354">
+                        <a:s>'Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago and client is at high risk for pneumococcal infection. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="356">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="343" locator="140:3-148:5" xsi:type="Case">
+            <caseItem localId="344" locator="141:5-141:240">
+               <when localId="345" locator="141:10-141:60" name="Client is due for pneumococcal vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="346" locator="141:67-141:240" valueType="t:String" value="Should vaccinate client with first pneumococcal dose as no pneumococcal doses were administered and client is within the appropriate age range.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="348" locator="143:5-143:223">
+               <when localId="349" locator="143:10-143:60" name="Client is due for pneumococcal vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="350" locator="143:67-143:223" valueType="t:String" value="Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="352" locator="145:5-145:277">
+               <when localId="353" locator="145:10-145:60" name="Client is due for pneumococcal vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="354" locator="145:67-145:277" valueType="t:String" value="Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago and client is at high risk for pneumococcal infection. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="356" locator="147:10-147:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="370" locator="154:1-158:73" name="Pneumococcal immunization schedule is complete Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal immunization schedule is complete Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="370">
+               <a:s>/*
+@output: Pneumococcal immunization schedule is complete Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Pneumococcal immunization schedule is complete Case 1&quot;:
+  </a:s>
+               <a:s r="371">
+                  <a:s r="372">
+                     <a:s r="373">
+                        <a:s r="375">
+                           <a:s r="374">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="375">
+                              <a:s>&quot;One pneumococcal primary series dose was administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="377">
+                           <a:s r="376">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="377">
+                              <a:s>&quot;The client's age is less than or equal to 5 years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="379">
+                        <a:s r="378">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="379">
+                           <a:s>&quot;The first pneumococcal dose was administered after 24 months post birth&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="381">
+                     <a:s r="380">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="381">
+                        <a:s>&quot;Client is not at high risk for pneumococcal infection&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="371" locator="155:3-158:73" xsi:type="And">
+            <operand localId="372" locator="155:3-157:91" xsi:type="And">
+               <operand localId="373" locator="155:3-156:69" xsi:type="And">
+                  <operand localId="375" locator="155:3-155:67" name="One pneumococcal primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="377" locator="156:9-156:69" name="The client's age is less than or equal to 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="379" locator="157:9-157:91" name="The first pneumococcal dose was administered after 24 months post birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="381" locator="158:9-158:73" name="Client is not at high risk for pneumococcal infection" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="385" locator="164:1-168:91" name="Pneumococcal immunization schedule is complete Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal immunization schedule is complete Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="385">
+               <a:s>/*
+@output: Pneumococcal immunization schedule is complete Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Pneumococcal immunization schedule is complete Case 2&quot;:
+  </a:s>
+               <a:s r="386">
+                  <a:s r="387">
+                     <a:s r="388">
+                        <a:s r="390">
+                           <a:s r="389">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="390">
+                              <a:s>&quot;Two pneumococcal primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="392">
+                           <a:s r="391">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="392">
+                              <a:s>&quot;No pneumococcal booster dose was administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="394">
+                        <a:s r="393">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="394">
+                           <a:s>&quot;The client's age is less than or equal to 5 years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="396">
+                     <a:s r="395">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="396">
+                        <a:s>&quot;The first pneumococcal dose was administered after 12 months post birth&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="386" locator="165:3-168:91" xsi:type="And">
+            <operand localId="387" locator="165:3-167:69" xsi:type="And">
+               <operand localId="388" locator="165:3-166:65" xsi:type="And">
+                  <operand localId="390" locator="165:3-165:69" name="Two pneumococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="392" locator="166:9-166:65" name="No pneumococcal booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="394" locator="167:9-167:69" name="The client's age is less than or equal to 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="396" locator="168:9-168:91" name="The first pneumococcal dose was administered after 12 months post birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="400" locator="174:1-178:92" name="Pneumococcal immunization schedule is complete Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal immunization schedule is complete Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="400">
+               <a:s>/*
+@output: Pneumococcal immunization schedule is complete Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Pneumococcal immunization schedule is complete Case 3&quot;:
+  </a:s>
+               <a:s r="401">
+                  <a:s r="402">
+                     <a:s r="403">
+                        <a:s r="405">
+                           <a:s r="404">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="405">
+                              <a:s>&quot;Two pneumococcal primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="407">
+                           <a:s r="406">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="407">
+                              <a:s>&quot;One pneumococcal booster dose was administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="409">
+                        <a:s r="408">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="409">
+                           <a:s>&quot;The client's age is more than or equal to 12 months and less than 24 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="411">
+                     <a:s r="410">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="411">
+                        <a:s>&quot;The latest pneumococcal dose was administered after 12 months post birth&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="401" locator="175:3-178:92" xsi:type="And">
+            <operand localId="402" locator="175:3-177:95" xsi:type="And">
+               <operand localId="403" locator="175:3-176:66" xsi:type="And">
+                  <operand localId="405" locator="175:3-175:69" name="Two pneumococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="407" locator="176:9-176:66" name="One pneumococcal booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="409" locator="177:9-177:95" name="The client's age is more than or equal to 12 months and less than 24 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="411" locator="178:9-178:92" name="The latest pneumococcal dose was administered after 12 months post birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="415" locator="184:1-188:53" name="Pneumococcal immunization schedule is complete Case 4" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal immunization schedule is complete Case 4"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="415">
+               <a:s>/*
+@output: Pneumococcal immunization schedule is complete Case 4
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Pneumococcal immunization schedule is complete Case 4&quot;:
+  </a:s>
+               <a:s r="416">
+                  <a:s r="417">
+                     <a:s r="418">
+                        <a:s r="420">
+                           <a:s r="419">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="420">
+                              <a:s>&quot;Two pneumococcal primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="422">
+                           <a:s r="421">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="422">
+                              <a:s>&quot;One pneumococcal booster dose was administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="424">
+                        <a:s r="423">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="424">
+                           <a:s>&quot;Client's HIV status is negative or unknown&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="426">
+                     <a:s r="425">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="426">
+                        <a:s>&quot;Client did not have preterm birth&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="416" locator="185:3-188:53" xsi:type="And">
+            <operand localId="417" locator="185:3-187:62" xsi:type="And">
+               <operand localId="418" locator="185:3-186:66" xsi:type="And">
+                  <operand localId="420" locator="185:3-185:69" name="Two pneumococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="422" locator="186:9-186:66" name="One pneumococcal booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="424" locator="187:9-187:62" name="Client's HIV status is negative or unknown" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="426" locator="188:9-188:53" name="Client did not have preterm birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="430" locator="194:1-197:71" name="Pneumococcal immunization schedule is complete Case 5" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal immunization schedule is complete Case 5"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="430">
+               <a:s>/*
+@output: Pneumococcal immunization schedule is complete Case 5
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Pneumococcal immunization schedule is complete Case 5&quot;:
+  </a:s>
+               <a:s r="431">
+                  <a:s r="432">
+                     <a:s r="434">
+                        <a:s r="433">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="434">
+                           <a:s>&quot;Two pneumococcal primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="436">
+                        <a:s r="435">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="436">
+                           <a:s>&quot;One pneumococcal booster dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="438">
+                     <a:s r="437">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="438">
+                        <a:s>&quot;The client's age is more than or equal to 24 months&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="431" locator="195:3-197:71" xsi:type="And">
+            <operand localId="432" locator="195:3-196:66" xsi:type="And">
+               <operand localId="434" locator="195:3-195:69" name="Two pneumococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="436" locator="196:9-196:66" name="One pneumococcal booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="438" locator="197:9-197:71" name="The client's age is more than or equal to 24 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="442" locator="203:1-205:68" name="Pneumococcal immunization schedule is complete Case 6" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal immunization schedule is complete Case 6"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="442">
+               <a:s>/*
+@output: Pneumococcal immunization schedule is complete Case 6
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Pneumococcal immunization schedule is complete Case 6&quot;:
+  </a:s>
+               <a:s r="443">
+                  <a:s r="445">
+                     <a:s r="444">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="445">
+                        <a:s>&quot;Two pneumococcal primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="447">
+                     <a:s r="446">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="447">
+                        <a:s>&quot;Two pneumococcal booster doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="443" locator="204:3-205:68" xsi:type="And">
+            <operand localId="445" locator="204:3-204:69" name="Two pneumococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="447" locator="205:9-205:68" name="Two pneumococcal booster doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="362" locator="211:1-217:62" name="Pneumococcal immunization schedule is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal immunization schedule is complete"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="362">
+               <a:s>/*
+@output: Pneumococcal immunization schedule is complete
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Pneumococcal immunization schedule is complete&quot;:
+  </a:s>
+               <a:s r="363">
+                  <a:s r="364">
+                     <a:s r="365">
+                        <a:s r="366">
+                           <a:s r="367">
+                              <a:s r="382">
+                                 <a:s>&quot;Pneumococcal immunization schedule is complete Case 1&quot;</a:s>
+                              </a:s>
+                              <a:s>
+    or </a:s>
+                              <a:s r="397">
+                                 <a:s>&quot;Pneumococcal immunization schedule is complete Case 2&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+    or </a:s>
+                           <a:s r="412">
+                              <a:s>&quot;Pneumococcal immunization schedule is complete Case 3&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    or </a:s>
+                        <a:s r="427">
+                           <a:s>&quot;Pneumococcal immunization schedule is complete Case 4&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="439">
+                        <a:s>&quot;Pneumococcal immunization schedule is complete Case 5&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="448">
+                     <a:s>&quot;Pneumococcal immunization schedule is complete Case 6&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="363" locator="212:3-217:62" xsi:type="Or">
+            <operand localId="364" locator="212:3-216:62" xsi:type="Or">
+               <operand localId="365" locator="212:3-215:62" xsi:type="Or">
+                  <operand localId="366" locator="212:3-214:62" xsi:type="Or">
+                     <operand localId="367" locator="212:3-213:62" xsi:type="Or">
+                        <operand localId="382" locator="212:3-212:57" name="Pneumococcal immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+                        <operand localId="397" locator="213:8-213:62" name="Pneumococcal immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="412" locator="214:8-214:62" name="Pneumococcal immunization schedule is complete Case 3" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="427" locator="215:8-215:62" name="Pneumococcal immunization schedule is complete Case 4" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="439" locator="216:8-216:62" name="Pneumococcal immunization schedule is complete Case 5" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="448" locator="217:8-217:62" name="Pneumococcal immunization schedule is complete Case 6" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="452" locator="234:1-249:5" name="Pneumococcal immunization schedule is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal immunization schedule is complete Guidance"/>
+            <a:t name="guidance" value="Pneumococcal immunization schedule is complete. One primary series dose was administered. &#xa;Check for any other vaccines due."/>
+            <a:t name="guidance" value="Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses were administered. &#xa;Check for any other vaccines due."/>
+            <a:t name="guidance" value="Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.&#xa;Check for any other vaccines due."/>
+            <a:t name="guidance" value="Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.&#xa;Check for any other vaccines due."/>
+            <a:t name="guidance" value="Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.&#xa;Check for any other vaccines due."/>
+            <a:t name="guidance" value="Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses and two booster doses were administered. &#xa;Check for any other vaccines due."/>
+            <a:s r="452">
+               <a:s>/*
+@output: Pneumococcal immunization schedule is complete Guidance
+@guidance: Pneumococcal immunization schedule is complete. One primary series dose was administered. 
+Check for any other vaccines due.
+@guidance: Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses were administered. 
+Check for any other vaccines due.
+@guidance: Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.
+Check for any other vaccines due.
+@guidance: Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.
+Check for any other vaccines due.
+@guidance: Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.
+Check for any other vaccines due.
+@guidance: Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses and two booster doses were administered. 
+Check for any other vaccines due.
+*/
+define &quot;Pneumococcal immunization schedule is complete Guidance&quot;:
+  </a:s>
+               <a:s r="453">
+                  <a:s>case
+    </a:s>
+                  <a:s r="454">
+                     <a:s>when </a:s>
+                     <a:s r="455">
+                        <a:s>&quot;Pneumococcal immunization schedule is complete Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="456">
+                        <a:s>'Pneumococcal immunization schedule is complete. One primary series dose was administered. 
+Check for any other vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="458">
+                     <a:s>when </a:s>
+                     <a:s r="459">
+                        <a:s>&quot;Pneumococcal immunization schedule is complete Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="460">
+                        <a:s>'Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses were administered. 
+Check for any other vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="462">
+                     <a:s>when </a:s>
+                     <a:s r="463">
+                        <a:s>&quot;Pneumococcal immunization schedule is complete Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="464">
+                        <a:s>'Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.
+Check for any other vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="466">
+                     <a:s>when </a:s>
+                     <a:s r="467">
+                        <a:s>&quot;Pneumococcal immunization schedule is complete Case 4&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="468">
+                        <a:s>'Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.
+Check for any other vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="470">
+                     <a:s>when </a:s>
+                     <a:s r="471">
+                        <a:s>&quot;Pneumococcal immunization schedule is complete Case 5&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="472">
+                        <a:s>'Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.
+Check for any other vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="474">
+                     <a:s>when </a:s>
+                     <a:s r="475">
+                        <a:s>&quot;Pneumococcal immunization schedule is complete Case 6&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="476">
+                        <a:s>'Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses and two booster doses were administered. 
+Check for any other vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="478">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="453" locator="235:3-249:5" xsi:type="Case">
+            <caseItem localId="454" locator="236:5-236:196">
+               <when localId="455" locator="236:10-236:64" name="Pneumococcal immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+               <then localId="456" locator="236:71-236:196" valueType="t:String" value="Pneumococcal immunization schedule is complete. One primary series dose was administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="458" locator="238:5-238:211">
+               <when localId="459" locator="238:10-238:64" name="Pneumococcal immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+               <then localId="460" locator="238:71-238:211" valueType="t:String" value="Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses were administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="462" locator="240:5-240:232">
+               <when localId="463" locator="240:10-240:64" name="Pneumococcal immunization schedule is complete Case 3" xsi:type="ExpressionRef"/>
+               <then localId="464" locator="240:71-240:232" valueType="t:String" value="Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.&#xa;Check for any other vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="466" locator="242:5-242:232">
+               <when localId="467" locator="242:10-242:64" name="Pneumococcal immunization schedule is complete Case 4" xsi:type="ExpressionRef"/>
+               <then localId="468" locator="242:71-242:232" valueType="t:String" value="Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.&#xa;Check for any other vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="470" locator="244:5-244:232">
+               <when localId="471" locator="244:10-244:64" name="Pneumococcal immunization schedule is complete Case 5" xsi:type="ExpressionRef"/>
+               <then localId="472" locator="244:71-244:232" valueType="t:String" value="Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.&#xa;Check for any other vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="474" locator="246:5-246:233">
+               <when localId="475" locator="246:10-246:64" name="Pneumococcal immunization schedule is complete Case 6" xsi:type="ExpressionRef"/>
+               <then localId="476" locator="246:71-246:233" valueType="t:String" value="Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses and two booster doses were administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="478" locator="248:10-248:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="489" locator="255:1-259:92" name="Client is due for pneumococcal booster dose Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for pneumococcal booster dose Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="489">
+               <a:s>/*
+@output: Client is due for pneumococcal booster dose Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for pneumococcal booster dose Case 1&quot;:
+  </a:s>
+               <a:s r="490">
+                  <a:s r="491">
+                     <a:s r="492">
+                        <a:s r="494">
+                           <a:s r="493">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="494">
+                              <a:s>&quot;Two pneumococcal primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="496">
+                           <a:s r="495">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="496">
+                              <a:s>&quot;No pneumococcal booster dose was administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="498">
+                        <a:s r="497">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="498">
+                           <a:s>&quot;The client's age is less than or equal to 5 years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="500">
+                     <a:s r="499">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="500">
+                        <a:s>&quot;The first pneumococcal dose was administered within 12 months post birth&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="490" locator="256:3-259:92" xsi:type="And">
+            <operand localId="491" locator="256:3-258:69" xsi:type="And">
+               <operand localId="492" locator="256:3-257:65" xsi:type="And">
+                  <operand localId="494" locator="256:3-256:69" name="Two pneumococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="496" locator="257:9-257:65" name="No pneumococcal booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="498" locator="258:9-258:69" name="The client's age is less than or equal to 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="500" locator="259:9-259:92" name="The first pneumococcal dose was administered within 12 months post birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="504" locator="265:1-270:51" name="Client is due for pneumococcal booster dose Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for pneumococcal booster dose Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="504">
+               <a:s>/*
+@output: Client is due for pneumococcal booster dose Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for pneumococcal booster dose Case 2&quot;:
+  </a:s>
+               <a:s r="505">
+                  <a:s r="506">
+                     <a:s r="507">
+                        <a:s r="508">
+                           <a:s r="510">
+                              <a:s r="509">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="510">
+                                 <a:s>&quot;Two pneumococcal primary series doses were administered&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+    and </a:s>
+                           <a:s r="512">
+                              <a:s r="511">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="512">
+                                 <a:s>&quot;One pneumococcal booster dose was administered&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="514">
+                           <a:s r="513">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="514">
+                              <a:s>&quot;The client's age is more than or equal to 12 months and less than 24 months&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="516">
+                        <a:s r="515">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="516">
+                           <a:s>&quot;The latest pneumococcal dose was administered within 12 months post birth&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="518">
+                     <a:s r="517">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="518">
+                        <a:s>&quot;Client's HIV status is positive&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="505" locator="266:3-270:51" xsi:type="And">
+            <operand localId="506" locator="266:3-269:93" xsi:type="And">
+               <operand localId="507" locator="266:3-268:95" xsi:type="And">
+                  <operand localId="508" locator="266:3-267:66" xsi:type="And">
+                     <operand localId="510" locator="266:3-266:69" name="Two pneumococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                     <operand localId="512" locator="267:9-267:66" name="One pneumococcal booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="514" locator="268:9-268:95" name="The client's age is more than or equal to 12 months and less than 24 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="516" locator="269:9-269:93" name="The latest pneumococcal dose was administered within 12 months post birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="518" locator="270:9-270:51" name="Client's HIV status is positive" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="522" locator="276:1-281:44" name="Client is due for pneumococcal booster dose Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for pneumococcal booster dose Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="522">
+               <a:s>/*
+@output: Client is due for pneumococcal booster dose Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for pneumococcal booster dose Case 3&quot;:
+  </a:s>
+               <a:s r="523">
+                  <a:s r="524">
+                     <a:s r="525">
+                        <a:s r="526">
+                           <a:s r="528">
+                              <a:s r="527">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="528">
+                                 <a:s>&quot;Two pneumococcal primary series doses were administered&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+    and </a:s>
+                           <a:s r="530">
+                              <a:s r="529">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="530">
+                                 <a:s>&quot;One pneumococcal booster dose was administered&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="532">
+                           <a:s r="531">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="532">
+                              <a:s>&quot;The client's age is more than or equal to 12 months and less than 24 months&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="534">
+                        <a:s r="533">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="534">
+                           <a:s>&quot;The latest pneumococcal dose was administered within 12 months post birth&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="536">
+                     <a:s r="535">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="536">
+                        <a:s>&quot;Client had preterm birth&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="523" locator="277:3-281:44" xsi:type="And">
+            <operand localId="524" locator="277:3-280:93" xsi:type="And">
+               <operand localId="525" locator="277:3-279:95" xsi:type="And">
+                  <operand localId="526" locator="277:3-278:66" xsi:type="And">
+                     <operand localId="528" locator="277:3-277:69" name="Two pneumococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                     <operand localId="530" locator="278:9-278:66" name="One pneumococcal booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="532" locator="279:9-279:95" name="The client's age is more than or equal to 12 months and less than 24 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="534" locator="280:9-280:93" name="The latest pneumococcal dose was administered within 12 months post birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="536" locator="281:9-281:44" name="Client had preterm birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="484" locator="287:1-290:59" name="Client is due for pneumococcal booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for pneumococcal booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="484">
+               <a:s>/*
+@output: Client is due for pneumococcal booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for pneumococcal booster dose&quot;:
+  </a:s>
+               <a:s r="485">
+                  <a:s r="486">
+                     <a:s r="501">
+                        <a:s>&quot;Client is due for pneumococcal booster dose Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="519">
+                        <a:s>&quot;Client is due for pneumococcal booster dose Case 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="537">
+                     <a:s>&quot;Client is due for pneumococcal booster dose Case 3&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="485" locator="288:3-290:59" xsi:type="Or">
+            <operand localId="486" locator="288:3-289:59" xsi:type="Or">
+               <operand localId="501" locator="288:3-288:54" name="Client is due for pneumococcal booster dose Case 1" xsi:type="ExpressionRef"/>
+               <operand localId="519" locator="289:8-289:59" name="Client is due for pneumococcal booster dose Case 2" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="537" locator="290:8-290:59" name="Client is due for pneumococcal booster dose Case 3" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="541" locator="301:1-310:5" name="Client is due for pneumococcal booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for pneumococcal booster dose Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with first pneumococcal booster dose as first pneumococcal dose was administered within 12 months post birth. &#xa;Check for contraindications."/>
+            <a:t name="guidance" value="Should vaccinate client with second pneumococcal booster dose as client is HIV positive and latest pneumococcal dose was administered within 12 months post birth.&#xa;Check for contraindications."/>
+            <a:t name="guidance" value="Should vaccinate client with second pneumococcal booster dose as client had preterm birth and latest pneumococcal dose was administered within 12 months post birth.&#xa;Check for contraindications."/>
+            <a:s r="541">
+               <a:s>/*
+@output: Client is due for pneumococcal booster dose Guidance
+@guidance: Should vaccinate client with first pneumococcal booster dose as first pneumococcal dose was administered within 12 months post birth. 
+Check for contraindications.
+@guidance: Should vaccinate client with second pneumococcal booster dose as client is HIV positive and latest pneumococcal dose was administered within 12 months post birth.
+Check for contraindications.
+@guidance: Should vaccinate client with second pneumococcal booster dose as client had preterm birth and latest pneumococcal dose was administered within 12 months post birth.
+Check for contraindications.
+*/
+define &quot;Client is due for pneumococcal booster dose Guidance&quot;:
+  </a:s>
+               <a:s r="542">
+                  <a:s>case
+    </a:s>
+                  <a:s r="543">
+                     <a:s>when </a:s>
+                     <a:s r="544">
+                        <a:s>&quot;Client is due for pneumococcal booster dose Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="545">
+                        <a:s>'Should vaccinate client with first pneumococcal booster dose as first pneumococcal dose was administered within 12 months post birth. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="547">
+                     <a:s>when </a:s>
+                     <a:s r="548">
+                        <a:s>&quot;Client is due for pneumococcal booster dose Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="549">
+                        <a:s>'Should vaccinate client with second pneumococcal booster dose as client is HIV positive and latest pneumococcal dose was administered within 12 months post birth.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="551">
+                     <a:s>when </a:s>
+                     <a:s r="552">
+                        <a:s>&quot;Client is due for pneumococcal booster dose Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="553">
+                        <a:s>'Should vaccinate client with second pneumococcal booster dose as client had preterm birth and latest pneumococcal dose was administered within 12 months post birth.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="555">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="542" locator="302:3-310:5" xsi:type="Case">
+            <caseItem localId="543" locator="303:5-303:232">
+               <when localId="544" locator="303:10-303:61" name="Client is due for pneumococcal booster dose Case 1" xsi:type="ExpressionRef"/>
+               <then localId="545" locator="303:68-303:232" valueType="t:String" value="Should vaccinate client with first pneumococcal booster dose as first pneumococcal dose was administered within 12 months post birth. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="547" locator="305:5-305:260">
+               <when localId="548" locator="305:10-305:61" name="Client is due for pneumococcal booster dose Case 2" xsi:type="ExpressionRef"/>
+               <then localId="549" locator="305:68-305:260" valueType="t:String" value="Should vaccinate client with second pneumococcal booster dose as client is HIV positive and latest pneumococcal dose was administered within 12 months post birth.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="551" locator="307:5-307:262">
+               <when localId="552" locator="307:10-307:61" name="Client is due for pneumococcal booster dose Case 3" xsi:type="ExpressionRef"/>
+               <then localId="553" locator="307:68-307:262" valueType="t:String" value="Should vaccinate client with second pneumococcal booster dose as client had preterm birth and latest pneumococcal dose was administered within 12 months post birth.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="555" locator="309:10-309:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="565" locator="316:1-320:51" name="Client is not due for pneumococcal booster dose Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for pneumococcal booster dose Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="565">
+               <a:s>/*
+@output: Client is not due for pneumococcal booster dose Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for pneumococcal booster dose Case 1&quot;:
+  </a:s>
+               <a:s r="566">
+                  <a:s r="567">
+                     <a:s r="568">
+                        <a:s r="570">
+                           <a:s r="569">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="570">
+                              <a:s>&quot;Two pneumococcal primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="572">
+                           <a:s r="571">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="572">
+                              <a:s>&quot;One pneumococcal booster dose was administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="574">
+                        <a:s r="573">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="574">
+                           <a:s>&quot;The client's age is less than 12 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="576">
+                     <a:s r="575">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="576">
+                        <a:s>&quot;Client's HIV status is positive&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="566" locator="317:3-320:51" xsi:type="And">
+            <operand localId="567" locator="317:3-319:59" xsi:type="And">
+               <operand localId="568" locator="317:3-318:66" xsi:type="And">
+                  <operand localId="570" locator="317:3-317:69" name="Two pneumococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="572" locator="318:9-318:66" name="One pneumococcal booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="574" locator="319:9-319:59" name="The client's age is less than 12 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="576" locator="320:9-320:51" name="Client's HIV status is positive" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="580" locator="326:1-330:44" name="Client is not due for pneumococcal booster dose Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for pneumococcal booster dose Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="580">
+               <a:s>/*
+@output: Client is not due for pneumococcal booster dose Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for pneumococcal booster dose Case 2&quot;:
+  </a:s>
+               <a:s r="581">
+                  <a:s r="582">
+                     <a:s r="583">
+                        <a:s r="585">
+                           <a:s r="584">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="585">
+                              <a:s>&quot;Two pneumococcal primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="587">
+                           <a:s r="586">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="587">
+                              <a:s>&quot;One pneumococcal booster dose was administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="589">
+                        <a:s r="588">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="589">
+                           <a:s>&quot;The client's age is less than 12 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="591">
+                     <a:s r="590">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="591">
+                        <a:s>&quot;Client had preterm birth&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="581" locator="327:3-330:44" xsi:type="And">
+            <operand localId="582" locator="327:3-329:59" xsi:type="And">
+               <operand localId="583" locator="327:3-328:66" xsi:type="And">
+                  <operand localId="585" locator="327:3-327:69" name="Two pneumococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="587" locator="328:9-328:66" name="One pneumococcal booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="589" locator="329:9-329:59" name="The client's age is less than 12 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="591" locator="330:9-330:44" name="Client had preterm birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="561" locator="336:1-338:63" name="Client is not due for pneumococcal booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for pneumococcal booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="561">
+               <a:s>/*
+@output: Client is not due for pneumococcal booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for pneumococcal booster dose&quot;:
+  </a:s>
+               <a:s r="562">
+                  <a:s r="577">
+                     <a:s>&quot;Client is not due for pneumococcal booster dose Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="592">
+                     <a:s>&quot;Client is not due for pneumococcal booster dose Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="562" locator="337:3-338:63" xsi:type="Or">
+            <operand localId="577" locator="337:3-337:58" name="Client is not due for pneumococcal booster dose Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="592" locator="338:8-338:63" name="Client is not due for pneumococcal booster dose Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="596" locator="347:1-354:5" name="Client is not due for pneumococcal booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for pneumococcal booster dose Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with second pneumococcal booster dose as client's age is less than 12 months and client is HIV positive. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with second pneumococcal booster dose as client's age is less than 12 months and client had preterm birth. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose."/>
+            <a:s r="596">
+               <a:s>/*
+@output: Client is not due for pneumococcal booster dose Guidance
+@guidance: Should not vaccinate client with second pneumococcal booster dose as client's age is less than 12 months and client is HIV positive. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+@guidance: Should not vaccinate client with second pneumococcal booster dose as client's age is less than 12 months and client had preterm birth. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+*/
+define &quot;Client is not due for pneumococcal booster dose Guidance&quot;:
+  </a:s>
+               <a:s r="597">
+                  <a:s>case
+    </a:s>
+                  <a:s r="598">
+                     <a:s>when </a:s>
+                     <a:s r="599">
+                        <a:s>&quot;Client is not due for pneumococcal booster dose Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="600">
+                        <a:s>'Should not vaccinate client with second pneumococcal booster dose as client\'s age is less than 12 months and client is HIV positive. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="602">
+                     <a:s>when </a:s>
+                     <a:s r="603">
+                        <a:s>&quot;Client is not due for pneumococcal booster dose Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="604">
+                        <a:s>'Should not vaccinate client with second pneumococcal booster dose as client\'s age is less than 12 months and client had preterm birth. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="606">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="597" locator="348:3-354:5" xsi:type="Case">
+            <caseItem localId="598" locator="349:5-349:305">
+               <when localId="599" locator="349:10-349:65" name="Client is not due for pneumococcal booster dose Case 1" xsi:type="ExpressionRef"/>
+               <then localId="600" locator="349:72-349:305" valueType="t:String" value="Should not vaccinate client with second pneumococcal booster dose as client's age is less than 12 months and client is HIV positive. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="602" locator="351:5-351:307">
+               <when localId="603" locator="351:10-351:65" name="Client is not due for pneumococcal booster dose Case 2" xsi:type="ExpressionRef"/>
+               <then localId="604" locator="351:72-351:307" valueType="t:String" value="Should not vaccinate client with second pneumococcal booster dose as client's age is less than 12 months and client had preterm birth. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="606" locator="353:10-353:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="612" locator="360:1-361:51" name="Clinical judgement is required. Create a clinical note" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Clinical judgement is required. Create a clinical note"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="612">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note&quot;:
+  </a:s>
+               <a:s r="614">
+                  <a:s r="613">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="614">
+                     <a:s>&quot;The client's age is more than 5 years&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="614" locator="361:3-361:51" name="The client's age is more than 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="618" locator="367:1-368:94" name="Clinical judgement is required. Create a clinical note Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Clinical judgement is required. Create a clinical note Guidance"/>
+            <a:t name="guidance" value="Members States should update this action according to the national immunization programme."/>
+            <a:s r="618">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note Guidance
+@guidance: Members States should update this action according to the national immunization programme.
+*/
+define &quot;Clinical judgement is required. Create a clinical note Guidance&quot;:
+  </a:s>
+               <a:s r="619">
+                  <a:s>'Members States should update this action according to the national immunization programme.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="619" locator="368:3-368:94" valueType="t:String" value="Members States should update this action according to the national immunization programme." xsi:type="Literal"/>
+      </def>
+      <def localId="224" locator="23:1-32:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="224">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="225">
+                  <a:s>case
+    </a:s>
+                  <a:s r="226">
+                     <a:s>when </a:s>
+                     <a:s r="271">
+                        <a:s>&quot;Client is not due for pneumococcal vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="290">
+                        <a:s>&quot;Client is not due for pneumococcal vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="291">
+                     <a:s>when </a:s>
+                     <a:s r="339">
+                        <a:s>&quot;Client is due for pneumococcal vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="358">
+                        <a:s>&quot;Client is due for pneumococcal vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="359">
+                     <a:s>when </a:s>
+                     <a:s r="449">
+                        <a:s>&quot;Pneumococcal immunization schedule is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="480">
+                        <a:s>&quot;Pneumococcal immunization schedule is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="481">
+                     <a:s>when </a:s>
+                     <a:s r="538">
+                        <a:s>&quot;Client is due for pneumococcal booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="557">
+                        <a:s>&quot;Client is due for pneumococcal booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="558">
+                     <a:s>when </a:s>
+                     <a:s r="593">
+                        <a:s>&quot;Client is not due for pneumococcal booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="608">
+                        <a:s>&quot;Client is not due for pneumococcal booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="609">
+                     <a:s>when </a:s>
+                     <a:s r="615">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="621">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="622">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="24:3-32:5" xsi:type="Case">
+            <caseItem localId="226" locator="25:5-25:120">
+               <when localId="271" locator="25:10-25:57" name="Client is not due for pneumococcal vaccination" xsi:type="ExpressionRef"/>
+               <then localId="290" locator="25:64-25:120" name="Client is not due for pneumococcal vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="291" locator="26:5-26:112">
+               <when localId="339" locator="26:10-26:53" name="Client is due for pneumococcal vaccination" xsi:type="ExpressionRef"/>
+               <then localId="358" locator="26:60-26:112" name="Client is due for pneumococcal vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="359" locator="27:5-27:120">
+               <when localId="449" locator="27:10-27:57" name="Pneumococcal immunization schedule is complete" xsi:type="ExpressionRef"/>
+               <then localId="480" locator="27:64-27:120" name="Pneumococcal immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="481" locator="28:5-28:114">
+               <when localId="538" locator="28:10-28:54" name="Client is due for pneumococcal booster dose" xsi:type="ExpressionRef"/>
+               <then localId="557" locator="28:61-28:114" name="Client is due for pneumococcal booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="558" locator="29:5-29:122">
+               <when localId="593" locator="29:10-29:58" name="Client is not due for pneumococcal booster dose" xsi:type="ExpressionRef"/>
+               <then localId="608" locator="29:65-29:122" name="Client is not due for pneumococcal booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="609" locator="30:5-30:136">
+               <when localId="615" locator="30:10-30:65" name="Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+               <then localId="621" locator="30:72-30:136" name="Clinical judgement is required. Create a clinical note Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="622" locator="31:10-31:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="626" locator="34:1-35:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="626">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="627">
+                  <a:s r="630">
+                     <a:s r="628">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="637">
+                     <a:s r="632">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="633">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="627" locator="35:3-35:45" xsi:type="And">
+            <operand localId="630" locator="35:3-35:24" xsi:type="Not">
+               <operand localId="629" locator="35:3-35:24" xsi:type="IsNull">
+                  <operand localId="628" locator="35:3-35:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="637" locator="35:30-35:45" xsi:type="Not">
+               <operand localId="631" locator="35:30-35:45" xsi:type="Equal">
+                  <signature localId="635" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="636" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="632" locator="35:30-35:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="633" locator="35:44-35:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="640" locator="374:1-411:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="640">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="641">
+                  <a:s>case
+    </a:s>
+                  <a:s r="642">
+                     <a:s>when </a:s>
+                     <a:s r="643">
+                        <a:s r="645">
+                           <a:s r="644">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="645">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="646">
+                           <a:s>'08.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="652">
+                        <a:s r="653">
+                           <a:s>&quot;Client is not due for pneumococcal vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="654">
+                           <a:s r="655">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="656">
+                              <a:s>'Should not vaccinate client with first pneumococcal dose as client\'s age is less than 6 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="660">
+                     <a:s>when </a:s>
+                     <a:s r="661">
+                        <a:s r="663">
+                           <a:s r="662">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="663">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="664">
+                           <a:s>'09.13'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="670">
+                        <a:s r="671">
+                           <a:s>&quot;Client is due for pneumococcal vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="672">
+                           <a:s r="673">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="674">
+                              <a:s>'Should vaccinate client with first pneumococcal dose as no pneumococcal doses were administered and client is within the appropriate age range.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="678">
+                     <a:s>when </a:s>
+                     <a:s r="679">
+                        <a:s r="681">
+                           <a:s r="680">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="681">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="682">
+                           <a:s>'10.1345'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="688">
+                        <a:s r="689">
+                           <a:s>&quot;Client is not due for pneumococcal vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="690">
+                           <a:s r="691">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="692">
+                              <a:s>'Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="696">
+                     <a:s>when </a:s>
+                     <a:s r="697">
+                        <a:s r="699">
+                           <a:s r="698">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="699">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="700">
+                           <a:s>'11.1345'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="706">
+                        <a:s r="707">
+                           <a:s>&quot;Client is due for pneumococcal vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="708">
+                           <a:s r="709">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="710">
+                              <a:s>'Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="714">
+                     <a:s>when </a:s>
+                     <a:s r="715">
+                        <a:s r="717">
+                           <a:s r="716">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="717">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="718">
+                           <a:s>'12.13456'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="724">
+                        <a:s r="725">
+                           <a:s>&quot;Client is not due for pneumococcal vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="726">
+                           <a:s r="727">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="728">
+                              <a:s>'Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago and client is at high risk for pneumococcal infection. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="732">
+                     <a:s>when </a:s>
+                     <a:s r="733">
+                        <a:s r="735">
+                           <a:s r="734">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="735">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="736">
+                           <a:s>'13.13456'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="742">
+                        <a:s r="743">
+                           <a:s>&quot;Client is due for pneumococcal vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="744">
+                           <a:s r="745">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="746">
+                              <a:s>'Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago and client is at high risk for pneumococcal infection. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="750">
+                     <a:s>when </a:s>
+                     <a:s r="751">
+                        <a:s r="753">
+                           <a:s r="752">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="753">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="754">
+                           <a:s>'14.1346'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="760">
+                        <a:s r="761">
+                           <a:s>&quot;Pneumococcal immunization schedule is complete Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="762">
+                           <a:s r="763">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="764">
+                              <a:s>'Pneumococcal immunization schedule is complete. One primary series dose was administered. 
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="768">
+                     <a:s>when </a:s>
+                     <a:s r="769">
+                        <a:s r="771">
+                           <a:s r="770">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="771">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="772">
+                           <a:s>'15.1234'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="778">
+                        <a:s r="779">
+                           <a:s>&quot;Client is due for pneumococcal booster dose Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="780">
+                           <a:s r="781">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="782">
+                              <a:s>'Should vaccinate client with first pneumococcal booster dose as first pneumococcal dose was administered within 12 months post birth. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="786">
+                     <a:s>when </a:s>
+                     <a:s r="787">
+                        <a:s r="789">
+                           <a:s r="788">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="789">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="790">
+                           <a:s>'16.1234'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="796">
+                        <a:s r="797">
+                           <a:s>&quot;Pneumococcal immunization schedule is complete Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="798">
+                           <a:s r="799">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="800">
+                              <a:s>'Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses were administered. 
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="804">
+                     <a:s>when </a:s>
+                     <a:s r="805">
+                        <a:s r="807">
+                           <a:s r="806">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="807">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="808">
+                           <a:s>'17.1237'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="814">
+                        <a:s r="815">
+                           <a:s>&quot;Client is not due for pneumococcal booster dose Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="816">
+                           <a:s r="817">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="818">
+                              <a:s>'Should not vaccinate client with second pneumococcal booster dose as client\'s age is less than 12 months and client is HIV positive. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="822">
+                     <a:s>when </a:s>
+                     <a:s r="823">
+                        <a:s r="825">
+                           <a:s r="824">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="825">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="826">
+                           <a:s>'18.1238'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="832">
+                        <a:s r="833">
+                           <a:s>&quot;Client is not due for pneumococcal booster dose Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="834">
+                           <a:s r="835">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="836">
+                              <a:s>'Should not vaccinate client with second pneumococcal booster dose as client\'s age is less than 12 months and client had preterm birth. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="840">
+                     <a:s>when </a:s>
+                     <a:s r="841">
+                        <a:s r="843">
+                           <a:s r="842">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="843">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="844">
+                           <a:s>'19.12347'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="850">
+                        <a:s r="851">
+                           <a:s>&quot;Client is due for pneumococcal booster dose Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="852">
+                           <a:s r="853">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="854">
+                              <a:s>'Should vaccinate client with second pneumococcal booster dose as client is HIV positive and latest pneumococcal dose was administered within 12 months post birth.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="858">
+                     <a:s>when </a:s>
+                     <a:s r="859">
+                        <a:s r="861">
+                           <a:s r="860">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="861">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="862">
+                           <a:s>'20.12348'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="868">
+                        <a:s r="869">
+                           <a:s>&quot;Client is due for pneumococcal booster dose Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="870">
+                           <a:s r="871">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="872">
+                              <a:s>'Should vaccinate client with second pneumococcal booster dose as client had preterm birth and latest pneumococcal dose was administered within 12 months post birth.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="876">
+                     <a:s>when </a:s>
+                     <a:s r="877">
+                        <a:s r="879">
+                           <a:s r="878">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="879">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="880">
+                           <a:s>'21.1234'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="886">
+                        <a:s r="887">
+                           <a:s>&quot;Pneumococcal immunization schedule is complete Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="888">
+                           <a:s r="889">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="890">
+                              <a:s>'Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="894">
+                     <a:s>when </a:s>
+                     <a:s r="895">
+                        <a:s r="897">
+                           <a:s r="896">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="897">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="898">
+                           <a:s>'22.1278'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="904">
+                        <a:s r="905">
+                           <a:s>&quot;Pneumococcal immunization schedule is complete Case 4&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="906">
+                           <a:s r="907">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="908">
+                              <a:s>'Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="912">
+                     <a:s>when </a:s>
+                     <a:s r="913">
+                        <a:s r="915">
+                           <a:s r="914">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="915">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="916">
+                           <a:s>'23.123'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="922">
+                        <a:s r="923">
+                           <a:s>&quot;Pneumococcal immunization schedule is complete Case 5&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="924">
+                           <a:s r="925">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="926">
+                              <a:s>'Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="930">
+                     <a:s>when </a:s>
+                     <a:s r="931">
+                        <a:s r="933">
+                           <a:s r="932">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="933">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="934">
+                           <a:s>'24.12'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="940">
+                        <a:s r="941">
+                           <a:s>&quot;Pneumococcal immunization schedule is complete Case 6&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="942">
+                           <a:s r="943">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="944">
+                              <a:s>'Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses and two booster doses were administered. 
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="948">
+                     <a:s>when </a:s>
+                     <a:s r="949">
+                        <a:s r="951">
+                           <a:s r="950">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="951">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="952">
+                           <a:s>'25.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="958">
+                        <a:s r="959">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="960">
+                           <a:s r="961">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="962">
+                              <a:s>'Members States should update this action according to the national immunization programme.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="966">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="641" locator="375:3-411:5" xsi:type="Case">
+            <caseItem localId="642" locator="376:5-376:297">
+               <when localId="643" locator="376:10-376:28" xsi:type="Equal">
+                  <signature localId="650" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="651" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="648" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="649" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="645" locator="376:10-376:19" path="id" xsi:type="Property">
+                        <source localId="644" locator="376:10-376:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="646" locator="376:23-376:28" valueType="t:String" value="08.3" xsi:type="Literal"/>
+               </when>
+               <then localId="968" xsi:type="As">
+                  <operand localId="652" locator="376:35-376:297" xsi:type="And">
+                     <operand localId="653" locator="376:35-376:89" name="Client is not due for pneumococcal vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="654" locator="376:95-376:297" xsi:type="Equal">
+                        <signature localId="658" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="659" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="655" locator="376:95-376:104" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="656" locator="376:108-376:297" valueType="t:String" value="Should not vaccinate client with first pneumococcal dose as client's age is less than 6 weeks. Check for any vaccines due and inform the caregiver of when to come back for the first dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="969" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="970" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="971" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="660" locator="377:5-377:278">
+               <when localId="661" locator="377:10-377:29" xsi:type="Equal">
+                  <signature localId="668" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="669" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="666" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="667" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="663" locator="377:10-377:19" path="id" xsi:type="Property">
+                        <source localId="662" locator="377:10-377:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="664" locator="377:23-377:29" valueType="t:String" value="09.13" xsi:type="Literal"/>
+               </when>
+               <then localId="972" xsi:type="As">
+                  <operand localId="670" locator="377:36-377:278" xsi:type="And">
+                     <operand localId="671" locator="377:36-377:86" name="Client is due for pneumococcal vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="672" locator="377:92-377:278" xsi:type="Equal">
+                        <signature localId="676" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="677" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="673" locator="377:92-377:101" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="674" locator="377:105-377:278" valueType="t:String" value="Should vaccinate client with first pneumococcal dose as no pneumococcal doses were administered and client is within the appropriate age range.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="973" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="974" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="975" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="678" locator="379:5-379:340">
+               <when localId="679" locator="379:10-379:31" xsi:type="Equal">
+                  <signature localId="686" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="687" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="684" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="685" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="681" locator="379:10-379:19" path="id" xsi:type="Property">
+                        <source localId="680" locator="379:10-379:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="682" locator="379:23-379:31" valueType="t:String" value="10.1345" xsi:type="Literal"/>
+               </when>
+               <then localId="976" xsi:type="As">
+                  <operand localId="688" locator="379:38-379:340" xsi:type="And">
+                     <operand localId="689" locator="379:38-379:92" name="Client is not due for pneumococcal vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="690" locator="379:98-379:340" xsi:type="Equal">
+                        <signature localId="694" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="695" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="691" locator="379:98-379:107" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="692" locator="379:111-379:340" valueType="t:String" value="Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="977" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="978" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="979" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="696" locator="381:5-381:263">
+               <when localId="697" locator="381:10-381:31" xsi:type="Equal">
+                  <signature localId="704" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="705" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="702" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="703" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="699" locator="381:10-381:19" path="id" xsi:type="Property">
+                        <source localId="698" locator="381:10-381:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="700" locator="381:23-381:31" valueType="t:String" value="11.1345" xsi:type="Literal"/>
+               </when>
+               <then localId="980" xsi:type="As">
+                  <operand localId="706" locator="381:38-381:263" xsi:type="And">
+                     <operand localId="707" locator="381:38-381:88" name="Client is due for pneumococcal vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="708" locator="381:94-381:263" xsi:type="Equal">
+                        <signature localId="712" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="713" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="709" locator="381:94-381:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="710" locator="381:107-381:263" valueType="t:String" value="Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="981" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="982" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="983" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="714" locator="383:5-383:395">
+               <when localId="715" locator="383:10-383:32" xsi:type="Equal">
+                  <signature localId="722" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="723" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="720" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="721" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="717" locator="383:10-383:19" path="id" xsi:type="Property">
+                        <source localId="716" locator="383:10-383:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="718" locator="383:23-383:32" valueType="t:String" value="12.13456" xsi:type="Literal"/>
+               </when>
+               <then localId="984" xsi:type="As">
+                  <operand localId="724" locator="383:39-383:395" xsi:type="And">
+                     <operand localId="725" locator="383:39-383:93" name="Client is not due for pneumococcal vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="726" locator="383:99-383:395" xsi:type="Equal">
+                        <signature localId="730" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="731" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="727" locator="383:99-383:108" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="728" locator="383:112-383:395" valueType="t:String" value="Should not vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered less than 8 weeks ago and client is at high risk for pneumococcal infection. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="985" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="986" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="987" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="732" locator="385:5-385:318">
+               <when localId="733" locator="385:10-385:32" xsi:type="Equal">
+                  <signature localId="740" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="741" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="738" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="739" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="735" locator="385:10-385:19" path="id" xsi:type="Property">
+                        <source localId="734" locator="385:10-385:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="736" locator="385:23-385:32" valueType="t:String" value="13.13456" xsi:type="Literal"/>
+               </when>
+               <then localId="988" xsi:type="As">
+                  <operand localId="742" locator="385:39-385:318" xsi:type="And">
+                     <operand localId="743" locator="385:39-385:89" name="Client is due for pneumococcal vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="744" locator="385:95-385:318" xsi:type="Equal">
+                        <signature localId="748" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="749" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="745" locator="385:95-385:104" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="746" locator="385:108-385:318" valueType="t:String" value="Should vaccinate client with second pneumococcal dose as the latest pneumococcal dose was administered more than 8 weeks ago and client is at high risk for pneumococcal infection. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="989" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="990" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="991" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="750" locator="387:5-387:236">
+               <when localId="751" locator="387:10-387:31" xsi:type="Equal">
+                  <signature localId="758" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="759" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="756" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="757" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="753" locator="387:10-387:19" path="id" xsi:type="Property">
+                        <source localId="752" locator="387:10-387:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="754" locator="387:23-387:31" valueType="t:String" value="14.1346" xsi:type="Literal"/>
+               </when>
+               <then localId="992" xsi:type="As">
+                  <operand localId="760" locator="387:38-387:236" xsi:type="And">
+                     <operand localId="761" locator="387:38-387:92" name="Pneumococcal immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="762" locator="387:98-387:236" xsi:type="Equal">
+                        <signature localId="766" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="767" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="763" locator="387:98-387:107" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="764" locator="387:111-387:236" valueType="t:String" value="Pneumococcal immunization schedule is complete. One primary series dose was administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="993" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="994" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="995" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="768" locator="389:5-389:272">
+               <when localId="769" locator="389:10-389:31" xsi:type="Equal">
+                  <signature localId="776" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="777" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="774" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="775" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="771" locator="389:10-389:19" path="id" xsi:type="Property">
+                        <source localId="770" locator="389:10-389:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="772" locator="389:23-389:31" valueType="t:String" value="15.1234" xsi:type="Literal"/>
+               </when>
+               <then localId="996" xsi:type="As">
+                  <operand localId="778" locator="389:38-389:272" xsi:type="And">
+                     <operand localId="779" locator="389:38-389:89" name="Client is due for pneumococcal booster dose Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="780" locator="389:95-389:272" xsi:type="Equal">
+                        <signature localId="784" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="785" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="781" locator="389:95-389:104" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="782" locator="389:108-389:272" valueType="t:String" value="Should vaccinate client with first pneumococcal booster dose as first pneumococcal dose was administered within 12 months post birth. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="997" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="998" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="999" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="786" locator="391:5-391:251">
+               <when localId="787" locator="391:10-391:31" xsi:type="Equal">
+                  <signature localId="794" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="795" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="792" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="793" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="789" locator="391:10-391:19" path="id" xsi:type="Property">
+                        <source localId="788" locator="391:10-391:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="790" locator="391:23-391:31" valueType="t:String" value="16.1234" xsi:type="Literal"/>
+               </when>
+               <then localId="1000" xsi:type="As">
+                  <operand localId="796" locator="391:38-391:251" xsi:type="And">
+                     <operand localId="797" locator="391:38-391:92" name="Pneumococcal immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="798" locator="391:98-391:251" xsi:type="Equal">
+                        <signature localId="802" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="803" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="799" locator="391:98-391:107" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="800" locator="391:111-391:251" valueType="t:String" value="Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses were administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="1001" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="1002" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="1003" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="804" locator="393:5-393:345">
+               <when localId="805" locator="393:10-393:31" xsi:type="Equal">
+                  <signature localId="812" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="813" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="810" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="811" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="807" locator="393:10-393:19" path="id" xsi:type="Property">
+                        <source localId="806" locator="393:10-393:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="808" locator="393:23-393:31" valueType="t:String" value="17.1237" xsi:type="Literal"/>
+               </when>
+               <then localId="1004" xsi:type="As">
+                  <operand localId="814" locator="393:38-393:345" xsi:type="And">
+                     <operand localId="815" locator="393:38-393:93" name="Client is not due for pneumococcal booster dose Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="816" locator="393:99-393:345" xsi:type="Equal">
+                        <signature localId="820" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="821" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="817" locator="393:99-393:108" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="818" locator="393:112-393:345" valueType="t:String" value="Should not vaccinate client with second pneumococcal booster dose as client's age is less than 12 months and client is HIV positive. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="1005" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="1006" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="1007" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="822" locator="395:5-395:347">
+               <when localId="823" locator="395:10-395:31" xsi:type="Equal">
+                  <signature localId="830" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="831" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="828" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="829" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="825" locator="395:10-395:19" path="id" xsi:type="Property">
+                        <source localId="824" locator="395:10-395:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="826" locator="395:23-395:31" valueType="t:String" value="18.1238" xsi:type="Literal"/>
+               </when>
+               <then localId="1008" xsi:type="As">
+                  <operand localId="832" locator="395:38-395:347" xsi:type="And">
+                     <operand localId="833" locator="395:38-395:93" name="Client is not due for pneumococcal booster dose Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="834" locator="395:99-395:347" xsi:type="Equal">
+                        <signature localId="838" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="839" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="835" locator="395:99-395:108" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="836" locator="395:112-395:347" valueType="t:String" value="Should not vaccinate client with second pneumococcal booster dose as client's age is less than 12 months and client had preterm birth. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="1009" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="1010" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="1011" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="840" locator="397:5-397:301">
+               <when localId="841" locator="397:10-397:32" xsi:type="Equal">
+                  <signature localId="848" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="849" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="846" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="847" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="843" locator="397:10-397:19" path="id" xsi:type="Property">
+                        <source localId="842" locator="397:10-397:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="844" locator="397:23-397:32" valueType="t:String" value="19.12347" xsi:type="Literal"/>
+               </when>
+               <then localId="1012" xsi:type="As">
+                  <operand localId="850" locator="397:39-397:301" xsi:type="And">
+                     <operand localId="851" locator="397:39-397:90" name="Client is due for pneumococcal booster dose Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="852" locator="397:96-397:301" xsi:type="Equal">
+                        <signature localId="856" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="857" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="853" locator="397:96-397:105" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="854" locator="397:109-397:301" valueType="t:String" value="Should vaccinate client with second pneumococcal booster dose as client is HIV positive and latest pneumococcal dose was administered within 12 months post birth.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="1013" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="1014" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="1015" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="858" locator="399:5-399:303">
+               <when localId="859" locator="399:10-399:32" xsi:type="Equal">
+                  <signature localId="866" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="867" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="864" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="865" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="861" locator="399:10-399:19" path="id" xsi:type="Property">
+                        <source localId="860" locator="399:10-399:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="862" locator="399:23-399:32" valueType="t:String" value="20.12348" xsi:type="Literal"/>
+               </when>
+               <then localId="1016" xsi:type="As">
+                  <operand localId="868" locator="399:39-399:303" xsi:type="And">
+                     <operand localId="869" locator="399:39-399:90" name="Client is due for pneumococcal booster dose Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="870" locator="399:96-399:303" xsi:type="Equal">
+                        <signature localId="874" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="875" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="871" locator="399:96-399:105" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="872" locator="399:109-399:303" valueType="t:String" value="Should vaccinate client with second pneumococcal booster dose as client had preterm birth and latest pneumococcal dose was administered within 12 months post birth.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="1017" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="1018" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="1019" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="876" locator="401:5-401:272">
+               <when localId="877" locator="401:10-401:31" xsi:type="Equal">
+                  <signature localId="884" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="885" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="882" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="883" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="879" locator="401:10-401:19" path="id" xsi:type="Property">
+                        <source localId="878" locator="401:10-401:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="880" locator="401:23-401:31" valueType="t:String" value="21.1234" xsi:type="Literal"/>
+               </when>
+               <then localId="1020" xsi:type="As">
+                  <operand localId="886" locator="401:38-401:272" xsi:type="And">
+                     <operand localId="887" locator="401:38-401:92" name="Pneumococcal immunization schedule is complete Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="888" locator="401:98-401:272" xsi:type="Equal">
+                        <signature localId="892" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="893" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="889" locator="401:98-401:107" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="890" locator="401:111-401:272" valueType="t:String" value="Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.&#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="1021" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="1022" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="1023" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="894" locator="403:5-403:272">
+               <when localId="895" locator="403:10-403:31" xsi:type="Equal">
+                  <signature localId="902" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="903" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="900" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="901" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="897" locator="403:10-403:19" path="id" xsi:type="Property">
+                        <source localId="896" locator="403:10-403:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="898" locator="403:23-403:31" valueType="t:String" value="22.1278" xsi:type="Literal"/>
+               </when>
+               <then localId="1024" xsi:type="As">
+                  <operand localId="904" locator="403:38-403:272" xsi:type="And">
+                     <operand localId="905" locator="403:38-403:92" name="Pneumococcal immunization schedule is complete Case 4" xsi:type="ExpressionRef"/>
+                     <operand localId="906" locator="403:98-403:272" xsi:type="Equal">
+                        <signature localId="910" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="911" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="907" locator="403:98-403:107" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="908" locator="403:111-403:272" valueType="t:String" value="Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.&#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="1025" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="1026" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="1027" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="912" locator="405:5-405:271">
+               <when localId="913" locator="405:10-405:30" xsi:type="Equal">
+                  <signature localId="920" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="921" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="918" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="919" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="915" locator="405:10-405:19" path="id" xsi:type="Property">
+                        <source localId="914" locator="405:10-405:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="916" locator="405:23-405:30" valueType="t:String" value="23.123" xsi:type="Literal"/>
+               </when>
+               <then localId="1028" xsi:type="As">
+                  <operand localId="922" locator="405:37-405:271" xsi:type="And">
+                     <operand localId="923" locator="405:37-405:91" name="Pneumococcal immunization schedule is complete Case 5" xsi:type="ExpressionRef"/>
+                     <operand localId="924" locator="405:97-405:271" xsi:type="Equal">
+                        <signature localId="928" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="929" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="925" locator="405:97-405:106" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="926" locator="405:110-405:271" valueType="t:String" value="Pneumococcal immunization schedule is complete.  Two pneumococcal primary series doses and one booster dose were administered.&#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="1029" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="1030" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="1031" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="930" locator="407:5-407:271">
+               <when localId="931" locator="407:10-407:29" xsi:type="Equal">
+                  <signature localId="938" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="939" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="936" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="937" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="933" locator="407:10-407:19" path="id" xsi:type="Property">
+                        <source localId="932" locator="407:10-407:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="934" locator="407:23-407:29" valueType="t:String" value="24.12" xsi:type="Literal"/>
+               </when>
+               <then localId="1032" xsi:type="As">
+                  <operand localId="940" locator="407:36-407:271" xsi:type="And">
+                     <operand localId="941" locator="407:36-407:90" name="Pneumococcal immunization schedule is complete Case 6" xsi:type="ExpressionRef"/>
+                     <operand localId="942" locator="407:96-407:271" xsi:type="Equal">
+                        <signature localId="946" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="947" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="943" locator="407:96-407:105" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="944" locator="407:109-407:271" valueType="t:String" value="Pneumococcal immunization schedule is complete. Two pneumococcal primary series doses and two booster doses were administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="1033" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="1034" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="1035" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="948" locator="409:5-409:200">
+               <when localId="949" locator="409:10-409:28" xsi:type="Equal">
+                  <signature localId="956" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="957" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="954" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="955" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="951" locator="409:10-409:19" path="id" xsi:type="Property">
+                        <source localId="950" locator="409:10-409:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="952" locator="409:23-409:28" valueType="t:String" value="25.3" xsi:type="Literal"/>
+               </when>
+               <then localId="1036" xsi:type="As">
+                  <operand localId="958" locator="409:35-409:200" xsi:type="And">
+                     <operand localId="959" locator="409:35-409:90" name="Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+                     <operand localId="960" locator="409:96-409:200" xsi:type="Equal">
+                        <signature localId="964" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="965" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="961" locator="409:96-409:105" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="962" locator="409:109-409:200" valueType="t:String" value="Members States should update this action according to the national immunization programme." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="1037" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="1038" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="1039" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="1040" xsi:type="As">
+               <operand localId="966" locator="410:10-410:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="1041" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="1042" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="1043" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>
