@@ -1,0 +1,252 @@
+<dmn:definitions xmlns:dmn="https://www.omg.org/spec/DMN/20240513/MODEL/" namespace="http://smart.who.int/immunizations" label="IMMZ.D2  Determine required vaccination(s) if any" id="DAK.DT.IMMZ.D2.DT.Mumps">
+  <dmn:decision id="DAK.DT.IMMZ.D2.DT.Mumps" label="IMMZ.D2  Determine required vaccination(s) if any">
+    <dmn:question>IMMZ.D2  Determine required vaccination(s) if any</dmn:question>
+    <dmn:usingTask href="http://smart.who.int/immunizations/bpmn/Determine.bpmn#if%20the%20client%20is%20due%20for%20a%20mumps%20vaccination%20according%20to%20the%20national%20immunization%20schedule"/>
+    <dmn:decisionTable id="DAK.DT.IMMZ.D2.DT.Mumps">
+      <dmn:input id="input.DAK.DT.IMMZ.D2.DT.Mumps.Numberofmumpsprimaryseriesdosesadministered" label="Number of mumps primary series doses administered">
+        <dmn:inputExpression id="inputExpression.DAK.DT.IMMZ.D2.DT.Mumps.Numberofmumpsprimaryseriesdosesadministered" typeRef="string">
+          <dmn:text>Count of vaccines administered (where "Vaccine type" = "Mumps-containing vaccines" and "Type of dose" = "Primary series")</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="input.DAK.DT.IMMZ.D2.DT.Mumps.Clientsage" label="Clients age">
+        <dmn:inputExpression id="inputExpression.DAK.DT.IMMZ.D2.DT.Mumps.Clientsage" typeRef="string">
+          <dmn:text>Today's date − "Date of birth"</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="input.DAK.DT.IMMZ.D2.DT.Mumps.Timepassedsincelastmumpsdosewasadministered" label="Time passed since last mumps dose was administered">
+        <dmn:inputExpression id="inputExpression.DAK.DT.IMMZ.D2.DT.Mumps.Timepassedsincelastmumpsdosewasadministered" typeRef="string">
+          <dmn:text>'Today's date − "Date and time of vaccination" (where "Vaccine type" = "Mumps-containing vaccines")</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="input.DAK.DT.IMMZ.D2.DT.Mumps.Timepassedsincealivevaccinewasadministered" label="Time passed since a live vaccine was administered">
+        <dmn:inputExpression id="inputExpression.DAK.DT.IMMZ.D2.DT.Mumps.Timepassedsincealivevaccinewasadministered" typeRef="string">
+          <dmn:text>Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE)</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="output.DAK.DT.IMMZ.D2.DT.Mumps.CarePlan" label="Care Plan">
+        <dmn:description>Produce a suggested Care Plan for consideration by health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.DAK.DT.IMMZ.D2.DT.Mumps.Guidancedisplayedtohealthworker" label="Guidance displayed to health worker">
+        <dmn:description>Request to communicate guidance to the health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.DAK.DT.IMMZ.D2.DT.Mumps.Annotations" label="Annotations">
+        <dmn:description>Additional information for the health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.DAK.DT.IMMZ.D2.DT.Mumps.References" label="Reference(s)">
+        <dmn:description>Reference for the source content (L1)</dmn:description>
+      </dmn:output>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Mumps.rule.Clientsageislessf7fbc4888f">
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date of birth" &lt; 12 months</dmn:description>
+          <dmn:text>Clients age is less than 12 months</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for mumps vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any other vaccines due and inform the caregiver of when to come back for first dose.</dmn:description>
+          <dmn:text>Should not vaccinate client with first mumps dose as clients age is less than 12 months.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>The first dose of the mumps-containing vaccine (monovalent or MMR [measles, mumps and rubella]) should be given at the age of 12–18 months.
+As a general rule, live vaccines should be given either simultaneously or at intervals of 4 weeks.</dmn:text>
+        </dmn:annotationEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Mumps virus vaccines: WHO position paper (February 2007) (27)</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Mumps.rule.Nomumpsprimaryse2a8fe24c74">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Mumps-containing vaccines" and "Type of dose" = "Primary series") = 0</dmn:description>
+          <dmn:text>No mumps primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date of birth" ≥ 12 months</dmn:description>
+          <dmn:text>Clients age is more than or equal to 12 months</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) &lt; 4 weeks</dmn:description>
+          <dmn:text>Live vaccine was administered in the past 4 weeks</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for mumps vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any other vaccines due and inform the caregiver of when to come back for first dose.</dmn:description>
+          <dmn:text>Should not vaccinate client with first mumps dose as live vaccine was administered in the past 4 weeks.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>WHO recommendations for routine immunization – summary tables (March 2023) (1)</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Mumps.rule.Nomumpsprimaryse029b2fd647">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Mumps-containing vaccines" and "Type of dose" = "Primary series") = 0</dmn:description>
+          <dmn:text>No mumps primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date of birth" ≥ 12 months</dmn:description>
+          <dmn:text>Clients age is more than or equal to 12 months</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks</dmn:description>
+          <dmn:text>No live vaccine was administered in the past 4 weeks</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Due"</dmn:description>
+          <dmn:text>Client is due for mumps vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should vaccinate client with first mumps dose as the client is within appropriate age range and no live vaccine was administered in the past 4 weeks.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Mumps virus vaccines: WHO position paper (February 2007) (27)</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Mumps.rule.Onemumpsprimarys9e21714de8">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Mumps-containing vaccines" and "Type of dose" = "Primary series") = 1</dmn:description>
+          <dmn:text>One mumps primary series dose was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date and time of vaccination" (where "Vaccine type" = "Mumps-containing vaccines") &lt; 4 weeks</dmn:description>
+          <dmn:text>The latest mumps dose was administered less than 4 weeks ago</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for mumps vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any other vaccines due and inform the caregiver of when to come back for the second dose.</dmn:description>
+          <dmn:text>Should not vaccinate client with second mumps dose as latest mumps dose was administered less than 4 weeks ago.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>The age of administration of the second dose may range from the second year of life to age at school entry. The minimum interval between the first and the second doses is 1 month.
+As a general rule, live vaccines should be given either simultaneously or at intervals of 4 weeks.</dmn:text>
+        </dmn:annotationEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Mumps virus vaccines: WHO position paper (February 2007) (27)</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Mumps.rule.Onemumpsprimarysab542f81f4">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Mumps-containing vaccines" and "Type of dose" = "Primary series") = 1</dmn:description>
+          <dmn:text>One mumps primary series dose was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date and time of vaccination" (where "Vaccine type" = "Mumps-containing vaccines") ≥ 4 weeks</dmn:description>
+          <dmn:text>The latest mumps dose was administered more than 4 weeks ago</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) &lt; 4 weeks</dmn:description>
+          <dmn:text>Live vaccine was administered in the past 4 weeks</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for mumps vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any other vaccines due and inform the caregiver of when to come back for the second dose.</dmn:description>
+          <dmn:text>Should not vaccinate client with second mumps dose as live vaccine was administered in the past 4 weeks.</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Mumps.rule.Onemumpsprimarysb935118710">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Mumps-containing vaccines" and "Type of dose" = "Primary series") = 1</dmn:description>
+          <dmn:text>One mumps primary series dose was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date and time of vaccination" (where "Vaccine type" = "Mumps-containing vaccines") ≥ 4 weeks</dmn:description>
+          <dmn:text>The latest mumps dose was administered more than 4 weeks ago</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks</dmn:description>
+          <dmn:text>No live vaccine was administered in the past 4 weeks</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Due"</dmn:description>
+          <dmn:text>Client is due for mumps vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should vaccinate client with second mumps dose as latest mumps dose was administered more than 4 weeks ago and no live vaccine was administered in the past 4 weeks.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>WHO recommendations for routine immunization – summary tables (March 2023) (1)</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Mumps.rule.Twomumpsprimarysa3564e0182">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Mumps-containing vaccines" and "Type of dose" = "Primary series") = 2</dmn:description>
+          <dmn:text>Two mumps primary series doses were administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Complete"
+"Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Mumps-containing vaccines")"</dmn:description>
+          <dmn:text>Mumps immunization schedule is complete</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any other vaccines due.</dmn:description>
+          <dmn:text>Mumps immunization schedule is complete. Two mumps primary series doses were administered.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>–</dmn:text>
+        </dmn:annotationEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Mumps virus vaccines: WHO position paper (February 2007) (27)</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+</dmn:definitions>

@@ -1,0 +1,154 @@
+<dmn:definitions xmlns:dmn="https://www.omg.org/spec/DMN/20240513/MODEL/" namespace="http://smart.who.int/immunizations" label="IMMZ.D2 Determine required vaccination(s) if any  " id="DAK.DT.IMMZ.D2.DT.Varicella.1dose">
+  <dmn:decision id="DAK.DT.IMMZ.D2.DT.Varicella.1dose" label="IMMZ.D2 Determine required vaccination(s) if any  ">
+    <dmn:question>IMMZ.D2 Determine required vaccination(s) if any  </dmn:question>
+    <dmn:usingTask href="http://smart.who.int/immunizations/bpmn/Determine.bpmn#if%20the%20client%20is%20due%20for%20a%20varicella%20vaccination%20according%20to%20the%20national%20immunization%20schedule"/>
+    <dmn:decisionTable id="DAK.DT.IMMZ.D2.DT.Varicella.1dose">
+      <dmn:input id="input.DAK.DT.IMMZ.D2.DT.Varicella.1dose.Numberofvaricellaprimaryseriesdosesadministered" label="Number of varicella primary series doses administered">
+        <dmn:inputExpression id="inputExpression.DAK.DT.IMMZ.D2.DT.Varicella.1dose.Numberofvaricellaprimaryseriesdosesadministered" typeRef="string">
+          <dmn:text>Count of vaccines administered (where "Vaccine type" = "Varicella-containing vaccines" and "Type of dose" = "Primary series")</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="input.DAK.DT.IMMZ.D2.DT.Varicella.1dose.Clientsage" label="Clients age">
+        <dmn:inputExpression id="inputExpression.DAK.DT.IMMZ.D2.DT.Varicella.1dose.Clientsage" typeRef="string">
+          <dmn:text>Today's date − "Date of birth"</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="input.DAK.DT.IMMZ.D2.DT.Varicella.1dose.Timepassedsincealivevaccinewasadministered" label="Time passed since a live vaccine was administered">
+        <dmn:inputExpression id="inputExpression.DAK.DT.IMMZ.D2.DT.Varicella.1dose.Timepassedsincealivevaccinewasadministered" typeRef="string">
+          <dmn:text>Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE)</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="output.DAK.DT.IMMZ.D2.DT.Varicella.1dose.CarePlan" label="Care Plan">
+        <dmn:description>Produce a suggested Care Plan for consideration by health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.DAK.DT.IMMZ.D2.DT.Varicella.1dose.Guidancedisplayedtohealthworker" label="Guidance displayed to health worker">
+        <dmn:description>Request to communicate guidance to the health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.DAK.DT.IMMZ.D2.DT.Varicella.1dose.Annotations" label="Annotations">
+        <dmn:description>Additional information for the health worker</dmn:description>
+      </dmn:output>
+      <dmn:output id="output.DAK.DT.IMMZ.D2.DT.Varicella.1dose.References" label="Reference(s)">
+        <dmn:description>Reference for the source content (L1)</dmn:description>
+      </dmn:output>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Varicella.1dose.rule.Clientd726b6b83e">
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date of birth" &lt; 12 months</dmn:description>
+          <dmn:text>Clients age is less than 12 months</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for varicella vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any vaccines due and inform the caregiver of when to come back for the first varicella dose.</dmn:description>
+          <dmn:text>Should not vaccinate client with varicella dose as clients age is less than 12 months.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Depending on the goal of the vaccination programme, 1–2 doses should be given with the first dose administered at 12–18 months of age.</dmn:text>
+        </dmn:annotationEntry>
+        <dmn:annotationEntry>
+          <dmn:text>WHO recommendations for routine immunization – summary tables (March 2023) (1)</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Varicella.1dose.rule.Novari8bf9a8430f">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Varicella-containing vaccines" and "Type of dose" = "Primary series") = 0</dmn:description>
+          <dmn:text>No varicella primary series dose was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date of birth" ≥ 12 months</dmn:description>
+          <dmn:text>Cients age is more than or equal to 12 months</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) &lt; 4 weeks</dmn:description>
+          <dmn:text>Live vaccine was administered in the past 4 weeks</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Not due"</dmn:description>
+          <dmn:text>Client is not due for varicella vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any vaccines due and inform the caregiver of when to come back for the first varicella dose.</dmn:description>
+          <dmn:text>Should not vaccinate client with varicella dose as live vaccine was administered in the past 4 weeks.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Varicella-containing vaccine can be administered concomitantly with other vaccines included in the routine childhood immunization programme. Unless given together with other live viral vaccines (measles, MR [measles and rubella], MMR [measles, mumps and rubella]), it should be administered at a minimum interval of 28 days.</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Varicella.1dose.rule.Novaria89788b4c4">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Varicella-containing vaccines" and "Type of dose" = "Primary series") = 0</dmn:description>
+          <dmn:text>No varicella primary series dose was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − "Date of birth" ≥ 12 months</dmn:description>
+          <dmn:text>Cients age is more than or equal to 12 months</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks</dmn:description>
+          <dmn:text>No live vaccine was administered in the past 4 weeks</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Due"</dmn:description>
+          <dmn:text>Client is due for varicella vaccination</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for contraindications.</dmn:description>
+          <dmn:text>Should vaccinate client with varicella dose as no varicella dose was administered, client is within the appropriate age range and no live vaccine was administered in past 4 weeks.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Depending on the goal of the vaccination programme, 1–2 doses should be given with the first dose administered at 12–18 months of age.</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="rule.DAK.DT.IMMZ.D2.DT.Varicella.1dose.rule.Onevar049df7224c">
+        <dmn:inputEntry>
+          <dmn:description>Count of vaccines administered (where "Vaccine type" = "Varicella-containing vaccines" and "Type of dose" = "Primary series") = 1</dmn:description>
+          <dmn:text>One varicella primary series dose was administered</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry>
+          <dmn:description>–</dmn:description>
+          <dmn:text>–</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry>
+          <dmn:description>"Immunization recommendation status" = "Complete"</dmn:description>
+          <dmn:text>Varicella immunization schedule is complete</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry>
+          <dmn:description>Check for any vaccines due.</dmn:description>
+          <dmn:text>Varicella immunization schedule is complete. One varicella primary series dose was administered.</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text>Varicella immunization schedule is complete.</dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+</dmn:definitions>
