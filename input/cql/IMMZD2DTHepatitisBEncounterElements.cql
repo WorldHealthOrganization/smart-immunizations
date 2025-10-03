@@ -13,15 +13,14 @@ include WHOElements called WE
 
 include IMMZCommon called Common
 include IMMZConcepts called Concepts
-
 include IMMZEncounterElements called Encounter
 
 include IMMZD2DTHepatitisBElements called HepatitisBElements
 
-parameter HepBBirthDoseAgeLimitDays Integer default 1
-parameter HepBLowerLimitWeeks Integer default 4
 parameter Today Date default Today()
 parameter EncounterId String
+parameter HepBBirthDoseAgeLimitDays Integer default 1
+parameter HepBLowerLimitWeeks Integer default 4
 
 context Patient
 
@@ -30,44 +29,6 @@ context Patient
 */
 define "Hepatitis B Doses Administered to Patient":
   HepatitisBElements."Hepatitis B Doses Administered to Patient".onOrBefore(Today)
-
-/*
-@internal: Date and time of last Hepatitis B dose
-*/
-define "Date of Latest Hepatitis B Dose":
-  date from start of "Hepatitis B Doses Administered to Patient".mostRecent().occurrence.toInterval()
-
-/*
-@internal: Date and time of first Hepatitis B dose
-*/
-define "Date of First Hepatitis B Dose":
-  date from start of "Hepatitis B Doses Administered to Patient".earliest().occurrence.toInterval()
-
-/*
-@internal: Hepatitis B containing Doses Administered to Patient that are in the Dose 0 series
-*/
-define "Hepatitis B Dose 0 Doses Administered to Patient":
-  HepatitisBElements."Hepatitis B Dose 0 Doses Administered to Patient".onOrBefore(Today)
-
-/*
-@internal: Number of Hepatitis B Dose 0 doses
-*/
-define "Number of Hepatitis B Dose 0 Doses Administered":
-  Count("Hepatitis B Dose 0 Doses Administered to Patient")
-
-/*
-@input: Hepatitis B birth dose was not administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Birth dose" = TRUE) = 0
-*/
-define "Hepatitis B birth dose was not administered":
-  "Number of Hepatitis B Dose 0 Doses Administered" = 0
-
-/*
-@input: Hepatitis B birth dose was administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Birth dose" = TRUE) = 1
-*/
-define "Hepatitis B birth dose was administered":
-  "Number of Hepatitis B Dose 0 Doses Administered" = 1
 
 /*
 @internal: Hepatitis B containing Doses Administered to Patient that are in the Primary series
@@ -82,81 +43,19 @@ define "Number of Hepatitis B Primary Series Doses Administered":
   Count("Hepatitis B Primary Series Doses Administered to Patient")
 
 /*
-@input: No hepatitis B primary series doses were administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines"and "Type of dose" = "Primary series") = 0
+@input: Hepatitis B birth dose was not administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Birth dose" = TRUE) = 0
+@code: Hepatitis B birth dose was not administered-117
+@decision: IMMZ.D2.DT.Hepatitis B.Birth dose: Birth dose administration
 */
-define "No hepatitis B primary series doses were administered":
-  "Number of Hepatitis B Primary Series Doses Administered" = 0
-
-/*
-@input: One hepatitis B primary series dose was administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 1
-*/
-define "One hepatitis B primary series dose was administered":
-  "Number of Hepatitis B Primary Series Doses Administered" = 1
-/*
-@input: One hepatitis B primary series doses were administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" 
-and "Type of dose" = "Primary series") = 1
-*/
-define "One hepatitis B primary series doses were administered":
-  "One hepatitis B primary series dose was administered"
-
-/*
-@input: Two hepatitis B primary series doses were administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 2
-*/
-define "Two hepatitis B primary series doses were administered":
-  "Number of Hepatitis B Primary Series Doses Administered" = 2
-
-/*
-@input: Three hepatitis B primary series doses were administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 3
-*/
-define "Three hepatitis B primary series doses were administered":
-  "Number of Hepatitis B Primary Series Doses Administered" = 3
-
-/*
-@internal: Number of Hepatitis B doses
-*/
-define "Number of Hepatitis B Doses Administered":
-  Count("Hepatitis B Doses Administered to Patient")
-
-/*
-@input: No hepatitis B doses were administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines")
- = 0
-*/
-define "No hepatitis B doses were administered":
-  "Number of Hepatitis B Doses Administered" = 0
-
-/*
-@input: One hepatitis B dose was administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines")
- = 1
-*/
-define "One hepatitis B dose was administered":
-  "Number of Hepatitis B Doses Administered" = 1
-
-/*
-@input: Two hepatitis B doses were administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines")
- = 2
-*/
-define "Two hepatitis B doses were administered":
-  "Number of Hepatitis B Doses Administered" = 2
-
-/*
-@input: Three hepatitis B doses were administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines")
- = 3
-*/
-define "Three hepatitis B doses were administered":
-  "Number of Hepatitis B Doses Administered" = 3
+define "Hepatitis B birth dose was not administered":
+  "Number of Hepatitis B Dose 0 Doses Administered" = 0
 
 /*
 @input: Client's age is less than {Member States defined upper limit}
 @pseudocode: Today's date − "Date of birth" < Member States defined upper limit
+@code: Client's age is less than {Member States defined upper limit}-66
+@decision: IMMZ.D2.DT.Hepatitis B.Birth dose: Birth dose administration
 */
 define "Client's age is less than {Member States defined upper limit}":
   Encounter."Current Patient Age In Days" < HepBBirthDoseAgeLimitDays
@@ -164,14 +63,37 @@ define "Client's age is less than {Member States defined upper limit}":
 /*
 @input: Client's age is more than {Member States defined upper limit}
 @pseudocode: Today's date - "Date of birth" > Member States defined upper limit
-This will leave a gap if not >=, so using the that.  See https://github.com/WorldHealthOrganization/smart-dak-immz/issues/8
+@code: Client's age is more than {Member States defined upper limit}-66
+@decision: IMMZ.D2.DT.Hepatitis B.Birth dose: Birth dose administration
 */
 define "Client's age is more than {Member States defined upper limit}":
   Encounter."Current Patient Age In Days" >= HepBBirthDoseAgeLimitDays
 
 /*
+@input: Hepatitis B birth dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Birth dose" = TRUE) = 1
+@code: Hepatitis B birth dose was administered-117
+@decision: IMMZ.D2.DT.Hepatitis B.Birth dose: Birth dose administration
+*/
+define "Hepatitis B birth dose was administered":
+  "Number of Hepatitis B Dose 0 Doses Administered" = 1
+
+/*
+@input: No hepatitis B primary series doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines"and "Type of dose" = "Primary series") = 0
+@code: No hepatitis B primary series doses were administered-130
+@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start
+@decision: IMMZ.D2.DT.Hepatitis B.4 doses: 4-dose schedule (birth dose + 3 primary series doses), on-time start
+*/
+define "No hepatitis B primary series doses were administered":
+  "Number of Hepatitis B Primary Series Doses Administered" = 0
+
+/*
 @input: Client's age is less than {Member States defined lower limit}
 @pseudocode: Today's date − "Date of birth" < Member States defined lower limit
+@code: Client's age is less than {Member States defined lower limit}-66
+@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start
+@decision: IMMZ.D2.DT.Hepatitis B.4 doses: 4-dose schedule (birth dose + 3 primary series doses), on-time start
 */
 define "Client's age is less than {Member States defined lower limit}":
   Encounter."Current Patient Age In Weeks" < HepBLowerLimitWeeks
@@ -179,77 +101,200 @@ define "Client's age is less than {Member States defined lower limit}":
 /*
 @input: Client's age is more than or equal to {Member States defined lower limit}
 @pseudocode: Today's date − "Date of birth" ≥ Member States defined lower limit
+@code: Client's age is more than or equal to {Member States defined lower limit}-66
+@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start
+@decision: IMMZ.D2.DT.Hepatitis B.4 doses: 4-dose schedule (birth dose + 3 primary series doses), on-time start
 */
 define "Client's age is more than or equal to {Member States defined lower limit}":
   Encounter."Current Patient Age In Weeks" >= HepBLowerLimitWeeks
 
 /*
-@input: Client's age is more than {Member States defined lower limit}
-@pseudocode: Today's date − "Date of birth"  > Member States defined lower limit
-@note: This seems like it should be based on missing the birth dose and not the same 
-       as other categories that are after the birth dose.
+@input: One hepatitis B primary series dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 1
+@code: One hepatitis B primary series dose was administered-131
+@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start
 */
-define "Client's age is more than {Member States defined lower limit}":
-  Encounter."Current Patient Age In Days" >= HepBBirthDoseAgeLimitDays
-
-/*
-@input: Client's weight at birth was over 2000 g
-@pseudocode: "Birth weight in grams"  ≥ 2000
-*/
-define "Client's weight at birth was over 2000 g":
-  Encounter."Client's weight at birth was over 2000 g"
-
-/*
-@input: Client's weight at birth was below 2000 g
-@pseudocode: "Birth weight in grams" < 2000
-*/
-define "Client's weight at birth was below 2000 g":
-  Encounter."Client's weight at birth was below 2000 g"
-
-/*
-@input: Client was not a premature infant at birth
-@pseudocode: "Preterm birth" ≠  TRUE
-*/
-define "Client was not a premature infant at birth":
-  Encounter."Client was not a premature infant at birth"
-
-/*
-@input: Client was a premature infant at birth
-@pseudocode: "Preterm birth" =  TRUE
-*/
-define "Client was a premature infant at birth":
-  Encounter."Client was a premature infant at birth"
+define "One hepatitis B primary series dose was administered":
+  "Number of Hepatitis B Primary Series Doses Administered" = 1
 
 /*
 @input: The latest hepatitis B dose was administered less than 4 weeks ago
-@pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Hepatitis B-containing vaccines") 
-< 4 weeks
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Hepatitis B-containing vaccines") < 4 weeks
+@code: The latest hepatitis B dose was administered less than 4 weeks ago-121
+@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start
+@decision: IMMZ.D2.DT.Hepatitis B.4 doses: 4-dose schedule (birth dose + 3 primary series doses), on-time start
+@decision: IMMZ.D2.DT.Hepatitis B.Delayed start: 3-dose schedule (no birth dose + 3 doses), delayed start
 */
 define "The latest hepatitis B dose was administered less than 4 weeks ago":
-  "Date of Latest Hepatitis B Dose" is not null 
+  "Date of Latest Hepatitis B Dose" is not null
     and duration in weeks between "Date of Latest Hepatitis B Dose" and Today < 4
 
 /*
 @input: The latest hepatitis B dose was administered more than 4 weeks ago
-@pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Hepatitis B-containing vaccines") 
-≥ 4 weeks
+@pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "Hepatitis B-containing vaccines") ≥ 4 weeks
+@code: The latest hepatitis B dose was administered more than 4 weeks ago-121
+@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start
+@decision: IMMZ.D2.DT.Hepatitis B.4 doses: 4-dose schedule (birth dose + 3 primary series doses), on-time start
+@decision: IMMZ.D2.DT.Hepatitis B.Delayed start: 3-dose schedule (no birth dose + 3 doses), delayed start
 */
 define "The latest hepatitis B dose was administered more than 4 weeks ago":
   not("The latest hepatitis B dose was administered less than 4 weeks ago")
 
 /*
+@input: Two hepatitis B primary series doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 2
+@code: Two hepatitis B primary series doses were administered-131
+@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start
+@decision: IMMZ.D2.DT.Hepatitis B.4 doses: 4-dose schedule (birth dose + 3 primary series doses), on-time start
+*/
+define "Two hepatitis B primary series doses were administered":
+  "Number of Hepatitis B Primary Series Doses Administered" = 2
+
+/*
+@input: Client's weight at birth was over 2000 g
+@pseudocode: "Birth weight in grams" ≥ 2000
+@code: Client's weight at birth was over 2000 g-30
+@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start
+*/
+define "Client's weight at birth was over 2000 g":
+  Encounter."Client's weight at birth was over 2000 g"
+
+/*
+@input: Client was not a premature infant at birth
+@pseudocode: "Preterm birth" ≠ TRUE
+@code: Client was not a premature infant at birth-22
+@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start
+*/
+define "Client was not a premature infant at birth":
+  Encounter."Client was not a premature infant at birth"
+
+/*
+@input: Client's weight at birth was below 2000 g
+@pseudocode: "Birth weight in grams" < 2000
+@code: Client's weight at birth was below 2000 g-30
+@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start
+*/
+define "Client's weight at birth was below 2000 g":
+  Encounter."Client's weight at birth was below 2000 g"
+
+/*
+@input: Client was a premature infant at birth
+@pseudocode: "Preterm birth" = TRUE
+@code: Client was a premature infant at birth-22
+@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start
+*/
+define "Client was a premature infant at birth":
+  Encounter."Client was a premature infant at birth"
+
+/*
+@input: Three hepatitis B primary series doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 3
+@code: Three hepatitis B primary series doses were administered-131
+@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start
+@decision: IMMZ.D2.DT.Hepatitis B.4 doses: 4-dose schedule (birth dose + 3 primary series doses), on-time start
+*/
+define "Three hepatitis B primary series doses were administered":
+  "Number of Hepatitis B Primary Series Doses Administered" = 3
+
+/*
+@input: One hepatitis B primary series doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Type of dose" = "Primary series") = 1
+@code: One hepatitis B primary series doses were administered-131
+@decision: IMMZ.D2.DT.Hepatitis B.4 doses: 4-dose schedule (birth dose + 3 primary series doses), on-time start
+*/
+define "One hepatitis B primary series doses were administered":
+  "One hepatitis B primary series dose was administered"
+
+/*
+@input: No hepatitis B doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines") = 0
+@code: No hepatitis B doses were administered-93
+@decision: IMMZ.D2.DT.Hepatitis B.Delayed start: 3-dose schedule (no birth dose + 3 doses), delayed start
+*/
+define "No hepatitis B doses were administered":
+  "Number of Hepatitis B Doses Administered" = 0
+
+/*
+@input: Client's age is more than {Member States defined lower limit}
+@pseudocode: Today's date − "Date of birth" > Member States defined lower limit
+@code: Client's age is more than {Member States defined lower limit}-66
+@decision: IMMZ.D2.DT.Hepatitis B.Delayed start: 3-dose schedule (no birth dose + 3 doses), delayed start
+*/
+define "Client's age is more than {Member States defined lower limit}":
+  Encounter."Current Patient Age In Days" >= HepBBirthDoseAgeLimitDays
+
+/*
+@input: One hepatitis B dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines") = 1
+@code: One hepatitis B dose was administered-93
+@decision: IMMZ.D2.DT.Hepatitis B.Delayed start: 3-dose schedule (no birth dose + 3 doses), delayed start
+*/
+define "One hepatitis B dose was administered":
+  "Number of Hepatitis B Doses Administered" = 1
+
+/*
+@input: Two hepatitis B doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines") = 2
+@code: Two hepatitis B doses were administered-93
+@decision: IMMZ.D2.DT.Hepatitis B.Delayed start: 3-dose schedule (no birth dose + 3 doses), delayed start
+*/
+define "Two hepatitis B doses were administered":
+  "Number of Hepatitis B Doses Administered" = 2
+
+/*
 @input: The first hepatitis B dose was administered less than 6 months ago
-@pseudocode: Today's date − "Date and time of vaccination" (where "Vaccine type" = "Hepatitis B-contai
-ning vaccines" and "Dose number" = 1) < 6 months
+@pseudocode: Today's date − "Date and time of vaccination" (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Dose number" = 1) < 6 months
+@code: The first hepatitis B dose was administered less than 6 months ago-137
+@decision: IMMZ.D2.DT.Hepatitis B.Delayed start: 3-dose schedule (no birth dose + 3 doses), delayed start
 */
 define "The first hepatitis B dose was administered less than 6 months ago":
-  "Date of First Hepatitis B Dose" is not null 
+  "Date of First Hepatitis B Dose" is not null
     and duration in months between "Date of First Hepatitis B Dose" and Today < 6
-    
+
 /*
 @input: The first hepatitis B dose was administered more than 6 months ago
-@pseudocode: Today's date − "Date and time of vaccination" (where "Vaccine type" = "Hepatitis B-contai
-ning vaccines" and "Dose number" = 1) ≥ 6 months
+@pseudocode: Today's date − "Date and time of vaccination" (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Dose number" = 1) ≥ 6 months
+@code: The first hepatitis B dose was administered more than 6 months ago-137
+@decision: IMMZ.D2.DT.Hepatitis B.Delayed start: 3-dose schedule (no birth dose + 3 doses), delayed start
 */
 define "The first hepatitis B dose was administered more than 6 months ago":
   not("The first hepatitis B dose was administered less than 6 months ago")
+
+/*
+@input: Three hepatitis B doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines") = 3
+@code: Three hepatitis B doses were administered-93
+@decision: IMMZ.D2.DT.Hepatitis B.Delayed start: 3-dose schedule (no birth dose + 3 doses), delayed start
+*/
+define "Three hepatitis B doses were administered":
+  "Number of Hepatitis B Doses Administered" = 3
+
+/*
+@internal: Date of Latest Hepatitis B Dose
+*/
+define "Date of Latest Hepatitis B Dose":
+  date from start of "Hepatitis B Doses Administered to Patient".mostRecent().occurrence.toInterval()
+
+/*
+@internal: Date of First Hepatitis B Dose
+*/
+define "Date of First Hepatitis B Dose":
+  date from start of "Hepatitis B Doses Administered to Patient".earliest().occurrence.toInterval()
+
+/*
+@internal: Hepatitis B Dose 0 Doses Administered to Patient
+*/
+define "Hepatitis B Dose 0 Doses Administered to Patient":
+  HepatitisBElements."Hepatitis B Dose 0 Doses Administered to Patient".onOrBefore(Today)
+
+/*
+@internal: Number of Hepatitis B Dose 0 Doses Administered
+*/
+define "Number of Hepatitis B Dose 0 Doses Administered":
+  Count("Hepatitis B Dose 0 Doses Administered to Patient")
+
+/*
+@internal: Number of Hepatitis B Doses Administered
+*/
+define "Number of Hepatitis B Doses Administered":
+  Count("Hepatitis B Doses Administered to Patient")

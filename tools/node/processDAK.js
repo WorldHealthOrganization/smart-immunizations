@@ -28,7 +28,7 @@ program.parse()
 const options = program.opts()
 
 var file = options.file
-var dak = {_inputs: {}, _outputs: {}}
+var dak = {_codes: {}}
 
 const workbook = xlsx.parse( file )
 
@@ -60,6 +60,18 @@ const loadXPut = (xput) => {
   }
 }
 
+const isHeaderRow = ( row, match ) => {
+  let outputIdx = row.indexOf('Output')
+  if ( outputIdx == -1 ) {
+    return false
+  } else {
+    if ( row.slice(0,outputIdx).filter( header => match.includes(header.toLowerCase()) ).length > 0 ) {
+      return true
+    }
+  }
+  return false
+}
+
 const loadDT = async (sheet, startrow, startcol, dak, sheetname, initialrow, schedulecol ) => {
   console.log(chalk.green("DECISION"), sheetname, startrow, startcol,sheet[startrow][startcol+1],(schedulecol ? sheet[startrow][schedulecol+1] : ""))
 
@@ -87,16 +99,14 @@ const loadDT = async (sheet, startrow, startcol, dak, sheetname, initialrow, sch
   let matches = did.match(/IMMZ\.([^.]+)\.([^.]+)\..+/)
   dectable.type = matches[1]+matches[2]
   if ( dectable.type == "D2DT" ) {
-    dectable.file = "IMMZ" + dectable.type + disease.short + ( disease.short != dectable.short ? dectable.short : "" )
+    dectable.file = "IMMZ" + dectable.type + disease.short.replace(/[^\w_]/g, '') + ( disease.short != dectable.short ? dectable.short.replace(/[^\w_]/g, '') : "" )
   } else if ( dectable.type == "D5DT" ) {
-    dectable.file = "IMMZ" + dectable.type + dectable.short 
+    dectable.file = "IMMZ" + dectable.type + dectable.short.replace(/[^\w_]/g, '')
   }
 
   let ttype = dectable.did.split('.').slice(0,3).join('.')
-  if ( !dak._inputs[ttype] ) dak._inputs[ttype] = {}
-  if ( !dak._outputs[ttype] ) dak._outputs[ttype] = {}
-  let inputs = dak._inputs[ttype]
-  let outputs = dak._outputs[ttype]
+
+  let codes = dak._codes
 
   let outputcol = -1
   let skipnext = false
@@ -128,7 +138,8 @@ const loadDT = async (sheet, startrow, startcol, dak, sheetname, initialrow, sch
       dectable.rule = sheet[row][startcol+1]
     } else if ( sheet[row][startcol] === "Trigger" ) {
       dectable.trigger = sheet[row][startcol+1]
-    } else if ( sheet[row][startcol] === "Inputs" || sheet[row][startcol] == "Potential contraindications" ) {
+    } else if ( isHeaderRow(sheet[row], ['inputs', 'potential contraindications']) ) {
+
       for( let col = startcol; col < sheet[row].length; col++ ) {
         if ( sheet[row][col] === "Output" ) outputcol = col
       }
@@ -144,7 +155,7 @@ const loadDT = async (sheet, startrow, startcol, dak, sheetname, initialrow, sch
       if ( tablerow ) {
         dectable.name = sheet[row+1][startcol]
         skipnext = true
-      } else if ( sheet[row][startcol] == "Potential contraindications" ) {
+      } else if ( isHeaderRow( sheet[row], ["potential contraindications"] ).length > 0 ) {
         dectable.name = sheet[row][startcol]
       } else {
         dectable.name = dectable.did
@@ -160,11 +171,11 @@ const loadDT = async (sheet, startrow, startcol, dak, sheetname, initialrow, sch
 
       if ( !isEmpty(sheet[row][outputcol]) ) {
         let content = loadXPut( sheet[row][outputcol] )
-        if ( !outputs[content.code] ) {
-          outputs[content.code] = content
-          outputs[content.code].table = new Set()
+        if ( !codes[content.code] ) {
+          codes[content.code] = content
+          codes[content.code].table = new Set()
         } 
-        outputs[content.code].table.add( dectable.did )
+        codes[content.code].table.add( dectable.did +" Output" )
         dectable.rows[xlidx] = { 
           inputs: [],
           output: {
@@ -187,11 +198,11 @@ const loadDT = async (sheet, startrow, startcol, dak, sheetname, initialrow, sch
 
         if ( sheet[row][col] && sheet[row][col].length > 3 ) {
           let content = loadXPut(sheet[row][col])
-          if ( !inputs[content.code] ) {
-            inputs[content.code] = content
-            inputs[content.code].table = new Set()
+          if ( !codes[content.code] ) {
+            codes[content.code] = content
+            codes[content.code].table = new Set()
           } 
-          inputs[content.code].table.add( dectable.did )
+          codes[content.code].table.add( dectable.did + " Inputs" )
 
           dectable.rows[xlidx].inputs.push( {
             code: content.code,
@@ -246,6 +257,18 @@ const loadDT = async (sheet, startrow, startcol, dak, sheetname, initialrow, sch
         expiration: srow[7],
         completion: loadXPut(srow[8])
       }
+
+      if ( !codes[dectable.schedule.rows[xlidx].trigger_event.code] ) {
+        codes[dectable.schedule.rows[xlidx].trigger_event.code] = dectable.schedule.rows[xlidx].trigger_event
+        codes[dectable.schedule.rows[xlidx].trigger_event.code].table = new Set()
+      } 
+      codes[dectable.schedule.rows[xlidx].trigger_event.code].table.add( dectable.schedule.sid + " Trigger" )
+      
+      if ( !codes[dectable.schedule.rows[xlidx].completion.code] ) {
+        codes[dectable.schedule.rows[xlidx].completion.code] = dectable.schedule.rows[xlidx].completion
+        codes[dectable.schedule.rows[xlidx].completion.code].table = new Set()
+      } 
+      codes[dectable.schedule.rows[xlidx].completion.code].table.add( dectable.schedule.sid + " Completion" )
       
     }
 
@@ -292,6 +315,7 @@ const loadCQL = async (cqlfile) => {
   let define = null
   let incomment = true
   let expressions = {}
+  let parameters = {}
   for await (let line of rl) {
 
     line = line.trimEnd()
@@ -304,6 +328,7 @@ const loadCQL = async (cqlfile) => {
       }
     }
 
+
     line = line.replace(/\/\*.*\*\//, "").replace(/\/\/.*$/, "").replace()
 
     if ( line.match( /\/\*/ ) ) {
@@ -312,6 +337,13 @@ const loadCQL = async (cqlfile) => {
     }
 
     if ( isEmpty(line) ) continue
+
+    let findparam = line.match(/parameter (\S+) (.+)/)
+    if ( findparam ) {
+      parameters[findparam[1]] = findparam[2]
+      define = null
+      continue
+    }
 
     let finddef = line.match(/define "(.+)":/)
     if ( finddef ) {
@@ -328,7 +360,7 @@ const loadCQL = async (cqlfile) => {
     }
 
   }
-  return expressions
+  return { expressions: expressions, parameters: parameters }
 
 }
 
@@ -437,8 +469,15 @@ Usage: #definition
   lib.close()
 }
 
-const createElementsCQL = ( vaccine, type, short, elements ) => {
+const createElementsCQL = ( vaccine, type, short, elements, alias, parameters ) => {
   let file = type+short
+  let parameter = ''
+  if ( parameters ) {
+    for( let param in parameters ) {
+      if ( param == 'Today' || param == 'EncounterId' ) continue
+      parameter += "parameter "+param+" "+parameters[param]+"\n"
+    }
+  }
 
   let cql = fs.createWriteStream( path.join("output","cql","IMMZ"+file+elements+".cql") )
 
@@ -448,9 +487,9 @@ const createElementsCQL = ( vaccine, type, short, elements ) => {
 include IMMZ${file}Elements called ${short}Elements
 
 parameter Today Date default Today()
-parameter EncounterId String
-`
+parameter EncounterId String`
   }
+
 
   cql.write(`
 /*
@@ -467,8 +506,9 @@ include WHOElements called WE
 
 include IMMZCommon called Common
 include IMMZConcepts called Concepts
-include IMMZ${elements} called ${elements}
+include IMMZ${elements} called ${alias}
 ${encextra}
+${parameter}
 context Patient
 `)
   return cql
@@ -566,7 +606,7 @@ ${defaultcql}`)
 const addMissingDefinitions = ( file, missing ) => {
   for( const define in missing ) {
     file.write(`
-*/
+/*
 @internal: ${define}
 */
 define "${define}":
@@ -575,12 +615,11 @@ ${missing[define]}`)
   }
 }
 
-const createCodeSystem = ( prefix, xput ) => {
-  let file = prefix+xput
+const createCodeSystem = ( file ) => {
   let csfile = fs.createWriteStream( path.join("output","codesystems",file+".fsh") )
   csfile.write(`CodeSystem: ${file}
-Title:        "${file} CodeSystem for Decision Table ${xput}"
-Description:  "CodeSystem for Decision Table ${xput}"
+Title:        "${file} CodeSystem for Decision Tables"
+Description:  "CodeSystem for Decision Tables for the Immunization DAK"
 
 * ^experimental = false
 * ^caseSensitive = false
@@ -595,10 +634,10 @@ Description:  "CodeSystem for Decision Table ${xput}"
 }
 
 const createValueSet = ( vsid, did, rule, trigger, table ) => {
-  let vsfile = fs.createWriteStream( path.join("output","valuesets",vsid+".fsh") )
+  let vsfile = fs.createWriteStream( path.join("output","valuesets",vsid+"VS.fsh") )
   let vsname = did.replace(/[^A-Za-z0-9_]/g, "_")
 
-  vsfile.write(`ValueSet: ${vsid}
+  vsfile.write(`ValueSet: ${vsid}VS
 Title: "${vsid} ValueSet for Decision Table"
 Description: """
 ValueSet ${vsid} for ${did}.
@@ -651,11 +690,13 @@ Usage: #definition
 * insert PlanDefMain( ${file}, 0.1.0 )
 
 `)
-  if ( existing.length == 0 ) {
-    pdef.write("//TODO: Add needed actions for this plandefinition, e.g., create MedicationRequest\n")
-  }
-  for( let line of existing ) {
-    pdef.write(line+"\n")
+  if ( existing ) {
+    if ( existing.length == 0 ) {
+      pdef.write("//TODO: Add needed actions for this plandefinition, e.g., create MedicationRequest\n")
+    }
+    for( let line of existing ) {
+      pdef.write(line+"\n")
+    }
   }
   if ( hasGuidance ) {
     pdef.write(`
@@ -706,8 +747,16 @@ ${draftExpr}
   return logic
 }
 
-const createScheduleCQL = ( file, short, sid, name ) => {
+const createScheduleCQL = ( file, short, sid, name, parameters ) => {
   let logic = fs.createWriteStream( path.join("output","cql",file+".cql") )
+
+  let parameter = ''
+  if ( parameters ) {
+    for( let param in parameters ) {
+      if ( param == 'Today' || param == 'EncounterId' ) continue
+      parameter += "parameter "+param+" "+parameters[param]+"\n"
+    }
+  }
 
   logic.write(`/*
  * Library: ${file} (${sid})
@@ -727,6 +776,7 @@ include IMMZEncounterElements called IE
 include IMMZD2DT${short}EncounterElements called Encounter
 
 parameter Today Date default Today()
+${parameter}
 
 context Patient
 
@@ -769,9 +819,12 @@ Feature: ${did} Decision Table ${table}
   Background: Set the date to use for all tests
     Given call read('../IMMZ${type}.feature@defaults')
     And applyParams.parameter[1].resource.parameter[0].valueDate = "${RUNDATE}"
-    And resultWithMedication.contained[2].medicationCodeableConcept.coding.code = "${code.replace(/#/,"")}"
-
 `)
+  if ( code ) {
+    feature.write(`    And resultWithMedication.contained[2].medicationCodeableConcept.coding.code = "${code.replace(/#/,"")}"
+`)
+  }
+  feature.write("\n")
   return feature
 }
 
@@ -839,7 +892,7 @@ for( const tab of workbook ) {
 
 }
 
-console.log(JSON.stringify(dak,(_key, value) => (value instanceof Set ? [...value] : value),2))
+//console.log(JSON.stringify(dak,(_key, value) => (value instanceof Set ? [...value] : value),2))
 
 if ( options.all || options.elements ) {
 
@@ -886,27 +939,27 @@ if ( options.all || options.elements ) {
       createLibrary( "IMMZ"+type+dak[vaccine].short+"Elements", 
         "This library defines context-independent elements for "+dak[vaccine].vaccine+" used throughout the Immunization CPG" )
       createLibrary( "IMMZ"+type+dak[vaccine].short+"EncounterElements", 
-        "This library defines context-independent elements for "+dak[vaccine].vaccine+" used throughout the Immunization CPG" )
+        "This library defines encounter-based elements for "+dak[vaccine].vaccine+" used throughout the Immunization CPG" )
+ 
+      let elefile = createElementsCQL( dak[vaccine].vaccine, type, dak[vaccine].short, "Elements", "Elements", eleprev[type].parameters )
+      let encfile = createElementsCQL( dak[vaccine].vaccine, type, dak[vaccine].short, "EncounterElements", "Encounter", encprev[type].parameters )
 
-      let elefile = createElementsCQL( dak[vaccine].vaccine, type, dak[vaccine].short, "Elements" )
-      let encfile = createElementsCQL( dak[vaccine].vaccine, type, dak[vaccine].short, "EncounterElements" )
-
-      addElementsDefaults( elefile, dak[vaccine].vaccine, type, dak[vaccine].short, "Elements", eleprev[type], dak[vaccine].code )
-      addElementsDefaults( encfile, dak[vaccine].vaccine, type, dak[vaccine].short, "Encounter", encprev[type], dak[vaccine].code )
+      addElementsDefaults( elefile, dak[vaccine].vaccine, type, dak[vaccine].short, "Elements", eleprev[type].expressions, dak[vaccine].code )
+      addElementsDefaults( encfile, dak[vaccine].vaccine, type, dak[vaccine].short, "Encounter", encprev[type].expressions, dak[vaccine].code )
 
       for( const define in defines[type] ) {
-        if ( options.existing && (!eleprev[type][ define ] || !encprev[type][define]) ) {
+        if ( options.existing && (!eleprev[type].expressions[ define ] || !encprev[type].expressions[define]) ) {
           console.error(define,"NOT FOUND IN Elements or EncounterElements",type,"FOR",vaccine)
           process.exit(0)
         }
-        addElementsDefinition( elefile, dak[vaccine].vaccine, type, dak[vaccine].short, "Elements", define, defines[type][define], eleprev[type][define] )
-        delete eleprev[type][define]
-        addElementsDefinition( encfile, dak[vaccine].vaccine, type, dak[vaccine].short, "Encounter", define, defines[type][define], encprev[type][define] )
-        delete encprev[type][define]
+        addElementsDefinition( elefile, dak[vaccine].vaccine, type, dak[vaccine].short, "Elements", define, defines[type][define], eleprev[type].expressions[define] )
+        delete eleprev[type].expressions[define]
+        addElementsDefinition( encfile, dak[vaccine].vaccine, type, dak[vaccine].short, "Encounter", define, defines[type][define], encprev[type].expressions[define] )
+        delete encprev[type].expressions[define]
       }
 
-      addMissingDefinitions( elefile, eleprev[type] )
-      addMissingDefinitions( encfile, encprev[type] )
+      addMissingDefinitions( elefile, eleprev[type].expressions )
+      addMissingDefinitions( encfile, encprev[type].expressions )
 
       elefile.close()
       encfile.close()
@@ -919,21 +972,15 @@ if ( options.all || options.elements ) {
 
 if ( options.all || options.codes ) {
 
-  for( const xput of [ "_inputs", "_outputs" ] ) {
-    for( const type in dak[xput] ) {
-      let prefix = type.replace(/\./g, "")
-      let nameput = xput.replace(/_([a-z])/, (match, letter) => letter.toUpperCase() )
-      let csfile = createCodeSystem( prefix, nameput )
-      for( const code of Object.keys(dak[xput][type]).sort() ) {
-        let details = dak[xput][type][code]
-        csfile.write(`
-* #${details.code} "${details.display}" "${details.pseudo.replace(/([^\\])"/g, '$1\\"').replace(/^"/, '\\"')}"`)
-        for( let table of details.table ) {
-          csfile.write(`
+  let csfile = createCodeSystem( "IMMZDAK" )
+  for( const code of Object.keys(dak._codes).sort() ) {
+    let details = dak._codes[code]
+    csfile.write(`
+* #"${details.code}" "${details.display}" "${details.pseudo.replace(/([^\\])"/g, '$1\\"').replace(/([^\\])"/g, '$1\\"').replace(/^"/, '\\"')}"`)
+    for( let table of details.table ) {
+      csfile.write(`
   * ^property[+].code = #table
   * ^property[=].valueString = "${table}"`)
-        }
-      }
     }
   }
 
@@ -953,15 +1000,36 @@ if ( options.all || options.codes ) {
           if ( vscodeseen[input.code] ) continue
           vscodeseen[input.code] = true
           vsfile.write(`
-* insert AddWithExpandCanonical( IMMZ${dectable.type}Inputs, #"${input.code}", [[${input.display}]] )`)
+* insert AddWithExpandCanonical( IMMZDAK, [[#"${input.code}"]], [[${input.display}]] )`)
         }
         if ( !vscodeseen[rows[row].output.code]) {
           vsfile.write(`
-* insert AddWithExpandCanonical( IMMZ${dectable.type}Outputs, #"${rows[row].output.code}", [[${rows[row].output.display}]] )`)
-        } else {
+* insert AddWithExpandCanonical( IMMZDAK, [[#"${rows[row].output.code}"]], [[${rows[row].output.display}]] )`)
           vscodeseen[rows[row].output.code] = true
         }
 
+      }
+
+      if ( dectable.schedule ) {
+
+        let schedfile = dectable.file.replace("IMMZ"+dectable.type, "IMMZ"+dectable.schedule.type)
+
+        let vssched = createValueSet( schedfile, dectable.schedule.sid, dectable.rule, dectable.trigger, dectable.schedule.name )
+
+        vscodeseen = {}
+        rows = dectable.schedule.rows
+        for( const row in rows ) {
+          if ( !vscodeseen[rows[row].trigger_event.code] ) {
+            vssched.write(`
+* insert AddWithExpandCanonical( IMMZDAK, [[#"${rows[row].trigger_event.code}"]], [[${rows[row].trigger_event.display}]] )`)
+            vscodeseen[rows[row].trigger_event.code] = true
+          }
+          if ( !vscodeseen[rows[row].completion.code] ) {
+            vssched.write(`
+* insert AddWithExpandCanonical( IMMZDAK, [[#"${rows[row].completion.code}"]], [[${rows[row].completion.display}]] )`)
+            vscodeseen[rows[row].completion.code] = true
+          }
+        }
       }
 
     }
@@ -998,14 +1066,23 @@ if ( options.all || options.logic ) {
       let schedfile = null
       let schedlogic = null
       let schedPD = null
+      let schedscenarios = []
+      let schedprev = {}
+      let oldschedfile = ""
+
+
       if ( dectable.schedule ) {
+        if ( options.existing ) {
+          oldschedfile = oldNameMap[dectable.did].replace("IMMZ"+dectable.type, "IMMZ"+dectable.schedule.type)
+          schedprev = await loadCQL( path.join(INPUTDIR,"cql",oldschedfile+".cql") )
+        }
         schedfile = dectable.file.replace("IMMZ"+dectable.type, "IMMZ"+dectable.schedule.type)
         createLibrary( schedfile+"Logic",
           "This library defines decision support logic for the "+dectable.schedule.sid+" table in the Immunization CPG"
         )
         schedlogic = createScheduleCQL( schedfile+"Logic", dak[vaccine].short,
-          dectable.schedule.sid, dectable.schedule.name )
-        schedPD = createPlanDef( schedfile, dectable.schedule.sid, dectable.schedule.name, [], false )
+          dectable.schedule.sid, dectable.schedule.name, schedprev.parameters )
+        schedPD = createPlanDef( schedfile, dectable.schedule.sid, dectable.schedule.name, null, false )
       }
 
       // create the files that will need writes per row
@@ -1043,6 +1120,12 @@ if ( options.all || options.logic ) {
           scenariotext = scenario.join(" ")
         }
         scenariotext += ": " + dectable.rows[idx].output.display
+        let result = "resultWithoutMedication"
+        let containlength = "And match response.contained == '#[2]'"
+        if ( dectable.rows[idx].output.display.match(/is contraindicated/i ) || dectable.rows[idx].output.display.match(/is due/i) ) {
+          result = "resultWithMedication"
+          containlength = "And match response.contained == '#[3]'"
+        }
         feature.write(`
   @patient=${testid}
   Scenario: ${scenariotext}
@@ -1054,15 +1137,17 @@ if ( options.all || options.logic ) {
     And request applyParams
     When method post
     Then status 200
-    And RESULT.contained[0].subject.reference = 'Patient/${testid}'
-    And RESULT.contained[1].payload.contentString = "${dectable.rows[idx].guidance.replace(/\n/, "\\n").replace(/"/, '\"')}"
-    And match response contains deep RESULT
+    And ${result}.contained[0].subject.reference = 'Patient/${testid}'
+    And ${result}.contained[1].payload.contentString = "${dectable.rows[idx].guidance.replace(/\n/, "\\n").replace(/"/, '\"')}"
+    And match response contains deep ${result}
+    ${containlength}
 
     And call read('../../IMMZ.feature@delete') { "file": "./data/del-${testid}-bundle.json" }
   
 `)
+        schedscenarios.push( { text: scenariotext, id: testid, })
         examples.push( "### " + dectable.rows[idx].output.display 
-          + ( !isEmpty(dectable.rows[idx].output.pseudo) ? "\n### "+dectable.rows[idx].output.pseudo : "" ) )
+          + ( !isEmpty(dectable.rows[idx].output.pseudo) ? "\n### "+dectable.rows[idx].output.pseudo.replace(/\n/, "\n### ") : "" ) )
         let exampletext = examples.join("\n")
         // TODO: Lookup old example file and include it instead with the right text and testid
         example.write(`---
@@ -1119,10 +1204,25 @@ patient:
 
       let tests = []
       let schedtests = []
+      logic.write( `/*
+@dynamicValue: Guidance
+*/
+define "Guidance":
+  case 
+${Object.keys(outputs).map((title) => "    when \"" + title +"\" then \""+ title +" Guidance\"" ).join("\n")} 
+    else ''
+  end
+  
+define "Has Guidance":
+  "Guidance" is not null and "Guidance" != ''
+
+`)
+
       for( let title in outputs ) {
         let output = outputs[title]
         if ( output.length === 1 ) {
           tests[output[0].testidx] = "    when Patient.id = '"+(output[0].testid)+"' then \""+title+"\" and \"Guidance\" = '" + output[0].guidance.replace(/'/, '\\\'') + "'"
+          schedtests[output[0].testidx] = "    when Patient.id = '"+output[0].testid+"' then \"\" //TODO: Set correct expression here"
           displayOutput( logic, title, output[0].pseudo, output[0].expression, output[0].guidance )
         } else {
           let guidances = []
@@ -1157,12 +1257,17 @@ define "Test Validation":
       logic.close()
 
       if ( dectable.schedule ) {
-        let schedprev = {}
-        let oldschedfile = ""
-        if ( options.existing ) {
-          oldschedfile = oldNameMap[dectable.did].replace("IMMZ"+dectable.type, "IMMZ"+dectable.schedule.type)
-          schedprev = await loadCQL( path.join(INPUTDIR,"cql",oldschedfile+".cql") )
-        }
+        // let schedprev = {}
+        // let oldschedfile = ""
+        // if ( options.existing ) {
+        //   oldschedfile = oldNameMap[dectable.did].replace("IMMZ"+dectable.type, "IMMZ"+dectable.schedule.type)
+        //   schedprev = await loadCQL( path.join(INPUTDIR,"cql",oldschedfile+".cql") )
+        // }
+
+        let schedfeature = createFeature( schedfile+".feature", dectable.schedule.sid, dectable.schedule.name, dectable.schedule.type )
+        schedfeature.write(`
+    And def resultContent = {}`)
+
         for ( let idx in dectable.schedule.rows ) {
           let row = dectable.schedule.rows[idx]
           let schedname = row.name
@@ -1195,12 +1300,12 @@ define "Test Validation":
 
           if ( options.existing ) {
             for( let define in expr ) {
-              if ( !schedprev[define] ) {
-                console.error("Unable to find", define, "in existing CQL for", oldschedfile, schedprev)
+              if ( !schedprev.expressions[define] ) {
+                console.error("Unable to find", define, "in existing CQL for", oldschedfile, schedprev.expressions)
                 process.exit(0)
               } else {
-                expr[define] = schedprev[define]
-                delete schedprev[define]
+                expr[define] = schedprev.expressions[define]
+                delete schedprev.expressions[define]
               }
             }
 
@@ -1265,17 +1370,77 @@ Create condition: ${row.create}
 """]], [[${schedname}]], [[${schedname} Create]])
 `)
 
+          schedfeature.write(`
+    And resultContent[${idx}] = "${row.create.replace(/\n/, "\\n")}"
+`)
+
         }
 
         schedPD.close()
 
-        if ( options.existing ) {
-          let oldTests = schedprev["Test Validation"].replace(/(?:^|\n)/g, (match) => match+"//")
-          delete schedprev["Test Validation"]
+        const writeSchedFeature = ( schedfeature, scenario, schedfile, contentIdx, last ) => {
+          let resultSchedule = 'resultSchedule'
+          let expectedCount = 2
+          let contentLine = `And ${resultSchedule}.contained[1].payload.contentString.startsWith(resultContent[${contentIdx}]) //TODO: Update to correct index or change all lines to resultNoSchedule`
+          if ( last ) {
+            resultSchedule = 'resultNoSchedule'
+            expectedCount = 1
+            contentLine = ''
+          }
+          schedfeature.write(`
+  @patient=${scenario.id}
+  Scenario: ${scenario.text}
+    Given call read('../../IMMZ.feature@create') { "file": "./data/tests-${scenario.id}-bundle.json" }
 
-          addMissingDefinitions( schedlogic, schedprev )
+    And url urlBase
+    And path 'PlanDefinition/${schedfile}/$apply'
+    And applyParams.parameter[0].valueString = 'Patient/${scenario.id}'
+    And request applyParams
+    When method post
+    Then status 200
+    And ${resultSchedule}.contained[0].subject.reference = 'Patient/${scenario.id}'
+    ${contentLine}
+    And match response contains deep ${resultSchedule}
+    And match response.contained == '#[${expectedCount}]'
+
+    And call read('../../IMMZ.feature@delete') { "file": "./data/del-${scenario.id}-bundle.json" }
+    
+`)
+        }
+
+        schedfeature.write("\n")
+        let lastscenario = schedscenarios.pop()
+        let contentIdx = 'X'
+        if ( Object.keys(dectable.schedule.rows).length == 1 ) {
+          contentIdx = Object.keys(dectable.schedule.rows)[0]
+        }
+        for( let scenario of schedscenarios ) {
+          writeSchedFeature( schedfeature, scenario, schedfile, contentIdx, false )
+        }
+        writeSchedFeature( schedfeature, lastscenario, schedfile, contentIdx, true )
+
+        if ( options.existing ) {
+          //let oldTests = schedprev.expressions["Test Validation"].replace(/(?:^|\n)/g, (match) => match+"//")
+          schedtests = schedtests.map( test => {
+            let idmatch = test.match(/Patient.id = '[^.]*?(\d+)\.[^']+'/)
+            let getthen = new RegExp("when Patient.id = '[^']*"+idmatch[1]+"\.[^']+' then (.+?)\n    (when|else)", "s")
+            let newmatch = schedprev.expressions["Test Validation"].match(getthen)
+            if ( newmatch ) {
+              return test.replace(/"" \/\/TODO: Set correct expression here/, newmatch[1])
+            } else {
+              return test
+            }
+          })
+
+          delete schedprev.expressions["Test Validation"]
+
+          if ( Object.keys(schedprev.expressions).length != 0 ) {
+            addMissingDefinitions( schedlogic, schedprev.expressions )
+            console.log("Found extra content in schedule logic for",sid)
+          }
           // See old validation as a comment if it exists
-          schedlogic.write(oldTests)
+          //schedlogic.write(oldTests)
+
         }
         schedlogic.write(`
 /*

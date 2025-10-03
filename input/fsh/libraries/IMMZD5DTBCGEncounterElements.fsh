@@ -1,4 +1,3 @@
-
 Instance: IMMZD5DTBCGEncounterElements
 InstanceOf: Library
 Title: "IMMZD5DTBCGEncounterElements"

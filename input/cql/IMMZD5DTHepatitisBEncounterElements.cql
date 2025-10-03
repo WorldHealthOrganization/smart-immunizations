@@ -13,7 +13,6 @@ include WHOElements called WE
 
 include IMMZCommon called Common
 include IMMZConcepts called Concepts
-
 include IMMZEncounterElements called Encounter
 
 include IMMZD5DTHepatitisBElements called HepatitisBElements
@@ -27,13 +26,14 @@ context Patient
 @internal: Draft Medication Request for Hepatitis B dose
 */
 define "Draft Medication Request for Hepatitis B dose":
-  Encounter."Draft Medication Request for Patient" MR 
+  Encounter."Draft Medication Request for Patient" MR
     where MR.medication in Concepts."Hepatitis B-containing vaccines"
 
 /*
 @input: The client has history of severe allergic reactions
 @pseudocode: "Potential contraindications" = "Severe allergic reactions"
+@code: The client has history of severe allergic reactions-59
+@decision: IMMZ.D5.DT.Hepatitis B contraindications
 */
 define "The client has history of severe allergic reactions":
   Encounter."The client has history of severe allergic reactions"
-

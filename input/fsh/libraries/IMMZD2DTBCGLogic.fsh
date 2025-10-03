@@ -1,4 +1,3 @@
-
 Instance: IMMZD2DTBCGLogic
 InstanceOf: Library
 Title: "IMMZD2DTBCGLogic"

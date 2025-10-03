@@ -1,4 +1,3 @@
-
 /*
  * Library: IMMZD2DTBCGLogic (IMMZ.D2.DT.BCG)
  * Rule: Determine if the client is due for a bacille Calmette–Guérin (BCG) vaccination according to the national immunization schedule
@@ -16,18 +15,19 @@ parameter Today Date default Today()
 
 context Patient
 
+
 /*
 @dynamicValue: Guidance
 */
 define "Guidance":
-  case
+  case 
     when "Client is due for BCG vaccination" then "Client is due for BCG vaccination Guidance"
     when "Client is not due for BCG vaccination" then "Client is not due for BCG vaccination Guidance"
     when "Clinical judgement is required. Create clinical note." then "Clinical judgement is required. Create clinical note. Guidance"
-    when "BCG immunization schedule is complete" then "BCG immunization schedule is complete Guidance"
+    when "BCG immunization schedule is complete" then "BCG immunization schedule is complete Guidance" 
     else ''
   end
-
+  
 define "Has Guidance":
   "Guidance" is not null and "Guidance" != ''
 
@@ -115,17 +115,17 @@ define "Client is due for BCG vaccination":
 
 /*
 @output: Client is due for BCG vaccination Guidance
-@guidance: Should vaccinate client with first BCG dose as no BCG dose was administered, client is within age range, HIV status is not positive and no live vaccine was administered.
+@guidance = Should vaccinate client with first BCG dose as no BCG dose was administered, client is within age range, HIV status is not positive and no live vaccine was administered.
 Check for contraindications.
-@guidance: Should vaccinate client with first BCG dose as no BCG dose was administered, client is immunologically stable and no live vaccine was administered.
+@guidance = Should vaccinate client with first BCG dose as no BCG dose was administered, client is immunologically stable and no live vaccine was administered.
 Check for contraindications.
-@guidance: Should vaccinate client with first BCG dose as no BCG dose was administered, client's TB test result is negative and no live vaccine was administered in the past 4 weeks.
+@guidance = Should vaccinate client with first BCG dose as no BCG dose was administered, client's TB test result is negative and no live vaccine was administered in the past 4 weeks.
 Check for contraindications.
-@guidance: Should vaccinate client with first BCG dose as no BCG dose was administered, client is receiving ART, clinically well and immunologically stable. No live vaccine was administered in the last 4 weeks.
+@guidance = Should vaccinate client with first BCG dose as no BCG dose was administered, client is receiving ART, clinically well and immunologically stable. No live vaccine was administered in the last 4 weeks.
 Check for contraindications.
-@guidance: Should vaccinate client with first BCG dose as no BCG dose was administered, client's TB test result is negative and no live vaccine was administered in the past 4 weeks.
+@guidance = Should vaccinate client with first BCG dose as no BCG dose was administered, client's TB test result is negative and no live vaccine was administered in the past 4 weeks.
 Check for contraindications.
-@guidance: Should vaccinate client with first BCG dose as no BCG dose was administered, client is receiving ART, clinically well and immunologically stable. No live vaccine was administered in the past 4 weeks.
+@guidance = Should vaccinate client with first BCG dose as no BCG dose was administered, client is receiving ART, clinically well and immunologically stable. No live vaccine was administered in the past 4 weeks.
 Check for contraindications
 */
 define "Client is due for BCG vaccination Guidance":
@@ -344,35 +344,35 @@ define "Client is not due for BCG vaccination":
 
 /*
 @output: Client is not due for BCG vaccination Guidance
-@guidance: Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.
+@guidance = Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.
-@guidance: Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.
+@guidance = Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.
-@guidance: Should not vaccinate client with first BCG dose as client is not immunologically stable.
+@guidance = Should not vaccinate client with first BCG dose as client is not immunologically stable.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.
-@guidance: Should not vaccinate client with first BCG dose as ART has not been started.
+@guidance = Should not vaccinate client with first BCG dose as ART has not been started.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.
-@guidance: Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.
+@guidance = Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.
 Check for any vaccines due and inform the caregiver of when to come back for the first dose.
-@guidance: Should not vaccinate client with first BCG dose as client's TB infection test result is positive. Consider evaluating for TB disease or for TB preventive treatment (TPT) eligibility (once TB disease is ruled out).
-@guidance: Should not vaccinate client with first BCG dose as client is not immunologically stable.
+@guidance = Should not vaccinate client with first BCG dose as client's TB infection test result is positive. Consider evaluating for TB disease or for TB preventive treatment (TPT) eligibility (once TB disease is ruled out).
+@guidance = Should not vaccinate client with first BCG dose as client is not immunologically stable.
 Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.
-@guidance: Should not vaccinate client with first BCG dose as client is not clinically well.
+@guidance = Should not vaccinate client with first BCG dose as client is not clinically well.
 Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.
-@guidance: Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.
+@guidance = Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.
-@guidance: Should not vaccinate client with first BCG dose as client is not currently receiving ART.
+@guidance = Should not vaccinate client with first BCG dose as client is not currently receiving ART.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.
-@guidance: Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.
+@guidance = Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.
 Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.
-@guidance: Should not vaccinate client with first BCG dose as client's TB infection test result is positive. Consider evaluating for TB disease or for TB preventive treatment (TPT) eligibility (once TB disease is ruled out).
-@guidance: Should not vaccinate client with first BCG dose as client is not immnologically stable.
+@guidance = Should not vaccinate client with first BCG dose as client's TB infection test result is positive. Consider evaluating for TB disease or for TB preventive treatment (TPT) eligibility (once TB disease is ruled out).
+@guidance = Should not vaccinate client with first BCG dose as client is not immnologically stable.
 Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.
-@guidance: Should not vaccinate client with first BCG dose as client is not clinically well.
+@guidance = Should not vaccinate client with first BCG dose as client is not clinically well.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.
-@guidance: Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.
+@guidance = Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.
 Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.
-@guidance: Should not vaccinate client with first BCG dose as client is not currently receiving ART.
+@guidance = Should not vaccinate client with first BCG dose as client is not currently receiving ART.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.
 */
 define "Client is not due for BCG vaccination Guidance":
@@ -440,9 +440,9 @@ define "Clinical judgement is required. Create clinical note.":
 
 /*
 @output: Clinical judgement is required. Create clinical note. Guidance
-@guidance: Recommend the client to perform TB infection testing.
+@guidance = Recommend the client to perform TB infection testing.
 Re-evaluate client once the test result is available.
-@guidance: Recommend the client to perform TB infection testing.
+@guidance = Recommend the client to perform TB infection testing.
 Re-evaluate client once the test result is available.
 */
 define "Clinical judgement is required. Create clinical note. Guidance":
@@ -457,6 +457,7 @@ Re-evaluate client once the test result is available.'
 /*
 @output: BCG immunization schedule is complete
 @pseudocode: '"Immunization recommendation status" = "Complete"
+"Completed the primary vaccination series" = TRUE (where "Vaccine type" = "BCG vaccines")
 */
 define "BCG immunization schedule is complete":
   Encounter."One BCG primary series dose was administered"
@@ -470,58 +471,59 @@ define "BCG immunization schedule is complete Guidance":
   'BCG immunization schedule is complete. One BCG primary series dose was administered.
 Check for any vaccines due.'
 
+
 /*
 @test: Test expected results based on example patients
 */
 define "Test Validation":
   case
-    when Patient.id = 'BCG07.0126' then "Client is due for BCG vaccination Case 1" and "Guidance" = 'Should vaccinate client with first BCG dose as no BCG dose was administered, client is within age range, HIV status is not positive and no live vaccine was administered.
+    when Patient.id = 'BCG07.4' then "Client is due for BCG vaccination Case 1" and "Guidance" = 'Should vaccinate client with first BCG dose as no BCG dose was administered, client is within age range, HIV status is not positive and no live vaccine was administered.
 Check for contraindications.'
-    when Patient.id = 'BCG08.0126' then "Client is not due for BCG vaccination Case 1" and "Guidance" = 'Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.
+    when Patient.id = 'BCG08.4' then "Client is not due for BCG vaccination Case 1" and "Guidance" = 'Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.'
-    when Patient.id = 'BCG09.012346' then "Client is due for BCG vaccination Case 2" and "Guidance" = 'Should vaccinate client with first BCG dose as no BCG dose was administered, client is immunologically stable and no live vaccine was administered.
+    when Patient.id = 'BCG09.6' then "Client is due for BCG vaccination Case 2" and "Guidance" = 'Should vaccinate client with first BCG dose as no BCG dose was administered, client is immunologically stable and no live vaccine was administered.
 Check for contraindications.'
-    when Patient.id = 'BCG10.012346' then "Client is not due for BCG vaccination Case 2" and "Guidance" = 'Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.
+    when Patient.id = 'BCG10.6' then "Client is not due for BCG vaccination Case 2" and "Guidance" = 'Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.'
-    when Patient.id = 'BCG11.01234' then "Client is not due for BCG vaccination Case 3" and "Guidance" = 'Should not vaccinate client with first BCG dose as client is not immunologically stable.
+    when Patient.id = 'BCG11.5' then "Client is not due for BCG vaccination Case 3" and "Guidance" = 'Should not vaccinate client with first BCG dose as client is not immunologically stable.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.'
-    when Patient.id = 'BCG12.0123' then "Client is not due for BCG vaccination Case 4" and "Guidance" = 'Should not vaccinate client with first BCG dose as ART has not been started.
+    when Patient.id = 'BCG12.4' then "Client is not due for BCG vaccination Case 4" and "Guidance" = 'Should not vaccinate client with first BCG dose as ART has not been started.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.'
-    when Patient.id = 'BCG13.01256' then "Client is due for BCG vaccination Case 3" and "Guidance" = 'Should vaccinate client with first BCG dose as no BCG dose was administered, client\'s TB test result is negative and no live vaccine was administered in the past 4 weeks.
+    when Patient.id = 'BCG13.5' then "Client is due for BCG vaccination Case 3" and "Guidance" = 'Should vaccinate client with first BCG dose as no BCG dose was administered, client\'s TB test result is negative and no live vaccine was administered in the past 4 weeks.
 Check for contraindications.'
-    when Patient.id = 'BCG14.01256' then "Client is not due for BCG vaccination Case 5" and "Guidance" = 'Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.
+    when Patient.id = 'BCG14.5' then "Client is not due for BCG vaccination Case 5" and "Guidance" = 'Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.
 Check for any vaccines due and inform the caregiver of when to come back for the first dose.'
-    when Patient.id = 'BCG15.0125' then "Clinical judgement is required. Create clinical note. Case 1" and "Guidance" = 'Recommend the client to perform TB infection testing.
+    when Patient.id = 'BCG15.4' then "Clinical judgement is required. Create clinical note. Case 1" and "Guidance" = 'Recommend the client to perform TB infection testing.
 Re-evaluate client once the test result is available.'
-    when Patient.id = 'BCG16.0125' then "Client is not due for BCG vaccination Case 6" and "Guidance" = 'Should not vaccinate client with first BCG dose as client\'s TB infection test result is positive. Consider evaluating for TB disease or for TB preventive treatment (TPT) eligibility (once TB disease is ruled out).'
-    when Patient.id = 'BCG17.01234' then "Client is not due for BCG vaccination Case 7" and "Guidance" = 'Should not vaccinate client with first BCG dose as client is not immunologically stable.
+    when Patient.id = 'BCG16.4' then "Client is not due for BCG vaccination Case 6" and "Guidance" = 'Should not vaccinate client with first BCG dose as client\'s TB infection test result is positive. Consider evaluating for TB disease or for TB preventive treatment (TPT) eligibility (once TB disease is ruled out).'
+    when Patient.id = 'BCG17.5' then "Client is not due for BCG vaccination Case 7" and "Guidance" = 'Should not vaccinate client with first BCG dose as client is not immunologically stable.
 Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.'
-    when Patient.id = 'BCG18.01237' then "Client is not due for BCG vaccination Case 8" and "Guidance" = 'Should not vaccinate client with first BCG dose as client is not clinically well.
+    when Patient.id = 'BCG18.5' then "Client is not due for BCG vaccination Case 8" and "Guidance" = 'Should not vaccinate client with first BCG dose as client is not clinically well.
 Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.'
-    when Patient.id = 'BCG19.0123467' then "Client is due for BCG vaccination Case 4" and "Guidance" = 'Should vaccinate client with first BCG dose as no BCG dose was administered, client is receiving ART, clinically well and immunologically stable. No live vaccine was administered in the last 4 weeks.
+    when Patient.id = 'BCG19.7' then "Client is due for BCG vaccination Case 4" and "Guidance" = 'Should vaccinate client with first BCG dose as no BCG dose was administered, client is receiving ART, clinically well and immunologically stable. No live vaccine was administered in the last 4 weeks.
 Check for contraindications.'
-    when Patient.id = 'BCG20.0123467' then "Client is not due for BCG vaccination Case 9" and "Guidance" = 'Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.
+    when Patient.id = 'BCG20.7' then "Client is not due for BCG vaccination Case 9" and "Guidance" = 'Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.'
-    when Patient.id = 'BCG21.0123' then "Client is not due for BCG vaccination Case 10" and "Guidance" = 'Should not vaccinate client with first BCG dose as client is not currently receiving ART.
+    when Patient.id = 'BCG21.4' then "Client is not due for BCG vaccination Case 10" and "Guidance" = 'Should not vaccinate client with first BCG dose as client is not currently receiving ART.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.'
-    when Patient.id = 'BCG22.01256' then "Client is due for BCG vaccination Case 5" and "Guidance" = 'Should vaccinate client with first BCG dose as no BCG dose was administered, client\'s TB test result is negative and no live vaccine was administered in the past 4 weeks.
+    when Patient.id = 'BCG22.5' then "Client is due for BCG vaccination Case 5" and "Guidance" = 'Should vaccinate client with first BCG dose as no BCG dose was administered, client\'s TB test result is negative and no live vaccine was administered in the past 4 weeks.
 Check for contraindications.'
-    when Patient.id = 'BCG23.01256' then "Client is not due for BCG vaccination Case 11" and "Guidance" = 'Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.
+    when Patient.id = 'BCG23.5' then "Client is not due for BCG vaccination Case 11" and "Guidance" = 'Should not vaccinate client with first BCG dose as live vaccine was administered in the last 4 weeks.
 Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.'
-    when Patient.id = 'BCG24.0125' then "Clinical judgement is required. Create clinical note. Case 2" and "Guidance" = 'Recommend the client to perform TB infection testing.
+    when Patient.id = 'BCG24.4' then "Clinical judgement is required. Create clinical note. Case 2" and "Guidance" = 'Recommend the client to perform TB infection testing.
 Re-evaluate client once the test result is available.'
-    when Patient.id = 'BCG25.0125' then "Client is not due for BCG vaccination Case 12" and "Guidance" = 'Should not vaccinate client with first BCG dose as client\'s TB infection test result is positive. Consider evaluating for TB disease or for TB preventive treatment (TPT) eligibility (once TB disease is ruled out).'
-    when Patient.id = 'BCG26.01234' then "Client is not due for BCG vaccination Case 13" and "Guidance" = 'Should not vaccinate client with first BCG dose as client is not immnologically stable.
+    when Patient.id = 'BCG25.4' then "Client is not due for BCG vaccination Case 12" and "Guidance" = 'Should not vaccinate client with first BCG dose as client\'s TB infection test result is positive. Consider evaluating for TB disease or for TB preventive treatment (TPT) eligibility (once TB disease is ruled out).'
+    when Patient.id = 'BCG26.5' then "Client is not due for BCG vaccination Case 13" and "Guidance" = 'Should not vaccinate client with first BCG dose as client is not immnologically stable.
 Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.'
-    when Patient.id = 'BCG27.01237' then "Client is not due for BCG vaccination Case 14" and "Guidance" = 'Should not vaccinate client with first BCG dose as client is not clinically well.
+    when Patient.id = 'BCG27.5' then "Client is not due for BCG vaccination Case 14" and "Guidance" = 'Should not vaccinate client with first BCG dose as client is not clinically well.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.'
-    when Patient.id = 'BCG28.0123467' then "Client is due for BCG vaccination Case 6" and "Guidance" = 'Should vaccinate client with first BCG dose as no BCG dose was administered, client is receiving ART, clinically well and immunologically stable. No live vaccine was administered in the past 4 weeks.
+    when Patient.id = 'BCG28.7' then "Client is due for BCG vaccination Case 6" and "Guidance" = 'Should vaccinate client with first BCG dose as no BCG dose was administered, client is receiving ART, clinically well and immunologically stable. No live vaccine was administered in the past 4 weeks.
 Check for contraindications'
-    when Patient.id = 'BCG29.0123467' then "Client is not due for BCG vaccination Case 15" and "Guidance" = 'Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.
+    when Patient.id = 'BCG29.7' then "Client is not due for BCG vaccination Case 15" and "Guidance" = 'Should not vaccinate client with first BCG dose as live vaccine was administered in the past 4 weeks.
 Check for any vaccines due, and inform the caregiver of when to come back for the first BCG dose.'
-    when Patient.id = 'BCG30.0123' then "Client is not due for BCG vaccination Case 16" and "Guidance" = 'Should not vaccinate client with first BCG dose as client is not currently receiving ART.
+    when Patient.id = 'BCG30.4' then "Client is not due for BCG vaccination Case 16" and "Guidance" = 'Should not vaccinate client with first BCG dose as client is not currently receiving ART.
 Check for any vaccines due and inform the caregiver of when to come back for the first BCG dose.'
-    when Patient.id = 'BCG31.0' then "BCG immunization schedule is complete" and "Guidance" = 'BCG immunization schedule is complete. One BCG primary series dose was administered.
+    when Patient.id = 'BCG31.1' then "BCG immunization schedule is complete" and "Guidance" = 'BCG immunization schedule is complete. One BCG primary series dose was administered.
 Check for any vaccines due.'
     else 'No test case set'
   end
