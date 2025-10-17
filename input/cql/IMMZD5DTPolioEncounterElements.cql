@@ -13,7 +13,6 @@ include WHOElements called WE
 
 include IMMZCommon called Common
 include IMMZConcepts called Concepts
-
 include IMMZEncounterElements called Encounter
 
 include IMMZD5DTPolioElements called PolioElements
@@ -24,15 +23,18 @@ parameter EncounterId String
 context Patient
 
 /*
-@internal: Draft Medication Request for bOPV dose
+@internal: Draft Medication Request for Polio dose
 */
-define "Draft Medication Request for bOPV dose":
+define "Draft Medication Request for Polio dose":
+
   Encounter."Draft Medication Request for Patient" MR 
-    where MR.medication in Concepts."Oral polio vaccines"
+    where MR.medication in Concepts."Poliovirus-containing vaccines"
 
 /*
 @input: The client has history of severe allergic reactions
 @pseudocode: "Potential contraindications" = "Severe allergic reactions"
+@code: The client has history of severe allergic reactions-59
+@decision: IMMZ.D5.DT.Polio contraindications
 */
 define "The client has history of severe allergic reactions":
   Encounter."The client has history of severe allergic reactions"
@@ -40,6 +42,8 @@ define "The client has history of severe allergic reactions":
 /*
 @input: The client is severely immunocompromised
 @pseudocode: "Potential contraindications" = "Severely immunocompromised"
+@code: The client is severely immunocompromised-60
+@decision: IMMZ.D5.DT.Polio contraindications
 */
 define "The client is severely immunocompromised":
   Encounter."The client is severely immunocompromised"
@@ -47,7 +51,15 @@ define "The client is severely immunocompromised":
 /*
 @input: The client has immunodeficiency syndromes
 @pseudocode: "Potential contraindications" = "Immunodeficiency syndromes"
+@code: The client has immunodeficiency syndromes-60
+@decision: IMMZ.D5.DT.Polio contraindications
 */
 define "The client has immunodeficiency syndromes":
   Encounter."The client has immunodeficiency syndromes"
 
+/*
+@internal: Draft Medication Request for bOPV dose
+*/
+define "Draft Medication Request for bOPV dose":
+  Encounter."Draft Medication Request for Patient" MR
+    where MR.medication in Concepts."Oral polio vaccines"

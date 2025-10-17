@@ -1,4 +1,3 @@
-
 Instance: IMMZD2DTPolioEncounterElements
 InstanceOf: Library
 Title: "IMMZD2DTPolioEncounterElements"

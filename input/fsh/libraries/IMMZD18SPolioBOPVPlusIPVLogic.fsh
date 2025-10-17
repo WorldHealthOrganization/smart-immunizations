@@ -1,0 +1,7 @@
+Instance: IMMZD18SPolioBOPVPlusIPVLogic
+InstanceOf: Library
+Title: "IMMZD18SPolioBOPVPlusIPVLogic"
+Description: "This library defines decision support logic for the IMMZ.D18.S.Polio.bOPV plus IPV schedule table in the Immunization CPG"
+Usage: #definition
+
+* insert LogicLibrary( IMMZD18SPolioBOPVPlusIPVLogic )

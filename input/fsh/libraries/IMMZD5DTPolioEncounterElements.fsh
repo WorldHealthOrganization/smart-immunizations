@@ -1,4 +1,3 @@
-
 Instance: IMMZD5DTPolioEncounterElements
 InstanceOf: Library
 Title: "IMMZD5DTPolioEncounterElements"
