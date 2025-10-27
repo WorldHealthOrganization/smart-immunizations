@@ -622,14 +622,16 @@ define "Currently on ART Observation":
 @pseudocode: "Currently on ART" = TRUE
 */
 define "Client is currently receiving antiretroviral therapy":
-  First("Currently on ART Observation").value = true
+  exists("Currently on ART Observation")
+  and First("Currently on ART Observation").value = true
 
 /*
 @input: Client is currently not receiving antiretroviral therapy
 @pseudocode: "Currently on ART" = FALSE
 */
 define "Client is currently not receiving antiretroviral therapy":
-  not "Client is currently receiving antiretroviral therapy"
+  not exists("Currently on ART Observation")
+  or First("Currently on ART Observation").value = false
 
 /*
 @internal: Immunologically stable Observation
@@ -643,14 +645,16 @@ define "Immunologically stable Observation":
 @pseudocode: "Immunologically stable" = TRUE
 */
 define "Client is immunologically stable":
-  First("Immunologically stable Observation").value = true
+  exists("Immunologically stable Observation")
+  and First("Immunologically stable Observation").value = true
 
 /*
 @input: Client is not immunologically stable
 @pseudocode: "Immunologically stable" = FALSE
 */
 define "Client is not immunologically stable":
-  First("Immunologically stable Observation").value = false
+  exists("Immunologically stable Observation")
+  and First("Immunologically stable Observation").value = false
 
 /*
 @internal: TB infection test result Observation
@@ -664,7 +668,8 @@ define "TB infection test result Observation":
 @pseudocode: "TB infection test result" = "Negative"
 */
 define "Client's TB infection test result is negative":
-  First( "TB infection test result Observation" ).value ~ Concepts."TB-Negative"
+  exists("TB infection test result Observation")
+  and First( "TB infection test result Observation" ).value ~ Concepts."TB-Negative"
 /*
 @input: Client's TB infection test result is unknown (test not done or no result yet)
 @pseudocode: "TB infection test result" IS NULL
@@ -678,7 +683,8 @@ define "Client's TB infection test result is unknown (test not done or no result
 @pseudocode: "TB infection test result" = "Positive"
 */
 define "Client's TB infection test result is positive":
-  First( "TB infection test result Observation" ).value ~ Concepts."TB-Positive"
+  exists("TB infection test result Observation")
+  and First( "TB infection test result Observation" ).value ~ Concepts."TB-Positive"
 
 /*
 @internal: Clinically well Observation
@@ -692,14 +698,16 @@ define "Clinically well Observation":
 @pseudocode: "Clinically well" = FALSE
 */
 define "Client is not clinically well":
-  First( "Clinically well Observation" ).value = false 
+  exists("Clinically well Observation")
+  and First( "Clinically well Observation" ).value = false 
 
 /*
 @input: Client is clinically well
 @pseudocode: "Clinically well" = TRUE
 */
 define "Client is clinically well":
-  First( "Clinically well Observation" ).value = true 
+  exists("Clinically well Observation")
+  and First( "Clinically well Observation" ).value = true 
 
 /*
 @internal: Immunocompromised Observation
@@ -731,7 +739,7 @@ define "Birth weight in grams Observation":
     sort by end of effective.toInterval() desc).complete()
 
 define "Birth weight in grams Value":
-  First("Birth weight in grams Observation" O).value as FHIR.Quantity
+  First("Birth weight in grams Observation").value as FHIR.Quantity
 
 define "Birth weight in grams":
   "Birth weight in grams Value".value as FHIR.decimal
