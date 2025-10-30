@@ -7,6 +7,7 @@ Description:  "CodeSystem for IMMZ.Z Data Elements"
 * ^name = "IMMZ_Z"
 * ^status = #active
 
+* #DE0 "Vaccine" "Any vaccine"
 * #DE1 "BCG vaccines" "Vaccine terminology codes for bacille Calmette–Guérin (BCG)"
 * #DE2 "Cholera vaccines" "Vaccine terminology codes for cholera"
 * #DE3 "Diphtheria-containing vaccines" "Vaccine terminology codes for diphtheria"

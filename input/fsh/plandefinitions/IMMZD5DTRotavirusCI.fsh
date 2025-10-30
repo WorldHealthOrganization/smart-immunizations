@@ -13,6 +13,7 @@ Usage: #definition
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D5.DT.Rotavirus contraindications.]], [["""
     Show Guidance for the patient regarding IMMZ.D5.DT.Rotavirus contraindications.
   """]], Has Guidance, Guidance)
-* insert PlanDefMedicationRequestUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
+* insert PlanDefMRUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
     Contraindication for Rotavirus immunization
-  """]], Rotavirus vaccination is contraindicated, IMMZD5DTRotavirusMR, Draft Medication Request ID for Rotavirus dose )
+  """]], Rotavirus vaccination is contraindicated, Draft Medication Request ID for Rotavirus dose, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE16']], Rotavirus vaccines )

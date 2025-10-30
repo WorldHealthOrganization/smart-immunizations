@@ -9,7 +9,7 @@ Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTPolioSequentialIPVbOPV, 0.1.0 )
 
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for a poliovirus vaccination according to the national immunization schedule]], [["""
+* insert PlanDefMRAction( [[Determine if the client is due for a poliovirus vaccination according to the national immunization schedule]], [["""
     Determine if the client is due for a poliovirus vaccination according to the national immunization schedule
     Sequential  "Bivalent oral polio vaccine (bOPV)–inactivated polio vaccine (IPV)" schedule (in countries with high 
     vaccination coverage [e.g. 90–95%] and low importation risk [where neighbouring countries and/or countries that share 
@@ -19,8 +19,9 @@ Usage: #definition
   of bOPV separated by 4–8 weeks depending on the risk of exposure to poliovirus in early childhood. Where a sequential IPV–bOPV 
   schedule is used, the initial administration of 2 doses of IPV should be followed by ≥2 doses of bOPV to ensure sufficient 
   levels of protection in the intestinal mucosa as well as a decrease in the burden of vaccine-associated paralytic polio (VAPP).
-  """]], Client is due for IPV vaccination, IMMZD2DTPolioIPVMR )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for a poliovirus vaccination according to the national immunization schedule]], [["""
+  """]], Client is due for IPV vaccination, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE31']], Inactivated polio vaccines )
+* insert PlanDefMRAction( [[Determine if the client is due for a poliovirus vaccination according to the national immunization schedule]], [["""
     Determine if the client is due for a poliovirus vaccination according to the national immunization schedule
     Sequential  "Bivalent oral polio vaccine (bOPV)–inactivated polio vaccine (IPV)" schedule (in countries with high 
     vaccination coverage [e.g. 90–95%] and low importation risk [where neighbouring countries and/or countries that share 
@@ -30,7 +31,8 @@ Usage: #definition
   of bOPV separated by 4–8 weeks depending on the risk of exposure to poliovirus in early childhood. Where a sequential IPV–bOPV 
   schedule is used, the initial administration of 2 doses of IPV should be followed by ≥2 doses of bOPV to ensure sufficient 
   levels of protection in the intestinal mucosa as well as a decrease in the burden of vaccine-associated paralytic polio (VAPP).
-  """]], Client is due for bOPV vaccination, IMMZD2DTPolioOPVMR )
+  """]], Client is due for bOPV vaccination, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE30']], Oral polio vaccines )
 
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.Polio.Sequential IPV–bOPV.]], [["""
 Show Guidance for the patient regarding IMMZ.D2.DT.Polio.Sequential IPV–bOPV.

@@ -9,7 +9,7 @@ Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTHepatitisBBirthDose, 0.1.0 )
 
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for a hepatitis B vaccination according to the national immunization schedule]], [["""
+* insert PlanDefMRAction( [[Determine if the client is due for a hepatitis B vaccination according to the national immunization schedule]], [["""
     Determine if the client is due for a hepatitis B vaccination according to the national immunization schedule
     Birth dose administration
   """]], [["""Hepatitis B vaccination is recommended for all children worldwide. Since perinatal or early postnatal transmission 
@@ -18,7 +18,8 @@ Usage: #definition
   If administration within 24 hours is not feasible, a late birth dose has some effectiveness. WHO recommends that all infants receive 
   the late birth dose during the first contact with health-care providers at any time up to the time of the next dose of the primary 
   schedule.
-  """]], Client is due for hepatitis B monovalent vaccine, IMMZD2DTHepatitisBMR )
+  """]], Client is due for hepatitis B monovalent vaccine, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE6']], Hepatitis B-containing vaccines )
 
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.Hepatitis B.Birth dose.]], [["""
 Show Guidance for the patient regarding IMMZ.D2.DT.Hepatitis B.Birth dose.

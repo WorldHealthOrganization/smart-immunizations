@@ -8,6 +8,7 @@ Usage: #definition
 * insert PlanDefCommunicationRequestAction([[Check for contraindications before administering the vaccine(s) due]], [["""
     Show Guidance for the patient regarding MCV contraindication.
   """]], Has Guidance, Guidance)
-* insert PlanDefMedicationRequestUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
+* insert PlanDefMRUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
     Contraindication for measles immunization
-  """]], Measles vaccination contraindicated, IMMZD5DTMeaslesMR, Draft Medication Request ID for MCV dose )
+  """]], Measles vaccination contraindicated, Draft Medication Request ID for MCV dose, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE9']], Measles-containing vaccines )

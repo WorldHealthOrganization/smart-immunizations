@@ -9,9 +9,10 @@ Usage: #definition
 
 * insert PlanDefMain( IMMZD5DTPolioContraindications, 0.1.0 )
 
-* insert PlanDefMedicationRequestUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
+* insert PlanDefMRUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
     Contraindication for bOPV immunization
-  """]], Poliovirus vaccination with bOPV is contraindicated, IMMZD5DTPolioMR, Draft Medication Request ID for bOPV dose )
+  """]], Poliovirus vaccination with bOPV is contraindicated, Draft Medication Request ID for bOPV dose,
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE30']], Oral polio vaccines )
 
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D5.DT.Polio contraindications.]], [["""
 Show Guidance for the patient regarding IMMZ.D5.DT.Polio contraindications.

@@ -9,7 +9,7 @@ IMMZ.D2.DT.Mumps
 Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTMumps2Dose, 0.1.0 )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for Mumps.]], [["""
+* insert PlanDefMRAction( [[Determine if the client is due for Mumps.]], [["""
 Determine if the client is due for Mumps vaccine according to the national immunization protocol.
 2-dose schedule (countries with mumps in schedule and low transmission of measles)
 """]], [["""The first dose of the mumps-containing vaccine (monovalent or MMR [measles, mumps and rubella]) 
@@ -19,7 +19,8 @@ or at intervals of 4 weeks.
 The age of administration of the second dose may range from the second year of life to age at school entry. 
 The minimum interval between the first and the second doses is 1 month. As a general rule, live vaccines 
 should be given either simultaneously or at intervals of 4 weeks.
-"""]], Client is due for mumps vaccination, IMMZD2DTMumpsMR )
+"""]], Client is due for mumps vaccination, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE11']], Mumps-containing vaccines )
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.Mumps.]], [["""
     Show Guidance for the patient regarding IMMZ.D2.DT.Mumps.
   """]], Has Guidance, Guidance)

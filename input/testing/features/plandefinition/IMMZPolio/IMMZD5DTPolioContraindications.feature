@@ -4,7 +4,7 @@ Feature: IMMZ.D5.DT.Polio contraindications Decision Table IMMZ.D5.DT.Polio cont
   Background: Set the date to use for all tests
     Given call read('../IMMZD5DT.feature@defaults')
     And applyParams.parameter[1].resource.parameter[0].valueDate = "2025-10-10"
-    And resultWithMedication.contained[2].medicationCodeableConcept.coding.code = "DE14"
+    And resultWithMedication.contained[2].medicationCodeableConcept.coding.code = "DE30"
 
 
   @patient=Polio87.1

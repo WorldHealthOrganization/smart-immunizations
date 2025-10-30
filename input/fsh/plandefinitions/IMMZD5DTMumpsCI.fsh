@@ -9,9 +9,10 @@ Potential contraindications
 Usage: #definition
 
 * insert PlanDefMain( IMMZD5DTMumpsCI, 0.1.0 )
-* insert PlanDefMedicationRequestUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
+* insert PlanDefMRUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
   Contraindication for Mumps immunization
-"""]], Mumps vaccination is contraindicated, IMMZD5DTMumpsMR, Draft Medication Request ID for Mumps dose )
+"""]], Mumps vaccination is contraindicated, Draft Medication Request ID for Mumps dose, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE11']], Mumps-containing vaccines )
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D5.DT.Mumps contraindications.]], [["""
     Show Guidance for the patient regarding IMMZ.D5.DT.Mumps contraindications.
   """]], Has Guidance, Guidance)

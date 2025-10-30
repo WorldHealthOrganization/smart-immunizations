@@ -654,28 +654,6 @@ Table: ${table}
   return vsfile
 }
 
-const createMedRequestActivity = ( vaccine, short, type, code ) => {
-  let file = "IMMZ"+type+short+"MR"
-  let desc = vaccine +" MedicationRequest ActivityDefinition"
-  let update = "false"
-  if ( type == "D2DT" ) {
-    desc = "Provide "+vaccine+" immunization"
-  } else if ( type == "D5DT" ) {
-    desc = vaccine+" immunization contraindication"
-    update = "true"
-  }
-  let actdef = fs.createWriteStream( path.join("output","activitydefinitions",file+".fsh") )
-  actdef.write(`Instance: ${file}
-InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-immunizationactivity|2.0.0
-Title: "${file}"
-Description: "${desc}"
-Usage: #definition
-
-* insert MedicationRequestActivityDefinition( ${type}${short}, 0.1.0, ${RUNDATE}, ${update}, IMMZ.Z#${code.code} "${code.display}")
-`)
-  actdef.close()
-}
-
 const createPlanDef = ( file, did, name, existing, hasGuidance ) => {
   let pdef = fs.createWriteStream( path.join("output","plandefinitions",file+".fsh") )
   pdef.write(`Instance: ${file}
@@ -1039,9 +1017,6 @@ if ( options.all || options.codes ) {
 if ( options.all || options.logic ) {
   for( const vaccine in dak ) {
     if ( vaccine.startsWith('_') ) continue
-
-    createMedRequestActivity( dak[vaccine].vaccine, dak[vaccine].short, "D2DT", dak[vaccine].code )
-    createMedRequestActivity( dak[vaccine].vaccine, dak[vaccine].short, "D5DT", dak[vaccine].code )
 
     let PDlines = {}
     let oldNameMap = {}

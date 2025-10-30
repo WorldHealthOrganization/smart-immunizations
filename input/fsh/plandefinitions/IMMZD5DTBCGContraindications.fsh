@@ -9,12 +9,16 @@ Usage: #definition
 
 * insert PlanDefMain( IMMZD5DTBCGContraindications, 0.1.0 )
 
-* insert PlanDefMedicationRequestUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
+* insert PlanDefMRUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
     Contraindication for BCG immunization
-  """]], BCG vaccination is contraindicated, IMMZD5DTBCGMR, Draft Medication Request ID for BCG dose )
-* insert PlanDefMedicationRequestUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
+  """]], BCG vaccination is contraindicated, Draft Medication Request ID for BCG dose,
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE1']], BCG vaccines )
+
+* insert PlanDefMRUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
     Contraindication for BCG immunization
-  """]], [[Bacille Calmette–Guérin (BCG) vaccination is contraindicated]], IMMZD5DTBCGMR, Draft Medication Request ID for BCG dose )
+  """]], [[Bacille Calmette–Guérin (BCG) vaccination is contraindicated]], Draft Medication Request ID for BCG dose,
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE1']], BCG vaccines )
+
 
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D5.DT.BCG contraindications.]], [["""
 Show Guidance for the patient regarding IMMZ.D5.DT.BCG contraindications.

@@ -9,7 +9,7 @@ Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTPolioBirthDose, 0.1.0 )
 
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for a poliovirus vaccination according to the national immunization schedule]], [["""
+* insert PlanDefMRAction( [[Determine if the client is due for a poliovirus vaccination according to the national immunization schedule]], [["""
     Determine if the client is due for a poliovirus vaccination according to the national immunization schedule
     Birth dose administration as part of "bivalent oral polio vaccine (bOPV) plus inactivated polio vaccine (IPV)" schedule 
     (in countries that are poliomyelitis (polio)-endemic countries or at high risk of importation and subsequent spread of 
@@ -20,7 +20,8 @@ Usage: #definition
   doses and to induce mucosal protection before enteric pathogens may interfere with the immune response.  Additionally, a birth 
   dose of bOPV administered while infants are still protected by maternally-derived antibodies (up to 6 months) may prevent 
   vaccine-associated paralytic polio (VAPP).
-  """]], Client is due for the bOPV birth dose, IMMZD2DTPolioOPVMR )
+  """]], Client is due for the bOPV birth dose, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE30']], Oral polio vaccines )
 
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.Polio.Birth dose.]], [["""
 Show Guidance for the patient regarding IMMZ.D2.DT.Polio.Birth dose.

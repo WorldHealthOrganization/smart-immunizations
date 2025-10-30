@@ -9,7 +9,7 @@ IMMZ.D2.DT.Yellow fever
 Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTYellowfever, 0.1.0 )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for Yellow fever.]], [["""
+* insert PlanDefMRAction( [[Determine if the client is due for Yellow fever.]], [["""
 Determine if the client is due for Yellow fever vaccine according to the national immunization protocol.
 """]], [["""In endemic countries, it is recommended that yellow fever vaccine be given to children aged 
 9–12 months at the same time as the measles vaccine. Preventive mass vaccination campaigns are recommended 
@@ -21,7 +21,8 @@ Vaccination should also be offered if the individual is travelling to and from a
 
 As a general rule, any live vaccine may be given either simultaneously or at an interval of 4 weeks. Oral 
 poliovirus vaccine may be given at any time in relation to yellow fever vaccination. 
-"""]], Client is due for yellow fever vaccination, IMMZD2DTYellowfeverMR )
+"""]], Client is due for yellow fever vaccination, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE23']], Yellow fever vaccines )
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.Yellow fever.]], [["""
     Show Guidance for the patient regarding IMMZ.D2.DT.Yellow fever.
   """]], Has Guidance, Guidance)

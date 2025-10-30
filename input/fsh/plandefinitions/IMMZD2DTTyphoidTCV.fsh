@@ -9,12 +9,13 @@ Typhoid conjugate vaccine (TCV) schedule
 Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTTyphoidTCV, 0.1.0 )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for Typhoid.]], [["""
+* insert PlanDefMRAction( [[Determine if the client is due for Typhoid.]], [["""
     Determine if the client is due for Typhoid vaccine according to the national immunization protocol.
     Typhoid conjugate vaccine (TCV) schedule
   """]], [["""WHO recommends the TCV as a 0.5 mL single dose for infants and children from 6 months of 
   age and in adults up to 45 years in typhoid endemic regions.
-  """]], Client is due for Typhoid vaccination, IMMZD2DTTyphoidMR )
+  """]], Client is due for Typhoid vaccination, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE21']], Typhoid vaccines )
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.Typhoid.TCV.]], [["""
     Show Guidance for the patient regarding IMMZ.D2.DT.Typhoid.TCV.
   """]], Has Guidance, Guidance)

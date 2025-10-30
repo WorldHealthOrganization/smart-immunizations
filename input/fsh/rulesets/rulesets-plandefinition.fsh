@@ -15,8 +15,7 @@ RuleSet: PlanDefMain( library, version )
   * type = #citation
   * citation = "WHO recommendations for routine immunization - summary tables (January 2025)"
 
-
-RuleSet: PlanDefMedicationRequestAction( title, description, rationale, condition, action )
+RuleSet: PlanDefMRAction( title, description, rationale, condition, code, display )
 * action[+]
   * extension[+]
     * url = "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-rationale"
@@ -29,7 +28,7 @@ RuleSet: PlanDefMedicationRequestAction( title, description, rationale, conditio
       * description = "{condition}"
       * language = #text/cql-identifier
       * expression = "{condition}"
-  * definitionCanonical = Canonical({action})
+  * definitionCanonical = Canonical(IMMZD2DTMR)
   * dynamicValue[+]
     * path = "status"
     * expression
@@ -40,8 +39,13 @@ RuleSet: PlanDefMedicationRequestAction( title, description, rationale, conditio
     * expression
       * language = #text/cql-expression
       * expression = "'proposal'"
+  * dynamicValue[+]
+    * path = "medication"
+    * expression
+      * language = #text/cql-expression
+      * expression = "Concept { codes: { Code { {code}, display: '{display}' } }, display: '{display}' }"
 
-RuleSet: PlanDefMedicationRequestUpdate( title, description, condition, action, mrid )
+RuleSet: PlanDefMRUpdate( title, description, condition, mrid, code, display )
 * action[+]
   * title = "{title}"
   * description = {description}
@@ -52,14 +56,18 @@ RuleSet: PlanDefMedicationRequestUpdate( title, description, condition, action, 
       * description = "{condition}"
       * language = #text/cql-identifier
       * expression = "{condition}"
-  * definitionCanonical = Canonical({action})
+  * definitionCanonical = Canonical(IMMZD5DTMR)
   * dynamicValue[+]
     * path = "id"
     * expression
       * description = "{mrid}"
       * language = #text/cql-identifier
       * expression = "{mrid}"
-
+  * dynamicValue[+]
+    * path = "medication"
+    * expression
+      * language = #text/cql-expression
+      * expression = "Concept { codes: { Code { {code}, display: '{display}' } }, display: '{display}' }"
 
 RuleSet: PlanDefCommunicationRequestAction( title, description, condition, text )
 * action[+]

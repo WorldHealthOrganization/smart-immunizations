@@ -9,13 +9,14 @@ DTP vaccination schedule, on-time start (at ≤ 12 months of age)
 Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTDTPOnTime, 0.1.0 )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for DTP.]], [["""
+* insert PlanDefMRAction( [[Determine if the client is due for DTP.]], [["""
     Determine if the client is due for DTP vaccine according to the national immunization protocol.
     DTP vaccination schedule, on-time start (at ≤ 12 months of age)
   """]], [["""A primary series of 3 doses of DTP-containing vaccine is recommended, with the first 
   dose administered as early as 6 weeks of age. Subsequent doses should be given with an interval of at least 4 weeks between doses.
-  """]], Client is due for DTP vaccination, IMMZD2DTDTPMR )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for DTP.]], [["""
+  """]], Client is due for DTP vaccination, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE24']], DTP-containing vaccines )
+* insert PlanDefMRAction( [[Determine if the client is due for DTP.]], [["""
     Determine if the client is due for DTP vaccine according to the national immunization protocol.
     DTP vaccination schedule, on-time start (at ≤ 12 months of age)
   """]], [["""Three booster doses of diphtheria toxoid-containing vaccine should be provided during childhood and adolescence. The 
@@ -30,8 +31,9 @@ Usage: #definition
   programmes to tailor their schedules based on local epidemiology, the objectives of the immunization programme, any particular 
   programmatic issues and to better align tetanus vaccination with the immunological requirements of other vaccines (particularly 
   for pertussis and diphtheria).
-  """]], Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose, IMMZD2DTDTPTdMR )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for DTP.]], [["""
+  """]], Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose,  
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE28']], Tetanus and diphtheria-containing vaccines )
+* insert PlanDefMRAction( [[Determine if the client is due for DTP.]], [["""
     Determine if the client is due for DTP vaccine according to the national immunization protocol.
     DTP vaccination schedule, on-time start (at ≤ 12 months of age)
   """]], [["""Three booster doses of diphtheria toxoid-containing vaccine should be provided during childhood and adolescence. The 
@@ -46,8 +48,9 @@ Usage: #definition
   programmes to tailor their schedules based on local epidemiology, the objectives of the immunization programme, any particular 
   programmatic issues and to better align tetanus vaccination with the immunological requirements of other vaccines (particularly 
   for pertussis and diphtheria).
-  """]], Client is due for tetanus and diphtheria booster dose, IMMZD2DTDTPTdMR )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for DTP.]], [["""
+  """]], Client is due for tetanus and diphtheria booster dose,  
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE28']], Tetanus and diphtheria-containing vaccines )
+* insert PlanDefMRAction( [[Determine if the client is due for DTP.]], [["""
     Determine if the client is due for DTP vaccine according to the national immunization protocol.
     DTP vaccination schedule, on-time start (at ≤ 12 months of age)
   """]], [["""A pertussis booster dose is recommended for children aged 1–6 years, preferably during the second year of life (≥ 6 
@@ -56,7 +59,8 @@ Usage: #definition
   vaccine. For countries using aP-containing vaccine, protection may decline appreciably before 6 years of age.  Only aP-containing 
   vaccines should be used for vaccination of persons aged 7 years and over. Although a booster dose in adolescence has been shown to 
   decrease disease in adolescents, this is not generally recommended as a means of controlling pertussis in infants.
-  """]], Primary DTP series is complete. Client is due for pertussis booster dose, IMMZD2DTDTPPMR )
+  """]], Primary DTP series is complete. Client is due for pertussis booster dose,   
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE12']], Pertussis-containing vaccines )
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.DTP.On-time start.]], [["""
     Show Guidance for the patient regarding IMMZ.D2.DT.DTP.On-time start.
   """]], Has Guidance, Guidance)

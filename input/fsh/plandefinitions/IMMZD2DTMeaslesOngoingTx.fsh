@@ -5,15 +5,16 @@ Description: "Countries with ongoing transmission in which the risk of measles m
 Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTMeaslesOngoingTx, 0.1.0 )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for MCV1 in countries with ongoing transmission.]], [["""
+* insert PlanDefMRAction( [[Determine if the client is due for MCV1 in countries with ongoing transmission.]], [["""
     Determine if the client is due for measles vaccination MCV1 according to the national immunization protocol.
     Countries with ongoing transmission in which the risk of measles mortality remains high.
   """]], [["""In countries with ongoing transmission in which the risk of measles mortality remains high, MCV1 
   should be given at 9 months of age. As a general rule, live vaccines should be given either simultaneously or 
   at intervals of 4 weeks. An exception to this rule is oral poliovirus vaccine (OPV), which can be given at any 
   time before or after measles vaccination without interference in the response to either vaccine.
-  """]], Client is due for MCV1, IMMZD2DTMeaslesMR )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for MCV2 in countries with ongoing transmission.]], [["""
+  """]], Client is due for MCV1, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE9']], Measles-containing vaccines )
+* insert PlanDefMRAction( [[Determine if the client is due for MCV2 in countries with ongoing transmission.]], [["""
     Determine if the client is due for measles vaccination MCV2 according to the national immunization protocol.
     Countries with ongoing transmission in which the risk of measles mortality remains high.
 """]], [["""In countries with ongoing transmission in which the risk of measles mortality remains high, MCV2 
@@ -21,7 +22,8 @@ should be given at 15–18 months. The minimum interval between MCV1 and MCV2 is
 live vaccines should be given either simultaneously or at intervals of 4 weeks. An exception to this rule is 
 OPV, which can be given at any time before or after measles vaccination without interference in the response 
 to either vaccine.
-"""]], Client is due for MCV2, IMMZD2DTMeaslesMR)
+"""]], Client is due for MCV2, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE9']], Measles-containing vaccines)
 * insert PlanDefCommunicationRequestAction([[Send Guidance for the patient regarding MCV primary series.]], [["""
     Send Guidance for the patient regarding MCV primary series.
   """]], Has Guidance, Guidance)

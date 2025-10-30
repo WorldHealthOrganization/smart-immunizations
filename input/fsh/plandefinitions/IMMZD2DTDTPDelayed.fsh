@@ -9,7 +9,7 @@ DTP vaccination schedule for the following groups: children ≥ 1 year of age wi
 Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTDTPDelayed, 0.1.0 )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for DTP.]], [["""
+* insert PlanDefMRAction( [[Determine if the client is due for DTP.]], [["""
     Determine if the client is due for DTP vaccine according to the national immunization protocol.
     DTP vaccination schedule for the following groups: children ≥ 1 year of age with no previous immunization, adolescents and adults with no previous immunization (including pregnant women) and supplementary immunization activities in high-risk areas, for women of reproductive age"""]], [["""Delayed or interrupted DTP-containing series: for children whose vaccination series has been interrupted, 
   the series should be resumed without repeating previous doses. Children aged between 1 year and 7 years who have not 
@@ -38,8 +38,9 @@ Usage: #definition
   children aged 7 years and older, only Td combinations should be used. Age-appropriate combinations-containing pertussis 
   vaccine with low-dose diphtheria antigen are also available. Only aP-containing vaccines should be used for vaccination 
   of persons aged 7 years and older.
-  """]], Client is due for DTP vaccination, IMMZD2DTDTPMR )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for DTP.]], [["""
+  """]], Client is due for DTP vaccination, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE24']], DTP-containing vaccines )
+* insert PlanDefMRAction( [[Determine if the client is due for DTP.]], [["""
     Determine if the client is due for DTP vaccine according to the national immunization protocol.
     DTP vaccination schedule for the following groups: children ≥ 1 year of age with no previous immunization, adolescents and adults with no previous immunization (including pregnant women) and supplementary immunization activities in high-risk areas, for women of reproductive age"""]], [["""Delayed or interrupted DTP-containing series: for children whose vaccination series has been interrupted, 
   the series should be resumed without repeating previous doses. Children aged between 1 year and 7 years who have not 
@@ -68,8 +69,9 @@ Usage: #definition
   children aged 7 years and older, only Td combinations should be used. Age-appropriate combinations-containing pertussis 
   vaccine with low-dose diphtheria antigen are also available. Only aP-containing vaccines should be used for vaccination 
   of persons aged 7 years and older.
-  """]], Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose, IMMZD2DTDTPTdMR )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for DTP.]], [["""
+  """]], Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE28']], Tetanus and diphtheria-containing vaccines )
+* insert PlanDefMRAction( [[Determine if the client is due for DTP.]], [["""
     Determine if the client is due for DTP vaccine according to the national immunization protocol.
     DTP vaccination schedule for the following groups: children ≥ 1 year of age with no previous immunization, adolescents and adults with no previous immunization (including pregnant women) and supplementary immunization activities in high-risk areas, for women of reproductive age"""]], [["""Delayed or interrupted DTP-containing series: for children whose vaccination series has been interrupted, 
   the series should be resumed without repeating previous doses. Children aged between 1 year and 7 years who have not 
@@ -98,8 +100,9 @@ Usage: #definition
   children aged 7 years and older, only Td combinations should be used. Age-appropriate combinations-containing pertussis 
   vaccine with low-dose diphtheria antigen are also available. Only aP-containing vaccines should be used for vaccination 
   of persons aged 7 years and older.
-  """]], Client is due for tetanus and diphtheria booster dose, IMMZD2DTDTPTdMR )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for DTP.]], [["""
+  """]], Client is due for tetanus and diphtheria booster dose,  
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE28']], Tetanus and diphtheria-containing vaccines )
+* insert PlanDefMRAction( [[Determine if the client is due for DTP.]], [["""
     Determine if the client is due for DTP vaccine according to the national immunization protocol.
     DTP vaccination schedule for the following groups: children ≥ 1 year of age with no previous immunization, adolescents and adults with no previous immunization (including pregnant women) and supplementary immunization activities in high-risk areas, for women of reproductive age"""]], [[""" The duration of protection following primary immunization varies considerably 
     depending upon factors such as local epidemiology, vaccination schedule and choice of vaccine. Therefore, a booster 
@@ -114,7 +117,8 @@ Usage: #definition
     of infections of young infants, and selection of adolescents and/or adults as target groups for vaccination. Decisions 
     concerning such programmes should be based on the incidence and cost–effectiveness data. High coverage of routine 
     immunization in infants must be in place prior to the introduction of vaccination of adolescents and adults. 
-  """]], Primary DTP series is complete. Client is due for pertussis booster dose, IMMZD2DTDTPPMR )
+  """]], Primary DTP series is complete. Client is due for pertussis booster dose,  
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE12']], Pertussis-containing vaccines )
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.DTP.Delayed or interrupted series.]], [["""
     Show Guidance for the patient regarding IMMZ.D2.DT.DTP.Delayed or interrupted series.
   """]], Has Guidance, Guidance)

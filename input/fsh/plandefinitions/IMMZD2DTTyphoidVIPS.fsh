@@ -9,16 +9,18 @@ Unconjugated Vi polysaccharide (ViPS) schedule
 Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTTyphoidVIPS, 0.1.0 )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for Typhoid.]], [["""
+* insert PlanDefMRAction( [[Determine if the client is due for Typhoid.]], [["""
     Determine if the client is due for Typhoid vaccine according to the national immunization protocol.
     Unconjugated Vi polysaccharide (ViPS) schedule
   """]], [["""Countries may consider the routine use of ViPS vaccine in individuals aged 2 years and older.
-  """]], Client is due for Typhoid vaccination, IMMZD2DTTyphoidMR )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for Typhoid.]], [["""
+  """]], Client is due for Typhoid vaccination, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE21']], Typhoid vaccines )
+* insert PlanDefMRAction( [[Determine if the client is due for Typhoid.]], [["""
     Determine if the client is due for Typhoid vaccine according to the national immunization protocol.
     Unconjugated Vi polysaccharide (ViPS) schedule
   """]], [["""Revaccination is recommended every 3 years for ViPS.
-  """]], Primary series is complete. Client is due for typhoid booster dose, IMMZD2DTTyphoidMR )
+  """]], Primary series is complete. Client is due for typhoid booster dose, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE21']], Typhoid vaccines )
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.Typhoid.ViPS.]], [["""
     Show Guidance for the patient regarding IMMZ.D2.DT.Typhoid.ViPS.
   """]], Has Guidance, Guidance)

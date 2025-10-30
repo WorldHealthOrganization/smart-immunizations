@@ -9,7 +9,7 @@ Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposu
 Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTRabiesPrEP, 0.1.0 )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for Rabies.]], [["""
+* insert PlanDefMRAction( [[Determine if the client is due for Rabies.]], [["""
 Determine if the client is due for Rabies vaccine according to the national immunization protocol.
 Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure
 """]], [["""The schedule is for a 2-site intradermal vaccine administered on days 0 and 7. 
@@ -27,7 +27,8 @@ If any doses are delayed, vaccination should be resumed, not restarted. A change
 vaccine product during a course is acceptable if such a change is unavoidable.
 The schedule is for a 2-site intradermal vaccine administered on days 0 and 7. If intramuscular administration is used, 
 WHO recommends a 1-site intramuscular vaccine administration on days 0 and 7.
-"""]], Client is due for rabies vaccination, IMMZD2DTRabiesMR )
+"""]], Client is due for rabies vaccination, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE15']], Rabies vaccines )
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.Rabies.]], [["""
     Show Guidance for the patient regarding IMMZ.D2.DT.Rabies.
   """]], Has Guidance, Guidance)

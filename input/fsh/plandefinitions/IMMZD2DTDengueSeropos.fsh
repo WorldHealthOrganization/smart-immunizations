@@ -9,7 +9,7 @@ CYD-TDV (Dengvaxia), 3-dose schedule with pre-vaccination screening, the recomme
 Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTDengueSeropos, 0.1.0 )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for Dengue.]], [["""
+* insert PlanDefMRAction( [[Determine if the client is due for Dengue.]], [["""
 Determine if the client is due for Dengue vaccine according to the national immunization protocol.
 CYD-TDV (Dengvaxia), 3-dose schedule with pre-vaccination screening, the recommended strategy where 
 feasible (pre-vaccination screening whereby only those tested seropositive would be vaccinated)
@@ -29,7 +29,8 @@ Pre-vaccination screening is necessary to avoid vaccinating truly seronegative p
 
 CYD-TDV is recommended as a 3-dose series given 6 months apart. Should a vaccine dose be delayed for any reason, it is not 
 necessary to restart the course and the next dose in the series should be administered as soon as possible.
-"""]], Client is due for dengue vaccination, IMMZD2DTDengueMR )
+"""]], Client is due for dengue vaccination,  
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE25']], Dengue vaccines )
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening.]], [["""
     Show Guidance for the patient regarding IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening.
   """]], Has Guidance, Guidance)

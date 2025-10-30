@@ -9,12 +9,13 @@ Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTBCG, 0.1.0 )
 
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for BCG.]], [["""
+* insert PlanDefMRAction( [[Determine if the client is due for BCG.]], [["""
     Determine if the client is due for BCG vaccine according to the national immunization protocol.
   """]], [["""Neonates born to women of unknown HIV status should be vaccinated as the benefits of BCG 
     vaccination outweigh the risks. Neonates of unknown HIV status born to HIV-infected women should be 
     vaccinated if they have no clinical evidence suggestive of HIV infection.
-  """]], Client is due for BCG vaccination, IMMZD2DTBCGMR )
+  """]], Client is due for BCG vaccination, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE1']], BCG vaccines )
 
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.BCG.]], [["""
 Show Guidance for the patient regarding IMMZ.D2.DT.BCG.

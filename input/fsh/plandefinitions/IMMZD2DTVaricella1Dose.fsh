@@ -9,7 +9,7 @@ IMMZ.D2.DT.Varicella.1 dose
 Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTVaricella1Dose, 0.1.0 )
-* insert PlanDefMedicationRequestAction( [[Determine if the client is due for Varicella.]], [["""
+* insert PlanDefMRAction( [[Determine if the client is due for Varicella.]], [["""
 Determine if the client is due for Varicella vaccine according to the national immunization protocol.
 1-dose schedule
 """]], [["""Countries where varicella is an important public health burden could consider introducing 
@@ -29,7 +29,8 @@ Varicella-containing vaccine can be administered concomitantly with other vaccin
 routine childhood immunization programme. Unless given together with other live viral vaccines 
 (measles, MR [measles and rubella], MMR [measles, mumps and rubella]), it should be administered 
 at a minimum interval of 28 days.
-"""]], Client is due for varicella vaccination, IMMZD2DTVaricellaMR )
+"""]], Client is due for varicella vaccination, 
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE22']], Varicella-containing vaccines )
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.Varicella.1 dose.]], [["""
     Show Guidance for the patient regarding IMMZ.D2.DT.Varicella.1 dose.
   """]], Has Guidance, Guidance)
