@@ -1113,7 +1113,7 @@ if ( options.all || options.logic ) {
     When method post
     Then status 200
     And ${result}.contained[0].subject.reference = 'Patient/${testid}'
-    And ${result}.contained[1].payload.contentString = "${dectable.rows[idx].guidance.replace(/\n/, "\\n").replace(/"/, '\"')}"
+    And ${result}.contained[1].payload.contentString = "${dectable.rows[idx].guidance.replace(/\n/g, "\\n").replace(/"/g, '\"')}"
     And match response contains deep ${result}
     ${containlength}
 
@@ -1122,7 +1122,7 @@ if ( options.all || options.logic ) {
 `)
         schedscenarios.push( { text: scenariotext, id: testid, })
         examples.push( "### " + dectable.rows[idx].output.display 
-          + ( !isEmpty(dectable.rows[idx].output.pseudo) ? "\n### "+dectable.rows[idx].output.pseudo.replace(/\n/, "\n### ") : "" ) )
+          + ( !isEmpty(dectable.rows[idx].output.pseudo) ? "\n### "+dectable.rows[idx].output.pseudo.replace(/\n/g, "\n### ") : "" ) )
         let exampletext = examples.join("\n")
         // TODO: Lookup old example file and include it instead with the right text and testid
         example.write(`---
@@ -1196,7 +1196,7 @@ define "Has Guidance":
       for( let title in outputs ) {
         let output = outputs[title]
         if ( output.length === 1 ) {
-          tests[output[0].testidx] = "    when Patient.id = '"+(output[0].testid)+"' then \""+title+"\" and \"Guidance\" = '" + output[0].guidance.replace(/'/, '\\\'') + "'"
+          tests[output[0].testidx] = "    when Patient.id = '"+(output[0].testid)+"' then \""+title+"\" and \"Guidance\" = '" + output[0].guidance.replace(/'/g, '\\\'') + "'"
           schedtests[output[0].testidx] = "    when Patient.id = '"+output[0].testid+"' then \"\" //TODO: Set correct expression here"
           displayOutput( logic, title, output[0].pseudo, output[0].expression, output[0].guidance )
         } else {
@@ -1207,9 +1207,9 @@ define "Has Guidance":
             let display = title + " Case " + (parseInt(idx)+1)
             displayOutput( logic, display, output[idx].pseudo, output[idx].expression )
             tests[output[idx].testidx] = "    when Patient.id = '"+output[idx].testid+"' then \""+display+"\" and \"Guidance\" = '" 
-              + output[idx].guidance.replace(/'/, '\\\'') + "'"
+              + output[idx].guidance.replace(/'/g, '\\\'') + "'"
             schedtests[output[idx].testidx] = "    when Patient.id = '"+output[idx].testid+"' then \"\" //TODO: Set correct expression here"
-            guidances.push( "    when \""+ display + "\" then '" + output[idx].guidance.replace(/'/, '\\\'') + "'" )
+            guidances.push( "    when \""+ display + "\" then '" + output[idx].guidance.replace(/'/g, '\\\'') + "'" )
             comment.push( "@guidance = " + output[idx].guidance )
             titles.push( "\"" + display + "\"" )
           }
@@ -1346,7 +1346,7 @@ Create condition: ${row.create}
 `)
 
           schedfeature.write(`
-    And resultContent[${idx}] = "${row.create.replace(/\n/, "\\n")}"
+    And resultContent[${idx}] = "${row.create.replace(/\n/g, "\\n")}"
 `)
 
         }

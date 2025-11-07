@@ -41,6 +41,32 @@ Feature: Scenarios for IMMZ.D18.S PlanDefinitions
       ]
     }
     """
+    And def resultTwoSchedule =
+    """
+    {
+      "resourceType": "CarePlan",
+      "contained": [
+        {
+          "resourceType": "RequestGroup",
+          "subject": {
+            "reference": "#string"
+          }
+        },
+        {
+          "resourceType": "CommunicationRequest",
+          "payload": {
+            "contentString": "#string"
+          }
+        },
+        {
+          "resourceType": "CommunicationRequest",
+          "payload": {
+            "contentString": "#string"
+          }
+        }
+      ]
+    }
+    """
     And def resultNoSchedule =
     """
     {
