@@ -1242,6 +1242,8 @@ define "Test Validation":
         let schedfeature = createFeature( schedfile+".feature", dectable.schedule.sid, dectable.schedule.name, dectable.schedule.type )
         schedfeature.write(`
     And def resultContent = {}`)
+            
+        let alreadyadded = {}
 
         for ( let idx in dectable.schedule.rows ) {
           let row = dectable.schedule.rows[idx]
@@ -1276,10 +1278,16 @@ define "Test Validation":
           if ( options.existing ) {
             for( let define in expr ) {
               if ( !schedprev.expressions[define] ) {
-                console.error("Unable to find", define, "in existing CQL for", oldschedfile, schedprev.expressions)
-                process.exit(0)
+                if ( alreadyadded[define] ) {
+                  console.error(define, "exists twice so should only be seen once for", schedfile )
+                  expr[define] = "//TODO: CHECK AND REMOVE DUPLICATE"
+                } else {
+                  console.error("Unable to find", define, "in existing CQL for", oldschedfile, schedprev.expressions,alreadyadded)
+                  process.exit(0)
+                }
               } else {
                 expr[define] = schedprev.expressions[define]
+                alreadyadded[define] = true
                 delete schedprev.expressions[define]
               }
             }

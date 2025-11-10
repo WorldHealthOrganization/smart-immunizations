@@ -1,4 +1,3 @@
-
 Instance: IMMZD5DTPneumococcalEncounterElements
 InstanceOf: Library
 Title: "IMMZD5DTPneumococcalEncounterElements"
