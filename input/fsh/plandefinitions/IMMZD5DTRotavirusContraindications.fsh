@@ -1,19 +1,19 @@
-
-Instance: IMMZD5DTRotavirusCI
+Instance: IMMZD5DTRotavirusContraindications
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
 Title: "IMMZ.D5.DT.Rotavirus contraindications"
 Description: """
 IMMZ.D5.DT.Rotavirus contraindications
-Potential contraindications
+IMMZ.D5.DT.Rotavirus contraindications
 """
 Usage: #definition
 
-* insert PlanDefMain( IMMZD5DTRotavirusCI, 0.1.0 )
+* insert PlanDefMain( IMMZD5DTRotavirusContraindications, 0.1.0 )
 
-* insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D5.DT.Rotavirus contraindications.]], [["""
-    Show Guidance for the patient regarding IMMZ.D5.DT.Rotavirus contraindications.
-  """]], Has Guidance, Guidance)
 * insert PlanDefMRUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
     Contraindication for Rotavirus immunization
   """]], Rotavirus vaccination is contraindicated, Draft Medication Request ID for Rotavirus dose, 
   [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE16']], Rotavirus vaccines )
+
+* insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D5.DT.Rotavirus contraindications.]], [["""
+Show Guidance for the patient regarding IMMZ.D5.DT.Rotavirus contraindications.
+"""]], Has Guidance, Guidance)

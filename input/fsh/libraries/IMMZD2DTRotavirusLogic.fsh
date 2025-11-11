@@ -1,4 +1,3 @@
-
 Instance: IMMZD2DTRotavirusLogic
 InstanceOf: Library
 Title: "IMMZD2DTRotavirusLogic"

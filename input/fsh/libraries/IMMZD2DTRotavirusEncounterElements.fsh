@@ -1,4 +1,3 @@
-
 Instance: IMMZD2DTRotavirusEncounterElements
 InstanceOf: Library
 Title: "IMMZD2DTRotavirusEncounterElements"

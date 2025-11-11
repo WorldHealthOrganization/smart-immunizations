@@ -1,4 +1,3 @@
-
 Instance: IMMZD18SRotavirusLogic
 InstanceOf: Library
 Title: "IMMZD18SRotavirusLogic"
