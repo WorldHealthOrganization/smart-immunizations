@@ -1,4 +1,3 @@
-
 Instance: IMMZD5DTMeaslesEncounterElements
 InstanceOf: Library
 Title: "IMMZD5DTMeaslesEncounterElements"

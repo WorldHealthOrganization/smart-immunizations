@@ -41,7 +41,7 @@ const cleanCell = (cell) => {
 }
 
 const isEmpty = (cell) => {
-  return cell === undefined || cell === null || !cell || cell == "" || cell.match(/^\s*$/) !== null
+  return cell === undefined || cell === null || !cell || cell == "" || cell.match(/^\s*$/) !== null || cell === '`'
 }
 
 const loadXPut = (xput) => {
