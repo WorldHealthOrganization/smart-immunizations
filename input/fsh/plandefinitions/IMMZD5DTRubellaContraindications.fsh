@@ -1,0 +1,19 @@
+Instance: IMMZD5DTRubellaContraindications
+InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
+Title: "IMMZ.D5.DT.Rubella contraindications"
+Description: """
+IMMZ.D5.DT.Rubella contraindications
+IMMZ.D5.DT.Rubella contraindications
+"""
+Usage: #definition
+
+* insert PlanDefMain( IMMZD5DTRubellaContraindications, 0.1.0 )
+
+* insert PlanDefMRUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
+    Contraindication for rubella immunization
+  """]], Rubella vaccination is contraindicated, Draft Medication Request ID for Rubella dose,  
+  [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE17']], Rubella-containing vaccines )
+
+* insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D5.DT.Rubella contraindications.]], [["""
+Show Guidance for the patient regarding IMMZ.D5.DT.Rubella contraindications.
+"""]], Has Guidance, Guidance)

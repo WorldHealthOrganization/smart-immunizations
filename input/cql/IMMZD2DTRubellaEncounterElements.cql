@@ -13,7 +13,6 @@ include WHOElements called WE
 
 include IMMZCommon called Common
 include IMMZConcepts called Concepts
-
 include IMMZEncounterElements called Encounter
 
 include IMMZD2DTRubellaElements called RubellaElements
@@ -43,62 +42,40 @@ define "Rubella Primary Series Doses Administered to Patient":
 define "Number of Rubella Primary Series Doses Administered":
   Count("Rubella Primary Series Doses Administered to Patient")
 
-
-/*
-@input: No rubella primary series dose was administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Rubella-containing vaccines" and "Type of dose" = "Primary series") = 0
-@decision: Countries with high incidence and mortality from rubella
-@decision: Countries with low incidence of rubella						
-*/
-define "No rubella primary series dose was administered":
-  "Number of Rubella Primary Series Doses Administered" = 0
-
-/*
-@input: One rubella primary series dose was administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Rubella-containing vaccines" and "Type of dose" = "Primary series") = 1
-@decision: Countries with high incidence and mortality from rubella
-@decision: Countries with low incidence of rubella						
-*/
-define "One rubella primary series dose was administered":
-  "Number of Rubella Primary Series Doses Administered" = 1
-
 /*
 @input: Client's age is less than 9 months
 @pseudocode: Today's date − "Date of birth" < 9 months
-@decision: Countries with high incidence and mortality from rubella
+@code: Client's age is less than 9 months-41
+@decision: IMMZ.D2.DT.Rubella.High incidence: Countries with high incidence and mortality from rubella
 */
 define "Client's age is less than 9 months":
   Encounter."Current Patient Age In Months" < 9
 
 /*
+@input: No rubella primary series dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Rubella-containing vaccines" and "Type of dose" = "Primary series") = 0
+@code: No rubella primary series dose was administered-127
+@decision: IMMZ.D2.DT.Rubella.High incidence: Countries with high incidence and mortality from rubella
+@decision: IMMZ.D2.DT.Rubella.Low incidence: Countries with low incidence of rubella
+*/
+define "No rubella primary series dose was administered":
+  "Number of Rubella Primary Series Doses Administered" = 0
+
+/*
 @input: Client's age is more than or equal to 9 months
 @pseudocode: Today's date − "Date of birth" ≥ 9 months
-@decision: Countries with high incidence and mortality from rubella
+@code: Client's age is more than or equal to 9 months-41
+@decision: IMMZ.D2.DT.Rubella.High incidence: Countries with high incidence and mortality from rubella
 */
 define "Client's age is more than or equal to 9 months":
   Encounter."Current Patient Age In Months" >= 9
 
 /*
-@input: Client's age is less than 12 months
-@pseudocode: Today's date − "Date of birth" < 12 months
-@decision: Countries with low incidence of rubella						
-*/
-define "Client's age is less than 12 months":
-  Encounter."Current Patient Age In Months" < 12
-
-/*
-@input: Client's age is more than or equal to 12 months
-@pseudocode: Today's date − "Date of birth" ≥ 12 months
-@decision: Countries with low incidence of rubella						
-*/
-define "Client's age is more than or equal to 12 months":
-  Encounter."Current Patient Age In Months" >= 12
-
-/*
 @input: No live vaccine was administered in the last 4 weeks
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks
-@decision: Countries with high incidence and mortality from rubella
-@decision: Countries with low incidence of rubella						
+@code: No live vaccine was administered in the last 4 weeks-92
+@decision: IMMZ.D2.DT.Rubella.High incidence: Countries with high incidence and mortality from rubella
+@decision: IMMZ.D2.DT.Rubella.Low incidence: Countries with low incidence of rubella
 */
 define "No live vaccine was administered in the last 4 weeks":
   Encounter."No live vaccine was administered in the last 4 weeks"
@@ -106,17 +83,45 @@ define "No live vaccine was administered in the last 4 weeks":
 /*
 @input: Live vaccine was administered in the last 4 weeks
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
-@decision: Countries with high incidence and mortality from rubella
+@code: Live vaccine was administered in the last 4 weeks-92
+@decision: IMMZ.D2.DT.Rubella.High incidence: Countries with high incidence and mortality from rubella
 */
 define "Live vaccine was administered in the last 4 weeks":
   Encounter."Live vaccine was administered in the last 4 weeks"
 
 /*
+@input: One rubella primary series dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Rubella-containing vaccines" and "Type of dose" = "Primary series") = 1
+@code: One rubella primary series dose was administered-127
+@decision: IMMZ.D2.DT.Rubella.High incidence: Countries with high incidence and mortality from rubella
+@decision: IMMZ.D2.DT.Rubella.Low incidence: Countries with low incidence of rubella
+*/
+define "One rubella primary series dose was administered":
+  "Number of Rubella Primary Series Doses Administered" = 1
+
+/*
+@input: Client's age is less than 12 months
+@pseudocode: Today's date − "Date of birth" < 12 months
+@code: Client's age is less than 12 months-42
+@decision: IMMZ.D2.DT.Rubella.Low incidence: Countries with low incidence of rubella
+*/
+define "Client's age is less than 12 months":
+  Encounter."Current Patient Age In Months" < 12
+
+/*
+@input: Client's age is more than or equal to 12 months
+@pseudocode: Today's date − "Date of birth" ≥ 12 months
+@code: Client's age is more than or equal to 12 months-42
+@decision: IMMZ.D2.DT.Rubella.Low incidence: Countries with low incidence of rubella
+*/
+define "Client's age is more than or equal to 12 months":
+  Encounter."Current Patient Age In Months" >= 12
+
+/*
 @input: Live vaccine was administered in the last the 4 weeks
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
-@decision: Countries with low incidence of rubella						
+@code: Live vaccine was administered in the last the 4 weeks-92
+@decision: IMMZ.D2.DT.Rubella.Low incidence: Countries with low incidence of rubella
 */
 define "Live vaccine was administered in the last the 4 weeks":
   Encounter."Live vaccine was administered in the last 4 weeks"
-
-

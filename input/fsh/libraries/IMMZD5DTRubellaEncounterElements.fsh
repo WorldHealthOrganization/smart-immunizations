@@ -1,4 +1,3 @@
-
 Instance: IMMZD5DTRubellaEncounterElements
 InstanceOf: Library
 Title: "IMMZD5DTRubellaEncounterElements"
