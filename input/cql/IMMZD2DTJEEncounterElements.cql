@@ -13,7 +13,6 @@ include WHOElements called WE
 
 include IMMZCommon called Common
 include IMMZConcepts called Concepts
-
 include IMMZEncounterElements called Encounter
 
 include IMMZD2DTJEElements called JEElements
@@ -44,111 +43,56 @@ define "Number of JE Primary Series Doses Administered":
   Count("JE Primary Series Doses Administered to Patient")
 
 /*
-@internal: Date and time of last JE dose
-*/
-define "Date of Latest JE Dose":
-  date from start of "JE Doses Administered to Patient".mostRecent().occurrence.toInterval()
-
-/*
-@input: No JE primary series doses were administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "JE vaccines" and "Type of dose" = "Primary series") = 0
-@decision: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
-JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-@decision: Live attenuated vaccination schedule (1-dose scheme)
-JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-@decision: Live recombinant vaccination schedule (1-dose scheme)
-JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-*/
-define "No JE primary series doses were administered":
-  "Number of JE Primary Series Doses Administered" = 0
-
-/*
-@input: One JE primary series dose was administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "JE vaccines" and "Type of dose" = "Primary series") = 1
-@decision: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
-JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-@decision: Live attenuated vaccination schedule (1-dose scheme)
-JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-*/
-define "One JE primary series dose was administered":
-  "Number of JE Primary Series Doses Administered" = 1
-
-/*
-@input: One JE primary series doses were administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "JE vaccines" and "Type of dose" = "Primary series") = 1
-@decision: Live recombinant vaccination schedule (1-dose scheme)
-JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-*/
-define "One JE primary series doses were administered":
-  "One JE primary series dose was administered"
-
-/*
-@input: Two JE primary series doses were administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "JE vaccines" and "Type of dose" = "Primary series") = 2
-@decision: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
-JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-*/
-define "Two JE primary series doses were administered":
-  "Number of JE Primary Series Doses Administered" = 2
-
-/*
 @input: Client's age is less than 6 months
 @pseudocode: Today's date − "Date of birth" < 6 months
-@decision: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
+@code: Client's age is less than 6 months-41
+@decision: IMMZ.D2.DT.JE.Inactivated Vero cell-derived vaccine: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
 JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
 */
 define "Client's age is less than 6 months":
   Encounter."Current Patient Age In Months" < 6
 
 /*
+@input: No JE primary series doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "JE vaccines" and "Type of dose" = "Primary series") = 0
+@code: No JE primary series doses were administered-111
+@decision: IMMZ.D2.DT.JE.Inactivated Vero cell-derived vaccine: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
+JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+@decision: IMMZ.D2.DT.JE.Live attenuated vaccine: Live attenuated vaccination schedule (1-dose scheme)
+JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+@decision: IMMZ.D2.DT.JE.Live recombinant vaccine: Live recombinant vaccination schedule (1-dose scheme)
+JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+*/
+define "No JE primary series doses were administered":
+  "Number of JE Primary Series Doses Administered" = 0
+
+/*
 @input: Client's age is more than or equal to 6 months
 @pseudocode: Today's date − "Date of birth" ≥ 6 months
-@decision: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
+@code: Client's age is more than or equal to 6 months-41
+@decision: IMMZ.D2.DT.JE.Inactivated Vero cell-derived vaccine: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
 JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
 */
 define "Client's age is more than or equal to 6 months":
   Encounter."Current Patient Age In Months" >= 6
 
 /*
-@input: Client's age is less than 8 months
-@pseudocode: Today's date − "Date of birth" < 8 months
-@decision: Live attenuated vaccination schedule (1-dose scheme)
+@input: One JE primary series dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "JE vaccines" and "Type of dose" = "Primary series") = 1
+@code: One JE primary series dose was administered-111
+@decision: IMMZ.D2.DT.JE.Inactivated Vero cell-derived vaccine: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
+JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+@decision: IMMZ.D2.DT.JE.Live attenuated vaccine: Live attenuated vaccination schedule (1-dose scheme)
 JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
 */
-define "Client's age is less than 8 months":
-  Encounter."Current Patient Age In Months" < 8
-
-/*
-@input: Client's age is more than or equal to 8 months
-@pseudocode: Today's date − "Date of birth" ≥ 8 months
-@decision: Live attenuated vaccination schedule (1-dose scheme)
-JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-*/
-define "Client's age is more than or equal to 8 months":
-  Encounter."Current Patient Age In Months" >= 8
-
-/*
-@input: Client's age is less than 9 months
-@pseudocode: Today's date − "Date of birth" < 9 months
-@decision: Live recombinant vaccination schedule (1-dose scheme)
-JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-*/
-define "Client's age is less than 9 months":
-  Encounter."Current Patient Age In Months" < 9
-
-/*
-@input: Client's age is more than or equal to 9 months
-@pseudocode: Today's date − "Date of birth" ≥  9 months
-@decision: Live recombinant vaccination schedule (1-dose scheme)
-JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-*/
-define "Client's age is more than or equal to 9 months":
-  Encounter."Current Patient Age In Months" >= 9
+define "One JE primary series dose was administered":
+  "Number of JE Primary Series Doses Administered" = 1
 
 /*
 @input: The latest JE dose was administered less than 4 weeks ago
 @pseudocode: Today's date − "Date and time of vaccination" (where "Vaccine type" = "JE vaccines") < 4 weeks
-@decision: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
+@code: The latest JE dose was administered less than 4 weeks ago-94
+@decision: IMMZ.D2.DT.JE.Inactivated Vero cell-derived vaccine: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
 JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
 */
 define "The latest JE dose was administered less than 4 weeks ago":
@@ -158,29 +102,99 @@ define "The latest JE dose was administered less than 4 weeks ago":
 /*
 @input: The latest JE dose was administered more than 4 weeks ago
 @pseudocode: Today's date − "Date and time of vaccination" (where "Vaccine type" = "JE vaccines") ≥ 4 weeks
-@decision: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
+@code: The latest JE dose was administered more than 4 weeks ago-94
+@decision: IMMZ.D2.DT.JE.Inactivated Vero cell-derived vaccine: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
 JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
 */
 define "The latest JE dose was administered more than 4 weeks ago":
   not "The latest JE dose was administered less than 4 weeks ago"
 
 /*
+@input: Two JE primary series doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "JE vaccines" and "Type of dose" = "Primary series") = 2
+@code: Two JE primary series doses were administered-111
+@decision: IMMZ.D2.DT.JE.Inactivated Vero cell-derived vaccine: Inactivated Vero cell-derived vaccination schedule (2-dose scheme)
+JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+*/
+define "Two JE primary series doses were administered":
+  "Number of JE Primary Series Doses Administered" = 2
+
+/*
+@input: Client's age is less than 8 months
+@pseudocode: Today's date − "Date of birth" < 8 months
+@code: Client's age is less than 8 months-41
+@decision: IMMZ.D2.DT.JE.Live attenuated vaccine: Live attenuated vaccination schedule (1-dose scheme)
+JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+*/
+define "Client's age is less than 8 months":
+  Encounter."Current Patient Age In Months" < 8
+
+/*
+@input: Client's age is more than or equal to 8 months
+@pseudocode: Today's date − "Date of birth" ≥ 8 months
+@code: Client's age is more than or equal to 8 months-41
+@decision: IMMZ.D2.DT.JE.Live attenuated vaccine: Live attenuated vaccination schedule (1-dose scheme)
+JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+*/
+define "Client's age is more than or equal to 8 months":
+  Encounter."Current Patient Age In Months" >= 8
+
+/*
 @input: No live vaccine was administered in the last 4 weeks
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Vaccine type" = "JE vaccines") ≥ 4 weeks
-@decision: Live attenuated vaccination schedule (1-dose scheme)
+@code: No live vaccine was administered in the last 4 weeks-101
+@decision: IMMZ.D2.DT.JE.Live attenuated vaccine: Live attenuated vaccination schedule (1-dose scheme)
 JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-@decision: Live recombinant vaccination schedule (1-dose scheme)
-JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority*/
+@decision: IMMZ.D2.DT.JE.Live recombinant vaccine: Live recombinant vaccination schedule (1-dose scheme)
+JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+*/
 define "No live vaccine was administered in the last 4 weeks":
   Encounter."No live vaccine was administered in the last 4 weeks"
 
 /*
 @input: Live vaccine was administered in the last 4 weeks
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
-@decision: Live attenuated vaccination schedule (1-dose scheme)
+@code: Live vaccine was administered in the last 4 weeks-92
+@decision: IMMZ.D2.DT.JE.Live attenuated vaccine: Live attenuated vaccination schedule (1-dose scheme)
 JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
-@decision: Live recombinant vaccination schedule (1-dose scheme)
-JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority*/
+@decision: IMMZ.D2.DT.JE.Live recombinant vaccine: Live recombinant vaccination schedule (1-dose scheme)
+JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+*/
 define "Live vaccine was administered in the last 4 weeks":
   Encounter."Live vaccine was administered in the last 4 weeks"
 
+/*
+@input: Client's age is less than 9 months
+@pseudocode: Today's date − "Date of birth" < 9 months
+@code: Client's age is less than 9 months-41
+@decision: IMMZ.D2.DT.JE.Live recombinant vaccine: Live recombinant vaccination schedule (1-dose scheme)
+JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+*/
+define "Client's age is less than 9 months":
+  Encounter."Current Patient Age In Months" < 9
+
+/*
+@input: Client's age is more than or equal to 9 months
+@pseudocode: Today's date − "Date of birth" ≥ 9 months
+@code: Client's age is more than or equal to 9 months-41
+@decision: IMMZ.D2.DT.JE.Live recombinant vaccine: Live recombinant vaccination schedule (1-dose scheme)
+JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+*/
+define "Client's age is more than or equal to 9 months":
+  Encounter."Current Patient Age In Months" >= 9
+
+/*
+@input: One JE primary series doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "JE vaccines" and "Type of dose" = "Primary series") = 1
+@code: One JE primary series doses were administered-111
+@decision: IMMZ.D2.DT.JE.Live recombinant vaccine: Live recombinant vaccination schedule (1-dose scheme)
+JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+*/
+define "One JE primary series doses were administered":
+  "One JE primary series dose was administered"
+
+/*
+@internal: Date of Latest JE Dose
+*/
+define "Date of Latest JE Dose":
+  date from start of "JE Doses Administered to Patient".mostRecent().occurrence.toInterval()
