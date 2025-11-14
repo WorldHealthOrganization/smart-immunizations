@@ -1,0 +1,1199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="356">
+         <a:s>/*
+ * Library: IMMZD5DTRubellaContraindicationsLogic (IMMZ.D5.DT.Rubella contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due
+ * Decision Table: IMMZ.D5.DT.Rubella contraindications
+ * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
+ */
+library IMMZD5DTRubellaContraindicationsLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD5DTRubellaContraindicationsLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="9:1-9:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="10:1-10:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="12:1-12:57" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD5DTRubellaEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD5DTRubellaEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="212" locator="14:1-14:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>parameter Today </a:s>
+               <a:s r="216">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="215">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="215" locator="14:30-14:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="216" locator="14:17-14:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="16:1-16:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="16:1-16:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="224" locator="21:3-22:67" name="Draft Medication Request ID for Rubella dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Draft Medication Request ID for Rubella dose"/>
+            <a:s r="224">
+               <a:s>/*
+  @dynamicValue: Draft Medication Request ID for Rubella dose
+  */
+  define &quot;Draft Medication Request ID for Rubella dose&quot;:
+    </a:s>
+               <a:s r="230">
+                  <a:s r="229">
+                     <a:s>First(</a:s>
+                     <a:s r="226">
+                        <a:s r="225">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="226">
+                           <a:s>&quot;Draft Medication Request for Rubella dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="230">
+                     <a:s>id</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="230" locator="22:5-22:67" path="id" xsi:type="Property">
+            <source localId="229" locator="22:5-22:64" xsi:type="First">
+               <source localId="226" locator="22:11-22:63" name="Draft Medication Request for Rubella dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </source>
+         </expression>
+      </def>
+      <def localId="246" locator="43:1-44:46" name="Rubella vaccination is contraindicated Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rubella vaccination is contraindicated Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="246">
+               <a:s>/*
+@output: Rubella vaccination is contraindicated Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;Rubella vaccination is contraindicated Case 1&quot;:
+  </a:s>
+               <a:s r="248">
+                  <a:s r="247">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="248">
+                     <a:s>&quot;The client is currently pregnant&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="248" locator="44:3-44:46" name="The client is currently pregnant" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="252" locator="50:1-51:52" name="Rubella vaccination is contraindicated Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rubella vaccination is contraindicated Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="252">
+               <a:s>/*
+@output: Rubella vaccination is contraindicated Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;Rubella vaccination is contraindicated Case 2&quot;:
+  </a:s>
+               <a:s r="254">
+                  <a:s r="253">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="254">
+                     <a:s>&quot;The client is receiving blood products&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="254" locator="51:3-51:52" name="The client is receiving blood products" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="258" locator="57:1-58:54" name="Rubella vaccination is contraindicated Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rubella vaccination is contraindicated Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="258">
+               <a:s>/*
+@output: Rubella vaccination is contraindicated Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;Rubella vaccination is contraindicated Case 3&quot;:
+  </a:s>
+               <a:s r="260">
+                  <a:s r="259">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="260">
+                     <a:s>&quot;The client has symptomatic HIV infection&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="260" locator="58:3-58:54" name="The client has symptomatic HIV infection" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="264" locator="64:1-65:39" name="Rubella vaccination is contraindicated Case 4" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rubella vaccination is contraindicated Case 4"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="264">
+               <a:s>/*
+@output: Rubella vaccination is contraindicated Case 4
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;Rubella vaccination is contraindicated Case 4&quot;:
+  </a:s>
+               <a:s r="266">
+                  <a:s r="265">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="266">
+                     <a:s>&quot;The client has TB disease&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="266" locator="65:3-65:39" name="The client has TB disease" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="270" locator="71:1-72:55" name="Rubella vaccination is contraindicated Case 5" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rubella vaccination is contraindicated Case 5"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="270">
+               <a:s>/*
+@output: Rubella vaccination is contraindicated Case 5
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;Rubella vaccination is contraindicated Case 5&quot;:
+  </a:s>
+               <a:s r="272">
+                  <a:s r="271">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="272">
+                     <a:s>&quot;The client has immunodeficiency syndromes&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="272" locator="72:3-72:55" name="The client has immunodeficiency syndromes" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="276" locator="78:1-79:66" name="Rubella vaccination is contraindicated Case 6" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rubella vaccination is contraindicated Case 6"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="276">
+               <a:s>/*
+@output: Rubella vaccination is contraindicated Case 6
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;Rubella vaccination is contraindicated Case 6&quot;:
+  </a:s>
+               <a:s r="278">
+                  <a:s r="277">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="278">
+                     <a:s>&quot;The client is exposed to immunosuppressive treatment&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="278" locator="79:3-79:66" name="The client is exposed to immunosuppressive treatment" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="238" locator="85:1-91:54" name="Rubella vaccination is contraindicated" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rubella vaccination is contraindicated"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="238">
+               <a:s>/*
+@output: Rubella vaccination is contraindicated
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;Rubella vaccination is contraindicated&quot;:
+  </a:s>
+               <a:s r="239">
+                  <a:s r="240">
+                     <a:s r="241">
+                        <a:s r="242">
+                           <a:s r="243">
+                              <a:s r="249">
+                                 <a:s>&quot;Rubella vaccination is contraindicated Case 1&quot;</a:s>
+                              </a:s>
+                              <a:s>
+    or </a:s>
+                              <a:s r="255">
+                                 <a:s>&quot;Rubella vaccination is contraindicated Case 2&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+    or </a:s>
+                           <a:s r="261">
+                              <a:s>&quot;Rubella vaccination is contraindicated Case 3&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    or </a:s>
+                        <a:s r="267">
+                           <a:s>&quot;Rubella vaccination is contraindicated Case 4&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="273">
+                        <a:s>&quot;Rubella vaccination is contraindicated Case 5&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="279">
+                     <a:s>&quot;Rubella vaccination is contraindicated Case 6&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="239" locator="86:3-91:54" xsi:type="Or">
+            <operand localId="240" locator="86:3-90:54" xsi:type="Or">
+               <operand localId="241" locator="86:3-89:54" xsi:type="Or">
+                  <operand localId="242" locator="86:3-88:54" xsi:type="Or">
+                     <operand localId="243" locator="86:3-87:54" xsi:type="Or">
+                        <operand localId="249" locator="86:3-86:49" name="Rubella vaccination is contraindicated Case 1" xsi:type="ExpressionRef"/>
+                        <operand localId="255" locator="87:8-87:54" name="Rubella vaccination is contraindicated Case 2" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="261" locator="88:8-88:54" name="Rubella vaccination is contraindicated Case 3" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="267" locator="89:8-89:54" name="Rubella vaccination is contraindicated Case 4" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="273" locator="90:8-90:54" name="Rubella vaccination is contraindicated Case 5" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="279" locator="91:8-91:54" name="Rubella vaccination is contraindicated Case 6" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="283" locator="102:1-111:5" name="Rubella vaccination is contraindicated Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rubella vaccination is contraindicated Guidance"/>
+            <a:s r="283">
+               <a:s>/*
+@output: Rubella vaccination is contraindicated Guidance
+@guidance = Do not vaccinate client with rubella as rubella vaccination is contraindicated for pregnant client.
+@guidance = Do not vaccinate client with rubella as rubella vaccination is contraindicated until at least 3 months after stopping receiving blood products.
+@guidance = Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with symptomatic HIV infection.
+@guidance = Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with active TB.
+@guidance = Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with severe immunodeficiency.
+@guidance = Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients receiving or exposed to immunosuppressive therapy.
+*/
+define &quot;Rubella vaccination is contraindicated Guidance&quot;:
+  </a:s>
+               <a:s r="284">
+                  <a:s>case
+    </a:s>
+                  <a:s r="285">
+                     <a:s>when </a:s>
+                     <a:s r="286">
+                        <a:s>&quot;Rubella vaccination is contraindicated Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="287">
+                        <a:s>'Do not vaccinate client with rubella as rubella vaccination is contraindicated for pregnant client.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="289">
+                     <a:s>when </a:s>
+                     <a:s r="290">
+                        <a:s>&quot;Rubella vaccination is contraindicated Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="291">
+                        <a:s>'Do not vaccinate client with rubella as rubella vaccination is contraindicated until at least 3 months after stopping receiving blood products.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="293">
+                     <a:s>when </a:s>
+                     <a:s r="294">
+                        <a:s>&quot;Rubella vaccination is contraindicated Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="295">
+                        <a:s>'Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with symptomatic HIV infection.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="297">
+                     <a:s>when </a:s>
+                     <a:s r="298">
+                        <a:s>&quot;Rubella vaccination is contraindicated Case 4&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="299">
+                        <a:s>'Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with active TB.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="301">
+                     <a:s>when </a:s>
+                     <a:s r="302">
+                        <a:s>&quot;Rubella vaccination is contraindicated Case 5&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="303">
+                        <a:s>'Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with severe immunodeficiency.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="305">
+                     <a:s>when </a:s>
+                     <a:s r="306">
+                        <a:s>&quot;Rubella vaccination is contraindicated Case 6&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="307">
+                        <a:s>'Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients receiving or exposed to immunosuppressive therapy.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="309">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="284" locator="103:3-111:5" xsi:type="Case">
+            <caseItem localId="285" locator="104:5-104:163">
+               <when localId="286" locator="104:10-104:56" name="Rubella vaccination is contraindicated Case 1" xsi:type="ExpressionRef"/>
+               <then localId="287" locator="104:63-104:163" valueType="t:String" value="Do not vaccinate client with rubella as rubella vaccination is contraindicated for pregnant client." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="289" locator="105:5-105:207">
+               <when localId="290" locator="105:10-105:56" name="Rubella vaccination is contraindicated Case 2" xsi:type="ExpressionRef"/>
+               <then localId="291" locator="105:63-105:207" valueType="t:String" value="Do not vaccinate client with rubella as rubella vaccination is contraindicated until at least 3 months after stopping receiving blood products." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="293" locator="106:5-106:186">
+               <when localId="294" locator="106:10-106:56" name="Rubella vaccination is contraindicated Case 3" xsi:type="ExpressionRef"/>
+               <then localId="295" locator="106:63-106:186" valueType="t:String" value="Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with symptomatic HIV infection." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="297" locator="107:5-107:170">
+               <when localId="298" locator="107:10-107:56" name="Rubella vaccination is contraindicated Case 4" xsi:type="ExpressionRef"/>
+               <then localId="299" locator="107:63-107:170" valueType="t:String" value="Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with active TB." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="301" locator="108:5-108:184">
+               <when localId="302" locator="108:10-108:56" name="Rubella vaccination is contraindicated Case 5" xsi:type="ExpressionRef"/>
+               <then localId="303" locator="108:63-108:184" valueType="t:String" value="Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with severe immunodeficiency." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="305" locator="109:5-109:205">
+               <when localId="306" locator="109:10-109:56" name="Rubella vaccination is contraindicated Case 6" xsi:type="ExpressionRef"/>
+               <then localId="307" locator="109:63-109:205" valueType="t:String" value="Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients receiving or exposed to immunosuppressive therapy." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="309" locator="110:10-110:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="315" locator="117:1-118:66" name="Clinical judgement is required. Create a clinical note" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Clinical judgement is required. Create a clinical note"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="315">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note&quot;:
+  </a:s>
+               <a:s r="317">
+                  <a:s r="316">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="317">
+                     <a:s>&quot;The client is planning to get pregnant in next month&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="317" locator="118:3-118:66" name="The client is planning to get pregnant in next month" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="321" locator="124:1-125:205" name="Clinical judgement is required. Create a clinical note Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Clinical judgement is required. Create a clinical note Guidance"/>
+            <a:t name="guidance" value="Discuss pregnancy intentions with client, consider risks of vaccination and make a clinical judgement. Clients planning a pregnancy are advised to avoid pregnancy for 1 month after rubella vaccination."/>
+            <a:s r="321">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note Guidance
+@guidance: Discuss pregnancy intentions with client, consider risks of vaccination and make a clinical judgement. Clients planning a pregnancy are advised to avoid pregnancy for 1 month after rubella vaccination.
+*/
+define &quot;Clinical judgement is required. Create a clinical note Guidance&quot;:
+  </a:s>
+               <a:s r="322">
+                  <a:s>'Discuss pregnancy intentions with client, consider risks of vaccination and make a clinical judgement. Clients planning a pregnancy are advised to avoid pregnancy for 1 month after rubella vaccination.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="322" locator="125:3-125:205" valueType="t:String" value="Discuss pregnancy intentions with client, consider risks of vaccination and make a clinical judgement. Clients planning a pregnancy are advised to avoid pregnancy for 1 month after rubella vaccination." xsi:type="Literal"/>
+      </def>
+      <def localId="328" locator="131:1-132:65" name="Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="328">
+               <a:s>/*
+@output: Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;:
+  </a:s>
+               <a:s r="330">
+                  <a:s r="329">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="330">
+                     <a:s>&quot;The client has history of severe allergic reactions&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="330" locator="132:3-132:65" name="The client has history of severe allergic reactions" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="334" locator="138:1-139:145" name="Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance"/>
+            <a:t name="guidance" value="Do not vaccinate client with rubella if client has experienced a severe allergic reaction after a previous vaccine dose or vaccine component."/>
+            <a:s r="334">
+               <a:s>/*
+@output: Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance
+@guidance: Do not vaccinate client with rubella if client has experienced a severe allergic reaction after a previous vaccine dose or vaccine component.
+*/
+define &quot;Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance&quot;:
+  </a:s>
+               <a:s r="335">
+                  <a:s>'Do not vaccinate client with rubella if client has experienced a severe allergic reaction after a previous vaccine dose or vaccine component.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="335" locator="139:3-139:145" valueType="t:String" value="Do not vaccinate client with rubella if client has experienced a severe allergic reaction after a previous vaccine dose or vaccine component." xsi:type="Literal"/>
+      </def>
+      <def localId="233" locator="28:1-34:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="233">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="234">
+                  <a:s>case 
+    </a:s>
+                  <a:s r="235">
+                     <a:s>when </a:s>
+                     <a:s r="280">
+                        <a:s>&quot;Rubella vaccination is contraindicated&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="311">
+                        <a:s>&quot;Rubella vaccination is contraindicated Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="312">
+                     <a:s>when </a:s>
+                     <a:s r="318">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="324">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="325">
+                     <a:s>when </a:s>
+                     <a:s r="331">
+                        <a:s>&quot;Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="337">
+                        <a:s>&quot;Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+    else </a:s>
+                  <a:s r="338">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="234" locator="29:3-34:5" xsi:type="Case">
+            <caseItem localId="235" locator="30:5-30:104">
+               <when localId="280" locator="30:10-30:49" name="Rubella vaccination is contraindicated" xsi:type="ExpressionRef"/>
+               <then localId="311" locator="30:56-30:104" name="Rubella vaccination is contraindicated Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="312" locator="31:5-31:136">
+               <when localId="318" locator="31:10-31:65" name="Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+               <then localId="324" locator="31:72-31:136" name="Clinical judgement is required. Create a clinical note Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="325" locator="32:5-32:228">
+               <when localId="331" locator="32:10-32:111" name="Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+               <then localId="337" locator="32:118-32:228" name="Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="338" locator="33:10-33:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="342" locator="36:1-37:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="342">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="343">
+                  <a:s r="346">
+                     <a:s r="344">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="353">
+                     <a:s r="348">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="349">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="343" locator="37:3-37:45" xsi:type="And">
+            <operand localId="346" locator="37:3-37:24" xsi:type="Not">
+               <operand localId="345" locator="37:3-37:24" xsi:type="IsNull">
+                  <operand localId="344" locator="37:3-37:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="353" locator="37:30-37:45" xsi:type="Not">
+               <operand localId="347" locator="37:30-37:45" xsi:type="Equal">
+                  <signature localId="351" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="352" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="348" locator="37:30-37:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="349" locator="37:44-37:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="356" locator="145:1-156:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="356">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="357">
+                  <a:s>case
+    </a:s>
+                  <a:s r="358">
+                     <a:s>when </a:s>
+                     <a:s r="359">
+                        <a:s r="361">
+                           <a:s r="360">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="361">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="362">
+                           <a:s>'Rubella28.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="368">
+                        <a:s r="369">
+                           <a:s>&quot;Rubella vaccination is contraindicated Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="370">
+                           <a:s r="371">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="372">
+                              <a:s>'Do not vaccinate client with rubella as rubella vaccination is contraindicated for pregnant client.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="376">
+                     <a:s>when </a:s>
+                     <a:s r="377">
+                        <a:s r="379">
+                           <a:s r="378">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="379">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="380">
+                           <a:s>'Rubella29.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="386">
+                        <a:s r="387">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="388">
+                           <a:s r="389">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="390">
+                              <a:s>'Discuss pregnancy intentions with client, consider risks of vaccination and make a clinical judgement. Clients planning a pregnancy are advised to avoid pregnancy for 1 month after rubella vaccination.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="394">
+                     <a:s>when </a:s>
+                     <a:s r="395">
+                        <a:s r="397">
+                           <a:s r="396">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="397">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="398">
+                           <a:s>'Rubella30.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="404">
+                        <a:s r="405">
+                           <a:s>&quot;Rubella vaccination is contraindicated Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="406">
+                           <a:s r="407">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="408">
+                              <a:s>'Do not vaccinate client with rubella as rubella vaccination is contraindicated until at least 3 months after stopping receiving blood products.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="412">
+                     <a:s>when </a:s>
+                     <a:s r="413">
+                        <a:s r="415">
+                           <a:s r="414">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="415">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="416">
+                           <a:s>'Rubella31.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="422">
+                        <a:s r="423">
+                           <a:s>&quot;Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="424">
+                           <a:s r="425">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="426">
+                              <a:s>'Do not vaccinate client with rubella if client has experienced a severe allergic reaction after a previous vaccine dose or vaccine component.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="430">
+                     <a:s>when </a:s>
+                     <a:s r="431">
+                        <a:s r="433">
+                           <a:s r="432">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="433">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="434">
+                           <a:s>'Rubella32.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="440">
+                        <a:s r="441">
+                           <a:s>&quot;Rubella vaccination is contraindicated Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="442">
+                           <a:s r="443">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="444">
+                              <a:s>'Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with symptomatic HIV infection.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="448">
+                     <a:s>when </a:s>
+                     <a:s r="449">
+                        <a:s r="451">
+                           <a:s r="450">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="451">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="452">
+                           <a:s>'Rubella33.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="458">
+                        <a:s r="459">
+                           <a:s>&quot;Rubella vaccination is contraindicated Case 4&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="460">
+                           <a:s r="461">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="462">
+                              <a:s>'Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with active TB.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="466">
+                     <a:s>when </a:s>
+                     <a:s r="467">
+                        <a:s r="469">
+                           <a:s r="468">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="469">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="470">
+                           <a:s>'Rubella34.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="476">
+                        <a:s r="477">
+                           <a:s>&quot;Rubella vaccination is contraindicated Case 5&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="478">
+                           <a:s r="479">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="480">
+                              <a:s>'Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with severe immunodeficiency.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="484">
+                     <a:s>when </a:s>
+                     <a:s r="485">
+                        <a:s r="487">
+                           <a:s r="486">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="487">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="488">
+                           <a:s>'Rubella35.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="494">
+                        <a:s r="495">
+                           <a:s>&quot;Rubella vaccination is contraindicated Case 6&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="496">
+                           <a:s r="497">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="498">
+                              <a:s>'Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients receiving or exposed to immunosuppressive therapy.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="502">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="357" locator="146:3-156:5" xsi:type="Case">
+            <caseItem localId="358" locator="147:5-147:207">
+               <when localId="359" locator="147:10-147:35" xsi:type="Equal">
+                  <signature localId="366" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="367" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="364" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="365" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="361" locator="147:10-147:19" path="id" xsi:type="Property">
+                        <source localId="360" locator="147:10-147:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="362" locator="147:23-147:35" valueType="t:String" value="Rubella28.1" xsi:type="Literal"/>
+               </when>
+               <then localId="504" xsi:type="As">
+                  <operand localId="368" locator="147:42-147:207" xsi:type="And">
+                     <operand localId="369" locator="147:42-147:88" name="Rubella vaccination is contraindicated Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="370" locator="147:94-147:207" xsi:type="Equal">
+                        <signature localId="374" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="375" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="371" locator="147:94-147:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="372" locator="147:107-147:207" valueType="t:String" value="Do not vaccinate client with rubella as rubella vaccination is contraindicated for pregnant client." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="505" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="506" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="507" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="376" locator="148:5-148:318">
+               <when localId="377" locator="148:10-148:35" xsi:type="Equal">
+                  <signature localId="384" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="385" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="382" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="383" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="379" locator="148:10-148:19" path="id" xsi:type="Property">
+                        <source localId="378" locator="148:10-148:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="380" locator="148:23-148:35" valueType="t:String" value="Rubella29.1" xsi:type="Literal"/>
+               </when>
+               <then localId="508" xsi:type="As">
+                  <operand localId="386" locator="148:42-148:318" xsi:type="And">
+                     <operand localId="387" locator="148:42-148:97" name="Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+                     <operand localId="388" locator="148:103-148:318" xsi:type="Equal">
+                        <signature localId="392" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="393" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="389" locator="148:103-148:112" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="390" locator="148:116-148:318" valueType="t:String" value="Discuss pregnancy intentions with client, consider risks of vaccination and make a clinical judgement. Clients planning a pregnancy are advised to avoid pregnancy for 1 month after rubella vaccination." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="509" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="510" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="511" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="394" locator="149:5-149:251">
+               <when localId="395" locator="149:10-149:35" xsi:type="Equal">
+                  <signature localId="402" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="403" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="400" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="401" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="397" locator="149:10-149:19" path="id" xsi:type="Property">
+                        <source localId="396" locator="149:10-149:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="398" locator="149:23-149:35" valueType="t:String" value="Rubella30.1" xsi:type="Literal"/>
+               </when>
+               <then localId="512" xsi:type="As">
+                  <operand localId="404" locator="149:42-149:251" xsi:type="And">
+                     <operand localId="405" locator="149:42-149:88" name="Rubella vaccination is contraindicated Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="406" locator="149:94-149:251" xsi:type="Equal">
+                        <signature localId="410" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="411" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="407" locator="149:94-149:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="408" locator="149:107-149:251" valueType="t:String" value="Do not vaccinate client with rubella as rubella vaccination is contraindicated until at least 3 months after stopping receiving blood products." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="513" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="514" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="515" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="412" locator="150:5-150:304">
+               <when localId="413" locator="150:10-150:35" xsi:type="Equal">
+                  <signature localId="420" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="421" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="418" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="419" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="415" locator="150:10-150:19" path="id" xsi:type="Property">
+                        <source localId="414" locator="150:10-150:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="416" locator="150:23-150:35" valueType="t:String" value="Rubella31.1" xsi:type="Literal"/>
+               </when>
+               <then localId="516" xsi:type="As">
+                  <operand localId="422" locator="150:42-150:304" xsi:type="And">
+                     <operand localId="423" locator="150:42-150:143" name="Rubella vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+                     <operand localId="424" locator="150:149-150:304" xsi:type="Equal">
+                        <signature localId="428" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="429" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="425" locator="150:149-150:158" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="426" locator="150:162-150:304" valueType="t:String" value="Do not vaccinate client with rubella if client has experienced a severe allergic reaction after a previous vaccine dose or vaccine component." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="517" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="518" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="519" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="430" locator="151:5-151:230">
+               <when localId="431" locator="151:10-151:35" xsi:type="Equal">
+                  <signature localId="438" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="439" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="436" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="437" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="433" locator="151:10-151:19" path="id" xsi:type="Property">
+                        <source localId="432" locator="151:10-151:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="434" locator="151:23-151:35" valueType="t:String" value="Rubella32.1" xsi:type="Literal"/>
+               </when>
+               <then localId="520" xsi:type="As">
+                  <operand localId="440" locator="151:42-151:230" xsi:type="And">
+                     <operand localId="441" locator="151:42-151:88" name="Rubella vaccination is contraindicated Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="442" locator="151:94-151:230" xsi:type="Equal">
+                        <signature localId="446" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="447" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="443" locator="151:94-151:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="444" locator="151:107-151:230" valueType="t:String" value="Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with symptomatic HIV infection." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="521" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="522" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="523" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="448" locator="152:5-152:214">
+               <when localId="449" locator="152:10-152:35" xsi:type="Equal">
+                  <signature localId="456" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="457" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="454" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="455" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="451" locator="152:10-152:19" path="id" xsi:type="Property">
+                        <source localId="450" locator="152:10-152:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="452" locator="152:23-152:35" valueType="t:String" value="Rubella33.1" xsi:type="Literal"/>
+               </when>
+               <then localId="524" xsi:type="As">
+                  <operand localId="458" locator="152:42-152:214" xsi:type="And">
+                     <operand localId="459" locator="152:42-152:88" name="Rubella vaccination is contraindicated Case 4" xsi:type="ExpressionRef"/>
+                     <operand localId="460" locator="152:94-152:214" xsi:type="Equal">
+                        <signature localId="464" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="465" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="461" locator="152:94-152:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="462" locator="152:107-152:214" valueType="t:String" value="Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with active TB." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="525" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="526" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="527" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="466" locator="153:5-153:228">
+               <when localId="467" locator="153:10-153:35" xsi:type="Equal">
+                  <signature localId="474" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="475" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="472" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="473" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="469" locator="153:10-153:19" path="id" xsi:type="Property">
+                        <source localId="468" locator="153:10-153:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="470" locator="153:23-153:35" valueType="t:String" value="Rubella34.1" xsi:type="Literal"/>
+               </when>
+               <then localId="528" xsi:type="As">
+                  <operand localId="476" locator="153:42-153:228" xsi:type="And">
+                     <operand localId="477" locator="153:42-153:88" name="Rubella vaccination is contraindicated Case 5" xsi:type="ExpressionRef"/>
+                     <operand localId="478" locator="153:94-153:228" xsi:type="Equal">
+                        <signature localId="482" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="483" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="479" locator="153:94-153:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="480" locator="153:107-153:228" valueType="t:String" value="Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients with severe immunodeficiency." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="529" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="530" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="531" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="484" locator="154:5-154:249">
+               <when localId="485" locator="154:10-154:35" xsi:type="Equal">
+                  <signature localId="492" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="493" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="490" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="491" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="487" locator="154:10-154:19" path="id" xsi:type="Property">
+                        <source localId="486" locator="154:10-154:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="488" locator="154:23-154:35" valueType="t:String" value="Rubella35.1" xsi:type="Literal"/>
+               </when>
+               <then localId="532" xsi:type="As">
+                  <operand localId="494" locator="154:42-154:249" xsi:type="And">
+                     <operand localId="495" locator="154:42-154:88" name="Rubella vaccination is contraindicated Case 6" xsi:type="ExpressionRef"/>
+                     <operand localId="496" locator="154:94-154:249" xsi:type="Equal">
+                        <signature localId="500" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="501" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="497" locator="154:94-154:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="498" locator="154:107-154:249" valueType="t:String" value="Do not vaccinate client with rubella as rubella vaccination is contraindicated for clients receiving or exposed to immunosuppressive therapy." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="533" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="534" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="535" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="536" xsi:type="As">
+               <operand localId="502" locator="155:10-155:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="537" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="538" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="539" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

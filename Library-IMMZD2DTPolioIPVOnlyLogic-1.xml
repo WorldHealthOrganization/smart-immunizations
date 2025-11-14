@@ -1,0 +1,1725 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="430">
+         <a:s>/*
+ * Library: IMMZD2DTPolioIPVOnlyLogic (IMMZ.D2.DT.Polio.IPV-only)
+ * Rule: Determine if the client is due for a poliovirus vaccination according to the national immunization schedule
+ * Decision Table: Inactivated polio vaccine (IPV)-only (in countries, in polio-free regions, with a very low risk of importation and sustained high routine immunization coverage (third dose of the diphtheria–tetanus–pertussis vaccine [DTP3] > 90%)
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any
+ */
+library IMMZD2DTPolioIPVOnlyLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTPolioIPVOnlyLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="9:1-9:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="10:1-10:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="12:1-12:55" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTPolioEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTPolioEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="212" locator="14:1-14:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>parameter Today </a:s>
+               <a:s r="216">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="215">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="215" locator="14:30-14:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="216" locator="14:17-14:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="16:1-16:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="16:1-16:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="234" locator="39:1-41:53" name="Client is not due for IPV vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for IPV vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="234">
+               <a:s>/*
+@output: Client is not due for IPV vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for IPV vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="235">
+                  <a:s r="237">
+                     <a:s r="236">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="237">
+                        <a:s>&quot;No poliovirus primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="239">
+                     <a:s r="238">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="239">
+                        <a:s>&quot;Client's age is less than 6 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="235" locator="40:3-41:53" xsi:type="And">
+            <operand localId="237" locator="40:3-40:66" name="No poliovirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="239" locator="41:9-41:53" name="Client's age is less than 6 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="243" locator="47:1-49:85" name="Client is not due for IPV vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for IPV vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="243">
+               <a:s>/*
+@output: Client is not due for IPV vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for IPV vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="244">
+                  <a:s r="246">
+                     <a:s r="245">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="246">
+                        <a:s>&quot;One poliovirus primary series dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="248">
+                     <a:s r="247">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="248">
+                        <a:s>&quot;The latest poliovirus dose was administered less than 4 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="244" locator="48:3-49:85" xsi:type="And">
+            <operand localId="246" locator="48:3-48:65" name="One poliovirus primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="248" locator="49:9-49:85" name="The latest poliovirus dose was administered less than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="252" locator="55:1-57:85" name="Client is not due for IPV vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for IPV vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="252">
+               <a:s>/*
+@output: Client is not due for IPV vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for IPV vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="253">
+                  <a:s r="255">
+                     <a:s r="254">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="255">
+                        <a:s>&quot;Two poliovirus primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="257">
+                     <a:s r="256">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="257">
+                        <a:s>&quot;The latest poliovirus dose was administered less than 4 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="253" locator="56:3-57:85" xsi:type="And">
+            <operand localId="255" locator="56:3-56:67" name="Two poliovirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="257" locator="57:9-57:85" name="The latest poliovirus dose was administered less than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="229" locator="63:1-66:53" name="Client is not due for IPV vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for IPV vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="229">
+               <a:s>/*
+@output: Client is not due for IPV vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for IPV vaccination&quot;:
+  </a:s>
+               <a:s r="230">
+                  <a:s r="231">
+                     <a:s r="240">
+                        <a:s>&quot;Client is not due for IPV vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="249">
+                        <a:s>&quot;Client is not due for IPV vaccination Case 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="258">
+                     <a:s>&quot;Client is not due for IPV vaccination Case 3&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="230" locator="64:3-66:53" xsi:type="Or">
+            <operand localId="231" locator="64:3-65:53" xsi:type="Or">
+               <operand localId="240" locator="64:3-64:48" name="Client is not due for IPV vaccination Case 1" xsi:type="ExpressionRef"/>
+               <operand localId="249" locator="65:8-65:53" name="Client is not due for IPV vaccination Case 2" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="258" locator="66:8-66:53" name="Client is not due for IPV vaccination Case 3" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="262" locator="77:1-86:5" name="Client is not due for IPV vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for IPV vaccination Guidance"/>
+            <a:s r="262">
+               <a:s>/*
+@output: Client is not due for IPV vaccination Guidance
+@guidance = Shold not vaccinate client with first IPV dose as client's age is less than 6 weeks. 
+Check for any other vaccines due and inform the caregiver of when to come back for the first IPV dose.
+@guidance = Should not vaccinate client with second IPV dose as the latest IPV dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver when to come back for the second dose.
+@guidance = Should not vaccinate client with third IPV dose as the latest IPV dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver when to come back for the third dose.
+*/
+define &quot;Client is not due for IPV vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="263">
+                  <a:s>case
+    </a:s>
+                  <a:s r="264">
+                     <a:s>when </a:s>
+                     <a:s r="265">
+                        <a:s>&quot;Client is not due for IPV vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="266">
+                        <a:s>'Shold not vaccinate client with first IPV dose as client\'s age is less than 6 weeks. 
+Check for any other vaccines due and inform the caregiver of when to come back for the first IPV dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="268">
+                     <a:s>when </a:s>
+                     <a:s r="269">
+                        <a:s>&quot;Client is not due for IPV vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="270">
+                        <a:s>'Should not vaccinate client with second IPV dose as the latest IPV dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver when to come back for the second dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="272">
+                     <a:s>when </a:s>
+                     <a:s r="273">
+                        <a:s>&quot;Client is not due for IPV vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="274">
+                        <a:s>'Should not vaccinate client with third IPV dose as the latest IPV dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver when to come back for the third dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="276">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="263" locator="78:3-86:5" xsi:type="Case">
+            <caseItem localId="264" locator="79:5-79:252">
+               <when localId="265" locator="79:10-79:55" name="Client is not due for IPV vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="266" locator="79:62-79:252" valueType="t:String" value="Shold not vaccinate client with first IPV dose as client's age is less than 6 weeks. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the first IPV dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="268" locator="81:5-81:272">
+               <when localId="269" locator="81:10-81:55" name="Client is not due for IPV vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="270" locator="81:62-81:272" valueType="t:String" value="Should not vaccinate client with second IPV dose as the latest IPV dose was administered less than 4 weeks ago. &#xa;Check for any other vaccines due and inform the caregiver when to come back for the second dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="272" locator="83:5-83:270">
+               <when localId="273" locator="83:10-83:55" name="Client is not due for IPV vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="274" locator="83:62-83:270" valueType="t:String" value="Should not vaccinate client with third IPV dose as the latest IPV dose was administered less than 4 weeks ago. &#xa;Check for any other vaccines due and inform the caregiver when to come back for the third dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="276" locator="85:10-85:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="287" locator="92:1-94:65" name="Client is due for IPV vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for IPV vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="287">
+               <a:s>/*
+@output: Client is due for IPV vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for IPV vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="288">
+                  <a:s r="290">
+                     <a:s r="289">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="290">
+                        <a:s>&quot;No poliovirus primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="292">
+                     <a:s r="291">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="292">
+                        <a:s>&quot;Client's age is more than or equal to 6 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="288" locator="93:3-94:65" xsi:type="And">
+            <operand localId="290" locator="93:3-93:66" name="No poliovirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="292" locator="94:9-94:65" name="Client's age is more than or equal to 6 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="296" locator="100:1-102:85" name="Client is due for IPV vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for IPV vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="296">
+               <a:s>/*
+@output: Client is due for IPV vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for IPV vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="297">
+                  <a:s r="299">
+                     <a:s r="298">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="299">
+                        <a:s>&quot;One poliovirus primary series dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="301">
+                     <a:s r="300">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="301">
+                        <a:s>&quot;The latest poliovirus dose was administered more than 4 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="297" locator="101:3-102:85" xsi:type="And">
+            <operand localId="299" locator="101:3-101:65" name="One poliovirus primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="301" locator="102:9-102:85" name="The latest poliovirus dose was administered more than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="305" locator="108:1-110:85" name="Client is due for IPV vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for IPV vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="305">
+               <a:s>/*
+@output: Client is due for IPV vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for IPV vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="306">
+                  <a:s r="308">
+                     <a:s r="307">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="308">
+                        <a:s>&quot;Two poliovirus primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="310">
+                     <a:s r="309">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="310">
+                        <a:s>&quot;The latest poliovirus dose was administered more than 4 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="306" locator="109:3-110:85" xsi:type="And">
+            <operand localId="308" locator="109:3-109:67" name="Two poliovirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="310" locator="110:9-110:85" name="The latest poliovirus dose was administered more than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="282" locator="116:1-119:49" name="Client is due for IPV vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for IPV vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="282">
+               <a:s>/*
+@output: Client is due for IPV vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for IPV vaccination&quot;:
+  </a:s>
+               <a:s r="283">
+                  <a:s r="284">
+                     <a:s r="293">
+                        <a:s>&quot;Client is due for IPV vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="302">
+                        <a:s>&quot;Client is due for IPV vaccination Case 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="311">
+                     <a:s>&quot;Client is due for IPV vaccination Case 3&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="283" locator="117:3-119:49" xsi:type="Or">
+            <operand localId="284" locator="117:3-118:49" xsi:type="Or">
+               <operand localId="293" locator="117:3-117:44" name="Client is due for IPV vaccination Case 1" xsi:type="ExpressionRef"/>
+               <operand localId="302" locator="118:8-118:49" name="Client is due for IPV vaccination Case 2" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="311" locator="119:8-119:49" name="Client is due for IPV vaccination Case 3" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="315" locator="130:1-139:5" name="Client is due for IPV vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for IPV vaccination Guidance"/>
+            <a:s r="315">
+               <a:s>/*
+@output: Client is due for IPV vaccination Guidance
+@guidance = Should vaccinate client with first IPV dose as client is within appropriate age range. 
+Check for contraindications.
+@guidance = Should vaccinate client with second IPV dose as the latest IPV dose was administered more than 4 weeks ago.
+Check for contraindications.
+@guidance = Should vaccinate client with third IPV dose as the latest poliovirus dose was administered more than 4 weeks ago. 
+Check for contraindications.
+*/
+define &quot;Client is due for IPV vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="316">
+                  <a:s>case
+    </a:s>
+                  <a:s r="317">
+                     <a:s>when </a:s>
+                     <a:s r="318">
+                        <a:s>&quot;Client is due for IPV vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="319">
+                        <a:s>'Should vaccinate client with first IPV dose as client is within appropriate age range. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="321">
+                     <a:s>when </a:s>
+                     <a:s r="322">
+                        <a:s>&quot;Client is due for IPV vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="323">
+                        <a:s>'Should vaccinate client with second IPV dose as the latest IPV dose was administered more than 4 weeks ago.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="325">
+                     <a:s>when </a:s>
+                     <a:s r="326">
+                        <a:s>&quot;Client is due for IPV vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="327">
+                        <a:s>'Should vaccinate client with third IPV dose as the latest poliovirus dose was administered more than 4 weeks ago. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="329">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="316" locator="131:3-139:5" xsi:type="Case">
+            <caseItem localId="317" locator="132:5-132:175">
+               <when localId="318" locator="132:10-132:51" name="Client is due for IPV vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="319" locator="132:58-132:175" valueType="t:String" value="Should vaccinate client with first IPV dose as client is within appropriate age range. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="321" locator="134:5-134:195">
+               <when localId="322" locator="134:10-134:51" name="Client is due for IPV vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="323" locator="134:58-134:195" valueType="t:String" value="Should vaccinate client with second IPV dose as the latest IPV dose was administered more than 4 weeks ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="325" locator="136:5-136:202">
+               <when localId="326" locator="136:10-136:51" name="Client is due for IPV vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="327" locator="136:58-136:202" valueType="t:String" value="Should vaccinate client with third IPV dose as the latest poliovirus dose was administered more than 4 weeks ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="329" locator="138:10-138:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="339" locator="146:1-148:90" name="Polio immunization schedule is complete Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Polio immunization schedule is complete Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="339">
+               <a:s>/*
+@output: Polio immunization schedule is complete Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Poliovirus-containing vaccines&quot;)
+*/
+define &quot;Polio immunization schedule is complete Case 1&quot;:
+  </a:s>
+               <a:s r="340">
+                  <a:s r="342">
+                     <a:s r="341">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="342">
+                        <a:s>&quot;Three poliovirus primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="344">
+                     <a:s r="343">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="344">
+                        <a:s>&quot;Client's age was more than 6 weeks when the primary series was started&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="340" locator="147:3-148:90" xsi:type="And">
+            <operand localId="342" locator="147:3-147:69" name="Three poliovirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="344" locator="148:9-148:90" name="Client's age was more than 6 weeks when the primary series was started" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="348" locator="154:1-156:55" name="Polio immunization schedule is complete Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Polio immunization schedule is complete Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="348">
+               <a:s>/*
+@output: Polio immunization schedule is complete Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Polio immunization schedule is complete Case 2&quot;:
+  </a:s>
+               <a:s r="349">
+                  <a:s r="351">
+                     <a:s r="350">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="351">
+                        <a:s>&quot;Three poliovirus primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="353">
+                     <a:s r="352">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="353">
+                        <a:s>&quot;Polio booster dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="349" locator="155:3-156:55" xsi:type="And">
+            <operand localId="351" locator="155:3-155:69" name="Three poliovirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="353" locator="156:9-156:55" name="Polio booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="335" locator="163:1-165:55" name="Polio immunization schedule is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Polio immunization schedule is complete"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="335">
+               <a:s>/*
+@output: Polio immunization schedule is complete
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Poliovirus-containing vaccines&quot;)
+*/
+define &quot;Polio immunization schedule is complete&quot;:
+  </a:s>
+               <a:s r="336">
+                  <a:s r="345">
+                     <a:s>&quot;Polio immunization schedule is complete Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="354">
+                     <a:s>&quot;Polio immunization schedule is complete Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="336" locator="164:3-165:55" xsi:type="Or">
+            <operand localId="345" locator="164:3-164:50" name="Polio immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="354" locator="165:8-165:55" name="Polio immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="358" locator="172:1-177:5" name="Polio immunization schedule is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Polio immunization schedule is complete Guidance"/>
+            <a:s r="358">
+               <a:s>/*
+@output: Polio immunization schedule is complete Guidance
+@guidance = Polio immunization schedule is complete as client's age was more than 6 weeks when the primary series was started. Three poliovirus primary series doses were administered.
+@guidance = Polio immunization schedule is complete. Three poliovirus primary series doses and a booster dose were administered.
+*/
+define &quot;Polio immunization schedule is complete Guidance&quot;:
+  </a:s>
+               <a:s r="359">
+                  <a:s>case
+    </a:s>
+                  <a:s r="360">
+                     <a:s>when </a:s>
+                     <a:s r="361">
+                        <a:s>&quot;Polio immunization schedule is complete Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="362">
+                        <a:s>'Polio immunization schedule is complete as client\'s age was more than 6 weeks when the primary series was started. Three poliovirus primary series doses were administered.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="364">
+                     <a:s>when </a:s>
+                     <a:s r="365">
+                        <a:s>&quot;Polio immunization schedule is complete Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="366">
+                        <a:s>'Polio immunization schedule is complete. Three poliovirus primary series doses and a booster dose were administered.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="368">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="359" locator="173:3-177:5" xsi:type="Case">
+            <caseItem localId="360" locator="174:5-174:237">
+               <when localId="361" locator="174:10-174:57" name="Polio immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+               <then localId="362" locator="174:64-174:237" valueType="t:String" value="Polio immunization schedule is complete as client's age was more than 6 weeks when the primary series was started. Three poliovirus primary series doses were administered." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="364" locator="175:5-175:181">
+               <when localId="365" locator="175:10-175:57" name="Polio immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+               <then localId="366" locator="175:64-175:181" valueType="t:String" value="Polio immunization schedule is complete. Three poliovirus primary series doses and a booster dose were administered." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="368" locator="176:10-176:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="374" locator="184:1-187:86" name="Primary series is complete. Client is not due for IPV booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary series is complete. Client is not due for IPV booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="374">
+               <a:s>/*
+@output: Primary series is complete. Client is not due for IPV booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Poliovirus-containing vaccines&quot;)
+*/
+define &quot;Primary series is complete. Client is not due for IPV booster dose&quot;:
+  </a:s>
+               <a:s r="375">
+                  <a:s r="376">
+                     <a:s r="378">
+                        <a:s r="377">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="378">
+                           <a:s>&quot;Three poliovirus primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="380">
+                        <a:s r="379">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="380">
+                           <a:s>&quot;Client's age was 6 weeks when the primary series was started&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="382">
+                     <a:s r="381">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="382">
+                        <a:s>&quot;The latest poliovirus dose was administered less than 6 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="375" locator="185:3-187:86" xsi:type="And">
+            <operand localId="376" locator="185:3-186:80" xsi:type="And">
+               <operand localId="378" locator="185:3-185:69" name="Three poliovirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="380" locator="186:9-186:80" name="Client's age was 6 weeks when the primary series was started" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="382" locator="187:9-187:86" name="The latest poliovirus dose was administered less than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="386" locator="194:1-195:222" name="Primary series is complete. Client is not due for IPV booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary series is complete. Client is not due for IPV booster dose Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with IPV booster dose as the latest poliovirus dose was administered less than 6 months ago.&#xa;Check for any other vaccines due and inform the caregiver when to come back for the booster dose."/>
+            <a:s r="386">
+               <a:s>/*
+@output: Primary series is complete. Client is not due for IPV booster dose Guidance
+@guidance: Should not vaccinate client with IPV booster dose as the latest poliovirus dose was administered less than 6 months ago.
+Check for any other vaccines due and inform the caregiver when to come back for the booster dose.
+*/
+define &quot;Primary series is complete. Client is not due for IPV booster dose Guidance&quot;:
+  </a:s>
+               <a:s r="387">
+                  <a:s>'Should not vaccinate client with IPV booster dose as the latest poliovirus dose was administered less than 6 months ago.
+Check for any other vaccines due and inform the caregiver when to come back for the booster dose.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="387" locator="195:3-195:222" valueType="t:String" value="Should not vaccinate client with IPV booster dose as the latest poliovirus dose was administered less than 6 months ago.&#xa;Check for any other vaccines due and inform the caregiver when to come back for the booster dose." xsi:type="Literal"/>
+      </def>
+      <def localId="393" locator="203:1-207:58" name="Primary series is complete. Client is due for IPV booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary series is complete. Client is due for IPV booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="393">
+               <a:s>/*
+@output: Primary series is complete. Client is due for IPV booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Poliovirus-containing vaccines&quot;)
+*/
+define &quot;Primary series is complete. Client is due for IPV booster dose&quot;:
+  </a:s>
+               <a:s r="394">
+                  <a:s r="395">
+                     <a:s r="396">
+                        <a:s r="398">
+                           <a:s r="397">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="398">
+                              <a:s>&quot;Three poliovirus primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="400">
+                           <a:s r="399">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="400">
+                              <a:s>&quot;Client's age was 6 weeks when the primary series was started&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="402">
+                        <a:s r="401">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="402">
+                           <a:s>&quot;The latest poliovirus dose was administered more than 6 months ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="404">
+                     <a:s r="403">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="404">
+                        <a:s>&quot;No polio booster dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="394" locator="204:3-207:58" xsi:type="And">
+            <operand localId="395" locator="204:3-206:86" xsi:type="And">
+               <operand localId="396" locator="204:3-205:80" xsi:type="And">
+                  <operand localId="398" locator="204:3-204:69" name="Three poliovirus primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="400" locator="205:9-205:80" name="Client's age was 6 weeks when the primary series was started" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="402" locator="206:9-206:86" name="The latest poliovirus dose was administered more than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="404" locator="207:9-207:58" name="No polio booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="408" locator="214:1-215:273" name="Primary series is complete. Client is due for IPV booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary series is complete. Client is due for IPV booster dose Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with IPV booster dose as three poliovirus primary series doses were administered, client's age was 6 weeks when the primary series was started and the latest poliovirus dose was administered more than 6 months ago. &#xa;Check for contraindications."/>
+            <a:s r="408">
+               <a:s>/*
+@output: Primary series is complete. Client is due for IPV booster dose Guidance
+@guidance: Should vaccinate client with IPV booster dose as three poliovirus primary series doses were administered, client's age was 6 weeks when the primary series was started and the latest poliovirus dose was administered more than 6 months ago. 
+Check for contraindications.
+*/
+define &quot;Primary series is complete. Client is due for IPV booster dose Guidance&quot;:
+  </a:s>
+               <a:s r="409">
+                  <a:s>'Should vaccinate client with IPV booster dose as three poliovirus primary series doses were administered, client\'s age was 6 weeks when the primary series was started and the latest poliovirus dose was administered more than 6 months ago. 
+Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="409" locator="215:3-215:273" valueType="t:String" value="Should vaccinate client with IPV booster dose as three poliovirus primary series doses were administered, client's age was 6 weeks when the primary series was started and the latest poliovirus dose was administered more than 6 months ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="224" locator="22:1-30:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="224">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="225">
+                  <a:s>case 
+    </a:s>
+                  <a:s r="226">
+                     <a:s>when </a:s>
+                     <a:s r="259">
+                        <a:s>&quot;Client is not due for IPV vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="278">
+                        <a:s>&quot;Client is not due for IPV vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="279">
+                     <a:s>when </a:s>
+                     <a:s r="312">
+                        <a:s>&quot;Client is due for IPV vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="331">
+                        <a:s>&quot;Client is due for IPV vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="332">
+                     <a:s>when </a:s>
+                     <a:s r="355">
+                        <a:s>&quot;Polio immunization schedule is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="370">
+                        <a:s>&quot;Polio immunization schedule is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="371">
+                     <a:s>when </a:s>
+                     <a:s r="383">
+                        <a:s>&quot;Primary series is complete. Client is not due for IPV booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="389">
+                        <a:s>&quot;Primary series is complete. Client is not due for IPV booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="390">
+                     <a:s>when </a:s>
+                     <a:s r="405">
+                        <a:s>&quot;Primary series is complete. Client is due for IPV booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="411">
+                        <a:s>&quot;Primary series is complete. Client is due for IPV booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+    else </a:s>
+                  <a:s r="412">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="23:3-30:5" xsi:type="Case">
+            <caseItem localId="226" locator="24:5-24:102">
+               <when localId="259" locator="24:10-24:48" name="Client is not due for IPV vaccination" xsi:type="ExpressionRef"/>
+               <then localId="278" locator="24:55-24:102" name="Client is not due for IPV vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="279" locator="25:5-25:94">
+               <when localId="312" locator="25:10-25:44" name="Client is due for IPV vaccination" xsi:type="ExpressionRef"/>
+               <then localId="331" locator="25:51-25:94" name="Client is due for IPV vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="332" locator="26:5-26:106">
+               <when localId="355" locator="26:10-26:50" name="Polio immunization schedule is complete" xsi:type="ExpressionRef"/>
+               <then localId="370" locator="26:57-26:106" name="Polio immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="371" locator="27:5-27:160">
+               <when localId="383" locator="27:10-27:77" name="Primary series is complete. Client is not due for IPV booster dose" xsi:type="ExpressionRef"/>
+               <then localId="389" locator="27:84-27:160" name="Primary series is complete. Client is not due for IPV booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="390" locator="28:5-28:152">
+               <when localId="405" locator="28:10-28:73" name="Primary series is complete. Client is due for IPV booster dose" xsi:type="ExpressionRef"/>
+               <then localId="411" locator="28:80-28:152" name="Primary series is complete. Client is due for IPV booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="412" locator="29:10-29:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="416" locator="32:1-33:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="416">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="417">
+                  <a:s r="420">
+                     <a:s r="418">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="427">
+                     <a:s r="422">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="423">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="417" locator="33:3-33:45" xsi:type="And">
+            <operand localId="420" locator="33:3-33:24" xsi:type="Not">
+               <operand localId="419" locator="33:3-33:24" xsi:type="IsNull">
+                  <operand localId="418" locator="33:3-33:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="427" locator="33:30-33:45" xsi:type="Not">
+               <operand localId="421" locator="33:30-33:45" xsi:type="Equal">
+                  <signature localId="425" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="426" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="422" locator="33:30-33:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="423" locator="33:44-33:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="430" locator="222:1-243:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="430">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="431">
+                  <a:s>case
+    </a:s>
+                  <a:s r="432">
+                     <a:s>when </a:s>
+                     <a:s r="433">
+                        <a:s r="435">
+                           <a:s r="434">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="435">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="436">
+                           <a:s>'Polio71.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="442">
+                        <a:s r="443">
+                           <a:s>&quot;Client is not due for IPV vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="444">
+                           <a:s r="445">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="446">
+                              <a:s>'Shold not vaccinate client with first IPV dose as client\'s age is less than 6 weeks. 
+Check for any other vaccines due and inform the caregiver of when to come back for the first IPV dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="450">
+                     <a:s>when </a:s>
+                     <a:s r="451">
+                        <a:s r="453">
+                           <a:s r="452">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="453">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="454">
+                           <a:s>'Polio72.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="460">
+                        <a:s r="461">
+                           <a:s>&quot;Client is due for IPV vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="462">
+                           <a:s r="463">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="464">
+                              <a:s>'Should vaccinate client with first IPV dose as client is within appropriate age range. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="468">
+                     <a:s>when </a:s>
+                     <a:s r="469">
+                        <a:s r="471">
+                           <a:s r="470">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="471">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="472">
+                           <a:s>'Polio73.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="478">
+                        <a:s r="479">
+                           <a:s>&quot;Client is not due for IPV vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="480">
+                           <a:s r="481">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="482">
+                              <a:s>'Should not vaccinate client with second IPV dose as the latest IPV dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver when to come back for the second dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="486">
+                     <a:s>when </a:s>
+                     <a:s r="487">
+                        <a:s r="489">
+                           <a:s r="488">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="489">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="490">
+                           <a:s>'Polio74.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="496">
+                        <a:s r="497">
+                           <a:s>&quot;Client is due for IPV vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="498">
+                           <a:s r="499">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="500">
+                              <a:s>'Should vaccinate client with second IPV dose as the latest IPV dose was administered more than 4 weeks ago.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="504">
+                     <a:s>when </a:s>
+                     <a:s r="505">
+                        <a:s r="507">
+                           <a:s r="506">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="507">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="508">
+                           <a:s>'Polio75.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="514">
+                        <a:s r="515">
+                           <a:s>&quot;Client is not due for IPV vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="516">
+                           <a:s r="517">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="518">
+                              <a:s>'Should not vaccinate client with third IPV dose as the latest IPV dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver when to come back for the third dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="522">
+                     <a:s>when </a:s>
+                     <a:s r="523">
+                        <a:s r="525">
+                           <a:s r="524">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="525">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="526">
+                           <a:s>'Polio76.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="532">
+                        <a:s r="533">
+                           <a:s>&quot;Client is due for IPV vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="534">
+                           <a:s r="535">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="536">
+                              <a:s>'Should vaccinate client with third IPV dose as the latest poliovirus dose was administered more than 4 weeks ago. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="540">
+                     <a:s>when </a:s>
+                     <a:s r="541">
+                        <a:s r="543">
+                           <a:s r="542">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="543">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="544">
+                           <a:s>'Polio77.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="550">
+                        <a:s r="551">
+                           <a:s>&quot;Polio immunization schedule is complete Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="552">
+                           <a:s r="553">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="554">
+                              <a:s>'Polio immunization schedule is complete as client\'s age was more than 6 weeks when the primary series was started. Three poliovirus primary series doses were administered.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="558">
+                     <a:s>when </a:s>
+                     <a:s r="559">
+                        <a:s r="561">
+                           <a:s r="560">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="561">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="562">
+                           <a:s>'Polio78.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="568">
+                        <a:s r="569">
+                           <a:s>&quot;Primary series is complete. Client is not due for IPV booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="570">
+                           <a:s r="571">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="572">
+                              <a:s>'Should not vaccinate client with IPV booster dose as the latest poliovirus dose was administered less than 6 months ago.
+Check for any other vaccines due and inform the caregiver when to come back for the booster dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="576">
+                     <a:s>when </a:s>
+                     <a:s r="577">
+                        <a:s r="579">
+                           <a:s r="578">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="579">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="580">
+                           <a:s>'Polio79.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="586">
+                        <a:s r="587">
+                           <a:s>&quot;Primary series is complete. Client is due for IPV booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="588">
+                           <a:s r="589">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="590">
+                              <a:s>'Should vaccinate client with IPV booster dose as three poliovirus primary series doses were administered, client\'s age was 6 weeks when the primary series was started and the latest poliovirus dose was administered more than 6 months ago. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="594">
+                     <a:s>when </a:s>
+                     <a:s r="595">
+                        <a:s r="597">
+                           <a:s r="596">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="597">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="598">
+                           <a:s>'Polio80.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="604">
+                        <a:s r="605">
+                           <a:s>&quot;Polio immunization schedule is complete Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="606">
+                           <a:s r="607">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="608">
+                              <a:s>'Polio immunization schedule is complete. Three poliovirus primary series doses and a booster dose were administered.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="612">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="431" locator="223:3-243:5" xsi:type="Case">
+            <caseItem localId="432" locator="224:5-224:294">
+               <when localId="433" locator="224:10-224:33" xsi:type="Equal">
+                  <signature localId="440" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="441" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="438" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="439" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="435" locator="224:10-224:19" path="id" xsi:type="Property">
+                        <source localId="434" locator="224:10-224:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="436" locator="224:23-224:33" valueType="t:String" value="Polio71.2" xsi:type="Literal"/>
+               </when>
+               <then localId="614" xsi:type="As">
+                  <operand localId="442" locator="224:40-224:294" xsi:type="And">
+                     <operand localId="443" locator="224:40-224:85" name="Client is not due for IPV vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="444" locator="224:91-224:294" xsi:type="Equal">
+                        <signature localId="448" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="449" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="445" locator="224:91-224:100" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="446" locator="224:104-224:294" valueType="t:String" value="Shold not vaccinate client with first IPV dose as client's age is less than 6 weeks. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the first IPV dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="615" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="616" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="617" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="450" locator="226:5-226:217">
+               <when localId="451" locator="226:10-226:33" xsi:type="Equal">
+                  <signature localId="458" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="459" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="456" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="457" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="453" locator="226:10-226:19" path="id" xsi:type="Property">
+                        <source localId="452" locator="226:10-226:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="454" locator="226:23-226:33" valueType="t:String" value="Polio72.2" xsi:type="Literal"/>
+               </when>
+               <then localId="618" xsi:type="As">
+                  <operand localId="460" locator="226:40-226:217" xsi:type="And">
+                     <operand localId="461" locator="226:40-226:81" name="Client is due for IPV vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="462" locator="226:87-226:217" xsi:type="Equal">
+                        <signature localId="466" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="467" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="463" locator="226:87-226:96" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="464" locator="226:100-226:217" valueType="t:String" value="Should vaccinate client with first IPV dose as client is within appropriate age range. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="619" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="620" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="621" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="468" locator="228:5-228:314">
+               <when localId="469" locator="228:10-228:33" xsi:type="Equal">
+                  <signature localId="476" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="477" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="474" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="475" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="471" locator="228:10-228:19" path="id" xsi:type="Property">
+                        <source localId="470" locator="228:10-228:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="472" locator="228:23-228:33" valueType="t:String" value="Polio73.2" xsi:type="Literal"/>
+               </when>
+               <then localId="622" xsi:type="As">
+                  <operand localId="478" locator="228:40-228:314" xsi:type="And">
+                     <operand localId="479" locator="228:40-228:85" name="Client is not due for IPV vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="480" locator="228:91-228:314" xsi:type="Equal">
+                        <signature localId="484" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="485" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="481" locator="228:91-228:100" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="482" locator="228:104-228:314" valueType="t:String" value="Should not vaccinate client with second IPV dose as the latest IPV dose was administered less than 4 weeks ago. &#xa;Check for any other vaccines due and inform the caregiver when to come back for the second dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="623" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="624" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="625" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="486" locator="230:5-230:237">
+               <when localId="487" locator="230:10-230:33" xsi:type="Equal">
+                  <signature localId="494" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="495" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="492" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="493" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="489" locator="230:10-230:19" path="id" xsi:type="Property">
+                        <source localId="488" locator="230:10-230:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="490" locator="230:23-230:33" valueType="t:String" value="Polio74.2" xsi:type="Literal"/>
+               </when>
+               <then localId="626" xsi:type="As">
+                  <operand localId="496" locator="230:40-230:237" xsi:type="And">
+                     <operand localId="497" locator="230:40-230:81" name="Client is due for IPV vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="498" locator="230:87-230:237" xsi:type="Equal">
+                        <signature localId="502" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="503" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="499" locator="230:87-230:96" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="500" locator="230:100-230:237" valueType="t:String" value="Should vaccinate client with second IPV dose as the latest IPV dose was administered more than 4 weeks ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="627" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="628" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="629" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="504" locator="232:5-232:312">
+               <when localId="505" locator="232:10-232:33" xsi:type="Equal">
+                  <signature localId="512" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="513" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="510" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="511" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="507" locator="232:10-232:19" path="id" xsi:type="Property">
+                        <source localId="506" locator="232:10-232:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="508" locator="232:23-232:33" valueType="t:String" value="Polio75.2" xsi:type="Literal"/>
+               </when>
+               <then localId="630" xsi:type="As">
+                  <operand localId="514" locator="232:40-232:312" xsi:type="And">
+                     <operand localId="515" locator="232:40-232:85" name="Client is not due for IPV vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="516" locator="232:91-232:312" xsi:type="Equal">
+                        <signature localId="520" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="521" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="517" locator="232:91-232:100" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="518" locator="232:104-232:312" valueType="t:String" value="Should not vaccinate client with third IPV dose as the latest IPV dose was administered less than 4 weeks ago. &#xa;Check for any other vaccines due and inform the caregiver when to come back for the third dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="631" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="632" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="633" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="522" locator="234:5-234:244">
+               <when localId="523" locator="234:10-234:33" xsi:type="Equal">
+                  <signature localId="530" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="531" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="528" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="529" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="525" locator="234:10-234:19" path="id" xsi:type="Property">
+                        <source localId="524" locator="234:10-234:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="526" locator="234:23-234:33" valueType="t:String" value="Polio76.2" xsi:type="Literal"/>
+               </when>
+               <then localId="634" xsi:type="As">
+                  <operand localId="532" locator="234:40-234:244" xsi:type="And">
+                     <operand localId="533" locator="234:40-234:81" name="Client is due for IPV vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="534" locator="234:87-234:244" xsi:type="Equal">
+                        <signature localId="538" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="539" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="535" locator="234:87-234:96" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="536" locator="234:100-234:244" valueType="t:String" value="Should vaccinate client with third IPV dose as the latest poliovirus dose was administered more than 4 weeks ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="635" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="636" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="637" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="540" locator="236:5-236:279">
+               <when localId="541" locator="236:10-236:33" xsi:type="Equal">
+                  <signature localId="548" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="549" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="546" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="547" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="543" locator="236:10-236:19" path="id" xsi:type="Property">
+                        <source localId="542" locator="236:10-236:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="544" locator="236:23-236:33" valueType="t:String" value="Polio77.2" xsi:type="Literal"/>
+               </when>
+               <then localId="638" xsi:type="As">
+                  <operand localId="550" locator="236:40-236:279" xsi:type="And">
+                     <operand localId="551" locator="236:40-236:87" name="Polio immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="552" locator="236:93-236:279" xsi:type="Equal">
+                        <signature localId="556" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="557" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="553" locator="236:93-236:102" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="554" locator="236:106-236:279" valueType="t:String" value="Polio immunization schedule is complete as client's age was more than 6 weeks when the primary series was started. Three poliovirus primary series doses were administered." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="639" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="640" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="641" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="558" locator="237:5-237:345">
+               <when localId="559" locator="237:10-237:33" xsi:type="Equal">
+                  <signature localId="566" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="567" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="564" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="565" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="561" locator="237:10-237:19" path="id" xsi:type="Property">
+                        <source localId="560" locator="237:10-237:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="562" locator="237:23-237:33" valueType="t:String" value="Polio78.3" xsi:type="Literal"/>
+               </when>
+               <then localId="642" xsi:type="As">
+                  <operand localId="568" locator="237:40-237:345" xsi:type="And">
+                     <operand localId="569" locator="237:40-237:107" name="Primary series is complete. Client is not due for IPV booster dose" xsi:type="ExpressionRef"/>
+                     <operand localId="570" locator="237:113-237:345" xsi:type="Equal">
+                        <signature localId="574" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="575" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="571" locator="237:113-237:122" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="572" locator="237:126-237:345" valueType="t:String" value="Should not vaccinate client with IPV booster dose as the latest poliovirus dose was administered less than 6 months ago.&#xa;Check for any other vaccines due and inform the caregiver when to come back for the booster dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="643" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="644" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="645" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="576" locator="239:5-239:392">
+               <when localId="577" locator="239:10-239:33" xsi:type="Equal">
+                  <signature localId="584" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="585" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="582" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="583" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="579" locator="239:10-239:19" path="id" xsi:type="Property">
+                        <source localId="578" locator="239:10-239:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="580" locator="239:23-239:33" valueType="t:String" value="Polio79.4" xsi:type="Literal"/>
+               </when>
+               <then localId="646" xsi:type="As">
+                  <operand localId="586" locator="239:40-239:392" xsi:type="And">
+                     <operand localId="587" locator="239:40-239:103" name="Primary series is complete. Client is due for IPV booster dose" xsi:type="ExpressionRef"/>
+                     <operand localId="588" locator="239:109-239:392" xsi:type="Equal">
+                        <signature localId="592" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="593" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="589" locator="239:109-239:118" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="590" locator="239:122-239:392" valueType="t:String" value="Should vaccinate client with IPV booster dose as three poliovirus primary series doses were administered, client's age was 6 weeks when the primary series was started and the latest poliovirus dose was administered more than 6 months ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="647" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="648" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="649" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="594" locator="241:5-241:223">
+               <when localId="595" locator="241:10-241:33" xsi:type="Equal">
+                  <signature localId="602" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="603" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="600" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="601" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="597" locator="241:10-241:19" path="id" xsi:type="Property">
+                        <source localId="596" locator="241:10-241:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="598" locator="241:23-241:33" valueType="t:String" value="Polio80.2" xsi:type="Literal"/>
+               </when>
+               <then localId="650" xsi:type="As">
+                  <operand localId="604" locator="241:40-241:223" xsi:type="And">
+                     <operand localId="605" locator="241:40-241:87" name="Polio immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="606" locator="241:93-241:223" xsi:type="Equal">
+                        <signature localId="610" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="611" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="607" locator="241:93-241:102" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="608" locator="241:106-241:223" valueType="t:String" value="Polio immunization schedule is complete. Three poliovirus primary series doses and a booster dose were administered." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="651" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="652" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="653" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="654" xsi:type="As">
+               <operand localId="612" locator="242:10-242:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="655" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="656" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="657" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

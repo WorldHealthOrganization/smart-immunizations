@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureMap xmlns="http://hl7.org/fhir">
+  <id value="IMMZ.C4.QRToLM"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: StructureMap IMMZ.C4.QRToLM</b></p><a name="IMMZ.C4.QRToLM"> </a><a name="hcIMMZ.C4.QRToLM"> </a><pre class="fml">
+<b>map</b><span style="color: navy"> &quot;</span>http://smart.who.int/immunizations/StructureMap/IMMZ.C4.QRToLM<span style="color: navy">&quot; = &quot;</span>IMMZ.C4.QRToLM<span style="color: navy">&quot;
+
+</span><span style="color: navy">// </span><span style="color: green">Immunization Client Registry - Transform QuestionnaireResponse to Logical Model</span>
+
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/questionnaireresponse.html" title="QuestionnaireResponse">http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse</a><span style="color: navy">&quot; </span><b>alias </b>QResp <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="StructureDefinition-IMMZC4.html" title="IMMZ.C4.Create client record">http://smart.who.int/immunizations/StructureDefinition/IMMZC4</a><span style="color: navy">&quot; </span><b>alias </b>immz <b>as </b><b>target</b>
+
+<b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-IMMZ.Helpers.html" title="IMMZ.Helpers">http://smart.who.int/immunizations/StructureMap/IMMZ.Helpers</a><span style="color: navy">&quot;
+</span>
+<b>group </b>QRespToIMMZC<span style="color: navy">(</span><b>source</b> <span style="color: maroon">qr</span><span style="color: navy"> : </span>QResp, <b>target</b> <span style="color: maroon">immz</span><span style="color: navy"> : </span>IMMZC<span style="color: navy">)</span><span style="color: navy"> {
+</span>  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>linkId = 'uniqueIdentifier'<span style="color: navy"><b> -&gt; </b></span>immz.uniqueIdentifier<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;uniqueIdentifier&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>linkId = 'name'<span style="color: navy"><b> -&gt; </b></span>immz.name<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;name&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>linkId = 'firstName'<span style="color: navy"><b> -&gt; </b></span>immz.firstName<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;firstName&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>linkId = 'familyName'<span style="color: navy"><b> -&gt; </b></span>immz.familyName<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;familyName&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>linkId = 'sex'<span style="color: navy"><b> -&gt; </b></span>immz.sex<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCode<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;sex&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>linkId = 'dateOfBirth'<span style="color: navy"><b> -&gt; </b></span>immz.dateOfBirth<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;dateOfBirth&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>linkId = 'age'<span style="color: navy"><b> -&gt; </b></span>immz.age<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;age&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">caregiver</span><b> where </b>caregiver.linkId = 'caregiversMultiple'<span style="color: navy"><b> -&gt; </b></span>immz.caregiversMultiple<b> as </b><span style="color: maroon">caretgt</span><b> then</b><span style="color: navy"> {
+</span>    caregiver.item<b> as </b><span style="color: maroon">item</span><b> where </b>linkId = 'caregiversFullName'<span style="color: navy"><b> -&gt; </b></span>caretgt.caregiversFullName<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;caregiversFullName&quot;</i><span style="color: navy">;</span>
+    caregiver.item<b> as </b><span style="color: maroon">item</span><b> where </b>linkId = 'caregiversFirstName'<span style="color: navy"><b> -&gt; </b></span>caretgt.caregiversFirstName<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;caregiversFirstName&quot;</i><span style="color: navy">;</span>
+    caregiver.item<b> as </b><span style="color: maroon">item</span><b> where </b>linkId = 'caregiversFamilyName'<span style="color: navy"><b> -&gt; </b></span>caretgt.caregiversFamilyName<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;caregiversFamilyName&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;caregiversMultiple&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>linkId = 'contactPhoneNumber'<span style="color: navy"><b> -&gt; </b></span>immz.contactPhoneNumber<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;contactPhoneNumber&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>linkId = 'address'<span style="color: navy"><b> -&gt; </b></span>immz.address<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToValue<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;address&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span></pre></div>
+  </text>
+  <url value="http://smart.who.int/immunizations/StructureMap/IMMZ.C4.QRToLM"/>
+  <version value="0.2.0"/>
+  <name value="IMMZ.C4.QRToLM"/>
+  <status value="draft"/>
+  <date value="2025-07-23T20:56:07+00:00"/>
+  <publisher value="WHO"/>
+  <contact>
+    <name value="WHO"/>
+    <telecom>
+      <system value="url"/>
+      <value value="http://who.int"/>
+    </telecom>
+  </contact>
+  <description value="Immunization Client Registry - Transform QuestionnaireResponse to Logical Model"/>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
+    <mode value="source"/>
+    <alias value="QResp"/>
+  </structure>
+  <structure>
+    <url value="http://smart.who.int/immunizations/StructureDefinition/IMMZC4"/>
+    <mode value="target"/>
+    <alias value="immz"/>
+  </structure>
+  <import value="http://smart.who.int/immunizations/StructureMap/IMMZ.Helpers"/>
+  <group>
+    <name value="QRespToIMMZC"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="qr"/>
+      <type value="QResp"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immz"/>
+      <type value="IMMZC"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="uniqueIdentifier"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="linkId = 'uniqueIdentifier'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="uniqueIdentifier"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="name"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="linkId = 'name'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="name"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="firstName"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="linkId = 'firstName'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="firstName"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="familyName"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="linkId = 'familyName'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="familyName"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="sex"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="linkId = 'sex'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="sex"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCode"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="dateOfBirth"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="linkId = 'dateOfBirth'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="dateOfBirth"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="age"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="linkId = 'age'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="age"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="caregiversMultiple"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="caregiver"/>
+        <condition value="caregiver.linkId = 'caregiversMultiple'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="caregiversMultiple"/>
+        <variable value="caretgt"/>
+      </target>
+      <rule>
+        <name value="caregiversFullName"/>
+        <source>
+          <context value="caregiver"/>
+          <element value="item"/>
+          <variable value="item"/>
+          <condition value="linkId = 'caregiversFullName'"/>
+        </source>
+        <target>
+          <context value="caretgt"/>
+          <contextType value="variable"/>
+          <element value="caregiversFullName"/>
+          <variable value="field"/>
+        </target>
+        <dependent>
+          <name value="ItemToValue"/>
+          <variable value="item"/>
+          <variable value="field"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="caregiversFirstName"/>
+        <source>
+          <context value="caregiver"/>
+          <element value="item"/>
+          <variable value="item"/>
+          <condition value="linkId = 'caregiversFirstName'"/>
+        </source>
+        <target>
+          <context value="caretgt"/>
+          <contextType value="variable"/>
+          <element value="caregiversFirstName"/>
+          <variable value="field"/>
+        </target>
+        <dependent>
+          <name value="ItemToValue"/>
+          <variable value="item"/>
+          <variable value="field"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="caregiversFamilyName"/>
+        <source>
+          <context value="caregiver"/>
+          <element value="item"/>
+          <variable value="item"/>
+          <condition value="linkId = 'caregiversFamilyName'"/>
+        </source>
+        <target>
+          <context value="caretgt"/>
+          <contextType value="variable"/>
+          <element value="caregiversFamilyName"/>
+          <variable value="field"/>
+        </target>
+        <dependent>
+          <name value="ItemToValue"/>
+          <variable value="item"/>
+          <variable value="field"/>
+        </dependent>
+      </rule>
+    </rule>
+    <rule>
+      <name value="contactPhoneNumber"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="linkId = 'contactPhoneNumber'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="contactPhoneNumber"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="address"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="linkId = 'address'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="address"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToValue"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+  </group>
+</StructureMap>

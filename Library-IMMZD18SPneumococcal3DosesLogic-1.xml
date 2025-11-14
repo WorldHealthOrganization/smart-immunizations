@@ -1,0 +1,2547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="604">
+         <a:s>/*
+ * Library: IMMZD18SPneumococcal3DosesLogic (IMMZ.D18.S.Pneumococcal.3 doses schedule)
+ * Schedule Table: 3 primary doses (3p+0) schedule
+ */
+library IMMZD18SPneumococcal3DosesLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD18SPneumococcal3DosesLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="7:1-7:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="8:1-8:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="10:1-10:27" localIdentifier="WC" path="http://smart.who.int/immunizations/WHOCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>WHOCommon</a:s>
+               </a:s>
+               <a:s> called WC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="212" locator="12:1-12:32" localIdentifier="Common" path="http://smart.who.int/immunizations/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called Common</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="214" locator="13:1-13:36" localIdentifier="Concepts" path="http://smart.who.int/immunizations/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="214">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called Concepts</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="216" locator="15:1-15:39" localIdentifier="IE" path="http://smart.who.int/immunizations/IMMZEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="216">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZEncounterElements</a:s>
+               </a:s>
+               <a:s> called IE</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="218" locator="16:1-16:62" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTPneumococcalEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="218">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTPneumococcalEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="220" locator="18:1-18:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="220">
+               <a:s>parameter Today </a:s>
+               <a:s r="224">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="223">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="223" locator="18:30-18:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="224" locator="18:17-18:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="229" locator="21:1-21:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="227" locator="21:1-21:15" name="Patient" context="Patient">
+         <expression localId="228" xsi:type="SingletonFrom">
+            <operand localId="226" locator="21:1-21:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="232" locator="31:1-33:72" name="Pneumococcal dose 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal dose 1"/>
+            <a:t name="description" value="Provision of the pneumococcal dose 1"/>
+            <a:t name="trigger" value="Child's birth"/>
+            <a:t name="pseudo"/>
+            <a:t name="triggerDate" value="&quot;Date of birth&quot;"/>
+            <a:s r="232">
+               <a:s>/*
+@output: Pneumococcal dose 1
+@description: Provision of the pneumococcal dose 1
+@trigger: Child's birth
+@pseudo: 
+@triggerDate: &quot;Date of birth&quot;
+*/
+define &quot;Pneumococcal dose 1&quot;:
+  </a:s>
+               <a:s r="233">
+                  <a:s r="235">
+                     <a:s r="234">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="235">
+                        <a:s>&quot;The client's age is less than or equal to 5 years&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="237">
+                     <a:s r="236">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="237">
+                        <a:s>&quot;No pneumococcal primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="233" locator="32:3-33:72" xsi:type="And">
+            <operand localId="235" locator="32:3-32:63" name="The client's age is less than or equal to 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="237" locator="33:7-33:72" name="No pneumococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="254" locator="51:1-53:11" name="Pneumococcal dose 1 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal dose 1 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 6 weeks"/>
+            <a:s r="254">
+               <a:s>/*
+@dynamicValue: Pneumococcal dose 1 Due Date
+@pseudocode: &quot;Date of birth&quot; + 6 weeks
+*/
+define &quot;Pneumococcal dose 1 Due Date&quot;:
+  </a:s>
+               <a:s r="255">
+                  <a:s>if </a:s>
+                  <a:s r="256">
+                     <a:s>&quot;Pneumococcal dose 1&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="257">
+                     <a:s r="259">
+                        <a:s r="258">
+                           <a:s>Patient</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="259">
+                           <a:s>birthDate</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="260">
+                        <a:s>6 weeks</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="264">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="255" locator="52:3-53:11" xsi:type="If">
+            <condition localId="256" locator="52:6-52:26" name="Pneumococcal dose 1" xsi:type="ExpressionRef"/>
+            <then localId="257" locator="52:33-52:59" xsi:type="Add">
+               <signature localId="262" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="263" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="261" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="259" locator="52:33-52:49" path="birthDate" xsi:type="Property">
+                     <source localId="258" locator="52:33-52:39" name="Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="260" locator="52:53-52:59" value="6" unit="weeks" xsi:type="Quantity"/>
+            </then>
+            <else localId="265" asType="t:Date" xsi:type="As">
+               <operand localId="264" locator="53:8-53:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="240" locator="40:1-44:9" name="Pneumococcal dose 1 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal dose 1 Create"/>
+            <a:t name="create" value="Pneumococcal dose 1 should be provided if the client is older than 6 weeks"/>
+            <a:s r="240">
+               <a:s>/*
+@output: Pneumococcal dose 1 Create
+@create: Pneumococcal dose 1 should be provided if the client is older than 6 weeks
+*/
+define &quot;Pneumococcal dose 1 Create&quot;:
+  </a:s>
+               <a:s r="241">
+                  <a:s>if </a:s>
+                  <a:s r="242">
+                     <a:s>&quot;Pneumococcal dose 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  then </a:s>
+                  <a:s r="274">
+                     <a:s r="251">
+                        <a:s r="245">
+                           <a:s>'Pneumococcal dose 1 should be provided if the client is older than 6 weeks'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="247">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="270">
+                        <a:s>ToString(</a:s>
+                        <a:s r="266">
+                           <a:s>&quot;Pneumococcal dose 1 Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="275">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="241" locator="41:3-44:9" xsi:type="If">
+            <condition localId="242" locator="41:6-41:26" name="Pneumococcal dose 1" xsi:type="ExpressionRef"/>
+            <then localId="274" locator="42:8-43:54" xsi:type="Concatenate">
+               <operand localId="251" locator="42:8-42:99" xsi:type="Concatenate">
+                  <operand localId="245" locator="42:8-42:83" valueType="t:String" value="Pneumococcal dose 1 should be provided if the client is older than 6 weeks" xsi:type="Literal"/>
+                  <operand localId="247" locator="42:87-42:99" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="270" locator="43:15-43:54" xsi:type="ToString">
+                  <signature localId="271" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="266" locator="43:24-43:53" name="Pneumococcal dose 1 Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="275" locator="44:8-44:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="279" locator="60:1-61:6" name="Pneumococcal dose 1 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal dose 1 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years."/>
+            <a:s r="279">
+               <a:s r="280">/*
+@dynamicValue: Pneumococcal dose 1 Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years.
+*/
+define &quot;Pneumococcal dose 1 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="280" locator="61:3-61:6" xsi:type="Null"/>
+      </def>
+      <def localId="283" locator="68:1-69:6" name="Pneumococcal dose 1 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal dose 1 Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended expiration date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years."/>
+            <a:s r="283">
+               <a:s r="284">/*
+@dynamicValue: Pneumococcal dose 1 Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended expiration date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years.
+*/
+define &quot;Pneumococcal dose 1 Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="284" locator="69:3-69:6" xsi:type="Null"/>
+      </def>
+      <def localId="287" locator="76:1-77:67" name="First pneumococcal dose from the primary series was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="First pneumococcal dose from the primary series was administered"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1"/>
+            <a:s r="287">
+               <a:s>/*
+@complete: First pneumococcal dose from the primary series was administered
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1
+*/
+define &quot;First pneumococcal dose from the primary series was administered&quot;:
+  </a:s>
+               <a:s r="289">
+                  <a:s r="288">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="289">
+                     <a:s>&quot;One pneumococcal primary series dose was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="289" locator="77:3-77:67" name="One pneumococcal primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="304" locator="135:1-136:69" name="Second pneumococcal dose from the primary series was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Second pneumococcal dose from the primary series was administered"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2"/>
+            <a:s r="304">
+               <a:s>/*
+@complete: Second pneumococcal dose from the primary series was administered
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2
+*/
+define &quot;Second pneumococcal dose from the primary series was administered&quot;:
+  </a:s>
+               <a:s r="306">
+                  <a:s r="305">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="306">
+                     <a:s>&quot;Two pneumococcal primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="306" locator="136:3-136:69" name="Two pneumococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="292" locator="88:1-92:77" name="Pneumococcal dose 2, first within 24m" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal dose 2, first within 24m"/>
+            <a:t name="description" value="Provision of the pneumococcal dose 2"/>
+            <a:t name="trigger" value="First pneumococcal dose from the primary series was administered to client, who is less than or equal to 5 years of age, within 24 months post birth"/>
+            <a:t name="pseudo" value="&quot;Date of birth&quot; ≤ 5 years AND Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1 AND &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;) − &quot;Date of birth&quot; &lt; 24 months"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;)"/>
+            <a:s r="292">
+               <a:s>/*
+@output: Pneumococcal dose 2, first within 24m
+@description: Provision of the pneumococcal dose 2
+@trigger: First pneumococcal dose from the primary series was administered to client, who is less than or equal to 5 years of age, within 24 months post birth
+@pseudo: Today's date − &quot;Date of birth&quot; ≤ 5 years AND Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1 AND &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;) − &quot;Date of birth&quot; &lt; 24 months
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;)
+*/
+define &quot;Pneumococcal dose 2, first within 24m&quot;:
+  </a:s>
+               <a:s r="293">
+                  <a:s r="294">
+                     <a:s r="295">
+                        <a:s r="296">
+                           <a:s>&quot;First pneumococcal dose from the primary series was administered&quot;</a:s>
+                        </a:s>
+                        <a:s>
+  and </a:s>
+                        <a:s r="298">
+                           <a:s r="297">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="298">
+                              <a:s>&quot;The client's age is less than or equal to 5 years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  and </a:s>
+                     <a:s r="300">
+                        <a:s r="299">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="300">
+                           <a:s>&quot;The first pneumococcal dose was administered within 24 months post birth&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="301">
+                     <a:s>not </a:s>
+                     <a:s r="307">
+                        <a:s>&quot;Second pneumococcal dose from the primary series was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="293" locator="89:3-92:77" xsi:type="And">
+            <operand localId="294" locator="89:3-91:90" xsi:type="And">
+               <operand localId="295" locator="89:3-90:67" xsi:type="And">
+                  <operand localId="296" locator="89:3-89:68" name="First pneumococcal dose from the primary series was administered" xsi:type="ExpressionRef"/>
+                  <operand localId="298" locator="90:7-90:67" name="The client's age is less than or equal to 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="300" locator="91:7-91:90" name="The first pneumococcal dose was administered within 24 months post birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="301" locator="92:7-92:77" xsi:type="Not">
+               <operand localId="307" locator="92:11-92:77" name="Second pneumococcal dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="324" locator="110:1-112:11" name="Pneumococcal dose 2, first within 24m Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal dose 2, first within 24m Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;) + 4 weeks"/>
+            <a:s r="324">
+               <a:s>/*
+@dynamicValue: Pneumococcal dose 2, first within 24m Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;) + 4 weeks
+*/
+define &quot;Pneumococcal dose 2, first within 24m Due Date&quot;:
+  </a:s>
+               <a:s r="325">
+                  <a:s>if </a:s>
+                  <a:s r="326">
+                     <a:s>&quot;Pneumococcal dose 2, first within 24m&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="327">
+                     <a:s r="329">
+                        <a:s r="328">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="329">
+                           <a:s>&quot;Date of Latest Pneumococcal Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="330">
+                        <a:s>4 weeks</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="333">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="325" locator="111:3-112:11" xsi:type="If">
+            <condition localId="326" locator="111:6-111:44" name="Pneumococcal dose 2, first within 24m" xsi:type="ExpressionRef"/>
+            <then localId="327" locator="111:51-111:104" xsi:type="Add">
+               <signature localId="331" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="332" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="329" locator="111:51-111:94" name="Date of Latest Pneumococcal Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="330" locator="111:98-111:104" value="4" unit="weeks" xsi:type="Quantity"/>
+            </then>
+            <else localId="334" asType="t:Date" xsi:type="As">
+               <operand localId="333" locator="112:8-112:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="310" locator="99:1-103:9" name="Pneumococcal dose 2, first within 24m Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal dose 2, first within 24m Create"/>
+            <a:t name="create" value="Pneumococcal dose 2 should be provided if the client was given the previous dose more than 4 weeks ago"/>
+            <a:s r="310">
+               <a:s>/*
+@output: Pneumococcal dose 2, first within 24m Create
+@create: Pneumococcal dose 2 should be provided if the client was given the previous dose more than 4 weeks ago
+*/
+define &quot;Pneumococcal dose 2, first within 24m Create&quot;:
+  </a:s>
+               <a:s r="311">
+                  <a:s>if </a:s>
+                  <a:s r="312">
+                     <a:s>&quot;Pneumococcal dose 2, first within 24m&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  then </a:s>
+                  <a:s r="343">
+                     <a:s r="321">
+                        <a:s r="315">
+                           <a:s>'Pneumococcal dose 2 should be provided if the client was given the previous dose more than 4 weeks ago'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="317">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="339">
+                        <a:s>ToString(</a:s>
+                        <a:s r="335">
+                           <a:s>&quot;Pneumococcal dose 2, first within 24m Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="344">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="311" locator="100:3-103:9" xsi:type="If">
+            <condition localId="312" locator="100:6-100:44" name="Pneumococcal dose 2, first within 24m" xsi:type="ExpressionRef"/>
+            <then localId="343" locator="101:8-102:72" xsi:type="Concatenate">
+               <operand localId="321" locator="101:8-101:127" xsi:type="Concatenate">
+                  <operand localId="315" locator="101:8-101:111" valueType="t:String" value="Pneumococcal dose 2 should be provided if the client was given the previous dose more than 4 weeks ago" xsi:type="Literal"/>
+                  <operand localId="317" locator="101:115-101:127" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="339" locator="102:15-102:72" xsi:type="ToString">
+                  <signature localId="340" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="335" locator="102:24-102:71" name="Pneumococcal dose 2, first within 24m Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="344" locator="103:8-103:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="348" locator="119:1-120:6" name="Pneumococcal dose 2, first within 24m Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal dose 2, first within 24m Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years."/>
+            <a:s r="348">
+               <a:s r="349">/*
+@dynamicValue: Pneumococcal dose 2, first within 24m Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years.
+*/
+define &quot;Pneumococcal dose 2, first within 24m Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="349" locator="120:3-120:6" xsi:type="Null"/>
+      </def>
+      <def localId="352" locator="127:1-128:6" name="Pneumococcal dose 2, first within 24m Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal dose 2, first within 24m Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended expiration date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years."/>
+            <a:s r="352">
+               <a:s r="353">/*
+@dynamicValue: Pneumococcal dose 2, first within 24m Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended expiration date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years.
+*/
+define &quot;Pneumococcal dose 2, first within 24m Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="353" locator="128:3-128:6" xsi:type="Null"/>
+      </def>
+      <def localId="356" locator="147:1-152:77" name="Pneumococcal dose 2, first after 24m" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal dose 2, first after 24m"/>
+            <a:t name="description" value="Provision of the pneumococcal dose 2"/>
+            <a:t name="trigger" value="First pneumococcal dose from the primary series was administered to client, who is less than or equal to 5 years of age. Pneumococcal dose was not administered within 24 months post birth. Client is at high risk for pneumococcal infection."/>
+            <a:t name="pseudo" value="&quot;Date of birth&quot; ≤ 5 years AND Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1 AND &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;) − &quot;Date of birth&quot; ≥ 24 months AND &quot;At high risk for pneumococcal infection&quot; = TRUE"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;)"/>
+            <a:s r="356">
+               <a:s>/*
+@output: Pneumococcal dose 2, first after 24m
+@description: Provision of the pneumococcal dose 2
+@trigger: First pneumococcal dose from the primary series was administered to client, who is less than or equal to 5 years of age. Pneumococcal dose was not administered within 24 months post birth. Client is at high risk for pneumococcal infection.
+@pseudo: Today's date − &quot;Date of birth&quot; ≤ 5 years AND Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1 AND &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;) − &quot;Date of birth&quot; ≥ 24 months AND &quot;At high risk for pneumococcal infection&quot; = TRUE
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;)
+*/
+define &quot;Pneumococcal dose 2, first after 24m&quot;:
+  </a:s>
+               <a:s r="357">
+                  <a:s r="358">
+                     <a:s r="359">
+                        <a:s r="360">
+                           <a:s r="361">
+                              <a:s>&quot;First pneumococcal dose from the primary series was administered&quot;</a:s>
+                           </a:s>
+                           <a:s>
+  and </a:s>
+                           <a:s r="363">
+                              <a:s r="362">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="363">
+                                 <a:s>&quot;The client's age is less than or equal to 5 years&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+  and </a:s>
+                        <a:s r="365">
+                           <a:s r="364">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="365">
+                              <a:s>&quot;The first pneumococcal dose was administered after 24 months post birth&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  and </a:s>
+                     <a:s r="367">
+                        <a:s r="366">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="367">
+                           <a:s>&quot;Client is at high risk for pneumococcal infection&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="368">
+                     <a:s>not </a:s>
+                     <a:s r="369">
+                        <a:s>&quot;Second pneumococcal dose from the primary series was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="357" locator="148:3-152:77" xsi:type="And">
+            <operand localId="358" locator="148:3-151:67" xsi:type="And">
+               <operand localId="359" locator="148:3-150:89" xsi:type="And">
+                  <operand localId="360" locator="148:3-149:67" xsi:type="And">
+                     <operand localId="361" locator="148:3-148:68" name="First pneumococcal dose from the primary series was administered" xsi:type="ExpressionRef"/>
+                     <operand localId="363" locator="149:7-149:67" name="The client's age is less than or equal to 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="365" locator="150:7-150:89" name="The first pneumococcal dose was administered after 24 months post birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="367" locator="151:7-151:67" name="Client is at high risk for pneumococcal infection" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="368" locator="152:7-152:77" xsi:type="Not">
+               <operand localId="369" locator="152:11-152:77" name="Second pneumococcal dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="386" locator="170:1-172:11" name="Pneumococcal dose 2, first after 24m Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal dose 2, first after 24m Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;) + 8 weeks"/>
+            <a:s r="386">
+               <a:s>/*
+@dynamicValue: Pneumococcal dose 2, first after 24m Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;) + 8 weeks
+*/
+define &quot;Pneumococcal dose 2, first after 24m Due Date&quot;:
+  </a:s>
+               <a:s r="387">
+                  <a:s>if </a:s>
+                  <a:s r="388">
+                     <a:s>&quot;Pneumococcal dose 2, first after 24m&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="389">
+                     <a:s r="391">
+                        <a:s r="390">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="391">
+                           <a:s>&quot;Date of Latest Pneumococcal Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="392">
+                        <a:s>8 weeks</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="395">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="387" locator="171:3-172:11" xsi:type="If">
+            <condition localId="388" locator="171:6-171:43" name="Pneumococcal dose 2, first after 24m" xsi:type="ExpressionRef"/>
+            <then localId="389" locator="171:50-171:103" xsi:type="Add">
+               <signature localId="393" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="394" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="391" locator="171:50-171:93" name="Date of Latest Pneumococcal Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="392" locator="171:97-171:103" value="8" unit="weeks" xsi:type="Quantity"/>
+            </then>
+            <else localId="396" asType="t:Date" xsi:type="As">
+               <operand localId="395" locator="172:8-172:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="372" locator="159:1-163:9" name="Pneumococcal dose 2, first after 24m Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal dose 2, first after 24m Create"/>
+            <a:t name="create" value="Pneumococcal dose 2 should be provided if the client was given the previous dose more than 8 weeks ago"/>
+            <a:s r="372">
+               <a:s>/*
+@output: Pneumococcal dose 2, first after 24m Create
+@create: Pneumococcal dose 2 should be provided if the client was given the previous dose more than 8 weeks ago
+*/
+define &quot;Pneumococcal dose 2, first after 24m Create&quot;:
+  </a:s>
+               <a:s r="373">
+                  <a:s>if </a:s>
+                  <a:s r="374">
+                     <a:s>&quot;Pneumococcal dose 2, first after 24m&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  then </a:s>
+                  <a:s r="405">
+                     <a:s r="383">
+                        <a:s r="377">
+                           <a:s>'Pneumococcal dose 2 should be provided if the client was given the previous dose more than 8 weeks ago'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="379">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="401">
+                        <a:s>ToString(</a:s>
+                        <a:s r="397">
+                           <a:s>&quot;Pneumococcal dose 2, first after 24m Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="406">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="373" locator="160:3-163:9" xsi:type="If">
+            <condition localId="374" locator="160:6-160:43" name="Pneumococcal dose 2, first after 24m" xsi:type="ExpressionRef"/>
+            <then localId="405" locator="161:8-162:71" xsi:type="Concatenate">
+               <operand localId="383" locator="161:8-161:127" xsi:type="Concatenate">
+                  <operand localId="377" locator="161:8-161:111" valueType="t:String" value="Pneumococcal dose 2 should be provided if the client was given the previous dose more than 8 weeks ago" xsi:type="Literal"/>
+                  <operand localId="379" locator="161:115-161:127" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="401" locator="162:15-162:71" xsi:type="ToString">
+                  <signature localId="402" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="397" locator="162:24-162:70" name="Pneumococcal dose 2, first after 24m Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="406" locator="163:8-163:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="410" locator="179:1-180:6" name="Pneumococcal dose 2, first after 24m Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal dose 2, first after 24m Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years."/>
+            <a:s r="410">
+               <a:s r="411">/*
+@dynamicValue: Pneumococcal dose 2, first after 24m Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years.
+*/
+define &quot;Pneumococcal dose 2, first after 24m Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="411" locator="180:3-180:6" xsi:type="Null"/>
+      </def>
+      <def localId="414" locator="187:1-188:6" name="Pneumococcal dose 2, first after 24m Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal dose 2, first after 24m Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended expiration date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years."/>
+            <a:s r="414">
+               <a:s r="415">/*
+@dynamicValue: Pneumococcal dose 2, first after 24m Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended expiration date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years.
+*/
+define &quot;Pneumococcal dose 2, first after 24m Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="415" locator="188:3-188:6" xsi:type="Null"/>
+      </def>
+      <def localId="430" locator="244:1-245:71" name="Third pneumococcal dose from the primary series was administered. The primary series has been completed." context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Third pneumococcal dose from the primary series was administered. The primary series has been completed."/>
+            <a:t name="pseudocode" value="&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;)"/>
+            <a:s r="430">
+               <a:s>/*
+@complete: Third pneumococcal dose from the primary series was administered. The primary series has been completed.
+@pseudocode: &quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;)
+*/
+define &quot;Third pneumococcal dose from the primary series was administered. The primary series has been completed.&quot;:
+  </a:s>
+               <a:s r="432">
+                  <a:s r="431">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="432">
+                     <a:s>&quot;Three pneumococcal primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="432" locator="245:3-245:71" name="Three pneumococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="418" locator="198:1-201:206" name="Pneumococcal dose 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal dose 3"/>
+            <a:t name="description" value="Provision of the pneumococcal dose 3"/>
+            <a:t name="trigger" value="Second pneumococcal dose from the primary series was administered to client, who is less than or equal to 5 years of age. First pneumococcal dose was administered within 12 months post birth."/>
+            <a:t name="pseudo" value="&quot;Date of birth&quot; ≤ 5 years AND Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2 AND &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; AND &quot;Dose number&quot; = 1) − &quot;Date of birth&quot; &lt; 12 months"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;)"/>
+            <a:s r="418">
+               <a:s>/*
+@output: Pneumococcal dose 3
+@description: Provision of the pneumococcal dose 3
+@trigger: Second pneumococcal dose from the primary series was administered to client, who is less than or equal to 5 years of age. First pneumococcal dose was administered within 12 months post birth.
+@pseudo: Today's date − &quot;Date of birth&quot; ≤ 5 years AND Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2 AND &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; AND &quot;Dose number&quot; = 1) − &quot;Date of birth&quot; &lt; 12 months
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;)
+*/
+define &quot;Pneumococcal dose 3&quot;:
+  </a:s>
+               <a:s r="419">
+                  <a:s r="420">
+                     <a:s r="421">
+                        <a:s r="422">
+                           <a:s>&quot;Second pneumococcal dose from the primary series was administered&quot;</a:s>
+                        </a:s>
+                        <a:s>
+  and </a:s>
+                        <a:s r="424">
+                           <a:s r="423">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="424">
+                              <a:s>&quot;The client's age is less than or equal to 5 years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  and </a:s>
+                     <a:s r="426">
+                        <a:s r="425">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="426">
+                           <a:s>&quot;The first pneumococcal dose was administered within 24 months post birth&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>  and </a:s>
+                  <a:s r="427">
+                     <a:s>not </a:s>
+                     <a:s r="433">
+                        <a:s>&quot;Third pneumococcal dose from the primary series was administered. The primary series has been completed.&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="419" locator="199:3-201:206" xsi:type="And">
+            <operand localId="420" locator="199:3-201:90" xsi:type="And">
+               <operand localId="421" locator="199:3-200:67" xsi:type="And">
+                  <operand localId="422" locator="199:3-199:69" name="Second pneumococcal dose from the primary series was administered" xsi:type="ExpressionRef"/>
+                  <operand localId="424" locator="200:7-200:67" name="The client's age is less than or equal to 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="426" locator="201:7-201:90" name="The first pneumococcal dose was administered within 24 months post birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="427" locator="201:97-201:206" xsi:type="Not">
+               <operand localId="433" locator="201:101-201:206" name="Third pneumococcal dose from the primary series was administered. The primary series has been completed." xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="450" locator="219:1-221:11" name="Pneumococcal dose 3 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal dose 3 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;) + 4 weeks"/>
+            <a:s r="450">
+               <a:s>/*
+@dynamicValue: Pneumococcal dose 3 Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;) + 4 weeks
+*/
+define &quot;Pneumococcal dose 3 Due Date&quot;:
+  </a:s>
+               <a:s r="451">
+                  <a:s>if </a:s>
+                  <a:s r="452">
+                     <a:s>&quot;Pneumococcal dose 3&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="453">
+                     <a:s r="455">
+                        <a:s r="454">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="455">
+                           <a:s>&quot;Date of Latest Pneumococcal Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="456">
+                        <a:s>4 weeks</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="459">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="451" locator="220:3-221:11" xsi:type="If">
+            <condition localId="452" locator="220:6-220:26" name="Pneumococcal dose 3" xsi:type="ExpressionRef"/>
+            <then localId="453" locator="220:33-220:86" xsi:type="Add">
+               <signature localId="457" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="458" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="455" locator="220:33-220:76" name="Date of Latest Pneumococcal Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="456" locator="220:80-220:86" value="4" unit="weeks" xsi:type="Quantity"/>
+            </then>
+            <else localId="460" asType="t:Date" xsi:type="As">
+               <operand localId="459" locator="221:8-221:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="436" locator="208:1-212:9" name="Pneumococcal dose 3 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal dose 3 Create"/>
+            <a:t name="create" value="Pneumococcal dose 3 should be provided if the client was given the previous dose more than 4 weeks ago"/>
+            <a:s r="436">
+               <a:s>/*
+@output: Pneumococcal dose 3 Create
+@create: Pneumococcal dose 3 should be provided if the client was given the previous dose more than 4 weeks ago
+*/
+define &quot;Pneumococcal dose 3 Create&quot;:
+  </a:s>
+               <a:s r="437">
+                  <a:s>if </a:s>
+                  <a:s r="438">
+                     <a:s>&quot;Pneumococcal dose 3&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  then </a:s>
+                  <a:s r="469">
+                     <a:s r="447">
+                        <a:s r="441">
+                           <a:s>'Pneumococcal dose 3 should be provided if the client was given the previous dose more than 4 weeks ago'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="443">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="465">
+                        <a:s>ToString(</a:s>
+                        <a:s r="461">
+                           <a:s>&quot;Pneumococcal dose 3 Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="470">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="437" locator="209:3-212:9" xsi:type="If">
+            <condition localId="438" locator="209:6-209:26" name="Pneumococcal dose 3" xsi:type="ExpressionRef"/>
+            <then localId="469" locator="210:8-211:54" xsi:type="Concatenate">
+               <operand localId="447" locator="210:8-210:127" xsi:type="Concatenate">
+                  <operand localId="441" locator="210:8-210:111" valueType="t:String" value="Pneumococcal dose 3 should be provided if the client was given the previous dose more than 4 weeks ago" xsi:type="Literal"/>
+                  <operand localId="443" locator="210:115-210:127" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="465" locator="211:15-211:54" xsi:type="ToString">
+                  <signature localId="466" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="461" locator="211:24-211:53" name="Pneumococcal dose 3 Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="470" locator="212:8-212:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="474" locator="228:1-229:6" name="Pneumococcal dose 3 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal dose 3 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years."/>
+            <a:s r="474">
+               <a:s r="475">/*
+@dynamicValue: Pneumococcal dose 3 Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years.
+*/
+define &quot;Pneumococcal dose 3 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="475" locator="229:3-229:6" xsi:type="Null"/>
+      </def>
+      <def localId="478" locator="236:1-237:6" name="Pneumococcal dose 3 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal dose 3 Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended expiration date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years."/>
+            <a:s r="478">
+               <a:s r="479">/*
+@dynamicValue: Pneumococcal dose 3 Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended expiration date. WHO does not currently have recommendations on the use of pneumococcal vaccine in individuals aged over 5 years.
+*/
+define &quot;Pneumococcal dose 3 Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="479" locator="237:3-237:6" xsi:type="Null"/>
+      </def>
+      <def localId="497" locator="302:1-303:31" name="Pneumococcal booster dose Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal booster dose Expiration"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 24 months"/>
+            <a:s r="497">
+               <a:s>/*
+@dynamicValue: Pneumococcal booster dose Expiration
+@pseudocode: &quot;Date of birth&quot; + 24 months
+*/
+define &quot;Pneumococcal booster dose Expiration&quot;:
+  </a:s>
+               <a:s r="498">
+                  <a:s r="500">
+                     <a:s r="499">
+                        <a:s>Patient</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="500">
+                        <a:s>birthDate</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> + </a:s>
+                  <a:s r="501">
+                     <a:s>24 months</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="498" locator="303:3-303:31" xsi:type="Add">
+            <signature localId="503" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="504" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="502" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="500" locator="303:3-303:19" path="birthDate" xsi:type="Property">
+                  <source localId="499" locator="303:3-303:9" name="Patient" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="501" locator="303:23-303:31" value="24" unit="months" xsi:type="Quantity"/>
+         </expression>
+      </def>
+      <def localId="513" locator="310:1-311:60" name="One pneumococcal booster dose was administered." context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="One pneumococcal booster dose was administered."/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; and &quot;Type of dose&quot; = &quot;Booster dose&quot;) = 1"/>
+            <a:s r="513">
+               <a:s>/*
+@complete: One pneumococcal booster dose was administered.
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; and &quot;Type of dose&quot; = &quot;Booster dose&quot;) = 1
+*/
+define &quot;One pneumococcal booster dose was administered.&quot;:
+  </a:s>
+               <a:s r="515">
+                  <a:s r="514">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="515">
+                     <a:s>&quot;One pneumococcal booster dose was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="515" locator="311:3-311:60" name="One pneumococcal booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="482" locator="256:1-264:59" name="Pneumococcal booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal booster dose"/>
+            <a:t name="description" value="Provision of booster dose for HIV-positive infants and preterm neonates"/>
+            <a:t name="trigger" value="Third pneumococcal dose from the primary series was administered to client, who is more than 12 months of age. The latest pneumococcal dose was administered within 12 months post birth. Client is either HIV positive or had preterm birth."/>
+            <a:t name="pseudo" value="&quot;Date of birth&quot; > 12 months AND Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 3 AND Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;) − &quot;Date of birth&quot; &lt; 12 months AND (&quot;HIV status&quot; = &quot;HIV-positive&quot; OR &quot;Preterm birth&quot; = TRUE)"/>
+            <a:t name="triggerDate" value="&quot;Date of birth&quot;"/>
+            <a:s r="482">
+               <a:s>/*
+@output: Pneumococcal booster dose
+@description: Provision of booster dose for HIV-positive infants and preterm neonates
+@trigger: Third pneumococcal dose from the primary series was administered to client, who is more than 12 months of age. The latest pneumococcal dose was administered within 12 months post birth. Client is either HIV positive or had preterm birth.
+@pseudo: Today's date − &quot;Date of birth&quot; > 12 months AND Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 3 AND Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pneumococcal vaccines&quot;) − &quot;Date of birth&quot; &lt; 12 months AND (&quot;HIV status&quot; = &quot;HIV-positive&quot; OR &quot;Preterm birth&quot; = TRUE)
+@triggerDate: &quot;Date of birth&quot;
+*/
+define &quot;Pneumococcal booster dose&quot;:
+  </a:s>
+               <a:s r="483">
+                  <a:s r="484">
+                     <a:s r="485">
+                        <a:s r="486">
+                           <a:s r="487">
+                              <a:s>&quot;Third pneumococcal dose from the primary series was administered. The primary series has been completed.&quot;</a:s>
+                           </a:s>
+                           <a:s>
+  and </a:s>
+                           <a:s r="489">
+                              <a:s r="488">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="489">
+                                 <a:s>&quot;The latest pneumococcal dose was administered within 12 months post birth&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+  and </a:s>
+                        <a:s r="490">
+                           <a:s>(
+    </a:s>
+                           <a:s r="490">
+                              <a:s r="492">
+                                 <a:s r="491">
+                                    <a:s>Encounter</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="492">
+                                    <a:s>&quot;Client's HIV status is positive&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>
+    or </a:s>
+                              <a:s r="494">
+                                 <a:s r="493">
+                                    <a:s>Encounter</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="494">
+                                    <a:s>&quot;Client had preterm birth&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+  )</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  and </a:s>
+                     <a:s r="507">
+                        <a:s r="505">
+                           <a:s>&quot;Pneumococcal booster dose Expiration&quot;</a:s>
+                        </a:s>
+                        <a:s r="507"> after day of </a:s>
+                        <a:s r="506">
+                           <a:s>Today</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="510">
+                     <a:s>not </a:s>
+                     <a:s r="516">
+                        <a:s>&quot;One pneumococcal booster dose was administered.&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="483" locator="257:3-264:59" xsi:type="And">
+            <operand localId="484" locator="257:3-263:63" xsi:type="And">
+               <operand localId="485" locator="257:3-262:3" xsi:type="And">
+                  <operand localId="486" locator="257:3-258:91" xsi:type="And">
+                     <operand localId="487" locator="257:3-257:108" name="Third pneumococcal dose from the primary series was administered. The primary series has been completed." xsi:type="ExpressionRef"/>
+                     <operand localId="489" locator="258:7-258:91" name="The latest pneumococcal dose was administered within 12 months post birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="490" locator="259:7-262:3" xsi:type="Or">
+                     <operand localId="492" locator="260:5-260:47" name="Client's HIV status is positive" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                     <operand localId="494" locator="261:8-261:43" name="Client had preterm birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="507" locator="263:7-263:63" precision="Day" xsi:type="After">
+                  <signature localId="508" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="509" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="505" locator="263:7-263:44" name="Pneumococcal booster dose Expiration" xsi:type="ExpressionRef"/>
+                  <operand localId="506" locator="263:59-263:63" name="Today" xsi:type="ParameterRef"/>
+               </operand>
+            </operand>
+            <operand localId="510" locator="264:7-264:59" xsi:type="Not">
+               <operand localId="516" locator="264:11-264:59" name="One pneumococcal booster dose was administered." xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="537" locator="284:1-286:11" name="Pneumococcal booster dose Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal booster dose Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 12 months"/>
+            <a:s r="537">
+               <a:s>/*
+@dynamicValue: Pneumococcal booster dose Due Date
+@pseudocode: &quot;Date of birth&quot; + 12 months
+*/
+define &quot;Pneumococcal booster dose Due Date&quot;:
+  </a:s>
+               <a:s r="538">
+                  <a:s>if </a:s>
+                  <a:s r="539">
+                     <a:s>&quot;Pneumococcal booster dose&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="540">
+                     <a:s r="542">
+                        <a:s r="541">
+                           <a:s>Patient</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="542">
+                           <a:s>birthDate</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="543">
+                        <a:s>12 months</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="547">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="538" locator="285:3-286:11" xsi:type="If">
+            <condition localId="539" locator="285:6-285:32" name="Pneumococcal booster dose" xsi:type="ExpressionRef"/>
+            <then localId="540" locator="285:39-285:67" xsi:type="Add">
+               <signature localId="545" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="546" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="544" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="542" locator="285:39-285:55" path="birthDate" xsi:type="Property">
+                     <source localId="541" locator="285:39-285:45" name="Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="543" locator="285:59-285:67" value="12" unit="months" xsi:type="Quantity"/>
+            </then>
+            <else localId="548" asType="t:Date" xsi:type="As">
+               <operand localId="547" locator="286:8-286:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="565" locator="293:1-295:11" name="Pneumococcal booster dose Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pneumococcal booster dose Overdue"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 24 months"/>
+            <a:s r="565">
+               <a:s>/*
+@dynamicValue: Pneumococcal booster dose Overdue
+@pseudocode: &quot;Date of birth&quot; + 24 months
+*/
+define &quot;Pneumococcal booster dose Overdue&quot;:
+  </a:s>
+               <a:s r="566">
+                  <a:s>if </a:s>
+                  <a:s r="567">
+                     <a:s>&quot;Pneumococcal booster dose&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="568">
+                     <a:s r="570">
+                        <a:s r="569">
+                           <a:s>Patient</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="570">
+                           <a:s>birthDate</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="571">
+                        <a:s>24 months</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="575">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="566" locator="294:3-295:11" xsi:type="If">
+            <condition localId="567" locator="294:6-294:32" name="Pneumococcal booster dose" xsi:type="ExpressionRef"/>
+            <then localId="568" locator="294:39-294:67" xsi:type="Add">
+               <signature localId="573" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="574" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="572" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="570" locator="294:39-294:55" path="birthDate" xsi:type="Property">
+                     <source localId="569" locator="294:39-294:45" name="Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="571" locator="294:59-294:67" value="24" unit="months" xsi:type="Quantity"/>
+            </then>
+            <else localId="576" asType="t:Date" xsi:type="As">
+               <operand localId="575" locator="295:8-295:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="519" locator="271:1-277:9" name="Pneumococcal booster dose Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pneumococcal booster dose Create"/>
+            <a:t name="create" value="HIV-positive infants and preterm neonates who have received their 3 primary vaccine doses before 12 months of age may benefit from a booster dose in the second year of life"/>
+            <a:s r="519">
+               <a:s>/*
+@output: Pneumococcal booster dose Create
+@create: HIV-positive infants and preterm neonates who have received their 3 primary vaccine doses before 12 months of age may benefit from a booster dose in the second year of life
+*/
+define &quot;Pneumococcal booster dose Create&quot;:
+  </a:s>
+               <a:s r="520">
+                  <a:s>if </a:s>
+                  <a:s r="521">
+                     <a:s>&quot;Pneumococcal booster dose&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  then </a:s>
+                  <a:s r="599">
+                     <a:s r="590">
+                        <a:s r="585">
+                           <a:s r="562">
+                              <a:s r="557">
+                                 <a:s r="534">
+                                    <a:s r="528">
+                                       <a:s>'HIV-positive infants and preterm neonates who have received their 3 primary vaccine doses before 12 months of age may benefit from a booster dose in the second year of life'</a:s>
+                                    </a:s>
+                                    <a:s> + </a:s>
+                                    <a:s r="530">
+                                       <a:s>'
+Due Date: '</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> + </a:s>
+                                 <a:s r="553">
+                                    <a:s>ToString(</a:s>
+                                    <a:s r="549">
+                                       <a:s>&quot;Pneumococcal booster dose Due Date&quot;</a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> + </a:s>
+                              <a:s r="558">
+                                 <a:s>'
+Overdue: '</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="581">
+                              <a:s>ToString(</a:s>
+                              <a:s r="577">
+                                 <a:s>&quot;Pneumococcal booster dose Overdue&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="586">
+                           <a:s>'
+Expiration: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="595">
+                        <a:s>ToString(</a:s>
+                        <a:s r="591">
+                           <a:s>&quot;Pneumococcal booster dose Expiration&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="600">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="520" locator="272:3-277:9" xsi:type="If">
+            <condition localId="521" locator="272:6-272:32" name="Pneumococcal booster dose" xsi:type="ExpressionRef"/>
+            <then localId="599" locator="273:8-276:64" xsi:type="Concatenate">
+               <operand localId="590" locator="273:8-275:76" xsi:type="Concatenate">
+                  <operand localId="585" locator="273:8-275:58" xsi:type="Concatenate">
+                     <operand localId="562" locator="273:8-274:75" xsi:type="Concatenate">
+                        <operand localId="557" locator="273:8-274:60" xsi:type="Concatenate">
+                           <operand localId="534" locator="273:8-273:197" xsi:type="Concatenate">
+                              <operand localId="528" locator="273:8-273:181" valueType="t:String" value="HIV-positive infants and preterm neonates who have received their 3 primary vaccine doses before 12 months of age may benefit from a booster dose in the second year of life" xsi:type="Literal"/>
+                              <operand localId="530" locator="273:185-273:197" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+                           </operand>
+                           <operand localId="553" locator="274:15-274:60" xsi:type="ToString">
+                              <signature localId="554" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                              <operand localId="549" locator="274:24-274:59" name="Pneumococcal booster dose Due Date" xsi:type="ExpressionRef"/>
+                           </operand>
+                        </operand>
+                        <operand localId="558" locator="274:64-274:75" valueType="t:String" value="&#xa;Overdue: " xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="581" locator="275:14-275:58" xsi:type="ToString">
+                        <signature localId="582" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="577" locator="275:23-275:57" name="Pneumococcal booster dose Overdue" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="586" locator="275:62-275:76" valueType="t:String" value="&#xa;Expiration: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="595" locator="276:17-276:64" xsi:type="ToString">
+                  <signature localId="596" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="591" locator="276:26-276:63" name="Pneumococcal booster dose Expiration" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="600" locator="277:8-277:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="604" locator="318:1-348:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="604">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="605">
+                  <a:s>case
+    </a:s>
+                  <a:s r="606">
+                     <a:s>when </a:s>
+                     <a:s r="607">
+                        <a:s r="609">
+                           <a:s r="608">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="609">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="610">
+                           <a:s>'Pneumococcal33.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="616">
+                        <a:s>&quot;Pneumococcal dose 1&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="617">
+                     <a:s>when </a:s>
+                     <a:s r="618">
+                        <a:s r="620">
+                           <a:s r="619">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="620">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="621">
+                           <a:s>'Pneumococcal34.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="627">
+                        <a:s>&quot;Pneumococcal dose 1&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="628">
+                     <a:s>when </a:s>
+                     <a:s r="629">
+                        <a:s r="631">
+                           <a:s r="630">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="631">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="632">
+                           <a:s>'Pneumococcal35.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="638">
+                        <a:s>&quot;Pneumococcal dose 2, first within 24m&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="639">
+                     <a:s>when </a:s>
+                     <a:s r="640">
+                        <a:s r="642">
+                           <a:s r="641">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="642">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="643">
+                           <a:s>'Pneumococcal36.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="649">
+                        <a:s>&quot;Pneumococcal dose 2, first within 24m&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="650">
+                     <a:s>when </a:s>
+                     <a:s r="651">
+                        <a:s r="653">
+                           <a:s r="652">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="653">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="654">
+                           <a:s>'Pneumococcal37.5'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="660">
+                        <a:s>&quot;Pneumococcal dose 2, first within 24m&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="661">
+                     <a:s>when </a:s>
+                     <a:s r="662">
+                        <a:s r="664">
+                           <a:s r="663">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="664">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="665">
+                           <a:s>'Pneumococcal38.5'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="671">
+                        <a:s>&quot;Pneumococcal dose 2, first within 24m&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="672">
+                     <a:s>when </a:s>
+                     <a:s r="673">
+                        <a:s r="675">
+                           <a:s r="674">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="675">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="676">
+                           <a:s>'Pneumococcal39.5'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="682">
+                        <a:s>&quot;Pneumococcal dose 2, first within 24m&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="683">
+                     <a:s>when </a:s>
+                     <a:s r="684">
+                        <a:s r="686">
+                           <a:s r="685">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="686">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="687">
+                           <a:s>'Pneumococcal40.5'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="693">
+                        <a:s>&quot;Pneumococcal dose 2, first within 24m&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="694">
+                     <a:s>when </a:s>
+                     <a:s r="695">
+                        <a:s r="697">
+                           <a:s r="696">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="697">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="698">
+                           <a:s>'Pneumococcal41.5'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="704">
+                        <a:s>&quot;Pneumococcal dose 2, first after 24m&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="705">
+                     <a:s>when </a:s>
+                     <a:s r="706">
+                        <a:s r="708">
+                           <a:s r="707">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="708">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="709">
+                           <a:s>'Pneumococcal42.5'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="715">
+                        <a:s>&quot;Pneumococcal dose 2, first after 24m&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="716">
+                     <a:s>when </a:s>
+                     <a:s r="717">
+                        <a:s r="719">
+                           <a:s r="718">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="719">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="720">
+                           <a:s>'Pneumococcal43.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="726">
+                        <a:s r="727">
+                           <a:s>&quot;First pneumococcal dose from the primary series was administered&quot;</a:s>
+                        </a:s>
+                        <a:s>
+      and </a:s>
+                        <a:s r="728">
+                           <a:s>not </a:s>
+                           <a:s r="729">
+                              <a:s>&quot;Pneumococcal dose 2, first after 24m&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="730">
+                     <a:s>when </a:s>
+                     <a:s r="731">
+                        <a:s r="733">
+                           <a:s r="732">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="733">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="734">
+                           <a:s>'Pneumococcal44.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="740">
+                        <a:s>&quot;Pneumococcal dose 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="741">
+                     <a:s>when </a:s>
+                     <a:s r="742">
+                        <a:s r="744">
+                           <a:s r="743">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="744">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="745">
+                           <a:s>'Pneumococcal45.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="751">
+                        <a:s>&quot;Pneumococcal dose 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="752">
+                     <a:s>when </a:s>
+                     <a:s r="753">
+                        <a:s r="755">
+                           <a:s r="754">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="755">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="756">
+                           <a:s>'Pneumococcal46.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="762">
+                        <a:s>&quot;Pneumococcal dose 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="763">
+                     <a:s>when </a:s>
+                     <a:s r="764">
+                        <a:s r="766">
+                           <a:s r="765">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="766">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="767">
+                           <a:s>'Pneumococcal47.6'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="773">
+                        <a:s>&quot;Pneumococcal booster dose&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="774">
+                     <a:s>when </a:s>
+                     <a:s r="775">
+                        <a:s r="777">
+                           <a:s r="776">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="777">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="778">
+                           <a:s>'Pneumococcal48.6'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="784">
+                        <a:s>&quot;Pneumococcal booster dose&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="785">
+                     <a:s>when </a:s>
+                     <a:s r="786">
+                        <a:s r="788">
+                           <a:s r="787">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="788">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="789">
+                           <a:s>'Pneumococcal49.6'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="795">
+                        <a:s>&quot;Pneumococcal booster dose&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="796">
+                     <a:s>when </a:s>
+                     <a:s r="797">
+                        <a:s r="799">
+                           <a:s r="798">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="799">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="800">
+                           <a:s>'Pneumococcal50.6'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="806">
+                        <a:s>&quot;Pneumococcal booster dose&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="807">
+                     <a:s>when </a:s>
+                     <a:s r="808">
+                        <a:s r="810">
+                           <a:s r="809">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="810">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="811">
+                           <a:s>'Pneumococcal51.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="817">
+                        <a:s r="818">
+                           <a:s>&quot;Third pneumococcal dose from the primary series was administered. The primary series has been completed.&quot;</a:s>
+                        </a:s>
+                        <a:s>
+      and </a:s>
+                        <a:s r="819">
+                           <a:s>not </a:s>
+                           <a:s r="820">
+                              <a:s>&quot;Pneumococcal booster dose&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="821">
+                     <a:s>when </a:s>
+                     <a:s r="822">
+                        <a:s r="824">
+                           <a:s r="823">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="824">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="825">
+                           <a:s>'Pneumococcal52.5'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="831">
+                        <a:s r="832">
+                           <a:s>&quot;Third pneumococcal dose from the primary series was administered. The primary series has been completed.&quot;</a:s>
+                        </a:s>
+                        <a:s>
+      and </a:s>
+                        <a:s r="833">
+                           <a:s>not </a:s>
+                           <a:s r="834">
+                              <a:s>&quot;Pneumococcal booster dose&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="835">
+                     <a:s>when </a:s>
+                     <a:s r="836">
+                        <a:s r="838">
+                           <a:s r="837">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="838">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="839">
+                           <a:s>'Pneumococcal53.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="845">
+                        <a:s r="846">
+                           <a:s>&quot;Third pneumococcal dose from the primary series was administered. The primary series has been completed.&quot;</a:s>
+                        </a:s>
+                        <a:s>
+      and </a:s>
+                        <a:s r="847">
+                           <a:s>not </a:s>
+                           <a:s r="848">
+                              <a:s>&quot;Pneumococcal booster dose&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="849">
+                     <a:s>when </a:s>
+                     <a:s r="850">
+                        <a:s r="852">
+                           <a:s r="851">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="852">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="853">
+                           <a:s>'Pneumococcal54.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="859">
+                        <a:s>&quot;One pneumococcal booster dose was administered.&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="860">
+                     <a:s>when </a:s>
+                     <a:s r="861">
+                        <a:s r="863">
+                           <a:s r="862">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="863">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="864">
+                           <a:s>'Pneumococcal55.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="870">
+                        <a:s>not </a:s>
+                        <a:s r="871">
+                           <a:s>&quot;Pneumococcal dose 1&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="872">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="605" locator="319:3-348:5" xsi:type="Case">
+            <caseItem localId="606" locator="320:5-320:67">
+               <when localId="607" locator="320:10-320:40" xsi:type="Equal">
+                  <signature localId="614" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="615" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="612" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="613" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="609" locator="320:10-320:19" path="id" xsi:type="Property">
+                        <source localId="608" locator="320:10-320:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="610" locator="320:23-320:40" valueType="t:String" value="Pneumococcal33.1" xsi:type="Literal"/>
+               </when>
+               <then localId="874" xsi:type="As">
+                  <operand localId="616" locator="320:47-320:67" name="Pneumococcal dose 1" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="875" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="876" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="877" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="617" locator="321:5-321:67">
+               <when localId="618" locator="321:10-321:40" xsi:type="Equal">
+                  <signature localId="625" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="626" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="623" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="624" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="620" locator="321:10-321:19" path="id" xsi:type="Property">
+                        <source localId="619" locator="321:10-321:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="621" locator="321:23-321:40" valueType="t:String" value="Pneumococcal34.2" xsi:type="Literal"/>
+               </when>
+               <then localId="878" xsi:type="As">
+                  <operand localId="627" locator="321:47-321:67" name="Pneumococcal dose 1" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="879" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="880" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="881" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="628" locator="322:5-322:85">
+               <when localId="629" locator="322:10-322:40" xsi:type="Equal">
+                  <signature localId="636" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="637" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="634" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="635" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="631" locator="322:10-322:19" path="id" xsi:type="Property">
+                        <source localId="630" locator="322:10-322:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="632" locator="322:23-322:40" valueType="t:String" value="Pneumococcal35.4" xsi:type="Literal"/>
+               </when>
+               <then localId="882" xsi:type="As">
+                  <operand localId="638" locator="322:47-322:85" name="Pneumococcal dose 2, first within 24m" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="883" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="884" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="885" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="639" locator="323:5-323:85">
+               <when localId="640" locator="323:10-323:40" xsi:type="Equal">
+                  <signature localId="647" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="648" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="645" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="646" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="642" locator="323:10-323:19" path="id" xsi:type="Property">
+                        <source localId="641" locator="323:10-323:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="643" locator="323:23-323:40" valueType="t:String" value="Pneumococcal36.4" xsi:type="Literal"/>
+               </when>
+               <then localId="886" xsi:type="As">
+                  <operand localId="649" locator="323:47-323:85" name="Pneumococcal dose 2, first within 24m" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="887" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="888" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="889" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="650" locator="324:5-324:85">
+               <when localId="651" locator="324:10-324:40" xsi:type="Equal">
+                  <signature localId="658" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="659" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="656" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="657" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="653" locator="324:10-324:19" path="id" xsi:type="Property">
+                        <source localId="652" locator="324:10-324:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="654" locator="324:23-324:40" valueType="t:String" value="Pneumococcal37.5" xsi:type="Literal"/>
+               </when>
+               <then localId="890" xsi:type="As">
+                  <operand localId="660" locator="324:47-324:85" name="Pneumococcal dose 2, first within 24m" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="891" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="892" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="893" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="661" locator="325:5-325:85">
+               <when localId="662" locator="325:10-325:40" xsi:type="Equal">
+                  <signature localId="669" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="670" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="667" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="668" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="664" locator="325:10-325:19" path="id" xsi:type="Property">
+                        <source localId="663" locator="325:10-325:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="665" locator="325:23-325:40" valueType="t:String" value="Pneumococcal38.5" xsi:type="Literal"/>
+               </when>
+               <then localId="894" xsi:type="As">
+                  <operand localId="671" locator="325:47-325:85" name="Pneumococcal dose 2, first within 24m" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="895" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="896" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="897" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="672" locator="326:5-326:85">
+               <when localId="673" locator="326:10-326:40" xsi:type="Equal">
+                  <signature localId="680" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="681" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="678" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="679" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="675" locator="326:10-326:19" path="id" xsi:type="Property">
+                        <source localId="674" locator="326:10-326:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="676" locator="326:23-326:40" valueType="t:String" value="Pneumococcal39.5" xsi:type="Literal"/>
+               </when>
+               <then localId="898" xsi:type="As">
+                  <operand localId="682" locator="326:47-326:85" name="Pneumococcal dose 2, first within 24m" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="899" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="900" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="901" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="683" locator="327:5-327:85">
+               <when localId="684" locator="327:10-327:40" xsi:type="Equal">
+                  <signature localId="691" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="692" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="689" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="690" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="686" locator="327:10-327:19" path="id" xsi:type="Property">
+                        <source localId="685" locator="327:10-327:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="687" locator="327:23-327:40" valueType="t:String" value="Pneumococcal40.5" xsi:type="Literal"/>
+               </when>
+               <then localId="902" xsi:type="As">
+                  <operand localId="693" locator="327:47-327:85" name="Pneumococcal dose 2, first within 24m" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="903" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="904" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="905" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="694" locator="328:5-328:84">
+               <when localId="695" locator="328:10-328:40" xsi:type="Equal">
+                  <signature localId="702" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="703" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="700" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="701" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="697" locator="328:10-328:19" path="id" xsi:type="Property">
+                        <source localId="696" locator="328:10-328:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="698" locator="328:23-328:40" valueType="t:String" value="Pneumococcal41.5" xsi:type="Literal"/>
+               </when>
+               <then localId="906" xsi:type="As">
+                  <operand localId="704" locator="328:47-328:84" name="Pneumococcal dose 2, first after 24m" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="907" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="908" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="909" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="705" locator="329:5-329:84">
+               <when localId="706" locator="329:10-329:40" xsi:type="Equal">
+                  <signature localId="713" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="714" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="711" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="712" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="708" locator="329:10-329:19" path="id" xsi:type="Property">
+                        <source localId="707" locator="329:10-329:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="709" locator="329:23-329:40" valueType="t:String" value="Pneumococcal42.5" xsi:type="Literal"/>
+               </when>
+               <then localId="910" xsi:type="As">
+                  <operand localId="715" locator="329:47-329:84" name="Pneumococcal dose 2, first after 24m" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="911" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="912" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="913" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="716" locator="330:5-331:52">
+               <when localId="717" locator="330:10-330:40" xsi:type="Equal">
+                  <signature localId="724" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="725" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="722" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="723" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="719" locator="330:10-330:19" path="id" xsi:type="Property">
+                        <source localId="718" locator="330:10-330:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="720" locator="330:23-330:40" valueType="t:String" value="Pneumococcal43.4" xsi:type="Literal"/>
+               </when>
+               <then localId="914" xsi:type="As">
+                  <operand localId="726" locator="330:47-331:52" xsi:type="And">
+                     <operand localId="727" locator="330:47-330:112" name="First pneumococcal dose from the primary series was administered" xsi:type="ExpressionRef"/>
+                     <operand localId="728" locator="331:11-331:52" xsi:type="Not">
+                        <operand localId="729" locator="331:15-331:52" name="Pneumococcal dose 2, first after 24m" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="915" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="916" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="917" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="730" locator="332:5-332:67">
+               <when localId="731" locator="332:10-332:40" xsi:type="Equal">
+                  <signature localId="738" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="739" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="736" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="737" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="733" locator="332:10-332:19" path="id" xsi:type="Property">
+                        <source localId="732" locator="332:10-332:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="734" locator="332:23-332:40" valueType="t:String" value="Pneumococcal44.4" xsi:type="Literal"/>
+               </when>
+               <then localId="918" xsi:type="As">
+                  <operand localId="740" locator="332:47-332:67" name="Pneumococcal dose 3" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="919" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="920" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="921" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="741" locator="333:5-333:67">
+               <when localId="742" locator="333:10-333:40" xsi:type="Equal">
+                  <signature localId="749" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="750" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="747" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="748" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="744" locator="333:10-333:19" path="id" xsi:type="Property">
+                        <source localId="743" locator="333:10-333:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="745" locator="333:23-333:40" valueType="t:String" value="Pneumococcal45.4" xsi:type="Literal"/>
+               </when>
+               <then localId="922" xsi:type="As">
+                  <operand localId="751" locator="333:47-333:67" name="Pneumococcal dose 3" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="923" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="924" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="925" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="752" locator="334:5-334:67">
+               <when localId="753" locator="334:10-334:40" xsi:type="Equal">
+                  <signature localId="760" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="761" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="758" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="759" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="755" locator="334:10-334:19" path="id" xsi:type="Property">
+                        <source localId="754" locator="334:10-334:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="756" locator="334:23-334:40" valueType="t:String" value="Pneumococcal46.3" xsi:type="Literal"/>
+               </when>
+               <then localId="926" xsi:type="As">
+                  <operand localId="762" locator="334:47-334:67" name="Pneumococcal dose 3" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="927" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="928" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="929" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="763" locator="335:5-335:73">
+               <when localId="764" locator="335:10-335:40" xsi:type="Equal">
+                  <signature localId="771" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="772" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="769" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="770" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="766" locator="335:10-335:19" path="id" xsi:type="Property">
+                        <source localId="765" locator="335:10-335:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="767" locator="335:23-335:40" valueType="t:String" value="Pneumococcal47.6" xsi:type="Literal"/>
+               </when>
+               <then localId="930" xsi:type="As">
+                  <operand localId="773" locator="335:47-335:73" name="Pneumococcal booster dose" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="931" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="932" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="933" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="774" locator="336:5-336:73">
+               <when localId="775" locator="336:10-336:40" xsi:type="Equal">
+                  <signature localId="782" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="783" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="780" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="781" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="777" locator="336:10-336:19" path="id" xsi:type="Property">
+                        <source localId="776" locator="336:10-336:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="778" locator="336:23-336:40" valueType="t:String" value="Pneumococcal48.6" xsi:type="Literal"/>
+               </when>
+               <then localId="934" xsi:type="As">
+                  <operand localId="784" locator="336:47-336:73" name="Pneumococcal booster dose" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="935" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="936" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="937" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="785" locator="337:5-337:73">
+               <when localId="786" locator="337:10-337:40" xsi:type="Equal">
+                  <signature localId="793" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="794" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="791" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="792" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="788" locator="337:10-337:19" path="id" xsi:type="Property">
+                        <source localId="787" locator="337:10-337:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="789" locator="337:23-337:40" valueType="t:String" value="Pneumococcal49.6" xsi:type="Literal"/>
+               </when>
+               <then localId="938" xsi:type="As">
+                  <operand localId="795" locator="337:47-337:73" name="Pneumococcal booster dose" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="939" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="940" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="941" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="796" locator="338:5-338:73">
+               <when localId="797" locator="338:10-338:40" xsi:type="Equal">
+                  <signature localId="804" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="805" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="802" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="803" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="799" locator="338:10-338:19" path="id" xsi:type="Property">
+                        <source localId="798" locator="338:10-338:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="800" locator="338:23-338:40" valueType="t:String" value="Pneumococcal50.6" xsi:type="Literal"/>
+               </when>
+               <then localId="942" xsi:type="As">
+                  <operand localId="806" locator="338:47-338:73" name="Pneumococcal booster dose" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="943" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="944" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="945" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="807" locator="339:5-340:41">
+               <when localId="808" locator="339:10-339:40" xsi:type="Equal">
+                  <signature localId="815" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="816" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="813" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="814" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="810" locator="339:10-339:19" path="id" xsi:type="Property">
+                        <source localId="809" locator="339:10-339:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="811" locator="339:23-339:40" valueType="t:String" value="Pneumococcal51.4" xsi:type="Literal"/>
+               </when>
+               <then localId="946" xsi:type="As">
+                  <operand localId="817" locator="339:47-340:41" xsi:type="And">
+                     <operand localId="818" locator="339:47-339:152" name="Third pneumococcal dose from the primary series was administered. The primary series has been completed." xsi:type="ExpressionRef"/>
+                     <operand localId="819" locator="340:11-340:41" xsi:type="Not">
+                        <operand localId="820" locator="340:15-340:41" name="Pneumococcal booster dose" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="947" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="948" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="949" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="821" locator="341:5-342:41">
+               <when localId="822" locator="341:10-341:40" xsi:type="Equal">
+                  <signature localId="829" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="830" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="827" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="828" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="824" locator="341:10-341:19" path="id" xsi:type="Property">
+                        <source localId="823" locator="341:10-341:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="825" locator="341:23-341:40" valueType="t:String" value="Pneumococcal52.5" xsi:type="Literal"/>
+               </when>
+               <then localId="950" xsi:type="As">
+                  <operand localId="831" locator="341:47-342:41" xsi:type="And">
+                     <operand localId="832" locator="341:47-341:152" name="Third pneumococcal dose from the primary series was administered. The primary series has been completed." xsi:type="ExpressionRef"/>
+                     <operand localId="833" locator="342:11-342:41" xsi:type="Not">
+                        <operand localId="834" locator="342:15-342:41" name="Pneumococcal booster dose" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="951" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="952" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="953" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="835" locator="343:5-344:41">
+               <when localId="836" locator="343:10-343:40" xsi:type="Equal">
+                  <signature localId="843" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="844" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="841" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="842" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="838" locator="343:10-343:19" path="id" xsi:type="Property">
+                        <source localId="837" locator="343:10-343:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="839" locator="343:23-343:40" valueType="t:String" value="Pneumococcal53.3" xsi:type="Literal"/>
+               </when>
+               <then localId="954" xsi:type="As">
+                  <operand localId="845" locator="343:47-344:41" xsi:type="And">
+                     <operand localId="846" locator="343:47-343:152" name="Third pneumococcal dose from the primary series was administered. The primary series has been completed." xsi:type="ExpressionRef"/>
+                     <operand localId="847" locator="344:11-344:41" xsi:type="Not">
+                        <operand localId="848" locator="344:15-344:41" name="Pneumococcal booster dose" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="955" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="956" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="957" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="849" locator="345:5-345:95">
+               <when localId="850" locator="345:10-345:40" xsi:type="Equal">
+                  <signature localId="857" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="858" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="855" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="856" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="852" locator="345:10-345:19" path="id" xsi:type="Property">
+                        <source localId="851" locator="345:10-345:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="853" locator="345:23-345:40" valueType="t:String" value="Pneumococcal54.2" xsi:type="Literal"/>
+               </when>
+               <then localId="958" xsi:type="As">
+                  <operand localId="859" locator="345:47-345:95" name="One pneumococcal booster dose was administered." xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="959" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="960" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="961" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="860" locator="346:5-346:71">
+               <when localId="861" locator="346:10-346:40" xsi:type="Equal">
+                  <signature localId="868" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="869" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="866" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="867" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="863" locator="346:10-346:19" path="id" xsi:type="Property">
+                        <source localId="862" locator="346:10-346:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="864" locator="346:23-346:40" valueType="t:String" value="Pneumococcal55.1" xsi:type="Literal"/>
+               </when>
+               <then localId="962" xsi:type="As">
+                  <operand localId="870" locator="346:47-346:71" xsi:type="Not">
+                     <operand localId="871" locator="346:51-346:71" name="Pneumococcal dose 1" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="963" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="964" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="965" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="966" xsi:type="As">
+               <operand localId="872" locator="347:10-347:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="967" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="968" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="969" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>
