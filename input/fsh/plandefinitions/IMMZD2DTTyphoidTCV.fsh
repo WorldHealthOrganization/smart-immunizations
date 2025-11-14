@@ -1,4 +1,3 @@
-
 Instance: IMMZD2DTTyphoidTCV
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
 Title: "IMMZ.D2.DT.Typhoid.TCV"
@@ -9,6 +8,7 @@ Typhoid conjugate vaccine (TCV) schedule
 Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTTyphoidTCV, 0.1.0 )
+
 * insert PlanDefMRAction( [[Determine if the client is due for Typhoid.]], [["""
     Determine if the client is due for Typhoid vaccine according to the national immunization protocol.
     Typhoid conjugate vaccine (TCV) schedule
@@ -16,6 +16,7 @@ Usage: #definition
   age and in adults up to 45 years in typhoid endemic regions.
   """]], Client is due for Typhoid vaccination, 
   [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE21']], Typhoid vaccines )
+
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.Typhoid.TCV.]], [["""
-    Show Guidance for the patient regarding IMMZ.D2.DT.Typhoid.TCV.
-  """]], Has Guidance, Guidance)
+Show Guidance for the patient regarding IMMZ.D2.DT.Typhoid.TCV.
+"""]], Has Guidance, Guidance)

@@ -1,9 +1,8 @@
-
 /*
  * Library: IMMZD2DTTyphoidTCVLogic (IMMZ.D2.DT.Typhoid.TCV)
  * Rule: Determine if the client is due for a typhoid vaccination according to the national immunization schedule
  * Decision Table: Typhoid conjugate vaccine (TCV) schedule
- * Trigger: IMMZ.D2 Determine required vaccination(s) if any  
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any
  */
 library IMMZD2DTTyphoidTCVLogic
 
@@ -21,14 +20,14 @@ context Patient
 @dynamicValue: Guidance
 */
 define "Guidance":
-  case
+  case 
     when "Client is not due for Typhoid vaccination" then "Client is not due for Typhoid vaccination Guidance"
     when "Client is due for Typhoid vaccination" then "Client is due for Typhoid vaccination Guidance"
     when "Clinical judgement is required. Create a clinical note" then "Clinical judgement is required. Create a clinical note Guidance"
-    when "Typhoid immunization schedule is complete" then "Typhoid immunization schedule is complete Guidance"
+    when "Typhoid immunization schedule is complete" then "Typhoid immunization schedule is complete Guidance" 
     else ''
   end
-
+  
 define "Has Guidance":
   "Guidance" is not null and "Guidance" != ''
 
@@ -83,6 +82,7 @@ define "Clinical judgement is required. Create a clinical note Guidance":
 /*
 @output: Typhoid immunization schedule is complete
 @pseudocode: "Immunization recommendation status" = "Complete"
+"Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Typhoid vaccines")
 */
 define "Typhoid immunization schedule is complete":
   Encounter."One typhoid primary series dose was administered"
@@ -102,12 +102,12 @@ Check for any other vaccines due.'
 */
 define "Test Validation":
   case
-    when Patient.id = '08.2' then "Client is not due for Typhoid vaccination" and "Guidance" = 'Should not vaccinate client with typhoid dose as client\'s age is less than 6 months.
+    when Patient.id = 'Typhoid08.1' then "Client is not due for Typhoid vaccination" and "Guidance" = 'Should not vaccinate client with typhoid dose as client\'s age is less than 6 months.
 Check for any vaccines due and inform the caregiver of when to come back for the first dose.'
-    when Patient.id = '09.12' then "Client is due for Typhoid vaccination" and "Guidance" = 'Should vaccinate client with typhoid dose as no typhoid doses were administered and client is within appropriate age range.
+    when Patient.id = 'Typhoid09.2' then "Client is due for Typhoid vaccination" and "Guidance" = 'Should vaccinate client with typhoid dose as no typhoid doses were administered and client is within appropriate age range.
 Check for contraindications.'
-    when Patient.id = '10.12' then "Clinical judgement is required. Create a clinical note" and "Guidance" = 'Member States should update this action according to the national immunization programme.'
-    when Patient.id = '11.1' then "Typhoid immunization schedule is complete" and "Guidance" = 'Typhoid immunization schedule is complete. One typhoid primary series dose was administered.
+    when Patient.id = 'Typhoid10.2' then "Clinical judgement is required. Create a clinical note" and "Guidance" = 'Member States should update this action according to the national immunization programme.'
+    when Patient.id = 'Typhoid11.1' then "Typhoid immunization schedule is complete" and "Guidance" = 'Typhoid immunization schedule is complete. One typhoid primary series dose was administered.
 Check for any other vaccines due.'
     else 'No test case set'
   end

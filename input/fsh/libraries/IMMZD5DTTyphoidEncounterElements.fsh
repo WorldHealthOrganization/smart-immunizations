@@ -1,4 +1,3 @@
-
 Instance: IMMZD5DTTyphoidEncounterElements
 InstanceOf: Library
 Title: "IMMZD5DTTyphoidEncounterElements"

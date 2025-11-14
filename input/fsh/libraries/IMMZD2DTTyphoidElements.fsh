@@ -1,4 +1,3 @@
-
 Instance: IMMZD2DTTyphoidElements
 InstanceOf: Library
 Title: "IMMZD2DTTyphoidElements"

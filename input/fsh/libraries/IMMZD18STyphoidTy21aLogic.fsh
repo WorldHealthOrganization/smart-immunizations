@@ -1,4 +1,3 @@
-
 Instance: IMMZD18STyphoidTy21aLogic
 InstanceOf: Library
 Title: "IMMZD18STyphoidTy21aLogic"

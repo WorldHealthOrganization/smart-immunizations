@@ -1,4 +1,3 @@
-
 Instance: IMMZD2DTTyphoidTy21a
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
 Title: "IMMZ.D2.DT.Typhoid.Ty21a"
@@ -9,6 +8,7 @@ Live attenuated Ty21a vaccine schedule
 Usage: #definition
 
 * insert PlanDefMain( IMMZD2DTTyphoidTy21a, 0.1.0 )
+
 * insert PlanDefMRAction( [[Determine if the client is due for Typhoid.]], [["""
     Determine if the client is due for Typhoid vaccine according to the national immunization protocol.
     Live attenuated Ty21a vaccine schedule
@@ -24,6 +24,7 @@ Usage: #definition
   or at an interval of 4 weeks.
   """]], Client is due for typhoid booster dose, 
   [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE21']], Typhoid vaccines )
+
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.Typhoid.Ty21a.]], [["""
-    Show Guidance for the patient regarding IMMZ.D2.DT.Typhoid.Ty21a.
-  """]], Has Guidance, Guidance)
+Show Guidance for the patient regarding IMMZ.D2.DT.Typhoid.Ty21a.
+"""]], Has Guidance, Guidance)
