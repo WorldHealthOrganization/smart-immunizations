@@ -13,7 +13,6 @@ include WHOElements called WE
 
 include IMMZCommon called Common
 include IMMZConcepts called Concepts
-
 include IMMZEncounterElements called Encounter
 
 include IMMZD5DTTBEElements called TBEElements
@@ -27,14 +26,14 @@ context Patient
 @internal: Draft Medication Request for TBE dose
 */
 define "Draft Medication Request for TBE dose":
-  Encounter."Draft Medication Request for Patient" MR 
+  Encounter."Draft Medication Request for Patient" MR
     where MR.medication in Concepts."TBE vaccines"
-
 
 /*
 @input: The client is currently pregnant
 @pseudocode: "Potential contraindications" = "Currently pregnant"
-@decision: Potential contraindications
+@code: The client is currently pregnant-52
+@decision: IMMZ.D5.DT.TBE contraindications
 */
 define "The client is currently pregnant":
   Encounter."The client is pregnant"
@@ -42,8 +41,8 @@ define "The client is currently pregnant":
 /*
 @input: The client has moderate to severe fever
 @pseudocode: "Potential contraindications" = "Moderate to severe fever"
-@decision: Potential contraindications
+@code: The client has moderate to severe fever-58
+@decision: IMMZ.D5.DT.TBE contraindications
 */
 define "The client has moderate to severe fever":
   Encounter."The client has moderate to severe fever"
-

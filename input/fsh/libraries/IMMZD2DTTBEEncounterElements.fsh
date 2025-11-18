@@ -1,4 +1,3 @@
-
 Instance: IMMZD2DTTBEEncounterElements
 InstanceOf: Library
 Title: "IMMZD2DTTBEEncounterElements"

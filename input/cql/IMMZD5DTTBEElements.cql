@@ -15,20 +15,21 @@ include IMMZCommon called Common
 include IMMZConcepts called Concepts
 include IMMZElements called Elements
 
+
 context Patient
 
 /*
 @internal: Draft Medication Request for TBE dose
 */
 define "Draft Medication Request for TBE dose":
-  Elements."Draft Medication Request for Patient" MR 
+  Elements."Draft Medication Request for Patient" MR
     where MR.medication in Concepts."TBE vaccines"
-
 
 /*
 @input: The client is currently pregnant
 @pseudocode: "Potential contraindications" = "Currently pregnant"
-@decision: Potential contraindications
+@code: The client is currently pregnant-52
+@decision: IMMZ.D5.DT.TBE contraindications
 */
 define "The client is currently pregnant":
   Elements."The client is pregnant"
@@ -36,8 +37,8 @@ define "The client is currently pregnant":
 /*
 @input: The client has moderate to severe fever
 @pseudocode: "Potential contraindications" = "Moderate to severe fever"
-@decision: Potential contraindications
+@code: The client has moderate to severe fever-58
+@decision: IMMZ.D5.DT.TBE contraindications
 */
 define "The client has moderate to severe fever":
   Elements."The client has moderate to severe fever"
-
