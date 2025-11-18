@@ -15,36 +15,40 @@ include IMMZCommon called Common
 include IMMZConcepts called Concepts
 include IMMZElements called Elements
 
+
 context Patient
 
 /*
 @internal: Draft Medication Request for Yellow fever dose
 */
 define "Draft Medication Request for Yellow fever dose":
-  Elements."Draft Medication Request for Patient" MR 
+  Elements."Draft Medication Request for Patient" MR
     where MR.medication in Concepts."Yellow fever vaccines"
 
 /*
 @input: Client's age is less than 6 months
 @pseudocode: Today's date − "Date of birth" < 6 months
-@decision: Potential contraindications
+@code: Client's age is less than 6 months-41
+@decision: IMMZ.D5.DT.Yellow fever contraindications
 */
 define "Client's age is less than 6 months":
   Elements."Current Patient Age In Months" < 6
 
 /*
 @input: Client's age is 6–9 months
-@pseudocode: 6 months  ≤ Today's date − "Date of birth" < 9 months
-@decision: Potential contraindications
+@pseudocode: 6 months ≤ Today's date − "Date of birth" < 9 months
+@code: Client's age is 6–9 months-52
+@decision: IMMZ.D5.DT.Yellow fever contraindications
 */
 define "Client's age is 6–9 months":
-  6 <= Elements."Current Patient Age In Months" 
+  6 <= Elements."Current Patient Age In Months"
   and Elements."Current Patient Age In Months" < 9
 
 /*
 @input: Client's age is more than or equal to 60 years
 @pseudocode: Today's date − "Date of birth" ≥ 60 years
-@decision: Potential contraindications
+@code: Client's age is more than or equal to 60 years-41
+@decision: IMMZ.D5.DT.Yellow fever contraindications
 */
 define "Client's age is more than or equal to 60 years":
   Elements."Current Patient Age In Years" >= 60
@@ -52,7 +56,8 @@ define "Client's age is more than or equal to 60 years":
 /*
 @input: The client has a history of severe allergic reactions
 @pseudocode: "Potential contraindications" = "Severe allergic reactions"
-@decision: Potential contraindications
+@code: The client has a history of severe allergic reactions-59
+@decision: IMMZ.D5.DT.Yellow fever contraindications
 */
 define "The client has a history of severe allergic reactions":
   Elements."The client has history of severe allergic reactions"
@@ -60,7 +65,8 @@ define "The client has a history of severe allergic reactions":
 /*
 @input: The client is severely immunocompromised
 @pseudocode: "Potential contraindications" = "Severely immunocompromised"
-@decision: Potential contraindications
+@code: The client is severely immunocompromised-60
+@decision: IMMZ.D5.DT.Yellow fever contraindications
 */
 define "The client is severely immunocompromised":
   Elements."The client is severely immunocompromised"
@@ -68,7 +74,8 @@ define "The client is severely immunocompromised":
 /*
 @input: The client is currently pregnant
 @pseudocode: "Potential contraindications" = "Currently pregnant"
-@decision: Potential contraindications
+@code: The client is currently pregnant-52
+@decision: IMMZ.D5.DT.Yellow fever contraindications
 */
 define "The client is currently pregnant":
   Elements."The client is pregnant"
@@ -76,8 +83,8 @@ define "The client is currently pregnant":
 /*
 @input: The client is lactating
 @pseudocode: "Potential contraindications" = "Breastfeeding"
-@decision: Potential contraindications
+@code: The client is lactating-47
+@decision: IMMZ.D5.DT.Yellow fever contraindications
 */
 define "The client is lactating":
   Elements."The client is lactating"
-

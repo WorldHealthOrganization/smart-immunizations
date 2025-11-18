@@ -15,6 +15,7 @@ include IMMZCommon called Common
 include IMMZConcepts called Concepts
 include IMMZElements called Elements
 
+
 context Patient
 
 /*
@@ -40,20 +41,17 @@ define "Number of Yellow fever Primary Series Doses Administered":
 /*
 @input: No yellow fever primary series doses were administered
 @pseudocode: Count of vaccines administered (where "Vaccine type" = "Yellow fever vaccines" and "Type of dose" = "Primary series") = 0
+@code: No yellow fever primary series doses were administered-121
+@decision: IMMZ.D2.DT.Yellow fever
 */
 define "No yellow fever primary series doses were administered":
   "Number of Yellow fever Primary Series Doses Administered" = 0
 
 /*
-@input: One yellow fever primary series dose was administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Yellow fever vaccines" and "Type of dose" = "Primary series") = 1
-*/
-define "One yellow fever primary series dose was administered":
-  "Number of Yellow fever Primary Series Doses Administered" = 1
-
-/*
 @input: Client's age is less than 9 months
 @pseudocode: Today's date − "Date of birth" < 9 months
+@code: Client's age is less than 9 months-41
+@decision: IMMZ.D2.DT.Yellow fever
 */
 define "Client's age is less than 9 months":
   Elements."Current Patient Age In Months" < 9
@@ -61,6 +59,8 @@ define "Client's age is less than 9 months":
 /*
 @input: Client's age is more than or equal to 9 months
 @pseudocode: Today's date − "Date of birth" ≥ 9 months
+@code: Client's age is more than or equal to 9 months-41
+@decision: IMMZ.D2.DT.Yellow fever
 */
 define "Client's age is more than or equal to 9 months":
   Elements."Current Patient Age In Months" >= 9
@@ -68,6 +68,8 @@ define "Client's age is more than or equal to 9 months":
 /*
 @input: Live vaccine was administered in the past 4 weeks
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
+@code: Live vaccine was administered in the past 4 weeks-92
+@decision: IMMZ.D2.DT.Yellow fever
 */
 define "Live vaccine was administered in the past 4 weeks":
   Elements."Live vaccine was administered in the last 4 weeks"
@@ -75,7 +77,17 @@ define "Live vaccine was administered in the past 4 weeks":
 /*
 @input: No live vaccine was administered in the past 4 weeks
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ≥ 4 weeks
+@code: No live vaccine was administered in the past 4 weeks-92
+@decision: IMMZ.D2.DT.Yellow fever
 */
 define "No live vaccine was administered in the past 4 weeks":
   Elements."No live vaccine was administered in the last 4 weeks"
 
+/*
+@input: One yellow fever primary series dose was administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Yellow fever vaccines" and "Type of dose" = "Primary series") = 1
+@code: One yellow fever primary series dose was administered-121
+@decision: IMMZ.D2.DT.Yellow fever
+*/
+define "One yellow fever primary series dose was administered":
+  "Number of Yellow fever Primary Series Doses Administered" = 1

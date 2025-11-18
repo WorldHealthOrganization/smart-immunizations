@@ -1,4 +1,3 @@
-
 Instance: IMMZD5DTYellowfeverEncounterElements
 InstanceOf: Library
 Title: "IMMZD5DTYellowfeverEncounterElements"

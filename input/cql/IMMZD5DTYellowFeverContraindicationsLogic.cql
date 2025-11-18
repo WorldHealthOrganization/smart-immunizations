@@ -1,11 +1,10 @@
-
 /*
- * Library: IMMZD5DTYellowfeverCILogic (IMMZ.D5.DT.Yellow fever contraindications)
- * Rule: Check for contraindications before administering the vaccine(s) due	
- * Decision Table: Age
+ * Library: IMMZD5DTYellowFeverContraindicationsLogic (IMMZ.D5.DT.Yellow fever contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due
+ * Decision Table: IMMZ.D5.DT.Yellow fever contraindications
  * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
  */
-library IMMZD5DTYellowfeverCILogic
+library IMMZD5DTYellowFeverContraindicationsLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
@@ -27,13 +26,13 @@ context Patient
 @dynamicValue: Guidance
 */
 define "Guidance":
-  case
+  case 
     when "Yellow fever vaccination is contraindicated" then "Yellow fever vaccination is contraindicated Guidance"
     when "Clinical judgement is required. Create a clinical note" then "Clinical judgement is required. Create a clinical note Guidance"
-    when "Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" then "Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance"
+    when "Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" then "Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance" 
     else ''
   end
-
+  
 define "Has Guidance":
   "Guidance" is not null and "Guidance" != ''
 
@@ -61,8 +60,8 @@ define "Yellow fever vaccination is contraindicated":
 
 /*
 @output: Yellow fever vaccination is contraindicated Guidance
-@guidance: Do not vaccinate client with yellow fever as yellow fever vaccination is contraindicated in client's aged less than 6 months.
-@guidance: Do not vaccinate client with yellow fever as yellow fever vaccination is contraindicated in severely immunocompromised clients.
+@guidance = Do not vaccinate client with yellow fever as yellow fever vaccination is contraindicated in client's aged less than 6 months.
+@guidance = Do not vaccinate client with yellow fever as yellow fever vaccination is contraindicated in severely immunocompromised clients.
 */
 define "Yellow fever vaccination is contraindicated Guidance":
   case
@@ -111,10 +110,10 @@ define "Clinical judgement is required. Create a clinical note":
 
 /*
 @output: Clinical judgement is required. Create a clinical note Guidance
-@guidance: Check if exceptions to age range is being met, consider risks of vaccination and make a clinical judgement. Vaccine is not recommended for those aged 6–8 months, except during epidemics when the risk of infection with the yellow fever virus is very high.
-@guidance: Conduct a risk–benefit assessment taking into account the risk of acquiring yellow fever disease, consider risks of potential adverse events following immunization and make a clinical judgement.
-@guidance: Conduct a risk–benefit assessment since yellow fever is a live vaccine and make a clinical judgement. Pregnant women may be vaccinated during epidemics at the direction of local health authorities.
-@guidance: Conduct a risk–benefit assessment since yellow fever is a live vaccine and make a clinical judgement. Lactating women should be advised that the benefits of breastfeeding far outweigh alternatives.
+@guidance = Check if exceptions to age range is being met, consider risks of vaccination and make a clinical judgement. Vaccine is not recommended for those aged 6–8 months, except during epidemics when the risk of infection with the yellow fever virus is very high.
+@guidance = Conduct a risk–benefit assessment taking into account the risk of acquiring yellow fever disease, consider risks of potential adverse events following immunization and make a clinical judgement.
+@guidance = Conduct a risk–benefit assessment since yellow fever is a live vaccine and make a clinical judgement. Pregnant women may be vaccinated during epidemics at the direction of local health authorities.
+@guidance = Conduct a risk–benefit assessment since yellow fever is a live vaccine and make a clinical judgement. Lactating women should be advised that the benefits of breastfeeding far outweigh alternatives.
 */
 define "Clinical judgement is required. Create a clinical note Guidance":
   case
@@ -145,12 +144,12 @@ define "Yellow fever vaccination could be contraindicated. Clinical judgement is
 */
 define "Test Validation":
   case
-    when Patient.id = '16.0' then "Yellow fever vaccination is contraindicated Case 1" and "Guidance" = 'Do not vaccinate client with yellow fever as yellow fever vaccination is contraindicated in client\'s aged less than 6 months.'
-    when Patient.id = '17.0' then "Clinical judgement is required. Create a clinical note Case 1" and "Guidance" = 'Check if exceptions to age range is being met, consider risks of vaccination and make a clinical judgement. Vaccine is not recommended for those aged 6–8 months, except during epidemics when the risk of infection with the yellow fever virus is very high.'
-    when Patient.id = '18.0' then "Clinical judgement is required. Create a clinical note Case 2" and "Guidance" = 'Conduct a risk–benefit assessment taking into account the risk of acquiring yellow fever disease, consider risks of potential adverse events following immunization and make a clinical judgement.'
-    when Patient.id = '19.1' then "Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" and "Guidance" = 'Do not vaccinate client with yellow fever if client has severe hypersensitivity to egg antigens.'
-    when Patient.id = '20.1' then "Yellow fever vaccination is contraindicated Case 2" and "Guidance" = 'Do not vaccinate client with yellow fever as yellow fever vaccination is contraindicated in severely immunocompromised clients.'
-    when Patient.id = '21.1' then "Clinical judgement is required. Create a clinical note Case 3" and "Guidance" = 'Conduct a risk–benefit assessment since yellow fever is a live vaccine and make a clinical judgement. Pregnant women may be vaccinated during epidemics at the direction of local health authorities.'
-    when Patient.id = '22.1' then "Clinical judgement is required. Create a clinical note Case 4" and "Guidance" = 'Conduct a risk–benefit assessment since yellow fever is a live vaccine and make a clinical judgement. Lactating women should be advised that the benefits of breastfeeding far outweigh alternatives.'
+    when Patient.id = 'Yellowfever16.1' then "Yellow fever vaccination is contraindicated Case 1" and "Guidance" = 'Do not vaccinate client with yellow fever as yellow fever vaccination is contraindicated in client\'s aged less than 6 months.'
+    when Patient.id = 'Yellowfever17.1' then "Clinical judgement is required. Create a clinical note Case 1" and "Guidance" = 'Check if exceptions to age range is being met, consider risks of vaccination and make a clinical judgement. Vaccine is not recommended for those aged 6–8 months, except during epidemics when the risk of infection with the yellow fever virus is very high.'
+    when Patient.id = 'Yellowfever18.1' then "Clinical judgement is required. Create a clinical note Case 2" and "Guidance" = 'Conduct a risk–benefit assessment taking into account the risk of acquiring yellow fever disease, consider risks of potential adverse events following immunization and make a clinical judgement.'
+    when Patient.id = 'Yellowfever19.1' then "Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" and "Guidance" = 'Do not vaccinate client with yellow fever if client has severe hypersensitivity to egg antigens.'
+    when Patient.id = 'Yellowfever20.1' then "Yellow fever vaccination is contraindicated Case 2" and "Guidance" = 'Do not vaccinate client with yellow fever as yellow fever vaccination is contraindicated in severely immunocompromised clients.'
+    when Patient.id = 'Yellowfever21.1' then "Clinical judgement is required. Create a clinical note Case 3" and "Guidance" = 'Conduct a risk–benefit assessment since yellow fever is a live vaccine and make a clinical judgement. Pregnant women may be vaccinated during epidemics at the direction of local health authorities.'
+    when Patient.id = 'Yellowfever22.1' then "Clinical judgement is required. Create a clinical note Case 4" and "Guidance" = 'Conduct a risk–benefit assessment since yellow fever is a live vaccine and make a clinical judgement. Lactating women should be advised that the benefits of breastfeeding far outweigh alternatives.'
     else 'No test case set'
   end

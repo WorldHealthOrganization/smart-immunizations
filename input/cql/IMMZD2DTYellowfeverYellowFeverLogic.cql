@@ -1,11 +1,10 @@
-
 /*
- * Library: IMMZD2DTYellowfeverLogic (IMMZ.D2.DT.Yellow fever)
+ * Library: IMMZD2DTYellowfeverYellowFeverLogic (IMMZ.D2.DT.Yellow fever)
  * Rule: Determine if the client is due for a yellow fever vaccination according to the national immunization schedule
  * Decision Table: IMMZ.D2.DT.Yellow fever
  * Trigger: IMMZ.D2 Determine required vaccination(s) in any
  */
-library IMMZD2DTYellowfeverLogic
+library IMMZD2DTYellowfeverYellowFeverLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
@@ -21,13 +20,13 @@ context Patient
 @dynamicValue: Guidance
 */
 define "Guidance":
-  case
+  case 
     when "Client is not due for yellow fever vaccination" then "Client is not due for yellow fever vaccination Guidance"
     when "Client is due for yellow fever vaccination" then "Client is due for yellow fever vaccination Guidance"
-    when "Yellow fever immunization schedule is complete" then "Yellow fever immunization schedule is complete Guidance"
+    when "Yellow fever immunization schedule is complete" then "Yellow fever immunization schedule is complete Guidance" 
     else ''
   end
-
+  
 define "Has Guidance":
   "Guidance" is not null and "Guidance" != ''
 
@@ -58,8 +57,8 @@ define "Client is not due for yellow fever vaccination":
 
 /*
 @output: Client is not due for yellow fever vaccination Guidance
-@guidance: Should not vaccinate client with yellow fever dose as client's age is less than 9 months. Check for any vaccines due and inform the caregiver of when to come back for the next dose.
-@guidance: Should not vaccinate client with yellow fever dose as live vaccine was administered in the past 4 weeks. 
+@guidance = Should not vaccinate client with yellow fever dose as client's age is less than 9 months. Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+@guidance = Should not vaccinate client with yellow fever dose as live vaccine was administered in the past 4 weeks. 
 Check for any vaccines due and inform the caregiver of when to come back for the first dose.
 */
 define "Client is not due for yellow fever vaccination Guidance":
@@ -91,6 +90,7 @@ Check for contraindications.'
 /*
 @output: Yellow fever immunization schedule is complete
 @pseudocode: "Immunization recommendation status" = "Complete"
+"Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Yellow fever vaccines")
 */
 define "Yellow fever immunization schedule is complete":
   Encounter."One yellow fever primary series dose was administered"
@@ -110,12 +110,12 @@ Check for any other vaccines due.'
 */
 define "Test Validation":
   case
-    when Patient.id = '07.01' then "Client is not due for yellow fever vaccination Case 1" and "Guidance" = 'Should not vaccinate client with yellow fever dose as client\'s age is less than 9 months. Check for any vaccines due and inform the caregiver of when to come back for the next dose.'
-    when Patient.id = '08.012' then "Client is not due for yellow fever vaccination Case 2" and "Guidance" = 'Should not vaccinate client with yellow fever dose as live vaccine was administered in the past 4 weeks. 
+    when Patient.id = 'Yellowfever07.2' then "Client is not due for yellow fever vaccination Case 1" and "Guidance" = 'Should not vaccinate client with yellow fever dose as client\'s age is less than 9 months. Check for any vaccines due and inform the caregiver of when to come back for the next dose.'
+    when Patient.id = 'Yellowfever08.3' then "Client is not due for yellow fever vaccination Case 2" and "Guidance" = 'Should not vaccinate client with yellow fever dose as live vaccine was administered in the past 4 weeks. 
 Check for any vaccines due and inform the caregiver of when to come back for the first dose.'
-    when Patient.id = '09.012' then "Client is due for yellow fever vaccination" and "Guidance" = 'Should vaccinate client with yellow fever dose as no yellow fever dose was administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks. 
+    when Patient.id = 'Yellowfever09.3' then "Client is due for yellow fever vaccination" and "Guidance" = 'Should vaccinate client with yellow fever dose as no yellow fever dose was administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks. 
 Check for contraindications.'
-    when Patient.id = '10.0' then "Yellow fever immunization schedule is complete" and "Guidance" = 'Yellow fever immunization schedule is complete. One yellow fever primary series dose was administered. 
+    when Patient.id = 'Yellowfever10.1' then "Yellow fever immunization schedule is complete" and "Guidance" = 'Yellow fever immunization schedule is complete. One yellow fever primary series dose was administered. 
 Check for any other vaccines due.'
     else 'No test case set'
   end

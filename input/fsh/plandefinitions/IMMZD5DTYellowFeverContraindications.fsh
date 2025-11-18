@@ -1,18 +1,19 @@
-
-Instance: IMMZD5DTYellowfeverCI
+Instance: IMMZD5DTYellowFeverContraindications
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
 Title: "IMMZ.D5.DT.Yellow fever contraindications"
 Description: """
 IMMZ.D5.DT.Yellow fever contraindications
-Age
+IMMZ.D5.DT.Yellow fever contraindications
 """
 Usage: #definition
 
-* insert PlanDefMain( IMMZD5DTYellowfeverCI, 0.1.0 )
+* insert PlanDefMain( IMMZD5DTYellowFeverContraindications, 0.1.0 )
+
 * insert PlanDefMRUpdate([[Check for contraindications before administering the vaccine(s) due]], [["""
 Contraindication for Yellow fever immunization
 """]], Yellow fever vaccination is contraindicated, Draft Medication Request ID for Yellow fever dose, 
   [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE23']], Yellow fever vaccines )
+
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D5.DT.Yellow fever contraindications.]], [["""
-    Show Guidance for the patient regarding IMMZ.D5.DT.Yellow fever contraindications.
-  """]], Has Guidance, Guidance)
+Show Guidance for the patient regarding IMMZ.D5.DT.Yellow fever contraindications.
+"""]], Has Guidance, Guidance)
