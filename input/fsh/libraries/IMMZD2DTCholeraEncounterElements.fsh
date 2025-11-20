@@ -1,4 +1,3 @@
-
 Instance: IMMZD2DTCholeraEncounterElements
 InstanceOf: Library
 Title: "IMMZD2DTCholeraEncounterElements"

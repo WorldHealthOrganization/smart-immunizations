@@ -300,67 +300,67 @@ const loadCS = async (csfile) => {
 }
 
 const loadCQL = async (cqlfile) => {
-  const cql = fs.createReadStream(cqlfile)
-  cql.on('error', (err) => {
-    console.log(err)
-    return null
-  })
+  try {
+    const cql = fs.createReadStream(cqlfile)
+
+    const rl = readline.createInterface({
+      input: cql,
+      crlfDelay: Infinity
+    })
+
+    let define = null
+    let incomment = true
+    let expressions = {}
+    let parameters = {}
+    for await (let line of rl) {
+
+      line = line.trimEnd()
+      if ( incomment ) {
+        if ( line.match(/\*\//) ) {
+          line = line.replace(/.*\*\//, "")
+          incomment = false
+        } else {
+          continue
+        }
+      }
 
 
-  const rl = readline.createInterface({
-    input: cql,
-    crlfDelay: Infinity
-  })
+      line = line.replace(/\/\*.*\*\//, "").replace(/\/\/.*$/, "").replace()
 
-  let define = null
-  let incomment = true
-  let expressions = {}
-  let parameters = {}
-  for await (let line of rl) {
+      if ( line.match( /\/\*/ ) ) {
+        line = line.replace(/\/\*.*/, "")
+        incomment = true
+      }
 
-    line = line.trimEnd()
-    if ( incomment ) {
-      if ( line.match(/\*\//) ) {
-        line = line.replace(/.*\*\//, "")
-        incomment = false
-      } else {
+      if ( isEmpty(line) ) continue
+
+      let findparam = line.match(/parameter (\S+) (.+)/)
+      if ( findparam ) {
+        parameters[findparam[1]] = findparam[2]
+        define = null
         continue
       }
-    }
 
-
-    line = line.replace(/\/\*.*\*\//, "").replace(/\/\/.*$/, "").replace()
-
-    if ( line.match( /\/\*/ ) ) {
-      line = line.replace(/\/\*.*/, "")
-      incomment = true
-    }
-
-    if ( isEmpty(line) ) continue
-
-    let findparam = line.match(/parameter (\S+) (.+)/)
-    if ( findparam ) {
-      parameters[findparam[1]] = findparam[2]
-      define = null
-      continue
-    }
-
-    let finddef = line.match(/define "(.+)":/)
-    if ( finddef ) {
-      define = finddef[1]
-      if ( expressions[define] ) {
-        console.error("Found",define,"more than once when reading",cqlfile)
-        process.exit(0)
+      let finddef = line.match(/define "(.+)":/)
+      if ( finddef ) {
+        define = finddef[1]
+        if ( expressions[define] ) {
+          console.error("Found",define,"more than once when reading",cqlfile)
+          process.exit(0)
+        }
+        expressions[define] = ""
+        continue
       }
-      expressions[define] = ""
-      continue
-    }
-    if ( define ) {
-      expressions[define] += line + "\n"
-    }
+      if ( define ) {
+        expressions[define] += line + "\n"
+      }
 
+    }
+    return { expressions: expressions, parameters: parameters }
+  } catch (err) {
+    console.error(chalk.red("Unable to read "+cqlfile), chalk.yellow("This may be ok"))
+    return { expressions: {}, parameters: {} }
   }
-  return { expressions: expressions, parameters: parameters }
 
 }
 
@@ -881,7 +881,6 @@ if ( options.all || options.elements ) {
 
     if ( options.existing ) {
       eleprev.D2DT = await loadCQL( path.join(INPUTDIR,"cql","IMMZD2DT"+dak[vaccine].short+"Elements.cql") )
-
       encprev.D2DT = await loadCQL( path.join(INPUTDIR,"cql","IMMZD2DT"+dak[vaccine].short+"EncounterElements.cql") )
       eleprev.D5DT = await loadCQL( path.join(INPUTDIR,"cql","IMMZD5DT"+dak[vaccine].short+"Elements.cql") )
       encprev.D5DT = await loadCQL( path.join(INPUTDIR,"cql","IMMZD5DT"+dak[vaccine].short+"EncounterElements.cql") )
@@ -890,7 +889,6 @@ if ( options.all || options.elements ) {
         process.exit(0)
       }
     }
-
     let defines = { D2DT: {}, D5DT: {} }
 
     for( const table in dak[vaccine].tables ) {
