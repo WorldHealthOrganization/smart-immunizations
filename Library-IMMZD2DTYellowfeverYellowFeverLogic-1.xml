@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="318">
+         <a:s>/*
+ * Library: IMMZD2DTYellowfeverYellowFeverLogic (IMMZ.D2.DT.Yellow fever)
+ * Rule: Determine if the client is due for a yellow fever vaccination according to the national immunization schedule
+ * Decision Table: IMMZ.D2.DT.Yellow fever
+ * Trigger: IMMZ.D2 Determine required vaccination(s) in any
+ */
+library IMMZD2DTYellowfeverYellowFeverLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTYellowfeverYellowFeverLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="9:1-9:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="10:1-10:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="12:1-12:61" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTYellowfeverEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTYellowfeverEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="212" locator="14:1-14:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>parameter Today </a:s>
+               <a:s r="216">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="215">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="215" locator="14:30-14:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="216" locator="14:17-14:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="16:1-16:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="16:1-16:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="233" locator="37:1-39:54" name="Client is not due for yellow fever vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for yellow fever vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="233">
+               <a:s>/*
+@output: Client is not due for yellow fever vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for yellow fever vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="234">
+                  <a:s r="236">
+                     <a:s r="235">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="236">
+                        <a:s>&quot;No yellow fever primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="238">
+                     <a:s r="237">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="238">
+                        <a:s>&quot;Client's age is less than 9 months&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="234" locator="38:3-39:54" xsi:type="And">
+            <operand localId="236" locator="38:3-38:68" name="No yellow fever primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="238" locator="39:9-39:54" name="Client's age is less than 9 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="242" locator="45:1-48:69" name="Client is not due for yellow fever vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for yellow fever vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="242">
+               <a:s>/*
+@output: Client is not due for yellow fever vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for yellow fever vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="243">
+                  <a:s r="244">
+                     <a:s r="246">
+                        <a:s r="245">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="246">
+                           <a:s>&quot;No yellow fever primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="248">
+                        <a:s r="247">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="248">
+                           <a:s>&quot;Client's age is more than or equal to 9 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="250">
+                     <a:s r="249">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="250">
+                        <a:s>&quot;Live vaccine was administered in the past 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="243" locator="46:3-48:69" xsi:type="And">
+            <operand localId="244" locator="46:3-47:66" xsi:type="And">
+               <operand localId="246" locator="46:3-46:68" name="No yellow fever primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="248" locator="47:9-47:66" name="Client's age is more than or equal to 9 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="250" locator="48:9-48:69" name="Live vaccine was administered in the past 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="229" locator="54:1-56:62" name="Client is not due for yellow fever vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for yellow fever vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="229">
+               <a:s>/*
+@output: Client is not due for yellow fever vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for yellow fever vaccination&quot;:
+  </a:s>
+               <a:s r="230">
+                  <a:s r="239">
+                     <a:s>&quot;Client is not due for yellow fever vaccination Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="251">
+                     <a:s>&quot;Client is not due for yellow fever vaccination Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="230" locator="55:3-56:62" xsi:type="Or">
+            <operand localId="239" locator="55:3-55:57" name="Client is not due for yellow fever vaccination Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="251" locator="56:8-56:62" name="Client is not due for yellow fever vaccination Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="255" locator="64:1-70:5" name="Client is not due for yellow fever vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for yellow fever vaccination Guidance"/>
+            <a:s r="255">
+               <a:s>/*
+@output: Client is not due for yellow fever vaccination Guidance
+@guidance = Should not vaccinate client with yellow fever dose as client's age is less than 9 months. Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+@guidance = Should not vaccinate client with yellow fever dose as live vaccine was administered in the past 4 weeks. 
+Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+*/
+define &quot;Client is not due for yellow fever vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="256">
+                  <a:s>case
+    </a:s>
+                  <a:s r="257">
+                     <a:s>when </a:s>
+                     <a:s r="258">
+                        <a:s>&quot;Client is not due for yellow fever vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="259">
+                        <a:s>'Should not vaccinate client with yellow fever dose as client\'s age is less than 9 months. Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="261">
+                     <a:s>when </a:s>
+                     <a:s r="262">
+                        <a:s>&quot;Client is not due for yellow fever vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="263">
+                        <a:s>'Should not vaccinate client with yellow fever dose as live vaccine was administered in the past 4 weeks. 
+Check for any vaccines due and inform the caregiver of when to come back for the first dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="265">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="256" locator="65:3-70:5" xsi:type="Case">
+            <caseItem localId="257" locator="66:5-66:254">
+               <when localId="258" locator="66:10-66:64" name="Client is not due for yellow fever vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="259" locator="66:71-66:254" valueType="t:String" value="Should not vaccinate client with yellow fever dose as client's age is less than 9 months. Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="261" locator="67:5-67:270">
+               <when localId="262" locator="67:10-67:64" name="Client is not due for yellow fever vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="263" locator="67:71-67:270" valueType="t:String" value="Should not vaccinate client with yellow fever dose as live vaccine was administered in the past 4 weeks. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the first dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="265" locator="69:10-69:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="271" locator="76:1-79:72" name="Client is due for yellow fever vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for yellow fever vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="271">
+               <a:s>/*
+@output: Client is due for yellow fever vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for yellow fever vaccination&quot;:
+  </a:s>
+               <a:s r="272">
+                  <a:s r="273">
+                     <a:s r="275">
+                        <a:s r="274">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="275">
+                           <a:s>&quot;No yellow fever primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="277">
+                        <a:s r="276">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="277">
+                           <a:s>&quot;Client's age is more than or equal to 9 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="279">
+                     <a:s r="278">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="279">
+                        <a:s>&quot;No live vaccine was administered in the past 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="272" locator="77:3-79:72" xsi:type="And">
+            <operand localId="273" locator="77:3-78:66" xsi:type="And">
+               <operand localId="275" locator="77:3-77:68" name="No yellow fever primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="277" locator="78:9-78:66" name="Client's age is more than or equal to 9 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="279" locator="79:9-79:72" name="No live vaccine was administered in the past 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="283" locator="86:1-87:219" name="Client is due for yellow fever vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for yellow fever vaccination Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with yellow fever dose as no yellow fever dose was administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks. &#xa;Check for contraindications."/>
+            <a:s r="283">
+               <a:s>/*
+@output: Client is due for yellow fever vaccination Guidance
+@guidance: Should vaccinate client with yellow fever dose as no yellow fever dose was administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks. 
+Check for contraindications.
+*/
+define &quot;Client is due for yellow fever vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="284">
+                  <a:s>'Should vaccinate client with yellow fever dose as no yellow fever dose was administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks. 
+Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="284" locator="87:3-87:219" valueType="t:String" value="Should vaccinate client with yellow fever dose as no yellow fever dose was administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks. &#xa;Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="290" locator="95:1-96:67" name="Yellow fever immunization schedule is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Yellow fever immunization schedule is complete"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="290">
+               <a:s>/*
+@output: Yellow fever immunization schedule is complete
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Yellow fever vaccines&quot;)
+*/
+define &quot;Yellow fever immunization schedule is complete&quot;:
+  </a:s>
+               <a:s r="292">
+                  <a:s r="291">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="292">
+                     <a:s>&quot;One yellow fever primary series dose was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="292" locator="96:3-96:67" name="One yellow fever primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="296" locator="103:1-104:141" name="Yellow fever immunization schedule is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Yellow fever immunization schedule is complete Guidance"/>
+            <a:t name="guidance" value="Yellow fever immunization schedule is complete. One yellow fever primary series dose was administered. &#xa;Check for any other vaccines due."/>
+            <a:s r="296">
+               <a:s>/*
+@output: Yellow fever immunization schedule is complete Guidance
+@guidance: Yellow fever immunization schedule is complete. One yellow fever primary series dose was administered. 
+Check for any other vaccines due.
+*/
+define &quot;Yellow fever immunization schedule is complete Guidance&quot;:
+  </a:s>
+               <a:s r="297">
+                  <a:s>'Yellow fever immunization schedule is complete. One yellow fever primary series dose was administered. 
+Check for any other vaccines due.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="297" locator="104:3-104:141" valueType="t:String" value="Yellow fever immunization schedule is complete. One yellow fever primary series dose was administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+      </def>
+      <def localId="224" locator="22:1-28:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="224">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="225">
+                  <a:s>case 
+    </a:s>
+                  <a:s r="226">
+                     <a:s>when </a:s>
+                     <a:s r="252">
+                        <a:s>&quot;Client is not due for yellow fever vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="267">
+                        <a:s>&quot;Client is not due for yellow fever vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="268">
+                     <a:s>when </a:s>
+                     <a:s r="280">
+                        <a:s>&quot;Client is due for yellow fever vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="286">
+                        <a:s>&quot;Client is due for yellow fever vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="287">
+                     <a:s>when </a:s>
+                     <a:s r="293">
+                        <a:s>&quot;Yellow fever immunization schedule is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="299">
+                        <a:s>&quot;Yellow fever immunization schedule is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+    else </a:s>
+                  <a:s r="300">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="23:3-28:5" xsi:type="Case">
+            <caseItem localId="226" locator="24:5-24:120">
+               <when localId="252" locator="24:10-24:57" name="Client is not due for yellow fever vaccination" xsi:type="ExpressionRef"/>
+               <then localId="267" locator="24:64-24:120" name="Client is not due for yellow fever vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="268" locator="25:5-25:112">
+               <when localId="280" locator="25:10-25:53" name="Client is due for yellow fever vaccination" xsi:type="ExpressionRef"/>
+               <then localId="286" locator="25:60-25:112" name="Client is due for yellow fever vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="287" locator="26:5-26:120">
+               <when localId="293" locator="26:10-26:57" name="Yellow fever immunization schedule is complete" xsi:type="ExpressionRef"/>
+               <then localId="299" locator="26:64-26:120" name="Yellow fever immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="300" locator="27:10-27:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="304" locator="30:1-31:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="304">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="305">
+                  <a:s r="308">
+                     <a:s r="306">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="315">
+                     <a:s r="310">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="311">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="305" locator="31:3-31:45" xsi:type="And">
+            <operand localId="308" locator="31:3-31:24" xsi:type="Not">
+               <operand localId="307" locator="31:3-31:24" xsi:type="IsNull">
+                  <operand localId="306" locator="31:3-31:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="315" locator="31:30-31:45" xsi:type="Not">
+               <operand localId="309" locator="31:30-31:45" xsi:type="Equal">
+                  <signature localId="313" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="314" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="310" locator="31:30-31:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="311" locator="31:44-31:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="318" locator="111:1-121:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="318">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="319">
+                  <a:s>case
+    </a:s>
+                  <a:s r="320">
+                     <a:s>when </a:s>
+                     <a:s r="321">
+                        <a:s r="323">
+                           <a:s r="322">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="323">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="324">
+                           <a:s>'Yellowfever07.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="330">
+                        <a:s r="331">
+                           <a:s>&quot;Client is not due for yellow fever vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="332">
+                           <a:s r="333">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="334">
+                              <a:s>'Should not vaccinate client with yellow fever dose as client\'s age is less than 9 months. Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="338">
+                     <a:s>when </a:s>
+                     <a:s r="339">
+                        <a:s r="341">
+                           <a:s r="340">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="341">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="342">
+                           <a:s>'Yellowfever08.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="348">
+                        <a:s r="349">
+                           <a:s>&quot;Client is not due for yellow fever vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="350">
+                           <a:s r="351">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="352">
+                              <a:s>'Should not vaccinate client with yellow fever dose as live vaccine was administered in the past 4 weeks. 
+Check for any vaccines due and inform the caregiver of when to come back for the first dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="356">
+                     <a:s>when </a:s>
+                     <a:s r="357">
+                        <a:s r="359">
+                           <a:s r="358">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="359">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="360">
+                           <a:s>'Yellowfever09.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="366">
+                        <a:s r="367">
+                           <a:s>&quot;Client is due for yellow fever vaccination&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="368">
+                           <a:s r="369">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="370">
+                              <a:s>'Should vaccinate client with yellow fever dose as no yellow fever dose was administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="374">
+                     <a:s>when </a:s>
+                     <a:s r="375">
+                        <a:s r="377">
+                           <a:s r="376">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="377">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="378">
+                           <a:s>'Yellowfever10.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="384">
+                        <a:s r="385">
+                           <a:s>&quot;Yellow fever immunization schedule is complete&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="386">
+                           <a:s r="387">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="388">
+                              <a:s>'Yellow fever immunization schedule is complete. One yellow fever primary series dose was administered. 
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="392">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="319" locator="112:3-121:5" xsi:type="Case">
+            <caseItem localId="320" locator="113:5-113:302">
+               <when localId="321" locator="113:10-113:39" xsi:type="Equal">
+                  <signature localId="328" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="329" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="326" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="327" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="323" locator="113:10-113:19" path="id" xsi:type="Property">
+                        <source localId="322" locator="113:10-113:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="324" locator="113:23-113:39" valueType="t:String" value="Yellowfever07.2" xsi:type="Literal"/>
+               </when>
+               <then localId="394" xsi:type="As">
+                  <operand localId="330" locator="113:46-113:302" xsi:type="And">
+                     <operand localId="331" locator="113:46-113:100" name="Client is not due for yellow fever vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="332" locator="113:106-113:302" xsi:type="Equal">
+                        <signature localId="336" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="337" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="333" locator="113:106-113:115" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="334" locator="113:119-113:302" valueType="t:String" value="Should not vaccinate client with yellow fever dose as client's age is less than 9 months. Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="395" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="396" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="397" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="338" locator="114:5-114:318">
+               <when localId="339" locator="114:10-114:39" xsi:type="Equal">
+                  <signature localId="346" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="347" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="344" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="345" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="341" locator="114:10-114:19" path="id" xsi:type="Property">
+                        <source localId="340" locator="114:10-114:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="342" locator="114:23-114:39" valueType="t:String" value="Yellowfever08.3" xsi:type="Literal"/>
+               </when>
+               <then localId="398" xsi:type="As">
+                  <operand localId="348" locator="114:46-114:318" xsi:type="And">
+                     <operand localId="349" locator="114:46-114:100" name="Client is not due for yellow fever vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="350" locator="114:106-114:318" xsi:type="Equal">
+                        <signature localId="354" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="355" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="351" locator="114:106-114:115" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="352" locator="114:119-114:318" valueType="t:String" value="Should not vaccinate client with yellow fever dose as live vaccine was administered in the past 4 weeks. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the first dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="399" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="400" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="401" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="356" locator="116:5-116:324">
+               <when localId="357" locator="116:10-116:39" xsi:type="Equal">
+                  <signature localId="364" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="365" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="362" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="363" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="359" locator="116:10-116:19" path="id" xsi:type="Property">
+                        <source localId="358" locator="116:10-116:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="360" locator="116:23-116:39" valueType="t:String" value="Yellowfever09.3" xsi:type="Literal"/>
+               </when>
+               <then localId="402" xsi:type="As">
+                  <operand localId="366" locator="116:46-116:324" xsi:type="And">
+                     <operand localId="367" locator="116:46-116:89" name="Client is due for yellow fever vaccination" xsi:type="ExpressionRef"/>
+                     <operand localId="368" locator="116:95-116:324" xsi:type="Equal">
+                        <signature localId="372" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="373" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="369" locator="116:95-116:104" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="370" locator="116:108-116:324" valueType="t:String" value="Should vaccinate client with yellow fever dose as no yellow fever dose was administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="403" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="404" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="405" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="374" locator="118:5-118:250">
+               <when localId="375" locator="118:10-118:39" xsi:type="Equal">
+                  <signature localId="382" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="383" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="380" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="381" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="377" locator="118:10-118:19" path="id" xsi:type="Property">
+                        <source localId="376" locator="118:10-118:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="378" locator="118:23-118:39" valueType="t:String" value="Yellowfever10.1" xsi:type="Literal"/>
+               </when>
+               <then localId="406" xsi:type="As">
+                  <operand localId="384" locator="118:46-118:250" xsi:type="And">
+                     <operand localId="385" locator="118:46-118:93" name="Yellow fever immunization schedule is complete" xsi:type="ExpressionRef"/>
+                     <operand localId="386" locator="118:99-118:250" xsi:type="Equal">
+                        <signature localId="390" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="391" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="387" locator="118:99-118:108" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="388" locator="118:112-118:250" valueType="t:String" value="Yellow fever immunization schedule is complete. One yellow fever primary series dose was administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="407" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="408" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="409" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="410" xsi:type="As">
+               <operand localId="392" locator="120:10-120:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="411" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="412" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="413" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

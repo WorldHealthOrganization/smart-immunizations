@@ -1,0 +1,1350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="379">
+         <a:s>/*
+ * Library: IMMZD2DTTBETBEMoscowLogic (IMMZ.D2.DT.TBE.TBE-Moscow)
+ * Rule: Determine if the client is due for a tick-borne encephalitis (TBE) vaccination according to the national immunization schedule
+ * Decision Table: TBE-Moscow schedule
+(In areas where the disease is highly endemic, implying that there is a high individual risk of infection, WHO recommends that vaccination be offered to all age groups, including children	)
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any
+ */
+library IMMZD2DTTBETBEMoscowLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTTBETBEMoscowLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="13:1-13:53" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTTBEEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTTBEEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="212" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>parameter Today </a:s>
+               <a:s r="216">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="215">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="215" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="216" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="234" locator="39:1-40:47" name="Client is not due for TBE vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for TBE vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="234">
+               <a:s>/*
+@output: Client is not due for TBE vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for TBE vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="236">
+                  <a:s r="235">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="236">
+                     <a:s>&quot;Client's age is less than 3 years&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="236" locator="40:3-40:47" name="Client's age is less than 3 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="240" locator="46:1-48:78" name="Client is not due for TBE vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for TBE vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="240">
+               <a:s>/*
+@output: Client is not due for TBE vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for TBE vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="241">
+                  <a:s r="243">
+                     <a:s r="242">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="243">
+                        <a:s>&quot;One TBE primary series dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="245">
+                     <a:s r="244">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="245">
+                        <a:s>&quot;The latest TBE dose was administered less than 1 month ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="241" locator="47:3-48:78" xsi:type="And">
+            <operand localId="243" locator="47:3-47:58" name="One TBE primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="245" locator="48:9-48:78" name="The latest TBE dose was administered less than 1 month ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="249" locator="54:1-56:80" name="Client is not due for TBE vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for TBE vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="249">
+               <a:s>/*
+@output: Client is not due for TBE vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for TBE vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="250">
+                  <a:s r="252">
+                     <a:s r="251">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="252">
+                        <a:s>&quot;Two TBE primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="254">
+                     <a:s r="253">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="254">
+                        <a:s>&quot;The latest TBE dose was administered less than 12 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="250" locator="55:3-56:80" xsi:type="And">
+            <operand localId="252" locator="55:3-55:60" name="Two TBE primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="254" locator="56:9-56:80" name="The latest TBE dose was administered less than 12 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="229" locator="62:1-65:53" name="Client is not due for TBE vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for TBE vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="229">
+               <a:s>/*
+@output: Client is not due for TBE vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for TBE vaccination&quot;:
+  </a:s>
+               <a:s r="230">
+                  <a:s r="231">
+                     <a:s r="237">
+                        <a:s>&quot;Client is not due for TBE vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="246">
+                        <a:s>&quot;Client is not due for TBE vaccination Case 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="255">
+                     <a:s>&quot;Client is not due for TBE vaccination Case 3&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="230" locator="63:3-65:53" xsi:type="Or">
+            <operand localId="231" locator="63:3-64:53" xsi:type="Or">
+               <operand localId="237" locator="63:3-63:48" name="Client is not due for TBE vaccination Case 1" xsi:type="ExpressionRef"/>
+               <operand localId="246" locator="64:8-64:53" name="Client is not due for TBE vaccination Case 2" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="255" locator="65:8-65:53" name="Client is not due for TBE vaccination Case 3" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="259" locator="76:1-85:5" name="Client is not due for TBE vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for TBE vaccination Guidance"/>
+            <a:s r="259">
+               <a:s>/*
+@output: Client is not due for TBE vaccination Guidance
+@guidance = Should not vaccinate client with first TBE dose as client's age is under 3 years.
+Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+@guidance = Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago.
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+@guidance = Should not vaccinate client with third TBE dose as the latest dose was administered less than 12 months ago.
+Check for any vaccines due and inform the caregiver of when to come back for the next dose
+*/
+define &quot;Client is not due for TBE vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="260">
+                  <a:s>case
+    </a:s>
+                  <a:s r="261">
+                     <a:s>when </a:s>
+                     <a:s r="262">
+                        <a:s>&quot;Client is not due for TBE vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="263">
+                        <a:s>'Should not vaccinate client with first TBE dose as client\'s age is under 3 years.
+Check for any vaccines due and inform the caregiver of when to come back for the first dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="265">
+                     <a:s>when </a:s>
+                     <a:s r="266">
+                        <a:s>&quot;Client is not due for TBE vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="267">
+                        <a:s>'Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago.
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="269">
+                     <a:s>when </a:s>
+                     <a:s r="270">
+                        <a:s>&quot;Client is not due for TBE vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="271">
+                        <a:s>'Should not vaccinate client with third TBE dose as the latest dose was administered less than 12 months ago.
+Check for any vaccines due and inform the caregiver of when to come back for the next dose'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="273">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="260" locator="77:3-85:5" xsi:type="Case">
+            <caseItem localId="261" locator="78:5-78:238">
+               <when localId="262" locator="78:10-78:55" name="Client is not due for TBE vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="263" locator="78:62-78:238" valueType="t:String" value="Should not vaccinate client with first TBE dose as client's age is under 3 years.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the first dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="265" locator="80:5-80:262">
+               <when localId="266" locator="80:10-80:55" name="Client is not due for TBE vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="267" locator="80:62-80:262" valueType="t:String" value="Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="269" locator="82:5-82:262">
+               <when localId="270" locator="82:10-82:55" name="Client is not due for TBE vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="271" locator="82:62-82:262" valueType="t:String" value="Should not vaccinate client with third TBE dose as the latest dose was administered less than 12 months ago.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose" xsi:type="Literal"/>
+            </caseItem>
+            <else localId="273" locator="84:10-84:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="284" locator="91:1-93:65" name="Client is due for TBE vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for TBE vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="284">
+               <a:s>/*
+@output: Client is due for TBE vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for TBE vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="285">
+                  <a:s r="287">
+                     <a:s r="286">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="287">
+                        <a:s>&quot;No TBE primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="289">
+                     <a:s r="288">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="289">
+                        <a:s>&quot;Client's age is more than or equal to 3 years&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="285" locator="92:3-93:65" xsi:type="And">
+            <operand localId="287" locator="92:3-92:59" name="No TBE primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="289" locator="93:9-93:65" name="Client's age is more than or equal to 3 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="293" locator="99:1-101:78" name="Client is due for TBE vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for TBE vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="293">
+               <a:s>/*
+@output: Client is due for TBE vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for TBE vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="294">
+                  <a:s r="296">
+                     <a:s r="295">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="296">
+                        <a:s>&quot;One TBE primary series dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="298">
+                     <a:s r="297">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="298">
+                        <a:s>&quot;The latest TBE dose was administered more than 1 month ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="294" locator="100:3-101:78" xsi:type="And">
+            <operand localId="296" locator="100:3-100:58" name="One TBE primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="298" locator="101:9-101:78" name="The latest TBE dose was administered more than 1 month ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="302" locator="107:1-109:80" name="Client is due for TBE vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for TBE vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="302">
+               <a:s>/*
+@output: Client is due for TBE vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for TBE vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="303">
+                  <a:s r="305">
+                     <a:s r="304">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="305">
+                        <a:s>&quot;Two TBE primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="307">
+                     <a:s r="306">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="307">
+                        <a:s>&quot;The latest TBE dose was administered more than 12 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="303" locator="108:3-109:80" xsi:type="And">
+            <operand localId="305" locator="108:3-108:60" name="Two TBE primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="307" locator="109:9-109:80" name="The latest TBE dose was administered more than 12 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="279" locator="115:1-118:49" name="Client is due for TBE vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for TBE vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="279">
+               <a:s>/*
+@output: Client is due for TBE vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for TBE vaccination&quot;:
+  </a:s>
+               <a:s r="280">
+                  <a:s r="281">
+                     <a:s r="290">
+                        <a:s>&quot;Client is due for TBE vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="299">
+                        <a:s>&quot;Client is due for TBE vaccination Case 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="308">
+                     <a:s>&quot;Client is due for TBE vaccination Case 3&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="280" locator="116:3-118:49" xsi:type="Or">
+            <operand localId="281" locator="116:3-117:49" xsi:type="Or">
+               <operand localId="290" locator="116:3-116:44" name="Client is due for TBE vaccination Case 1" xsi:type="ExpressionRef"/>
+               <operand localId="299" locator="117:8-117:49" name="Client is due for TBE vaccination Case 2" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="308" locator="118:8-118:49" name="Client is due for TBE vaccination Case 3" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="312" locator="129:1-138:5" name="Client is due for TBE vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for TBE vaccination Guidance"/>
+            <a:s r="312">
+               <a:s>/*
+@output: Client is due for TBE vaccination Guidance
+@guidance = Should vaccinate client with first TBE dose as no TBE doses have been administered and client's age is more than 3 years.
+Check for contraindications.
+@guidance = Should vaccinate client with second TBE dose as the latest dose was administered more than 1 month ago.
+Check for contraindications.
+@guidance = Should vaccinate client with third TBE dose as the latest dose was administered more than 12 months ago.
+Check for contraindications.
+*/
+define &quot;Client is due for TBE vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="313">
+                  <a:s>case
+    </a:s>
+                  <a:s r="314">
+                     <a:s>when </a:s>
+                     <a:s r="315">
+                        <a:s>&quot;Client is due for TBE vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="316">
+                        <a:s>'Should vaccinate client with first TBE dose as no TBE doses have been administered and client\'s age is more than 3 years.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="318">
+                     <a:s>when </a:s>
+                     <a:s r="319">
+                        <a:s>&quot;Client is due for TBE vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="320">
+                        <a:s>'Should vaccinate client with second TBE dose as the latest dose was administered more than 1 month ago.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="322">
+                     <a:s>when </a:s>
+                     <a:s r="323">
+                        <a:s>&quot;Client is due for TBE vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="324">
+                        <a:s>'Should vaccinate client with third TBE dose as the latest dose was administered more than 12 months ago.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="326">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="313" locator="130:3-138:5" xsi:type="Case">
+            <caseItem localId="314" locator="131:5-131:210">
+               <when localId="315" locator="131:10-131:51" name="Client is due for TBE vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="316" locator="131:58-131:210" valueType="t:String" value="Should vaccinate client with first TBE dose as no TBE doses have been administered and client's age is more than 3 years.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="318" locator="133:5-133:191">
+               <when localId="319" locator="133:10-133:51" name="Client is due for TBE vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="320" locator="133:58-133:191" valueType="t:String" value="Should vaccinate client with second TBE dose as the latest dose was administered more than 1 month ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="322" locator="135:5-135:192">
+               <when localId="323" locator="135:10-135:51" name="Client is due for TBE vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="324" locator="135:58-135:192" valueType="t:String" value="Should vaccinate client with third TBE dose as the latest dose was administered more than 12 months ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="326" locator="137:10-137:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="332" locator="145:1-147:78" name="Primary series is complete. Client is not due for TBE booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary series is complete. Client is not due for TBE booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="332">
+               <a:s>/*
+@output: Primary series is complete. Client is not due for TBE booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;)
+*/
+define &quot;Primary series is complete. Client is not due for TBE booster dose&quot;:
+  </a:s>
+               <a:s r="333">
+                  <a:s r="335">
+                     <a:s r="334">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="335">
+                        <a:s>&quot;Three TBE primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="337">
+                     <a:s r="336">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="337">
+                        <a:s>&quot;The latest TBE dose was administered less than 3 years ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="333" locator="146:3-147:78" xsi:type="And">
+            <operand localId="335" locator="146:3-146:62" name="Three TBE primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="337" locator="147:9-147:78" name="The latest TBE dose was administered less than 3 years ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="341" locator="154:1-155:145" name="Primary series is complete. Client is not due for TBE booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary series is complete. Client is not due for TBE booster dose Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with TBE booster dose as the latest TBE dose was administered less than 3 years ago.&#xa;Check for contraindications."/>
+            <a:s r="341">
+               <a:s>/*
+@output: Primary series is complete. Client is not due for TBE booster dose Guidance
+@guidance: Should not vaccinate client with TBE booster dose as the latest TBE dose was administered less than 3 years ago.
+Check for contraindications.
+*/
+define &quot;Primary series is complete. Client is not due for TBE booster dose Guidance&quot;:
+  </a:s>
+               <a:s r="342">
+                  <a:s>'Should not vaccinate client with TBE booster dose as the latest TBE dose was administered less than 3 years ago.
+Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="342" locator="155:3-155:145" valueType="t:String" value="Should not vaccinate client with TBE booster dose as the latest TBE dose was administered less than 3 years ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="348" locator="163:1-165:78" name="Primary series is complete. Client is due for TBE booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary series is complete. Client is due for TBE booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="348">
+               <a:s>/*
+@output: Primary series is complete. Client is due for TBE booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;)
+*/
+define &quot;Primary series is complete. Client is due for TBE booster dose&quot;:
+  </a:s>
+               <a:s r="349">
+                  <a:s r="351">
+                     <a:s r="350">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="351">
+                        <a:s>&quot;Three TBE primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="353">
+                     <a:s r="352">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="353">
+                        <a:s>&quot;The latest TBE dose was administered more than 3 years ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="349" locator="164:3-165:78" xsi:type="And">
+            <operand localId="351" locator="164:3-164:62" name="Three TBE primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="353" locator="165:9-165:78" name="The latest TBE dose was administered more than 3 years ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="357" locator="172:1-173:183" name="Primary series is complete. Client is due for TBE booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary series is complete. Client is due for TBE booster dose Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with TBE booster dose as the primary series has been completed and the latest TBE dose was administered more than 3 years ago.&#xa;Check for contraindications."/>
+            <a:s r="357">
+               <a:s>/*
+@output: Primary series is complete. Client is due for TBE booster dose Guidance
+@guidance: Should vaccinate client with TBE booster dose as the primary series has been completed and the latest TBE dose was administered more than 3 years ago.
+Check for contraindications.
+*/
+define &quot;Primary series is complete. Client is due for TBE booster dose Guidance&quot;:
+  </a:s>
+               <a:s r="358">
+                  <a:s>'Should vaccinate client with TBE booster dose as the primary series has been completed and the latest TBE dose was administered more than 3 years ago.
+Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="358" locator="173:3-173:183" valueType="t:String" value="Should vaccinate client with TBE booster dose as the primary series has been completed and the latest TBE dose was administered more than 3 years ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="224" locator="23:1-30:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="224">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="225">
+                  <a:s>case 
+    </a:s>
+                  <a:s r="226">
+                     <a:s>when </a:s>
+                     <a:s r="256">
+                        <a:s>&quot;Client is not due for TBE vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="275">
+                        <a:s>&quot;Client is not due for TBE vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="276">
+                     <a:s>when </a:s>
+                     <a:s r="309">
+                        <a:s>&quot;Client is due for TBE vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="328">
+                        <a:s>&quot;Client is due for TBE vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="329">
+                     <a:s>when </a:s>
+                     <a:s r="338">
+                        <a:s>&quot;Primary series is complete. Client is not due for TBE booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="344">
+                        <a:s>&quot;Primary series is complete. Client is not due for TBE booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="345">
+                     <a:s>when </a:s>
+                     <a:s r="354">
+                        <a:s>&quot;Primary series is complete. Client is due for TBE booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="360">
+                        <a:s>&quot;Primary series is complete. Client is due for TBE booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+    else </a:s>
+                  <a:s r="361">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="24:3-30:5" xsi:type="Case">
+            <caseItem localId="226" locator="25:5-25:102">
+               <when localId="256" locator="25:10-25:48" name="Client is not due for TBE vaccination" xsi:type="ExpressionRef"/>
+               <then localId="275" locator="25:55-25:102" name="Client is not due for TBE vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="276" locator="26:5-26:94">
+               <when localId="309" locator="26:10-26:44" name="Client is due for TBE vaccination" xsi:type="ExpressionRef"/>
+               <then localId="328" locator="26:51-26:94" name="Client is due for TBE vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="329" locator="27:5-27:160">
+               <when localId="338" locator="27:10-27:77" name="Primary series is complete. Client is not due for TBE booster dose" xsi:type="ExpressionRef"/>
+               <then localId="344" locator="27:84-27:160" name="Primary series is complete. Client is not due for TBE booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="345" locator="28:5-28:152">
+               <when localId="354" locator="28:10-28:73" name="Primary series is complete. Client is due for TBE booster dose" xsi:type="ExpressionRef"/>
+               <then localId="360" locator="28:80-28:152" name="Primary series is complete. Client is due for TBE booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="361" locator="29:10-29:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="365" locator="32:1-33:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="365">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="366">
+                  <a:s r="369">
+                     <a:s r="367">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="376">
+                     <a:s r="371">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="372">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="366" locator="33:3-33:45" xsi:type="And">
+            <operand localId="369" locator="33:3-33:24" xsi:type="Not">
+               <operand localId="368" locator="33:3-33:24" xsi:type="IsNull">
+                  <operand localId="367" locator="33:3-33:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="376" locator="33:30-33:45" xsi:type="Not">
+               <operand localId="370" locator="33:30-33:45" xsi:type="Equal">
+                  <signature localId="374" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="375" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="371" locator="33:30-33:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="372" locator="33:44-33:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="379" locator="180:1-199:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="379">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="380">
+                  <a:s>case
+    </a:s>
+                  <a:s r="381">
+                     <a:s>when </a:s>
+                     <a:s r="382">
+                        <a:s r="384">
+                           <a:s r="383">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="384">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="385">
+                           <a:s>'TBE40.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="391">
+                        <a:s r="392">
+                           <a:s>&quot;Client is not due for TBE vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="393">
+                           <a:s r="394">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="395">
+                              <a:s>'Should not vaccinate client with first TBE dose as client\'s age is under 3 years.
+Check for any vaccines due and inform the caregiver of when to come back for the first dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="399">
+                     <a:s>when </a:s>
+                     <a:s r="400">
+                        <a:s r="402">
+                           <a:s r="401">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="402">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="403">
+                           <a:s>'TBE41.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="409">
+                        <a:s r="410">
+                           <a:s>&quot;Client is due for TBE vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="411">
+                           <a:s r="412">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="413">
+                              <a:s>'Should vaccinate client with first TBE dose as no TBE doses have been administered and client\'s age is more than 3 years.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="417">
+                     <a:s>when </a:s>
+                     <a:s r="418">
+                        <a:s r="420">
+                           <a:s r="419">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="420">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="421">
+                           <a:s>'TBE42.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="427">
+                        <a:s r="428">
+                           <a:s>&quot;Client is not due for TBE vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="429">
+                           <a:s r="430">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="431">
+                              <a:s>'Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago.
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="435">
+                     <a:s>when </a:s>
+                     <a:s r="436">
+                        <a:s r="438">
+                           <a:s r="437">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="438">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="439">
+                           <a:s>'TBE43.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="445">
+                        <a:s r="446">
+                           <a:s>&quot;Client is due for TBE vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="447">
+                           <a:s r="448">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="449">
+                              <a:s>'Should vaccinate client with second TBE dose as the latest dose was administered more than 1 month ago.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="453">
+                     <a:s>when </a:s>
+                     <a:s r="454">
+                        <a:s r="456">
+                           <a:s r="455">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="456">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="457">
+                           <a:s>'TBE44.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="463">
+                        <a:s r="464">
+                           <a:s>&quot;Client is not due for TBE vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="465">
+                           <a:s r="466">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="467">
+                              <a:s>'Should not vaccinate client with third TBE dose as the latest dose was administered less than 12 months ago.
+Check for any vaccines due and inform the caregiver of when to come back for the next dose'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="471">
+                     <a:s>when </a:s>
+                     <a:s r="472">
+                        <a:s r="474">
+                           <a:s r="473">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="474">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="475">
+                           <a:s>'TBE45.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="481">
+                        <a:s r="482">
+                           <a:s>&quot;Client is due for TBE vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="483">
+                           <a:s r="484">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="485">
+                              <a:s>'Should vaccinate client with third TBE dose as the latest dose was administered more than 12 months ago.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="489">
+                     <a:s>when </a:s>
+                     <a:s r="490">
+                        <a:s r="492">
+                           <a:s r="491">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="492">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="493">
+                           <a:s>'TBE46.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="499">
+                        <a:s r="500">
+                           <a:s>&quot;Primary series is complete. Client is not due for TBE booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="501">
+                           <a:s r="502">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="503">
+                              <a:s>'Should not vaccinate client with TBE booster dose as the latest TBE dose was administered less than 3 years ago.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="507">
+                     <a:s>when </a:s>
+                     <a:s r="508">
+                        <a:s r="510">
+                           <a:s r="509">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="510">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="511">
+                           <a:s>'TBE47.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="517">
+                        <a:s r="518">
+                           <a:s>&quot;Primary series is complete. Client is due for TBE booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="519">
+                           <a:s r="520">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="521">
+                              <a:s>'Should vaccinate client with TBE booster dose as the primary series has been completed and the latest TBE dose was administered more than 3 years ago.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="525">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="380" locator="181:3-199:5" xsi:type="Case">
+            <caseItem localId="381" locator="182:5-182:278">
+               <when localId="382" locator="182:10-182:31" xsi:type="Equal">
+                  <signature localId="389" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="390" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="387" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="388" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="384" locator="182:10-182:19" path="id" xsi:type="Property">
+                        <source localId="383" locator="182:10-182:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="385" locator="182:23-182:31" valueType="t:String" value="TBE40.1" xsi:type="Literal"/>
+               </when>
+               <then localId="527" xsi:type="As">
+                  <operand localId="391" locator="182:38-182:278" xsi:type="And">
+                     <operand localId="392" locator="182:38-182:83" name="Client is not due for TBE vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="393" locator="182:89-182:278" xsi:type="Equal">
+                        <signature localId="397" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="398" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="394" locator="182:89-182:98" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="395" locator="182:102-182:278" valueType="t:String" value="Should not vaccinate client with first TBE dose as client's age is under 3 years.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the first dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="528" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="529" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="530" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="399" locator="184:5-184:250">
+               <when localId="400" locator="184:10-184:31" xsi:type="Equal">
+                  <signature localId="407" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="408" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="405" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="406" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="402" locator="184:10-184:19" path="id" xsi:type="Property">
+                        <source localId="401" locator="184:10-184:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="403" locator="184:23-184:31" valueType="t:String" value="TBE41.2" xsi:type="Literal"/>
+               </when>
+               <then localId="531" xsi:type="As">
+                  <operand localId="409" locator="184:38-184:250" xsi:type="And">
+                     <operand localId="410" locator="184:38-184:79" name="Client is due for TBE vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="411" locator="184:85-184:250" xsi:type="Equal">
+                        <signature localId="415" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="416" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="412" locator="184:85-184:94" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="413" locator="184:98-184:250" valueType="t:String" value="Should vaccinate client with first TBE dose as no TBE doses have been administered and client's age is more than 3 years.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="532" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="533" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="534" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="417" locator="186:5-186:302">
+               <when localId="418" locator="186:10-186:31" xsi:type="Equal">
+                  <signature localId="425" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="426" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="423" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="424" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="420" locator="186:10-186:19" path="id" xsi:type="Property">
+                        <source localId="419" locator="186:10-186:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="421" locator="186:23-186:31" valueType="t:String" value="TBE42.2" xsi:type="Literal"/>
+               </when>
+               <then localId="535" xsi:type="As">
+                  <operand localId="427" locator="186:38-186:302" xsi:type="And">
+                     <operand localId="428" locator="186:38-186:83" name="Client is not due for TBE vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="429" locator="186:89-186:302" xsi:type="Equal">
+                        <signature localId="433" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="434" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="430" locator="186:89-186:98" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="431" locator="186:102-186:302" valueType="t:String" value="Should not vaccinate client with second TBE dose as the latest dose was administered less than 1 month ago.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="536" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="537" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="538" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="435" locator="188:5-188:231">
+               <when localId="436" locator="188:10-188:31" xsi:type="Equal">
+                  <signature localId="443" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="444" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="441" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="442" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="438" locator="188:10-188:19" path="id" xsi:type="Property">
+                        <source localId="437" locator="188:10-188:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="439" locator="188:23-188:31" valueType="t:String" value="TBE43.2" xsi:type="Literal"/>
+               </when>
+               <then localId="539" xsi:type="As">
+                  <operand localId="445" locator="188:38-188:231" xsi:type="And">
+                     <operand localId="446" locator="188:38-188:79" name="Client is due for TBE vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="447" locator="188:85-188:231" xsi:type="Equal">
+                        <signature localId="451" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="452" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="448" locator="188:85-188:94" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="449" locator="188:98-188:231" valueType="t:String" value="Should vaccinate client with second TBE dose as the latest dose was administered more than 1 month ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="540" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="541" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="542" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="453" locator="190:5-190:302">
+               <when localId="454" locator="190:10-190:31" xsi:type="Equal">
+                  <signature localId="461" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="462" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="459" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="460" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="456" locator="190:10-190:19" path="id" xsi:type="Property">
+                        <source localId="455" locator="190:10-190:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="457" locator="190:23-190:31" valueType="t:String" value="TBE44.2" xsi:type="Literal"/>
+               </when>
+               <then localId="543" xsi:type="As">
+                  <operand localId="463" locator="190:38-190:302" xsi:type="And">
+                     <operand localId="464" locator="190:38-190:83" name="Client is not due for TBE vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="465" locator="190:89-190:302" xsi:type="Equal">
+                        <signature localId="469" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="470" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="466" locator="190:89-190:98" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="467" locator="190:102-190:302" valueType="t:String" value="Should not vaccinate client with third TBE dose as the latest dose was administered less than 12 months ago.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="544" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="545" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="546" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="471" locator="192:5-192:232">
+               <when localId="472" locator="192:10-192:31" xsi:type="Equal">
+                  <signature localId="479" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="480" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="477" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="478" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="474" locator="192:10-192:19" path="id" xsi:type="Property">
+                        <source localId="473" locator="192:10-192:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="475" locator="192:23-192:31" valueType="t:String" value="TBE45.2" xsi:type="Literal"/>
+               </when>
+               <then localId="547" xsi:type="As">
+                  <operand localId="481" locator="192:38-192:232" xsi:type="And">
+                     <operand localId="482" locator="192:38-192:79" name="Client is due for TBE vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="483" locator="192:85-192:232" xsi:type="Equal">
+                        <signature localId="487" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="488" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="484" locator="192:85-192:94" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="485" locator="192:98-192:232" valueType="t:String" value="Should vaccinate client with third TBE dose as the latest dose was administered more than 12 months ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="548" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="549" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="550" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="489" locator="194:5-194:266">
+               <when localId="490" locator="194:10-194:31" xsi:type="Equal">
+                  <signature localId="497" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="498" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="495" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="496" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="492" locator="194:10-194:19" path="id" xsi:type="Property">
+                        <source localId="491" locator="194:10-194:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="493" locator="194:23-194:31" valueType="t:String" value="TBE46.2" xsi:type="Literal"/>
+               </when>
+               <then localId="551" xsi:type="As">
+                  <operand localId="499" locator="194:38-194:266" xsi:type="And">
+                     <operand localId="500" locator="194:38-194:105" name="Primary series is complete. Client is not due for TBE booster dose" xsi:type="ExpressionRef"/>
+                     <operand localId="501" locator="194:111-194:266" xsi:type="Equal">
+                        <signature localId="505" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="506" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="502" locator="194:111-194:120" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="503" locator="194:124-194:266" valueType="t:String" value="Should not vaccinate client with TBE booster dose as the latest TBE dose was administered less than 3 years ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="552" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="553" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="554" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="507" locator="196:5-196:300">
+               <when localId="508" locator="196:10-196:31" xsi:type="Equal">
+                  <signature localId="515" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="516" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="513" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="514" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="510" locator="196:10-196:19" path="id" xsi:type="Property">
+                        <source localId="509" locator="196:10-196:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="511" locator="196:23-196:31" valueType="t:String" value="TBE47.2" xsi:type="Literal"/>
+               </when>
+               <then localId="555" xsi:type="As">
+                  <operand localId="517" locator="196:38-196:300" xsi:type="And">
+                     <operand localId="518" locator="196:38-196:101" name="Primary series is complete. Client is due for TBE booster dose" xsi:type="ExpressionRef"/>
+                     <operand localId="519" locator="196:107-196:300" xsi:type="Equal">
+                        <signature localId="523" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="524" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="520" locator="196:107-196:116" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="521" locator="196:120-196:300" valueType="t:String" value="Should vaccinate client with TBE booster dose as the primary series has been completed and the latest TBE dose was administered more than 3 years ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="556" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="557" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="558" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="559" xsi:type="As">
+               <operand localId="525" locator="198:10-198:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="560" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="561" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="562" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

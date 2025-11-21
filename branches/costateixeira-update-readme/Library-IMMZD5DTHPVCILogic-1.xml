@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="263">
+         <a:s>/*
+ * Library: IMMZD5DTHPVCILogic (IMMZ.D5.DT.HPV contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due	
+ * Decision Table: Potential contraindications
+ * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
+ */
+library IMMZD5DTHPVCILogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD5DTHPVCILogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="13:1-13:53" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD5DTHPVEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD5DTHPVEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="209" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>parameter Today </a:s>
+               <a:s r="213">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="212">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="212" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="213" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="217" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="215" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="216" xsi:type="SingletonFrom">
+            <operand localId="214" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="219" locator="22:3-23:63" name="Draft Medication Request ID for HPV dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Draft Medication Request ID for HPV dose"/>
+            <a:s r="219">
+               <a:s>/*
+  @dynamicValue: Draft Medication Request ID for HPV dose
+  */
+  define &quot;Draft Medication Request ID for HPV dose&quot;:
+    </a:s>
+               <a:s r="225">
+                  <a:s r="224">
+                     <a:s>First(</a:s>
+                     <a:s r="221">
+                        <a:s r="220">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="221">
+                           <a:s>&quot;Draft Medication Request for HPV dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="225">
+                     <a:s>id</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="23:5-23:63" path="id" xsi:type="Property">
+            <source localId="224" locator="23:5-23:60" xsi:type="First">
+               <source localId="221" locator="23:11-23:59" name="Draft Medication Request for HPV dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </source>
+         </expression>
+      </def>
+      <def localId="231" locator="43:1-44:46" name="Human papillomavirus (HPV) vaccination is contraindicated" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Human papillomavirus (HPV) vaccination is contraindicated"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="231">
+               <a:s>/*
+@output: Human papillomavirus (HPV) vaccination is contraindicated
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;Human papillomavirus (HPV) vaccination is contraindicated&quot;:
+  </a:s>
+               <a:s r="233">
+                  <a:s r="232">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="233">
+                     <a:s>&quot;The client is currently pregnant&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="233" locator="44:3-44:46" name="The client is currently pregnant" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="236" locator="50:1-51:95" name="Human papillomavirus (HPV) vaccination is contraindicated Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Human papillomavirus (HPV) vaccination is contraindicated Guidance"/>
+            <a:t name="guidance" value="Do not vaccinate client with HPV as HPV vaccination is contraindicated for pregnant client."/>
+            <a:s r="236">
+               <a:s>/*
+@output: Human papillomavirus (HPV) vaccination is contraindicated Guidance
+@guidance: Do not vaccinate client with HPV as HPV vaccination is contraindicated for pregnant client.
+*/
+define &quot;Human papillomavirus (HPV) vaccination is contraindicated Guidance&quot;:
+  </a:s>
+               <a:s r="237">
+                  <a:s>'Do not vaccinate client with HPV as HPV vaccination is contraindicated for pregnant client.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="237" locator="51:3-51:95" valueType="t:String" value="Do not vaccinate client with HPV as HPV vaccination is contraindicated for pregnant client." xsi:type="Literal"/>
+      </def>
+      <def localId="241" locator="57:1-58:65" name="HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="241">
+               <a:s>/*
+@output: HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;:
+  </a:s>
+               <a:s r="243">
+                  <a:s r="242">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="243">
+                     <a:s>&quot;The client has history of severe allergic reactions&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="243" locator="58:3-58:65" name="The client has history of severe allergic reactions" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="246" locator="64:1-65:157" name="HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance"/>
+            <a:t name="guidance" value="Do not vaccinate client with HPV if client has history of a severe allergic reaction after a previous HPV vaccine dose, or to a component of the vaccine."/>
+            <a:s r="246">
+               <a:s>/*
+@output: HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance
+@guidance: Do not vaccinate client with HPV if client has history of a severe allergic reaction after a previous HPV vaccine dose, or to a component of the vaccine.
+*/
+define &quot;HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance&quot;:
+  </a:s>
+               <a:s r="247">
+                  <a:s>'Do not vaccinate client with HPV if client has history of a severe allergic reaction after a previous HPV vaccine dose, or to a component of the vaccine.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="247" locator="65:3-65:157" valueType="t:String" value="Do not vaccinate client with HPV if client has history of a severe allergic reaction after a previous HPV vaccine dose, or to a component of the vaccine." xsi:type="Literal"/>
+      </def>
+      <def localId="227" locator="29:1-34:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="227">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="228">
+                  <a:s>case
+    </a:s>
+                  <a:s r="229">
+                     <a:s>when </a:s>
+                     <a:s r="234">
+                        <a:s>&quot;Human papillomavirus (HPV) vaccination is contraindicated&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="238">
+                        <a:s>&quot;Human papillomavirus (HPV) vaccination is contraindicated Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="239">
+                     <a:s>when </a:s>
+                     <a:s r="244">
+                        <a:s>&quot;HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="248">
+                        <a:s>&quot;HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="249">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="228" locator="30:3-34:5" xsi:type="Case">
+            <caseItem localId="229" locator="31:5-31:142">
+               <when localId="234" locator="31:10-31:68" name="Human papillomavirus (HPV) vaccination is contraindicated" xsi:type="ExpressionRef"/>
+               <then localId="238" locator="31:75-31:142" name="Human papillomavirus (HPV) vaccination is contraindicated Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="239" locator="32:5-32:220">
+               <when localId="244" locator="32:10-32:107" name="HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+               <then localId="248" locator="32:114-32:220" name="HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="249" locator="33:10-33:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="251" locator="36:1-37:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="251">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="252">
+                  <a:s r="255">
+                     <a:s r="253">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="261">
+                     <a:s r="257">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="258">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="252" locator="37:3-37:45" xsi:type="And">
+            <operand localId="255" locator="37:3-37:24" xsi:type="Not">
+               <operand localId="254" locator="37:3-37:24" xsi:type="IsNull">
+                  <operand localId="253" locator="37:3-37:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="261" locator="37:30-37:45" xsi:type="Not">
+               <operand localId="256" locator="37:30-37:45" xsi:type="Equal">
+                  <signature localId="259" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="260" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="257" locator="37:30-37:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="258" locator="37:44-37:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="263" locator="71:1-76:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="263">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="264">
+                  <a:s>case
+    </a:s>
+                  <a:s r="265">
+                     <a:s>when </a:s>
+                     <a:s r="266">
+                        <a:s r="268">
+                           <a:s r="267">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="268">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="269">
+                           <a:s>'45.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="274">
+                        <a:s r="275">
+                           <a:s>&quot;Human papillomavirus (HPV) vaccination is contraindicated&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="276">
+                           <a:s r="277">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="278">
+                              <a:s>'Do not vaccinate client with HPV as HPV vaccination is contraindicated for pregnant client.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="281">
+                     <a:s>when </a:s>
+                     <a:s r="282">
+                        <a:s r="284">
+                           <a:s r="283">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="284">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="285">
+                           <a:s>'46.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="290">
+                        <a:s r="291">
+                           <a:s>&quot;HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="292">
+                           <a:s r="293">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="294">
+                              <a:s>'Do not vaccinate client with HPV if client has history of a severe allergic reaction after a previous HPV vaccine dose, or to a component of the vaccine.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="297">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="264" locator="72:3-76:5" xsi:type="Case">
+            <caseItem localId="265" locator="73:5-73:204">
+               <when localId="266" locator="73:10-73:28" xsi:type="Equal">
+                  <signature localId="272" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="273" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="270" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="271" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="268" locator="73:10-73:19" path="id" xsi:type="Property">
+                        <source localId="267" locator="73:10-73:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="269" locator="73:23-73:28" valueType="t:String" value="45.0" xsi:type="Literal"/>
+               </when>
+               <then localId="298" xsi:type="As">
+                  <operand localId="274" locator="73:35-73:204" xsi:type="And">
+                     <operand localId="275" locator="73:35-73:93" name="Human papillomavirus (HPV) vaccination is contraindicated" xsi:type="ExpressionRef"/>
+                     <operand localId="276" locator="73:99-73:204" xsi:type="Equal">
+                        <signature localId="279" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="280" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="277" locator="73:99-73:108" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="278" locator="73:112-73:204" valueType="t:String" value="Do not vaccinate client with HPV as HPV vaccination is contraindicated for pregnant client." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="299" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="300" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="301" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="281" locator="74:5-74:305">
+               <when localId="282" locator="74:10-74:28" xsi:type="Equal">
+                  <signature localId="288" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="289" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="286" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="287" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="284" locator="74:10-74:19" path="id" xsi:type="Property">
+                        <source localId="283" locator="74:10-74:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="285" locator="74:23-74:28" valueType="t:String" value="46.0" xsi:type="Literal"/>
+               </when>
+               <then localId="302" xsi:type="As">
+                  <operand localId="290" locator="74:35-74:305" xsi:type="And">
+                     <operand localId="291" locator="74:35-74:132" name="HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+                     <operand localId="292" locator="74:138-74:305" xsi:type="Equal">
+                        <signature localId="295" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="296" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="293" locator="74:138-74:147" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="294" locator="74:151-74:305" valueType="t:String" value="Do not vaccinate client with HPV if client has history of a severe allergic reaction after a previous HPV vaccine dose, or to a component of the vaccine." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="303" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="304" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="305" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="306" xsi:type="As">
+               <operand localId="297" locator="75:10-75:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="307" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="308" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="309" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

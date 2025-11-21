@@ -1,0 +1,2269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="639">
+         <a:s>/*
+ * Library: IMMZD18SDTPDelayedOrInterruptedSeriesLogic (IMMZ.D18.S.DTP.Delayed or interrupted schedule)
+ * Schedule Table: Diphtheria–tetanus–pertussis (DTP) vaccination schedule for the following groups: children ≥ 1 year of age with no previous immunization, adolescents and adults with no previous immunization (including pregnant women) and supplementary immunization activities in high-risk areas, for women of reproductive age
+ */
+library IMMZD18SDTPDelayedOrInterruptedSeriesLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD18SDTPDelayedOrInterruptedSeriesLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="7:1-7:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="8:1-8:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="10:1-10:27" localIdentifier="WC" path="http://smart.who.int/immunizations/WHOCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>WHOCommon</a:s>
+               </a:s>
+               <a:s> called WC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="212" locator="12:1-12:32" localIdentifier="Common" path="http://smart.who.int/immunizations/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called Common</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="214" locator="13:1-13:36" localIdentifier="Concepts" path="http://smart.who.int/immunizations/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="214">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called Concepts</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="216" locator="15:1-15:39" localIdentifier="IE" path="http://smart.who.int/immunizations/IMMZEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="216">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZEncounterElements</a:s>
+               </a:s>
+               <a:s> called IE</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="218" locator="16:1-16:53" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTDTPEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="218">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTDTPEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="220" locator="18:1-18:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="220">
+               <a:s>parameter Today </a:s>
+               <a:s r="224">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="223">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="223" locator="18:30-18:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="224" locator="18:17-18:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="229" locator="21:1-21:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="227" locator="21:1-21:15" name="Patient" context="Patient">
+         <expression localId="228" xsi:type="SingletonFrom">
+            <operand localId="226" locator="21:1-21:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="232" locator="31:1-33:50" name="DTP dose 1 (delayed start)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="DTP dose 1 (delayed start)"/>
+            <a:t name="description" value="Provision of DTP dose 1 with a delayed start"/>
+            <a:t name="trigger" value="No DTP doses were administered and client's age is more than 1 year"/>
+            <a:t name="pseudo" value="&quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;) = 0 AND Today's date − &quot;Date of birth&quot; > 1 year"/>
+            <a:t name="triggerDate" value="Date of birth"/>
+            <a:s r="232">
+               <a:s>/*
+@output: DTP dose 1 (delayed start)
+@description: Provision of DTP dose 1 with a delayed start
+@trigger: No DTP doses were administered and client's age is more than 1 year
+@pseudo: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;) = 0 AND Today's date − &quot;Date of birth&quot; > 1 year
+@triggerDate: Date of birth
+*/
+define &quot;DTP dose 1 (delayed start)&quot;:
+  </a:s>
+               <a:s r="233">
+                  <a:s r="235">
+                     <a:s r="234">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="235">
+                        <a:s>&quot;No DTP primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="237">
+                     <a:s r="236">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="237">
+                        <a:s>&quot;Client's age is more than 1 year&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="233" locator="32:3-33:50" xsi:type="And">
+            <operand localId="235" locator="32:3-32:59" name="No DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="237" locator="33:7-33:50" name="Client's age is more than 1 year" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="254" locator="57:1-59:11" name="DTP dose 1 (delayed start) Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="DTP dose 1 (delayed start) Due Date"/>
+            <a:t name="pseudocode" value="As soon as possible"/>
+            <a:s r="254">
+               <a:s>/*
+@dynamicValue: DTP dose 1 (delayed start) Due Date
+@pseudocode: As soon as possible
+*/
+define &quot;DTP dose 1 (delayed start) Due Date&quot;:
+  </a:s>
+               <a:s r="255">
+                  <a:s>if </a:s>
+                  <a:s r="256">
+                     <a:s>&quot;DTP dose 1 (delayed start)&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="257">
+                     <a:s r="259">
+                        <a:s r="258">
+                           <a:s>Patient</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="259">
+                           <a:s>birthDate</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="260">
+                        <a:s>1 year</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="264">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="255" locator="58:3-59:11" xsi:type="If">
+            <condition localId="256" locator="58:6-58:33" name="DTP dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+            <then localId="257" locator="58:40-58:65" xsi:type="Add">
+               <signature localId="262" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="263" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="261" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="259" locator="58:40-58:56" path="birthDate" xsi:type="Property">
+                     <source localId="258" locator="58:40-58:46" name="Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="260" locator="58:60-58:65" value="1" unit="year" xsi:type="Quantity"/>
+            </then>
+            <else localId="265" asType="t:Date" xsi:type="As">
+               <operand localId="264" locator="59:8-59:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="240" locator="44:1-50:9" name="DTP dose 1 (delayed start) Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="DTP dose 1 (delayed start) Create"/>
+            <a:t name="create" value="For children whose vaccination series has been interrupted, the series should be resumed without repeating previous doses. Children aged 1 year to under 7 years who have not previously been vaccinated should receive 3 doses of vaccine following a 0, 1, 6 month schedule.&#xa;&#xa;If tetanus vaccination is started during adolescence or adulthood, a total of only 5 appropriately spaced doses are required to obtain lifelong protection.&#xa;&#xa;Pregnant women and their newborn infants are protected from birth-associated tetanus if the mother received 5 doses if first vaccinated during adolescence/adulthood."/>
+            <a:s r="240">
+               <a:s>/*
+@output: DTP dose 1 (delayed start) Create
+@create: For children whose vaccination series has been interrupted, the series should be resumed without repeating previous doses. Children aged 1 year to under 7 years who have not previously been vaccinated should receive 3 doses of vaccine following a 0, 1, 6 month schedule.
+
+If tetanus vaccination is started during adolescence or adulthood, a total of only 5 appropriately spaced doses are required to obtain lifelong protection.
+
+Pregnant women and their newborn infants are protected from birth-associated tetanus if the mother received 5 doses if first vaccinated during adolescence/adulthood.
+*/
+define &quot;DTP dose 1 (delayed start) Create&quot;:
+  </a:s>
+               <a:s r="241">
+                  <a:s>if </a:s>
+                  <a:s r="242">
+                     <a:s>&quot;DTP dose 1 (delayed start)&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  then </a:s>
+                  <a:s r="274">
+                     <a:s r="251">
+                        <a:s r="245">
+                           <a:s>'For children whose vaccination series has been interrupted, the series should be resumed without repeating previous doses. Children aged 1 year to under 7 years who have not previously been vaccinated should receive 3 doses of vaccine following a 0, 1, 6 month schedule.
+If tetanus vaccination is started during adolescence or adulthood, a total of only 5 appropriately spaced doses are required to obtain lifelong protection.
+Pregnant women and their newborn infants are protected from birth-associated tetanus if the mother received 5 doses if first vaccinated during adolescence/adulthood.'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="247">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="270">
+                        <a:s>ToString(</a:s>
+                        <a:s r="266">
+                           <a:s>&quot;DTP dose 1 (delayed start) Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="275">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="241" locator="45:3-50:9" xsi:type="If">
+            <condition localId="242" locator="45:6-45:33" name="DTP dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+            <then localId="274" locator="46:8-49:61" xsi:type="Concatenate">
+               <operand localId="251" locator="46:8-48:182" xsi:type="Concatenate">
+                  <operand localId="245" locator="46:8-46:601" valueType="t:String" value="For children whose vaccination series has been interrupted, the series should be resumed without repeating previous doses. Children aged 1 year to under 7 years who have not previously been vaccinated should receive 3 doses of vaccine following a 0, 1, 6 month schedule.&#xa;If tetanus vaccination is started during adolescence or adulthood, a total of only 5 appropriately spaced doses are required to obtain lifelong protection.&#xa;Pregnant women and their newborn infants are protected from birth-associated tetanus if the mother received 5 doses if first vaccinated during adolescence/adulthood." xsi:type="Literal"/>
+                  <operand localId="247" locator="48:170-48:182" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="270" locator="49:15-49:61" xsi:type="ToString">
+                  <signature localId="271" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="266" locator="49:24-49:60" name="DTP dose 1 (delayed start) Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="275" locator="50:8-50:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="279" locator="66:1-67:6" name="DTP dose 1 (delayed start) Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="DTP dose 1 (delayed start) Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date."/>
+            <a:s r="279">
+               <a:s r="280">/*
+@dynamicValue: DTP dose 1 (delayed start) Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date.
+*/
+define &quot;DTP dose 1 (delayed start) Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="280" locator="67:3-67:6" xsi:type="Null"/>
+      </def>
+      <def localId="283" locator="74:1-75:6" name="DTP dose 1 (delayed start) Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="DTP dose 1 (delayed start) Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States. However, there is no recommended expiration date and individuals remain eligible to be vaccinated."/>
+            <a:s r="283">
+               <a:s r="284">/*
+@dynamicValue: DTP dose 1 (delayed start) Expiration
+@pseudocode: To be determined by Member States. However, there is no recommended expiration date and individuals remain eligible to be vaccinated.
+*/
+define &quot;DTP dose 1 (delayed start) Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="284" locator="75:3-75:6" xsi:type="Null"/>
+      </def>
+      <def localId="287" locator="82:1-83:58" name="First DTP dose from the primary series was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="First DTP dose from the primary series was administered"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1"/>
+            <a:s r="287">
+               <a:s>/*
+@complete: First DTP dose from the primary series was administered
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1
+*/
+define &quot;First DTP dose from the primary series was administered&quot;:
+  </a:s>
+               <a:s r="289">
+                  <a:s r="288">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="289">
+                     <a:s>&quot;One DTP primary series dose was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="289" locator="83:3-83:58" name="One DTP primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="298" locator="145:1-146:60" name="Second DTP dose from the primary series was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Second DTP dose from the primary series was administered"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2"/>
+            <a:s r="298">
+               <a:s>/*
+@complete: Second DTP dose from the primary series was administered
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2
+*/
+define &quot;Second DTP dose from the primary series was administered&quot;:
+  </a:s>
+               <a:s r="300">
+                  <a:s r="299">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="300">
+                     <a:s>&quot;Two DTP primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="300" locator="146:3-146:60" name="Two DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="292" locator="94:1-96:64" name="DTP dose 2 (delayed start)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="DTP dose 2 (delayed start)"/>
+            <a:t name="description" value="Provision of DTP dose 2 with a delayed start"/>
+            <a:t name="trigger" value="First DTP dose from the primary series was administered"/>
+            <a:t name="pseudo" value="&quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;"/>
+            <a:s r="292">
+               <a:s>/*
+@output: DTP dose 2 (delayed start)
+@description: Provision of DTP dose 2 with a delayed start
+@trigger: First DTP dose from the primary series was administered
+@pseudo: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;
+*/
+define &quot;DTP dose 2 (delayed start)&quot;:
+  </a:s>
+               <a:s r="293">
+                  <a:s r="294">
+                     <a:s>&quot;First DTP dose from the primary series was administered&quot;</a:s>
+                  </a:s>
+                  <a:s> and
+  </a:s>
+                  <a:s r="295">
+                     <a:s>not </a:s>
+                     <a:s r="301">
+                        <a:s>&quot;Second DTP dose from the primary series was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="293" locator="95:3-96:64" xsi:type="And">
+            <operand localId="294" locator="95:3-95:59" name="First DTP dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            <operand localId="295" locator="96:3-96:64" xsi:type="Not">
+               <operand localId="301" locator="96:7-96:64" name="Second DTP dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="318" locator="120:1-122:11" name="DTP dose 2 (delayed start) Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="DTP dose 2 (delayed start) Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;) + 4 weeks"/>
+            <a:s r="318">
+               <a:s>/*
+@dynamicValue: DTP dose 2 (delayed start) Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;) + 4 weeks
+*/
+define &quot;DTP dose 2 (delayed start) Due Date&quot;:
+  </a:s>
+               <a:s r="319">
+                  <a:s>if </a:s>
+                  <a:s r="320">
+                     <a:s>&quot;DTP dose 2 (delayed start)&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="321">
+                     <a:s r="323">
+                        <a:s r="322">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="323">
+                           <a:s>&quot;Date of Latest DTP Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="324">
+                        <a:s>4 weeks</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="327">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="319" locator="121:3-122:11" xsi:type="If">
+            <condition localId="320" locator="121:6-121:33" name="DTP dose 2 (delayed start)" xsi:type="ExpressionRef"/>
+            <then localId="321" locator="121:40-121:84" xsi:type="Add">
+               <signature localId="325" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="326" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="323" locator="121:40-121:74" name="Date of Latest DTP Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="324" locator="121:78-121:84" value="4" unit="weeks" xsi:type="Quantity"/>
+            </then>
+            <else localId="328" asType="t:Date" xsi:type="As">
+               <operand localId="327" locator="122:8-122:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="304" locator="107:1-113:9" name="DTP dose 2 (delayed start) Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="DTP dose 2 (delayed start) Create"/>
+            <a:t name="create" value="For children whose vaccination series has been interrupted, the series should be resumed without repeating previous doses. Children aged 1 year to under 7 years who have not previously been vaccinated should receive 3 doses of vaccine following a 0, 1, 6 month schedule.&#xa;&#xa;If tetanus vaccination is started during adolescence or adulthood, a total of only 5 appropriately spaced doses are required to obtain lifelong protection.&#xa;&#xa;Pregnant women and their newborn infants are protected from birth-associated tetanus if the mother received 5 doses if first vaccinated during adolescence/adulthood."/>
+            <a:s r="304">
+               <a:s>/*
+@output: DTP dose 2 (delayed start) Create
+@create: For children whose vaccination series has been interrupted, the series should be resumed without repeating previous doses. Children aged 1 year to under 7 years who have not previously been vaccinated should receive 3 doses of vaccine following a 0, 1, 6 month schedule.
+
+If tetanus vaccination is started during adolescence or adulthood, a total of only 5 appropriately spaced doses are required to obtain lifelong protection.
+
+Pregnant women and their newborn infants are protected from birth-associated tetanus if the mother received 5 doses if first vaccinated during adolescence/adulthood.
+*/
+define &quot;DTP dose 2 (delayed start) Create&quot;:
+  </a:s>
+               <a:s r="305">
+                  <a:s>if </a:s>
+                  <a:s r="306">
+                     <a:s>&quot;DTP dose 2 (delayed start)&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  then </a:s>
+                  <a:s r="337">
+                     <a:s r="315">
+                        <a:s r="309">
+                           <a:s>'For children whose vaccination series has been interrupted, the series should be resumed without repeating previous doses. Children aged 1 year to under 7 years who have not previously been vaccinated should receive 3 doses of vaccine following a 0, 1, 6 month schedule.
+If tetanus vaccination is started during adolescence or adulthood, a total of only 5 appropriately spaced doses are required to obtain lifelong protection.
+Pregnant women and their newborn infants are protected from birth-associated tetanus if the mother received 5 doses if first vaccinated during adolescence/adulthood.'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="311">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="333">
+                        <a:s>ToString(</a:s>
+                        <a:s r="329">
+                           <a:s>&quot;DTP dose 2 (delayed start) Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="338">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="305" locator="108:3-113:9" xsi:type="If">
+            <condition localId="306" locator="108:6-108:33" name="DTP dose 2 (delayed start)" xsi:type="ExpressionRef"/>
+            <then localId="337" locator="109:8-112:61" xsi:type="Concatenate">
+               <operand localId="315" locator="109:8-111:182" xsi:type="Concatenate">
+                  <operand localId="309" locator="109:8-109:601" valueType="t:String" value="For children whose vaccination series has been interrupted, the series should be resumed without repeating previous doses. Children aged 1 year to under 7 years who have not previously been vaccinated should receive 3 doses of vaccine following a 0, 1, 6 month schedule.&#xa;If tetanus vaccination is started during adolescence or adulthood, a total of only 5 appropriately spaced doses are required to obtain lifelong protection.&#xa;Pregnant women and their newborn infants are protected from birth-associated tetanus if the mother received 5 doses if first vaccinated during adolescence/adulthood." xsi:type="Literal"/>
+                  <operand localId="311" locator="111:170-111:182" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="333" locator="112:15-112:61" xsi:type="ToString">
+                  <signature localId="334" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="329" locator="112:24-112:60" name="DTP dose 2 (delayed start) Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="338" locator="113:8-113:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="342" locator="129:1-130:6" name="DTP dose 2 (delayed start) Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="DTP dose 2 (delayed start) Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date."/>
+            <a:s r="342">
+               <a:s r="343">/*
+@dynamicValue: DTP dose 2 (delayed start) Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date.
+*/
+define &quot;DTP dose 2 (delayed start) Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="343" locator="130:3-130:6" xsi:type="Null"/>
+      </def>
+      <def localId="346" locator="137:1-138:6" name="DTP dose 2 (delayed start) Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="DTP dose 2 (delayed start) Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States. However, there is no recommended expiration date and individuals remain eligible to be vaccinated."/>
+            <a:s r="346">
+               <a:s r="347">/*
+@dynamicValue: DTP dose 2 (delayed start) Expiration
+@pseudocode: To be determined by Member States. However, there is no recommended expiration date and individuals remain eligible to be vaccinated.
+*/
+define &quot;DTP dose 2 (delayed start) Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="347" locator="138:3-138:6" xsi:type="Null"/>
+      </def>
+      <def localId="356" locator="209:1-210:62" name="Third DTP dose from the primary series was administered. The primary DTP series has been completed" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Third DTP dose from the primary series was administered. The primary DTP series has been completed"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 3"/>
+            <a:s r="356">
+               <a:s>/*
+@complete: Third DTP dose from the primary series was administered. The primary DTP series has been completed
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 3
+&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)
+*/
+define &quot;Third DTP dose from the primary series was administered. The primary DTP series has been completed&quot;:
+  </a:s>
+               <a:s r="358">
+                  <a:s r="357">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="358">
+                     <a:s>&quot;Three DTP primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="358" locator="210:3-210:62" name="Three DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="350" locator="157:1-159:106" name="DTP dose 3 (delayed start)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="DTP dose 3 (delayed start)"/>
+            <a:t name="description" value="Provision of DTP dose 3 with a delayed start"/>
+            <a:t name="trigger" value="Second DTP dose from the primary series was administered"/>
+            <a:t name="pseudo" value="&quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;"/>
+            <a:s r="350">
+               <a:s>/*
+@output: DTP dose 3 (delayed start)
+@description: Provision of DTP dose 3 with a delayed start
+@trigger: Second DTP dose from the primary series was administered
+@pseudo: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;
+*/
+define &quot;DTP dose 3 (delayed start)&quot;:
+  </a:s>
+               <a:s r="351">
+                  <a:s r="352">
+                     <a:s>&quot;Second DTP dose from the primary series was administered&quot;</a:s>
+                  </a:s>
+                  <a:s> and
+  </a:s>
+                  <a:s r="353">
+                     <a:s>not </a:s>
+                     <a:s r="359">
+                        <a:s>&quot;Third DTP dose from the primary series was administered. The primary DTP series has been completed&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="351" locator="158:3-159:106" xsi:type="And">
+            <operand localId="352" locator="158:3-158:60" name="Second DTP dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            <operand localId="353" locator="159:3-159:106" xsi:type="Not">
+               <operand localId="359" locator="159:7-159:106" name="Third DTP dose from the primary series was administered. The primary DTP series has been completed" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="376" locator="183:1-185:11" name="DTP dose 3 (delayed start) Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="DTP dose 3 (delayed start) Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;) + 6 months"/>
+            <a:s r="376">
+               <a:s>/*
+@dynamicValue: DTP dose 3 (delayed start) Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;) + 6 months
+*/
+define &quot;DTP dose 3 (delayed start) Due Date&quot;:
+  </a:s>
+               <a:s r="377">
+                  <a:s>if </a:s>
+                  <a:s r="378">
+                     <a:s>&quot;DTP dose 3 (delayed start)&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="379">
+                     <a:s r="381">
+                        <a:s r="380">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="381">
+                           <a:s>&quot;Date of Latest DTP Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="382">
+                        <a:s>6 months</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="385">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="377" locator="184:3-185:11" xsi:type="If">
+            <condition localId="378" locator="184:6-184:33" name="DTP dose 3 (delayed start)" xsi:type="ExpressionRef"/>
+            <then localId="379" locator="184:40-184:85" xsi:type="Add">
+               <signature localId="383" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="384" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="381" locator="184:40-184:74" name="Date of Latest DTP Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="382" locator="184:78-184:85" value="6" unit="months" xsi:type="Quantity"/>
+            </then>
+            <else localId="386" asType="t:Date" xsi:type="As">
+               <operand localId="385" locator="185:8-185:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="362" locator="170:1-176:9" name="DTP dose 3 (delayed start) Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="DTP dose 3 (delayed start) Create"/>
+            <a:t name="create" value="For children whose vaccination series has been interrupted, the series should be resumed without repeating previous doses. Children aged 1 year to under 7 years who have not previously been vaccinated should receive 3 doses of vaccine following a 0, 1, 6 month schedule.&#xa;&#xa;If tetanus vaccination is started during adolescence or adulthood, a total of only 5 appropriately spaced doses are required to obtain lifelong protection.&#xa;&#xa;Pregnant women and their newborn infants are protected from birth-associated tetanus if the mother received 5 doses if first vaccinated during adolescence/adulthood."/>
+            <a:s r="362">
+               <a:s>/*
+@output: DTP dose 3 (delayed start) Create
+@create: For children whose vaccination series has been interrupted, the series should be resumed without repeating previous doses. Children aged 1 year to under 7 years who have not previously been vaccinated should receive 3 doses of vaccine following a 0, 1, 6 month schedule.
+
+If tetanus vaccination is started during adolescence or adulthood, a total of only 5 appropriately spaced doses are required to obtain lifelong protection.
+
+Pregnant women and their newborn infants are protected from birth-associated tetanus if the mother received 5 doses if first vaccinated during adolescence/adulthood.
+*/
+define &quot;DTP dose 3 (delayed start) Create&quot;:
+  </a:s>
+               <a:s r="363">
+                  <a:s>if </a:s>
+                  <a:s r="364">
+                     <a:s>&quot;DTP dose 3 (delayed start)&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  then </a:s>
+                  <a:s r="395">
+                     <a:s r="373">
+                        <a:s r="367">
+                           <a:s>'For children whose vaccination series has been interrupted, the series should be resumed without repeating previous doses. Children aged 1 year to under 7 years who have not previously been vaccinated should receive 3 doses of vaccine following a 0, 1, 6 month schedule.
+If tetanus vaccination is started during adolescence or adulthood, a total of only 5 appropriately spaced doses are required to obtain lifelong protection.
+Pregnant women and their newborn infants are protected from birth-associated tetanus if the mother received 5 doses if first vaccinated during adolescence/adulthood.'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="369">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="391">
+                        <a:s>ToString(</a:s>
+                        <a:s r="387">
+                           <a:s>&quot;DTP dose 3 (delayed start) Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="396">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="363" locator="171:3-176:9" xsi:type="If">
+            <condition localId="364" locator="171:6-171:33" name="DTP dose 3 (delayed start)" xsi:type="ExpressionRef"/>
+            <then localId="395" locator="172:8-175:61" xsi:type="Concatenate">
+               <operand localId="373" locator="172:8-174:182" xsi:type="Concatenate">
+                  <operand localId="367" locator="172:8-172:601" valueType="t:String" value="For children whose vaccination series has been interrupted, the series should be resumed without repeating previous doses. Children aged 1 year to under 7 years who have not previously been vaccinated should receive 3 doses of vaccine following a 0, 1, 6 month schedule.&#xa;If tetanus vaccination is started during adolescence or adulthood, a total of only 5 appropriately spaced doses are required to obtain lifelong protection.&#xa;Pregnant women and their newborn infants are protected from birth-associated tetanus if the mother received 5 doses if first vaccinated during adolescence/adulthood." xsi:type="Literal"/>
+                  <operand localId="369" locator="174:170-174:182" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="391" locator="175:15-175:61" xsi:type="ToString">
+                  <signature localId="392" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="387" locator="175:24-175:60" name="DTP dose 3 (delayed start) Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="396" locator="176:8-176:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="400" locator="192:1-193:6" name="DTP dose 3 (delayed start) Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="DTP dose 3 (delayed start) Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date."/>
+            <a:s r="400">
+               <a:s r="401">/*
+@dynamicValue: DTP dose 3 (delayed start) Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date.
+*/
+define &quot;DTP dose 3 (delayed start) Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="401" locator="193:3-193:6" xsi:type="Null"/>
+      </def>
+      <def localId="404" locator="200:1-201:6" name="DTP dose 3 (delayed start) Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="DTP dose 3 (delayed start) Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States. However, there is no recommended expiration date and individuals remain eligible to be vaccinated."/>
+            <a:s r="404">
+               <a:s r="405">/*
+@dynamicValue: DTP dose 3 (delayed start) Expiration
+@pseudocode: To be determined by Member States. However, there is no recommended expiration date and individuals remain eligible to be vaccinated.
+*/
+define &quot;DTP dose 3 (delayed start) Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="405" locator="201:3-201:6" xsi:type="Null"/>
+      </def>
+      <def localId="408" locator="221:1-223:71" name="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)"/>
+            <a:t name="description" value="Provision of tetanus and diphtheria booster dose 1"/>
+            <a:t name="trigger" value="The primary DTP series has been completed"/>
+            <a:t name="pseudo" value="&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;"/>
+            <a:s r="408">
+               <a:s>/*
+@output: Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)
+@description: Provision of tetanus and diphtheria booster dose 1
+@trigger: The primary DTP series has been completed
+@pseudo: &quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;
+*/
+define &quot;Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)&quot;:
+  </a:s>
+               <a:s r="409">
+                  <a:s r="410">
+                     <a:s>&quot;Third DTP dose from the primary series was administered. The primary DTP series has been completed&quot;</a:s>
+                  </a:s>
+                  <a:s> and
+  </a:s>
+                  <a:s r="412">
+                     <a:s r="411">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="412">
+                        <a:s>&quot;No tetanus and diphtheria booster doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="409" locator="222:3-223:71" xsi:type="And">
+            <operand localId="410" locator="222:3-222:102" name="Third DTP dose from the primary series was administered. The primary DTP series has been completed" xsi:type="ExpressionRef"/>
+            <operand localId="412" locator="223:3-223:71" name="No tetanus and diphtheria booster doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="429" locator="241:1-243:11" name="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;) + 1 year"/>
+            <a:s r="429">
+               <a:s>/*
+@dynamicValue: Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;) + 1 year
+*/
+define &quot;Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Due Date&quot;:
+  </a:s>
+               <a:s r="430">
+                  <a:s>if </a:s>
+                  <a:s r="431">
+                     <a:s>&quot;Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="432">
+                     <a:s r="434">
+                        <a:s r="433">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="434">
+                           <a:s>&quot;Date of Latest DTP Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="435">
+                        <a:s>1 year</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="438">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="430" locator="242:3-243:11" xsi:type="If">
+            <condition localId="431" locator="242:6-242:79" name="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+            <then localId="432" locator="242:86-242:129" xsi:type="Add">
+               <signature localId="436" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="437" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="434" locator="242:86-242:120" name="Date of Latest DTP Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="435" locator="242:124-242:129" value="1" unit="year" xsi:type="Quantity"/>
+            </then>
+            <else localId="439" asType="t:Date" xsi:type="As">
+               <operand localId="438" locator="243:8-243:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="415" locator="230:1-234:9" name="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Create"/>
+            <a:t name="create" value="Two subsequent booster doses using tetanus toxoid with reduced diphteria toxoid (Td) or Td with acellular pertussis (TdaP) combination vaccines are needed with an interval of at least 1 year between doses."/>
+            <a:s r="415">
+               <a:s>/*
+@output: Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Create
+@create: Two subsequent booster doses using tetanus toxoid with reduced diphteria toxoid (Td) or Td with acellular pertussis (TdaP) combination vaccines are needed with an interval of at least 1 year between doses.
+*/
+define &quot;Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Create&quot;:
+  </a:s>
+               <a:s r="416">
+                  <a:s>if </a:s>
+                  <a:s r="417">
+                     <a:s>&quot;Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  then </a:s>
+                  <a:s r="448">
+                     <a:s r="426">
+                        <a:s r="420">
+                           <a:s>'Two subsequent booster doses using tetanus toxoid with reduced diphteria toxoid (Td) or Td with acellular pertussis (TdaP) combination vaccines are needed with an interval of at least 1 year between doses.'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="422">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="444">
+                        <a:s>ToString(</a:s>
+                        <a:s r="440">
+                           <a:s>&quot;Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="449">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="416" locator="231:3-234:9" xsi:type="If">
+            <condition localId="417" locator="231:6-231:79" name="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+            <then localId="448" locator="232:8-233:107" xsi:type="Concatenate">
+               <operand localId="426" locator="232:8-232:230" xsi:type="Concatenate">
+                  <operand localId="420" locator="232:8-232:214" valueType="t:String" value="Two subsequent booster doses using tetanus toxoid with reduced diphteria toxoid (Td) or Td with acellular pertussis (TdaP) combination vaccines are needed with an interval of at least 1 year between doses." xsi:type="Literal"/>
+                  <operand localId="422" locator="232:218-232:230" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="444" locator="233:15-233:107" xsi:type="ToString">
+                  <signature localId="445" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="440" locator="233:24-233:106" name="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="449" locator="234:8-234:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="453" locator="250:1-251:6" name="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date."/>
+            <a:s r="453">
+               <a:s r="454">/*
+@dynamicValue: Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date.
+*/
+define &quot;Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="454" locator="251:3-251:6" xsi:type="Null"/>
+      </def>
+      <def localId="457" locator="258:1-259:6" name="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States. However, there is no recommended expiration date and individuals remain eligible to be vaccinated."/>
+            <a:s r="457">
+               <a:s r="458">/*
+@dynamicValue: Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Expiration
+@pseudocode: To be determined by Member States. However, there is no recommended expiration date and individuals remain eligible to be vaccinated.
+*/
+define &quot;Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start) Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="458" locator="259:3-259:6" xsi:type="Null"/>
+      </def>
+      <def localId="461" locator="266:1-267:70" name="First tetanus and diphtheria booster dose was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="First tetanus and diphtheria booster dose was administered"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Booster dose&quot;) = 1"/>
+            <a:s r="461">
+               <a:s>/*
+@complete: First tetanus and diphtheria booster dose was administered
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Booster dose&quot;) = 1
+*/
+define &quot;First tetanus and diphtheria booster dose was administered&quot;:
+  </a:s>
+               <a:s r="463">
+                  <a:s r="462">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="463">
+                     <a:s>&quot;One tetanus and diphtheria booster dose was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="463" locator="267:3-267:70" name="One tetanus and diphtheria booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="472" locator="324:1-325:72" name="Second tetanus and diphtheria booster dose was administered. Tetanus and diphtheria immunization schedule has been completed" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Second tetanus and diphtheria booster dose was administered. Tetanus and diphtheria immunization schedule has been completed"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Booster dose&quot;) = 2"/>
+            <a:s r="472">
+               <a:s>/*
+@complete: Second tetanus and diphtheria booster dose was administered. Tetanus and diphtheria immunization schedule has been completed
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Booster dose&quot;) = 2
+&quot;Immunization recommendation status&quot; = &quot;Complete&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;)
+*/
+define &quot;Second tetanus and diphtheria booster dose was administered. Tetanus and diphtheria immunization schedule has been completed&quot;:
+  </a:s>
+               <a:s r="474">
+                  <a:s r="473">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="474">
+                     <a:s>&quot;Two tetanus and diphtheria booster doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="474" locator="325:3-325:72" name="Two tetanus and diphtheria booster doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="466" locator="278:1-280:132" name="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start)"/>
+            <a:t name="description" value="Provision of tetanus and diphtheria booster dose 2"/>
+            <a:t name="trigger" value="First tetanus and diphtheria booster dose was administered"/>
+            <a:t name="pseudo" value="&quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Booster dose&quot;) = 1"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;)"/>
+            <a:s r="466">
+               <a:s>/*
+@output: Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start)
+@description: Provision of tetanus and diphtheria booster dose 2
+@trigger: First tetanus and diphtheria booster dose was administered
+@pseudo: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Booster dose&quot;) = 1
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;)
+*/
+define &quot;Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start)&quot;:
+  </a:s>
+               <a:s r="467">
+                  <a:s r="468">
+                     <a:s>&quot;First tetanus and diphtheria booster dose was administered&quot;</a:s>
+                  </a:s>
+                  <a:s> and
+  </a:s>
+                  <a:s r="469">
+                     <a:s>not </a:s>
+                     <a:s r="475">
+                        <a:s>&quot;Second tetanus and diphtheria booster dose was administered. Tetanus and diphtheria immunization schedule has been completed&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="467" locator="279:3-280:132" xsi:type="And">
+            <operand localId="468" locator="279:3-279:62" name="First tetanus and diphtheria booster dose was administered" xsi:type="ExpressionRef"/>
+            <operand localId="469" locator="280:3-280:132" xsi:type="Not">
+               <operand localId="475" locator="280:7-280:132" name="Second tetanus and diphtheria booster dose was administered. Tetanus and diphtheria immunization schedule has been completed" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="492" locator="298:1-300:11" name="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;) + 1 year"/>
+            <a:s r="492">
+               <a:s>/*
+@dynamicValue: Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;) + 1 year
+*/
+define &quot;Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Due Date&quot;:
+  </a:s>
+               <a:s r="493">
+                  <a:s>if </a:s>
+                  <a:s r="494">
+                     <a:s>&quot;Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start)&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="495">
+                     <a:s r="497">
+                        <a:s r="496">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="497">
+                           <a:s>&quot;Date of Latest Td Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="498">
+                        <a:s>1 year</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="501">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="493" locator="299:3-300:11" xsi:type="If">
+            <condition localId="494" locator="299:6-299:79" name="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start)" xsi:type="ExpressionRef"/>
+            <then localId="495" locator="299:86-299:128" xsi:type="Add">
+               <signature localId="499" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="500" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="497" locator="299:86-299:119" name="Date of Latest Td Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="498" locator="299:123-299:128" value="1" unit="year" xsi:type="Quantity"/>
+            </then>
+            <else localId="502" asType="t:Date" xsi:type="As">
+               <operand localId="501" locator="300:8-300:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="478" locator="287:1-291:9" name="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Create"/>
+            <a:t name="create" value="Two subsequent booster doses using tetanus toxoid with reduced diphteria toxoid (Td) or Td with acellular pertussis (TdaP) combination vaccines are needed with an interval of at least 1 year between doses."/>
+            <a:s r="478">
+               <a:s>/*
+@output: Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Create
+@create: Two subsequent booster doses using tetanus toxoid with reduced diphteria toxoid (Td) or Td with acellular pertussis (TdaP) combination vaccines are needed with an interval of at least 1 year between doses.
+*/
+define &quot;Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Create&quot;:
+  </a:s>
+               <a:s r="479">
+                  <a:s>if </a:s>
+                  <a:s r="480">
+                     <a:s>&quot;Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start)&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  then </a:s>
+                  <a:s r="511">
+                     <a:s r="489">
+                        <a:s r="483">
+                           <a:s>'Two subsequent booster doses using tetanus toxoid with reduced diphteria toxoid (Td) or Td with acellular pertussis (TdaP) combination vaccines are needed with an interval of at least 1 year between doses.'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="485">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="507">
+                        <a:s>ToString(</a:s>
+                        <a:s r="503">
+                           <a:s>&quot;Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="512">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="479" locator="288:3-291:9" xsi:type="If">
+            <condition localId="480" locator="288:6-288:79" name="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start)" xsi:type="ExpressionRef"/>
+            <then localId="511" locator="289:8-290:107" xsi:type="Concatenate">
+               <operand localId="489" locator="289:8-289:230" xsi:type="Concatenate">
+                  <operand localId="483" locator="289:8-289:214" valueType="t:String" value="Two subsequent booster doses using tetanus toxoid with reduced diphteria toxoid (Td) or Td with acellular pertussis (TdaP) combination vaccines are needed with an interval of at least 1 year between doses." xsi:type="Literal"/>
+                  <operand localId="485" locator="289:218-289:230" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="507" locator="290:15-290:107" xsi:type="ToString">
+                  <signature localId="508" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="503" locator="290:24-290:106" name="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="512" locator="291:8-291:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="516" locator="307:1-308:6" name="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date."/>
+            <a:s r="516">
+               <a:s r="517">/*
+@dynamicValue: Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date.
+*/
+define &quot;Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="517" locator="308:3-308:6" xsi:type="Null"/>
+      </def>
+      <def localId="520" locator="315:1-316:6" name="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States. However, there is no recommended expiration date and individuals remain eligible to be vaccinated."/>
+            <a:s r="520">
+               <a:s r="521">/*
+@dynamicValue: Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Expiration
+@pseudocode: To be determined by Member States. However, there is no recommended expiration date and individuals remain eligible to be vaccinated.
+*/
+define &quot;Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start) Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="521" locator="316:3-316:6" xsi:type="Null"/>
+      </def>
+      <def localId="533" locator="378:1-379:29" name="Pertussis-containing vaccine booster dose 1 (delayed start) Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pertussis-containing vaccine booster dose 1 (delayed start) Expiration"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 7 years"/>
+            <a:s r="533">
+               <a:s>/*
+@dynamicValue: Pertussis-containing vaccine booster dose 1 (delayed start) Expiration
+@pseudocode: &quot;Date of birth&quot; + 7 years
+*/
+define &quot;Pertussis-containing vaccine booster dose 1 (delayed start) Expiration&quot;:
+  </a:s>
+               <a:s r="534">
+                  <a:s r="536">
+                     <a:s r="535">
+                        <a:s>Patient</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="536">
+                        <a:s>birthDate</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> + </a:s>
+                  <a:s r="537">
+                     <a:s>7 years</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="534" locator="379:3-379:29" xsi:type="Add">
+            <signature localId="539" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="540" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="538" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="536" locator="379:3-379:19" path="birthDate" xsi:type="Property">
+                  <source localId="535" locator="379:3-379:9" name="Patient" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="537" locator="379:23-379:29" value="7" unit="years" xsi:type="Quantity"/>
+         </expression>
+      </def>
+      <def localId="549" locator="387:1-388:57" name="Pertussis-containing booster dose was administered. Pertussis immunization schedule has been completed" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Pertussis-containing booster dose was administered. Pertussis immunization schedule has been completed"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Booster dose&quot;) = 1"/>
+            <a:s r="549">
+               <a:s>/*
+@complete: Pertussis-containing booster dose was administered. Pertussis immunization schedule has been completed
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Booster dose&quot;) = 1
+&quot;Immunization recommendation status&quot; = &quot;Complete&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;)
+*/
+define &quot;Pertussis-containing booster dose was administered. Pertussis immunization schedule has been completed&quot;:
+  </a:s>
+               <a:s r="551">
+                  <a:s r="550">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="551">
+                     <a:s>&quot;One pertussis booster dose was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="551" locator="388:3-388:57" name="One pertussis booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="524" locator="336:1-340:110" name="Pertussis-containing vaccine booster dose 1 (delayed start)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pertussis-containing vaccine booster dose 1 (delayed start)"/>
+            <a:t name="description" value="Provision of the pertussis-containing booster dose 1"/>
+            <a:t name="trigger" value="The primary DTP series has been completed and client's age is between 1 year and 6 years"/>
+            <a:t name="pseudo" value="&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;) AND 1 year ≤ Today's date − &quot;Date of birth&quot; ≤ 6 years"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)"/>
+            <a:s r="524">
+               <a:s>/*
+@output: Pertussis-containing vaccine booster dose 1 (delayed start)
+@description: Provision of the pertussis-containing booster dose 1
+@trigger: The primary DTP series has been completed and client's age is between 1 year and 6 years
+@pseudo: &quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;) AND 1 year ≤ Today's date − &quot;Date of birth&quot; ≤ 6 years
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)
+*/
+define &quot;Pertussis-containing vaccine booster dose 1 (delayed start)&quot;:
+  </a:s>
+               <a:s r="525">
+                  <a:s r="526">
+                     <a:s r="527">
+                        <a:s r="528">
+                           <a:s>&quot;Third DTP dose from the primary series was administered. The primary DTP series has been completed&quot;</a:s>
+                        </a:s>
+                        <a:s> and
+  </a:s>
+                        <a:s r="530">
+                           <a:s r="529">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="530">
+                              <a:s>&quot;Client's age is between 1 year and 6 years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+  </a:s>
+                     <a:s r="543">
+                        <a:s r="541">
+                           <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start) Expiration&quot;</a:s>
+                        </a:s>
+                        <a:s r="543"> after day of </a:s>
+                        <a:s r="542">
+                           <a:s>Today</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+  </a:s>
+                  <a:s r="546">
+                     <a:s>not </a:s>
+                     <a:s r="552">
+                        <a:s>&quot;Pertussis-containing booster dose was administered. Pertussis immunization schedule has been completed&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="525" locator="337:3-340:110" xsi:type="And">
+            <operand localId="526" locator="337:3-339:93" xsi:type="And">
+               <operand localId="527" locator="337:3-338:56" xsi:type="And">
+                  <operand localId="528" locator="337:3-337:102" name="Third DTP dose from the primary series was administered. The primary DTP series has been completed" xsi:type="ExpressionRef"/>
+                  <operand localId="530" locator="338:3-338:56" name="Client's age is between 1 year and 6 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="543" locator="339:3-339:93" precision="Day" xsi:type="After">
+                  <signature localId="544" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="545" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="541" locator="339:3-339:74" name="Pertussis-containing vaccine booster dose 1 (delayed start) Expiration" xsi:type="ExpressionRef"/>
+                  <operand localId="542" locator="339:89-339:93" name="Today" xsi:type="ParameterRef"/>
+               </operand>
+            </operand>
+            <operand localId="546" locator="340:3-340:110" xsi:type="Not">
+               <operand localId="552" locator="340:7-340:110" name="Pertussis-containing booster dose was administered. Pertussis immunization schedule has been completed" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="573" locator="360:1-362:11" name="Pertussis-containing vaccine booster dose 1 (delayed start) Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pertussis-containing vaccine booster dose 1 (delayed start) Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;) + 6 months"/>
+            <a:s r="573">
+               <a:s>/*
+@dynamicValue: Pertussis-containing vaccine booster dose 1 (delayed start) Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;) + 6 months
+*/
+define &quot;Pertussis-containing vaccine booster dose 1 (delayed start) Due Date&quot;:
+  </a:s>
+               <a:s r="574">
+                  <a:s>if </a:s>
+                  <a:s r="575">
+                     <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="576">
+                     <a:s r="578">
+                        <a:s r="577">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="578">
+                           <a:s>&quot;Date of Latest Pertussis Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="579">
+                        <a:s>6 months</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="582">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="574" locator="361:3-362:11" xsi:type="If">
+            <condition localId="575" locator="361:6-361:66" name="Pertussis-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+            <then localId="576" locator="361:73-361:124" xsi:type="Add">
+               <signature localId="580" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="581" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="578" locator="361:73-361:113" name="Date of Latest Pertussis Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="579" locator="361:117-361:124" value="6" unit="months" xsi:type="Quantity"/>
+            </then>
+            <else localId="583" asType="t:Date" xsi:type="As">
+               <operand localId="582" locator="362:8-362:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="600" locator="369:1-371:11" name="Pertussis-containing vaccine booster dose 1 (delayed start) Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Pertussis-containing vaccine booster dose 1 (delayed start) Overdue"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 7 years"/>
+            <a:s r="600">
+               <a:s>/*
+@dynamicValue: Pertussis-containing vaccine booster dose 1 (delayed start) Overdue
+@pseudocode: &quot;Date of birth&quot; + 7 years
+*/
+define &quot;Pertussis-containing vaccine booster dose 1 (delayed start) Overdue&quot;:
+  </a:s>
+               <a:s r="601">
+                  <a:s>if </a:s>
+                  <a:s r="602">
+                     <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="603">
+                     <a:s r="605">
+                        <a:s r="604">
+                           <a:s>Patient</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="605">
+                           <a:s>birthDate</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="606">
+                        <a:s>7 years</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="610">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="601" locator="370:3-371:11" xsi:type="If">
+            <condition localId="602" locator="370:6-370:66" name="Pertussis-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+            <then localId="603" locator="370:73-370:99" xsi:type="Add">
+               <signature localId="608" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="609" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="607" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="605" locator="370:73-370:89" path="birthDate" xsi:type="Property">
+                     <source localId="604" locator="370:73-370:79" name="Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="606" locator="370:93-370:99" value="7" unit="years" xsi:type="Quantity"/>
+            </then>
+            <else localId="611" asType="t:Date" xsi:type="As">
+               <operand localId="610" locator="371:8-371:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="555" locator="347:1-353:9" name="Pertussis-containing vaccine booster dose 1 (delayed start) Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pertussis-containing vaccine booster dose 1 (delayed start) Create"/>
+            <a:t name="create" value="A booster dose is recommended for children aged 1–6 years, preferably during the second year of life (≥ 6 months after last primary dose)."/>
+            <a:s r="555">
+               <a:s>/*
+@output: Pertussis-containing vaccine booster dose 1 (delayed start) Create
+@create: A booster dose is recommended for children aged 1–6 years, preferably during the second year of life (≥ 6 months after last primary dose).
+*/
+define &quot;Pertussis-containing vaccine booster dose 1 (delayed start) Create&quot;:
+  </a:s>
+               <a:s r="556">
+                  <a:s>if </a:s>
+                  <a:s r="557">
+                     <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  then </a:s>
+                  <a:s r="634">
+                     <a:s r="625">
+                        <a:s r="620">
+                           <a:s r="597">
+                              <a:s r="592">
+                                 <a:s r="570">
+                                    <a:s r="564">
+                                       <a:s>'A booster dose is recommended for children aged 1–6 years, preferably during the second year of life (≥ 6 months after last primary dose).'</a:s>
+                                    </a:s>
+                                    <a:s> + </a:s>
+                                    <a:s r="566">
+                                       <a:s>'
+Due Date: '</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> + </a:s>
+                                 <a:s r="588">
+                                    <a:s>ToString(</a:s>
+                                    <a:s r="584">
+                                       <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start) Due Date&quot;</a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> + </a:s>
+                              <a:s r="593">
+                                 <a:s>'
+Overdue: '</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="616">
+                              <a:s>ToString(</a:s>
+                              <a:s r="612">
+                                 <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start) Overdue&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="621">
+                           <a:s>'
+Expiration: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="630">
+                        <a:s>ToString(</a:s>
+                        <a:s r="626">
+                           <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start) Expiration&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="635">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="556" locator="348:3-353:9" xsi:type="If">
+            <condition localId="557" locator="348:6-348:66" name="Pertussis-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+            <then localId="634" locator="349:8-352:98" xsi:type="Concatenate">
+               <operand localId="625" locator="349:8-351:110" xsi:type="Concatenate">
+                  <operand localId="620" locator="349:8-351:92" xsi:type="Concatenate">
+                     <operand localId="597" locator="349:8-350:109" xsi:type="Concatenate">
+                        <operand localId="592" locator="349:8-350:94" xsi:type="Concatenate">
+                           <operand localId="570" locator="349:8-349:163" xsi:type="Concatenate">
+                              <operand localId="564" locator="349:8-349:147" valueType="t:String" value="A booster dose is recommended for children aged 1–6 years, preferably during the second year of life (≥ 6 months after last primary dose)." xsi:type="Literal"/>
+                              <operand localId="566" locator="349:151-349:163" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+                           </operand>
+                           <operand localId="588" locator="350:15-350:94" xsi:type="ToString">
+                              <signature localId="589" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                              <operand localId="584" locator="350:24-350:93" name="Pertussis-containing vaccine booster dose 1 (delayed start) Due Date" xsi:type="ExpressionRef"/>
+                           </operand>
+                        </operand>
+                        <operand localId="593" locator="350:98-350:109" valueType="t:String" value="&#xa;Overdue: " xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="616" locator="351:14-351:92" xsi:type="ToString">
+                        <signature localId="617" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="612" locator="351:23-351:91" name="Pertussis-containing vaccine booster dose 1 (delayed start) Overdue" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="621" locator="351:96-351:110" valueType="t:String" value="&#xa;Expiration: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="630" locator="352:17-352:98" xsi:type="ToString">
+                  <signature localId="631" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="626" locator="352:26-352:97" name="Pertussis-containing vaccine booster dose 1 (delayed start) Expiration" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="635" locator="353:8-353:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="639" locator="395:1-412:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="639">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="640">
+                  <a:s>case
+    </a:s>
+                  <a:s r="641">
+                     <a:s>when </a:s>
+                     <a:s r="642">
+                        <a:s r="644">
+                           <a:s r="643">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="644">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="645">
+                           <a:s>'DTP33.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="651">
+                        <a:s>&quot;DTP dose 1 (delayed start)&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="652">
+                     <a:s>when </a:s>
+                     <a:s r="653">
+                        <a:s r="655">
+                           <a:s r="654">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="655">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="656">
+                           <a:s>'DTP34.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="662">
+                        <a:s>&quot;DTP dose 2 (delayed start)&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="663">
+                     <a:s>when </a:s>
+                     <a:s r="664">
+                        <a:s r="666">
+                           <a:s r="665">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="666">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="667">
+                           <a:s>'DTP35.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="673">
+                        <a:s>&quot;DTP dose 2 (delayed start)&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="674">
+                     <a:s>when </a:s>
+                     <a:s r="675">
+                        <a:s r="677">
+                           <a:s r="676">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="677">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="678">
+                           <a:s>'DTP36.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="684">
+                        <a:s>&quot;DTP dose 3 (delayed start)&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="685">
+                     <a:s>when </a:s>
+                     <a:s r="686">
+                        <a:s r="688">
+                           <a:s r="687">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="688">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="689">
+                           <a:s>'DTP37.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="695">
+                        <a:s>&quot;DTP dose 3 (delayed start)&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="696">
+                     <a:s>when </a:s>
+                     <a:s r="697">
+                        <a:s r="699">
+                           <a:s r="698">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="699">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="700">
+                           <a:s>'DTP38.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="706">
+                        <a:s r="707">
+                           <a:s>&quot;Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="708">
+                           <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="709">
+                     <a:s>when </a:s>
+                     <a:s r="710">
+                        <a:s r="712">
+                           <a:s r="711">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="712">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="713">
+                           <a:s>'DTP39.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="719">
+                        <a:s r="720">
+                           <a:s>&quot;Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="721">
+                           <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="722">
+                     <a:s>when </a:s>
+                     <a:s r="723">
+                        <a:s r="725">
+                           <a:s r="724">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="725">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="726">
+                           <a:s>'DTP40.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="732">
+                        <a:s r="733">
+                           <a:s>&quot;Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start)&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="734">
+                           <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="735">
+                     <a:s>when </a:s>
+                     <a:s r="736">
+                        <a:s r="738">
+                           <a:s r="737">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="738">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="739">
+                           <a:s>'DTP41.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="745">
+                        <a:s r="746">
+                           <a:s>&quot;Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start)&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="747">
+                           <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="748">
+                     <a:s>when </a:s>
+                     <a:s r="749">
+                        <a:s r="751">
+                           <a:s r="750">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="751">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="752">
+                           <a:s>'DTP42.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="758">
+                        <a:s r="759">
+                           <a:s>&quot;Second tetanus and diphtheria booster dose was administered. Tetanus and diphtheria immunization schedule has been completed&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="760">
+                           <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="761">
+                     <a:s>when </a:s>
+                     <a:s r="762">
+                        <a:s r="764">
+                           <a:s r="763">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="764">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="765">
+                           <a:s>'DTP43.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="771">
+                        <a:s r="772">
+                           <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="773">
+                           <a:s>&quot;Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="774">
+                     <a:s>when </a:s>
+                     <a:s r="775">
+                        <a:s r="777">
+                           <a:s r="776">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="777">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="778">
+                           <a:s>'DTP44.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="784">
+                        <a:s r="785">
+                           <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="786">
+                           <a:s>&quot;Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="787">
+                     <a:s>when </a:s>
+                     <a:s r="788">
+                        <a:s r="790">
+                           <a:s r="789">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="790">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="791">
+                           <a:s>'DTP45.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="797">
+                        <a:s r="798">
+                           <a:s>not </a:s>
+                           <a:s r="799">
+                              <a:s>&quot;Pertussis-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="800">
+                           <a:s>&quot;Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="801">
+                     <a:s>when </a:s>
+                     <a:s r="802">
+                        <a:s r="804">
+                           <a:s r="803">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="804">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="805">
+                           <a:s>'DTP46.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="811">
+                        <a:s r="812">
+                           <a:s>&quot;Pertussis-containing booster dose was administered. Pertussis immunization schedule has been completed&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="813">
+                           <a:s>&quot;Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="814">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="640" locator="396:3-412:5" xsi:type="Case">
+            <caseItem localId="641" locator="397:5-397:65">
+               <when localId="642" locator="397:10-397:31" xsi:type="Equal">
+                  <signature localId="649" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="650" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="647" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="648" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="644" locator="397:10-397:19" path="id" xsi:type="Property">
+                        <source localId="643" locator="397:10-397:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="645" locator="397:23-397:31" valueType="t:String" value="DTP33.2" xsi:type="Literal"/>
+               </when>
+               <then localId="816" xsi:type="As">
+                  <operand localId="651" locator="397:38-397:65" name="DTP dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="817" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="818" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="819" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="652" locator="398:5-398:65">
+               <when localId="653" locator="398:10-398:31" xsi:type="Equal">
+                  <signature localId="660" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="661" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="658" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="659" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="655" locator="398:10-398:19" path="id" xsi:type="Property">
+                        <source localId="654" locator="398:10-398:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="656" locator="398:23-398:31" valueType="t:String" value="DTP34.2" xsi:type="Literal"/>
+               </when>
+               <then localId="820" xsi:type="As">
+                  <operand localId="662" locator="398:38-398:65" name="DTP dose 2 (delayed start)" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="821" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="822" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="823" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="663" locator="399:5-399:65">
+               <when localId="664" locator="399:10-399:31" xsi:type="Equal">
+                  <signature localId="671" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="672" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="669" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="670" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="666" locator="399:10-399:19" path="id" xsi:type="Property">
+                        <source localId="665" locator="399:10-399:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="667" locator="399:23-399:31" valueType="t:String" value="DTP35.2" xsi:type="Literal"/>
+               </when>
+               <then localId="824" xsi:type="As">
+                  <operand localId="673" locator="399:38-399:65" name="DTP dose 2 (delayed start)" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="825" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="826" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="827" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="674" locator="400:5-400:65">
+               <when localId="675" locator="400:10-400:31" xsi:type="Equal">
+                  <signature localId="682" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="683" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="680" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="681" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="677" locator="400:10-400:19" path="id" xsi:type="Property">
+                        <source localId="676" locator="400:10-400:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="678" locator="400:23-400:31" valueType="t:String" value="DTP36.2" xsi:type="Literal"/>
+               </when>
+               <then localId="828" xsi:type="As">
+                  <operand localId="684" locator="400:38-400:65" name="DTP dose 3 (delayed start)" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="829" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="830" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="831" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="685" locator="401:5-401:65">
+               <when localId="686" locator="401:10-401:31" xsi:type="Equal">
+                  <signature localId="693" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="694" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="691" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="692" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="688" locator="401:10-401:19" path="id" xsi:type="Property">
+                        <source localId="687" locator="401:10-401:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="689" locator="401:23-401:31" valueType="t:String" value="DTP37.2" xsi:type="Literal"/>
+               </when>
+               <then localId="832" xsi:type="As">
+                  <operand localId="695" locator="401:38-401:65" name="DTP dose 3 (delayed start)" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="833" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="834" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="835" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="696" locator="402:5-402:177">
+               <when localId="697" locator="402:10-402:31" xsi:type="Equal">
+                  <signature localId="704" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="705" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="702" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="703" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="699" locator="402:10-402:19" path="id" xsi:type="Property">
+                        <source localId="698" locator="402:10-402:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="700" locator="402:23-402:31" valueType="t:String" value="DTP38.3" xsi:type="Literal"/>
+               </when>
+               <then localId="836" xsi:type="As">
+                  <operand localId="706" locator="402:38-402:177" xsi:type="And">
+                     <operand localId="707" locator="402:38-402:111" name="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                     <operand localId="708" locator="402:117-402:177" name="Pertussis-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="837" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="838" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="839" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="709" locator="403:5-403:177">
+               <when localId="710" locator="403:10-403:31" xsi:type="Equal">
+                  <signature localId="717" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="718" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="715" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="716" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="712" locator="403:10-403:19" path="id" xsi:type="Property">
+                        <source localId="711" locator="403:10-403:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="713" locator="403:23-403:31" valueType="t:String" value="DTP39.3" xsi:type="Literal"/>
+               </when>
+               <then localId="840" xsi:type="As">
+                  <operand localId="719" locator="403:38-403:177" xsi:type="And">
+                     <operand localId="720" locator="403:38-403:111" name="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                     <operand localId="721" locator="403:117-403:177" name="Pertussis-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="841" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="842" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="843" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="722" locator="404:5-404:177">
+               <when localId="723" locator="404:10-404:31" xsi:type="Equal">
+                  <signature localId="730" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="731" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="728" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="729" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="725" locator="404:10-404:19" path="id" xsi:type="Property">
+                        <source localId="724" locator="404:10-404:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="726" locator="404:23-404:31" valueType="t:String" value="DTP40.3" xsi:type="Literal"/>
+               </when>
+               <then localId="844" xsi:type="As">
+                  <operand localId="732" locator="404:38-404:177" xsi:type="And">
+                     <operand localId="733" locator="404:38-404:111" name="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start)" xsi:type="ExpressionRef"/>
+                     <operand localId="734" locator="404:117-404:177" name="Pertussis-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="845" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="846" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="847" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="735" locator="405:5-405:177">
+               <when localId="736" locator="405:10-405:31" xsi:type="Equal">
+                  <signature localId="743" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="744" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="741" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="742" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="738" locator="405:10-405:19" path="id" xsi:type="Property">
+                        <source localId="737" locator="405:10-405:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="739" locator="405:23-405:31" valueType="t:String" value="DTP41.3" xsi:type="Literal"/>
+               </when>
+               <then localId="848" xsi:type="As">
+                  <operand localId="745" locator="405:38-405:177" xsi:type="And">
+                     <operand localId="746" locator="405:38-405:111" name="Tetanus and diphtheria-containing vaccine booster dose 2 (delayed start)" xsi:type="ExpressionRef"/>
+                     <operand localId="747" locator="405:117-405:177" name="Pertussis-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="849" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="850" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="851" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="748" locator="406:5-406:229">
+               <when localId="749" locator="406:10-406:31" xsi:type="Equal">
+                  <signature localId="756" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="757" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="754" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="755" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="751" locator="406:10-406:19" path="id" xsi:type="Property">
+                        <source localId="750" locator="406:10-406:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="752" locator="406:23-406:31" valueType="t:String" value="DTP42.2" xsi:type="Literal"/>
+               </when>
+               <then localId="852" xsi:type="As">
+                  <operand localId="758" locator="406:38-406:229" xsi:type="And">
+                     <operand localId="759" locator="406:38-406:163" name="Second tetanus and diphtheria booster dose was administered. Tetanus and diphtheria immunization schedule has been completed" xsi:type="ExpressionRef"/>
+                     <operand localId="760" locator="406:169-406:229" name="Pertussis-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="853" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="854" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="855" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="761" locator="407:5-407:177">
+               <when localId="762" locator="407:10-407:31" xsi:type="Equal">
+                  <signature localId="769" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="770" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="767" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="768" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="764" locator="407:10-407:19" path="id" xsi:type="Property">
+                        <source localId="763" locator="407:10-407:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="765" locator="407:23-407:31" valueType="t:String" value="DTP43.4" xsi:type="Literal"/>
+               </when>
+               <then localId="856" xsi:type="As">
+                  <operand localId="771" locator="407:38-407:177" xsi:type="And">
+                     <operand localId="772" locator="407:38-407:98" name="Pertussis-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                     <operand localId="773" locator="407:104-407:177" name="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="857" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="858" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="859" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="774" locator="408:5-408:177">
+               <when localId="775" locator="408:10-408:31" xsi:type="Equal">
+                  <signature localId="782" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="783" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="780" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="781" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="777" locator="408:10-408:19" path="id" xsi:type="Property">
+                        <source localId="776" locator="408:10-408:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="778" locator="408:23-408:31" valueType="t:String" value="DTP44.4" xsi:type="Literal"/>
+               </when>
+               <then localId="860" xsi:type="As">
+                  <operand localId="784" locator="408:38-408:177" xsi:type="And">
+                     <operand localId="785" locator="408:38-408:98" name="Pertussis-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                     <operand localId="786" locator="408:104-408:177" name="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="861" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="862" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="863" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="787" locator="409:5-409:181">
+               <when localId="788" locator="409:10-409:31" xsi:type="Equal">
+                  <signature localId="795" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="796" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="793" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="794" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="790" locator="409:10-409:19" path="id" xsi:type="Property">
+                        <source localId="789" locator="409:10-409:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="791" locator="409:23-409:31" valueType="t:String" value="DTP45.3" xsi:type="Literal"/>
+               </when>
+               <then localId="864" xsi:type="As">
+                  <operand localId="797" locator="409:38-409:181" xsi:type="And">
+                     <operand localId="798" locator="409:38-409:102" xsi:type="Not">
+                        <operand localId="799" locator="409:42-409:102" name="Pertussis-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="800" locator="409:108-409:181" name="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="865" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="866" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="867" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="801" locator="410:5-410:220">
+               <when localId="802" locator="410:10-410:31" xsi:type="Equal">
+                  <signature localId="809" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="810" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="807" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="808" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="804" locator="410:10-410:19" path="id" xsi:type="Property">
+                        <source localId="803" locator="410:10-410:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="805" locator="410:23-410:31" valueType="t:String" value="DTP46.2" xsi:type="Literal"/>
+               </when>
+               <then localId="868" xsi:type="As">
+                  <operand localId="811" locator="410:38-410:220" xsi:type="And">
+                     <operand localId="812" locator="410:38-410:141" name="Pertussis-containing booster dose was administered. Pertussis immunization schedule has been completed" xsi:type="ExpressionRef"/>
+                     <operand localId="813" locator="410:147-410:220" name="Tetanus and diphtheria-containing vaccine booster dose 1 (delayed start)" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="869" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="870" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="871" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="872" xsi:type="As">
+               <operand localId="814" locator="411:10-411:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="873" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="874" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="875" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>
