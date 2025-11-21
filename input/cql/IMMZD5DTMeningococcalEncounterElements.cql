@@ -13,7 +13,6 @@ include WHOElements called WE
 
 include IMMZCommon called Common
 include IMMZConcepts called Concepts
-
 include IMMZEncounterElements called Encounter
 
 include IMMZD5DTMeningococcalElements called MeningococcalElements
@@ -27,15 +26,14 @@ context Patient
 @internal: Draft Medication Request for Meningococcal dose
 */
 define "Draft Medication Request for Meningococcal dose":
-  Encounter."Draft Medication Request for Patient" MR 
+  Encounter."Draft Medication Request for Patient" MR
     where MR.medication in Concepts."Meningococcal vaccines"
-
 
 /*
 @input: The client has history of severe allergic reactions
 @pseudocode: "Potential contraindications" = "Severe allergic reactions"
-@decision: Potential contraindications
+@code: The client has history of severe allergic reactions-59
+@decision: IMMZ.D5.DT.Meningococcal contraindications
 */
 define "The client has history of severe allergic reactions":
   Encounter."The client has history of severe allergic reactions"
-

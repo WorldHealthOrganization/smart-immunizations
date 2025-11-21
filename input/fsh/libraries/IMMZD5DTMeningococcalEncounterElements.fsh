@@ -1,4 +1,3 @@
-
 Instance: IMMZD5DTMeningococcalEncounterElements
 InstanceOf: Library
 Title: "IMMZD5DTMeningococcalEncounterElements"
