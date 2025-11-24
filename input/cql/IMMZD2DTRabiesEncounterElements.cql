@@ -13,7 +13,6 @@ include WHOElements called WE
 
 include IMMZCommon called Common
 include IMMZConcepts called Concepts
-
 include IMMZEncounterElements called Encounter
 
 include IMMZD2DTRabiesElements called RabiesElements
@@ -44,15 +43,10 @@ define "Number of Rabies Primary Series Doses Administered":
   Count("Rabies Primary Series Doses Administered to Patient")
 
 /*
-@internal: Date and time of last Rabies dose
-*/
-define "Date of Latest Rabies Dose":
-  date from start of "Rabies Doses Administered to Patient".mostRecent().occurrence.toInterval()
-
-/*
 @input: No rabies primary series doses were administered
 @pseudocode: Count of vaccines administered (where "Vaccine type" = "Rabies vaccines" and "Type of dose" = "Primary series") = 0
-@decision: Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure
+@code: No rabies primary series doses were administered-115
+@decision: IMMZ.D2.DT.Rabies: Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure
 */
 define "No rabies primary series doses were administered":
   "Number of Rabies Primary Series Doses Administered" = 0
@@ -60,23 +54,17 @@ define "No rabies primary series doses were administered":
 /*
 @input: One rabies primary series doses were administered
 @pseudocode: Count of vaccines administered (where "Vaccine type" = "Rabies vaccines" and "Type of dose" = "Primary series") = 1
-@decision: Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure
+@code: One rabies primary series doses were administered-115
+@decision: IMMZ.D2.DT.Rabies: Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure
 */
 define "One rabies primary series doses were administered":
   "Number of Rabies Primary Series Doses Administered" = 1
 
 /*
-@input: Two rabies primary series doses were administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Rabies vaccines" and "Type of dose" = "Primary series") = 2
-@decision: Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure
-*/
-define "Two rabies primary series doses were administered":
-  "Number of Rabies Primary Series Doses Administered" = 2
-
-/*
 @input: The latest rabies dose was administered less than 7 days ago
 @pseudocode: ''Today's date - Latest "Date of vaccination" (where "Vaccine type" = "Rabies vaccines") < 7 days
-@decision: Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure
+@code: The latest rabies dose was administered less than 7 days ago-97
+@decision: IMMZ.D2.DT.Rabies: Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure
 */
 define "The latest rabies dose was administered less than 7 days ago":
   "Date of Latest Rabies Dose" is not null
@@ -85,8 +73,23 @@ define "The latest rabies dose was administered less than 7 days ago":
 /*
 @input: The latest rabies dose was administered more than 7 days ago
 @pseudocode: ''Today's date - Latest "Date of vaccination" (where "Vaccine type" = "Rabies vaccines") ≥ 7 days
-@decision: Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure
+@code: The latest rabies dose was administered more than 7 days ago-97
+@decision: IMMZ.D2.DT.Rabies: Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure
 */
 define "The latest rabies dose was administered more than 7 days ago":
   not "The latest rabies dose was administered less than 7 days ago"
 
+/*
+@input: Two rabies primary series doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Rabies vaccines" and "Type of dose" = "Primary series") = 2
+@code: Two rabies primary series doses were administered-115
+@decision: IMMZ.D2.DT.Rabies: Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure
+*/
+define "Two rabies primary series doses were administered":
+  "Number of Rabies Primary Series Doses Administered" = 2
+
+/*
+@internal: Date of Latest Rabies Dose
+*/
+define "Date of Latest Rabies Dose":
+  date from start of "Rabies Doses Administered to Patient".mostRecent().occurrence.toInterval()

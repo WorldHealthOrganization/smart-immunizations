@@ -13,7 +13,6 @@ include WHOElements called WE
 
 include IMMZCommon called Common
 include IMMZConcepts called Concepts
-
 include IMMZEncounterElements called Encounter
 
 include IMMZD5DTRabiesElements called RabiesElements
@@ -27,15 +26,14 @@ context Patient
 @internal: Draft Medication Request for Rabies dose
 */
 define "Draft Medication Request for Rabies dose":
-  Encounter."Draft Medication Request for Patient" MR 
+  Encounter."Draft Medication Request for Patient" MR
     where MR.medication in Concepts."Rabies vaccines"
-
 
 /*
 @input: The client has history of severe allergic reactions
 @pseudocode: "Potential contraindications" = "Severe allergic reactions"
-@decision: Potential contraindications
+@code: The client has history of severe allergic reactions-59
+@decision: IMMZ.D5.DT.Rabies contraindications
 */
 define "The client has history of severe allergic reactions":
   Encounter."The client has history of severe allergic reactions"
-

@@ -1,11 +1,10 @@
-
 /*
- * Library: IMMZD2DTRabiesPrEPLogic (IMMZ.D2.DT.Rabies)
+ * Library: IMMZD2DTRabiesLogic (IMMZ.D2.DT.Rabies)
  * Rule: Determine if the client is due for a rabies vaccination according to the national immunization schedule
  * Decision Table: Pre-exposure prophylaxis (PrEP), 2-dose scheme; high risk of rabies virus exposure
  * Trigger: IMMZ.D2 Determine required vaccination(s) if any
  */
-library IMMZD2DTRabiesPrEPLogic
+library IMMZD2DTRabiesLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
@@ -21,13 +20,13 @@ context Patient
 @dynamicValue: Guidance
 */
 define "Guidance":
-  case
+  case 
     when "Client is due for rabies vaccination" then "Client is due for rabies vaccination Guidance"
     when "Client is not due for rabies vaccination" then "Client is not due for rabies vaccination Guidance"
-    when "Rabies immunization schedule is complete" then "Rabies immunization schedule is complete Guidance"
+    when "Rabies immunization schedule is complete" then "Rabies immunization schedule is complete Guidance" 
     else ''
   end
-
+  
 define "Has Guidance":
   "Guidance" is not null and "Guidance" != ''
 
@@ -56,9 +55,9 @@ define "Client is due for rabies vaccination":
 
 /*
 @output: Client is due for rabies vaccination Guidance
-@guidance: Should vaccinate client with first rabies dose as no rabies doses were administered and client is at high risk of exposure. 
+@guidance = Should vaccinate client with first rabies dose as no rabies doses were administered and client is at high risk of exposure. 
 Check for contraindications.
-@guidance: Should vaccinate client with second rabies dose as the latest rabies dose was administerd 7 or more days ago. 
+@guidance = Should vaccinate client with second rabies dose as the latest rabies dose was administerd 7 or more days ago. 
 Check for contraindications.
 */
 define "Client is due for rabies vaccination Guidance":
@@ -90,6 +89,7 @@ Check for any other vaccines due and inform the caregiver of when to come back f
 /*
 @output: Rabies immunization schedule is complete
 @pseudocode: "Immunization recommendation status" = "Complete"
+"Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Rabies vaccines")
 */
 define "Rabies immunization schedule is complete":
   Encounter."Two rabies primary series doses were administered"
@@ -109,13 +109,13 @@ Check for any other vaccines due.'
 */
 define "Test Validation":
   case
-    when Patient.id = '08.1' then "Client is due for rabies vaccination Case 1" and "Guidance" = 'Should vaccinate client with first rabies dose as no rabies doses were administered and client is at high risk of exposure. 
+    when Patient.id = 'Rabies08.1' then "Client is due for rabies vaccination Case 1" and "Guidance" = 'Should vaccinate client with first rabies dose as no rabies doses were administered and client is at high risk of exposure. 
 Check for contraindications.'
-    when Patient.id = '09.12' then "Client is not due for rabies vaccination" and "Guidance" = 'Should not vaccinate client with second rabies dose as the latest rabies dose was administered less than 7 days ago. 
+    when Patient.id = 'Rabies09.2' then "Client is not due for rabies vaccination" and "Guidance" = 'Should not vaccinate client with second rabies dose as the latest rabies dose was administered less than 7 days ago. 
 Check for any other vaccines due and inform the caregiver of when to come back for the second dose.'
-    when Patient.id = '10.12' then "Client is due for rabies vaccination Case 2" and "Guidance" = 'Should vaccinate client with second rabies dose as the latest rabies dose was administerd 7 or more days ago. 
+    when Patient.id = 'Rabies10.2' then "Client is due for rabies vaccination Case 2" and "Guidance" = 'Should vaccinate client with second rabies dose as the latest rabies dose was administerd 7 or more days ago. 
 Check for contraindications.'
-    when Patient.id = '11.1' then "Rabies immunization schedule is complete" and "Guidance" = 'Rabies immunization schedule is complete. Two rabies primary series doses were administered. 
+    when Patient.id = 'Rabies11.1' then "Rabies immunization schedule is complete" and "Guidance" = 'Rabies immunization schedule is complete. Two rabies primary series doses were administered. 
 Check for any other vaccines due.'
     else 'No test case set'
   end

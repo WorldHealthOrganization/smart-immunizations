@@ -1,4 +1,3 @@
-
 Instance: IMMZD5DTRabiesEncounterElements
 InstanceOf: Library
 Title: "IMMZD5DTRabiesEncounterElements"
