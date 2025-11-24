@@ -1,4 +1,3 @@
-
 Instance: IMMZD5DTHepatitisAEncounterElements
 InstanceOf: Library
 Title: "IMMZD5DTHepatitisAEncounterElements"
