@@ -1,4 +1,3 @@
-
 Instance: IMMZD5DTMalariaEncounterElements
 InstanceOf: Library
 Title: "IMMZD5DTMalariaEncounterElements"

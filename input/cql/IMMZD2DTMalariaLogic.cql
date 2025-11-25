@@ -1,11 +1,10 @@
-
 /*
- * Library: IMMZD2DTMalaria4DoseLogic (IMMZ.D2.DT.Malaria)
+ * Library: IMMZD2DTMalariaLogic (IMMZ.D2.DT.Malaria)
  * Rule: Determine if the client is due for a malaria vaccination according to the national immunization schedule
- * Decision Table: 4-dose schedule (The RTS,S/AS01 malaria vaccine should be used for the prevention of Plasmodium falciparum malaria in children living in regions with moderate to high malaria transmission, as defined by WHO)									
- * Trigger: IMMZ.D2 Determine required vaccination(s) if any  
+ * Decision Table: 4-dose schedule (The RTS,S/AS01 malaria vaccine should be used for the prevention of Plasmodium falciparum malaria in children living in regions with moderate to high malaria transmission, as defined by WHO)
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any
  */
-library IMMZD2DTMalaria4DoseLogic
+library IMMZD2DTMalariaLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
@@ -21,13 +20,13 @@ context Patient
 @dynamicValue: Guidance
 */
 define "Guidance":
-  case
+  case 
     when "Client is not due for malaria vaccination" then "Client is not due for malaria vaccination Guidance"
     when "Client is due for malaria vaccination" then "Client is due for malaria vaccination Guidance"
-    when "Malaria immunization schedule is complete" then "Malaria immunization schedule is complete Guidance"
+    when "Malaria immunization schedule is complete" then "Malaria immunization schedule is complete Guidance" 
     else ''
   end
-
+  
 define "Has Guidance":
   "Guidance" is not null and "Guidance" != ''
 
@@ -74,13 +73,13 @@ define "Client is not due for malaria vaccination":
 
 /*
 @output: Client is not due for malaria vaccination Guidance
-@guidance: Should not vaccinate client with first malaria dose as client's age is less than 5 months. 
+@guidance = Should not vaccinate client with first malaria dose as client's age is less than 5 months. 
 Check for any other vaccines due and inform the caregiver of when to come back for first dose.
-@guidance: Should not vaccinate client with second malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
+@guidance = Should not vaccinate client with second malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
 Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
-@guidance: Should not vaccinate client with third malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
+@guidance = Should not vaccinate client with third malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
 Check for any other vaccines due and inform the caregiver of when to come back for the third dose.
-@guidance: Should not vaccinate client with fourth malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
+@guidance = Should not vaccinate client with fourth malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
 Check for any other vaccines due and inform the caregiver of when to come back for the fourth dose.
 */
 define "Client is not due for malaria vaccination Guidance":
@@ -140,31 +139,32 @@ define "Client is due for malaria vaccination":
 
 /*
 @output: Client is due for malaria vaccination Guidance
-@guidance: Should vaccinate client with first malaria dose as no malaria doses were administered and client is within appropriate age range. 
+@guidance = Should vaccinate client with first malaria dose as no malaria doses were administered and client is within appropriate age range. 
 Check for contraindications.
-@guidance: Should vaccinate client with second malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
-Check for contraindications. 
-@guidance: Should vaccinate client with third malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
-Check for contraindications. 
-@guidance: Should vaccinate client with fourth malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
-Check for contraindications. 
+@guidance = Should vaccinate client with second malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
+Check for contraindications.
+@guidance = Should vaccinate client with third malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
+Check for contraindications.
+@guidance = Should vaccinate client with fourth malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
+Check for contraindications.
 */
 define "Client is due for malaria vaccination Guidance":
   case
     when "Client is due for malaria vaccination Case 1" then 'Should vaccinate client with first malaria dose as no malaria doses were administered and client is within appropriate age range. 
 Check for contraindications.'
     when "Client is due for malaria vaccination Case 2" then 'Should vaccinate client with second malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
-Check for contraindications. '
+Check for contraindications.'
     when "Client is due for malaria vaccination Case 3" then 'Should vaccinate client with third malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
-Check for contraindications. '
+Check for contraindications.'
     when "Client is due for malaria vaccination Case 4" then 'Should vaccinate client with fourth malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
-Check for contraindications. '
+Check for contraindications.'
     else ''
   end
 
 /*
 @output: Malaria immunization schedule is complete
 @pseudocode: "Immunization recommendation status" = "Complete"
+"Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Malaria vaccines")"
 */
 define "Malaria immunization schedule is complete":
   Encounter."Four malaria primary series doses were administered"
@@ -184,23 +184,23 @@ Check for any other vaccines due.'
 */
 define "Test Validation":
   case
-    when Patient.id = '08.1' then "Client is not due for malaria vaccination Case 1" and "Guidance" = 'Should not vaccinate client with first malaria dose as client\'s age is less than 5 months. 
+    when Patient.id = 'Malaria08.1' then "Client is not due for malaria vaccination Case 1" and "Guidance" = 'Should not vaccinate client with first malaria dose as client\'s age is less than 5 months. 
 Check for any other vaccines due and inform the caregiver of when to come back for first dose.'
-    when Patient.id = '09.01' then "Client is due for malaria vaccination Case 1" and "Guidance" = 'Should vaccinate client with first malaria dose as no malaria doses were administered and client is within appropriate age range. 
+    when Patient.id = 'Malaria09.2' then "Client is due for malaria vaccination Case 1" and "Guidance" = 'Should vaccinate client with first malaria dose as no malaria doses were administered and client is within appropriate age range. 
 Check for contraindications.'
-    when Patient.id = '10.02' then "Client is not due for malaria vaccination Case 2" and "Guidance" = 'Should not vaccinate client with second malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
+    when Patient.id = 'Malaria10.2' then "Client is not due for malaria vaccination Case 2" and "Guidance" = 'Should not vaccinate client with second malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
 Check for any other vaccines due and inform the caregiver of when to come back for the second dose.'
-    when Patient.id = '11.02' then "Client is due for malaria vaccination Case 2" and "Guidance" = 'Should vaccinate client with second malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
-Check for contraindications. '
-    when Patient.id = '12.02' then "Client is not due for malaria vaccination Case 3" and "Guidance" = 'Should not vaccinate client with third malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
+    when Patient.id = 'Malaria11.2' then "Client is due for malaria vaccination Case 2" and "Guidance" = 'Should vaccinate client with second malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
+Check for contraindications.'
+    when Patient.id = 'Malaria12.2' then "Client is not due for malaria vaccination Case 3" and "Guidance" = 'Should not vaccinate client with third malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
 Check for any other vaccines due and inform the caregiver of when to come back for the third dose.'
-    when Patient.id = '13.02' then "Client is due for malaria vaccination Case 3" and "Guidance" = 'Should vaccinate client with third malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
-Check for contraindications. '
-    when Patient.id = '14.02' then "Client is not due for malaria vaccination Case 4" and "Guidance" = 'Should not vaccinate client with fourth malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
+    when Patient.id = 'Malaria13.2' then "Client is due for malaria vaccination Case 3" and "Guidance" = 'Should vaccinate client with third malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
+Check for contraindications.'
+    when Patient.id = 'Malaria14.2' then "Client is not due for malaria vaccination Case 4" and "Guidance" = 'Should not vaccinate client with fourth malaria dose as the latest malaria dose was administered less than 4 weeks ago. 
 Check for any other vaccines due and inform the caregiver of when to come back for the fourth dose.'
-    when Patient.id = '15.02' then "Client is due for malaria vaccination Case 4" and "Guidance" = 'Should vaccinate client with fourth malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
-Check for contraindications. '
-    when Patient.id = '16.0' then "Malaria immunization schedule is complete" and "Guidance" = 'Malaria immunization schedule is complete. Four malaria primary series doses were administered. 
+    when Patient.id = 'Malaria15.2' then "Client is due for malaria vaccination Case 4" and "Guidance" = 'Should vaccinate client with fourth malaria dose as the latest malaria dose was administered more than 4 weeks ago. 
+Check for contraindications.'
+    when Patient.id = 'Malaria16.1' then "Malaria immunization schedule is complete" and "Guidance" = 'Malaria immunization schedule is complete. Four malaria primary series doses were administered. 
 Check for any other vaccines due.'
     else 'No test case set'
   end

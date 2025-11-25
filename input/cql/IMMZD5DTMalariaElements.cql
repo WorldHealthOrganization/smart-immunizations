@@ -15,21 +15,21 @@ include IMMZCommon called Common
 include IMMZConcepts called Concepts
 include IMMZElements called Elements
 
+
 context Patient
 
 /*
 @internal: Draft Medication Request for Malaria dose
 */
 define "Draft Medication Request for Malaria dose":
-  Elements."Draft Medication Request for Patient" MR 
+  Elements."Draft Medication Request for Patient" MR
     where MR.medication in Concepts."Malaria vaccines"
-
 
 /*
 @input: The client has hypersensitivity to any of the vaccine components
 @pseudocode: "Potential contraindications" = "Hypersensitivity to vaccine components"
-@decision: Potential contraindications
+@code: The client has hypersensitivity to any of the vaccine components-72
+@decision: IMMZ.D5.DT.Malaria contraindications
 */
 define "The client has hypersensitivity to any of the vaccine components":
   Elements."The client has hypersensitivity to any component of the vaccine"
-

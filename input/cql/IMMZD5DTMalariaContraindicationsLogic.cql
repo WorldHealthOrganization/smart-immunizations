@@ -1,11 +1,10 @@
-
 /*
- * Library: IMMZD5DTMalariaCILogic (IMMZ.D5.DT.Malaria contraindications)
- * Rule: Check for contraindications before administering the vaccine(s) due	
- * Decision Table: Potential contraindications
+ * Library: IMMZD5DTMalariaContraindicationsLogic (IMMZ.D5.DT.Malaria contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due
+ * Decision Table: IMMZ.D5.DT.Malaria contraindications
  * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
  */
-library IMMZD5DTMalariaCILogic
+library IMMZD5DTMalariaContraindicationsLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
@@ -27,17 +26,17 @@ context Patient
 @dynamicValue: Guidance
 */
 define "Guidance":
-  case
-    when "Malaria vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" then "Malaria vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance"
+  case 
+    when "Malaria vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" then "Malaria vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance" 
     else ''
   end
-
+  
 define "Has Guidance":
   "Guidance" is not null and "Guidance" != ''
 
 /*
 @output: Malaria vaccination could be contraindicated. Clinical judgement is required. Create a clinical note
-@pseudocode: "Immunization recommendation status" =  "Further evaluation needed"
+@pseudocode: "Immunization recommendation status" = "Further evaluation needed"
 */
 define "Malaria vaccination could be contraindicated. Clinical judgement is required. Create a clinical note":
   Encounter."The client has hypersensitivity to any of the vaccine components"
@@ -55,6 +54,6 @@ define "Malaria vaccination could be contraindicated. Clinical judgement is requ
 */
 define "Test Validation":
   case
-    when Patient.id = '23.0' then "Malaria vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" and "Guidance" = 'Do not vaccinate client with RTS,S/AS01 vaccine if client has severe hypersensitivity to any of the vaccine components.'
+    when Patient.id = 'Malaria23.1' then "Malaria vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" and "Guidance" = 'Do not vaccinate client with RTS,S/AS01 vaccine if client has severe hypersensitivity to any of the vaccine components.'
     else 'No test case set'
   end
