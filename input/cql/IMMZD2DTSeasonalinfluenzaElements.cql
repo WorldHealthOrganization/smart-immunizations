@@ -15,6 +15,7 @@ include IMMZCommon called Common
 include IMMZConcepts called Concepts
 include IMMZElements called Elements
 
+
 context Patient
 
 /*
@@ -38,97 +39,108 @@ define "Number of Seasonal influenza Primary Series Doses Administered":
   Count("Seasonal influenza Primary Series Doses Administered to Patient")
 
 /*
-@internal: Date and time of last Seasonal influenza dose
-*/
-define "Date of Latest Seasonal influenza Dose":
-  date from start of "Seasonal influenza Doses Administered to Patient".mostRecent().occurrence.toInterval()
-
-/*
-@input: No seasonal influenza primary series doses were administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Seasonal influenza vaccines" and "Type of dose" = "Primary series") = 0
-@decision: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
-*/
-define "No seasonal influenza primary series doses were administered":
-  "Number of Seasonal influenza Primary Series Doses Administered" = 0
-
-/*
-@input: One seasonal influenza primary series doses were administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Seasonal influenza vaccines" and "Type of dose" = "Primary series") = 1
-@decision: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
-*/
-define "One seasonal influenza primary series doses were administered":
-  "Number of Seasonal influenza Primary Series Doses Administered" = 1
-
-/*
-@input: Two seasonal influenza primary series doses were administered
-@pseudocode: Count of vaccines administered (where "Vaccine type" = "Seasonal influenza vaccines" and "Type of dose" = "Primary series") = 2
-@decision: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
-*/
-define "Two seasonal influenza primary series doses were administered":
-  "Number of Seasonal influenza Primary Series Doses Administered" = 2
-
-/*
 @input: Client's age is less than 6 months
 @pseudocode: Today's date − "Date of birth" < 6 months
-@decision: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
+@code: Client's age is less than 6 months-41
+@decision: IMMZ.D2.DT.Seasonal influenza: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
 */
 define "Client's age is less than 6 months":
   Elements."Current Patient Age In Months" < 6
 
 /*
+@input: No seasonal influenza primary series doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Seasonal influenza vaccines" and "Type of dose" = "Primary series") = 0
+@code: No seasonal influenza primary series doses were administered-127
+@decision: IMMZ.D2.DT.Seasonal influenza: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
+*/
+define "No seasonal influenza primary series doses were administered":
+  "Number of Seasonal influenza Primary Series Doses Administered" = 0
+
+/*
 @input: Client's age is more than or equal to 6 months
 @pseudocode: Today's date − "Date of birth" ≥ 6 months
-@decision: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
+@code: Client's age is more than or equal to 6 months-41
+@decision: IMMZ.D2.DT.Seasonal influenza: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
 */
 define "Client's age is more than or equal to 6 months":
   Elements."Current Patient Age In Months" >= 6
 
 /*
+@input: One seasonal influenza primary series doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Seasonal influenza vaccines" and "Type of dose" = "Primary series") = 1
+@code: One seasonal influenza primary series doses were administered-127
+@decision: IMMZ.D2.DT.Seasonal influenza: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
+*/
+define "One seasonal influenza primary series doses were administered":
+  "Number of Seasonal influenza Primary Series Doses Administered" = 1
+
+/*
 @input: Client's age is less than 9 years
 @pseudocode: Today's date − "Date of birth" < 9 years
-@decision: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
+@code: Client's age is less than 9 years-40
+@decision: IMMZ.D2.DT.Seasonal influenza: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
 */
 define "Client's age is less than 9 years":
   Elements."Current Patient Age In Years" < 9
 
 /*
-@input: Client's age is more than or equal to 9 years
-@pseudocode: Today's date − "Date of birth" ≥ 9 years
-@decision: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
-*/
-define "Client's age is more than or equal to 9 years":
-  Elements."Current Patient Age In Years" >= 9
-
-/*
 @input: The latest seasonal influenza dose was administered less than 4 weeks ago
 @pseudocode: Today's date − "Date and time of vaccination" (where "Vaccine type" = "Seasonal influenza vaccines") < 4 weeks
-@decision: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
+@code: The latest seasonal influenza dose was administered less than 4 weeks ago-110
+@decision: IMMZ.D2.DT.Seasonal influenza: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
 */
 define "The latest seasonal influenza dose was administered less than 4 weeks ago":
-  "Date of Latest Seasonal influenza Dose" is not null 
+  "Date of Latest Seasonal influenza Dose" is not null
   and duration in weeks between "Date of Latest Seasonal influenza Dose" and Now() < 4
+
 /*
 @input: The latest seasonal influenza dose was administered more than 4 weeks ago
 @pseudocode: Today's date − "Date and time of vaccination" (where "Vaccine type" = "Seasonal influenza vaccines") ≥ 4 weeks
-@decision: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
+@code: The latest seasonal influenza dose was administered more than 4 weeks ago-110
+@decision: IMMZ.D2.DT.Seasonal influenza: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
 */
 define "The latest seasonal influenza dose was administered more than 4 weeks ago":
   not "The latest seasonal influenza dose was administered less than 4 weeks ago"
 
 /*
+@input: Client's age is more than or equal to 9 years
+@pseudocode: Today's date − "Date of birth" ≥ 9 years
+@code: Client's age is more than or equal to 9 years-40
+@decision: IMMZ.D2.DT.Seasonal influenza: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
+*/
+define "Client's age is more than or equal to 9 years":
+  Elements."Current Patient Age In Years" >= 9
+
+/*
 @input: The latest seasonal influenza dose was administered less than 1 year ago
 @pseudocode: Today's date − "Date and time of vaccination" (where "Vaccine type" = "Seasonal influenza vaccines") < 1 year
-@decision: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
+@code: The latest seasonal influenza dose was administered less than 1 year ago-109
+@decision: IMMZ.D2.DT.Seasonal influenza: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
 */
 define "The latest seasonal influenza dose was administered less than 1 year ago":
-  "Date of Latest Seasonal influenza Dose" is not null 
+  "Date of Latest Seasonal influenza Dose" is not null
   and duration in years between "Date of Latest Seasonal influenza Dose" and Now() < 1
 
 /*
 @input: The latest seasonal influenza dose was administered more than 1 year ago
 @pseudocode: Today's date − "Date and time of vaccination" (where "Vaccine type" = "Seasonal influenza vaccines") ≥ 1 year
-@decision: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
+@code: The latest seasonal influenza dose was administered more than 1 year ago-109
+@decision: IMMZ.D2.DT.Seasonal influenza: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
 */
 define "The latest seasonal influenza dose was administered more than 1 year ago":
   not "The latest seasonal influenza dose was administered less than 1 year ago"
 
+/*
+@input: Two seasonal influenza primary series doses were administered
+@pseudocode: Count of vaccines administered (where "Vaccine type" = "Seasonal influenza vaccines" and "Type of dose" = "Primary series") = 2
+@code: Two seasonal influenza primary series doses were administered-127
+@decision: IMMZ.D2.DT.Seasonal influenza: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
+*/
+define "Two seasonal influenza primary series doses were administered":
+  "Number of Seasonal influenza Primary Series Doses Administered" = 2
+
+/*
+@internal: Date of Latest Seasonal influenza Dose
+*/
+define "Date of Latest Seasonal influenza Dose":
+  date from start of "Seasonal influenza Doses Administered to Patient".mostRecent().occurrence.toInterval()

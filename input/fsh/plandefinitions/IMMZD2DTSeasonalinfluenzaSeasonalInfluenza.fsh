@@ -1,5 +1,4 @@
-
-Instance: IMMZD2DTSeasonalinfluenza2Dose
+Instance: IMMZD2DTSeasonalinfluenzaSeasonalInfluenza
 InstanceOf: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition
 Title: "IMMZ.D2.DT.Seasonal influenza"
 Description: """
@@ -8,7 +7,8 @@ Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
 """
 Usage: #definition
 
-* insert PlanDefMain( IMMZD2DTSeasonalinfluenza2Dose, 0.1.0 )
+* insert PlanDefMain( IMMZD2DTSeasonalinfluenzaSeasonalInfluenza, 0.1.0 )
+
 * insert PlanDefMRAction( [[Determine if the client is due for Seasonal influenza.]], [["""
 Determine if the client is due for Seasonal influenza vaccine according to the national immunization protocol.
 Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
@@ -26,6 +26,7 @@ been vaccinated at least once should subsequently receive an annual dose, as sho
  9 years or over and healthy adults.
 """]], The primary series is complete. Client is due for seasonal influenza annual dose, 
   [[system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE18']], Seasonal influenza vaccines )
+
 * insert PlanDefCommunicationRequestAction([[Check for Guidance for the patient regarding IMMZ.D2.DT.Seasonal influenza.]], [["""
-    Show Guidance for the patient regarding IMMZ.D2.DT.Seasonal influenza.
-  """]], Has Guidance, Guidance)
+Show Guidance for the patient regarding IMMZ.D2.DT.Seasonal influenza.
+"""]], Has Guidance, Guidance)

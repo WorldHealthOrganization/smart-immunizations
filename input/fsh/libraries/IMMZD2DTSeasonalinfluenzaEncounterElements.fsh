@@ -1,4 +1,3 @@
-
 Instance: IMMZD2DTSeasonalinfluenzaEncounterElements
 InstanceOf: Library
 Title: "IMMZD2DTSeasonalinfluenzaEncounterElements"
