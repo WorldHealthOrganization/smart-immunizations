@@ -15,19 +15,21 @@ include IMMZCommon called Common
 include IMMZConcepts called Concepts
 include IMMZElements called Elements
 
+
 context Patient
 
 /*
 @internal: Draft Medication Request for Varicella dose
 */
 define "Draft Medication Request for Varicella dose":
-  Elements."Draft Medication Request for Patient" MR 
+  Elements."Draft Medication Request for Patient" MR
     where MR.medication in Concepts."Varicella-containing vaccines"
 
 /*
 @input: The client is currently pregnant
 @pseudocode: "Potential contraindications" = "Currently pregnant"
-@decision: Potential contraindications
+@code: The client is currently pregnant-52
+@decision: IMMZ.D5.DT.Varicella contraindications
 */
 define "The client is currently pregnant":
   Elements."The client is pregnant"
@@ -35,7 +37,8 @@ define "The client is currently pregnant":
 /*
 @input: The client is planning to get pregnant in the next month
 @pseudocode: "Potential contraindications" = "Planning to get pregnant in the next month"
-@decision: Potential contraindications
+@code: The client is planning to get pregnant in the next month-76
+@decision: IMMZ.D5.DT.Varicella contraindications
 */
 define "The client is planning to get pregnant in the next month":
   Elements."The client is planning to get pregnant in next month"
@@ -43,7 +46,8 @@ define "The client is planning to get pregnant in the next month":
 /*
 @input: The client has immune deficiency
 @pseudocode: "Potential contraindications" = "Immunodeficiency syndromes"
-@decision: Potential contraindications
+@code: The client has immune deficiency-60
+@decision: IMMZ.D5.DT.Varicella contraindications
 */
 define "The client has immune deficiency":
   Elements."The client has immunodeficiency syndromes"
@@ -51,7 +55,8 @@ define "The client has immune deficiency":
 /*
 @input: The client is immunocompromised
 @pseudocode: "Potential contraindications" = "Immunocompromised"
-@decision: Potential contraindications
+@code: The client is immunocompromised-51
+@decision: IMMZ.D5.DT.Varicella contraindications
 */
 define "The client is immunocompromised":
   Elements."The client is immunocompromised"
@@ -59,8 +64,8 @@ define "The client is immunocompromised":
 /*
 @input: The client is receiving or has received medications that may be immunosuppressive
 @pseudocode: "Potential contraindications" = "Exposed to immunosuppressive treatment"
-@decision: Potential contraindications
+@code: The client is receiving or has received medications that may be immunosuppressive-72
+@decision: IMMZ.D5.DT.Varicella contraindications
 */
 define "The client is receiving or has received medications that may be immunosuppressive":
   Elements."The client is exposed to immunosuppressive treatment"
-

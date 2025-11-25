@@ -1,11 +1,10 @@
-
 /*
- * Library: IMMZD5DTVaricellaCILogic (IMMZ.D5.DT.Varicella contraindications)
- * Rule: Check for contraindications before administering the vaccine(s) due	
- * Decision Table: Potential contraindications
+ * Library: IMMZD5DTVaricellaContraindicationsLogic (IMMZ.D5.DT.Varicella contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due
+ * Decision Table: IMMZ.D5.DT.Varicella contraindications
  * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
  */
-library IMMZD5DTVaricellaCILogic
+library IMMZD5DTVaricellaContraindicationsLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
@@ -27,13 +26,13 @@ context Patient
 @dynamicValue: Guidance
 */
 define "Guidance":
-  case
+  case 
     when "Varicella vaccination is contraindicated" then "Varicella vaccination is contraindicated Guidance"
     when "Clinical judgement is required. Create clinical note" then "Clinical judgement is required. Create clinical note Guidance"
-    when "Varicella vaccination could be contraindicated. Clinical judgement is required. Create clinical note" then "Varicella vaccination could be contraindicated. Clinical judgement is required. Create clinical note Guidance"
+    when "Varicella vaccination could be contraindicated. Clinical judgement is required. Create clinical note" then "Varicella vaccination could be contraindicated. Clinical judgement is required. Create clinical note Guidance" 
     else ''
   end
-
+  
 define "Has Guidance":
   "Guidance" is not null and "Guidance" != ''
 
@@ -83,9 +82,9 @@ define "Clinical judgement is required. Create clinical note":
 
 /*
 @output: Clinical judgement is required. Create clinical note Guidance
-@guidance: Discuss pregnancy intentions, consider risks of vaccination and make a clinical judgement. It is recommended to delay pregnancy for 4 weeks after vaccination.
-@guidance: Client is immunocompromised, consider risks of vaccination and make a judgement. Consider 2 dose schedule.
-@guidance: Client is receiving or has received medications that may be immunosuppressive, consider risks of vaccination and make a judgement.
+@guidance = Discuss pregnancy intentions, consider risks of vaccination and make a clinical judgement. It is recommended to delay pregnancy for 4 weeks after vaccination.
+@guidance = Client is immunocompromised, consider risks of vaccination and make a judgement. Consider 2 dose schedule.
+@guidance = Client is receiving or has received medications that may be immunosuppressive, consider risks of vaccination and make a judgement.
 */
 define "Clinical judgement is required. Create clinical note Guidance":
   case
@@ -115,10 +114,10 @@ define "Varicella vaccination could be contraindicated. Clinical judgement is re
 */
 define "Test Validation":
   case
-    when Patient.id = '34.1' then "Varicella vaccination is contraindicated" and "Guidance" = 'Do not vaccinate client with varicella as varicella vaccination is contraindicated for pregnant client.'
-    when Patient.id = '35.1' then "Clinical judgement is required. Create clinical note Case 1" and "Guidance" = 'Discuss pregnancy intentions, consider risks of vaccination and make a clinical judgement. It is recommended to delay pregnancy for 4 weeks after vaccination.'
-    when Patient.id = '36.1' then "Varicella vaccination could be contraindicated. Clinical judgement is required. Create clinical note" and "Guidance" = 'Varicella vaccination is usually contraindicated in clients with congenital or acquired immune deficiencies. Consider risks of vaccination and make a judgement.'
-    when Patient.id = '37.1' then "Clinical judgement is required. Create clinical note Case 2" and "Guidance" = 'Client is immunocompromised, consider risks of vaccination and make a judgement. Consider 2 dose schedule.'
-    when Patient.id = '38.1' then "Clinical judgement is required. Create clinical note Case 3" and "Guidance" = 'Client is receiving or has received medications that may be immunosuppressive, consider risks of vaccination and make a judgement.'
+    when Patient.id = 'Varicella34.1' then "Varicella vaccination is contraindicated" and "Guidance" = 'Do not vaccinate client with varicella as varicella vaccination is contraindicated for pregnant client.'
+    when Patient.id = 'Varicella35.1' then "Clinical judgement is required. Create clinical note Case 1" and "Guidance" = 'Discuss pregnancy intentions, consider risks of vaccination and make a clinical judgement. It is recommended to delay pregnancy for 4 weeks after vaccination.'
+    when Patient.id = 'Varicella36.1' then "Varicella vaccination could be contraindicated. Clinical judgement is required. Create clinical note" and "Guidance" = 'Varicella vaccination is usually contraindicated in clients with congenital or acquired immune deficiencies. Consider risks of vaccination and make a judgement.'
+    when Patient.id = 'Varicella37.1' then "Clinical judgement is required. Create clinical note Case 2" and "Guidance" = 'Client is immunocompromised, consider risks of vaccination and make a judgement. Consider 2 dose schedule.'
+    when Patient.id = 'Varicella38.1' then "Clinical judgement is required. Create clinical note Case 3" and "Guidance" = 'Client is receiving or has received medications that may be immunosuppressive, consider risks of vaccination and make a judgement.'
     else 'No test case set'
   end

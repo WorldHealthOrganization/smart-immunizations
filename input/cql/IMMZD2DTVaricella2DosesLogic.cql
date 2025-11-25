@@ -1,11 +1,11 @@
-
 /*
- * Library: IMMZD2DTVaricella2DoseLogic (IMMZ.D2.DT.Varicella.2 doses)
+ * Library: IMMZD2DTVaricella2DosesLogic (IMMZ.D2.DT.Varicella.2 doses)
  * Rule: Determine if the client is due for a varicella vaccination according to the national immunization schedule
- * Decision Table: 2-dose schedule
- * Trigger: IMMZ.D2 Determine required vaccination(s) if any  
+ * Decision Table: Countries where varicella is an important public health burden could consider introducing varicella vaccination in the routine childhood immunization programme. However, resources should be sufficient to ensure reaching and sustaining vaccine coverage ≥ 80%. Decision-making on childhood varicella vaccination should also include consideration of the possible impact on herpes zoster.
+The number of doses recommended is dependent on the goal of the vaccination programme. One dose is sufficient to reduce mortality and severe morbidity from varicella but not to prevent limited virus circulation and outbreaks. Two doses have higher effectiveness and should therefore be recommended in countries where the programmatic goal is, in addition to decreasing mortality and severe morbidity, to further reduce the number of cases and outbreaks.
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any
  */
-library IMMZD2DTVaricella2DoseLogic
+library IMMZD2DTVaricella2DosesLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
@@ -21,13 +21,13 @@ context Patient
 @dynamicValue: Guidance
 */
 define "Guidance":
-  case
+  case 
     when "Client is not due for varicella vaccination" then "Client is not due for varicella vaccination Guidance"
     when "Client is due for varicella vaccination" then "Client is due for varicella vaccination Guidance"
-    when "Varicella immunization schedule is complete" then "Varicella immunization schedule is complete Guidance"
+    when "Varicella immunization schedule is complete" then "Varicella immunization schedule is complete Guidance" 
     else ''
   end
-
+  
 define "Has Guidance":
   "Guidance" is not null and "Guidance" != ''
 
@@ -76,10 +76,10 @@ define "Client is not due for varicella vaccination":
 
 /*
 @output: Client is not due for varicella vaccination Guidance
-@guidance: Should not vaccinate client with first varicella dose as client's age is less than 12 months. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.
-@guidance: Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.
-@guidance: Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose.
-@guidance: Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose.
+@guidance = Should not vaccinate client with first varicella dose as client's age is less than 12 months. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.
+@guidance = Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.
+@guidance = Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose.
+@guidance = Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose.
 */
 define "Client is not due for varicella vaccination Guidance":
   case
@@ -118,8 +118,8 @@ define "Client is due for varicella vaccination":
 
 /*
 @output: Client is due for varicella vaccination Guidance
-@guidance: Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications.
-@guidance: Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications.
+@guidance = Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications.
+@guidance = Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications.
 */
 define "Client is due for varicella vaccination Guidance":
   case
@@ -148,12 +148,12 @@ define "Varicella immunization schedule is complete Guidance":
 */
 define "Test Validation":
   case
-    when Patient.id = '21.2' then "Client is not due for varicella vaccination Case 1" and "Guidance" = 'Should not vaccinate client with first varicella dose as client\'s age is less than 12 months. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.'
-    when Patient.id = '22.124' then "Client is not due for varicella vaccination Case 2" and "Guidance" = 'Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.'
-    when Patient.id = '23.124' then "Client is due for varicella vaccination Case 1" and "Guidance" = 'Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications.'
-    when Patient.id = '24.13' then "Client is not due for varicella vaccination Case 3" and "Guidance" = 'Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose.'
-    when Patient.id = '25.134' then "Client is not due for varicella vaccination Case 4" and "Guidance" = 'Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose.'
-    when Patient.id = '26.134' then "Client is due for varicella vaccination Case 2" and "Guidance" = 'Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications.'
-    when Patient.id = '27.1' then "Varicella immunization schedule is complete" and "Guidance" = 'Varicella immunization schedule is complete. Two varicella primary series doses were administered. Check for any other vaccines due.'
+    when Patient.id = 'Varicella21.1' then "Client is not due for varicella vaccination Case 1" and "Guidance" = 'Should not vaccinate client with first varicella dose as client\'s age is less than 12 months. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.'
+    when Patient.id = 'Varicella22.3' then "Client is not due for varicella vaccination Case 2" and "Guidance" = 'Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.'
+    when Patient.id = 'Varicella23.3' then "Client is due for varicella vaccination Case 1" and "Guidance" = 'Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications.'
+    when Patient.id = 'Varicella24.2' then "Client is not due for varicella vaccination Case 3" and "Guidance" = 'Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose.'
+    when Patient.id = 'Varicella25.3' then "Client is not due for varicella vaccination Case 4" and "Guidance" = 'Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose.'
+    when Patient.id = 'Varicella26.3' then "Client is due for varicella vaccination Case 2" and "Guidance" = 'Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications.'
+    when Patient.id = 'Varicella27.1' then "Varicella immunization schedule is complete" and "Guidance" = 'Varicella immunization schedule is complete. Two varicella primary series doses were administered. Check for any other vaccines due.'
     else 'No test case set'
   end

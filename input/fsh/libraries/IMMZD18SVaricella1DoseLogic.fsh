@@ -1,4 +1,3 @@
-
 Instance: IMMZD18SVaricella1DoseLogic
 InstanceOf: Library
 Title: "IMMZD18SVaricella1DoseLogic"

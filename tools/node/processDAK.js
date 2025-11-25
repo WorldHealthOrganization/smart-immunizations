@@ -22,6 +22,7 @@ program
   .option('--elements', 'Create the CQL Elements and EncounterElements files for each sheet')
   .option('--logic', 'Create the CQL Logic files for each sheet including PlanDefinitions, test files, and examples')
   .option('--existing', "Load data from existing resources and error if some aren't found.")
+  .option('--extra', 'When there is an extra row in the decision table after inputs for information.')
 
 program.parse()
 
@@ -121,6 +122,9 @@ const loadDT = async (sheet, startrow, startcol, dak, sheetname, initialrow, sch
     let intable = outputcol === -1 || row === startrow + 4
     for( let endcheck = startcol+1; endcheck <= outputcol; endcheck++ ) {
       if ( !isEmpty( sheet[row][endcheck] ) ) intable = true
+    }
+    if ( !intable && options.extra ) {
+      if ( row - startrow < 6 ) intable = true
     }
     if ( sheet[row].length === 0 || !intable ) {
       console.log(chalk.yellow("ENDING"),sheetname,row)
@@ -1067,6 +1071,7 @@ if ( options.all || options.logic ) {
       let outputs = {}
 
       if ( options.existing && oldExamples.length != Object.keys(dectable.rows).length ) {
+        console.log(dectable.rows)
         console.error("Existing examples number doesn't match rows in the table for", dectable.did, oldExamples.length, Object.keys(dectable.rows).length)
         process.exit(0)
       }
