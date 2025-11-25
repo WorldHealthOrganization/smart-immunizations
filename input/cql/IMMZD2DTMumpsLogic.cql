@@ -1,11 +1,10 @@
-
 /*
- * Library: IMMZD2DTMumps2DoseLogic (IMMZ.D2.DT.Mumps)
+ * Library: IMMZD2DTMumpsLogic (IMMZ.D2.DT.Mumps)
  * Rule: Determine if the client is due for a mumps vaccination according to the national immunization schedule
- * Decision Table: 2-dose schedule (countries with mumps in schedule and low transmission of measles)									
- * Trigger: IMMZ.D2  Determine required vaccination(s) if any
+ * Decision Table: 2-dose schedule (countries with mumps in schedule and low transmission of measles)
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any
  */
-library IMMZD2DTMumps2DoseLogic
+library IMMZD2DTMumpsLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
@@ -21,13 +20,13 @@ context Patient
 @dynamicValue: Guidance
 */
 define "Guidance":
-  case
+  case 
     when "Client is not due for mumps vaccination" then "Client is not due for mumps vaccination Guidance"
     when "Client is due for mumps vaccination" then "Client is due for mumps vaccination Guidance"
-    when "Mumps immunization schedule is complete" then "Mumps immunization schedule is complete Guidance"
+    when "Mumps immunization schedule is complete" then "Mumps immunization schedule is complete Guidance" 
     else ''
   end
-
+  
 define "Has Guidance":
   "Guidance" is not null and "Guidance" != ''
 
@@ -76,13 +75,13 @@ define "Client is not due for mumps vaccination":
 
 /*
 @output: Client is not due for mumps vaccination Guidance
-@guidance: Should not vaccinate client with first mumps dose as client's age is less than 12 months.
+@guidance = Should not vaccinate client with first mumps dose as client's age is less than 12 months.
 Check for any other vaccines due and inform the caregiver of when to come back for first dose.
-@guidance: Should not vaccinate client with first mumps dose as live vaccine was administered in the past 4 weeks.
+@guidance = Should not vaccinate client with first mumps dose as live vaccine was administered in the past 4 weeks.
 Check for any other vaccines due and inform the caregiver of when to come back for first dose.
-@guidance: Should not vaccinate client with second mumps dose as latest mumps dose was administered less than 4 weeks ago.
+@guidance = Should not vaccinate client with second mumps dose as latest mumps dose was administered less than 4 weeks ago.
 Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
-@guidance: Should not vaccinate client with second mumps dose as live vaccine was administered in the past 4 weeks.
+@guidance = Should not vaccinate client with second mumps dose as live vaccine was administered in the past 4 weeks.
 Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
 */
 define "Client is not due for mumps vaccination Guidance":
@@ -126,9 +125,9 @@ define "Client is due for mumps vaccination":
 
 /*
 @output: Client is due for mumps vaccination Guidance
-@guidance: Should vaccinate client with first mumps dose as the client is within appropriate age range and no live vaccine was administered in the past 4 weeks.
+@guidance = Should vaccinate client with first mumps dose as the client is within appropriate age range and no live vaccine was administered in the past 4 weeks.
 Check for contraindications.
-@guidance: Should vaccinate client with second mumps dose as latest mumps dose was administered more than 4 weeks ago and no live vaccine was administered in the past 4 weeks.
+@guidance = Should vaccinate client with second mumps dose as latest mumps dose was administered more than 4 weeks ago and no live vaccine was administered in the past 4 weeks.
 Check for contraindications.
 */
 define "Client is due for mumps vaccination Guidance":
@@ -143,6 +142,7 @@ Check for contraindications.'
 /*
 @output: Mumps immunization schedule is complete
 @pseudocode: "Immunization recommendation status" = "Complete"
+"Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Mumps-containing vaccines")"
 */
 define "Mumps immunization schedule is complete":
   Encounter."Two mumps primary series doses were administered"
@@ -162,19 +162,19 @@ Check for any other vaccines due.'
 */
 define "Test Validation":
   case
-    when Patient.id = '08.2' then "Client is not due for mumps vaccination Case 1" and "Guidance" = 'Should not vaccinate client with first mumps dose as client\'s age is less than 12 months.
+    when Patient.id = 'Mumps08.1' then "Client is not due for mumps vaccination Case 1" and "Guidance" = 'Should not vaccinate client with first mumps dose as client\'s age is less than 12 months.
 Check for any other vaccines due and inform the caregiver of when to come back for first dose.'
-    when Patient.id = '09.124' then "Client is not due for mumps vaccination Case 2" and "Guidance" = 'Should not vaccinate client with first mumps dose as live vaccine was administered in the past 4 weeks.
+    when Patient.id = 'Mumps09.3' then "Client is not due for mumps vaccination Case 2" and "Guidance" = 'Should not vaccinate client with first mumps dose as live vaccine was administered in the past 4 weeks.
 Check for any other vaccines due and inform the caregiver of when to come back for first dose.'
-    when Patient.id = '10.124' then "Client is due for mumps vaccination Case 1" and "Guidance" = 'Should vaccinate client with first mumps dose as the client is within appropriate age range and no live vaccine was administered in the past 4 weeks.
+    when Patient.id = 'Mumps10.3' then "Client is due for mumps vaccination Case 1" and "Guidance" = 'Should vaccinate client with first mumps dose as the client is within appropriate age range and no live vaccine was administered in the past 4 weeks.
 Check for contraindications.'
-    when Patient.id = '11.13' then "Client is not due for mumps vaccination Case 3" and "Guidance" = 'Should not vaccinate client with second mumps dose as latest mumps dose was administered less than 4 weeks ago.
+    when Patient.id = 'Mumps11.2' then "Client is not due for mumps vaccination Case 3" and "Guidance" = 'Should not vaccinate client with second mumps dose as latest mumps dose was administered less than 4 weeks ago.
 Check for any other vaccines due and inform the caregiver of when to come back for the second dose.'
-    when Patient.id = '12.134' then "Client is not due for mumps vaccination Case 4" and "Guidance" = 'Should not vaccinate client with second mumps dose as live vaccine was administered in the past 4 weeks.
+    when Patient.id = 'Mumps12.3' then "Client is not due for mumps vaccination Case 4" and "Guidance" = 'Should not vaccinate client with second mumps dose as live vaccine was administered in the past 4 weeks.
 Check for any other vaccines due and inform the caregiver of when to come back for the second dose.'
-    when Patient.id = '13.134' then "Client is due for mumps vaccination Case 2" and "Guidance" = 'Should vaccinate client with second mumps dose as latest mumps dose was administered more than 4 weeks ago and no live vaccine was administered in the past 4 weeks.
+    when Patient.id = 'Mumps13.3' then "Client is due for mumps vaccination Case 2" and "Guidance" = 'Should vaccinate client with second mumps dose as latest mumps dose was administered more than 4 weeks ago and no live vaccine was administered in the past 4 weeks.
 Check for contraindications.'
-    when Patient.id = '14.1' then "Mumps immunization schedule is complete" and "Guidance" = 'Mumps immunization schedule is complete. Two mumps primary series doses were administered.
+    when Patient.id = 'Mumps14.1' then "Mumps immunization schedule is complete" and "Guidance" = 'Mumps immunization schedule is complete. Two mumps primary series doses were administered.
 Check for any other vaccines due.'
     else 'No test case set'
   end

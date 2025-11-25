@@ -1,8 +1,7 @@
-
-Instance: IMMZD2DTMumps2DoseLogic
+Instance: IMMZD2DTMumpsLogic
 InstanceOf: Library
-Title: "IMMZD2DTMumps2DoseLogic"
+Title: "IMMZD2DTMumpsLogic"
 Description: "This library defines decision support logic for the IMMZ.D2.DT.Mumps decision table in the Immunization CPG"
 Usage: #definition
 
-* insert LogicLibrary( IMMZD2DTMumps2DoseLogic )
+* insert LogicLibrary( IMMZD2DTMumpsLogic )

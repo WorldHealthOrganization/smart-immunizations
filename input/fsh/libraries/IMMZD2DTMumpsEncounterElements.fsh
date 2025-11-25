@@ -1,4 +1,3 @@
-
 Instance: IMMZD2DTMumpsEncounterElements
 InstanceOf: Library
 Title: "IMMZD2DTMumpsEncounterElements"

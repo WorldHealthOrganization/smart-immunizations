@@ -1,11 +1,10 @@
-
 /*
- * Library: IMMZD5DTMumpsCILogic (IMMZ.D5.DT.Mumps contraindications)
- * Rule: Check for contraindications before administering the vaccine(s) due	
- * Decision Table: Potential contraindications
+ * Library: IMMZD5DTMumpsContraindicationsLogic (IMMZ.D5.DT.Mumps contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due
+ * Decision Table: IMMZ.D5.DT.Mumps contraindications
  * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
  */
-library IMMZD5DTMumpsCILogic
+library IMMZD5DTMumpsContraindicationsLogic
 
 using FHIR version '4.0.1'
 include FHIRHelpers version '4.0.1'
@@ -27,12 +26,12 @@ context Patient
 @dynamicValue: Guidance
 */
 define "Guidance":
-  case
+  case 
     when "Mumps vaccination is contraindicated" then "Mumps vaccination is contraindicated Guidance"
-    when "Mumps vaccination could be contraindicated. Clinical judgement is required." then "Mumps vaccination could be contraindicated. Clinical judgement is required. Guidance"
+    when "Mumps vaccination could be contraindicated. Clinical judgement is required." then "Mumps vaccination could be contraindicated. Clinical judgement is required. Guidance" 
     else ''
   end
-
+  
 define "Has Guidance":
   "Guidance" is not null and "Guidance" != ''
 
@@ -68,9 +67,9 @@ define "Mumps vaccination is contraindicated":
 
 /*
 @output: Mumps vaccination is contraindicated Guidance
-@guidance: Do not vaccinate client with mumps as mumps vaccination is contraindicated for pregnant individuals.
-@guidance: Do not vaccinate client with mumps as mumps vaccination is contraindicated in individuals with immunodeficiency syndromes.
-@guidance: Do not vaccinate client with mumps as mumps vaccination is contraindicated in immunosuppressed individuals.
+@guidance = Do not vaccinate client with mumps as mumps vaccination is contraindicated for pregnant individuals.
+@guidance = Do not vaccinate client with mumps as mumps vaccination is contraindicated in individuals with immunodeficiency syndromes.
+@guidance = Do not vaccinate client with mumps as mumps vaccination is contraindicated in immunosuppressed individuals.
 */
 define "Mumps vaccination is contraindicated Guidance":
   case
@@ -83,6 +82,7 @@ define "Mumps vaccination is contraindicated Guidance":
 /*
 @output: Mumps vaccination could be contraindicated. Clinical judgement is required.
 @pseudocode: Create a clinical note.
+Immunization recommendation status = "Further evaluation needed"
 */
 define "Mumps vaccination could be contraindicated. Clinical judgement is required.":
   Encounter."The client has allergy to vaccine components"
@@ -100,9 +100,9 @@ define "Mumps vaccination could be contraindicated. Clinical judgement is requir
 */
 define "Test Validation":
   case
-    when Patient.id = '20.1' then "Mumps vaccination is contraindicated Case 1" and "Guidance" = 'Do not vaccinate client with mumps as mumps vaccination is contraindicated for pregnant individuals.'
-    when Patient.id = '21.1' then "Mumps vaccination could be contraindicated. Clinical judgement is required." and "Guidance" = 'Do not vaccinate client with mumps if client has allergy to vaccine components, such as neomycin and gelatin.'
-    when Patient.id = '22.1' then "Mumps vaccination is contraindicated Case 2" and "Guidance" = 'Do not vaccinate client with mumps as mumps vaccination is contraindicated in individuals with immunodeficiency syndromes.'
-    when Patient.id = '23.1' then "Mumps vaccination is contraindicated Case 3" and "Guidance" = 'Do not vaccinate client with mumps as mumps vaccination is contraindicated in immunosuppressed individuals.'
+    when Patient.id = 'Mumps20.1' then "Mumps vaccination is contraindicated Case 1" and "Guidance" = 'Do not vaccinate client with mumps as mumps vaccination is contraindicated for pregnant individuals.'
+    when Patient.id = 'Mumps21.1' then "Mumps vaccination could be contraindicated. Clinical judgement is required." and "Guidance" = 'Do not vaccinate client with mumps if client has allergy to vaccine components, such as neomycin and gelatin.'
+    when Patient.id = 'Mumps22.1' then "Mumps vaccination is contraindicated Case 2" and "Guidance" = 'Do not vaccinate client with mumps as mumps vaccination is contraindicated in individuals with immunodeficiency syndromes.'
+    when Patient.id = 'Mumps23.1' then "Mumps vaccination is contraindicated Case 3" and "Guidance" = 'Do not vaccinate client with mumps as mumps vaccination is contraindicated in immunosuppressed individuals.'
     else 'No test case set'
   end
