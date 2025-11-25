@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="31">
+         <a:s>/*
+ * Library: IMMZ.IND.54
+ * Immunization coverage for oral polio containing vaccine birth doses (Estimated Denominator) 
+ * Compares the administered doses of oral polio containing vaccines (OPV) given at birth (dose sequence 0) with the number of live births. This indicator should only be used in contexts where an OPV birth dose is administered.
+ * 
+ * Numerator: Number of administrations of vaccinations using an oral polio vaccine (OPV) where the dose sequence is 0 (birth dose) during the reporting period. 
+ * Numerator Computation: COUNT immunization events WHERE administered product is an oral polio vaccine (IMMZ.A1.DE26) and dose sequence = 0 during reporitng period.
+ * Denominator: Number of registered surviving newborns
+ * Denominator Computation: COUNT Patient WHERE birthDate during reporting period AND deceasedDate is not populated.
+ * 
+ * Disaggregation:
+ *   - Age Group (&lt;24H of Birth, &lt; 2 weeks)
+ *   - Geographic Region
+ *   - Administrative Gender (biological sex)
+ * 
+ * References: WHO Immunization Facility Analysis Guide (1), WHO / UNICEF Joint Reporting Form (3 - elements 4130 - 4160)
+ */
+library IMMZIND54</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZIND54" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="22:1-22:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="23:1-23:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="24:1-24:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="25:1-25:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="26:1-26:33" localIdentifier="IMMZCon" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="27:1-27:45" localIdentifier="IMMZIndCom" path="http://fhir.org/guides/who/smart-immunization/IMMZIndicatorCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZIndicatorCommon</a:s>
+               </a:s>
+               <a:s> called IMMZIndCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="7" locator="28:1-28:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="7">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="8" locator="29:1-29:28" localIdentifier="FC" path="http://fhir.org/guides/who/smart-immunization/FHIRCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="8">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRCommon</a:s>
+               </a:s>
+               <a:s> called FC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="11" locator="31:1-31:45" name="Measurement Period" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="11">
+               <a:s>// End Skeleton CQL
+parameter &quot;Measurement Period&quot; </a:s>
+               <a:s r="10">
+                  <a:s>Interval&lt;</a:s>
+                  <a:s r="9">
+                     <a:s>Date</a:s>
+                  </a:s>
+                  <a:s>></a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <parameterTypeSpecifier localId="10" locator="31:32-31:45" xsi:type="IntervalTypeSpecifier">
+            <pointType localId="9" locator="31:41-31:44" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+         </parameterTypeSpecifier>
+      </def>
+   </parameters>
+   <statements>
+      <def locator="33:1-33:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="33:1-33:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="15" locator="39:1-40:88" name="numerator" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="15">
+               <a:s>/*
+ * Numerator: Number of administrations of vaccinations using an oral polio vaccine (OPV) where the dose sequence is 0 (birth dose) during the reporting period.
+ * Numerator Computation: COUNT immunization events WHERE administered product is an oral polio vaccine (IMMZ.A1.DE26) and dose sequence = 0 during reporitng period.
+ */
+define &quot;numerator&quot;:
+	</a:s>
+               <a:s r="14">
+                  <a:s>exists</a:s>
+                  <a:s r="13">
+                     <a:s>(</a:s>
+                     <a:s r="13">
+                        <a:s r="12">
+                           <a:s>IMMZIndCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="13">
+                           <a:s>&quot;bOPV Birth Doses Administered to Patient During Measurement Period&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="14" locator="40:2-40:88" xsi:type="Exists">
+            <operand localId="13" locator="40:8-40:88" name="bOPV Birth Doses Administered to Patient During Measurement Period" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="22" locator="46:1-48:66" name="denominator" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="22">
+               <a:s>/*
+ * Denominator: Number of registered surviving newborns
+ * Denominator Computation: COUNT Patient WHERE birthDate during reporting period AND deceasedDate is not populated.
+ */
+define &quot;denominator&quot;:
+	</a:s>
+               <a:s r="21">
+                  <a:s r="17">
+                     <a:s r="16">
+                        <a:s>IMMZIndCom</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="17">
+                        <a:s>&quot;Patient Born During Measurement Period&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="20">
+                     <a:s>not </a:s>
+                     <a:s r="19">
+                        <a:s>(</a:s>
+                        <a:s r="19">
+                           <a:s r="18">
+                              <a:s>IMMZIndCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="19">
+                              <a:s>&quot;Patient Deceased During Measurement Period&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="21" locator="47:2-48:66" xsi:type="And">
+            <operand localId="17" locator="47:2-47:52" name="Patient Born During Measurement Period" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+            <operand localId="20" locator="48:6-48:66" xsi:type="Not">
+               <operand localId="19" locator="48:10-48:66" name="Patient Deceased During Measurement Period" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="25" locator="54:1-55:39" name="Age Group Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="25">
+               <a:s>/*
+ * Disaggregator: Age Group (&lt;24H of Birth, &lt; 2 weeks)
+ */
+define &quot;Age Group Stratifier&quot;:
+	</a:s>
+               <a:s r="24">
+                  <a:s r="23">
+                     <a:s>IMMZIndCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="24">
+                     <a:s>&quot;Newborn By Age Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="24" locator="55:2-55:39" name="Newborn By Age Stratifier" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="28" locator="60:1-61:45" name="Geographic Region Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="28">
+               <a:s>/*
+ * Disaggregator: Geographic Region
+ */
+define &quot;Geographic Region Stratifier&quot;:
+	</a:s>
+               <a:s r="27">
+                  <a:s r="26">
+                     <a:s>IMMZIndCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="27">
+                     <a:s>&quot;By Geographic Region Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="27" locator="61:2-61:45" name="By Geographic Region Stratifier" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="31" locator="66:1-67:49" name="Administrative Gender Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="31">
+               <a:s>/*
+ * Disaggregator: Administrative Gender (or Biological Sex)
+ */
+define &quot;Administrative Gender Stratifier&quot;:
+	</a:s>
+               <a:s r="30">
+                  <a:s r="29">
+                     <a:s>IMMZIndCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="30">
+                     <a:s>&quot;By Administrative Gender Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="30" locator="67:2-67:49" name="By Administrative Gender Stratifier" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+      </def>
+   </statements>
+</library>

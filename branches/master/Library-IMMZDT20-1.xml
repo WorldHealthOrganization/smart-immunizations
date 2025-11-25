@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="36">
+         <a:s>/*
+ * Library: IMMZDT20 (IMMZ.DT.20.Mumps)
+ * Rule: If child or person has not been vaccinated against Mumps, give Mumps vaccine 
+ * Trigger: Patient has never had the Mumps vaccination, or missing doses in the vaccination schedule
+ */
+library IMMZDT20</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT20" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:33" localIdentifier="IMMZCon" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="13:1-13:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="15:1-15:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="15:1-15:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="9" locator="20:1-21:46" name="MUMPS vaccine history" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="9">
+               <a:s>/* 
+ * @dataElement MUMPS vaccine history
+ */
+define &quot;MUMPS vaccine history&quot;:
+	</a:s>
+               <a:s r="8">
+                  <a:s r="7">
+                     <a:s>IMMZCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="8">
+                     <a:s>&quot;Mumps Doses Administered to Patient&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="8" locator="21:2-21:46" name="Mumps Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="13" locator="26:1-27:36" name="No-doses" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="13">
+               <a:s>/* 
+ * @dataElement No-doses
+ */
+define &quot;No-doses&quot;:
+	</a:s>
+               <a:s r="12">
+                  <a:s>not </a:s>
+                  <a:s r="11">
+                     <a:s>exists</a:s>
+                     <a:s r="10">
+                        <a:s>(</a:s>
+                        <a:s r="10">
+                           <a:s>&quot;MUMPS vaccine history&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="12" locator="27:2-27:36" xsi:type="Not">
+            <operand localId="11" locator="27:6-27:36" xsi:type="Exists">
+               <operand localId="10" locator="27:12-27:36" name="MUMPS vaccine history" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="16" locator="32:1-33:40" name="Age" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="16">
+               <a:s>/* 
+ * @dataElement Age
+ */
+define &quot;Age&quot;:
+	</a:s>
+               <a:s r="15">
+                  <a:s r="14">
+                     <a:s>IMMZCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="15">
+                     <a:s>&quot;Current Patient Age In Months&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="15" locator="33:2-33:40" name="Current Patient Age In Months" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="25" locator="46:1-47:104" name="Should vaccinate Patient for MUMPS because no doses on 2 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="25">
+               <a:s>/*
+ * Rule: Should vaccinate Patient for MUMPS because no doses on 2 dose scheme
+ * Annotations:
+ * 	 - Provide MUMPS immunizations - using the &quot;MUMPS vaccine immunization - NO PREVIOUS&quot; schedule (2 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for MUMPS - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;MUMPS vaccine history&quot; = &quot;No-doses&quot;) and (&quot;Age&quot; &lt; &quot;19 months&quot;)) and (&quot;Age&quot; > &quot;11 months&quot;))
+ */
+define &quot;Should vaccinate Patient for MUMPS because no doses on 2 dose scheme&quot;:
+	</a:s>
+               <a:s r="24">
+                  <a:s r="21">
+                     <a:s r="17">
+                        <a:s>&quot;No-doses&quot;</a:s>
+                     </a:s>
+                     <a:s> and </a:s>
+                     <a:s r="20">
+                        <a:s r="18">
+                           <a:s>&quot;Age&quot;</a:s>
+                        </a:s>
+                        <a:s r="19"> >= 12</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="23">
+                     <a:s r="22">
+                        <a:s>IMMZCon</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="23">
+                        <a:s>&quot;Country recognizes MUMPS reduction as a public health priority&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="24" locator="47:2-47:104" xsi:type="And">
+            <operand localId="21" locator="47:2-47:27" xsi:type="And">
+               <operand localId="17" locator="47:2-47:11" name="No-doses" xsi:type="ExpressionRef"/>
+               <operand localId="20" locator="47:17-47:27" xsi:type="GreaterOrEqual">
+                  <operand localId="18" locator="47:17-47:21" name="Age" xsi:type="ExpressionRef"/>
+                  <operand localId="19" locator="47:26-47:27" valueType="t:Integer" value="12" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="23" locator="47:33-47:104" name="Country recognizes MUMPS reduction as a public health priority" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="36" locator="60:1-62:93" name="Should vaccinate Patient for MUMPS a second dose on a 2 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="36">
+               <a:s>/*
+ * Rule: Should vaccinate Patient for MUMPS a second dose on a 2 dose scheme
+ * Annotations:
+ * 	 - Provide MUMPS immunizations - using the &quot;MUMPS vaccine immunization - ONE PREVIOUS&quot; schedule (2 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for MUMPS - One Dose
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((&quot;Age&quot; &lt; &quot;19 months&quot;) and (&quot;Age&quot; > &quot;11 months&quot;))
+ */
+define &quot;Should vaccinate Patient for MUMPS a second dose on a 2 dose scheme&quot;:
+	</a:s>
+               <a:s r="35">
+                  <a:s r="29">
+                     <a:s r="27">
+                        <a:s r="26">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="27">
+                           <a:s>&quot;Number of Mumps Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="28"> = 1</a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="34">
+                     <a:s r="31">
+                        <a:s r="30">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="31">
+                           <a:s>&quot;Date last Mumps dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="34">
+                        <a:s>more than </a:s>
+                        <a:s r="33">
+                           <a:s>12 month</a:s>
+                        </a:s>
+                        <a:s> before</a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="32">
+                        <a:s>Today()</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="35" locator="61:2-62:93" xsi:type="And">
+            <operand localId="29" locator="61:2-61:60" xsi:type="Equal">
+               <operand localId="27" locator="61:2-61:56" name="Number of Mumps Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="28" locator="61:60" valueType="t:Integer" value="1" xsi:type="Literal"/>
+            </operand>
+            <operand localId="34" locator="62:6-62:93" xsi:type="Before">
+               <operand localId="31" locator="62:6-62:59" name="Date last Mumps dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand locator="62:87-62:93" xsi:type="Subtract">
+                  <operand localId="32" locator="62:87-62:93" xsi:type="Today"/>
+                  <operand localId="33" locator="62:71-62:78" value="12" unit="month" xsi:type="Quantity"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+   </statements>
+</library>

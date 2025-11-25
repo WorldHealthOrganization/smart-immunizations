@@ -1,0 +1,1566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="243">
+         <a:s>/*
+ * Library: IMMZDT15 (IMMZ.DT.15.Cholera)
+ * Rule: If child or person has not been vaccinated, give the Cholera vaccine to child greater than or equal to 1 year old and adults 
+ * Trigger: Patient has never received cholera vaccination and/or resides/is from an endemic region and/or there is an outbreak
+ * Implementation Note: This CQL logic includes restarts for vaccination. Restarts require that the implementer properly set the protocolApplied.doseNumber
+ *						  to accurately reflect the dosing numbers where 1-3 are primary series and 4+ are boosters. For example, consider a 2 year old child:
+ *							25 months -> Dose 1
+ *                          27 months -> Dose 2 (Within 6w - 6m of first)
+ *                          29 months -> Dose 3  (Within 6w - 6m of first)
+ *                          32 months -> Dose 4 (Booster within appropriate time range)
+ *                         If the child were late for Dose 5 the series here should restart:
+ *                          40 months -> Dose 1 (not within time frame for boosting and must receive primary series again)
+ */
+library IMMZDT15</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT15" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="16:1-16:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="17:1-17:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="18:1-18:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="19:1-19:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="20:1-20:34" localIdentifier="IMMZConf" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZConf</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="21:1-21:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="7" locator="22:1-22:28" localIdentifier="FC" path="http://fhir.org/guides/who/smart-immunization/FHIRCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="7">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRCommon</a:s>
+               </a:s>
+               <a:s> called FC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="24:1-24:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="24:1-24:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="35" locator="42:1-51:2" name="Should vaccinate patient with a WC vaccines (Shanchol, Euvchol, and mORCVAX)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="35">
+               <a:s>/*
+ * Rule: Should vaccinate patient with a WC vaccines (Shanchol, Euvchol, and mORCVAX)
+ * Annotations:
+ * 	 - Provide Cholera immunizations – using the &quot;WC vaccines (Shanchol, Euvchol, and mORCVAX) immunization – NO PREVIOUS&quot; schedule (2 dose scheme)
+ * 	 - Provide Cholera immunizations – using the &quot;WC vaccines (Shanchol, Euvchol, and mORCVAX) immunization –1 PREVIOUS&quot; schedule (2 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Cholera - No Doses
+ * 	 - Immunize Patient for Cholera - 1 Dose
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Cholera vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;Current Patient Age in Years&quot; >= 1)) and (&quot;Region recommends Cholera vaccination&quot; = true)) or (((&quot;Cholera vaccine immunization history&quot; = &quot;1 dose&quot; = true) and (&quot;Date last Cholera dose given&quot; >= &quot;2 weeks&quot;)) and (&quot;Type of last Cholera dose&quot; = &quot;WC vaccines&quot;)))
+ * Assumption:
+ * 	vaccineCode will contain a specific classification of the antigen given (or a future version of FHIR will have a product link)
+ */
+define &quot;Should vaccinate patient with a WC vaccines (Shanchol, Euvchol, and mORCVAX)&quot;:
+	</a:s>
+               <a:s r="34">
+                  <a:s r="17">
+                     <a:s>(
+		</a:s>
+                     <a:s r="17">
+                        <a:s r="14">
+                           <a:s r="9">
+                              <a:s r="8">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="9">
+                                 <a:s>&quot;No Cholera Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		and </a:s>
+                           <a:s r="13">
+                              <a:s r="11">
+                                 <a:s r="10">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="11">
+                                    <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="12"> >= 1</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> 
+		and </a:s>
+                        <a:s r="16">
+                           <a:s r="15">
+                              <a:s>IMMZConf</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="16">
+                              <a:s>&quot;Region recommends Cholera vaccination&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+                  <a:s> or </a:s>
+                  <a:s r="33">
+                     <a:s>(
+		</a:s>
+                     <a:s r="33">
+                        <a:s r="27">
+                           <a:s r="21">
+                              <a:s r="19">
+                                 <a:s r="18">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="19">
+                                    <a:s>&quot;Highest Sequence of Cholera Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="20"> = 1</a:s>
+                           </a:s>
+                           <a:s>
+		and </a:s>
+                           <a:s r="26">
+                              <a:s r="23">
+                                 <a:s r="22">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="23">
+                                    <a:s>&quot;Date Last Cholera Dose Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> </a:s>
+                              <a:s r="26">
+                                 <a:s>more than </a:s>
+                                 <a:s r="25">
+                                    <a:s>2 week</a:s>
+                                 </a:s>
+                                 <a:s> before</a:s>
+                              </a:s>
+                              <a:s> </a:s>
+                              <a:s r="24">
+                                 <a:s>Today()</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+		and </a:s>
+                        <a:s r="32">
+                           <a:s r="29">
+                              <a:s r="28">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="29">
+                                 <a:s>&quot;Type of Last Cholera Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> in </a:s>
+                           <a:s r="31">
+                              <a:s r="30">
+                                 <a:s>IMMZc</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="31">
+                                 <a:s>&quot;WC Class Cholera Vaccine&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="34" locator="43:2-51:2" xsi:type="Or">
+            <operand localId="17" locator="43:2-47:2" xsi:type="And">
+               <operand localId="14" locator="44:3-45:49" xsi:type="And">
+                  <operand localId="9" locator="44:3-44:52" name="No Cholera Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="13" locator="45:7-45:49" xsi:type="GreaterOrEqual">
+                     <operand localId="11" locator="45:7-45:44" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="12" locator="45:49" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                  </operand>
+               </operand>
+               <operand localId="16" locator="46:7-46:54" name="Region recommends Cholera vaccination" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="33" locator="47:7-51:2" xsi:type="And">
+               <operand localId="27" locator="48:3-49:94" xsi:type="And">
+                  <operand localId="21" locator="48:3-48:73" xsi:type="Equal">
+                     <operand localId="19" locator="48:3-48:69" name="Highest Sequence of Cholera Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="20" locator="48:73" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="26" locator="49:7-49:94" xsi:type="Before">
+                     <operand localId="23" locator="49:7-49:62" name="Date Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="49:88-49:94" xsi:type="Subtract">
+                        <operand localId="24" locator="49:88-49:94" xsi:type="Today"/>
+                        <operand localId="25" locator="49:74-49:79" value="2" unit="week" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="32" locator="50:7-50:101" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="29" locator="50:7-50:65" name="Type of Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="31" locator="50:70-50:101" name="WC Class Cholera Vaccine" libraryName="IMMZc"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="73" locator="56:1-75:2" name="Patient has completed Cholera primary series" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="73">
+               <a:s>/* 
+ * @dataElement Patient has completed Cholera primary series
+ */
+define &quot;Patient has completed Cholera primary series&quot;:
+	// If administrations are WC-rBS should be 3 doses for &lt; 6 or 2 doses for > 5
+	</a:s>
+               <a:s r="72">
+                  <a:s r="61">
+                     <a:s r="40">
+                        <a:s r="37">
+                           <a:s r="36">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="37">
+                              <a:s>&quot;Type of Last Cholera Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> in </a:s>
+                        <a:s r="39">
+                           <a:s r="38">
+                              <a:s>IMMZc</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="39">
+                              <a:s>&quot;WC-rBS Class Cholera Vaccine&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and 
+	</a:s>
+                     <a:s r="60">
+                        <a:s>(
+		</a:s>
+                        <a:s r="60">
+                           <a:s r="50">
+                              <a:s>(
+			</a:s>
+                              <a:s r="50">
+                                 <a:s r="45">
+                                    <a:s r="42">
+                                       <a:s r="41">
+                                          <a:s>IMMZCom</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="42">
+                                          <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s r="43"> between 2 and 5</a:s>
+                                 </a:s>
+                                 <a:s> 
+			and </a:s>
+                                 <a:s r="49">
+                                    <a:s r="47">
+                                       <a:s r="46">
+                                          <a:s>IMMZCom</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="47">
+                                          <a:s>&quot;Most Recent Dose Sequence of Cholera Doses Administered to Patient&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s r="48"> >= 3</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> 
+		)</a:s>
+                           </a:s>
+                           <a:s>
+		or 
+		</a:s>
+                           <a:s r="59">
+                              <a:s>(
+			</a:s>
+                              <a:s r="59">
+                                 <a:s r="54">
+                                    <a:s r="52">
+                                       <a:s r="51">
+                                          <a:s>IMMZCom</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="52">
+                                          <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s r="53"> >= 6</a:s>
+                                 </a:s>
+                                 <a:s> 
+			and </a:s>
+                                 <a:s r="58">
+                                    <a:s r="56">
+                                       <a:s r="55">
+                                          <a:s>IMMZCom</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="56">
+                                          <a:s>&quot;Most Recent Dose Sequence of Cholera Doses Administered to Patient&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s r="57"> >= 2</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>
+		)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+	)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	or 
+	</a:s>
+                  <a:s r="71">
+                     <a:s>(	
+		</a:s>
+                     <a:s r="71">
+                        <a:s r="66">
+                           <a:s r="63">
+                              <a:s r="62">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="63">
+                                 <a:s>&quot;Type of Last Cholera Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> in </a:s>
+                           <a:s r="65">
+                              <a:s r="64">
+                                 <a:s>IMMZc</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="65">
+                                 <a:s>&quot;WC Class Cholera Vaccine&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+		and </a:s>
+                        <a:s r="70">
+                           <a:s r="68">
+                              <a:s r="67">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="68">
+                                 <a:s>&quot;Most Recent Dose Sequence of Cholera Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="69"> >= 2</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="72" locator="58:2-75:2" xsi:type="Or">
+            <operand localId="61" locator="58:2-70:2" xsi:type="And">
+               <operand localId="40" locator="58:2-58:100" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="37" locator="58:2-58:60" name="Type of Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="39" locator="58:65-58:100" name="WC-rBS Class Cholera Vaccine" libraryName="IMMZc"/>
+               </operand>
+               <operand localId="60" locator="60:2-70:2" xsi:type="Or">
+                  <operand localId="50" locator="61:3-64:3" xsi:type="And">
+                     <operand localId="45" locator="62:4-62:57" xsi:type="And">
+                        <operand xsi:type="GreaterOrEqual">
+                           <operand localId="42" locator="62:4-62:41" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           <operand localId="43" locator="62:51" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                        </operand>
+                        <operand xsi:type="LessOrEqual">
+                           <operand localId="42" locator="62:4-62:41" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           <operand localId="44" locator="62:57" valueType="t:Integer" value="5" xsi:type="Literal"/>
+                        </operand>
+                     </operand>
+                     <operand localId="49" locator="63:8-63:88" xsi:type="GreaterOrEqual">
+                        <operand name="ToInteger" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                           <operand localId="47" locator="63:8-63:83" name="Most Recent Dose Sequence of Cholera Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        </operand>
+                        <operand localId="48" locator="63:88" valueType="t:Integer" value="3" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <operand localId="59" locator="66:3-69:3" xsi:type="And">
+                     <operand localId="54" locator="67:4-67:46" xsi:type="GreaterOrEqual">
+                        <operand localId="52" locator="67:4-67:41" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="53" locator="67:46" valueType="t:Integer" value="6" xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="58" locator="68:8-68:88" xsi:type="GreaterOrEqual">
+                        <operand name="ToInteger" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                           <operand localId="56" locator="68:8-68:83" name="Most Recent Dose Sequence of Cholera Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        </operand>
+                        <operand localId="57" locator="68:88" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="71" locator="72:2-75:2" xsi:type="And">
+               <operand localId="66" locator="73:3-73:97" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="63" locator="73:3-73:61" name="Type of Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="65" locator="73:66-73:97" name="WC Class Cholera Vaccine" libraryName="IMMZc"/>
+               </operand>
+               <operand localId="70" locator="74:7-74:87" xsi:type="GreaterOrEqual">
+                  <operand name="ToInteger" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="68" locator="74:7-74:82" name="Most Recent Dose Sequence of Cholera Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="69" locator="74:87" valueType="t:Integer" value="2" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="90" locator="88:1-92:53" name="Should Re-vaccinate patient with a WC vaccines (Shanchol, Euvchol, and mORCVAX) on a 2 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="90">
+               <a:s>/*
+ * Rule: Should Re-vaccinate patient with a WC vaccines (Shanchol, Euvchol, and mORCVAX) on a 2 dose scheme
+ * Annotations:
+ * 	 - Provide Cholera revaccination – using the &quot;WC vaccines (Shanchol, Euvchol, and mORCVAX) immunization – Revaccination every 3 years&quot; schedule (2 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Cholera - Last dose given 3 years ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Patient has completed Cholera primary series&quot; = true) and (&quot;Date last Cholera dose given&quot; >= &quot;3 years&quot;)) and (&quot;Type of last Cholera dose&quot; = &quot;WC vaccines&quot;)) and (&quot;Region recommends Cholera vaccination&quot; = true))
+ */
+define &quot;Should Re-vaccinate patient with a WC vaccines (Shanchol, Euvchol, and mORCVAX) on a 2 dose scheme&quot;:
+	</a:s>
+               <a:s r="89">
+                  <a:s r="86">
+                     <a:s r="80">
+                        <a:s r="74">
+                           <a:s>&quot;Patient has completed Cholera primary series&quot;</a:s>
+                        </a:s>
+                        <a:s> 
+	and </a:s>
+                        <a:s r="79">
+                           <a:s r="76">
+                              <a:s r="75">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="76">
+                                 <a:s>&quot;Date Last Cholera Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="79">
+                              <a:s>more than </a:s>
+                              <a:s r="78">
+                                 <a:s>3 year</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="77">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="85">
+                        <a:s r="82">
+                           <a:s r="81">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="82">
+                              <a:s>&quot;Type of Last Cholera Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> in </a:s>
+                        <a:s r="84">
+                           <a:s r="83">
+                              <a:s>IMMZc</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="84">
+                              <a:s>&quot;WC Class Cholera Vaccine&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="88">
+                     <a:s r="87">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="88">
+                        <a:s>&quot;Region recommends Cholera vaccination&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="89" locator="89:2-92:53" xsi:type="And">
+            <operand localId="86" locator="89:2-91:100" xsi:type="And">
+               <operand localId="80" locator="89:2-90:93" xsi:type="And">
+                  <operand localId="74" locator="89:2-89:47" name="Patient has completed Cholera primary series" xsi:type="ExpressionRef"/>
+                  <operand localId="79" locator="90:6-90:93" xsi:type="Before">
+                     <operand localId="76" locator="90:6-90:61" name="Date Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="90:87-90:93" xsi:type="Subtract">
+                        <operand localId="77" locator="90:87-90:93" xsi:type="Today"/>
+                        <operand localId="78" locator="90:73-90:78" value="3" unit="year" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="85" locator="91:6-91:100" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="82" locator="91:6-91:64" name="Type of Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="84" locator="91:69-91:100" name="WC Class Cholera Vaccine" libraryName="IMMZc"/>
+               </operand>
+            </operand>
+            <operand localId="88" locator="92:6-92:53" name="Region recommends Cholera vaccination" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="160" locator="113:1-141:2" name="Should vaccinate patient with WC-rBS vaccine (Dukoral)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="160">
+               <a:s>/*
+ * Rule: Should vaccinate patient with WC-rBS vaccine (Dukoral)
+ * Annotations:
+ * 	 - Provide Cholera immunizations – using the &quot;WC-rBS vaccine (Dukoral) immunization – NO PREVIOUS&quot; schedule (3 dose scheme)
+ * 	 - Provide Cholera immunizations – using the &quot;WC-rBS vaccine (Dukoral) immunization – 1 PREVIOUS&quot; schedule (3 dose scheme), doses to be given in an interval of
+ * 	 - Provide Cholera immunizations – using the &quot;WC-rBS vaccine (Dukoral) immunization – 2 PREVIOUS&quot; schedule (3 dose scheme)
+ * 	 - Provide Cholera immunizations – using the &quot;WC-rBS vaccine (Dukoral) immunization – NO PREVIOUS&quot; schedule (2 dose scheme)
+ * 	 - Provide Cholera immunizations – using the &quot;WC-rBS vaccine (Dukoral) immunization – 1 PREVIOUS&quot; schedule (2 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Cholera - No Doses
+ * 	 - Immunize Patient for Cholera - 1 dose
+ * 	 - Immunize Patient for Cholera - 2 doses
+ * 	 - Immunize Patient for Cholera - No doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((((((&quot;Cholera vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;Current Patient Age in Years&quot; >= 2)) and (&quot;Current Patient Age in Years&quot; &lt;= 5)) and (&quot;Region recommends Cholera vaccination&quot; = true)) or ((((&quot;Cholera vaccine immunization history&quot; = &quot;1 dose&quot; = true) and (&quot;Date last Cholera dose given&quot; >= &quot;1 week&quot; = true)) and (&quot;Date last Cholera dose given&quot; &lt;= &quot;6 months&quot;)) and (&quot;Type of last Cholera dose&quot; = &quot;WC-rBS vaccine&quot;))) or ((((&quot;Cholera vaccine immunization history&quot; = &quot;2 doses&quot;) and (&quot;Date last Cholera dose given&quot; >= &quot;1 week&quot; = true)) and (&quot;Date last Cholera dose given&quot; &lt;= &quot;6 months&quot;)) and (&quot;Type of last Cholera dose&quot; = &quot;WC-rBS vaccine&quot;))) or (((&quot;Cholera vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;Current Patient Age in Years&quot; >= 6)) and (&quot;Region recommends Cholera vaccination&quot; = true))) or ((((&quot;Cholera vaccine immunization history&quot; = &quot;1 dose&quot; = true) and (&quot;Date last Cholera dose given&quot; >= &quot;1 week&quot; = true)) and (&quot;Date last Cholera dose given&quot; &lt;= &quot;6 weeks&quot;)) and (&quot;Type of last Cholera dose&quot; = &quot;WC-rBS vaccine&quot;)))
+ */
+define &quot;Should vaccinate patient with WC-rBS vaccine (Dukoral)&quot;:
+	</a:s>
+               <a:s r="159">
+                  <a:s r="125">
+                     <a:s>(
+		</a:s>
+                     <a:s r="125">
+                        <a:s r="101">
+                           <a:s r="95">
+                              <a:s r="92">
+                                 <a:s r="91">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="92">
+                                    <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="93"> between 2 and 5</a:s>
+                           </a:s>
+                           <a:s>
+		and 
+		</a:s>
+                           <a:s r="100">
+                              <a:s>(
+			</a:s>
+                              <a:s r="100">
+                                 <a:s r="97">
+                                    <a:s r="96">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="97">
+                                       <a:s>&quot;No Cholera Doses Administered to Patient&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>
+			and </a:s>
+                                 <a:s r="99">
+                                    <a:s r="98">
+                                       <a:s>IMMZConf</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="99">
+                                       <a:s>&quot;Region recommends Cholera vaccination&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>
+		)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+		or </a:s>
+                        <a:s r="124">
+                           <a:s>(
+			</a:s>
+                           <a:s r="124">
+                              <a:s r="118">
+                                 <a:s r="112">
+                                    <a:s r="106">
+                                       <a:s r="103">
+                                          <a:s r="102">
+                                             <a:s>IMMZCom</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="103">
+                                             <a:s>&quot;Most Recent Dose Sequence of Cholera Doses Administered to Patient&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s r="104"> between 1 and 2</a:s>
+                                    </a:s>
+                                    <a:s>
+			and </a:s>
+                                    <a:s r="111">
+                                       <a:s r="108">
+                                          <a:s r="107">
+                                             <a:s>IMMZCom</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="108">
+                                             <a:s>&quot;Type of Last Cholera Dose Administered to Patient&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> in </a:s>
+                                       <a:s r="110">
+                                          <a:s r="109">
+                                             <a:s>IMMZc</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="110">
+                                             <a:s>&quot;WC-rBS Class Cholera Vaccine&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>
+			and </a:s>
+                                 <a:s r="117">
+                                    <a:s r="114">
+                                       <a:s r="113">
+                                          <a:s>IMMZCom</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="114">
+                                          <a:s>&quot;Date Last Cholera Dose Administered to Patient&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> </a:s>
+                                    <a:s r="117">
+                                       <a:s>more than </a:s>
+                                       <a:s r="116">
+                                          <a:s>1 week</a:s>
+                                       </a:s>
+                                       <a:s> before</a:s>
+                                    </a:s>
+                                    <a:s> </a:s>
+                                    <a:s r="115">
+                                       <a:s>Today()</a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>
+			and </a:s>
+                              <a:s r="123">
+                                 <a:s r="120">
+                                    <a:s r="119">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="120">
+                                       <a:s>&quot;Date Last Cholera Dose Administered to Patient&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> </a:s>
+                                 <a:s r="123">
+                                    <a:s>less than </a:s>
+                                    <a:s r="122">
+                                       <a:s>6 month</a:s>
+                                    </a:s>
+                                    <a:s> before</a:s>
+                                 </a:s>
+                                 <a:s> </a:s>
+                                 <a:s r="121">
+                                    <a:s>Today()</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+	)</a:s>
+                  </a:s>
+                  <a:s>
+	or </a:s>
+                  <a:s r="158">
+                     <a:s>(
+		</a:s>
+                     <a:s r="158">
+                        <a:s r="135">
+                           <a:s r="129">
+                              <a:s r="127">
+                                 <a:s r="126">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="127">
+                                    <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="128"> >= 6</a:s>
+                           </a:s>
+                           <a:s>
+		and
+		</a:s>
+                           <a:s r="134">
+                              <a:s>(
+			</a:s>
+                              <a:s r="134">
+                                 <a:s r="131">
+                                    <a:s r="130">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="131">
+                                       <a:s>&quot;No Cholera Doses Administered to Patient&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>
+			and </a:s>
+                                 <a:s r="133">
+                                    <a:s r="132">
+                                       <a:s>IMMZConf</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="133">
+                                       <a:s>&quot;Region recommends Cholera vaccination&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>
+		)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+		or </a:s>
+                        <a:s r="157">
+                           <a:s>(
+			</a:s>
+                           <a:s r="157">
+                              <a:s r="151">
+                                 <a:s r="145">
+                                    <a:s r="139">
+                                       <a:s r="137">
+                                          <a:s r="136">
+                                             <a:s>IMMZCom</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="137">
+                                             <a:s>&quot;Most Recent Dose Sequence of Cholera Doses Administered to Patient&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s r="138"> = 1</a:s>
+                                    </a:s>
+                                    <a:s>
+			and </a:s>
+                                    <a:s r="144">
+                                       <a:s r="141">
+                                          <a:s r="140">
+                                             <a:s>IMMZCom</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="141">
+                                             <a:s>&quot;Type of Last Cholera Dose Administered to Patient&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> in </a:s>
+                                       <a:s r="143">
+                                          <a:s r="142">
+                                             <a:s>IMMZc</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="143">
+                                             <a:s>&quot;WC-rBS Class Cholera Vaccine&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>
+			and </a:s>
+                                 <a:s r="150">
+                                    <a:s r="147">
+                                       <a:s r="146">
+                                          <a:s>IMMZCom</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="147">
+                                          <a:s>&quot;Date Last Cholera Dose Administered to Patient&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> </a:s>
+                                    <a:s r="150">
+                                       <a:s>more than </a:s>
+                                       <a:s r="149">
+                                          <a:s>1 week</a:s>
+                                       </a:s>
+                                       <a:s> before</a:s>
+                                    </a:s>
+                                    <a:s> </a:s>
+                                    <a:s r="148">
+                                       <a:s>Today()</a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>
+			and </a:s>
+                              <a:s r="156">
+                                 <a:s r="153">
+                                    <a:s r="152">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="153">
+                                       <a:s>&quot;Date Last Cholera Dose Administered to Patient&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> </a:s>
+                                 <a:s r="156">
+                                    <a:s>less than </a:s>
+                                    <a:s r="155">
+                                       <a:s>6 week</a:s>
+                                    </a:s>
+                                    <a:s> before</a:s>
+                                 </a:s>
+                                 <a:s> </a:s>
+                                 <a:s r="154">
+                                    <a:s>Today()</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="159" locator="114:2-141:2" xsi:type="Or">
+            <operand localId="125" locator="114:2-127:2" xsi:type="Or">
+               <operand localId="101" locator="115:3-120:3" xsi:type="And">
+                  <operand localId="95" locator="115:3-115:56" xsi:type="And">
+                     <operand xsi:type="GreaterOrEqual">
+                        <operand localId="92" locator="115:3-115:40" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="93" locator="115:50" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                     </operand>
+                     <operand xsi:type="LessOrEqual">
+                        <operand localId="92" locator="115:3-115:40" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="94" locator="115:56" valueType="t:Integer" value="5" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <operand localId="100" locator="117:3-120:3" xsi:type="And">
+                     <operand localId="97" locator="118:4-118:53" name="No Cholera Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="99" locator="119:8-119:55" name="Region recommends Cholera vaccination" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="124" locator="121:6-126:3" xsi:type="And">
+                  <operand localId="118" locator="122:4-124:95" xsi:type="And">
+                     <operand localId="112" locator="122:4-123:106" xsi:type="And">
+                        <operand localId="106" locator="122:4-122:95" xsi:type="And">
+                           <operand xsi:type="GreaterOrEqual">
+                              <operand name="ToInteger" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                                 <operand localId="103" locator="122:4-122:79" name="Most Recent Dose Sequence of Cholera Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                              </operand>
+                              <operand localId="104" locator="122:89" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                           </operand>
+                           <operand xsi:type="LessOrEqual">
+                              <operand name="ToInteger" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                                 <operand localId="103" locator="122:4-122:79" name="Most Recent Dose Sequence of Cholera Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                              </operand>
+                              <operand localId="105" locator="122:95" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                           </operand>
+                        </operand>
+                        <operand localId="111" locator="123:8-123:106" xsi:type="InValueSet">
+                           <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                              <operand localId="108" locator="123:8-123:66" name="Type of Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           </code>
+                           <valueset localId="110" locator="123:71-123:106" name="WC-rBS Class Cholera Vaccine" libraryName="IMMZc"/>
+                        </operand>
+                     </operand>
+                     <operand localId="117" locator="124:8-124:95" xsi:type="Before">
+                        <operand localId="114" locator="124:8-124:63" name="Date Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand locator="124:89-124:95" xsi:type="Subtract">
+                           <operand localId="115" locator="124:89-124:95" xsi:type="Today"/>
+                           <operand localId="116" locator="124:75-124:80" value="1" unit="week" xsi:type="Quantity"/>
+                        </operand>
+                     </operand>
+                  </operand>
+                  <operand localId="123" locator="125:8-125:96" xsi:type="In">
+                     <operand localId="120" locator="125:8-125:63" name="Date Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="125:65-125:81" lowClosed="false" highClosed="false" xsi:type="Interval">
+                        <low locator="125:90-125:96" xsi:type="Subtract">
+                           <operand localId="121" locator="125:90-125:96" xsi:type="Today"/>
+                           <operand localId="122" locator="125:75-125:81" value="6" unit="month" xsi:type="Quantity"/>
+                        </low>
+                        <high localId="121" locator="125:90-125:96" xsi:type="Today"/>
+                     </operand>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="158" locator="128:5-141:2" xsi:type="Or">
+               <operand localId="135" locator="129:3-134:3" xsi:type="And">
+                  <operand localId="129" locator="129:3-129:45" xsi:type="GreaterOrEqual">
+                     <operand localId="127" locator="129:3-129:40" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="128" locator="129:45" valueType="t:Integer" value="6" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="134" locator="131:3-134:3" xsi:type="And">
+                     <operand localId="131" locator="132:4-132:53" name="No Cholera Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="133" locator="133:8-133:55" name="Region recommends Cholera vaccination" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="157" locator="135:6-140:3" xsi:type="And">
+                  <operand localId="151" locator="136:4-138:95" xsi:type="And">
+                     <operand localId="145" locator="136:4-137:106" xsi:type="And">
+                        <operand localId="139" locator="136:4-136:83" xsi:type="Equal">
+                           <operand name="ToInteger" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                              <operand localId="137" locator="136:4-136:79" name="Most Recent Dose Sequence of Cholera Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           </operand>
+                           <operand localId="138" locator="136:83" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                        </operand>
+                        <operand localId="144" locator="137:8-137:106" xsi:type="InValueSet">
+                           <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                              <operand localId="141" locator="137:8-137:66" name="Type of Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           </code>
+                           <valueset localId="143" locator="137:71-137:106" name="WC-rBS Class Cholera Vaccine" libraryName="IMMZc"/>
+                        </operand>
+                     </operand>
+                     <operand localId="150" locator="138:8-138:95" xsi:type="Before">
+                        <operand localId="147" locator="138:8-138:63" name="Date Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand locator="138:89-138:95" xsi:type="Subtract">
+                           <operand localId="148" locator="138:89-138:95" xsi:type="Today"/>
+                           <operand localId="149" locator="138:75-138:80" value="1" unit="week" xsi:type="Quantity"/>
+                        </operand>
+                     </operand>
+                  </operand>
+                  <operand localId="156" locator="139:8-139:95" xsi:type="In">
+                     <operand localId="153" locator="139:8-139:63" name="Date Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="139:65-139:80" lowClosed="false" highClosed="false" xsi:type="Interval">
+                        <low locator="139:89-139:95" xsi:type="Subtract">
+                           <operand localId="154" locator="139:89-139:95" xsi:type="Today"/>
+                           <operand localId="155" locator="139:75-139:80" value="6" unit="week" xsi:type="Quantity"/>
+                        </low>
+                        <high localId="154" locator="139:89-139:95" xsi:type="Today"/>
+                     </operand>
+                  </operand>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="194" locator="165:1-177:2" name="Should re-vaccinate patient with WC-rBS vaccine (Dukoral)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="194">
+               <a:s>/*
+ * Rule: Should re-vaccinate patient with WC-rBS vaccine (Dukoral)
+ * Annotations:
+ * 	 - Provide Cholera revaccination – using the &quot;WC-rBS vaccine (Dukoral) immunization – Revaccination every 6 months&quot; schedule (1 dose scheme)
+ * 	 - Provide Cholera revaccination – using the &quot;WC-rBS vaccine (Dukoral) immunization – Revaccination every 2 years&quot; schedule (1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Cholera - revaccination for ages 2-5 within 6 months of last WC-rBS dose
+ * 	 - Immunize Patient for Cholera - revaccination for ages 6+ within 2 years of last WC-rBS dose
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((((((&quot;Patient has completed Cholera primary series&quot; = true) and (&quot;Current Patient Age in Years&quot; >= 2)) and (&quot;Current Patient Age in Years&quot; &lt;= 5)) and (&quot;Date last Cholera dose given&quot; &lt;= &quot;6 months&quot; = true)) and (&quot;Type of last Cholera dose&quot; = &quot;WC-rBS vaccine&quot;)) and (&quot;Region recommends Cholera vaccination&quot; = true)) or (((((&quot;Patient has completed Cholera primary series&quot; = true) and (&quot;Current Patient Age in Years&quot; >= 6)) and (&quot;Date last Cholera dose given&quot; &lt;= &quot;2 years&quot; = true)) and (&quot;Type of last Cholera dose&quot; = &quot;WC-rBS vaccine&quot;)) and (&quot;Region recommends Cholera vaccination&quot; = true)))
+ * Example:
+ * 	Assume patient is 3 yo
+ *		Month 1: Dukoral Dose #1 
+ * 		Month 2: Dukoral Dose #2
+ * 		Month 3: Dukoral Dose #3 &lt;-- Completed primary series
+ * 		Month 6: Dukoral Dose #4 &lt;-- This booster
+ *		Month 9: Dukoral Dose #5
+ *		Month 12: Dukoral Dose #6
+ *		Month 20: Dukoral Dose #1
+ */
+define &quot;Should re-vaccinate patient with WC-rBS vaccine (Dukoral)&quot;:
+	</a:s>
+               <a:s r="193">
+                  <a:s r="170">
+                     <a:s r="167">
+                        <a:s r="161">
+                           <a:s>&quot;Patient has completed Cholera primary series&quot;</a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="166">
+                           <a:s r="163">
+                              <a:s r="162">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="163">
+                                 <a:s>&quot;Type of Last Cholera Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> in </a:s>
+                           <a:s r="165">
+                              <a:s r="164">
+                                 <a:s>IMMZc</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="165">
+                                 <a:s>&quot;WC-rBS Class Cholera Vaccine&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="169">
+                        <a:s r="168">
+                           <a:s>IMMZConf</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="169">
+                           <a:s>&quot;Region recommends Cholera vaccination&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="192">
+                     <a:s>(
+		</a:s>
+                     <a:s r="192">
+                        <a:s r="181">
+                           <a:s>(
+			</a:s>
+                           <a:s r="181">
+                              <a:s r="175">
+                                 <a:s r="172">
+                                    <a:s r="171">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="172">
+                                       <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s r="173"> between 2 and 5</a:s>
+                              </a:s>
+                              <a:s>
+			and </a:s>
+                              <a:s r="180">
+                                 <a:s r="177">
+                                    <a:s r="176">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="177">
+                                       <a:s>&quot;Date Last Cholera Dose Administered to Patient&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> </a:s>
+                                 <a:s r="180">
+                                    <a:s>less than </a:s>
+                                    <a:s r="179">
+                                       <a:s>6 month</a:s>
+                                    </a:s>
+                                    <a:s> before</a:s>
+                                 </a:s>
+                                 <a:s> </a:s>
+                                 <a:s r="178">
+                                    <a:s>Today()</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		)</a:s>
+                        </a:s>
+                        <a:s> or </a:s>
+                        <a:s r="191">
+                           <a:s>(
+			</a:s>
+                           <a:s r="191">
+                              <a:s r="185">
+                                 <a:s r="183">
+                                    <a:s r="182">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="183">
+                                       <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s r="184"> > 6</a:s>
+                              </a:s>
+                              <a:s>
+			and </a:s>
+                              <a:s r="190">
+                                 <a:s r="187">
+                                    <a:s r="186">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="187">
+                                       <a:s>&quot;Date Last Cholera Dose Administered to Patient&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> </a:s>
+                                 <a:s r="190">
+                                    <a:s>less than </a:s>
+                                    <a:s r="189">
+                                       <a:s>2 year</a:s>
+                                    </a:s>
+                                    <a:s> before</a:s>
+                                 </a:s>
+                                 <a:s> </a:s>
+                                 <a:s r="188">
+                                    <a:s>Today()</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="193" locator="166:2-177:2" xsi:type="And">
+            <operand localId="170" locator="166:2-168:53" xsi:type="And">
+               <operand localId="167" locator="166:2-167:104" xsi:type="And">
+                  <operand localId="161" locator="166:2-166:47" name="Patient has completed Cholera primary series" xsi:type="ExpressionRef"/>
+                  <operand localId="166" locator="167:6-167:104" xsi:type="InValueSet">
+                     <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <operand localId="163" locator="167:6-167:64" name="Type of Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     </code>
+                     <valueset localId="165" locator="167:69-167:104" name="WC-rBS Class Cholera Vaccine" libraryName="IMMZc"/>
+                  </operand>
+               </operand>
+               <operand localId="169" locator="168:6-168:53" name="Region recommends Cholera vaccination" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="192" locator="169:6-177:2" xsi:type="Or">
+               <operand localId="181" locator="170:3-173:3" xsi:type="And">
+                  <operand localId="175" locator="171:4-171:57" xsi:type="And">
+                     <operand xsi:type="GreaterOrEqual">
+                        <operand localId="172" locator="171:4-171:41" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="173" locator="171:51" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                     </operand>
+                     <operand xsi:type="LessOrEqual">
+                        <operand localId="172" locator="171:4-171:41" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="174" locator="171:57" valueType="t:Integer" value="5" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <operand localId="180" locator="172:8-172:96" xsi:type="In">
+                     <operand localId="177" locator="172:8-172:63" name="Date Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="172:65-172:81" lowClosed="false" highClosed="false" xsi:type="Interval">
+                        <low locator="172:90-172:96" xsi:type="Subtract">
+                           <operand localId="178" locator="172:90-172:96" xsi:type="Today"/>
+                           <operand localId="179" locator="172:75-172:81" value="6" unit="month" xsi:type="Quantity"/>
+                        </low>
+                        <high localId="178" locator="172:90-172:96" xsi:type="Today"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="191" locator="173:8-176:3" xsi:type="And">
+                  <operand localId="185" locator="174:4-174:45" xsi:type="Greater">
+                     <operand localId="183" locator="174:4-174:41" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="184" locator="174:45" valueType="t:Integer" value="6" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="190" locator="175:8-175:95" xsi:type="In">
+                     <operand localId="187" locator="175:8-175:63" name="Date Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="175:65-175:80" lowClosed="false" highClosed="false" xsi:type="Interval">
+                        <low locator="175:89-175:95" xsi:type="Subtract">
+                           <operand localId="188" locator="175:89-175:95" xsi:type="Today"/>
+                           <operand localId="189" locator="175:75-175:80" value="2" unit="year" xsi:type="Quantity"/>
+                        </low>
+                        <high localId="188" locator="175:89-175:95" xsi:type="Today"/>
+                     </operand>
+                  </operand>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="219" locator="190:1-195:60" name="Should Re-vaccinate patient with WC-rBS vaccine (Dukoral) on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="219">
+               <a:s>/*
+ * Rule: Should Re-vaccinate patient with WC-rBS vaccine (Dukoral) on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Cholera revaccination – using the &quot;WC-rBS vaccine (Dukoral) immunization – Revaccination&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Cholera - revaccination for ages 2-5 where last WC-rBS dose was given more than 6 months ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((((&quot;Patient has completed Cholera primary series&quot; = true) and (&quot;Current Patient Age in Years&quot; >= 2)) and (&quot;Current Patient Age in Years&quot; &lt;= 5)) and (&quot;Date last Cholera dose given&quot; >= &quot;6 months&quot; = true)) and (&quot;Type of last Cholera dose&quot; = &quot;WC-rBS vaccine&quot;)) and (&quot;Region recommends Cholera vaccination&quot; = true))
+ */
+define &quot;Should Re-vaccinate patient with WC-rBS vaccine (Dukoral) on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="218">
+                  <a:s r="213">
+                     <a:s r="207">
+                        <a:s r="201">
+                           <a:s r="195">
+                              <a:s>&quot;Patient has completed Cholera primary series&quot;</a:s>
+                           </a:s>
+                           <a:s>
+	and </a:s>
+                           <a:s r="200">
+                              <a:s r="197">
+                                 <a:s r="196">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="197">
+                                    <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="198"> between 2 and 5</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="206">
+                           <a:s r="203">
+                              <a:s r="202">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="203">
+                                 <a:s>&quot;Date Last Cholera Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="206">
+                              <a:s>more than </a:s>
+                              <a:s r="205">
+                                 <a:s>6 month</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="204">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+	and </a:s>
+                     <a:s r="212">
+                        <a:s r="209">
+                           <a:s r="208">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="209">
+                              <a:s>&quot;Type of Last Cholera Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> in </a:s>
+                        <a:s r="211">
+                           <a:s r="210">
+                              <a:s>IMMZc</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="211">
+                              <a:s>&quot;WC-rBS Class Cholera Vaccine&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="217">
+                     <a:s r="215">
+                        <a:s r="214">
+                           <a:s>IMMZConf</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="215">
+                           <a:s>&quot;Region recommends Cholera vaccination&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="216"> = true</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="218" locator="191:2-195:60" xsi:type="And">
+            <operand localId="213" locator="191:2-194:104" xsi:type="And">
+               <operand localId="207" locator="191:2-193:94" xsi:type="And">
+                  <operand localId="201" locator="191:2-192:59" xsi:type="And">
+                     <operand localId="195" locator="191:2-191:47" name="Patient has completed Cholera primary series" xsi:type="ExpressionRef"/>
+                     <operand localId="200" locator="192:6-192:59" xsi:type="And">
+                        <operand xsi:type="GreaterOrEqual">
+                           <operand localId="197" locator="192:6-192:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           <operand localId="198" locator="192:53" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                        </operand>
+                        <operand xsi:type="LessOrEqual">
+                           <operand localId="197" locator="192:6-192:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           <operand localId="199" locator="192:59" valueType="t:Integer" value="5" xsi:type="Literal"/>
+                        </operand>
+                     </operand>
+                  </operand>
+                  <operand localId="206" locator="193:6-193:94" xsi:type="Before">
+                     <operand localId="203" locator="193:6-193:61" name="Date Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="193:88-193:94" xsi:type="Subtract">
+                        <operand localId="204" locator="193:88-193:94" xsi:type="Today"/>
+                        <operand localId="205" locator="193:73-193:79" value="6" unit="month" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="212" locator="194:6-194:104" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="209" locator="194:6-194:64" name="Type of Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="211" locator="194:69-194:104" name="WC-rBS Class Cholera Vaccine" libraryName="IMMZc"/>
+               </operand>
+            </operand>
+            <operand localId="217" locator="195:6-195:60" xsi:type="Equal">
+               <operand localId="215" locator="195:6-195:53" name="Region recommends Cholera vaccination" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+               <operand localId="216" locator="195:57-195:60" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="243" locator="209:1-214:60" name="Should Re-vaccinate patient with WC-rBS vaccine (Dukoral) on a 2 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="243">
+               <a:s>/*
+ * Rule: Should Re-vaccinate patient with WC-rBS vaccine (Dukoral) on a 2 dose scheme
+ * Annotations:
+ * 	 - Provide Cholera revaccination – using the &quot;WC-rBS vaccine (Dukoral) immunization – Revaccination&quot; schedule (2 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Cholera - revaccination for ages 6+ where last WC-rBS dose was given more than 2 years ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((((&quot;Patient has completed Cholera primary series&quot; = true) and (&quot;Current Patient Age in Years&quot; >= 6)) and (&quot;Date last Cholera dose given&quot; >= &quot;2 years&quot; = true)) and (&quot;Type of last Cholera dose&quot; = &quot;WC-rBS vaccine&quot;)) and (&quot;Region recommends Cholera vaccination&quot; = true))
+ */
+define &quot;Should Re-vaccinate patient with WC-rBS vaccine (Dukoral) on a 2 dose scheme&quot;:
+	</a:s>
+               <a:s r="242">
+                  <a:s r="237">
+                     <a:s r="231">
+                        <a:s r="225">
+                           <a:s r="220">
+                              <a:s>&quot;Patient has completed Cholera primary series&quot;</a:s>
+                           </a:s>
+                           <a:s>
+	and </a:s>
+                           <a:s r="224">
+                              <a:s r="222">
+                                 <a:s r="221">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="222">
+                                    <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="223"> >= 6</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="230">
+                           <a:s r="227">
+                              <a:s r="226">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="227">
+                                 <a:s>&quot;Date Last Cholera Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="230">
+                              <a:s>more than </a:s>
+                              <a:s r="229">
+                                 <a:s>2 year</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="228">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="236">
+                        <a:s r="233">
+                           <a:s r="232">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="233">
+                              <a:s>&quot;Type of Last Cholera Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> in </a:s>
+                        <a:s r="235">
+                           <a:s r="234">
+                              <a:s>IMMZc</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="235">
+                              <a:s>&quot;WC-rBS Class Cholera Vaccine&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="241">
+                     <a:s r="239">
+                        <a:s r="238">
+                           <a:s>IMMZConf</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="239">
+                           <a:s>&quot;Region recommends Cholera vaccination&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="240"> = true</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="242" locator="210:2-214:60" xsi:type="And">
+            <operand localId="237" locator="210:2-213:104" xsi:type="And">
+               <operand localId="231" locator="210:2-212:93" xsi:type="And">
+                  <operand localId="225" locator="210:2-211:48" xsi:type="And">
+                     <operand localId="220" locator="210:2-210:47" name="Patient has completed Cholera primary series" xsi:type="ExpressionRef"/>
+                     <operand localId="224" locator="211:6-211:48" xsi:type="GreaterOrEqual">
+                        <operand localId="222" locator="211:6-211:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="223" locator="211:48" valueType="t:Integer" value="6" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <operand localId="230" locator="212:6-212:93" xsi:type="Before">
+                     <operand localId="227" locator="212:6-212:61" name="Date Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="212:87-212:93" xsi:type="Subtract">
+                        <operand localId="228" locator="212:87-212:93" xsi:type="Today"/>
+                        <operand localId="229" locator="212:73-212:78" value="2" unit="year" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="236" locator="213:6-213:104" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="233" locator="213:6-213:64" name="Type of Last Cholera Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="235" locator="213:69-213:104" name="WC-rBS Class Cholera Vaccine" libraryName="IMMZc"/>
+               </operand>
+            </operand>
+            <operand localId="241" locator="214:6-214:60" xsi:type="Equal">
+               <operand localId="239" locator="214:6-214:53" name="Region recommends Cholera vaccination" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+               <operand localId="240" locator="214:57-214:60" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+            </operand>
+         </expression>
+      </def>
+   </statements>
+</library>

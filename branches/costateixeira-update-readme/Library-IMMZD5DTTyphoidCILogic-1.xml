@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="292">
+         <a:s>/*
+ * Library: IMMZD5DTTyphoidCILogic (IMMZ.D5.DT.Typhoid contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due	
+ * Decision Table: Potential contraindications		
+ * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
+ */
+library IMMZD5DTTyphoidCILogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD5DTTyphoidCILogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="13:1-13:57" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD5DTTyphoidEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD5DTTyphoidEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="209" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>parameter Today </a:s>
+               <a:s r="213">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="212">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="212" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="213" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="217" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="215" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="216" xsi:type="SingletonFrom">
+            <operand localId="214" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="219" locator="22:3-23:67" name="Draft Medication Request ID for Typhoid dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Draft Medication Request ID for Typhoid dose"/>
+            <a:s r="219">
+               <a:s>/*
+  @dynamicValue: Draft Medication Request ID for Typhoid dose
+  */
+  define &quot;Draft Medication Request ID for Typhoid dose&quot;:
+    </a:s>
+               <a:s r="225">
+                  <a:s r="224">
+                     <a:s>First(</a:s>
+                     <a:s r="221">
+                        <a:s r="220">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="221">
+                           <a:s>&quot;Draft Medication Request for Typhoid dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="225">
+                     <a:s>id</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="23:5-23:67" path="id" xsi:type="Property">
+            <source localId="224" locator="23:5-23:64" xsi:type="First">
+               <source localId="221" locator="23:11-23:63" name="Draft Medication Request for Typhoid dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </source>
+         </expression>
+      </def>
+      <def localId="231" locator="44:1-45:77" name="Typhoid vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Typhoid vaccination could be contraindicated. Clinical judgement is required. Create a clinical note."/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="231">
+               <a:s>/*
+@output: Typhoid vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Typhoid vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.&quot;:
+  </a:s>
+               <a:s r="233">
+                  <a:s r="232">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="233">
+                     <a:s>&quot;The client has hypersensitivity to any component of the vaccine&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="233" locator="45:3-45:77" name="The client has hypersensitivity to any component of the vaccine" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="236" locator="51:1-52:110" name="Typhoid vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Typhoid vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance"/>
+            <a:t name="guidance" value="Do not vaccinate client with typhoid if client has known hypersensitivity to any component of the vaccine."/>
+            <a:s r="236">
+               <a:s>/*
+@output: Typhoid vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance
+@guidance: Do not vaccinate client with typhoid if client has known hypersensitivity to any component of the vaccine.
+*/
+define &quot;Typhoid vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance&quot;:
+  </a:s>
+               <a:s r="237">
+                  <a:s>'Do not vaccinate client with typhoid if client has known hypersensitivity to any component of the vaccine.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="237" locator="52:3-52:110" valueType="t:String" value="Do not vaccinate client with typhoid if client has known hypersensitivity to any component of the vaccine." xsi:type="Literal"/>
+      </def>
+      <def localId="241" locator="58:1-59:46" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Clinical judgement is required for Typbar-TCV or ViPS vaccine. Create a clinical note" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Typhoid vaccination is contraindicated for Ty21a vaccine. Clinical judgement is required for Typbar-TCV or ViPS vaccine. Create a clinical note"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; =  &quot;Contraindicated&quot; (where &quot;Type of typhoid dose&quot; = &quot;Ty21a&quot;) AND &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot; (where &quot;Type of typhoid dose&quot; = &quot;Typbar-TCV&quot; OR &quot;ViPS&quot;)"/>
+            <a:s r="241">
+               <a:s>/*
+@output: Typhoid vaccination is contraindicated for Ty21a vaccine. Clinical judgement is required for Typbar-TCV or ViPS vaccine. Create a clinical note
+@pseudocode: &quot;Immunization recommendation status&quot; =  &quot;Contraindicated&quot; (where &quot;Type of typhoid dose&quot; = &quot;Ty21a&quot;) AND &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot; (where &quot;Type of typhoid dose&quot; = &quot;Typbar-TCV&quot; OR &quot;ViPS&quot;)
+*/
+define &quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Clinical judgement is required for Typbar-TCV or ViPS vaccine. Create a clinical note&quot;:
+  </a:s>
+               <a:s r="243">
+                  <a:s r="242">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="243">
+                     <a:s>&quot;The client is currently pregnant&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="243" locator="59:3-59:46" name="The client is currently pregnant" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="246" locator="65:1-66:284" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Clinical judgement is required for Typbar-TCV or ViPS vaccine. Create a clinical note Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Typhoid vaccination is contraindicated for Ty21a vaccine. Clinical judgement is required for Typbar-TCV or ViPS vaccine. Create a clinical note Guidance"/>
+            <a:t name="guidance" value="Do not vaccinate client with Ty21a vaccine as live attenuated Ty21a vaccine is contraindicated for pregnant clients. For Typbar-TCV or ViPS vaccine, check if an alternative typhoid vaccine is appropriate for the client, consider risks of vaccination and make a clinical judgement."/>
+            <a:s r="246">
+               <a:s>/*
+@output: Typhoid vaccination is contraindicated for Ty21a vaccine. Clinical judgement is required for Typbar-TCV or ViPS vaccine. Create a clinical note Guidance
+@guidance: Do not vaccinate client with Ty21a vaccine as live attenuated Ty21a vaccine is contraindicated for pregnant clients. For Typbar-TCV or ViPS vaccine, check if an alternative typhoid vaccine is appropriate for the client, consider risks of vaccination and make a clinical judgement.
+*/
+define &quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Clinical judgement is required for Typbar-TCV or ViPS vaccine. Create a clinical note Guidance&quot;:
+  </a:s>
+               <a:s r="247">
+                  <a:s>'Do not vaccinate client with Ty21a vaccine as live attenuated Ty21a vaccine is contraindicated for pregnant clients. For Typbar-TCV or ViPS vaccine, check if an alternative typhoid vaccine is appropriate for the client, consider risks of vaccination and make a clinical judgement.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="247" locator="66:3-66:284" valueType="t:String" value="Do not vaccinate client with Ty21a vaccine as live attenuated Ty21a vaccine is contraindicated for pregnant clients. For Typbar-TCV or ViPS vaccine, check if an alternative typhoid vaccine is appropriate for the client, consider risks of vaccination and make a clinical judgement." xsi:type="Literal"/>
+      </def>
+      <def localId="254" locator="72:1-73:56" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Typhoid vaccination is contraindicated for Ty21a vaccine. Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; =  &quot;Contraindicated&quot; (where &quot;Type of typhoid dose&quot; = &quot;Ty21a&quot;)"/>
+            <a:s r="254">
+               <a:s>/*
+@output: Typhoid vaccination is contraindicated for Ty21a vaccine. Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; =  &quot;Contraindicated&quot; (where &quot;Type of typhoid dose&quot; = &quot;Ty21a&quot;)
+*/
+define &quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Case 1&quot;:
+  </a:s>
+               <a:s r="256">
+                  <a:s r="255">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="256">
+                     <a:s>&quot;The client is currently taking antibiotics&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="256" locator="73:3-73:56" name="The client is currently taking antibiotics" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="259" locator="79:1-81:60" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Typhoid vaccination is contraindicated for Ty21a vaccine. Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; =  &quot;Contraindicated&quot; (where &quot;Type of typhoid dose&quot; = &quot;Ty21a&quot;)"/>
+            <a:s r="259">
+               <a:s>/*
+@output: Typhoid vaccination is contraindicated for Ty21a vaccine. Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; =  &quot;Contraindicated&quot; (where &quot;Type of typhoid dose&quot; = &quot;Ty21a&quot;)
+*/
+define &quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Case 2&quot;:
+  </a:s>
+               <a:s r="260">
+                  <a:s r="262">
+                     <a:s r="261">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="262">
+                        <a:s>&quot;The client's HIV status is positive&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="264">
+                     <a:s r="263">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="264">
+                        <a:s>&quot;The client is not immunologically stable&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="260" locator="80:3-81:60" xsi:type="And">
+            <operand localId="262" locator="80:3-80:49" name="The client's HIV status is positive" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="264" locator="81:9-81:60" name="The client is not immunologically stable" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="251" locator="87:1-89:73" name="Typhoid vaccination is contraindicated for Ty21a vaccine." context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Typhoid vaccination is contraindicated for Ty21a vaccine."/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; =  &quot;Contraindicated&quot; (where &quot;Type of typhoid dose&quot; = &quot;Ty21a&quot;)"/>
+            <a:s r="251">
+               <a:s>/*
+@output: Typhoid vaccination is contraindicated for Ty21a vaccine.
+@pseudocode: &quot;Immunization recommendation status&quot; =  &quot;Contraindicated&quot; (where &quot;Type of typhoid dose&quot; = &quot;Ty21a&quot;)
+*/
+define &quot;Typhoid vaccination is contraindicated for Ty21a vaccine.&quot;:
+  </a:s>
+               <a:s r="252">
+                  <a:s r="257">
+                     <a:s>&quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="265">
+                     <a:s>&quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="252" locator="88:3-89:73" xsi:type="Or">
+            <operand localId="257" locator="88:3-88:68" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="265" locator="89:8-89:73" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="268" locator="96:1-101:5" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Typhoid vaccination is contraindicated for Ty21a vaccine. Guidance"/>
+            <a:t name="guidance" value="Do not vaccinate client with Ty21a vaccine as Ty21a vaccine is contraindicated for clients who are taking antibiotics. Evaluate if other types of typhoid vacccines can be administered."/>
+            <a:t name="guidance" value="Do not vaccinate client with Ty21a vaccine as Ty21a vaccine is contraindicated for HIV-infected client who are not immunologically stable."/>
+            <a:s r="268">
+               <a:s>/*
+@output: Typhoid vaccination is contraindicated for Ty21a vaccine. Guidance
+@guidance: Do not vaccinate client with Ty21a vaccine as Ty21a vaccine is contraindicated for clients who are taking antibiotics. Evaluate if other types of typhoid vacccines can be administered.
+@guidance: Do not vaccinate client with Ty21a vaccine as Ty21a vaccine is contraindicated for HIV-infected client who are not immunologically stable.
+*/
+define &quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Guidance&quot;:
+  </a:s>
+               <a:s r="269">
+                  <a:s>case
+    </a:s>
+                  <a:s r="270">
+                     <a:s>when </a:s>
+                     <a:s r="271">
+                        <a:s>&quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="272">
+                        <a:s>'Do not vaccinate client with Ty21a vaccine as Ty21a vaccine is contraindicated for clients who are taking antibiotics. Evaluate if other types of typhoid vacccines can be administered.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="273">
+                     <a:s>when </a:s>
+                     <a:s r="274">
+                        <a:s>&quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="275">
+                        <a:s>'Do not vaccinate client with Ty21a vaccine as Ty21a vaccine is contraindicated for HIV-infected client who are not immunologically stable.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="276">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="269" locator="97:3-101:5" xsi:type="Case">
+            <caseItem localId="270" locator="98:5-98:267">
+               <when localId="271" locator="98:10-98:75" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Case 1" xsi:type="ExpressionRef"/>
+               <then localId="272" locator="98:82-98:267" valueType="t:String" value="Do not vaccinate client with Ty21a vaccine as Ty21a vaccine is contraindicated for clients who are taking antibiotics. Evaluate if other types of typhoid vacccines can be administered." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="273" locator="99:5-99:221">
+               <when localId="274" locator="99:10-99:75" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Case 2" xsi:type="ExpressionRef"/>
+               <then localId="275" locator="99:82-99:221" valueType="t:String" value="Do not vaccinate client with Ty21a vaccine as Ty21a vaccine is contraindicated for HIV-infected client who are not immunologically stable." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="276" locator="100:10-100:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="227" locator="29:1-35:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="227">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="228">
+                  <a:s>case
+    </a:s>
+                  <a:s r="229">
+                     <a:s>when </a:s>
+                     <a:s r="234">
+                        <a:s>&quot;Typhoid vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="238">
+                        <a:s>&quot;Typhoid vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="239">
+                     <a:s>when </a:s>
+                     <a:s r="244">
+                        <a:s>&quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Clinical judgement is required for Typbar-TCV or ViPS vaccine. Create a clinical note&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="248">
+                        <a:s>&quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Clinical judgement is required for Typbar-TCV or ViPS vaccine. Create a clinical note Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="249">
+                     <a:s>when </a:s>
+                     <a:s r="266">
+                        <a:s>&quot;Typhoid vaccination is contraindicated for Ty21a vaccine.&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="277">
+                        <a:s>&quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="278">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="228" locator="30:3-35:5" xsi:type="Case">
+            <caseItem localId="229" locator="31:5-31:230">
+               <when localId="234" locator="31:10-31:112" name="Typhoid vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." xsi:type="ExpressionRef"/>
+               <then localId="238" locator="31:119-31:230" name="Typhoid vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="239" locator="32:5-32:314">
+               <when localId="244" locator="32:10-32:154" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Clinical judgement is required for Typbar-TCV or ViPS vaccine. Create a clinical note" xsi:type="ExpressionRef"/>
+               <then localId="248" locator="32:161-32:314" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Clinical judgement is required for Typbar-TCV or ViPS vaccine. Create a clinical note Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="249" locator="33:5-33:142">
+               <when localId="266" locator="33:10-33:68" name="Typhoid vaccination is contraindicated for Ty21a vaccine." xsi:type="ExpressionRef"/>
+               <then localId="277" locator="33:75-33:142" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="278" locator="34:10-34:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="280" locator="37:1-38:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="280">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="281">
+                  <a:s r="284">
+                     <a:s r="282">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="290">
+                     <a:s r="286">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="287">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="281" locator="38:3-38:45" xsi:type="And">
+            <operand localId="284" locator="38:3-38:24" xsi:type="Not">
+               <operand localId="283" locator="38:3-38:24" xsi:type="IsNull">
+                  <operand localId="282" locator="38:3-38:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="290" locator="38:30-38:45" xsi:type="Not">
+               <operand localId="285" locator="38:30-38:45" xsi:type="Equal">
+                  <signature localId="288" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="289" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="286" locator="38:30-38:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="287" locator="38:44-38:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="292" locator="107:1-114:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="292">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="293">
+                  <a:s>case
+    </a:s>
+                  <a:s r="294">
+                     <a:s>when </a:s>
+                     <a:s r="295">
+                        <a:s r="297">
+                           <a:s r="296">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="297">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="298">
+                           <a:s>'41.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="303">
+                        <a:s r="304">
+                           <a:s>&quot;Typhoid vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="305">
+                           <a:s r="306">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="307">
+                              <a:s>'Do not vaccinate client with typhoid if client has known hypersensitivity to any component of the vaccine.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="310">
+                     <a:s>when </a:s>
+                     <a:s r="311">
+                        <a:s r="313">
+                           <a:s r="312">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="313">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="314">
+                           <a:s>'42.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="319">
+                        <a:s r="320">
+                           <a:s>&quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Clinical judgement is required for Typbar-TCV or ViPS vaccine. Create a clinical note&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="321">
+                           <a:s r="322">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="323">
+                              <a:s>'Do not vaccinate client with Ty21a vaccine as live attenuated Ty21a vaccine is contraindicated for pregnant clients. For Typbar-TCV or ViPS vaccine, check if an alternative typhoid vaccine is appropriate for the client, consider risks of vaccination and make a clinical judgement.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="326">
+                     <a:s>when </a:s>
+                     <a:s r="327">
+                        <a:s r="329">
+                           <a:s r="328">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="329">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="330">
+                           <a:s>'43.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="335">
+                        <a:s r="336">
+                           <a:s>&quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="337">
+                           <a:s r="338">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="339">
+                              <a:s>'Do not vaccinate client with Ty21a vaccine as Ty21a vaccine is contraindicated for clients who are taking antibiotics. Evaluate if other types of typhoid vacccines can be administered.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="342">
+                     <a:s>when </a:s>
+                     <a:s r="343">
+                        <a:s r="345">
+                           <a:s r="344">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="345">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="346">
+                           <a:s>'44.23'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="351">
+                        <a:s r="352">
+                           <a:s>&quot;Typhoid vaccination is contraindicated for Ty21a vaccine. Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="353">
+                           <a:s r="354">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="355">
+                              <a:s>'Do not vaccinate client with Ty21a vaccine as Ty21a vaccine is contraindicated for HIV-infected client who are not immunologically stable.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="358">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="293" locator="108:3-114:5" xsi:type="Case">
+            <caseItem localId="294" locator="109:5-109:263">
+               <when localId="295" locator="109:10-109:28" xsi:type="Equal">
+                  <signature localId="301" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="302" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="299" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="300" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="297" locator="109:10-109:19" path="id" xsi:type="Property">
+                        <source localId="296" locator="109:10-109:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="298" locator="109:23-109:28" valueType="t:String" value="41.1" xsi:type="Literal"/>
+               </when>
+               <then localId="359" xsi:type="As">
+                  <operand localId="303" locator="109:35-109:263" xsi:type="And">
+                     <operand localId="304" locator="109:35-109:137" name="Typhoid vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." xsi:type="ExpressionRef"/>
+                     <operand localId="305" locator="109:143-109:263" xsi:type="Equal">
+                        <signature localId="308" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="309" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="306" locator="109:143-109:152" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="307" locator="109:156-109:263" valueType="t:String" value="Do not vaccinate client with typhoid if client has known hypersensitivity to any component of the vaccine." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="360" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="361" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="362" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="310" locator="110:5-110:479">
+               <when localId="311" locator="110:10-110:28" xsi:type="Equal">
+                  <signature localId="317" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="318" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="315" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="316" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="313" locator="110:10-110:19" path="id" xsi:type="Property">
+                        <source localId="312" locator="110:10-110:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="314" locator="110:23-110:28" valueType="t:String" value="42.1" xsi:type="Literal"/>
+               </when>
+               <then localId="363" xsi:type="As">
+                  <operand localId="319" locator="110:35-110:479" xsi:type="And">
+                     <operand localId="320" locator="110:35-110:179" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Clinical judgement is required for Typbar-TCV or ViPS vaccine. Create a clinical note" xsi:type="ExpressionRef"/>
+                     <operand localId="321" locator="110:185-110:479" xsi:type="Equal">
+                        <signature localId="324" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="325" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="322" locator="110:185-110:194" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="323" locator="110:198-110:479" valueType="t:String" value="Do not vaccinate client with Ty21a vaccine as live attenuated Ty21a vaccine is contraindicated for pregnant clients. For Typbar-TCV or ViPS vaccine, check if an alternative typhoid vaccine is appropriate for the client, consider risks of vaccination and make a clinical judgement." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="364" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="365" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="366" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="326" locator="111:5-111:304">
+               <when localId="327" locator="111:10-111:28" xsi:type="Equal">
+                  <signature localId="333" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="334" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="331" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="332" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="329" locator="111:10-111:19" path="id" xsi:type="Property">
+                        <source localId="328" locator="111:10-111:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="330" locator="111:23-111:28" valueType="t:String" value="43.1" xsi:type="Literal"/>
+               </when>
+               <then localId="367" xsi:type="As">
+                  <operand localId="335" locator="111:35-111:304" xsi:type="And">
+                     <operand localId="336" locator="111:35-111:100" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="337" locator="111:106-111:304" xsi:type="Equal">
+                        <signature localId="340" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="341" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="338" locator="111:106-111:115" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="339" locator="111:119-111:304" valueType="t:String" value="Do not vaccinate client with Ty21a vaccine as Ty21a vaccine is contraindicated for clients who are taking antibiotics. Evaluate if other types of typhoid vacccines can be administered." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="368" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="369" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="370" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="342" locator="112:5-112:259">
+               <when localId="343" locator="112:10-112:29" xsi:type="Equal">
+                  <signature localId="349" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="350" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="347" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="348" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="345" locator="112:10-112:19" path="id" xsi:type="Property">
+                        <source localId="344" locator="112:10-112:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="346" locator="112:23-112:29" valueType="t:String" value="44.23" xsi:type="Literal"/>
+               </when>
+               <then localId="371" xsi:type="As">
+                  <operand localId="351" locator="112:36-112:259" xsi:type="And">
+                     <operand localId="352" locator="112:36-112:101" name="Typhoid vaccination is contraindicated for Ty21a vaccine. Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="353" locator="112:107-112:259" xsi:type="Equal">
+                        <signature localId="356" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="357" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="354" locator="112:107-112:116" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="355" locator="112:120-112:259" valueType="t:String" value="Do not vaccinate client with Ty21a vaccine as Ty21a vaccine is contraindicated for HIV-infected client who are not immunologically stable." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="372" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="373" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="374" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="375" xsi:type="As">
+               <operand localId="358" locator="113:10-113:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="376" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="377" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="378" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

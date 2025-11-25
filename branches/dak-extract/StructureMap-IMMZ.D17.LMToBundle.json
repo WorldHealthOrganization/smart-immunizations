@@ -1,0 +1,299 @@
+{
+  "resourceType" : "StructureMap",
+  "id" : "IMMZ.D17.LMToBundle",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: StructureMap IMMZ.D17.LMToBundle</b></p><a name=\"IMMZ.D17.LMToBundle\"> </a><a name=\"hcIMMZ.D17.LMToBundle\"> </a><pre class=\"fml\">\r\n<b>map</b><span style=\"color: navy\"> &quot;</span>http://smart.who.int/immunizations/StructureMap/IMMZ.D17.LMToBundle<span style=\"color: navy\">&quot; = &quot;</span>IMMZ.D17.LMToBundle<span style=\"color: navy\">&quot;\r\n\r\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Immunization Administer Vaccine - Transform Logical Model to Immunization resources</span>\r\n\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"StructureDefinition-IMMZD17.html\" title=\"IMMZ.D17.Report AEFI\">http://smart.who.int/immunizations/StructureDefinition/IMMZD17</a><span style=\"color: navy\">&quot; </span><b>alias </b>IMMZD17 <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R4/bundle.html\" title=\"Bundle\">http://hl7.org/fhir/StructureDefinition/Bundle</a><span style=\"color: navy\">&quot; </span><b>alias </b>Bundle <b>as </b><b>target</b>\r\n\r\n<b>imports</b><span style=\"color: navy\"> &quot;</span><a href=\"StructureMap-IMMZ.Helpers.html\" title=\"IMMZ.Helpers\">http://smart.who.int/immunizations/StructureMap/IMMZ.Helpers</a><span style=\"color: navy\">&quot;\r\n</span>\r\n<b>group </b>IMMZD17ToBundle<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">immz</span><span style=\"color: navy\"> : </span>IMMZD17, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  immz<span style=\"color: navy\"><b> -&gt; </b></span>bundle.type = <span style=\"color: blue\">'transaction'</span> <i>&quot;SetBundleType&quot;</i><span style=\"color: navy\">;</span>\r\n  immz.patient<b> as </b><span style=\"color: maroon\">patient</span><b> then</b><span style=\"color: navy\"> {\r\n</span>    immz<span style=\"color: navy\"><b> -&gt; </b></span> <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">aeid</span><span style=\"color: navy\">, </span> bundle.entry<b> as </b><span style=\"color: maroon\">entry</span><span style=\"color: navy\">, </span> entry.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">aeid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> entry.request<b> as </b><span style=\"color: maroon\">request</span><span style=\"color: navy\">, </span> request.method = <span style=\"color: blue\">'PUT'</span><span style=\"color: navy\">, </span> request.url = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'AdverseEvent/'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">aeid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> entry.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'AdverseEvent'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">ae</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      immz<span style=\"color: navy\"><b> -&gt; </b></span>ae.id = <span style=\"color: maroon\">aeid</span> <i>&quot;SetId&quot;</i><span style=\"color: navy\">;</span>\r\n      immz<span style=\"color: navy\"><b> -&gt; </b></span>ae.actuality = <span style=\"color: blue\">'actual'</span> <i>&quot;SetActuality&quot;</i><span style=\"color: navy\">;</span>\r\n      patient<span style=\"color: navy\"><b> -&gt; </b></span>ae.subject = <span style=\"color: maroon\">patient</span> <i>&quot;SetSubject&quot;</i><span style=\"color: navy\">;</span>\r\n      immz.reactionDate<b> as </b><span style=\"color: maroon\">date</span><span style=\"color: navy\"><b> -&gt; </b></span>ae.date = <span style=\"color: maroon\">date</span> <i>&quot;SetDate&quot;</i><span style=\"color: navy\">;</span>\r\n      immz.reactionManifestation<b> as </b><span style=\"color: maroon\">manifestation</span><span style=\"color: navy\"><b> -&gt; </b></span>ae.event = <span style=\"color: maroon\">manifestation</span> <i>&quot;SetEvent&quot;</i><span style=\"color: navy\">;</span>\r\n      immz.typeOfReaction<b> as </b><span style=\"color: maroon\">seriousness</span><span style=\"color: navy\"><b> -&gt; </b></span>ae.seriousness = <span style=\"color: maroon\">seriousness</span> <i>&quot;SetSeriousness&quot;</i><span style=\"color: navy\">;</span>\r\n      immz.reactionOutcome<b> as </b><span style=\"color: maroon\">outcome</span><span style=\"color: navy\"><b> -&gt; </b></span>ae.outcome = <b>translate</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">outcome</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'http://smart.who.int/immunizations/ConceptMap/IMMZ.D.ConceptMap'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'coding'</span><span style=\"color: navy\">)</span> <i>&quot;SetOutcome&quot;</i><span style=\"color: navy\">;</span>\r\n      immz.otherImportantMedicalEvent<b> as </b><span style=\"color: maroon\">event</span><span style=\"color: navy\"><b> -&gt; </b></span>ae.extension<b> as </b><span style=\"color: maroon\">ext</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        event<span style=\"color: navy\"><b> -&gt; </b></span>ext.url = <span style=\"color: blue\">'http://smart.who.int/immunizations/StructureDefinition/IMMZOtherMedicalEvent'</span> <i>&quot;SetURL&quot;</i><span style=\"color: navy\">;</span>\r\n        event<span style=\"color: navy\"><b> -&gt; </b></span>ext.value = <span style=\"color: maroon\">event</span> <i>&quot;SetValue&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;CreateOtherMedicalExt&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;CreateAdverseEvent&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;GetPatient&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span></pre></div>"
+  },
+  "url" : "http://smart.who.int/immunizations/StructureMap/IMMZ.D17.LMToBundle",
+  "version" : "0.2.0",
+  "name" : "IMMZ.D17.LMToBundle",
+  "status" : "draft",
+  "date" : "2025-07-23T20:56:04+00:00",
+  "publisher" : "WHO",
+  "contact" : [{
+    "name" : "WHO",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://who.int"
+    }]
+  }],
+  "description" : "Immunization Administer Vaccine - Transform Logical Model to Immunization resources",
+  "structure" : [{
+    "url" : "http://smart.who.int/immunizations/StructureDefinition/IMMZD17",
+    "mode" : "source",
+    "alias" : "IMMZD17"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Bundle",
+    "mode" : "target",
+    "alias" : "Bundle"
+  }],
+  "import" : ["http://smart.who.int/immunizations/StructureMap/IMMZ.Helpers"],
+  "group" : [{
+    "name" : "IMMZD17ToBundle",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "immz",
+      "type" : "IMMZD17",
+      "mode" : "source"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "SetBundleType",
+      "source" : [{
+        "context" : "immz"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "type",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "transaction"
+        }]
+      }]
+    },
+    {
+      "name" : "GetPatient",
+      "source" : [{
+        "context" : "immz",
+        "element" : "patient",
+        "variable" : "patient"
+      }],
+      "rule" : [{
+        "name" : "CreateAdverseEvent",
+        "source" : [{
+          "context" : "immz"
+        }],
+        "target" : [{
+          "contextType" : "variable",
+          "variable" : "aeid",
+          "transform" : "uuid"
+        },
+        {
+          "context" : "bundle",
+          "contextType" : "variable",
+          "element" : "entry",
+          "variable" : "entry"
+        },
+        {
+          "context" : "entry",
+          "contextType" : "variable",
+          "element" : "fullUrl",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "urn:uuid:"
+          },
+          {
+            "valueId" : "aeid"
+          }]
+        },
+        {
+          "context" : "entry",
+          "contextType" : "variable",
+          "element" : "request",
+          "variable" : "request"
+        },
+        {
+          "context" : "request",
+          "contextType" : "variable",
+          "element" : "method",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "PUT"
+          }]
+        },
+        {
+          "context" : "request",
+          "contextType" : "variable",
+          "element" : "url",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "AdverseEvent/"
+          },
+          {
+            "valueId" : "aeid"
+          }]
+        },
+        {
+          "context" : "entry",
+          "contextType" : "variable",
+          "element" : "resource",
+          "variable" : "ae",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "AdverseEvent"
+          }]
+        }],
+        "rule" : [{
+          "name" : "SetId",
+          "source" : [{
+            "context" : "immz"
+          }],
+          "target" : [{
+            "context" : "ae",
+            "contextType" : "variable",
+            "element" : "id",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "aeid"
+            }]
+          }]
+        },
+        {
+          "name" : "SetActuality",
+          "source" : [{
+            "context" : "immz"
+          }],
+          "target" : [{
+            "context" : "ae",
+            "contextType" : "variable",
+            "element" : "actuality",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "actual"
+            }]
+          }]
+        },
+        {
+          "name" : "SetSubject",
+          "source" : [{
+            "context" : "patient"
+          }],
+          "target" : [{
+            "context" : "ae",
+            "contextType" : "variable",
+            "element" : "subject",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "patient"
+            }]
+          }]
+        },
+        {
+          "name" : "SetDate",
+          "source" : [{
+            "context" : "immz",
+            "element" : "reactionDate",
+            "variable" : "date"
+          }],
+          "target" : [{
+            "context" : "ae",
+            "contextType" : "variable",
+            "element" : "date",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "date"
+            }]
+          }]
+        },
+        {
+          "name" : "SetEvent",
+          "source" : [{
+            "context" : "immz",
+            "element" : "reactionManifestation",
+            "variable" : "manifestation"
+          }],
+          "target" : [{
+            "context" : "ae",
+            "contextType" : "variable",
+            "element" : "event",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "manifestation"
+            }]
+          }]
+        },
+        {
+          "name" : "SetSeriousness",
+          "source" : [{
+            "context" : "immz",
+            "element" : "typeOfReaction",
+            "variable" : "seriousness"
+          }],
+          "target" : [{
+            "context" : "ae",
+            "contextType" : "variable",
+            "element" : "seriousness",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "seriousness"
+            }]
+          }]
+        },
+        {
+          "name" : "SetOutcome",
+          "source" : [{
+            "context" : "immz",
+            "element" : "reactionOutcome",
+            "variable" : "outcome"
+          }],
+          "target" : [{
+            "context" : "ae",
+            "contextType" : "variable",
+            "element" : "outcome",
+            "transform" : "translate",
+            "parameter" : [{
+              "valueId" : "outcome"
+            },
+            {
+              "valueString" : "http://smart.who.int/immunizations/ConceptMap/IMMZ.D.ConceptMap"
+            },
+            {
+              "valueString" : "coding"
+            }]
+          }]
+        },
+        {
+          "name" : "CreateOtherMedicalExt",
+          "source" : [{
+            "context" : "immz",
+            "element" : "otherImportantMedicalEvent",
+            "variable" : "event"
+          }],
+          "target" : [{
+            "context" : "ae",
+            "contextType" : "variable",
+            "element" : "extension",
+            "variable" : "ext"
+          }],
+          "rule" : [{
+            "name" : "SetURL",
+            "source" : [{
+              "context" : "event"
+            }],
+            "target" : [{
+              "context" : "ext",
+              "contextType" : "variable",
+              "element" : "url",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueString" : "http://smart.who.int/immunizations/StructureDefinition/IMMZOtherMedicalEvent"
+              }]
+            }]
+          },
+          {
+            "name" : "SetValue",
+            "source" : [{
+              "context" : "event"
+            }],
+            "target" : [{
+              "context" : "ext",
+              "contextType" : "variable",
+              "element" : "value",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "event"
+              }]
+            }]
+          }]
+        }]
+      }]
+    }]
+  }]
+}

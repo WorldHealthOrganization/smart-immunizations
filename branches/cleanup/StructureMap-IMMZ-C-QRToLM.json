@@ -1,0 +1,472 @@
+{
+  "resourceType" : "StructureMap",
+  "id" : "IMMZ-C-QRToLM",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">Placeholder</div>"
+  },
+  "url" : "http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-QRToLM",
+  "version" : "0.1.0",
+  "name" : "IMMZ-C-QRToLM",
+  "status" : "draft",
+  "date" : "2023-09-27T13:52:37+00:00",
+  "publisher" : "World Health Organization (WHO)",
+  "contact" : [{
+    "name" : "World Health Organization (WHO)",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://www.who.int"
+    }]
+  }],
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "http://unstats.un.org/unsd/methods/m49/m49.htm",
+      "code" : "001"
+    }]
+  }],
+  "structure" : [{
+    "url" : "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+    "mode" : "source",
+    "alias" : "QResp"
+  },
+  {
+    "url" : "http://fhir.org/guides/who/smart-immunization/StructureDefinition/IMMZ-C-register-client",
+    "mode" : "target",
+    "alias" : "IMMZC"
+  }],
+  "group" : [{
+    "name" : "QRespToIMMZC",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "qr",
+      "type" : "QResp",
+      "mode" : "source"
+    },
+    {
+      "name" : "immzc",
+      "type" : "IMMZC",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "process items",
+      "source" : [{
+        "context" : "qr",
+        "element" : "item",
+        "variable" : "item"
+      }],
+      "rule" : [{
+        "name" : "first answer for identifier",
+        "source" : [{
+          "context" : "item",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "answer",
+          "condition" : "item.linkId = 'uniqueId'"
+        }],
+        "rule" : [{
+          "name" : "set identifier",
+          "source" : [{
+            "context" : "answer",
+            "element" : "valueString",
+            "variable" : "content"
+          }],
+          "target" : [{
+            "context" : "immzc",
+            "contextType" : "variable",
+            "element" : "uniqueId",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "content"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "set names",
+        "source" : [{
+          "context" : "item",
+          "variable" : "name",
+          "condition" : "item.linkId = 'name'"
+        }],
+        "dependent" : [{
+          "name" : "NameToIMMZC",
+          "variable" : ["name",
+          "immzc"]
+        }]
+      },
+      {
+        "name" : "first answer for identifier",
+        "source" : [{
+          "context" : "item",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "answer",
+          "condition" : "item.linkId = 'sex'"
+        }],
+        "rule" : [{
+          "name" : "process coding",
+          "source" : [{
+            "context" : "answer",
+            "element" : "valueCoding",
+            "variable" : "coding"
+          }],
+          "rule" : [{
+            "name" : "set sex",
+            "source" : [{
+              "context" : "coding",
+              "element" : "code",
+              "variable" : "content"
+            }],
+            "target" : [{
+              "context" : "immzc",
+              "contextType" : "variable",
+              "element" : "sex",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "content"
+              }]
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "first answer for birthDate",
+        "source" : [{
+          "context" : "item",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "answer",
+          "condition" : "item.linkId = 'birthDate'"
+        }],
+        "rule" : [{
+          "name" : "set birthDate",
+          "source" : [{
+            "context" : "answer",
+            "element" : "valueDate",
+            "variable" : "content"
+          }],
+          "target" : [{
+            "context" : "immzc",
+            "contextType" : "variable",
+            "element" : "birthDate",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "content"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "first answer for ageInWeeks",
+        "source" : [{
+          "context" : "item",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "answer",
+          "condition" : "item.linkId = 'ageInWeeks'"
+        }],
+        "rule" : [{
+          "name" : "set ageInWeeks",
+          "source" : [{
+            "context" : "answer",
+            "element" : "valueInteger",
+            "variable" : "content"
+          }],
+          "target" : [{
+            "context" : "immzc",
+            "contextType" : "variable",
+            "element" : "ageInWeeks",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "content"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "first answer for ageInMonths",
+        "source" : [{
+          "context" : "item",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "answer",
+          "condition" : "item.linkId = 'ageInMonths'"
+        }],
+        "rule" : [{
+          "name" : "set ageInMonths",
+          "source" : [{
+            "context" : "answer",
+            "element" : "valueInteger",
+            "variable" : "content"
+          }],
+          "target" : [{
+            "context" : "immzc",
+            "contextType" : "variable",
+            "element" : "ageInMonths",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "content"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "first answer for ageInYears",
+        "source" : [{
+          "context" : "item",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "answer",
+          "condition" : "item.linkId = 'ageInYears'"
+        }],
+        "rule" : [{
+          "name" : "set ageInYears",
+          "source" : [{
+            "context" : "answer",
+            "element" : "valueInteger",
+            "variable" : "content"
+          }],
+          "target" : [{
+            "context" : "immzc",
+            "contextType" : "variable",
+            "element" : "ageInWeeks",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "content"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "set caregiver",
+        "source" : [{
+          "context" : "item",
+          "variable" : "caregiver",
+          "condition" : "item.linkId = 'caregiver'"
+        }],
+        "target" : [{
+          "context" : "immzc",
+          "contextType" : "variable",
+          "element" : "caregiver",
+          "variable" : "caretgt"
+        }],
+        "dependent" : [{
+          "name" : "NameToIMMZC",
+          "variable" : ["caregiver",
+          "caretgt"]
+        }]
+      },
+      {
+        "name" : "first answer for phone",
+        "source" : [{
+          "context" : "item",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "answer",
+          "condition" : "item.linkId = 'phone'"
+        }],
+        "rule" : [{
+          "name" : "set phone",
+          "source" : [{
+            "context" : "answer",
+            "element" : "valueString",
+            "variable" : "content"
+          }],
+          "target" : [{
+            "context" : "immzc",
+            "contextType" : "variable",
+            "element" : "phone",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "content"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "first answer for administrativeArea",
+        "source" : [{
+          "context" : "item",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "answer",
+          "condition" : "item.linkId = 'administrativeArea'"
+        }],
+        "rule" : [{
+          "name" : "set coding",
+          "source" : [{
+            "context" : "answer",
+            "element" : "valueCoding",
+            "variable" : "coding"
+          }],
+          "target" : [{
+            "context" : "immzc",
+            "contextType" : "variable",
+            "element" : "administrativeArea",
+            "variable" : "area"
+          }],
+          "rule" : [{
+            "name" : "set coding value",
+            "source" : [{
+              "context" : "coding"
+            }],
+            "target" : [{
+              "context" : "area",
+              "contextType" : "variable",
+              "element" : "coding",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "coding"
+              }]
+            }]
+          },
+          {
+            "name" : "set display",
+            "source" : [{
+              "context" : "coding",
+              "element" : "display",
+              "variable" : "display"
+            }],
+            "target" : [{
+              "context" : "area",
+              "contextType" : "variable",
+              "element" : "text",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "display"
+              }]
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "first answer for healthWorker",
+        "source" : [{
+          "context" : "item",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "answer",
+          "condition" : "item.linkId = 'healthWorker'"
+        }],
+        "rule" : [{
+          "name" : "set healthWorker",
+          "source" : [{
+            "context" : "answer",
+            "element" : "valueBoolean",
+            "variable" : "content"
+          }],
+          "target" : [{
+            "context" : "immzc",
+            "contextType" : "variable",
+            "element" : "healthWorker",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "content"
+            }]
+          }]
+        }]
+      }]
+    }]
+  },
+  {
+    "name" : "NameToIMMZC",
+    "typeMode" : "none",
+    "input" : [{
+      "name" : "name",
+      "mode" : "source"
+    },
+    {
+      "name" : "immzc",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "process name items",
+      "source" : [{
+        "context" : "name",
+        "element" : "item",
+        "variable" : "item"
+      }],
+      "rule" : [{
+        "name" : "first answer for full name",
+        "source" : [{
+          "context" : "item",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "answer",
+          "condition" : "item.linkId = 'fullName'"
+        }],
+        "rule" : [{
+          "name" : "set full name",
+          "source" : [{
+            "context" : "answer",
+            "element" : "valueString",
+            "variable" : "content"
+          }],
+          "target" : [{
+            "context" : "immzc",
+            "contextType" : "variable",
+            "element" : "name",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "content"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "first answer for first name",
+        "source" : [{
+          "context" : "item",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "answer",
+          "condition" : "item.linkId = 'firstName'"
+        }],
+        "rule" : [{
+          "name" : "set first name",
+          "source" : [{
+            "context" : "answer",
+            "element" : "valueString",
+            "variable" : "content"
+          }],
+          "target" : [{
+            "context" : "immzc",
+            "contextType" : "variable",
+            "element" : "firstName",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "content"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "first answer for family name",
+        "source" : [{
+          "context" : "item",
+          "element" : "answer",
+          "listMode" : "first",
+          "variable" : "answer",
+          "condition" : "item.linkId = 'familyName'"
+        }],
+        "rule" : [{
+          "name" : "set family name",
+          "source" : [{
+            "context" : "answer",
+            "element" : "valueString",
+            "variable" : "content"
+          }],
+          "target" : [{
+            "context" : "immzc",
+            "contextType" : "variable",
+            "element" : "familyName",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "content"
+            }]
+          }]
+        }]
+      }]
+    }]
+  }]
+}

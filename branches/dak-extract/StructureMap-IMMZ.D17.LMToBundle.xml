@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureMap xmlns="http://hl7.org/fhir">
+  <id value="IMMZ.D17.LMToBundle"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: StructureMap IMMZ.D17.LMToBundle</b></p><a name="IMMZ.D17.LMToBundle"> </a><a name="hcIMMZ.D17.LMToBundle"> </a><pre class="fml">
+<b>map</b><span style="color: navy"> &quot;</span>http://smart.who.int/immunizations/StructureMap/IMMZ.D17.LMToBundle<span style="color: navy">&quot; = &quot;</span>IMMZ.D17.LMToBundle<span style="color: navy">&quot;
+
+</span><span style="color: navy">// </span><span style="color: green">Immunization Administer Vaccine - Transform Logical Model to Immunization resources</span>
+
+<b>uses</b><span style="color: navy"> &quot;</span><a href="StructureDefinition-IMMZD17.html" title="IMMZ.D17.Report AEFI">http://smart.who.int/immunizations/StructureDefinition/IMMZD17</a><span style="color: navy">&quot; </span><b>alias </b>IMMZD17 <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/bundle.html" title="Bundle">http://hl7.org/fhir/StructureDefinition/Bundle</a><span style="color: navy">&quot; </span><b>alias </b>Bundle <b>as </b><b>target</b>
+
+<b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-IMMZ.Helpers.html" title="IMMZ.Helpers">http://smart.who.int/immunizations/StructureMap/IMMZ.Helpers</a><span style="color: navy">&quot;
+</span>
+<b>group </b>IMMZD17ToBundle<span style="color: navy">(</span><b>source</b> <span style="color: maroon">immz</span><span style="color: navy"> : </span>IMMZD17, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
+</span>  immz<span style="color: navy"><b> -&gt; </b></span>bundle.type = <span style="color: blue">'transaction'</span> <i>&quot;SetBundleType&quot;</i><span style="color: navy">;</span>
+  immz.patient<b> as </b><span style="color: maroon">patient</span><b> then</b><span style="color: navy"> {
+</span>    immz<span style="color: navy"><b> -&gt; </b></span> <b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">aeid</span><span style="color: navy">, </span> bundle.entry<b> as </b><span style="color: maroon">entry</span><span style="color: navy">, </span> entry.fullUrl = <b>append</b><span style="color: navy">(</span><span style="color: blue">'urn:uuid:'</span><span style="color: navy">, </span><span style="color: maroon">aeid</span><span style="color: navy">)</span><span style="color: navy">, </span> entry.request<b> as </b><span style="color: maroon">request</span><span style="color: navy">, </span> request.method = <span style="color: blue">'PUT'</span><span style="color: navy">, </span> request.url = <b>append</b><span style="color: navy">(</span><span style="color: blue">'AdverseEvent/'</span><span style="color: navy">, </span><span style="color: maroon">aeid</span><span style="color: navy">)</span><span style="color: navy">, </span> entry.resource = <b>create</b><span style="color: navy">(</span><span style="color: blue">'AdverseEvent'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">ae</span><b> then</b><span style="color: navy"> {
+</span>      immz<span style="color: navy"><b> -&gt; </b></span>ae.id = <span style="color: maroon">aeid</span> <i>&quot;SetId&quot;</i><span style="color: navy">;</span>
+      immz<span style="color: navy"><b> -&gt; </b></span>ae.actuality = <span style="color: blue">'actual'</span> <i>&quot;SetActuality&quot;</i><span style="color: navy">;</span>
+      patient<span style="color: navy"><b> -&gt; </b></span>ae.subject = <span style="color: maroon">patient</span> <i>&quot;SetSubject&quot;</i><span style="color: navy">;</span>
+      immz.reactionDate<b> as </b><span style="color: maroon">date</span><span style="color: navy"><b> -&gt; </b></span>ae.date = <span style="color: maroon">date</span> <i>&quot;SetDate&quot;</i><span style="color: navy">;</span>
+      immz.reactionManifestation<b> as </b><span style="color: maroon">manifestation</span><span style="color: navy"><b> -&gt; </b></span>ae.event = <span style="color: maroon">manifestation</span> <i>&quot;SetEvent&quot;</i><span style="color: navy">;</span>
+      immz.typeOfReaction<b> as </b><span style="color: maroon">seriousness</span><span style="color: navy"><b> -&gt; </b></span>ae.seriousness = <span style="color: maroon">seriousness</span> <i>&quot;SetSeriousness&quot;</i><span style="color: navy">;</span>
+      immz.reactionOutcome<b> as </b><span style="color: maroon">outcome</span><span style="color: navy"><b> -&gt; </b></span>ae.outcome = <b>translate</b><span style="color: navy">(</span><span style="color: maroon">outcome</span><span style="color: navy">, </span><span style="color: blue">'http://smart.who.int/immunizations/ConceptMap/IMMZ.D.ConceptMap'</span><span style="color: navy">, </span><span style="color: blue">'coding'</span><span style="color: navy">)</span> <i>&quot;SetOutcome&quot;</i><span style="color: navy">;</span>
+      immz.otherImportantMedicalEvent<b> as </b><span style="color: maroon">event</span><span style="color: navy"><b> -&gt; </b></span>ae.extension<b> as </b><span style="color: maroon">ext</span><b> then</b><span style="color: navy"> {
+</span>        event<span style="color: navy"><b> -&gt; </b></span>ext.url = <span style="color: blue">'http://smart.who.int/immunizations/StructureDefinition/IMMZOtherMedicalEvent'</span> <i>&quot;SetURL&quot;</i><span style="color: navy">;</span>
+        event<span style="color: navy"><b> -&gt; </b></span>ext.value = <span style="color: maroon">event</span> <i>&quot;SetValue&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;CreateOtherMedicalExt&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;CreateAdverseEvent&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;GetPatient&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span></pre></div>
+  </text>
+  <url value="http://smart.who.int/immunizations/StructureMap/IMMZ.D17.LMToBundle"/>
+  <version value="0.2.0"/>
+  <name value="IMMZ.D17.LMToBundle"/>
+  <status value="draft"/>
+  <date value="2025-07-23T20:56:04+00:00"/>
+  <publisher value="WHO"/>
+  <contact>
+    <name value="WHO"/>
+    <telecom>
+      <system value="url"/>
+      <value value="http://who.int"/>
+    </telecom>
+  </contact>
+  <description value="Immunization Administer Vaccine - Transform Logical Model to Immunization resources"/>
+  <structure>
+    <url value="http://smart.who.int/immunizations/StructureDefinition/IMMZD17"/>
+    <mode value="source"/>
+    <alias value="IMMZD17"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Bundle"/>
+    <mode value="target"/>
+    <alias value="Bundle"/>
+  </structure>
+  <import value="http://smart.who.int/immunizations/StructureMap/IMMZ.Helpers"/>
+  <group>
+    <name value="IMMZD17ToBundle"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="immz"/>
+      <type value="IMMZD17"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="bundle"/>
+      <type value="Bundle"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="SetBundleType"/>
+      <source>
+        <context value="immz"/>
+      </source>
+      <target>
+        <context value="bundle"/>
+        <contextType value="variable"/>
+        <element value="type"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="transaction"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="GetPatient"/>
+      <source>
+        <context value="immz"/>
+        <element value="patient"/>
+        <variable value="patient"/>
+      </source>
+      <rule>
+        <name value="CreateAdverseEvent"/>
+        <source>
+          <context value="immz"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <variable value="aeid"/>
+          <transform value="uuid"/>
+        </target>
+        <target>
+          <context value="bundle"/>
+          <contextType value="variable"/>
+          <element value="entry"/>
+          <variable value="entry"/>
+        </target>
+        <target>
+          <context value="entry"/>
+          <contextType value="variable"/>
+          <element value="fullUrl"/>
+          <transform value="append"/>
+          <parameter>
+            <valueString value="urn:uuid:"/>
+          </parameter>
+          <parameter>
+            <valueId value="aeid"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="entry"/>
+          <contextType value="variable"/>
+          <element value="request"/>
+          <variable value="request"/>
+        </target>
+        <target>
+          <context value="request"/>
+          <contextType value="variable"/>
+          <element value="method"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="PUT"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="request"/>
+          <contextType value="variable"/>
+          <element value="url"/>
+          <transform value="append"/>
+          <parameter>
+            <valueString value="AdverseEvent/"/>
+          </parameter>
+          <parameter>
+            <valueId value="aeid"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="entry"/>
+          <contextType value="variable"/>
+          <element value="resource"/>
+          <variable value="ae"/>
+          <transform value="create"/>
+          <parameter>
+            <valueString value="AdverseEvent"/>
+          </parameter>
+        </target>
+        <rule>
+          <name value="SetId"/>
+          <source>
+            <context value="immz"/>
+          </source>
+          <target>
+            <context value="ae"/>
+            <contextType value="variable"/>
+            <element value="id"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="aeid"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="SetActuality"/>
+          <source>
+            <context value="immz"/>
+          </source>
+          <target>
+            <context value="ae"/>
+            <contextType value="variable"/>
+            <element value="actuality"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueString value="actual"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="SetSubject"/>
+          <source>
+            <context value="patient"/>
+          </source>
+          <target>
+            <context value="ae"/>
+            <contextType value="variable"/>
+            <element value="subject"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="patient"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="SetDate"/>
+          <source>
+            <context value="immz"/>
+            <element value="reactionDate"/>
+            <variable value="date"/>
+          </source>
+          <target>
+            <context value="ae"/>
+            <contextType value="variable"/>
+            <element value="date"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="date"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="SetEvent"/>
+          <source>
+            <context value="immz"/>
+            <element value="reactionManifestation"/>
+            <variable value="manifestation"/>
+          </source>
+          <target>
+            <context value="ae"/>
+            <contextType value="variable"/>
+            <element value="event"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="manifestation"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="SetSeriousness"/>
+          <source>
+            <context value="immz"/>
+            <element value="typeOfReaction"/>
+            <variable value="seriousness"/>
+          </source>
+          <target>
+            <context value="ae"/>
+            <contextType value="variable"/>
+            <element value="seriousness"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="seriousness"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="SetOutcome"/>
+          <source>
+            <context value="immz"/>
+            <element value="reactionOutcome"/>
+            <variable value="outcome"/>
+          </source>
+          <target>
+            <context value="ae"/>
+            <contextType value="variable"/>
+            <element value="outcome"/>
+            <transform value="translate"/>
+            <parameter>
+              <valueId value="outcome"/>
+            </parameter>
+            <parameter>
+              <valueString value="http://smart.who.int/immunizations/ConceptMap/IMMZ.D.ConceptMap"/>
+            </parameter>
+            <parameter>
+              <valueString value="coding"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="CreateOtherMedicalExt"/>
+          <source>
+            <context value="immz"/>
+            <element value="otherImportantMedicalEvent"/>
+            <variable value="event"/>
+          </source>
+          <target>
+            <context value="ae"/>
+            <contextType value="variable"/>
+            <element value="extension"/>
+            <variable value="ext"/>
+          </target>
+          <rule>
+            <name value="SetURL"/>
+            <source>
+              <context value="event"/>
+            </source>
+            <target>
+              <context value="ext"/>
+              <contextType value="variable"/>
+              <element value="url"/>
+              <transform value="copy"/>
+              <parameter>
+                <valueString value="http://smart.who.int/immunizations/StructureDefinition/IMMZOtherMedicalEvent"/>
+              </parameter>
+            </target>
+          </rule>
+          <rule>
+            <name value="SetValue"/>
+            <source>
+              <context value="event"/>
+            </source>
+            <target>
+              <context value="ext"/>
+              <contextType value="variable"/>
+              <element value="value"/>
+              <transform value="copy"/>
+              <parameter>
+                <valueId value="event"/>
+              </parameter>
+            </target>
+          </rule>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+</StructureMap>

@@ -1,0 +1,1913 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="424">
+         <a:s>/*
+ * Library: IMMZD2DTCholeraWCLogic (IMMZ.D2.DT.Cholera.WC vaccines)
+ * Rule: Determine if the client is due for a cholera vaccination according to the national immunization schedule
+ * Decision Table: Whole-cell (WC) vaccines schedule
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any  
+ */
+library IMMZD2DTCholeraWCLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTCholeraWCLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="13:1-13:57" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTCholeraEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTCholeraEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="209" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>parameter Today </a:s>
+               <a:s r="213">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="212">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="212" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="213" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="217" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="215" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="216" xsi:type="SingletonFrom">
+            <operand localId="214" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="226" locator="42:1-43:46" name="Client is not due for cholera vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for cholera vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="226">
+               <a:s>/*
+@output: Client is not due for cholera vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for cholera vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="228">
+                  <a:s r="227">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="228">
+                     <a:s>&quot;Client's age is less than 1 year&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="228" locator="43:3-43:46" name="Client's age is less than 1 year" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="231" locator="49:1-52:82" name="Client is not due for cholera vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for cholera vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="231">
+               <a:s>/*
+@output: Client is not due for cholera vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for cholera vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="232">
+                  <a:s r="233">
+                     <a:s r="235">
+                        <a:s r="234">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="235">
+                           <a:s>&quot;Client's age is more than or equal to 1 year&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="237">
+                        <a:s r="236">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="237">
+                           <a:s>&quot;One cholera primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="239">
+                     <a:s r="238">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="239">
+                        <a:s>&quot;The latest cholera dose was administered less than 14 days ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="232" locator="50:3-52:82" xsi:type="And">
+            <operand localId="233" locator="50:3-51:68" xsi:type="And">
+               <operand localId="235" locator="50:3-50:58" name="Client's age is more than or equal to 1 year" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="237" locator="51:9-51:68" name="One cholera primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="239" locator="52:9-52:82" name="The latest cholera dose was administered less than 14 days ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="223" locator="58:1-60:57" name="Client is not due for cholera vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for cholera vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="223">
+               <a:s>/*
+@output: Client is not due for cholera vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for cholera vaccination&quot;:
+  </a:s>
+               <a:s r="224">
+                  <a:s r="229">
+                     <a:s>&quot;Client is not due for cholera vaccination Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="240">
+                     <a:s>&quot;Client is not due for cholera vaccination Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="224" locator="59:3-60:57" xsi:type="Or">
+            <operand localId="229" locator="59:3-59:52" name="Client is not due for cholera vaccination Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="240" locator="60:8-60:57" name="Client is not due for cholera vaccination Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="243" locator="69:1-76:5" name="Client is not due for cholera vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for cholera vaccination Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with cholera dose as client's age is under 1 year.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the first cholera dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with cholera dose as the latest cholera dose was administered less than 14 days ago.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose."/>
+            <a:s r="243">
+               <a:s>/*
+@output: Client is not due for cholera vaccination Guidance
+@guidance: Should not vaccinate client with cholera dose as client's age is under 1 year.
+Check for any vaccines due and inform the caregiver of when to come back for the first cholera dose.
+@guidance: Should not vaccinate client with cholera dose as the latest cholera dose was administered less than 14 days ago.
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+*/
+define &quot;Client is not due for cholera vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="244">
+                  <a:s>case
+    </a:s>
+                  <a:s r="245">
+                     <a:s>when </a:s>
+                     <a:s r="246">
+                        <a:s>&quot;Client is not due for cholera vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="247">
+                        <a:s>'Should not vaccinate client with cholera dose as client\'s age is under 1 year.
+Check for any vaccines due and inform the caregiver of when to come back for the first cholera dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="248">
+                     <a:s>when </a:s>
+                     <a:s r="249">
+                        <a:s>&quot;Client is not due for cholera vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="250">
+                        <a:s>'Should not vaccinate client with cholera dose as the latest cholera dose was administered less than 14 days ago.
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="251">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="244" locator="70:3-76:5" xsi:type="Case">
+            <caseItem localId="245" locator="71:5-71:247">
+               <when localId="246" locator="71:10-71:59" name="Client is not due for cholera vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="247" locator="71:66-71:247" valueType="t:String" value="Should not vaccinate client with cholera dose as client's age is under 1 year.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the first cholera dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="248" locator="73:5-73:271">
+               <when localId="249" locator="73:10-73:59" name="Client is not due for cholera vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="250" locator="73:66-73:271" valueType="t:String" value="Should not vaccinate client with cholera dose as the latest cholera dose was administered less than 14 days ago.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="251" locator="75:10-75:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="259" locator="82:1-84:67" name="Client is due for cholera vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for cholera vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="259">
+               <a:s>/*
+@output: Client is due for cholera vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for cholera vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="260">
+                  <a:s r="262">
+                     <a:s r="261">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="262">
+                        <a:s>&quot;Client's age is more than or equal to 1 year&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="264">
+                     <a:s r="263">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="264">
+                        <a:s>&quot;No cholera primary series dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="260" locator="83:3-84:67" xsi:type="And">
+            <operand localId="262" locator="83:3-83:58" name="Client's age is more than or equal to 1 year" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="264" locator="84:9-84:67" name="No cholera primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="267" locator="90:1-93:82" name="Client is due for cholera vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for cholera vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="267">
+               <a:s>/*
+@output: Client is due for cholera vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for cholera vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="268">
+                  <a:s r="269">
+                     <a:s r="271">
+                        <a:s r="270">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="271">
+                           <a:s>&quot;Client's age is more than or equal to 1 year&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="273">
+                        <a:s r="272">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="273">
+                           <a:s>&quot;One cholera primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="275">
+                     <a:s r="274">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="275">
+                        <a:s>&quot;The latest cholera dose was administered more than 14 days ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="268" locator="91:3-93:82" xsi:type="And">
+            <operand localId="269" locator="91:3-92:68" xsi:type="And">
+               <operand localId="271" locator="91:3-91:58" name="Client's age is more than or equal to 1 year" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="273" locator="92:9-92:68" name="One cholera primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="275" locator="93:9-93:82" name="The latest cholera dose was administered more than 14 days ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="278" locator="99:1-103:82" name="Client is due for cholera vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for cholera vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="278">
+               <a:s>/*
+@output: Client is due for cholera vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for cholera vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="279">
+                  <a:s r="280">
+                     <a:s r="281">
+                        <a:s r="283">
+                           <a:s r="282">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="283">
+                              <a:s>&quot;Client's age is more than or equal to 1 year&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="285">
+                           <a:s r="284">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="285">
+                              <a:s>&quot;Two cholera primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="287">
+                        <a:s r="286">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="287">
+                           <a:s>&quot;At least one booster series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="289">
+                     <a:s r="288">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="289">
+                        <a:s>&quot;The latest cholera dose was administered more than 3 years ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="279" locator="100:3-103:82" xsi:type="And">
+            <operand localId="280" locator="100:3-102:69" xsi:type="And">
+               <operand localId="281" locator="100:3-101:70" xsi:type="And">
+                  <operand localId="283" locator="100:3-100:58" name="Client's age is more than or equal to 1 year" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="285" locator="101:9-101:70" name="Two cholera primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="287" locator="102:9-102:69" name="At least one booster series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="289" locator="103:9-103:82" name="The latest cholera dose was administered more than 3 years ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="255" locator="109:1-112:53" name="Client is due for cholera vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for cholera vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="255">
+               <a:s>/*
+@output: Client is due for cholera vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for cholera vaccination&quot;:
+  </a:s>
+               <a:s r="256">
+                  <a:s r="257">
+                     <a:s r="265">
+                        <a:s>&quot;Client is due for cholera vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="276">
+                        <a:s>&quot;Client is due for cholera vaccination Case 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="290">
+                     <a:s>&quot;Client is due for cholera vaccination Case 3&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="256" locator="110:3-112:53" xsi:type="Or">
+            <operand localId="257" locator="110:3-111:53" xsi:type="Or">
+               <operand localId="265" locator="110:3-110:48" name="Client is due for cholera vaccination Case 1" xsi:type="ExpressionRef"/>
+               <operand localId="276" locator="111:8-111:53" name="Client is due for cholera vaccination Case 2" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="290" locator="112:8-112:53" name="Client is due for cholera vaccination Case 3" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="293" locator="123:1-132:5" name="Client is due for cholera vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for cholera vaccination Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with cholera dose as no doses have been given."/>
+            <a:t name="guidance" value="Should vaccinate client with cholera dose as the latest cholera dose was administered more than 14 days ago.&#xa;Check for contraindications."/>
+            <a:t name="guidance" value="Should vaccinate client with cholera dose as the booster series for cholera was completed more than 3 years ago. &#xa;Check for contraindications."/>
+            <a:s r="293">
+               <a:s>/*
+@output: Client is due for cholera vaccination Guidance
+@guidance: Should vaccinate client with cholera dose as no doses have been given.
+
+@guidance: Should vaccinate client with cholera dose as the latest cholera dose was administered more than 14 days ago.
+Check for contraindications.
+@guidance: Should vaccinate client with cholera dose as the booster series for cholera was completed more than 3 years ago. 
+Check for contraindications. 
+*/
+define &quot;Client is due for cholera vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="294">
+                  <a:s>case
+    </a:s>
+                  <a:s r="295">
+                     <a:s>when </a:s>
+                     <a:s r="296">
+                        <a:s>&quot;Client is due for cholera vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="297">
+                        <a:s>'Should vaccinate client with cholera dose as no doses have been given.
+'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="298">
+                     <a:s>when </a:s>
+                     <a:s r="299">
+                        <a:s>&quot;Client is due for cholera vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="300">
+                        <a:s>'Should vaccinate client with cholera dose as the latest cholera dose was administered more than 14 days ago.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="301">
+                     <a:s>when </a:s>
+                     <a:s r="302">
+                        <a:s>&quot;Client is due for cholera vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="303">
+                        <a:s>'Should vaccinate client with cholera dose as the booster series for cholera was completed more than 3 years ago. 
+Check for contraindications. '</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="304">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="294" locator="124:3-132:5" xsi:type="Case">
+            <caseItem localId="295" locator="125:5-125:134">
+               <when localId="296" locator="125:10-125:55" name="Client is due for cholera vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="297" locator="125:62-125:134" valueType="t:String" value="Should vaccinate client with cholera dose as no doses have been given.&#xa;" xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="298" locator="127:5-127:200">
+               <when localId="299" locator="127:10-127:55" name="Client is due for cholera vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="300" locator="127:62-127:200" valueType="t:String" value="Should vaccinate client with cholera dose as the latest cholera dose was administered more than 14 days ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="301" locator="129:5-129:206">
+               <when localId="302" locator="129:10-129:55" name="Client is due for cholera vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="303" locator="129:62-129:206" valueType="t:String" value="Should vaccinate client with cholera dose as the booster series for cholera was completed more than 3 years ago. &#xa;Check for contraindications. " xsi:type="Literal"/>
+            </caseItem>
+            <else localId="304" locator="131:10-131:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="308" locator="138:1-142:82" name="Primary series is complete. Client is not due for cholera booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary series is complete. Client is not due for cholera booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="308">
+               <a:s>/*
+@output: Primary series is complete. Client is not due for cholera booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Primary series is complete. Client is not due for cholera booster dose&quot;:
+  </a:s>
+               <a:s r="309">
+                  <a:s r="310">
+                     <a:s r="311">
+                        <a:s r="313">
+                           <a:s r="312">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="313">
+                              <a:s>&quot;Client's age is more than or equal to 1 year&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="315">
+                           <a:s r="314">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="315">
+                              <a:s>&quot;Two cholera primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="317">
+                        <a:s r="316">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="317">
+                           <a:s>&quot;No cholera booster series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="319">
+                     <a:s r="318">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="319">
+                        <a:s>&quot;The latest cholera dose was administered less than 3 years ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="309" locator="139:3-142:82" xsi:type="And">
+            <operand localId="310" locator="139:3-141:67" xsi:type="And">
+               <operand localId="311" locator="139:3-140:70" xsi:type="And">
+                  <operand localId="313" locator="139:3-139:58" name="Client's age is more than or equal to 1 year" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="315" locator="140:9-140:70" name="Two cholera primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="317" locator="141:9-141:67" name="No cholera booster series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="319" locator="142:9-142:82" name="The latest cholera dose was administered less than 3 years ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="322" locator="149:1-150:213" name="Primary series is complete. Client is not due for cholera booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary series is complete. Client is not due for cholera booster dose Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with cholera booster dose as primary series was completed less than 3 years ago.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the first booster dose."/>
+            <a:s r="322">
+               <a:s>/*
+@output: Primary series is complete. Client is not due for cholera booster dose Guidance
+@guidance: Should not vaccinate client with cholera booster dose as primary series was completed less than 3 years ago.
+Check for any vaccines due and inform the caregiver of when to come back for the first booster dose.
+*/
+define &quot;Primary series is complete. Client is not due for cholera booster dose Guidance&quot;:
+  </a:s>
+               <a:s r="323">
+                  <a:s>'Should not vaccinate client with cholera booster dose as primary series was completed less than 3 years ago.
+Check for any vaccines due and inform the caregiver of when to come back for the first booster dose.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="323" locator="150:3-150:213" valueType="t:String" value="Should not vaccinate client with cholera booster dose as primary series was completed less than 3 years ago.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the first booster dose." xsi:type="Literal"/>
+      </def>
+      <def localId="327" locator="157:1-161:82" name="Primary series is complete. Client is due for cholera booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary series is complete. Client is due for cholera booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="327">
+               <a:s>/*
+@output: Primary series is complete. Client is due for cholera booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Primary series is complete. Client is due for cholera booster dose&quot;:
+  </a:s>
+               <a:s r="328">
+                  <a:s r="329">
+                     <a:s r="330">
+                        <a:s r="332">
+                           <a:s r="331">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="332">
+                              <a:s>&quot;Client's age is more than or equal to 1 year&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="334">
+                           <a:s r="333">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="334">
+                              <a:s>&quot;Two cholera primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="336">
+                        <a:s r="335">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="336">
+                           <a:s>&quot;No cholera booster series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="338">
+                     <a:s r="337">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="338">
+                        <a:s>&quot;The latest cholera dose was administered more than 3 years ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="328" locator="158:3-161:82" xsi:type="And">
+            <operand localId="329" locator="158:3-160:67" xsi:type="And">
+               <operand localId="330" locator="158:3-159:70" xsi:type="And">
+                  <operand localId="332" locator="158:3-158:58" name="Client's age is more than or equal to 1 year" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="334" locator="159:9-159:70" name="Two cholera primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="336" locator="160:9-160:67" name="No cholera booster series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="338" locator="161:9-161:82" name="The latest cholera dose was administered more than 3 years ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="341" locator="168:1-169:147" name="Primary series is complete. Client is due for cholera booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary series is complete. Client is due for cholera booster dose Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with cholera dose as the primary series for cholera was completed more than 3 years ago. &#xa;Check for contraindications."/>
+            <a:s r="341">
+               <a:s>/*
+@output: Primary series is complete. Client is due for cholera booster dose Guidance
+@guidance: Should vaccinate client with cholera dose as the primary series for cholera was completed more than 3 years ago. 
+Check for contraindications. 
+*/
+define &quot;Primary series is complete. Client is due for cholera booster dose Guidance&quot;:
+  </a:s>
+               <a:s r="342">
+                  <a:s>'Should vaccinate client with cholera dose as the primary series for cholera was completed more than 3 years ago. 
+Check for contraindications. '</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="342" locator="169:3-169:147" valueType="t:String" value="Should vaccinate client with cholera dose as the primary series for cholera was completed more than 3 years ago. &#xa;Check for contraindications. " xsi:type="Literal"/>
+      </def>
+      <def localId="346" locator="176:1-181:82" name="Client is not due for cholera booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for cholera booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="346">
+               <a:s>/*
+@output: Client is not due for cholera booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for cholera booster dose&quot;:
+  </a:s>
+               <a:s r="347">
+                  <a:s r="348">
+                     <a:s r="349">
+                        <a:s r="350">
+                           <a:s r="352">
+                              <a:s r="351">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="352">
+                                 <a:s>&quot;Client's age is more than or equal to 1 year&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+    and </a:s>
+                           <a:s r="354">
+                              <a:s r="353">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="354">
+                                 <a:s>&quot;Two cholera primary series doses were administered&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="356">
+                           <a:s r="355">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="356">
+                              <a:s>&quot;At least one booster series dose was administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="358">
+                        <a:s r="357">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="358">
+                           <a:s>&quot;Dose number of the latest dose is one&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="360">
+                     <a:s r="359">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="360">
+                        <a:s>&quot;The latest cholera dose was administered less than 14 days ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="347" locator="177:3-181:82" xsi:type="And">
+            <operand localId="348" locator="177:3-180:57" xsi:type="And">
+               <operand localId="349" locator="177:3-179:69" xsi:type="And">
+                  <operand localId="350" locator="177:3-178:70" xsi:type="And">
+                     <operand localId="352" locator="177:3-177:58" name="Client's age is more than or equal to 1 year" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                     <operand localId="354" locator="178:9-178:70" name="Two cholera primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="356" locator="179:9-179:69" name="At least one booster series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="358" locator="180:9-180:57" name="Dose number of the latest dose is one" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="360" locator="181:9-181:82" name="The latest cholera dose was administered less than 14 days ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="363" locator="188:1-189:208" name="Client is not due for cholera booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for cholera booster dose Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with cholera booster dose as the latest dose was administered less than 14 days ago.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose."/>
+            <a:s r="363">
+               <a:s>/*
+@output: Client is not due for cholera booster dose Guidance
+@guidance: Should not vaccinate client with cholera booster dose as the latest dose was administered less than 14 days ago.
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+*/
+define &quot;Client is not due for cholera booster dose Guidance&quot;:
+  </a:s>
+               <a:s r="364">
+                  <a:s>'Should not vaccinate client with cholera booster dose as the latest dose was administered less than 14 days ago.
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="364" locator="189:3-189:208" valueType="t:String" value="Should not vaccinate client with cholera booster dose as the latest dose was administered less than 14 days ago.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+      </def>
+      <def localId="368" locator="196:1-201:108" name="Client is due for cholera booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for cholera booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="368">
+               <a:s>/*
+@output: Client is due for cholera booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for cholera booster dose&quot;:
+  </a:s>
+               <a:s r="369">
+                  <a:s r="370">
+                     <a:s r="371">
+                        <a:s r="372">
+                           <a:s r="374">
+                              <a:s r="373">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="374">
+                                 <a:s>&quot;Client's age is more than or equal to 1 year&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+    and </a:s>
+                           <a:s r="376">
+                              <a:s r="375">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="376">
+                                 <a:s>&quot;Two cholera primary series doses were administered&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="378">
+                           <a:s r="377">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="378">
+                              <a:s>&quot;At least one booster series dose was administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="380">
+                        <a:s r="379">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="380">
+                           <a:s>&quot;Dose number of the latest dose is one&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="382">
+                     <a:s r="381">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="382">
+                        <a:s>&quot;The latest cholera dose was administered more than 14 days ago and less than 3 years ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="369" locator="197:3-201:108" xsi:type="And">
+            <operand localId="370" locator="197:3-200:57" xsi:type="And">
+               <operand localId="371" locator="197:3-199:69" xsi:type="And">
+                  <operand localId="372" locator="197:3-198:70" xsi:type="And">
+                     <operand localId="374" locator="197:3-197:58" name="Client's age is more than or equal to 1 year" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                     <operand localId="376" locator="198:9-198:70" name="Two cholera primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="378" locator="199:9-199:69" name="At least one booster series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="380" locator="200:9-200:57" name="Dose number of the latest dose is one" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="382" locator="201:9-201:108" name="The latest cholera dose was administered more than 14 days ago and less than 3 years ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="385" locator="208:1-209:190" name="Client is due for cholera booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for cholera booster dose Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with cholera booster dose as the booster series is not completed and the latest cholera dose was administered more than 14 days ago.&#xa;Check for contraindications."/>
+            <a:s r="385">
+               <a:s>/*
+@output: Client is due for cholera booster dose Guidance
+@guidance: Should vaccinate client with cholera booster dose as the booster series is not completed and the latest cholera dose was administered more than 14 days ago.
+Check for contraindications. 
+*/
+define &quot;Client is due for cholera booster dose Guidance&quot;:
+  </a:s>
+               <a:s r="386">
+                  <a:s>'Should vaccinate client with cholera booster dose as the booster series is not completed and the latest cholera dose was administered more than 14 days ago.
+Check for contraindications. '</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="386" locator="209:3-209:190" valueType="t:String" value="Should vaccinate client with cholera booster dose as the booster series is not completed and the latest cholera dose was administered more than 14 days ago.&#xa;Check for contraindications. " xsi:type="Literal"/>
+      </def>
+      <def localId="390" locator="216:1-221:82" name="Booster series is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Booster series is complete"/>
+            <a:t name="pseudocode" value="&quot;Completed the booster series&quot; (where &quot;Vaccine type&quot; = &quot;Cholera vaccines&quot;) = TRUE"/>
+            <a:s r="390">
+               <a:s>/*
+@output: Booster series is complete
+@pseudocode: &quot;Completed the booster series&quot; (where &quot;Vaccine type&quot; = &quot;Cholera vaccines&quot;) = TRUE
+*/
+define &quot;Booster series is complete&quot;:
+  </a:s>
+               <a:s r="391">
+                  <a:s r="392">
+                     <a:s r="393">
+                        <a:s r="394">
+                           <a:s r="396">
+                              <a:s r="395">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="396">
+                                 <a:s>&quot;Client's age is more than or equal to 1 year&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+    and </a:s>
+                           <a:s r="398">
+                              <a:s r="397">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="398">
+                                 <a:s>&quot;Two cholera primary series doses were administered&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="400">
+                           <a:s r="399">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="400">
+                              <a:s>&quot;At least one booster series dose was administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="402">
+                        <a:s r="401">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="402">
+                           <a:s>&quot;Dose number of the latest dose is two&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="404">
+                     <a:s r="403">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="404">
+                        <a:s>&quot;The latest cholera dose was administered less than 3 years ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="391" locator="217:3-221:82" xsi:type="And">
+            <operand localId="392" locator="217:3-220:57" xsi:type="And">
+               <operand localId="393" locator="217:3-219:69" xsi:type="And">
+                  <operand localId="394" locator="217:3-218:70" xsi:type="And">
+                     <operand localId="396" locator="217:3-217:58" name="Client's age is more than or equal to 1 year" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                     <operand localId="398" locator="218:9-218:70" name="Two cholera primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="400" locator="219:9-219:69" name="At least one booster series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="402" locator="220:9-220:57" name="Dose number of the latest dose is two" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="404" locator="221:9-221:82" name="The latest cholera dose was administered less than 3 years ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="407" locator="228:1-229:223" name="Booster series is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Booster series is complete Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with cholera dose as the booster series for cholera was completed less than 3 years ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next booster series."/>
+            <a:s r="407">
+               <a:s>/*
+@output: Booster series is complete Guidance
+@guidance: Should not vaccinate client with cholera dose as the booster series for cholera was completed less than 3 years ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next booster series.
+*/
+define &quot;Booster series is complete Guidance&quot;:
+  </a:s>
+               <a:s r="408">
+                  <a:s>'Should not vaccinate client with cholera dose as the booster series for cholera was completed less than 3 years ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next booster series.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="408" locator="229:3-229:223" valueType="t:String" value="Should not vaccinate client with cholera dose as the booster series for cholera was completed less than 3 years ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next booster series." xsi:type="Literal"/>
+      </def>
+      <def localId="219" locator="23:1-33:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="219">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="220">
+                  <a:s>case
+    </a:s>
+                  <a:s r="221">
+                     <a:s>when </a:s>
+                     <a:s r="241">
+                        <a:s>&quot;Client is not due for cholera vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="252">
+                        <a:s>&quot;Client is not due for cholera vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="253">
+                     <a:s>when </a:s>
+                     <a:s r="291">
+                        <a:s>&quot;Client is due for cholera vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="305">
+                        <a:s>&quot;Client is due for cholera vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="306">
+                     <a:s>when </a:s>
+                     <a:s r="320">
+                        <a:s>&quot;Primary series is complete. Client is not due for cholera booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="324">
+                        <a:s>&quot;Primary series is complete. Client is not due for cholera booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="325">
+                     <a:s>when </a:s>
+                     <a:s r="339">
+                        <a:s>&quot;Primary series is complete. Client is due for cholera booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="343">
+                        <a:s>&quot;Primary series is complete. Client is due for cholera booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="344">
+                     <a:s>when </a:s>
+                     <a:s r="361">
+                        <a:s>&quot;Client is not due for cholera booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="365">
+                        <a:s>&quot;Client is not due for cholera booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="366">
+                     <a:s>when </a:s>
+                     <a:s r="383">
+                        <a:s>&quot;Client is due for cholera booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="387">
+                        <a:s>&quot;Client is due for cholera booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="388">
+                     <a:s>when </a:s>
+                     <a:s r="405">
+                        <a:s>&quot;Booster series is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="409">
+                        <a:s>&quot;Booster series is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="410">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="220" locator="24:3-33:5" xsi:type="Case">
+            <caseItem localId="221" locator="25:5-25:110">
+               <when localId="241" locator="25:10-25:52" name="Client is not due for cholera vaccination" xsi:type="ExpressionRef"/>
+               <then localId="252" locator="25:59-25:110" name="Client is not due for cholera vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="253" locator="26:5-26:102">
+               <when localId="291" locator="26:10-26:48" name="Client is due for cholera vaccination" xsi:type="ExpressionRef"/>
+               <then localId="305" locator="26:55-26:102" name="Client is due for cholera vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="306" locator="27:5-27:168">
+               <when localId="320" locator="27:10-27:81" name="Primary series is complete. Client is not due for cholera booster dose" xsi:type="ExpressionRef"/>
+               <then localId="324" locator="27:88-27:168" name="Primary series is complete. Client is not due for cholera booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="325" locator="28:5-28:160">
+               <when localId="339" locator="28:10-28:77" name="Primary series is complete. Client is due for cholera booster dose" xsi:type="ExpressionRef"/>
+               <then localId="343" locator="28:84-28:160" name="Primary series is complete. Client is due for cholera booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="344" locator="29:5-29:112">
+               <when localId="361" locator="29:10-29:53" name="Client is not due for cholera booster dose" xsi:type="ExpressionRef"/>
+               <then localId="365" locator="29:60-29:112" name="Client is not due for cholera booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="366" locator="30:5-30:104">
+               <when localId="383" locator="30:10-30:49" name="Client is due for cholera booster dose" xsi:type="ExpressionRef"/>
+               <then localId="387" locator="30:56-30:104" name="Client is due for cholera booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="388" locator="31:5-31:80">
+               <when localId="405" locator="31:10-31:37" name="Booster series is complete" xsi:type="ExpressionRef"/>
+               <then localId="409" locator="31:44-31:80" name="Booster series is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="410" locator="32:10-32:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="412" locator="35:1-36:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="412">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="413">
+                  <a:s r="416">
+                     <a:s r="414">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="422">
+                     <a:s r="418">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="419">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="413" locator="36:3-36:45" xsi:type="And">
+            <operand localId="416" locator="36:3-36:24" xsi:type="Not">
+               <operand localId="415" locator="36:3-36:24" xsi:type="IsNull">
+                  <operand localId="414" locator="36:3-36:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="422" locator="36:30-36:45" xsi:type="Not">
+               <operand localId="417" locator="36:30-36:45" xsi:type="Equal">
+                  <signature localId="420" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="421" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="418" locator="36:30-36:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="419" locator="36:44-36:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="424" locator="236:1-259:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="424">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="425">
+                  <a:s>case
+    </a:s>
+                  <a:s r="426">
+                     <a:s>when </a:s>
+                     <a:s r="427">
+                        <a:s r="429">
+                           <a:s r="428">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="429">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="430">
+                           <a:s>'08.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="435">
+                        <a:s r="436">
+                           <a:s>&quot;Client is not due for cholera vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="437">
+                           <a:s r="438">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="439">
+                              <a:s>'Should not vaccinate client with cholera dose as client\'s age is under 1 year.
+Check for any vaccines due and inform the caregiver of when to come back for the first cholera dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="442">
+                     <a:s>when </a:s>
+                     <a:s r="443">
+                        <a:s r="445">
+                           <a:s r="444">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="445">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="446">
+                           <a:s>'09.01'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="451">
+                        <a:s r="452">
+                           <a:s>&quot;Client is due for cholera vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="453">
+                           <a:s r="454">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="455">
+                              <a:s>'Should vaccinate client with cholera dose as no doses have been given.
+'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="458">
+                     <a:s>when </a:s>
+                     <a:s r="459">
+                        <a:s r="461">
+                           <a:s r="460">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="461">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="462">
+                           <a:s>'10.014'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="467">
+                        <a:s r="468">
+                           <a:s>&quot;Client is not due for cholera vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="469">
+                           <a:s r="470">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="471">
+                              <a:s>'Should not vaccinate client with cholera dose as the latest cholera dose was administered less than 14 days ago.
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="474">
+                     <a:s>when </a:s>
+                     <a:s r="475">
+                        <a:s r="477">
+                           <a:s r="476">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="477">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="478">
+                           <a:s>'11.014'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="483">
+                        <a:s r="484">
+                           <a:s>&quot;Client is due for cholera vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="485">
+                           <a:s r="486">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="487">
+                              <a:s>'Should vaccinate client with cholera dose as the latest cholera dose was administered more than 14 days ago.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="490">
+                     <a:s>when </a:s>
+                     <a:s r="491">
+                        <a:s r="493">
+                           <a:s r="492">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="493">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="494">
+                           <a:s>'12.0124'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="499">
+                        <a:s r="500">
+                           <a:s>&quot;Primary series is complete. Client is not due for cholera booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="501">
+                           <a:s r="502">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="503">
+                              <a:s>'Should not vaccinate client with cholera booster dose as primary series was completed less than 3 years ago.
+Check for any vaccines due and inform the caregiver of when to come back for the first booster dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="506">
+                     <a:s>when </a:s>
+                     <a:s r="507">
+                        <a:s r="509">
+                           <a:s r="508">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="509">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="510">
+                           <a:s>'13.0124'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="515">
+                        <a:s r="516">
+                           <a:s>&quot;Primary series is complete. Client is due for cholera booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="517">
+                           <a:s r="518">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="519">
+                              <a:s>'Should vaccinate client with cholera dose as the primary series for cholera was completed more than 3 years ago. 
+Check for contraindications. '</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="522">
+                     <a:s>when </a:s>
+                     <a:s r="523">
+                        <a:s r="525">
+                           <a:s r="524">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="525">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="526">
+                           <a:s>'14.01234'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="531">
+                        <a:s r="532">
+                           <a:s>&quot;Client is not due for cholera booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="533">
+                           <a:s r="534">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="535">
+                              <a:s>'Should not vaccinate client with cholera booster dose as the latest dose was administered less than 14 days ago.
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="538">
+                     <a:s>when </a:s>
+                     <a:s r="539">
+                        <a:s r="541">
+                           <a:s r="540">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="541">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="542">
+                           <a:s>'15.01234'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="547">
+                        <a:s r="548">
+                           <a:s>&quot;Client is due for cholera booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="549">
+                           <a:s r="550">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="551">
+                              <a:s>'Should vaccinate client with cholera booster dose as the booster series is not completed and the latest cholera dose was administered more than 14 days ago.
+Check for contraindications. '</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="554">
+                     <a:s>when </a:s>
+                     <a:s r="555">
+                        <a:s r="557">
+                           <a:s r="556">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="557">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="558">
+                           <a:s>'16.01234'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="563">
+                        <a:s r="564">
+                           <a:s>&quot;Booster series is complete&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="565">
+                           <a:s r="566">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="567">
+                              <a:s>'Should not vaccinate client with cholera dose as the booster series for cholera was completed less than 3 years ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next booster series.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="570">
+                     <a:s>when </a:s>
+                     <a:s r="571">
+                        <a:s r="573">
+                           <a:s r="572">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="573">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="574">
+                           <a:s>'17.0124'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="579">
+                        <a:s r="580">
+                           <a:s>&quot;Client is due for cholera vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="581">
+                           <a:s r="582">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="583">
+                              <a:s>'Should vaccinate client with cholera dose as the booster series for cholera was completed more than 3 years ago. 
+Check for contraindications. '</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="586">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="425" locator="237:3-259:5" xsi:type="Case">
+            <caseItem localId="426" locator="238:5-238:284">
+               <when localId="427" locator="238:10-238:28" xsi:type="Equal">
+                  <signature localId="433" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="434" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="431" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="432" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="429" locator="238:10-238:19" path="id" xsi:type="Property">
+                        <source localId="428" locator="238:10-238:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="430" locator="238:23-238:28" valueType="t:String" value="08.0" xsi:type="Literal"/>
+               </when>
+               <then localId="587" xsi:type="As">
+                  <operand localId="435" locator="238:35-238:284" xsi:type="And">
+                     <operand localId="436" locator="238:35-238:84" name="Client is not due for cholera vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="437" locator="238:90-238:284" xsi:type="Equal">
+                        <signature localId="440" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="441" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="438" locator="238:90-238:99" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="439" locator="238:103-238:284" valueType="t:String" value="Should not vaccinate client with cholera dose as client's age is under 1 year.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the first cholera dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="588" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="589" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="590" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="442" locator="240:5-240:172">
+               <when localId="443" locator="240:10-240:29" xsi:type="Equal">
+                  <signature localId="449" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="450" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="447" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="448" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="445" locator="240:10-240:19" path="id" xsi:type="Property">
+                        <source localId="444" locator="240:10-240:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="446" locator="240:23-240:29" valueType="t:String" value="09.01" xsi:type="Literal"/>
+               </when>
+               <then localId="591" xsi:type="As">
+                  <operand localId="451" locator="240:36-240:172" xsi:type="And">
+                     <operand localId="452" locator="240:36-240:81" name="Client is due for cholera vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="453" locator="240:87-240:172" xsi:type="Equal">
+                        <signature localId="456" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="457" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="454" locator="240:87-240:96" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="455" locator="240:100-240:172" valueType="t:String" value="Should vaccinate client with cholera dose as no doses have been given.&#xa;" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="592" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="593" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="594" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="458" locator="242:5-242:310">
+               <when localId="459" locator="242:10-242:30" xsi:type="Equal">
+                  <signature localId="465" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="466" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="463" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="464" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="461" locator="242:10-242:19" path="id" xsi:type="Property">
+                        <source localId="460" locator="242:10-242:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="462" locator="242:23-242:30" valueType="t:String" value="10.014" xsi:type="Literal"/>
+               </when>
+               <then localId="595" xsi:type="As">
+                  <operand localId="467" locator="242:37-242:310" xsi:type="And">
+                     <operand localId="468" locator="242:37-242:86" name="Client is not due for cholera vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="469" locator="242:92-242:310" xsi:type="Equal">
+                        <signature localId="472" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="473" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="470" locator="242:92-242:101" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="471" locator="242:105-242:310" valueType="t:String" value="Should not vaccinate client with cholera dose as the latest cholera dose was administered less than 14 days ago.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="596" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="597" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="598" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="474" locator="244:5-244:239">
+               <when localId="475" locator="244:10-244:30" xsi:type="Equal">
+                  <signature localId="481" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="482" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="479" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="480" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="477" locator="244:10-244:19" path="id" xsi:type="Property">
+                        <source localId="476" locator="244:10-244:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="478" locator="244:23-244:30" valueType="t:String" value="11.014" xsi:type="Literal"/>
+               </when>
+               <then localId="599" xsi:type="As">
+                  <operand localId="483" locator="244:37-244:239" xsi:type="And">
+                     <operand localId="484" locator="244:37-244:82" name="Client is due for cholera vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="485" locator="244:88-244:239" xsi:type="Equal">
+                        <signature localId="488" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="489" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="486" locator="244:88-244:97" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="487" locator="244:101-244:239" valueType="t:String" value="Should vaccinate client with cholera dose as the latest cholera dose was administered more than 14 days ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="600" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="601" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="602" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="490" locator="246:5-246:338">
+               <when localId="491" locator="246:10-246:31" xsi:type="Equal">
+                  <signature localId="497" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="498" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="495" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="496" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="493" locator="246:10-246:19" path="id" xsi:type="Property">
+                        <source localId="492" locator="246:10-246:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="494" locator="246:23-246:31" valueType="t:String" value="12.0124" xsi:type="Literal"/>
+               </when>
+               <then localId="603" xsi:type="As">
+                  <operand localId="499" locator="246:38-246:338" xsi:type="And">
+                     <operand localId="500" locator="246:38-246:109" name="Primary series is complete. Client is not due for cholera booster dose" xsi:type="ExpressionRef"/>
+                     <operand localId="501" locator="246:115-246:338" xsi:type="Equal">
+                        <signature localId="504" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="505" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="502" locator="246:115-246:124" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="503" locator="246:128-246:338" valueType="t:String" value="Should not vaccinate client with cholera booster dose as primary series was completed less than 3 years ago.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the first booster dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="604" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="605" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="606" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="506" locator="248:5-248:268">
+               <when localId="507" locator="248:10-248:31" xsi:type="Equal">
+                  <signature localId="513" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="514" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="511" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="512" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="509" locator="248:10-248:19" path="id" xsi:type="Property">
+                        <source localId="508" locator="248:10-248:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="510" locator="248:23-248:31" valueType="t:String" value="13.0124" xsi:type="Literal"/>
+               </when>
+               <then localId="607" xsi:type="As">
+                  <operand localId="515" locator="248:38-248:268" xsi:type="And">
+                     <operand localId="516" locator="248:38-248:105" name="Primary series is complete. Client is due for cholera booster dose" xsi:type="ExpressionRef"/>
+                     <operand localId="517" locator="248:111-248:268" xsi:type="Equal">
+                        <signature localId="520" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="521" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="518" locator="248:111-248:120" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="519" locator="248:124-248:268" valueType="t:String" value="Should vaccinate client with cholera dose as the primary series for cholera was completed more than 3 years ago. &#xa;Check for contraindications. " xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="608" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="609" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="610" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="522" locator="250:5-250:306">
+               <when localId="523" locator="250:10-250:32" xsi:type="Equal">
+                  <signature localId="529" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="530" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="527" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="528" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="525" locator="250:10-250:19" path="id" xsi:type="Property">
+                        <source localId="524" locator="250:10-250:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="526" locator="250:23-250:32" valueType="t:String" value="14.01234" xsi:type="Literal"/>
+               </when>
+               <then localId="611" xsi:type="As">
+                  <operand localId="531" locator="250:39-250:306" xsi:type="And">
+                     <operand localId="532" locator="250:39-250:82" name="Client is not due for cholera booster dose" xsi:type="ExpressionRef"/>
+                     <operand localId="533" locator="250:88-250:306" xsi:type="Equal">
+                        <signature localId="536" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="537" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="534" locator="250:88-250:97" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="535" locator="250:101-250:306" valueType="t:String" value="Should not vaccinate client with cholera booster dose as the latest dose was administered less than 14 days ago.&#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="612" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="613" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="614" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="538" locator="252:5-252:284">
+               <when localId="539" locator="252:10-252:32" xsi:type="Equal">
+                  <signature localId="545" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="546" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="543" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="544" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="541" locator="252:10-252:19" path="id" xsi:type="Property">
+                        <source localId="540" locator="252:10-252:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="542" locator="252:23-252:32" valueType="t:String" value="15.01234" xsi:type="Literal"/>
+               </when>
+               <then localId="615" xsi:type="As">
+                  <operand localId="547" locator="252:39-252:284" xsi:type="And">
+                     <operand localId="548" locator="252:39-252:78" name="Client is due for cholera booster dose" xsi:type="ExpressionRef"/>
+                     <operand localId="549" locator="252:84-252:284" xsi:type="Equal">
+                        <signature localId="552" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="553" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="550" locator="252:84-252:93" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="551" locator="252:97-252:284" valueType="t:String" value="Should vaccinate client with cholera booster dose as the booster series is not completed and the latest cholera dose was administered more than 14 days ago.&#xa;Check for contraindications. " xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="616" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="617" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="618" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="554" locator="254:5-254:305">
+               <when localId="555" locator="254:10-254:32" xsi:type="Equal">
+                  <signature localId="561" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="562" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="559" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="560" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="557" locator="254:10-254:19" path="id" xsi:type="Property">
+                        <source localId="556" locator="254:10-254:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="558" locator="254:23-254:32" valueType="t:String" value="16.01234" xsi:type="Literal"/>
+               </when>
+               <then localId="619" xsi:type="As">
+                  <operand localId="563" locator="254:39-254:305" xsi:type="And">
+                     <operand localId="564" locator="254:39-254:66" name="Booster series is complete" xsi:type="ExpressionRef"/>
+                     <operand localId="565" locator="254:72-254:305" xsi:type="Equal">
+                        <signature localId="568" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="569" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="566" locator="254:72-254:81" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="567" locator="254:85-254:305" valueType="t:String" value="Should not vaccinate client with cholera dose as the booster series for cholera was completed less than 3 years ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next booster series." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="620" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="621" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="622" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="570" locator="256:5-256:246">
+               <when localId="571" locator="256:10-256:31" xsi:type="Equal">
+                  <signature localId="577" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="578" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="575" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="576" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="573" locator="256:10-256:19" path="id" xsi:type="Property">
+                        <source localId="572" locator="256:10-256:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="574" locator="256:23-256:31" valueType="t:String" value="17.0124" xsi:type="Literal"/>
+               </when>
+               <then localId="623" xsi:type="As">
+                  <operand localId="579" locator="256:38-256:246" xsi:type="And">
+                     <operand localId="580" locator="256:38-256:83" name="Client is due for cholera vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="581" locator="256:89-256:246" xsi:type="Equal">
+                        <signature localId="584" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="585" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="582" locator="256:89-256:98" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="583" locator="256:102-256:246" valueType="t:String" value="Should vaccinate client with cholera dose as the booster series for cholera was completed more than 3 years ago. &#xa;Check for contraindications. " xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="624" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="625" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="626" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="627" xsi:type="As">
+               <operand localId="586" locator="258:10-258:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="628" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="629" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="630" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

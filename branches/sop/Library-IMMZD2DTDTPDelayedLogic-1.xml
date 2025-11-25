@@ -1,0 +1,3163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="686">
+         <a:s>/*
+ * Library: IMMZD2DTDTPDelayedLogic (IMMZ.D2.DT.DTP.Delayed or interrupted series)
+ * Rule: Determine if the client is due for a diphtheria–tetanus–pertussis (DTP) vaccination according to the national immunization schedule
+ * Decision Table: DTP vaccination schedule for the following groups: children ≥ 1 year of age with no previous immunization, adolescents and adults with no previous immunization (including pregnant women) and supplementary immunization activities in high-risk areas, for women of reproductive age
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any
+ */
+library IMMZD2DTDTPDelayedLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTDTPDelayedLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:25" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version'4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="11:1-11:34" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version'4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="13:1-13:53" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTDTPEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTDTPEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="209" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>parameter Today </a:s>
+               <a:s r="213">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="212">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="212" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="213" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="217" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="215" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="216" xsi:type="SingletonFrom">
+            <operand localId="214" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="224" locator="171:1-174:77" name="Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;)"/>
+            <a:s r="224">
+               <a:s>/*
+@output: Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;)
+*/
+define &quot;Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose&quot;:
+  </a:s>
+               <a:s r="225">
+                  <a:s r="226">
+                     <a:s r="228">
+                        <a:s r="227">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="228">
+                           <a:s>&quot;Three DTP primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="230">
+                        <a:s r="229">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="230">
+                           <a:s>&quot;No tetanus and diphtheria booster doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="232">
+                     <a:s r="231">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="232">
+                        <a:s>&quot;The latest DTP dose was administered less than 1 year ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="172:3-174:77" xsi:type="And">
+            <operand localId="226" locator="172:3-173:77" xsi:type="And">
+               <operand localId="228" locator="172:3-172:62" name="Three DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="230" locator="173:9-173:77" name="No tetanus and diphtheria booster doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="232" locator="174:9-174:77" name="The latest DTP dose was administered less than 1 year ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="235" locator="260:1-264:79" name="Primary DTP series is complete. Client is not due for pertussis booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary DTP series is complete. Client is not due for pertussis booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;)"/>
+            <a:s r="235">
+               <a:s>/*
+@output: Primary DTP series is complete. Client is not due for pertussis booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;)
+*/
+define &quot;Primary DTP series is complete. Client is not due for pertussis booster dose&quot;:
+  </a:s>
+               <a:s r="236">
+                  <a:s r="237">
+                     <a:s r="238">
+                        <a:s r="240">
+                           <a:s r="239">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="240">
+                              <a:s>&quot;Three DTP primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="242">
+                           <a:s r="241">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="242">
+                              <a:s>&quot;No pertussis booster doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="244">
+                        <a:s r="243">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="244">
+                           <a:s>&quot;Client's age is between 1 year and 6 years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="246">
+                     <a:s r="245">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="246">
+                        <a:s>&quot;The latest DTP dose was administered less than 6 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="236" locator="261:3-264:79" xsi:type="And">
+            <operand localId="237" locator="261:3-263:62" xsi:type="And">
+               <operand localId="238" locator="261:3-262:64" xsi:type="And">
+                  <operand localId="240" locator="261:3-261:62" name="Three DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="242" locator="262:9-262:64" name="No pertussis booster doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="244" locator="263:9-263:62" name="Client's age is between 1 year and 6 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="246" locator="264:9-264:79" name="The latest DTP dose was administered less than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="251" locator="181:1-182:266" name="Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for first tetanus and diphtheria booster dose."/>
+            <a:s r="251">
+               <a:s>/*
+@output: Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose Guidance
+@guidance: Should not vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for first tetanus and diphtheria booster dose.
+*/
+define &quot;Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose Guidance&quot;:
+ </a:s>
+               <a:s r="252">
+                  <a:s>'Should not vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for first tetanus and diphtheria booster dose.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="252" locator="182:2-182:266" valueType="t:String" value="Should not vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for first tetanus and diphtheria booster dose." xsi:type="Literal"/>
+      </def>
+      <def localId="259" locator="271:1-272:230" name="Primary DTP series is complete. Client is not due for pertussis booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary DTP series is complete. Client is not due for pertussis booster dose Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with pertussis booster dose as the latest DTP dose was administered less than 6 months ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for pertussis booster dose."/>
+            <a:s r="259">
+               <a:s>/*
+@output: Primary DTP series is complete. Client is not due for pertussis booster dose Guidance
+@guidance: Should not vaccinate client with pertussis booster dose as the latest DTP dose was administered less than 6 months ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for pertussis booster dose.
+*/
+define &quot;Primary DTP series is complete. Client is not due for pertussis booster dose Guidance&quot;:
+ </a:s>
+               <a:s r="260">
+                  <a:s>'Should not vaccinate client with pertussis booster dose as the latest DTP dose was administered less than 6 months ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for pertussis booster dose.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="260" locator="272:2-272:230" valueType="t:String" value="Should not vaccinate client with pertussis booster dose as the latest DTP dose was administered less than 6 months ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for pertussis booster dose." xsi:type="Literal"/>
+      </def>
+      <def localId="269" locator="279:1-283:79" name="Primary DTP series is complete. Client is due for pertussis booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary DTP series is complete. Client is due for pertussis booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;)"/>
+            <a:s r="269">
+               <a:s>/*
+@output: Primary DTP series is complete. Client is due for pertussis booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;)
+*/
+define &quot;Primary DTP series is complete. Client is due for pertussis booster dose&quot;:
+  </a:s>
+               <a:s r="270">
+                  <a:s r="271">
+                     <a:s r="272">
+                        <a:s r="274">
+                           <a:s r="273">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="274">
+                              <a:s>&quot;Three DTP primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="276">
+                           <a:s r="275">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="276">
+                              <a:s>&quot;No pertussis booster doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="278">
+                        <a:s r="277">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="278">
+                           <a:s>&quot;Client's age is between 1 year and 6 years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="280">
+                     <a:s r="279">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="280">
+                        <a:s>&quot;The latest DTP dose was administered more than 6 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="270" locator="280:3-283:79" xsi:type="And">
+            <operand localId="271" locator="280:3-282:62" xsi:type="And">
+               <operand localId="272" locator="280:3-281:64" xsi:type="And">
+                  <operand localId="274" locator="280:3-280:62" name="Three DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="276" locator="281:9-281:64" name="No pertussis booster doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="278" locator="282:9-282:62" name="Client's age is between 1 year and 6 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="280" locator="283:9-283:79" name="The latest DTP dose was administered more than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="290" locator="290:1-291:237" name="Primary DTP series is complete. Client is due for pertussis booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary DTP series is complete. Client is due for pertussis booster dose Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. &#xa;Check for contraindications."/>
+            <a:s r="290">
+               <a:s>/*
+@output: Primary DTP series is complete. Client is due for pertussis booster dose Guidance
+@guidance: Should vaccinate client with pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. 
+Check for contraindications.
+*/
+define &quot;Primary DTP series is complete. Client is due for pertussis booster dose Guidance&quot;:
+ </a:s>
+               <a:s r="291">
+                  <a:s>'Should vaccinate client with pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. 
+Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="291" locator="291:2-291:237" valueType="t:String" value="Should vaccinate client with pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="303" locator="298:1-301:53" name="Pertussis immunization schedule is complete Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pertussis immunization schedule is complete Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;)"/>
+            <a:s r="303">
+               <a:s>/*
+@output: Pertussis immunization schedule is complete Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;)
+*/
+define &quot;Pertussis immunization schedule is complete Case 1&quot;:
+  </a:s>
+               <a:s r="304">
+                  <a:s r="305">
+                     <a:s r="307">
+                        <a:s r="306">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="307">
+                           <a:s>&quot;Three DTP primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="309">
+                        <a:s r="308">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="309">
+                           <a:s>&quot;No pertussis booster doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="311">
+                     <a:s r="310">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="311">
+                        <a:s>&quot;Client's age is more than 6 years&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="304" locator="299:3-301:53" xsi:type="And">
+            <operand localId="305" locator="299:3-300:64" xsi:type="And">
+               <operand localId="307" locator="299:3-299:62" name="Three DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="309" locator="300:9-300:64" name="No pertussis booster doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="311" locator="301:9-301:53" name="Client's age is more than 6 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="314" locator="307:1-309:63" name="Pertussis immunization schedule is complete Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pertussis immunization schedule is complete Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;)"/>
+            <a:s r="314">
+               <a:s>/*
+@output: Pertussis immunization schedule is complete Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;)
+*/
+define &quot;Pertussis immunization schedule is complete Case 2&quot;:
+  </a:s>
+               <a:s r="315">
+                  <a:s r="317">
+                     <a:s r="316">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="317">
+                        <a:s>&quot;Three DTP primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="319">
+                     <a:s r="318">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="319">
+                        <a:s>&quot;One pertussis booster dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="315" locator="308:3-309:63" xsi:type="And">
+            <operand localId="317" locator="308:3-308:62" name="Three DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="319" locator="309:9-309:63" name="One pertussis booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="300" locator="315:1-317:59" name="Pertussis immunization schedule is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pertussis immunization schedule is complete"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;)"/>
+            <a:s r="300">
+               <a:s>/*
+@output: Pertussis immunization schedule is complete
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;)
+*/
+define &quot;Pertussis immunization schedule is complete&quot;:
+  </a:s>
+               <a:s r="301">
+                  <a:s r="312">
+                     <a:s>&quot;Pertussis immunization schedule is complete Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="320">
+                     <a:s>&quot;Pertussis immunization schedule is complete Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="301" locator="316:3-317:59" xsi:type="Or">
+            <operand localId="312" locator="316:3-316:54" name="Pertussis immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="320" locator="317:8-317:59" name="Pertussis immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="330" locator="326:1-333:5" name="Pertussis immunization schedule is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Pertussis immunization schedule is complete Guidance"/>
+            <a:t name="guidance" value="Pertussis immunization schedule is complete. Three DTP primary series doses were administered.&#xa;Check for any other vaccines due."/>
+            <a:t name="guidance" value="Pertussis immunization schedule is complete. Three DTP primary series doses and one pertussis booster dose were administered.&#xa;Check for any other vaccines due."/>
+            <a:s r="330">
+               <a:s>/*
+@output: Pertussis immunization schedule is complete Guidance
+@guidance: Pertussis immunization schedule is complete. Three DTP primary series doses were administered.
+Check for any other vaccines due.
+@guidance: Pertussis immunization schedule is complete. Three DTP primary series doses and one pertussis booster dose were administered.
+Check for any other vaccines due.
+*/
+define &quot;Pertussis immunization schedule is complete Guidance&quot;:
+  </a:s>
+               <a:s r="331">
+                  <a:s>case
+    </a:s>
+                  <a:s r="332">
+                     <a:s>when </a:s>
+                     <a:s r="333">
+                        <a:s>&quot;Pertussis immunization schedule is complete Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then</a:s>
+                     <a:s r="334">
+                        <a:s>'Pertussis immunization schedule is complete. Three DTP primary series doses were administered.
+Check for any other vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="335">
+                     <a:s>when </a:s>
+                     <a:s r="336">
+                        <a:s>&quot;Pertussis immunization schedule is complete Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then</a:s>
+                     <a:s r="337">
+                        <a:s>'Pertussis immunization schedule is complete. Three DTP primary series doses and one pertussis booster dose were administered.
+Check for any other vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="338">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="331" locator="327:3-333:5" xsi:type="Case">
+            <caseItem localId="332" locator="328:5-328:196">
+               <when localId="333" locator="328:10-328:61" name="Pertussis immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+               <then localId="334" locator="328:67-328:196" valueType="t:String" value="Pertussis immunization schedule is complete. Three DTP primary series doses were administered.&#xa;Check for any other vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="335" locator="330:5-330:227">
+               <when localId="336" locator="330:10-330:61" name="Pertussis immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+               <then localId="337" locator="330:67-330:227" valueType="t:String" value="Pertussis immunization schedule is complete. Three DTP primary series doses and one pertussis booster dose were administered.&#xa;Check for any other vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="338" locator="332:10-332:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="346" locator="189:1-192:77" name="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;)"/>
+            <a:s r="346">
+               <a:s>/*
+@output: Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;)
+*/
+define &quot;Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose&quot;:
+  </a:s>
+               <a:s r="347">
+                  <a:s r="348">
+                     <a:s r="350">
+                        <a:s r="349">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="350">
+                           <a:s>&quot;Three DTP primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="352">
+                        <a:s r="351">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="352">
+                           <a:s>&quot;No tetanus and diphtheria booster doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="354">
+                     <a:s r="353">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="354">
+                        <a:s>&quot;The latest DTP dose was administered more than 1 year ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="347" locator="190:3-192:77" xsi:type="And">
+            <operand localId="348" locator="190:3-191:77" xsi:type="And">
+               <operand localId="350" locator="190:3-190:62" name="Three DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="352" locator="191:9-191:77" name="No tetanus and diphtheria booster doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="354" locator="192:9-192:77" name="The latest DTP dose was administered more than 1 year ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="360" locator="199:1-200:165" name="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. &#xa;Check for contraindications."/>
+            <a:s r="360">
+               <a:s>/*
+@output: Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose Guidance
+@guidance: Should vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. 
+Check for contraindications.
+*/
+define &quot;Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose Guidance&quot;:
+ </a:s>
+               <a:s r="361">
+                  <a:s>'Should vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. 
+Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="361" locator="200:2-200:165" valueType="t:String" value="Should vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="404" locator="207:1-210:96" name="Client is not due for tetanus and diphtheria booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for tetanus and diphtheria booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;)"/>
+            <a:s r="404">
+               <a:s>/*
+@output: Client is not due for tetanus and diphtheria booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;)
+*/
+define &quot;Client is not due for tetanus and diphtheria booster dose&quot;:
+  </a:s>
+               <a:s r="405">
+                  <a:s r="406">
+                     <a:s r="408">
+                        <a:s r="407">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="408">
+                           <a:s>&quot;Three DTP primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="410">
+                        <a:s r="409">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="410">
+                           <a:s>&quot;One tetanus and diphtheria booster dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="412">
+                     <a:s r="411">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="412">
+                        <a:s>&quot;The latest tetanus and diphtheria dose was administered less than 1 year ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="405" locator="208:3-210:96" xsi:type="And">
+            <operand localId="406" locator="208:3-209:76" xsi:type="And">
+               <operand localId="408" locator="208:3-208:62" name="Three DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="410" locator="209:9-209:76" name="One tetanus and diphtheria booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="412" locator="210:9-210:96" name="The latest tetanus and diphtheria dose was administered less than 1 year ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="418" locator="217:1-218:287" name="Client is not due for tetanus and diphtheria booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for tetanus and diphtheria booster dose Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered less than 1 year ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for second tetanus and diphtheria booster dose."/>
+            <a:s r="418">
+               <a:s>/*
+@output: Client is not due for tetanus and diphtheria booster dose Guidance
+@guidance: Should not vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered less than 1 year ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for second tetanus and diphtheria booster dose.
+*/
+define &quot;Client is not due for tetanus and diphtheria booster dose Guidance&quot;:
+ </a:s>
+               <a:s r="419">
+                  <a:s>'Should not vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered less than 1 year ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for second tetanus and diphtheria booster dose.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="419" locator="218:2-218:287" valueType="t:String" value="Should not vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered less than 1 year ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for second tetanus and diphtheria booster dose." xsi:type="Literal"/>
+      </def>
+      <def localId="462" locator="225:1-228:96" name="Client is due for tetanus and diphtheria booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for tetanus and diphtheria booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;)"/>
+            <a:s r="462">
+               <a:s>/*
+@output: Client is due for tetanus and diphtheria booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;)
+*/
+define &quot;Client is due for tetanus and diphtheria booster dose&quot;:
+  </a:s>
+               <a:s r="463">
+                  <a:s r="464">
+                     <a:s r="466">
+                        <a:s r="465">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="466">
+                           <a:s>&quot;Three DTP primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="468">
+                        <a:s r="467">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="468">
+                           <a:s>&quot;One tetanus and diphtheria booster dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="470">
+                     <a:s r="469">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="470">
+                        <a:s>&quot;The latest tetanus and diphtheria dose was administered more than 1 year ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="463" locator="226:3-228:96" xsi:type="And">
+            <operand localId="464" locator="226:3-227:76" xsi:type="And">
+               <operand localId="466" locator="226:3-226:62" name="Three DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="468" locator="227:9-227:76" name="One tetanus and diphtheria booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="470" locator="228:9-228:96" name="The latest tetanus and diphtheria dose was administered more than 1 year ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="476" locator="235:1-236:185" name="Client is due for tetanus and diphtheria booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for tetanus and diphtheria booster dose Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered more than 1 year ago. &#xa;Check for contraindications."/>
+            <a:s r="476">
+               <a:s>/*
+@output: Client is due for tetanus and diphtheria booster dose Guidance
+@guidance: Should vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered more than 1 year ago. 
+Check for contraindications.
+*/
+define &quot;Client is due for tetanus and diphtheria booster dose Guidance&quot;:
+ </a:s>
+               <a:s r="477">
+                  <a:s>'Should vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered more than 1 year ago. 
+Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="477" locator="236:2-236:185" valueType="t:String" value="Should vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered more than 1 year ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="520" locator="243:1-245:78" name="Tetanus and diphtheria immunization schedule is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Tetanus and diphtheria immunization schedule is complete"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;)"/>
+            <a:s r="520">
+               <a:s>/*
+@output: Tetanus and diphtheria immunization schedule is complete
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus and diphtheria-containing vaccines&quot;)
+*/
+define &quot;Tetanus and diphtheria immunization schedule is complete&quot;:
+  </a:s>
+               <a:s r="521">
+                  <a:s r="523">
+                     <a:s r="522">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="523">
+                        <a:s>&quot;Three DTP primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="525">
+                     <a:s r="524">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="525">
+                        <a:s>&quot;Two tetanus and diphtheria booster doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="521" locator="244:3-245:78" xsi:type="And">
+            <operand localId="523" locator="244:3-244:62" name="Three DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="525" locator="245:9-245:78" name="Two tetanus and diphtheria booster doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="531" locator="252:1-253:189" name="Tetanus and diphtheria immunization schedule is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Tetanus and diphtheria immunization schedule is complete Guidance"/>
+            <a:t name="guidance" value="Tetanus and diphtheria immunization schedule is complete. Three DTP primary series doses and two tetanus and diphtheria booster doses were administered.&#xa;Check for any other vaccines due."/>
+            <a:s r="531">
+               <a:s>/*
+@output: Tetanus and diphtheria immunization schedule is complete Guidance
+@guidance: Tetanus and diphtheria immunization schedule is complete. Three DTP primary series doses and two tetanus and diphtheria booster doses were administered.
+Check for any other vaccines due.
+*/
+define &quot;Tetanus and diphtheria immunization schedule is complete Guidance&quot;:
+ </a:s>
+               <a:s r="532">
+                  <a:s>'Tetanus and diphtheria immunization schedule is complete. Three DTP primary series doses and two tetanus and diphtheria booster doses were administered.
+Check for any other vaccines due.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="532" locator="253:2-253:189" valueType="t:String" value="Tetanus and diphtheria immunization schedule is complete. Three DTP primary series doses and two tetanus and diphtheria booster doses were administered.&#xa;Check for any other vaccines due." xsi:type="Literal"/>
+      </def>
+      <def localId="578" locator="78:1-80:52" name="Client is due for DTP vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for DTP vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)"/>
+            <a:s r="578">
+               <a:s>/*
+@output: Client is due for DTP vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)
+*/
+define &quot;Client is due for DTP vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="579">
+                  <a:s r="581">
+                     <a:s r="580">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="581">
+                        <a:s>&quot;No DTP primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="583">
+                     <a:s r="582">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="583">
+                        <a:s>&quot;Client's age is more than 1 year&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="579" locator="79:3-80:52" xsi:type="And">
+            <operand localId="581" locator="79:3-79:59" name="No DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="583" locator="80:9-80:52" name="Client's age is more than 1 year" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="586" locator="86:1-88:78" name="Client is due for DTP vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for DTP vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)"/>
+            <a:s r="586">
+               <a:s>/*
+@output: Client is due for DTP vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)
+*/
+define &quot;Client is due for DTP vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="587">
+                  <a:s r="589">
+                     <a:s r="588">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="589">
+                        <a:s>&quot;One DTP primary series dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="591">
+                     <a:s r="590">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="591">
+                        <a:s>&quot;The latest DTP dose was administered more than 4 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="587" locator="87:3-88:78" xsi:type="And">
+            <operand localId="589" locator="87:3-87:58" name="One DTP primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="591" locator="88:9-88:78" name="The latest DTP dose was administered more than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="594" locator="94:1-96:79" name="Client is due for DTP vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for DTP vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)"/>
+            <a:s r="594">
+               <a:s>/*
+@output: Client is due for DTP vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)
+*/
+define &quot;Client is due for DTP vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="595">
+                  <a:s r="597">
+                     <a:s r="596">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="597">
+                        <a:s>&quot;Two DTP primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="599">
+                     <a:s r="598">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="599">
+                        <a:s>&quot;The latest DTP dose was administered more than 6 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="595" locator="95:3-96:79" xsi:type="And">
+            <operand localId="597" locator="95:3-95:60" name="Two DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="599" locator="96:9-96:79" name="The latest DTP dose was administered more than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="574" locator="102:1-105:49" name="Client is due for DTP vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for DTP vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)"/>
+            <a:s r="574">
+               <a:s>/*
+@output: Client is due for DTP vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)
+*/
+define &quot;Client is due for DTP vaccination&quot;:
+  </a:s>
+               <a:s r="575">
+                  <a:s r="576">
+                     <a:s r="584">
+                        <a:s>&quot;Client is due for DTP vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="592">
+                        <a:s>&quot;Client is due for DTP vaccination Case 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="600">
+                     <a:s>&quot;Client is due for DTP vaccination Case 3&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="575" locator="103:3-105:49" xsi:type="Or">
+            <operand localId="576" locator="103:3-104:49" xsi:type="Or">
+               <operand localId="584" locator="103:3-103:44" name="Client is due for DTP vaccination Case 1" xsi:type="ExpressionRef"/>
+               <operand localId="592" locator="104:8-104:49" name="Client is due for DTP vaccination Case 2" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="600" locator="105:8-105:49" name="Client is due for DTP vaccination Case 3" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="603" locator="116:1-125:5" name="Client is due for DTP vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for DTP vaccination Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with first DTP dose as no DTP doses were administered and client's age is more than 1 year. &#xa;Check for contraindications."/>
+            <a:t name="guidance" value="Should vaccinate client with second DTP dose as the latest DTP dose was administered more than 4 weeks ago.&#xa;Check for contraindications."/>
+            <a:t name="guidance" value="Should vaccinate client with third DTP dose as the latest DTP dose was administered more than 6 months ago. &#xa;Check for contraindications."/>
+            <a:s r="603">
+               <a:s>/*
+@output: Client is due for DTP vaccination Guidance
+@guidance: Should vaccinate client with first DTP dose as no DTP doses were administered and client's age is more than 1 year. 
+Check for contraindications.
+@guidance: Should vaccinate client with second DTP dose as the latest DTP dose was administered more than 4 weeks ago.
+Check for contraindications.
+@guidance: Should vaccinate client with third DTP dose as the latest DTP dose was administered more than 6 months ago. 
+Check for contraindications.
+*/
+define &quot;Client is due for DTP vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="604">
+                  <a:s>case
+    </a:s>
+                  <a:s r="605">
+                     <a:s>when </a:s>
+                     <a:s r="606">
+                        <a:s>&quot;Client is due for DTP vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then</a:s>
+                     <a:s r="607">
+                        <a:s>'Should vaccinate client with first DTP dose as no DTP doses were administered and client\'s age is more than 1 year. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="608">
+                     <a:s>when </a:s>
+                     <a:s r="609">
+                        <a:s>&quot;Client is due for DTP vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then</a:s>
+                     <a:s r="610">
+                        <a:s>'Should vaccinate client with second DTP dose as the latest DTP dose was administered more than 4 weeks ago.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="611">
+                     <a:s>when </a:s>
+                     <a:s r="612">
+                        <a:s>&quot;Client is due for DTP vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then</a:s>
+                     <a:s r="613">
+                        <a:s>'Should vaccinate client with third DTP dose as the latest DTP dose was administered more than 6 months ago. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="614">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="604" locator="117:3-125:5" xsi:type="Case">
+            <caseItem localId="605" locator="118:5-118:204">
+               <when localId="606" locator="118:10-118:51" name="Client is due for DTP vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="607" locator="118:57-118:204" valueType="t:String" value="Should vaccinate client with first DTP dose as no DTP doses were administered and client's age is more than 1 year. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="608" locator="120:5-120:194">
+               <when localId="609" locator="120:10-120:51" name="Client is due for DTP vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="610" locator="120:57-120:194" valueType="t:String" value="Should vaccinate client with second DTP dose as the latest DTP dose was administered more than 4 weeks ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="611" locator="122:5-122:195">
+               <when localId="612" locator="122:10-122:51" name="Client is due for DTP vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="613" locator="122:57-122:195" valueType="t:String" value="Should vaccinate client with third DTP dose as the latest DTP dose was administered more than 6 months ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="614" locator="124:10-124:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="621" locator="131:1-133:78" name="Client is not due for DTP vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for DTP vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)"/>
+            <a:s r="621">
+               <a:s>/*
+@output: Client is not due for DTP vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)
+*/
+define &quot;Client is not due for DTP vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="622">
+                  <a:s r="624">
+                     <a:s r="623">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="624">
+                        <a:s>&quot;One DTP primary series dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="626">
+                     <a:s r="625">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="626">
+                        <a:s>&quot;The latest DTP dose was administered less than 4 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="622" locator="132:3-133:78" xsi:type="And">
+            <operand localId="624" locator="132:3-132:58" name="One DTP primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="626" locator="133:9-133:78" name="The latest DTP dose was administered less than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="629" locator="139:1-141:79" name="Client is not due for DTP vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for DTP vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)"/>
+            <a:s r="629">
+               <a:s>/*
+@output: Client is not due for DTP vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)
+*/
+define &quot;Client is not due for DTP vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="630">
+                  <a:s r="632">
+                     <a:s r="631">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="632">
+                        <a:s>&quot;Two DTP primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="634">
+                     <a:s r="633">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="634">
+                        <a:s>&quot;The latest DTP dose was administered less than 6 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="630" locator="140:3-141:79" xsi:type="And">
+            <operand localId="632" locator="140:3-140:60" name="Two DTP primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="634" locator="141:9-141:79" name="The latest DTP dose was administered less than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="618" locator="147:1-149:53" name="Client is not due for DTP vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for DTP vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)"/>
+            <a:s r="618">
+               <a:s>/*
+@output: Client is not due for DTP vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot; (where &quot;Vaccine type&quot; = &quot;DTP-containing vaccines&quot;)
+*/
+define &quot;Client is not due for DTP vaccination&quot;:
+  </a:s>
+               <a:s r="619">
+                  <a:s r="627">
+                     <a:s>&quot;Client is not due for DTP vaccination Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="635">
+                     <a:s>&quot;Client is not due for DTP vaccination Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="619" locator="148:3-149:53" xsi:type="Or">
+            <operand localId="627" locator="148:3-148:48" name="Client is not due for DTP vaccination Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="635" locator="149:8-149:53" name="Client is not due for DTP vaccination Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="638" locator="158:1-165:5" name="Client is not due for DTP vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for DTP vaccination Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with second DTP dose as the latest DTP dose was administered less than 4 weeks ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for second DTP dose"/>
+            <a:t name="guidance" value="Should not vaccinate client with third DTP dose the latest DTP dose was administered less than 6 months ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for third DTP dose."/>
+            <a:s r="638">
+               <a:s>/*
+@output: Client is not due for DTP vaccination Guidance
+@guidance: Should not vaccinate client with second DTP dose as the latest DTP dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for second DTP dose
+@guidance: Should not vaccinate client with third DTP dose the latest DTP dose was administered less than 6 months ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for third DTP dose.
+*/
+define &quot;Client is not due for DTP vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="639">
+                  <a:s>case
+    </a:s>
+                  <a:s r="640">
+                     <a:s>when </a:s>
+                     <a:s r="641">
+                        <a:s>&quot;Client is not due for DTP vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then</a:s>
+                     <a:s r="642">
+                        <a:s>'Should not vaccinate client with second DTP dose as the latest DTP dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for second DTP dose'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="643">
+                     <a:s>when </a:s>
+                     <a:s r="644">
+                        <a:s>&quot;Client is not due for DTP vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then</a:s>
+                     <a:s r="645">
+                        <a:s>'Should not vaccinate client with third DTP dose the latest DTP dose was administered less than 6 months ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for third DTP dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="646">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="639" locator="159:3-165:5" xsi:type="Case">
+            <caseItem localId="640" locator="160:5-160:273">
+               <when localId="641" locator="160:10-160:55" name="Client is not due for DTP vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="642" locator="160:61-160:273" valueType="t:String" value="Should not vaccinate client with second DTP dose as the latest DTP dose was administered less than 4 weeks ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for second DTP dose" xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="643" locator="162:5-162:270">
+               <when localId="644" locator="162:10-162:55" name="Client is not due for DTP vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="645" locator="162:61-162:270" valueType="t:String" value="Should not vaccinate client with third DTP dose the latest DTP dose was administered less than 6 months ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for third DTP dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="646" locator="164:10-164:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="219" locator="23:1-69:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="219">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="220">
+                  <a:s>case
+
+    // Handling overlaps for Pertussis and Td boosters.
+    </a:s>
+                  <a:s r="221">
+                     <a:s>when </a:s>
+                     <a:s r="222">
+                        <a:s r="233">
+                           <a:s>&quot;Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="247">
+                           <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="264">
+                        <a:s r="257">
+                           <a:s r="253">
+                              <a:s>&quot;Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="254">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="261">
+                           <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="265">
+                     <a:s>when </a:s>
+                     <a:s r="266">
+                        <a:s r="267">
+                           <a:s>&quot;Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="281">
+                           <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="295">
+                        <a:s r="288">
+                           <a:s r="284">
+                              <a:s>&quot;Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="285">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="292">
+                           <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="296">
+                     <a:s>when </a:s>
+                     <a:s r="297">
+                        <a:s r="298">
+                           <a:s>&quot;Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="321">
+                           <a:s>&quot;Pertussis immunization schedule is complete&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="342">
+                        <a:s r="328">
+                           <a:s r="324">
+                              <a:s>&quot;Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="325">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="339">
+                           <a:s>&quot;Pertussis immunization schedule is complete Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="343">
+                     <a:s>when </a:s>
+                     <a:s r="344">
+                        <a:s r="355">
+                           <a:s>&quot;Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="356">
+                           <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="370">
+                        <a:s r="366">
+                           <a:s r="362">
+                              <a:s>&quot;Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="363">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="367">
+                           <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="371">
+                     <a:s>when </a:s>
+                     <a:s r="372">
+                        <a:s r="373">
+                           <a:s>&quot;Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="374">
+                           <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="385">
+                        <a:s r="381">
+                           <a:s r="377">
+                              <a:s>&quot;Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="378">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="382">
+                           <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="386">
+                     <a:s>when </a:s>
+                     <a:s r="387">
+                        <a:s r="388">
+                           <a:s>&quot;Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="389">
+                           <a:s>&quot;Pertussis immunization schedule is complete&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="400">
+                        <a:s r="396">
+                           <a:s r="392">
+                              <a:s>&quot;Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="393">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="397">
+                           <a:s>&quot;Pertussis immunization schedule is complete Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="401">
+                     <a:s>when </a:s>
+                     <a:s r="402">
+                        <a:s r="413">
+                           <a:s>&quot;Client is not due for tetanus and diphtheria booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="414">
+                           <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="428">
+                        <a:s r="424">
+                           <a:s r="420">
+                              <a:s>&quot;Client is not due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="421">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="425">
+                           <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="429">
+                     <a:s>when </a:s>
+                     <a:s r="430">
+                        <a:s r="431">
+                           <a:s>&quot;Client is not due for tetanus and diphtheria booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="432">
+                           <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="443">
+                        <a:s r="439">
+                           <a:s r="435">
+                              <a:s>&quot;Client is not due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="436">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="440">
+                           <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="444">
+                     <a:s>when </a:s>
+                     <a:s r="445">
+                        <a:s r="446">
+                           <a:s>&quot;Client is not due for tetanus and diphtheria booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="447">
+                           <a:s>&quot;Pertussis immunization schedule is complete&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="458">
+                        <a:s r="454">
+                           <a:s r="450">
+                              <a:s>&quot;Client is not due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="451">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="455">
+                           <a:s>&quot;Pertussis immunization schedule is complete Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="459">
+                     <a:s>when </a:s>
+                     <a:s r="460">
+                        <a:s r="471">
+                           <a:s>&quot;Client is due for tetanus and diphtheria booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="472">
+                           <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="486">
+                        <a:s r="482">
+                           <a:s r="478">
+                              <a:s>&quot;Client is due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="479">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="483">
+                           <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="487">
+                     <a:s>when </a:s>
+                     <a:s r="488">
+                        <a:s r="489">
+                           <a:s>&quot;Client is due for tetanus and diphtheria booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="490">
+                           <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="501">
+                        <a:s r="497">
+                           <a:s r="493">
+                              <a:s>&quot;Client is due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="494">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="498">
+                           <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="502">
+                     <a:s>when </a:s>
+                     <a:s r="503">
+                        <a:s r="504">
+                           <a:s>&quot;Client is due for tetanus and diphtheria booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="505">
+                           <a:s>&quot;Pertussis immunization schedule is complete&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="516">
+                        <a:s r="512">
+                           <a:s r="508">
+                              <a:s>&quot;Client is due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="509">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="513">
+                           <a:s>&quot;Pertussis immunization schedule is complete Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="517">
+                     <a:s>when </a:s>
+                     <a:s r="518">
+                        <a:s r="526">
+                           <a:s>&quot;Tetanus and diphtheria immunization schedule is complete&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="527">
+                           <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="541">
+                        <a:s r="537">
+                           <a:s r="533">
+                              <a:s>&quot;Tetanus and diphtheria immunization schedule is complete Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="534">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="538">
+                           <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="542">
+                     <a:s>when </a:s>
+                     <a:s r="543">
+                        <a:s r="544">
+                           <a:s>&quot;Tetanus and diphtheria immunization schedule is complete&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="545">
+                           <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="556">
+                        <a:s r="552">
+                           <a:s r="548">
+                              <a:s>&quot;Tetanus and diphtheria immunization schedule is complete Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="549">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="553">
+                           <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="557">
+                     <a:s>when </a:s>
+                     <a:s r="558">
+                        <a:s r="559">
+                           <a:s>&quot;Tetanus and diphtheria immunization schedule is complete&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="560">
+                           <a:s>&quot;Pertussis immunization schedule is complete&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+      then </a:s>
+                     <a:s r="571">
+                        <a:s r="567">
+                           <a:s r="563">
+                              <a:s>&quot;Tetanus and diphtheria immunization schedule is complete Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="564">
+                              <a:s>'\n'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="568">
+                           <a:s>&quot;Pertussis immunization schedule is complete Guidance&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+
+    </a:s>
+                  <a:s r="572">
+                     <a:s>when </a:s>
+                     <a:s r="601">
+                        <a:s>&quot;Client is due for DTP vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="615">
+                        <a:s>&quot;Client is due for DTP vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="616">
+                     <a:s>when </a:s>
+                     <a:s r="636">
+                        <a:s>&quot;Client is not due for DTP vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="647">
+                        <a:s>&quot;Client is not due for DTP vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="648">
+                     <a:s>when </a:s>
+                     <a:s r="649">
+                        <a:s>&quot;Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="650">
+                        <a:s>&quot;Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="651">
+                     <a:s>when </a:s>
+                     <a:s r="652">
+                        <a:s>&quot;Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="653">
+                        <a:s>&quot;Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="654">
+                     <a:s>when </a:s>
+                     <a:s r="655">
+                        <a:s>&quot;Client is not due for tetanus and diphtheria booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="656">
+                        <a:s>&quot;Client is not due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="657">
+                     <a:s>when </a:s>
+                     <a:s r="658">
+                        <a:s>&quot;Client is due for tetanus and diphtheria booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="659">
+                        <a:s>&quot;Client is due for tetanus and diphtheria booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="660">
+                     <a:s>when </a:s>
+                     <a:s r="661">
+                        <a:s>&quot;Tetanus and diphtheria immunization schedule is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="662">
+                        <a:s>&quot;Tetanus and diphtheria immunization schedule is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="663">
+                     <a:s>when </a:s>
+                     <a:s r="664">
+                        <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="665">
+                        <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="666">
+                     <a:s>when </a:s>
+                     <a:s r="667">
+                        <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="668">
+                        <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="669">
+                     <a:s>when </a:s>
+                     <a:s r="670">
+                        <a:s>&quot;Pertussis immunization schedule is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="671">
+                        <a:s>&quot;Pertussis immunization schedule is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="672">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="220" locator="24:3-69:5" xsi:type="Case">
+            <caseItem localId="221" locator="27:5-28:208">
+               <when localId="222" locator="27:10-27:183" xsi:type="And">
+                  <operand localId="233" locator="27:10-27:100" name="Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                  <operand localId="247" locator="27:106-27:183" name="Primary DTP series is complete. Client is not due for pertussis booster dose" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="264" locator="28:12-28:208" xsi:type="Concatenate">
+                  <operand localId="257" locator="28:12-28:118" xsi:type="Concatenate">
+                     <operand localId="253" locator="28:12-28:111" name="Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="254" locator="28:115-28:118" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="261" locator="28:122-28:208" name="Primary DTP series is complete. Client is not due for pertussis booster dose Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="265" locator="29:5-30:204">
+               <when localId="266" locator="29:10-29:179" xsi:type="And">
+                  <operand localId="267" locator="29:10-29:100" name="Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                  <operand localId="281" locator="29:106-29:179" name="Primary DTP series is complete. Client is due for pertussis booster dose" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="295" locator="30:12-30:204" xsi:type="Concatenate">
+                  <operand localId="288" locator="30:12-30:118" xsi:type="Concatenate">
+                     <operand localId="284" locator="30:12-30:111" name="Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="285" locator="30:115-30:118" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="292" locator="30:122-30:204" name="Primary DTP series is complete. Client is due for pertussis booster dose Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="296" locator="31:5-32:175">
+               <when localId="297" locator="31:10-31:150" xsi:type="And">
+                  <operand localId="298" locator="31:10-31:100" name="Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                  <operand localId="321" locator="31:106-31:150" name="Pertussis immunization schedule is complete" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="342" locator="32:12-32:175" xsi:type="Concatenate">
+                  <operand localId="328" locator="32:12-32:118" xsi:type="Concatenate">
+                     <operand localId="324" locator="32:12-32:111" name="Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="325" locator="32:115-32:118" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="339" locator="32:122-32:175" name="Pertussis immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="343" locator="33:5-34:204">
+               <when localId="344" locator="33:10-33:179" xsi:type="And">
+                  <operand localId="355" locator="33:10-33:96" name="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                  <operand localId="356" locator="33:102-33:179" name="Primary DTP series is complete. Client is not due for pertussis booster dose" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="370" locator="34:12-34:204" xsi:type="Concatenate">
+                  <operand localId="366" locator="34:12-34:114" xsi:type="Concatenate">
+                     <operand localId="362" locator="34:12-34:107" name="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="363" locator="34:111-34:114" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="367" locator="34:118-34:204" name="Primary DTP series is complete. Client is not due for pertussis booster dose Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="371" locator="35:5-36:200">
+               <when localId="372" locator="35:10-35:175" xsi:type="And">
+                  <operand localId="373" locator="35:10-35:96" name="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                  <operand localId="374" locator="35:102-35:175" name="Primary DTP series is complete. Client is due for pertussis booster dose" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="385" locator="36:12-36:200" xsi:type="Concatenate">
+                  <operand localId="381" locator="36:12-36:114" xsi:type="Concatenate">
+                     <operand localId="377" locator="36:12-36:107" name="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="378" locator="36:111-36:114" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="382" locator="36:118-36:200" name="Primary DTP series is complete. Client is due for pertussis booster dose Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="386" locator="37:5-38:171">
+               <when localId="387" locator="37:10-37:146" xsi:type="And">
+                  <operand localId="388" locator="37:10-37:96" name="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                  <operand localId="389" locator="37:102-37:146" name="Pertussis immunization schedule is complete" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="400" locator="38:12-38:171" xsi:type="Concatenate">
+                  <operand localId="396" locator="38:12-38:114" xsi:type="Concatenate">
+                     <operand localId="392" locator="38:12-38:107" name="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="393" locator="38:111-38:114" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="397" locator="38:118-38:171" name="Pertussis immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="401" locator="39:5-40:176">
+               <when localId="402" locator="39:10-39:151" xsi:type="And">
+                  <operand localId="413" locator="39:10-39:68" name="Client is not due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                  <operand localId="414" locator="39:74-39:151" name="Primary DTP series is complete. Client is not due for pertussis booster dose" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="428" locator="40:12-40:176" xsi:type="Concatenate">
+                  <operand localId="424" locator="40:12-40:86" xsi:type="Concatenate">
+                     <operand localId="420" locator="40:12-40:79" name="Client is not due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="421" locator="40:83-40:86" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="425" locator="40:90-40:176" name="Primary DTP series is complete. Client is not due for pertussis booster dose Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="429" locator="41:5-42:172">
+               <when localId="430" locator="41:10-41:147" xsi:type="And">
+                  <operand localId="431" locator="41:10-41:68" name="Client is not due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                  <operand localId="432" locator="41:74-41:147" name="Primary DTP series is complete. Client is due for pertussis booster dose" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="443" locator="42:12-42:172" xsi:type="Concatenate">
+                  <operand localId="439" locator="42:12-42:86" xsi:type="Concatenate">
+                     <operand localId="435" locator="42:12-42:79" name="Client is not due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="436" locator="42:83-42:86" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="440" locator="42:90-42:172" name="Primary DTP series is complete. Client is due for pertussis booster dose Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="444" locator="43:5-44:143">
+               <when localId="445" locator="43:10-43:118" xsi:type="And">
+                  <operand localId="446" locator="43:10-43:68" name="Client is not due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                  <operand localId="447" locator="43:74-43:118" name="Pertussis immunization schedule is complete" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="458" locator="44:12-44:143" xsi:type="Concatenate">
+                  <operand localId="454" locator="44:12-44:86" xsi:type="Concatenate">
+                     <operand localId="450" locator="44:12-44:79" name="Client is not due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="451" locator="44:83-44:86" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="455" locator="44:90-44:143" name="Pertussis immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="459" locator="45:5-46:172">
+               <when localId="460" locator="45:10-45:147" xsi:type="And">
+                  <operand localId="471" locator="45:10-45:64" name="Client is due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                  <operand localId="472" locator="45:70-45:147" name="Primary DTP series is complete. Client is not due for pertussis booster dose" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="486" locator="46:12-46:172" xsi:type="Concatenate">
+                  <operand localId="482" locator="46:12-46:82" xsi:type="Concatenate">
+                     <operand localId="478" locator="46:12-46:75" name="Client is due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="479" locator="46:79-46:82" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="483" locator="46:86-46:172" name="Primary DTP series is complete. Client is not due for pertussis booster dose Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="487" locator="47:5-48:168">
+               <when localId="488" locator="47:10-47:143" xsi:type="And">
+                  <operand localId="489" locator="47:10-47:64" name="Client is due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                  <operand localId="490" locator="47:70-47:143" name="Primary DTP series is complete. Client is due for pertussis booster dose" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="501" locator="48:12-48:168" xsi:type="Concatenate">
+                  <operand localId="497" locator="48:12-48:82" xsi:type="Concatenate">
+                     <operand localId="493" locator="48:12-48:75" name="Client is due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="494" locator="48:79-48:82" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="498" locator="48:86-48:168" name="Primary DTP series is complete. Client is due for pertussis booster dose Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="502" locator="49:5-50:139">
+               <when localId="503" locator="49:10-49:114" xsi:type="And">
+                  <operand localId="504" locator="49:10-49:64" name="Client is due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                  <operand localId="505" locator="49:70-49:114" name="Pertussis immunization schedule is complete" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="516" locator="50:12-50:139" xsi:type="Concatenate">
+                  <operand localId="512" locator="50:12-50:82" xsi:type="Concatenate">
+                     <operand localId="508" locator="50:12-50:75" name="Client is due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="509" locator="50:79-50:82" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="513" locator="50:86-50:139" name="Pertussis immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="517" locator="51:5-52:175">
+               <when localId="518" locator="51:10-51:150" xsi:type="And">
+                  <operand localId="526" locator="51:10-51:67" name="Tetanus and diphtheria immunization schedule is complete" xsi:type="ExpressionRef"/>
+                  <operand localId="527" locator="51:73-51:150" name="Primary DTP series is complete. Client is not due for pertussis booster dose" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="541" locator="52:12-52:175" xsi:type="Concatenate">
+                  <operand localId="537" locator="52:12-52:85" xsi:type="Concatenate">
+                     <operand localId="533" locator="52:12-52:78" name="Tetanus and diphtheria immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="534" locator="52:82-52:85" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="538" locator="52:89-52:175" name="Primary DTP series is complete. Client is not due for pertussis booster dose Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="542" locator="53:5-54:171">
+               <when localId="543" locator="53:10-53:146" xsi:type="And">
+                  <operand localId="544" locator="53:10-53:67" name="Tetanus and diphtheria immunization schedule is complete" xsi:type="ExpressionRef"/>
+                  <operand localId="545" locator="53:73-53:146" name="Primary DTP series is complete. Client is due for pertussis booster dose" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="556" locator="54:12-54:171" xsi:type="Concatenate">
+                  <operand localId="552" locator="54:12-54:85" xsi:type="Concatenate">
+                     <operand localId="548" locator="54:12-54:78" name="Tetanus and diphtheria immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="549" locator="54:82-54:85" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="553" locator="54:89-54:171" name="Primary DTP series is complete. Client is due for pertussis booster dose Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="557" locator="55:5-56:142">
+               <when localId="558" locator="55:10-55:117" xsi:type="And">
+                  <operand localId="559" locator="55:10-55:67" name="Tetanus and diphtheria immunization schedule is complete" xsi:type="ExpressionRef"/>
+                  <operand localId="560" locator="55:73-55:117" name="Pertussis immunization schedule is complete" xsi:type="ExpressionRef"/>
+               </when>
+               <then localId="571" locator="56:12-56:142" xsi:type="Concatenate">
+                  <operand localId="567" locator="56:12-56:85" xsi:type="Concatenate">
+                     <operand localId="563" locator="56:12-56:78" name="Tetanus and diphtheria immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+                     <operand localId="564" locator="56:82-56:85" valueType="t:String" value="&#xa;" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="568" locator="56:89-56:142" name="Pertussis immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+               </then>
+            </caseItem>
+            <caseItem localId="572" locator="58:5-58:94">
+               <when localId="601" locator="58:10-58:44" name="Client is due for DTP vaccination" xsi:type="ExpressionRef"/>
+               <then localId="615" locator="58:51-58:94" name="Client is due for DTP vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="616" locator="59:5-59:102">
+               <when localId="636" locator="59:10-59:48" name="Client is not due for DTP vaccination" xsi:type="ExpressionRef"/>
+               <then localId="647" locator="59:55-59:102" name="Client is not due for DTP vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="648" locator="60:5-60:206">
+               <when localId="649" locator="60:10-60:100" name="Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+               <then localId="650" locator="60:107-60:206" name="Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="651" locator="61:5-61:198">
+               <when localId="652" locator="61:10-61:96" name="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+               <then localId="653" locator="61:103-61:198" name="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="654" locator="62:5-62:142">
+               <when localId="655" locator="62:10-62:68" name="Client is not due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+               <then localId="656" locator="62:75-62:142" name="Client is not due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="657" locator="63:5-63:134">
+               <when localId="658" locator="63:10-63:64" name="Client is due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+               <then localId="659" locator="63:71-63:134" name="Client is due for tetanus and diphtheria booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="660" locator="64:5-64:140">
+               <when localId="661" locator="64:10-64:67" name="Tetanus and diphtheria immunization schedule is complete" xsi:type="ExpressionRef"/>
+               <then localId="662" locator="64:74-64:140" name="Tetanus and diphtheria immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="663" locator="65:5-65:180">
+               <when localId="664" locator="65:10-65:87" name="Primary DTP series is complete. Client is not due for pertussis booster dose" xsi:type="ExpressionRef"/>
+               <then localId="665" locator="65:94-65:180" name="Primary DTP series is complete. Client is not due for pertussis booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="666" locator="66:5-66:172">
+               <when localId="667" locator="66:10-66:83" name="Primary DTP series is complete. Client is due for pertussis booster dose" xsi:type="ExpressionRef"/>
+               <then localId="668" locator="66:90-66:172" name="Primary DTP series is complete. Client is due for pertussis booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="669" locator="67:5-67:114">
+               <when localId="670" locator="67:10-67:54" name="Pertussis immunization schedule is complete" xsi:type="ExpressionRef"/>
+               <then localId="671" locator="67:61-67:114" name="Pertussis immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="672" locator="68:10-68:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="674" locator="71:1-72:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="674">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="675">
+                  <a:s r="678">
+                     <a:s r="676">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="684">
+                     <a:s r="680">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="681">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="675" locator="72:3-72:45" xsi:type="And">
+            <operand localId="678" locator="72:3-72:24" xsi:type="Not">
+               <operand localId="677" locator="72:3-72:24" xsi:type="IsNull">
+                  <operand localId="676" locator="72:3-72:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="684" locator="72:30-72:45" xsi:type="Not">
+               <operand localId="679" locator="72:30-72:45" xsi:type="Equal">
+                  <signature localId="682" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="683" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="680" locator="72:30-72:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="681" locator="72:44-72:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="686" locator="339:1-388:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="686">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="687">
+                  <a:s>case
+    </a:s>
+                  <a:s r="688">
+                     <a:s>when </a:s>
+                     <a:s r="689">
+                        <a:s r="691">
+                           <a:s r="690">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="691">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="692">
+                           <a:s>'33.Agt1y'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="697">
+                        <a:s r="698">
+                           <a:s>&quot;Client is due for DTP vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="699">
+                           <a:s r="700">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="701">
+                              <a:s>'Should vaccinate client with first DTP dose as no DTP doses were administered and client\'s age is more than 1 year. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="704">
+                     <a:s>when </a:s>
+                     <a:s r="705">
+                        <a:s r="707">
+                           <a:s r="706">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="707">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="708">
+                           <a:s>'34.DTP1Dlt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="713">
+                        <a:s r="714">
+                           <a:s>&quot;Client is not due for DTP vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="715">
+                           <a:s r="716">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="717">
+                              <a:s>'Should not vaccinate client with second DTP dose as the latest DTP dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for second DTP dose'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="720">
+                     <a:s>when </a:s>
+                     <a:s r="721">
+                        <a:s r="723">
+                           <a:s r="722">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="723">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="724">
+                           <a:s>'35.DTP1Dgt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="729">
+                        <a:s r="730">
+                           <a:s>&quot;Client is due for DTP vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="731">
+                           <a:s r="732">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="733">
+                              <a:s>'Should vaccinate client with second DTP dose as the latest DTP dose was administered more than 4 weeks ago.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="736">
+                     <a:s>when </a:s>
+                     <a:s r="737">
+                        <a:s r="739">
+                           <a:s r="738">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="739">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="740">
+                           <a:s>'36.DTP2Dlt6m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="745">
+                        <a:s r="746">
+                           <a:s>&quot;Client is not due for DTP vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="747">
+                           <a:s r="748">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="749">
+                              <a:s>'Should not vaccinate client with third DTP dose the latest DTP dose was administered less than 6 months ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for third DTP dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="752">
+                     <a:s>when </a:s>
+                     <a:s r="753">
+                        <a:s r="755">
+                           <a:s r="754">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="755">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="756">
+                           <a:s>'37.DTP2Dgt6m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="761">
+                        <a:s r="762">
+                           <a:s>&quot;Client is due for DTP vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="763">
+                           <a:s r="764">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="765">
+                              <a:s>'Should vaccinate client with third DTP dose as the latest DTP dose was administered more than 6 months ago. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="768">
+                     <a:s>when </a:s>
+                     <a:s r="769">
+                        <a:s r="771">
+                           <a:s r="770">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="771">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="772">
+                           <a:s>'38.DTP3Dlt1y'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="777">
+                        <a:s r="778">
+                           <a:s r="779">
+                              <a:s>&quot;Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose&quot;</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="780">
+                              <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="781">
+                           <a:s r="782">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="783">
+                              <a:s>'Should not vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for first tetanus and diphtheria booster dose.
+Should not vaccinate client with pertussis booster dose as the latest DTP dose was administered less than 6 months ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for pertussis booster dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="786">
+                     <a:s>when </a:s>
+                     <a:s r="787">
+                        <a:s r="789">
+                           <a:s r="788">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="789">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="790">
+                           <a:s>'39.DTP3Dgt1y'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="795">
+                        <a:s r="796">
+                           <a:s r="797">
+                              <a:s>&quot;Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose&quot;</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="798">
+                              <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="799">
+                           <a:s r="800">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="801">
+                              <a:s>'Should vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. 
+Check for contraindications.
+Should vaccinate client with pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="804">
+                     <a:s>when </a:s>
+                     <a:s r="805">
+                        <a:s r="807">
+                           <a:s r="806">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="807">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="808">
+                           <a:s>'40.DTP3Td1Dlt1y'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="813">
+                        <a:s r="814">
+                           <a:s r="815">
+                              <a:s>&quot;Client is not due for tetanus and diphtheria booster dose&quot;</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="816">
+                              <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="817">
+                           <a:s r="818">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="819">
+                              <a:s>'Should not vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered less than 1 year ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for second tetanus and diphtheria booster dose.
+Should vaccinate client with pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="822">
+                     <a:s>when </a:s>
+                     <a:s r="823">
+                        <a:s r="825">
+                           <a:s r="824">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="825">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="826">
+                           <a:s>'41.DTP3Td1Dgt1y'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="831">
+                        <a:s r="832">
+                           <a:s r="833">
+                              <a:s>&quot;Client is due for tetanus and diphtheria booster dose&quot;</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="834">
+                              <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="835">
+                           <a:s r="836">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="837">
+                              <a:s>'Should vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered more than 1 year ago. 
+Check for contraindications.
+Should vaccinate client with pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="840">
+                     <a:s>when </a:s>
+                     <a:s r="841">
+                        <a:s r="843">
+                           <a:s r="842">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="843">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="844">
+                           <a:s>'42.DTP3Td2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="849">
+                        <a:s r="850">
+                           <a:s r="851">
+                              <a:s>&quot;Tetanus and diphtheria immunization schedule is complete&quot;</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="852">
+                              <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="853">
+                           <a:s r="854">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="855">
+                              <a:s>'Tetanus and diphtheria immunization schedule is complete. Three DTP primary series doses and two tetanus and diphtheria booster doses were administered.
+Check for any other vaccines due.
+Should not vaccinate client with pertussis booster dose as the latest DTP dose was administered less than 6 months ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for pertussis booster dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="858">
+                     <a:s>when </a:s>
+                     <a:s r="859">
+                        <a:s r="861">
+                           <a:s r="860">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="861">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="862">
+                           <a:s>'43.DTP3P0Abt1y6yDlt6m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="867">
+                        <a:s r="868">
+                           <a:s r="869">
+                              <a:s>&quot;Primary DTP series is complete. Client is not due for pertussis booster dose&quot;</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="870">
+                              <a:s>&quot;Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="871">
+                           <a:s r="872">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="873">
+                              <a:s>'Should not vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for first tetanus and diphtheria booster dose.
+Should not vaccinate client with pertussis booster dose as the latest DTP dose was administered less than 6 months ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for pertussis booster dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="876">
+                     <a:s>when </a:s>
+                     <a:s r="877">
+                        <a:s r="879">
+                           <a:s r="878">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="879">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="880">
+                           <a:s>'44.DTP3P0Abt1y6yDgt6m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="885">
+                        <a:s r="886">
+                           <a:s r="887">
+                              <a:s>&quot;Primary DTP series is complete. Client is due for pertussis booster dose&quot;</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="888">
+                              <a:s>&quot;Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="889">
+                           <a:s r="890">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="891">
+                              <a:s>'Should vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. 
+Check for contraindications.
+Should vaccinate client with pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="894">
+                     <a:s>when </a:s>
+                     <a:s r="895">
+                        <a:s r="897">
+                           <a:s r="896">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="897">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="898">
+                           <a:s>'45.DTP3P0Agt6y'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="903">
+                        <a:s r="904">
+                           <a:s r="905">
+                              <a:s>&quot;Pertussis immunization schedule is complete Case 1&quot;</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="906">
+                              <a:s>&quot;Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="907">
+                           <a:s r="908">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="909">
+                              <a:s>'Should vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. 
+Check for contraindications.
+Pertussis immunization schedule is complete. Three DTP primary series doses were administered.
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="912">
+                     <a:s>when </a:s>
+                     <a:s r="913">
+                        <a:s r="915">
+                           <a:s r="914">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="915">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="916">
+                           <a:s>'46.DTP3P1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="921">
+                        <a:s r="922">
+                           <a:s r="923">
+                              <a:s>&quot;Pertussis immunization schedule is complete Case 2&quot;</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="924">
+                              <a:s>&quot;Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="925">
+                           <a:s r="926">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="927">
+                              <a:s>'Should vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. 
+Check for contraindications.
+Pertussis immunization schedule is complete. Three DTP primary series doses and one pertussis booster dose were administered.
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="930">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="687" locator="340:3-388:5" xsi:type="Case">
+            <caseItem localId="688" locator="341:5-341:246">
+               <when localId="689" locator="341:10-341:32" xsi:type="Equal">
+                  <signature localId="695" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="696" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="693" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="694" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="691" locator="341:10-341:19" path="id" xsi:type="Property">
+                        <source localId="690" locator="341:10-341:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="692" locator="341:23-341:32" valueType="t:String" value="33.Agt1y" xsi:type="Literal"/>
+               </when>
+               <then localId="931" xsi:type="As">
+                  <operand localId="697" locator="341:39-341:246" xsi:type="And">
+                     <operand localId="698" locator="341:39-341:80" name="Client is due for DTP vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="699" locator="341:86-341:246" xsi:type="Equal">
+                        <signature localId="702" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="703" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="700" locator="341:86-341:95" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="701" locator="341:99-341:246" valueType="t:String" value="Should vaccinate client with first DTP dose as no DTP doses were administered and client's age is more than 1 year. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="932" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="933" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="934" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="704" locator="343:5-343:319">
+               <when localId="705" locator="343:10-343:36" xsi:type="Equal">
+                  <signature localId="711" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="712" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="709" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="710" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="707" locator="343:10-343:19" path="id" xsi:type="Property">
+                        <source localId="706" locator="343:10-343:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="708" locator="343:23-343:36" valueType="t:String" value="34.DTP1Dlt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="935" xsi:type="As">
+                  <operand localId="713" locator="343:43-343:319" xsi:type="And">
+                     <operand localId="714" locator="343:43-343:88" name="Client is not due for DTP vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="715" locator="343:94-343:319" xsi:type="Equal">
+                        <signature localId="718" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="719" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="716" locator="343:94-343:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="717" locator="343:107-343:319" valueType="t:String" value="Should not vaccinate client with second DTP dose as the latest DTP dose was administered less than 4 weeks ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for second DTP dose" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="936" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="937" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="938" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="720" locator="345:5-345:240">
+               <when localId="721" locator="345:10-345:36" xsi:type="Equal">
+                  <signature localId="727" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="728" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="725" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="726" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="723" locator="345:10-345:19" path="id" xsi:type="Property">
+                        <source localId="722" locator="345:10-345:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="724" locator="345:23-345:36" valueType="t:String" value="35.DTP1Dgt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="939" xsi:type="As">
+                  <operand localId="729" locator="345:43-345:240" xsi:type="And">
+                     <operand localId="730" locator="345:43-345:84" name="Client is due for DTP vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="731" locator="345:90-345:240" xsi:type="Equal">
+                        <signature localId="734" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="735" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="732" locator="345:90-345:99" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="733" locator="345:103-345:240" valueType="t:String" value="Should vaccinate client with second DTP dose as the latest DTP dose was administered more than 4 weeks ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="940" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="941" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="942" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="736" locator="347:5-347:316">
+               <when localId="737" locator="347:10-347:36" xsi:type="Equal">
+                  <signature localId="743" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="744" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="741" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="742" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="739" locator="347:10-347:19" path="id" xsi:type="Property">
+                        <source localId="738" locator="347:10-347:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="740" locator="347:23-347:36" valueType="t:String" value="36.DTP2Dlt6m" xsi:type="Literal"/>
+               </when>
+               <then localId="943" xsi:type="As">
+                  <operand localId="745" locator="347:43-347:316" xsi:type="And">
+                     <operand localId="746" locator="347:43-347:88" name="Client is not due for DTP vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="747" locator="347:94-347:316" xsi:type="Equal">
+                        <signature localId="750" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="751" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="748" locator="347:94-347:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="749" locator="347:107-347:316" valueType="t:String" value="Should not vaccinate client with third DTP dose the latest DTP dose was administered less than 6 months ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for third DTP dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="944" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="945" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="946" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="752" locator="349:5-349:241">
+               <when localId="753" locator="349:10-349:36" xsi:type="Equal">
+                  <signature localId="759" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="760" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="757" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="758" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="755" locator="349:10-349:19" path="id" xsi:type="Property">
+                        <source localId="754" locator="349:10-349:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="756" locator="349:23-349:36" valueType="t:String" value="37.DTP2Dgt6m" xsi:type="Literal"/>
+               </when>
+               <then localId="947" xsi:type="As">
+                  <operand localId="761" locator="349:43-349:241" xsi:type="And">
+                     <operand localId="762" locator="349:43-349:84" name="Client is due for DTP vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="763" locator="349:90-349:241" xsi:type="Equal">
+                        <signature localId="766" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="767" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="764" locator="349:90-349:99" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="765" locator="349:103-349:241" valueType="t:String" value="Should vaccinate client with third DTP dose as the latest DTP dose was administered more than 6 months ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="948" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="949" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="950" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="768" locator="351:5-351:727">
+               <when localId="769" locator="351:10-351:36" xsi:type="Equal">
+                  <signature localId="775" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="776" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="773" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="774" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="771" locator="351:10-351:19" path="id" xsi:type="Property">
+                        <source localId="770" locator="351:10-351:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="772" locator="351:23-351:36" valueType="t:String" value="38.DTP3Dlt1y" xsi:type="Literal"/>
+               </when>
+               <then localId="951" xsi:type="As">
+                  <operand localId="777" locator="351:43-351:727" xsi:type="And">
+                     <operand localId="778" locator="351:43-351:216" xsi:type="And">
+                        <operand localId="779" locator="351:43-351:133" name="Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                        <operand localId="780" locator="351:139-351:216" name="Primary DTP series is complete. Client is not due for pertussis booster dose" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="781" locator="351:222-351:727" xsi:type="Equal">
+                        <signature localId="784" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="785" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="782" locator="351:222-351:231" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="783" locator="351:235-351:727" valueType="t:String" value="Should not vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for first tetanus and diphtheria booster dose.&#xa;Should not vaccinate client with pertussis booster dose as the latest DTP dose was administered less than 6 months ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for pertussis booster dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="952" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="953" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="954" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="786" locator="355:5-355:625">
+               <when localId="787" locator="355:10-355:36" xsi:type="Equal">
+                  <signature localId="793" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="794" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="791" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="792" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="789" locator="355:10-355:19" path="id" xsi:type="Property">
+                        <source localId="788" locator="355:10-355:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="790" locator="355:23-355:36" valueType="t:String" value="39.DTP3Dgt1y" xsi:type="Literal"/>
+               </when>
+               <then localId="955" xsi:type="As">
+                  <operand localId="795" locator="355:43-355:625" xsi:type="And">
+                     <operand localId="796" locator="355:43-355:208" xsi:type="And">
+                        <operand localId="797" locator="355:43-355:129" name="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                        <operand localId="798" locator="355:135-355:208" name="Primary DTP series is complete. Client is due for pertussis booster dose" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="799" locator="355:214-355:625" xsi:type="Equal">
+                        <signature localId="802" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="803" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="800" locator="355:214-355:223" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="801" locator="355:227-355:625" valueType="t:String" value="Should vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. &#xa;Check for contraindications.&#xa;Should vaccinate client with pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="956" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="957" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="958" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="804" locator="359:5-359:722">
+               <when localId="805" locator="359:10-359:39" xsi:type="Equal">
+                  <signature localId="811" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="812" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="809" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="810" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="807" locator="359:10-359:19" path="id" xsi:type="Property">
+                        <source localId="806" locator="359:10-359:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="808" locator="359:23-359:39" valueType="t:String" value="40.DTP3Td1Dlt1y" xsi:type="Literal"/>
+               </when>
+               <then localId="959" xsi:type="As">
+                  <operand localId="813" locator="359:46-359:722" xsi:type="And">
+                     <operand localId="814" locator="359:46-359:183" xsi:type="And">
+                        <operand localId="815" locator="359:46-359:104" name="Client is not due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                        <operand localId="816" locator="359:110-359:183" name="Primary DTP series is complete. Client is due for pertussis booster dose" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="817" locator="359:189-359:722" xsi:type="Equal">
+                        <signature localId="820" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="821" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="818" locator="359:189-359:198" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="819" locator="359:202-359:722" valueType="t:String" value="Should not vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered less than 1 year ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for second tetanus and diphtheria booster dose.&#xa;Should vaccinate client with pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="960" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="961" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="962" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="822" locator="363:5-363:616">
+               <when localId="823" locator="363:10-363:39" xsi:type="Equal">
+                  <signature localId="829" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="830" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="827" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="828" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="825" locator="363:10-363:19" path="id" xsi:type="Property">
+                        <source localId="824" locator="363:10-363:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="826" locator="363:23-363:39" valueType="t:String" value="41.DTP3Td1Dgt1y" xsi:type="Literal"/>
+               </when>
+               <then localId="963" xsi:type="As">
+                  <operand localId="831" locator="363:46-363:616" xsi:type="And">
+                     <operand localId="832" locator="363:46-363:179" xsi:type="And">
+                        <operand localId="833" locator="363:46-363:100" name="Client is due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                        <operand localId="834" locator="363:106-363:179" name="Primary DTP series is complete. Client is due for pertussis booster dose" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="835" locator="363:185-363:616" xsi:type="Equal">
+                        <signature localId="838" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="839" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="836" locator="363:185-363:194" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="837" locator="363:198-363:616" valueType="t:String" value="Should vaccinate client with second tetanus and diphtheria booster dose as the latest tetanus and diphtheria dose was administered more than 1 year ago. &#xa;Check for contraindications.&#xa;Should vaccinate client with pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="964" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="965" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="966" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="840" locator="367:5-367:615">
+               <when localId="841" locator="367:10-367:34" xsi:type="Equal">
+                  <signature localId="847" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="848" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="845" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="846" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="843" locator="367:10-367:19" path="id" xsi:type="Property">
+                        <source localId="842" locator="367:10-367:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="844" locator="367:23-367:34" valueType="t:String" value="42.DTP3Td2" xsi:type="Literal"/>
+               </when>
+               <then localId="967" xsi:type="As">
+                  <operand localId="849" locator="367:41-367:615" xsi:type="And">
+                     <operand localId="850" locator="367:41-367:181" xsi:type="And">
+                        <operand localId="851" locator="367:41-367:98" name="Tetanus and diphtheria immunization schedule is complete" xsi:type="ExpressionRef"/>
+                        <operand localId="852" locator="367:104-367:181" name="Primary DTP series is complete. Client is not due for pertussis booster dose" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="853" locator="367:187-367:615" xsi:type="Equal">
+                        <signature localId="856" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="857" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="854" locator="367:187-367:196" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="855" locator="367:200-367:615" valueType="t:String" value="Tetanus and diphtheria immunization schedule is complete. Three DTP primary series doses and two tetanus and diphtheria booster doses were administered.&#xa;Check for any other vaccines due.&#xa;Should not vaccinate client with pertussis booster dose as the latest DTP dose was administered less than 6 months ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for pertussis booster dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="968" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="969" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="970" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="858" locator="371:5-371:736">
+               <when localId="859" locator="371:10-371:45" xsi:type="Equal">
+                  <signature localId="865" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="866" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="863" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="864" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="861" locator="371:10-371:19" path="id" xsi:type="Property">
+                        <source localId="860" locator="371:10-371:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="862" locator="371:23-371:45" valueType="t:String" value="43.DTP3P0Abt1y6yDlt6m" xsi:type="Literal"/>
+               </when>
+               <then localId="971" xsi:type="As">
+                  <operand localId="867" locator="371:52-371:736" xsi:type="And">
+                     <operand localId="868" locator="371:52-371:225" xsi:type="And">
+                        <operand localId="869" locator="371:52-371:129" name="Primary DTP series is complete. Client is not due for pertussis booster dose" xsi:type="ExpressionRef"/>
+                        <operand localId="870" locator="371:135-371:225" name="Primary DTP series is complete. Client is not due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="871" locator="371:231-371:736" xsi:type="Equal">
+                        <signature localId="874" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="875" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="872" locator="371:231-371:240" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="873" locator="371:244-371:736" valueType="t:String" value="Should not vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered less than 1 year ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for first tetanus and diphtheria booster dose.&#xa;Should not vaccinate client with pertussis booster dose as the latest DTP dose was administered less than 6 months ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for pertussis booster dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="972" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="973" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="974" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="876" locator="375:5-375:634">
+               <when localId="877" locator="375:10-375:45" xsi:type="Equal">
+                  <signature localId="883" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="884" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="881" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="882" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="879" locator="375:10-375:19" path="id" xsi:type="Property">
+                        <source localId="878" locator="375:10-375:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="880" locator="375:23-375:45" valueType="t:String" value="44.DTP3P0Abt1y6yDgt6m" xsi:type="Literal"/>
+               </when>
+               <then localId="975" xsi:type="As">
+                  <operand localId="885" locator="375:52-375:634" xsi:type="And">
+                     <operand localId="886" locator="375:52-375:217" xsi:type="And">
+                        <operand localId="887" locator="375:52-375:125" name="Primary DTP series is complete. Client is due for pertussis booster dose" xsi:type="ExpressionRef"/>
+                        <operand localId="888" locator="375:131-375:217" name="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="889" locator="375:223-375:634" xsi:type="Equal">
+                        <signature localId="892" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="893" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="890" locator="375:223-375:232" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="891" locator="375:236-375:634" valueType="t:String" value="Should vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. &#xa;Check for contraindications.&#xa;Should vaccinate client with pertussis booster dose as no pertussis booster doses were administered, client is within appropriate age range and the latest DTP dose was administered more than 6 months ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="976" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="977" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="978" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="894" locator="379:5-379:499">
+               <when localId="895" locator="379:10-379:38" xsi:type="Equal">
+                  <signature localId="901" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="902" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="899" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="900" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="897" locator="379:10-379:19" path="id" xsi:type="Property">
+                        <source localId="896" locator="379:10-379:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="898" locator="379:23-379:38" valueType="t:String" value="45.DTP3P0Agt6y" xsi:type="Literal"/>
+               </when>
+               <then localId="979" xsi:type="As">
+                  <operand localId="903" locator="379:45-379:499" xsi:type="And">
+                     <operand localId="904" locator="379:45-379:188" xsi:type="And">
+                        <operand localId="905" locator="379:45-379:96" name="Pertussis immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+                        <operand localId="906" locator="379:102-379:188" name="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="907" locator="379:194-379:499" xsi:type="Equal">
+                        <signature localId="910" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="911" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="908" locator="379:194-379:203" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="909" locator="379:207-379:499" valueType="t:String" value="Should vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. &#xa;Check for contraindications.&#xa;Pertussis immunization schedule is complete. Three DTP primary series doses were administered.&#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="980" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="981" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="982" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="912" locator="383:5-383:525">
+               <when localId="913" locator="383:10-383:33" xsi:type="Equal">
+                  <signature localId="919" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="920" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="917" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="918" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="915" locator="383:10-383:19" path="id" xsi:type="Property">
+                        <source localId="914" locator="383:10-383:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="916" locator="383:23-383:33" valueType="t:String" value="46.DTP3P1" xsi:type="Literal"/>
+               </when>
+               <then localId="983" xsi:type="As">
+                  <operand localId="921" locator="383:40-383:525" xsi:type="And">
+                     <operand localId="922" locator="383:40-383:183" xsi:type="And">
+                        <operand localId="923" locator="383:40-383:91" name="Pertussis immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+                        <operand localId="924" locator="383:97-383:183" name="Primary DTP series is complete. Client is due for tetanus and diphtheria booster dose" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="925" locator="383:189-383:525" xsi:type="Equal">
+                        <signature localId="928" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="929" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="926" locator="383:189-383:198" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="927" locator="383:202-383:525" valueType="t:String" value="Should vaccinate client with first tetanus and diphtheria booster dose as the latest DTP dose was administered more than 1 year ago. &#xa;Check for contraindications.&#xa;Pertussis immunization schedule is complete. Three DTP primary series doses and one pertussis booster dose were administered.&#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="984" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="985" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="986" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="987" xsi:type="As">
+               <operand localId="930" locator="387:10-387:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="988" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="989" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="990" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

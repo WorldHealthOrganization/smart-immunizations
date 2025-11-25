@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureMap xmlns="http://hl7.org/fhir">
+  <id value="IMMZ-C-QRToLM"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">Placeholder</div>
+  </text>
+  <url value="http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-QRToLM"/>
+  <version value="0.1.0"/>
+  <name value="IMMZ-C-QRToLM"/>
+  <status value="draft"/>
+  <date value="2023-09-27T13:52:37+00:00"/>
+  <publisher value="World Health Organization (WHO)"/>
+  <contact>
+    <name value="World Health Organization (WHO)"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.who.int"/>
+    </telecom>
+  </contact>
+  <jurisdiction>
+    <coding>
+      <system value="http://unstats.un.org/unsd/methods/m49/m49.htm"/>
+      <code value="001"/>
+    </coding>
+  </jurisdiction>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
+    <mode value="source"/>
+    <alias value="QResp"/>
+  </structure>
+  <structure>
+    <url value="http://fhir.org/guides/who/smart-immunization/StructureDefinition/IMMZ-C-register-client"/>
+    <mode value="target"/>
+    <alias value="IMMZC"/>
+  </structure>
+  <group>
+    <name value="QRespToIMMZC"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="qr"/>
+      <type value="QResp"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immzc"/>
+      <type value="IMMZC"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="process items"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+      </source>
+      <rule>
+        <name value="first answer for identifier"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'uniqueId'"/>
+        </source>
+        <rule>
+          <name value="set identifier"/>
+          <source>
+            <context value="answer"/>
+            <element value="valueString"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="uniqueId"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="set names"/>
+        <source>
+          <context value="item"/>
+          <variable value="name"/>
+          <condition value="item.linkId = 'name'"/>
+        </source>
+        <dependent>
+          <name value="NameToIMMZC"/>
+          <variable value="name"/>
+          <variable value="immzc"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="first answer for identifier"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'sex'"/>
+        </source>
+        <rule>
+          <name value="process coding"/>
+          <source>
+            <context value="answer"/>
+            <element value="valueCoding"/>
+            <variable value="coding"/>
+          </source>
+          <rule>
+            <name value="set sex"/>
+            <source>
+              <context value="coding"/>
+              <element value="code"/>
+              <variable value="content"/>
+            </source>
+            <target>
+              <context value="immzc"/>
+              <contextType value="variable"/>
+              <element value="sex"/>
+              <transform value="copy"/>
+              <parameter>
+                <valueId value="content"/>
+              </parameter>
+            </target>
+          </rule>
+        </rule>
+      </rule>
+      <rule>
+        <name value="first answer for birthDate"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'birthDate'"/>
+        </source>
+        <rule>
+          <name value="set birthDate"/>
+          <source>
+            <context value="answer"/>
+            <element value="valueDate"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="birthDate"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="first answer for ageInWeeks"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'ageInWeeks'"/>
+        </source>
+        <rule>
+          <name value="set ageInWeeks"/>
+          <source>
+            <context value="answer"/>
+            <element value="valueInteger"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="ageInWeeks"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="first answer for ageInMonths"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'ageInMonths'"/>
+        </source>
+        <rule>
+          <name value="set ageInMonths"/>
+          <source>
+            <context value="answer"/>
+            <element value="valueInteger"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="ageInMonths"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="first answer for ageInYears"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'ageInYears'"/>
+        </source>
+        <rule>
+          <name value="set ageInYears"/>
+          <source>
+            <context value="answer"/>
+            <element value="valueInteger"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="ageInWeeks"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="set caregiver"/>
+        <source>
+          <context value="item"/>
+          <variable value="caregiver"/>
+          <condition value="item.linkId = 'caregiver'"/>
+        </source>
+        <target>
+          <context value="immzc"/>
+          <contextType value="variable"/>
+          <element value="caregiver"/>
+          <variable value="caretgt"/>
+        </target>
+        <dependent>
+          <name value="NameToIMMZC"/>
+          <variable value="caregiver"/>
+          <variable value="caretgt"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="first answer for phone"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'phone'"/>
+        </source>
+        <rule>
+          <name value="set phone"/>
+          <source>
+            <context value="answer"/>
+            <element value="valueString"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="phone"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="first answer for administrativeArea"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'administrativeArea'"/>
+        </source>
+        <rule>
+          <name value="set coding"/>
+          <source>
+            <context value="answer"/>
+            <element value="valueCoding"/>
+            <variable value="coding"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="administrativeArea"/>
+            <variable value="area"/>
+          </target>
+          <rule>
+            <name value="set coding value"/>
+            <source>
+              <context value="coding"/>
+            </source>
+            <target>
+              <context value="area"/>
+              <contextType value="variable"/>
+              <element value="coding"/>
+              <transform value="copy"/>
+              <parameter>
+                <valueId value="coding"/>
+              </parameter>
+            </target>
+          </rule>
+          <rule>
+            <name value="set display"/>
+            <source>
+              <context value="coding"/>
+              <element value="display"/>
+              <variable value="display"/>
+            </source>
+            <target>
+              <context value="area"/>
+              <contextType value="variable"/>
+              <element value="text"/>
+              <transform value="copy"/>
+              <parameter>
+                <valueId value="display"/>
+              </parameter>
+            </target>
+          </rule>
+        </rule>
+      </rule>
+      <rule>
+        <name value="first answer for healthWorker"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'healthWorker'"/>
+        </source>
+        <rule>
+          <name value="set healthWorker"/>
+          <source>
+            <context value="answer"/>
+            <element value="valueBoolean"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="healthWorker"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="NameToIMMZC"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="name"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immzc"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="process name items"/>
+      <source>
+        <context value="name"/>
+        <element value="item"/>
+        <variable value="item"/>
+      </source>
+      <rule>
+        <name value="first answer for full name"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'fullName'"/>
+        </source>
+        <rule>
+          <name value="set full name"/>
+          <source>
+            <context value="answer"/>
+            <element value="valueString"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="name"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="first answer for first name"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'firstName'"/>
+        </source>
+        <rule>
+          <name value="set first name"/>
+          <source>
+            <context value="answer"/>
+            <element value="valueString"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="firstName"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="first answer for family name"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'familyName'"/>
+        </source>
+        <rule>
+          <name value="set family name"/>
+          <source>
+            <context value="answer"/>
+            <element value="valueString"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="familyName"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+</StructureMap>

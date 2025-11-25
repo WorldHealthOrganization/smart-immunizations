@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="286">
+         <a:s>/*
+ * Library: IMMZD5DTSeasonalInfluenzaContraindicationsLogic (IMMZ.D5.DT.Seasonal influenza contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due
+ * Decision Table: IMMZ.D5.DT.Seasonal influenza contraindications
+ * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
+ */
+library IMMZD5DTSeasonalInfluenzaContraindicationsLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD5DTSeasonalInfluenzaContraindicationsLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="9:1-9:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="10:1-10:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="12:1-12:67" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD5DTSeasonalinfluenzaEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD5DTSeasonalinfluenzaEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="212" locator="14:1-14:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>parameter Today </a:s>
+               <a:s r="216">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="215">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="215" locator="14:30-14:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="216" locator="14:17-14:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="16:1-16:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="16:1-16:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="224" locator="21:3-22:78" name="Draft Medication Request ID for Seasonal influenza dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Draft Medication Request ID for Seasonal influenza dose"/>
+            <a:s r="224">
+               <a:s>/*
+  @dynamicValue: Draft Medication Request ID for Seasonal influenza dose
+  */
+  define &quot;Draft Medication Request ID for Seasonal influenza dose&quot;:
+    </a:s>
+               <a:s r="230">
+                  <a:s r="229">
+                     <a:s>First(</a:s>
+                     <a:s r="226">
+                        <a:s r="225">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="226">
+                           <a:s>&quot;Draft Medication Request for Seasonal influenza dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="230">
+                     <a:s>id</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="230" locator="22:5-22:78" path="id" xsi:type="Property">
+            <source localId="229" locator="22:5-22:75" xsi:type="First">
+               <source localId="226" locator="22:11-22:74" name="Draft Medication Request for Seasonal influenza dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </source>
+         </expression>
+      </def>
+      <def localId="242" locator="41:1-42:64" name="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="242">
+               <a:s>/*
+@output: Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1
+@pseudocode: '&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1&quot;:
+  </a:s>
+               <a:s r="244">
+                  <a:s r="243">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="244">
+                     <a:s>&quot;The client has a history of anaphylactic reactions&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="244" locator="42:3-42:64" name="The client has a history of anaphylactic reactions" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="248" locator="48:1-49:115" name="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="248">
+               <a:s>/*
+@output: Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2
+@pseudocode: '&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2&quot;:
+  </a:s>
+               <a:s r="250">
+                  <a:s r="249">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="250">
+                     <a:s>&quot;The client has a history of severe allergic reactions after a previous dose or to a vaccine component&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="250" locator="49:3-49:115" name="The client has a history of severe allergic reactions after a previous dose or to a vaccine component" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="238" locator="55:1-57:127" name="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="238">
+               <a:s>/*
+@output: Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note
+@pseudocode: '&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;:
+  </a:s>
+               <a:s r="239">
+                  <a:s r="245">
+                     <a:s>&quot;Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="251">
+                     <a:s>&quot;Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="239" locator="56:3-57:127" xsi:type="Or">
+            <operand localId="245" locator="56:3-56:122" name="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="251" locator="57:8-57:127" name="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="255" locator="64:1-69:5" name="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance"/>
+            <a:s r="255">
+               <a:s>/*
+@output: Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance
+@guidance = Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component.
+@guidance = Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component.
+*/
+define &quot;Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance&quot;:
+  </a:s>
+               <a:s r="256">
+                  <a:s>case
+    </a:s>
+                  <a:s r="257">
+                     <a:s>when </a:s>
+                     <a:s r="258">
+                        <a:s>&quot;Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="259">
+                        <a:s>'Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="261">
+                     <a:s>when </a:s>
+                     <a:s r="262">
+                        <a:s>&quot;Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="263">
+                        <a:s>'Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="265">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="256" locator="65:3-69:5" xsi:type="Case">
+            <caseItem localId="257" locator="66:5-66:297">
+               <when localId="258" locator="66:10-66:129" name="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1" xsi:type="ExpressionRef"/>
+               <then localId="259" locator="66:136-66:297" valueType="t:String" value="Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="261" locator="67:5-67:297">
+               <when localId="262" locator="67:10-67:129" name="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2" xsi:type="ExpressionRef"/>
+               <then localId="263" locator="67:136-67:297" valueType="t:String" value="Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="265" locator="68:10-68:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="233" locator="28:1-32:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="233">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="234">
+                  <a:s>case 
+    </a:s>
+                  <a:s r="235">
+                     <a:s>when </a:s>
+                     <a:s r="252">
+                        <a:s>&quot;Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="267">
+                        <a:s>&quot;Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+    else </a:s>
+                  <a:s r="268">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="234" locator="29:3-32:5" xsi:type="Case">
+            <caseItem localId="235" locator="30:5-30:250">
+               <when localId="252" locator="30:10-30:122" name="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+               <then localId="267" locator="30:129-30:250" name="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="268" locator="31:10-31:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="272" locator="34:1-35:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="272">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="273">
+                  <a:s r="276">
+                     <a:s r="274">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="283">
+                     <a:s r="278">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="279">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="273" locator="35:3-35:45" xsi:type="And">
+            <operand localId="276" locator="35:3-35:24" xsi:type="Not">
+               <operand localId="275" locator="35:3-35:24" xsi:type="IsNull">
+                  <operand localId="274" locator="35:3-35:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="283" locator="35:30-35:45" xsi:type="Not">
+               <operand localId="277" locator="35:30-35:45" xsi:type="Equal">
+                  <signature localId="281" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="282" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="278" locator="35:30-35:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="279" locator="35:44-35:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="286" locator="75:1-80:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="286">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="287">
+                  <a:s>case
+    </a:s>
+                  <a:s r="288">
+                     <a:s>when </a:s>
+                     <a:s r="289">
+                        <a:s r="291">
+                           <a:s r="290">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="291">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="292">
+                           <a:s>'Seasonalinfluenza21.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="298">
+                        <a:s r="299">
+                           <a:s>&quot;Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="300">
+                           <a:s r="301">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="302">
+                              <a:s>'Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="306">
+                     <a:s>when </a:s>
+                     <a:s r="307">
+                        <a:s r="309">
+                           <a:s r="308">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="309">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="310">
+                           <a:s>'Seasonalinfluenza22.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="316">
+                        <a:s r="317">
+                           <a:s>&quot;Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="318">
+                           <a:s r="319">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="320">
+                              <a:s>'Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="324">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="287" locator="76:3-80:5" xsi:type="Case">
+            <caseItem localId="288" locator="77:5-77:351">
+               <when localId="289" locator="77:10-77:45" xsi:type="Equal">
+                  <signature localId="296" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="297" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="294" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="295" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="291" locator="77:10-77:19" path="id" xsi:type="Property">
+                        <source localId="290" locator="77:10-77:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="292" locator="77:23-77:45" valueType="t:String" value="Seasonalinfluenza21.1" xsi:type="Literal"/>
+               </when>
+               <then localId="326" xsi:type="As">
+                  <operand localId="298" locator="77:52-77:351" xsi:type="And">
+                     <operand localId="299" locator="77:52-77:171" name="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="300" locator="77:177-77:351" xsi:type="Equal">
+                        <signature localId="304" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="305" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="301" locator="77:177-77:186" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="302" locator="77:190-77:351" valueType="t:String" value="Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="327" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="328" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="329" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="306" locator="78:5-78:351">
+               <when localId="307" locator="78:10-78:45" xsi:type="Equal">
+                  <signature localId="314" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="315" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="312" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="313" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="309" locator="78:10-78:19" path="id" xsi:type="Property">
+                        <source localId="308" locator="78:10-78:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="310" locator="78:23-78:45" valueType="t:String" value="Seasonalinfluenza22.1" xsi:type="Literal"/>
+               </when>
+               <then localId="330" xsi:type="As">
+                  <operand localId="316" locator="78:52-78:351" xsi:type="And">
+                     <operand localId="317" locator="78:52-78:171" name="Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="318" locator="78:177-78:351" xsi:type="Equal">
+                        <signature localId="322" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="323" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="319" locator="78:177-78:186" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="320" locator="78:190-78:351" valueType="t:String" value="Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="331" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="332" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="333" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="334" xsi:type="As">
+               <operand localId="324" locator="79:10-79:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="335" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="336" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="337" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

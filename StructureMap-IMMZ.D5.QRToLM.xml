@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureMap xmlns="http://hl7.org/fhir">
+  <id value="IMMZ.D5.QRToLM"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: StructureMap IMMZ.D5.QRToLM</b></p><a name="IMMZ.D5.QRToLM"> </a><a name="hcIMMZ.D5.QRToLM"> </a><pre class="fml">
+<b>map</b><span style="color: navy"> &quot;</span>http://smart.who.int/immunizations/StructureMap/IMMZ.D5.QRToLM<span style="color: navy">&quot; = &quot;</span>IMMZ.D5.QRToLM<span style="color: navy">&quot;
+
+</span><span style="color: navy">// </span><span style="color: green">Immunization Administer Vaccine - Transform QuestionnaireResponse to Logical Model</span>
+
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/questionnaireresponse.html" title="QuestionnaireResponse">http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse</a><span style="color: navy">&quot; </span><b>alias </b>QResp <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="StructureDefinition-IMMZD5.html" title="IMMZ.D5.Determine vaccine(s) to be administered based on contraindications">http://smart.who.int/immunizations/StructureDefinition/IMMZD5</a><span style="color: navy">&quot; </span><b>alias </b>IMMZD5 <b>as </b><b>target</b>
+
+<b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-IMMZ.Helpers.html" title="IMMZ.Helpers">http://smart.who.int/immunizations/StructureMap/IMMZ.Helpers</a><span style="color: navy">&quot;
+</span>
+<b>group </b>QRespToIMMZD5<span style="color: navy">(</span><b>source</b> <span style="color: maroon">qr</span><span style="color: navy"> : </span>QResp, <b>target</b> <span style="color: maroon">immz</span><span style="color: navy"> : </span>IMMZD5<span style="color: navy">)</span><span style="color: navy"> {
+</span>  qr.subject<b> as </b><span style="color: maroon">subject</span><span style="color: navy"><b> -&gt; </b></span>immz.patient = <span style="color: maroon">subject</span> <i>&quot;setPatient&quot;</i><span style="color: navy">;</span>
+  qr.item<b> as </b><span style="color: maroon">item</span><b> where </b>linkId = 'potentialContraindications'<span style="color: navy"><b> -&gt; </b></span>immz.potentialContraindications<b> as </b><span style="color: maroon">field</span><b> then </b>ItemToCoding<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">field</span><span style="color: navy">)</span> <i>&quot;potentialContraindications&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span></pre></div>
+  </text>
+  <url value="http://smart.who.int/immunizations/StructureMap/IMMZ.D5.QRToLM"/>
+  <version value="0.2.0"/>
+  <name value="IMMZ.D5.QRToLM"/>
+  <status value="draft"/>
+  <date value="2025-11-25T19:41:02+00:00"/>
+  <publisher value="WHO"/>
+  <contact>
+    <name value="WHO"/>
+    <telecom>
+      <system value="url"/>
+      <value value="http://who.int"/>
+    </telecom>
+  </contact>
+  <description value="Immunization Administer Vaccine - Transform QuestionnaireResponse to Logical Model"/>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
+    <mode value="source"/>
+    <alias value="QResp"/>
+  </structure>
+  <structure>
+    <url value="http://smart.who.int/immunizations/StructureDefinition/IMMZD5"/>
+    <mode value="target"/>
+    <alias value="IMMZD5"/>
+  </structure>
+  <import value="http://smart.who.int/immunizations/StructureMap/IMMZ.Helpers"/>
+  <group>
+    <name value="QRespToIMMZD5"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="qr"/>
+      <type value="QResp"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immz"/>
+      <type value="IMMZD5"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="setPatient"/>
+      <source>
+        <context value="qr"/>
+        <element value="subject"/>
+        <variable value="subject"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="patient"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="subject"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="potentialContraindications"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+        <condition value="linkId = 'potentialContraindications'"/>
+      </source>
+      <target>
+        <context value="immz"/>
+        <contextType value="variable"/>
+        <element value="potentialContraindications"/>
+        <variable value="field"/>
+      </target>
+      <dependent>
+        <name value="ItemToCoding"/>
+        <variable value="item"/>
+        <variable value="field"/>
+      </dependent>
+    </rule>
+  </group>
+</StructureMap>

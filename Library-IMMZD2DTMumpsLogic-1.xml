@@ -1,0 +1,1255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="372">
+         <a:s>/*
+ * Library: IMMZD2DTMumpsLogic (IMMZ.D2.DT.Mumps)
+ * Rule: Determine if the client is due for a mumps vaccination according to the national immunization schedule
+ * Decision Table: 2-dose schedule (countries with mumps in schedule and low transmission of measles)
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any
+ */
+library IMMZD2DTMumpsLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTMumpsLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="9:1-9:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="10:1-10:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="12:1-12:55" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTMumpsEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTMumpsEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="212" locator="14:1-14:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>parameter Today </a:s>
+               <a:s r="216">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="215">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="215" locator="14:30-14:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="216" locator="14:17-14:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="16:1-16:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="16:1-16:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="235" locator="37:1-38:49" name="Client is not due for mumps vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for mumps vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="235">
+               <a:s>/*
+@output: Client is not due for mumps vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for mumps vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="237">
+                  <a:s r="236">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="237">
+                     <a:s>&quot;Client's age is less than 12 months&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="237" locator="38:3-38:49" name="Client's age is less than 12 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="241" locator="44:1-47:69" name="Client is not due for mumps vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for mumps vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="241">
+               <a:s>/*
+@output: Client is not due for mumps vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for mumps vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="242">
+                  <a:s r="243">
+                     <a:s r="245">
+                        <a:s r="244">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="245">
+                           <a:s>&quot;No mumps primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="247">
+                        <a:s r="246">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="247">
+                           <a:s>&quot;Client's age is more than or equal to 12 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="249">
+                     <a:s r="248">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="249">
+                        <a:s>&quot;Live vaccine was administered in the past 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="242" locator="45:3-47:69" xsi:type="And">
+            <operand localId="243" locator="45:3-46:67" xsi:type="And">
+               <operand localId="245" locator="45:3-45:61" name="No mumps primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="247" locator="46:9-46:67" name="Client's age is more than or equal to 12 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="249" locator="47:9-47:69" name="Live vaccine was administered in the past 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="253" locator="53:1-55:80" name="Client is not due for mumps vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for mumps vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="253">
+               <a:s>/*
+@output: Client is not due for mumps vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for mumps vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="254">
+                  <a:s r="256">
+                     <a:s r="255">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="256">
+                        <a:s>&quot;One mumps primary series dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="258">
+                     <a:s r="257">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="258">
+                        <a:s>&quot;The latest mumps dose was administered less than 4 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="254" locator="54:3-55:80" xsi:type="And">
+            <operand localId="256" locator="54:3-54:60" name="One mumps primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="258" locator="55:9-55:80" name="The latest mumps dose was administered less than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="262" locator="61:1-64:69" name="Client is not due for mumps vaccination Case 4" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for mumps vaccination Case 4"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="262">
+               <a:s>/*
+@output: Client is not due for mumps vaccination Case 4
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for mumps vaccination Case 4&quot;:
+  </a:s>
+               <a:s r="263">
+                  <a:s r="264">
+                     <a:s r="266">
+                        <a:s r="265">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="266">
+                           <a:s>&quot;One mumps primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="268">
+                        <a:s r="267">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="268">
+                           <a:s>&quot;The latest mumps dose was administered more than 4 weeks ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="270">
+                     <a:s r="269">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="270">
+                        <a:s>&quot;Live vaccine was administered in the past 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="263" locator="62:3-64:69" xsi:type="And">
+            <operand localId="264" locator="62:3-63:80" xsi:type="And">
+               <operand localId="266" locator="62:3-62:60" name="One mumps primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="268" locator="63:9-63:80" name="The latest mumps dose was administered more than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="270" locator="64:9-64:69" name="Live vaccine was administered in the past 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="229" locator="70:1-74:55" name="Client is not due for mumps vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for mumps vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="229">
+               <a:s>/*
+@output: Client is not due for mumps vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for mumps vaccination&quot;:
+  </a:s>
+               <a:s r="230">
+                  <a:s r="231">
+                     <a:s r="232">
+                        <a:s r="238">
+                           <a:s>&quot;Client is not due for mumps vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s>
+    or </a:s>
+                        <a:s r="250">
+                           <a:s>&quot;Client is not due for mumps vaccination Case 2&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="259">
+                        <a:s>&quot;Client is not due for mumps vaccination Case 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="271">
+                     <a:s>&quot;Client is not due for mumps vaccination Case 4&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="230" locator="71:3-74:55" xsi:type="Or">
+            <operand localId="231" locator="71:3-73:55" xsi:type="Or">
+               <operand localId="232" locator="71:3-72:55" xsi:type="Or">
+                  <operand localId="238" locator="71:3-71:50" name="Client is not due for mumps vaccination Case 1" xsi:type="ExpressionRef"/>
+                  <operand localId="250" locator="72:8-72:55" name="Client is not due for mumps vaccination Case 2" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="259" locator="73:8-73:55" name="Client is not due for mumps vaccination Case 3" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="271" locator="74:8-74:55" name="Client is not due for mumps vaccination Case 4" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="275" locator="87:1-98:5" name="Client is not due for mumps vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for mumps vaccination Guidance"/>
+            <a:s r="275">
+               <a:s>/*
+@output: Client is not due for mumps vaccination Guidance
+@guidance = Should not vaccinate client with first mumps dose as client's age is less than 12 months.
+Check for any other vaccines due and inform the caregiver of when to come back for first dose.
+@guidance = Should not vaccinate client with first mumps dose as live vaccine was administered in the past 4 weeks.
+Check for any other vaccines due and inform the caregiver of when to come back for first dose.
+@guidance = Should not vaccinate client with second mumps dose as latest mumps dose was administered less than 4 weeks ago.
+Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
+@guidance = Should not vaccinate client with second mumps dose as live vaccine was administered in the past 4 weeks.
+Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
+*/
+define &quot;Client is not due for mumps vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="276">
+                  <a:s>case
+    </a:s>
+                  <a:s r="277">
+                     <a:s>when </a:s>
+                     <a:s r="278">
+                        <a:s>&quot;Client is not due for mumps vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="279">
+                        <a:s>'Should not vaccinate client with first mumps dose as client\'s age is less than 12 months.
+Check for any other vaccines due and inform the caregiver of when to come back for first dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="281">
+                     <a:s>when </a:s>
+                     <a:s r="282">
+                        <a:s>&quot;Client is not due for mumps vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="283">
+                        <a:s>'Should not vaccinate client with first mumps dose as live vaccine was administered in the past 4 weeks.
+Check for any other vaccines due and inform the caregiver of when to come back for first dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="285">
+                     <a:s>when </a:s>
+                     <a:s r="286">
+                        <a:s>&quot;Client is not due for mumps vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="287">
+                        <a:s>'Should not vaccinate client with second mumps dose as latest mumps dose was administered less than 4 weeks ago.
+Check for any other vaccines due and inform the caregiver of when to come back for the second dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="289">
+                     <a:s>when </a:s>
+                     <a:s r="290">
+                        <a:s>&quot;Client is not due for mumps vaccination Case 4&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="291">
+                        <a:s>'Should not vaccinate client with second mumps dose as live vaccine was administered in the past 4 weeks.
+Check for any other vaccines due and inform the caregiver of when to come back for the second dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="293">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="276" locator="88:3-98:5" xsi:type="Case">
+            <caseItem localId="277" locator="89:5-89:250">
+               <when localId="278" locator="89:10-89:57" name="Client is not due for mumps vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="279" locator="89:64-89:250" valueType="t:String" value="Should not vaccinate client with first mumps dose as client's age is less than 12 months.&#xa;Check for any other vaccines due and inform the caregiver of when to come back for first dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="281" locator="91:5-91:263">
+               <when localId="282" locator="91:10-91:57" name="Client is not due for mumps vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="283" locator="91:64-91:263" valueType="t:String" value="Should not vaccinate client with first mumps dose as live vaccine was administered in the past 4 weeks.&#xa;Check for any other vaccines due and inform the caregiver of when to come back for first dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="285" locator="93:5-93:276">
+               <when localId="286" locator="93:10-93:57" name="Client is not due for mumps vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="287" locator="93:64-93:276" valueType="t:String" value="Should not vaccinate client with second mumps dose as latest mumps dose was administered less than 4 weeks ago.&#xa;Check for any other vaccines due and inform the caregiver of when to come back for the second dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="289" locator="95:5-95:269">
+               <when localId="290" locator="95:10-95:57" name="Client is not due for mumps vaccination Case 4" xsi:type="ExpressionRef"/>
+               <then localId="291" locator="95:64-95:269" valueType="t:String" value="Should not vaccinate client with second mumps dose as live vaccine was administered in the past 4 weeks.&#xa;Check for any other vaccines due and inform the caregiver of when to come back for the second dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="293" locator="97:10-97:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="303" locator="104:1-107:72" name="Client is due for mumps vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for mumps vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="303">
+               <a:s>/*
+@output: Client is due for mumps vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for mumps vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="304">
+                  <a:s r="305">
+                     <a:s r="307">
+                        <a:s r="306">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="307">
+                           <a:s>&quot;No mumps primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="309">
+                        <a:s r="308">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="309">
+                           <a:s>&quot;Client's age is more than or equal to 12 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="311">
+                     <a:s r="310">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="311">
+                        <a:s>&quot;No live vaccine was administered in the past 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="304" locator="105:3-107:72" xsi:type="And">
+            <operand localId="305" locator="105:3-106:67" xsi:type="And">
+               <operand localId="307" locator="105:3-105:61" name="No mumps primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="309" locator="106:9-106:67" name="Client's age is more than or equal to 12 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="311" locator="107:9-107:72" name="No live vaccine was administered in the past 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="315" locator="113:1-116:72" name="Client is due for mumps vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for mumps vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="315">
+               <a:s>/*
+@output: Client is due for mumps vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for mumps vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="316">
+                  <a:s r="317">
+                     <a:s r="319">
+                        <a:s r="318">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="319">
+                           <a:s>&quot;One mumps primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="321">
+                        <a:s r="320">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="321">
+                           <a:s>&quot;The latest mumps dose was administered more than 4 weeks ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="323">
+                     <a:s r="322">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="323">
+                        <a:s>&quot;No live vaccine was administered in the past 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="316" locator="114:3-116:72" xsi:type="And">
+            <operand localId="317" locator="114:3-115:80" xsi:type="And">
+               <operand localId="319" locator="114:3-114:60" name="One mumps primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="321" locator="115:9-115:80" name="The latest mumps dose was administered more than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="323" locator="116:9-116:72" name="No live vaccine was administered in the past 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="299" locator="122:1-124:51" name="Client is due for mumps vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for mumps vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="299">
+               <a:s>/*
+@output: Client is due for mumps vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for mumps vaccination&quot;:
+  </a:s>
+               <a:s r="300">
+                  <a:s r="312">
+                     <a:s>&quot;Client is due for mumps vaccination Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="324">
+                     <a:s>&quot;Client is due for mumps vaccination Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="300" locator="123:3-124:51" xsi:type="Or">
+            <operand localId="312" locator="123:3-123:46" name="Client is due for mumps vaccination Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="324" locator="124:8-124:51" name="Client is due for mumps vaccination Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="328" locator="133:1-140:5" name="Client is due for mumps vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for mumps vaccination Guidance"/>
+            <a:s r="328">
+               <a:s>/*
+@output: Client is due for mumps vaccination Guidance
+@guidance = Should vaccinate client with first mumps dose as the client is within appropriate age range and no live vaccine was administered in the past 4 weeks.
+Check for contraindications.
+@guidance = Should vaccinate client with second mumps dose as latest mumps dose was administered more than 4 weeks ago and no live vaccine was administered in the past 4 weeks.
+Check for contraindications.
+*/
+define &quot;Client is due for mumps vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="329">
+                  <a:s>case
+    </a:s>
+                  <a:s r="330">
+                     <a:s>when </a:s>
+                     <a:s r="331">
+                        <a:s>&quot;Client is due for mumps vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="332">
+                        <a:s>'Should vaccinate client with first mumps dose as the client is within appropriate age range and no live vaccine was administered in the past 4 weeks.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="334">
+                     <a:s>when </a:s>
+                     <a:s r="335">
+                        <a:s>&quot;Client is due for mumps vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="336">
+                        <a:s>'Should vaccinate client with second mumps dose as latest mumps dose was administered more than 4 weeks ago and no live vaccine was administered in the past 4 weeks.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="338">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="329" locator="134:3-140:5" xsi:type="Case">
+            <caseItem localId="330" locator="135:5-135:239">
+               <when localId="331" locator="135:10-135:53" name="Client is due for mumps vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="332" locator="135:60-135:239" valueType="t:String" value="Should vaccinate client with first mumps dose as the client is within appropriate age range and no live vaccine was administered in the past 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="334" locator="137:5-137:254">
+               <when localId="335" locator="137:10-137:53" name="Client is due for mumps vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="336" locator="137:60-137:254" valueType="t:String" value="Should vaccinate client with second mumps dose as latest mumps dose was administered more than 4 weeks ago and no live vaccine was administered in the past 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="338" locator="139:10-139:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="344" locator="147:1-148:62" name="Mumps immunization schedule is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Mumps immunization schedule is complete"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="344">
+               <a:s>/*
+@output: Mumps immunization schedule is complete
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Mumps-containing vaccines&quot;)&quot;
+*/
+define &quot;Mumps immunization schedule is complete&quot;:
+  </a:s>
+               <a:s r="346">
+                  <a:s r="345">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="346">
+                     <a:s>&quot;Two mumps primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="346" locator="148:3-148:62" name="Two mumps primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="350" locator="155:1-156:128" name="Mumps immunization schedule is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Mumps immunization schedule is complete Guidance"/>
+            <a:t name="guidance" value="Mumps immunization schedule is complete. Two mumps primary series doses were administered.&#xa;Check for any other vaccines due."/>
+            <a:s r="350">
+               <a:s>/*
+@output: Mumps immunization schedule is complete Guidance
+@guidance: Mumps immunization schedule is complete. Two mumps primary series doses were administered.
+Check for any other vaccines due.
+*/
+define &quot;Mumps immunization schedule is complete Guidance&quot;:
+  </a:s>
+               <a:s r="351">
+                  <a:s>'Mumps immunization schedule is complete. Two mumps primary series doses were administered.
+Check for any other vaccines due.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="351" locator="156:3-156:128" valueType="t:String" value="Mumps immunization schedule is complete. Two mumps primary series doses were administered.&#xa;Check for any other vaccines due." xsi:type="Literal"/>
+      </def>
+      <def localId="224" locator="22:1-28:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="224">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="225">
+                  <a:s>case 
+    </a:s>
+                  <a:s r="226">
+                     <a:s>when </a:s>
+                     <a:s r="272">
+                        <a:s>&quot;Client is not due for mumps vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="295">
+                        <a:s>&quot;Client is not due for mumps vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="296">
+                     <a:s>when </a:s>
+                     <a:s r="325">
+                        <a:s>&quot;Client is due for mumps vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="340">
+                        <a:s>&quot;Client is due for mumps vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="341">
+                     <a:s>when </a:s>
+                     <a:s r="347">
+                        <a:s>&quot;Mumps immunization schedule is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="353">
+                        <a:s>&quot;Mumps immunization schedule is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+    else </a:s>
+                  <a:s r="354">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="23:3-28:5" xsi:type="Case">
+            <caseItem localId="226" locator="24:5-24:106">
+               <when localId="272" locator="24:10-24:50" name="Client is not due for mumps vaccination" xsi:type="ExpressionRef"/>
+               <then localId="295" locator="24:57-24:106" name="Client is not due for mumps vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="296" locator="25:5-25:98">
+               <when localId="325" locator="25:10-25:46" name="Client is due for mumps vaccination" xsi:type="ExpressionRef"/>
+               <then localId="340" locator="25:53-25:98" name="Client is due for mumps vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="341" locator="26:5-26:106">
+               <when localId="347" locator="26:10-26:50" name="Mumps immunization schedule is complete" xsi:type="ExpressionRef"/>
+               <then localId="353" locator="26:57-26:106" name="Mumps immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="354" locator="27:10-27:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="358" locator="30:1-31:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="358">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="359">
+                  <a:s r="362">
+                     <a:s r="360">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="369">
+                     <a:s r="364">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="365">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="359" locator="31:3-31:45" xsi:type="And">
+            <operand localId="362" locator="31:3-31:24" xsi:type="Not">
+               <operand localId="361" locator="31:3-31:24" xsi:type="IsNull">
+                  <operand localId="360" locator="31:3-31:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="369" locator="31:30-31:45" xsi:type="Not">
+               <operand localId="363" locator="31:30-31:45" xsi:type="Equal">
+                  <signature localId="367" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="368" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="364" locator="31:30-31:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="365" locator="31:44-31:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="372" locator="163:1-180:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="372">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="373">
+                  <a:s>case
+    </a:s>
+                  <a:s r="374">
+                     <a:s>when </a:s>
+                     <a:s r="375">
+                        <a:s r="377">
+                           <a:s r="376">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="377">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="378">
+                           <a:s>'Mumps08.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="384">
+                        <a:s r="385">
+                           <a:s>&quot;Client is not due for mumps vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="386">
+                           <a:s r="387">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="388">
+                              <a:s>'Should not vaccinate client with first mumps dose as client\'s age is less than 12 months.
+Check for any other vaccines due and inform the caregiver of when to come back for first dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="392">
+                     <a:s>when </a:s>
+                     <a:s r="393">
+                        <a:s r="395">
+                           <a:s r="394">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="395">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="396">
+                           <a:s>'Mumps09.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="402">
+                        <a:s r="403">
+                           <a:s>&quot;Client is not due for mumps vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="404">
+                           <a:s r="405">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="406">
+                              <a:s>'Should not vaccinate client with first mumps dose as live vaccine was administered in the past 4 weeks.
+Check for any other vaccines due and inform the caregiver of when to come back for first dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="410">
+                     <a:s>when </a:s>
+                     <a:s r="411">
+                        <a:s r="413">
+                           <a:s r="412">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="413">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="414">
+                           <a:s>'Mumps10.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="420">
+                        <a:s r="421">
+                           <a:s>&quot;Client is due for mumps vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="422">
+                           <a:s r="423">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="424">
+                              <a:s>'Should vaccinate client with first mumps dose as the client is within appropriate age range and no live vaccine was administered in the past 4 weeks.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="428">
+                     <a:s>when </a:s>
+                     <a:s r="429">
+                        <a:s r="431">
+                           <a:s r="430">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="431">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="432">
+                           <a:s>'Mumps11.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="438">
+                        <a:s r="439">
+                           <a:s>&quot;Client is not due for mumps vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="440">
+                           <a:s r="441">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="442">
+                              <a:s>'Should not vaccinate client with second mumps dose as latest mumps dose was administered less than 4 weeks ago.
+Check for any other vaccines due and inform the caregiver of when to come back for the second dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="446">
+                     <a:s>when </a:s>
+                     <a:s r="447">
+                        <a:s r="449">
+                           <a:s r="448">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="449">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="450">
+                           <a:s>'Mumps12.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="456">
+                        <a:s r="457">
+                           <a:s>&quot;Client is not due for mumps vaccination Case 4&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="458">
+                           <a:s r="459">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="460">
+                              <a:s>'Should not vaccinate client with second mumps dose as live vaccine was administered in the past 4 weeks.
+Check for any other vaccines due and inform the caregiver of when to come back for the second dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="464">
+                     <a:s>when </a:s>
+                     <a:s r="465">
+                        <a:s r="467">
+                           <a:s r="466">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="467">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="468">
+                           <a:s>'Mumps13.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="474">
+                        <a:s r="475">
+                           <a:s>&quot;Client is due for mumps vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="476">
+                           <a:s r="477">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="478">
+                              <a:s>'Should vaccinate client with second mumps dose as latest mumps dose was administered more than 4 weeks ago and no live vaccine was administered in the past 4 weeks.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="482">
+                     <a:s>when </a:s>
+                     <a:s r="483">
+                        <a:s r="485">
+                           <a:s r="484">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="485">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="486">
+                           <a:s>'Mumps14.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="492">
+                        <a:s r="493">
+                           <a:s>&quot;Mumps immunization schedule is complete&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="494">
+                           <a:s r="495">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="496">
+                              <a:s>'Mumps immunization schedule is complete. Two mumps primary series doses were administered.
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="500">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="373" locator="164:3-180:5" xsi:type="Case">
+            <caseItem localId="374" locator="165:5-165:292">
+               <when localId="375" locator="165:10-165:33" xsi:type="Equal">
+                  <signature localId="382" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="383" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="380" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="381" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="377" locator="165:10-165:19" path="id" xsi:type="Property">
+                        <source localId="376" locator="165:10-165:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="378" locator="165:23-165:33" valueType="t:String" value="Mumps08.1" xsi:type="Literal"/>
+               </when>
+               <then localId="502" xsi:type="As">
+                  <operand localId="384" locator="165:40-165:292" xsi:type="And">
+                     <operand localId="385" locator="165:40-165:87" name="Client is not due for mumps vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="386" locator="165:93-165:292" xsi:type="Equal">
+                        <signature localId="390" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="391" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="387" locator="165:93-165:102" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="388" locator="165:106-165:292" valueType="t:String" value="Should not vaccinate client with first mumps dose as client's age is less than 12 months.&#xa;Check for any other vaccines due and inform the caregiver of when to come back for first dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="503" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="504" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="505" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="392" locator="167:5-167:305">
+               <when localId="393" locator="167:10-167:33" xsi:type="Equal">
+                  <signature localId="400" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="401" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="398" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="399" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="395" locator="167:10-167:19" path="id" xsi:type="Property">
+                        <source localId="394" locator="167:10-167:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="396" locator="167:23-167:33" valueType="t:String" value="Mumps09.3" xsi:type="Literal"/>
+               </when>
+               <then localId="506" xsi:type="As">
+                  <operand localId="402" locator="167:40-167:305" xsi:type="And">
+                     <operand localId="403" locator="167:40-167:87" name="Client is not due for mumps vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="404" locator="167:93-167:305" xsi:type="Equal">
+                        <signature localId="408" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="409" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="405" locator="167:93-167:102" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="406" locator="167:106-167:305" valueType="t:String" value="Should not vaccinate client with first mumps dose as live vaccine was administered in the past 4 weeks.&#xa;Check for any other vaccines due and inform the caregiver of when to come back for first dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="507" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="508" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="509" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="410" locator="169:5-169:281">
+               <when localId="411" locator="169:10-169:33" xsi:type="Equal">
+                  <signature localId="418" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="419" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="416" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="417" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="413" locator="169:10-169:19" path="id" xsi:type="Property">
+                        <source localId="412" locator="169:10-169:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="414" locator="169:23-169:33" valueType="t:String" value="Mumps10.3" xsi:type="Literal"/>
+               </when>
+               <then localId="510" xsi:type="As">
+                  <operand localId="420" locator="169:40-169:281" xsi:type="And">
+                     <operand localId="421" locator="169:40-169:83" name="Client is due for mumps vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="422" locator="169:89-169:281" xsi:type="Equal">
+                        <signature localId="426" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="427" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="423" locator="169:89-169:98" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="424" locator="169:102-169:281" valueType="t:String" value="Should vaccinate client with first mumps dose as the client is within appropriate age range and no live vaccine was administered in the past 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="511" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="512" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="513" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="428" locator="171:5-171:318">
+               <when localId="429" locator="171:10-171:33" xsi:type="Equal">
+                  <signature localId="436" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="437" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="434" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="435" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="431" locator="171:10-171:19" path="id" xsi:type="Property">
+                        <source localId="430" locator="171:10-171:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="432" locator="171:23-171:33" valueType="t:String" value="Mumps11.2" xsi:type="Literal"/>
+               </when>
+               <then localId="514" xsi:type="As">
+                  <operand localId="438" locator="171:40-171:318" xsi:type="And">
+                     <operand localId="439" locator="171:40-171:87" name="Client is not due for mumps vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="440" locator="171:93-171:318" xsi:type="Equal">
+                        <signature localId="444" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="445" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="441" locator="171:93-171:102" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="442" locator="171:106-171:318" valueType="t:String" value="Should not vaccinate client with second mumps dose as latest mumps dose was administered less than 4 weeks ago.&#xa;Check for any other vaccines due and inform the caregiver of when to come back for the second dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="515" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="516" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="517" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="446" locator="173:5-173:311">
+               <when localId="447" locator="173:10-173:33" xsi:type="Equal">
+                  <signature localId="454" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="455" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="452" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="453" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="449" locator="173:10-173:19" path="id" xsi:type="Property">
+                        <source localId="448" locator="173:10-173:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="450" locator="173:23-173:33" valueType="t:String" value="Mumps12.3" xsi:type="Literal"/>
+               </when>
+               <then localId="518" xsi:type="As">
+                  <operand localId="456" locator="173:40-173:311" xsi:type="And">
+                     <operand localId="457" locator="173:40-173:87" name="Client is not due for mumps vaccination Case 4" xsi:type="ExpressionRef"/>
+                     <operand localId="458" locator="173:93-173:311" xsi:type="Equal">
+                        <signature localId="462" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="463" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="459" locator="173:93-173:102" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="460" locator="173:106-173:311" valueType="t:String" value="Should not vaccinate client with second mumps dose as live vaccine was administered in the past 4 weeks.&#xa;Check for any other vaccines due and inform the caregiver of when to come back for the second dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="519" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="520" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="521" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="464" locator="175:5-175:296">
+               <when localId="465" locator="175:10-175:33" xsi:type="Equal">
+                  <signature localId="472" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="473" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="470" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="471" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="467" locator="175:10-175:19" path="id" xsi:type="Property">
+                        <source localId="466" locator="175:10-175:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="468" locator="175:23-175:33" valueType="t:String" value="Mumps13.3" xsi:type="Literal"/>
+               </when>
+               <then localId="522" xsi:type="As">
+                  <operand localId="474" locator="175:40-175:296" xsi:type="And">
+                     <operand localId="475" locator="175:40-175:83" name="Client is due for mumps vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="476" locator="175:89-175:296" xsi:type="Equal">
+                        <signature localId="480" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="481" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="477" locator="175:89-175:98" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="478" locator="175:102-175:296" valueType="t:String" value="Should vaccinate client with second mumps dose as latest mumps dose was administered more than 4 weeks ago and no live vaccine was administered in the past 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="523" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="524" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="525" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="482" locator="177:5-177:224">
+               <when localId="483" locator="177:10-177:33" xsi:type="Equal">
+                  <signature localId="490" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="491" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="488" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="489" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="485" locator="177:10-177:19" path="id" xsi:type="Property">
+                        <source localId="484" locator="177:10-177:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="486" locator="177:23-177:33" valueType="t:String" value="Mumps14.1" xsi:type="Literal"/>
+               </when>
+               <then localId="526" xsi:type="As">
+                  <operand localId="492" locator="177:40-177:224" xsi:type="And">
+                     <operand localId="493" locator="177:40-177:80" name="Mumps immunization schedule is complete" xsi:type="ExpressionRef"/>
+                     <operand localId="494" locator="177:86-177:224" xsi:type="Equal">
+                        <signature localId="498" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="499" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="495" locator="177:86-177:95" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="496" locator="177:99-177:224" valueType="t:String" value="Mumps immunization schedule is complete. Two mumps primary series doses were administered.&#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="527" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="528" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="529" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="530" xsi:type="As">
+               <operand localId="500" locator="179:10-179:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="531" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="532" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="533" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

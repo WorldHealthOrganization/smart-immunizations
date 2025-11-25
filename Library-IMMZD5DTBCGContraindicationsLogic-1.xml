@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="338">
+         <a:s>/*
+ * Library: IMMZD5DTBCGContraindicationsLogic (IMMZ.D5.DT.BCG contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due
+ * Decision Table: IMMZ.D5.DT.BCG contraindications
+ * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
+ */
+library IMMZD5DTBCGContraindicationsLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD5DTBCGContraindicationsLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="9:1-9:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="10:1-10:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="12:1-12:53" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD5DTBCGEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD5DTBCGEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="212" locator="14:1-14:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>parameter Today </a:s>
+               <a:s r="216">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="215">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="215" locator="14:30-14:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="216" locator="14:17-14:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="16:1-16:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="16:1-16:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="224" locator="21:3-22:63" name="Draft Medication Request ID for BCG dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Draft Medication Request ID for BCG dose"/>
+            <a:s r="224">
+               <a:s>/*
+  @dynamicValue: Draft Medication Request ID for BCG dose
+  */
+  define &quot;Draft Medication Request ID for BCG dose&quot;:
+    </a:s>
+               <a:s r="230">
+                  <a:s r="229">
+                     <a:s>First(</a:s>
+                     <a:s r="226">
+                        <a:s r="225">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="226">
+                           <a:s>&quot;Draft Medication Request for BCG dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="230">
+                     <a:s>id</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="230" locator="22:5-22:63" path="id" xsi:type="Property">
+            <source localId="229" locator="22:5-22:60" xsi:type="First">
+               <source localId="226" locator="22:11-22:59" name="Draft Medication Request for BCG dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </source>
+         </expression>
+      </def>
+      <def localId="238" locator="43:1-44:36" name="Bacille Calmette–Guérin (BCG) vaccination is contraindicated" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Bacille Calmette–Guérin (BCG) vaccination is contraindicated"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="238">
+               <a:s>/*
+@output: Bacille Calmette–Guérin (BCG) vaccination is contraindicated
+@pseudocode: '&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;Bacille Calmette–Guérin (BCG) vaccination is contraindicated&quot;:
+  </a:s>
+               <a:s r="240">
+                  <a:s r="239">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="240">
+                     <a:s>&quot;The client is pregnant&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="240" locator="44:3-44:36" name="The client is pregnant" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="244" locator="50:1-51:91" name="Bacille Calmette–Guérin (BCG) vaccination is contraindicated Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Bacille Calmette–Guérin (BCG) vaccination is contraindicated Guidance"/>
+            <a:t name="guidance" value="Do not vaccinate client with BCG as BCG vaccination is not recommended during pregnancy"/>
+            <a:s r="244">
+               <a:s>/*
+@output: Bacille Calmette–Guérin (BCG) vaccination is contraindicated Guidance
+@guidance: Do not vaccinate client with BCG as BCG vaccination is not recommended during pregnancy
+*/
+define &quot;Bacille Calmette–Guérin (BCG) vaccination is contraindicated Guidance&quot;:
+  </a:s>
+               <a:s r="245">
+                  <a:s>'Do not vaccinate client with BCG as BCG vaccination is not recommended during pregnancy'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="245" locator="51:3-51:91" valueType="t:String" value="Do not vaccinate client with BCG as BCG vaccination is not recommended during pregnancy" xsi:type="Literal"/>
+      </def>
+      <def localId="255" locator="57:1-58:65" name="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="255">
+               <a:s>/*
+@output: BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 1
+@pseudocode: '&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 1&quot;:
+  </a:s>
+               <a:s r="257">
+                  <a:s r="256">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="257">
+                     <a:s>&quot;The client has history of severe allergic reactions&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="257" locator="58:3-58:65" name="The client has history of severe allergic reactions" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="261" locator="64:1-66:64" name="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="261">
+               <a:s>/*
+@output: BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 2
+@pseudocode: '&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 2&quot;:
+  </a:s>
+               <a:s r="262">
+                  <a:s r="264">
+                     <a:s r="263">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="264">
+                        <a:s>&quot;The client is exposed to immunosuppressive treatment&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="266">
+                     <a:s r="265">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="266">
+                        <a:s>&quot;Client's age is more than or equal to 1 year&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="262" locator="65:3-66:64" xsi:type="And">
+            <operand localId="264" locator="65:3-65:66" name="The client is exposed to immunosuppressive treatment" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="266" locator="66:9-66:64" name="Client's age is more than or equal to 1 year" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="251" locator="72:1-74:113" name="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note."/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="251">
+               <a:s>/*
+@output: BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.
+@pseudocode: '&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.&quot;:
+  </a:s>
+               <a:s r="252">
+                  <a:s r="258">
+                     <a:s>&quot;BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="267">
+                     <a:s>&quot;BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="252" locator="73:3-74:113" xsi:type="Or">
+            <operand localId="258" locator="73:3-73:108" name="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="267" locator="74:8-74:113" name="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="271" locator="81:1-86:5" name="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance"/>
+            <a:s r="271">
+               <a:s>/*
+@output: BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance
+@guidance = Do not vaccinate client with BCG if the client had previous allergic reaction to any component of the vaccine
+@guidance = Do not vaccinate client with BCG if client is exposed to or receives immunosuppressive treatment
+*/
+define &quot;BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance&quot;:
+  </a:s>
+               <a:s r="272">
+                  <a:s>case
+    </a:s>
+                  <a:s r="273">
+                     <a:s>when </a:s>
+                     <a:s r="274">
+                        <a:s>&quot;BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="275">
+                        <a:s>'Do not vaccinate client with BCG if the client had previous allergic reaction to any component of the vaccine'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="277">
+                     <a:s>when </a:s>
+                     <a:s r="278">
+                        <a:s>&quot;BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="279">
+                        <a:s>'Do not vaccinate client with BCG if client is exposed to or receives immunosuppressive treatment'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="281">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="272" locator="82:3-86:5" xsi:type="Case">
+            <caseItem localId="273" locator="83:5-83:232">
+               <when localId="274" locator="83:10-83:115" name="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 1" xsi:type="ExpressionRef"/>
+               <then localId="275" locator="83:122-83:232" valueType="t:String" value="Do not vaccinate client with BCG if the client had previous allergic reaction to any component of the vaccine" xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="277" locator="84:5-84:219">
+               <when localId="278" locator="84:10-84:115" name="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 2" xsi:type="ExpressionRef"/>
+               <then localId="279" locator="84:122-84:219" valueType="t:String" value="Do not vaccinate client with BCG if client is exposed to or receives immunosuppressive treatment" xsi:type="Literal"/>
+            </caseItem>
+            <else localId="281" locator="85:10-85:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="291" locator="92:1-93:55" name="BCG vaccination is contraindicated Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="BCG vaccination is contraindicated Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="291">
+               <a:s>/*
+@output: BCG vaccination is contraindicated Case 1
+@pseudocode: '&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;BCG vaccination is contraindicated Case 1&quot;:
+  </a:s>
+               <a:s r="293">
+                  <a:s r="292">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="293">
+                     <a:s>&quot;The client has immunodeficiency syndromes&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="293" locator="93:3-93:55" name="The client has immunodeficiency syndromes" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="297" locator="99:1-101:52" name="BCG vaccination is contraindicated Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="BCG vaccination is contraindicated Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="297">
+               <a:s>/*
+@output: BCG vaccination is contraindicated Case 2
+@pseudocode: '&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;BCG vaccination is contraindicated Case 2&quot;:
+  </a:s>
+               <a:s r="298">
+                  <a:s r="300">
+                     <a:s r="299">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="300">
+                        <a:s>&quot;The client is exposed to immunosuppressive treatment&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="302">
+                     <a:s r="301">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="302">
+                        <a:s>&quot;Client's age is less than 1 year&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="298" locator="100:3-101:52" xsi:type="And">
+            <operand localId="300" locator="100:3-100:66" name="The client is exposed to immunosuppressive treatment" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="302" locator="101:9-101:52" name="Client's age is less than 1 year" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="287" locator="107:1-109:50" name="BCG vaccination is contraindicated" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="BCG vaccination is contraindicated"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;"/>
+            <a:s r="287">
+               <a:s>/*
+@output: BCG vaccination is contraindicated
+@pseudocode: '&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot;
+*/
+define &quot;BCG vaccination is contraindicated&quot;:
+  </a:s>
+               <a:s r="288">
+                  <a:s r="294">
+                     <a:s>&quot;BCG vaccination is contraindicated Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="303">
+                     <a:s>&quot;BCG vaccination is contraindicated Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="288" locator="108:3-109:50" xsi:type="Or">
+            <operand localId="294" locator="108:3-108:45" name="BCG vaccination is contraindicated Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="303" locator="109:8-109:50" name="BCG vaccination is contraindicated Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="307" locator="116:1-121:5" name="BCG vaccination is contraindicated Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="BCG vaccination is contraindicated Guidance"/>
+            <a:s r="307">
+               <a:s>/*
+@output: BCG vaccination is contraindicated Guidance
+@guidance = Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients with immunodeficiency syndromes
+@guidance = Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients undergoing immunosuppressive treatment
+*/
+define &quot;BCG vaccination is contraindicated Guidance&quot;:
+  </a:s>
+               <a:s r="308">
+                  <a:s>case
+    </a:s>
+                  <a:s r="309">
+                     <a:s>when </a:s>
+                     <a:s r="310">
+                        <a:s>&quot;BCG vaccination is contraindicated Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="311">
+                        <a:s>'Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients with immunodeficiency syndromes'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="313">
+                     <a:s>when </a:s>
+                     <a:s r="314">
+                        <a:s>&quot;BCG vaccination is contraindicated Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="315">
+                        <a:s>'Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients undergoing immunosuppressive treatment'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="317">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="308" locator="117:3-121:5" xsi:type="Case">
+            <caseItem localId="309" locator="118:5-118:174">
+               <when localId="310" locator="118:10-118:52" name="BCG vaccination is contraindicated Case 1" xsi:type="ExpressionRef"/>
+               <then localId="311" locator="118:59-118:174" valueType="t:String" value="Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients with immunodeficiency syndromes" xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="313" locator="119:5-119:181">
+               <when localId="314" locator="119:10-119:52" name="BCG vaccination is contraindicated Case 2" xsi:type="ExpressionRef"/>
+               <then localId="315" locator="119:59-119:181" valueType="t:String" value="Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients undergoing immunosuppressive treatment" xsi:type="Literal"/>
+            </caseItem>
+            <else localId="317" locator="120:10-120:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="233" locator="28:1-34:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="233">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="234">
+                  <a:s>case 
+    </a:s>
+                  <a:s r="235">
+                     <a:s>when </a:s>
+                     <a:s r="241">
+                        <a:s>&quot;Bacille Calmette–Guérin (BCG) vaccination is contraindicated&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="247">
+                        <a:s>&quot;Bacille Calmette–Guérin (BCG) vaccination is contraindicated Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="248">
+                     <a:s>when </a:s>
+                     <a:s r="268">
+                        <a:s>&quot;BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="283">
+                        <a:s>&quot;BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="284">
+                     <a:s>when </a:s>
+                     <a:s r="304">
+                        <a:s>&quot;BCG vaccination is contraindicated&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="319">
+                        <a:s>&quot;BCG vaccination is contraindicated Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+    else </a:s>
+                  <a:s r="320">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="234" locator="29:3-34:5" xsi:type="Case">
+            <caseItem localId="235" locator="30:5-30:148">
+               <when localId="241" locator="30:10-30:71" name="Bacille Calmette–Guérin (BCG) vaccination is contraindicated" xsi:type="ExpressionRef"/>
+               <then localId="247" locator="30:78-30:148" name="Bacille Calmette–Guérin (BCG) vaccination is contraindicated Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="248" locator="31:5-31:222">
+               <when localId="268" locator="31:10-31:108" name="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." xsi:type="ExpressionRef"/>
+               <then localId="283" locator="31:115-31:222" name="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="284" locator="32:5-32:96">
+               <when localId="304" locator="32:10-32:45" name="BCG vaccination is contraindicated" xsi:type="ExpressionRef"/>
+               <then localId="319" locator="32:52-32:96" name="BCG vaccination is contraindicated Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="320" locator="33:10-33:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="324" locator="36:1-37:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="324">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="325">
+                  <a:s r="328">
+                     <a:s r="326">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="335">
+                     <a:s r="330">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="331">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="325" locator="37:3-37:45" xsi:type="And">
+            <operand localId="328" locator="37:3-37:24" xsi:type="Not">
+               <operand localId="327" locator="37:3-37:24" xsi:type="IsNull">
+                  <operand localId="326" locator="37:3-37:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="335" locator="37:30-37:45" xsi:type="Not">
+               <operand localId="329" locator="37:30-37:45" xsi:type="Equal">
+                  <signature localId="333" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="334" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="330" locator="37:30-37:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="331" locator="37:44-37:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="338" locator="127:1-135:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="338">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="339">
+                  <a:s>case
+    </a:s>
+                  <a:s r="340">
+                     <a:s>when </a:s>
+                     <a:s r="341">
+                        <a:s r="343">
+                           <a:s r="342">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="343">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="344">
+                           <a:s>'BCG37.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="350">
+                        <a:s r="351">
+                           <a:s>&quot;Bacille Calmette–Guérin (BCG) vaccination is contraindicated&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="352">
+                           <a:s r="353">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="354">
+                              <a:s>'Do not vaccinate client with BCG as BCG vaccination is not recommended during pregnancy'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="358">
+                     <a:s>when </a:s>
+                     <a:s r="359">
+                        <a:s r="361">
+                           <a:s r="360">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="361">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="362">
+                           <a:s>'BCG38.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="368">
+                        <a:s r="369">
+                           <a:s>&quot;BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="370">
+                           <a:s r="371">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="372">
+                              <a:s>'Do not vaccinate client with BCG if the client had previous allergic reaction to any component of the vaccine'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="376">
+                     <a:s>when </a:s>
+                     <a:s r="377">
+                        <a:s r="379">
+                           <a:s r="378">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="379">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="380">
+                           <a:s>'BCG39.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="386">
+                        <a:s r="387">
+                           <a:s>&quot;BCG vaccination is contraindicated Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="388">
+                           <a:s r="389">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="390">
+                              <a:s>'Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients with immunodeficiency syndromes'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="394">
+                     <a:s>when </a:s>
+                     <a:s r="395">
+                        <a:s r="397">
+                           <a:s r="396">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="397">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="398">
+                           <a:s>'BCG40.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="404">
+                        <a:s r="405">
+                           <a:s>&quot;BCG vaccination is contraindicated Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="406">
+                           <a:s r="407">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="408">
+                              <a:s>'Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients undergoing immunosuppressive treatment'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="412">
+                     <a:s>when </a:s>
+                     <a:s r="413">
+                        <a:s r="415">
+                           <a:s r="414">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="415">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="416">
+                           <a:s>'BCG41.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="422">
+                        <a:s r="423">
+                           <a:s>&quot;BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="424">
+                           <a:s r="425">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="426">
+                              <a:s>'Do not vaccinate client with BCG if client is exposed to or receives immunosuppressive treatment'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="430">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="339" locator="128:3-135:5" xsi:type="Case">
+            <caseItem localId="340" locator="129:5-129:206">
+               <when localId="341" locator="129:10-129:31" xsi:type="Equal">
+                  <signature localId="348" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="349" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="346" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="347" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="343" locator="129:10-129:19" path="id" xsi:type="Property">
+                        <source localId="342" locator="129:10-129:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="344" locator="129:23-129:31" valueType="t:String" value="BCG37.1" xsi:type="Literal"/>
+               </when>
+               <then localId="432" xsi:type="As">
+                  <operand localId="350" locator="129:38-129:206" xsi:type="And">
+                     <operand localId="351" locator="129:38-129:99" name="Bacille Calmette–Guérin (BCG) vaccination is contraindicated" xsi:type="ExpressionRef"/>
+                     <operand localId="352" locator="129:105-129:206" xsi:type="Equal">
+                        <signature localId="356" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="357" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="353" locator="129:105-129:114" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="354" locator="129:118-129:206" valueType="t:String" value="Do not vaccinate client with BCG as BCG vaccination is not recommended during pregnancy" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="433" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="434" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="435" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="358" locator="130:5-130:272">
+               <when localId="359" locator="130:10-130:31" xsi:type="Equal">
+                  <signature localId="366" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="367" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="364" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="365" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="361" locator="130:10-130:19" path="id" xsi:type="Property">
+                        <source localId="360" locator="130:10-130:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="362" locator="130:23-130:31" valueType="t:String" value="BCG38.1" xsi:type="Literal"/>
+               </when>
+               <then localId="436" xsi:type="As">
+                  <operand localId="368" locator="130:38-130:272" xsi:type="And">
+                     <operand localId="369" locator="130:38-130:143" name="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="370" locator="130:149-130:272" xsi:type="Equal">
+                        <signature localId="374" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="375" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="371" locator="130:149-130:158" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="372" locator="130:162-130:272" valueType="t:String" value="Do not vaccinate client with BCG if the client had previous allergic reaction to any component of the vaccine" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="437" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="438" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="439" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="376" locator="131:5-131:214">
+               <when localId="377" locator="131:10-131:31" xsi:type="Equal">
+                  <signature localId="384" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="385" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="382" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="383" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="379" locator="131:10-131:19" path="id" xsi:type="Property">
+                        <source localId="378" locator="131:10-131:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="380" locator="131:23-131:31" valueType="t:String" value="BCG39.1" xsi:type="Literal"/>
+               </when>
+               <then localId="440" xsi:type="As">
+                  <operand localId="386" locator="131:38-131:214" xsi:type="And">
+                     <operand localId="387" locator="131:38-131:80" name="BCG vaccination is contraindicated Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="388" locator="131:86-131:214" xsi:type="Equal">
+                        <signature localId="392" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="393" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="389" locator="131:86-131:95" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="390" locator="131:99-131:214" valueType="t:String" value="Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients with immunodeficiency syndromes" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="441" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="442" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="443" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="394" locator="132:5-132:221">
+               <when localId="395" locator="132:10-132:31" xsi:type="Equal">
+                  <signature localId="402" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="403" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="400" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="401" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="397" locator="132:10-132:19" path="id" xsi:type="Property">
+                        <source localId="396" locator="132:10-132:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="398" locator="132:23-132:31" valueType="t:String" value="BCG40.2" xsi:type="Literal"/>
+               </when>
+               <then localId="444" xsi:type="As">
+                  <operand localId="404" locator="132:38-132:221" xsi:type="And">
+                     <operand localId="405" locator="132:38-132:80" name="BCG vaccination is contraindicated Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="406" locator="132:86-132:221" xsi:type="Equal">
+                        <signature localId="410" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="411" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="407" locator="132:86-132:95" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="408" locator="132:99-132:221" valueType="t:String" value="Do not vaccinate client with BCG as BCG vaccination is contraindicated for clients undergoing immunosuppressive treatment" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="445" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="446" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="447" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="412" locator="133:5-133:259">
+               <when localId="413" locator="133:10-133:31" xsi:type="Equal">
+                  <signature localId="420" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="421" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="418" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="419" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="415" locator="133:10-133:19" path="id" xsi:type="Property">
+                        <source localId="414" locator="133:10-133:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="416" locator="133:23-133:31" valueType="t:String" value="BCG41.2" xsi:type="Literal"/>
+               </when>
+               <then localId="448" xsi:type="As">
+                  <operand localId="422" locator="133:38-133:259" xsi:type="And">
+                     <operand localId="423" locator="133:38-133:143" name="BCG vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="424" locator="133:149-133:259" xsi:type="Equal">
+                        <signature localId="428" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="429" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="425" locator="133:149-133:158" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="426" locator="133:162-133:259" valueType="t:String" value="Do not vaccinate client with BCG if client is exposed to or receives immunosuppressive treatment" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="449" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="450" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="451" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="452" xsi:type="As">
+               <operand localId="430" locator="134:10-134:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="453" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="454" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="455" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

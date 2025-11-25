@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="332">
+         <a:s>/*
+ * Library: IMMZ.IND.39 Logic
+ * Drop-out rate from the 3rd dose of malaria vaccines to the 4th dose
+ * The percentage in the target population who received a 3rd dose of malaria vaccine but have not received the 4th dose of malaria vaccine (i.e. are past due for malaria vaccine 4th dose) during the reporting period
+ * 
+ * Numerator: Number of clients who received the 3rd dose of malaria vaccine during the reporting period who should have received (via scheduling logic) the 4th dose of malaria vaccine during the reporting period but did not receive it
+ * Numerator Computation: (COUNT of clients with an immunization event WHERE &quot;Vaccine type&quot; = &quot;Malaria vaccines&quot; for the 3rd dose in the primary series AND &quot;Date and time of vaccination&quot; is during the reporting period) - (COUNT of clients with an immunization event WHERE &quot;Vaccine type&quot; = &quot;Malaria vaccines&quot; for the 4th dose in the primary series AND &quot;Date and time of vaccination&quot; is during the reporting period)
+ * Denominator: Number of clients in the target population who received dose 3 of malaria vaccine during the reporting period
+ * Denominator Computation: COUNT clients with an immunization event WHERE &quot;Vaccine type&quot; = &quot;Malaria vaccines&quot; for the 3rd dose in the primary series AND &quot;Date and time of vaccination&quot; is during the reporting period
+ * 
+ * Disaggregation
+ *  - Administrative area
+ *  - Sex
+ *  - Age in years
+ *  - Age group (depending on schedule)
+ *
+ * References: Guide to introduce malaria vaccine (4)
+ * 
+ * Annotations: –
+ */
+library IMMZIND39Logic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZIND39Logic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="23:1-23:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="25:1-25:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="27:1-27:27" localIdentifier="WC" path="http://smart.who.int/immunizations/WHOCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>WHOCommon</a:s>
+               </a:s>
+               <a:s> called WC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="212" locator="29:1-29:32" localIdentifier="Common" path="http://smart.who.int/immunizations/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called Common</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="214" locator="30:1-30:36" localIdentifier="Concepts" path="http://smart.who.int/immunizations/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="214">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called Concepts</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="216" locator="31:1-31:45" localIdentifier="Elements" path="http://smart.who.int/immunizations/IMMZIndicatorElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="216">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZIndicatorElements</a:s>
+               </a:s>
+               <a:s> called Elements</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="218" locator="33:1-33:46" localIdentifier="Malaria" path="http://smart.who.int/immunizations/IMMZD2DTMalariaElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="218">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTMalariaElements</a:s>
+               </a:s>
+               <a:s> called Malaria</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="220" locator="35:1-35:88" name="Measurement Period" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="220">
+               <a:s>parameter &quot;Measurement Period&quot; </a:s>
+               <a:s r="232">
+                  <a:s>Interval&lt;</a:s>
+                  <a:s r="233">
+                     <a:s>Date</a:s>
+                  </a:s>
+                  <a:s>></a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="231">
+                  <a:s r="225">Interval[@2025-01-01, @2025-12-31]</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="231" locator="35:55-35:88" lowClosed="true" highClosed="true" xsi:type="Interval">
+            <low localId="225" locator="35:64-35:74" xsi:type="Date">
+               <year localId="222" valueType="t:Integer" value="2025" xsi:type="Literal"/>
+               <month localId="223" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               <day localId="224" valueType="t:Integer" value="1" xsi:type="Literal"/>
+            </low>
+            <high localId="230" locator="35:77-35:87" xsi:type="Date">
+               <year localId="227" valueType="t:Integer" value="2025" xsi:type="Literal"/>
+               <month localId="228" valueType="t:Integer" value="12" xsi:type="Literal"/>
+               <day localId="229" valueType="t:Integer" value="31" xsi:type="Literal"/>
+            </high>
+         </default>
+         <parameterTypeSpecifier localId="232" locator="35:32-35:45" xsi:type="IntervalTypeSpecifier">
+            <pointType localId="233" locator="35:41-35:44" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+         </parameterTypeSpecifier>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="238" locator="37:1-37:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="236" locator="37:1-37:15" name="Patient" context="Patient">
+         <expression localId="237" xsi:type="SingletonFrom">
+            <operand localId="235" locator="37:1-37:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="241" locator="42:1-43:6" name="Initial Population" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="241">
+               <a:s r="242">/*
+ * As defined by Member State
+ */
+define &quot;Initial Population&quot;:
+  true</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="242" locator="43:3-43:6" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+      </def>
+      <def localId="245" locator="51:1-53:86" name="Denominator" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="denominator" value="Number of clients in the target population who received dose 3 of malaria vaccine during the reporting period"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;Malaria vaccines&quot; for the 3rd dose in the primary series AND &quot;Date and time of vaccination&quot; is during the reporting period"/>
+            <a:t name="note" value="Put 4 weeks as the minimum, but note the scheduling table recommends being at least a year so this may be better to be&#xa;        a 12 month for the due date or even 18 months for the overdue date."/>
+            <a:s r="245">
+               <a:s>/*
+@denominator: Number of clients in the target population who received dose 3 of malaria vaccine during the reporting period
+@pseudocode: COUNT clients with an immunization event WHERE &quot;Vaccine type&quot; = &quot;Malaria vaccines&quot; for the 3rd dose in the primary series AND &quot;Date and time of vaccination&quot; is during the reporting period
+@note: Put 4 weeks as the minimum, but note the scheduling table recommends being at least a year so this may be better to be
+        a 12 month for the due date or even 18 months for the overdue date.
+*/
+define &quot;Denominator&quot;:
+  </a:s>
+               <a:s r="246">
+                  <a:s>exists</a:s>
+                  <a:s r="279">
+                     <a:s>( </a:s>
+                     <a:s r="279">
+                        <a:s>
+                           <a:s r="247">
+                              <a:s r="252">
+                                 <a:s>(</a:s>
+                                 <a:s r="252">
+                                    <a:s r="249">
+                                       <a:s r="248">
+                                          <a:s>Malaria</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="249">
+                                          <a:s>&quot;Malaria Primary Series Doses Administered to Patient&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="252">
+                                       <a:s>getDose(</a:s>
+                                       <a:s r="250">
+                                          <a:s>'3'</a:s>
+                                       </a:s>
+                                       <a:s>)</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>)</a:s>
+                              </a:s>
+                              <a:s> I</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    </a:s>
+                        <a:s r="267">
+                           <a:s>where </a:s>
+                           <a:s r="267">
+                              <a:s r="257">
+                                 <a:s>(</a:s>
+                                 <a:s r="257">
+                                    <a:s r="258">
+                                       <a:s>start of </a:s>
+                                       <a:s r="261">
+                                          <a:s r="260">
+                                             <a:s r="259">
+                                                <a:s>I</a:s>
+                                             </a:s>
+                                             <a:s>.</a:s>
+                                             <a:s r="260">
+                                                <a:s>occurrence</a:s>
+                                             </a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="261">
+                                             <a:s>toInterval()</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> + </a:s>
+                                    <a:s r="262">
+                                       <a:s>4 weeks</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>)</a:s>
+                              </a:s>
+                              <a:s r="267"> during </a:s>
+                              <a:s r="265">
+                                 <a:s>&quot;Measurement Period&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> )</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="246" locator="52:3-53:86" xsi:type="Exists">
+            <operand localId="279" locator="52:9-53:86" xsi:type="Query">
+               <source localId="247" locator="52:11-52:89" alias="I">
+                  <expression localId="252" locator="52:11-52:87" name="getDose" libraryName="Common" xsi:type="FunctionRef">
+                     <signature localId="253" xsi:type="ListTypeSpecifier">
+                        <elementType localId="254" name="fhir:Immunization" xsi:type="NamedTypeSpecifier"/>
+                     </signature>
+                     <signature localId="255" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="249" locator="52:12-52:73" name="Malaria Primary Series Doses Administered to Patient" libraryName="Malaria" xsi:type="ExpressionRef"/>
+                     <operand localId="250" locator="52:83-52:85" valueType="t:String" value="3" xsi:type="Literal"/>
+                  </expression>
+               </source>
+               <where localId="267" locator="53:5-53:84" xsi:type="In">
+                  <operand localId="257" locator="53:11-53:56" xsi:type="Add">
+                     <signature localId="263" name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                     <signature localId="264" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="258" locator="53:12-53:45" xsi:type="Start">
+                        <operand localId="261" locator="53:21-53:45" name="toInterval" libraryName="WC" xsi:type="FunctionRef">
+                           <operand localId="260" locator="53:21-53:32" path="occurrence" scope="I" xsi:type="Property"/>
+                        </operand>
+                     </operand>
+                     <operand localId="262" locator="53:49-53:55" value="4" unit="weeks" xsi:type="Quantity"/>
+                  </operand>
+                  <operand localId="268" xsi:type="Interval">
+                     <low localId="271" xsi:type="ToDateTime">
+                        <signature localId="272" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="269" path="low" xsi:type="Property">
+                           <source localId="265" locator="53:65-53:84" name="Measurement Period" xsi:type="ParameterRef"/>
+                        </operand>
+                     </low>
+                     <lowClosedExpression localId="273" path="lowClosed" xsi:type="Property">
+                        <source localId="265" locator="53:65-53:84" name="Measurement Period" xsi:type="ParameterRef"/>
+                     </lowClosedExpression>
+                     <high localId="276" xsi:type="ToDateTime">
+                        <signature localId="277" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="274" path="high" xsi:type="Property">
+                           <source localId="265" locator="53:65-53:84" name="Measurement Period" xsi:type="ParameterRef"/>
+                        </operand>
+                     </high>
+                     <highClosedExpression localId="278" path="highClosed" xsi:type="Property">
+                        <source localId="265" locator="53:65-53:84" name="Measurement Period" xsi:type="ParameterRef"/>
+                     </highClosedExpression>
+                  </operand>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="282" locator="59:1-62:72" name="Numerator" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="numerator" value="Number of clients who received the 3rd dose of malaria vaccine during the reporting period who should have received (via scheduling logic) the 4th dose of malaria vaccine during the reporting period but did not receive it"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;Malaria vaccines&quot; for the 3rd dose in the primary series AND &quot;Date and time of vaccination&quot; is during the reporting period) - (COUNT of clients with an immunization event WHERE &quot;Vaccine type&quot; = &quot;Malaria vaccines&quot; for the 4th dose in the primary series AND &quot;Date and time of vaccination&quot; is during the reporting period)"/>
+            <a:s r="282">
+               <a:s>/*
+@numerator: Number of clients who received the 3rd dose of malaria vaccine during the reporting period who should have received (via scheduling logic) the 4th dose of malaria vaccine during the reporting period but did not receive it
+@pseudocode: (COUNT of clients with an immunization event WHERE &quot;Vaccine type&quot; = &quot;Malaria vaccines&quot; for the 3rd dose in the primary series AND &quot;Date and time of vaccination&quot; is during the reporting period) - (COUNT of clients with an immunization event WHERE &quot;Vaccine type&quot; = &quot;Malaria vaccines&quot; for the 4th dose in the primary series AND &quot;Date and time of vaccination&quot; is during the reporting period)
+*/
+define &quot;Numerator&quot;:
+  </a:s>
+               <a:s r="283">
+                  <a:s r="284">
+                     <a:s>&quot;Denominator&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="285">
+                     <a:s>not </a:s>
+                     <a:s r="286">
+                        <a:s>exists</a:s>
+                        <a:s r="314">
+                           <a:s>( </a:s>
+                           <a:s r="314">
+                              <a:s>
+                                 <a:s r="287">
+                                    <a:s r="292">
+                                       <a:s>(</a:s>
+                                       <a:s r="292">
+                                          <a:s r="289">
+                                             <a:s r="288">
+                                                <a:s>Malaria</a:s>
+                                             </a:s>
+                                             <a:s>.</a:s>
+                                             <a:s r="289">
+                                                <a:s>&quot;Malaria Primary Series Doses Administered to Patient&quot;</a:s>
+                                             </a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="292">
+                                             <a:s>getDose(</a:s>
+                                             <a:s r="290">
+                                                <a:s>'4'</a:s>
+                                             </a:s>
+                                             <a:s>)</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s>)</a:s>
+                                    </a:s>
+                                    <a:s> I</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>
+    </a:s>
+                              <a:s r="302">
+                                 <a:s>where </a:s>
+                                 <a:s r="302">
+                                    <a:s r="299">
+                                       <a:s r="298">
+                                          <a:s r="297">
+                                             <a:s>I</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="298">
+                                             <a:s>occurrence</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="299">
+                                          <a:s>toInterval()</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s r="302"> starts during </a:s>
+                                    <a:s r="300">
+                                       <a:s>&quot;Measurement Period&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> )</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="283" locator="60:3-62:72" xsi:type="And">
+            <operand localId="284" locator="60:3-60:15" name="Denominator" xsi:type="ExpressionRef"/>
+            <operand localId="285" locator="61:7-62:72" xsi:type="Not">
+               <operand localId="286" locator="61:11-62:72" xsi:type="Exists">
+                  <operand localId="314" locator="61:17-62:72" xsi:type="Query">
+                     <source localId="287" locator="61:19-61:97" alias="I">
+                        <expression localId="292" locator="61:19-61:95" name="getDose" libraryName="Common" xsi:type="FunctionRef">
+                           <signature localId="293" xsi:type="ListTypeSpecifier">
+                              <elementType localId="294" name="fhir:Immunization" xsi:type="NamedTypeSpecifier"/>
+                           </signature>
+                           <signature localId="295" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                           <operand localId="289" locator="61:20-61:81" name="Malaria Primary Series Doses Administered to Patient" libraryName="Malaria" xsi:type="ExpressionRef"/>
+                           <operand localId="290" locator="61:91-61:93" valueType="t:String" value="4" xsi:type="Literal"/>
+                        </expression>
+                     </source>
+                     <where localId="302" locator="62:5-62:70" xsi:type="In">
+                        <operand localId="301" locator="62:37-62:42" xsi:type="Start">
+                           <operand localId="299" locator="62:11-62:35" name="toInterval" libraryName="WC" xsi:type="FunctionRef">
+                              <operand localId="298" locator="62:11-62:22" path="occurrence" scope="I" xsi:type="Property"/>
+                           </operand>
+                        </operand>
+                        <operand localId="303" xsi:type="Interval">
+                           <low localId="306" xsi:type="ToDateTime">
+                              <signature localId="307" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                              <operand localId="304" path="low" xsi:type="Property">
+                                 <source localId="300" locator="62:51-62:70" name="Measurement Period" xsi:type="ParameterRef"/>
+                              </operand>
+                           </low>
+                           <lowClosedExpression localId="308" path="lowClosed" xsi:type="Property">
+                              <source localId="300" locator="62:51-62:70" name="Measurement Period" xsi:type="ParameterRef"/>
+                           </lowClosedExpression>
+                           <high localId="311" xsi:type="ToDateTime">
+                              <signature localId="312" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                              <operand localId="309" path="high" xsi:type="Property">
+                                 <source localId="300" locator="62:51-62:70" name="Measurement Period" xsi:type="ParameterRef"/>
+                              </operand>
+                           </high>
+                           <highClosedExpression localId="313" path="highClosed" xsi:type="Property">
+                              <source localId="300" locator="62:51-62:70" name="Measurement Period" xsi:type="ParameterRef"/>
+                           </highClosedExpression>
+                        </operand>
+                     </where>
+                  </operand>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="317" locator="69:1-70:43" name="Stratification 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="disaggregation" value="Administrative area&#xa;                 Sex&#xa;                 Age in years&#xa;                 Age group (depending on schedule)"/>
+            <a:s r="317">
+               <a:s>/*
+@disaggregation: Administrative area
+                 Sex
+                 Age in years
+                 Age group (depending on schedule)
+*/
+define &quot;Stratification 1&quot;:
+	</a:s>
+               <a:s r="319">
+                  <a:s r="318">
+                     <a:s>Elements</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="319">
+                     <a:s>&quot;By Geographic Region Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="319" locator="70:2-70:43" name="By Geographic Region Stratifier" libraryName="Elements" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="322" locator="72:1-73:47" name="Stratification 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="322">
+               <a:s>define &quot;Stratification 2&quot;:
+	</a:s>
+               <a:s r="324">
+                  <a:s r="323">
+                     <a:s>Elements</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="324">
+                     <a:s>&quot;By Administrative Gender Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="324" locator="73:2-73:47" name="By Administrative Gender Stratifier" libraryName="Elements" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="327" locator="75:1-76:26" name="Stratification 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="327">
+               <a:s>define &quot;Stratification 3&quot;:
+	</a:s>
+               <a:s r="329">
+                  <a:s r="328">
+                     <a:s>Elements</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="329">
+                     <a:s>&quot;Age Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="329" locator="76:2-76:26" name="Age Stratifier" libraryName="Elements" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="332" locator="78:1-79:36" name="Stratification 4" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="332">
+               <a:s>define &quot;Stratification 4&quot;:
+	</a:s>
+               <a:s r="334">
+                  <a:s r="333">
+                     <a:s>Elements</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="334">
+                     <a:s>&quot;Infant By Age Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="334" locator="79:2-79:36" name="Infant By Age Stratifier" libraryName="Elements" xsi:type="ExpressionRef"/>
+      </def>
+   </statements>
+</library>

@@ -1,0 +1,1200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="362">
+         <a:s>/*
+ * Library: IMMZD2DTMeaslesOngoingTransmissionLogic (IMMZ.D2.DT.Measles.Ongoing transmission)
+ * Rule: Determine if the client is due for a measles vaccination according to the national immunization schedule
+ * Decision Table: Countries with ongoing transmission in which the risk of measles mortality remains high (countries that provide first dose of measles-containing vaccine (MCV) at 9 months and second dose of MCV at 15 months)
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any
+ */
+library IMMZD2DTMeaslesOngoingTransmissionLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTMeaslesOngoingTransmissionLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="9:1-9:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="10:1-10:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="12:1-12:57" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTMeaslesEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTMeaslesEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="212" locator="14:1-14:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>parameter Today </a:s>
+               <a:s r="216">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="215">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="215" locator="14:30-14:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="216" locator="14:17-14:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="16:1-16:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="16:1-16:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="229" locator="41:1-42:48" name="Client is not due for first dose of measles-containing vaccine (MCV1)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for first dose of measles-containing vaccine (MCV1)"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="229">
+               <a:s>/*
+@output: Client is not due for first dose of measles-containing vaccine (MCV1)
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for first dose of measles-containing vaccine (MCV1)&quot;:
+  </a:s>
+               <a:s r="231">
+                  <a:s r="230">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="231">
+                     <a:s>&quot;Client's age is less than 9 months&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="231" locator="42:3-42:48" name="Client's age is less than 9 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="235" locator="49:1-50:154" name="Client is not due for first dose of measles-containing vaccine (MCV1) Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for first dose of measles-containing vaccine (MCV1) Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client as client's age is less than 9 months.&#xa;Check for any vaccines due and inform the caregiver of when to come back for MCV1."/>
+            <a:s r="235">
+               <a:s>/*
+@output: Client is not due for first dose of measles-containing vaccine (MCV1) Guidance
+@guidance: Should not vaccinate client as client's age is less than 9 months.
+Check for any vaccines due and inform the caregiver of when to come back for MCV1.
+*/
+define &quot;Client is not due for first dose of measles-containing vaccine (MCV1) Guidance&quot;:
+  </a:s>
+               <a:s r="236">
+                  <a:s>'Should not vaccinate client as client\'s age is less than 9 months.
+Check for any vaccines due and inform the caregiver of when to come back for MCV1.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="236" locator="50:3-50:154" valueType="t:String" value="Should not vaccinate client as client's age is less than 9 months.&#xa;Check for any vaccines due and inform the caregiver of when to come back for MCV1." xsi:type="Literal"/>
+      </def>
+      <def localId="242" locator="57:1-60:72" name="Client is due for MCV1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for MCV1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="242">
+               <a:s>/*
+@output: Client is due for MCV1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for MCV1&quot;:
+  </a:s>
+               <a:s r="243">
+                  <a:s r="244">
+                     <a:s r="246">
+                        <a:s r="245">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="246">
+                           <a:s>&quot;No measles primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="248">
+                        <a:s r="247">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="248">
+                           <a:s>&quot;Client's age is more than or equal to 9 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="250">
+                     <a:s r="249">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="250">
+                        <a:s>&quot;No live vaccine was administered in the last 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="243" locator="58:3-60:72" xsi:type="And">
+            <operand localId="244" locator="58:3-59:66" xsi:type="And">
+               <operand localId="246" locator="58:3-58:63" name="No measles primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="248" locator="59:9-59:66" name="Client's age is more than or equal to 9 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="250" locator="60:9-60:72" name="No live vaccine was administered in the last 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="254" locator="67:1-68:198" name="Client is due for MCV1 Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for MCV1 Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine administered in the past 4 weeks.&#xa;Check for contraindications."/>
+            <a:s r="254">
+               <a:s>/*
+@output: Client is due for MCV1 Guidance
+@guidance: Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine administered in the past 4 weeks.
+Check for contraindications.
+*/
+define &quot;Client is due for MCV1 Guidance&quot;:
+  </a:s>
+               <a:s r="255">
+                  <a:s>'Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine administered in the past 4 weeks.
+Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="255" locator="68:3-68:198" valueType="t:String" value="Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine administered in the past 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="261" locator="75:1-78:69" name="Client is not due for MCV1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for MCV1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="261">
+               <a:s>/*
+@output: Client is not due for MCV1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for MCV1&quot;:
+  </a:s>
+               <a:s r="262">
+                  <a:s r="263">
+                     <a:s r="265">
+                        <a:s r="264">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="265">
+                           <a:s>&quot;No measles primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="267">
+                        <a:s r="266">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="267">
+                           <a:s>&quot;Client's age is more than or equal to 9 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="269">
+                     <a:s r="268">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="269">
+                        <a:s>&quot;Live vaccine was administered in the last 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="262" locator="76:3-78:69" xsi:type="And">
+            <operand localId="263" locator="76:3-77:66" xsi:type="And">
+               <operand localId="265" locator="76:3-76:63" name="No measles primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="267" locator="77:9-77:66" name="Client's age is more than or equal to 9 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="269" locator="78:9-78:69" name="Live vaccine was administered in the last 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="273" locator="85:1-86:178" name="Client is not due for MCV1 Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for MCV1 Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.&#xa;Check for any vaccines due and inform the caregiver of when to come back for MCV1."/>
+            <a:s r="273">
+               <a:s>/*
+@output: Client is not due for MCV1 Guidance
+@guidance: Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.
+Check for any vaccines due and inform the caregiver of when to come back for MCV1.
+*/
+define &quot;Client is not due for MCV1 Guidance&quot;:
+  </a:s>
+               <a:s r="274">
+                  <a:s>'Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.
+Check for any vaccines due and inform the caregiver of when to come back for MCV1.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="274" locator="86:3-86:178" valueType="t:String" value="Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.&#xa;Check for any vaccines due and inform the caregiver of when to come back for MCV1." xsi:type="Literal"/>
+      </def>
+      <def localId="280" locator="93:1-95:55" name="Client is not due for second dose of measles-containing vaccine (MCV2)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for second dose of measles-containing vaccine (MCV2)"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="280">
+               <a:s>/*
+@output: Client is not due for second dose of measles-containing vaccine (MCV2)
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for second dose of measles-containing vaccine (MCV2)&quot;:
+  </a:s>
+               <a:s r="281">
+                  <a:s r="283">
+                     <a:s r="282">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="283">
+                        <a:s>&quot;MCV1 was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="285">
+                     <a:s r="284">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="285">
+                        <a:s>&quot;Client's age is less than 15 months&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="281" locator="94:3-95:55" xsi:type="And">
+            <operand localId="283" locator="94:3-94:35" name="MCV1 was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="285" locator="95:9-95:55" name="Client's age is less than 15 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="289" locator="102:1-103:165" name="Client is not due for second dose of measles-containing vaccine (MCV2) Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for second dose of measles-containing vaccine (MCV2) Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with MCV2 as client's age is less than 15 months.&#xa;Check for any vaccines due and inform the caregiver of when to come back for MCV2."/>
+            <a:s r="289">
+               <a:s>/*
+@output: Client is not due for second dose of measles-containing vaccine (MCV2) Guidance
+@guidance: Should not vaccinate client with MCV2 as client's age is less than 15 months.
+Check for any vaccines due and inform the caregiver of when to come back for MCV2.
+*/
+define &quot;Client is not due for second dose of measles-containing vaccine (MCV2) Guidance&quot;:
+  </a:s>
+               <a:s r="290">
+                  <a:s>'Should not vaccinate client with MCV2 as client\'s age is less than 15 months.
+Check for any vaccines due and inform the caregiver of when to come back for MCV2.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="290" locator="103:3-103:165" valueType="t:String" value="Should not vaccinate client with MCV2 as client's age is less than 15 months.&#xa;Check for any vaccines due and inform the caregiver of when to come back for MCV2." xsi:type="Literal"/>
+      </def>
+      <def localId="296" locator="110:1-113:72" name="Client is due for MCV2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for MCV2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="296">
+               <a:s>/*
+@output: Client is due for MCV2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for MCV2&quot;:
+  </a:s>
+               <a:s r="297">
+                  <a:s r="298">
+                     <a:s r="300">
+                        <a:s r="299">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="300">
+                           <a:s>&quot;MCV1 was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="302">
+                        <a:s r="301">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="302">
+                           <a:s>&quot;Client's age is more than or equal to 15 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="304">
+                     <a:s r="303">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="304">
+                        <a:s>&quot;No live vaccine was administered in the last 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="297" locator="111:3-113:72" xsi:type="And">
+            <operand localId="298" locator="111:3-112:67" xsi:type="And">
+               <operand localId="300" locator="111:3-111:35" name="MCV1 was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="302" locator="112:9-112:67" name="Client's age is more than or equal to 15 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="304" locator="113:9-113:72" name="No live vaccine was administered in the last 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="308" locator="120:1-121:162" name="Client is due for MCV2 Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for MCV2 Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.&#xa;Check for contraindications."/>
+            <a:s r="308">
+               <a:s>/*
+@output: Client is due for MCV2 Guidance
+@guidance: Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.
+Check for contraindications.
+*/
+define &quot;Client is due for MCV2 Guidance&quot;:
+  </a:s>
+               <a:s r="309">
+                  <a:s>'Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.
+Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="309" locator="121:3-121:162" valueType="t:String" value="Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="315" locator="128:1-131:69" name="Client is not due for MCV2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for MCV2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="315">
+               <a:s>/*
+@output: Client is not due for MCV2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for MCV2&quot;:
+  </a:s>
+               <a:s r="316">
+                  <a:s r="317">
+                     <a:s r="319">
+                        <a:s r="318">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="319">
+                           <a:s>&quot;MCV1 was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="321">
+                        <a:s r="320">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="321">
+                           <a:s>&quot;Client's age is more than or equal to 15 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="323">
+                     <a:s r="322">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="323">
+                        <a:s>&quot;Live vaccine was administered in the last 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="316" locator="129:3-131:69" xsi:type="And">
+            <operand localId="317" locator="129:3-130:67" xsi:type="And">
+               <operand localId="319" locator="129:3-129:35" name="MCV1 was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="321" locator="130:9-130:67" name="Client's age is more than or equal to 15 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="323" locator="131:9-131:69" name="Live vaccine was administered in the last 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="327" locator="138:1-139:178" name="Client is not due for MCV2 Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for MCV2 Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.&#xa;Check for any vaccines due and inform the caregiver of when to come back for MCV2."/>
+            <a:s r="327">
+               <a:s>/*
+@output: Client is not due for MCV2 Guidance
+@guidance: Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.
+Check for any vaccines due and inform the caregiver of when to come back for MCV2.
+*/
+define &quot;Client is not due for MCV2 Guidance&quot;:
+  </a:s>
+               <a:s r="328">
+                  <a:s>'Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.
+Check for any vaccines due and inform the caregiver of when to come back for MCV2.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="328" locator="139:3-139:178" valueType="t:String" value="Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.&#xa;Check for any vaccines due and inform the caregiver of when to come back for MCV2." xsi:type="Literal"/>
+      </def>
+      <def localId="334" locator="146:1-147:35" name="Measles primary series is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Measles primary series is complete"/>
+            <a:t name="pseudocode" value="&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Measles-containing vaccines&quot;)"/>
+            <a:s r="334">
+               <a:s>/*
+@output: Measles primary series is complete
+@pseudocode: &quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Measles-containing vaccines&quot;)
+*/
+define &quot;Measles primary series is complete&quot;:
+  </a:s>
+               <a:s r="336">
+                  <a:s r="335">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="336">
+                     <a:s>&quot;MCV2 was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="336" locator="147:3-147:35" name="MCV2 was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="340" locator="154:1-155:160" name="Measles primary series is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Measles primary series is complete Guidance"/>
+            <a:t name="guidance" value="Measles primary series is complete. Two measles primary series doses were administered.&#xa;Check if a measles supplementary dose is appropriate for the client."/>
+            <a:s r="340">
+               <a:s>/*
+@output: Measles primary series is complete Guidance
+@guidance: Measles primary series is complete. Two measles primary series doses were administered.
+Check if a measles supplementary dose is appropriate for the client.
+*/
+define &quot;Measles primary series is complete Guidance&quot;:
+  </a:s>
+               <a:s r="341">
+                  <a:s>'Measles primary series is complete. Two measles primary series doses were administered.
+Check if a measles supplementary dose is appropriate for the client.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="341" locator="155:3-155:160" valueType="t:String" value="Measles primary series is complete. Two measles primary series doses were administered.&#xa;Check if a measles supplementary dose is appropriate for the client." xsi:type="Literal"/>
+      </def>
+      <def localId="224" locator="22:1-32:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="224">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="225">
+                  <a:s>case 
+    </a:s>
+                  <a:s r="226">
+                     <a:s>when </a:s>
+                     <a:s r="232">
+                        <a:s>&quot;Client is not due for first dose of measles-containing vaccine (MCV1)&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="238">
+                        <a:s>&quot;Client is not due for first dose of measles-containing vaccine (MCV1) Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="239">
+                     <a:s>when </a:s>
+                     <a:s r="251">
+                        <a:s>&quot;Client is due for MCV1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="257">
+                        <a:s>&quot;Client is due for MCV1 Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="258">
+                     <a:s>when </a:s>
+                     <a:s r="270">
+                        <a:s>&quot;Client is not due for MCV1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="276">
+                        <a:s>&quot;Client is not due for MCV1 Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="277">
+                     <a:s>when </a:s>
+                     <a:s r="286">
+                        <a:s>&quot;Client is not due for second dose of measles-containing vaccine (MCV2)&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="292">
+                        <a:s>&quot;Client is not due for second dose of measles-containing vaccine (MCV2) Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="293">
+                     <a:s>when </a:s>
+                     <a:s r="305">
+                        <a:s>&quot;Client is due for MCV2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="311">
+                        <a:s>&quot;Client is due for MCV2 Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="312">
+                     <a:s>when </a:s>
+                     <a:s r="324">
+                        <a:s>&quot;Client is not due for MCV2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="330">
+                        <a:s>&quot;Client is not due for MCV2 Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="331">
+                     <a:s>when </a:s>
+                     <a:s r="337">
+                        <a:s>&quot;Measles primary series is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="343">
+                        <a:s>&quot;Measles primary series is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+    else </a:s>
+                  <a:s r="344">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="23:3-32:5" xsi:type="Case">
+            <caseItem localId="226" locator="24:5-24:166">
+               <when localId="232" locator="24:10-24:80" name="Client is not due for first dose of measles-containing vaccine (MCV1)" xsi:type="ExpressionRef"/>
+               <then localId="238" locator="24:87-24:166" name="Client is not due for first dose of measles-containing vaccine (MCV1) Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="239" locator="25:5-25:72">
+               <when localId="251" locator="25:10-25:33" name="Client is due for MCV1" xsi:type="ExpressionRef"/>
+               <then localId="257" locator="25:40-25:72" name="Client is due for MCV1 Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="258" locator="26:5-26:80">
+               <when localId="270" locator="26:10-26:37" name="Client is not due for MCV1" xsi:type="ExpressionRef"/>
+               <then localId="276" locator="26:44-26:80" name="Client is not due for MCV1 Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="277" locator="27:5-27:168">
+               <when localId="286" locator="27:10-27:81" name="Client is not due for second dose of measles-containing vaccine (MCV2)" xsi:type="ExpressionRef"/>
+               <then localId="292" locator="27:88-27:168" name="Client is not due for second dose of measles-containing vaccine (MCV2) Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="293" locator="28:5-28:72">
+               <when localId="305" locator="28:10-28:33" name="Client is due for MCV2" xsi:type="ExpressionRef"/>
+               <then localId="311" locator="28:40-28:72" name="Client is due for MCV2 Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="312" locator="29:5-29:80">
+               <when localId="324" locator="29:10-29:37" name="Client is not due for MCV2" xsi:type="ExpressionRef"/>
+               <then localId="330" locator="29:44-29:80" name="Client is not due for MCV2 Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="331" locator="30:5-30:96">
+               <when localId="337" locator="30:10-30:45" name="Measles primary series is complete" xsi:type="ExpressionRef"/>
+               <then localId="343" locator="30:52-30:96" name="Measles primary series is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="344" locator="31:10-31:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="348" locator="34:1-35:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="348">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="349">
+                  <a:s r="352">
+                     <a:s r="350">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="359">
+                     <a:s r="354">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="355">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="349" locator="35:3-35:45" xsi:type="And">
+            <operand localId="352" locator="35:3-35:24" xsi:type="Not">
+               <operand localId="351" locator="35:3-35:24" xsi:type="IsNull">
+                  <operand localId="350" locator="35:3-35:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="359" locator="35:30-35:45" xsi:type="Not">
+               <operand localId="353" locator="35:30-35:45" xsi:type="Equal">
+                  <signature localId="357" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="358" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="354" locator="35:30-35:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="355" locator="35:44-35:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="362" locator="162:1-179:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="362">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="363">
+                  <a:s>case
+    </a:s>
+                  <a:s r="364">
+                     <a:s>when </a:s>
+                     <a:s r="365">
+                        <a:s r="367">
+                           <a:s r="366">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="367">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="368">
+                           <a:s>'Measles08.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="374">
+                        <a:s r="375">
+                           <a:s>&quot;Client is not due for first dose of measles-containing vaccine (MCV1)&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="376">
+                           <a:s r="377">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="378">
+                              <a:s>'Should not vaccinate client as client\'s age is less than 9 months.
+Check for any vaccines due and inform the caregiver of when to come back for MCV1.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="382">
+                     <a:s>when </a:s>
+                     <a:s r="383">
+                        <a:s r="385">
+                           <a:s r="384">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="385">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="386">
+                           <a:s>'Measles09.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="392">
+                        <a:s r="393">
+                           <a:s>&quot;Client is due for MCV1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="394">
+                           <a:s r="395">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="396">
+                              <a:s>'Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine administered in the past 4 weeks.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="400">
+                     <a:s>when </a:s>
+                     <a:s r="401">
+                        <a:s r="403">
+                           <a:s r="402">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="403">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="404">
+                           <a:s>'Measles10.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="410">
+                        <a:s r="411">
+                           <a:s>&quot;Client is not due for MCV1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="412">
+                           <a:s r="413">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="414">
+                              <a:s>'Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.
+Check for any vaccines due and inform the caregiver of when to come back for MCV1.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="418">
+                     <a:s>when </a:s>
+                     <a:s r="419">
+                        <a:s r="421">
+                           <a:s r="420">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="421">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="422">
+                           <a:s>'Measles11.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="428">
+                        <a:s r="429">
+                           <a:s>&quot;Client is not due for second dose of measles-containing vaccine (MCV2)&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="430">
+                           <a:s r="431">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="432">
+                              <a:s>'Should not vaccinate client with MCV2 as client\'s age is less than 15 months.
+Check for any vaccines due and inform the caregiver of when to come back for MCV2.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="436">
+                     <a:s>when </a:s>
+                     <a:s r="437">
+                        <a:s r="439">
+                           <a:s r="438">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="439">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="440">
+                           <a:s>'Measles12.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="446">
+                        <a:s r="447">
+                           <a:s>&quot;Client is due for MCV2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="448">
+                           <a:s r="449">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="450">
+                              <a:s>'Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="454">
+                     <a:s>when </a:s>
+                     <a:s r="455">
+                        <a:s r="457">
+                           <a:s r="456">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="457">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="458">
+                           <a:s>'Measles13.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="464">
+                        <a:s r="465">
+                           <a:s>&quot;Client is not due for MCV2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="466">
+                           <a:s r="467">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="468">
+                              <a:s>'Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.
+Check for any vaccines due and inform the caregiver of when to come back for MCV2.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="472">
+                     <a:s>when </a:s>
+                     <a:s r="473">
+                        <a:s r="475">
+                           <a:s r="474">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="475">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="476">
+                           <a:s>'Measles14.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="482">
+                        <a:s r="483">
+                           <a:s>&quot;Measles primary series is complete&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="484">
+                           <a:s r="485">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="486">
+                              <a:s>'Measles primary series is complete. Two measles primary series doses were administered.
+Check if a measles supplementary dose is appropriate for the client.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="490">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="363" locator="163:3-179:5" xsi:type="Case">
+            <caseItem localId="364" locator="164:5-164:282">
+               <when localId="365" locator="164:10-164:35" xsi:type="Equal">
+                  <signature localId="372" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="373" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="370" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="371" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="367" locator="164:10-164:19" path="id" xsi:type="Property">
+                        <source localId="366" locator="164:10-164:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="368" locator="164:23-164:35" valueType="t:String" value="Measles08.1" xsi:type="Literal"/>
+               </when>
+               <then localId="492" xsi:type="As">
+                  <operand localId="374" locator="164:42-164:282" xsi:type="And">
+                     <operand localId="375" locator="164:42-164:112" name="Client is not due for first dose of measles-containing vaccine (MCV1)" xsi:type="ExpressionRef"/>
+                     <operand localId="376" locator="164:118-164:282" xsi:type="Equal">
+                        <signature localId="380" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="381" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="377" locator="164:118-164:127" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="378" locator="164:131-164:282" valueType="t:String" value="Should not vaccinate client as client's age is less than 9 months.&#xa;Check for any vaccines due and inform the caregiver of when to come back for MCV1." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="493" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="494" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="495" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="382" locator="166:5-166:279">
+               <when localId="383" locator="166:10-166:35" xsi:type="Equal">
+                  <signature localId="390" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="391" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="388" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="389" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="385" locator="166:10-166:19" path="id" xsi:type="Property">
+                        <source localId="384" locator="166:10-166:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="386" locator="166:23-166:35" valueType="t:String" value="Measles09.3" xsi:type="Literal"/>
+               </when>
+               <then localId="496" xsi:type="As">
+                  <operand localId="392" locator="166:42-166:279" xsi:type="And">
+                     <operand localId="393" locator="166:42-166:65" name="Client is due for MCV1" xsi:type="ExpressionRef"/>
+                     <operand localId="394" locator="166:71-166:279" xsi:type="Equal">
+                        <signature localId="398" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="399" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="395" locator="166:71-166:80" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="396" locator="166:84-166:279" valueType="t:String" value="Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine administered in the past 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="497" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="498" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="499" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="400" locator="168:5-168:263">
+               <when localId="401" locator="168:10-168:35" xsi:type="Equal">
+                  <signature localId="408" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="409" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="406" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="407" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="403" locator="168:10-168:19" path="id" xsi:type="Property">
+                        <source localId="402" locator="168:10-168:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="404" locator="168:23-168:35" valueType="t:String" value="Measles10.3" xsi:type="Literal"/>
+               </when>
+               <then localId="500" xsi:type="As">
+                  <operand localId="410" locator="168:42-168:263" xsi:type="And">
+                     <operand localId="411" locator="168:42-168:69" name="Client is not due for MCV1" xsi:type="ExpressionRef"/>
+                     <operand localId="412" locator="168:75-168:263" xsi:type="Equal">
+                        <signature localId="416" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="417" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="413" locator="168:75-168:84" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="414" locator="168:88-168:263" valueType="t:String" value="Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.&#xa;Check for any vaccines due and inform the caregiver of when to come back for MCV1." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="501" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="502" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="503" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="418" locator="170:5-170:294">
+               <when localId="419" locator="170:10-170:35" xsi:type="Equal">
+                  <signature localId="426" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="427" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="424" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="425" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="421" locator="170:10-170:19" path="id" xsi:type="Property">
+                        <source localId="420" locator="170:10-170:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="422" locator="170:23-170:35" valueType="t:String" value="Measles11.2" xsi:type="Literal"/>
+               </when>
+               <then localId="504" xsi:type="As">
+                  <operand localId="428" locator="170:42-170:294" xsi:type="And">
+                     <operand localId="429" locator="170:42-170:113" name="Client is not due for second dose of measles-containing vaccine (MCV2)" xsi:type="ExpressionRef"/>
+                     <operand localId="430" locator="170:119-170:294" xsi:type="Equal">
+                        <signature localId="434" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="435" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="431" locator="170:119-170:128" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="432" locator="170:132-170:294" valueType="t:String" value="Should not vaccinate client with MCV2 as client's age is less than 15 months.&#xa;Check for any vaccines due and inform the caregiver of when to come back for MCV2." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="505" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="506" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="507" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="436" locator="172:5-172:243">
+               <when localId="437" locator="172:10-172:35" xsi:type="Equal">
+                  <signature localId="444" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="445" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="442" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="443" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="439" locator="172:10-172:19" path="id" xsi:type="Property">
+                        <source localId="438" locator="172:10-172:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="440" locator="172:23-172:35" valueType="t:String" value="Measles12.3" xsi:type="Literal"/>
+               </when>
+               <then localId="508" xsi:type="As">
+                  <operand localId="446" locator="172:42-172:243" xsi:type="And">
+                     <operand localId="447" locator="172:42-172:65" name="Client is due for MCV2" xsi:type="ExpressionRef"/>
+                     <operand localId="448" locator="172:71-172:243" xsi:type="Equal">
+                        <signature localId="452" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="453" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="449" locator="172:71-172:80" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="450" locator="172:84-172:243" valueType="t:String" value="Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="509" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="510" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="511" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="454" locator="174:5-174:263">
+               <when localId="455" locator="174:10-174:35" xsi:type="Equal">
+                  <signature localId="462" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="463" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="460" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="461" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="457" locator="174:10-174:19" path="id" xsi:type="Property">
+                        <source localId="456" locator="174:10-174:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="458" locator="174:23-174:35" valueType="t:String" value="Measles13.3" xsi:type="Literal"/>
+               </when>
+               <then localId="512" xsi:type="As">
+                  <operand localId="464" locator="174:42-174:263" xsi:type="And">
+                     <operand localId="465" locator="174:42-174:69" name="Client is not due for MCV2" xsi:type="ExpressionRef"/>
+                     <operand localId="466" locator="174:75-174:263" xsi:type="Equal">
+                        <signature localId="470" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="471" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="467" locator="174:75-174:84" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="468" locator="174:88-174:263" valueType="t:String" value="Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.&#xa;Check for any vaccines due and inform the caregiver of when to come back for MCV2." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="513" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="514" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="515" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="472" locator="176:5-176:253">
+               <when localId="473" locator="176:10-176:35" xsi:type="Equal">
+                  <signature localId="480" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="481" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="478" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="479" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="475" locator="176:10-176:19" path="id" xsi:type="Property">
+                        <source localId="474" locator="176:10-176:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="476" locator="176:23-176:35" valueType="t:String" value="Measles14.1" xsi:type="Literal"/>
+               </when>
+               <then localId="516" xsi:type="As">
+                  <operand localId="482" locator="176:42-176:253" xsi:type="And">
+                     <operand localId="483" locator="176:42-176:77" name="Measles primary series is complete" xsi:type="ExpressionRef"/>
+                     <operand localId="484" locator="176:83-176:253" xsi:type="Equal">
+                        <signature localId="488" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="489" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="485" locator="176:83-176:92" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="486" locator="176:96-176:253" valueType="t:String" value="Measles primary series is complete. Two measles primary series doses were administered.&#xa;Check if a measles supplementary dose is appropriate for the client." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="517" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="518" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="519" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="520" xsi:type="As">
+               <operand localId="490" locator="178:10-178:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="521" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="522" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="523" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

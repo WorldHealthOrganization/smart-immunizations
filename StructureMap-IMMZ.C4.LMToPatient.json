@@ -1,0 +1,514 @@
+{
+  "resourceType" : "StructureMap",
+  "id" : "IMMZ.C4.LMToPatient",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: StructureMap IMMZ.C4.LMToPatient</b></p><a name=\"IMMZ.C4.LMToPatient\"> </a><a name=\"hcIMMZ.C4.LMToPatient\"> </a><pre class=\"fml\">\r\n<b>map</b><span style=\"color: navy\"> &quot;</span>http://smart.who.int/immunizations/StructureMap/IMMZ.C4.LMToPatient<span style=\"color: navy\">&quot; = &quot;</span>IMMZ.C4.LMToPatient<span style=\"color: navy\">&quot;\r\n\r\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Immunization Client Registry - Transform Logical Model to Patient resources</span>\r\n\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"StructureDefinition-IMMZC4.html\" title=\"IMMZ.C4.Create client record\">http://smart.who.int/immunizations/StructureDefinition/IMMZC4</a><span style=\"color: navy\">&quot; </span><b>alias </b>IMMZC <b>as </b><b>source</b>\r\n<b>uses</b><span style=\"color: navy\"> &quot;</span><a href=\"http://hl7.org/fhir/R4/bundle.html\" title=\"Bundle\">http://hl7.org/fhir/StructureDefinition/Bundle</a><span style=\"color: navy\">&quot; </span><b>alias </b>Bundle <b>as </b><b>target</b>\r\n\r\n<span style=\"color: navy\">// </span><span style=\"color: green\">uses &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot; alias Patient as produced</span>\r\n<span style=\"color: navy\">// </span><span style=\"color: green\">uses &quot;http://hl7.org/fhir/StructureDefinition/RelatedPerson&quot; alias RelatedPerson as produced</span>\r\n<b>group </b>IMMZCToPatient<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">immzc</span><span style=\"color: navy\"> : </span>IMMZC, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {\r\n</span>  immzc<span style=\"color: navy\"><b> -&gt; </b></span>bundle.type = <span style=\"color: blue\">'transaction'</span> <i>&quot;SetBundleType&quot;</i><span style=\"color: navy\">;</span>\r\n  immzc<span style=\"color: navy\"><b> -&gt; </b></span> <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">pid</span><span style=\"color: navy\">, </span> bundle.entry<b> as </b><span style=\"color: maroon\">entry</span><span style=\"color: navy\">, </span> entry.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">pid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> entry.request<b> as </b><span style=\"color: maroon\">request</span><span style=\"color: navy\">, </span> request.method = <span style=\"color: blue\">'PUT'</span><span style=\"color: navy\">, </span> request.url = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Patient/'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">pid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> entry.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Patient'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">patient</span><b> then</b><span style=\"color: navy\"> {\r\n</span>    immzc<span style=\"color: navy\"><b> -&gt; </b></span>patient.id = <span style=\"color: maroon\">pid</span> <i>&quot;SetId&quot;</i><span style=\"color: navy\">;</span>\r\n    immzc.uniqueId<b> as </b><span style=\"color: maroon\">id</span><span style=\"color: navy\"><b> -&gt; </b></span>patient.identifier<b> as </b><span style=\"color: maroon\">identifier</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      id<span style=\"color: navy\"><b> -&gt; </b></span>identifier.value = <span style=\"color: maroon\">id</span> <i>&quot;SetIdentifierValue&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;SetIdentifier&quot;</i><span style=\"color: navy\">;</span>\r\n    immzc<span style=\"color: navy\"><b> -&gt; </b></span>patient.name<b> as </b><span style=\"color: maroon\">pname</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      immzc.name<b> as </b><span style=\"color: maroon\">fullName</span><span style=\"color: navy\"><b> -&gt; </b></span>pname.text = <span style=\"color: maroon\">fullName</span> <i>&quot;SetFullName&quot;</i><span style=\"color: navy\">;</span>\r\n      immzc.firstName<b> as </b><span style=\"color: maroon\">firstName</span><span style=\"color: navy\"><b> -&gt; </b></span>pname.given = <span style=\"color: maroon\">firstName</span> <i>&quot;SetFirstName&quot;</i><span style=\"color: navy\">;</span>\r\n      immzc.familyName<b> as </b><span style=\"color: maroon\">familyName</span><span style=\"color: navy\"><b> -&gt; </b></span>pname.family = <span style=\"color: maroon\">familyName</span> <i>&quot;SetFamilyName&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;SetName&quot;</i><span style=\"color: navy\">;</span>\r\n    immzc.sex<b> as </b><span style=\"color: maroon\">sex</span><span style=\"color: navy\"><b> -&gt; </b></span>patient.gender = <b>translate</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">sex</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'http://smart.who.int/immunizations/ConceptMap/IMMZ.C.ConceptMap'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'code'</span><span style=\"color: navy\">)</span> <i>&quot;SetGender&quot;</i><span style=\"color: navy\">;</span>\r\n    immzc.dateOfBirth<b> as </b><span style=\"color: maroon\">birthDate</span><span style=\"color: navy\"><b> -&gt; </b></span>patient.birthDate = <span style=\"color: maroon\">birthDate</span> <i>&quot;SetBirthDate&quot;</i><span style=\"color: navy\">;</span>\r\n    immzc.contactPhoneNumber<b> as </b><span style=\"color: maroon\">phone</span><span style=\"color: navy\"><b> -&gt; </b></span>patient.telecom<b> as </b><span style=\"color: maroon\">telecom</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      phone<b> as </b><span style=\"color: maroon\">content</span><span style=\"color: navy\"><b> -&gt; </b></span> telecom.value = <span style=\"color: maroon\">content</span><span style=\"color: navy\">, </span> telecom.system = <span style=\"color: blue\">'phone'</span> <i>&quot;SetPhoneValue&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;SetPhone&quot;</i><span style=\"color: navy\">;</span>\r\n    immzc.address<b> as </b><span style=\"color: maroon\">address</span><span style=\"color: navy\"><b> -&gt; </b></span>patient.address<b> as </b><span style=\"color: maroon\">taddress</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      address<b> as </b><span style=\"color: maroon\">content</span><span style=\"color: navy\"><b> -&gt; </b></span>taddress.text = <span style=\"color: maroon\">content</span> <i>&quot;SetAddressText&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;SetAddress&quot;</i><span style=\"color: navy\">;</span>\r\n    immzc.caregiversMultiple<b> as </b><span style=\"color: maroon\">caregiver</span><span style=\"color: navy\"><b> -&gt; </b></span> <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">rpid</span><span style=\"color: navy\">, </span> bundle.entry<b> as </b><span style=\"color: maroon\">entry</span><span style=\"color: navy\">, </span> entry.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">rpid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> entry.request<b> as </b><span style=\"color: maroon\">request</span><span style=\"color: navy\">, </span> request.method = <span style=\"color: blue\">'PUT'</span><span style=\"color: navy\">, </span> request.url = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'RelatedPerson/'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">rpid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> entry.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'RelatedPerson'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">person</span><b> then</b><span style=\"color: navy\"> {\r\n</span>      caregiver<span style=\"color: navy\"><b> -&gt; </b></span>person.id = <span style=\"color: maroon\">rpid</span> <i>&quot;SetId&quot;</i><span style=\"color: navy\">;</span>\r\n      caregiver<span style=\"color: navy\"><b> -&gt; </b></span> person.patient<b> as </b><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span> patient.reference = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Patient/'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">pid</span><span style=\"color: navy\">)</span> <i>&quot;setPatient&quot;</i><span style=\"color: navy\">;</span>\r\n      caregiver<span style=\"color: navy\"><b> -&gt; </b></span>person.name<b> as </b><span style=\"color: maroon\">pname</span><b> then</b><span style=\"color: navy\"> {\r\n</span>        caregiver.caregiversFullName<b> as </b><span style=\"color: maroon\">fullName</span><span style=\"color: navy\"><b> -&gt; </b></span>pname.text = <span style=\"color: maroon\">fullName</span> <i>&quot;SetFullName&quot;</i><span style=\"color: navy\">;</span>\r\n        caregiver.caregiversFirstName<b> as </b><span style=\"color: maroon\">firstName</span><span style=\"color: navy\"><b> -&gt; </b></span>pname.given = <span style=\"color: maroon\">firstName</span> <i>&quot;SetFirstName&quot;</i><span style=\"color: navy\">;</span>\r\n        caregiver.caregiversFamilyName<b> as </b><span style=\"color: maroon\">familyName</span><span style=\"color: navy\"><b> -&gt; </b></span>pname.family = <span style=\"color: maroon\">familyName</span> <i>&quot;SetFamilyName&quot;</i><span style=\"color: navy\">;</span>\r\n      <span style=\"color: navy\">}</span> <i>&quot;SetCaregiverName&quot;</i><span style=\"color: navy\">;</span>\r\n    <span style=\"color: navy\">}</span> <i>&quot;CreateRelatedPerson&quot;</i><span style=\"color: navy\">;</span>\r\n  <span style=\"color: navy\">}</span> <i>&quot;CreatePatient&quot;</i><span style=\"color: navy\">;</span>\r\n<span style=\"color: navy\">}\r\n\r\n</span></pre></div>"
+  },
+  "url" : "http://smart.who.int/immunizations/StructureMap/IMMZ.C4.LMToPatient",
+  "version" : "0.2.0",
+  "name" : "IMMZ.C4.LMToPatient",
+  "status" : "draft",
+  "date" : "2025-11-25T19:41:02+00:00",
+  "publisher" : "WHO",
+  "contact" : [{
+    "name" : "WHO",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://who.int"
+    }]
+  }],
+  "description" : "Immunization Client Registry - Transform Logical Model to Patient resources",
+  "structure" : [{
+    "url" : "http://smart.who.int/immunizations/StructureDefinition/IMMZC4",
+    "mode" : "source",
+    "alias" : "IMMZC"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/Bundle",
+    "mode" : "target",
+    "alias" : "Bundle"
+  }],
+  "group" : [{
+    "name" : "IMMZCToPatient",
+    "typeMode" : "none",
+    "documentation" : "uses \"http://hl7.org/fhir/StructureDefinition/Patient\" alias Patient as produced\r\nuses \"http://hl7.org/fhir/StructureDefinition/RelatedPerson\" alias RelatedPerson as produced",
+    "input" : [{
+      "name" : "immzc",
+      "type" : "IMMZC",
+      "mode" : "source"
+    },
+    {
+      "name" : "bundle",
+      "type" : "Bundle",
+      "mode" : "target"
+    }],
+    "rule" : [{
+      "name" : "SetBundleType",
+      "source" : [{
+        "context" : "immzc"
+      }],
+      "target" : [{
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "type",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "transaction"
+        }]
+      }]
+    },
+    {
+      "name" : "CreatePatient",
+      "source" : [{
+        "context" : "immzc"
+      }],
+      "target" : [{
+        "contextType" : "variable",
+        "variable" : "pid",
+        "transform" : "uuid"
+      },
+      {
+        "context" : "bundle",
+        "contextType" : "variable",
+        "element" : "entry",
+        "variable" : "entry"
+      },
+      {
+        "context" : "entry",
+        "contextType" : "variable",
+        "element" : "fullUrl",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "urn:uuid:"
+        },
+        {
+          "valueId" : "pid"
+        }]
+      },
+      {
+        "context" : "entry",
+        "contextType" : "variable",
+        "element" : "request",
+        "variable" : "request"
+      },
+      {
+        "context" : "request",
+        "contextType" : "variable",
+        "element" : "method",
+        "transform" : "copy",
+        "parameter" : [{
+          "valueString" : "PUT"
+        }]
+      },
+      {
+        "context" : "request",
+        "contextType" : "variable",
+        "element" : "url",
+        "transform" : "append",
+        "parameter" : [{
+          "valueString" : "Patient/"
+        },
+        {
+          "valueId" : "pid"
+        }]
+      },
+      {
+        "context" : "entry",
+        "contextType" : "variable",
+        "element" : "resource",
+        "variable" : "patient",
+        "transform" : "create",
+        "parameter" : [{
+          "valueString" : "Patient"
+        }]
+      }],
+      "rule" : [{
+        "name" : "SetId",
+        "source" : [{
+          "context" : "immzc"
+        }],
+        "target" : [{
+          "context" : "patient",
+          "contextType" : "variable",
+          "element" : "id",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "pid"
+          }]
+        }]
+      },
+      {
+        "name" : "SetIdentifier",
+        "source" : [{
+          "context" : "immzc",
+          "element" : "uniqueId",
+          "variable" : "id"
+        }],
+        "target" : [{
+          "context" : "patient",
+          "contextType" : "variable",
+          "element" : "identifier",
+          "variable" : "identifier"
+        }],
+        "rule" : [{
+          "name" : "SetIdentifierValue",
+          "source" : [{
+            "context" : "id"
+          }],
+          "target" : [{
+            "context" : "identifier",
+            "contextType" : "variable",
+            "element" : "value",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "id"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "SetName",
+        "source" : [{
+          "context" : "immzc"
+        }],
+        "target" : [{
+          "context" : "patient",
+          "contextType" : "variable",
+          "element" : "name",
+          "variable" : "pname"
+        }],
+        "rule" : [{
+          "name" : "SetFullName",
+          "source" : [{
+            "context" : "immzc",
+            "element" : "name",
+            "variable" : "fullName"
+          }],
+          "target" : [{
+            "context" : "pname",
+            "contextType" : "variable",
+            "element" : "text",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "fullName"
+            }]
+          }]
+        },
+        {
+          "name" : "SetFirstName",
+          "source" : [{
+            "context" : "immzc",
+            "element" : "firstName",
+            "variable" : "firstName"
+          }],
+          "target" : [{
+            "context" : "pname",
+            "contextType" : "variable",
+            "element" : "given",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "firstName"
+            }]
+          }]
+        },
+        {
+          "name" : "SetFamilyName",
+          "source" : [{
+            "context" : "immzc",
+            "element" : "familyName",
+            "variable" : "familyName"
+          }],
+          "target" : [{
+            "context" : "pname",
+            "contextType" : "variable",
+            "element" : "family",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "familyName"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "SetGender",
+        "source" : [{
+          "context" : "immzc",
+          "element" : "sex",
+          "variable" : "sex"
+        }],
+        "target" : [{
+          "context" : "patient",
+          "contextType" : "variable",
+          "element" : "gender",
+          "transform" : "translate",
+          "parameter" : [{
+            "valueId" : "sex"
+          },
+          {
+            "valueString" : "http://smart.who.int/immunizations/ConceptMap/IMMZ.C.ConceptMap"
+          },
+          {
+            "valueString" : "code"
+          }]
+        }]
+      },
+      {
+        "name" : "SetBirthDate",
+        "source" : [{
+          "context" : "immzc",
+          "element" : "dateOfBirth",
+          "variable" : "birthDate"
+        }],
+        "target" : [{
+          "context" : "patient",
+          "contextType" : "variable",
+          "element" : "birthDate",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueId" : "birthDate"
+          }]
+        }]
+      },
+      {
+        "name" : "SetPhone",
+        "source" : [{
+          "context" : "immzc",
+          "element" : "contactPhoneNumber",
+          "variable" : "phone"
+        }],
+        "target" : [{
+          "context" : "patient",
+          "contextType" : "variable",
+          "element" : "telecom",
+          "variable" : "telecom"
+        }],
+        "rule" : [{
+          "name" : "SetPhoneValue",
+          "source" : [{
+            "context" : "phone",
+            "variable" : "content"
+          }],
+          "target" : [{
+            "context" : "telecom",
+            "contextType" : "variable",
+            "element" : "value",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "content"
+            }]
+          },
+          {
+            "context" : "telecom",
+            "contextType" : "variable",
+            "element" : "system",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueString" : "phone"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "SetAddress",
+        "source" : [{
+          "context" : "immzc",
+          "element" : "address",
+          "variable" : "address"
+        }],
+        "target" : [{
+          "context" : "patient",
+          "contextType" : "variable",
+          "element" : "address",
+          "variable" : "taddress"
+        }],
+        "rule" : [{
+          "name" : "SetAddressText",
+          "source" : [{
+            "context" : "address",
+            "variable" : "content"
+          }],
+          "target" : [{
+            "context" : "taddress",
+            "contextType" : "variable",
+            "element" : "text",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "content"
+            }]
+          }]
+        }]
+      },
+      {
+        "name" : "CreateRelatedPerson",
+        "source" : [{
+          "context" : "immzc",
+          "element" : "caregiversMultiple",
+          "variable" : "caregiver"
+        }],
+        "target" : [{
+          "contextType" : "variable",
+          "variable" : "rpid",
+          "transform" : "uuid"
+        },
+        {
+          "context" : "bundle",
+          "contextType" : "variable",
+          "element" : "entry",
+          "variable" : "entry"
+        },
+        {
+          "context" : "entry",
+          "contextType" : "variable",
+          "element" : "fullUrl",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "urn:uuid:"
+          },
+          {
+            "valueId" : "rpid"
+          }]
+        },
+        {
+          "context" : "entry",
+          "contextType" : "variable",
+          "element" : "request",
+          "variable" : "request"
+        },
+        {
+          "context" : "request",
+          "contextType" : "variable",
+          "element" : "method",
+          "transform" : "copy",
+          "parameter" : [{
+            "valueString" : "PUT"
+          }]
+        },
+        {
+          "context" : "request",
+          "contextType" : "variable",
+          "element" : "url",
+          "transform" : "append",
+          "parameter" : [{
+            "valueString" : "RelatedPerson/"
+          },
+          {
+            "valueId" : "rpid"
+          }]
+        },
+        {
+          "context" : "entry",
+          "contextType" : "variable",
+          "element" : "resource",
+          "variable" : "person",
+          "transform" : "create",
+          "parameter" : [{
+            "valueString" : "RelatedPerson"
+          }]
+        }],
+        "rule" : [{
+          "name" : "SetId",
+          "source" : [{
+            "context" : "caregiver"
+          }],
+          "target" : [{
+            "context" : "person",
+            "contextType" : "variable",
+            "element" : "id",
+            "transform" : "copy",
+            "parameter" : [{
+              "valueId" : "rpid"
+            }]
+          }]
+        },
+        {
+          "name" : "setPatient",
+          "source" : [{
+            "context" : "caregiver"
+          }],
+          "target" : [{
+            "context" : "person",
+            "contextType" : "variable",
+            "element" : "patient",
+            "variable" : "patient"
+          },
+          {
+            "context" : "patient",
+            "contextType" : "variable",
+            "element" : "reference",
+            "transform" : "append",
+            "parameter" : [{
+              "valueString" : "Patient/"
+            },
+            {
+              "valueId" : "pid"
+            }]
+          }]
+        },
+        {
+          "name" : "SetCaregiverName",
+          "source" : [{
+            "context" : "caregiver"
+          }],
+          "target" : [{
+            "context" : "person",
+            "contextType" : "variable",
+            "element" : "name",
+            "variable" : "pname"
+          }],
+          "rule" : [{
+            "name" : "SetFullName",
+            "source" : [{
+              "context" : "caregiver",
+              "element" : "caregiversFullName",
+              "variable" : "fullName"
+            }],
+            "target" : [{
+              "context" : "pname",
+              "contextType" : "variable",
+              "element" : "text",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "fullName"
+              }]
+            }]
+          },
+          {
+            "name" : "SetFirstName",
+            "source" : [{
+              "context" : "caregiver",
+              "element" : "caregiversFirstName",
+              "variable" : "firstName"
+            }],
+            "target" : [{
+              "context" : "pname",
+              "contextType" : "variable",
+              "element" : "given",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "firstName"
+              }]
+            }]
+          },
+          {
+            "name" : "SetFamilyName",
+            "source" : [{
+              "context" : "caregiver",
+              "element" : "caregiversFamilyName",
+              "variable" : "familyName"
+            }],
+            "target" : [{
+              "context" : "pname",
+              "contextType" : "variable",
+              "element" : "family",
+              "transform" : "copy",
+              "parameter" : [{
+                "valueId" : "familyName"
+              }]
+            }]
+          }]
+        }]
+      }]
+    }]
+  }]
+}

@@ -1,0 +1,1499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="409">
+         <a:s>/*
+ * Library: IMMZD2DTSeasonalinfluenzaSeasonalInfluenzaLogic (IMMZ.D2.DT.Seasonal influenza)
+ * Rule: Determine if the client is due for a seasonal influenza vaccination according to the national immunization schedule
+ * Decision Table: Inactivated trivalent and quadrivalent vaccines, 2-dose schedule
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any
+ */
+library IMMZD2DTSeasonalinfluenzaSeasonalInfluenzaLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTSeasonalinfluenzaSeasonalInfluenzaLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="9:1-9:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="10:1-10:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="12:1-12:67" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTSeasonalinfluenzaEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTSeasonalinfluenzaEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="212" locator="14:1-14:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>parameter Today </a:s>
+               <a:s r="216">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="215">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="215" locator="14:30-14:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="216" locator="14:17-14:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="16:1-16:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="16:1-16:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="233" locator="38:1-39:48" name="Client is not due for seasonal influenza vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for seasonal influenza vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="233">
+               <a:s>/*
+@output: Client is not due for seasonal influenza vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for seasonal influenza vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="235">
+                  <a:s r="234">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="235">
+                     <a:s>&quot;Client's age is less than 6 months&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="235" locator="39:3-39:48" name="Client's age is less than 6 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="239" locator="45:1-48:93" name="Client is not due for seasonal influenza vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for seasonal influenza vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="239">
+               <a:s>/*
+@output: Client is not due for seasonal influenza vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for seasonal influenza vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="240">
+                  <a:s r="241">
+                     <a:s r="243">
+                        <a:s r="242">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="243">
+                           <a:s>&quot;One seasonal influenza primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="245">
+                        <a:s r="244">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="245">
+                           <a:s>&quot;Client's age is less than 9 years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="247">
+                     <a:s r="246">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="247">
+                        <a:s>&quot;The latest seasonal influenza dose was administered less than 4 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="240" locator="46:3-48:93" xsi:type="And">
+            <operand localId="241" locator="46:3-47:53" xsi:type="And">
+               <operand localId="243" locator="46:3-46:75" name="One seasonal influenza primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="245" locator="47:9-47:53" name="Client's age is less than 9 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="247" locator="48:9-48:93" name="The latest seasonal influenza dose was administered less than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="229" locator="54:1-56:68" name="Client is not due for seasonal influenza vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for seasonal influenza vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="229">
+               <a:s>/*
+@output: Client is not due for seasonal influenza vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for seasonal influenza vaccination&quot;:
+  </a:s>
+               <a:s r="230">
+                  <a:s r="236">
+                     <a:s>&quot;Client is not due for seasonal influenza vaccination Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="248">
+                     <a:s>&quot;Client is not due for seasonal influenza vaccination Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="230" locator="55:3-56:68" xsi:type="Or">
+            <operand localId="236" locator="55:3-55:63" name="Client is not due for seasonal influenza vaccination Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="248" locator="56:8-56:68" name="Client is not due for seasonal influenza vaccination Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="252" locator="65:1-72:5" name="Client is not due for seasonal influenza vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for seasonal influenza vaccination Guidance"/>
+            <a:s r="252">
+               <a:s>/*
+@output: Client is not due for seasonal influenza vaccination Guidance
+@guidance = Should not vaccinate client with first seasonal influenza dose as client's age is less than 6 months. 
+Check for any other vaccines due and inform the caregiver of when to come back for first dose.
+@guidance = Should not vaccinate client with second seasonal influenza dose as latest seasonal influenza dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
+*/
+define &quot;Client is not due for seasonal influenza vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="253">
+                  <a:s>case
+    </a:s>
+                  <a:s r="254">
+                     <a:s>when </a:s>
+                     <a:s r="255">
+                        <a:s>&quot;Client is not due for seasonal influenza vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="256">
+                        <a:s>'Should not vaccinate client with first seasonal influenza dose as client\'s age is less than 6 months. 
+Check for any other vaccines due and inform the caregiver of when to come back for first dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="258">
+                     <a:s>when </a:s>
+                     <a:s r="259">
+                        <a:s>&quot;Client is not due for seasonal influenza vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="260">
+                        <a:s>'Should not vaccinate client with second seasonal influenza dose as latest seasonal influenza dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the second dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="262">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="253" locator="66:3-72:5" xsi:type="Case">
+            <caseItem localId="254" locator="67:5-67:276">
+               <when localId="255" locator="67:10-67:70" name="Client is not due for seasonal influenza vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="256" locator="67:77-67:276" valueType="t:String" value="Should not vaccinate client with first seasonal influenza dose as client's age is less than 6 months. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for first dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="258" locator="69:5-69:316">
+               <when localId="259" locator="69:10-69:70" name="Client is not due for seasonal influenza vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="260" locator="69:77-69:316" valueType="t:String" value="Should not vaccinate client with second seasonal influenza dose as latest seasonal influenza dose was administered less than 4 weeks ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the second dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="262" locator="71:10-71:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="272" locator="78:1-80:66" name="Client is due for seasonal influenza vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for seasonal influenza vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="272">
+               <a:s>/*
+@output: Client is due for seasonal influenza vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for seasonal influenza vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="273">
+                  <a:s r="275">
+                     <a:s r="274">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="275">
+                        <a:s>&quot;No seasonal influenza primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="277">
+                     <a:s r="276">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="277">
+                        <a:s>&quot;Client's age is more than or equal to 6 months&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="273" locator="79:3-80:66" xsi:type="And">
+            <operand localId="275" locator="79:3-79:74" name="No seasonal influenza primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="277" locator="80:9-80:66" name="Client's age is more than or equal to 6 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="281" locator="86:1-89:93" name="Client is due for seasonal influenza vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for seasonal influenza vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="281">
+               <a:s>/*
+@output: Client is due for seasonal influenza vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for seasonal influenza vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="282">
+                  <a:s r="283">
+                     <a:s r="285">
+                        <a:s r="284">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="285">
+                           <a:s>&quot;One seasonal influenza primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="287">
+                        <a:s r="286">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="287">
+                           <a:s>&quot;Client's age is less than 9 years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="289">
+                     <a:s r="288">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="289">
+                        <a:s>&quot;The latest seasonal influenza dose was administered more than 4 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="282" locator="87:3-89:93" xsi:type="And">
+            <operand localId="283" locator="87:3-88:53" xsi:type="And">
+               <operand localId="285" locator="87:3-87:75" name="One seasonal influenza primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="287" locator="88:9-88:53" name="Client's age is less than 9 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="289" locator="89:9-89:93" name="The latest seasonal influenza dose was administered more than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="268" locator="95:1-97:64" name="Client is due for seasonal influenza vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for seasonal influenza vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="268">
+               <a:s>/*
+@output: Client is due for seasonal influenza vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for seasonal influenza vaccination&quot;:
+  </a:s>
+               <a:s r="269">
+                  <a:s r="278">
+                     <a:s>&quot;Client is due for seasonal influenza vaccination Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="290">
+                     <a:s>&quot;Client is due for seasonal influenza vaccination Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="269" locator="96:3-97:64" xsi:type="Or">
+            <operand localId="278" locator="96:3-96:59" name="Client is due for seasonal influenza vaccination Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="290" locator="97:8-97:64" name="Client is due for seasonal influenza vaccination Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="294" locator="106:1-113:5" name="Client is due for seasonal influenza vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for seasonal influenza vaccination Guidance"/>
+            <a:s r="294">
+               <a:s>/*
+@output: Client is due for seasonal influenza vaccination Guidance
+@guidance = Should vaccinate client with first seasonal influenza dose as no seasonal infuenza doses were administered and client is within appropriate age range. 
+Check for contraindications.
+@guidance = Should vaccinate client with second seasonal influenza dose as client is within appropriate age range and latest seasonal influenza dose was administerered more than 4 weeks ago.
+Check for contraindications.
+*/
+define &quot;Client is due for seasonal influenza vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="295">
+                  <a:s>case
+    </a:s>
+                  <a:s r="296">
+                     <a:s>when </a:s>
+                     <a:s r="297">
+                        <a:s>&quot;Client is due for seasonal influenza vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="298">
+                        <a:s>'Should vaccinate client with first seasonal influenza dose as no seasonal infuenza doses were administered and client is within appropriate age range. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="300">
+                     <a:s>when </a:s>
+                     <a:s r="301">
+                        <a:s>&quot;Client is due for seasonal influenza vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="302">
+                        <a:s>'Should vaccinate client with second seasonal influenza dose as client is within appropriate age range and latest seasonal influenza dose was administerered more than 4 weeks ago.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="304">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="295" locator="107:3-113:5" xsi:type="Case">
+            <caseItem localId="296" locator="108:5-108:254">
+               <when localId="297" locator="108:10-108:66" name="Client is due for seasonal influenza vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="298" locator="108:73-108:254" valueType="t:String" value="Should vaccinate client with first seasonal influenza dose as no seasonal infuenza doses were administered and client is within appropriate age range. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="300" locator="110:5-110:281">
+               <when localId="301" locator="110:10-110:66" name="Client is due for seasonal influenza vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="302" locator="110:73-110:281" valueType="t:String" value="Should vaccinate client with second seasonal influenza dose as client is within appropriate age range and latest seasonal influenza dose was administerered more than 4 weeks ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="304" locator="112:10-112:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="314" locator="120:1-123:92" name="The primary series is complete. Client is not due for seasonal influenza annual dose Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="The primary series is complete. Client is not due for seasonal influenza annual dose Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="314">
+               <a:s>/*
+@output: The primary series is complete. Client is not due for seasonal influenza annual dose Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+&quot;Completed the primary vaccination series&quot; (where &quot;Vaccine type&quot; = &quot;Seasonal influenza vaccines&quot;) = TRUE
+*/
+define &quot;The primary series is complete. Client is not due for seasonal influenza annual dose Case 1&quot;:
+  </a:s>
+               <a:s r="315">
+                  <a:s r="316">
+                     <a:s r="318">
+                        <a:s r="317">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="318">
+                           <a:s>&quot;One seasonal influenza primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="320">
+                        <a:s r="319">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="320">
+                           <a:s>&quot;Client's age is more than or equal to 9 years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="322">
+                     <a:s r="321">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="322">
+                        <a:s>&quot;The latest seasonal influenza dose was administered less than 1 year ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="315" locator="121:3-123:92" xsi:type="And">
+            <operand localId="316" locator="121:3-122:65" xsi:type="And">
+               <operand localId="318" locator="121:3-121:75" name="One seasonal influenza primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="320" locator="122:9-122:65" name="Client's age is more than or equal to 9 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="322" locator="123:9-123:92" name="The latest seasonal influenza dose was administered less than 1 year ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="326" locator="130:1-132:92" name="The primary series is complete. Client is not due for seasonal influenza annual dose Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="The primary series is complete. Client is not due for seasonal influenza annual dose Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="326">
+               <a:s>/*
+@output: The primary series is complete. Client is not due for seasonal influenza annual dose Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+&quot;Completed the primary vaccination series&quot; (where &quot;Vaccine type&quot; = &quot;Seasonal influenza vaccines&quot;) = TRUE
+*/
+define &quot;The primary series is complete. Client is not due for seasonal influenza annual dose Case 2&quot;:
+  </a:s>
+               <a:s r="327">
+                  <a:s r="329">
+                     <a:s r="328">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="329">
+                        <a:s>&quot;Two seasonal influenza primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="331">
+                     <a:s r="330">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="331">
+                        <a:s>&quot;The latest seasonal influenza dose was administered less than 1 year ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="327" locator="131:3-132:92" xsi:type="And">
+            <operand localId="329" locator="131:3-131:75" name="Two seasonal influenza primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="331" locator="132:9-132:92" name="The latest seasonal influenza dose was administered less than 1 year ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="310" locator="139:1-141:100" name="The primary series is complete. Client is not due for seasonal influenza annual dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="The primary series is complete. Client is not due for seasonal influenza annual dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="310">
+               <a:s>/*
+@output: The primary series is complete. Client is not due for seasonal influenza annual dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+&quot;Completed the primary vaccination series&quot; (where &quot;Vaccine type&quot; = &quot;Seasonal influenza vaccines&quot;) = TRUE
+*/
+define &quot;The primary series is complete. Client is not due for seasonal influenza annual dose&quot;:
+  </a:s>
+               <a:s r="311">
+                  <a:s r="323">
+                     <a:s>&quot;The primary series is complete. Client is not due for seasonal influenza annual dose Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="332">
+                     <a:s>&quot;The primary series is complete. Client is not due for seasonal influenza annual dose Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="311" locator="140:3-141:100" xsi:type="Or">
+            <operand localId="323" locator="140:3-140:95" name="The primary series is complete. Client is not due for seasonal influenza annual dose Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="332" locator="141:8-141:100" name="The primary series is complete. Client is not due for seasonal influenza annual dose Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="336" locator="150:1-157:5" name="The primary series is complete. Client is not due for seasonal influenza annual dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="The primary series is complete. Client is not due for seasonal influenza annual dose Guidance"/>
+            <a:s r="336">
+               <a:s>/*
+@output: The primary series is complete. Client is not due for seasonal influenza annual dose Guidance
+@guidance = Should not vaccinate client with annual dose as the latest seasonal influenza dose was administered less than 1 year ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+@guidance = Should not vaccinate client with annual dose as latest seasonal influenza dose was administered less than 1 year ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.
+*/
+define &quot;The primary series is complete. Client is not due for seasonal influenza annual dose Guidance&quot;:
+  </a:s>
+               <a:s r="337">
+                  <a:s>case
+    </a:s>
+                  <a:s r="338">
+                     <a:s>when </a:s>
+                     <a:s r="339">
+                        <a:s>&quot;The primary series is complete. Client is not due for seasonal influenza annual dose Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="340">
+                        <a:s>'Should not vaccinate client with annual dose as the latest seasonal influenza dose was administered less than 1 year ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="342">
+                     <a:s>when </a:s>
+                     <a:s r="343">
+                        <a:s>&quot;The primary series is complete. Client is not due for seasonal influenza annual dose Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="344">
+                        <a:s>'Should not vaccinate client with annual dose as latest seasonal influenza dose was administered less than 1 year ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="346">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="337" locator="151:3-157:5" xsi:type="Case">
+            <caseItem localId="338" locator="152:5-152:330">
+               <when localId="339" locator="152:10-152:102" name="The primary series is complete. Client is not due for seasonal influenza annual dose Case 1" xsi:type="ExpressionRef"/>
+               <then localId="340" locator="152:109-152:330" valueType="t:String" value="Should not vaccinate client with annual dose as the latest seasonal influenza dose was administered less than 1 year ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="342" locator="154:5-154:326">
+               <when localId="343" locator="154:10-154:102" name="The primary series is complete. Client is not due for seasonal influenza annual dose Case 2" xsi:type="ExpressionRef"/>
+               <then localId="344" locator="154:109-154:326" valueType="t:String" value="Should not vaccinate client with annual dose as latest seasonal influenza dose was administered less than 1 year ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="346" locator="156:10-156:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="356" locator="164:1-167:92" name="The primary series is complete. Client is due for seasonal influenza annual dose Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="The primary series is complete. Client is due for seasonal influenza annual dose Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="356">
+               <a:s>/*
+@output: The primary series is complete. Client is due for seasonal influenza annual dose Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+&quot;Completed the primary vaccination series&quot; (where &quot;Vaccine type&quot; = &quot;Seasonal influenza vaccines&quot;) = TRUE
+*/
+define &quot;The primary series is complete. Client is due for seasonal influenza annual dose Case 1&quot;:
+  </a:s>
+               <a:s r="357">
+                  <a:s r="358">
+                     <a:s r="360">
+                        <a:s r="359">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="360">
+                           <a:s>&quot;One seasonal influenza primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="362">
+                        <a:s r="361">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="362">
+                           <a:s>&quot;Client's age is more than or equal to 9 years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="364">
+                     <a:s r="363">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="364">
+                        <a:s>&quot;The latest seasonal influenza dose was administered more than 1 year ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="357" locator="165:3-167:92" xsi:type="And">
+            <operand localId="358" locator="165:3-166:65" xsi:type="And">
+               <operand localId="360" locator="165:3-165:75" name="One seasonal influenza primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="362" locator="166:9-166:65" name="Client's age is more than or equal to 9 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="364" locator="167:9-167:92" name="The latest seasonal influenza dose was administered more than 1 year ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="368" locator="174:1-176:92" name="The primary series is complete. Client is due for seasonal influenza annual dose Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="The primary series is complete. Client is due for seasonal influenza annual dose Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="368">
+               <a:s>/*
+@output: The primary series is complete. Client is due for seasonal influenza annual dose Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+&quot;Completed the primary vaccination series&quot; (where &quot;Vaccine type&quot; = &quot;Seasonal influenza vaccines&quot;) = TRUE
+*/
+define &quot;The primary series is complete. Client is due for seasonal influenza annual dose Case 2&quot;:
+  </a:s>
+               <a:s r="369">
+                  <a:s r="371">
+                     <a:s r="370">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="371">
+                        <a:s>&quot;Two seasonal influenza primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="373">
+                     <a:s r="372">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="373">
+                        <a:s>&quot;The latest seasonal influenza dose was administered more than 1 year ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="369" locator="175:3-176:92" xsi:type="And">
+            <operand localId="371" locator="175:3-175:75" name="Two seasonal influenza primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="373" locator="176:9-176:92" name="The latest seasonal influenza dose was administered more than 1 year ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="352" locator="183:1-185:96" name="The primary series is complete. Client is due for seasonal influenza annual dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="The primary series is complete. Client is due for seasonal influenza annual dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="352">
+               <a:s>/*
+@output: The primary series is complete. Client is due for seasonal influenza annual dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+&quot;Completed the primary vaccination series&quot; (where &quot;Vaccine type&quot; = &quot;Seasonal influenza vaccines&quot;) = TRUE
+*/
+define &quot;The primary series is complete. Client is due for seasonal influenza annual dose&quot;:
+  </a:s>
+               <a:s r="353">
+                  <a:s r="365">
+                     <a:s>&quot;The primary series is complete. Client is due for seasonal influenza annual dose Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="374">
+                     <a:s>&quot;The primary series is complete. Client is due for seasonal influenza annual dose Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="353" locator="184:3-185:96" xsi:type="Or">
+            <operand localId="365" locator="184:3-184:91" name="The primary series is complete. Client is due for seasonal influenza annual dose Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="374" locator="185:8-185:96" name="The primary series is complete. Client is due for seasonal influenza annual dose Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="378" locator="194:1-201:5" name="The primary series is complete. Client is due for seasonal influenza annual dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="The primary series is complete. Client is due for seasonal influenza annual dose Guidance"/>
+            <a:s r="378">
+               <a:s>/*
+@output: The primary series is complete. Client is due for seasonal influenza annual dose Guidance
+@guidance = Should vaccinate client with annual dose as the latest seasonal influenza dose was administered more than 1 year ago. 
+Check for contraindications.
+@guidance = Should vaccinate client with annual dose as latest seasonal influenza dose was administered more than 1 year ago. 
+Check for contraindications.
+*/
+define &quot;The primary series is complete. Client is due for seasonal influenza annual dose Guidance&quot;:
+  </a:s>
+               <a:s r="379">
+                  <a:s>case
+    </a:s>
+                  <a:s r="380">
+                     <a:s>when </a:s>
+                     <a:s r="381">
+                        <a:s>&quot;The primary series is complete. Client is due for seasonal influenza annual dose Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="382">
+                        <a:s>'Should vaccinate client with annual dose as the latest seasonal influenza dose was administered more than 1 year ago. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="384">
+                     <a:s>when </a:s>
+                     <a:s r="385">
+                        <a:s>&quot;The primary series is complete. Client is due for seasonal influenza annual dose Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="386">
+                        <a:s>'Should vaccinate client with annual dose as latest seasonal influenza dose was administered more than 1 year ago. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="388">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="379" locator="195:3-201:5" xsi:type="Case">
+            <caseItem localId="380" locator="196:5-196:253">
+               <when localId="381" locator="196:10-196:98" name="The primary series is complete. Client is due for seasonal influenza annual dose Case 1" xsi:type="ExpressionRef"/>
+               <then localId="382" locator="196:105-196:253" valueType="t:String" value="Should vaccinate client with annual dose as the latest seasonal influenza dose was administered more than 1 year ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="384" locator="198:5-198:249">
+               <when localId="385" locator="198:10-198:98" name="The primary series is complete. Client is due for seasonal influenza annual dose Case 2" xsi:type="ExpressionRef"/>
+               <then localId="386" locator="198:105-198:249" valueType="t:String" value="Should vaccinate client with annual dose as latest seasonal influenza dose was administered more than 1 year ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="388" locator="200:10-200:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="224" locator="22:1-29:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="224">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="225">
+                  <a:s>case 
+    </a:s>
+                  <a:s r="226">
+                     <a:s>when </a:s>
+                     <a:s r="249">
+                        <a:s>&quot;Client is not due for seasonal influenza vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="264">
+                        <a:s>&quot;Client is not due for seasonal influenza vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="265">
+                     <a:s>when </a:s>
+                     <a:s r="291">
+                        <a:s>&quot;Client is due for seasonal influenza vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="306">
+                        <a:s>&quot;Client is due for seasonal influenza vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="307">
+                     <a:s>when </a:s>
+                     <a:s r="333">
+                        <a:s>&quot;The primary series is complete. Client is not due for seasonal influenza annual dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="348">
+                        <a:s>&quot;The primary series is complete. Client is not due for seasonal influenza annual dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="349">
+                     <a:s>when </a:s>
+                     <a:s r="375">
+                        <a:s>&quot;The primary series is complete. Client is due for seasonal influenza annual dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="390">
+                        <a:s>&quot;The primary series is complete. Client is due for seasonal influenza annual dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+    else </a:s>
+                  <a:s r="391">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="23:3-29:5" xsi:type="Case">
+            <caseItem localId="226" locator="24:5-24:132">
+               <when localId="249" locator="24:10-24:63" name="Client is not due for seasonal influenza vaccination" xsi:type="ExpressionRef"/>
+               <then localId="264" locator="24:70-24:132" name="Client is not due for seasonal influenza vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="265" locator="25:5-25:124">
+               <when localId="291" locator="25:10-25:59" name="Client is due for seasonal influenza vaccination" xsi:type="ExpressionRef"/>
+               <then localId="306" locator="25:66-25:124" name="Client is due for seasonal influenza vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="307" locator="26:5-26:196">
+               <when localId="333" locator="26:10-26:95" name="The primary series is complete. Client is not due for seasonal influenza annual dose" xsi:type="ExpressionRef"/>
+               <then localId="348" locator="26:102-26:196" name="The primary series is complete. Client is not due for seasonal influenza annual dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="349" locator="27:5-27:188">
+               <when localId="375" locator="27:10-27:91" name="The primary series is complete. Client is due for seasonal influenza annual dose" xsi:type="ExpressionRef"/>
+               <then localId="390" locator="27:98-27:188" name="The primary series is complete. Client is due for seasonal influenza annual dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="391" locator="28:10-28:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="395" locator="31:1-32:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="395">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="396">
+                  <a:s r="399">
+                     <a:s r="397">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="406">
+                     <a:s r="401">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="402">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="396" locator="32:3-32:45" xsi:type="And">
+            <operand localId="399" locator="32:3-32:24" xsi:type="Not">
+               <operand localId="398" locator="32:3-32:24" xsi:type="IsNull">
+                  <operand localId="397" locator="32:3-32:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="406" locator="32:30-32:45" xsi:type="Not">
+               <operand localId="400" locator="32:30-32:45" xsi:type="Equal">
+                  <signature localId="404" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="405" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="401" locator="32:30-32:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="402" locator="32:44-32:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="409" locator="207:1-226:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="409">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="410">
+                  <a:s>case
+    </a:s>
+                  <a:s r="411">
+                     <a:s>when </a:s>
+                     <a:s r="412">
+                        <a:s r="414">
+                           <a:s r="413">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="414">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="415">
+                           <a:s>'Seasonalinfluenza08.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="421">
+                        <a:s r="422">
+                           <a:s>&quot;Client is not due for seasonal influenza vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="423">
+                           <a:s r="424">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="425">
+                              <a:s>'Should not vaccinate client with first seasonal influenza dose as client\'s age is less than 6 months. 
+Check for any other vaccines due and inform the caregiver of when to come back for first dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="429">
+                     <a:s>when </a:s>
+                     <a:s r="430">
+                        <a:s r="432">
+                           <a:s r="431">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="432">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="433">
+                           <a:s>'Seasonalinfluenza09.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="439">
+                        <a:s r="440">
+                           <a:s>&quot;Client is due for seasonal influenza vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="441">
+                           <a:s r="442">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="443">
+                              <a:s>'Should vaccinate client with first seasonal influenza dose as no seasonal infuenza doses were administered and client is within appropriate age range. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="447">
+                     <a:s>when </a:s>
+                     <a:s r="448">
+                        <a:s r="450">
+                           <a:s r="449">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="450">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="451">
+                           <a:s>'Seasonalinfluenza10.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="457">
+                        <a:s r="458">
+                           <a:s>&quot;Client is not due for seasonal influenza vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="459">
+                           <a:s r="460">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="461">
+                              <a:s>'Should not vaccinate client with second seasonal influenza dose as latest seasonal influenza dose was administered less than 4 weeks ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the second dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="465">
+                     <a:s>when </a:s>
+                     <a:s r="466">
+                        <a:s r="468">
+                           <a:s r="467">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="468">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="469">
+                           <a:s>'Seasonalinfluenza11.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="475">
+                        <a:s r="476">
+                           <a:s>&quot;Client is due for seasonal influenza vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="477">
+                           <a:s r="478">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="479">
+                              <a:s>'Should vaccinate client with second seasonal influenza dose as client is within appropriate age range and latest seasonal influenza dose was administerered more than 4 weeks ago.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="483">
+                     <a:s>when </a:s>
+                     <a:s r="484">
+                        <a:s r="486">
+                           <a:s r="485">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="486">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="487">
+                           <a:s>'Seasonalinfluenza12.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="493">
+                        <a:s r="494">
+                           <a:s>&quot;The primary series is complete. Client is not due for seasonal influenza annual dose Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="495">
+                           <a:s r="496">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="497">
+                              <a:s>'Should not vaccinate client with annual dose as the latest seasonal influenza dose was administered less than 1 year ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="501">
+                     <a:s>when </a:s>
+                     <a:s r="502">
+                        <a:s r="504">
+                           <a:s r="503">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="504">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="505">
+                           <a:s>'Seasonalinfluenza13.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="511">
+                        <a:s r="512">
+                           <a:s>&quot;The primary series is complete. Client is due for seasonal influenza annual dose Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="513">
+                           <a:s r="514">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="515">
+                              <a:s>'Should vaccinate client with annual dose as the latest seasonal influenza dose was administered more than 1 year ago. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="519">
+                     <a:s>when </a:s>
+                     <a:s r="520">
+                        <a:s r="522">
+                           <a:s r="521">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="522">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="523">
+                           <a:s>'Seasonalinfluenza14.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="529">
+                        <a:s r="530">
+                           <a:s>&quot;The primary series is complete. Client is not due for seasonal influenza annual dose Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="531">
+                           <a:s r="532">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="533">
+                              <a:s>'Should not vaccinate client with annual dose as latest seasonal influenza dose was administered less than 1 year ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="537">
+                     <a:s>when </a:s>
+                     <a:s r="538">
+                        <a:s r="540">
+                           <a:s r="539">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="540">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="541">
+                           <a:s>'Seasonalinfluenza15.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="547">
+                        <a:s r="548">
+                           <a:s>&quot;The primary series is complete. Client is due for seasonal influenza annual dose Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="549">
+                           <a:s r="550">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="551">
+                              <a:s>'Should vaccinate client with annual dose as latest seasonal influenza dose was administered more than 1 year ago. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="555">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="410" locator="208:3-226:5" xsi:type="Case">
+            <caseItem localId="411" locator="209:5-209:330">
+               <when localId="412" locator="209:10-209:45" xsi:type="Equal">
+                  <signature localId="419" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="420" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="417" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="418" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="414" locator="209:10-209:19" path="id" xsi:type="Property">
+                        <source localId="413" locator="209:10-209:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="415" locator="209:23-209:45" valueType="t:String" value="Seasonalinfluenza08.1" xsi:type="Literal"/>
+               </when>
+               <then localId="557" xsi:type="As">
+                  <operand localId="421" locator="209:52-209:330" xsi:type="And">
+                     <operand localId="422" locator="209:52-209:112" name="Client is not due for seasonal influenza vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="423" locator="209:118-209:330" xsi:type="Equal">
+                        <signature localId="427" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="428" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="424" locator="209:118-209:127" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="425" locator="209:131-209:330" valueType="t:String" value="Should not vaccinate client with first seasonal influenza dose as client's age is less than 6 months. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for first dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="558" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="559" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="560" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="429" locator="211:5-211:308">
+               <when localId="430" locator="211:10-211:45" xsi:type="Equal">
+                  <signature localId="437" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="438" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="435" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="436" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="432" locator="211:10-211:19" path="id" xsi:type="Property">
+                        <source localId="431" locator="211:10-211:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="433" locator="211:23-211:45" valueType="t:String" value="Seasonalinfluenza09.2" xsi:type="Literal"/>
+               </when>
+               <then localId="561" xsi:type="As">
+                  <operand localId="439" locator="211:52-211:308" xsi:type="And">
+                     <operand localId="440" locator="211:52-211:108" name="Client is due for seasonal influenza vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="441" locator="211:114-211:308" xsi:type="Equal">
+                        <signature localId="445" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="446" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="442" locator="211:114-211:123" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="443" locator="211:127-211:308" valueType="t:String" value="Should vaccinate client with first seasonal influenza dose as no seasonal infuenza doses were administered and client is within appropriate age range. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="562" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="563" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="564" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="447" locator="213:5-213:370">
+               <when localId="448" locator="213:10-213:45" xsi:type="Equal">
+                  <signature localId="455" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="456" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="453" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="454" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="450" locator="213:10-213:19" path="id" xsi:type="Property">
+                        <source localId="449" locator="213:10-213:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="451" locator="213:23-213:45" valueType="t:String" value="Seasonalinfluenza10.3" xsi:type="Literal"/>
+               </when>
+               <then localId="565" xsi:type="As">
+                  <operand localId="457" locator="213:52-213:370" xsi:type="And">
+                     <operand localId="458" locator="213:52-213:112" name="Client is not due for seasonal influenza vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="459" locator="213:118-213:370" xsi:type="Equal">
+                        <signature localId="463" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="464" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="460" locator="213:118-213:127" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="461" locator="213:131-213:370" valueType="t:String" value="Should not vaccinate client with second seasonal influenza dose as latest seasonal influenza dose was administered less than 4 weeks ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the second dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="566" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="567" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="568" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="465" locator="215:5-215:335">
+               <when localId="466" locator="215:10-215:45" xsi:type="Equal">
+                  <signature localId="473" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="474" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="471" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="472" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="468" locator="215:10-215:19" path="id" xsi:type="Property">
+                        <source localId="467" locator="215:10-215:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="469" locator="215:23-215:45" valueType="t:String" value="Seasonalinfluenza11.3" xsi:type="Literal"/>
+               </when>
+               <then localId="569" xsi:type="As">
+                  <operand localId="475" locator="215:52-215:335" xsi:type="And">
+                     <operand localId="476" locator="215:52-215:108" name="Client is due for seasonal influenza vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="477" locator="215:114-215:335" xsi:type="Equal">
+                        <signature localId="481" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="482" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="478" locator="215:114-215:123" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="479" locator="215:127-215:335" valueType="t:String" value="Should vaccinate client with second seasonal influenza dose as client is within appropriate age range and latest seasonal influenza dose was administerered more than 4 weeks ago.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="570" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="571" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="572" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="483" locator="217:5-217:384">
+               <when localId="484" locator="217:10-217:45" xsi:type="Equal">
+                  <signature localId="491" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="492" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="489" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="490" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="486" locator="217:10-217:19" path="id" xsi:type="Property">
+                        <source localId="485" locator="217:10-217:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="487" locator="217:23-217:45" valueType="t:String" value="Seasonalinfluenza12.3" xsi:type="Literal"/>
+               </when>
+               <then localId="573" xsi:type="As">
+                  <operand localId="493" locator="217:52-217:384" xsi:type="And">
+                     <operand localId="494" locator="217:52-217:144" name="The primary series is complete. Client is not due for seasonal influenza annual dose Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="495" locator="217:150-217:384" xsi:type="Equal">
+                        <signature localId="499" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="500" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="496" locator="217:150-217:159" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="497" locator="217:163-217:384" valueType="t:String" value="Should not vaccinate client with annual dose as the latest seasonal influenza dose was administered less than 1 year ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="574" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="575" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="576" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="501" locator="219:5-219:307">
+               <when localId="502" locator="219:10-219:45" xsi:type="Equal">
+                  <signature localId="509" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="510" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="507" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="508" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="504" locator="219:10-219:19" path="id" xsi:type="Property">
+                        <source localId="503" locator="219:10-219:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="505" locator="219:23-219:45" valueType="t:String" value="Seasonalinfluenza13.3" xsi:type="Literal"/>
+               </when>
+               <then localId="577" xsi:type="As">
+                  <operand localId="511" locator="219:52-219:307" xsi:type="And">
+                     <operand localId="512" locator="219:52-219:140" name="The primary series is complete. Client is due for seasonal influenza annual dose Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="513" locator="219:146-219:307" xsi:type="Equal">
+                        <signature localId="517" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="518" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="514" locator="219:146-219:155" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="515" locator="219:159-219:307" valueType="t:String" value="Should vaccinate client with annual dose as the latest seasonal influenza dose was administered more than 1 year ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="578" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="579" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="580" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="519" locator="221:5-221:380">
+               <when localId="520" locator="221:10-221:45" xsi:type="Equal">
+                  <signature localId="527" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="528" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="525" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="526" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="522" locator="221:10-221:19" path="id" xsi:type="Property">
+                        <source localId="521" locator="221:10-221:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="523" locator="221:23-221:45" valueType="t:String" value="Seasonalinfluenza14.2" xsi:type="Literal"/>
+               </when>
+               <then localId="581" xsi:type="As">
+                  <operand localId="529" locator="221:52-221:380" xsi:type="And">
+                     <operand localId="530" locator="221:52-221:144" name="The primary series is complete. Client is not due for seasonal influenza annual dose Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="531" locator="221:150-221:380" xsi:type="Equal">
+                        <signature localId="535" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="536" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="532" locator="221:150-221:159" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="533" locator="221:163-221:380" valueType="t:String" value="Should not vaccinate client with annual dose as latest seasonal influenza dose was administered less than 1 year ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="582" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="583" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="584" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="537" locator="223:5-223:303">
+               <when localId="538" locator="223:10-223:45" xsi:type="Equal">
+                  <signature localId="545" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="546" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="543" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="544" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="540" locator="223:10-223:19" path="id" xsi:type="Property">
+                        <source localId="539" locator="223:10-223:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="541" locator="223:23-223:45" valueType="t:String" value="Seasonalinfluenza15.2" xsi:type="Literal"/>
+               </when>
+               <then localId="585" xsi:type="As">
+                  <operand localId="547" locator="223:52-223:303" xsi:type="And">
+                     <operand localId="548" locator="223:52-223:140" name="The primary series is complete. Client is due for seasonal influenza annual dose Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="549" locator="223:146-223:303" xsi:type="Equal">
+                        <signature localId="553" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="554" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="550" locator="223:146-223:155" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="551" locator="223:159-223:303" valueType="t:String" value="Should vaccinate client with annual dose as latest seasonal influenza dose was administered more than 1 year ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="586" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="587" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="588" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="589" xsi:type="As">
+               <operand localId="555" locator="225:10-225:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="590" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="591" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="592" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

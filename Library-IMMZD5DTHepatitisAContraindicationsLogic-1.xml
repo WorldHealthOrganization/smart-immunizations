@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="299">
+         <a:s>/*
+ * Library: IMMZD5DTHepatitisAContraindicationsLogic (IMMZ.D5.DT.Hepatitis A contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due
+ * Decision Table: IMMZ.D5.DT.Hepatitis A contraindications
+ * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
+ */
+library IMMZD5DTHepatitisAContraindicationsLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD5DTHepatitisAContraindicationsLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="9:1-9:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="10:1-10:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="12:1-12:60" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD5DTHepatitisAEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD5DTHepatitisAEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="212" locator="14:1-14:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>parameter Today </a:s>
+               <a:s r="216">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="215">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="215" locator="14:30-14:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="216" locator="14:17-14:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="16:1-16:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="16:1-16:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="224" locator="21:3-22:71" name="Draft Medication Request ID for Hepatitis A dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Draft Medication Request ID for Hepatitis A dose"/>
+            <a:s r="224">
+               <a:s>/*
+  @dynamicValue: Draft Medication Request ID for Hepatitis A dose
+  */
+  define &quot;Draft Medication Request ID for Hepatitis A dose&quot;:
+    </a:s>
+               <a:s r="230">
+                  <a:s r="229">
+                     <a:s>First(</a:s>
+                     <a:s r="226">
+                        <a:s r="225">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="226">
+                           <a:s>&quot;Draft Medication Request for Hepatitis A dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="230">
+                     <a:s>id</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="230" locator="22:5-22:71" path="id" xsi:type="Property">
+            <source localId="229" locator="22:5-22:68" xsi:type="First">
+               <source localId="226" locator="22:11-22:67" name="Draft Medication Request for Hepatitis A dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </source>
+         </expression>
+      </def>
+      <def localId="242" locator="42:1-43:46" name="Live attentuated Hepatitis A-containing vaccine is contraindicated Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Live attentuated Hepatitis A-containing vaccine is contraindicated Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot; (where &quot;Type of hepatitis A dose&quot; = &quot;Live attenuated hepatitis A vaccine&quot;)"/>
+            <a:s r="242">
+               <a:s>/*
+@output: Live attentuated Hepatitis A-containing vaccine is contraindicated Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot; (where &quot;Type of hepatitis A dose&quot; = &quot;Live attenuated hepatitis A vaccine&quot;)
+*/
+define &quot;Live attentuated Hepatitis A-containing vaccine is contraindicated Case 1&quot;:
+  </a:s>
+               <a:s r="244">
+                  <a:s r="243">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="244">
+                     <a:s>&quot;The client is currently pregnant&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="244" locator="43:3-43:46" name="The client is currently pregnant" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="248" locator="49:1-50:54" name="Live attentuated Hepatitis A-containing vaccine is contraindicated Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Live attentuated Hepatitis A-containing vaccine is contraindicated Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot; (where &quot;Type of hepatitis A dose&quot; = &quot;Live attenuated hepatitis A vaccine&quot;)"/>
+            <a:s r="248">
+               <a:s>/*
+@output: Live attentuated Hepatitis A-containing vaccine is contraindicated Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot; (where &quot;Type of hepatitis A dose&quot; = &quot;Live attenuated hepatitis A vaccine&quot;)
+*/
+define &quot;Live attentuated Hepatitis A-containing vaccine is contraindicated Case 2&quot;:
+  </a:s>
+               <a:s r="250">
+                  <a:s r="249">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="250">
+                     <a:s>&quot;The client is severely immunocompromised&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="250" locator="50:3-50:54" name="The client is severely immunocompromised" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="238" locator="56:1-58:82" name="Live attentuated Hepatitis A-containing vaccine is contraindicated" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Live attentuated Hepatitis A-containing vaccine is contraindicated"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot; (where &quot;Type of hepatitis A dose&quot; = &quot;Live attenuated hepatitis A vaccine&quot;)"/>
+            <a:s r="238">
+               <a:s>/*
+@output: Live attentuated Hepatitis A-containing vaccine is contraindicated
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot; (where &quot;Type of hepatitis A dose&quot; = &quot;Live attenuated hepatitis A vaccine&quot;)
+*/
+define &quot;Live attentuated Hepatitis A-containing vaccine is contraindicated&quot;:
+  </a:s>
+               <a:s r="239">
+                  <a:s r="245">
+                     <a:s>&quot;Live attentuated Hepatitis A-containing vaccine is contraindicated Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="251">
+                     <a:s>&quot;Live attentuated Hepatitis A-containing vaccine is contraindicated Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="239" locator="57:3-58:82" xsi:type="Or">
+            <operand localId="245" locator="57:3-57:77" name="Live attentuated Hepatitis A-containing vaccine is contraindicated Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="251" locator="58:8-58:82" name="Live attentuated Hepatitis A-containing vaccine is contraindicated Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="255" locator="65:1-70:5" name="Live attentuated Hepatitis A-containing vaccine is contraindicated Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Live attentuated Hepatitis A-containing vaccine is contraindicated Guidance"/>
+            <a:s r="255">
+               <a:s>/*
+@output: Live attentuated Hepatitis A-containing vaccine is contraindicated Guidance
+@guidance = Do not vaccinate client with hepatitis A as hepatitis A vaccination is contraindicated for pregnant client and may pose a theoretical risk to the developing fetus.
+@guidance = Do not vaccinate client with hepatitis A as hepatitis A vaccination is contraindicated for severely immunocompromised clients.
+*/
+define &quot;Live attentuated Hepatitis A-containing vaccine is contraindicated Guidance&quot;:
+  </a:s>
+               <a:s r="256">
+                  <a:s>case
+    </a:s>
+                  <a:s r="257">
+                     <a:s>when </a:s>
+                     <a:s r="258">
+                        <a:s>&quot;Live attentuated Hepatitis A-containing vaccine is contraindicated Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="259">
+                        <a:s>'Do not vaccinate client with hepatitis A as hepatitis A vaccination is contraindicated for pregnant client and may pose a theoretical risk to the developing fetus.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="261">
+                     <a:s>when </a:s>
+                     <a:s r="262">
+                        <a:s>&quot;Live attentuated Hepatitis A-containing vaccine is contraindicated Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="263">
+                        <a:s>'Do not vaccinate client with hepatitis A as hepatitis A vaccination is contraindicated for severely immunocompromised clients.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="265">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="256" locator="66:3-70:5" xsi:type="Case">
+            <caseItem localId="257" locator="67:5-67:255">
+               <when localId="258" locator="67:10-67:84" name="Live attentuated Hepatitis A-containing vaccine is contraindicated Case 1" xsi:type="ExpressionRef"/>
+               <then localId="259" locator="67:91-67:255" valueType="t:String" value="Do not vaccinate client with hepatitis A as hepatitis A vaccination is contraindicated for pregnant client and may pose a theoretical risk to the developing fetus." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="261" locator="68:5-68:218">
+               <when localId="262" locator="68:10-68:84" name="Live attentuated Hepatitis A-containing vaccine is contraindicated Case 2" xsi:type="ExpressionRef"/>
+               <then localId="263" locator="68:91-68:218" valueType="t:String" value="Do not vaccinate client with hepatitis A as hepatitis A vaccination is contraindicated for severely immunocompromised clients." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="265" locator="69:10-69:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="271" locator="76:1-77:67" name="Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="271">
+               <a:s>/*
+@output: Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;:
+  </a:s>
+               <a:s r="273">
+                  <a:s r="272">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="273">
+                     <a:s>&quot;The client has a history of severe allergic reactions&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="273" locator="77:3-77:67" name="The client has a history of severe allergic reactions" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="277" locator="84:1-85:312" name="Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance"/>
+            <a:t name="guidance" value="Do not vaccinate client with inactivated hepatitis A vaccination if client has had a severe allergic reaction to the previous dose.&#xa;Do not vaccinate client with live attenuated hepatitis A vaccination if client has severe allergy to components included in the live attenuated hepatitis A-containing vaccines."/>
+            <a:s r="277">
+               <a:s>/*
+@output: Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance
+@guidance: Do not vaccinate client with inactivated hepatitis A vaccination if client has had a severe allergic reaction to the previous dose.
+Do not vaccinate client with live attenuated hepatitis A vaccination if client has severe allergy to components included in the live attenuated hepatitis A-containing vaccines.
+*/
+define &quot;Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance&quot;:
+  </a:s>
+               <a:s r="278">
+                  <a:s>'Do not vaccinate client with inactivated hepatitis A vaccination if client has had a severe allergic reaction to the previous dose.
+Do not vaccinate client with live attenuated hepatitis A vaccination if client has severe allergy to components included in the live attenuated hepatitis A-containing vaccines.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="278" locator="85:3-85:312" valueType="t:String" value="Do not vaccinate client with inactivated hepatitis A vaccination if client has had a severe allergic reaction to the previous dose.&#xa;Do not vaccinate client with live attenuated hepatitis A vaccination if client has severe allergy to components included in the live attenuated hepatitis A-containing vaccines." xsi:type="Literal"/>
+      </def>
+      <def localId="233" locator="28:1-33:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="233">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="234">
+                  <a:s>case 
+    </a:s>
+                  <a:s r="235">
+                     <a:s>when </a:s>
+                     <a:s r="252">
+                        <a:s>&quot;Live attentuated Hepatitis A-containing vaccine is contraindicated&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="267">
+                        <a:s>&quot;Live attentuated Hepatitis A-containing vaccine is contraindicated Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="268">
+                     <a:s>when </a:s>
+                     <a:s r="274">
+                        <a:s>&quot;Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="280">
+                        <a:s>&quot;Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+    else </a:s>
+                  <a:s r="281">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="234" locator="29:3-33:5" xsi:type="Case">
+            <caseItem localId="235" locator="30:5-30:160">
+               <when localId="252" locator="30:10-30:77" name="Live attentuated Hepatitis A-containing vaccine is contraindicated" xsi:type="ExpressionRef"/>
+               <then localId="267" locator="30:84-30:160" name="Live attentuated Hepatitis A-containing vaccine is contraindicated Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="268" locator="31:5-31:236">
+               <when localId="274" locator="31:10-31:115" name="Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+               <then localId="280" locator="31:122-31:236" name="Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="281" locator="32:10-32:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="285" locator="35:1-36:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="285">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="286">
+                  <a:s r="289">
+                     <a:s r="287">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="296">
+                     <a:s r="291">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="292">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="286" locator="36:3-36:45" xsi:type="And">
+            <operand localId="289" locator="36:3-36:24" xsi:type="Not">
+               <operand localId="288" locator="36:3-36:24" xsi:type="IsNull">
+                  <operand localId="287" locator="36:3-36:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="296" locator="36:30-36:45" xsi:type="Not">
+               <operand localId="290" locator="36:30-36:45" xsi:type="Equal">
+                  <signature localId="294" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="295" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="291" locator="36:30-36:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="292" locator="36:44-36:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="299" locator="92:1-99:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="299">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="300">
+                  <a:s>case
+    </a:s>
+                  <a:s r="301">
+                     <a:s>when </a:s>
+                     <a:s r="302">
+                        <a:s r="304">
+                           <a:s r="303">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="304">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="305">
+                           <a:s>'HepatitisA39.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="311">
+                        <a:s r="312">
+                           <a:s>&quot;Live attentuated Hepatitis A-containing vaccine is contraindicated Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="313">
+                           <a:s r="314">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="315">
+                              <a:s>'Do not vaccinate client with hepatitis A as hepatitis A vaccination is contraindicated for pregnant client and may pose a theoretical risk to the developing fetus.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="319">
+                     <a:s>when </a:s>
+                     <a:s r="320">
+                        <a:s r="322">
+                           <a:s r="321">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="322">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="323">
+                           <a:s>'HepatitisA40.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="329">
+                        <a:s r="330">
+                           <a:s>&quot;Live attentuated Hepatitis A-containing vaccine is contraindicated Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="331">
+                           <a:s r="332">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="333">
+                              <a:s>'Do not vaccinate client with hepatitis A as hepatitis A vaccination is contraindicated for severely immunocompromised clients.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="337">
+                     <a:s>when </a:s>
+                     <a:s r="338">
+                        <a:s r="340">
+                           <a:s r="339">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="340">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="341">
+                           <a:s>'HepatitisA41.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="347">
+                        <a:s r="348">
+                           <a:s>&quot;Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="349">
+                           <a:s r="350">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="351">
+                              <a:s>'Do not vaccinate client with inactivated hepatitis A vaccination if client has had a severe allergic reaction to the previous dose.
+Do not vaccinate client with live attenuated hepatitis A vaccination if client has severe allergy to components included in the live attenuated hepatitis A-containing vaccines.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="355">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="300" locator="93:3-99:5" xsi:type="Case">
+            <caseItem localId="301" locator="94:5-94:302">
+               <when localId="302" locator="94:10-94:38" xsi:type="Equal">
+                  <signature localId="309" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="310" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="307" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="308" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="304" locator="94:10-94:19" path="id" xsi:type="Property">
+                        <source localId="303" locator="94:10-94:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="305" locator="94:23-94:38" valueType="t:String" value="HepatitisA39.1" xsi:type="Literal"/>
+               </when>
+               <then localId="357" xsi:type="As">
+                  <operand localId="311" locator="94:45-94:302" xsi:type="And">
+                     <operand localId="312" locator="94:45-94:119" name="Live attentuated Hepatitis A-containing vaccine is contraindicated Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="313" locator="94:125-94:302" xsi:type="Equal">
+                        <signature localId="317" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="318" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="314" locator="94:125-94:134" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="315" locator="94:138-94:302" valueType="t:String" value="Do not vaccinate client with hepatitis A as hepatitis A vaccination is contraindicated for pregnant client and may pose a theoretical risk to the developing fetus." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="358" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="359" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="360" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="319" locator="95:5-95:265">
+               <when localId="320" locator="95:10-95:38" xsi:type="Equal">
+                  <signature localId="327" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="328" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="325" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="326" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="322" locator="95:10-95:19" path="id" xsi:type="Property">
+                        <source localId="321" locator="95:10-95:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="323" locator="95:23-95:38" valueType="t:String" value="HepatitisA40.1" xsi:type="Literal"/>
+               </when>
+               <then localId="361" xsi:type="As">
+                  <operand localId="329" locator="95:45-95:265" xsi:type="And">
+                     <operand localId="330" locator="95:45-95:119" name="Live attentuated Hepatitis A-containing vaccine is contraindicated Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="331" locator="95:125-95:265" xsi:type="Equal">
+                        <signature localId="335" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="336" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="332" locator="95:125-95:134" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="333" locator="95:138-95:265" valueType="t:String" value="Do not vaccinate client with hepatitis A as hepatitis A vaccination is contraindicated for severely immunocompromised clients." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="362" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="363" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="364" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="337" locator="96:5-96:478">
+               <when localId="338" locator="96:10-96:38" xsi:type="Equal">
+                  <signature localId="345" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="346" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="343" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="344" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="340" locator="96:10-96:19" path="id" xsi:type="Property">
+                        <source localId="339" locator="96:10-96:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="341" locator="96:23-96:38" valueType="t:String" value="HepatitisA41.1" xsi:type="Literal"/>
+               </when>
+               <then localId="365" xsi:type="As">
+                  <operand localId="347" locator="96:45-96:478" xsi:type="And">
+                     <operand localId="348" locator="96:45-96:150" name="Hepatitis A vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+                     <operand localId="349" locator="96:156-96:478" xsi:type="Equal">
+                        <signature localId="353" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="354" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="350" locator="96:156-96:165" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="351" locator="96:169-96:478" valueType="t:String" value="Do not vaccinate client with inactivated hepatitis A vaccination if client has had a severe allergic reaction to the previous dose.&#xa;Do not vaccinate client with live attenuated hepatitis A vaccination if client has severe allergy to components included in the live attenuated hepatitis A-containing vaccines." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="366" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="367" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="368" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="369" xsi:type="As">
+               <operand localId="355" locator="98:10-98:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="370" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="371" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="372" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

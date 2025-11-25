@@ -1,0 +1,1587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="412">
+         <a:s>/*
+ * Library: IMMZD2DTDengue3DosesWithPreVaccinationScreeningLogic (IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening)
+ * Rule: Determine if the client is due for a dengue vaccination according to the national immunization schedule
+ * Decision Table: CYD-TDV (Dengvaxia), 3-dose schedule with pre-vaccination screening, the recommended strategy where feasible (pre-vaccination screening whereby only those tested seropositive would be vaccinated)
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any
+ */
+library IMMZD2DTDengue3DosesWithPreVaccinationScreeningLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTDengue3DosesWithPreVaccinationScreeningLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="9:1-9:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="10:1-10:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="12:1-12:56" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTDengueEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTDengueEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="212" locator="14:1-14:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>parameter Today </a:s>
+               <a:s r="216">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="215">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="215" locator="14:30-14:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="216" locator="14:17-14:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="16:1-16:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="16:1-16:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="236" locator="37:1-38:47" name="Client is not due for dengue vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for dengue vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="236">
+               <a:s>/*
+@output: Client is not due for dengue vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for dengue vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="238">
+                  <a:s r="237">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="238">
+                     <a:s>&quot;Client's age is less than 9 years&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="238" locator="38:3-38:47" name="Client's age is less than 9 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="242" locator="44:1-45:48" name="Client is not due for dengue vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for dengue vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="242">
+               <a:s>/*
+@output: Client is not due for dengue vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for dengue vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="244">
+                  <a:s r="243">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="244">
+                     <a:s>&quot;Client's age is more than 45 years&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="244" locator="45:3-45:48" name="Client's age is more than 45 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="248" locator="51:1-52:52" name="Client is not due for dengue vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for dengue vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="248">
+               <a:s>/*
+@output: Client is not due for dengue vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for dengue vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="250">
+                  <a:s r="249">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="250">
+                     <a:s>&quot;Client's dengue serostatus is negative&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="250" locator="52:3-52:52" name="Client's dengue serostatus is negative" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="254" locator="58:1-62:82" name="Client is not due for dengue vaccination Case 4" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for dengue vaccination Case 4"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="254">
+               <a:s>/*
+@output: Client is not due for dengue vaccination Case 4
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for dengue vaccination Case 4&quot;:
+  </a:s>
+               <a:s r="255">
+                  <a:s r="256">
+                     <a:s r="257">
+                        <a:s r="259">
+                           <a:s r="258">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="259">
+                              <a:s>&quot;One dengue primary series dose was administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="261">
+                           <a:s r="260">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="261">
+                              <a:s>&quot;Client's age is between 9 years and 45 years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="263">
+                        <a:s r="262">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="263">
+                           <a:s>&quot;Client's dengue serostatus is positive&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="265">
+                     <a:s r="264">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="265">
+                        <a:s>&quot;The latest dengue dose was administered less than 6 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="255" locator="59:3-62:82" xsi:type="And">
+            <operand localId="256" locator="59:3-61:58" xsi:type="And">
+               <operand localId="257" locator="59:3-60:64" xsi:type="And">
+                  <operand localId="259" locator="59:3-59:61" name="One dengue primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="261" locator="60:9-60:64" name="Client's age is between 9 years and 45 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="263" locator="61:9-61:58" name="Client's dengue serostatus is positive" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="265" locator="62:9-62:82" name="The latest dengue dose was administered less than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="269" locator="68:1-72:82" name="Client is not due for dengue vaccination Case 5" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for dengue vaccination Case 5"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="269">
+               <a:s>/*
+@output: Client is not due for dengue vaccination Case 5
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for dengue vaccination Case 5&quot;:
+  </a:s>
+               <a:s r="270">
+                  <a:s r="271">
+                     <a:s r="272">
+                        <a:s r="274">
+                           <a:s r="273">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="274">
+                              <a:s>&quot;Two dengue primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="276">
+                           <a:s r="275">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="276">
+                              <a:s>&quot;Client's age is between 9 years and 45 years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="278">
+                        <a:s r="277">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="278">
+                           <a:s>&quot;Client's dengue serostatus is positive&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="280">
+                     <a:s r="279">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="280">
+                        <a:s>&quot;The latest dengue dose was administered less than 6 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="270" locator="69:3-72:82" xsi:type="And">
+            <operand localId="271" locator="69:3-71:58" xsi:type="And">
+               <operand localId="272" locator="69:3-70:64" xsi:type="And">
+                  <operand localId="274" locator="69:3-69:63" name="Two dengue primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="276" locator="70:9-70:64" name="Client's age is between 9 years and 45 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="278" locator="71:9-71:58" name="Client's dengue serostatus is positive" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="280" locator="72:9-72:82" name="The latest dengue dose was administered less than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="229" locator="78:1-83:56" name="Client is not due for dengue vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for dengue vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="229">
+               <a:s>/*
+@output: Client is not due for dengue vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for dengue vaccination&quot;:
+  </a:s>
+               <a:s r="230">
+                  <a:s r="231">
+                     <a:s r="232">
+                        <a:s r="233">
+                           <a:s r="239">
+                              <a:s>&quot;Client is not due for dengue vaccination Case 1&quot;</a:s>
+                           </a:s>
+                           <a:s>
+    or </a:s>
+                           <a:s r="245">
+                              <a:s>&quot;Client is not due for dengue vaccination Case 2&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    or </a:s>
+                        <a:s r="251">
+                           <a:s>&quot;Client is not due for dengue vaccination Case 3&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="266">
+                        <a:s>&quot;Client is not due for dengue vaccination Case 4&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="281">
+                     <a:s>&quot;Client is not due for dengue vaccination Case 5&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="230" locator="79:3-83:56" xsi:type="Or">
+            <operand localId="231" locator="79:3-82:56" xsi:type="Or">
+               <operand localId="232" locator="79:3-81:56" xsi:type="Or">
+                  <operand localId="233" locator="79:3-80:56" xsi:type="Or">
+                     <operand localId="239" locator="79:3-79:51" name="Client is not due for dengue vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="245" locator="80:8-80:56" name="Client is not due for dengue vaccination Case 2" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="251" locator="81:8-81:56" name="Client is not due for dengue vaccination Case 3" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="266" locator="82:8-82:56" name="Client is not due for dengue vaccination Case 4" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="281" locator="83:8-83:56" name="Client is not due for dengue vaccination Case 5" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="285" locator="98:1-111:5" name="Client is not due for dengue vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for dengue vaccination Guidance"/>
+            <a:s r="285">
+               <a:s>/*
+@output: Client is not due for dengue vaccination Guidance
+@guidance = Should not vaccinate client with first dengue dose as client's age is less than 9 years. 
+Check for any other vaccines due and inform the caregiver of when to come back for first dose.
+@guidance = Should not vaccinate client with first dengue dose as client's age is more than 45 years. 
+Check for any vaccines due.
+@guidance = Should not vaccinate client with first dengue dose as client does not have evidence of past dengue infection. 
+Check for any other vaccines due.
+@guidance = Should not vaccinate client with second dengue dose as latest dengue dose was administered less than 6 months ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the second dose.
+@guidance = Should not vaccinate client with third dengue dose as latest dengue vaccine was administered less than 6 months ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the third dose.
+*/
+define &quot;Client is not due for dengue vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="286">
+                  <a:s>case
+    </a:s>
+                  <a:s r="287">
+                     <a:s>when </a:s>
+                     <a:s r="288">
+                        <a:s>&quot;Client is not due for dengue vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="289">
+                        <a:s>'Should not vaccinate client with first dengue dose as client\'s age is less than 9 years. 
+Check for any other vaccines due and inform the caregiver of when to come back for first dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="291">
+                     <a:s>when </a:s>
+                     <a:s r="292">
+                        <a:s>&quot;Client is not due for dengue vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="293">
+                        <a:s>'Should not vaccinate client with first dengue dose as client\'s age is more than 45 years. 
+Check for any vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="295">
+                     <a:s>when </a:s>
+                     <a:s r="296">
+                        <a:s>&quot;Client is not due for dengue vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="297">
+                        <a:s>'Should not vaccinate client with first dengue dose as client does not have evidence of past dengue infection. 
+Check for any other vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="299">
+                     <a:s>when </a:s>
+                     <a:s r="300">
+                        <a:s>&quot;Client is not due for dengue vaccination Case 4&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="301">
+                        <a:s>'Should not vaccinate client with second dengue dose as latest dengue dose was administered less than 6 months ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the second dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="303">
+                     <a:s>when </a:s>
+                     <a:s r="304">
+                        <a:s>&quot;Client is not due for dengue vaccination Case 5&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="305">
+                        <a:s>'Should not vaccinate client with third dengue dose as latest dengue vaccine was administered less than 6 months ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the third dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="307">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="286" locator="99:3-111:5" xsi:type="Case">
+            <caseItem localId="287" locator="100:5-100:251">
+               <when localId="288" locator="100:10-100:58" name="Client is not due for dengue vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="289" locator="100:65-100:251" valueType="t:String" value="Should not vaccinate client with first dengue dose as client's age is less than 9 years. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for first dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="291" locator="102:5-102:185">
+               <when localId="292" locator="102:10-102:58" name="Client is not due for dengue vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="293" locator="102:65-102:185" valueType="t:String" value="Should not vaccinate client with first dengue dose as client's age is more than 45 years. &#xa;Check for any vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="295" locator="104:5-104:210">
+               <when localId="296" locator="104:10-104:58" name="Client is not due for dengue vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="297" locator="104:65-104:210" valueType="t:String" value="Should not vaccinate client with first dengue dose as client does not have evidence of past dengue infection. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="299" locator="106:5-106:281">
+               <when localId="300" locator="106:10-106:58" name="Client is not due for dengue vaccination Case 4" xsi:type="ExpressionRef"/>
+               <then localId="301" locator="106:65-106:281" valueType="t:String" value="Should not vaccinate client with second dengue dose as latest dengue dose was administered less than 6 months ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the second dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="303" locator="108:5-108:282">
+               <when localId="304" locator="108:10-108:58" name="Client is not due for dengue vaccination Case 5" xsi:type="ExpressionRef"/>
+               <then localId="305" locator="108:65-108:282" valueType="t:String" value="Should not vaccinate client with third dengue dose as latest dengue vaccine was administered less than 6 months ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the third dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="307" locator="110:10-110:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="318" locator="117:1-120:58" name="Client is due for dengue vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for dengue vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="318">
+               <a:s>/*
+@output: Client is due for dengue vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for dengue vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="319">
+                  <a:s r="320">
+                     <a:s r="322">
+                        <a:s r="321">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="322">
+                           <a:s>&quot;No dengue primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="324">
+                        <a:s r="323">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="324">
+                           <a:s>&quot;Client's age is between 9 years and 45 years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="326">
+                     <a:s r="325">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="326">
+                        <a:s>&quot;Client's dengue serostatus is positive&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="319" locator="118:3-120:58" xsi:type="And">
+            <operand localId="320" locator="118:3-119:64" xsi:type="And">
+               <operand localId="322" locator="118:3-118:62" name="No dengue primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="324" locator="119:9-119:64" name="Client's age is between 9 years and 45 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="326" locator="120:9-120:58" name="Client's dengue serostatus is positive" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="330" locator="126:1-130:82" name="Client is due for dengue vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for dengue vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="330">
+               <a:s>/*
+@output: Client is due for dengue vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for dengue vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="331">
+                  <a:s r="332">
+                     <a:s r="333">
+                        <a:s r="335">
+                           <a:s r="334">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="335">
+                              <a:s>&quot;One dengue primary series dose was administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="337">
+                           <a:s r="336">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="337">
+                              <a:s>&quot;Client's age is between 9 years and 45 years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="339">
+                        <a:s r="338">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="339">
+                           <a:s>&quot;Client's dengue serostatus is positive&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="341">
+                     <a:s r="340">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="341">
+                        <a:s>&quot;The latest dengue dose was administered more than 6 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="331" locator="127:3-130:82" xsi:type="And">
+            <operand localId="332" locator="127:3-129:58" xsi:type="And">
+               <operand localId="333" locator="127:3-128:64" xsi:type="And">
+                  <operand localId="335" locator="127:3-127:61" name="One dengue primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="337" locator="128:9-128:64" name="Client's age is between 9 years and 45 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="339" locator="129:9-129:58" name="Client's dengue serostatus is positive" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="341" locator="130:9-130:82" name="The latest dengue dose was administered more than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="345" locator="136:1-140:82" name="Client is due for dengue vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for dengue vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="345">
+               <a:s>/*
+@output: Client is due for dengue vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for dengue vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="346">
+                  <a:s r="347">
+                     <a:s r="348">
+                        <a:s r="350">
+                           <a:s r="349">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="350">
+                              <a:s>&quot;Two dengue primary series doses were administered&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    and </a:s>
+                        <a:s r="352">
+                           <a:s r="351">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="352">
+                              <a:s>&quot;Client's age is between 9 years and 45 years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="354">
+                        <a:s r="353">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="354">
+                           <a:s>&quot;Client's dengue serostatus is positive&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="356">
+                     <a:s r="355">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="356">
+                        <a:s>&quot;The latest dengue dose was administered more than 6 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="346" locator="137:3-140:82" xsi:type="And">
+            <operand localId="347" locator="137:3-139:58" xsi:type="And">
+               <operand localId="348" locator="137:3-138:64" xsi:type="And">
+                  <operand localId="350" locator="137:3-137:63" name="Two dengue primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  <operand localId="352" locator="138:9-138:64" name="Client's age is between 9 years and 45 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="354" locator="139:9-139:58" name="Client's dengue serostatus is positive" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="356" locator="140:9-140:82" name="The latest dengue dose was administered more than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="313" locator="146:1-149:52" name="Client is due for dengue vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for dengue vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="313">
+               <a:s>/*
+@output: Client is due for dengue vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for dengue vaccination&quot;:
+  </a:s>
+               <a:s r="314">
+                  <a:s r="315">
+                     <a:s r="327">
+                        <a:s>&quot;Client is due for dengue vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="342">
+                        <a:s>&quot;Client is due for dengue vaccination Case 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="357">
+                     <a:s>&quot;Client is due for dengue vaccination Case 3&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="314" locator="147:3-149:52" xsi:type="Or">
+            <operand localId="315" locator="147:3-148:52" xsi:type="Or">
+               <operand localId="327" locator="147:3-147:47" name="Client is due for dengue vaccination Case 1" xsi:type="ExpressionRef"/>
+               <operand localId="342" locator="148:8-148:52" name="Client is due for dengue vaccination Case 2" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="357" locator="149:8-149:52" name="Client is due for dengue vaccination Case 3" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="361" locator="160:1-169:5" name="Client is due for dengue vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for dengue vaccination Guidance"/>
+            <a:s r="361">
+               <a:s>/*
+@output: Client is due for dengue vaccination Guidance
+@guidance = Should vaccinate client with first dengue dose as no dengue doses were administered, client is within appropriate age range and has evidence of past dengue infection. 
+Check for contraindications.
+@guidance = Should vaccinate client with second dengue dose as the latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection. 
+Check for contraindications.
+@guidance = Should vaccinate client with third dengue dose as latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection. 
+Check for contraindications.
+*/
+define &quot;Client is due for dengue vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="362">
+                  <a:s>case
+    </a:s>
+                  <a:s r="363">
+                     <a:s>when </a:s>
+                     <a:s r="364">
+                        <a:s>&quot;Client is due for dengue vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="365">
+                        <a:s>'Should vaccinate client with first dengue dose as no dengue doses were administered, client is within appropriate age range and has evidence of past dengue infection. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="367">
+                     <a:s>when </a:s>
+                     <a:s r="368">
+                        <a:s>&quot;Client is due for dengue vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="369">
+                        <a:s>'Should vaccinate client with second dengue dose as the latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="371">
+                     <a:s>when </a:s>
+                     <a:s r="372">
+                        <a:s>&quot;Client is due for dengue vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="373">
+                        <a:s>'Should vaccinate client with third dengue dose as latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="375">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="362" locator="161:3-169:5" xsi:type="Case">
+            <caseItem localId="363" locator="162:5-162:258">
+               <when localId="364" locator="162:10-162:54" name="Client is due for dengue vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="365" locator="162:61-162:258" valueType="t:String" value="Should vaccinate client with first dengue dose as no dengue doses were administered, client is within appropriate age range and has evidence of past dengue infection. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="367" locator="164:5-164:255">
+               <when localId="368" locator="164:10-164:54" name="Client is due for dengue vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="369" locator="164:61-164:255" valueType="t:String" value="Should vaccinate client with second dengue dose as the latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="371" locator="166:5-166:250">
+               <when localId="372" locator="166:10-166:54" name="Client is due for dengue vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="373" locator="166:61-166:250" valueType="t:String" value="Should vaccinate client with third dengue dose as latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="375" locator="168:10-168:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="381" locator="176:1-178:64" name="Dengue immunization schedule is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Dengue immunization schedule is complete"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="381">
+               <a:s>/*
+@output: Dengue immunization schedule is complete
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot;)&quot;
+*/
+define &quot;Dengue immunization schedule is complete&quot;:
+  </a:s>
+               <a:s r="382">
+                  <a:s r="384">
+                     <a:s r="383">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="384">
+                        <a:s>&quot;Three dengue primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="386">
+                     <a:s r="385">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="386">
+                        <a:s>&quot;Client's age is between 9 years and 45 years&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="382" locator="177:3-178:64" xsi:type="And">
+            <operand localId="384" locator="177:3-177:65" name="Three dengue primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="386" locator="178:9-178:64" name="Client's age is between 9 years and 45 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="390" locator="185:1-186:133" name="Dengue immunization schedule is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Dengue immunization schedule is complete Guidance"/>
+            <a:t name="guidance" value="Dengue immunization schedule is complete. Three dengue primary series doses were administered. &#xa;Check for any other vaccines due."/>
+            <a:s r="390">
+               <a:s>/*
+@output: Dengue immunization schedule is complete Guidance
+@guidance: Dengue immunization schedule is complete. Three dengue primary series doses were administered. 
+Check for any other vaccines due.
+*/
+define &quot;Dengue immunization schedule is complete Guidance&quot;:
+  </a:s>
+               <a:s r="391">
+                  <a:s>'Dengue immunization schedule is complete. Three dengue primary series doses were administered. 
+Check for any other vaccines due.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="391" locator="186:3-186:133" valueType="t:String" value="Dengue immunization schedule is complete. Three dengue primary series doses were administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+      </def>
+      <def localId="224" locator="22:1-28:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="224">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="225">
+                  <a:s>case 
+    </a:s>
+                  <a:s r="226">
+                     <a:s>when </a:s>
+                     <a:s r="282">
+                        <a:s>&quot;Client is not due for dengue vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="309">
+                        <a:s>&quot;Client is not due for dengue vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="310">
+                     <a:s>when </a:s>
+                     <a:s r="358">
+                        <a:s>&quot;Client is due for dengue vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="377">
+                        <a:s>&quot;Client is due for dengue vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="378">
+                     <a:s>when </a:s>
+                     <a:s r="387">
+                        <a:s>&quot;Dengue immunization schedule is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="393">
+                        <a:s>&quot;Dengue immunization schedule is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+    else </a:s>
+                  <a:s r="394">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="23:3-28:5" xsi:type="Case">
+            <caseItem localId="226" locator="24:5-24:108">
+               <when localId="282" locator="24:10-24:51" name="Client is not due for dengue vaccination" xsi:type="ExpressionRef"/>
+               <then localId="309" locator="24:58-24:108" name="Client is not due for dengue vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="310" locator="25:5-25:100">
+               <when localId="358" locator="25:10-25:47" name="Client is due for dengue vaccination" xsi:type="ExpressionRef"/>
+               <then localId="377" locator="25:54-25:100" name="Client is due for dengue vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="378" locator="26:5-26:108">
+               <when localId="387" locator="26:10-26:51" name="Dengue immunization schedule is complete" xsi:type="ExpressionRef"/>
+               <then localId="393" locator="26:58-26:108" name="Dengue immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="394" locator="27:10-27:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="398" locator="30:1-31:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="398">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="399">
+                  <a:s r="402">
+                     <a:s r="400">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="409">
+                     <a:s r="404">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="405">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="399" locator="31:3-31:45" xsi:type="And">
+            <operand localId="402" locator="31:3-31:24" xsi:type="Not">
+               <operand localId="401" locator="31:3-31:24" xsi:type="IsNull">
+                  <operand localId="400" locator="31:3-31:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="409" locator="31:30-31:45" xsi:type="Not">
+               <operand localId="403" locator="31:30-31:45" xsi:type="Equal">
+                  <signature localId="407" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="408" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="404" locator="31:30-31:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="405" locator="31:44-31:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="412" locator="193:1-214:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="412">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="413">
+                  <a:s>case
+    </a:s>
+                  <a:s r="414">
+                     <a:s>when </a:s>
+                     <a:s r="415">
+                        <a:s r="417">
+                           <a:s r="416">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="417">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="418">
+                           <a:s>'Dengue08.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="424">
+                        <a:s r="425">
+                           <a:s>&quot;Client is not due for dengue vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="426">
+                           <a:s r="427">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="428">
+                              <a:s>'Should not vaccinate client with first dengue dose as client\'s age is less than 9 years. 
+Check for any other vaccines due and inform the caregiver of when to come back for first dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="432">
+                     <a:s>when </a:s>
+                     <a:s r="433">
+                        <a:s r="435">
+                           <a:s r="434">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="435">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="436">
+                           <a:s>'Dengue09.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="442">
+                        <a:s r="443">
+                           <a:s>&quot;Client is not due for dengue vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="444">
+                           <a:s r="445">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="446">
+                              <a:s>'Should not vaccinate client with first dengue dose as client\'s age is more than 45 years. 
+Check for any vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="450">
+                     <a:s>when </a:s>
+                     <a:s r="451">
+                        <a:s r="453">
+                           <a:s r="452">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="453">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="454">
+                           <a:s>'Dengue10.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="460">
+                        <a:s r="461">
+                           <a:s>&quot;Client is not due for dengue vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="462">
+                           <a:s r="463">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="464">
+                              <a:s>'Should not vaccinate client with first dengue dose as client does not have evidence of past dengue infection. 
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="468">
+                     <a:s>when </a:s>
+                     <a:s r="469">
+                        <a:s r="471">
+                           <a:s r="470">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="471">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="472">
+                           <a:s>'Dengue11.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="478">
+                        <a:s r="479">
+                           <a:s>&quot;Client is due for dengue vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="480">
+                           <a:s r="481">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="482">
+                              <a:s>'Should vaccinate client with first dengue dose as no dengue doses were administered, client is within appropriate age range and has evidence of past dengue infection. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="486">
+                     <a:s>when </a:s>
+                     <a:s r="487">
+                        <a:s r="489">
+                           <a:s r="488">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="489">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="490">
+                           <a:s>'Dengue12.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="496">
+                        <a:s r="497">
+                           <a:s>&quot;Client is not due for dengue vaccination Case 4&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="498">
+                           <a:s r="499">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="500">
+                              <a:s>'Should not vaccinate client with second dengue dose as latest dengue dose was administered less than 6 months ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the second dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="504">
+                     <a:s>when </a:s>
+                     <a:s r="505">
+                        <a:s r="507">
+                           <a:s r="506">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="507">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="508">
+                           <a:s>'Dengue13.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="514">
+                        <a:s r="515">
+                           <a:s>&quot;Client is due for dengue vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="516">
+                           <a:s r="517">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="518">
+                              <a:s>'Should vaccinate client with second dengue dose as the latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="522">
+                     <a:s>when </a:s>
+                     <a:s r="523">
+                        <a:s r="525">
+                           <a:s r="524">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="525">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="526">
+                           <a:s>'Dengue14.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="532">
+                        <a:s r="533">
+                           <a:s>&quot;Client is not due for dengue vaccination Case 5&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="534">
+                           <a:s r="535">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="536">
+                              <a:s>'Should not vaccinate client with third dengue dose as latest dengue vaccine was administered less than 6 months ago. 
+Check for any other vaccines due and inform the caregiver of when to come back for the third dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="540">
+                     <a:s>when </a:s>
+                     <a:s r="541">
+                        <a:s r="543">
+                           <a:s r="542">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="543">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="544">
+                           <a:s>'Dengue15.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="550">
+                        <a:s r="551">
+                           <a:s>&quot;Client is due for dengue vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="552">
+                           <a:s r="553">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="554">
+                              <a:s>'Should vaccinate client with third dengue dose as latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="558">
+                     <a:s>when </a:s>
+                     <a:s r="559">
+                        <a:s r="561">
+                           <a:s r="560">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="561">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="562">
+                           <a:s>'Dengue16.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="568">
+                        <a:s r="569">
+                           <a:s>&quot;Dengue immunization schedule is complete&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="570">
+                           <a:s r="571">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="572">
+                              <a:s>'Dengue immunization schedule is complete. Three dengue primary series doses were administered. 
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="576">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="413" locator="194:3-214:5" xsi:type="Case">
+            <caseItem localId="414" locator="195:5-195:294">
+               <when localId="415" locator="195:10-195:34" xsi:type="Equal">
+                  <signature localId="422" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="423" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="420" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="421" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="417" locator="195:10-195:19" path="id" xsi:type="Property">
+                        <source localId="416" locator="195:10-195:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="418" locator="195:23-195:34" valueType="t:String" value="Dengue08.1" xsi:type="Literal"/>
+               </when>
+               <then localId="578" xsi:type="As">
+                  <operand localId="424" locator="195:41-195:294" xsi:type="And">
+                     <operand localId="425" locator="195:41-195:89" name="Client is not due for dengue vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="426" locator="195:95-195:294" xsi:type="Equal">
+                        <signature localId="430" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="431" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="427" locator="195:95-195:104" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="428" locator="195:108-195:294" valueType="t:String" value="Should not vaccinate client with first dengue dose as client's age is less than 9 years. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for first dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="579" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="580" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="581" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="432" locator="197:5-197:228">
+               <when localId="433" locator="197:10-197:34" xsi:type="Equal">
+                  <signature localId="440" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="441" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="438" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="439" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="435" locator="197:10-197:19" path="id" xsi:type="Property">
+                        <source localId="434" locator="197:10-197:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="436" locator="197:23-197:34" valueType="t:String" value="Dengue09.1" xsi:type="Literal"/>
+               </when>
+               <then localId="582" xsi:type="As">
+                  <operand localId="442" locator="197:41-197:228" xsi:type="And">
+                     <operand localId="443" locator="197:41-197:89" name="Client is not due for dengue vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="444" locator="197:95-197:228" xsi:type="Equal">
+                        <signature localId="448" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="449" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="445" locator="197:95-197:104" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="446" locator="197:108-197:228" valueType="t:String" value="Should not vaccinate client with first dengue dose as client's age is more than 45 years. &#xa;Check for any vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="583" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="584" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="585" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="450" locator="199:5-199:253">
+               <when localId="451" locator="199:10-199:34" xsi:type="Equal">
+                  <signature localId="458" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="459" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="456" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="457" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="453" locator="199:10-199:19" path="id" xsi:type="Property">
+                        <source localId="452" locator="199:10-199:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="454" locator="199:23-199:34" valueType="t:String" value="Dengue10.1" xsi:type="Literal"/>
+               </when>
+               <then localId="586" xsi:type="As">
+                  <operand localId="460" locator="199:41-199:253" xsi:type="And">
+                     <operand localId="461" locator="199:41-199:89" name="Client is not due for dengue vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="462" locator="199:95-199:253" xsi:type="Equal">
+                        <signature localId="466" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="467" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="463" locator="199:95-199:104" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="464" locator="199:108-199:253" valueType="t:String" value="Should not vaccinate client with first dengue dose as client does not have evidence of past dengue infection. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="587" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="588" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="589" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="468" locator="201:5-201:301">
+               <when localId="469" locator="201:10-201:34" xsi:type="Equal">
+                  <signature localId="476" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="477" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="474" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="475" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="471" locator="201:10-201:19" path="id" xsi:type="Property">
+                        <source localId="470" locator="201:10-201:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="472" locator="201:23-201:34" valueType="t:String" value="Dengue11.3" xsi:type="Literal"/>
+               </when>
+               <then localId="590" xsi:type="As">
+                  <operand localId="478" locator="201:41-201:301" xsi:type="And">
+                     <operand localId="479" locator="201:41-201:85" name="Client is due for dengue vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="480" locator="201:91-201:301" xsi:type="Equal">
+                        <signature localId="484" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="485" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="481" locator="201:91-201:100" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="482" locator="201:104-201:301" valueType="t:String" value="Should vaccinate client with first dengue dose as no dengue doses were administered, client is within appropriate age range and has evidence of past dengue infection. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="591" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="592" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="593" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="486" locator="203:5-203:324">
+               <when localId="487" locator="203:10-203:34" xsi:type="Equal">
+                  <signature localId="494" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="495" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="492" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="493" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="489" locator="203:10-203:19" path="id" xsi:type="Property">
+                        <source localId="488" locator="203:10-203:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="490" locator="203:23-203:34" valueType="t:String" value="Dengue12.4" xsi:type="Literal"/>
+               </when>
+               <then localId="594" xsi:type="As">
+                  <operand localId="496" locator="203:41-203:324" xsi:type="And">
+                     <operand localId="497" locator="203:41-203:89" name="Client is not due for dengue vaccination Case 4" xsi:type="ExpressionRef"/>
+                     <operand localId="498" locator="203:95-203:324" xsi:type="Equal">
+                        <signature localId="502" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="503" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="499" locator="203:95-203:104" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="500" locator="203:108-203:324" valueType="t:String" value="Should not vaccinate client with second dengue dose as latest dengue dose was administered less than 6 months ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the second dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="595" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="596" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="597" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="504" locator="205:5-205:298">
+               <when localId="505" locator="205:10-205:34" xsi:type="Equal">
+                  <signature localId="512" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="513" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="510" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="511" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="507" locator="205:10-205:19" path="id" xsi:type="Property">
+                        <source localId="506" locator="205:10-205:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="508" locator="205:23-205:34" valueType="t:String" value="Dengue13.4" xsi:type="Literal"/>
+               </when>
+               <then localId="598" xsi:type="As">
+                  <operand localId="514" locator="205:41-205:298" xsi:type="And">
+                     <operand localId="515" locator="205:41-205:85" name="Client is due for dengue vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="516" locator="205:91-205:298" xsi:type="Equal">
+                        <signature localId="520" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="521" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="517" locator="205:91-205:100" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="518" locator="205:104-205:298" valueType="t:String" value="Should vaccinate client with second dengue dose as the latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="599" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="600" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="601" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="522" locator="207:5-207:325">
+               <when localId="523" locator="207:10-207:34" xsi:type="Equal">
+                  <signature localId="530" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="531" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="528" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="529" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="525" locator="207:10-207:19" path="id" xsi:type="Property">
+                        <source localId="524" locator="207:10-207:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="526" locator="207:23-207:34" valueType="t:String" value="Dengue14.4" xsi:type="Literal"/>
+               </when>
+               <then localId="602" xsi:type="As">
+                  <operand localId="532" locator="207:41-207:325" xsi:type="And">
+                     <operand localId="533" locator="207:41-207:89" name="Client is not due for dengue vaccination Case 5" xsi:type="ExpressionRef"/>
+                     <operand localId="534" locator="207:95-207:325" xsi:type="Equal">
+                        <signature localId="538" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="539" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="535" locator="207:95-207:104" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="536" locator="207:108-207:325" valueType="t:String" value="Should not vaccinate client with third dengue dose as latest dengue vaccine was administered less than 6 months ago. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the third dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="603" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="604" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="605" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="540" locator="209:5-209:293">
+               <when localId="541" locator="209:10-209:34" xsi:type="Equal">
+                  <signature localId="548" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="549" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="546" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="547" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="543" locator="209:10-209:19" path="id" xsi:type="Property">
+                        <source localId="542" locator="209:10-209:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="544" locator="209:23-209:34" valueType="t:String" value="Dengue15.4" xsi:type="Literal"/>
+               </when>
+               <then localId="606" xsi:type="As">
+                  <operand localId="550" locator="209:41-209:293" xsi:type="And">
+                     <operand localId="551" locator="209:41-209:85" name="Client is due for dengue vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="552" locator="209:91-209:293" xsi:type="Equal">
+                        <signature localId="556" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="557" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="553" locator="209:91-209:100" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="554" locator="209:104-209:293" valueType="t:String" value="Should vaccinate client with third dengue dose as latest dengue dose was administered more than 6 months ago and client has evidence of past dengue infection. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="607" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="608" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="609" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="558" locator="211:5-211:231">
+               <when localId="559" locator="211:10-211:34" xsi:type="Equal">
+                  <signature localId="566" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="567" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="564" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="565" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="561" locator="211:10-211:19" path="id" xsi:type="Property">
+                        <source localId="560" locator="211:10-211:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="562" locator="211:23-211:34" valueType="t:String" value="Dengue16.2" xsi:type="Literal"/>
+               </when>
+               <then localId="610" xsi:type="As">
+                  <operand localId="568" locator="211:41-211:231" xsi:type="And">
+                     <operand localId="569" locator="211:41-211:82" name="Dengue immunization schedule is complete" xsi:type="ExpressionRef"/>
+                     <operand localId="570" locator="211:88-211:231" xsi:type="Equal">
+                        <signature localId="574" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="575" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="571" locator="211:88-211:97" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="572" locator="211:101-211:231" valueType="t:String" value="Dengue immunization schedule is complete. Three dengue primary series doses were administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="611" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="612" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="613" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="614" xsi:type="As">
+               <operand localId="576" locator="213:10-213:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="615" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="616" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="617" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

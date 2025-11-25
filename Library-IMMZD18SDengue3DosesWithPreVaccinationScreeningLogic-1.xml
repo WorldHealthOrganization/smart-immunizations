@@ -1,0 +1,1420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier reference is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="496">
+         <a:s>/*
+ * Library: IMMZD18SDengue3DosesWithPreVaccinationScreeningLogic (IMMZ.D18.S.Dengue schedule)
+ * Schedule Table: CYD-TDV (Dengvaxia), 3-dose schedule
+ */
+library IMMZD18SDengue3DosesWithPreVaccinationScreeningLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD18SDengue3DosesWithPreVaccinationScreeningLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="7:1-7:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="208" locator="8:1-8:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="10:1-10:27" localIdentifier="WC" path="http://smart.who.int/immunizations/WHOCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>WHOCommon</a:s>
+               </a:s>
+               <a:s> called WC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="212" locator="12:1-12:32" localIdentifier="Common" path="http://smart.who.int/immunizations/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called Common</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="214" locator="13:1-13:36" localIdentifier="Concepts" path="http://smart.who.int/immunizations/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="214">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called Concepts</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="216" locator="15:1-15:39" localIdentifier="IE" path="http://smart.who.int/immunizations/IMMZEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="216">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZEncounterElements</a:s>
+               </a:s>
+               <a:s> called IE</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="218" locator="16:1-16:56" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTDengueEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="218">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTDengueEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="220" locator="18:1-18:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="220">
+               <a:s>parameter Today </a:s>
+               <a:s r="224">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="223">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="223" locator="18:30-18:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="224" locator="18:17-18:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="229" locator="21:1-21:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="227" locator="21:1-21:15" name="Patient" context="Patient">
+         <expression localId="228" xsi:type="SingletonFrom">
+            <operand localId="226" locator="21:1-21:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="242" locator="71:1-72:30" name="Dengue dose 1 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Dengue dose 1 Expiration"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 46 years"/>
+            <a:s r="242">
+               <a:s>/*
+@dynamicValue: Dengue dose 1 Expiration
+@pseudocode: &quot;Date of birth&quot; + 46 years
+*/
+define &quot;Dengue dose 1 Expiration&quot;:
+  </a:s>
+               <a:s r="243">
+                  <a:s r="245">
+                     <a:s r="244">
+                        <a:s>Patient</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="245">
+                        <a:s>birthDate</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> + </a:s>
+                  <a:s r="246">
+                     <a:s>46 years</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="243" locator="72:3-72:30" xsi:type="Add">
+            <signature localId="248" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="249" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="247" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="245" locator="72:3-72:19" path="birthDate" xsi:type="Property">
+                  <source localId="244" locator="72:3-72:9" name="Patient" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="246" locator="72:23-72:30" value="46" unit="years" xsi:type="Quantity"/>
+         </expression>
+      </def>
+      <def localId="259" locator="79:1-80:61" name="First dengue dose from the primary series was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="First dengue dose from the primary series was administered"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;Dengue vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1"/>
+            <a:s r="259">
+               <a:s>/*
+@complete: First dengue dose from the primary series was administered
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1
+*/
+define &quot;First dengue dose from the primary series was administered&quot;:
+  </a:s>
+               <a:s r="261">
+                  <a:s r="260">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="261">
+                     <a:s>&quot;One dengue primary series dose was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="261" locator="80:3-80:61" name="One dengue primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="232" locator="31:1-35:70" name="Dengue dose 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Dengue dose 1"/>
+            <a:t name="description" value="Provision of dengue dose 1"/>
+            <a:t name="trigger" value="No dengue doses from primary series were administered"/>
+            <a:t name="pseudo" value="&quot;Vaccine type&quot; = &quot;Dengue vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 0"/>
+            <a:t name="triggerDate" value="To be determined by Member States based on vaccination strategy"/>
+            <a:s r="232">
+               <a:s>/*
+@output: Dengue dose 1
+@description: Provision of dengue dose 1
+@trigger: No dengue doses from primary series were administered
+@pseudo: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 0
+@triggerDate: To be determined by Member States based on vaccination strategy
+*/
+define &quot;Dengue dose 1&quot;:
+  </a:s>
+               <a:s r="233">
+                  <a:s r="234">
+                     <a:s r="235">
+                        <a:s r="236">
+                           <a:s>not </a:s>
+                           <a:s r="238">
+                              <a:s r="237">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="238">
+                                 <a:s>&quot;Client's age is more than 45 years&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+  and </a:s>
+                        <a:s r="239">
+                           <a:s r="250">
+                              <a:s>&quot;Dengue dose 1 Expiration&quot;</a:s>
+                           </a:s>
+                           <a:s> > </a:s>
+                           <a:s r="251">
+                              <a:s>Today</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  and </a:s>
+                     <a:s r="255">
+                        <a:s r="254">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="255">
+                           <a:s>&quot;No dengue primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="256">
+                     <a:s>not </a:s>
+                     <a:s r="262">
+                        <a:s>&quot;First dengue dose from the primary series was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="233" locator="32:3-35:70" xsi:type="And">
+            <operand localId="234" locator="32:3-34:66" xsi:type="And">
+               <operand localId="235" locator="32:3-33:40" xsi:type="And">
+                  <operand localId="236" locator="32:3-32:52" xsi:type="Not">
+                     <operand localId="238" locator="32:7-32:52" name="Client's age is more than 45 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="239" locator="33:7-33:40" xsi:type="Greater">
+                     <signature localId="252" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                     <signature localId="253" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="250" locator="33:7-33:32" name="Dengue dose 1 Expiration" xsi:type="ExpressionRef"/>
+                     <operand localId="251" locator="33:36-33:40" name="Today" xsi:type="ParameterRef"/>
+                  </operand>
+               </operand>
+               <operand localId="255" locator="34:7-34:66" name="No dengue primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="256" locator="35:7-35:70" xsi:type="Not">
+               <operand localId="262" locator="35:11-35:70" name="First dengue dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="281" locator="54:1-56:11" name="Dengue dose 1 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Dengue dose 1 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 9 years"/>
+            <a:s r="281">
+               <a:s>/*
+@dynamicValue: Dengue dose 1 Due Date
+@pseudocode: &quot;Date of birth&quot; + 9 years
+*/
+define &quot;Dengue dose 1 Due Date&quot;:
+  </a:s>
+               <a:s r="282">
+                  <a:s>if </a:s>
+                  <a:s r="283">
+                     <a:s>&quot;Dengue dose 1&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="284">
+                     <a:s r="286">
+                        <a:s r="285">
+                           <a:s>Patient</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="286">
+                           <a:s>birthDate</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="287">
+                        <a:s>9 years</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="291">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="282" locator="55:3-56:11" xsi:type="If">
+            <condition localId="283" locator="55:6-55:20" name="Dengue dose 1" xsi:type="ExpressionRef"/>
+            <then localId="284" locator="55:27-55:53" xsi:type="Add">
+               <signature localId="289" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="290" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="288" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="286" locator="55:27-55:43" path="birthDate" xsi:type="Property">
+                     <source localId="285" locator="55:27-55:33" name="Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="287" locator="55:47-55:53" value="9" unit="years" xsi:type="Quantity"/>
+            </then>
+            <else localId="292" asType="t:Date" xsi:type="As">
+               <operand localId="291" locator="56:8-56:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="265" locator="42:1-47:9" name="Dengue dose 1 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Dengue dose 1 Create"/>
+            <a:t name="create" value="Dengue dose 1 should be provided based on vaccination strategy"/>
+            <a:s r="265">
+               <a:s>/*
+@output: Dengue dose 1 Create
+@create: Dengue dose 1 should be provided based on vaccination strategy
+*/
+define &quot;Dengue dose 1 Create&quot;:
+  </a:s>
+               <a:s r="266">
+                  <a:s>if </a:s>
+                  <a:s r="267">
+                     <a:s>&quot;Dengue dose 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  then </a:s>
+                  <a:s r="315">
+                     <a:s r="306">
+                        <a:s r="301">
+                           <a:s r="278">
+                              <a:s r="272">
+                                 <a:s>'Dengue dose 1 should be provided based on vaccination strategy'</a:s>
+                              </a:s>
+                              <a:s> + </a:s>
+                              <a:s r="274">
+                                 <a:s>'
+Due Date: '</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="297">
+                              <a:s>ToString(</a:s>
+                              <a:s r="293">
+                                 <a:s>&quot;Dengue dose 1 Due Date&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="302">
+                           <a:s>'
+Expiration: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="311">
+                        <a:s>ToString(</a:s>
+                        <a:s r="307">
+                           <a:s>&quot;Dengue dose 1 Expiration&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="316">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="266" locator="43:3-47:9" xsi:type="If">
+            <condition localId="267" locator="43:6-43:20" name="Dengue dose 1" xsi:type="ExpressionRef"/>
+            <then localId="315" locator="44:8-46:52" xsi:type="Concatenate">
+               <operand localId="306" locator="44:8-45:66" xsi:type="Concatenate">
+                  <operand localId="301" locator="44:8-45:48" xsi:type="Concatenate">
+                     <operand localId="278" locator="44:8-44:87" xsi:type="Concatenate">
+                        <operand localId="272" locator="44:8-44:71" valueType="t:String" value="Dengue dose 1 should be provided based on vaccination strategy" xsi:type="Literal"/>
+                        <operand localId="274" locator="44:75-44:87" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="297" locator="45:15-45:48" xsi:type="ToString">
+                        <signature localId="298" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="293" locator="45:24-45:47" name="Dengue dose 1 Due Date" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="302" locator="45:52-45:66" valueType="t:String" value="&#xa;Expiration: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="311" locator="46:17-46:52" xsi:type="ToString">
+                  <signature localId="312" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="307" locator="46:26-46:51" name="Dengue dose 1 Expiration" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="316" locator="47:8-47:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="320" locator="63:1-64:6" name="Dengue dose 1 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Dengue dose 1 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States"/>
+            <a:s r="320">
+               <a:s r="321">/*
+@dynamicValue: Dengue dose 1 Overdue
+@pseudocode: To be determined by Member States
+*/
+define &quot;Dengue dose 1 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="321" locator="64:3-64:6" xsi:type="Null"/>
+      </def>
+      <def localId="330" locator="130:1-131:30" name="Dengue dose 2 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Dengue dose 2 Expiration"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 46 years"/>
+            <a:s r="330">
+               <a:s>/*
+@dynamicValue: Dengue dose 2 Expiration
+@pseudocode: &quot;Date of birth&quot; + 46 years
+*/
+define &quot;Dengue dose 2 Expiration&quot;:
+  </a:s>
+               <a:s r="331">
+                  <a:s r="333">
+                     <a:s r="332">
+                        <a:s>Patient</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="333">
+                        <a:s>birthDate</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> + </a:s>
+                  <a:s r="334">
+                     <a:s>46 years</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="331" locator="131:3-131:30" xsi:type="Add">
+            <signature localId="336" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="337" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="335" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="333" locator="131:3-131:19" path="birthDate" xsi:type="Property">
+                  <source localId="332" locator="131:3-131:9" name="Patient" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="334" locator="131:23-131:30" value="46" unit="years" xsi:type="Quantity"/>
+         </expression>
+      </def>
+      <def localId="346" locator="138:1-139:63" name="Second dengue dose from the primary series was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Second dengue dose from the primary series was administered"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;Dengue vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2"/>
+            <a:s r="346">
+               <a:s>/*
+@complete: Second dengue dose from the primary series was administered
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2
+*/
+define &quot;Second dengue dose from the primary series was administered&quot;:
+  </a:s>
+               <a:s r="348">
+                  <a:s r="347">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="348">
+                     <a:s>&quot;Two dengue primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="348" locator="139:3-139:63" name="Two dengue primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="324" locator="91:1-94:71" name="Dengue dose 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Dengue dose 2"/>
+            <a:t name="description" value="Provision of the dengue dose 2"/>
+            <a:t name="trigger" value="First dengue dose from the primary series was administered"/>
+            <a:t name="pseudo" value="&quot;Vaccine type&quot; = &quot;Dengue vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot;)"/>
+            <a:s r="324">
+               <a:s>/*
+@output: Dengue dose 2
+@description: Provision of the dengue dose 2
+@trigger: First dengue dose from the primary series was administered
+@pseudo: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1
+@triggerDate: &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot;)
+*/
+define &quot;Dengue dose 2&quot;:
+  </a:s>
+               <a:s r="325">
+                  <a:s r="326">
+                     <a:s r="327">
+                        <a:s r="338">
+                           <a:s>&quot;Dengue dose 2 Expiration&quot;</a:s>
+                        </a:s>
+                        <a:s> > </a:s>
+                        <a:s r="339">
+                           <a:s>Today</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  and </a:s>
+                     <a:s r="342">
+                        <a:s>&quot;First dengue dose from the primary series was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="343">
+                     <a:s>not </a:s>
+                     <a:s r="349">
+                        <a:s>&quot;Second dengue dose from the primary series was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="325" locator="92:3-94:71" xsi:type="And">
+            <operand localId="326" locator="92:3-93:66" xsi:type="And">
+               <operand localId="327" locator="92:3-92:36" xsi:type="Greater">
+                  <signature localId="340" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="341" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="338" locator="92:3-92:28" name="Dengue dose 2 Expiration" xsi:type="ExpressionRef"/>
+                  <operand localId="339" locator="92:32-92:36" name="Today" xsi:type="ParameterRef"/>
+               </operand>
+               <operand localId="342" locator="93:7-93:66" name="First dengue dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="343" locator="94:7-94:71" xsi:type="Not">
+               <operand localId="349" locator="94:11-94:71" name="Second dengue dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="368" locator="113:1-115:11" name="Dengue dose 2 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Dengue dose 2 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot;) + 6 months"/>
+            <a:s r="368">
+               <a:s>/*
+@dynamicValue: Dengue dose 2 Due Date
+@pseudocode: &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot;) + 6 months
+*/
+define &quot;Dengue dose 2 Due Date&quot;:
+  </a:s>
+               <a:s r="369">
+                  <a:s>if </a:s>
+                  <a:s r="370">
+                     <a:s>&quot;Dengue dose 2&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="371">
+                     <a:s r="373">
+                        <a:s r="372">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="373">
+                           <a:s>&quot;Date of Latest Dengue Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="374">
+                        <a:s>6 months</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="377">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="369" locator="114:3-115:11" xsi:type="If">
+            <condition localId="370" locator="114:6-114:20" name="Dengue dose 2" xsi:type="ExpressionRef"/>
+            <then localId="371" locator="114:27-114:75" xsi:type="Add">
+               <signature localId="375" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="376" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="373" locator="114:27-114:64" name="Date of Latest Dengue Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="374" locator="114:68-114:75" value="6" unit="months" xsi:type="Quantity"/>
+            </then>
+            <else localId="378" asType="t:Date" xsi:type="As">
+               <operand localId="377" locator="115:8-115:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="352" locator="101:1-106:9" name="Dengue dose 2 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Dengue dose 2 Create"/>
+            <a:t name="create" value="Dengue dose 2 should be provided if the previous dose was provide more than 6 months ago"/>
+            <a:s r="352">
+               <a:s>/*
+@output: Dengue dose 2 Create
+@create: Dengue dose 2 should be provided if the previous dose was provide more than 6 months ago
+*/
+define &quot;Dengue dose 2 Create&quot;:
+  </a:s>
+               <a:s r="353">
+                  <a:s>if </a:s>
+                  <a:s r="354">
+                     <a:s>&quot;Dengue dose 2&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  then </a:s>
+                  <a:s r="401">
+                     <a:s r="392">
+                        <a:s r="387">
+                           <a:s r="365">
+                              <a:s r="359">
+                                 <a:s>'Dengue dose 2 should be provided if the previous dose was provide more than 6 months ago'</a:s>
+                              </a:s>
+                              <a:s> + </a:s>
+                              <a:s r="361">
+                                 <a:s>'
+Due Date: '</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="383">
+                              <a:s>ToString(</a:s>
+                              <a:s r="379">
+                                 <a:s>&quot;Dengue dose 2 Due Date&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="388">
+                           <a:s>'
+Expiration: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="397">
+                        <a:s>ToString(</a:s>
+                        <a:s r="393">
+                           <a:s>&quot;Dengue dose 2 Expiration&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="402">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="353" locator="102:3-106:9" xsi:type="If">
+            <condition localId="354" locator="102:6-102:20" name="Dengue dose 2" xsi:type="ExpressionRef"/>
+            <then localId="401" locator="103:8-105:52" xsi:type="Concatenate">
+               <operand localId="392" locator="103:8-104:66" xsi:type="Concatenate">
+                  <operand localId="387" locator="103:8-104:48" xsi:type="Concatenate">
+                     <operand localId="365" locator="103:8-103:113" xsi:type="Concatenate">
+                        <operand localId="359" locator="103:8-103:97" valueType="t:String" value="Dengue dose 2 should be provided if the previous dose was provide more than 6 months ago" xsi:type="Literal"/>
+                        <operand localId="361" locator="103:101-103:113" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="383" locator="104:15-104:48" xsi:type="ToString">
+                        <signature localId="384" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="379" locator="104:24-104:47" name="Dengue dose 2 Due Date" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="388" locator="104:52-104:66" valueType="t:String" value="&#xa;Expiration: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="397" locator="105:17-105:52" xsi:type="ToString">
+                  <signature localId="398" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="393" locator="105:26-105:51" name="Dengue dose 2 Expiration" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="402" locator="106:8-106:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="406" locator="122:1-123:6" name="Dengue dose 2 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Dengue dose 2 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States"/>
+            <a:s r="406">
+               <a:s r="407">/*
+@dynamicValue: Dengue dose 2 Overdue
+@pseudocode: To be determined by Member States
+*/
+define &quot;Dengue dose 2 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="407" locator="123:3-123:6" xsi:type="Null"/>
+      </def>
+      <def localId="422" locator="197:1-198:65" name="Third dengue dose from the primary series was administered. The primary series has been completed" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Third dengue dose from the primary series was administered. The primary series has been completed"/>
+            <a:t name="pseudocode" value="&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot;)&quot;"/>
+            <a:s r="422">
+               <a:s>/*
+@complete: Third dengue dose from the primary series was administered. The primary series has been completed
+@pseudocode: &quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot;)&quot;
+*/
+define &quot;Third dengue dose from the primary series was administered. The primary series has been completed&quot;:
+  </a:s>
+               <a:s r="424">
+                  <a:s r="423">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="424">
+                     <a:s>&quot;Three dengue primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="424" locator="198:3-198:65" name="Three dengue primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="410" locator="150:1-153:109" name="Dengue dose 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Dengue dose 3"/>
+            <a:t name="description" value="Provision of dengue dose 3"/>
+            <a:t name="trigger" value="Second dengue dose from the primary series was administered"/>
+            <a:t name="pseudo" value="&quot;Vaccine type&quot; = &quot;Dengue vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot;)"/>
+            <a:s r="410">
+               <a:s>/*
+@output: Dengue dose 3
+@description: Provision of dengue dose 3
+@trigger: Second dengue dose from the primary series was administered
+@pseudo: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2
+@triggerDate: &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot;)
+*/
+define &quot;Dengue dose 3&quot;:
+  </a:s>
+               <a:s r="411">
+                  <a:s r="412">
+                     <a:s r="413">
+                        <a:s r="414">
+                           <a:s>&quot;Dengue dose 2 Expiration&quot;</a:s>
+                        </a:s>
+                        <a:s> > </a:s>
+                        <a:s r="415">
+                           <a:s>Today</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  and </a:s>
+                     <a:s r="418">
+                        <a:s>&quot;Second dengue dose from the primary series was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="419">
+                     <a:s>not </a:s>
+                     <a:s r="425">
+                        <a:s>&quot;Third dengue dose from the primary series was administered. The primary series has been completed&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="411" locator="151:3-153:109" xsi:type="And">
+            <operand localId="412" locator="151:3-152:67" xsi:type="And">
+               <operand localId="413" locator="151:3-151:36" xsi:type="Greater">
+                  <signature localId="416" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="417" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="414" locator="151:3-151:28" name="Dengue dose 2 Expiration" xsi:type="ExpressionRef"/>
+                  <operand localId="415" locator="151:32-151:36" name="Today" xsi:type="ParameterRef"/>
+               </operand>
+               <operand localId="418" locator="152:7-152:67" name="Second dengue dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="419" locator="153:7-153:109" xsi:type="Not">
+               <operand localId="425" locator="153:11-153:109" name="Third dengue dose from the primary series was administered. The primary series has been completed" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="444" locator="172:1-174:11" name="Dengue dose 3 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Dengue dose 3 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot;) + 6 months"/>
+            <a:s r="444">
+               <a:s>/*
+@dynamicValue: Dengue dose 3 Due Date
+@pseudocode: &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Dengue vaccines&quot;) + 6 months
+*/
+define &quot;Dengue dose 3 Due Date&quot;:
+  </a:s>
+               <a:s r="445">
+                  <a:s>if </a:s>
+                  <a:s r="446">
+                     <a:s>&quot;Dengue dose 3&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="447">
+                     <a:s r="449">
+                        <a:s r="448">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="449">
+                           <a:s>&quot;Date of Latest Dengue Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="450">
+                        <a:s>6 months</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="453">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="445" locator="173:3-174:11" xsi:type="If">
+            <condition localId="446" locator="173:6-173:20" name="Dengue dose 3" xsi:type="ExpressionRef"/>
+            <then localId="447" locator="173:27-173:75" xsi:type="Add">
+               <signature localId="451" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="452" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="449" locator="173:27-173:64" name="Date of Latest Dengue Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="450" locator="173:68-173:75" value="6" unit="months" xsi:type="Quantity"/>
+            </then>
+            <else localId="454" asType="t:Date" xsi:type="As">
+               <operand localId="453" locator="174:8-174:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="471" locator="189:1-190:30" name="Dengue dose 3 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Dengue dose 3 Expiration"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 46 years"/>
+            <a:s r="471">
+               <a:s>/*
+@dynamicValue: Dengue dose 3 Expiration
+@pseudocode: &quot;Date of birth&quot; + 46 years
+*/
+define &quot;Dengue dose 3 Expiration&quot;:
+  </a:s>
+               <a:s r="472">
+                  <a:s r="474">
+                     <a:s r="473">
+                        <a:s>Patient</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="474">
+                        <a:s>birthDate</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> + </a:s>
+                  <a:s r="475">
+                     <a:s>46 years</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="472" locator="190:3-190:30" xsi:type="Add">
+            <signature localId="477" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="478" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="476" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="474" locator="190:3-190:19" path="birthDate" xsi:type="Property">
+                  <source localId="473" locator="190:3-190:9" name="Patient" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="475" locator="190:23-190:30" value="46" unit="years" xsi:type="Quantity"/>
+         </expression>
+      </def>
+      <def localId="428" locator="160:1-165:9" name="Dengue dose 3 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Dengue dose 3 Create"/>
+            <a:t name="create" value="Dengue dose 3 should be provided if the previous dose was provide more than 6 months ago"/>
+            <a:s r="428">
+               <a:s>/*
+@output: Dengue dose 3 Create
+@create: Dengue dose 3 should be provided if the previous dose was provide more than 6 months ago
+*/
+define &quot;Dengue dose 3 Create&quot;:
+  </a:s>
+               <a:s r="429">
+                  <a:s>if </a:s>
+                  <a:s r="430">
+                     <a:s>&quot;Dengue dose 3&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  then </a:s>
+                  <a:s r="487">
+                     <a:s r="468">
+                        <a:s r="463">
+                           <a:s r="441">
+                              <a:s r="435">
+                                 <a:s>'Dengue dose 3 should be provided if the previous dose was provide more than 6 months ago'</a:s>
+                              </a:s>
+                              <a:s> + </a:s>
+                              <a:s r="437">
+                                 <a:s>'
+Due Date: '</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="459">
+                              <a:s>ToString(</a:s>
+                              <a:s r="455">
+                                 <a:s>&quot;Dengue dose 3 Due Date&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="464">
+                           <a:s>'
+Expiration: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="483">
+                        <a:s>ToString(</a:s>
+                        <a:s r="479">
+                           <a:s>&quot;Dengue dose 3 Expiration&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="488">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="429" locator="161:3-165:9" xsi:type="If">
+            <condition localId="430" locator="161:6-161:20" name="Dengue dose 3" xsi:type="ExpressionRef"/>
+            <then localId="487" locator="162:8-164:52" xsi:type="Concatenate">
+               <operand localId="468" locator="162:8-163:66" xsi:type="Concatenate">
+                  <operand localId="463" locator="162:8-163:48" xsi:type="Concatenate">
+                     <operand localId="441" locator="162:8-162:113" xsi:type="Concatenate">
+                        <operand localId="435" locator="162:8-162:97" valueType="t:String" value="Dengue dose 3 should be provided if the previous dose was provide more than 6 months ago" xsi:type="Literal"/>
+                        <operand localId="437" locator="162:101-162:113" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="459" locator="163:15-163:48" xsi:type="ToString">
+                        <signature localId="460" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="455" locator="163:24-163:47" name="Dengue dose 3 Due Date" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="464" locator="163:52-163:66" valueType="t:String" value="&#xa;Expiration: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="483" locator="164:17-164:52" xsi:type="ToString">
+                  <signature localId="484" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="479" locator="164:26-164:51" name="Dengue dose 3 Expiration" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="488" locator="165:8-165:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="492" locator="181:1-182:6" name="Dengue dose 3 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Dengue dose 3 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States"/>
+            <a:s r="492">
+               <a:s r="493">/*
+@dynamicValue: Dengue dose 3 Overdue
+@pseudocode: To be determined by Member States
+*/
+define &quot;Dengue dose 3 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="493" locator="182:3-182:6" xsi:type="Null"/>
+      </def>
+      <def localId="496" locator="205:1-217:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="496">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="497">
+                  <a:s>case
+    </a:s>
+                  <a:s r="498">
+                     <a:s>when </a:s>
+                     <a:s r="499">
+                        <a:s r="501">
+                           <a:s r="500">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="501">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="502">
+                           <a:s>'Dengue08.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="508">
+                        <a:s>not </a:s>
+                        <a:s r="509">
+                           <a:s>&quot;Dengue dose 1&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="510">
+                     <a:s>when </a:s>
+                     <a:s r="511">
+                        <a:s r="513">
+                           <a:s r="512">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="513">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="514">
+                           <a:s>'Dengue09.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="520">
+                        <a:s>not </a:s>
+                        <a:s r="521">
+                           <a:s>&quot;Dengue dose 1&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="522">
+                     <a:s>when </a:s>
+                     <a:s r="523">
+                        <a:s r="525">
+                           <a:s r="524">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="525">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="526">
+                           <a:s>'Dengue10.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="532">
+                        <a:s>&quot;Dengue dose 1&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="533">
+                     <a:s>when </a:s>
+                     <a:s r="534">
+                        <a:s r="536">
+                           <a:s r="535">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="536">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="537">
+                           <a:s>'Dengue11.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="543">
+                        <a:s>&quot;Dengue dose 1&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="544">
+                     <a:s>when </a:s>
+                     <a:s r="545">
+                        <a:s r="547">
+                           <a:s r="546">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="547">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="548">
+                           <a:s>'Dengue12.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="554">
+                        <a:s>&quot;Dengue dose 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="555">
+                     <a:s>when </a:s>
+                     <a:s r="556">
+                        <a:s r="558">
+                           <a:s r="557">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="558">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="559">
+                           <a:s>'Dengue13.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="565">
+                        <a:s>&quot;Dengue dose 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="566">
+                     <a:s>when </a:s>
+                     <a:s r="567">
+                        <a:s r="569">
+                           <a:s r="568">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="569">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="570">
+                           <a:s>'Dengue14.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="576">
+                        <a:s>&quot;Dengue dose 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="577">
+                     <a:s>when </a:s>
+                     <a:s r="578">
+                        <a:s r="580">
+                           <a:s r="579">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="580">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="581">
+                           <a:s>'Dengue15.4'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="587">
+                        <a:s>&quot;Dengue dose 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="588">
+                     <a:s>when </a:s>
+                     <a:s r="589">
+                        <a:s r="591">
+                           <a:s r="590">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="591">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="592">
+                           <a:s>'Dengue16.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="598">
+                        <a:s>&quot;Third dengue dose from the primary series was administered. The primary series has been completed&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="599">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="497" locator="206:3-217:5" xsi:type="Case">
+            <caseItem localId="498" locator="207:5-207:59">
+               <when localId="499" locator="207:10-207:34" xsi:type="Equal">
+                  <signature localId="506" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="507" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="504" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="505" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="501" locator="207:10-207:19" path="id" xsi:type="Property">
+                        <source localId="500" locator="207:10-207:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="502" locator="207:23-207:34" valueType="t:String" value="Dengue08.1" xsi:type="Literal"/>
+               </when>
+               <then localId="601" xsi:type="As">
+                  <operand localId="508" locator="207:41-207:59" xsi:type="Not">
+                     <operand localId="509" locator="207:45-207:59" name="Dengue dose 1" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="602" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="603" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="604" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="510" locator="208:5-208:59">
+               <when localId="511" locator="208:10-208:34" xsi:type="Equal">
+                  <signature localId="518" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="519" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="516" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="517" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="513" locator="208:10-208:19" path="id" xsi:type="Property">
+                        <source localId="512" locator="208:10-208:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="514" locator="208:23-208:34" valueType="t:String" value="Dengue09.1" xsi:type="Literal"/>
+               </when>
+               <then localId="605" xsi:type="As">
+                  <operand localId="520" locator="208:41-208:59" xsi:type="Not">
+                     <operand localId="521" locator="208:45-208:59" name="Dengue dose 1" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="606" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="607" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="608" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="522" locator="209:5-209:55">
+               <when localId="523" locator="209:10-209:34" xsi:type="Equal">
+                  <signature localId="530" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="531" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="528" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="529" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="525" locator="209:10-209:19" path="id" xsi:type="Property">
+                        <source localId="524" locator="209:10-209:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="526" locator="209:23-209:34" valueType="t:String" value="Dengue10.1" xsi:type="Literal"/>
+               </when>
+               <then localId="609" xsi:type="As">
+                  <operand localId="532" locator="209:41-209:55" name="Dengue dose 1" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="610" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="611" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="612" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="533" locator="210:5-210:55">
+               <when localId="534" locator="210:10-210:34" xsi:type="Equal">
+                  <signature localId="541" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="542" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="539" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="540" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="536" locator="210:10-210:19" path="id" xsi:type="Property">
+                        <source localId="535" locator="210:10-210:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="537" locator="210:23-210:34" valueType="t:String" value="Dengue11.3" xsi:type="Literal"/>
+               </when>
+               <then localId="613" xsi:type="As">
+                  <operand localId="543" locator="210:41-210:55" name="Dengue dose 1" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="614" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="615" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="616" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="544" locator="211:5-211:55">
+               <when localId="545" locator="211:10-211:34" xsi:type="Equal">
+                  <signature localId="552" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="553" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="550" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="551" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="547" locator="211:10-211:19" path="id" xsi:type="Property">
+                        <source localId="546" locator="211:10-211:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="548" locator="211:23-211:34" valueType="t:String" value="Dengue12.4" xsi:type="Literal"/>
+               </when>
+               <then localId="617" xsi:type="As">
+                  <operand localId="554" locator="211:41-211:55" name="Dengue dose 2" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="618" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="619" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="620" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="555" locator="212:5-212:55">
+               <when localId="556" locator="212:10-212:34" xsi:type="Equal">
+                  <signature localId="563" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="564" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="561" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="562" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="558" locator="212:10-212:19" path="id" xsi:type="Property">
+                        <source localId="557" locator="212:10-212:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="559" locator="212:23-212:34" valueType="t:String" value="Dengue13.4" xsi:type="Literal"/>
+               </when>
+               <then localId="621" xsi:type="As">
+                  <operand localId="565" locator="212:41-212:55" name="Dengue dose 2" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="622" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="623" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="624" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="566" locator="213:5-213:55">
+               <when localId="567" locator="213:10-213:34" xsi:type="Equal">
+                  <signature localId="574" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="575" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="572" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="573" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="569" locator="213:10-213:19" path="id" xsi:type="Property">
+                        <source localId="568" locator="213:10-213:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="570" locator="213:23-213:34" valueType="t:String" value="Dengue14.4" xsi:type="Literal"/>
+               </when>
+               <then localId="625" xsi:type="As">
+                  <operand localId="576" locator="213:41-213:55" name="Dengue dose 3" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="626" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="627" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="628" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="577" locator="214:5-214:55">
+               <when localId="578" locator="214:10-214:34" xsi:type="Equal">
+                  <signature localId="585" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="586" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="583" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="584" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="580" locator="214:10-214:19" path="id" xsi:type="Property">
+                        <source localId="579" locator="214:10-214:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="581" locator="214:23-214:34" valueType="t:String" value="Dengue15.4" xsi:type="Literal"/>
+               </when>
+               <then localId="629" xsi:type="As">
+                  <operand localId="587" locator="214:41-214:55" name="Dengue dose 3" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="630" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="631" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="632" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="588" locator="215:5-215:139">
+               <when localId="589" locator="215:10-215:34" xsi:type="Equal">
+                  <signature localId="596" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="597" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="594" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="595" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="591" locator="215:10-215:19" path="id" xsi:type="Property">
+                        <source localId="590" locator="215:10-215:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="592" locator="215:23-215:34" valueType="t:String" value="Dengue16.2" xsi:type="Literal"/>
+               </when>
+               <then localId="633" xsi:type="As">
+                  <operand localId="598" locator="215:41-215:139" name="Third dengue dose from the primary series was administered. The primary series has been completed" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="634" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="635" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="636" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="637" xsi:type="As">
+               <operand localId="599" locator="216:10-216:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="638" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="639" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="640" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

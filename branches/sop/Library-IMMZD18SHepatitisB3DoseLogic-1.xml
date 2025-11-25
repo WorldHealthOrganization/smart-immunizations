@@ -1,0 +1,1280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="383">
+         <a:s>/*
+ * Library: IMMZD18SHepatitisB3DoseLogic (IMMZ.D18.S.Hepatitis B.3-dose schedule)
+ * Schedule Table: 3-dose schedule (birth dose + 2 primary series doses), on-time start
+ */
+library IMMZD18SHepatitisB3DoseLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD18SHepatitisB3DoseLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="11:1-11:27" localIdentifier="WC" path="http://smart.who.int/immunizations/WHOCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>WHOCommon</a:s>
+               </a:s>
+               <a:s> called WC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="209" locator="13:1-13:32" localIdentifier="Common" path="http://smart.who.int/immunizations/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called Common</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="14:1-14:36" localIdentifier="Concepts" path="http://smart.who.int/immunizations/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called Concepts</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="211" locator="16:1-16:39" localIdentifier="IE" path="http://smart.who.int/immunizations/IMMZEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="211">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZEncounterElements</a:s>
+               </a:s>
+               <a:s> called IE</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="212" locator="17:1-17:60" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTHepatitisBEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTHepatitisBEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="213" locator="19:1-19:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="213">
+               <a:s>parameter Today </a:s>
+               <a:s r="217">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="216">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="216" locator="19:30-19:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="217" locator="19:17-19:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="21:1-21:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="21:1-21:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="21:1-21:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="226" locator="71:1-72:66" name="First hepatitis B dose from the primary series was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="First hepatitis B dose from the primary series was administered"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot; and &quot;Type of dose&quot;= &quot;Primary series&quot;) = 1"/>
+            <a:s r="226">
+               <a:s>/*
+@complete: First hepatitis B dose from the primary series was administered
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot; and &quot;Type of dose&quot;= &quot;Primary series&quot;) = 1
+*/
+define &quot;First hepatitis B dose from the primary series was administered&quot;:
+  </a:s>
+               <a:s r="228">
+                  <a:s r="227">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="228">
+                     <a:s>&quot;One hepatitis B primary series dose was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="228" locator="72:3-72:66" name="One hepatitis B primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="223" locator="30:1-31:71" name="Hepatitis B dose 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Hepatitis B dose 1"/>
+            <a:t name="description" value="Provision of hepatitis B dose 1"/>
+            <a:t name="trigger" value="Child's birth"/>
+            <a:t name="triggerDate" value="&quot;Date of birth&quot;"/>
+            <a:s r="223">
+               <a:s>/*
+@output: Hepatitis B dose 1
+@description: Provision of hepatitis B dose 1
+@trigger: Child's birth
+@triggerDate: &quot;Date of birth&quot;
+*/
+define &quot;Hepatitis B dose 1&quot;:
+  </a:s>
+               <a:s r="224">
+                  <a:s>not </a:s>
+                  <a:s r="229">
+                     <a:s>&quot;First hepatitis B dose from the primary series was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="224" locator="31:3-31:71" xsi:type="Not">
+            <operand localId="229" locator="31:7-31:71" name="First hepatitis B dose from the primary series was administered" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="242" locator="49:1-51:11" name="Hepatitis B dose 1 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hepatitis B dose 1 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + Member States defined lower limit"/>
+            <a:s r="242">
+               <a:s>/*
+@dynamicValue: Hepatitis B dose 1 Due Date
+@pseudocode: &quot;Date of birth&quot; + Member States defined lower limit
+*/
+define &quot;Hepatitis B dose 1 Due Date&quot;:
+  </a:s>
+               <a:s r="243">
+                  <a:s>if </a:s>
+                  <a:s r="244">
+                     <a:s>&quot;Hepatitis B dose 1&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="245">
+                     <a:s r="247">
+                        <a:s r="246">
+                           <a:s>Patient</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="247">
+                           <a:s>birthDate</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="248">
+                        <a:s>(</a:s>
+                        <a:s r="248">
+                           <a:s r="250">
+                              <a:s r="249">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="250">
+                                 <a:s>HepBLowerLimitWeeks</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> * </a:s>
+                           <a:s r="251">
+                              <a:s>1 weeks</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="260"> // Syntax is strange because using a parameter
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="243" locator="50:3-51:11" xsi:type="If">
+            <condition localId="244" locator="50:6-50:25" name="Hepatitis B dose 1" xsi:type="ExpressionRef"/>
+            <then localId="245" locator="50:32-50:92" xsi:type="Add">
+               <signature localId="258" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="259" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="257" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="247" locator="50:32-50:48" path="birthDate" xsi:type="Property">
+                     <source localId="246" locator="50:32-50:38" name="Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="248" locator="50:52-50:92" xsi:type="Multiply">
+                  <signature localId="255" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="256" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="253" xsi:type="ToQuantity">
+                     <signature localId="254" name="t:Integer" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="250" locator="50:53-50:81" name="HepBLowerLimitWeeks" libraryName="Encounter" xsi:type="ParameterRef"/>
+                  </operand>
+                  <operand localId="251" locator="50:85-50:91" value="1" unit="weeks" xsi:type="Quantity"/>
+               </operand>
+            </then>
+            <else localId="261" asType="t:Date" xsi:type="As">
+               <operand localId="260" locator="51:8-51:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="231" locator="38:1-43:9" name="Hepatitis B dose 1 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Hepatitis B dose 1 Create"/>
+            <a:t name="create" value="The following option is considered appropriate: a 3-dose schedule with the first dose (monovalent) being given at birth and the second and third (monovalent or as part of a combined vaccine) given at the same time as the first and third doses of DTP-containing vaccine.&#xa;The interval between doses should be at least 4 weeks."/>
+            <a:s r="231">
+               <a:s>/*
+@output: Hepatitis B dose 1 Create
+@create: The following option is considered appropriate: a 3-dose schedule with the first dose (monovalent) being given at birth and the second and third (monovalent or as part of a combined vaccine) given at the same time as the first and third doses of DTP-containing vaccine.
+The interval between doses should be at least 4 weeks.
+*/
+define &quot;Hepatitis B dose 1 Create&quot;:
+  </a:s>
+               <a:s r="232">
+                  <a:s>if </a:s>
+                  <a:s r="233">
+                     <a:s>&quot;Hepatitis B dose 1&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="270">
+                     <a:s r="240">
+                        <a:s r="236">
+                           <a:s>'The following option is considered appropriate: a 3-dose schedule with the first dose (monovalent) being given at birth and the second and third (monovalent or as part of a combined vaccine) given at the same time as the first and third doses of DTP-containing vaccine.
+The interval between doses should be at least 4 weeks.'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="237">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="266">
+                        <a:s>ToString(</a:s>
+                        <a:s r="262">
+                           <a:s>&quot;Hepatitis B dose 1 Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="271">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="232" locator="39:3-43:9" xsi:type="If">
+            <condition localId="233" locator="39:6-39:25" name="Hepatitis B dose 1" xsi:type="ExpressionRef"/>
+            <then localId="270" locator="40:8-42:53" xsi:type="Concatenate">
+               <operand localId="240" locator="40:8-41:71" xsi:type="Concatenate">
+                  <operand localId="236" locator="40:8-40:333" valueType="t:String" value="The following option is considered appropriate: a 3-dose schedule with the first dose (monovalent) being given at birth and the second and third (monovalent or as part of a combined vaccine) given at the same time as the first and third doses of DTP-containing vaccine.&#xa;The interval between doses should be at least 4 weeks." xsi:type="Literal"/>
+                  <operand localId="237" locator="41:59-41:71" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="266" locator="42:15-42:53" xsi:type="ToString">
+                  <signature localId="267" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="262" locator="42:24-42:52" name="Hepatitis B dose 1 Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="271" locator="43:8-43:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="273" locator="57:1-58:6" name="Hepatitis B dose 1 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hepatitis B dose 1 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date."/>
+            <a:s r="273">
+               <a:s r="274">/*
+@dynamicValue: Hepatitis B dose 1 Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date.
+*/
+define &quot;Hepatitis B dose 1 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="274" locator="58:3-58:6" xsi:type="Null"/>
+      </def>
+      <def localId="276" locator="64:1-65:6" name="Hepatitis B dose 1 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hepatitis B dose 1 Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated."/>
+            <a:s r="276">
+               <a:s r="277">/*
+@dynamicValue: Hepatitis B dose 1 Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated.
+*/
+define &quot;Hepatitis B dose 1 Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="277" locator="65:3-65:6" xsi:type="Null"/>
+      </def>
+      <def localId="284" locator="124:1-125:68" name="Second hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was over 2000 g and was not a premature infant" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Second hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was over 2000 g and was not a premature infant"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot; and &quot;Type of dose&quot;= &quot;Primary series&quot;) = 2"/>
+            <a:s r="284">
+               <a:s>/*
+@complete: Second hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was over 2000 g and was not a premature infant
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot; and &quot;Type of dose&quot;= &quot;Primary series&quot;) = 2
+*/
+define &quot;Second hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was over 2000 g and was not a premature infant&quot;:
+  </a:s>
+               <a:s r="286">
+                  <a:s r="285">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="286">
+                     <a:s>&quot;Two hepatitis B primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="286" locator="125:3-125:68" name="Two hepatitis B primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="279" locator="82:1-84:197" name="Hepatitis B dose 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Hepatitis B dose 2"/>
+            <a:t name="description" value="Provision of hepatitis B dose 2"/>
+            <a:t name="trigger" value="&quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot; and &quot;Type of dose&quot;= &quot;Primary series&quot;) = 1"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot;)"/>
+            <a:s r="279">
+               <a:s>/*
+@output: Hepatitis B dose 2
+@description: Provision of hepatitis B dose 2
+@trigger: First hepatitis B dose from the primary series was administered
+Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot; and &quot;Type of dose&quot;= &quot;Primary series&quot;) = 1
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot;)
+*/
+define &quot;Hepatitis B dose 2&quot;:
+  </a:s>
+               <a:s r="280">
+                  <a:s r="281">
+                     <a:s>&quot;First hepatitis B dose from the primary series was administered&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="282">
+                     <a:s>not </a:s>
+                     <a:s r="287">
+                        <a:s>&quot;Second hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was over 2000 g and was not a premature infant&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="280" locator="83:3-84:197" xsi:type="And">
+            <operand localId="281" locator="83:3-83:67" name="First hepatitis B dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            <operand localId="282" locator="84:9-84:197" xsi:type="Not">
+               <operand localId="287" locator="84:13-84:197" name="Second hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was over 2000 g and was not a premature infant" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="300" locator="102:1-104:11" name="Hepatitis B dose 2 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hepatitis B dose 2 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot;) + 4 weeks"/>
+            <a:s r="300">
+               <a:s>/*
+@dynamicValue: Hepatitis B dose 2 Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot;) + 4 weeks
+*/
+define &quot;Hepatitis B dose 2 Due Date&quot;:
+  </a:s>
+               <a:s r="301">
+                  <a:s>if </a:s>
+                  <a:s r="302">
+                     <a:s>&quot;Hepatitis B dose 2&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="303">
+                     <a:s r="305">
+                        <a:s r="304">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="305">
+                           <a:s>&quot;Date of Latest Hepatitis B Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="306">
+                        <a:s>4 weeks</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="309">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="301" locator="103:3-104:11" xsi:type="If">
+            <condition localId="302" locator="103:6-103:25" name="Hepatitis B dose 2" xsi:type="ExpressionRef"/>
+            <then localId="303" locator="103:32-103:84" xsi:type="Add">
+               <signature localId="307" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="308" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="305" locator="103:32-103:74" name="Date of Latest Hepatitis B Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="306" locator="103:78-103:84" value="4" unit="weeks" xsi:type="Quantity"/>
+            </then>
+            <else localId="310" asType="t:Date" xsi:type="As">
+               <operand localId="309" locator="104:8-104:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="289" locator="91:1-96:9" name="Hepatitis B dose 2 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Hepatitis B dose 2 Create"/>
+            <a:t name="create" value="The following option is considered appropriate: a 3-dose schedule with the first dose (monovalent) being given at birth and the second and third (monovalent or as part of a combined vaccine) given at the same time as the first and third doses of DTP-containing vaccine.&#xa;The interval between doses should be at least 4 weeks."/>
+            <a:s r="289">
+               <a:s>/*
+@output: Hepatitis B dose 2 Create
+@create: The following option is considered appropriate: a 3-dose schedule with the first dose (monovalent) being given at birth and the second and third (monovalent or as part of a combined vaccine) given at the same time as the first and third doses of DTP-containing vaccine.
+The interval between doses should be at least 4 weeks.
+*/
+define &quot;Hepatitis B dose 2 Create&quot;:
+  </a:s>
+               <a:s r="290">
+                  <a:s>if </a:s>
+                  <a:s r="291">
+                     <a:s>&quot;Hepatitis B dose 2&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="319">
+                     <a:s r="298">
+                        <a:s r="294">
+                           <a:s>'The following option is considered appropriate: a 3-dose schedule with the first dose (monovalent) being given at birth and the second and third (monovalent or as part of a combined vaccine) given at the same time as the first and third doses of DTP-containing vaccine.
+The interval between doses should be at least 4 weeks.'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="295">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="315">
+                        <a:s>ToString(</a:s>
+                        <a:s r="311">
+                           <a:s>&quot;Hepatitis B dose 2 Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="320">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="290" locator="92:3-96:9" xsi:type="If">
+            <condition localId="291" locator="92:6-92:25" name="Hepatitis B dose 2" xsi:type="ExpressionRef"/>
+            <then localId="319" locator="93:8-95:53" xsi:type="Concatenate">
+               <operand localId="298" locator="93:8-94:71" xsi:type="Concatenate">
+                  <operand localId="294" locator="93:8-93:333" valueType="t:String" value="The following option is considered appropriate: a 3-dose schedule with the first dose (monovalent) being given at birth and the second and third (monovalent or as part of a combined vaccine) given at the same time as the first and third doses of DTP-containing vaccine.&#xa;The interval between doses should be at least 4 weeks." xsi:type="Literal"/>
+                  <operand localId="295" locator="94:59-94:71" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="315" locator="95:15-95:53" xsi:type="ToString">
+                  <signature localId="316" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="311" locator="95:24-95:52" name="Hepatitis B dose 2 Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="320" locator="96:8-96:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="322" locator="110:1-111:6" name="Hepatitis B dose 2 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hepatitis B dose 2 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date."/>
+            <a:s r="322">
+               <a:s r="323">/*
+@dynamicValue: Hepatitis B dose 2 Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date.
+*/
+define &quot;Hepatitis B dose 2 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="323" locator="111:3-111:6" xsi:type="Null"/>
+      </def>
+      <def localId="325" locator="117:1-118:6" name="Hepatitis B dose 2 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hepatitis B dose 2 Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated."/>
+            <a:s r="325">
+               <a:s r="326">/*
+@dynamicValue: Hepatitis B dose 2 Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated.
+*/
+define &quot;Hepatitis B dose 2 Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="326" locator="118:3-118:6" xsi:type="Null"/>
+      </def>
+      <def localId="334" locator="179:1-180:70" name="Third hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was less than 2000 g and was a premature infant" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Third hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was less than 2000 g and was a premature infant"/>
+            <a:t name="pseudocode" value="&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot;)"/>
+            <a:s r="334">
+               <a:s>/*
+@complete: Third hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was less than 2000 g and was a premature infant
+@pseudocode: &quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot;)
+*/
+define &quot;Third hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was less than 2000 g and was a premature infant&quot;:
+  </a:s>
+               <a:s r="336">
+                  <a:s r="335">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="336">
+                     <a:s>&quot;Three hepatitis B primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="336" locator="180:3-180:70" name="Three hepatitis B primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="328" locator="135:1-141:5" name="Hepatitis B dose 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Hepatitis B dose 3"/>
+            <a:t name="description" value="Provision of hepatitis B dose 3 for low-birth-weight and premature infants"/>
+            <a:t name="trigger" value="&quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot;) = 2 and (&quot;Birth weight in grams&quot;  &lt; 2000) or (&quot;Preterm birth&quot; =  TRUE)"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot;)"/>
+            <a:s r="328">
+               <a:s>/*
+@output: Hepatitis B dose 3
+@description: Provision of hepatitis B dose 3 for low-birth-weight and premature infants
+@trigger: Second hepatitis B dose from the primary series was administered. Client's weight at birth was less than 2000 g or client was a premature infant
+Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot;) = 2 and (&quot;Birth weight in grams&quot;  &lt; 2000) or (&quot;Preterm birth&quot; =  TRUE)
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot;)
+*/
+define &quot;Hepatitis B dose 3&quot;:
+  </a:s>
+               <a:s r="329">
+                  <a:s r="330">
+                     <a:s r="331">
+                        <a:s>&quot;Second hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was over 2000 g and was not a premature infant&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="332">
+                        <a:s>not </a:s>
+                        <a:s r="337">
+                           <a:s>&quot;Third hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was less than 2000 g and was a premature infant&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="338">
+                     <a:s>(
+      </a:s>
+                     <a:s r="338">
+                        <a:s r="340">
+                           <a:s r="339">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="340">
+                              <a:s>&quot;Client's weight at birth was below 2000 g&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+      or </a:s>
+                        <a:s r="342">
+                           <a:s r="341">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="342">
+                              <a:s>&quot;Client was a premature infant at birth&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    )</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="329" locator="136:3-141:5" xsi:type="And">
+            <operand localId="330" locator="136:3-137:197" xsi:type="And">
+               <operand localId="331" locator="136:3-136:187" name="Second hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was over 2000 g and was not a premature infant" xsi:type="ExpressionRef"/>
+               <operand localId="332" locator="137:9-137:197" xsi:type="Not">
+                  <operand localId="337" locator="137:13-137:197" name="Third hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was less than 2000 g and was a premature infant" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="338" locator="138:9-141:5" xsi:type="Or">
+               <operand localId="340" locator="139:7-139:59" name="Client's weight at birth was below 2000 g" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="342" locator="140:10-140:59" name="Client was a premature infant at birth" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="355" locator="157:1-159:11" name="Hepatitis B dose 3 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hepatitis B dose 3 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot;) + 4 weeks"/>
+            <a:s r="355">
+               <a:s>/*
+@dynamicValue: Hepatitis B dose 3 Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hepatitis B-containing vaccines&quot;) + 4 weeks
+*/
+define &quot;Hepatitis B dose 3 Due Date&quot;:
+  </a:s>
+               <a:s r="356">
+                  <a:s>if </a:s>
+                  <a:s r="357">
+                     <a:s>&quot;Hepatitis B dose 3&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="358">
+                     <a:s r="360">
+                        <a:s r="359">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="360">
+                           <a:s>&quot;Date of Latest Hepatitis B Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="361">
+                        <a:s>4 weeks</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="364">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="356" locator="158:3-159:11" xsi:type="If">
+            <condition localId="357" locator="158:6-158:25" name="Hepatitis B dose 3" xsi:type="ExpressionRef"/>
+            <then localId="358" locator="158:32-158:84" xsi:type="Add">
+               <signature localId="362" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="363" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="360" locator="158:32-158:74" name="Date of Latest Hepatitis B Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="361" locator="158:78-158:84" value="4" unit="weeks" xsi:type="Quantity"/>
+            </then>
+            <else localId="365" asType="t:Date" xsi:type="As">
+               <operand localId="364" locator="159:8-159:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="344" locator="147:1-151:9" name="Hepatitis B dose 3 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Hepatitis B dose 3 Create"/>
+            <a:t name="create" value="A birth dose of hepatitis B-containing vaccine can be given to low-birth-weight (&lt; 2000 g) and premature infants. For these infants, the birth dose should not count as part of the primary 3-dose series; the 3 doses of the standard primary series should be given according to the national vaccination schedule."/>
+            <a:s r="344">
+               <a:s>/*
+@output: Hepatitis B dose 3 Create
+@create: A birth dose of hepatitis B-containing vaccine can be given to low-birth-weight (&lt; 2000 g) and premature infants. For these infants, the birth dose should not count as part of the primary 3-dose series; the 3 doses of the standard primary series should be given according to the national vaccination schedule.
+*/
+define &quot;Hepatitis B dose 3 Create&quot;:
+  </a:s>
+               <a:s r="345">
+                  <a:s>if </a:s>
+                  <a:s r="346">
+                     <a:s>&quot;Hepatitis B dose 3&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="374">
+                     <a:s r="353">
+                        <a:s r="349">
+                           <a:s>'A birth dose of hepatitis B-containing vaccine can be given to low-birth-weight (&lt; 2000 g) and premature infants. For these infants, the birth dose should not count as part of the primary 3-dose series; the 3 doses of the standard primary series should be given according to the national vaccination schedule.'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="350">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="370">
+                        <a:s>ToString(</a:s>
+                        <a:s r="366">
+                           <a:s>&quot;Hepatitis B dose 3 Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="375">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="345" locator="148:3-151:9" xsi:type="If">
+            <condition localId="346" locator="148:6-148:25" name="Hepatitis B dose 3" xsi:type="ExpressionRef"/>
+            <then localId="374" locator="149:8-150:53" xsi:type="Concatenate">
+               <operand localId="353" locator="149:8-149:334" xsi:type="Concatenate">
+                  <operand localId="349" locator="149:8-149:318" valueType="t:String" value="A birth dose of hepatitis B-containing vaccine can be given to low-birth-weight (&lt; 2000 g) and premature infants. For these infants, the birth dose should not count as part of the primary 3-dose series; the 3 doses of the standard primary series should be given according to the national vaccination schedule." xsi:type="Literal"/>
+                  <operand localId="350" locator="149:322-149:334" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="370" locator="150:15-150:53" xsi:type="ToString">
+                  <signature localId="371" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="366" locator="150:24-150:52" name="Hepatitis B dose 3 Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="375" locator="151:8-151:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="377" locator="165:1-166:6" name="Hepatitis B dose 3 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hepatitis B dose 3 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date."/>
+            <a:s r="377">
+               <a:s r="378">/*
+@dynamicValue: Hepatitis B dose 3 Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date.
+*/
+define &quot;Hepatitis B dose 3 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="378" locator="166:3-166:6" xsi:type="Null"/>
+      </def>
+      <def localId="380" locator="172:1-173:6" name="Hepatitis B dose 3 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hepatitis B dose 3 Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated."/>
+            <a:s r="380">
+               <a:s r="381">/*
+@dynamicValue: Hepatitis B dose 3 Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated.
+*/
+define &quot;Hepatitis B dose 3 Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="381" locator="173:3-173:6" xsi:type="Null"/>
+      </def>
+      <def localId="383" locator="186:1-199:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="383">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="384">
+                  <a:s>case
+    </a:s>
+                  <a:s r="385">
+                     <a:s>when </a:s>
+                     <a:s r="386">
+                        <a:s r="388">
+                           <a:s r="387">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="388">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="389">
+                           <a:s>'19.Alt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="394">
+                        <a:s>&quot;Hepatitis B dose 1&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="395">
+                     <a:s>when </a:s>
+                     <a:s r="396">
+                        <a:s r="398">
+                           <a:s r="397">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="398">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="399">
+                           <a:s>'20.Agt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="404">
+                        <a:s>&quot;Hepatitis B dose 1&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="405">
+                     <a:s>when </a:s>
+                     <a:s r="406">
+                        <a:s r="408">
+                           <a:s r="407">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="408">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="409">
+                           <a:s>'21.D1HBlt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="414">
+                        <a:s>&quot;Hepatitis B dose 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="415">
+                     <a:s>when </a:s>
+                     <a:s r="416">
+                        <a:s r="418">
+                           <a:s r="417">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="418">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="419">
+                           <a:s>'22.D1HBgt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="424">
+                        <a:s>&quot;Hepatitis B dose 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="425">
+                     <a:s>when </a:s>
+                     <a:s r="426">
+                        <a:s r="428">
+                           <a:s r="427">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="428">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="429">
+                           <a:s>'23.D2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="434">
+                        <a:s r="435">
+                           <a:s>not </a:s>
+                           <a:s r="436">
+                              <a:s>&quot;Hepatitis B dose 3&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="437">
+                           <a:s>&quot;Second hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was over 2000 g and was not a premature infant&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="438">
+                     <a:s>when </a:s>
+                     <a:s r="439">
+                        <a:s r="441">
+                           <a:s r="440">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="441">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="442">
+                           <a:s>'24.D2Wlt2kgHBlt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="447">
+                        <a:s>&quot;Hepatitis B dose 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="448">
+                     <a:s>when </a:s>
+                     <a:s r="449">
+                        <a:s r="451">
+                           <a:s r="450">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="451">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="452">
+                           <a:s>'25.D2Wlt2kgHBgt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="457">
+                        <a:s>&quot;Hepatitis B dose 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="458">
+                     <a:s>when </a:s>
+                     <a:s r="459">
+                        <a:s r="461">
+                           <a:s r="460">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="461">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="462">
+                           <a:s>'26.D2PTHBlt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="467">
+                        <a:s>&quot;Hepatitis B dose 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="468">
+                     <a:s>when </a:s>
+                     <a:s r="469">
+                        <a:s r="471">
+                           <a:s r="470">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="471">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="472">
+                           <a:s>'27.D2WPTHBgt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="477">
+                        <a:s>&quot;Hepatitis B dose 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="478">
+                     <a:s>when </a:s>
+                     <a:s r="479">
+                        <a:s r="481">
+                           <a:s r="480">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="481">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="482">
+                           <a:s>'28.D3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="487">
+                        <a:s>&quot;Third hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was less than 2000 g and was a premature infant&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="488">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="384" locator="187:3-199:5" xsi:type="Case">
+            <caseItem localId="385" locator="188:5-188:58">
+               <when localId="386" locator="188:10-188:32" xsi:type="Equal">
+                  <signature localId="392" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="393" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="390" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="391" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="388" locator="188:10-188:19" path="id" xsi:type="Property">
+                        <source localId="387" locator="188:10-188:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="389" locator="188:23-188:32" valueType="t:String" value="19.Alt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="489" xsi:type="As">
+                  <operand localId="394" locator="188:39-188:58" name="Hepatitis B dose 1" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="490" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="491" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="492" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="395" locator="189:5-189:58">
+               <when localId="396" locator="189:10-189:32" xsi:type="Equal">
+                  <signature localId="402" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="403" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="400" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="401" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="398" locator="189:10-189:19" path="id" xsi:type="Property">
+                        <source localId="397" locator="189:10-189:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="399" locator="189:23-189:32" valueType="t:String" value="20.Agt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="493" xsi:type="As">
+                  <operand localId="404" locator="189:39-189:58" name="Hepatitis B dose 1" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="494" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="495" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="496" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="405" locator="190:5-190:61">
+               <when localId="406" locator="190:10-190:35" xsi:type="Equal">
+                  <signature localId="412" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="413" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="410" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="411" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="408" locator="190:10-190:19" path="id" xsi:type="Property">
+                        <source localId="407" locator="190:10-190:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="409" locator="190:23-190:35" valueType="t:String" value="21.D1HBlt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="497" xsi:type="As">
+                  <operand localId="414" locator="190:42-190:61" name="Hepatitis B dose 2" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="498" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="499" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="500" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="415" locator="191:5-191:61">
+               <when localId="416" locator="191:10-191:35" xsi:type="Equal">
+                  <signature localId="422" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="423" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="420" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="421" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="418" locator="191:10-191:19" path="id" xsi:type="Property">
+                        <source localId="417" locator="191:10-191:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="419" locator="191:23-191:35" valueType="t:String" value="22.D1HBgt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="501" xsi:type="As">
+                  <operand localId="424" locator="191:42-191:61" name="Hepatitis B dose 2" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="502" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="503" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="504" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="425" locator="192:5-192:249">
+               <when localId="426" locator="192:10-192:29" xsi:type="Equal">
+                  <signature localId="432" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="433" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="430" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="431" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="428" locator="192:10-192:19" path="id" xsi:type="Property">
+                        <source localId="427" locator="192:10-192:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="429" locator="192:23-192:29" valueType="t:String" value="23.D2" xsi:type="Literal"/>
+               </when>
+               <then localId="505" xsi:type="As">
+                  <operand localId="434" locator="192:36-192:249" xsi:type="And">
+                     <operand localId="435" locator="192:36-192:59" xsi:type="Not">
+                        <operand localId="436" locator="192:40-192:59" name="Hepatitis B dose 3" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand localId="437" locator="192:65-192:249" name="Second hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was over 2000 g and was not a premature infant" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="506" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="507" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="508" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="438" locator="193:5-193:67">
+               <when localId="439" locator="193:10-193:41" xsi:type="Equal">
+                  <signature localId="445" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="446" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="443" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="444" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="441" locator="193:10-193:19" path="id" xsi:type="Property">
+                        <source localId="440" locator="193:10-193:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="442" locator="193:23-193:41" valueType="t:String" value="24.D2Wlt2kgHBlt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="509" xsi:type="As">
+                  <operand localId="447" locator="193:48-193:67" name="Hepatitis B dose 3" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="510" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="511" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="512" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="448" locator="194:5-194:67">
+               <when localId="449" locator="194:10-194:41" xsi:type="Equal">
+                  <signature localId="455" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="456" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="453" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="454" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="451" locator="194:10-194:19" path="id" xsi:type="Property">
+                        <source localId="450" locator="194:10-194:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="452" locator="194:23-194:41" valueType="t:String" value="25.D2Wlt2kgHBgt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="513" xsi:type="As">
+                  <operand localId="457" locator="194:48-194:67" name="Hepatitis B dose 3" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="514" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="515" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="516" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="458" locator="195:5-195:63">
+               <when localId="459" locator="195:10-195:37" xsi:type="Equal">
+                  <signature localId="465" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="466" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="463" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="464" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="461" locator="195:10-195:19" path="id" xsi:type="Property">
+                        <source localId="460" locator="195:10-195:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="462" locator="195:23-195:37" valueType="t:String" value="26.D2PTHBlt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="517" xsi:type="As">
+                  <operand localId="467" locator="195:44-195:63" name="Hepatitis B dose 3" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="518" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="519" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="520" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="468" locator="196:5-196:64">
+               <when localId="469" locator="196:10-196:38" xsi:type="Equal">
+                  <signature localId="475" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="476" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="473" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="474" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="471" locator="196:10-196:19" path="id" xsi:type="Property">
+                        <source localId="470" locator="196:10-196:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="472" locator="196:23-196:38" valueType="t:String" value="27.D2WPTHBgt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="521" xsi:type="As">
+                  <operand localId="477" locator="196:45-196:64" name="Hepatitis B dose 3" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="522" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="523" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="524" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="478" locator="197:5-197:220">
+               <when localId="479" locator="197:10-197:29" xsi:type="Equal">
+                  <signature localId="485" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="486" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="483" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="484" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="481" locator="197:10-197:19" path="id" xsi:type="Property">
+                        <source localId="480" locator="197:10-197:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="482" locator="197:23-197:29" valueType="t:String" value="28.D3" xsi:type="Literal"/>
+               </when>
+               <then localId="525" xsi:type="As">
+                  <operand localId="487" locator="197:36-197:220" name="Third hepatitis B dose from the primary series was administered. The primary series has been completed for client whose weight at birth was less than 2000 g and was a premature infant" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="526" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="527" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="528" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="529" xsi:type="As">
+               <operand localId="488" locator="198:10-198:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="530" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="531" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="532" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>
