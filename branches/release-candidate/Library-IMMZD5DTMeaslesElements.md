@@ -1,0 +1,165 @@
+# IMMZD5DTMeaslesElements - WHO Immunization Implementation Guide v1.0.0
+
+* [**Table of Contents**](toc.md)
+* [**Indices**](indices.md)
+* [**Artifact Index**](artifacts.md)
+* **IMMZD5DTMeaslesElements**
+
+## Library: IMMZD5DTMeaslesElements 
+
+| | |
+| :--- | :--- |
+| *Official URL*:http://smart.who.int/immunizations/Library/IMMZD5DTMeaslesElements | *Version*:1.0.0 |
+| Draft as of 2026-04-09 | *Computable Name*:IMMZD5DTMeaslesElements |
+
+ 
+This library defines context-independent elements for Measles used throughout the Immunization CPG 
+
+* * **Content: **text/cql: ```` /* * Library: IMMZD5DTMeaslesElements */ library IMMZD5DTMeaslesElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Measles dose */ define "Draft Medication Request for Measles dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Measles-containing vaccines" /* @input: The client is pregnant @pseudocode: "Potential contraindications" = "Currently pregnant" @code: The client is pregnant-52 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client is pregnant": Elements."The client is pregnant" /* @input: The client has history of anaphylactic reactions @pseudocode: "Potential contraindications" = "History of anaphylactic reactions" @code: The client has history of anaphylactic reactions-67 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has history of anaphylactic reactions": Elements."The client has history of anaphylactic reactions" /* @input: The client has history of severe allergic reactions @pseudocode: "Potential contraindications" = "Severe allergic reactions" @code: The client has history of severe allergic reactions-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has history of severe allergic reactions": Elements."The client has history of severe allergic reactions" /* @input: The client is severely immunosuppressed @pseudocode: "Potential contraindications" = "Severely immunosuppressed" @code: The client is severely immunosuppressed-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client is severely immunosuppressed": Elements."The client is severely immunosuppressed" /* @input: The client has a symptomatic HIV infection @pseudocode: "Potential contraindications" = "Symptomatic HIV infection" @code: The client has a symptomatic HIV infection-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has a symptomatic HIV infection": Elements."The client has a symptomatic HIV infection" /* @internal: Draft Medication Request for MCV dose */ define "Draft Medication Request for MCV dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Measles-containing vaccines" ````: **Id: **
+  * ?: IMMZD5DTMeaslesElements
+* * **Content: **text/cql: ```` /* * Library: IMMZD5DTMeaslesElements */ library IMMZD5DTMeaslesElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Measles dose */ define "Draft Medication Request for Measles dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Measles-containing vaccines" /* @input: The client is pregnant @pseudocode: "Potential contraindications" = "Currently pregnant" @code: The client is pregnant-52 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client is pregnant": Elements."The client is pregnant" /* @input: The client has history of anaphylactic reactions @pseudocode: "Potential contraindications" = "History of anaphylactic reactions" @code: The client has history of anaphylactic reactions-67 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has history of anaphylactic reactions": Elements."The client has history of anaphylactic reactions" /* @input: The client has history of severe allergic reactions @pseudocode: "Potential contraindications" = "Severe allergic reactions" @code: The client has history of severe allergic reactions-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has history of severe allergic reactions": Elements."The client has history of severe allergic reactions" /* @input: The client is severely immunosuppressed @pseudocode: "Potential contraindications" = "Severely immunosuppressed" @code: The client is severely immunosuppressed-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client is severely immunosuppressed": Elements."The client is severely immunosuppressed" /* @input: The client has a symptomatic HIV infection @pseudocode: "Potential contraindications" = "Symptomatic HIV infection" @code: The client has a symptomatic HIV infection-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has a symptomatic HIV infection": Elements."The client has a symptomatic HIV infection" /* @internal: Draft Medication Request for MCV dose */ define "Draft Medication Request for MCV dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Measles-containing vaccines" ````: **Version: **
+  * ?: 1.0.0
+* * **Content: **text/cql: ```` /* * Library: IMMZD5DTMeaslesElements */ library IMMZD5DTMeaslesElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Measles dose */ define "Draft Medication Request for Measles dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Measles-containing vaccines" /* @input: The client is pregnant @pseudocode: "Potential contraindications" = "Currently pregnant" @code: The client is pregnant-52 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client is pregnant": Elements."The client is pregnant" /* @input: The client has history of anaphylactic reactions @pseudocode: "Potential contraindications" = "History of anaphylactic reactions" @code: The client has history of anaphylactic reactions-67 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has history of anaphylactic reactions": Elements."The client has history of anaphylactic reactions" /* @input: The client has history of severe allergic reactions @pseudocode: "Potential contraindications" = "Severe allergic reactions" @code: The client has history of severe allergic reactions-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has history of severe allergic reactions": Elements."The client has history of severe allergic reactions" /* @input: The client is severely immunosuppressed @pseudocode: "Potential contraindications" = "Severely immunosuppressed" @code: The client is severely immunosuppressed-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client is severely immunosuppressed": Elements."The client is severely immunosuppressed" /* @input: The client has a symptomatic HIV infection @pseudocode: "Potential contraindications" = "Symptomatic HIV infection" @code: The client has a symptomatic HIV infection-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has a symptomatic HIV infection": Elements."The client has a symptomatic HIV infection" /* @internal: Draft Medication Request for MCV dose */ define "Draft Medication Request for MCV dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Measles-containing vaccines" ````: **Url: **
+  * ?: [IMMZD5DTMeaslesElements](Library-IMMZD5DTMeaslesElements.md)
+* * **Content: **text/cql: ```` /* * Library: IMMZD5DTMeaslesElements */ library IMMZD5DTMeaslesElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Measles dose */ define "Draft Medication Request for Measles dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Measles-containing vaccines" /* @input: The client is pregnant @pseudocode: "Potential contraindications" = "Currently pregnant" @code: The client is pregnant-52 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client is pregnant": Elements."The client is pregnant" /* @input: The client has history of anaphylactic reactions @pseudocode: "Potential contraindications" = "History of anaphylactic reactions" @code: The client has history of anaphylactic reactions-67 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has history of anaphylactic reactions": Elements."The client has history of anaphylactic reactions" /* @input: The client has history of severe allergic reactions @pseudocode: "Potential contraindications" = "Severe allergic reactions" @code: The client has history of severe allergic reactions-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has history of severe allergic reactions": Elements."The client has history of severe allergic reactions" /* @input: The client is severely immunosuppressed @pseudocode: "Potential contraindications" = "Severely immunosuppressed" @code: The client is severely immunosuppressed-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client is severely immunosuppressed": Elements."The client is severely immunosuppressed" /* @input: The client has a symptomatic HIV infection @pseudocode: "Potential contraindications" = "Symptomatic HIV infection" @code: The client has a symptomatic HIV infection-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has a symptomatic HIV infection": Elements."The client has a symptomatic HIV infection" /* @internal: Draft Medication Request for MCV dose */ define "Draft Medication Request for MCV dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Measles-containing vaccines" ````: **Status: **
+  * ?: draft
+* * **Content: **text/cql: ```` /* * Library: IMMZD5DTMeaslesElements */ library IMMZD5DTMeaslesElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Measles dose */ define "Draft Medication Request for Measles dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Measles-containing vaccines" /* @input: The client is pregnant @pseudocode: "Potential contraindications" = "Currently pregnant" @code: The client is pregnant-52 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client is pregnant": Elements."The client is pregnant" /* @input: The client has history of anaphylactic reactions @pseudocode: "Potential contraindications" = "History of anaphylactic reactions" @code: The client has history of anaphylactic reactions-67 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has history of anaphylactic reactions": Elements."The client has history of anaphylactic reactions" /* @input: The client has history of severe allergic reactions @pseudocode: "Potential contraindications" = "Severe allergic reactions" @code: The client has history of severe allergic reactions-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has history of severe allergic reactions": Elements."The client has history of severe allergic reactions" /* @input: The client is severely immunosuppressed @pseudocode: "Potential contraindications" = "Severely immunosuppressed" @code: The client is severely immunosuppressed-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client is severely immunosuppressed": Elements."The client is severely immunosuppressed" /* @input: The client has a symptomatic HIV infection @pseudocode: "Potential contraindications" = "Symptomatic HIV infection" @code: The client has a symptomatic HIV infection-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has a symptomatic HIV infection": Elements."The client has a symptomatic HIV infection" /* @internal: Draft Medication Request for MCV dose */ define "Draft Medication Request for MCV dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Measles-containing vaccines" ````: **Date: **
+  * ?: 2026-04-09 13:50:16+0000
+* * **Content: **text/cql: ```` /* * Library: IMMZD5DTMeaslesElements */ library IMMZD5DTMeaslesElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Measles dose */ define "Draft Medication Request for Measles dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Measles-containing vaccines" /* @input: The client is pregnant @pseudocode: "Potential contraindications" = "Currently pregnant" @code: The client is pregnant-52 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client is pregnant": Elements."The client is pregnant" /* @input: The client has history of anaphylactic reactions @pseudocode: "Potential contraindications" = "History of anaphylactic reactions" @code: The client has history of anaphylactic reactions-67 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has history of anaphylactic reactions": Elements."The client has history of anaphylactic reactions" /* @input: The client has history of severe allergic reactions @pseudocode: "Potential contraindications" = "Severe allergic reactions" @code: The client has history of severe allergic reactions-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has history of severe allergic reactions": Elements."The client has history of severe allergic reactions" /* @input: The client is severely immunosuppressed @pseudocode: "Potential contraindications" = "Severely immunosuppressed" @code: The client is severely immunosuppressed-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client is severely immunosuppressed": Elements."The client is severely immunosuppressed" /* @input: The client has a symptomatic HIV infection @pseudocode: "Potential contraindications" = "Symptomatic HIV infection" @code: The client has a symptomatic HIV infection-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has a symptomatic HIV infection": Elements."The client has a symptomatic HIV infection" /* @internal: Draft Medication Request for MCV dose */ define "Draft Medication Request for MCV dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Measles-containing vaccines" ````: **Publisher: **
+  * ?: WHO
+* * **Content: **text/cql: ```` /* * Library: IMMZD5DTMeaslesElements */ library IMMZD5DTMeaslesElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Measles dose */ define "Draft Medication Request for Measles dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Measles-containing vaccines" /* @input: The client is pregnant @pseudocode: "Potential contraindications" = "Currently pregnant" @code: The client is pregnant-52 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client is pregnant": Elements."The client is pregnant" /* @input: The client has history of anaphylactic reactions @pseudocode: "Potential contraindications" = "History of anaphylactic reactions" @code: The client has history of anaphylactic reactions-67 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has history of anaphylactic reactions": Elements."The client has history of anaphylactic reactions" /* @input: The client has history of severe allergic reactions @pseudocode: "Potential contraindications" = "Severe allergic reactions" @code: The client has history of severe allergic reactions-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has history of severe allergic reactions": Elements."The client has history of severe allergic reactions" /* @input: The client is severely immunosuppressed @pseudocode: "Potential contraindications" = "Severely immunosuppressed" @code: The client is severely immunosuppressed-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client is severely immunosuppressed": Elements."The client is severely immunosuppressed" /* @input: The client has a symptomatic HIV infection @pseudocode: "Potential contraindications" = "Symptomatic HIV infection" @code: The client has a symptomatic HIV infection-59 @decision: IMMZ.D5.DT.Measles contraindications */ define "The client has a symptomatic HIV infection": Elements."The client has a symptomatic HIV infection" /* @internal: Draft Medication Request for MCV dose */ define "Draft Medication Request for MCV dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Measles-containing vaccines" ````: **Description: **
+  * ?: This library defines context-independent elements for Measles used throughout the Immunization CPG
+
+
+
+## Resource Content
+
+```json
+{
+  "resourceType" : "Library",
+  "id" : "IMMZD5DTMeaslesElements",
+  "meta" : {
+    "profile" : ["http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablelibrary",
+    "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary",
+    "http://hl7.org/fhir/uv/cql/StructureDefinition/cql-library",
+    "http://hl7.org/fhir/uv/cql/StructureDefinition/cql-module"]
+  },
+  "extension" : [{
+    "url" : "http://hl7.org/fhir/StructureDefinition/cqf-knowledgeCapability",
+    "valueCode" : "computable"
+  }],
+  "url" : "http://smart.who.int/immunizations/Library/IMMZD5DTMeaslesElements",
+  "version" : "1.0.0",
+  "name" : "IMMZD5DTMeaslesElements",
+  "title" : "IMMZD5DTMeaslesElements",
+  "status" : "draft",
+  "experimental" : false,
+  "type" : {
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/library-type",
+      "code" : "logic-library"
+    }]
+  },
+  "date" : "2026-04-09T13:50:16+00:00",
+  "publisher" : "WHO",
+  "contact" : [{
+    "name" : "WHO",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://who.int"
+    }]
+  }],
+  "description" : "This library defines context-independent elements for Measles used throughout the Immunization CPG",
+  "relatedArtifact" : [{
+    "type" : "depends-on",
+    "display" : "Library WHOConcepts",
+    "resource" : "http://smart.who.int/immunizations/Library/WHOConcepts"
+  },
+  {
+    "type" : "depends-on",
+    "display" : "Library WC",
+    "resource" : "http://smart.who.int/immunizations/Library/WHOCommon"
+  },
+  {
+    "type" : "depends-on",
+    "display" : "Library WE",
+    "resource" : "http://smart.who.int/immunizations/Library/WHOElements"
+  },
+  {
+    "type" : "depends-on",
+    "display" : "Library Common",
+    "resource" : "http://smart.who.int/immunizations/Library/IMMZCommon"
+  },
+  {
+    "type" : "depends-on",
+    "display" : "Library Concepts",
+    "resource" : "http://smart.who.int/immunizations/Library/IMMZConcepts"
+  },
+  {
+    "type" : "depends-on",
+    "display" : "Library Elements",
+    "resource" : "http://smart.who.int/immunizations/Library/IMMZElements"
+  }],
+  "parameter" : [{
+    "name" : "Patient",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "Patient"
+  },
+  {
+    "name" : "Draft Medication Request for Measles dose",
+    "use" : "out",
+    "min" : 0,
+    "max" : "*",
+    "type" : "MedicationRequest"
+  },
+  {
+    "name" : "The client is pregnant",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "boolean"
+  },
+  {
+    "name" : "The client has history of anaphylactic reactions",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "boolean"
+  },
+  {
+    "name" : "The client has history of severe allergic reactions",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "boolean"
+  },
+  {
+    "name" : "The client is severely immunosuppressed",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "boolean"
+  },
+  {
+    "name" : "The client has a symptomatic HIV infection",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "boolean"
+  },
+  {
+    "name" : "Draft Medication Request for MCV dose",
+    "use" : "out",
+    "min" : 0,
+    "max" : "*",
+    "type" : "MedicationRequest"
+  }],
+  "content" : [{
+    "contentType" : "text/cql",
+    "data" : "Ci8qCiAgKiBMaWJyYXJ5OiBJTU1aRDVEVE1lYXNsZXNFbGVtZW50cwogICovCmxpYnJhcnkgSU1NWkQ1RFRNZWFzbGVzRWxlbWVudHMKCnVzaW5nIEZISVIgdmVyc2lvbiAnNC4wLjEnCmluY2x1ZGUgRkhJUkhlbHBlcnMgdmVyc2lvbiAnNC4wLjEnCgppbmNsdWRlIFdIT0NvbmNlcHRzCmluY2x1ZGUgV0hPQ29tbW9uIGNhbGxlZCBXQwppbmNsdWRlIFdIT0VsZW1lbnRzIGNhbGxlZCBXRQoKaW5jbHVkZSBJTU1aQ29tbW9uIGNhbGxlZCBDb21tb24KaW5jbHVkZSBJTU1aQ29uY2VwdHMgY2FsbGVkIENvbmNlcHRzCmluY2x1ZGUgSU1NWkVsZW1lbnRzIGNhbGxlZCBFbGVtZW50cwoKCmNvbnRleHQgUGF0aWVudAoKLyoKQGludGVybmFsOiBEcmFmdCBNZWRpY2F0aW9uIFJlcXVlc3QgZm9yIE1lYXNsZXMgZG9zZQoqLwpkZWZpbmUgIkRyYWZ0IE1lZGljYXRpb24gUmVxdWVzdCBmb3IgTWVhc2xlcyBkb3NlIjoKCiAgRWxlbWVudHMuIkRyYWZ0IE1lZGljYXRpb24gUmVxdWVzdCBmb3IgUGF0aWVudCIgTVIgCiAgICB3aGVyZSBNUi5tZWRpY2F0aW9uIGluIENvbmNlcHRzLiJNZWFzbGVzLWNvbnRhaW5pbmcgdmFjY2luZXMiCgovKgpAaW5wdXQ6IFRoZSBjbGllbnQgaXMgcHJlZ25hbnQKQHBzZXVkb2NvZGU6ICJQb3RlbnRpYWwgY29udHJhaW5kaWNhdGlvbnMiID0gIkN1cnJlbnRseSBwcmVnbmFudCIKQGNvZGU6IFRoZSBjbGllbnQgaXMgcHJlZ25hbnQtNTIKQGRlY2lzaW9uOiBJTU1aLkQ1LkRULk1lYXNsZXMgY29udHJhaW5kaWNhdGlvbnMKKi8KZGVmaW5lICJUaGUgY2xpZW50IGlzIHByZWduYW50IjoKICBFbGVtZW50cy4iVGhlIGNsaWVudCBpcyBwcmVnbmFudCIKCi8qCkBpbnB1dDogVGhlIGNsaWVudCBoYXMgaGlzdG9yeSBvZiBhbmFwaHlsYWN0aWMgcmVhY3Rpb25zCkBwc2V1ZG9jb2RlOiAiUG90ZW50aWFsIGNvbnRyYWluZGljYXRpb25zIiA9ICJIaXN0b3J5IG9mIGFuYXBoeWxhY3RpYyByZWFjdGlvbnMiCkBjb2RlOiBUaGUgY2xpZW50IGhhcyBoaXN0b3J5IG9mIGFuYXBoeWxhY3RpYyByZWFjdGlvbnMtNjcKQGRlY2lzaW9uOiBJTU1aLkQ1LkRULk1lYXNsZXMgY29udHJhaW5kaWNhdGlvbnMKKi8KZGVmaW5lICJUaGUgY2xpZW50IGhhcyBoaXN0b3J5IG9mIGFuYXBoeWxhY3RpYyByZWFjdGlvbnMiOgogIEVsZW1lbnRzLiJUaGUgY2xpZW50IGhhcyBoaXN0b3J5IG9mIGFuYXBoeWxhY3RpYyByZWFjdGlvbnMiCgovKgpAaW5wdXQ6IFRoZSBjbGllbnQgaGFzIGhpc3Rvcnkgb2Ygc2V2ZXJlIGFsbGVyZ2ljIHJlYWN0aW9ucwpAcHNldWRvY29kZTogIlBvdGVudGlhbCBjb250cmFpbmRpY2F0aW9ucyIgPSAiU2V2ZXJlIGFsbGVyZ2ljIHJlYWN0aW9ucyIKQGNvZGU6IFRoZSBjbGllbnQgaGFzIGhpc3Rvcnkgb2Ygc2V2ZXJlIGFsbGVyZ2ljIHJlYWN0aW9ucy01OQpAZGVjaXNpb246IElNTVouRDUuRFQuTWVhc2xlcyBjb250cmFpbmRpY2F0aW9ucwoqLwpkZWZpbmUgIlRoZSBjbGllbnQgaGFzIGhpc3Rvcnkgb2Ygc2V2ZXJlIGFsbGVyZ2ljIHJlYWN0aW9ucyI6CiAgRWxlbWVudHMuIlRoZSBjbGllbnQgaGFzIGhpc3Rvcnkgb2Ygc2V2ZXJlIGFsbGVyZ2ljIHJlYWN0aW9ucyIKCi8qCkBpbnB1dDogVGhlIGNsaWVudCBpcyBzZXZlcmVseSBpbW11bm9zdXBwcmVzc2VkCkBwc2V1ZG9jb2RlOiAiUG90ZW50aWFsIGNvbnRyYWluZGljYXRpb25zIiA9ICJTZXZlcmVseSBpbW11bm9zdXBwcmVzc2VkIgpAY29kZTogVGhlIGNsaWVudCBpcyBzZXZlcmVseSBpbW11bm9zdXBwcmVzc2VkLTU5CkBkZWNpc2lvbjogSU1NWi5ENS5EVC5NZWFzbGVzIGNvbnRyYWluZGljYXRpb25zCiovCmRlZmluZSAiVGhlIGNsaWVudCBpcyBzZXZlcmVseSBpbW11bm9zdXBwcmVzc2VkIjoKICBFbGVtZW50cy4iVGhlIGNsaWVudCBpcyBzZXZlcmVseSBpbW11bm9zdXBwcmVzc2VkIgoKLyoKQGlucHV0OiBUaGUgY2xpZW50IGhhcyBhIHN5bXB0b21hdGljIEhJViBpbmZlY3Rpb24KQHBzZXVkb2NvZGU6ICJQb3RlbnRpYWwgY29udHJhaW5kaWNhdGlvbnMiID0gIlN5bXB0b21hdGljIEhJViBpbmZlY3Rpb24iCkBjb2RlOiBUaGUgY2xpZW50IGhhcyBhIHN5bXB0b21hdGljIEhJViBpbmZlY3Rpb24tNTkKQGRlY2lzaW9uOiBJTU1aLkQ1LkRULk1lYXNsZXMgY29udHJhaW5kaWNhdGlvbnMKKi8KZGVmaW5lICJUaGUgY2xpZW50IGhhcyBhIHN5bXB0b21hdGljIEhJViBpbmZlY3Rpb24iOgogIEVsZW1lbnRzLiJUaGUgY2xpZW50IGhhcyBhIHN5bXB0b21hdGljIEhJViBpbmZlY3Rpb24iCgovKgpAaW50ZXJuYWw6IERyYWZ0IE1lZGljYXRpb24gUmVxdWVzdCBmb3IgTUNWIGRvc2UKKi8KZGVmaW5lICJEcmFmdCBNZWRpY2F0aW9uIFJlcXVlc3QgZm9yIE1DViBkb3NlIjoKICBFbGVtZW50cy4iRHJhZnQgTWVkaWNhdGlvbiBSZXF1ZXN0IGZvciBQYXRpZW50IiBNUgogICAgd2hlcmUgTVIubWVkaWNhdGlvbiBpbiBDb25jZXB0cy4iTWVhc2xlcy1jb250YWluaW5nIHZhY2NpbmVzIgo="
+  }]
+}
+
+```

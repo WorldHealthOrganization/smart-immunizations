@@ -1,0 +1,961 @@
+# IMMZ.D18.S.Hepatitis B.4-dose schedule - WHO Immunization Implementation Guide v0.2.0
+
+* [**Table of Contents**](toc.md)
+* [**Indices**](indices.md)
+* [**Artifact Index**](artifacts.md)
+* **IMMZ.D18.S.Hepatitis B.4-dose schedule**
+
+## PlanDefinition: IMMZ.D18.S.Hepatitis B.4-dose schedule 
+
+| | |
+| :--- | :--- |
+| *Official URL*:http://smart.who.int/immunizations/PlanDefinition/IMMZD18SHepatitisB4Doses | *Version*:0.2.0 |
+| Draft as of 2026-03-24 | *Computable Name*:IMMZD18SHepatitisB4Doses |
+
+ 
+IMMZ.D18.S.Hepatitis B.4-dose schedule 4-dose schedule (birth dose + 3 primary series doses), on-time start 
+
+* **Actions: **: **Url: **
+  * : [IMMZ.D18.S.Hepatitis B.4-dose schedule](PlanDefinition-IMMZD18SHepatitisB4Doses.md)
+* **Actions: **: **Version: **
+  * : 0.2.0
+* **Actions: **: **Title: **
+  * : IMMZ.D18.S.Hepatitis B.4-dose schedule
+* **Actions: **: **Status: **
+  * : draft
+* **Actions: **: **Date: **
+  * : 2026-03-24 11:36:08+0000
+* **Actions: **: **Publisher: **
+  * : WHO
+* **Actions: **: **Description: **
+  * : IMMZ.D18.S.Hepatitis B.4-dose schedule 4-dose schedule (birth dose + 3 primary series doses), on-time start
+* **Actions: **: **Knowledge Capability: **
+  * : computable
+* **Actions: **: **Libraries: **
+  * : 
+| |
+| :--- |
+| [IMMZD18SHepatitisB4DosesLogic](Library-IMMZD18SHepatitisB4DosesLogic.md) |
+
+
+
+
+## Resource Content
+
+```json
+{
+  "resourceType" : "PlanDefinition",
+  "id" : "IMMZD18SHepatitisB4Doses",
+  "meta" : {
+    "profile" : ["http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition",
+    "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareableplandefinition",
+    "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishableplandefinition"]
+  },
+  "contained" : [{
+    "resourceType" : "Library",
+    "id" : "effective-data-requirements",
+    "extension" : [{
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Doses Administered to Patient"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/**\n * @dataElement All Doses Administered to Patient\n */\ndefine \"Doses Administered to Patient\":\n  [Immunization] I\n    where I.status = 'completed'\n    and I.isSubpotent is not true"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 0
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHepatitisBElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Hepatitis B Doses Administered to Patient"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@internal: Hepatitis B containing Doses Administered to Patient\n*/\ndefine \"Hepatitis B Doses Administered to Patient\":\n  Elements.\"Doses Administered to Patient\" I\n  where\n    I.vaccineCode in Concepts.\"Hepatitis B-containing vaccines\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 1
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHepatitisBElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Hepatitis B Primary Series Doses Administered to Patient"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@internal: Hepatitis B containing Doses Administered to Patient that are in the Primary series\n*/\ndefine \"Hepatitis B Primary Series Doses Administered to Patient\":\n  \"Hepatitis B Doses Administered to Patient\".seriesPrimary()"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 2
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHepatitisBEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Hepatitis B Primary Series Doses Administered to Patient"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@internal: Hepatitis B containing Doses Administered to Patient that are in the Primary series\n*/\ndefine \"Hepatitis B Primary Series Doses Administered to Patient\":\n  HepatitisBElements.\"Hepatitis B Primary Series Doses Administered to Patient\".onOrBefore(Today)"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 3
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHepatitisBEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Number of Hepatitis B Primary Series Doses Administered"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@internal: Number of Hepatitis B Primary Series doses\n*/\ndefine \"Number of Hepatitis B Primary Series Doses Administered\":\n  Count(\"Hepatitis B Primary Series Doses Administered to Patient\")"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 4
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHepatitisBEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "One hepatitis B primary series dose was administered"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@input: One hepatitis B primary series dose was administered\n@pseudocode: Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 1\n@code: One hepatitis B primary series dose was administered-131\n@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start\n*/\ndefine \"One hepatitis B primary series dose was administered\":\n  \"Number of Hepatitis B Primary Series Doses Administered\" = 1"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 5
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHepatitisB4DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "First hepatitis B dose from the primary series was administered"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@complete: First hepatitis B dose from the primary series was administered\n@pseudocode: Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\" and \"Type of dose\"= \"Primary series\") = 1\n*/\ndefine \"First hepatitis B dose from the primary series was administered\":\n  Encounter.\"One hepatitis B primary series dose was administered\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 6
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHepatitisBEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Two hepatitis B primary series doses were administered"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@input: Two hepatitis B primary series doses were administered\n@pseudocode: Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 2\n@code: Two hepatitis B primary series doses were administered-131\n@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start\n@decision: IMMZ.D2.DT.Hepatitis B.4 doses: 4-dose schedule (birth dose + 3 primary series doses), on-time start\n*/\ndefine \"Two hepatitis B primary series doses were administered\":\n  \"Number of Hepatitis B Primary Series Doses Administered\" = 2"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 7
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHepatitisB4DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Second hepatitis B dose from the primary series was administered"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@complete: Second hepatitis B dose from the primary series was administered\n@pseudocode: Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\" and \"Type of dose\"= \"Primary series\") = 2\n*/\ndefine \"Second hepatitis B dose from the primary series was administered\":\n  Encounter.\"Two hepatitis B primary series doses were administered\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 8
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHepatitisBEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Three hepatitis B primary series doses were administered"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@input: Three hepatitis B primary series doses were administered\n@pseudocode: Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\" and \"Type of dose\" = \"Primary series\") = 3\n@code: Three hepatitis B primary series doses were administered-131\n@decision: IMMZ.D2.DT.Hepatitis B.3 doses: 3-dose schedule (birth dose + 2 primary series doses), on-time start\n@decision: IMMZ.D2.DT.Hepatitis B.4 doses: 4-dose schedule (birth dose + 3 primary series doses), on-time start\n*/\ndefine \"Three hepatitis B primary series doses were administered\":\n  \"Number of Hepatitis B Primary Series Doses Administered\" = 3"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 9
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHepatitisB4DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Third hepatitis B dose from the primary series was administered. The primary series has been completed"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@complete: Third hepatitis B dose from the primary series was administered. The primary series has been completed\n@pseudocode: \"Completed the primary vaccination series\" = TRUE (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\")\n*/\ndefine \"Third hepatitis B dose from the primary series was administered. The primary series has been completed\":\n  Encounter.\"Three hepatitis B primary series doses were administered\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 10
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHepatitisB4DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Hepatitis B dose 1"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@output: Hepatitis B dose 1\n@description: Provision of hepatitis B dose 1\n@trigger: Child's birth\n@pseudo: \n@triggerDate: \"Date of birth\"\n*/\ndefine \"Hepatitis B dose 1\":\n  not \"First hepatitis B dose from the primary series was administered\"\n    and not \"Second hepatitis B dose from the primary series was administered\"\n    and not \"Third hepatitis B dose from the primary series was administered. The primary series has been completed\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 11
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHepatitisB4DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Hepatitis B dose 3"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@output: Hepatitis B dose 3\n@description: Provision of hepatitis B dose 3\n@trigger: Second hepatitis B dose from the primary series was administered\n@pseudo: Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\" and \"Type of dose\"= \"Primary series\") = 2\n@triggerDate: Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\")\n*/\ndefine \"Hepatitis B dose 3\":\n  \"Second hepatitis B dose from the primary series was administered\"\n    and not \"Third hepatitis B dose from the primary series was administered. The primary series has been completed\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 12
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHepatitisB4DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Hepatitis B dose 2"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@output: Hepatitis B dose 2\n@description: Provision of hepatitis B dose 2\n@trigger: First hepatitis B dose from the primary series was administered\n@pseudo: Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\" and \"Type of dose\"= \"Primary series\") = 1\n@triggerDate: Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\")\n*/\ndefine \"Hepatitis B dose 2\":\n  \"First hepatitis B dose from the primary series was administered\"\n    and not \"Second hepatitis B dose from the primary series was administered\"\n    and not \"Third hepatitis B dose from the primary series was administered. The primary series has been completed\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 13
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHepatitisBEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Hepatitis B Doses Administered to Patient"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@internal: Hepatitis B containing Doses Administered to Patient\n*/\ndefine \"Hepatitis B Doses Administered to Patient\":\n  HepatitisBElements.\"Hepatitis B Doses Administered to Patient\".onOrBefore(Today)"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 14
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHepatitisBEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Date of Latest Hepatitis B Dose"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@internal: Date of Latest Hepatitis B Dose\n*/\ndefine \"Date of Latest Hepatitis B Dose\":\n  date from start of \"Hepatitis B Doses Administered to Patient\".mostRecent().occurrence.toInterval()"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 15
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHepatitisB4DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Hepatitis B dose 2 Due Date"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@dynamicValue: Hepatitis B dose 2 Due Date\n@pseudocode: Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\") + 4 weeks\n*/\ndefine \"Hepatitis B dose 2 Due Date\":\n  if \"Hepatitis B dose 2\" then Encounter.\"Date of Latest Hepatitis B Dose\" + 4 weeks\n  else null"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 16
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHepatitisB4DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Hepatitis B dose 2 Create"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@output: Hepatitis B dose 2 Create\n@create: The following option is considered appropriate: 4 doses, where a monovalent birth dose is followed by 3 (monovalent or combined vaccine) doses, usually given with other routine infant vaccines; the additional dose does not cause any harm. The interval between doses should be at least 4 weeks.\n*/\ndefine \"Hepatitis B dose 2 Create\":\n  if \"Hepatitis B dose 2\"\n  then 'The following option is considered appropriate: 4 doses, where a monovalent birth dose is followed by 3 (monovalent or combined vaccine) doses, usually given with other routine infant vaccines; the additional dose does not cause any harm. The interval between doses should be at least 4 weeks.' + '\nDue Date: ' + ToString(\"Hepatitis B dose 2 Due Date\")\n  else ''"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 17
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHepatitisB4DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Hepatitis B dose 1 Due Date"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@dynamicValue: Hepatitis B dose 1 Due Date\n@pseudocode: \"Date of birth\" + Member States defined lower limit\n*/\ndefine \"Hepatitis B dose 1 Due Date\":\n  if \"Hepatitis B dose 1\" then Patient.birthDate + (Encounter.HepBLowerLimitWeeks * 1 weeks)\n  else null"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 18
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHepatitisB4DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Hepatitis B dose 1 Create"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@output: Hepatitis B dose 1 Create\n@create: The following option is considered appropriate: 4 doses, where a monovalent birth dose is followed by 3 (monovalent or combined vaccine) doses, usually given with other routine infant vaccines; the additional dose does not cause any harm. The interval between doses should be at least 4 weeks.\n*/\ndefine \"Hepatitis B dose 1 Create\":\n  if \"Hepatitis B dose 1\"\n  then 'The following option is considered appropriate: 4 doses, where a monovalent birth dose is followed by 3 (monovalent or combined vaccine) doses, usually given with other routine infant vaccines; the additional dose does not cause any harm. The interval between doses should be at least 4 weeks.' + '\nDue Date: ' + ToString(\"Hepatitis B dose 1 Due Date\")\n  else ''"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 19
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHepatitisB4DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Hepatitis B dose 3 Due Date"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@dynamicValue: Hepatitis B dose 3 Due Date\n@pseudocode: Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\") + 4 weeks\n*/\ndefine \"Hepatitis B dose 3 Due Date\":\n  if \"Hepatitis B dose 3\" then Encounter.\"Date of Latest Hepatitis B Dose\" + 4 weeks\n  else null"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 20
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHepatitisB4DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Hepatitis B dose 3 Create"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@output: Hepatitis B dose 3 Create\n@create: The following option is considered appropriate: 4 doses, where a monovalent birth dose is followed by 3 (monovalent or combined vaccine) doses, usually given with other routine infant vaccines; the additional dose does not cause any harm. The interval between doses should be at least 4 weeks.\n*/\ndefine \"Hepatitis B dose 3 Create\":\n  if \"Hepatitis B dose 3\"\n  then 'The following option is considered appropriate: 4 doses, where a monovalent birth dose is followed by 3 (monovalent or combined vaccine) doses, usually given with other routine infant vaccines; the additional dose does not cause any harm. The interval between doses should be at least 4 weeks.' + '\nDue Date: ' + ToString(\"Hepatitis B dose 3 Due Date\")\n  else ''"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 21
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZCommon"
+      },
+      {
+        "url" : "name",
+        "valueString" : "onOrBefore"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/**\n * @description: Gets immunizations on or before a date\n */\ndefine fluent function onOrBefore(immunizations List<Immunization>, beforeDate Date):\n  immunizations I where\n    I.occurrence.toInterval() same day or before beforeDate"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 22
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZCommon"
+      },
+      {
+        "url" : "name",
+        "valueString" : "seriesPrimary"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/**\n * @description: Gets the doses from the primary series\n */\ndefine fluent function seriesPrimary(immunizations List<Immunization>):\n  immunizations I where\n    exists( I.protocolApplied pa where pa.series = 'Primary series' )"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 23
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "FHIRHelpers"
+      },
+      {
+        "url" : "name",
+        "valueString" : "ToString"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define function ToString(value string): value.value"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 24
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "FHIRHelpers"
+      },
+      {
+        "url" : "name",
+        "valueString" : "ToString"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define function ToString(value ImmunizationStatus): value.value"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 25
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "FHIRHelpers"
+      },
+      {
+        "url" : "name",
+        "valueString" : "ToBoolean"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define function ToBoolean(value boolean): value.value"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 26
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "FHIRHelpers"
+      },
+      {
+        "url" : "name",
+        "valueString" : "ToConcept"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define function ToConcept(concept FHIR.CodeableConcept):\n    if concept is null then\n        null\n    else\n        System.Concept {\n            codes: concept.coding C return ToCode(C),\n            display: concept.text.value\n        }"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 27
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "FHIRHelpers"
+      },
+      {
+        "url" : "name",
+        "valueString" : "ToCode"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define function ToCode(coding FHIR.Coding):\n    if coding is null then\n        null\n    else\n        System.Code {\n          code: coding.code.value,\n          system: coding.system.value,\n          version: coding.version.value,\n          display: coding.display.value\n        }"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 28
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "WHOCommon"
+      },
+      {
+        "url" : "name",
+        "valueString" : "mostRecent"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define fluent function mostRecent(immunizations List<Immunization>):\n  Last(\n    immunizations I\n      sort by start of occurrence.toInterval()\n  )"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 29
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "FHIRHelpers"
+      },
+      {
+        "url" : "name",
+        "valueString" : "ToDate"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define function ToDate(value date): value.value"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 30
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    }],
+    "name" : "EffectiveDataRequirements",
+    "status" : "active",
+    "type" : {
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/library-type",
+        "code" : "module-definition"
+      }]
+    },
+    "relatedArtifact" : [{
+      "type" : "depends-on",
+      "display" : "FHIR model information",
+      "resource" : "http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library Encounter",
+      "resource" : "http://smart.who.int/immunizations/Library/IMMZD2DTHepatitisBEncounterElements"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library Common",
+      "resource" : "http://smart.who.int/immunizations/Library/IMMZCommon"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library WC",
+      "resource" : "http://smart.who.int/immunizations/Library/WHOCommon"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library HepatitisBElements",
+      "resource" : "http://smart.who.int/immunizations/Library/IMMZD2DTHepatitisBElements"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library FHIRHelpers",
+      "resource" : "http://fhir.org/guides/cqf/common/Library/FHIRHelpers|4.0.1"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library Elements",
+      "resource" : "http://smart.who.int/immunizations/Library/IMMZElements"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library FHIRHelpers",
+      "resource" : "http://fhir.org/guides/cqf/common/Library/FHIRHelpers|4.0.1"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library Concepts",
+      "resource" : "http://smart.who.int/immunizations/Library/IMMZConcepts"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library WC",
+      "resource" : "http://smart.who.int/immunizations/Library/WHOCommon"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Value set Hepatitis B-containing vaccines",
+      "resource" : "http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE6"
+    }],
+    "parameter" : [{
+      "name" : "Today",
+      "use" : "in",
+      "min" : 0,
+      "max" : "1",
+      "type" : "date"
+    },
+    {
+      "name" : "HepBLowerLimitWeeks",
+      "use" : "in",
+      "min" : 0,
+      "max" : "1",
+      "type" : "integer"
+    },
+    {
+      "name" : "Hepatitis B dose 1",
+      "use" : "out",
+      "min" : 0,
+      "max" : "1",
+      "type" : "boolean"
+    },
+    {
+      "name" : "Hepatitis B dose 3",
+      "use" : "out",
+      "min" : 0,
+      "max" : "1",
+      "type" : "boolean"
+    },
+    {
+      "name" : "Hepatitis B dose 2",
+      "use" : "out",
+      "min" : 0,
+      "max" : "1",
+      "type" : "boolean"
+    },
+    {
+      "name" : "Hepatitis B dose 2 Create",
+      "use" : "out",
+      "min" : 0,
+      "max" : "1",
+      "type" : "string"
+    },
+    {
+      "name" : "Hepatitis B dose 1 Create",
+      "use" : "out",
+      "min" : 0,
+      "max" : "1",
+      "type" : "string"
+    },
+    {
+      "name" : "Hepatitis B dose 3 Create",
+      "use" : "out",
+      "min" : 0,
+      "max" : "1",
+      "type" : "string"
+    }],
+    "dataRequirement" : [{
+      "type" : "Immunization",
+      "profile" : ["http://hl7.org/fhir/StructureDefinition/Immunization"],
+      "mustSupport" : ["status", "isSubpotent"]
+    },
+    {
+      "type" : "Immunization",
+      "profile" : ["http://hl7.org/fhir/StructureDefinition/Immunization"],
+      "mustSupport" : ["status", "isSubpotent", "vaccineCode"]
+    },
+    {
+      "type" : "Patient",
+      "profile" : ["http://hl7.org/fhir/StructureDefinition/Patient"]
+    },
+    {
+      "type" : "Immunization",
+      "profile" : ["http://hl7.org/fhir/StructureDefinition/Immunization"],
+      "mustSupport" : ["status", "isSubpotent", "vaccineCode"]
+    },
+    {
+      "type" : "Immunization",
+      "profile" : ["http://hl7.org/fhir/StructureDefinition/Immunization"],
+      "mustSupport" : ["status", "isSubpotent", "vaccineCode"]
+    },
+    {
+      "type" : "Immunization",
+      "profile" : ["http://hl7.org/fhir/StructureDefinition/Immunization"],
+      "mustSupport" : ["status", "isSubpotent", "vaccineCode"]
+    }]
+  }],
+  "extension" : [{
+    "url" : "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+    "valueCode" : "computable"
+  },
+  {
+    "url" : "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements",
+    "valueCanonical" : "#effective-data-requirements"
+  }],
+  "url" : "http://smart.who.int/immunizations/PlanDefinition/IMMZD18SHepatitisB4Doses",
+  "version" : "0.2.0",
+  "name" : "IMMZD18SHepatitisB4Doses",
+  "title" : "IMMZ.D18.S.Hepatitis B.4-dose schedule",
+  "type" : {
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/plan-definition-type",
+      "code" : "eca-rule"
+    }]
+  },
+  "status" : "draft",
+  "experimental" : false,
+  "date" : "2026-03-24T11:36:08+00:00",
+  "publisher" : "WHO",
+  "contact" : [{
+    "name" : "WHO",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://who.int"
+    }]
+  }],
+  "description" : "IMMZ.D18.S.Hepatitis B.4-dose schedule\n4-dose schedule (birth dose + 3 primary series doses), on-time start",
+  "relatedArtifact" : [{
+    "type" : "citation",
+    "citation" : "WHO recommendations for routine immunization - summary tables (January 2025)"
+  }],
+  "library" : ["http://smart.who.int/immunizations/Library/IMMZD18SHepatitisB4DosesLogic"],
+  "action" : [{
+    "title" : "Hepatitis B dose 1",
+    "description" : "Provision of hepatitis B dose 1\nTrigger event: Child's birth\nTrigger pseudo: \nTrigger date: \"Date of birth\"\nCreate condition: The following option is considered appropriate: 4 doses, where a monovalent birth dose is followed by 3 (monovalent or combined vaccine) doses, usually given with other routine infant vaccines; the additional dose does not cause any harm. The interval between doses should be at least 4 weeks.",
+    "condition" : [{
+      "kind" : "applicability",
+      "expression" : {
+        "description" : "Hepatitis B dose 1",
+        "language" : "text/cql-identifier",
+        "expression" : "Hepatitis B dose 1"
+      }
+    }],
+    "definitionCanonical" : "http://smart.who.int/immunizations/ActivityDefinition/IMMZD2DTCR",
+    "dynamicValue" : [{
+      "path" : "status",
+      "expression" : {
+        "language" : "text/cql-expression",
+        "expression" : "'active'"
+      }
+    },
+    {
+      "path" : "payload.contentString",
+      "expression" : {
+        "language" : "text/cql-identifier",
+        "expression" : "Hepatitis B dose 1 Create"
+      }
+    },
+    {
+      "path" : "category.coding",
+      "expression" : {
+        "description" : "Category of communication",
+        "language" : "text/cql-expression",
+        "expression" : "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+      }
+    },
+    {
+      "path" : "priority",
+      "expression" : {
+        "description" : "Alert priority",
+        "language" : "text/cql-expression",
+        "expression" : "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+      }
+    }]
+  },
+  {
+    "title" : "Hepatitis B dose 2",
+    "description" : "Provision of hepatitis B dose 2\nTrigger event: First hepatitis B dose from the primary series was administered\nTrigger pseudo: Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\" and \"Type of dose\"= \"Primary series\") = 1\nTrigger date: Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\")\nCreate condition: The following option is considered appropriate: 4 doses, where a monovalent birth dose is followed by 3 (monovalent or combined vaccine) doses, usually given with other routine infant vaccines; the additional dose does not cause any harm. The interval between doses should be at least 4 weeks.",
+    "condition" : [{
+      "kind" : "applicability",
+      "expression" : {
+        "description" : "Hepatitis B dose 2",
+        "language" : "text/cql-identifier",
+        "expression" : "Hepatitis B dose 2"
+      }
+    }],
+    "definitionCanonical" : "http://smart.who.int/immunizations/ActivityDefinition/IMMZD2DTCR",
+    "dynamicValue" : [{
+      "path" : "status",
+      "expression" : {
+        "language" : "text/cql-expression",
+        "expression" : "'active'"
+      }
+    },
+    {
+      "path" : "payload.contentString",
+      "expression" : {
+        "language" : "text/cql-identifier",
+        "expression" : "Hepatitis B dose 2 Create"
+      }
+    },
+    {
+      "path" : "category.coding",
+      "expression" : {
+        "description" : "Category of communication",
+        "language" : "text/cql-expression",
+        "expression" : "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+      }
+    },
+    {
+      "path" : "priority",
+      "expression" : {
+        "description" : "Alert priority",
+        "language" : "text/cql-expression",
+        "expression" : "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+      }
+    }]
+  },
+  {
+    "title" : "Hepatitis B dose 3",
+    "description" : "Provision of hepatitis B dose 3\nTrigger event: Second hepatitis B dose from the primary series was administered\nTrigger pseudo: Count of vaccines administered (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\" and \"Type of dose\"= \"Primary series\") = 2\nTrigger date: Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"Hepatitis B-containing vaccines\")\nCreate condition: The following option is considered appropriate: 4 doses, where a monovalent birth dose is followed by 3 (monovalent or combined vaccine) doses, usually given with other routine infant vaccines; the additional dose does not cause any harm. The interval between doses should be at least 4 weeks.",
+    "condition" : [{
+      "kind" : "applicability",
+      "expression" : {
+        "description" : "Hepatitis B dose 3",
+        "language" : "text/cql-identifier",
+        "expression" : "Hepatitis B dose 3"
+      }
+    }],
+    "definitionCanonical" : "http://smart.who.int/immunizations/ActivityDefinition/IMMZD2DTCR",
+    "dynamicValue" : [{
+      "path" : "status",
+      "expression" : {
+        "language" : "text/cql-expression",
+        "expression" : "'active'"
+      }
+    },
+    {
+      "path" : "payload.contentString",
+      "expression" : {
+        "language" : "text/cql-identifier",
+        "expression" : "Hepatitis B dose 3 Create"
+      }
+    },
+    {
+      "path" : "category.coding",
+      "expression" : {
+        "description" : "Category of communication",
+        "language" : "text/cql-expression",
+        "expression" : "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+      }
+    },
+    {
+      "path" : "priority",
+      "expression" : {
+        "description" : "Alert priority",
+        "language" : "text/cql-expression",
+        "expression" : "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+      }
+    }]
+  }]
+}
+
+```

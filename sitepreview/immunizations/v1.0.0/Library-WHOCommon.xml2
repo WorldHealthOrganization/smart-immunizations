@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Library xmlns="http://hl7.org/fhir">
+  <id value="WHOCommon"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablelibrary"/>
+    <profile value="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary"/>
+    <profile value="http://hl7.org/fhir/uv/cql/StructureDefinition/cql-library"/>
+    <profile value="http://hl7.org/fhir/uv/cql/StructureDefinition/cql-module"/>
+  </meta>
+  <text>
+    <status value="extensions"/><div xmlns="http://www.w3.org/1999/xhtml">
+<div>
+    <table class="grid dict">
+        
+        
+        <tr>
+            <th scope="row"><b>Title: </b></th>
+            <td style="padding-left: 4px;">WHOCommon</td>
+        </tr>
+        
+
+        
+        
+        <tr>
+            <th scope="row"><b>Id: </b></th>
+            <td style="padding-left: 4px;">WHOCommon</td>
+        </tr>
+        
+
+        
+        
+        <tr>
+            <th scope="row"><b>Version: </b></th>
+            <td style="padding-left: 4px;">1.0.0</td>
+        </tr>
+        
+
+        
+        <tr>
+            <th scope="row"><b>Url: </b></th>
+            <td style="padding-left: 4px;"><a href="Library-WHOCommon.html">WHOCommon</a></td>
+        </tr>
+        
+
+        
+
+        
+
+        
+        <tr>
+            <th scope="row"><b>Status: </b></th>
+            <td style="padding-left: 4px;">draft</td>
+        </tr>
+        
+
+        
+
+        
+        <tr>
+            <th scope="row"><b>Type: </b></th>
+            <td style="padding-left: 4px;">
+                
+                    
+                        
+                        <p style="margin-bottom: 5px;">
+                            <b>system: </b> <span><a href="http://terminology.hl7.org/7.1.0/CodeSystem-library-type.html">http://terminology.hl7.org/CodeSystem/library-type</a></span>
+                        </p>
+                        
+                        
+                        <p style="margin-bottom: 5px;">
+                            <b>code: </b> <span>logic-library</span>
+                        </p>
+                        
+                        
+                    
+                
+                
+            </td>
+        </tr>
+        
+
+        
+
+        
+        <tr>
+            <th scope="row"><b>Date: </b></th>
+            <td style="padding-left: 4px;">2026-04-09 14:18:30+0000</td>
+        </tr>
+        
+
+        
+        <tr>
+            <th scope="row"><b>Publisher: </b></th>
+            <td style="padding-left: 4px;">WHO</td>
+        </tr>
+        
+
+        
+        <tr>
+            <th scope="row"><b>Description: </b></th>
+            <td style="padding-left: 4px;"><div><p>This library defines common terminologies and functions used throughout WHO SMART Guidelines content</p>
+</div></td>
+        </tr>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+        <tr>
+            <th scope="row"><b>Related Artifacts: </b></th>
+            <td style="padding-left: 4px;">
+                
+                
+                
+                <p><b>Dependencies</b></p>
+                <ul>
+                  
+                    <li><a href="http://terminology.hl7.org/7.1.0/CodeSystem-condition-clinical.html">Condition Clinical Status Codes</a></li>
+                  
+                </ul>
+                
+                
+                
+                
+                
+            </td>
+        </tr>
+        
+
+        
+        <tr>
+          <th scope="row"><b>Parameters: </b></th>
+          <td style="padding-left: 4px;">
+            <table class="grid-dict">
+              <tr><th><b>Name</b></th><th><b>Type</b></th><th><b>Min</b></th><th><b>Max</b></th><th><b>In/Out</b></th></tr>
+              
+                <tr><th>Patient</th><th>Patient</th><th>0</th><th>1</th><th>Out</th></tr>
+              
+            </table>
+          </td>
+        </tr>
+        
+
+        
+
+        
+        
+        <tr>
+          <td colspan="2">
+            <table>
+              <tr><th><a id="cql-content"><b>Content: </b></a> text/cql</th></tr>
+              <tr><td><pre><code class="language-cql">library WHOCommon
+
+using FHIR version '4.0.1'
+
+include FHIRHelpers version '4.0.1'
+
+codesystem &quot;ConditionClinicalStatusCodes&quot;: 'http://terminology.hl7.org/CodeSystem/condition-clinical'
+
+// Condition Clinical Status Codes - Consider value sets for these
+code &quot;active&quot;: 'active' from &quot;ConditionClinicalStatusCodes&quot;
+code &quot;recurrence&quot;: 'recurrence' from &quot;ConditionClinicalStatusCodes&quot;
+code &quot;relapse&quot;: 'relapse' from &quot;ConditionClinicalStatusCodes&quot;
+code &quot;inactive&quot;: 'inactive' from &quot;ConditionClinicalStatusCodes&quot;
+code &quot;remission&quot;: 'remission' from &quot;ConditionClinicalStatusCodes&quot;
+code &quot;resolved&quot;: 'resolved' from &quot;ConditionClinicalStatusCodes&quot;
+
+context Patient
+
+define fluent function official(identifiers List&lt;Identifier&gt;):
+  singleton from (identifiers I where I.use = 'official')
+
+define fluent function official(addresses List&lt;Address&gt;):
+  singleton from (addresses A where A.use = 'official')
+
+define fluent function official(names List&lt;HumanName&gt;):
+  singleton from (names N where N.use = 'official')
+
+define fluent function mobile(contactPoints List&lt;ContactPoint&gt;):
+  singleton from (contactPoints P where P.use = 'mobile')
+
+define fluent function only(allergies List&lt;AllergyIntolerance&gt;):
+  singleton from allergies
+
+define fluent function only(appointments List&lt;Appointment&gt;):
+  singleton from appointments
+
+define fluent function only(careplans List&lt;CarePlan&gt;):
+  singleton from careplans
+
+define fluent function only(conditions List&lt;Condition&gt;):
+  singleton from conditions
+
+define fluent function only(encounters List&lt;Encounter&gt;):
+  singleton from encounters
+
+define fluent function only(immunizations List&lt;Immunization&gt;):
+  singleton from immunizations
+
+define fluent function only(locations List&lt;Location&gt;):
+  singleton from locations
+
+define fluent function only(medicationrequests List&lt;MedicationRequest&gt;):
+  singleton from medicationrequests
+
+define fluent function only(observations List&lt;Observation&gt;):
+  singleton from observations
+
+define fluent function only(procedures List&lt;Procedure&gt;):
+  singleton from procedures
+
+define fluent function only(serviceRequests List&lt;ServiceRequest&gt;):
+  singleton from serviceRequests
+
+define fluent function only(dosages List&lt;Dosage&gt;):
+  singleton from dosages
+
+define fluent function only(doses List&lt;FHIR.Dosage.DoseAndRate&gt;):
+  singleton from doses
+
+define fluent function earliest(observations List&lt;Observation&gt;):
+  First(
+    observations O
+      sort by issued
+  )
+
+define fluent function earliest(immunizations List&lt;Immunization&gt;):
+  First(
+    immunizations I
+      sort by start of occurrence.toInterval()
+  )
+
+
+define fluent function latest(observations List&lt;Observation&gt;):
+  Last(
+    observations O
+      sort by issued
+  )
+
+define fluent function mostRecent(observations List&lt;Observation&gt;):
+  Last(
+    observations O
+      sort by issued
+  )
+
+define fluent function mostRecent(procedures List&lt;Procedure&gt;):
+  Last(
+    procedures P
+      sort by start of performed.toInterval()
+  )
+
+define fluent function mostRecent(immunizations List&lt;Immunization&gt;):
+  Last(
+    immunizations I
+      sort by start of occurrence.toInterval()
+  )
+
+define fluent function mostRecent(medicationRequests List&lt;MedicationRequest&gt;):
+  Last(
+    medicationRequests MR
+      sort by authoredOn
+  )
+
+define fluent function lowest(observations List&lt;Observation&gt;):
+  First(
+    observations O
+      sort by FHIRHelpers.ToQuantity(value as FHIR.Quantity)
+  )
+
+define fluent function highest(observations List&lt;Observation&gt;):
+  Last(
+    observations O
+      sort by FHIRHelpers.ToQuantity(value as FHIR.Quantity)
+  )
+
+define fluent function complete(observations List&lt;Observation&gt;):
+  observations O where O.status in { 'final', 'amended', 'corrected' }
+
+define function EarliestOf(dates List&lt;Date&gt;):
+  Min(dates)
+
+define function LatestOf(dates List&lt;Date&gt;):
+  Max(dates)
+
+/*
+From FHIRCommon 4.1.0:
+*/
+
+/*
+@description: Normalizes a value that is a choice of timing-valued types to an equivalent interval
+@comment: Normalizes a choice type of FHIR.dateTime, FHIR.Period, FHIR.Timing, FHIR.instance, FHIR.string, FHIR.Age, or FHIR.Range types
+to an equivalent interval. This selection of choice types is a superset of the majority of choice types that are used as possible
+representations for timing-valued elements in FHIR, allowing this function to be used across any resource.
+
+The input can be provided as a dateTime, Period, Timing, instant, string, Age, or Range.
+The intent of this function is to provide a clear and concise mechanism to treat single
+elements that have multiple possible representations as intervals so that logic doesn't have to account
+for the variability. More complex calculations (such as medication request period or dispense period
+calculation) need specific guidance and consideration. That guidance may make use of this function, but
+the focus of this function is on single element calculations where the semantics are unambiguous.
+If the input is a dateTime, the result a DateTime Interval beginning and ending on that dateTime.
+If the input is a Period, the result is a DateTime Interval.
+If the input is a Timing, an error is raised indicating a single interval cannot be computed from a Timing.
+If the input is an instant, the result is a DateTime Interval beginning and ending on that instant.
+If the input is a string, an error is raised indicating a single interval cannot be computed from a string.
+If the input is an Age, the result is a DateTime Interval beginning when the patient was the given Age,
+and ending immediately prior to when the patient was the given Age plus one year.
+If the input is a Range, the result is a DateTime Interval beginning when the patient was the Age given
+by the low end of the Range, and ending immediately prior to when the patient was the Age given by the
+high end of the Range plus one year.
+
+NOTE: Due to the
+complexity of determining a single interval from a Timing or String type, this function will throw a run-time exception if it is used
+with a Timing or String.
+*/
+define fluent function toInterval(choice Choice&lt;FHIR.dateTime, FHIR.Period, FHIR.Timing, FHIR.instant, FHIR.string, FHIR.Age, FHIR.Range&gt;):
+  case
+    when choice is FHIR.dateTime then
+      Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
+    when choice is FHIR.Period then
+      FHIRHelpers.ToInterval(choice as FHIR.Period)
+    when choice is FHIR.instant then
+      Interval[FHIRHelpers.ToDateTime(choice as FHIR.instant), FHIRHelpers.ToDateTime(choice as FHIR.instant)]
+    when choice is FHIR.Age then
+      Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age),
+        FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age) + 1 year)
+    when choice is FHIR.Range then
+      Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).low),
+        FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).high) + 1 year)
+    when choice is FHIR.Timing then
+      Message(null as Interval&lt;DateTime&gt;, true, 'NOT_IMPLEMENTED', 'Error', 'Calculation of an interval from a Timing value is not supported')
+    when choice is FHIR.string then
+      Message(null as Interval&lt;DateTime&gt;, true, 'NOT_IMPLEMENTED', 'Error', 'Calculation of an interval from a String value is not supported')
+    else
+      null as Interval&lt;DateTime&gt;
+  end
+
+// Was getting error on this for this particular choice set not being found
+
+
+/*
+@description: Returns an interval representing the normalized Abatement of a given Condition resource.
+@comment: NOTE: Due to the complexity of determining an interval from a String, this function will throw
+a run-time exception if used with a Condition instance that has a String as the abatement value.
+*/
+define fluent function abatementInterval(condition Condition):
+  if condition.abatement is FHIR.dateTime then
+    Interval[FHIRHelpers.ToDateTime(condition.abatement as FHIR.dateTime), FHIRHelpers.ToDateTime(condition.abatement as FHIR.dateTime)]
+  else if condition.abatement is FHIR.Period then
+    FHIRHelpers.ToInterval(condition.abatement as FHIR.Period)
+  else if condition.abatement is FHIR.string then
+    Message(null as Interval&lt;DateTime&gt;, true, 'NOT_IMPLEMENTED', 'Error', 'Calculation of an interval from a String value is not supported')
+  else if condition.abatement is FHIR.Age then
+    Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(condition.abatement as FHIR.Age),
+      FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(condition.abatement as FHIR.Age) + 1 year)
+  else if condition.abatement is FHIR.Range then
+    Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((condition.abatement as FHIR.Range).low),
+      FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((condition.abatement as FHIR.Range).high) + 1 year)
+  else if condition.abatement is FHIR.boolean then
+    Interval[end of condition.onset.toInterval(), condition.recordedDate)
+  else 
+    null
+
+/*
+@description: Returns an interval representing the normalized prevalence period of a given Condition resource.
+@comment: Uses the toInterval and toAbatementInterval functions to determine the widest potential interval from
+onset to abatement as specified in the given Condition.
+*/
+define fluent function prevalenceInterval(condition Condition):
+if condition.clinicalStatus ~ &quot;active&quot;
+  or condition.clinicalStatus ~ &quot;recurrence&quot;
+  or condition.clinicalStatus ~ &quot;relapse&quot; then
+  Interval[start of condition.onset.toInterval(), end of condition.abatementInterval()]
+else
+  (end of condition.abatementInterval()) abatementDate
+    return 
+	  if abatementDate is null then
+        Interval[start of condition.onset.toInterval(), abatementDate)
+      else
+        Interval[start of condition.onset.toInterval(), abatementDate]
+
+/*
+@description: Returns true if the given reference is to the given resource
+@comment: Returns true if the `id` element of the given resource exactly equals the tail of the given reference.
+NOTE: This function assumes resources from the same source server.
+*/
+define fluent function references(reference FHIR.Reference, resource FHIR.Resource):
+  resource.id = Last(Split(reference.reference, '/'))  
+
+/*
+@description: Returns true if the given reference is to the given resourceId
+@comment: Returns true if the `resourceId` parameter exactly equals the tail of the given reference.
+NOTE: This function assumes resources from the same source server.
+*/
+define fluent function references(reference FHIR.Reference, resourceId String):
+  resourceId = Last(Split(reference.reference, '/'))
+
+/*
+@description: Returns true if any of the given references are to the given resource
+@comment: Returns true if the `id` element of the given resource exactly equals the tail of any of the given references.
+NOTE: This function assumes resources from the same source server.
+*/
+define fluent function references(references List&lt;FHIR.Reference&gt;, resource FHIR.Resource):
+  exists (references R where R.references(resource))
+  
+/*
+@description: Returns true if any of the given references are to the given resourceId
+@comment: Returns true if the `resourceId` parameter exactly equals the tail of any of the given references.
+NOTE: This function assumes resources from the same source server.
+*/
+define fluent function references(references List&lt;FHIR.Reference&gt;, resourceId String):
+  exists (references R where R.references(resourceId))
+</code></pre></td></tr>
+            </table>
+          </td>
+        </tr>
+        
+        
+        
+    </table>
+</div>
+</div>
+  </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/cqf-knowledgeCapability">
+    <valueCode value="computable"/>
+  </extension>
+  <url value="http://smart.who.int/immunizations/Library/WHOCommon"/>
+  <version value="1.0.0"/>
+  <name value="WHOCommon"/>
+  <title value="WHOCommon"/>
+  <status value="draft"/>
+  <experimental value="false"/>
+  <type>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/library-type"/>
+      <code value="logic-library"/>
+    </coding>
+  </type>
+  <date value="2026-04-09T14:18:30+00:00"/>
+  <publisher value="WHO"/>
+  <contact>
+    <name value="WHO"/>
+    <telecom>
+      <system value="url"/>
+      <value value="http://who.int"/>
+    </telecom>
+  </contact>
+  <description value="This library defines common terminologies and functions used throughout WHO SMART Guidelines content"/>
+  <relatedArtifact>
+    <type value="depends-on"/>
+    <display value="Code System ConditionClinicalStatusCodes"/>
+    <resource value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+  </relatedArtifact>
+  <parameter>
+    <name value="Patient"/>
+    <use value="out"/>
+    <min value="0"/>
+    <max value="1"/>
+    <type value="Patient"/>
+  </parameter>
+  <content>
+    <contentType value="text/cql"/>
+    <data value="bGlicmFyeSBXSE9Db21tb24NCg0KdXNpbmcgRkhJUiB2ZXJzaW9uICc0LjAuMScNCg0KaW5jbHVkZSBGSElSSGVscGVycyB2ZXJzaW9uICc0LjAuMScNCg0KY29kZXN5c3RlbSAiQ29uZGl0aW9uQ2xpbmljYWxTdGF0dXNDb2RlcyI6ICdodHRwOi8vdGVybWlub2xvZ3kuaGw3Lm9yZy9Db2RlU3lzdGVtL2NvbmRpdGlvbi1jbGluaWNhbCcNCg0KLy8gQ29uZGl0aW9uIENsaW5pY2FsIFN0YXR1cyBDb2RlcyAtIENvbnNpZGVyIHZhbHVlIHNldHMgZm9yIHRoZXNlDQpjb2RlICJhY3RpdmUiOiAnYWN0aXZlJyBmcm9tICJDb25kaXRpb25DbGluaWNhbFN0YXR1c0NvZGVzIg0KY29kZSAicmVjdXJyZW5jZSI6ICdyZWN1cnJlbmNlJyBmcm9tICJDb25kaXRpb25DbGluaWNhbFN0YXR1c0NvZGVzIg0KY29kZSAicmVsYXBzZSI6ICdyZWxhcHNlJyBmcm9tICJDb25kaXRpb25DbGluaWNhbFN0YXR1c0NvZGVzIg0KY29kZSAiaW5hY3RpdmUiOiAnaW5hY3RpdmUnIGZyb20gIkNvbmRpdGlvbkNsaW5pY2FsU3RhdHVzQ29kZXMiDQpjb2RlICJyZW1pc3Npb24iOiAncmVtaXNzaW9uJyBmcm9tICJDb25kaXRpb25DbGluaWNhbFN0YXR1c0NvZGVzIg0KY29kZSAicmVzb2x2ZWQiOiAncmVzb2x2ZWQnIGZyb20gIkNvbmRpdGlvbkNsaW5pY2FsU3RhdHVzQ29kZXMiDQoNCmNvbnRleHQgUGF0aWVudA0KDQpkZWZpbmUgZmx1ZW50IGZ1bmN0aW9uIG9mZmljaWFsKGlkZW50aWZpZXJzIExpc3Q8SWRlbnRpZmllcj4pOg0KICBzaW5nbGV0b24gZnJvbSAoaWRlbnRpZmllcnMgSSB3aGVyZSBJLnVzZSA9ICdvZmZpY2lhbCcpDQoNCmRlZmluZSBmbHVlbnQgZnVuY3Rpb24gb2ZmaWNpYWwoYWRkcmVzc2VzIExpc3Q8QWRkcmVzcz4pOg0KICBzaW5nbGV0b24gZnJvbSAoYWRkcmVzc2VzIEEgd2hlcmUgQS51c2UgPSAnb2ZmaWNpYWwnKQ0KDQpkZWZpbmUgZmx1ZW50IGZ1bmN0aW9uIG9mZmljaWFsKG5hbWVzIExpc3Q8SHVtYW5OYW1lPik6DQogIHNpbmdsZXRvbiBmcm9tIChuYW1lcyBOIHdoZXJlIE4udXNlID0gJ29mZmljaWFsJykNCg0KZGVmaW5lIGZsdWVudCBmdW5jdGlvbiBtb2JpbGUoY29udGFjdFBvaW50cyBMaXN0PENvbnRhY3RQb2ludD4pOg0KICBzaW5nbGV0b24gZnJvbSAoY29udGFjdFBvaW50cyBQIHdoZXJlIFAudXNlID0gJ21vYmlsZScpDQoNCmRlZmluZSBmbHVlbnQgZnVuY3Rpb24gb25seShhbGxlcmdpZXMgTGlzdDxBbGxlcmd5SW50b2xlcmFuY2U+KToNCiAgc2luZ2xldG9uIGZyb20gYWxsZXJnaWVzDQoNCmRlZmluZSBmbHVlbnQgZnVuY3Rpb24gb25seShhcHBvaW50bWVudHMgTGlzdDxBcHBvaW50bWVudD4pOg0KICBzaW5nbGV0b24gZnJvbSBhcHBvaW50bWVudHMNCg0KZGVmaW5lIGZsdWVudCBmdW5jdGlvbiBvbmx5KGNhcmVwbGFucyBMaXN0PENhcmVQbGFuPik6DQogIHNpbmdsZXRvbiBmcm9tIGNhcmVwbGFucw0KDQpkZWZpbmUgZmx1ZW50IGZ1bmN0aW9uIG9ubHkoY29uZGl0aW9ucyBMaXN0PENvbmRpdGlvbj4pOg0KICBzaW5nbGV0b24gZnJvbSBjb25kaXRpb25zDQoNCmRlZmluZSBmbHVlbnQgZnVuY3Rpb24gb25seShlbmNvdW50ZXJzIExpc3Q8RW5jb3VudGVyPik6DQogIHNpbmdsZXRvbiBmcm9tIGVuY291bnRlcnMNCg0KZGVmaW5lIGZsdWVudCBmdW5jdGlvbiBvbmx5KGltbXVuaXphdGlvbnMgTGlzdDxJbW11bml6YXRpb24+KToNCiAgc2luZ2xldG9uIGZyb20gaW1tdW5pemF0aW9ucw0KDQpkZWZpbmUgZmx1ZW50IGZ1bmN0aW9uIG9ubHkobG9jYXRpb25zIExpc3Q8TG9jYXRpb24+KToNCiAgc2luZ2xldG9uIGZyb20gbG9jYXRpb25zDQoNCmRlZmluZSBmbHVlbnQgZnVuY3Rpb24gb25seShtZWRpY2F0aW9ucmVxdWVzdHMgTGlzdDxNZWRpY2F0aW9uUmVxdWVzdD4pOg0KICBzaW5nbGV0b24gZnJvbSBtZWRpY2F0aW9ucmVxdWVzdHMNCg0KZGVmaW5lIGZsdWVudCBmdW5jdGlvbiBvbmx5KG9ic2VydmF0aW9ucyBMaXN0PE9ic2VydmF0aW9uPik6DQogIHNpbmdsZXRvbiBmcm9tIG9ic2VydmF0aW9ucw0KDQpkZWZpbmUgZmx1ZW50IGZ1bmN0aW9uIG9ubHkocHJvY2VkdXJlcyBMaXN0PFByb2NlZHVyZT4pOg0KICBzaW5nbGV0b24gZnJvbSBwcm9jZWR1cmVzDQoNCmRlZmluZSBmbHVlbnQgZnVuY3Rpb24gb25seShzZXJ2aWNlUmVxdWVzdHMgTGlzdDxTZXJ2aWNlUmVxdWVzdD4pOg0KICBzaW5nbGV0b24gZnJvbSBzZXJ2aWNlUmVxdWVzdHMNCg0KZGVmaW5lIGZsdWVudCBmdW5jdGlvbiBvbmx5KGRvc2FnZXMgTGlzdDxEb3NhZ2U+KToNCiAgc2luZ2xldG9uIGZyb20gZG9zYWdlcw0KDQpkZWZpbmUgZmx1ZW50IGZ1bmN0aW9uIG9ubHkoZG9zZXMgTGlzdDxGSElSLkRvc2FnZS5Eb3NlQW5kUmF0ZT4pOg0KICBzaW5nbGV0b24gZnJvbSBkb3Nlcw0KDQpkZWZpbmUgZmx1ZW50IGZ1bmN0aW9uIGVhcmxpZXN0KG9ic2VydmF0aW9ucyBMaXN0PE9ic2VydmF0aW9uPik6DQogIEZpcnN0KA0KICAgIG9ic2VydmF0aW9ucyBPDQogICAgICBzb3J0IGJ5IGlzc3VlZA0KICApDQoNCmRlZmluZSBmbHVlbnQgZnVuY3Rpb24gZWFybGllc3QoaW1tdW5pemF0aW9ucyBMaXN0PEltbXVuaXphdGlvbj4pOg0KICBGaXJzdCgNCiAgICBpbW11bml6YXRpb25zIEkNCiAgICAgIHNvcnQgYnkgc3RhcnQgb2Ygb2NjdXJyZW5jZS50b0ludGVydmFsKCkNCiAgKQ0KDQoNCmRlZmluZSBmbHVlbnQgZnVuY3Rpb24gbGF0ZXN0KG9ic2VydmF0aW9ucyBMaXN0PE9ic2VydmF0aW9uPik6DQogIExhc3QoDQogICAgb2JzZXJ2YXRpb25zIE8NCiAgICAgIHNvcnQgYnkgaXNzdWVkDQogICkNCg0KZGVmaW5lIGZsdWVudCBmdW5jdGlvbiBtb3N0UmVjZW50KG9ic2VydmF0aW9ucyBMaXN0PE9ic2VydmF0aW9uPik6DQogIExhc3QoDQogICAgb2JzZXJ2YXRpb25zIE8NCiAgICAgIHNvcnQgYnkgaXNzdWVkDQogICkNCg0KZGVmaW5lIGZsdWVudCBmdW5jdGlvbiBtb3N0UmVjZW50KHByb2NlZHVyZXMgTGlzdDxQcm9jZWR1cmU+KToNCiAgTGFzdCgNCiAgICBwcm9jZWR1cmVzIFANCiAgICAgIHNvcnQgYnkgc3RhcnQgb2YgcGVyZm9ybWVkLnRvSW50ZXJ2YWwoKQ0KICApDQoNCmRlZmluZSBmbHVlbnQgZnVuY3Rpb24gbW9zdFJlY2VudChpbW11bml6YXRpb25zIExpc3Q8SW1tdW5pemF0aW9uPik6DQogIExhc3QoDQogICAgaW1tdW5pemF0aW9ucyBJDQogICAgICBzb3J0IGJ5IHN0YXJ0IG9mIG9jY3VycmVuY2UudG9JbnRlcnZhbCgpDQogICkNCg0KZGVmaW5lIGZsdWVudCBmdW5jdGlvbiBtb3N0UmVjZW50KG1lZGljYXRpb25SZXF1ZXN0cyBMaXN0PE1lZGljYXRpb25SZXF1ZXN0Pik6DQogIExhc3QoDQogICAgbWVkaWNhdGlvblJlcXVlc3RzIE1SDQogICAgICBzb3J0IGJ5IGF1dGhvcmVkT24NCiAgKQ0KDQpkZWZpbmUgZmx1ZW50IGZ1bmN0aW9uIGxvd2VzdChvYnNlcnZhdGlvbnMgTGlzdDxPYnNlcnZhdGlvbj4pOg0KICBGaXJzdCgNCiAgICBvYnNlcnZhdGlvbnMgTw0KICAgICAgc29ydCBieSBGSElSSGVscGVycy5Ub1F1YW50aXR5KHZhbHVlIGFzIEZISVIuUXVhbnRpdHkpDQogICkNCg0KZGVmaW5lIGZsdWVudCBmdW5jdGlvbiBoaWdoZXN0KG9ic2VydmF0aW9ucyBMaXN0PE9ic2VydmF0aW9uPik6DQogIExhc3QoDQogICAgb2JzZXJ2YXRpb25zIE8NCiAgICAgIHNvcnQgYnkgRkhJUkhlbHBlcnMuVG9RdWFudGl0eSh2YWx1ZSBhcyBGSElSLlF1YW50aXR5KQ0KICApDQoNCmRlZmluZSBmbHVlbnQgZnVuY3Rpb24gY29tcGxldGUob2JzZXJ2YXRpb25zIExpc3Q8T2JzZXJ2YXRpb24+KToNCiAgb2JzZXJ2YXRpb25zIE8gd2hlcmUgTy5zdGF0dXMgaW4geyAnZmluYWwnLCAnYW1lbmRlZCcsICdjb3JyZWN0ZWQnIH0NCg0KZGVmaW5lIGZ1bmN0aW9uIEVhcmxpZXN0T2YoZGF0ZXMgTGlzdDxEYXRlPik6DQogIE1pbihkYXRlcykNCg0KZGVmaW5lIGZ1bmN0aW9uIExhdGVzdE9mKGRhdGVzIExpc3Q8RGF0ZT4pOg0KICBNYXgoZGF0ZXMpDQoNCi8qDQpGcm9tIEZISVJDb21tb24gNC4xLjA6DQoqLw0KDQovKg0KQGRlc2NyaXB0aW9uOiBOb3JtYWxpemVzIGEgdmFsdWUgdGhhdCBpcyBhIGNob2ljZSBvZiB0aW1pbmctdmFsdWVkIHR5cGVzIHRvIGFuIGVxdWl2YWxlbnQgaW50ZXJ2YWwNCkBjb21tZW50OiBOb3JtYWxpemVzIGEgY2hvaWNlIHR5cGUgb2YgRkhJUi5kYXRlVGltZSwgRkhJUi5QZXJpb2QsIEZISVIuVGltaW5nLCBGSElSLmluc3RhbmNlLCBGSElSLnN0cmluZywgRkhJUi5BZ2UsIG9yIEZISVIuUmFuZ2UgdHlwZXMNCnRvIGFuIGVxdWl2YWxlbnQgaW50ZXJ2YWwuIFRoaXMgc2VsZWN0aW9uIG9mIGNob2ljZSB0eXBlcyBpcyBhIHN1cGVyc2V0IG9mIHRoZSBtYWpvcml0eSBvZiBjaG9pY2UgdHlwZXMgdGhhdCBhcmUgdXNlZCBhcyBwb3NzaWJsZQ0KcmVwcmVzZW50YXRpb25zIGZvciB0aW1pbmctdmFsdWVkIGVsZW1lbnRzIGluIEZISVIsIGFsbG93aW5nIHRoaXMgZnVuY3Rpb24gdG8gYmUgdXNlZCBhY3Jvc3MgYW55IHJlc291cmNlLg0KDQpUaGUgaW5wdXQgY2FuIGJlIHByb3ZpZGVkIGFzIGEgZGF0ZVRpbWUsIFBlcmlvZCwgVGltaW5nLCBpbnN0YW50LCBzdHJpbmcsIEFnZSwgb3IgUmFuZ2UuDQpUaGUgaW50ZW50IG9mIHRoaXMgZnVuY3Rpb24gaXMgdG8gcHJvdmlkZSBhIGNsZWFyIGFuZCBjb25jaXNlIG1lY2hhbmlzbSB0byB0cmVhdCBzaW5nbGUNCmVsZW1lbnRzIHRoYXQgaGF2ZSBtdWx0aXBsZSBwb3NzaWJsZSByZXByZXNlbnRhdGlvbnMgYXMgaW50ZXJ2YWxzIHNvIHRoYXQgbG9naWMgZG9lc24ndCBoYXZlIHRvIGFjY291bnQNCmZvciB0aGUgdmFyaWFiaWxpdHkuIE1vcmUgY29tcGxleCBjYWxjdWxhdGlvbnMgKHN1Y2ggYXMgbWVkaWNhdGlvbiByZXF1ZXN0IHBlcmlvZCBvciBkaXNwZW5zZSBwZXJpb2QNCmNhbGN1bGF0aW9uKSBuZWVkIHNwZWNpZmljIGd1aWRhbmNlIGFuZCBjb25zaWRlcmF0aW9uLiBUaGF0IGd1aWRhbmNlIG1heSBtYWtlIHVzZSBvZiB0aGlzIGZ1bmN0aW9uLCBidXQNCnRoZSBmb2N1cyBvZiB0aGlzIGZ1bmN0aW9uIGlzIG9uIHNpbmdsZSBlbGVtZW50IGNhbGN1bGF0aW9ucyB3aGVyZSB0aGUgc2VtYW50aWNzIGFyZSB1bmFtYmlndW91cy4NCklmIHRoZSBpbnB1dCBpcyBhIGRhdGVUaW1lLCB0aGUgcmVzdWx0IGEgRGF0ZVRpbWUgSW50ZXJ2YWwgYmVnaW5uaW5nIGFuZCBlbmRpbmcgb24gdGhhdCBkYXRlVGltZS4NCklmIHRoZSBpbnB1dCBpcyBhIFBlcmlvZCwgdGhlIHJlc3VsdCBpcyBhIERhdGVUaW1lIEludGVydmFsLg0KSWYgdGhlIGlucHV0IGlzIGEgVGltaW5nLCBhbiBlcnJvciBpcyByYWlzZWQgaW5kaWNhdGluZyBhIHNpbmdsZSBpbnRlcnZhbCBjYW5ub3QgYmUgY29tcHV0ZWQgZnJvbSBhIFRpbWluZy4NCklmIHRoZSBpbnB1dCBpcyBhbiBpbnN0YW50LCB0aGUgcmVzdWx0IGlzIGEgRGF0ZVRpbWUgSW50ZXJ2YWwgYmVnaW5uaW5nIGFuZCBlbmRpbmcgb24gdGhhdCBpbnN0YW50Lg0KSWYgdGhlIGlucHV0IGlzIGEgc3RyaW5nLCBhbiBlcnJvciBpcyByYWlzZWQgaW5kaWNhdGluZyBhIHNpbmdsZSBpbnRlcnZhbCBjYW5ub3QgYmUgY29tcHV0ZWQgZnJvbSBhIHN0cmluZy4NCklmIHRoZSBpbnB1dCBpcyBhbiBBZ2UsIHRoZSByZXN1bHQgaXMgYSBEYXRlVGltZSBJbnRlcnZhbCBiZWdpbm5pbmcgd2hlbiB0aGUgcGF0aWVudCB3YXMgdGhlIGdpdmVuIEFnZSwNCmFuZCBlbmRpbmcgaW1tZWRpYXRlbHkgcHJpb3IgdG8gd2hlbiB0aGUgcGF0aWVudCB3YXMgdGhlIGdpdmVuIEFnZSBwbHVzIG9uZSB5ZWFyLg0KSWYgdGhlIGlucHV0IGlzIGEgUmFuZ2UsIHRoZSByZXN1bHQgaXMgYSBEYXRlVGltZSBJbnRlcnZhbCBiZWdpbm5pbmcgd2hlbiB0aGUgcGF0aWVudCB3YXMgdGhlIEFnZSBnaXZlbg0KYnkgdGhlIGxvdyBlbmQgb2YgdGhlIFJhbmdlLCBhbmQgZW5kaW5nIGltbWVkaWF0ZWx5IHByaW9yIHRvIHdoZW4gdGhlIHBhdGllbnQgd2FzIHRoZSBBZ2UgZ2l2ZW4gYnkgdGhlDQpoaWdoIGVuZCBvZiB0aGUgUmFuZ2UgcGx1cyBvbmUgeWVhci4NCg0KTk9URTogRHVlIHRvIHRoZQ0KY29tcGxleGl0eSBvZiBkZXRlcm1pbmluZyBhIHNpbmdsZSBpbnRlcnZhbCBmcm9tIGEgVGltaW5nIG9yIFN0cmluZyB0eXBlLCB0aGlzIGZ1bmN0aW9uIHdpbGwgdGhyb3cgYSBydW4tdGltZSBleGNlcHRpb24gaWYgaXQgaXMgdXNlZA0Kd2l0aCBhIFRpbWluZyBvciBTdHJpbmcuDQoqLw0KZGVmaW5lIGZsdWVudCBmdW5jdGlvbiB0b0ludGVydmFsKGNob2ljZSBDaG9pY2U8RkhJUi5kYXRlVGltZSwgRkhJUi5QZXJpb2QsIEZISVIuVGltaW5nLCBGSElSLmluc3RhbnQsIEZISVIuc3RyaW5nLCBGSElSLkFnZSwgRkhJUi5SYW5nZT4pOg0KICBjYXNlDQogICAgd2hlbiBjaG9pY2UgaXMgRkhJUi5kYXRlVGltZSB0aGVuDQogICAgICBJbnRlcnZhbFtGSElSSGVscGVycy5Ub0RhdGVUaW1lKGNob2ljZSBhcyBGSElSLmRhdGVUaW1lKSwgRkhJUkhlbHBlcnMuVG9EYXRlVGltZShjaG9pY2UgYXMgRkhJUi5kYXRlVGltZSldDQogICAgd2hlbiBjaG9pY2UgaXMgRkhJUi5QZXJpb2QgdGhlbg0KICAgICAgRkhJUkhlbHBlcnMuVG9JbnRlcnZhbChjaG9pY2UgYXMgRkhJUi5QZXJpb2QpDQogICAgd2hlbiBjaG9pY2UgaXMgRkhJUi5pbnN0YW50IHRoZW4NCiAgICAgIEludGVydmFsW0ZISVJIZWxwZXJzLlRvRGF0ZVRpbWUoY2hvaWNlIGFzIEZISVIuaW5zdGFudCksIEZISVJIZWxwZXJzLlRvRGF0ZVRpbWUoY2hvaWNlIGFzIEZISVIuaW5zdGFudCldDQogICAgd2hlbiBjaG9pY2UgaXMgRkhJUi5BZ2UgdGhlbg0KICAgICAgSW50ZXJ2YWxbRkhJUkhlbHBlcnMuVG9EYXRlKFBhdGllbnQuYmlydGhEYXRlKSArIEZISVJIZWxwZXJzLlRvUXVhbnRpdHkoY2hvaWNlIGFzIEZISVIuQWdlKSwNCiAgICAgICAgRkhJUkhlbHBlcnMuVG9EYXRlKFBhdGllbnQuYmlydGhEYXRlKSArIEZISVJIZWxwZXJzLlRvUXVhbnRpdHkoY2hvaWNlIGFzIEZISVIuQWdlKSArIDEgeWVhcikNCiAgICB3aGVuIGNob2ljZSBpcyBGSElSLlJhbmdlIHRoZW4NCiAgICAgIEludGVydmFsW0ZISVJIZWxwZXJzLlRvRGF0ZShQYXRpZW50LmJpcnRoRGF0ZSkgKyBGSElSSGVscGVycy5Ub1F1YW50aXR5KChjaG9pY2UgYXMgRkhJUi5SYW5nZSkubG93KSwNCiAgICAgICAgRkhJUkhlbHBlcnMuVG9EYXRlKFBhdGllbnQuYmlydGhEYXRlKSArIEZISVJIZWxwZXJzLlRvUXVhbnRpdHkoKGNob2ljZSBhcyBGSElSLlJhbmdlKS5oaWdoKSArIDEgeWVhcikNCiAgICB3aGVuIGNob2ljZSBpcyBGSElSLlRpbWluZyB0aGVuDQogICAgICBNZXNzYWdlKG51bGwgYXMgSW50ZXJ2YWw8RGF0ZVRpbWU+LCB0cnVlLCAnTk9UX0lNUExFTUVOVEVEJywgJ0Vycm9yJywgJ0NhbGN1bGF0aW9uIG9mIGFuIGludGVydmFsIGZyb20gYSBUaW1pbmcgdmFsdWUgaXMgbm90IHN1cHBvcnRlZCcpDQogICAgd2hlbiBjaG9pY2UgaXMgRkhJUi5zdHJpbmcgdGhlbg0KICAgICAgTWVzc2FnZShudWxsIGFzIEludGVydmFsPERhdGVUaW1lPiwgdHJ1ZSwgJ05PVF9JTVBMRU1FTlRFRCcsICdFcnJvcicsICdDYWxjdWxhdGlvbiBvZiBhbiBpbnRlcnZhbCBmcm9tIGEgU3RyaW5nIHZhbHVlIGlzIG5vdCBzdXBwb3J0ZWQnKQ0KICAgIGVsc2UNCiAgICAgIG51bGwgYXMgSW50ZXJ2YWw8RGF0ZVRpbWU+DQogIGVuZA0KDQovLyBXYXMgZ2V0dGluZyBlcnJvciBvbiB0aGlzIGZvciB0aGlzIHBhcnRpY3VsYXIgY2hvaWNlIHNldCBub3QgYmVpbmcgZm91bmQNCg0KDQovKg0KQGRlc2NyaXB0aW9uOiBSZXR1cm5zIGFuIGludGVydmFsIHJlcHJlc2VudGluZyB0aGUgbm9ybWFsaXplZCBBYmF0ZW1lbnQgb2YgYSBnaXZlbiBDb25kaXRpb24gcmVzb3VyY2UuDQpAY29tbWVudDogTk9URTogRHVlIHRvIHRoZSBjb21wbGV4aXR5IG9mIGRldGVybWluaW5nIGFuIGludGVydmFsIGZyb20gYSBTdHJpbmcsIHRoaXMgZnVuY3Rpb24gd2lsbCB0aHJvdw0KYSBydW4tdGltZSBleGNlcHRpb24gaWYgdXNlZCB3aXRoIGEgQ29uZGl0aW9uIGluc3RhbmNlIHRoYXQgaGFzIGEgU3RyaW5nIGFzIHRoZSBhYmF0ZW1lbnQgdmFsdWUuDQoqLw0KZGVmaW5lIGZsdWVudCBmdW5jdGlvbiBhYmF0ZW1lbnRJbnRlcnZhbChjb25kaXRpb24gQ29uZGl0aW9uKToNCiAgaWYgY29uZGl0aW9uLmFiYXRlbWVudCBpcyBGSElSLmRhdGVUaW1lIHRoZW4NCiAgICBJbnRlcnZhbFtGSElSSGVscGVycy5Ub0RhdGVUaW1lKGNvbmRpdGlvbi5hYmF0ZW1lbnQgYXMgRkhJUi5kYXRlVGltZSksIEZISVJIZWxwZXJzLlRvRGF0ZVRpbWUoY29uZGl0aW9uLmFiYXRlbWVudCBhcyBGSElSLmRhdGVUaW1lKV0NCiAgZWxzZSBpZiBjb25kaXRpb24uYWJhdGVtZW50IGlzIEZISVIuUGVyaW9kIHRoZW4NCiAgICBGSElSSGVscGVycy5Ub0ludGVydmFsKGNvbmRpdGlvbi5hYmF0ZW1lbnQgYXMgRkhJUi5QZXJpb2QpDQogIGVsc2UgaWYgY29uZGl0aW9uLmFiYXRlbWVudCBpcyBGSElSLnN0cmluZyB0aGVuDQogICAgTWVzc2FnZShudWxsIGFzIEludGVydmFsPERhdGVUaW1lPiwgdHJ1ZSwgJ05PVF9JTVBMRU1FTlRFRCcsICdFcnJvcicsICdDYWxjdWxhdGlvbiBvZiBhbiBpbnRlcnZhbCBmcm9tIGEgU3RyaW5nIHZhbHVlIGlzIG5vdCBzdXBwb3J0ZWQnKQ0KICBlbHNlIGlmIGNvbmRpdGlvbi5hYmF0ZW1lbnQgaXMgRkhJUi5BZ2UgdGhlbg0KICAgIEludGVydmFsW0ZISVJIZWxwZXJzLlRvRGF0ZShQYXRpZW50LmJpcnRoRGF0ZSkgKyBGSElSSGVscGVycy5Ub1F1YW50aXR5KGNvbmRpdGlvbi5hYmF0ZW1lbnQgYXMgRkhJUi5BZ2UpLA0KICAgICAgRkhJUkhlbHBlcnMuVG9EYXRlKFBhdGllbnQuYmlydGhEYXRlKSArIEZISVJIZWxwZXJzLlRvUXVhbnRpdHkoY29uZGl0aW9uLmFiYXRlbWVudCBhcyBGSElSLkFnZSkgKyAxIHllYXIpDQogIGVsc2UgaWYgY29uZGl0aW9uLmFiYXRlbWVudCBpcyBGSElSLlJhbmdlIHRoZW4NCiAgICBJbnRlcnZhbFtGSElSSGVscGVycy5Ub0RhdGUoUGF0aWVudC5iaXJ0aERhdGUpICsgRkhJUkhlbHBlcnMuVG9RdWFudGl0eSgoY29uZGl0aW9uLmFiYXRlbWVudCBhcyBGSElSLlJhbmdlKS5sb3cpLA0KICAgICAgRkhJUkhlbHBlcnMuVG9EYXRlKFBhdGllbnQuYmlydGhEYXRlKSArIEZISVJIZWxwZXJzLlRvUXVhbnRpdHkoKGNvbmRpdGlvbi5hYmF0ZW1lbnQgYXMgRkhJUi5SYW5nZSkuaGlnaCkgKyAxIHllYXIpDQogIGVsc2UgaWYgY29uZGl0aW9uLmFiYXRlbWVudCBpcyBGSElSLmJvb2xlYW4gdGhlbg0KICAgIEludGVydmFsW2VuZCBvZiBjb25kaXRpb24ub25zZXQudG9JbnRlcnZhbCgpLCBjb25kaXRpb24ucmVjb3JkZWREYXRlKQ0KICBlbHNlIA0KICAgIG51bGwNCg0KLyoNCkBkZXNjcmlwdGlvbjogUmV0dXJucyBhbiBpbnRlcnZhbCByZXByZXNlbnRpbmcgdGhlIG5vcm1hbGl6ZWQgcHJldmFsZW5jZSBwZXJpb2Qgb2YgYSBnaXZlbiBDb25kaXRpb24gcmVzb3VyY2UuDQpAY29tbWVudDogVXNlcyB0aGUgdG9JbnRlcnZhbCBhbmQgdG9BYmF0ZW1lbnRJbnRlcnZhbCBmdW5jdGlvbnMgdG8gZGV0ZXJtaW5lIHRoZSB3aWRlc3QgcG90ZW50aWFsIGludGVydmFsIGZyb20NCm9uc2V0IHRvIGFiYXRlbWVudCBhcyBzcGVjaWZpZWQgaW4gdGhlIGdpdmVuIENvbmRpdGlvbi4NCiovDQpkZWZpbmUgZmx1ZW50IGZ1bmN0aW9uIHByZXZhbGVuY2VJbnRlcnZhbChjb25kaXRpb24gQ29uZGl0aW9uKToNCmlmIGNvbmRpdGlvbi5jbGluaWNhbFN0YXR1cyB+ICJhY3RpdmUiDQogIG9yIGNvbmRpdGlvbi5jbGluaWNhbFN0YXR1cyB+ICJyZWN1cnJlbmNlIg0KICBvciBjb25kaXRpb24uY2xpbmljYWxTdGF0dXMgfiAicmVsYXBzZSIgdGhlbg0KICBJbnRlcnZhbFtzdGFydCBvZiBjb25kaXRpb24ub25zZXQudG9JbnRlcnZhbCgpLCBlbmQgb2YgY29uZGl0aW9uLmFiYXRlbWVudEludGVydmFsKCldDQplbHNlDQogIChlbmQgb2YgY29uZGl0aW9uLmFiYXRlbWVudEludGVydmFsKCkpIGFiYXRlbWVudERhdGUNCiAgICByZXR1cm4gDQoJICBpZiBhYmF0ZW1lbnREYXRlIGlzIG51bGwgdGhlbg0KICAgICAgICBJbnRlcnZhbFtzdGFydCBvZiBjb25kaXRpb24ub25zZXQudG9JbnRlcnZhbCgpLCBhYmF0ZW1lbnREYXRlKQ0KICAgICAgZWxzZQ0KICAgICAgICBJbnRlcnZhbFtzdGFydCBvZiBjb25kaXRpb24ub25zZXQudG9JbnRlcnZhbCgpLCBhYmF0ZW1lbnREYXRlXQ0KDQovKg0KQGRlc2NyaXB0aW9uOiBSZXR1cm5zIHRydWUgaWYgdGhlIGdpdmVuIHJlZmVyZW5jZSBpcyB0byB0aGUgZ2l2ZW4gcmVzb3VyY2UNCkBjb21tZW50OiBSZXR1cm5zIHRydWUgaWYgdGhlIGBpZGAgZWxlbWVudCBvZiB0aGUgZ2l2ZW4gcmVzb3VyY2UgZXhhY3RseSBlcXVhbHMgdGhlIHRhaWwgb2YgdGhlIGdpdmVuIHJlZmVyZW5jZS4NCk5PVEU6IFRoaXMgZnVuY3Rpb24gYXNzdW1lcyByZXNvdXJjZXMgZnJvbSB0aGUgc2FtZSBzb3VyY2Ugc2VydmVyLg0KKi8NCmRlZmluZSBmbHVlbnQgZnVuY3Rpb24gcmVmZXJlbmNlcyhyZWZlcmVuY2UgRkhJUi5SZWZlcmVuY2UsIHJlc291cmNlIEZISVIuUmVzb3VyY2UpOg0KICByZXNvdXJjZS5pZCA9IExhc3QoU3BsaXQocmVmZXJlbmNlLnJlZmVyZW5jZSwgJy8nKSkgIA0KDQovKg0KQGRlc2NyaXB0aW9uOiBSZXR1cm5zIHRydWUgaWYgdGhlIGdpdmVuIHJlZmVyZW5jZSBpcyB0byB0aGUgZ2l2ZW4gcmVzb3VyY2VJZA0KQGNvbW1lbnQ6IFJldHVybnMgdHJ1ZSBpZiB0aGUgYHJlc291cmNlSWRgIHBhcmFtZXRlciBleGFjdGx5IGVxdWFscyB0aGUgdGFpbCBvZiB0aGUgZ2l2ZW4gcmVmZXJlbmNlLg0KTk9URTogVGhpcyBmdW5jdGlvbiBhc3N1bWVzIHJlc291cmNlcyBmcm9tIHRoZSBzYW1lIHNvdXJjZSBzZXJ2ZXIuDQoqLw0KZGVmaW5lIGZsdWVudCBmdW5jdGlvbiByZWZlcmVuY2VzKHJlZmVyZW5jZSBGSElSLlJlZmVyZW5jZSwgcmVzb3VyY2VJZCBTdHJpbmcpOg0KICByZXNvdXJjZUlkID0gTGFzdChTcGxpdChyZWZlcmVuY2UucmVmZXJlbmNlLCAnLycpKQ0KDQovKg0KQGRlc2NyaXB0aW9uOiBSZXR1cm5zIHRydWUgaWYgYW55IG9mIHRoZSBnaXZlbiByZWZlcmVuY2VzIGFyZSB0byB0aGUgZ2l2ZW4gcmVzb3VyY2UNCkBjb21tZW50OiBSZXR1cm5zIHRydWUgaWYgdGhlIGBpZGAgZWxlbWVudCBvZiB0aGUgZ2l2ZW4gcmVzb3VyY2UgZXhhY3RseSBlcXVhbHMgdGhlIHRhaWwgb2YgYW55IG9mIHRoZSBnaXZlbiByZWZlcmVuY2VzLg0KTk9URTogVGhpcyBmdW5jdGlvbiBhc3N1bWVzIHJlc291cmNlcyBmcm9tIHRoZSBzYW1lIHNvdXJjZSBzZXJ2ZXIuDQoqLw0KZGVmaW5lIGZsdWVudCBmdW5jdGlvbiByZWZlcmVuY2VzKHJlZmVyZW5jZXMgTGlzdDxGSElSLlJlZmVyZW5jZT4sIHJlc291cmNlIEZISVIuUmVzb3VyY2UpOg0KICBleGlzdHMgKHJlZmVyZW5jZXMgUiB3aGVyZSBSLnJlZmVyZW5jZXMocmVzb3VyY2UpKQ0KICANCi8qDQpAZGVzY3JpcHRpb246IFJldHVybnMgdHJ1ZSBpZiBhbnkgb2YgdGhlIGdpdmVuIHJlZmVyZW5jZXMgYXJlIHRvIHRoZSBnaXZlbiByZXNvdXJjZUlkDQpAY29tbWVudDogUmV0dXJucyB0cnVlIGlmIHRoZSBgcmVzb3VyY2VJZGAgcGFyYW1ldGVyIGV4YWN0bHkgZXF1YWxzIHRoZSB0YWlsIG9mIGFueSBvZiB0aGUgZ2l2ZW4gcmVmZXJlbmNlcy4NCk5PVEU6IFRoaXMgZnVuY3Rpb24gYXNzdW1lcyByZXNvdXJjZXMgZnJvbSB0aGUgc2FtZSBzb3VyY2Ugc2VydmVyLg0KKi8NCmRlZmluZSBmbHVlbnQgZnVuY3Rpb24gcmVmZXJlbmNlcyhyZWZlcmVuY2VzIExpc3Q8RkhJUi5SZWZlcmVuY2U+LCByZXNvdXJjZUlkIFN0cmluZyk6DQogIGV4aXN0cyAocmVmZXJlbmNlcyBSIHdoZXJlIFIucmVmZXJlbmNlcyhyZXNvdXJjZUlkKSkNCg=="/>
+  </content>
+</Library>

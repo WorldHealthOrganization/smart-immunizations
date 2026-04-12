@@ -1,0 +1,1437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="459">
+         <a:s>/*
+ * Library: IMMZD18SHib2p1bLogic (IMMZ.D18.S.Hib.2 doses with booster dose schedule)
+ * Schedule Table: 2 primary doses with a booster dose (2p+1) schedule
+ */
+library IMMZD18SHib2p1bLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD18SHib2p1bLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="11:1-11:27" localIdentifier="WC" path="http://smart.who.int/immunizations/WHOCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>WHOCommon</a:s>
+               </a:s>
+               <a:s> called WC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="209" locator="13:1-13:32" localIdentifier="Common" path="http://smart.who.int/immunizations/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called Common</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="14:1-14:36" localIdentifier="Concepts" path="http://smart.who.int/immunizations/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called Concepts</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="211" locator="16:1-16:39" localIdentifier="IE" path="http://smart.who.int/immunizations/IMMZEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="211">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZEncounterElements</a:s>
+               </a:s>
+               <a:s> called IE</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="212" locator="17:1-17:53" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTHibEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTHibEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="213" locator="19:1-19:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="213">
+               <a:s>parameter Today </a:s>
+               <a:s r="217">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="216">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="216" locator="19:30-19:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="217" locator="19:17-19:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="21:1-21:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="21:1-21:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="21:1-21:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="228" locator="64:1-65:29" name="Haemophilus influenzae type b (Hib) dose 1 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Haemophilus influenzae type b (Hib) dose 1 Expiration"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 6 years"/>
+            <a:s r="228">
+               <a:s>/*
+@dynamicValue: Haemophilus influenzae type b (Hib) dose 1 Expiration
+@pseudocode: &quot;Date of birth&quot; + 6 years
+*/
+define &quot;Haemophilus influenzae type b (Hib) dose 1 Expiration&quot;:
+  </a:s>
+               <a:s r="229">
+                  <a:s r="231">
+                     <a:s r="230">
+                        <a:s>Patient</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="231">
+                        <a:s>birthDate</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> + </a:s>
+                  <a:s r="232">
+                     <a:s>6 years</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="229" locator="65:3-65:29" xsi:type="Add">
+            <signature localId="234" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="235" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="233" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="231" locator="65:3-65:19" path="birthDate" xsi:type="Property">
+                  <source localId="230" locator="65:3-65:9" name="Patient" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="232" locator="65:23-65:29" value="6" unit="years" xsi:type="Quantity"/>
+         </expression>
+      </def>
+      <def localId="223" locator="30:1-32:80" name="Haemophilus influenzae type b (Hib) dose 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Haemophilus influenzae type b (Hib) dose 1"/>
+            <a:t name="description" value="Provision of the Hib dose 1"/>
+            <a:t name="trigger" value="Child's birth"/>
+            <a:t name="triggerDate" value="&quot;Date of birth&quot;"/>
+            <a:s r="223">
+               <a:s>/*
+@output: Haemophilus influenzae type b (Hib) dose 1
+@description: Provision of the Hib dose 1
+@trigger: Child's birth
+@triggerDate: &quot;Date of birth&quot;
+*/
+define &quot;Haemophilus influenzae type b (Hib) dose 1&quot;:
+  </a:s>
+               <a:s r="224">
+                  <a:s r="226">
+                     <a:s r="225">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="226">
+                        <a:s>&quot;No Hib primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="238">
+                     <a:s r="236">
+                        <a:s>&quot;Haemophilus influenzae type b (Hib) dose 1 Expiration&quot;</a:s>
+                     </a:s>
+                     <a:s r="238"> after day of </a:s>
+                     <a:s r="237">
+                        <a:s>Today</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="224" locator="31:3-32:80" xsi:type="And">
+            <operand localId="226" locator="31:3-31:59" name="No Hib primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="238" locator="32:7-32:80" precision="Day" xsi:type="After">
+               <signature localId="239" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="240" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="236" locator="32:7-32:61" name="Haemophilus influenzae type b (Hib) dose 1 Expiration" xsi:type="ExpressionRef"/>
+               <operand localId="237" locator="32:76-32:80" name="Today" xsi:type="ParameterRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="255" locator="49:1-51:11" name="Haemophilus influenzae type b (Hib) dose 1 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Haemophilus influenzae type b (Hib) dose 1 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 6 weeks"/>
+            <a:s r="255">
+               <a:s>/*
+@dynamicValue: Haemophilus influenzae type b (Hib) dose 1 Due Date
+@pseudocode: &quot;Date of birth&quot; + 6 weeks
+*/
+define &quot;Haemophilus influenzae type b (Hib) dose 1 Due Date&quot;:
+  </a:s>
+               <a:s r="256">
+                  <a:s>if </a:s>
+                  <a:s r="257">
+                     <a:s>&quot;Haemophilus influenzae type b (Hib) dose 1&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="258">
+                     <a:s r="260">
+                        <a:s r="259">
+                           <a:s>Patient</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="260">
+                           <a:s>birthDate</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="261">
+                        <a:s>6 weeks</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="265">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="256" locator="50:3-51:11" xsi:type="If">
+            <condition localId="257" locator="50:6-50:49" name="Haemophilus influenzae type b (Hib) dose 1" xsi:type="ExpressionRef"/>
+            <then localId="258" locator="50:56-50:82" xsi:type="Add">
+               <signature localId="263" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="264" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="262" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="260" locator="50:56-50:72" path="birthDate" xsi:type="Property">
+                     <source localId="259" locator="50:56-50:62" name="Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="261" locator="50:76-50:82" value="6" unit="weeks" xsi:type="Quantity"/>
+            </then>
+            <else localId="266" asType="t:Date" xsi:type="As">
+               <operand localId="265" locator="51:8-51:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="242" locator="38:1-43:9" name="Haemophilus influenzae type b (Hib) dose 1 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Haemophilus influenzae type b (Hib) dose 1 Create"/>
+            <a:t name="create" value="Hib dose 1 should be provided if the client is older than 6 weeks"/>
+            <a:s r="242">
+               <a:s>/*
+@output: Haemophilus influenzae type b (Hib) dose 1 Create
+@create: Hib dose 1 should be provided if the client is older than 6 weeks
+*/
+define &quot;Haemophilus influenzae type b (Hib) dose 1 Create&quot;:
+  </a:s>
+               <a:s r="243">
+                  <a:s>if </a:s>
+                  <a:s r="244">
+                     <a:s>&quot;Haemophilus influenzae type b (Hib) dose 1&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="288">
+                     <a:s r="279">
+                        <a:s r="275">
+                           <a:s r="253">
+                              <a:s r="249">
+                                 <a:s>'Hib dose 1 should be provided if the client is older than 6 weeks'</a:s>
+                              </a:s>
+                              <a:s> + </a:s>
+                              <a:s r="250">
+                                 <a:s>'
+Due Date: '</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="271">
+                              <a:s>ToString(</a:s>
+                              <a:s r="267">
+                                 <a:s>&quot;Haemophilus influenzae type b (Hib) dose 1 Due Date&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="276">
+                           <a:s>'
+Expiration: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="284">
+                        <a:s>ToString(</a:s>
+                        <a:s r="280">
+                           <a:s>&quot;Haemophilus influenzae type b (Hib) dose 1 Expiration&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="289">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="243" locator="39:3-43:9" xsi:type="If">
+            <condition localId="244" locator="39:6-39:49" name="Haemophilus influenzae type b (Hib) dose 1" xsi:type="ExpressionRef"/>
+            <then localId="288" locator="40:8-42:81" xsi:type="Concatenate">
+               <operand localId="279" locator="40:8-41:95" xsi:type="Concatenate">
+                  <operand localId="275" locator="40:8-41:77" xsi:type="Concatenate">
+                     <operand localId="253" locator="40:8-40:90" xsi:type="Concatenate">
+                        <operand localId="249" locator="40:8-40:74" valueType="t:String" value="Hib dose 1 should be provided if the client is older than 6 weeks" xsi:type="Literal"/>
+                        <operand localId="250" locator="40:78-40:90" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="271" locator="41:15-41:77" xsi:type="ToString">
+                        <signature localId="272" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="267" locator="41:24-41:76" name="Haemophilus influenzae type b (Hib) dose 1 Due Date" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="276" locator="41:81-41:95" valueType="t:String" value="&#xa;Expiration: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="284" locator="42:17-42:81" xsi:type="ToString">
+                  <signature localId="285" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="280" locator="42:26-42:80" name="Haemophilus influenzae type b (Hib) dose 1 Expiration" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="289" locator="43:8-43:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="291" locator="57:1-58:6" name="Haemophilus influenzae type b (Hib) dose 1 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Haemophilus influenzae type b (Hib) dose 1 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States"/>
+            <a:s r="291">
+               <a:s r="292">/*
+@dynamicValue: Haemophilus influenzae type b (Hib) dose 1 Overdue
+@pseudocode: To be determined by Member States
+*/
+define &quot;Haemophilus influenzae type b (Hib) dose 1 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="292" locator="58:3-58:6" xsi:type="Null"/>
+      </def>
+      <def localId="294" locator="71:1-72:58" name="First Hib dose from the primary series was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="First Hib dose from the primary series was administered"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot; and &quot;Type of dose&quot;= &quot;Primary series&quot;) = 1"/>
+            <a:s r="294">
+               <a:s>/*
+@complete: First Hib dose from the primary series was administered
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot; and &quot;Type of dose&quot;= &quot;Primary series&quot;) = 1
+*/
+define &quot;First Hib dose from the primary series was administered&quot;:
+  </a:s>
+               <a:s r="296">
+                  <a:s r="295">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="296">
+                     <a:s>&quot;One Hib primary series dose was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="296" locator="72:3-72:58" name="One Hib primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="310" locator="125:1-126:60" name="Second Hib dose from the primary series was administered. The primary series has been completed" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Second Hib dose from the primary series was administered. The primary series has been completed"/>
+            <a:t name="pseudocode" value="&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot;)"/>
+            <a:s r="310">
+               <a:s>/*
+@complete: Second Hib dose from the primary series was administered. The primary series has been completed
+@pseudocode: Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot;)
+*/
+define &quot;Second Hib dose from the primary series was administered. The primary series has been completed&quot;:
+  </a:s>
+               <a:s r="312">
+                  <a:s r="311">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="312">
+                     <a:s>&quot;Two Hib primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="312" locator="126:3-126:60" name="Two Hib primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="315" locator="118:1-119:29" name="Hib dose 2 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hib dose 2 Expiration"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 6 years"/>
+            <a:s r="315">
+               <a:s>/*
+@dynamicValue: Hib dose 2 Expiration
+@pseudocode: &quot;Date of birth&quot; + 6 years
+*/
+define &quot;Hib dose 2 Expiration&quot;:
+  </a:s>
+               <a:s r="316">
+                  <a:s r="318">
+                     <a:s r="317">
+                        <a:s>Patient</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="318">
+                        <a:s>birthDate</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> + </a:s>
+                  <a:s r="319">
+                     <a:s>6 years</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="316" locator="119:3-119:29" xsi:type="Add">
+            <signature localId="321" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="322" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="320" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="318" locator="119:3-119:19" path="birthDate" xsi:type="Property">
+                  <source localId="317" locator="119:3-119:9" name="Patient" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="319" locator="119:23-119:29" value="6" unit="years" xsi:type="Quantity"/>
+         </expression>
+      </def>
+      <def localId="298" locator="81:1-86:48" name="Hib dose 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Hib dose 2"/>
+            <a:t name="description" value="Provision of the Hib dose 2"/>
+            <a:t name="trigger" value="&quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1 AND &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot;= &quot;Hib-containing vaccines&quot; and &quot;Dose number&quot; = 1) − &quot;Date of birth&quot; &lt; 1 year AND Today's date − &quot;Date of birth&quot; ≤ 5 years"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot;)"/>
+            <a:s r="298">
+               <a:s>/*
+@output: Hib dose 2
+@description: Provision of the Hib dose 2
+@trigger: First Hib dose from the primary series was administered to the client within 1 year of age. Client's age is less than 5 years
+Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1 AND &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot;= &quot;Hib-containing vaccines&quot; and &quot;Dose number&quot; = 1) − &quot;Date of birth&quot; &lt; 1 year AND Today's date − &quot;Date of birth&quot; ≤ 5 years
+@triggerDate: &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot;)
+*/
+define &quot;Hib dose 2&quot;:
+  </a:s>
+               <a:s r="299">
+                  <a:s r="300">
+                     <a:s r="301">
+                        <a:s r="302">
+                           <a:s r="303">
+                              <a:s>&quot;First Hib dose from the primary series was administered&quot;</a:s>
+                           </a:s>
+                           <a:s>
+  and </a:s>
+                           <a:s r="305">
+                              <a:s r="304">
+                                 <a:s>Encounter</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="305">
+                                 <a:s>&quot;Client's age was less than 1 year when first Hib dose was administered&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+  and </a:s>
+                        <a:s r="307">
+                           <a:s r="306">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="307">
+                              <a:s>&quot;Client's age is between 6 weeks and 5 years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  and </a:s>
+                     <a:s r="308">
+                        <a:s>not </a:s>
+                        <a:s r="313">
+                           <a:s>&quot;Second Hib dose from the primary series was administered. The primary series has been completed&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="325">
+                     <a:s r="323">
+                        <a:s>&quot;Hib dose 2 Expiration&quot;</a:s>
+                     </a:s>
+                     <a:s r="325"> after day of </a:s>
+                     <a:s r="324">
+                        <a:s>Today</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="299" locator="82:3-86:48" xsi:type="And">
+            <operand localId="300" locator="82:3-85:107" xsi:type="And">
+               <operand localId="301" locator="82:3-84:61" xsi:type="And">
+                  <operand localId="302" locator="82:3-83:88" xsi:type="And">
+                     <operand localId="303" locator="82:3-82:59" name="First Hib dose from the primary series was administered" xsi:type="ExpressionRef"/>
+                     <operand localId="305" locator="83:7-83:88" name="Client's age was less than 1 year when first Hib dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="307" locator="84:7-84:61" name="Client's age is between 6 weeks and 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="308" locator="85:7-85:107" xsi:type="Not">
+                  <operand localId="313" locator="85:11-85:107" name="Second Hib dose from the primary series was administered. The primary series has been completed" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="325" locator="86:7-86:48" precision="Day" xsi:type="After">
+               <signature localId="326" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="327" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="323" locator="86:7-86:29" name="Hib dose 2 Expiration" xsi:type="ExpressionRef"/>
+               <operand localId="324" locator="86:44-86:48" name="Today" xsi:type="ParameterRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="342" locator="103:1-105:11" name="Hib dose 2 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hib dose 2 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot;) + 8 weeks"/>
+            <a:s r="342">
+               <a:s>/*
+@dynamicValue: Hib dose 2 Due Date
+@pseudocode: &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot;) + 8 weeks
+*/
+define &quot;Hib dose 2 Due Date&quot;:
+  </a:s>
+               <a:s r="343">
+                  <a:s>if </a:s>
+                  <a:s r="344">
+                     <a:s>&quot;Hib dose 2&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="345">
+                     <a:s r="347">
+                        <a:s r="346">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="347">
+                           <a:s>&quot;Date of Latest Hib Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="348">
+                        <a:s>8 weeks</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="351">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="343" locator="104:3-105:11" xsi:type="If">
+            <condition localId="344" locator="104:6-104:17" name="Hib dose 2" xsi:type="ExpressionRef"/>
+            <then localId="345" locator="104:24-104:68" xsi:type="Add">
+               <signature localId="349" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="350" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="347" locator="104:24-104:58" name="Date of Latest Hib Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="348" locator="104:62-104:68" value="8" unit="weeks" xsi:type="Quantity"/>
+            </then>
+            <else localId="352" asType="t:Date" xsi:type="As">
+               <operand localId="351" locator="105:8-105:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="329" locator="92:1-97:9" name="Hib dose 2 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Hib dose 2 Create"/>
+            <a:t name="create" value="Hib dose 2 should be provided if the client was given the previous dose more than 8 weeks ago"/>
+            <a:s r="329">
+               <a:s>/*
+@output: Hib dose 2 Create
+@create: Hib dose 2 should be provided if the client was given the previous dose more than 8 weeks ago
+*/
+define &quot;Hib dose 2 Create&quot;:
+  </a:s>
+               <a:s r="330">
+                  <a:s>if </a:s>
+                  <a:s r="331">
+                     <a:s>&quot;Hib dose 2&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="374">
+                     <a:s r="365">
+                        <a:s r="361">
+                           <a:s r="340">
+                              <a:s r="336">
+                                 <a:s>'Hib dose 2 should be provided if the client was given the previous dose more than 8 weeks ago'</a:s>
+                              </a:s>
+                              <a:s> + </a:s>
+                              <a:s r="337">
+                                 <a:s>'
+Due Date: '</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="357">
+                              <a:s>ToString(</a:s>
+                              <a:s r="353">
+                                 <a:s>&quot;Hib dose 2 Due Date&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="362">
+                           <a:s>'
+Expiration: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="370">
+                        <a:s>ToString(</a:s>
+                        <a:s r="366">
+                           <a:s>&quot;Hib dose 2 Expiration&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="375">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="330" locator="93:3-97:9" xsi:type="If">
+            <condition localId="331" locator="93:6-93:17" name="Hib dose 2" xsi:type="ExpressionRef"/>
+            <then localId="374" locator="94:8-96:49" xsi:type="Concatenate">
+               <operand localId="365" locator="94:8-95:63" xsi:type="Concatenate">
+                  <operand localId="361" locator="94:8-95:45" xsi:type="Concatenate">
+                     <operand localId="340" locator="94:8-94:118" xsi:type="Concatenate">
+                        <operand localId="336" locator="94:8-94:102" valueType="t:String" value="Hib dose 2 should be provided if the client was given the previous dose more than 8 weeks ago" xsi:type="Literal"/>
+                        <operand localId="337" locator="94:106-94:118" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="357" locator="95:15-95:45" xsi:type="ToString">
+                        <signature localId="358" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="353" locator="95:24-95:44" name="Hib dose 2 Due Date" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="362" locator="95:49-95:63" valueType="t:String" value="&#xa;Expiration: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="370" locator="96:17-96:49" xsi:type="ToString">
+                  <signature localId="371" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="366" locator="96:26-96:48" name="Hib dose 2 Expiration" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="375" locator="97:8-97:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="377" locator="111:1-112:6" name="Hib dose 2 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hib dose 2 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States"/>
+            <a:s r="377">
+               <a:s r="378">/*
+@dynamicValue: Hib dose 2 Overdue
+@pseudocode: To be determined by Member States
+*/
+define &quot;Hib dose 2 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="378" locator="112:3-112:6" xsi:type="Null"/>
+      </def>
+      <def localId="389" locator="178:1-179:51" name="One Hib booster dose was administered. Hib immunization schedule has been completed" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="One Hib booster dose was administered. Hib immunization schedule has been completed"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot; and &quot;Type of dose&quot;= &quot;Booster dose&quot;) = 1"/>
+            <a:s r="389">
+               <a:s>/*
+@complete: One Hib booster dose was administered. Hib immunization schedule has been completed
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot; and &quot;Type of dose&quot;= &quot;Booster dose&quot;) = 1
+*/
+define &quot;One Hib booster dose was administered. Hib immunization schedule has been completed&quot;:
+  </a:s>
+               <a:s r="391">
+                  <a:s r="390">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="391">
+                     <a:s>&quot;One Hib booster dose was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="391" locator="179:3-179:51" name="One Hib booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="394" locator="171:1-172:29" name="Hib booster dose Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hib booster dose Expiration"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 6 years"/>
+            <a:s r="394">
+               <a:s>/*
+@dynamicValue: Hib booster dose Expiration
+@pseudocode: &quot;Date of birth&quot; + 6 years
+*/
+define &quot;Hib booster dose Expiration&quot;:
+  </a:s>
+               <a:s r="395">
+                  <a:s r="397">
+                     <a:s r="396">
+                        <a:s>Patient</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="397">
+                        <a:s>birthDate</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> + </a:s>
+                  <a:s r="398">
+                     <a:s>6 years</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="395" locator="172:3-172:29" xsi:type="Add">
+            <signature localId="400" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+            <signature localId="401" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="399" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="397" locator="172:3-172:19" path="birthDate" xsi:type="Property">
+                  <source localId="396" locator="172:3-172:9" name="Patient" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="398" locator="172:23-172:29" value="6" unit="years" xsi:type="Quantity"/>
+         </expression>
+      </def>
+      <def localId="380" locator="135:1-139:54" name="Hib booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Hib booster dose"/>
+            <a:t name="description" value="Provision of the Hib booster dose"/>
+            <a:t name="trigger" value="&quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot; and &quot;Type of dose&quot;= &quot;Primary series&quot;) = 2 AND Today's date − &quot;Date of birth&quot; ≤ 5 years"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot;)"/>
+            <a:s r="380">
+               <a:s>/*
+@output: Hib booster dose
+@description: Provision of the Hib booster dose
+@trigger: Second Hib dose from the primary series was administered. Client's age is less than 5 years
+Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot; and &quot;Type of dose&quot;= &quot;Primary series&quot;) = 2 AND Today's date − &quot;Date of birth&quot; ≤ 5 years
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot;)
+*/
+define &quot;Hib booster dose&quot;:
+  </a:s>
+               <a:s r="381">
+                  <a:s r="382">
+                     <a:s r="383">
+                        <a:s r="384">
+                           <a:s>&quot;Second Hib dose from the primary series was administered. The primary series has been completed&quot;</a:s>
+                        </a:s>
+                        <a:s>
+  and </a:s>
+                        <a:s r="386">
+                           <a:s r="385">
+                              <a:s>Encounter</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="386">
+                              <a:s>&quot;Client's age is between 6 weeks and 5 years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+  and </a:s>
+                     <a:s r="387">
+                        <a:s>not </a:s>
+                        <a:s r="392">
+                           <a:s>&quot;One Hib booster dose was administered. Hib immunization schedule has been completed&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="404">
+                     <a:s r="402">
+                        <a:s>&quot;Hib booster dose Expiration&quot;</a:s>
+                     </a:s>
+                     <a:s r="404"> after day of </a:s>
+                     <a:s r="403">
+                        <a:s>Today</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="381" locator="136:3-139:54" xsi:type="And">
+            <operand localId="382" locator="136:3-138:95" xsi:type="And">
+               <operand localId="383" locator="136:3-137:61" xsi:type="And">
+                  <operand localId="384" locator="136:3-136:99" name="Second Hib dose from the primary series was administered. The primary series has been completed" xsi:type="ExpressionRef"/>
+                  <operand localId="386" locator="137:7-137:61" name="Client's age is between 6 weeks and 5 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="387" locator="138:7-138:95" xsi:type="Not">
+                  <operand localId="392" locator="138:11-138:95" name="One Hib booster dose was administered. Hib immunization schedule has been completed" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="404" locator="139:7-139:54" precision="Day" xsi:type="After">
+               <signature localId="405" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="406" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="402" locator="139:7-139:35" name="Hib booster dose Expiration" xsi:type="ExpressionRef"/>
+               <operand localId="403" locator="139:50-139:54" name="Today" xsi:type="ParameterRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="421" locator="156:1-158:11" name="Hib booster dose Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hib booster dose Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot;) + 6 months"/>
+            <a:s r="421">
+               <a:s>/*
+@dynamicValue: Hib booster dose Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;Hib-containing vaccines&quot;) + 6 months
+*/
+define &quot;Hib booster dose Due Date&quot;:
+  </a:s>
+               <a:s r="422">
+                  <a:s>if </a:s>
+                  <a:s r="423">
+                     <a:s>&quot;Hib booster dose&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="424">
+                     <a:s r="426">
+                        <a:s r="425">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="426">
+                           <a:s>&quot;Date of Latest Hib Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="427">
+                        <a:s>6 months</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="430">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="422" locator="157:3-158:11" xsi:type="If">
+            <condition localId="423" locator="157:6-157:23" name="Hib booster dose" xsi:type="ExpressionRef"/>
+            <then localId="424" locator="157:30-157:75" xsi:type="Add">
+               <signature localId="428" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="429" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="426" locator="157:30-157:64" name="Date of Latest Hib Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="427" locator="157:68-157:75" value="6" unit="months" xsi:type="Quantity"/>
+            </then>
+            <else localId="431" asType="t:Date" xsi:type="As">
+               <operand localId="430" locator="158:8-158:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="408" locator="145:1-150:9" name="Hib booster dose Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Hib booster dose Create"/>
+            <a:t name="create" value="Hib booster dose should be provided if the client was given the previous dose more than 6 months ago"/>
+            <a:s r="408">
+               <a:s>/*
+@output: Hib booster dose Create
+@create: Hib booster dose should be provided if the client was given the previous dose more than 6 months ago
+*/
+define &quot;Hib booster dose Create&quot;:
+  </a:s>
+               <a:s r="409">
+                  <a:s>if </a:s>
+                  <a:s r="410">
+                     <a:s>&quot;Hib booster dose&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="453">
+                     <a:s r="444">
+                        <a:s r="440">
+                           <a:s r="419">
+                              <a:s r="415">
+                                 <a:s>'Hib booster dose should be provided if the client was given the previous dose more than 6 months ago'</a:s>
+                              </a:s>
+                              <a:s> + </a:s>
+                              <a:s r="416">
+                                 <a:s>'
+Due Date: '</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="436">
+                              <a:s>ToString(</a:s>
+                              <a:s r="432">
+                                 <a:s>&quot;Hib booster dose Due Date&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="441">
+                           <a:s>'
+Expiration: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="449">
+                        <a:s>ToString(</a:s>
+                        <a:s r="445">
+                           <a:s>&quot;Hib booster dose Expiration&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="454">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="409" locator="146:3-150:9" xsi:type="If">
+            <condition localId="410" locator="146:6-146:23" name="Hib booster dose" xsi:type="ExpressionRef"/>
+            <then localId="453" locator="147:8-149:55" xsi:type="Concatenate">
+               <operand localId="444" locator="147:8-148:69" xsi:type="Concatenate">
+                  <operand localId="440" locator="147:8-148:51" xsi:type="Concatenate">
+                     <operand localId="419" locator="147:8-147:125" xsi:type="Concatenate">
+                        <operand localId="415" locator="147:8-147:109" valueType="t:String" value="Hib booster dose should be provided if the client was given the previous dose more than 6 months ago" xsi:type="Literal"/>
+                        <operand localId="416" locator="147:113-147:125" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="436" locator="148:15-148:51" xsi:type="ToString">
+                        <signature localId="437" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="432" locator="148:24-148:50" name="Hib booster dose Due Date" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="441" locator="148:55-148:69" valueType="t:String" value="&#xa;Expiration: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="449" locator="149:17-149:55" xsi:type="ToString">
+                  <signature localId="450" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="445" locator="149:26-149:54" name="Hib booster dose Expiration" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="454" locator="150:8-150:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="456" locator="164:1-165:6" name="Hib booster dose Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Hib booster dose Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States"/>
+            <a:s r="456">
+               <a:s r="457">/*
+@dynamicValue: Hib booster dose Overdue
+@pseudocode: To be determined by Member States
+*/
+define &quot;Hib booster dose Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="457" locator="165:3-165:6" xsi:type="Null"/>
+      </def>
+      <def localId="459" locator="184:1-196:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="459">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="460">
+                  <a:s>case
+    </a:s>
+                  <a:s r="461">
+                     <a:s>when </a:s>
+                     <a:s r="462">
+                        <a:s r="464">
+                           <a:s r="463">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="464">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="465">
+                           <a:s>'42.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="470">
+                        <a:s>&quot;Haemophilus influenzae type b (Hib) dose 1&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="471">
+                     <a:s>when </a:s>
+                     <a:s r="472">
+                        <a:s r="474">
+                           <a:s r="473">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="474">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="475">
+                           <a:s>'43.13'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="480">
+                        <a:s>&quot;Haemophilus influenzae type b (Hib) dose 1&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="481">
+                     <a:s>when </a:s>
+                     <a:s r="482">
+                        <a:s r="484">
+                           <a:s r="483">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="484">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="485">
+                           <a:s>'44.1345'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="490">
+                        <a:s>&quot;Hib dose 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="491">
+                     <a:s>when </a:s>
+                     <a:s r="492">
+                        <a:s r="494">
+                           <a:s r="493">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="494">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="495">
+                           <a:s>'45.1345'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="500">
+                        <a:s>&quot;Hib dose 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="501">
+                     <a:s>when </a:s>
+                     <a:s r="502">
+                        <a:s r="504">
+                           <a:s r="503">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="504">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="505">
+                           <a:s>'46.134'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="510">
+                        <a:s r="511">
+                           <a:s>&quot;First Hib dose from the primary series was administered&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="512">
+                           <a:s>not </a:s>
+                           <a:s r="513">
+                              <a:s>&quot;Hib dose 2&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="514">
+                     <a:s>when </a:s>
+                     <a:s r="515">
+                        <a:s r="517">
+                           <a:s r="516">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="517">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="518">
+                           <a:s>'47.1235'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="523">
+                        <a:s>&quot;Hib booster dose&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="524">
+                     <a:s>when </a:s>
+                     <a:s r="525">
+                        <a:s r="527">
+                           <a:s r="526">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="527">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="528">
+                           <a:s>'48.12345'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="533">
+                        <a:s>&quot;Hib booster dose&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="534">
+                     <a:s>when </a:s>
+                     <a:s r="535">
+                        <a:s r="537">
+                           <a:s r="536">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="537">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="538">
+                           <a:s>'49.12'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="543">
+                        <a:s>&quot;One Hib booster dose was administered. Hib immunization schedule has been completed&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="544">
+                     <a:s>when </a:s>
+                     <a:s r="545">
+                        <a:s r="547">
+                           <a:s r="546">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="547">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="548">
+                           <a:s>'50.3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="553">
+                        <a:s>not </a:s>
+                        <a:s r="554">
+                           <a:s>&quot;Haemophilus influenzae type b (Hib) dose 1&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="555">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="460" locator="185:3-196:5" xsi:type="Case">
+            <caseItem localId="461" locator="186:5-186:78">
+               <when localId="462" locator="186:10-186:28" xsi:type="Equal">
+                  <signature localId="468" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="469" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="466" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="467" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="464" locator="186:10-186:19" path="id" xsi:type="Property">
+                        <source localId="463" locator="186:10-186:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="465" locator="186:23-186:28" valueType="t:String" value="42.3" xsi:type="Literal"/>
+               </when>
+               <then localId="556" xsi:type="As">
+                  <operand localId="470" locator="186:35-186:78" name="Haemophilus influenzae type b (Hib) dose 1" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="557" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="558" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="559" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="471" locator="187:5-187:79">
+               <when localId="472" locator="187:10-187:29" xsi:type="Equal">
+                  <signature localId="478" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="479" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="476" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="477" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="474" locator="187:10-187:19" path="id" xsi:type="Property">
+                        <source localId="473" locator="187:10-187:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="475" locator="187:23-187:29" valueType="t:String" value="43.13" xsi:type="Literal"/>
+               </when>
+               <then localId="560" xsi:type="As">
+                  <operand localId="480" locator="187:36-187:79" name="Haemophilus influenzae type b (Hib) dose 1" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="561" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="562" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="563" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="481" locator="188:5-188:49">
+               <when localId="482" locator="188:10-188:31" xsi:type="Equal">
+                  <signature localId="488" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="489" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="486" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="487" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="484" locator="188:10-188:19" path="id" xsi:type="Property">
+                        <source localId="483" locator="188:10-188:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="485" locator="188:23-188:31" valueType="t:String" value="44.1345" xsi:type="Literal"/>
+               </when>
+               <then localId="564" xsi:type="As">
+                  <operand localId="490" locator="188:38-188:49" name="Hib dose 2" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="565" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="566" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="567" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="491" locator="189:5-189:49">
+               <when localId="492" locator="189:10-189:31" xsi:type="Equal">
+                  <signature localId="498" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="499" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="496" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="497" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="494" locator="189:10-189:19" path="id" xsi:type="Property">
+                        <source localId="493" locator="189:10-189:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="495" locator="189:23-189:31" valueType="t:String" value="45.1345" xsi:type="Literal"/>
+               </when>
+               <then localId="568" xsi:type="As">
+                  <operand localId="500" locator="189:38-189:49" name="Hib dose 2" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="569" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="570" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="571" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="501" locator="190:5-190:114">
+               <when localId="502" locator="190:10-190:30" xsi:type="Equal">
+                  <signature localId="508" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="509" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="506" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="507" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="504" locator="190:10-190:19" path="id" xsi:type="Property">
+                        <source localId="503" locator="190:10-190:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="505" locator="190:23-190:30" valueType="t:String" value="46.134" xsi:type="Literal"/>
+               </when>
+               <then localId="572" xsi:type="As">
+                  <operand localId="510" locator="190:37-190:114" xsi:type="And">
+                     <operand localId="511" locator="190:37-190:93" name="First Hib dose from the primary series was administered" xsi:type="ExpressionRef"/>
+                     <operand localId="512" locator="190:99-190:114" xsi:type="Not">
+                        <operand localId="513" locator="190:103-190:114" name="Hib dose 2" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="573" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="574" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="575" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="514" locator="191:5-191:55">
+               <when localId="515" locator="191:10-191:31" xsi:type="Equal">
+                  <signature localId="521" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="522" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="519" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="520" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="517" locator="191:10-191:19" path="id" xsi:type="Property">
+                        <source localId="516" locator="191:10-191:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="518" locator="191:23-191:31" valueType="t:String" value="47.1235" xsi:type="Literal"/>
+               </when>
+               <then localId="576" xsi:type="As">
+                  <operand localId="523" locator="191:38-191:55" name="Hib booster dose" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="577" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="578" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="579" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="524" locator="192:5-192:56">
+               <when localId="525" locator="192:10-192:32" xsi:type="Equal">
+                  <signature localId="531" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="532" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="529" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="530" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="527" locator="192:10-192:19" path="id" xsi:type="Property">
+                        <source localId="526" locator="192:10-192:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="528" locator="192:23-192:32" valueType="t:String" value="48.12345" xsi:type="Literal"/>
+               </when>
+               <then localId="580" xsi:type="As">
+                  <operand localId="533" locator="192:39-192:56" name="Hib booster dose" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="581" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="582" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="583" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="534" locator="193:5-193:120">
+               <when localId="535" locator="193:10-193:29" xsi:type="Equal">
+                  <signature localId="541" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="542" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="539" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="540" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="537" locator="193:10-193:19" path="id" xsi:type="Property">
+                        <source localId="536" locator="193:10-193:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="538" locator="193:23-193:29" valueType="t:String" value="49.12" xsi:type="Literal"/>
+               </when>
+               <then localId="584" xsi:type="As">
+                  <operand localId="543" locator="193:36-193:120" name="One Hib booster dose was administered. Hib immunization schedule has been completed" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="585" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="586" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="587" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="544" locator="194:5-194:82">
+               <when localId="545" locator="194:10-194:28" xsi:type="Equal">
+                  <signature localId="551" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="552" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="549" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="550" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="547" locator="194:10-194:19" path="id" xsi:type="Property">
+                        <source localId="546" locator="194:10-194:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="548" locator="194:23-194:28" valueType="t:String" value="50.3" xsi:type="Literal"/>
+               </when>
+               <then localId="588" xsi:type="As">
+                  <operand localId="553" locator="194:35-194:82" xsi:type="Not">
+                     <operand localId="554" locator="194:39-194:82" name="Haemophilus influenzae type b (Hib) dose 1" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="589" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="590" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="591" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="592" xsi:type="As">
+               <operand localId="555" locator="195:10-195:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="593" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="594" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="595" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>
