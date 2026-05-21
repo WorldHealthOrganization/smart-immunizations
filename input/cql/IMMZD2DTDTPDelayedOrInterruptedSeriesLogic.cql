@@ -390,3 +390,16 @@ Pertussis immunization schedule is complete. Three DTP primary series doses and 
 Check for any other vaccines due.'
     else 'No test case set'
   end
+
+// @generated dynamicValue constants
+// Resolved via text/cql-identifier from PlanDefinition.action.dynamicValue,
+// avoiding per-$apply CQL→ELM compilation of inline text/cql-expression literals.
+// See input/fsh/rulesets/rulesets-plandefinition.fsh.
+define "Draft Status": 'draft'
+define "Proposal Intent": 'proposal'
+define "Active Status": 'active'
+define "Alert Category Coding": Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }
+define "Routine Priority": Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }
+define "Pertussis-containing vaccines Medication": Concept { codes: { Code { system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE12', display: 'Pertussis-containing vaccines' } }, display: 'Pertussis-containing vaccines' }
+define "DTP-containing vaccines Medication": Concept { codes: { Code { system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE24', display: 'DTP-containing vaccines' } }, display: 'DTP-containing vaccines' }
+define "Tetanus and diphtheria-containing vaccines Medication": Concept { codes: { Code { system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE28', display: 'Tetanus and diphtheria-containing vaccines' } }, display: 'Tetanus and diphtheria-containing vaccines' }

@@ -57,3 +57,11 @@ define "Test Validation":
     when Patient.id = 'HepatitisB62.1' then "Hepatitis B vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." and "Guidance" = 'Do not vaccinate client with hepatitis B if the client had a history of serious allergic reactions to any of the vaccine components. Allergy to yeast is considered a contraindication to immunization with yeast-produced hepatitis B-containing vaccine.'
     else 'No test case set'
   end
+
+// @generated dynamicValue constants
+// Resolved via text/cql-identifier from PlanDefinition.action.dynamicValue,
+// avoiding per-$apply CQL→ELM compilation of inline text/cql-expression literals.
+// See input/fsh/rulesets/rulesets-plandefinition.fsh.
+define "Active Status": 'active'
+define "Alert Category Coding": Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }
+define "Routine Priority": Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }

@@ -78,3 +78,11 @@ define "Test Validation":
     when Patient.id = 'Seasonalinfluenza22.1' then "Seasonal influenza vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Case 2" and "Guidance" = 'Do not vaccinate client with seasonal influenza if client has had a severe allergic reaction (e.g. anaphylaxis) after a previous dose or to a vaccine component.'
     else 'No test case set'
   end
+
+// @generated dynamicValue constants
+// Resolved via text/cql-identifier from PlanDefinition.action.dynamicValue,
+// avoiding per-$apply CQL→ELM compilation of inline text/cql-expression literals.
+// See input/fsh/rulesets/rulesets-plandefinition.fsh.
+define "Active Status": 'active'
+define "Alert Category Coding": Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }
+define "Routine Priority": Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }

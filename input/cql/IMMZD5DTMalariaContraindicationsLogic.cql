@@ -57,3 +57,11 @@ define "Test Validation":
     when Patient.id = 'Malaria23.1' then "Malaria vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" and "Guidance" = 'Do not vaccinate client with RTS,S/AS01 vaccine if client has severe hypersensitivity to any of the vaccine components.'
     else 'No test case set'
   end
+
+// @generated dynamicValue constants
+// Resolved via text/cql-identifier from PlanDefinition.action.dynamicValue,
+// avoiding per-$apply CQL→ELM compilation of inline text/cql-expression literals.
+// See input/fsh/rulesets/rulesets-plandefinition.fsh.
+define "Active Status": 'active'
+define "Alert Category Coding": Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }
+define "Routine Priority": Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }
