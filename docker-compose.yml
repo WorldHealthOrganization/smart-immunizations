@@ -1,0 +1,78 @@
+# Build the IG with the dockerized IG Publisher, then upload the resulting
+# output/package.tgz into a HAPI FHIR instance ("smart-helper") via its
+# /upload_ig endpoint (the body is the raw base64-encoded package.tgz).
+#
+#   docker compose up
+#
+# ig-builder and ig-uploader are one-shot containers: they run their script,
+# exit 0, and stop. smart-helper (HAPI) keeps running so you can query the
+# loaded IG at http://localhost:8000. Ctrl-C to stop it when you're done.
+#
+# Flow:
+#   ig-builder   -> runs the HL7 IG Publisher (same image/approach as
+#                   smart-base ghbuild.yml) and writes output/package.tgz
+#   smart-helper -> HAPI FHIR instance exposing POST /upload_ig on :8000
+#   ig-uploader  -> waits for the build to finish AND smart-helper to be up,
+#                   then POSTs the base64 of output/package.tgz to
+#                   http://smart-helper:8000/upload_ig
+#
+# Performance note (Windows/Docker Desktop): the source is bind-mounted from the
+# Windows filesystem, which is slow for the publisher's heavy small-file I/O.
+# The hot, write-churny directories (temp, fsh-generated, output, input-cache,
+# fhir-package-cache) are therefore redirected to Docker named volumes that live
+# on the fast Linux VM disk instead of the bind mount. These live in the Docker
+# volume, not on c:\ -- the uploader reads output/package.tgz from the shared
+# 'output' volume. To pull the rendered IG back to the host after a build:
+#   docker compose cp ig-builder:/work/output ./output
+
+name: smart-immunizations
+
+services:
+  # 1. Build the IG -> writes package.tgz into the 'output' named volume
+  ig-builder:
+    image: hl7fhir/ig-publisher-base:latest
+    working_dir: /work
+    volumes:
+      - .:/work                                # source (edit on Windows)
+      - temp:/work/temp                        # publisher scratch
+      - fsh-generated:/work/fsh-generated      # SUSHI output
+      - output:/work/output                    # rendered IG + package.tgz
+      - input-cache:/work/input-cache          # publisher.jar (persists)
+      - fhir-package-cache:/work/fhir-package-cache  # FHIR deps (persists)
+    entrypoint: ["sh", "/work/docker/build-ig.sh"]
+
+  # 2. HAPI FHIR JPA starter, which exposes the /upload_ig endpoint on :8080.
+  smart-helper:
+    image: hapiproject/hapi:latest
+    ports:
+      - "8080:8080"   # HOST:CONTAINER -> browse HAPI at http://localhost:8080
+    environment:
+      SERVER_PORT: "8080"
+      hapi.fhir.fhir_version: R4
+      # Enable runtime IG upload on the underlying HAPI server
+      hapi.fhir.ig_runtime_upload_enabled: "true"
+
+  # 3. Upload the built package once the build is done and smart-helper is up
+  ig-uploader:
+    image: alpine:3.20
+    depends_on:
+      ig-builder:
+        condition: service_completed_successfully
+      smart-helper:
+        condition: service_started
+    volumes:
+      - .:/work
+      - output:/work/output     # read package.tgz from the same volume the builder wrote
+    environment:
+      # Inter-container traffic uses the CONTAINER port (8080), not the host port
+      HELPER_BASE: http://smart-helper:8080
+      PKG: /work/output/package.tgz
+    entrypoint: ["sh", "/work/docker/upload-ig.sh"]
+
+# Named volumes live on the Linux VM disk (fast), not the Windows bind mount.
+volumes:
+  temp:
+  fsh-generated:
+  output:
+  input-cache:
+  fhir-package-cache:
