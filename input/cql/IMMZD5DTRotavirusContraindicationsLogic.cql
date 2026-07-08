@@ -199,3 +199,14 @@ Check if the client has no known severe hypersensitivity to rotavirus vaccines c
     when Patient.id = 'Rotavirus34.1' then "Clinical judgement is required. Create a clinical note Case 6" and "Guidance" = 'Client has moderate to severe fever, consider risks of vaccination and make a judgement. Consider delaying rotavirus vaccination.'
     else 'No test case set'
   end
+
+// @generated dynamicValue constants
+// Resolved via text/cql-identifier from PlanDefinition.action.dynamicValue,
+// avoiding per-$apply CQL→ELM compilation of inline text/cql-expression literals.
+// See input/fsh/rulesets/rulesets-plandefinition.fsh.
+define "Draft Status": 'draft'
+define "Proposal Intent": 'proposal'
+define "Active Status": 'active'
+define "Alert Category Coding": Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }
+define "Routine Priority": Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }
+define "Rotavirus vaccines Medication": Concept { codes: { Code { system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE16', display: 'Rotavirus vaccines' } }, display: 'Rotavirus vaccines' }

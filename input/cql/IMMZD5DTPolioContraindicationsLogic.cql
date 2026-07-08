@@ -106,3 +106,14 @@ Check if vaccination with IPV is appropriate for the client, consider risks of v
 Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement.'
     else 'No test case set'
   end
+
+// @generated dynamicValue constants
+// Resolved via text/cql-identifier from PlanDefinition.action.dynamicValue,
+// avoiding per-$apply CQL→ELM compilation of inline text/cql-expression literals.
+// See input/fsh/rulesets/rulesets-plandefinition.fsh.
+define "Draft Status": 'draft'
+define "Proposal Intent": 'proposal'
+define "Active Status": 'active'
+define "Alert Category Coding": Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }
+define "Routine Priority": Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }
+define "Oral polio vaccines Medication": Concept { codes: { Code { system: 'http://smart.who.int/immunizations/CodeSystem/IMMZ.Z', code: 'DE30', display: 'Oral polio vaccines' } }, display: 'Oral polio vaccines' }
