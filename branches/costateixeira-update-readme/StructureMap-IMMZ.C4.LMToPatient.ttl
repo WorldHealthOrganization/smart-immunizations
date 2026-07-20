@@ -1,0 +1,586 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://smart.who.int/immunizations/StructureMap/IMMZ.C4.LMToPatient> a fhir:StructureMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "IMMZ.C4.LMToPatient"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: StructureMap IMMZ.C4.LMToPatient</b></p><a name=\"IMMZ.C4.LMToPatient\"> </a><a name=\"hcIMMZ.C4.LMToPatient\"> </a><pre class=\"fml\">#xD;\n<b>map</b><span style=\"color: navy\"> \"</span>http://smart.who.int/immunizations/StructureMap/IMMZ.C4.LMToPatient<span style=\"color: navy\">\" = \"</span>IMMZ.C4.LMToPatient<span style=\"color: navy\">\"#xD;\n#xD;\n</span><span style=\"color: navy\">// </span><span style=\"color: green\">Immunization Client Registry - Transform Logical Model to Patient resources</span>#xD;\n#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"StructureDefinition-IMMZC4.html\" title=\"IMMZ.C4.Create client record\">http://smart.who.int/immunizations/StructureDefinition/IMMZC4</a><span style=\"color: navy\">\" </span><b>alias </b>IMMZC <b>as </b><b>source</b>#xD;\n<b>uses</b><span style=\"color: navy\"> \"</span><a href=\"http://hl7.org/fhir/R4/bundle.html\" title=\"Bundle\">http://hl7.org/fhir/StructureDefinition/Bundle</a><span style=\"color: navy\">\" </span><b>alias </b>Bundle <b>as </b><b>target</b>#xD;\n#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">uses \"http://hl7.org/fhir/StructureDefinition/Patient\" alias Patient as produced</span>#xD;\n<span style=\"color: navy\">// </span><span style=\"color: green\">uses \"http://hl7.org/fhir/StructureDefinition/RelatedPerson\" alias RelatedPerson as produced</span>#xD;\n<b>group </b>IMMZCToPatient<span style=\"color: navy\">(</span><b>source</b> <span style=\"color: maroon\">immzc</span><span style=\"color: navy\"> : </span>IMMZC, <b>target</b> <span style=\"color: maroon\">bundle</span><span style=\"color: navy\"> : </span>Bundle<span style=\"color: navy\">)</span><span style=\"color: navy\"> {#xD;\n</span>  immzc<span style=\"color: navy\"><b> -&gt; </b></span>bundle.type = <span style=\"color: blue\">'transaction'</span> <i>\"SetBundleType\"</i><span style=\"color: navy\">;</span>#xD;\n  immzc<span style=\"color: navy\"><b> -&gt; </b></span> <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">pid</span><span style=\"color: navy\">, </span> bundle.entry<b> as </b><span style=\"color: maroon\">entry</span><span style=\"color: navy\">, </span> entry.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">pid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> entry.request<b> as </b><span style=\"color: maroon\">request</span><span style=\"color: navy\">, </span> request.method = <span style=\"color: blue\">'PUT'</span><span style=\"color: navy\">, </span> request.url = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Patient/'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">pid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> entry.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Patient'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">patient</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>    immzc<span style=\"color: navy\"><b> -&gt; </b></span>patient.id = <span style=\"color: maroon\">pid</span> <i>\"SetId\"</i><span style=\"color: navy\">;</span>#xD;\n    immzc.uniqueId<b> as </b><span style=\"color: maroon\">id</span><span style=\"color: navy\"><b> -&gt; </b></span>patient.identifier<b> as </b><span style=\"color: maroon\">identifier</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      id<span style=\"color: navy\"><b> -&gt; </b></span>identifier.value = <span style=\"color: maroon\">id</span> <i>\"SetIdentifierValue\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"SetIdentifier\"</i><span style=\"color: navy\">;</span>#xD;\n    immzc<span style=\"color: navy\"><b> -&gt; </b></span>patient.name<b> as </b><span style=\"color: maroon\">pname</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      immzc.name<b> as </b><span style=\"color: maroon\">fullName</span><span style=\"color: navy\"><b> -&gt; </b></span>pname.text = <span style=\"color: maroon\">fullName</span> <i>\"SetFullName\"</i><span style=\"color: navy\">;</span>#xD;\n      immzc.firstName<b> as </b><span style=\"color: maroon\">firstName</span><span style=\"color: navy\"><b> -&gt; </b></span>pname.given = <span style=\"color: maroon\">firstName</span> <i>\"SetFirstName\"</i><span style=\"color: navy\">;</span>#xD;\n      immzc.familyName<b> as </b><span style=\"color: maroon\">familyName</span><span style=\"color: navy\"><b> -&gt; </b></span>pname.family = <span style=\"color: maroon\">familyName</span> <i>\"SetFamilyName\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"SetName\"</i><span style=\"color: navy\">;</span>#xD;\n    immzc.sex<b> as </b><span style=\"color: maroon\">sex</span><span style=\"color: navy\"><b> -&gt; </b></span>patient.gender = <b>translate</b><span style=\"color: navy\">(</span><span style=\"color: maroon\">sex</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'http://smart.who.int/immunizations/ConceptMap/IMMZ.C.ConceptMap'</span><span style=\"color: navy\">, </span><span style=\"color: blue\">'code'</span><span style=\"color: navy\">)</span> <i>\"SetGender\"</i><span style=\"color: navy\">;</span>#xD;\n    immzc.dateOfBirth<b> as </b><span style=\"color: maroon\">birthDate</span><span style=\"color: navy\"><b> -&gt; </b></span>patient.birthDate = <span style=\"color: maroon\">birthDate</span> <i>\"SetBirthDate\"</i><span style=\"color: navy\">;</span>#xD;\n    immzc.contactPhoneNumber<b> as </b><span style=\"color: maroon\">phone</span><span style=\"color: navy\"><b> -&gt; </b></span>patient.telecom<b> as </b><span style=\"color: maroon\">telecom</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      phone<b> as </b><span style=\"color: maroon\">content</span><span style=\"color: navy\"><b> -&gt; </b></span> telecom.value = <span style=\"color: maroon\">content</span><span style=\"color: navy\">, </span> telecom.system = <span style=\"color: blue\">'phone'</span> <i>\"SetPhoneValue\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"SetPhone\"</i><span style=\"color: navy\">;</span>#xD;\n    immzc.address<b> as </b><span style=\"color: maroon\">address</span><span style=\"color: navy\"><b> -&gt; </b></span>patient.address<b> as </b><span style=\"color: maroon\">taddress</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      address<b> as </b><span style=\"color: maroon\">content</span><span style=\"color: navy\"><b> -&gt; </b></span>taddress.text = <span style=\"color: maroon\">content</span> <i>\"SetAddressText\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"SetAddress\"</i><span style=\"color: navy\">;</span>#xD;\n    immzc.caregiversMultiple<b> as </b><span style=\"color: maroon\">caregiver</span><span style=\"color: navy\"><b> -&gt; </b></span> <b>uuid</b><span style=\"color: navy\">(</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">rpid</span><span style=\"color: navy\">, </span> bundle.entry<b> as </b><span style=\"color: maroon\">entry</span><span style=\"color: navy\">, </span> entry.fullUrl = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'urn:uuid:'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">rpid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> entry.request<b> as </b><span style=\"color: maroon\">request</span><span style=\"color: navy\">, </span> request.method = <span style=\"color: blue\">'PUT'</span><span style=\"color: navy\">, </span> request.url = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'RelatedPerson/'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">rpid</span><span style=\"color: navy\">)</span><span style=\"color: navy\">, </span> entry.resource = <b>create</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'RelatedPerson'</span><span style=\"color: navy\">)</span><b> as </b><span style=\"color: maroon\">person</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>      caregiver<span style=\"color: navy\"><b> -&gt; </b></span>person.id = <span style=\"color: maroon\">rpid</span> <i>\"SetId\"</i><span style=\"color: navy\">;</span>#xD;\n      caregiver<span style=\"color: navy\"><b> -&gt; </b></span> person.patient<b> as </b><span style=\"color: maroon\">patient</span><span style=\"color: navy\">, </span> patient.reference = <b>append</b><span style=\"color: navy\">(</span><span style=\"color: blue\">'Patient/'</span><span style=\"color: navy\">, </span><span style=\"color: maroon\">pid</span><span style=\"color: navy\">)</span> <i>\"setPatient\"</i><span style=\"color: navy\">;</span>#xD;\n      caregiver<span style=\"color: navy\"><b> -&gt; </b></span>person.name<b> as </b><span style=\"color: maroon\">pname</span><b> then</b><span style=\"color: navy\"> {#xD;\n</span>        caregiver.caregiversFullName<b> as </b><span style=\"color: maroon\">fullName</span><span style=\"color: navy\"><b> -&gt; </b></span>pname.text = <span style=\"color: maroon\">fullName</span> <i>\"SetFullName\"</i><span style=\"color: navy\">;</span>#xD;\n        caregiver.caregiversFirstName<b> as </b><span style=\"color: maroon\">firstName</span><span style=\"color: navy\"><b> -&gt; </b></span>pname.given = <span style=\"color: maroon\">firstName</span> <i>\"SetFirstName\"</i><span style=\"color: navy\">;</span>#xD;\n        caregiver.caregiversFamilyName<b> as </b><span style=\"color: maroon\">familyName</span><span style=\"color: navy\"><b> -&gt; </b></span>pname.family = <span style=\"color: maroon\">familyName</span> <i>\"SetFamilyName\"</i><span style=\"color: navy\">;</span>#xD;\n      <span style=\"color: navy\">}</span> <i>\"SetCaregiverName\"</i><span style=\"color: navy\">;</span>#xD;\n    <span style=\"color: navy\">}</span> <i>\"CreateRelatedPerson\"</i><span style=\"color: navy\">;</span>#xD;\n  <span style=\"color: navy\">}</span> <i>\"CreatePatient\"</i><span style=\"color: navy\">;</span>#xD;\n<span style=\"color: navy\">}#xD;\n#xD;\n</span></pre></div>"^^rdf:XMLLiteral
+  ] ; # 
+  fhir:url [ fhir:v "http://smart.who.int/immunizations/StructureMap/IMMZ.C4.LMToPatient"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "0.2.0"] ; # 
+  fhir:name [ fhir:v "IMMZ.C4.LMToPatient"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:date [ fhir:v "2025-07-02T07:24:46+00:00"^^xsd:dateTime] ; # 
+  fhir:publisher [ fhir:v "WHO"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "WHO" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://who.int" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Immunization Client Registry - Transform Logical Model to Patient resources"] ; # 
+  fhir:structure ( [
+     fhir:url [
+       fhir:v "http://smart.who.int/immunizations/StructureDefinition/IMMZC4"^^xsd:anyURI ;
+       fhir:link <http://smart.who.int/immunizations/StructureDefinition/IMMZC4>
+     ] ;
+     fhir:mode [ fhir:v "source" ] ;
+     fhir:alias [ fhir:v "IMMZC" ]
+  ] [
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/Bundle"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/Bundle>
+     ] ;
+     fhir:mode [ fhir:v "target" ] ;
+     fhir:alias [ fhir:v "Bundle" ]
+  ] ) ; # 
+  fhir:group ( [
+     fhir:name [ fhir:v "IMMZCToPatient" ] ;
+     fhir:typeMode [ fhir:v "none" ] ;
+     fhir:documentation [ fhir:v "uses \"http://hl7.org/fhir/StructureDefinition/Patient\" alias Patient as produced\r\nuses \"http://hl7.org/fhir/StructureDefinition/RelatedPerson\" alias RelatedPerson as produced" ] ;
+     fhir:input ( [
+       fhir:name [ fhir:v "immzc" ] ;
+       fhir:type [ fhir:v "IMMZC" ] ;
+       fhir:mode [ fhir:v "source" ]
+     ] [
+       fhir:name [ fhir:v "bundle" ] ;
+       fhir:type [ fhir:v "Bundle" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] ) ;
+     fhir:rule ( [
+       fhir:name [ fhir:v "SetBundleType" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "immzc" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "bundle" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "type" ] ;
+         fhir:transform [ fhir:v "copy" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "transaction"
+           ]
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "CreatePatient" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "immzc" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:variable [ fhir:v "pid" ] ;
+         fhir:transform [ fhir:v "uuid" ]
+       ] [
+         fhir:context [ fhir:v "bundle" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "entry" ] ;
+         fhir:variable [ fhir:v "entry" ]
+       ] [
+         fhir:context [ fhir:v "entry" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "fullUrl" ] ;
+         fhir:transform [ fhir:v "append" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "urn:uuid:"
+           ]
+         ] [
+           fhir:value [
+             a fhir:id ;
+             fhir:v "pid"
+           ]
+         ] )
+       ] [
+         fhir:context [ fhir:v "entry" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "request" ] ;
+         fhir:variable [ fhir:v "request" ]
+       ] [
+         fhir:context [ fhir:v "request" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "method" ] ;
+         fhir:transform [ fhir:v "copy" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "PUT"
+           ]
+         ] )
+       ] [
+         fhir:context [ fhir:v "request" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "url" ] ;
+         fhir:transform [ fhir:v "append" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "Patient/"
+           ]
+         ] [
+           fhir:value [
+             a fhir:id ;
+             fhir:v "pid"
+           ]
+         ] )
+       ] [
+         fhir:context [ fhir:v "entry" ] ;
+         fhir:contextType [ fhir:v "variable" ] ;
+         fhir:element [ fhir:v "resource" ] ;
+         fhir:variable [ fhir:v "patient" ] ;
+         fhir:transform [ fhir:v "create" ] ;
+         fhir:parameter ( [
+           fhir:value [
+             a fhir:string ;
+             fhir:v "Patient"
+           ]
+         ] )
+       ] ) ;
+       fhir:rule ( [
+         fhir:name [ fhir:v "SetId" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "immzc" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "patient" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "id" ] ;
+           fhir:transform [ fhir:v "copy" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:id ;
+               fhir:v "pid"
+             ]
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "SetIdentifier" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "immzc" ] ;
+           fhir:element [ fhir:v "uniqueId" ] ;
+           fhir:variable [ fhir:v "id" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "patient" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "identifier" ] ;
+           fhir:variable [ fhir:v "identifier" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "SetIdentifierValue" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "id" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "identifier" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "value" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [
+                 a fhir:id ;
+                 fhir:v "id"
+               ]
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "SetName" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "immzc" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "patient" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "name" ] ;
+           fhir:variable [ fhir:v "pname" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "SetFullName" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "immzc" ] ;
+             fhir:element [ fhir:v "name" ] ;
+             fhir:variable [ fhir:v "fullName" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "pname" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "text" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [
+                 a fhir:id ;
+                 fhir:v "fullName"
+               ]
+             ] )
+           ] )
+         ] [
+           fhir:name [ fhir:v "SetFirstName" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "immzc" ] ;
+             fhir:element [ fhir:v "firstName" ] ;
+             fhir:variable [ fhir:v "firstName" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "pname" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "given" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [
+                 a fhir:id ;
+                 fhir:v "firstName"
+               ]
+             ] )
+           ] )
+         ] [
+           fhir:name [ fhir:v "SetFamilyName" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "immzc" ] ;
+             fhir:element [ fhir:v "familyName" ] ;
+             fhir:variable [ fhir:v "familyName" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "pname" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "family" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [
+                 a fhir:id ;
+                 fhir:v "familyName"
+               ]
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "SetGender" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "immzc" ] ;
+           fhir:element [ fhir:v "sex" ] ;
+           fhir:variable [ fhir:v "sex" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "patient" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "gender" ] ;
+           fhir:transform [ fhir:v "translate" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:id ;
+               fhir:v "sex"
+             ]
+           ] [
+             fhir:value [
+               a fhir:string ;
+               fhir:v "http://smart.who.int/immunizations/ConceptMap/IMMZ.C.ConceptMap"
+             ]
+           ] [
+             fhir:value [
+               a fhir:string ;
+               fhir:v "code"
+             ]
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "SetBirthDate" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "immzc" ] ;
+           fhir:element [ fhir:v "dateOfBirth" ] ;
+           fhir:variable [ fhir:v "birthDate" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "patient" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "birthDate" ] ;
+           fhir:transform [ fhir:v "copy" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:id ;
+               fhir:v "birthDate"
+             ]
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "SetPhone" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "immzc" ] ;
+           fhir:element [ fhir:v "contactPhoneNumber" ] ;
+           fhir:variable [ fhir:v "phone" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "patient" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "telecom" ] ;
+           fhir:variable [ fhir:v "telecom" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "SetPhoneValue" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "phone" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "telecom" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "value" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [
+                 a fhir:id ;
+                 fhir:v "content"
+               ]
+             ] )
+           ] [
+             fhir:context [ fhir:v "telecom" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "system" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [
+                 a fhir:string ;
+                 fhir:v "phone"
+               ]
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "SetAddress" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "immzc" ] ;
+           fhir:element [ fhir:v "address" ] ;
+           fhir:variable [ fhir:v "address" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:context [ fhir:v "patient" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "address" ] ;
+           fhir:variable [ fhir:v "taddress" ]
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "SetAddressText" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "address" ] ;
+             fhir:variable [ fhir:v "content" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "taddress" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "text" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [
+                 a fhir:id ;
+                 fhir:v "content"
+               ]
+             ] )
+           ] )
+         ] )
+       ] [
+         fhir:name [ fhir:v "CreateRelatedPerson" ] ;
+         fhir:source ( [
+           fhir:context [ fhir:v "immzc" ] ;
+           fhir:element [ fhir:v "caregiversMultiple" ] ;
+           fhir:variable [ fhir:v "caregiver" ]
+         ] ) ;
+         fhir:target ( [
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:variable [ fhir:v "rpid" ] ;
+           fhir:transform [ fhir:v "uuid" ]
+         ] [
+           fhir:context [ fhir:v "bundle" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "entry" ] ;
+           fhir:variable [ fhir:v "entry" ]
+         ] [
+           fhir:context [ fhir:v "entry" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "fullUrl" ] ;
+           fhir:transform [ fhir:v "append" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:string ;
+               fhir:v "urn:uuid:"
+             ]
+           ] [
+             fhir:value [
+               a fhir:id ;
+               fhir:v "rpid"
+             ]
+           ] )
+         ] [
+           fhir:context [ fhir:v "entry" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "request" ] ;
+           fhir:variable [ fhir:v "request" ]
+         ] [
+           fhir:context [ fhir:v "request" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "method" ] ;
+           fhir:transform [ fhir:v "copy" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:string ;
+               fhir:v "PUT"
+             ]
+           ] )
+         ] [
+           fhir:context [ fhir:v "request" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "url" ] ;
+           fhir:transform [ fhir:v "append" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:string ;
+               fhir:v "RelatedPerson/"
+             ]
+           ] [
+             fhir:value [
+               a fhir:id ;
+               fhir:v "rpid"
+             ]
+           ] )
+         ] [
+           fhir:context [ fhir:v "entry" ] ;
+           fhir:contextType [ fhir:v "variable" ] ;
+           fhir:element [ fhir:v "resource" ] ;
+           fhir:variable [ fhir:v "person" ] ;
+           fhir:transform [ fhir:v "create" ] ;
+           fhir:parameter ( [
+             fhir:value [
+               a fhir:string ;
+               fhir:v "RelatedPerson"
+             ]
+           ] )
+         ] ) ;
+         fhir:rule ( [
+           fhir:name [ fhir:v "SetId" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "caregiver" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "person" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "id" ] ;
+             fhir:transform [ fhir:v "copy" ] ;
+             fhir:parameter ( [
+               fhir:value [
+                 a fhir:id ;
+                 fhir:v "rpid"
+               ]
+             ] )
+           ] )
+         ] [
+           fhir:name [ fhir:v "setPatient" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "caregiver" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "person" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "patient" ] ;
+             fhir:variable [ fhir:v "patient" ]
+           ] [
+             fhir:context [ fhir:v "patient" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "reference" ] ;
+             fhir:transform [ fhir:v "append" ] ;
+             fhir:parameter ( [
+               fhir:value [
+                 a fhir:string ;
+                 fhir:v "Patient/"
+               ]
+             ] [
+               fhir:value [
+                 a fhir:id ;
+                 fhir:v "pid"
+               ]
+             ] )
+           ] )
+         ] [
+           fhir:name [ fhir:v "SetCaregiverName" ] ;
+           fhir:source ( [
+             fhir:context [ fhir:v "caregiver" ]
+           ] ) ;
+           fhir:target ( [
+             fhir:context [ fhir:v "person" ] ;
+             fhir:contextType [ fhir:v "variable" ] ;
+             fhir:element [ fhir:v "name" ] ;
+             fhir:variable [ fhir:v "pname" ]
+           ] ) ;
+           fhir:rule ( [
+             fhir:name [ fhir:v "SetFullName" ] ;
+             fhir:source ( [
+               fhir:context [ fhir:v "caregiver" ] ;
+               fhir:element [ fhir:v "caregiversFullName" ] ;
+               fhir:variable [ fhir:v "fullName" ]
+             ] ) ;
+             fhir:target ( [
+               fhir:context [ fhir:v "pname" ] ;
+               fhir:contextType [ fhir:v "variable" ] ;
+               fhir:element [ fhir:v "text" ] ;
+               fhir:transform [ fhir:v "copy" ] ;
+               fhir:parameter ( [
+                 fhir:value [
+                   a fhir:id ;
+                   fhir:v "fullName"
+                 ]
+               ] )
+             ] )
+           ] [
+             fhir:name [ fhir:v "SetFirstName" ] ;
+             fhir:source ( [
+               fhir:context [ fhir:v "caregiver" ] ;
+               fhir:element [ fhir:v "caregiversFirstName" ] ;
+               fhir:variable [ fhir:v "firstName" ]
+             ] ) ;
+             fhir:target ( [
+               fhir:context [ fhir:v "pname" ] ;
+               fhir:contextType [ fhir:v "variable" ] ;
+               fhir:element [ fhir:v "given" ] ;
+               fhir:transform [ fhir:v "copy" ] ;
+               fhir:parameter ( [
+                 fhir:value [
+                   a fhir:id ;
+                   fhir:v "firstName"
+                 ]
+               ] )
+             ] )
+           ] [
+             fhir:name [ fhir:v "SetFamilyName" ] ;
+             fhir:source ( [
+               fhir:context [ fhir:v "caregiver" ] ;
+               fhir:element [ fhir:v "caregiversFamilyName" ] ;
+               fhir:variable [ fhir:v "familyName" ]
+             ] ) ;
+             fhir:target ( [
+               fhir:context [ fhir:v "pname" ] ;
+               fhir:contextType [ fhir:v "variable" ] ;
+               fhir:element [ fhir:v "family" ] ;
+               fhir:transform [ fhir:v "copy" ] ;
+               fhir:parameter ( [
+                 fhir:value [
+                   a fhir:id ;
+                   fhir:v "familyName"
+                 ]
+               ] )
+             ] )
+           ] )
+         ] )
+       ] )
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

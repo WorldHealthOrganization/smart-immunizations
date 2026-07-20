@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="50">
+         <a:s>/*
+ * Library: IMMZ.IND.25
+ * Dropout Rate of MCV1 to MCV2 (Target / Reported Cohort) 
+ * Indicates the aggregate dropout rate of children which began vaccination of measles containing vaccines (MCV1) with the aggregate administration of the second dose (MCV2).
+
+The indicator compares the number of administrations of MCV dose 1 minus the number of administration of MCV2 divided by the number of MCV1 vaccinations (MCV1 - MCV2 / MCV1)
+ * 
+ * Numerator: The number of first doses of measles containing vaccine administered during reporting period minus the number of last doses of measles containing vaccine during the report period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
+SUBTRACT 
+COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 3 during reporting period
+ * Denominator: Number of first doses of measles containing vaccine administered during the reporting period.
+ * Denominator Computation: COUNT immunization events WHERE administered product is a measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
+ * 
+ * Disaggregation:
+ *   - Geographic Region
+ * 
+ * References: WHO Immunization Facility Analysis Guide (1)
+ */
+library IMMZIND25</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZIND25" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="24:1-24:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="25:1-25:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="26:1-26:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="27:1-27:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="28:1-28:33" localIdentifier="IMMZCon" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="29:1-29:45" localIdentifier="IMMZIndCom" path="http://fhir.org/guides/who/smart-immunization/IMMZIndicatorCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZIndicatorCommon</a:s>
+               </a:s>
+               <a:s> called IMMZIndCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="7" locator="30:1-30:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="7">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="8" locator="31:1-31:28" localIdentifier="FC" path="http://fhir.org/guides/who/smart-immunization/FHIRCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="8">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRCommon</a:s>
+               </a:s>
+               <a:s> called FC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="11" locator="33:1-33:45" name="Measurement Period" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="11">
+               <a:s>// End Skeleton CQL
+parameter &quot;Measurement Period&quot; </a:s>
+               <a:s r="10">
+                  <a:s>Interval&lt;</a:s>
+                  <a:s r="9">
+                     <a:s>Date</a:s>
+                  </a:s>
+                  <a:s>></a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <parameterTypeSpecifier localId="10" locator="33:32-33:45" xsi:type="IntervalTypeSpecifier">
+            <pointType localId="9" locator="33:41-33:44" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+         </parameterTypeSpecifier>
+      </def>
+   </parameters>
+   <statements>
+      <def locator="35:1-35:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="35:1-35:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="22" locator="43:1-44:139" name="numerator" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="22">
+               <a:s>/*
+ * Numerator: The number of first doses of measles containing vaccine administered during reporting period minus the number of last doses of measles containing vaccine during the report period
+ * Numerator Computation: COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 1  during reporting period
+SUBTRACT 
+COUNT immunization events WHERE administered product is measles containing vaccine (IMMZ.A1.DE9) AND dose sequence is 3 during reporting period
+ */
+define &quot;numerator&quot;:
+	</a:s>
+               <a:s r="21">
+                  <a:s>exists</a:s>
+                  <a:s r="20">
+                     <a:s>(</a:s>
+                     <a:s r="20">
+                        <a:s>
+                           <a:s r="13">
+                              <a:s r="12">
+                                 <a:s>
+                                    <a:s>IMMZIndCom.&quot;MCV Doses Administered to Patient During Measurement Period&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> I</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="19">
+                           <a:s>where </a:s>
+                           <a:s r="19">
+                              <a:s r="17">
+                                 <a:s r="16">
+                                    <a:s>(</a:s>
+                                    <a:s r="16">
+                                       <a:s>singleton from </a:s>
+                                       <a:s r="15">
+                                          <a:s r="14">
+                                             <a:s>I</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="15">
+                                             <a:s>protocolApplied</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="17">
+                                    <a:s>doseNumber</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="18"> = 1</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="21" locator="44:2-44:139" xsi:type="Exists">
+            <operand localId="20" locator="44:8-44:139" xsi:type="Query">
+               <source localId="13" locator="44:9-44:82" alias="I">
+                  <expression localId="12" locator="44:9-44:80" name="MCV Doses Administered to Patient During Measurement Period" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="19" locator="44:84-44:138" xsi:type="Equal">
+                  <operand xsi:type="ToInteger">
+                     <operand localId="17" locator="44:90-44:134" path="doseNumber" xsi:type="Property">
+                        <source localId="16" locator="44:90-44:123" xsi:type="SingletonFrom">
+                           <operand localId="15" locator="44:106-44:122" path="protocolApplied" scope="I" xsi:type="Property"/>
+                        </source>
+                     </operand>
+                  </operand>
+                  <operand localId="18" locator="44:138" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="33" locator="50:1-51:139" name="numerator-exclusion" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="33">
+               <a:s>/** 
+ * Exclusion for numerator
+ */
+define &quot;numerator-exclusion&quot;:
+	</a:s>
+               <a:s r="32">
+                  <a:s>exists</a:s>
+                  <a:s r="31">
+                     <a:s>(</a:s>
+                     <a:s r="31">
+                        <a:s>
+                           <a:s r="24">
+                              <a:s r="23">
+                                 <a:s>
+                                    <a:s>IMMZIndCom.&quot;MCV Doses Administered to Patient During Measurement Period&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> I</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="30">
+                           <a:s>where </a:s>
+                           <a:s r="30">
+                              <a:s r="28">
+                                 <a:s r="27">
+                                    <a:s>(</a:s>
+                                    <a:s r="27">
+                                       <a:s>singleton from </a:s>
+                                       <a:s r="26">
+                                          <a:s r="25">
+                                             <a:s>I</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="26">
+                                             <a:s>protocolApplied</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="28">
+                                    <a:s>doseNumber</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="29"> = 2</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="32" locator="51:2-51:139" xsi:type="Exists">
+            <operand localId="31" locator="51:8-51:139" xsi:type="Query">
+               <source localId="24" locator="51:9-51:82" alias="I">
+                  <expression localId="23" locator="51:9-51:80" name="MCV Doses Administered to Patient During Measurement Period" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="30" locator="51:84-51:138" xsi:type="Equal">
+                  <operand xsi:type="ToInteger">
+                     <operand localId="28" locator="51:90-51:134" path="doseNumber" xsi:type="Property">
+                        <source localId="27" locator="51:90-51:123" xsi:type="SingletonFrom">
+                           <operand localId="26" locator="51:106-51:122" path="protocolApplied" scope="I" xsi:type="Property"/>
+                        </source>
+                     </operand>
+                  </operand>
+                  <operand localId="29" locator="51:138" valueType="t:Integer" value="2" xsi:type="Literal"/>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="44" locator="58:1-59:139" name="denominator" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="44">
+               <a:s>/*
+ * Denominator: Number of doses of BCG administered during reporting period.
+ * Denominator Computation: COUNT immunization events WHERE administered product is BCG (IMMZ.A1.DE1)  during reporting period
+ */
+define &quot;denominator&quot;:
+	</a:s>
+               <a:s r="43">
+                  <a:s>exists</a:s>
+                  <a:s r="42">
+                     <a:s>(</a:s>
+                     <a:s r="42">
+                        <a:s>
+                           <a:s r="35">
+                              <a:s r="34">
+                                 <a:s>
+                                    <a:s>IMMZIndCom.&quot;MCV Doses Administered to Patient During Measurement Period&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> I</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="41">
+                           <a:s>where </a:s>
+                           <a:s r="41">
+                              <a:s r="39">
+                                 <a:s r="38">
+                                    <a:s>(</a:s>
+                                    <a:s r="38">
+                                       <a:s>singleton from </a:s>
+                                       <a:s r="37">
+                                          <a:s r="36">
+                                             <a:s>I</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="37">
+                                             <a:s>protocolApplied</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="39">
+                                    <a:s>doseNumber</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="40"> = 1</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="43" locator="59:2-59:139" xsi:type="Exists">
+            <operand localId="42" locator="59:8-59:139" xsi:type="Query">
+               <source localId="35" locator="59:9-59:82" alias="I">
+                  <expression localId="34" locator="59:9-59:80" name="MCV Doses Administered to Patient During Measurement Period" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="41" locator="59:84-59:138" xsi:type="Equal">
+                  <operand xsi:type="ToInteger">
+                     <operand localId="39" locator="59:90-59:134" path="doseNumber" xsi:type="Property">
+                        <source localId="38" locator="59:90-59:123" xsi:type="SingletonFrom">
+                           <operand localId="37" locator="59:106-59:122" path="protocolApplied" scope="I" xsi:type="Property"/>
+                        </source>
+                     </operand>
+                  </operand>
+                  <operand localId="40" locator="59:138" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="47" locator="64:1-65:45" name="Geographic Region Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="47">
+               <a:s>/*
+ * Disaggregator: Geographic Region
+ */
+define &quot;Geographic Region Stratifier&quot;:
+	</a:s>
+               <a:s r="46">
+                  <a:s r="45">
+                     <a:s>IMMZIndCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="46">
+                     <a:s>&quot;By Geographic Region Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="46" locator="65:2-65:45" name="By Geographic Region Stratifier" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="50" locator="70:1-71:49" name="Gender Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="50">
+               <a:s>/*
+ * Disaggregator: Gender
+ */
+define &quot;Gender Stratifier&quot;:
+	</a:s>
+               <a:s r="49">
+                  <a:s r="48">
+                     <a:s>IMMZIndCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="49">
+                     <a:s>&quot;By Administrative Gender Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="49" locator="71:2-71:49" name="By Administrative Gender Stratifier" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+      </def>
+   </statements>
+</library>

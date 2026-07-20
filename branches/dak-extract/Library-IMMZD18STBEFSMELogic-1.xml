@@ -1,0 +1,1558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="493">
+         <a:s>/*
+ * Library: IMMZD18STBEFSMELogic (IMMZ.D18.S.TBE.FSME-Immun schedule)
+ * Schedule Table: FSME-Immun, 3-dose schedule
+ */
+library IMMZD18STBEFSMELogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD18STBEFSMELogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="11:1-11:27" localIdentifier="WC" path="http://smart.who.int/immunizations/WHOCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>WHOCommon</a:s>
+               </a:s>
+               <a:s> called WC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="209" locator="13:1-13:32" localIdentifier="Common" path="http://smart.who.int/immunizations/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called Common</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="210" locator="14:1-14:36" localIdentifier="Concepts" path="http://smart.who.int/immunizations/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="210">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called Concepts</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="211" locator="16:1-16:39" localIdentifier="IE" path="http://smart.who.int/immunizations/IMMZEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="211">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZEncounterElements</a:s>
+               </a:s>
+               <a:s> called IE</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="212" locator="17:1-17:53" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTTBEEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTTBEEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="213" locator="19:1-19:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="213">
+               <a:s>parameter Today </a:s>
+               <a:s r="217">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="216">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="216" locator="19:30-19:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="217" locator="19:17-19:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="221" locator="21:1-21:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="219" locator="21:1-21:15" name="Patient" context="Patient">
+         <expression localId="220" xsi:type="SingletonFrom">
+            <operand localId="218" locator="21:1-21:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="229" locator="70:1-71:58" name="First TBE dose from the primary series was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="First TBE dose from the primary series was administered"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;TBE vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1"/>
+            <a:s r="229">
+               <a:s>/*
+@complete: First TBE dose from the primary series was administered
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1
+*/
+define &quot;First TBE dose from the primary series was administered&quot;:
+  </a:s>
+               <a:s r="231">
+                  <a:s r="230">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="231">
+                     <a:s>&quot;One TBE primary series dose was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="231" locator="71:3-71:58" name="One TBE primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="223" locator="30:1-32:67" name="Tick-borne encephalitis (TBE) FSME-Immun dose 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Tick-borne encephalitis (TBE) FSME-Immun dose 1"/>
+            <a:t name="description" value="Provision of the TBE FSME-Immun dose 1"/>
+            <a:t name="trigger" value="Child's birth"/>
+            <a:t name="triggerDate" value="&quot;Date of birth&quot;"/>
+            <a:s r="223">
+               <a:s>/*
+@output: Tick-borne encephalitis (TBE) FSME-Immun dose 1
+@description: Provision of the TBE FSME-Immun dose 1
+@trigger: Child's birth
+@triggerDate: &quot;Date of birth&quot;
+*/
+define &quot;Tick-borne encephalitis (TBE) FSME-Immun dose 1&quot;:
+  </a:s>
+               <a:s r="224">
+                  <a:s r="226">
+                     <a:s r="225">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="226">
+                        <a:s>&quot;No TBE primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="227">
+                     <a:s>not </a:s>
+                     <a:s r="232">
+                        <a:s>&quot;First TBE dose from the primary series was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="224" locator="31:3-32:67" xsi:type="And">
+            <operand localId="226" locator="31:3-31:59" name="No TBE primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="227" locator="32:7-32:67" xsi:type="Not">
+               <operand localId="232" locator="32:11-32:67" name="First TBE dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="245" locator="48:1-50:11" name="Tick-borne encephalitis (TBE) FSME-Immun dose 1 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Tick-borne encephalitis (TBE) FSME-Immun dose 1 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date of birth&quot; + 1 year"/>
+            <a:s r="245">
+               <a:s>/*
+@dynamicValue: Tick-borne encephalitis (TBE) FSME-Immun dose 1 Due Date
+@pseudocode: &quot;Date of birth&quot; + 1 year
+*/
+define &quot;Tick-borne encephalitis (TBE) FSME-Immun dose 1 Due Date&quot;:
+  </a:s>
+               <a:s r="246">
+                  <a:s>if </a:s>
+                  <a:s r="247">
+                     <a:s>&quot;Tick-borne encephalitis (TBE) FSME-Immun dose 1&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="248">
+                     <a:s r="250">
+                        <a:s r="249">
+                           <a:s>Patient</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="250">
+                           <a:s>birthDate</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="251">
+                        <a:s>1 year</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="255">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="246" locator="49:3-50:11" xsi:type="If">
+            <condition localId="247" locator="49:6-49:54" name="Tick-borne encephalitis (TBE) FSME-Immun dose 1" xsi:type="ExpressionRef"/>
+            <then localId="248" locator="49:61-49:86" xsi:type="Add">
+               <signature localId="253" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="254" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="252" name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="250" locator="49:61-49:77" path="birthDate" xsi:type="Property">
+                     <source localId="249" locator="49:61-49:67" name="Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="251" locator="49:81-49:86" value="1" unit="year" xsi:type="Quantity"/>
+            </then>
+            <else localId="256" asType="t:Date" xsi:type="As">
+               <operand localId="255" locator="50:8-50:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="234" locator="38:1-42:9" name="Tick-borne encephalitis (TBE) FSME-Immun dose 1 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Tick-borne encephalitis (TBE) FSME-Immun dose 1 Create"/>
+            <a:t name="create" value="The vaccine can be given from > 1 year of age"/>
+            <a:s r="234">
+               <a:s>/*
+@output: Tick-borne encephalitis (TBE) FSME-Immun dose 1 Create
+@create: The vaccine can be given from > 1 year of age
+*/
+define &quot;Tick-borne encephalitis (TBE) FSME-Immun dose 1 Create&quot;:
+  </a:s>
+               <a:s r="235">
+                  <a:s>if </a:s>
+                  <a:s r="236">
+                     <a:s>&quot;Tick-borne encephalitis (TBE) FSME-Immun dose 1&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="265">
+                     <a:s r="243">
+                        <a:s r="239">
+                           <a:s>'The vaccine can be given from > 1 year of age'</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="240">
+                           <a:s>'
+Due Date: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="261">
+                        <a:s>ToString(</a:s>
+                        <a:s r="257">
+                           <a:s>&quot;Tick-borne encephalitis (TBE) FSME-Immun dose 1 Due Date&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="266">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="235" locator="39:3-42:9" xsi:type="If">
+            <condition localId="236" locator="39:6-39:54" name="Tick-borne encephalitis (TBE) FSME-Immun dose 1" xsi:type="ExpressionRef"/>
+            <then localId="265" locator="40:8-41:82" xsi:type="Concatenate">
+               <operand localId="243" locator="40:8-40:70" xsi:type="Concatenate">
+                  <operand localId="239" locator="40:8-40:54" valueType="t:String" value="The vaccine can be given from > 1 year of age" xsi:type="Literal"/>
+                  <operand localId="240" locator="40:58-40:70" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="261" locator="41:15-41:82" xsi:type="ToString">
+                  <signature localId="262" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="257" locator="41:24-41:81" name="Tick-borne encephalitis (TBE) FSME-Immun dose 1 Due Date" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="266" locator="42:8-42:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="268" locator="56:1-57:6" name="Tick-borne encephalitis (TBE) FSME-Immun dose 1 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Tick-borne encephalitis (TBE) FSME-Immun dose 1 Overdue"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated."/>
+            <a:s r="268">
+               <a:s r="269">/*
+@dynamicValue: Tick-borne encephalitis (TBE) FSME-Immun dose 1 Overdue
+@pseudocode: To be determined by Member States; however, there is no recommended overdue date and individuals are always eligible to be vaccinated.
+*/
+define &quot;Tick-borne encephalitis (TBE) FSME-Immun dose 1 Overdue&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="269" locator="57:3-57:6" xsi:type="Null"/>
+      </def>
+      <def localId="271" locator="63:1-64:6" name="Tick-borne encephalitis (TBE) FSME-Immun dose 1 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Tick-borne encephalitis (TBE) FSME-Immun dose 1 Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated."/>
+            <a:s r="271">
+               <a:s r="272">/*
+@dynamicValue: Tick-borne encephalitis (TBE) FSME-Immun dose 1 Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated.
+*/
+define &quot;Tick-borne encephalitis (TBE) FSME-Immun dose 1 Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="272" locator="64:3-64:6" xsi:type="Null"/>
+      </def>
+      <def localId="279" locator="122:1-123:60" name="Second TBE dose from the primary series was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Second TBE dose from the primary series was administered"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;TBE vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2"/>
+            <a:s r="279">
+               <a:s>/*
+@complete: Second TBE dose from the primary series was administered
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2
+*/
+define &quot;Second TBE dose from the primary series was administered&quot;:
+  </a:s>
+               <a:s r="281">
+                  <a:s r="280">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="281">
+                     <a:s>&quot;Two TBE primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="281" locator="123:3-123:60" name="Two TBE primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="274" locator="80:1-82:68" name="TBE FSME-Immun dose 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="TBE FSME-Immun dose 2"/>
+            <a:t name="description" value="Provision of the TBE FSME-Immun dose 2"/>
+            <a:t name="trigger" value="&quot;Vaccine type&quot; = &quot;TBE vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;)"/>
+            <a:s r="274">
+               <a:s>/*
+@output: TBE FSME-Immun dose 2
+@description: Provision of the TBE FSME-Immun dose 2
+@trigger: First TBE dose from the primary series was administered
+Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 1
+@triggerDate: &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;)
+*/
+define &quot;TBE FSME-Immun dose 2&quot;:
+  </a:s>
+               <a:s r="275">
+                  <a:s r="276">
+                     <a:s>&quot;First TBE dose from the primary series was administered&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="277">
+                     <a:s>not </a:s>
+                     <a:s r="282">
+                        <a:s>&quot;Second TBE dose from the primary series was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="275" locator="81:3-82:68" xsi:type="And">
+            <operand localId="276" locator="81:3-81:59" name="First TBE dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            <operand localId="277" locator="82:7-82:68" xsi:type="Not">
+               <operand localId="282" locator="82:11-82:68" name="Second TBE dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="297" locator="99:1-101:11" name="TBE FSME-Immun dose 2 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="TBE FSME-Immun dose 2 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;) + 1 month"/>
+            <a:s r="297">
+               <a:s>/*
+@dynamicValue: TBE FSME-Immun dose 2 Due Date
+@pseudocode: &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;) + 1 month
+*/
+define &quot;TBE FSME-Immun dose 2 Due Date&quot;:
+  </a:s>
+               <a:s r="298">
+                  <a:s>if </a:s>
+                  <a:s r="299">
+                     <a:s>&quot;TBE FSME-Immun dose 2&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="300">
+                     <a:s r="302">
+                        <a:s r="301">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="302">
+                           <a:s>&quot;Date of Latest TBE Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="303">
+                        <a:s>1 month</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="306">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="298" locator="100:3-101:11" xsi:type="If">
+            <condition localId="299" locator="100:6-100:28" name="TBE FSME-Immun dose 2" xsi:type="ExpressionRef"/>
+            <then localId="300" locator="100:35-100:79" xsi:type="Add">
+               <signature localId="304" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="305" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="302" locator="100:35-100:69" name="Date of Latest TBE Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="303" locator="100:73-100:79" value="1" unit="month" xsi:type="Quantity"/>
+            </then>
+            <else localId="307" asType="t:Date" xsi:type="As">
+               <operand localId="306" locator="101:8-101:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="322" locator="107:1-109:11" name="TBE FSME-Immun dose 2 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="TBE FSME-Immun dose 2 Overdue"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;) + 3 months"/>
+            <a:s r="322">
+               <a:s>/*
+@dynamicValue: TBE FSME-Immun dose 2 Overdue
+@pseudocode: &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;) + 3 months
+*/
+define &quot;TBE FSME-Immun dose 2 Overdue&quot;:
+  </a:s>
+               <a:s r="323">
+                  <a:s>if </a:s>
+                  <a:s r="324">
+                     <a:s>&quot;TBE FSME-Immun dose 2&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="325">
+                     <a:s r="327">
+                        <a:s r="326">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="327">
+                           <a:s>&quot;Date of Latest TBE Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="328">
+                        <a:s>3 months</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="331">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="323" locator="108:3-109:11" xsi:type="If">
+            <condition localId="324" locator="108:6-108:28" name="TBE FSME-Immun dose 2" xsi:type="ExpressionRef"/>
+            <then localId="325" locator="108:35-108:80" xsi:type="Add">
+               <signature localId="329" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="330" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="327" locator="108:35-108:69" name="Date of Latest TBE Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="328" locator="108:73-108:80" value="3" unit="months" xsi:type="Quantity"/>
+            </then>
+            <else localId="332" asType="t:Date" xsi:type="As">
+               <operand localId="331" locator="109:8-109:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="284" locator="88:1-93:9" name="TBE FSME-Immun dose 2 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="TBE FSME-Immun dose 2 Create"/>
+            <a:t name="create" value="An interval of 1–3 months is recommended between the first 2 doses"/>
+            <a:s r="284">
+               <a:s>/*
+@output: TBE FSME-Immun dose 2 Create
+@create: An interval of 1–3 months is recommended between the first 2 doses
+*/
+define &quot;TBE FSME-Immun dose 2 Create&quot;:
+  </a:s>
+               <a:s r="285">
+                  <a:s>if </a:s>
+                  <a:s r="286">
+                     <a:s>&quot;TBE FSME-Immun dose 2&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="341">
+                     <a:s r="320">
+                        <a:s r="316">
+                           <a:s r="295">
+                              <a:s r="291">
+                                 <a:s>'An interval of 1–3 months is recommended between the first 2 doses'</a:s>
+                              </a:s>
+                              <a:s> + </a:s>
+                              <a:s r="292">
+                                 <a:s>'
+Due Date: '</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="312">
+                              <a:s>ToString(</a:s>
+                              <a:s r="308">
+                                 <a:s>&quot;TBE FSME-Immun dose 2 Due Date&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="317">
+                           <a:s>'
+Overdue: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="337">
+                        <a:s>ToString(</a:s>
+                        <a:s r="333">
+                           <a:s>&quot;TBE FSME-Immun dose 2 Overdue&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="342">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="285" locator="89:3-93:9" xsi:type="If">
+            <condition localId="286" locator="89:6-89:28" name="TBE FSME-Immun dose 2" xsi:type="ExpressionRef"/>
+            <then localId="341" locator="90:8-92:54" xsi:type="Concatenate">
+               <operand localId="320" locator="90:8-91:71" xsi:type="Concatenate">
+                  <operand localId="316" locator="90:8-91:56" xsi:type="Concatenate">
+                     <operand localId="295" locator="90:8-90:91" xsi:type="Concatenate">
+                        <operand localId="291" locator="90:8-90:75" valueType="t:String" value="An interval of 1–3 months is recommended between the first 2 doses" xsi:type="Literal"/>
+                        <operand localId="292" locator="90:79-90:91" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="312" locator="91:15-91:56" xsi:type="ToString">
+                        <signature localId="313" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="308" locator="91:24-91:55" name="TBE FSME-Immun dose 2 Due Date" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="317" locator="91:60-91:71" valueType="t:String" value="&#xa;Overdue: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="337" locator="92:14-92:54" xsi:type="ToString">
+                  <signature localId="338" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="333" locator="92:23-92:53" name="TBE FSME-Immun dose 2 Overdue" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="342" locator="93:8-93:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="344" locator="115:1-116:6" name="TBE FSME-Immun dose 2 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="TBE FSME-Immun dose 2 Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated."/>
+            <a:s r="344">
+               <a:s r="345">/*
+@dynamicValue: TBE FSME-Immun dose 2 Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated.
+*/
+define &quot;TBE FSME-Immun dose 2 Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="345" locator="116:3-116:6" xsi:type="Null"/>
+      </def>
+      <def localId="352" locator="174:1-175:62" name="Third TBE dose from the primary series was administered. The primary series has been completed" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="Third TBE dose from the primary series was administered. The primary series has been completed"/>
+            <a:t name="pseudocode" value="&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;)"/>
+            <a:s r="352">
+               <a:s>/*
+@complete: Third TBE dose from the primary series was administered. The primary series has been completed
+@pseudocode: &quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;)
+*/
+define &quot;Third TBE dose from the primary series was administered. The primary series has been completed&quot;:
+  </a:s>
+               <a:s r="354">
+                  <a:s r="353">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="354">
+                     <a:s>&quot;Three TBE primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="354" locator="175:3-175:62" name="Three TBE primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="347" locator="132:1-134:106" name="TBE FSME-Immun dose 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="TBE FSME-Immun dose 3"/>
+            <a:t name="description" value="Provision of the TBE FSME-Immun dose 3"/>
+            <a:t name="trigger" value="&quot;Vaccine type&quot; = &quot;TBE vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2"/>
+            <a:t name="triggerDate" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;)"/>
+            <a:s r="347">
+               <a:s>/*
+@output: TBE FSME-Immun dose 3
+@description: Provision of the TBE FSME-Immun dose 3
+@trigger: Second TBE dose from the primary series was administered
+Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot; and &quot;Type of dose&quot; = &quot;Primary series&quot;) = 2
+@triggerDate: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;)
+*/
+define &quot;TBE FSME-Immun dose 3&quot;:
+  </a:s>
+               <a:s r="348">
+                  <a:s r="349">
+                     <a:s>&quot;Second TBE dose from the primary series was administered&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="350">
+                     <a:s>not </a:s>
+                     <a:s r="355">
+                        <a:s>&quot;Third TBE dose from the primary series was administered. The primary series has been completed&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="348" locator="133:3-134:106" xsi:type="And">
+            <operand localId="349" locator="133:3-133:60" name="Second TBE dose from the primary series was administered" xsi:type="ExpressionRef"/>
+            <operand localId="350" locator="134:7-134:106" xsi:type="Not">
+               <operand localId="355" locator="134:11-134:106" name="Third TBE dose from the primary series was administered. The primary series has been completed" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="370" locator="151:1-153:11" name="TBE FSME-Immun dose 3 Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="TBE FSME-Immun dose 3 Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;) + 5 months"/>
+            <a:s r="370">
+               <a:s>/*
+@dynamicValue: TBE FSME-Immun dose 3 Due Date
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;) + 5 months
+*/
+define &quot;TBE FSME-Immun dose 3 Due Date&quot;:
+  </a:s>
+               <a:s r="371">
+                  <a:s>if </a:s>
+                  <a:s r="372">
+                     <a:s>&quot;TBE FSME-Immun dose 3&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="373">
+                     <a:s r="375">
+                        <a:s r="374">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="375">
+                           <a:s>&quot;Date of Latest TBE Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="376">
+                        <a:s>5 months</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="379">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="371" locator="152:3-153:11" xsi:type="If">
+            <condition localId="372" locator="152:6-152:28" name="TBE FSME-Immun dose 3" xsi:type="ExpressionRef"/>
+            <then localId="373" locator="152:35-152:80" xsi:type="Add">
+               <signature localId="377" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="378" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="375" locator="152:35-152:69" name="Date of Latest TBE Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="376" locator="152:73-152:80" value="5" unit="months" xsi:type="Quantity"/>
+            </then>
+            <else localId="380" asType="t:Date" xsi:type="As">
+               <operand localId="379" locator="153:8-153:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="395" locator="159:1-161:11" name="TBE FSME-Immun dose 3 Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="TBE FSME-Immun dose 3 Overdue"/>
+            <a:t name="pseudocode" value="&quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;) + 12 months"/>
+            <a:s r="395">
+               <a:s>/*
+@dynamicValue: TBE FSME-Immun dose 3 Overdue
+@pseudocode: Latest &quot;Date and time of vaccination&quot; (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;) + 12 months
+*/
+define &quot;TBE FSME-Immun dose 3 Overdue&quot;:
+  </a:s>
+               <a:s r="396">
+                  <a:s>if </a:s>
+                  <a:s r="397">
+                     <a:s>&quot;TBE FSME-Immun dose 3&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="398">
+                     <a:s r="400">
+                        <a:s r="399">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="400">
+                           <a:s>&quot;Date of Latest TBE Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="401">
+                        <a:s>12 months</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="404">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="396" locator="160:3-161:11" xsi:type="If">
+            <condition localId="397" locator="160:6-160:28" name="TBE FSME-Immun dose 3" xsi:type="ExpressionRef"/>
+            <then localId="398" locator="160:35-160:81" xsi:type="Add">
+               <signature localId="402" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="403" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="400" locator="160:35-160:69" name="Date of Latest TBE Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="401" locator="160:73-160:81" value="12" unit="months" xsi:type="Quantity"/>
+            </then>
+            <else localId="405" asType="t:Date" xsi:type="As">
+               <operand localId="404" locator="161:8-161:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="357" locator="140:1-145:9" name="TBE FSME-Immun dose 3 Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="TBE FSME-Immun dose 3 Create"/>
+            <a:t name="create" value="An interval of 5–12 months is recommended between the second and third doses"/>
+            <a:s r="357">
+               <a:s>/*
+@output: TBE FSME-Immun dose 3 Create
+@create: An interval of 5–12 months is recommended between the second and third doses
+*/
+define &quot;TBE FSME-Immun dose 3 Create&quot;:
+  </a:s>
+               <a:s r="358">
+                  <a:s>if </a:s>
+                  <a:s r="359">
+                     <a:s>&quot;TBE FSME-Immun dose 3&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="414">
+                     <a:s r="393">
+                        <a:s r="389">
+                           <a:s r="368">
+                              <a:s r="364">
+                                 <a:s>'An interval of 5–12 months is recommended between the second and third doses'</a:s>
+                              </a:s>
+                              <a:s> + </a:s>
+                              <a:s r="365">
+                                 <a:s>'
+Due Date: '</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="385">
+                              <a:s>ToString(</a:s>
+                              <a:s r="381">
+                                 <a:s>&quot;TBE FSME-Immun dose 3 Due Date&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="390">
+                           <a:s>'
+Overdue: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="410">
+                        <a:s>ToString(</a:s>
+                        <a:s r="406">
+                           <a:s>&quot;TBE FSME-Immun dose 3 Overdue&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="415">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="358" locator="141:3-145:9" xsi:type="If">
+            <condition localId="359" locator="141:6-141:28" name="TBE FSME-Immun dose 3" xsi:type="ExpressionRef"/>
+            <then localId="414" locator="142:8-144:54" xsi:type="Concatenate">
+               <operand localId="393" locator="142:8-143:71" xsi:type="Concatenate">
+                  <operand localId="389" locator="142:8-143:56" xsi:type="Concatenate">
+                     <operand localId="368" locator="142:8-142:101" xsi:type="Concatenate">
+                        <operand localId="364" locator="142:8-142:85" valueType="t:String" value="An interval of 5–12 months is recommended between the second and third doses" xsi:type="Literal"/>
+                        <operand localId="365" locator="142:89-142:101" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="385" locator="143:15-143:56" xsi:type="ToString">
+                        <signature localId="386" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="381" locator="143:24-143:55" name="TBE FSME-Immun dose 3 Due Date" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="390" locator="143:60-143:71" valueType="t:String" value="&#xa;Overdue: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="410" locator="144:14-144:54" xsi:type="ToString">
+                  <signature localId="411" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="406" locator="144:23-144:53" name="TBE FSME-Immun dose 3 Overdue" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="415" locator="145:8-145:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="417" locator="167:1-168:6" name="TBE FSME-Immun dose 3 Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="TBE FSME-Immun dose 3 Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated."/>
+            <a:s r="417">
+               <a:s r="418">/*
+@dynamicValue: TBE FSME-Immun dose 3 Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated.
+*/
+define &quot;TBE FSME-Immun dose 3 Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="418" locator="168:3-168:6" xsi:type="Null"/>
+      </def>
+      <def localId="425" locator="226:1-227:56" name="TBE booster dose was administered" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="complete" value="TBE booster dose was administered"/>
+            <a:t name="pseudocode" value="&quot;Vaccine type&quot; = &quot;TBE vaccines&quot; and &quot;Type of dose&quot; = &quot;Booster dose&quot;)  = 1"/>
+            <a:s r="425">
+               <a:s>/*
+@complete: TBE booster dose was administered
+@pseudocode: Count of vaccines administered (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot; and &quot;Type of dose&quot; = &quot;Booster dose&quot;)  = 1
+*/
+define &quot;TBE booster dose was administered&quot;:
+  </a:s>
+               <a:s r="427">
+                  <a:s r="426">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="427">
+                     <a:s>&quot;At least one booster dose was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="427" locator="227:3-227:56" name="At least one booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="420" locator="184:1-186:45" name="TBE FSME-Immun booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="TBE FSME-Immun booster dose"/>
+            <a:t name="description" value="Provision of the TBE FSME-Immun booster dose"/>
+            <a:t name="trigger" value="&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;)"/>
+            <a:t name="triggerDate" value="&quot;Date when primary vaccination series was completed&quot;"/>
+            <a:s r="420">
+               <a:s>/*
+@output: TBE FSME-Immun booster dose
+@description: Provision of the TBE FSME-Immun booster dose
+@trigger: The primary series has been completed
+&quot;Completed the primary vaccination series&quot; = TRUE (where &quot;Vaccine type&quot; = &quot;TBE vaccines&quot;)
+@triggerDate: &quot;Date when primary vaccination series was completed&quot;
+*/
+define &quot;TBE FSME-Immun booster dose&quot;:
+  </a:s>
+               <a:s r="421">
+                  <a:s r="422">
+                     <a:s>&quot;Third TBE dose from the primary series was administered. The primary series has been completed&quot;</a:s>
+                  </a:s>
+                  <a:s>
+  and </a:s>
+                  <a:s r="423">
+                     <a:s>not </a:s>
+                     <a:s r="428">
+                        <a:s>&quot;TBE booster dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="421" locator="185:3-186:45" xsi:type="And">
+            <operand localId="422" locator="185:3-185:98" name="Third TBE dose from the primary series was administered. The primary series has been completed" xsi:type="ExpressionRef"/>
+            <operand localId="423" locator="186:7-186:45" xsi:type="Not">
+               <operand localId="428" locator="186:11-186:45" name="TBE booster dose was administered" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="443" locator="203:1-205:11" name="TBE FSME-Immun booster dose Due Date" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="TBE FSME-Immun booster dose Due Date"/>
+            <a:t name="pseudocode" value="&quot;Date when primary vaccination series was completed&quot; + 3 years"/>
+            <a:s r="443">
+               <a:s>/*
+@dynamicValue: TBE FSME-Immun booster dose Due Date
+@pseudocode: &quot;Date when primary vaccination series was completed&quot; + 3 years
+*/
+define &quot;TBE FSME-Immun booster dose Due Date&quot;:
+  </a:s>
+               <a:s r="444">
+                  <a:s>if </a:s>
+                  <a:s r="445">
+                     <a:s>&quot;TBE FSME-Immun booster dose&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="446">
+                     <a:s r="448">
+                        <a:s r="447">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="448">
+                           <a:s>&quot;Date of Latest TBE Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="449">
+                        <a:s>3 years</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="452">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="444" locator="204:3-205:11" xsi:type="If">
+            <condition localId="445" locator="204:6-204:34" name="TBE FSME-Immun booster dose" xsi:type="ExpressionRef"/>
+            <then localId="446" locator="204:41-204:85" xsi:type="Add">
+               <signature localId="450" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="451" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="448" locator="204:41-204:75" name="Date of Latest TBE Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="449" locator="204:79-204:85" value="3" unit="years" xsi:type="Quantity"/>
+            </then>
+            <else localId="453" asType="t:Date" xsi:type="As">
+               <operand localId="452" locator="205:8-205:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="468" locator="211:1-213:11" name="TBE FSME-Immun booster dose Overdue" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="TBE FSME-Immun booster dose Overdue"/>
+            <a:t name="pseudocode" value="&quot;Date when primary vaccination series was completed&quot; + 5 years"/>
+            <a:s r="468">
+               <a:s>/*
+@dynamicValue: TBE FSME-Immun booster dose Overdue
+@pseudocode: &quot;Date when primary vaccination series was completed&quot; + 5 years
+*/
+define &quot;TBE FSME-Immun booster dose Overdue&quot;:
+  </a:s>
+               <a:s r="469">
+                  <a:s>if </a:s>
+                  <a:s r="470">
+                     <a:s>&quot;TBE FSME-Immun booster dose&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="471">
+                     <a:s r="473">
+                        <a:s r="472">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="473">
+                           <a:s>&quot;Date of Latest TBE Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="474">
+                        <a:s>5 years</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="477">
+  else null</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="469" locator="212:3-213:11" xsi:type="If">
+            <condition localId="470" locator="212:6-212:34" name="TBE FSME-Immun booster dose" xsi:type="ExpressionRef"/>
+            <then localId="471" locator="212:41-212:85" xsi:type="Add">
+               <signature localId="475" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+               <signature localId="476" name="t:Quantity" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="473" locator="212:41-212:75" name="Date of Latest TBE Dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="474" locator="212:79-212:85" value="5" unit="years" xsi:type="Quantity"/>
+            </then>
+            <else localId="478" asType="t:Date" xsi:type="As">
+               <operand localId="477" locator="213:8-213:11" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="430" locator="192:1-197:9" name="TBE FSME-Immun booster dose Create" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="TBE FSME-Immun booster dose Create"/>
+            <a:t name="create" value="The manufacturer recommends a booster dose to be administered 3 years after completion of the primary series"/>
+            <a:s r="430">
+               <a:s>/*
+@output: TBE FSME-Immun booster dose Create
+@create: The manufacturer recommends a booster dose to be administered 3 years after completion of the primary series
+*/
+define &quot;TBE FSME-Immun booster dose Create&quot;:
+  </a:s>
+               <a:s r="431">
+                  <a:s>if </a:s>
+                  <a:s r="432">
+                     <a:s>&quot;TBE FSME-Immun booster dose&quot;</a:s>
+                  </a:s>
+                  <a:s> 
+  then </a:s>
+                  <a:s r="487">
+                     <a:s r="466">
+                        <a:s r="462">
+                           <a:s r="441">
+                              <a:s r="437">
+                                 <a:s>'The manufacturer recommends a booster dose to be administered 3 years after completion of the primary series'</a:s>
+                              </a:s>
+                              <a:s> + </a:s>
+                              <a:s r="438">
+                                 <a:s>'
+Due Date: '</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="458">
+                              <a:s>ToString(</a:s>
+                              <a:s r="454">
+                                 <a:s>&quot;TBE FSME-Immun booster dose Due Date&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="463">
+                           <a:s>'
+Overdue: '</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> + </a:s>
+                     <a:s r="483">
+                        <a:s>ToString(</a:s>
+                        <a:s r="479">
+                           <a:s>&quot;TBE FSME-Immun booster dose Overdue&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  else </a:s>
+                  <a:s r="488">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="431" locator="193:3-197:9" xsi:type="If">
+            <condition localId="432" locator="193:6-193:34" name="TBE FSME-Immun booster dose" xsi:type="ExpressionRef"/>
+            <then localId="487" locator="194:8-196:60" xsi:type="Concatenate">
+               <operand localId="466" locator="194:8-195:77" xsi:type="Concatenate">
+                  <operand localId="462" locator="194:8-195:62" xsi:type="Concatenate">
+                     <operand localId="441" locator="194:8-194:133" xsi:type="Concatenate">
+                        <operand localId="437" locator="194:8-194:117" valueType="t:String" value="The manufacturer recommends a booster dose to be administered 3 years after completion of the primary series" xsi:type="Literal"/>
+                        <operand localId="438" locator="194:121-194:133" valueType="t:String" value="&#xa;Due Date: " xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="458" locator="195:15-195:62" xsi:type="ToString">
+                        <signature localId="459" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="454" locator="195:24-195:61" name="TBE FSME-Immun booster dose Due Date" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="463" locator="195:66-195:77" valueType="t:String" value="&#xa;Overdue: " xsi:type="Literal"/>
+               </operand>
+               <operand localId="483" locator="196:14-196:60" xsi:type="ToString">
+                  <signature localId="484" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="479" locator="196:23-196:59" name="TBE FSME-Immun booster dose Overdue" xsi:type="ExpressionRef"/>
+               </operand>
+            </then>
+            <else localId="488" locator="197:8-197:9" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="490" locator="219:1-220:6" name="TBE FSME-Immun booster dose Expiration" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="TBE FSME-Immun booster dose Expiration"/>
+            <a:t name="pseudocode" value="To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated."/>
+            <a:s r="490">
+               <a:s r="491">/*
+@dynamicValue: TBE FSME-Immun booster dose Expiration
+@pseudocode: To be determined by Member States; however, there is no recommended expiration date and individuals are always eligible to be vaccinated.
+*/
+define &quot;TBE FSME-Immun booster dose Expiration&quot;:
+  null</a:s>
+            </a:s>
+         </annotation>
+         <expression localId="491" locator="220:3-220:6" xsi:type="Null"/>
+      </def>
+      <def localId="493" locator="232:1-244:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="493">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="494">
+                  <a:s>case
+    </a:s>
+                  <a:s r="495">
+                     <a:s>when </a:s>
+                     <a:s r="496">
+                        <a:s r="498">
+                           <a:s r="497">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="498">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="499">
+                           <a:s>'08.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="504">
+                        <a:s>&quot;Tick-borne encephalitis (TBE) FSME-Immun dose 1&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="505">
+                     <a:s>when </a:s>
+                     <a:s r="506">
+                        <a:s r="508">
+                           <a:s r="507">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="508">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="509">
+                           <a:s>'09.01'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="514">
+                        <a:s>&quot;Tick-borne encephalitis (TBE) FSME-Immun dose 1&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="515">
+                     <a:s>when </a:s>
+                     <a:s r="516">
+                        <a:s r="518">
+                           <a:s r="517">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="518">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="519">
+                           <a:s>'10.03'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="524">
+                        <a:s>&quot;TBE FSME-Immun dose 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="525">
+                     <a:s>when </a:s>
+                     <a:s r="526">
+                        <a:s r="528">
+                           <a:s r="527">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="528">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="529">
+                           <a:s>'11.03'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="534">
+                        <a:s>&quot;TBE FSME-Immun dose 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="535">
+                     <a:s>when </a:s>
+                     <a:s r="536">
+                        <a:s r="538">
+                           <a:s r="537">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="538">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="539">
+                           <a:s>'12.03'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="544">
+                        <a:s>&quot;TBE FSME-Immun dose 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="545">
+                     <a:s>when </a:s>
+                     <a:s r="546">
+                        <a:s r="548">
+                           <a:s r="547">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="548">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="549">
+                           <a:s>'13.03'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="554">
+                        <a:s>&quot;TBE FSME-Immun dose 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="555">
+                     <a:s>when </a:s>
+                     <a:s r="556">
+                        <a:s r="558">
+                           <a:s r="557">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="558">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="559">
+                           <a:s>'14.023'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="564">
+                        <a:s>&quot;TBE FSME-Immun booster dose&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="565">
+                     <a:s>when </a:s>
+                     <a:s r="566">
+                        <a:s r="568">
+                           <a:s r="567">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="568">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="569">
+                           <a:s>'15.023'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="574">
+                        <a:s>&quot;TBE FSME-Immun booster dose&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="575">
+                     <a:s>when </a:s>
+                     <a:s r="576">
+                        <a:s r="578">
+                           <a:s r="577">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="578">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="579">
+                           <a:s>'16.02'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="584">
+                        <a:s>&quot;TBE booster dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="585">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="494" locator="233:3-244:5" xsi:type="Case">
+            <caseItem localId="495" locator="234:5-234:83">
+               <when localId="496" locator="234:10-234:28" xsi:type="Equal">
+                  <signature localId="502" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="503" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="500" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="501" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="498" locator="234:10-234:19" path="id" xsi:type="Property">
+                        <source localId="497" locator="234:10-234:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="499" locator="234:23-234:28" valueType="t:String" value="08.1" xsi:type="Literal"/>
+               </when>
+               <then localId="586" xsi:type="As">
+                  <operand localId="504" locator="234:35-234:83" name="Tick-borne encephalitis (TBE) FSME-Immun dose 1" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="587" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="588" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="589" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="505" locator="235:5-235:84">
+               <when localId="506" locator="235:10-235:29" xsi:type="Equal">
+                  <signature localId="512" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="513" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="510" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="511" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="508" locator="235:10-235:19" path="id" xsi:type="Property">
+                        <source localId="507" locator="235:10-235:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="509" locator="235:23-235:29" valueType="t:String" value="09.01" xsi:type="Literal"/>
+               </when>
+               <then localId="590" xsi:type="As">
+                  <operand localId="514" locator="235:36-235:84" name="Tick-borne encephalitis (TBE) FSME-Immun dose 1" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="591" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="592" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="593" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="515" locator="236:5-236:58">
+               <when localId="516" locator="236:10-236:29" xsi:type="Equal">
+                  <signature localId="522" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="523" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="520" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="521" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="518" locator="236:10-236:19" path="id" xsi:type="Property">
+                        <source localId="517" locator="236:10-236:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="519" locator="236:23-236:29" valueType="t:String" value="10.03" xsi:type="Literal"/>
+               </when>
+               <then localId="594" xsi:type="As">
+                  <operand localId="524" locator="236:36-236:58" name="TBE FSME-Immun dose 2" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="595" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="596" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="597" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="525" locator="237:5-237:58">
+               <when localId="526" locator="237:10-237:29" xsi:type="Equal">
+                  <signature localId="532" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="533" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="530" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="531" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="528" locator="237:10-237:19" path="id" xsi:type="Property">
+                        <source localId="527" locator="237:10-237:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="529" locator="237:23-237:29" valueType="t:String" value="11.03" xsi:type="Literal"/>
+               </when>
+               <then localId="598" xsi:type="As">
+                  <operand localId="534" locator="237:36-237:58" name="TBE FSME-Immun dose 2" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="599" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="600" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="601" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="535" locator="238:5-238:58">
+               <when localId="536" locator="238:10-238:29" xsi:type="Equal">
+                  <signature localId="542" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="543" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="540" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="541" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="538" locator="238:10-238:19" path="id" xsi:type="Property">
+                        <source localId="537" locator="238:10-238:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="539" locator="238:23-238:29" valueType="t:String" value="12.03" xsi:type="Literal"/>
+               </when>
+               <then localId="602" xsi:type="As">
+                  <operand localId="544" locator="238:36-238:58" name="TBE FSME-Immun dose 3" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="603" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="604" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="605" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="545" locator="239:5-239:58">
+               <when localId="546" locator="239:10-239:29" xsi:type="Equal">
+                  <signature localId="552" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="553" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="550" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="551" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="548" locator="239:10-239:19" path="id" xsi:type="Property">
+                        <source localId="547" locator="239:10-239:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="549" locator="239:23-239:29" valueType="t:String" value="13.03" xsi:type="Literal"/>
+               </when>
+               <then localId="606" xsi:type="As">
+                  <operand localId="554" locator="239:36-239:58" name="TBE FSME-Immun dose 3" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="607" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="608" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="609" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="555" locator="240:5-240:65">
+               <when localId="556" locator="240:10-240:30" xsi:type="Equal">
+                  <signature localId="562" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="563" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="560" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="561" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="558" locator="240:10-240:19" path="id" xsi:type="Property">
+                        <source localId="557" locator="240:10-240:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="559" locator="240:23-240:30" valueType="t:String" value="14.023" xsi:type="Literal"/>
+               </when>
+               <then localId="610" xsi:type="As">
+                  <operand localId="564" locator="240:37-240:65" name="TBE FSME-Immun booster dose" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="611" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="612" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="613" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="565" locator="241:5-241:65">
+               <when localId="566" locator="241:10-241:30" xsi:type="Equal">
+                  <signature localId="572" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="573" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="570" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="571" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="568" locator="241:10-241:19" path="id" xsi:type="Property">
+                        <source localId="567" locator="241:10-241:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="569" locator="241:23-241:30" valueType="t:String" value="15.023" xsi:type="Literal"/>
+               </when>
+               <then localId="614" xsi:type="As">
+                  <operand localId="574" locator="241:37-241:65" name="TBE FSME-Immun booster dose" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="615" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="616" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="617" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="575" locator="242:5-242:70">
+               <when localId="576" locator="242:10-242:29" xsi:type="Equal">
+                  <signature localId="582" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="583" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="580" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="581" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="578" locator="242:10-242:19" path="id" xsi:type="Property">
+                        <source localId="577" locator="242:10-242:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="579" locator="242:23-242:29" valueType="t:String" value="16.02" xsi:type="Literal"/>
+               </when>
+               <then localId="618" xsi:type="As">
+                  <operand localId="584" locator="242:36-242:70" name="TBE booster dose was administered" xsi:type="ExpressionRef"/>
+                  <asTypeSpecifier localId="619" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="620" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="621" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="622" xsi:type="As">
+               <operand localId="585" locator="243:10-243:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="623" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="624" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="625" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

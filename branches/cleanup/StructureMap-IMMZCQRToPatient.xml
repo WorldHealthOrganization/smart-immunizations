@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureMap xmlns="http://hl7.org/fhir">
+  <id value="IMMZCQRToPatient"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><pre class="fml">
+<b>map</b><span style="color: navy"> &quot;</span>http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZCQRToPatient<span style="color: navy">&quot; = &quot;</span>IMMZCQRToPatient<span style="color: navy">&quot;
+
+</span><span style="color: navy">// </span><span style="color: green">Immunization Client Registry - Transform QuestionnaireResponse to Patient resources</span>
+
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/questionnaireresponse.html" title="QuestionnaireResponse">http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse</a><span style="color: navy">&quot; </span><b>alias </b>QResp <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="StructureDefinition-IMMZCRegisterClient.html" title="IMMZ.C Register Client">http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZCRegisterClient</a><span style="color: navy">&quot; </span><b>alias </b>IMMZC <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/patient.html" title="Patient">http://hl7.org/fhir/StructureDefinition/Patient</a><span style="color: navy">&quot; </span><b>alias </b>Patient <b>as </b><b>target</b>
+
+<b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-IMMZCQRToLM.html" title="IMMZCQRToLM">http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZCQRToLM</a><span style="color: navy">&quot;
+</span><b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-IMMZCLMToPatient.html" title="IMMZCLMToPatient">http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZCLMToPatient</a><span style="color: navy">&quot;
+</span>
+<b>group </b>QRestToIMMZC<span style="color: navy">(</span><b>source</b> <span style="color: maroon">qr</span><span style="color: navy"> : </span>QResp, <b>target</b> <span style="color: maroon">patient</span><span style="color: navy"> : </span>Patient<span style="color: navy">)</span><span style="color: navy"> {
+</span>  qr<span style="color: navy"><b> -&gt; </b></span><b>create</b><span style="color: navy">(</span><span style="color: blue">'http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZCRegisterClient'</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">model</span><b> then</b><span style="color: navy"> {
+</span>    qr<span style="color: navy"><b> -&gt; </b></span>model<b> then </b>QRespToIMMZC<span style="color: navy">(</span><span style="color: maroon">qr</span><span style="color: navy">, </span><span style="color: maroon">model</span><span style="color: navy">)</span> <i>&quot;QRtoLM&quot;</i><span style="color: navy">;</span>
+    qr<span style="color: navy"><b> -&gt; </b></span>patient<b> then </b>IMMZCToPatient<span style="color: navy">(</span><span style="color: maroon">model</span><span style="color: navy">, </span><span style="color: maroon">patient</span><span style="color: navy">)</span> <i>&quot;LMtoPatient&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;QRtoPatient&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span></pre></div>
+  </text>
+  <url value="http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZCQRToPatient"/>
+  <version value="0.1.0"/>
+  <name value="IMMZCQRToPatient"/>
+  <status value="draft"/>
+  <date value="2024-04-04T07:29:23+00:00"/>
+  <publisher value="World Health Organization (WHO)"/>
+  <contact>
+    <name value="World Health Organization (WHO)"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.who.int"/>
+    </telecom>
+  </contact>
+  <description value="Immunization Client Registry - Transform QuestionnaireResponse to Patient resources"/>
+  <jurisdiction>
+    <coding>
+      <system value="http://unstats.un.org/unsd/methods/m49/m49.htm"/>
+      <code value="001"/>
+    </coding>
+  </jurisdiction>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
+    <mode value="source"/>
+    <alias value="QResp"/>
+  </structure>
+  <structure>
+    <url value="http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZCRegisterClient"/>
+    <mode value="source"/>
+    <alias value="IMMZC"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+    <mode value="target"/>
+    <alias value="Patient"/>
+  </structure>
+  <import value="http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZCQRToLM"/>
+  <import value="http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZCLMToPatient"/>
+  <group>
+    <name value="QRestToIMMZC"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="qr"/>
+      <type value="QResp"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="patient"/>
+      <type value="Patient"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="QRtoPatient"/>
+      <source>
+        <context value="qr"/>
+      </source>
+      <target>
+        <contextType value="variable"/>
+        <variable value="model"/>
+        <transform value="create"/>
+        <parameter>
+          <valueString value="http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZCRegisterClient"/>
+        </parameter>
+      </target>
+      <rule>
+        <name value="QRtoLM"/>
+        <source>
+          <context value="qr"/>
+        </source>
+        <target>
+          <context value="model"/>
+          <contextType value="variable"/>
+        </target>
+        <dependent>
+          <name value="QRespToIMMZC"/>
+          <variable value="qr"/>
+          <variable value="model"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="LMtoPatient"/>
+        <source>
+          <context value="qr"/>
+        </source>
+        <target>
+          <context value="patient"/>
+          <contextType value="variable"/>
+        </target>
+        <dependent>
+          <name value="IMMZCToPatient"/>
+          <variable value="model"/>
+          <variable value="patient"/>
+        </dependent>
+      </rule>
+    </rule>
+  </group>
+</StructureMap>

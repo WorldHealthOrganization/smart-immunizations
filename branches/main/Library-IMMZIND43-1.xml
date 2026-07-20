@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="37">
+         <a:s>/*
+ * Library: IMMZ.IND.43
+ * Immunization coverage for Varicella vaccinations (Computed Denominator) 
+ * Compares the administered doses of varicella containing vaccine with the number of immunization recommendations for varicella vaccines expressed as a percentage.
+ * 
+ * Numerator: Number of administrations of vaccines containing a varicella component during reporting period 
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Varicella vaccine (IMMZ.A1.DE.22) during reporting period
+ * Denominator: Number of immunization recommendations for varicella vaccines due during reporting period.
+ * Denominator Computation: COUNT immunization recommendation WHERE recommended product is varicella vaccine (IMMZ.A1.DE22) AND due date during reporting period.
+ * 
+ * Disaggregation:
+ *   - Dose Sequence (1, 2)
+ *   - Age Group (&lt; 12 months, 12 - 18 months, 18 - 36 months, 36 months - 12 years, > 12 years)
+ *   - Geographic Region
+ *   - Gender
+ * 
+ * References: WHO Immunization Facility Analysis Guide (1)
+ */
+library IMMZIND43</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZIND43" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="23:1-23:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="24:1-24:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="25:1-25:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="26:1-26:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="27:1-27:33" localIdentifier="IMMZCon" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="28:1-28:45" localIdentifier="IMMZIndCom" path="http://fhir.org/guides/who/smart-immunization/IMMZIndicatorCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZIndicatorCommon</a:s>
+               </a:s>
+               <a:s> called IMMZIndCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="7" locator="29:1-29:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="7">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="8" locator="30:1-30:28" localIdentifier="FC" path="http://fhir.org/guides/who/smart-immunization/FHIRCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="8">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRCommon</a:s>
+               </a:s>
+               <a:s> called FC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="11" locator="32:1-32:45" name="Measurement Period" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="11">
+               <a:s>// End Skeleton CQL
+parameter &quot;Measurement Period&quot; </a:s>
+               <a:s r="10">
+                  <a:s>Interval&lt;</a:s>
+                  <a:s r="9">
+                     <a:s>Date</a:s>
+                  </a:s>
+                  <a:s>></a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <parameterTypeSpecifier localId="10" locator="32:32-32:45" xsi:type="IntervalTypeSpecifier">
+            <pointType localId="9" locator="32:41-32:44" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+         </parameterTypeSpecifier>
+      </def>
+   </parameters>
+   <statements>
+      <def locator="33:1-33:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="33:1-33:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="15" locator="39:1-40:88" name="numerator" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="15">
+               <a:s>/*
+ * Numerator: Number of administrations of vaccines containing a varicella component during reporting period
+ * Numerator Computation: COUNT immunization events WHERE administered product is a Varicella vaccine (IMMZ.A1.DE.22) during reporting period
+ */
+define &quot;numerator&quot;:
+		</a:s>
+               <a:s r="14">
+                  <a:s>exists</a:s>
+                  <a:s r="13">
+                     <a:s>(</a:s>
+                     <a:s r="13">
+                        <a:s r="12">
+                           <a:s>IMMZIndCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="13">
+                           <a:s>&quot;Varicella Doses Administered to Patient During Measurement Period&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="14" locator="40:3-40:88" xsi:type="Exists">
+            <operand localId="13" locator="40:9-40:88" name="Varicella Doses Administered to Patient During Measurement Period" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="19" locator="47:1-48:73" name="denominator" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="19">
+               <a:s>// TODO: Write logic here 
+
+/*
+ * Denominator: Number of immunization recommendations for varicella vaccines due during reporting period.
+ * Denominator Computation: COUNT immunization recommendation WHERE recommended product is varicella vaccine (IMMZ.A1.DE22) AND due date during reporting period.
+ * TODO: Should we use recommendation here (like HPV) to allow CDSS to define the &quot;cohort&quot; or should cohort just be anyone under 12?
+ */
+define &quot;denominator&quot;:
+	</a:s>
+               <a:s r="18">
+                  <a:s>exists</a:s>
+                  <a:s r="17">
+                     <a:s>(</a:s>
+                     <a:s r="17">
+                        <a:s r="16">
+                           <a:s>IMMZIndCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="17">
+                           <a:s>&quot;Varicella Doses Recommended During Reporting Period&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="18" locator="48:2-48:73" xsi:type="Exists">
+            <operand localId="17" locator="48:8-48:73" name="Varicella Doses Recommended During Reporting Period" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="28" locator="53:1-55:53" name="Dose Sequence Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="28">
+               <a:s>/*
+ * Disaggregator: Dose Sequence (1, 2)
+ */
+define &quot;Dose Sequence Stratifier&quot;:
+	</a:s>
+               <a:s r="27">
+                  <a:s>
+                     <a:s r="21">
+                        <a:s r="20">
+                           <a:s>
+                              <a:s>IMMZIndCom.&quot;Varicella Doses Administered to Patient During Measurement Period&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> I</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	</a:s>
+                  <a:s r="26">
+                     <a:s>return </a:s>
+                     <a:s r="25">
+                        <a:s r="24">
+                           <a:s>(</a:s>
+                           <a:s r="24">
+                              <a:s>singleton from </a:s>
+                              <a:s r="23">
+                                 <a:s r="22">
+                                    <a:s>I</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="23">
+                                    <a:s>protocolApplied</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="25">
+                           <a:s>doseNumber</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="27" locator="54:2-55:53" xsi:type="Query">
+            <source localId="21" locator="54:2-54:81" alias="I">
+               <expression localId="20" locator="54:2-54:79" name="Varicella Doses Administered to Patient During Measurement Period" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+            </source>
+            <return localId="26" locator="55:2-55:53">
+               <expression localId="25" locator="55:9-55:53" path="doseNumber" xsi:type="Property">
+                  <source localId="24" locator="55:9-55:42" xsi:type="SingletonFrom">
+                     <operand localId="23" locator="55:25-55:41" path="protocolApplied" scope="I" xsi:type="Property"/>
+                  </source>
+               </expression>
+            </return>
+         </expression>
+      </def>
+      <def localId="31" locator="60:1-61:41" name="Age Group Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="31">
+               <a:s>/*
+ * Disaggregator: Age Group (&lt; 12 months, 12 - 18 months, 18 - 36 months, 36 months - 12 years, > 12 years)
+ */
+define &quot;Age Group Stratifier&quot;:
+	</a:s>
+               <a:s r="30">
+                  <a:s r="29">
+                     <a:s>IMMZIndCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="30">
+                     <a:s>&quot;Varicella By Age Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="30" locator="61:2-61:41" name="Varicella By Age Stratifier" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="34" locator="66:1-67:45" name="Geographic Region Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="34">
+               <a:s>/*
+ * Disaggregator: Geographic Region
+ */
+define &quot;Geographic Region Stratifier&quot;:
+	</a:s>
+               <a:s r="33">
+                  <a:s r="32">
+                     <a:s>IMMZIndCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="33">
+                     <a:s>&quot;By Geographic Region Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="33" locator="67:2-67:45" name="By Geographic Region Stratifier" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="37" locator="72:1-73:49" name="Gender Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="37">
+               <a:s>/*
+ * Disaggregator: Administrative Gender (or Biological Sex)
+ */
+define &quot;Gender Stratifier&quot;:
+	</a:s>
+               <a:s r="36">
+                  <a:s r="35">
+                     <a:s>IMMZIndCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="36">
+                     <a:s>&quot;By Administrative Gender Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="36" locator="73:2-73:49" name="By Administrative Gender Stratifier" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+      </def>
+   </statements>
+</library>

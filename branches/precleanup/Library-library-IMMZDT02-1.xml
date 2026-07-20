@@ -1,0 +1,1361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.3" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="65">
+         <a:s>/*
+ * Library: IMMZDT02 (IMMZ.DT.02.HepatitisB)
+ * Rule: If child or person has not been vaccinated, give Hepatitis B vaccine as soon as possible after birth 
+ * Trigger: Patient has never had Hepatitis B vaccination, or missing doses in the vaccination schedule
+ */library IMMZDT02</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT02" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQLusing </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:33" localIdentifier="IMMZCon" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="13:1-13:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="16:1-16:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="15" locator="85:1-88:41" name="HepB Doses Administered to Patient" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="15">
+               <a:s>/**
+ * @dataElement HepB containing Doses Administered to Patient
+ */define &quot;HepB Doses Administered to Patient&quot;:
+  </a:s>
+               <a:s r="14">
+                  <a:s>
+                     <a:s r="8">
+                        <a:s r="7">
+                           <a:s>
+                              <a:s>IMMZCom.&quot;Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> I</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+  </a:s>
+                  <a:s r="13">
+                     <a:s>where
+    </a:s>
+                     <a:s r="13">
+                        <a:s r="10">
+                           <a:s r="9">
+                              <a:s>I</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="10">
+                              <a:s>vaccineCode</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> in </a:s>
+                        <a:s r="12">
+                           <a:s r="11">
+                              <a:s>IMMZc</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="12">
+                              <a:s>&quot;HepB Vaccine&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="14" locator="86:3-88:41" xsi:type="Query">
+            <source localId="8" locator="86:3-86:43" alias="I">
+               <expression localId="7" locator="86:3-86:41" name="Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+            </source>
+            <where localId="13" locator="87:3-88:41" xsi:type="InValueSet">
+               <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="10" locator="88:5-88:17" path="vaccineCode" scope="I" xsi:type="Property"/>
+               </code>
+               <valueset localId="12" locator="88:22-88:41" name="HepB Vaccine" libraryName="IMMZc"/>
+            </where>
+         </expression>
+      </def>
+      <def localId="26" locator="110:1-111:43" name="First HepB Dose Administered to Patient" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="26">
+               <a:s>/**
+ * @dataElement First HepB dose given to Patient
+ */define &quot;First HepB Dose Administered to Patient&quot;:
+	</a:s>
+               <a:s r="25">
+                  <a:s>Last(</a:s>
+                  <a:s r="24">
+                     <a:s>&quot;HepB Doses Administered to Patient&quot;</a:s>
+                  </a:s>
+                  <a:s>)</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="25" locator="111:2-111:43" xsi:type="Last">
+            <source localId="24" locator="111:7-111:42" name="HepB Doses Administered to Patient" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="32" locator="116:1-117:83" name="Date First HepB Dose Administered to Patient" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="32">
+               <a:s>/**
+ * @dataElement Date first HepB dose administered
+ */define &quot;Date First HepB Dose Administered to Patient&quot;:
+  </a:s>
+               <a:s r="31">
+                  <a:s>date from </a:s>
+                  <a:s r="30">
+                     <a:s>(</a:s>
+                     <a:s r="30">
+                        <a:s r="28">
+                           <a:s r="27">
+                              <a:s>&quot;First HepB Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="28">
+                              <a:s>occurrence</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> as </a:s>
+                        <a:s r="29">
+                           <a:s>FHIR.dateTime</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="31" locator="117:3-117:83" xsi:type="DateFrom">
+            <operand name="ToDateTime" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="30" locator="117:13-117:83" strict="false" xsi:type="As">
+                  <operand localId="28" locator="117:14-117:65" path="occurrence" xsi:type="Property">
+                     <source localId="27" locator="117:14-117:54" name="First HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="29" locator="117:70-117:82" name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="39" locator="136:1-137:128" name="Second HepB Dose Administered to Patient" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="39">
+               <a:s>/**
+ * @dataElement &quot;Second HepB Dose Administered to Patient&quot;
+ * only valid if 4 weeks after first dose
+ */define &quot;Second HepB Dose Administered to Patient&quot;:
+  </a:s>
+               <a:s r="38">
+                  <a:s>Last(</a:s>
+                  <a:s r="37">
+                     <a:s>
+                        <a:s r="21">
+                           <a:s r="20">
+                              <a:s>
+                                 <a:s>&quot;HepB Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> I</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="36">
+                        <a:s>where </a:s>
+                        <a:s r="36">
+                           <a:s r="23">
+                              <a:s r="22">
+                                 <a:s>I</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="23">
+                                 <a:s>occurrence</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="36"> after </a:s>
+                           <a:s r="35">
+                              <a:s r="33">
+                                 <a:s>&quot;Date First HepB Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                              <a:s> + </a:s>
+                              <a:s r="34">
+                                 <a:s>4 weeks</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>)</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="38" locator="137:3-137:128" xsi:type="Last">
+            <source localId="37" locator="137:8-137:127" xsi:type="Query">
+               <source localId="21" locator="137:8-137:45" alias="I">
+                  <expression localId="20" locator="137:8-137:43" name="HepB Doses Administered to Patient" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="36" locator="137:47-137:127" xsi:type="After">
+                  <operand name="ToDateTime" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand asType="fhir:dateTime" xsi:type="As">
+                        <operand localId="23" locator="137:53-137:64" path="occurrence" scope="I" xsi:type="Property"/>
+                     </operand>
+                  </operand>
+                  <operand xsi:type="ToDateTime">
+                     <operand localId="35" locator="137:72-137:127" xsi:type="Add">
+                        <operand localId="33" locator="137:72-137:117" name="Date First HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                        <operand localId="34" locator="137:121-137:127" value="4" unit="weeks" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </where>
+            </source>
+         </expression>
+      </def>
+      <def localId="45" locator="142:1-143:84" name="Date Second HepB Dose Administered to Patient" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="45">
+               <a:s>/**
+ * @dataElement Date second HepB dose administered
+ */define &quot;Date Second HepB Dose Administered to Patient&quot;:
+  </a:s>
+               <a:s r="44">
+                  <a:s>date from </a:s>
+                  <a:s r="43">
+                     <a:s>(</a:s>
+                     <a:s r="43">
+                        <a:s r="41">
+                           <a:s r="40">
+                              <a:s>&quot;Second HepB Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="41">
+                              <a:s>occurrence</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> as </a:s>
+                        <a:s r="42">
+                           <a:s>FHIR.dateTime</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="44" locator="143:3-143:84" xsi:type="DateFrom">
+            <operand name="ToDateTime" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="43" locator="143:13-143:84" strict="false" xsi:type="As">
+                  <operand localId="41" locator="143:14-143:66" path="occurrence" xsi:type="Property">
+                     <source localId="40" locator="143:14-143:55" name="Second HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="42" locator="143:71-143:83" name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="52" locator="149:1-150:129" name="Third HepB Dose Administered to Patient" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="52">
+               <a:s>/**
+ * @dataElement &quot;Third HepB Dose Administered to Patient&quot;
+ * only valid if 4 weeks after second dose
+ */define &quot;Third HepB Dose Administered to Patient&quot;:
+  </a:s>
+               <a:s r="51">
+                  <a:s>Last(</a:s>
+                  <a:s r="50">
+                     <a:s>
+                        <a:s r="17">
+                           <a:s r="16">
+                              <a:s>
+                                 <a:s>&quot;HepB Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> I</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="49">
+                        <a:s>where </a:s>
+                        <a:s r="49">
+                           <a:s r="19">
+                              <a:s r="18">
+                                 <a:s>I</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="19">
+                                 <a:s>occurrence</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="49"> after </a:s>
+                           <a:s r="48">
+                              <a:s r="46">
+                                 <a:s>&quot;Date Second HepB Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                              <a:s> + </a:s>
+                              <a:s r="47">
+                                 <a:s>4 weeks</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>)</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="51" locator="150:3-150:129" xsi:type="Last">
+            <source localId="50" locator="150:8-150:128" xsi:type="Query">
+               <source localId="17" locator="150:8-150:45" alias="I">
+                  <expression localId="16" locator="150:8-150:43" name="HepB Doses Administered to Patient" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="49" locator="150:47-150:128" xsi:type="After">
+                  <operand name="ToDateTime" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand asType="fhir:dateTime" xsi:type="As">
+                        <operand localId="19" locator="150:53-150:64" path="occurrence" scope="I" xsi:type="Property"/>
+                     </operand>
+                  </operand>
+                  <operand xsi:type="ToDateTime">
+                     <operand localId="48" locator="150:72-150:128" xsi:type="Add">
+                        <operand localId="46" locator="150:72-150:118" name="Date Second HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                        <operand localId="47" locator="150:122-150:128" value="4" unit="weeks" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </where>
+            </source>
+         </expression>
+      </def>
+      <def localId="62" locator="174:1-175:56" name="Patient birth weight observation value" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="62">
+               <a:s>/* 
+ * @dataElement Patient birth weight observation value
+ */define &quot;Patient birth weight observation value&quot;:
+	</a:s>
+               <a:s r="61">
+                  <a:s>First(</a:s>
+                  <a:s r="60">
+                     <a:s r="59">
+                        <a:s>IMMZCom</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="60">
+                        <a:s>&quot;Patient birth weight observation value&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>)</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="61" locator="175:2-175:56" xsi:type="First">
+            <source localId="60" locator="175:8-175:55" name="Patient birth weight observation value" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="65" locator="177:1-178:9" name="2000g" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="65">
+               <a:s>define &quot;2000g&quot;:
+	</a:s>
+               <a:s r="64">
+                  <a:s>2000 'g'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="64" locator="178:2-178:9" value="2000" unit="g" xsi:type="Quantity"/>
+      </def>
+      <def localId="73" locator="123:1-128:2" name="HepB Birth Dose Administered to Patient" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="73">
+               <a:s>/**
+ * @dataElement If the birth dose has been administered to the Patient
+ * given for low weight or premature birth within the first 2 weeks
+ */define &quot;HepB Birth Dose Administered to Patient&quot;:
+	</a:s>
+               <a:s r="72">
+                  <a:s r="58">
+                     <a:s r="56">
+                        <a:s>AgeInWeeksAt(</a:s>
+                        <a:s r="55">
+                           <a:s>&quot;Date First HepB Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                     <a:s r="57"> &lt; 2</a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="71">
+                     <a:s>(
+		</a:s>
+                     <a:s r="71">
+                        <a:s r="67">
+                           <a:s r="63">
+                              <a:s>&quot;Patient birth weight observation value&quot;</a:s>
+                           </a:s>
+                           <a:s> &lt; </a:s>
+                           <a:s r="66">
+                              <a:s>&quot;2000g&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> or
+		</a:s>
+                        <a:s r="70">
+                           <a:s>exists</a:s>
+                           <a:s r="69">
+                              <a:s>(</a:s>
+                              <a:s r="69">
+                                 <a:s r="68">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="69">
+                                    <a:s>&quot;Preterm Birth&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="72" locator="124:2-128:2" xsi:type="And">
+            <operand localId="58" locator="124:2-124:65" xsi:type="Less">
+               <operand localId="56" locator="124:2-124:61" precision="Week" xsi:type="CalculateAgeAt">
+                  <operand path="birthDate.value" xsi:type="Property">
+                     <source name="Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="55" locator="124:15-124:60" name="Date First HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="57" locator="124:65" valueType="t:Integer" value="2" xsi:type="Literal"/>
+            </operand>
+            <operand localId="71" locator="125:2-128:2" xsi:type="Or">
+               <operand localId="67" locator="126:3-126:52" xsi:type="Less">
+                  <operand name="ToQuantity" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="63" locator="126:3-126:42" name="Patient birth weight observation value" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="66" locator="126:46-126:52" name="2000g" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="70" locator="127:3-127:33" xsi:type="Exists">
+                  <operand localId="69" locator="127:9-127:33" name="Preterm Birth" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="86" locator="155:1-156:83" name="Date Third HepB Dose Administered to Patient" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="86">
+               <a:s>/**
+ * @dataElement Date third HepB dose administered
+ */define &quot;Date Third HepB Dose Administered to Patient&quot;:
+  </a:s>
+               <a:s r="85">
+                  <a:s>date from </a:s>
+                  <a:s r="84">
+                     <a:s>(</a:s>
+                     <a:s r="84">
+                        <a:s r="82">
+                           <a:s r="81">
+                              <a:s>&quot;Third HepB Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="82">
+                              <a:s>occurrence</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> as </a:s>
+                        <a:s r="83">
+                           <a:s>FHIR.dateTime</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="85" locator="156:3-156:83" xsi:type="DateFrom">
+            <operand name="ToDateTime" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="84" locator="156:13-156:83" strict="false" xsi:type="As">
+                  <operand localId="82" locator="156:14-156:65" path="occurrence" xsi:type="Property">
+                     <source localId="81" locator="156:14-156:54" name="Third HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="83" locator="156:70-156:82" name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="93" locator="162:1-163:128" name="Fourth HepB Dose Administered to Patient" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="93">
+               <a:s>/**
+ * @dataElement &quot;Fourth HepB Dose Administered to Patient&quot;
+ * only valid if 4 weeks after third dose
+ */define &quot;Fourth HepB Dose Administered to Patient&quot;:
+  </a:s>
+               <a:s r="92">
+                  <a:s>Last(</a:s>
+                  <a:s r="91">
+                     <a:s>
+                        <a:s r="78">
+                           <a:s r="77">
+                              <a:s>
+                                 <a:s>&quot;HepB Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> I</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="90">
+                        <a:s>where </a:s>
+                        <a:s r="90">
+                           <a:s r="80">
+                              <a:s r="79">
+                                 <a:s>I</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="80">
+                                 <a:s>occurrence</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="90"> after </a:s>
+                           <a:s r="89">
+                              <a:s r="87">
+                                 <a:s>&quot;Date Third HepB Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                              <a:s> + </a:s>
+                              <a:s r="88">
+                                 <a:s>4 weeks</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>)</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="92" locator="163:3-163:128" xsi:type="Last">
+            <source localId="91" locator="163:8-163:127" xsi:type="Query">
+               <source localId="78" locator="163:8-163:45" alias="I">
+                  <expression localId="77" locator="163:8-163:43" name="HepB Doses Administered to Patient" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="90" locator="163:47-163:127" xsi:type="After">
+                  <operand name="ToDateTime" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand asType="fhir:dateTime" xsi:type="As">
+                        <operand localId="80" locator="163:53-163:64" path="occurrence" scope="I" xsi:type="Property"/>
+                     </operand>
+                  </operand>
+                  <operand xsi:type="ToDateTime">
+                     <operand localId="89" locator="163:72-163:127" xsi:type="Add">
+                        <operand localId="87" locator="163:72-163:117" name="Date Third HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                        <operand localId="88" locator="163:121-163:127" value="4" unit="weeks" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </where>
+            </source>
+         </expression>
+      </def>
+      <def localId="100" locator="21:1-25:10" name="Provision of the HepB dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="100">
+               <a:s>/**
+ * @dataElement Should provision HepB Dose
+ */define &quot;Provision of the HepB dose&quot;:
+	</a:s>
+               <a:s r="99">
+                  <a:s>if </a:s>
+                  <a:s r="96">
+                     <a:s r="76">
+                        <a:s>( </a:s>
+                        <a:s r="76">
+                           <a:s r="54">
+                              <a:s r="53">
+                                 <a:s>&quot;Third HepB Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                              <a:s> is not null</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="75">
+                              <a:s>not </a:s>
+                              <a:s r="74">
+                                 <a:s>&quot;HepB Birth Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                     <a:s>
+		or </a:s>
+                     <a:s r="95">
+                        <a:s r="94">
+                           <a:s>&quot;Fourth HepB Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                        <a:s> is not null</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="97">
+	then false
+	else true</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="99" locator="22:2-25:10" xsi:type="If">
+            <condition localId="96" locator="22:5-23:59" xsi:type="Or">
+               <operand localId="76" locator="22:5-22:110" xsi:type="And">
+                  <operand localId="54" locator="22:7-22:59" xsi:type="Not">
+                     <operand locator="22:7-22:59" xsi:type="IsNull">
+                        <operand localId="53" locator="22:7-22:47" name="Third HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="75" locator="22:65-22:109" xsi:type="Not">
+                     <operand localId="74" locator="22:69-22:109" name="HepB Birth Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+               <operand localId="95" locator="23:6-23:59" xsi:type="Not">
+                  <operand locator="23:6-23:59" xsi:type="IsNull">
+                     <operand localId="94" locator="23:6-23:47" name="Fourth HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </operand>
+            </condition>
+            <then localId="97" locator="24:7-24:11" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+            <else localId="98" locator="25:7-25:10" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="106" locator="100:1-101:52" name="No HepB Dose Administered to Patient" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="106">
+               <a:s>/**
+ * @dataElement No HepB containing Birth Dose Administered to Patient
+ */define &quot;No HepB Dose Administered to Patient&quot;:
+  </a:s>
+               <a:s r="105">
+                  <a:s>not </a:s>
+                  <a:s r="104">
+                     <a:s>exists</a:s>
+                     <a:s r="103">
+                        <a:s>(</a:s>
+                        <a:s r="103">
+                           <a:s>
+                              <a:s r="102">
+                                 <a:s r="101">
+                                    <a:s>
+                                       <a:s>&quot;HepB Doses Administered to Patient&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> I</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="105" locator="101:3-101:52" xsi:type="Not">
+            <operand localId="104" locator="101:7-101:52" xsi:type="Exists">
+               <operand localId="103" locator="101:13-101:52" xsi:type="Query">
+                  <source localId="102" locator="101:14-101:51" alias="I">
+                     <expression localId="101" locator="101:14-101:49" name="HepB Doses Administered to Patient" xsi:type="ExpressionRef"/>
+                  </source>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="121" locator="74:1-80:3" name="Needs HepB Birth Dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="121">
+               <a:s>define &quot;Needs HepB Birth Dose&quot;:
+	</a:s>
+               <a:s r="120">
+                  <a:s r="112">
+                     <a:s r="107">
+                        <a:s>&quot;No HepB Dose Administered to Patient&quot;</a:s>
+                     </a:s>
+                     <a:s> and
+		</a:s>
+                     <a:s r="111">
+                        <a:s r="109">
+                           <a:s r="108">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="109">
+                              <a:s>&quot;Current Patient Age In Weeks&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="110"> &lt; 2</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+		</a:s>
+                  <a:s r="119">
+                     <a:s>(
+			</a:s>
+                     <a:s r="119">
+                        <a:s r="115">
+                           <a:s r="113">
+                              <a:s>&quot;Patient birth weight observation value&quot;</a:s>
+                           </a:s>
+                           <a:s> &lt; </a:s>
+                           <a:s r="114">
+                              <a:s>&quot;2000g&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> or
+			</a:s>
+                        <a:s r="118">
+                           <a:s>exists</a:s>
+                           <a:s r="117">
+                              <a:s>(</a:s>
+                              <a:s r="117">
+                                 <a:s r="116">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="117">
+                                    <a:s>&quot;Preterm Birth&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+		)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="120" locator="75:2-80:3" xsi:type="And">
+            <operand localId="112" locator="75:2-76:44" xsi:type="And">
+               <operand localId="107" locator="75:2-75:39" name="No HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+               <operand localId="111" locator="76:3-76:44" xsi:type="Less">
+                  <operand localId="109" locator="76:3-76:40" name="Current Patient Age In Weeks" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="110" locator="76:44" valueType="t:Integer" value="2" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="119" locator="77:3-80:3" xsi:type="Or">
+               <operand localId="115" locator="78:4-78:53" xsi:type="Less">
+                  <operand name="ToQuantity" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="113" locator="78:4-78:43" name="Patient birth weight observation value" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="114" locator="78:47-78:53" name="2000g" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="118" locator="79:4-79:34" xsi:type="Exists">
+                  <operand localId="117" locator="79:10-79:34" name="Preterm Birth" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="139" locator="168:1-169:84" name="Date Fourth HepB Dose Administered to Patient" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="139">
+               <a:s>/**
+ * @dataElement Date third HepB dose administered
+ */define &quot;Date Fourth HepB Dose Administered to Patient&quot;:
+  </a:s>
+               <a:s r="138">
+                  <a:s>date from </a:s>
+                  <a:s r="137">
+                     <a:s>(</a:s>
+                     <a:s r="137">
+                        <a:s r="135">
+                           <a:s r="134">
+                              <a:s>&quot;Fourth HepB Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="135">
+                              <a:s>occurrence</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> as </a:s>
+                        <a:s r="136">
+                           <a:s>FHIR.dateTime</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="138" locator="169:3-169:84" xsi:type="DateFrom">
+            <operand name="ToDateTime" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="137" locator="169:13-169:84" strict="false" xsi:type="As">
+                  <operand localId="135" locator="169:14-169:66" path="occurrence" xsi:type="Property">
+                     <source localId="134" locator="169:14-169:55" name="Fourth HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <asTypeSpecifier localId="136" locator="169:71-169:83" name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="156" locator="52:1-59:4" name="Date Last Valid HepB Dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="156">
+               <a:s>define &quot;Date Last Valid HepB Dose&quot;:
+	</a:s>
+               <a:s r="155">
+                  <a:s>case 
+	</a:s>
+                  <a:s r="141">
+                     <a:s>when </a:s>
+                     <a:s r="133">
+                        <a:s r="132">
+                           <a:s>&quot;Fourth HepB Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                        <a:s> is not null</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="140">
+                        <a:s>&quot;Date Fourth HepB Dose Administered to Patient&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	</a:s>
+                  <a:s r="145">
+                     <a:s>when </a:s>
+                     <a:s r="143">
+                        <a:s r="142">
+                           <a:s>&quot;Third HepB Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                        <a:s> is not null</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="144">
+                        <a:s>&quot;Date Third HepB Dose Administered to Patient&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	</a:s>
+                  <a:s r="149">
+                     <a:s>when </a:s>
+                     <a:s r="147">
+                        <a:s r="146">
+                           <a:s>&quot;Second HepB Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                        <a:s> is not null</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="148">
+                        <a:s>&quot;Date Second HepB Dose Administered to Patient&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	</a:s>
+                  <a:s r="153">
+                     <a:s>when </a:s>
+                     <a:s r="151">
+                        <a:s r="150">
+                           <a:s>&quot;First HepB Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                        <a:s> is not null</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="152">
+                        <a:s>&quot;Date First HepB Dose Administered to Patient&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="154">
+	else null
+	end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="155" locator="53:2-59:4" xsi:type="Case">
+            <caseItem localId="141" locator="54:2-54:113">
+               <when localId="133" locator="54:7-54:60" xsi:type="Not">
+                  <operand locator="54:7-54:60" xsi:type="IsNull">
+                     <operand localId="132" locator="54:7-54:48" name="Fourth HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </when>
+               <then localId="140" locator="54:67-54:113" name="Date Fourth HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="145" locator="55:2-55:111">
+               <when localId="143" locator="55:7-55:59" xsi:type="Not">
+                  <operand locator="55:7-55:59" xsi:type="IsNull">
+                     <operand localId="142" locator="55:7-55:47" name="Third HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </when>
+               <then localId="144" locator="55:66-55:111" name="Date Third HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="149" locator="56:2-56:113">
+               <when localId="147" locator="56:7-56:60" xsi:type="Not">
+                  <operand locator="56:7-56:60" xsi:type="IsNull">
+                     <operand localId="146" locator="56:7-56:48" name="Second HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </when>
+               <then localId="148" locator="56:67-56:113" name="Date Second HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="153" locator="57:2-57:111">
+               <when localId="151" locator="57:7-57:59" xsi:type="Not">
+                  <operand locator="57:7-57:59" xsi:type="IsNull">
+                     <operand localId="150" locator="57:7-57:47" name="First HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </when>
+               <then localId="152" locator="57:66-57:111" name="Date First HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else asType="t:Date" xsi:type="As">
+               <operand localId="154" locator="58:7-58:10" xsi:type="Null"/>
+            </else>
+         </expression>
+      </def>
+      <def localId="162" locator="27:1-36:2" name="Schedule Due Date for HepB dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="162">
+               <a:s>define &quot;Schedule Due Date for HepB dose&quot;:
+	</a:s>
+               <a:s r="161">
+                  <a:s>ToDateTime(
+		</a:s>
+                  <a:s r="160">
+                     <a:s>case 
+		</a:s>
+                     <a:s r="125">
+                        <a:s>when </a:s>
+                        <a:s r="122">
+                           <a:s>&quot;Needs HepB Birth Dose&quot;</a:s>
+                        </a:s>
+                        <a:s> 
+			then </a:s>
+                        <a:s r="124">
+                           <a:s r="123">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="124">
+                              <a:s>birthDate</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+		</a:s>
+                     <a:s r="131">
+                        <a:s>when </a:s>
+                        <a:s r="126">
+                           <a:s>&quot;No HepB Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                        <a:s>
+			then </a:s>
+                        <a:s r="130">
+                           <a:s r="128">
+                              <a:s r="127">
+                                 <a:s>Patient</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="128">
+                                 <a:s>birthDate</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> + </a:s>
+                           <a:s r="129">
+                              <a:s>2 weeks</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+		else </a:s>
+                     <a:s r="159">
+                        <a:s r="157">
+                           <a:s>&quot;Date Last Valid HepB Dose&quot;</a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="158">
+                           <a:s>4 weeks</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+		end</a:s>
+                  </a:s>
+                  <a:s>
+	)</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="161" locator="28:2-36:2" xsi:type="ToDateTime">
+            <operand localId="160" locator="29:3-35:5" xsi:type="Case">
+               <caseItem localId="125" locator="30:3-31:25">
+                  <when localId="122" locator="30:8-30:30" name="Needs HepB Birth Dose" xsi:type="ExpressionRef"/>
+                  <then name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="124" locator="31:9-31:25" path="birthDate" xsi:type="Property">
+                        <source localId="123" locator="31:9-31:15" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </then>
+               </caseItem>
+               <caseItem localId="131" locator="32:3-33:35">
+                  <when localId="126" locator="32:8-32:45" name="No HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                  <then localId="130" locator="33:9-33:35" xsi:type="Add">
+                     <operand name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <operand localId="128" locator="33:9-33:25" path="birthDate" xsi:type="Property">
+                           <source localId="127" locator="33:9-33:15" name="Patient" xsi:type="ExpressionRef"/>
+                        </operand>
+                     </operand>
+                     <operand localId="129" locator="33:29-33:35" value="2" unit="weeks" xsi:type="Quantity"/>
+                  </then>
+               </caseItem>
+               <else localId="159" locator="34:8-34:44" xsi:type="Add">
+                  <operand localId="157" locator="34:8-34:34" name="Date Last Valid HepB Dose" xsi:type="ExpressionRef"/>
+                  <operand localId="158" locator="34:38-34:44" value="4" unit="weeks" xsi:type="Quantity"/>
+               </else>
+            </operand>
+         </expression>
+      </def>
+      <def localId="177" locator="38:1-44:4" name="HepB Next Dose Number" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="177">
+               <a:s>define &quot;HepB Next Dose Number&quot;:
+	</a:s>
+               <a:s r="176">
+                  <a:s>case 
+	</a:s>
+                  <a:s r="166">
+                     <a:s>when </a:s>
+                     <a:s r="164">
+                        <a:s r="163">
+                           <a:s>&quot;Third HepB Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                        <a:s> is not null</a:s>
+                     </a:s>
+                     <a:s r="165"> then 4</a:s>
+                  </a:s>
+                  <a:s>
+	</a:s>
+                  <a:s r="170">
+                     <a:s>when </a:s>
+                     <a:s r="168">
+                        <a:s r="167">
+                           <a:s>&quot;Second HepB Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                        <a:s> is not null</a:s>
+                     </a:s>
+                     <a:s r="169"> then 3</a:s>
+                  </a:s>
+                  <a:s>
+	</a:s>
+                  <a:s r="174">
+                     <a:s>when </a:s>
+                     <a:s r="172">
+                        <a:s r="171">
+                           <a:s>&quot;First HepB Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                        <a:s> is not null</a:s>
+                     </a:s>
+                     <a:s r="173"> then 2</a:s>
+                  </a:s>
+                  <a:s r="175">
+	else 1
+	end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="176" locator="39:2-44:4" xsi:type="Case">
+            <caseItem localId="166" locator="40:2-40:66">
+               <when localId="164" locator="40:7-40:59" xsi:type="Not">
+                  <operand locator="40:7-40:59" xsi:type="IsNull">
+                     <operand localId="163" locator="40:7-40:47" name="Third HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </when>
+               <then localId="165" locator="40:66" valueType="t:Integer" value="4" xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="170" locator="41:2-41:67">
+               <when localId="168" locator="41:7-41:60" xsi:type="Not">
+                  <operand locator="41:7-41:60" xsi:type="IsNull">
+                     <operand localId="167" locator="41:7-41:48" name="Second HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </when>
+               <then localId="169" locator="41:67" valueType="t:Integer" value="3" xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="174" locator="42:2-42:66">
+               <when localId="172" locator="42:7-42:59" xsi:type="Not">
+                  <operand locator="42:7-42:59" xsi:type="IsNull">
+                     <operand localId="171" locator="42:7-42:47" name="First HepB Dose Administered to Patient" xsi:type="ExpressionRef"/>
+                  </operand>
+               </when>
+               <then localId="173" locator="42:66" valueType="t:Integer" value="2" xsi:type="Literal"/>
+            </caseItem>
+            <else localId="175" locator="43:7" valueType="t:Integer" value="1" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="186" locator="46:1-50:2" name="Expiration Date for HepB dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="186">
+               <a:s>define &quot;Expiration Date for HepB dose&quot;:
+	</a:s>
+               <a:s r="185">
+                  <a:s>ToDateTime(
+		</a:s>
+                  <a:s r="184">
+                     <a:s>if </a:s>
+                     <a:s r="178">
+                        <a:s>&quot;Needs HepB Birth Dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="182">
+                        <a:s r="180">
+                           <a:s r="179">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="180">
+                              <a:s>birthDate</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> + </a:s>
+                        <a:s r="181">
+                           <a:s>2 weeks</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="183">
+		else null</a:s>
+                  </a:s>
+                  <a:s>
+	)</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="185" locator="47:2-50:2" xsi:type="ToDateTime">
+            <operand localId="184" locator="48:3-49:11" xsi:type="If">
+               <condition localId="178" locator="48:6-48:28" name="Needs HepB Birth Dose" xsi:type="ExpressionRef"/>
+               <then localId="182" locator="48:35-48:61" xsi:type="Add">
+                  <operand name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="180" locator="48:35-48:51" path="birthDate" xsi:type="Property">
+                        <source localId="179" locator="48:35-48:41" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="181" locator="48:55-48:61" value="2" unit="weeks" xsi:type="Quantity"/>
+               </then>
+               <else asType="t:Date" xsi:type="As">
+                  <operand localId="183" locator="49:8-49:11" xsi:type="Null"/>
+               </else>
+            </operand>
+         </expression>
+      </def>
+      <def localId="192" locator="61:1-62:80" name="Should vaccinate patient for HepB" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="192">
+               <a:s>define &quot;Should vaccinate patient for HepB&quot;:
+	</a:s>
+               <a:s r="191">
+                  <a:s r="187">
+                     <a:s>&quot;Provision of the HepB dose&quot;</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="190">
+                     <a:s>(</a:s>
+                     <a:s r="190">
+                        <a:s r="188">
+                           <a:s>&quot;Schedule Due Date for HepB dose&quot;</a:s>
+                        </a:s>
+                        <a:s> &lt;= </a:s>
+                        <a:s r="189">
+                           <a:s>(</a:s>
+                           <a:s r="189">
+                              <a:s>Now()</a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="191" locator="62:2-62:80" xsi:type="And">
+            <operand localId="187" locator="62:2-62:29" name="Provision of the HepB dose" xsi:type="ExpressionRef"/>
+            <operand localId="190" locator="62:35-62:80" xsi:type="LessOrEqual">
+               <operand localId="188" locator="62:36-62:68" name="Schedule Due Date for HepB dose" xsi:type="ExpressionRef"/>
+               <operand localId="189" locator="62:73-62:79" xsi:type="Now"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="199" locator="69:2-72:7" name="Number of Required HepB Doses" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="199">
+               <a:s>/**
+ * @dataElement Number of doses required for this patient
+ * 4 is a birth dose was given for premature birth or low birth weight, 3 if not.
+ */define &quot;Number of Required HepB Doses&quot;:
+	</a:s>
+               <a:s r="198">
+                  <a:s>if </a:s>
+                  <a:s r="195">
+                     <a:s r="193">
+                        <a:s>&quot;HepB Birth Dose Administered to Patient&quot;</a:s>
+                     </a:s>
+                     <a:s> or </a:s>
+                     <a:s r="194">
+                        <a:s>&quot;Needs HepB Birth Dose&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="196">
+	then 4 
+	else 3</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="198" locator="70:2-72:7" xsi:type="If">
+            <condition localId="195" locator="70:5-70:72" xsi:type="Or">
+               <operand localId="193" locator="70:5-70:45" name="HepB Birth Dose Administered to Patient" xsi:type="ExpressionRef"/>
+               <operand localId="194" locator="70:50-70:72" name="Needs HepB Birth Dose" xsi:type="ExpressionRef"/>
+            </condition>
+            <then localId="196" locator="71:7" valueType="t:Integer" value="4" xsi:type="Literal"/>
+            <else localId="197" locator="72:7" valueType="t:Integer" value="3" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="204" locator="93:1-94:47" name="Number of HepB Doses Administered to Patient" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="204">
+               <a:s>/**
+ * @dataElement Number of HepB Doses Administered to Patient
+ */define &quot;Number of HepB Doses Administered to Patient&quot;:
+  </a:s>
+               <a:s r="203">
+                  <a:s>Count(</a:s>
+                  <a:s r="202">
+                     <a:s>
+                        <a:s r="201">
+                           <a:s r="200">
+                              <a:s>
+                                 <a:s>&quot;HepB Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> O</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>)</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="203" locator="94:3-94:47" xsi:type="Count">
+            <source localId="202" locator="94:9-94:46" xsi:type="Query">
+               <source localId="201" locator="94:9-94:46" alias="O">
+                  <expression localId="200" locator="94:9-94:44" name="HepB Doses Administered to Patient" xsi:type="ExpressionRef"/>
+               </source>
+            </source>
+         </expression>
+      </def>
+      <def localId="211" locator="104:1-105:85" name="Date Last HepB Dose Administered to Patient" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="211">
+               <a:s>//Date last administered HepBdefine &quot;Date Last HepB Dose Administered to Patient&quot;:
+  </a:s>
+               <a:s r="210">
+                  <a:s>date from </a:s>
+                  <a:s r="209">
+                     <a:s>(</a:s>
+                     <a:s r="209">
+                        <a:s r="207">
+                           <a:s r="206">
+                              <a:s>First(</a:s>
+                              <a:s r="205">
+                                 <a:s>&quot;HepB Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="207">
+                              <a:s>occurrence</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> as </a:s>
+                        <a:s r="208">
+                           <a:s>FHIR.dateTime</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="210" locator="105:3-105:85" xsi:type="DateFrom">
+            <operand name="ToDateTime" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="209" locator="105:13-105:85" strict="false" xsi:type="As">
+                  <operand localId="207" locator="105:14-105:67" path="occurrence" xsi:type="Property">
+                     <source localId="206" locator="105:14-105:56" xsi:type="First">
+                        <source localId="205" locator="105:20-105:55" name="HepB Doses Administered to Patient" xsi:type="ExpressionRef"/>
+                     </source>
+                  </operand>
+                  <asTypeSpecifier localId="208" locator="105:72-105:84" name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+   </statements>
+</library>

@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="293">
+         <a:s>/*
+ * Library: IMMZD2DTJELRLogic (IMMZ.D2.DT.JE.Live recombinant vaccine)
+ * Rule: Determine if the client is due for a Japanese encephalitis (JE) vaccination according to the national immunization schedule
+ * Decision Table: Live recombinant vaccination schedule (1-dose scheme)
+JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority
+ * Trigger: IMMZ.D2  Determine required vaccination(s) if any
+ */
+library IMMZD2DTJELRLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTJELRLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="11:1-11:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="12:1-12:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="14:1-14:52" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTJEEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTJEEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="209" locator="16:1-16:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>parameter Today </a:s>
+               <a:s r="213">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="212">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="212" locator="16:30-16:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="213" locator="16:17-16:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="217" locator="18:1-18:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="215" locator="18:1-18:15" name="Patient" context="Patient">
+         <expression localId="216" xsi:type="SingletonFrom">
+            <operand localId="214" locator="18:1-18:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="226" locator="39:1-40:48" name="Client is not due for JE vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for JE vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="226">
+               <a:s>/*
+@output: Client is not due for JE vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for JE vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="228">
+                  <a:s r="227">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="228">
+                     <a:s>&quot;Client's age is less than 9 months&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="228" locator="40:3-40:48" name="Client's age is less than 9 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="231" locator="46:1-49:69" name="Client is not due for JE vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for JE vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="231">
+               <a:s>/*
+@output: Client is not due for JE vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for JE vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="232">
+                  <a:s r="233">
+                     <a:s r="235">
+                        <a:s r="234">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="235">
+                           <a:s>&quot;No JE primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="237">
+                        <a:s r="236">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="237">
+                           <a:s>&quot;Client's age is more than or equal to 9 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="239">
+                     <a:s r="238">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="239">
+                        <a:s>&quot;Live vaccine was administered in the last 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="232" locator="47:3-49:69" xsi:type="And">
+            <operand localId="233" locator="47:3-48:66" xsi:type="And">
+               <operand localId="235" locator="47:3-47:58" name="No JE primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="237" locator="48:9-48:66" name="Client's age is more than or equal to 9 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="239" locator="49:9-49:69" name="Live vaccine was administered in the last 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="223" locator="55:1-57:52" name="Client is not due for JE vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for JE vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="223">
+               <a:s>/*
+@output: Client is not due for JE vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for JE vaccination&quot;:
+  </a:s>
+               <a:s r="224">
+                  <a:s r="229">
+                     <a:s>&quot;Client is not due for JE vaccination Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="240">
+                     <a:s>&quot;Client is not due for JE vaccination Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="224" locator="56:3-57:52" xsi:type="Or">
+            <operand localId="229" locator="56:3-56:47" name="Client is not due for JE vaccination Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="240" locator="57:8-57:52" name="Client is not due for JE vaccination Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="243" locator="66:1-73:5" name="Client is not due for JE vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for JE vaccination Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with JE dose as client's age is less than 9 months. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the first JE dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the first JE dose."/>
+            <a:s r="243">
+               <a:s>/*
+@output: Client is not due for JE vaccination Guidance
+@guidance: Should not vaccinate client with JE dose as client's age is less than 9 months. 
+Check for any vaccines due and inform the caregiver of when to come back for the first JE dose.
+@guidance: Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks. 
+Check for any other vaccines due and inform the caregiver of when to come back for the first JE dose.
+*/
+define &quot;Client is not due for JE vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="244">
+                  <a:s>case
+    </a:s>
+                  <a:s r="245">
+                     <a:s>when </a:s>
+                     <a:s r="246">
+                        <a:s>&quot;Client is not due for JE vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="247">
+                        <a:s>'Should not vaccinate client with JE dose as client\'s age is less than 9 months. 
+Check for any vaccines due and inform the caregiver of when to come back for the first JE dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="248">
+                     <a:s>when </a:s>
+                     <a:s r="249">
+                        <a:s>&quot;Client is not due for JE vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="250">
+                        <a:s>'Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks. 
+Check for any other vaccines due and inform the caregiver of when to come back for the first JE dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="251">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="244" locator="67:3-73:5" xsi:type="Case">
+            <caseItem localId="245" locator="68:5-68:239">
+               <when localId="246" locator="68:10-68:54" name="Client is not due for JE vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="247" locator="68:61-68:239" valueType="t:String" value="Should not vaccinate client with JE dose as client's age is less than 9 months. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the first JE dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="248" locator="70:5-70:259">
+               <when localId="249" locator="70:10-70:54" name="Client is not due for JE vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="250" locator="70:61-70:259" valueType="t:String" value="Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the first JE dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="251" locator="72:10-72:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="255" locator="79:1-82:72" name="Client is due for JE vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for JE vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="255">
+               <a:s>/*
+@output: Client is due for JE vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for JE vaccination&quot;:
+  </a:s>
+               <a:s r="256">
+                  <a:s r="257">
+                     <a:s r="259">
+                        <a:s r="258">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="259">
+                           <a:s>&quot;No JE primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="261">
+                        <a:s r="260">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="261">
+                           <a:s>&quot;Client's age is more than or equal to 9 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="263">
+                     <a:s r="262">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="263">
+                        <a:s>&quot;No live vaccine was administered in the last 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="256" locator="80:3-82:72" xsi:type="And">
+            <operand localId="257" locator="80:3-81:66" xsi:type="And">
+               <operand localId="259" locator="80:3-80:58" name="No JE primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="261" locator="81:9-81:66" name="Client's age is more than or equal to 9 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="263" locator="82:9-82:72" name="No live vaccine was administered in the last 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="266" locator="89:1-90:199" name="Client is due for JE vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for JE vaccination Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with JE dose as no JE dose was administered, client is within the appropriate age range and no live vaccine was administered in past 4 weeks. &#xa;Check for contraindications."/>
+            <a:s r="266">
+               <a:s>/*
+@output: Client is due for JE vaccination Guidance
+@guidance: Should vaccinate client with JE dose as no JE dose was administered, client is within the appropriate age range and no live vaccine was administered in past 4 weeks. 
+Check for contraindications.
+*/
+define &quot;Client is due for JE vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="267">
+                  <a:s>'Should vaccinate client with JE dose as no JE dose was administered, client is within the appropriate age range and no live vaccine was administered in past 4 weeks. 
+Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="267" locator="90:3-90:199" valueType="t:String" value="Should vaccinate client with JE dose as no JE dose was administered, client is within the appropriate age range and no live vaccine was administered in past 4 weeks. &#xa;Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="271" locator="97:1-98:59" name="JE immunization schedule is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="JE immunization schedule is complete"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="271">
+               <a:s>/*
+@output: JE immunization schedule is complete
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;JE immunization schedule is complete&quot;:
+  </a:s>
+               <a:s r="273">
+                  <a:s r="272">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="273">
+                     <a:s>&quot;One JE primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="273" locator="98:3-98:59" name="One JE primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="276" locator="105:1-106:121" name="JE immunization schedule is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="JE immunization schedule is complete Guidance"/>
+            <a:t name="guidance" value="JE immunization schedule is complete. One JE primary series dose was administered. &#xa;Check for any other vaccines due."/>
+            <a:s r="276">
+               <a:s>/*
+@output: JE immunization schedule is complete Guidance
+@guidance: JE immunization schedule is complete. One JE primary series dose was administered. 
+Check for any other vaccines due.
+*/
+define &quot;JE immunization schedule is complete Guidance&quot;:
+  </a:s>
+               <a:s r="277">
+                  <a:s>'JE immunization schedule is complete. One JE primary series dose was administered. 
+Check for any other vaccines due.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="277" locator="106:3-106:121" valueType="t:String" value="JE immunization schedule is complete. One JE primary series dose was administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+      </def>
+      <def localId="219" locator="24:1-30:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="219">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="220">
+                  <a:s>case
+    </a:s>
+                  <a:s r="221">
+                     <a:s>when </a:s>
+                     <a:s r="241">
+                        <a:s>&quot;Client is not due for JE vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="252">
+                        <a:s>&quot;Client is not due for JE vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="253">
+                     <a:s>when </a:s>
+                     <a:s r="264">
+                        <a:s>&quot;Client is due for JE vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="268">
+                        <a:s>&quot;Client is due for JE vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="269">
+                     <a:s>when </a:s>
+                     <a:s r="274">
+                        <a:s>&quot;JE immunization schedule is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="278">
+                        <a:s>&quot;JE immunization schedule is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="279">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="220" locator="25:3-30:5" xsi:type="Case">
+            <caseItem localId="221" locator="26:5-26:100">
+               <when localId="241" locator="26:10-26:47" name="Client is not due for JE vaccination" xsi:type="ExpressionRef"/>
+               <then localId="252" locator="26:54-26:100" name="Client is not due for JE vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="253" locator="27:5-27:92">
+               <when localId="264" locator="27:10-27:43" name="Client is due for JE vaccination" xsi:type="ExpressionRef"/>
+               <then localId="268" locator="27:50-27:92" name="Client is due for JE vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="269" locator="28:5-28:100">
+               <when localId="274" locator="28:10-28:47" name="JE immunization schedule is complete" xsi:type="ExpressionRef"/>
+               <then localId="278" locator="28:54-28:100" name="JE immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="279" locator="29:10-29:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="281" locator="32:1-33:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="281">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="282">
+                  <a:s r="285">
+                     <a:s r="283">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="291">
+                     <a:s r="287">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="288">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="282" locator="33:3-33:45" xsi:type="And">
+            <operand localId="285" locator="33:3-33:24" xsi:type="Not">
+               <operand localId="284" locator="33:3-33:24" xsi:type="IsNull">
+                  <operand localId="283" locator="33:3-33:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="291" locator="33:30-33:45" xsi:type="Not">
+               <operand localId="286" locator="33:30-33:45" xsi:type="Equal">
+                  <signature localId="289" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="290" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="287" locator="33:30-33:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="288" locator="33:44-33:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="293" locator="113:1-124:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="293">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="294">
+                  <a:s>case
+    </a:s>
+                  <a:s r="295">
+                     <a:s>when </a:s>
+                     <a:s r="296">
+                        <a:s r="298">
+                           <a:s r="297">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="298">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="299">
+                           <a:s>'31.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="304">
+                        <a:s r="305">
+                           <a:s>&quot;Client is not due for JE vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="306">
+                           <a:s r="307">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="308">
+                              <a:s>'Should not vaccinate client with JE dose as client\'s age is less than 9 months. 
+Check for any vaccines due and inform the caregiver of when to come back for the first JE dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="311">
+                     <a:s>when </a:s>
+                     <a:s r="312">
+                        <a:s r="314">
+                           <a:s r="313">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="314">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="315">
+                           <a:s>'32.012'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="320">
+                        <a:s r="321">
+                           <a:s>&quot;Client is due for JE vaccination&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="322">
+                           <a:s r="323">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="324">
+                              <a:s>'Should vaccinate client with JE dose as no JE dose was administered, client is within the appropriate age range and no live vaccine was administered in past 4 weeks. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="327">
+                     <a:s>when </a:s>
+                     <a:s r="328">
+                        <a:s r="330">
+                           <a:s r="329">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="330">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="331">
+                           <a:s>'33.012'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="336">
+                        <a:s r="337">
+                           <a:s>&quot;Client is not due for JE vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="338">
+                           <a:s r="339">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="340">
+                              <a:s>'Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks. 
+Check for any other vaccines due and inform the caregiver of when to come back for the first JE dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="343">
+                     <a:s>when </a:s>
+                     <a:s r="344">
+                        <a:s r="346">
+                           <a:s r="345">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="346">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="347">
+                           <a:s>'34.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="352">
+                        <a:s r="353">
+                           <a:s>&quot;JE immunization schedule is complete&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="354">
+                           <a:s r="355">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="356">
+                              <a:s>'JE immunization schedule is complete. One JE primary series dose was administered. 
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="359">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="294" locator="114:3-124:5" xsi:type="Case">
+            <caseItem localId="295" locator="115:5-115:276">
+               <when localId="296" locator="115:10-115:28" xsi:type="Equal">
+                  <signature localId="302" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="303" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="300" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="301" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="298" locator="115:10-115:19" path="id" xsi:type="Property">
+                        <source localId="297" locator="115:10-115:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="299" locator="115:23-115:28" valueType="t:String" value="31.1" xsi:type="Literal"/>
+               </when>
+               <then localId="360" xsi:type="As">
+                  <operand localId="304" locator="115:35-115:276" xsi:type="And">
+                     <operand localId="305" locator="115:35-115:79" name="Client is not due for JE vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="306" locator="115:85-115:276" xsi:type="Equal">
+                        <signature localId="309" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="310" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="307" locator="115:85-115:94" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="308" locator="115:98-115:276" valueType="t:String" value="Should not vaccinate client with JE dose as client's age is less than 9 months. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the first JE dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="361" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="362" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="363" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="311" locator="117:5-117:285">
+               <when localId="312" locator="117:10-117:30" xsi:type="Equal">
+                  <signature localId="318" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="319" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="316" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="317" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="314" locator="117:10-117:19" path="id" xsi:type="Property">
+                        <source localId="313" locator="117:10-117:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="315" locator="117:23-117:30" valueType="t:String" value="32.012" xsi:type="Literal"/>
+               </when>
+               <then localId="364" xsi:type="As">
+                  <operand localId="320" locator="117:37-117:285" xsi:type="And">
+                     <operand localId="321" locator="117:37-117:70" name="Client is due for JE vaccination" xsi:type="ExpressionRef"/>
+                     <operand localId="322" locator="117:76-117:285" xsi:type="Equal">
+                        <signature localId="325" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="326" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="323" locator="117:76-117:85" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="324" locator="117:89-117:285" valueType="t:String" value="Should vaccinate client with JE dose as no JE dose was administered, client is within the appropriate age range and no live vaccine was administered in past 4 weeks. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="365" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="366" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="367" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="327" locator="119:5-119:298">
+               <when localId="328" locator="119:10-119:30" xsi:type="Equal">
+                  <signature localId="334" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="335" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="332" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="333" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="330" locator="119:10-119:19" path="id" xsi:type="Property">
+                        <source localId="329" locator="119:10-119:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="331" locator="119:23-119:30" valueType="t:String" value="33.012" xsi:type="Literal"/>
+               </when>
+               <then localId="368" xsi:type="As">
+                  <operand localId="336" locator="119:37-119:298" xsi:type="And">
+                     <operand localId="337" locator="119:37-119:81" name="Client is not due for JE vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="338" locator="119:87-119:298" xsi:type="Equal">
+                        <signature localId="341" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="342" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="339" locator="119:87-119:96" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="340" locator="119:100-119:298" valueType="t:String" value="Should not vaccinate client with JE dose as live vaccine was administered in the last 4 weeks. &#xa;Check for any other vaccines due and inform the caregiver of when to come back for the first JE dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="369" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="370" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="371" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="343" locator="121:5-121:209">
+               <when localId="344" locator="121:10-121:28" xsi:type="Equal">
+                  <signature localId="350" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="351" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="348" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="349" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="346" locator="121:10-121:19" path="id" xsi:type="Property">
+                        <source localId="345" locator="121:10-121:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="347" locator="121:23-121:28" valueType="t:String" value="34.0" xsi:type="Literal"/>
+               </when>
+               <then localId="372" xsi:type="As">
+                  <operand localId="352" locator="121:35-121:209" xsi:type="And">
+                     <operand localId="353" locator="121:35-121:72" name="JE immunization schedule is complete" xsi:type="ExpressionRef"/>
+                     <operand localId="354" locator="121:78-121:209" xsi:type="Equal">
+                        <signature localId="357" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="358" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="355" locator="121:78-121:87" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="356" locator="121:91-121:209" valueType="t:String" value="JE immunization schedule is complete. One JE primary series dose was administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="373" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="374" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="375" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="376" xsi:type="As">
+               <operand localId="359" locator="123:10-123:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="377" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="378" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="379" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

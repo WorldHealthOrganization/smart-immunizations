@@ -1,0 +1,186 @@
+# IMMZD5DTDengueElements - WHO Immunization Implementation Guide v0.2.0
+
+* [**Table of Contents**](toc.md)
+* [**Indices**](indices.md)
+* [**Artifact Index**](artifacts.md)
+* **IMMZD5DTDengueElements**
+
+## Library: IMMZD5DTDengueElements 
+
+| | |
+| :--- | :--- |
+| *Official URL*:http://smart.who.int/immunizations/Library/IMMZD5DTDengueElements | *Version*:0.2.0 |
+| Draft as of 2026-03-31 | *Computable Name*:IMMZD5DTDengueElements |
+
+ 
+This library defines context-independent elements for Dengue used throughout the Immunization CPG 
+
+* * **Content: **text/cql: ```` /* * Library: IMMZD5DTDengueElements */ library IMMZD5DTDengueElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Dengue dose */ define "Draft Medication Request for Dengue dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Dengue vaccines" /* @input: The client is immunocompromised @pseudocode: "Potential contraindications" = "Immunocompromised" @code: The client is immunocompromised-51 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is immunocompromised": Elements."The client is immunocompromised" /* @input: The client is severely immunocompromised @pseudocode: "Potential contraindications" = "Severely immunocompromised" @code: The client is severely immunocompromised-60 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is severely immunocompromised": Elements."The client is severely immunocompromised" /* @input: The client is currently pregnant @pseudocode: "Potential contraindications" = "Currently pregnant" @code: The client is currently pregnant-52 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is currently pregnant": Elements."The client is pregnant" /* @input: The client is currently lactating @pseudocode: '"Potential contraindications" = "Breastfeeding" @code: The client is currently lactating-48 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is currently lactating": Elements."The client is lactating" /* @input: The client has history of severe allergic reactions @pseudocode: "Potential contraindications" = "Severe allergic reactions" @code: The client has history of severe allergic reactions-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has history of severe allergic reactions": Elements."The client has history of severe allergic reactions" /* @input: The client has history of anaphylactic reactions @pseudocode: "Potential contraindications" ="History of anaphylactic reactions" @code: The client has history of anaphylactic reactions-66 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has history of anaphylactic reactions": Elements."The client has history of anaphylactic reactions" /* @input: The client has immunodeficiency syndromes @pseudocode: "Potential contraindications" = "Immunodeficiency syndromes" @code: The client has immunodeficiency syndromes-60 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has immunodeficiency syndromes": Elements."The client has immunodeficiency syndromes" /* @input: The client is severely immunosuppressed @pseudocode: "Potential contraindications" = "Severely immunosuppressed" @code: The client is severely immunosuppressed-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is severely immunosuppressed": Elements."The client is severely immunosuppressed" /* @input: The client has symptomatic HIV infection @pseudocode: "Potential contraindications" = "Symptomatic HIV infection" @code: The client has symptomatic HIV infection-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has symptomatic HIV infection": Elements."The client has a symptomatic HIV infection" ````: **Id: **
+  * ?: IMMZD5DTDengueElements
+* * **Content: **text/cql: ```` /* * Library: IMMZD5DTDengueElements */ library IMMZD5DTDengueElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Dengue dose */ define "Draft Medication Request for Dengue dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Dengue vaccines" /* @input: The client is immunocompromised @pseudocode: "Potential contraindications" = "Immunocompromised" @code: The client is immunocompromised-51 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is immunocompromised": Elements."The client is immunocompromised" /* @input: The client is severely immunocompromised @pseudocode: "Potential contraindications" = "Severely immunocompromised" @code: The client is severely immunocompromised-60 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is severely immunocompromised": Elements."The client is severely immunocompromised" /* @input: The client is currently pregnant @pseudocode: "Potential contraindications" = "Currently pregnant" @code: The client is currently pregnant-52 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is currently pregnant": Elements."The client is pregnant" /* @input: The client is currently lactating @pseudocode: '"Potential contraindications" = "Breastfeeding" @code: The client is currently lactating-48 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is currently lactating": Elements."The client is lactating" /* @input: The client has history of severe allergic reactions @pseudocode: "Potential contraindications" = "Severe allergic reactions" @code: The client has history of severe allergic reactions-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has history of severe allergic reactions": Elements."The client has history of severe allergic reactions" /* @input: The client has history of anaphylactic reactions @pseudocode: "Potential contraindications" ="History of anaphylactic reactions" @code: The client has history of anaphylactic reactions-66 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has history of anaphylactic reactions": Elements."The client has history of anaphylactic reactions" /* @input: The client has immunodeficiency syndromes @pseudocode: "Potential contraindications" = "Immunodeficiency syndromes" @code: The client has immunodeficiency syndromes-60 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has immunodeficiency syndromes": Elements."The client has immunodeficiency syndromes" /* @input: The client is severely immunosuppressed @pseudocode: "Potential contraindications" = "Severely immunosuppressed" @code: The client is severely immunosuppressed-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is severely immunosuppressed": Elements."The client is severely immunosuppressed" /* @input: The client has symptomatic HIV infection @pseudocode: "Potential contraindications" = "Symptomatic HIV infection" @code: The client has symptomatic HIV infection-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has symptomatic HIV infection": Elements."The client has a symptomatic HIV infection" ````: **Version: **
+  * ?: 0.2.0
+* * **Content: **text/cql: ```` /* * Library: IMMZD5DTDengueElements */ library IMMZD5DTDengueElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Dengue dose */ define "Draft Medication Request for Dengue dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Dengue vaccines" /* @input: The client is immunocompromised @pseudocode: "Potential contraindications" = "Immunocompromised" @code: The client is immunocompromised-51 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is immunocompromised": Elements."The client is immunocompromised" /* @input: The client is severely immunocompromised @pseudocode: "Potential contraindications" = "Severely immunocompromised" @code: The client is severely immunocompromised-60 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is severely immunocompromised": Elements."The client is severely immunocompromised" /* @input: The client is currently pregnant @pseudocode: "Potential contraindications" = "Currently pregnant" @code: The client is currently pregnant-52 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is currently pregnant": Elements."The client is pregnant" /* @input: The client is currently lactating @pseudocode: '"Potential contraindications" = "Breastfeeding" @code: The client is currently lactating-48 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is currently lactating": Elements."The client is lactating" /* @input: The client has history of severe allergic reactions @pseudocode: "Potential contraindications" = "Severe allergic reactions" @code: The client has history of severe allergic reactions-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has history of severe allergic reactions": Elements."The client has history of severe allergic reactions" /* @input: The client has history of anaphylactic reactions @pseudocode: "Potential contraindications" ="History of anaphylactic reactions" @code: The client has history of anaphylactic reactions-66 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has history of anaphylactic reactions": Elements."The client has history of anaphylactic reactions" /* @input: The client has immunodeficiency syndromes @pseudocode: "Potential contraindications" = "Immunodeficiency syndromes" @code: The client has immunodeficiency syndromes-60 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has immunodeficiency syndromes": Elements."The client has immunodeficiency syndromes" /* @input: The client is severely immunosuppressed @pseudocode: "Potential contraindications" = "Severely immunosuppressed" @code: The client is severely immunosuppressed-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is severely immunosuppressed": Elements."The client is severely immunosuppressed" /* @input: The client has symptomatic HIV infection @pseudocode: "Potential contraindications" = "Symptomatic HIV infection" @code: The client has symptomatic HIV infection-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has symptomatic HIV infection": Elements."The client has a symptomatic HIV infection" ````: **Url: **
+  * ?: [IMMZD5DTDengueElements](Library-IMMZD5DTDengueElements.md)
+* * **Content: **text/cql: ```` /* * Library: IMMZD5DTDengueElements */ library IMMZD5DTDengueElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Dengue dose */ define "Draft Medication Request for Dengue dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Dengue vaccines" /* @input: The client is immunocompromised @pseudocode: "Potential contraindications" = "Immunocompromised" @code: The client is immunocompromised-51 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is immunocompromised": Elements."The client is immunocompromised" /* @input: The client is severely immunocompromised @pseudocode: "Potential contraindications" = "Severely immunocompromised" @code: The client is severely immunocompromised-60 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is severely immunocompromised": Elements."The client is severely immunocompromised" /* @input: The client is currently pregnant @pseudocode: "Potential contraindications" = "Currently pregnant" @code: The client is currently pregnant-52 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is currently pregnant": Elements."The client is pregnant" /* @input: The client is currently lactating @pseudocode: '"Potential contraindications" = "Breastfeeding" @code: The client is currently lactating-48 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is currently lactating": Elements."The client is lactating" /* @input: The client has history of severe allergic reactions @pseudocode: "Potential contraindications" = "Severe allergic reactions" @code: The client has history of severe allergic reactions-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has history of severe allergic reactions": Elements."The client has history of severe allergic reactions" /* @input: The client has history of anaphylactic reactions @pseudocode: "Potential contraindications" ="History of anaphylactic reactions" @code: The client has history of anaphylactic reactions-66 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has history of anaphylactic reactions": Elements."The client has history of anaphylactic reactions" /* @input: The client has immunodeficiency syndromes @pseudocode: "Potential contraindications" = "Immunodeficiency syndromes" @code: The client has immunodeficiency syndromes-60 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has immunodeficiency syndromes": Elements."The client has immunodeficiency syndromes" /* @input: The client is severely immunosuppressed @pseudocode: "Potential contraindications" = "Severely immunosuppressed" @code: The client is severely immunosuppressed-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is severely immunosuppressed": Elements."The client is severely immunosuppressed" /* @input: The client has symptomatic HIV infection @pseudocode: "Potential contraindications" = "Symptomatic HIV infection" @code: The client has symptomatic HIV infection-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has symptomatic HIV infection": Elements."The client has a symptomatic HIV infection" ````: **Status: **
+  * ?: draft
+* * **Content: **text/cql: ```` /* * Library: IMMZD5DTDengueElements */ library IMMZD5DTDengueElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Dengue dose */ define "Draft Medication Request for Dengue dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Dengue vaccines" /* @input: The client is immunocompromised @pseudocode: "Potential contraindications" = "Immunocompromised" @code: The client is immunocompromised-51 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is immunocompromised": Elements."The client is immunocompromised" /* @input: The client is severely immunocompromised @pseudocode: "Potential contraindications" = "Severely immunocompromised" @code: The client is severely immunocompromised-60 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is severely immunocompromised": Elements."The client is severely immunocompromised" /* @input: The client is currently pregnant @pseudocode: "Potential contraindications" = "Currently pregnant" @code: The client is currently pregnant-52 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is currently pregnant": Elements."The client is pregnant" /* @input: The client is currently lactating @pseudocode: '"Potential contraindications" = "Breastfeeding" @code: The client is currently lactating-48 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is currently lactating": Elements."The client is lactating" /* @input: The client has history of severe allergic reactions @pseudocode: "Potential contraindications" = "Severe allergic reactions" @code: The client has history of severe allergic reactions-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has history of severe allergic reactions": Elements."The client has history of severe allergic reactions" /* @input: The client has history of anaphylactic reactions @pseudocode: "Potential contraindications" ="History of anaphylactic reactions" @code: The client has history of anaphylactic reactions-66 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has history of anaphylactic reactions": Elements."The client has history of anaphylactic reactions" /* @input: The client has immunodeficiency syndromes @pseudocode: "Potential contraindications" = "Immunodeficiency syndromes" @code: The client has immunodeficiency syndromes-60 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has immunodeficiency syndromes": Elements."The client has immunodeficiency syndromes" /* @input: The client is severely immunosuppressed @pseudocode: "Potential contraindications" = "Severely immunosuppressed" @code: The client is severely immunosuppressed-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is severely immunosuppressed": Elements."The client is severely immunosuppressed" /* @input: The client has symptomatic HIV infection @pseudocode: "Potential contraindications" = "Symptomatic HIV infection" @code: The client has symptomatic HIV infection-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has symptomatic HIV infection": Elements."The client has a symptomatic HIV infection" ````: **Date: **
+  * ?: 2026-03-31 13:43:57+0000
+* * **Content: **text/cql: ```` /* * Library: IMMZD5DTDengueElements */ library IMMZD5DTDengueElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Dengue dose */ define "Draft Medication Request for Dengue dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Dengue vaccines" /* @input: The client is immunocompromised @pseudocode: "Potential contraindications" = "Immunocompromised" @code: The client is immunocompromised-51 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is immunocompromised": Elements."The client is immunocompromised" /* @input: The client is severely immunocompromised @pseudocode: "Potential contraindications" = "Severely immunocompromised" @code: The client is severely immunocompromised-60 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is severely immunocompromised": Elements."The client is severely immunocompromised" /* @input: The client is currently pregnant @pseudocode: "Potential contraindications" = "Currently pregnant" @code: The client is currently pregnant-52 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is currently pregnant": Elements."The client is pregnant" /* @input: The client is currently lactating @pseudocode: '"Potential contraindications" = "Breastfeeding" @code: The client is currently lactating-48 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is currently lactating": Elements."The client is lactating" /* @input: The client has history of severe allergic reactions @pseudocode: "Potential contraindications" = "Severe allergic reactions" @code: The client has history of severe allergic reactions-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has history of severe allergic reactions": Elements."The client has history of severe allergic reactions" /* @input: The client has history of anaphylactic reactions @pseudocode: "Potential contraindications" ="History of anaphylactic reactions" @code: The client has history of anaphylactic reactions-66 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has history of anaphylactic reactions": Elements."The client has history of anaphylactic reactions" /* @input: The client has immunodeficiency syndromes @pseudocode: "Potential contraindications" = "Immunodeficiency syndromes" @code: The client has immunodeficiency syndromes-60 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has immunodeficiency syndromes": Elements."The client has immunodeficiency syndromes" /* @input: The client is severely immunosuppressed @pseudocode: "Potential contraindications" = "Severely immunosuppressed" @code: The client is severely immunosuppressed-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is severely immunosuppressed": Elements."The client is severely immunosuppressed" /* @input: The client has symptomatic HIV infection @pseudocode: "Potential contraindications" = "Symptomatic HIV infection" @code: The client has symptomatic HIV infection-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has symptomatic HIV infection": Elements."The client has a symptomatic HIV infection" ````: **Publisher: **
+  * ?: WHO
+* * **Content: **text/cql: ```` /* * Library: IMMZD5DTDengueElements */ library IMMZD5DTDengueElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Dengue dose */ define "Draft Medication Request for Dengue dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Dengue vaccines" /* @input: The client is immunocompromised @pseudocode: "Potential contraindications" = "Immunocompromised" @code: The client is immunocompromised-51 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is immunocompromised": Elements."The client is immunocompromised" /* @input: The client is severely immunocompromised @pseudocode: "Potential contraindications" = "Severely immunocompromised" @code: The client is severely immunocompromised-60 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is severely immunocompromised": Elements."The client is severely immunocompromised" /* @input: The client is currently pregnant @pseudocode: "Potential contraindications" = "Currently pregnant" @code: The client is currently pregnant-52 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is currently pregnant": Elements."The client is pregnant" /* @input: The client is currently lactating @pseudocode: '"Potential contraindications" = "Breastfeeding" @code: The client is currently lactating-48 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is currently lactating": Elements."The client is lactating" /* @input: The client has history of severe allergic reactions @pseudocode: "Potential contraindications" = "Severe allergic reactions" @code: The client has history of severe allergic reactions-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has history of severe allergic reactions": Elements."The client has history of severe allergic reactions" /* @input: The client has history of anaphylactic reactions @pseudocode: "Potential contraindications" ="History of anaphylactic reactions" @code: The client has history of anaphylactic reactions-66 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has history of anaphylactic reactions": Elements."The client has history of anaphylactic reactions" /* @input: The client has immunodeficiency syndromes @pseudocode: "Potential contraindications" = "Immunodeficiency syndromes" @code: The client has immunodeficiency syndromes-60 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has immunodeficiency syndromes": Elements."The client has immunodeficiency syndromes" /* @input: The client is severely immunosuppressed @pseudocode: "Potential contraindications" = "Severely immunosuppressed" @code: The client is severely immunosuppressed-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client is severely immunosuppressed": Elements."The client is severely immunosuppressed" /* @input: The client has symptomatic HIV infection @pseudocode: "Potential contraindications" = "Symptomatic HIV infection" @code: The client has symptomatic HIV infection-59 @decision: IMMZ.D5.DT.Dengue contraindications */ define "The client has symptomatic HIV infection": Elements."The client has a symptomatic HIV infection" ````: **Description: **
+  * ?: This library defines context-independent elements for Dengue used throughout the Immunization CPG
+
+
+
+## Resource Content
+
+```json
+{
+  "resourceType" : "Library",
+  "id" : "IMMZD5DTDengueElements",
+  "meta" : {
+    "profile" : ["http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablelibrary",
+    "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary",
+    "http://hl7.org/fhir/uv/cql/StructureDefinition/cql-library",
+    "http://hl7.org/fhir/uv/cql/StructureDefinition/cql-module"]
+  },
+  "extension" : [{
+    "url" : "http://hl7.org/fhir/StructureDefinition/cqf-knowledgeCapability",
+    "valueCode" : "computable"
+  }],
+  "url" : "http://smart.who.int/immunizations/Library/IMMZD5DTDengueElements",
+  "version" : "0.2.0",
+  "name" : "IMMZD5DTDengueElements",
+  "title" : "IMMZD5DTDengueElements",
+  "status" : "draft",
+  "experimental" : false,
+  "type" : {
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/library-type",
+      "code" : "logic-library"
+    }]
+  },
+  "date" : "2026-03-31T13:43:57+00:00",
+  "publisher" : "WHO",
+  "contact" : [{
+    "name" : "WHO",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://who.int"
+    }]
+  }],
+  "description" : "This library defines context-independent elements for Dengue used throughout the Immunization CPG",
+  "relatedArtifact" : [{
+    "type" : "depends-on",
+    "display" : "Library WHOConcepts",
+    "resource" : "http://smart.who.int/immunizations/Library/WHOConcepts"
+  },
+  {
+    "type" : "depends-on",
+    "display" : "Library WC",
+    "resource" : "http://smart.who.int/immunizations/Library/WHOCommon"
+  },
+  {
+    "type" : "depends-on",
+    "display" : "Library WE",
+    "resource" : "http://smart.who.int/immunizations/Library/WHOElements"
+  },
+  {
+    "type" : "depends-on",
+    "display" : "Library Common",
+    "resource" : "http://smart.who.int/immunizations/Library/IMMZCommon"
+  },
+  {
+    "type" : "depends-on",
+    "display" : "Library Concepts",
+    "resource" : "http://smart.who.int/immunizations/Library/IMMZConcepts"
+  },
+  {
+    "type" : "depends-on",
+    "display" : "Library Elements",
+    "resource" : "http://smart.who.int/immunizations/Library/IMMZElements"
+  }],
+  "parameter" : [{
+    "name" : "Patient",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "Patient"
+  },
+  {
+    "name" : "Draft Medication Request for Dengue dose",
+    "use" : "out",
+    "min" : 0,
+    "max" : "*",
+    "type" : "MedicationRequest"
+  },
+  {
+    "name" : "The client is immunocompromised",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "boolean"
+  },
+  {
+    "name" : "The client is severely immunocompromised",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "boolean"
+  },
+  {
+    "name" : "The client is currently pregnant",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "boolean"
+  },
+  {
+    "name" : "The client is currently lactating",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "boolean"
+  },
+  {
+    "name" : "The client has history of severe allergic reactions",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "boolean"
+  },
+  {
+    "name" : "The client has history of anaphylactic reactions",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "boolean"
+  },
+  {
+    "name" : "The client has immunodeficiency syndromes",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "boolean"
+  },
+  {
+    "name" : "The client is severely immunosuppressed",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "boolean"
+  },
+  {
+    "name" : "The client has symptomatic HIV infection",
+    "use" : "out",
+    "min" : 0,
+    "max" : "1",
+    "type" : "boolean"
+  }],
+  "content" : [{
+    "contentType" : "text/cql",
+    "data" : "Ci8qCiAgKiBMaWJyYXJ5OiBJTU1aRDVEVERlbmd1ZUVsZW1lbnRzCiAgKi8KbGlicmFyeSBJTU1aRDVEVERlbmd1ZUVsZW1lbnRzCgp1c2luZyBGSElSIHZlcnNpb24gJzQuMC4xJwppbmNsdWRlIEZISVJIZWxwZXJzIHZlcnNpb24gJzQuMC4xJwoKaW5jbHVkZSBXSE9Db25jZXB0cwppbmNsdWRlIFdIT0NvbW1vbiBjYWxsZWQgV0MKaW5jbHVkZSBXSE9FbGVtZW50cyBjYWxsZWQgV0UKCmluY2x1ZGUgSU1NWkNvbW1vbiBjYWxsZWQgQ29tbW9uCmluY2x1ZGUgSU1NWkNvbmNlcHRzIGNhbGxlZCBDb25jZXB0cwppbmNsdWRlIElNTVpFbGVtZW50cyBjYWxsZWQgRWxlbWVudHMKCgpjb250ZXh0IFBhdGllbnQKCi8qCkBpbnRlcm5hbDogRHJhZnQgTWVkaWNhdGlvbiBSZXF1ZXN0IGZvciBEZW5ndWUgZG9zZQoqLwpkZWZpbmUgIkRyYWZ0IE1lZGljYXRpb24gUmVxdWVzdCBmb3IgRGVuZ3VlIGRvc2UiOgogIEVsZW1lbnRzLiJEcmFmdCBNZWRpY2F0aW9uIFJlcXVlc3QgZm9yIFBhdGllbnQiIE1SCiAgICB3aGVyZSBNUi5tZWRpY2F0aW9uIGluIENvbmNlcHRzLiJEZW5ndWUgdmFjY2luZXMiCgovKgpAaW5wdXQ6IFRoZSBjbGllbnQgaXMgaW1tdW5vY29tcHJvbWlzZWQKQHBzZXVkb2NvZGU6ICJQb3RlbnRpYWwgY29udHJhaW5kaWNhdGlvbnMiID0gIkltbXVub2NvbXByb21pc2VkIgpAY29kZTogVGhlIGNsaWVudCBpcyBpbW11bm9jb21wcm9taXNlZC01MQpAZGVjaXNpb246IElNTVouRDUuRFQuRGVuZ3VlIGNvbnRyYWluZGljYXRpb25zCiovCmRlZmluZSAiVGhlIGNsaWVudCBpcyBpbW11bm9jb21wcm9taXNlZCI6CiAgRWxlbWVudHMuIlRoZSBjbGllbnQgaXMgaW1tdW5vY29tcHJvbWlzZWQiCgovKgpAaW5wdXQ6IFRoZSBjbGllbnQgaXMgc2V2ZXJlbHkgaW1tdW5vY29tcHJvbWlzZWQKQHBzZXVkb2NvZGU6ICJQb3RlbnRpYWwgY29udHJhaW5kaWNhdGlvbnMiID0gIlNldmVyZWx5IGltbXVub2NvbXByb21pc2VkIgpAY29kZTogVGhlIGNsaWVudCBpcyBzZXZlcmVseSBpbW11bm9jb21wcm9taXNlZC02MApAZGVjaXNpb246IElNTVouRDUuRFQuRGVuZ3VlIGNvbnRyYWluZGljYXRpb25zCiovCmRlZmluZSAiVGhlIGNsaWVudCBpcyBzZXZlcmVseSBpbW11bm9jb21wcm9taXNlZCI6CiAgRWxlbWVudHMuIlRoZSBjbGllbnQgaXMgc2V2ZXJlbHkgaW1tdW5vY29tcHJvbWlzZWQiCgovKgpAaW5wdXQ6IFRoZSBjbGllbnQgaXMgY3VycmVudGx5IHByZWduYW50CkBwc2V1ZG9jb2RlOiAiUG90ZW50aWFsIGNvbnRyYWluZGljYXRpb25zIiA9ICJDdXJyZW50bHkgcHJlZ25hbnQiCkBjb2RlOiBUaGUgY2xpZW50IGlzIGN1cnJlbnRseSBwcmVnbmFudC01MgpAZGVjaXNpb246IElNTVouRDUuRFQuRGVuZ3VlIGNvbnRyYWluZGljYXRpb25zCiovCmRlZmluZSAiVGhlIGNsaWVudCBpcyBjdXJyZW50bHkgcHJlZ25hbnQiOgogIEVsZW1lbnRzLiJUaGUgY2xpZW50IGlzIHByZWduYW50IgoKLyoKQGlucHV0OiBUaGUgY2xpZW50IGlzIGN1cnJlbnRseSBsYWN0YXRpbmcKQHBzZXVkb2NvZGU6ICciUG90ZW50aWFsIGNvbnRyYWluZGljYXRpb25zIiA9ICJCcmVhc3RmZWVkaW5nIgpAY29kZTogVGhlIGNsaWVudCBpcyBjdXJyZW50bHkgbGFjdGF0aW5nLTQ4CkBkZWNpc2lvbjogSU1NWi5ENS5EVC5EZW5ndWUgY29udHJhaW5kaWNhdGlvbnMKKi8KZGVmaW5lICJUaGUgY2xpZW50IGlzIGN1cnJlbnRseSBsYWN0YXRpbmciOgogIEVsZW1lbnRzLiJUaGUgY2xpZW50IGlzIGxhY3RhdGluZyIKCi8qCkBpbnB1dDogVGhlIGNsaWVudCBoYXMgaGlzdG9yeSBvZiBzZXZlcmUgYWxsZXJnaWMgcmVhY3Rpb25zCkBwc2V1ZG9jb2RlOiAiUG90ZW50aWFsIGNvbnRyYWluZGljYXRpb25zIiA9ICJTZXZlcmUgYWxsZXJnaWMgcmVhY3Rpb25zIgpAY29kZTogVGhlIGNsaWVudCBoYXMgaGlzdG9yeSBvZiBzZXZlcmUgYWxsZXJnaWMgcmVhY3Rpb25zLTU5CkBkZWNpc2lvbjogSU1NWi5ENS5EVC5EZW5ndWUgY29udHJhaW5kaWNhdGlvbnMKKi8KZGVmaW5lICJUaGUgY2xpZW50IGhhcyBoaXN0b3J5IG9mIHNldmVyZSBhbGxlcmdpYyByZWFjdGlvbnMiOgogIEVsZW1lbnRzLiJUaGUgY2xpZW50IGhhcyBoaXN0b3J5IG9mIHNldmVyZSBhbGxlcmdpYyByZWFjdGlvbnMiCgovKgpAaW5wdXQ6IFRoZSBjbGllbnQgaGFzIGhpc3Rvcnkgb2YgYW5hcGh5bGFjdGljIHJlYWN0aW9ucwpAcHNldWRvY29kZTogIlBvdGVudGlhbCBjb250cmFpbmRpY2F0aW9ucyIgPSJIaXN0b3J5IG9mIGFuYXBoeWxhY3RpYyByZWFjdGlvbnMiCkBjb2RlOiBUaGUgY2xpZW50IGhhcyBoaXN0b3J5IG9mIGFuYXBoeWxhY3RpYyByZWFjdGlvbnMtNjYKQGRlY2lzaW9uOiBJTU1aLkQ1LkRULkRlbmd1ZSBjb250cmFpbmRpY2F0aW9ucwoqLwpkZWZpbmUgIlRoZSBjbGllbnQgaGFzIGhpc3Rvcnkgb2YgYW5hcGh5bGFjdGljIHJlYWN0aW9ucyI6CiAgRWxlbWVudHMuIlRoZSBjbGllbnQgaGFzIGhpc3Rvcnkgb2YgYW5hcGh5bGFjdGljIHJlYWN0aW9ucyIKCi8qCkBpbnB1dDogVGhlIGNsaWVudCBoYXMgaW1tdW5vZGVmaWNpZW5jeSBzeW5kcm9tZXMKQHBzZXVkb2NvZGU6ICJQb3RlbnRpYWwgY29udHJhaW5kaWNhdGlvbnMiID0gIkltbXVub2RlZmljaWVuY3kgc3luZHJvbWVzIgpAY29kZTogVGhlIGNsaWVudCBoYXMgaW1tdW5vZGVmaWNpZW5jeSBzeW5kcm9tZXMtNjAKQGRlY2lzaW9uOiBJTU1aLkQ1LkRULkRlbmd1ZSBjb250cmFpbmRpY2F0aW9ucwoqLwpkZWZpbmUgIlRoZSBjbGllbnQgaGFzIGltbXVub2RlZmljaWVuY3kgc3luZHJvbWVzIjoKICBFbGVtZW50cy4iVGhlIGNsaWVudCBoYXMgaW1tdW5vZGVmaWNpZW5jeSBzeW5kcm9tZXMiCgovKgpAaW5wdXQ6IFRoZSBjbGllbnQgaXMgc2V2ZXJlbHkgaW1tdW5vc3VwcHJlc3NlZApAcHNldWRvY29kZTogIlBvdGVudGlhbCBjb250cmFpbmRpY2F0aW9ucyIgPSAiU2V2ZXJlbHkgaW1tdW5vc3VwcHJlc3NlZCIKQGNvZGU6IFRoZSBjbGllbnQgaXMgc2V2ZXJlbHkgaW1tdW5vc3VwcHJlc3NlZC01OQpAZGVjaXNpb246IElNTVouRDUuRFQuRGVuZ3VlIGNvbnRyYWluZGljYXRpb25zCiovCmRlZmluZSAiVGhlIGNsaWVudCBpcyBzZXZlcmVseSBpbW11bm9zdXBwcmVzc2VkIjoKICBFbGVtZW50cy4iVGhlIGNsaWVudCBpcyBzZXZlcmVseSBpbW11bm9zdXBwcmVzc2VkIgoKLyoKQGlucHV0OiBUaGUgY2xpZW50IGhhcyBzeW1wdG9tYXRpYyBISVYgaW5mZWN0aW9uCkBwc2V1ZG9jb2RlOiAiUG90ZW50aWFsIGNvbnRyYWluZGljYXRpb25zIiA9ICJTeW1wdG9tYXRpYyBISVYgaW5mZWN0aW9uIgpAY29kZTogVGhlIGNsaWVudCBoYXMgc3ltcHRvbWF0aWMgSElWIGluZmVjdGlvbi01OQpAZGVjaXNpb246IElNTVouRDUuRFQuRGVuZ3VlIGNvbnRyYWluZGljYXRpb25zCiovCmRlZmluZSAiVGhlIGNsaWVudCBoYXMgc3ltcHRvbWF0aWMgSElWIGluZmVjdGlvbiI6CiAgRWxlbWVudHMuIlRoZSBjbGllbnQgaGFzIGEgc3ltcHRvbWF0aWMgSElWIGluZmVjdGlvbiIK"
+  }]
+}
+
+```

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureMap xmlns="http://hl7.org/fhir">
+  <id value="IMMZD1MeaslesQRToLM"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><pre class="fml">
+<b>map</b><span style="color: navy"> &quot;</span>http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1MeaslesQRToLM<span style="color: navy">&quot; = &quot;</span>IMMZD1MeaslesQRToLM<span style="color: navy">&quot;
+
+</span><span style="color: navy">// </span><span style="color: green">Measles Immunization Client History - Transform QuestionnaireResponse to Logical Model</span>
+
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/questionnaireresponse.html" title="QuestionnaireResponse">http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse</a><span style="color: navy">&quot; </span><b>alias </b>QResp <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="StructureDefinition-IMMZD1ClientHistoryMeasles.html" title="IMMZ.D1 Capture Client History for Measles">http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZD1ClientHistoryMeasles</a><span style="color: navy">&quot; </span><b>alias </b>IMMZD1 <b>as </b><b>target</b>
+
+<b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-IMMZD1QRToLM.html" title="IMMZD1QRToLM">http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1QRToLM</a><span style="color: navy">&quot;
+</span>
+<b>group </b>MeaslesQRespToIMMZD1<span style="color: navy">(</span><b>source</b> <span style="color: maroon">qr</span><span style="color: navy"> : </span>QResp, <b>target</b> <span style="color: maroon">immz</span><span style="color: navy"> : </span>IMMZD1<span style="color: navy">)</span><b> extends </b>QRespToIMMZD1<span style="color: navy"> {
+</span>  qr.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
+</span>    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'severelyImmunosuppressed'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immz.severelyImmunosuppressed = <span style="color: maroon">content</span> <i>&quot;SetSeverelyImmunosuppressed&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForSeverelyImmunosuppressed&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'artStartDate'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immz.artStartDate = <span style="color: maroon">content</span> <i>&quot;SetARTStartDated&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerARTStartDate&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;processItems&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span></pre></div>
+  </text>
+  <url value="http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1MeaslesQRToLM"/>
+  <version value="0.1.0"/>
+  <name value="IMMZD1MeaslesQRToLM"/>
+  <status value="draft"/>
+  <date value="2024-04-04T07:29:23+00:00"/>
+  <publisher value="World Health Organization (WHO)"/>
+  <contact>
+    <name value="World Health Organization (WHO)"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.who.int"/>
+    </telecom>
+  </contact>
+  <description value="Measles Immunization Client History - Transform QuestionnaireResponse to Logical Model"/>
+  <jurisdiction>
+    <coding>
+      <system value="http://unstats.un.org/unsd/methods/m49/m49.htm"/>
+      <code value="001"/>
+    </coding>
+  </jurisdiction>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
+    <mode value="source"/>
+    <alias value="QResp"/>
+  </structure>
+  <structure>
+    <url value="http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZD1ClientHistoryMeasles"/>
+    <mode value="target"/>
+    <alias value="IMMZD1"/>
+  </structure>
+  <import value="http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZD1QRToLM"/>
+  <group>
+    <name value="MeaslesQRespToIMMZD1"/>
+    <extends value="QRespToIMMZD1"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="qr"/>
+      <type value="QResp"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immz"/>
+      <type value="IMMZD1"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="processItems"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+      </source>
+      <rule>
+        <name value="FirstAnswerForSeverelyImmunosuppressed"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'severelyImmunosuppressed'"/>
+        </source>
+        <rule>
+          <name value="SetSeverelyImmunosuppressed"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immz"/>
+            <contextType value="variable"/>
+            <element value="severelyImmunosuppressed"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="FirstAnswerARTStartDate"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'artStartDate'"/>
+        </source>
+        <rule>
+          <name value="SetARTStartDated"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immz"/>
+            <contextType value="variable"/>
+            <element value="artStartDate"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+</StructureMap>

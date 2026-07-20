@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="279">
+         <a:s>/*
+ * Library: IMMZD5DTPolioCILogic (IMMZ.D5.DT.Polio contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due	
+ * Decision Table: Potential contraindications
+ * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
+ */
+library IMMZD5DTPolioCILogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD5DTPolioCILogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="13:1-13:55" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD5DTPolioEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD5DTPolioEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="209" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>parameter Today </a:s>
+               <a:s r="213">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="212">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="212" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="213" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="217" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="215" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="216" xsi:type="SingletonFrom">
+            <operand localId="214" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="219" locator="22:1-23:61" name="Draft Medication Request ID for bOPV dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Draft Medication Request ID for bOPV dose"/>
+            <a:s r="219">
+               <a:s>/*
+@dynamicValue: Draft Medication Request ID for bOPV dose
+*/
+define &quot;Draft Medication Request ID for bOPV dose&quot;:
+	</a:s>
+               <a:s r="225">
+                  <a:s r="224">
+                     <a:s>First(</a:s>
+                     <a:s r="221">
+                        <a:s r="220">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="221">
+                           <a:s>&quot;Draft Medication Request for bOPV dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="225">
+                     <a:s>id</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="23:2-23:61" path="id" xsi:type="Property">
+            <source localId="224" locator="23:2-23:58" xsi:type="First">
+               <source localId="221" locator="23:8-23:57" name="Draft Medication Request for bOPV dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </source>
+         </expression>
+      </def>
+      <def localId="231" locator="42:1-43:65" name="Poliovirus vaccination could be contraindicated. Clinical judgement required" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Poliovirus vaccination could be contraindicated. Clinical judgement required"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="231">
+               <a:s>/*
+@output: Poliovirus vaccination could be contraindicated. Clinical judgement required
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Poliovirus vaccination could be contraindicated. Clinical judgement required&quot;:
+  </a:s>
+               <a:s r="233">
+                  <a:s r="232">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="233">
+                     <a:s>&quot;The client has history of severe allergic reactions&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="233" locator="43:3-43:65" name="The client has history of severe allergic reactions" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="236" locator="50:1-51:306" name="Poliovirus vaccination could be contraindicated. Clinical judgement required Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Poliovirus vaccination could be contraindicated. Clinical judgement required Guidance"/>
+            <a:t name="guidance" value="Do not vaccinate client with inactivated polio vaccine (IPV) if client has had a previous severe reaction or known allergy to streptomycin, neomycin or polymyxin B.&#xa;Do not vaccinate client with oral polio vaccine (OPV) if client has had a allergic reaction to OPV or to the trace antibiotics contained."/>
+            <a:s r="236">
+               <a:s>/*
+@output: Poliovirus vaccination could be contraindicated. Clinical judgement required Guidance
+@guidance: Do not vaccinate client with inactivated polio vaccine (IPV) if client has had a previous severe reaction or known allergy to streptomycin, neomycin or polymyxin B.
+Do not vaccinate client with oral polio vaccine (OPV) if client has had a allergic reaction to OPV or to the trace antibiotics contained.
+*/
+define &quot;Poliovirus vaccination could be contraindicated. Clinical judgement required Guidance&quot;:
+  </a:s>
+               <a:s r="237">
+                  <a:s>'Do not vaccinate client with inactivated polio vaccine (IPV) if client has had a previous severe reaction or known allergy to streptomycin, neomycin or polymyxin B.
+Do not vaccinate client with oral polio vaccine (OPV) if client has had a allergic reaction to OPV or to the trace antibiotics contained.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="237" locator="51:3-51:306" valueType="t:String" value="Do not vaccinate client with inactivated polio vaccine (IPV) if client has had a previous severe reaction or known allergy to streptomycin, neomycin or polymyxin B.&#xa;Do not vaccinate client with oral polio vaccine (OPV) if client has had a allergic reaction to OPV or to the trace antibiotics contained." xsi:type="Literal"/>
+      </def>
+      <def localId="244" locator="58:1-59:54" name="Poliovirus vaccination with bOPV is contraindicated Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Poliovirus vaccination with bOPV is contraindicated Case 1"/>
+            <a:t name="pseudocode" value="Clinical judgement is required if vaccination with IPV is considered"/>
+            <a:s r="244">
+               <a:s>/*
+@output: Poliovirus vaccination with bOPV is contraindicated Case 1
+@pseudocode: Clinical judgement is required if vaccination with IPV is considered
+*/
+define &quot;Poliovirus vaccination with bOPV is contraindicated Case 1&quot;:
+  </a:s>
+               <a:s r="246">
+                  <a:s r="245">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="246">
+                     <a:s>&quot;The client is severely immunocompromised&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="246" locator="59:3-59:54" name="The client is severely immunocompromised" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="249" locator="65:1-66:55" name="Poliovirus vaccination with bOPV is contraindicated Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Poliovirus vaccination with bOPV is contraindicated Case 2"/>
+            <a:t name="pseudocode" value="Clinical judgement is required if vaccination with IPV is considered"/>
+            <a:s r="249">
+               <a:s>/*
+@output: Poliovirus vaccination with bOPV is contraindicated Case 2
+@pseudocode: Clinical judgement is required if vaccination with IPV is considered
+*/
+define &quot;Poliovirus vaccination with bOPV is contraindicated Case 2&quot;:
+  </a:s>
+               <a:s r="251">
+                  <a:s r="250">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="251">
+                     <a:s>&quot;The client has immunodeficiency syndromes&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="251" locator="66:3-66:55" name="The client has immunodeficiency syndromes" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="241" locator="72:1-74:67" name="Poliovirus vaccination with bOPV is contraindicated" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Poliovirus vaccination with bOPV is contraindicated"/>
+            <a:t name="pseudocode" value="Clinical judgement is required if vaccination with IPV is considered"/>
+            <a:s r="241">
+               <a:s>/*
+@output: Poliovirus vaccination with bOPV is contraindicated
+@pseudocode: Clinical judgement is required if vaccination with IPV is considered
+*/
+define &quot;Poliovirus vaccination with bOPV is contraindicated&quot;:
+  </a:s>
+               <a:s r="242">
+                  <a:s r="247">
+                     <a:s>&quot;Poliovirus vaccination with bOPV is contraindicated Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="252">
+                     <a:s>&quot;Poliovirus vaccination with bOPV is contraindicated Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="242" locator="73:3-74:67" xsi:type="Or">
+            <operand localId="247" locator="73:3-73:62" name="Poliovirus vaccination with bOPV is contraindicated Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="252" locator="74:8-74:67" name="Poliovirus vaccination with bOPV is contraindicated Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="255" locator="83:1-90:5" name="Poliovirus vaccination with bOPV is contraindicated Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Poliovirus vaccination with bOPV is contraindicated Guidance"/>
+            <a:t name="guidance" value="For bOPV dose, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in severely immunocompromised clients. &#xa;Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement."/>
+            <a:t name="guidance" value="For bOPV dose, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in clients with immunodeficiency disorders.&#xa;Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement."/>
+            <a:s r="255">
+               <a:s>/*
+@output: Poliovirus vaccination with bOPV is contraindicated Guidance
+@guidance: For bOPV dose, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in severely immunocompromised clients. 
+Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement.
+@guidance: For bOPV dose, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in clients with immunodeficiency disorders.
+Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement.
+*/
+define &quot;Poliovirus vaccination with bOPV is contraindicated Guidance&quot;:
+  </a:s>
+               <a:s r="256">
+                  <a:s>case
+    </a:s>
+                  <a:s r="257">
+                     <a:s>when </a:s>
+                     <a:s r="258">
+                        <a:s>&quot;Poliovirus vaccination with bOPV is contraindicated Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="259">
+                        <a:s>'For bOPV dose, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in severely immunocompromised clients. 
+Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="260">
+                     <a:s>when </a:s>
+                     <a:s r="261">
+                        <a:s>&quot;Poliovirus vaccination with bOPV is contraindicated Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="262">
+                        <a:s>'For bOPV dose, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in clients with immunodeficiency disorders.
+Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="263">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="256" locator="84:3-90:5" xsi:type="Case">
+            <caseItem localId="257" locator="85:5-85:332">
+               <when localId="258" locator="85:10-85:69" name="Poliovirus vaccination with bOPV is contraindicated Case 1" xsi:type="ExpressionRef"/>
+               <then localId="259" locator="85:76-85:332" valueType="t:String" value="For bOPV dose, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in severely immunocompromised clients. &#xa;Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="260" locator="87:5-87:336">
+               <when localId="261" locator="87:10-87:69" name="Poliovirus vaccination with bOPV is contraindicated Case 2" xsi:type="ExpressionRef"/>
+               <then localId="262" locator="87:76-87:336" valueType="t:String" value="For bOPV dose, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in clients with immunodeficiency disorders.&#xa;Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="263" locator="89:10-89:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="227" locator="28:1-33:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="227">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="228">
+                  <a:s>case
+    </a:s>
+                  <a:s r="229">
+                     <a:s>when </a:s>
+                     <a:s r="234">
+                        <a:s>&quot;Poliovirus vaccination could be contraindicated. Clinical judgement required&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="238">
+                        <a:s>&quot;Poliovirus vaccination could be contraindicated. Clinical judgement required Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="239">
+                     <a:s>when </a:s>
+                     <a:s r="253">
+                        <a:s>&quot;Poliovirus vaccination with bOPV is contraindicated&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="264">
+                        <a:s>&quot;Poliovirus vaccination with bOPV is contraindicated Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="265">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="228" locator="29:3-33:5" xsi:type="Case">
+            <caseItem localId="229" locator="30:5-30:180">
+               <when localId="234" locator="30:10-30:87" name="Poliovirus vaccination could be contraindicated. Clinical judgement required" xsi:type="ExpressionRef"/>
+               <then localId="238" locator="30:94-30:180" name="Poliovirus vaccination could be contraindicated. Clinical judgement required Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="239" locator="31:5-31:130">
+               <when localId="253" locator="31:10-31:62" name="Poliovirus vaccination with bOPV is contraindicated" xsi:type="ExpressionRef"/>
+               <then localId="264" locator="31:69-31:130" name="Poliovirus vaccination with bOPV is contraindicated Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="265" locator="32:10-32:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="267" locator="35:1-36:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="267">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="268">
+                  <a:s r="271">
+                     <a:s r="269">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="277">
+                     <a:s r="273">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="274">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="268" locator="36:3-36:45" xsi:type="And">
+            <operand localId="271" locator="36:3-36:24" xsi:type="Not">
+               <operand localId="270" locator="36:3-36:24" xsi:type="IsNull">
+                  <operand localId="269" locator="36:3-36:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="277" locator="36:30-36:45" xsi:type="Not">
+               <operand localId="272" locator="36:30-36:45" xsi:type="Equal">
+                  <signature localId="275" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="276" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="273" locator="36:30-36:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="274" locator="36:44-36:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="279" locator="96:1-105:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="279">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="280">
+                  <a:s>case
+    </a:s>
+                  <a:s r="281">
+                     <a:s>when </a:s>
+                     <a:s r="282">
+                        <a:s r="284">
+                           <a:s r="283">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="284">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="285">
+                           <a:s>'87.CI167'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="290">
+                        <a:s r="291">
+                           <a:s>&quot;Poliovirus vaccination could be contraindicated. Clinical judgement required&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="292">
+                           <a:s r="293">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="294">
+                              <a:s>'Do not vaccinate client with inactivated polio vaccine (IPV) if client has had a previous severe reaction or known allergy to streptomycin, neomycin or polymyxin B.
+Do not vaccinate client with oral polio vaccine (OPV) if client has had a allergic reaction to OPV or to the trace antibiotics contained.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="297">
+                     <a:s>when </a:s>
+                     <a:s r="298">
+                        <a:s r="300">
+                           <a:s r="299">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="300">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="301">
+                           <a:s>'88.CI200'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="306">
+                        <a:s r="307">
+                           <a:s>&quot;Poliovirus vaccination with bOPV is contraindicated Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="308">
+                           <a:s r="309">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="310">
+                              <a:s>'For bOPV dose, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in severely immunocompromised clients. 
+Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="313">
+                     <a:s>when </a:s>
+                     <a:s r="314">
+                        <a:s r="316">
+                           <a:s r="315">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="316">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="317">
+                           <a:s>'89.CI187'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="322">
+                        <a:s r="323">
+                           <a:s>&quot;Poliovirus vaccination with bOPV is contraindicated Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="324">
+                           <a:s r="325">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="326">
+                              <a:s>'For bOPV dose, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in clients with immunodeficiency disorders.
+Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="329">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="280" locator="97:3-105:5" xsi:type="Case">
+            <caseItem localId="281" locator="98:5-98:438">
+               <when localId="282" locator="98:10-98:32" xsi:type="Equal">
+                  <signature localId="288" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="289" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="286" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="287" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="284" locator="98:10-98:19" path="id" xsi:type="Property">
+                        <source localId="283" locator="98:10-98:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="285" locator="98:23-98:32" valueType="t:String" value="87.CI167" xsi:type="Literal"/>
+               </when>
+               <then localId="330" xsi:type="As">
+                  <operand localId="290" locator="98:39-98:438" xsi:type="And">
+                     <operand localId="291" locator="98:39-98:116" name="Poliovirus vaccination could be contraindicated. Clinical judgement required" xsi:type="ExpressionRef"/>
+                     <operand localId="292" locator="98:122-98:438" xsi:type="Equal">
+                        <signature localId="295" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="296" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="293" locator="98:122-98:131" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="294" locator="98:135-98:438" valueType="t:String" value="Do not vaccinate client with inactivated polio vaccine (IPV) if client has had a previous severe reaction or known allergy to streptomycin, neomycin or polymyxin B.&#xa;Do not vaccinate client with oral polio vaccine (OPV) if client has had a allergic reaction to OPV or to the trace antibiotics contained." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="331" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="332" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="333" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="297" locator="100:5-100:373">
+               <when localId="298" locator="100:10-100:32" xsi:type="Equal">
+                  <signature localId="304" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="305" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="302" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="303" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="300" locator="100:10-100:19" path="id" xsi:type="Property">
+                        <source localId="299" locator="100:10-100:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="301" locator="100:23-100:32" valueType="t:String" value="88.CI200" xsi:type="Literal"/>
+               </when>
+               <then localId="334" xsi:type="As">
+                  <operand localId="306" locator="100:39-100:373" xsi:type="And">
+                     <operand localId="307" locator="100:39-100:98" name="Poliovirus vaccination with bOPV is contraindicated Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="308" locator="100:104-100:373" xsi:type="Equal">
+                        <signature localId="311" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="312" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="309" locator="100:104-100:113" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="310" locator="100:117-100:373" valueType="t:String" value="For bOPV dose, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in severely immunocompromised clients. &#xa;Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="335" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="336" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="337" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="313" locator="102:5-102:377">
+               <when localId="314" locator="102:10-102:32" xsi:type="Equal">
+                  <signature localId="320" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="321" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="318" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="319" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="316" locator="102:10-102:19" path="id" xsi:type="Property">
+                        <source localId="315" locator="102:10-102:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="317" locator="102:23-102:32" valueType="t:String" value="89.CI187" xsi:type="Literal"/>
+               </when>
+               <then localId="338" xsi:type="As">
+                  <operand localId="322" locator="102:39-102:377" xsi:type="And">
+                     <operand localId="323" locator="102:39-102:98" name="Poliovirus vaccination with bOPV is contraindicated Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="324" locator="102:104-102:377" xsi:type="Equal">
+                        <signature localId="327" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="328" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="325" locator="102:104-102:113" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="326" locator="102:117-102:377" valueType="t:String" value="For bOPV dose, do not vaccinate  client for bOPV dose as bOPV vaccination is contranindicated in clients with immunodeficiency disorders.&#xa;Check if vaccination with IPV is appropriate for the client, consider risks of vaccination and make a clinical judgement." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="339" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="340" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="341" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="342" xsi:type="As">
+               <operand localId="329" locator="104:10-104:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="343" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="344" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="345" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

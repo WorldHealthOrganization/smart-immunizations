@@ -1,0 +1,1786 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="281">
+         <a:s>/*
+ * Library: IMMZDT03 (IMMZ.DT.03.Polio)
+ * Rule: If child or person has not been vaccinated, give Polio vaccine 
+ * Trigger: Patient has never had Polio vaccination
+ */
+library IMMZDT03</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT03" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:34" localIdentifier="IMMZConf" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZConf</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="13:1-13:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="15:1-15:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="15:1-15:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="23" locator="28:1-33:58" name="Should vaccinate patient for Polio (bOPV) because no doses at birth (up to 2 weeks old) and patient is in a polio-endemic country with high risk of spread" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="23">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Polio (bOPV) because no doses at birth (up to 2 weeks old) and patient is in a polio-endemic country with high risk of spread
+ * Annotations:
+ * 	 - Provide birth dose Polio (bOPV) vaccination – using the zero dose recommendation at birth (until 2 weeks old) due to patient being in a polio-endemic country with high risk of spread. Patient will continue the &quot;bOPV-IPV-bOPV-IPV-bOPV&quot; schedule (5 doses scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Polio (bOPV) - No Doses at birth (polio-endemic country and high risk of spread)
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((((&quot;Polio (IPV) vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Polio (bOPV) vaccine immunization history&quot; = &quot;No-doses&quot;)) and (&quot;Current Patient Age in Weeks&quot; &lt; 2)) and (&quot;Combined bOPV and IPV Schedule&quot; = true)) and (&quot;Polio-endemic country with high risk of spread&quot; = true))
+ */
+define &quot;Should vaccinate patient for Polio (bOPV) because no doses at birth (up to 2 weeks old) and patient is in a polio-endemic country with high risk of spread&quot;:
+	</a:s>
+               <a:s r="22">
+                  <a:s r="19">
+                     <a:s r="16">
+                        <a:s r="11">
+                           <a:s r="8">
+                              <a:s r="7">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="8">
+                                 <a:s>&quot;No IPV Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> and 
+	</a:s>
+                           <a:s r="10">
+                              <a:s r="9">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="10">
+                                 <a:s>&quot;No bOPV Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and 
+	</a:s>
+                        <a:s r="15">
+                           <a:s r="13">
+                              <a:s r="12">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="13">
+                                 <a:s>&quot;Current Patient Age In Weeks&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="14"> &lt; 2</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and 
+	</a:s>
+                     <a:s r="18">
+                        <a:s r="17">
+                           <a:s>IMMZConf</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="18">
+                           <a:s>&quot;Combined bOPV and IPV Schedule&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="21">
+                     <a:s r="20">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="21">
+                        <a:s>&quot;Polio-endemic country with high risk of spread&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="22" locator="29:2-33:58" xsi:type="And">
+            <operand localId="19" locator="29:2-32:42" xsi:type="And">
+               <operand localId="16" locator="29:2-31:43" xsi:type="And">
+                  <operand localId="11" locator="29:2-30:48" xsi:type="And">
+                     <operand localId="8" locator="29:2-29:47" name="No IPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="10" locator="30:2-30:48" name="No bOPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="15" locator="31:2-31:43" xsi:type="Less">
+                     <operand localId="13" locator="31:2-31:39" name="Current Patient Age In Weeks" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="14" locator="31:43" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                  </operand>
+               </operand>
+               <operand localId="18" locator="32:2-32:42" name="Combined bOPV and IPV Schedule" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="21" locator="33:2-33:58" name="Polio-endemic country with high risk of spread" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="34" locator="46:1-49:42" name="Should vaccinate patient for Polio (bOPV) because no doses at 6 weeks old" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="34">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Polio (bOPV) because no doses at 6 weeks old
+ * Annotations:
+ * 	 - Provide 1st dose Polio (bOPV) vaccination – using the &quot;bOPV-IPV-bOPV-IPV-bOPV&quot; schedule (5 doses scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Polio (bOPV) - No Doses at 6 weeks old
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Polio (bOPV) vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Weeks&quot; >= 6)) and (&quot;Combined bOPV and IPV Schedule&quot; = true))
+ */
+define &quot;Should vaccinate patient for Polio (bOPV) because no doses at 6 weeks old&quot;:
+	</a:s>
+               <a:s r="33">
+                  <a:s r="30">
+                     <a:s r="25">
+                        <a:s r="24">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="25">
+                           <a:s>&quot;No bOPV Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="29">
+                        <a:s r="27">
+                           <a:s r="26">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="27">
+                              <a:s>&quot;Current Patient Age In Weeks&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="28"> >= 6</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="32">
+                     <a:s r="31">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="32">
+                        <a:s>&quot;Combined bOPV and IPV Schedule&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="33" locator="47:2-49:42" xsi:type="And">
+            <operand localId="30" locator="47:2-48:44" xsi:type="And">
+               <operand localId="25" locator="47:2-47:48" name="No bOPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="29" locator="48:2-48:44" xsi:type="GreaterOrEqual">
+                  <operand localId="27" locator="48:2-48:39" name="Current Patient Age In Weeks" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="28" locator="48:44" valueType="t:Integer" value="6" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="32" locator="49:2-49:42" name="Combined bOPV and IPV Schedule" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="45" locator="62:1-65:42" name="Should vaccinate patient for Polio (IPV) because no doses at 14 weeks old" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="45">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Polio (IPV) because no doses at 14 weeks old
+ * Annotations:
+ * 	 - Provide 1st dose Polio (IPV) vaccination – using the &quot;bOPV-IPV-bOPV-IPV-bOPV&quot; schedule (5 doses scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Polio (IPV) - No Doses at 14 weeks old
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Polio (IPV) vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;Current Patient Age in Weeks&quot; >= 14)) and (&quot;Combined bOPV and IPV Schedule&quot; = true))
+ */
+define &quot;Should vaccinate patient for Polio (IPV) because no doses at 14 weeks old&quot;:
+	</a:s>
+               <a:s r="44">
+                  <a:s r="41">
+                     <a:s r="36">
+                        <a:s r="35">
+                           <a:s>&quot;IMMZCom&quot;</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="36">
+                           <a:s>&quot;No IPV Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="40">
+                        <a:s r="38">
+                           <a:s r="37">
+                              <a:s>&quot;IMMZCom&quot;</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="38">
+                              <a:s>&quot;Current Patient Age In Weeks&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="39"> >= 14</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="43">
+                     <a:s r="42">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="43">
+                        <a:s>&quot;Combined bOPV and IPV Schedule&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="44" locator="63:2-65:42" xsi:type="And">
+            <operand localId="41" locator="63:2-64:47" xsi:type="And">
+               <operand localId="36" locator="63:2-63:49" name="No IPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="40" locator="64:2-64:47" xsi:type="GreaterOrEqual">
+                  <operand localId="38" locator="64:2-64:41" name="Current Patient Age In Weeks" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="39" locator="64:46-64:47" valueType="t:Integer" value="14" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="43" locator="65:2-65:42" name="Combined bOPV and IPV Schedule" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="59" locator="78:1-81:42" name="Should vaccinate patient for Polio (bOPV) because 1 dose bOPV given 4 weeks ago" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="59">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Polio (bOPV) because 1 dose bOPV given 4 weeks ago
+ * Annotations:
+ * 	 - Provide 2nd dose Polio (bOPV) vaccination – using the &quot;bOPV-IPV-bOPV-IPV-bOPV&quot; schedule (5 doses scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Polio (bOPV) - 1 Dose given 4 weeks ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Polio (bOPV) vaccine immunization history&quot; = &quot;1 dose&quot; = true) and (&quot;Date last bOPV dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;Combined bOPV and IPV Schedule&quot; = true))
+ */
+define &quot;Should vaccinate patient for Polio (bOPV) because 1 dose bOPV given 4 weeks ago&quot;:
+	</a:s>
+               <a:s r="58">
+                  <a:s r="55">
+                     <a:s r="49">
+                        <a:s>(</a:s>
+                        <a:s r="49">
+                           <a:s r="47">
+                              <a:s r="46">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="47">
+                                 <a:s>&quot;Number of bOPV Doses Administered to Patient Excluding Birth Dose&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="48"> = 1</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="54">
+                        <a:s>(</a:s>
+                        <a:s r="54">
+                           <a:s r="51">
+                              <a:s r="50">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="51">
+                                 <a:s>&quot;Date Last bOPV Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="54">
+                              <a:s>more than </a:s>
+                              <a:s r="53">
+                                 <a:s>4 'weeks'</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="52">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="57">
+                     <a:s r="56">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="57">
+                        <a:s>&quot;Combined bOPV and IPV Schedule&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="58" locator="79:2-81:42" xsi:type="And">
+            <operand localId="55" locator="79:2-80:91" xsi:type="And">
+               <operand localId="49" locator="79:2-79:82" xsi:type="Equal">
+                  <operand localId="47" locator="79:3-79:77" name="Number of bOPV Doses Administered to Patient Excluding Birth Dose" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="48" locator="79:81" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               </operand>
+               <operand localId="54" locator="80:2-80:91" xsi:type="Before">
+                  <operand localId="51" locator="80:3-80:55" name="Date Last bOPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="80:84-80:90" xsi:type="Subtract">
+                     <operand localId="52" locator="80:84-80:90" xsi:type="Today"/>
+                     <operand localId="53" locator="80:67-80:75" value="4" unit="weeks" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="57" locator="81:2-81:42" name="Combined bOPV and IPV Schedule" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="73" locator="94:1-97:42" name="Should vaccinate patient for Polio (IPV) because 1 dose IPV given at least 4 months ago" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="73">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Polio (IPV) because 1 dose IPV given at least 4 months ago
+ * Annotations:
+ * 	 - Provide 2nd dose Polio (IPV) vaccination – using the &quot;bOPV-IPV-bOPV-IPV-bOPV&quot; schedule (5 doses scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Polio (IPV) - 1 Dose given at least 4 months ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Polio (IPV) vaccine immunization history&quot; = &quot;1 dose&quot; = true) and (&quot;Date last IPV dose given&quot; >= &quot;4 months&quot;)) and (&quot;Combined bOPV and IPV Schedule&quot; = true))
+ */
+define &quot;Should vaccinate patient for Polio (IPV) because 1 dose IPV given at least 4 months ago&quot;:
+	</a:s>
+               <a:s r="72">
+                  <a:s r="69">
+                     <a:s r="63">
+                        <a:s r="61">
+                           <a:s r="60">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="61">
+                              <a:s>&quot;Number of IPV Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="62"> = 1</a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="68">
+                        <a:s r="65">
+                           <a:s r="64">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="65">
+                              <a:s>&quot;Date Last IPV Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="68">
+                           <a:s>more than </a:s>
+                           <a:s r="67">
+                              <a:s>4 'months'</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="66">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="71">
+                     <a:s r="70">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="71">
+                        <a:s>&quot;Combined bOPV and IPV Schedule&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="72" locator="95:2-97:42" xsi:type="And">
+            <operand localId="69" locator="95:2-96:89" xsi:type="And">
+               <operand localId="63" locator="95:2-95:58" xsi:type="Equal">
+                  <operand localId="61" locator="95:2-95:54" name="Number of IPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="62" locator="95:58" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               </operand>
+               <operand localId="68" locator="96:2-96:89" xsi:type="Before">
+                  <operand localId="65" locator="96:2-96:53" name="Date Last IPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="96:83-96:89" xsi:type="Subtract">
+                     <operand localId="66" locator="96:83-96:89" xsi:type="Today"/>
+                     <operand localId="67" locator="96:65-96:74" value="4" unit="months" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="71" locator="97:2-97:42" name="Combined bOPV and IPV Schedule" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="87" locator="111:1-114:42" name="Should vaccinate patient for Polio (bOPV) because 2nd dose bOPV given 4 weeks ago" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="87">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Polio (bOPV) because 2nd dose bOPV given 4 weeks ago
+ * Annotations:
+ * 	 - Provide 3rd dose Polio (bOPV) vaccination – using the &quot;bOPV-IPV-bOPV-IPV-bOPV&quot; schedule (5 doses scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Polio (bOPV) - 2 Doses given 4 weeks ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Polio (bOPV) vaccine immunization history&quot; = &quot;2 doses&quot;) and (&quot;Date last bOPV dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;Combined bOPV and IPV Schedule&quot; = true))
+ */
+define &quot;Should vaccinate patient for Polio (bOPV) because 2nd dose bOPV given 4 weeks ago&quot;:
+	</a:s>
+               <a:s r="86">
+                  <a:s r="83">
+                     <a:s r="77">
+                        <a:s>(</a:s>
+                        <a:s r="77">
+                           <a:s r="75">
+                              <a:s r="74">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="75">
+                                 <a:s>&quot;Number of bOPV Doses Administered to Patient Excluding Birth Dose&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="76"> = 2</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="82">
+                        <a:s r="79">
+                           <a:s r="78">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="79">
+                              <a:s>&quot;Date Last bOPV Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="82">
+                           <a:s>more than </a:s>
+                           <a:s r="81">
+                              <a:s>4 'weeks'</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="80">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="85">
+                     <a:s r="84">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="85">
+                        <a:s>&quot;Combined bOPV and IPV Schedule&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="86" locator="112:2-114:42" xsi:type="And">
+            <operand localId="83" locator="112:2-113:89" xsi:type="And">
+               <operand localId="77" locator="112:2-112:82" xsi:type="Equal">
+                  <operand localId="75" locator="112:3-112:77" name="Number of bOPV Doses Administered to Patient Excluding Birth Dose" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="76" locator="112:81" valueType="t:Integer" value="2" xsi:type="Literal"/>
+               </operand>
+               <operand localId="82" locator="113:2-113:89" xsi:type="Before">
+                  <operand localId="79" locator="113:2-113:54" name="Date Last bOPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="113:83-113:89" xsi:type="Subtract">
+                     <operand localId="80" locator="113:83-113:89" xsi:type="Today"/>
+                     <operand localId="81" locator="113:66-113:74" value="4" unit="weeks" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="85" locator="114:2-114:42" name="Combined bOPV and IPV Schedule" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="98" locator="127:1-130:39" name="Should vaccinate patient for Polio (IPV) because no doses at 8 weeks old" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="98">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Polio (IPV) because no doses at 8 weeks old
+ * Annotations:
+ * 	 - Provide 1st dose Polio (IPV) vaccination – using the &quot;IPV-bOPV-bOPV&quot; schedule (3 doses scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Polio (IPV) - No Doses at 8 weeks old
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Polio (IPV) vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Weeks&quot; >= 8)) and (&quot;Sequential IPV-OPV Schedule&quot; = true))
+ */
+define &quot;Should vaccinate patient for Polio (IPV) because no doses at 8 weeks old&quot;:
+	</a:s>
+               <a:s r="97">
+                  <a:s r="94">
+                     <a:s r="89">
+                        <a:s r="88">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="89">
+                           <a:s>&quot;No IPV Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="93">
+                        <a:s r="91">
+                           <a:s r="90">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="91">
+                              <a:s>&quot;Current Patient Age In Weeks&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="92"> >= 8</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="96">
+                     <a:s r="95">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="96">
+                        <a:s>&quot;Sequential IPV-OPV Schedule&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="97" locator="128:2-130:39" xsi:type="And">
+            <operand localId="94" locator="128:2-129:44" xsi:type="And">
+               <operand localId="89" locator="128:2-128:47" name="No IPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="93" locator="129:2-129:44" xsi:type="GreaterOrEqual">
+                  <operand localId="91" locator="129:2-129:39" name="Current Patient Age In Weeks" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="92" locator="129:44" valueType="t:Integer" value="8" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="96" locator="130:2-130:39" name="Sequential IPV-OPV Schedule" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="118" locator="143:1-147:39" name="Should vaccinate patient for Polio (bOPV) because 1st dose IPV given 4-8 weeks ago" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="118">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Polio (bOPV) because 1st dose IPV given 4-8 weeks ago
+ * Annotations:
+ * 	 - Provide 1st dose Polio (bOPV) vaccination – using the &quot;IPV-bOPV-bOPV&quot; schedule (3 doses scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Polio (IPV) - 1st Dose given 4-8 weeks ago (High risk of exposure scenario)
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Polio (IPV) vaccine immunization history&quot; = &quot;1 dose&quot;) and (&quot;Date last IPV dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;Date last IPV dose given&quot; &lt;= &quot;8 weeks&quot;)) and (&quot;Sequential IPV-OPV Schedule&quot; = true))
+ */
+define &quot;Should vaccinate patient for Polio (bOPV) because 1st dose IPV given 4-8 weeks ago&quot;:
+	</a:s>
+               <a:s r="117">
+                  <a:s r="114">
+                     <a:s r="108">
+                        <a:s r="102">
+                           <a:s>(</a:s>
+                           <a:s r="102">
+                              <a:s r="100">
+                                 <a:s r="99">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="100">
+                                    <a:s>&quot;Number of IPV Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="101"> = 1</a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                        <a:s> and 
+	</a:s>
+                        <a:s r="107">
+                           <a:s r="104">
+                              <a:s r="103">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="104">
+                                 <a:s>&quot;Date Last IPV Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="107">
+                              <a:s>more than </a:s>
+                              <a:s r="106">
+                                 <a:s>4 'weeks'</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="105">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="113">
+                        <a:s r="110">
+                           <a:s r="109">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="110">
+                              <a:s>&quot;Date Last IPV Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="113">
+                           <a:s>less than </a:s>
+                           <a:s r="112">
+                              <a:s>8 'weeks'</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="111">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="116">
+                     <a:s r="115">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="116">
+                        <a:s>&quot;Sequential IPV-OPV Schedule&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="117" locator="144:2-147:39" xsi:type="And">
+            <operand localId="114" locator="144:2-146:88" xsi:type="And">
+               <operand localId="108" locator="144:2-145:88" xsi:type="And">
+                  <operand localId="102" locator="144:2-144:60" xsi:type="Equal">
+                     <operand localId="100" locator="144:3-144:55" name="Number of IPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="101" locator="144:59" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="107" locator="145:2-145:88" xsi:type="Before">
+                     <operand localId="104" locator="145:2-145:53" name="Date Last IPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="145:82-145:88" xsi:type="Subtract">
+                        <operand localId="105" locator="145:82-145:88" xsi:type="Today"/>
+                        <operand localId="106" locator="145:65-145:73" value="4" unit="weeks" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="113" locator="146:2-146:88" xsi:type="In">
+                  <operand localId="110" locator="146:2-146:53" name="Date Last IPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="146:55-146:73" lowClosed="false" highClosed="false" xsi:type="Interval">
+                     <low locator="146:82-146:88" xsi:type="Subtract">
+                        <operand localId="111" locator="146:82-146:88" xsi:type="Today"/>
+                        <operand localId="112" locator="146:65-146:73" value="8" unit="weeks" xsi:type="Quantity"/>
+                     </low>
+                     <high localId="111" locator="146:82-146:88" xsi:type="Today"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="116" locator="147:2-147:39" name="Sequential IPV-OPV Schedule" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="141" locator="160:1-165:56" name="Should vaccinate patient for Polio (IPV) because 1st dose IPV given 4-8 weeks ago (High risk of exposure scenario)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="141">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Polio (IPV) because 1st dose IPV given 4-8 weeks ago (High risk of exposure scenario)
+ * Annotations:
+ * 	 - Provide 2nd dose Polio (IPV) vaccination – using the &quot;IPV-IPV-bOPV-bOPV&quot; schedule (4 doses scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Polio (IPV) - 1st Dose given 4-8 weeks ago (High risk of exposure scenario)
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((((&quot;Polio (IPV) vaccine immunization history&quot; = &quot;1 dose&quot; = true) and (&quot;Date last IPV dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;Date last IPV dose given&quot; &lt;= &quot;8 weeks&quot;)) and (&quot;Sequential IPV-OPV Schedule&quot; = true)) and (&quot;Country has a high risk of exposure&quot; = true))
+ */
+define &quot;Should vaccinate patient for Polio (IPV) because 1st dose IPV given 4-8 weeks ago (High risk of exposure scenario)&quot;:
+	</a:s>
+               <a:s r="140">
+                  <a:s r="137">
+                     <a:s r="134">
+                        <a:s r="128">
+                           <a:s r="122">
+                              <a:s r="120">
+                                 <a:s r="119">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="120">
+                                    <a:s>&quot;Number of IPV Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="121"> = 1</a:s>
+                           </a:s>
+                           <a:s> and 
+	</a:s>
+                           <a:s r="127">
+                              <a:s r="124">
+                                 <a:s r="123">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="124">
+                                    <a:s>&quot;Date Last IPV Dose Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> </a:s>
+                              <a:s r="127">
+                                 <a:s>more than </a:s>
+                                 <a:s r="126">
+                                    <a:s>4 'weeks'</a:s>
+                                 </a:s>
+                                 <a:s> before</a:s>
+                              </a:s>
+                              <a:s> </a:s>
+                              <a:s r="125">
+                                 <a:s>Today()</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and
+	</a:s>
+                        <a:s r="133">
+                           <a:s r="130">
+                              <a:s r="129">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="130">
+                                 <a:s>&quot;Date Last IPV Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="133">
+                              <a:s>less than </a:s>
+                              <a:s r="132">
+                                 <a:s>8 'weeks'</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="131">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="136">
+                        <a:s r="135">
+                           <a:s>IMMZConf</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="136">
+                           <a:s>&quot;Sequential IPV-OPV Schedule&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="139">
+                     <a:s r="138">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="139">
+                        <a:s>&quot;Country has a high risk of exposure to polio&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="140" locator="161:2-165:56" xsi:type="And">
+            <operand localId="137" locator="161:2-164:39" xsi:type="And">
+               <operand localId="134" locator="161:2-163:88" xsi:type="And">
+                  <operand localId="128" locator="161:2-162:88" xsi:type="And">
+                     <operand localId="122" locator="161:2-161:58" xsi:type="Equal">
+                        <operand localId="120" locator="161:2-161:54" name="Number of IPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="121" locator="161:58" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="127" locator="162:2-162:88" xsi:type="Before">
+                        <operand localId="124" locator="162:2-162:53" name="Date Last IPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand locator="162:82-162:88" xsi:type="Subtract">
+                           <operand localId="125" locator="162:82-162:88" xsi:type="Today"/>
+                           <operand localId="126" locator="162:65-162:73" value="4" unit="weeks" xsi:type="Quantity"/>
+                        </operand>
+                     </operand>
+                  </operand>
+                  <operand localId="133" locator="163:2-163:88" xsi:type="In">
+                     <operand localId="130" locator="163:2-163:53" name="Date Last IPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="163:55-163:73" lowClosed="false" highClosed="false" xsi:type="Interval">
+                        <low locator="163:82-163:88" xsi:type="Subtract">
+                           <operand localId="131" locator="163:82-163:88" xsi:type="Today"/>
+                           <operand localId="132" locator="163:65-163:73" value="8" unit="weeks" xsi:type="Quantity"/>
+                        </low>
+                        <high localId="131" locator="163:82-163:88" xsi:type="Today"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="136" locator="164:2-164:39" name="Sequential IPV-OPV Schedule" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="139" locator="165:2-165:56" name="Country has a high risk of exposure to polio" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="161" locator="178:1-182:39" name="Should vaccinate patient for Polio (bOPV) because 1st dose bOPV (Second dose in 3-dose schedule) given 4-8 weeks ago" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="161">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Polio (bOPV) because 1st dose bOPV (Second dose in 3-dose schedule) given 4-8 weeks ago
+ * Annotations:
+ * 	 - Provide 2nd dose Polio (bOPV) vaccination – using the &quot;IPV-bOPV-bOPV&quot; schedule (3 doses scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Polio (bOPV) - 1st Dose (Second dose in 3-dose schedule) given 4-8 weeks ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Polio (bOPV) vaccine immunization history&quot; = &quot;1 dose&quot;) and (&quot;Date last bOPV dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;Date last bOPV dose given&quot; &lt;= &quot;8 weeks&quot;)) and (&quot;Sequential IPV-OPV Schedule&quot; = true))
+ */
+define &quot;Should vaccinate patient for Polio (bOPV) because 1st dose bOPV (Second dose in 3-dose schedule) given 4-8 weeks ago&quot;:
+	</a:s>
+               <a:s r="160">
+                  <a:s r="157">
+                     <a:s r="151">
+                        <a:s r="145">
+                           <a:s r="143">
+                              <a:s r="142">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="143">
+                                 <a:s>&quot;Number of bOPV Doses Administered to Patient Excluding Birth Dose&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="144"> = 1</a:s>
+                        </a:s>
+                        <a:s> and 
+	</a:s>
+                        <a:s r="150">
+                           <a:s r="147">
+                              <a:s r="146">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="147">
+                                 <a:s>&quot;Date Last bOPV Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="150">
+                              <a:s>more than </a:s>
+                              <a:s r="149">
+                                 <a:s>4 'weeks'</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="148">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="156">
+                        <a:s r="153">
+                           <a:s r="152">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="153">
+                              <a:s>&quot;Date Last bOPV Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="156">
+                           <a:s>less than </a:s>
+                           <a:s r="155">
+                              <a:s>8 'weeks'</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="154">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="159">
+                     <a:s r="158">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="159">
+                        <a:s>&quot;Sequential IPV-OPV Schedule&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="160" locator="179:2-182:39" xsi:type="And">
+            <operand localId="157" locator="179:2-181:89" xsi:type="And">
+               <operand localId="151" locator="179:2-180:89" xsi:type="And">
+                  <operand localId="145" locator="179:2-179:80" xsi:type="Equal">
+                     <operand localId="143" locator="179:2-179:76" name="Number of bOPV Doses Administered to Patient Excluding Birth Dose" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="144" locator="179:80" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="150" locator="180:2-180:89" xsi:type="Before">
+                     <operand localId="147" locator="180:2-180:54" name="Date Last bOPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="180:83-180:89" xsi:type="Subtract">
+                        <operand localId="148" locator="180:83-180:89" xsi:type="Today"/>
+                        <operand localId="149" locator="180:66-180:74" value="4" unit="weeks" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="156" locator="181:2-181:89" xsi:type="In">
+                  <operand localId="153" locator="181:2-181:54" name="Date Last bOPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="181:56-181:74" lowClosed="false" highClosed="false" xsi:type="Interval">
+                     <low locator="181:83-181:89" xsi:type="Subtract">
+                        <operand localId="154" locator="181:83-181:89" xsi:type="Today"/>
+                        <operand localId="155" locator="181:66-181:74" value="8" unit="weeks" xsi:type="Quantity"/>
+                     </low>
+                     <high localId="154" locator="181:83-181:89" xsi:type="Today"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="159" locator="182:2-182:39" name="Sequential IPV-OPV Schedule" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="184" locator="196:1-201:56" name="Should vaccinate patient for Polio (bOPV) because 2nd dose IPV given 4-8 weeks ago (High risk of exposure scneario)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="184">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Polio (bOPV) because 2nd dose IPV given 4-8 weeks ago (High risk of exposure scneario)
+ * Annotations:
+ * 	 - Provide 3rd dose Polio (bOPV) vaccination – using the &quot;IPV-IPV-bOPV-bOPV&quot; schedule (4 doses scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Polio (IPV) - 2nd Dose given 4-8 weeks ago (High risk of exposure scenario)
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((((&quot;Polio (IPV) vaccine immunization history&quot; = &quot;2 doses&quot;) and (&quot;Date last IPV dose given&quot; >= &quot;4 weeks&quot; = true)) and (&quot;Date last IPV dose given&quot; &lt;= &quot;8 weeks&quot;)) and (&quot;Sequential IPV-OPV Schedule&quot; = true)) and (&quot;Country has a high risk of exposure&quot; = true))
+ */
+define &quot;Should vaccinate patient for Polio (bOPV) because 2nd dose IPV given 4-8 weeks ago (High risk of exposure scneario)&quot;:
+	</a:s>
+               <a:s r="183">
+                  <a:s r="180">
+                     <a:s r="177">
+                        <a:s r="171">
+                           <a:s r="165">
+                              <a:s r="163">
+                                 <a:s r="162">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="163">
+                                    <a:s>&quot;Number of IPV Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="164"> = 2</a:s>
+                           </a:s>
+                           <a:s> and 
+	</a:s>
+                           <a:s r="170">
+                              <a:s r="167">
+                                 <a:s r="166">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="167">
+                                    <a:s>&quot;Date Last IPV Dose Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> </a:s>
+                              <a:s r="170">
+                                 <a:s>more than </a:s>
+                                 <a:s r="169">
+                                    <a:s>4 'weeks'</a:s>
+                                 </a:s>
+                                 <a:s> before</a:s>
+                              </a:s>
+                              <a:s> </a:s>
+                              <a:s r="168">
+                                 <a:s>Today()</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and
+	</a:s>
+                        <a:s r="176">
+                           <a:s r="173">
+                              <a:s r="172">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="173">
+                                 <a:s>&quot;Date Last IPV Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="176">
+                              <a:s>less than </a:s>
+                              <a:s r="175">
+                                 <a:s>8 'weeks'</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="174">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="179">
+                        <a:s r="178">
+                           <a:s>IMMZConf</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="179">
+                           <a:s>&quot;Sequential IPV-OPV Schedule&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and 
+	</a:s>
+                  <a:s r="182">
+                     <a:s r="181">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="182">
+                        <a:s>&quot;Country has a high risk of exposure to polio&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="183" locator="197:2-201:56" xsi:type="And">
+            <operand localId="180" locator="197:2-200:39" xsi:type="And">
+               <operand localId="177" locator="197:2-199:88" xsi:type="And">
+                  <operand localId="171" locator="197:2-198:88" xsi:type="And">
+                     <operand localId="165" locator="197:2-197:58" xsi:type="Equal">
+                        <operand localId="163" locator="197:2-197:54" name="Number of IPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="164" locator="197:58" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="170" locator="198:2-198:88" xsi:type="Before">
+                        <operand localId="167" locator="198:2-198:53" name="Date Last IPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand locator="198:82-198:88" xsi:type="Subtract">
+                           <operand localId="168" locator="198:82-198:88" xsi:type="Today"/>
+                           <operand localId="169" locator="198:65-198:73" value="4" unit="weeks" xsi:type="Quantity"/>
+                        </operand>
+                     </operand>
+                  </operand>
+                  <operand localId="176" locator="199:2-199:88" xsi:type="In">
+                     <operand localId="173" locator="199:2-199:53" name="Date Last IPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="199:55-199:73" lowClosed="false" highClosed="false" xsi:type="Interval">
+                        <low locator="199:82-199:88" xsi:type="Subtract">
+                           <operand localId="174" locator="199:82-199:88" xsi:type="Today"/>
+                           <operand localId="175" locator="199:65-199:73" value="8" unit="weeks" xsi:type="Quantity"/>
+                        </low>
+                        <high localId="174" locator="199:82-199:88" xsi:type="Today"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="179" locator="200:2-200:39" name="Sequential IPV-OPV Schedule" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="182" locator="201:2-201:56" name="Country has a high risk of exposure to polio" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="212" locator="214:1-220:56" name="Should vaccinate patient for Polio (bOPV) because 1st dose bOPV (Third dose in 4-dose schedule) given 4-8 weeks ago" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="212">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Polio (bOPV) because 1st dose bOPV (Third dose in 4-dose schedule) given 4-8 weeks ago
+ * Annotations:
+ * 	 - Provide 4th dose Polio (bOPV) vaccination – using the &quot;IPV-IPV-bOPV-bOPV&quot; schedule (4 doses scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Polio (bOPV) - 1st Dose (Third dose in 4-dose schedule) given 4-8 weeks ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((((&quot;Polio (bOPV) vaccine immunization history&quot; = &quot;1 dose&quot;) and (&quot;Polio (IPV) vaccine immunization history&quot; = &quot;2 doses&quot;)) and (&quot;Date last bOPV dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;Date last bOPV dose given&quot; &lt;= &quot;8 weeks&quot;)) and (&quot;Sequential IPV-OPV Schedule&quot; = true)) and (&quot;Country has a high risk of exposure&quot; = true))
+ */
+define &quot;Should vaccinate patient for Polio (bOPV) because 1st dose bOPV (Third dose in 4-dose schedule) given 4-8 weeks ago&quot;:
+	</a:s>
+               <a:s r="211">
+                  <a:s r="208">
+                     <a:s r="205">
+                        <a:s r="199">
+                           <a:s r="193">
+                              <a:s r="188">
+                                 <a:s r="186">
+                                    <a:s r="185">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="186">
+                                       <a:s>&quot;Number of bOPV Doses Administered to Patient Excluding Birth Dose&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s r="187"> = 1</a:s>
+                              </a:s>
+                              <a:s> and 
+	</a:s>
+                              <a:s r="192">
+                                 <a:s r="190">
+                                    <a:s r="189">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="190">
+                                       <a:s>&quot;Number of IPV Doses Administered to Patient&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s r="191"> = 2</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> and 
+	</a:s>
+                           <a:s r="198">
+                              <a:s r="195">
+                                 <a:s r="194">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="195">
+                                    <a:s>&quot;Date Last bOPV Dose Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> </a:s>
+                              <a:s r="198">
+                                 <a:s>more than </a:s>
+                                 <a:s r="197">
+                                    <a:s>4 'weeks'</a:s>
+                                 </a:s>
+                                 <a:s> before</a:s>
+                              </a:s>
+                              <a:s> </a:s>
+                              <a:s r="196">
+                                 <a:s>Today()</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and
+	</a:s>
+                        <a:s r="204">
+                           <a:s r="201">
+                              <a:s r="200">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="201">
+                                 <a:s>&quot;Date Last bOPV Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="204">
+                              <a:s>less than </a:s>
+                              <a:s r="203">
+                                 <a:s>8 'weeks'</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="202">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="207">
+                        <a:s r="206">
+                           <a:s>IMMZConf</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="207">
+                           <a:s>&quot;Sequential IPV-OPV Schedule&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and 
+	</a:s>
+                  <a:s r="210">
+                     <a:s r="209">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="210">
+                        <a:s>&quot;Country has a high risk of exposure to polio&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="211" locator="215:2-220:56" xsi:type="And">
+            <operand localId="208" locator="215:2-219:39" xsi:type="And">
+               <operand localId="205" locator="215:2-218:89" xsi:type="And">
+                  <operand localId="199" locator="215:2-217:89" xsi:type="And">
+                     <operand localId="193" locator="215:2-216:58" xsi:type="And">
+                        <operand localId="188" locator="215:2-215:80" xsi:type="Equal">
+                           <operand localId="186" locator="215:2-215:76" name="Number of bOPV Doses Administered to Patient Excluding Birth Dose" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           <operand localId="187" locator="215:80" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                        </operand>
+                        <operand localId="192" locator="216:2-216:58" xsi:type="Equal">
+                           <operand localId="190" locator="216:2-216:54" name="Number of IPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           <operand localId="191" locator="216:58" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                        </operand>
+                     </operand>
+                     <operand localId="198" locator="217:2-217:89" xsi:type="Before">
+                        <operand localId="195" locator="217:2-217:54" name="Date Last bOPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand locator="217:83-217:89" xsi:type="Subtract">
+                           <operand localId="196" locator="217:83-217:89" xsi:type="Today"/>
+                           <operand localId="197" locator="217:66-217:74" value="4" unit="weeks" xsi:type="Quantity"/>
+                        </operand>
+                     </operand>
+                  </operand>
+                  <operand localId="204" locator="218:2-218:89" xsi:type="In">
+                     <operand localId="201" locator="218:2-218:54" name="Date Last bOPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="218:56-218:74" lowClosed="false" highClosed="false" xsi:type="Interval">
+                        <low locator="218:83-218:89" xsi:type="Subtract">
+                           <operand localId="202" locator="218:83-218:89" xsi:type="Today"/>
+                           <operand localId="203" locator="218:66-218:74" value="8" unit="weeks" xsi:type="Quantity"/>
+                        </low>
+                        <high localId="202" locator="218:83-218:89" xsi:type="Today"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="207" locator="219:2-219:39" name="Sequential IPV-OPV Schedule" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="210" locator="220:2-220:56" name="Country has a high risk of exposure to polio" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="223" locator="233:1-236:63" name="Should vaccinate patient with IPV 1st dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="223">
+               <a:s>/*
+ * Rule: Should vaccinate patient with IPV 1st dose
+ * Annotations:
+ * 	 - Provide 1st dose Polio (IPV) vaccination – using the &quot;IPV Only&quot; schedule
+ * Outputs:
+ * 	 - Immunize Patient for Polio - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;IPV vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Weeks&quot; &lt;= 8)) and (&quot;High Coverage of Polio and Risk of Wild Importation&quot; = true))
+ */
+define &quot;Should vaccinate patient with IPV 1st dose&quot;:
+	</a:s>
+               <a:s r="222">
+                  <a:s r="219">
+                     <a:s r="214">
+                        <a:s r="213">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="214">
+                           <a:s>&quot;No IPV Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="218">
+                        <a:s r="216">
+                           <a:s r="215">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="216">
+                              <a:s>&quot;Current Patient Age In Weeks&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="217"> &lt;= 8</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="221">
+                     <a:s r="220">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="221">
+                        <a:s>&quot;High Coverage of Polio and Risk of Wild Importation&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="222" locator="234:2-236:63" xsi:type="And">
+            <operand localId="219" locator="234:2-235:44" xsi:type="And">
+               <operand localId="214" locator="234:2-234:47" name="No IPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="218" locator="235:2-235:44" xsi:type="LessOrEqual">
+                  <operand localId="216" locator="235:2-235:39" name="Current Patient Age In Weeks" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="217" locator="235:44" valueType="t:Integer" value="8" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="221" locator="236:2-236:63" name="High Coverage of Polio and Risk of Wild Importation" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="243" locator="249:1-253:63" name="Should vaccinate patient with IPV 2nd dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="243">
+               <a:s>/*
+ * Rule: Should vaccinate patient with IPV 2nd dose
+ * Annotations:
+ * 	 - Provide 2nd dose Polio (IPV) vaccination - using the &quot;IPV Only&quot; schedule - minimum of 4 weeks after previous dose
+ * Outputs:
+ * 	 - Immunize Patient for Polio - 2nd dose
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((&quot;IPV vaccine immunization history&quot; = &quot;1 IPV dose&quot;) and (&quot;High Coverage of Polio and Risk of Wild Importation&quot; = true))
+ */
+define &quot;Should vaccinate patient with IPV 2nd dose&quot;:
+	</a:s>
+               <a:s r="242">
+                  <a:s r="239">
+                     <a:s r="233">
+                        <a:s r="227">
+                           <a:s r="225">
+                              <a:s r="224">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="225">
+                                 <a:s>&quot;Number of IPV Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="226"> = 1</a:s>
+                        </a:s>
+                        <a:s> and 
+	</a:s>
+                        <a:s r="232">
+                           <a:s r="229">
+                              <a:s r="228">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="229">
+                                 <a:s>&quot;Date Last IPV Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="232">
+                              <a:s>more than </a:s>
+                              <a:s r="231">
+                                 <a:s>4 'weeks'</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="230">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="238">
+                        <a:s r="235">
+                           <a:s r="234">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="235">
+                              <a:s>&quot;Date Last IPV Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="238">
+                           <a:s>less than </a:s>
+                           <a:s r="237">
+                              <a:s>8 'weeks'</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="236">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="241">
+                     <a:s r="240">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="241">
+                        <a:s>&quot;High Coverage of Polio and Risk of Wild Importation&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="242" locator="250:2-253:63" xsi:type="And">
+            <operand localId="239" locator="250:2-252:88" xsi:type="And">
+               <operand localId="233" locator="250:2-251:88" xsi:type="And">
+                  <operand localId="227" locator="250:2-250:58" xsi:type="Equal">
+                     <operand localId="225" locator="250:2-250:54" name="Number of IPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="226" locator="250:58" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="232" locator="251:2-251:88" xsi:type="Before">
+                     <operand localId="229" locator="251:2-251:53" name="Date Last IPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="251:82-251:88" xsi:type="Subtract">
+                        <operand localId="230" locator="251:82-251:88" xsi:type="Today"/>
+                        <operand localId="231" locator="251:65-251:73" value="4" unit="weeks" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="238" locator="252:2-252:88" xsi:type="In">
+                  <operand localId="235" locator="252:2-252:53" name="Date Last IPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="252:55-252:73" lowClosed="false" highClosed="false" xsi:type="Interval">
+                     <low locator="252:82-252:88" xsi:type="Subtract">
+                        <operand localId="236" locator="252:82-252:88" xsi:type="Today"/>
+                        <operand localId="237" locator="252:65-252:73" value="8" unit="weeks" xsi:type="Quantity"/>
+                     </low>
+                     <high localId="236" locator="252:82-252:88" xsi:type="Today"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="241" locator="253:2-253:63" name="High Coverage of Polio and Risk of Wild Importation" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="263" locator="266:1-270:63" name="Should vaccinate patient with IPV 3rd dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="263">
+               <a:s>/*
+ * Rule: Should vaccinate patient with IPV 3rd dose
+ * Annotations:
+ * 	 - Provide 3rd dose Polio (IPV) vaccination - using the &quot;IPV Only&quot; schedule - minimum of 4 weeks after previous dose
+ * Outputs:
+ * 	 - Immunize Patient for Polio - 3rd dose
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((&quot;IPV vaccine immunization history&quot; = &quot;2 IPV doses&quot;) and (&quot;High Coverage of Polio and Risk of Wild Importation&quot; = true))
+ */
+define &quot;Should vaccinate patient with IPV 3rd dose&quot;:
+	</a:s>
+               <a:s r="262">
+                  <a:s r="259">
+                     <a:s r="253">
+                        <a:s r="247">
+                           <a:s r="245">
+                              <a:s r="244">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="245">
+                                 <a:s>&quot;Number of IPV Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="246"> = 2</a:s>
+                        </a:s>
+                        <a:s> and 
+	</a:s>
+                        <a:s r="252">
+                           <a:s r="249">
+                              <a:s r="248">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="249">
+                                 <a:s>&quot;Date Last IPV Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="252">
+                              <a:s>more than </a:s>
+                              <a:s r="251">
+                                 <a:s>4 'weeks'</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="250">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="258">
+                        <a:s r="255">
+                           <a:s r="254">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="255">
+                              <a:s>&quot;Date Last IPV Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="258">
+                           <a:s>less than </a:s>
+                           <a:s r="257">
+                              <a:s>8 'weeks'</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="256">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="261">
+                     <a:s r="260">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="261">
+                        <a:s>&quot;High Coverage of Polio and Risk of Wild Importation&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="262" locator="267:2-270:63" xsi:type="And">
+            <operand localId="259" locator="267:2-269:88" xsi:type="And">
+               <operand localId="253" locator="267:2-268:88" xsi:type="And">
+                  <operand localId="247" locator="267:2-267:58" xsi:type="Equal">
+                     <operand localId="245" locator="267:2-267:54" name="Number of IPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="246" locator="267:58" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="252" locator="268:2-268:88" xsi:type="Before">
+                     <operand localId="249" locator="268:2-268:53" name="Date Last IPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="268:82-268:88" xsi:type="Subtract">
+                        <operand localId="250" locator="268:82-268:88" xsi:type="Today"/>
+                        <operand localId="251" locator="268:65-268:73" value="4" unit="weeks" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="258" locator="269:2-269:88" xsi:type="In">
+                  <operand localId="255" locator="269:2-269:53" name="Date Last IPV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="269:55-269:73" lowClosed="false" highClosed="false" xsi:type="Interval">
+                     <low locator="269:82-269:88" xsi:type="Subtract">
+                        <operand localId="256" locator="269:82-269:88" xsi:type="Today"/>
+                        <operand localId="257" locator="269:65-269:73" value="8" unit="weeks" xsi:type="Quantity"/>
+                     </low>
+                     <high localId="256" locator="269:82-269:88" xsi:type="Today"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="261" locator="270:2-270:63" name="High Coverage of Polio and Risk of Wild Importation" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="281" locator="284:1-288:63" name="Should vaccinate patient with IPV 4th dose (booster)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="281">
+               <a:s>/*
+ * Rule: Should vaccinate patient with IPV 4th dose (booster)
+ * Annotations:
+ * 	 - Provide 4th dose Polio (IPV) vaccination - using the &quot;IPV Only&quot; schedule - minimum of 4 weeks after previous dose
+ * Outputs:
+ * 	 - Immunize Patient for Polio - 4th dose (booster)
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;IPV vaccine immunization history&quot; = &quot;3 IPV doses&quot;) and (&quot;Age when 1st IPV dose was given&quot; &lt; &quot;8 weeks&quot;)) and (&quot;Current Patient Age in Months&quot; >= 6)) and (&quot;High Coverage of Polio and Risk of Wild Importation&quot; = true))
+ */
+define &quot;Should vaccinate patient with IPV 4th dose (booster)&quot;:
+	</a:s>
+               <a:s r="280">
+                  <a:s r="277">
+                     <a:s r="272">
+                        <a:s r="267">
+                           <a:s r="265">
+                              <a:s r="264">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="265">
+                                 <a:s>&quot;Number of IPV Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="266"> = 3</a:s>
+                        </a:s>
+                        <a:s> and
+	</a:s>
+                        <a:s r="271">
+                           <a:s r="269">
+                              <a:s r="268">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="269">
+                                 <a:s>&quot;Patient Age at 1st IPV Dose in Weeks&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="270"> &lt; 8</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="276">
+                        <a:s r="274">
+                           <a:s r="273">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="274">
+                              <a:s>&quot;Current Patient Age In Months&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="275"> >= 6</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="279">
+                     <a:s r="278">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="279">
+                        <a:s>&quot;High Coverage of Polio and Risk of Wild Importation&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="280" locator="285:2-288:63" xsi:type="And">
+            <operand localId="277" locator="285:2-287:45" xsi:type="And">
+               <operand localId="272" locator="285:2-286:51" xsi:type="And">
+                  <operand localId="267" locator="285:2-285:58" xsi:type="Equal">
+                     <operand localId="265" locator="285:2-285:54" name="Number of IPV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="266" locator="285:58" valueType="t:Integer" value="3" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="271" locator="286:2-286:51" xsi:type="Less">
+                     <operand localId="269" locator="286:2-286:47" name="Patient Age at 1st IPV Dose in Weeks" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="270" locator="286:51" valueType="t:Integer" value="8" xsi:type="Literal"/>
+                  </operand>
+               </operand>
+               <operand localId="276" locator="287:2-287:45" xsi:type="GreaterOrEqual">
+                  <operand localId="274" locator="287:2-287:40" name="Current Patient Age In Months" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="275" locator="287:45" valueType="t:Integer" value="6" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="279" locator="288:2-288:63" name="High Coverage of Polio and Risk of Wild Importation" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+   </statements>
+</library>

@@ -1,0 +1,1239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="342">
+         <a:s>/*
+ * Library: IMMZD2DTVaricella2DoseLogic (IMMZ.D2.DT.Varicella.2 doses)
+ * Rule: Determine if the client is due for a varicella vaccination according to the national immunization schedule
+ * Decision Table: 2-dose schedule
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any  
+ */
+library IMMZD2DTVaricella2DoseLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTVaricella2DoseLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="13:1-13:59" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTVaricellaEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTVaricellaEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="209" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>parameter Today </a:s>
+               <a:s r="213">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="212">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="212" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="213" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="217" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="215" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="216" xsi:type="SingletonFrom">
+            <operand localId="214" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="228" locator="38:1-39:49" name="Client is not due for varicella vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for varicella vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="228">
+               <a:s>/*
+@output: Client is not due for varicella vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for varicella vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="230">
+                  <a:s r="229">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="230">
+                     <a:s>&quot;Client's age is less than 12 months&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="230" locator="39:3-39:49" name="Client's age is less than 12 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="233" locator="45:1-48:69" name="Client is not due for varicella vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for varicella vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="233">
+               <a:s>/*
+@output: Client is not due for varicella vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for varicella vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="234">
+                  <a:s r="235">
+                     <a:s r="237">
+                        <a:s r="236">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="237">
+                           <a:s>&quot;No varicella primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="239">
+                        <a:s r="238">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="239">
+                           <a:s>&quot;Cient's age is more than or equal to 12 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="241">
+                     <a:s r="240">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="241">
+                        <a:s>&quot;Live vaccine was administered in the past 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="234" locator="46:3-48:69" xsi:type="And">
+            <operand localId="235" locator="46:3-47:66" xsi:type="And">
+               <operand localId="237" locator="46:3-46:65" name="No varicella primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="239" locator="47:9-47:66" name="Cient's age is more than or equal to 12 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="241" locator="48:9-48:69" name="Live vaccine was administered in the past 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="244" locator="54:1-56:80" name="Client is not due for varicella vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for varicella vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="244">
+               <a:s>/*
+@output: Client is not due for varicella vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for varicella vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="245">
+                  <a:s r="247">
+                     <a:s r="246">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="247">
+                        <a:s>&quot;One varicella primary series dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="249">
+                     <a:s r="248">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="249">
+                        <a:s>&quot;The latest varicella dose administered less than 4 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="245" locator="55:3-56:80" xsi:type="And">
+            <operand localId="247" locator="55:3-55:64" name="One varicella primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="249" locator="56:9-56:80" name="The latest varicella dose administered less than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="252" locator="62:1-65:69" name="Client is not due for varicella vaccination Case 4" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for varicella vaccination Case 4"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="252">
+               <a:s>/*
+@output: Client is not due for varicella vaccination Case 4
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for varicella vaccination Case 4&quot;:
+  </a:s>
+               <a:s r="253">
+                  <a:s r="254">
+                     <a:s r="256">
+                        <a:s r="255">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="256">
+                           <a:s>&quot;One varicella primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="258">
+                        <a:s r="257">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="258">
+                           <a:s>&quot;The latest varicella dose administered more than 4 weeks ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="260">
+                     <a:s r="259">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="260">
+                        <a:s>&quot;Live vaccine was administered in the past 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="253" locator="63:3-65:69" xsi:type="And">
+            <operand localId="254" locator="63:3-64:80" xsi:type="And">
+               <operand localId="256" locator="63:3-63:64" name="One varicella primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="258" locator="64:9-64:80" name="The latest varicella dose administered more than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="260" locator="65:9-65:69" name="Live vaccine was administered in the past 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="223" locator="71:1-75:59" name="Client is not due for varicella vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for varicella vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="223">
+               <a:s>/*
+@output: Client is not due for varicella vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for varicella vaccination&quot;:
+  </a:s>
+               <a:s r="224">
+                  <a:s r="225">
+                     <a:s r="226">
+                        <a:s r="231">
+                           <a:s>&quot;Client is not due for varicella vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s>
+    or </a:s>
+                        <a:s r="242">
+                           <a:s>&quot;Client is not due for varicella vaccination Case 2&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="250">
+                        <a:s>&quot;Client is not due for varicella vaccination Case 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="261">
+                     <a:s>&quot;Client is not due for varicella vaccination Case 4&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="224" locator="72:3-75:59" xsi:type="Or">
+            <operand localId="225" locator="72:3-74:59" xsi:type="Or">
+               <operand localId="226" locator="72:3-73:59" xsi:type="Or">
+                  <operand localId="231" locator="72:3-72:54" name="Client is not due for varicella vaccination Case 1" xsi:type="ExpressionRef"/>
+                  <operand localId="242" locator="73:8-73:59" name="Client is not due for varicella vaccination Case 2" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="250" locator="74:8-74:59" name="Client is not due for varicella vaccination Case 3" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="261" locator="75:8-75:59" name="Client is not due for varicella vaccination Case 4" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="264" locator="84:1-91:5" name="Client is not due for varicella vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for varicella vaccination Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with first varicella dose as client's age is less than 12 months. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose."/>
+            <a:s r="264">
+               <a:s>/*
+@output: Client is not due for varicella vaccination Guidance
+@guidance: Should not vaccinate client with first varicella dose as client's age is less than 12 months. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.
+@guidance: Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.
+@guidance: Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose.
+@guidance: Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose.
+*/
+define &quot;Client is not due for varicella vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="265">
+                  <a:s>case
+    </a:s>
+                  <a:s r="266">
+                     <a:s>when </a:s>
+                     <a:s r="267">
+                        <a:s>&quot;Client is not due for varicella vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="268">
+                        <a:s>'Should not vaccinate client with first varicella dose as client\'s age is less than 12 months. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="269">
+                     <a:s>when </a:s>
+                     <a:s r="270">
+                        <a:s>&quot;Client is not due for varicella vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="271">
+                        <a:s>'Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="272">
+                     <a:s>when </a:s>
+                     <a:s r="273">
+                        <a:s>&quot;Client is not due for varicella vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="274">
+                        <a:s>'Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="275">
+                     <a:s>when </a:s>
+                     <a:s r="276">
+                        <a:s>&quot;Client is not due for varicella vaccination Case 4&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="277">
+                        <a:s>'Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="278">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="265" locator="85:3-91:5" xsi:type="Case">
+            <caseItem localId="266" locator="86:5-86:272">
+               <when localId="267" locator="86:10-86:61" name="Client is not due for varicella vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="268" locator="86:68-86:272" valueType="t:String" value="Should not vaccinate client with first varicella dose as client's age is less than 12 months. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="269" locator="87:5-87:285">
+               <when localId="270" locator="87:10-87:61" name="Client is not due for varicella vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="271" locator="87:68-87:285" valueType="t:String" value="Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="272" locator="88:5-88:289">
+               <when localId="273" locator="88:10-88:61" name="Client is not due for varicella vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="274" locator="88:68-88:289" valueType="t:String" value="Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="275" locator="89:5-89:271">
+               <when localId="276" locator="89:10-89:61" name="Client is not due for varicella vaccination Case 4" xsi:type="ExpressionRef"/>
+               <then localId="277" locator="89:68-89:271" valueType="t:String" value="Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="278" locator="90:10-90:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="285" locator="97:1-100:72" name="Client is due for varicella vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for varicella vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="285">
+               <a:s>/*
+@output: Client is due for varicella vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for varicella vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="286">
+                  <a:s r="287">
+                     <a:s r="289">
+                        <a:s r="288">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="289">
+                           <a:s>&quot;No varicella primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="291">
+                        <a:s r="290">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="291">
+                           <a:s>&quot;Cient's age is more than or equal to 12 months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="293">
+                     <a:s r="292">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="293">
+                        <a:s>&quot;No live vaccine was administered in the past 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="286" locator="98:3-100:72" xsi:type="And">
+            <operand localId="287" locator="98:3-99:66" xsi:type="And">
+               <operand localId="289" locator="98:3-98:65" name="No varicella primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="291" locator="99:9-99:66" name="Cient's age is more than or equal to 12 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="293" locator="100:9-100:72" name="No live vaccine was administered in the past 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="296" locator="106:1-109:72" name="Client is due for varicella vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for varicella vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="296">
+               <a:s>/*
+@output: Client is due for varicella vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for varicella vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="297">
+                  <a:s r="298">
+                     <a:s r="300">
+                        <a:s r="299">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="300">
+                           <a:s>&quot;One varicella primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="302">
+                        <a:s r="301">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="302">
+                           <a:s>&quot;The latest varicella dose administered more than 4 weeks ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="304">
+                     <a:s r="303">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="304">
+                        <a:s>&quot;No live vaccine was administered in the past 4 weeks&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="297" locator="107:3-109:72" xsi:type="And">
+            <operand localId="298" locator="107:3-108:80" xsi:type="And">
+               <operand localId="300" locator="107:3-107:64" name="One varicella primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="302" locator="108:9-108:80" name="The latest varicella dose administered more than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="304" locator="109:9-109:72" name="No live vaccine was administered in the past 4 weeks" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="282" locator="115:1-117:55" name="Client is due for varicella vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for varicella vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="282">
+               <a:s>/*
+@output: Client is due for varicella vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for varicella vaccination&quot;:
+  </a:s>
+               <a:s r="283">
+                  <a:s r="294">
+                     <a:s>&quot;Client is due for varicella vaccination Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="305">
+                     <a:s>&quot;Client is due for varicella vaccination Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="283" locator="116:3-117:55" xsi:type="Or">
+            <operand localId="294" locator="116:3-116:50" name="Client is due for varicella vaccination Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="305" locator="117:8-117:55" name="Client is due for varicella vaccination Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="308" locator="124:1-129:5" name="Client is due for varicella vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for varicella vaccination Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications."/>
+            <a:t name="guidance" value="Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications."/>
+            <a:s r="308">
+               <a:s>/*
+@output: Client is due for varicella vaccination Guidance
+@guidance: Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications.
+@guidance: Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications.
+*/
+define &quot;Client is due for varicella vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="309">
+                  <a:s>case
+    </a:s>
+                  <a:s r="310">
+                     <a:s>when </a:s>
+                     <a:s r="311">
+                        <a:s>&quot;Client is due for varicella vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="312">
+                        <a:s>'Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="313">
+                     <a:s>when </a:s>
+                     <a:s r="314">
+                        <a:s>&quot;Client is due for varicella vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="315">
+                        <a:s>'Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="316">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="309" locator="125:3-129:5" xsi:type="Case">
+            <caseItem localId="310" locator="126:5-126:275">
+               <when localId="311" locator="126:10-126:57" name="Client is due for varicella vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="312" locator="126:64-126:275" valueType="t:String" value="Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="313" locator="127:5-127:266">
+               <when localId="314" locator="127:10-127:57" name="Client is due for varicella vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="315" locator="127:64-127:266" valueType="t:String" value="Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="316" locator="128:10-128:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="320" locator="135:1-136:66" name="Varicella immunization schedule is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Varicella immunization schedule is complete"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="320">
+               <a:s>/*
+@output: Varicella immunization schedule is complete
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Varicella immunization schedule is complete&quot;:
+  </a:s>
+               <a:s r="322">
+                  <a:s r="321">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="322">
+                     <a:s>&quot;Two varicella primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="322" locator="136:3-136:66" name="Two varicella primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="325" locator="142:1-143:136" name="Varicella immunization schedule is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Varicella immunization schedule is complete Guidance"/>
+            <a:t name="guidance" value="Varicella immunization schedule is complete. Two varicella primary series doses were administered. Check for any other vaccines due."/>
+            <a:s r="325">
+               <a:s>/*
+@output: Varicella immunization schedule is complete Guidance
+@guidance: Varicella immunization schedule is complete. Two varicella primary series doses were administered. Check for any other vaccines due.
+*/
+define &quot;Varicella immunization schedule is complete Guidance&quot;:
+  </a:s>
+               <a:s r="326">
+                  <a:s>'Varicella immunization schedule is complete. Two varicella primary series doses were administered. Check for any other vaccines due.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="326" locator="143:3-143:136" valueType="t:String" value="Varicella immunization schedule is complete. Two varicella primary series doses were administered. Check for any other vaccines due." xsi:type="Literal"/>
+      </def>
+      <def localId="219" locator="23:1-29:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="219">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="220">
+                  <a:s>case
+    </a:s>
+                  <a:s r="221">
+                     <a:s>when </a:s>
+                     <a:s r="262">
+                        <a:s>&quot;Client is not due for varicella vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="279">
+                        <a:s>&quot;Client is not due for varicella vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="280">
+                     <a:s>when </a:s>
+                     <a:s r="306">
+                        <a:s>&quot;Client is due for varicella vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="317">
+                        <a:s>&quot;Client is due for varicella vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="318">
+                     <a:s>when </a:s>
+                     <a:s r="323">
+                        <a:s>&quot;Varicella immunization schedule is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="327">
+                        <a:s>&quot;Varicella immunization schedule is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="328">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="220" locator="24:3-29:5" xsi:type="Case">
+            <caseItem localId="221" locator="25:5-25:114">
+               <when localId="262" locator="25:10-25:54" name="Client is not due for varicella vaccination" xsi:type="ExpressionRef"/>
+               <then localId="279" locator="25:61-25:114" name="Client is not due for varicella vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="280" locator="26:5-26:106">
+               <when localId="306" locator="26:10-26:50" name="Client is due for varicella vaccination" xsi:type="ExpressionRef"/>
+               <then localId="317" locator="26:57-26:106" name="Client is due for varicella vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="318" locator="27:5-27:114">
+               <when localId="323" locator="27:10-27:54" name="Varicella immunization schedule is complete" xsi:type="ExpressionRef"/>
+               <then localId="327" locator="27:61-27:114" name="Varicella immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="328" locator="28:10-28:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="330" locator="31:1-32:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="330">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="331">
+                  <a:s r="334">
+                     <a:s r="332">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="340">
+                     <a:s r="336">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="337">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="331" locator="32:3-32:45" xsi:type="And">
+            <operand localId="334" locator="32:3-32:24" xsi:type="Not">
+               <operand localId="333" locator="32:3-32:24" xsi:type="IsNull">
+                  <operand localId="332" locator="32:3-32:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="340" locator="32:30-32:45" xsi:type="Not">
+               <operand localId="335" locator="32:30-32:45" xsi:type="Equal">
+                  <signature localId="338" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="339" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="336" locator="32:30-32:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="337" locator="32:44-32:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="342" locator="149:1-159:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="342">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="343">
+                  <a:s>case
+    </a:s>
+                  <a:s r="344">
+                     <a:s>when </a:s>
+                     <a:s r="345">
+                        <a:s r="347">
+                           <a:s r="346">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="347">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="348">
+                           <a:s>'21.2'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="353">
+                        <a:s r="354">
+                           <a:s>&quot;Client is not due for varicella vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="355">
+                           <a:s r="356">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="357">
+                              <a:s>'Should not vaccinate client with first varicella dose as client\'s age is less than 12 months. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="360">
+                     <a:s>when </a:s>
+                     <a:s r="361">
+                        <a:s r="363">
+                           <a:s r="362">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="363">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="364">
+                           <a:s>'22.124'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="369">
+                        <a:s r="370">
+                           <a:s>&quot;Client is not due for varicella vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="371">
+                           <a:s r="372">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="373">
+                              <a:s>'Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="376">
+                     <a:s>when </a:s>
+                     <a:s r="377">
+                        <a:s r="379">
+                           <a:s r="378">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="379">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="380">
+                           <a:s>'23.124'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="385">
+                        <a:s r="386">
+                           <a:s>&quot;Client is due for varicella vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="387">
+                           <a:s r="388">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="389">
+                              <a:s>'Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="392">
+                     <a:s>when </a:s>
+                     <a:s r="393">
+                        <a:s r="395">
+                           <a:s r="394">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="395">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="396">
+                           <a:s>'24.13'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="401">
+                        <a:s r="402">
+                           <a:s>&quot;Client is not due for varicella vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="403">
+                           <a:s r="404">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="405">
+                              <a:s>'Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="408">
+                     <a:s>when </a:s>
+                     <a:s r="409">
+                        <a:s r="411">
+                           <a:s r="410">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="411">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="412">
+                           <a:s>'25.134'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="417">
+                        <a:s r="418">
+                           <a:s>&quot;Client is not due for varicella vaccination Case 4&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="419">
+                           <a:s r="420">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="421">
+                              <a:s>'Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="424">
+                     <a:s>when </a:s>
+                     <a:s r="425">
+                        <a:s r="427">
+                           <a:s r="426">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="427">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="428">
+                           <a:s>'26.134'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="433">
+                        <a:s r="434">
+                           <a:s>&quot;Client is due for varicella vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="435">
+                           <a:s r="436">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="437">
+                              <a:s>'Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="440">
+                     <a:s>when </a:s>
+                     <a:s r="441">
+                        <a:s r="443">
+                           <a:s r="442">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="443">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="444">
+                           <a:s>'27.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="449">
+                        <a:s r="450">
+                           <a:s>&quot;Varicella immunization schedule is complete&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="451">
+                           <a:s r="452">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="453">
+                              <a:s>'Varicella immunization schedule is complete. Two varicella primary series doses were administered. Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="456">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="343" locator="150:3-159:5" xsi:type="Case">
+            <caseItem localId="344" locator="151:5-151:309">
+               <when localId="345" locator="151:10-151:28" xsi:type="Equal">
+                  <signature localId="351" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="352" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="349" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="350" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="347" locator="151:10-151:19" path="id" xsi:type="Property">
+                        <source localId="346" locator="151:10-151:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="348" locator="151:23-151:28" valueType="t:String" value="21.2" xsi:type="Literal"/>
+               </when>
+               <then localId="457" xsi:type="As">
+                  <operand localId="353" locator="151:35-151:309" xsi:type="And">
+                     <operand localId="354" locator="151:35-151:86" name="Client is not due for varicella vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="355" locator="151:92-151:309" xsi:type="Equal">
+                        <signature localId="358" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="359" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="356" locator="151:92-151:101" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="357" locator="151:105-151:309" valueType="t:String" value="Should not vaccinate client with first varicella dose as client's age is less than 12 months. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="458" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="459" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="460" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="360" locator="152:5-152:324">
+               <when localId="361" locator="152:10-152:30" xsi:type="Equal">
+                  <signature localId="367" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="368" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="365" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="366" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="363" locator="152:10-152:19" path="id" xsi:type="Property">
+                        <source localId="362" locator="152:10-152:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="364" locator="152:23-152:30" valueType="t:String" value="22.124" xsi:type="Literal"/>
+               </when>
+               <then localId="461" xsi:type="As">
+                  <operand localId="369" locator="152:37-152:324" xsi:type="And">
+                     <operand localId="370" locator="152:37-152:88" name="Client is not due for varicella vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="371" locator="152:94-152:324" xsi:type="Equal">
+                        <signature localId="374" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="375" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="372" locator="152:94-152:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="373" locator="152:107-152:324" valueType="t:String" value="Should not vaccinate client with first varicella dose as live vaccine was administered in the past 4 weeks. Check for any other vaccines due and inform the caregiver of when to come back for the first varicella dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="462" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="463" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="464" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="376" locator="153:5-153:314">
+               <when localId="377" locator="153:10-153:30" xsi:type="Equal">
+                  <signature localId="383" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="384" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="381" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="382" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="379" locator="153:10-153:19" path="id" xsi:type="Property">
+                        <source localId="378" locator="153:10-153:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="380" locator="153:23-153:30" valueType="t:String" value="23.124" xsi:type="Literal"/>
+               </when>
+               <then localId="465" xsi:type="As">
+                  <operand localId="385" locator="153:37-153:314" xsi:type="And">
+                     <operand localId="386" locator="153:37-153:84" name="Client is due for varicella vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="387" locator="153:90-153:314" xsi:type="Equal">
+                        <signature localId="390" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="391" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="388" locator="153:90-153:99" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="389" locator="153:103-153:314" valueType="t:String" value="Should vaccinate client with first varicella dose as no varicella dose was administered, client is within appropriate age range and no live vaccine was administered in past 4 weeks. Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="466" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="467" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="468" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="392" locator="154:5-154:327">
+               <when localId="393" locator="154:10-154:29" xsi:type="Equal">
+                  <signature localId="399" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="400" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="397" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="398" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="395" locator="154:10-154:19" path="id" xsi:type="Property">
+                        <source localId="394" locator="154:10-154:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="396" locator="154:23-154:29" valueType="t:String" value="24.13" xsi:type="Literal"/>
+               </when>
+               <then localId="469" xsi:type="As">
+                  <operand localId="401" locator="154:36-154:327" xsi:type="And">
+                     <operand localId="402" locator="154:36-154:87" name="Client is not due for varicella vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="403" locator="154:93-154:327" xsi:type="Equal">
+                        <signature localId="406" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="407" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="404" locator="154:93-154:102" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="405" locator="154:106-154:327" valueType="t:String" value="Should not vaccinate client with second varicella dose as the latest varicella dose was administered less than 4 weeks ago. Check for any other vaccines due and inform the caregiver when to come back for the second dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="470" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="471" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="472" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="408" locator="155:5-155:310">
+               <when localId="409" locator="155:10-155:30" xsi:type="Equal">
+                  <signature localId="415" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="416" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="413" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="414" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="411" locator="155:10-155:19" path="id" xsi:type="Property">
+                        <source localId="410" locator="155:10-155:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="412" locator="155:23-155:30" valueType="t:String" value="25.134" xsi:type="Literal"/>
+               </when>
+               <then localId="473" xsi:type="As">
+                  <operand localId="417" locator="155:37-155:310" xsi:type="And">
+                     <operand localId="418" locator="155:37-155:88" name="Client is not due for varicella vaccination Case 4" xsi:type="ExpressionRef"/>
+                     <operand localId="419" locator="155:94-155:310" xsi:type="Equal">
+                        <signature localId="422" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="423" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="420" locator="155:94-155:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="421" locator="155:107-155:310" valueType="t:String" value="Should not vaccinate client with second varicella dose as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for the second dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="474" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="475" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="476" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="424" locator="156:5-156:305">
+               <when localId="425" locator="156:10-156:30" xsi:type="Equal">
+                  <signature localId="431" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="432" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="429" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="430" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="427" locator="156:10-156:19" path="id" xsi:type="Property">
+                        <source localId="426" locator="156:10-156:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="428" locator="156:23-156:30" valueType="t:String" value="26.134" xsi:type="Literal"/>
+               </when>
+               <then localId="477" xsi:type="As">
+                  <operand localId="433" locator="156:37-156:305" xsi:type="And">
+                     <operand localId="434" locator="156:37-156:84" name="Client is due for varicella vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="435" locator="156:90-156:305" xsi:type="Equal">
+                        <signature localId="438" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="439" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="436" locator="156:90-156:99" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="437" locator="156:103-156:305" valueType="t:String" value="Should vaccinate client with second varicella dose as the latest varicella dose was administered more than 4 weeks ago and no live vaccine was administered in past 4 weeks. Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="478" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="479" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="480" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="440" locator="157:5-157:231">
+               <when localId="441" locator="157:10-157:28" xsi:type="Equal">
+                  <signature localId="447" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="448" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="445" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="446" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="443" locator="157:10-157:19" path="id" xsi:type="Property">
+                        <source localId="442" locator="157:10-157:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="444" locator="157:23-157:28" valueType="t:String" value="27.1" xsi:type="Literal"/>
+               </when>
+               <then localId="481" xsi:type="As">
+                  <operand localId="449" locator="157:35-157:231" xsi:type="And">
+                     <operand localId="450" locator="157:35-157:79" name="Varicella immunization schedule is complete" xsi:type="ExpressionRef"/>
+                     <operand localId="451" locator="157:85-157:231" xsi:type="Equal">
+                        <signature localId="454" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="455" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="452" locator="157:85-157:94" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="453" locator="157:98-157:231" valueType="t:String" value="Varicella immunization schedule is complete. Two varicella primary series doses were administered. Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="482" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="483" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="484" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="485" xsi:type="As">
+               <operand localId="456" locator="158:10-158:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="486" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="487" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="488" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

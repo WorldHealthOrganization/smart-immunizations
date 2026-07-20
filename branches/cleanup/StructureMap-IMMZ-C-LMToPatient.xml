@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureMap xmlns="http://hl7.org/fhir">
+  <id value="IMMZ-C-LMToPatient"/>
+  <meta>
+    <versionId value="3"/>
+    <lastUpdated value="2023-08-09T20:36:18.157+00:00"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml">Placeholder</div>
+  </text>
+  <url value="http://fhir.org/guides/who/smart-immunization/StructureMap/IMMZ-C-LMToPatient"/>
+  <version value="0.1.0"/>
+  <name value="IMMZ-C-LMToPatient"/>
+  <status value="draft"/>
+  <date value="2023-09-27T13:52:37+00:00"/>
+  <publisher value="World Health Organization (WHO)"/>
+  <contact>
+    <name value="World Health Organization (WHO)"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.who.int"/>
+    </telecom>
+  </contact>
+  <jurisdiction>
+    <coding>
+      <system value="http://unstats.un.org/unsd/methods/m49/m49.htm"/>
+      <code value="001"/>
+    </coding>
+  </jurisdiction>
+  <structure>
+    <url value="http://fhir.org/guides/who/smart-immunization/StructureDefinition/IMMZ-C-register-client"/>
+    <mode value="target"/>
+    <alias value="IMMZC"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Patient"/>
+    <mode value="target"/>
+    <alias value="Patient"/>
+  </structure>
+  <group>
+    <name value="IMMZCToPatient"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="immzc"/>
+      <type value="IMMZC"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="patient"/>
+      <type value="Patient"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="set identifier"/>
+      <source>
+        <context value="immzc"/>
+        <element value="uniqueId"/>
+        <variable value="id"/>
+      </source>
+      <target>
+        <context value="patient"/>
+        <contextType value="variable"/>
+        <element value="identifier"/>
+        <variable value="identifier"/>
+      </target>
+      <rule>
+        <name value="set identifier value"/>
+        <source>
+          <context value="id"/>
+        </source>
+        <target>
+          <context value="identifier"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="id"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+    <rule>
+      <name value="set name"/>
+      <source>
+        <context value="immzc"/>
+      </source>
+      <target>
+        <context value="patient"/>
+        <contextType value="variable"/>
+        <element value="name"/>
+        <variable value="pname"/>
+      </target>
+      <dependent>
+        <name value="NameToHumanName"/>
+        <variable value="immzc"/>
+        <variable value="pname"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="set gender"/>
+      <source>
+        <context value="immzc"/>
+        <element value="sex"/>
+        <variable value="sex"/>
+      </source>
+      <target>
+        <context value="patient"/>
+        <contextType value="variable"/>
+        <element value="gender"/>
+        <transform value="translate"/>
+        <parameter>
+          <valueId value="sex"/>
+        </parameter>
+        <parameter>
+          <valueString value="http://fhir.org/guides/who/smart-immunization/ConceptMap/IMMZ.C.SexToAdministrativeGender"/>
+        </parameter>
+        <parameter>
+          <valueString value="code"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="set birthDate"/>
+      <source>
+        <context value="immzc"/>
+        <element value="birthDate"/>
+        <variable value="birthDate"/>
+      </source>
+      <target>
+        <context value="patient"/>
+        <contextType value="variable"/>
+        <element value="birthDate"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="birthDate"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="set caregiver"/>
+      <source>
+        <context value="immzc"/>
+        <element value="caregiver"/>
+        <variable value="caregiver"/>
+      </source>
+      <target>
+        <context value="patient"/>
+        <contextType value="variable"/>
+        <element value="contact"/>
+        <variable value="contact"/>
+      </target>
+      <target>
+        <context value="contact"/>
+        <contextType value="variable"/>
+        <element value="name"/>
+        <variable value="hname"/>
+      </target>
+      <dependent>
+        <name value="NameToHumanName"/>
+        <variable value="caregiver"/>
+        <variable value="hname"/>
+      </dependent>
+    </rule>
+    <rule>
+      <name value="set phone"/>
+      <source>
+        <context value="immzc"/>
+        <element value="phone"/>
+        <variable value="phone"/>
+      </source>
+      <target>
+        <context value="patient"/>
+        <contextType value="variable"/>
+        <element value="telecom"/>
+        <variable value="telecom"/>
+      </target>
+      <rule>
+        <name value="set phone value"/>
+        <source>
+          <context value="phone"/>
+          <variable value="content"/>
+        </source>
+        <target>
+          <context value="telecom"/>
+          <contextType value="variable"/>
+          <element value="value"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="content"/>
+          </parameter>
+        </target>
+        <target>
+          <context value="telecom"/>
+          <contextType value="variable"/>
+          <element value="system"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueString value="phone"/>
+          </parameter>
+        </target>
+      </rule>
+    </rule>
+    <rule>
+      <name value="set administrativeArea"/>
+      <source>
+        <context value="immzc"/>
+        <element value="administrativeArea"/>
+        <variable value="area"/>
+      </source>
+      <target>
+        <context value="patient"/>
+        <contextType value="variable"/>
+        <element value="address"/>
+        <variable value="address"/>
+      </target>
+      <rule>
+        <name value="set address text"/>
+        <source>
+          <context value="area"/>
+          <element value="coding"/>
+          <listMode value="first"/>
+          <variable value="coding"/>
+        </source>
+        <target>
+          <contextType value="variable"/>
+          <transform value="copy"/>
+          <parameter>
+            <valueId value="address"/>
+          </parameter>
+        </target>
+        <rule>
+          <name value="set address to code"/>
+          <source>
+            <context value="coding"/>
+            <element value="code"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="address"/>
+            <contextType value="variable"/>
+            <element value="text"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+        <rule>
+          <name value="set address to display"/>
+          <source>
+            <context value="coding"/>
+            <element value="display"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="address"/>
+            <contextType value="variable"/>
+            <element value="text"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="NameToHumanNAme"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="name"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="hname"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="set full name"/>
+      <source>
+        <context value="name"/>
+        <element value="name"/>
+        <variable value="fullName"/>
+      </source>
+      <target>
+        <context value="hname"/>
+        <contextType value="variable"/>
+        <element value="text"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="fullName"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="set first name"/>
+      <source>
+        <context value="name"/>
+        <element value="firstName"/>
+        <variable value="firstName"/>
+      </source>
+      <target>
+        <context value="hname"/>
+        <contextType value="variable"/>
+        <element value="given"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="firstName"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="set family name"/>
+      <source>
+        <context value="name"/>
+        <element value="familyName"/>
+        <variable value="familyName"/>
+      </source>
+      <target>
+        <context value="hname"/>
+        <contextType value="variable"/>
+        <element value="family"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueId value="familyName"/>
+        </parameter>
+      </target>
+    </rule>
+  </group>
+</StructureMap>

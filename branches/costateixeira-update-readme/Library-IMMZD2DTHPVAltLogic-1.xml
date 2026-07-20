@@ -1,0 +1,2195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="437">
+         <a:s>/*
+ * Library: IMMZD2DTHPVAltLogic (IMMZ.D2.DT.HPV.Single dose)
+ * Rule: Determine if the client is due for a human papillomavirus (HPV) vaccination according to the national immunization schedule
+ * Decision Table: Alternative single-dose schedule
+ * Trigger: IMMZ.D2  Determine required vaccination(s) if any
+ */
+library IMMZD2DTHPVAltLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTHPVAltLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="13:1-13:53" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTHPVEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTHPVEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="209" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>parameter Today </a:s>
+               <a:s r="213">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="212">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="212" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="213" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="217" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="215" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="216" xsi:type="SingletonFrom">
+            <operand localId="214" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="229" locator="39:1-40:47" name="Client is not due for HPV vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for HPV vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="229">
+               <a:s>/*
+@output: Client is not due for HPV vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for HPV vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="231">
+                  <a:s r="230">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="231">
+                     <a:s>&quot;Client's age is less than 9 years&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="231" locator="40:3-40:47" name="Client's age is less than 9 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="234" locator="46:1-49:51" name="Client is not due for HPV vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for HPV vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="234">
+               <a:s>/*
+@output: Client is not due for HPV vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for HPV vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="235">
+                  <a:s r="236">
+                     <a:s r="238">
+                        <a:s r="237">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="238">
+                           <a:s>&quot;One HPV primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="240">
+                        <a:s r="239">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="240">
+                           <a:s>&quot;The latest HPV dose was administered less than 6 months ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="242">
+                     <a:s r="241">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="242">
+                        <a:s>&quot;Client's HIV status is positive&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="235" locator="47:3-49:51" xsi:type="And">
+            <operand localId="236" locator="47:3-48:79" xsi:type="And">
+               <operand localId="238" locator="47:3-47:58" name="One HPV primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="240" locator="48:9-48:79" name="The latest HPV dose was administered less than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="242" locator="49:9-49:51" name="Client's HIV status is positive" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="245" locator="55:1-58:47" name="Client is not due for HPV vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for HPV vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="245">
+               <a:s>/*
+@output: Client is not due for HPV vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for HPV vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="246">
+                  <a:s r="247">
+                     <a:s r="249">
+                        <a:s r="248">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="249">
+                           <a:s>&quot;One HPV primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="251">
+                        <a:s r="250">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="251">
+                           <a:s>&quot;The latest HPV dose was administered less than 6 months ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="253">
+                     <a:s r="252">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="253">
+                        <a:s>&quot;Client is immunocompromised&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="246" locator="56:3-58:47" xsi:type="And">
+            <operand localId="247" locator="56:3-57:79" xsi:type="And">
+               <operand localId="249" locator="56:3-56:58" name="One HPV primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="251" locator="57:9-57:79" name="The latest HPV dose was administered less than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="253" locator="58:9-58:47" name="Client is immunocompromised" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="256" locator="64:1-67:51" name="Client is not due for HPV vaccination Case 4" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for HPV vaccination Case 4"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="256">
+               <a:s>/*
+@output: Client is not due for HPV vaccination Case 4
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for HPV vaccination Case 4&quot;:
+  </a:s>
+               <a:s r="257">
+                  <a:s r="258">
+                     <a:s r="260">
+                        <a:s r="259">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="260">
+                           <a:s>&quot;Two HPV primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="262">
+                        <a:s r="261">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="262">
+                           <a:s>&quot;The latest HPV dose was administered less than 6 months ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="264">
+                     <a:s r="263">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="264">
+                        <a:s>&quot;Client's HIV status is positive&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="257" locator="65:3-67:51" xsi:type="And">
+            <operand localId="258" locator="65:3-66:79" xsi:type="And">
+               <operand localId="260" locator="65:3-65:60" name="Two HPV primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="262" locator="66:9-66:79" name="The latest HPV dose was administered less than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="264" locator="67:9-67:51" name="Client's HIV status is positive" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="267" locator="73:1-76:47" name="Client is not due for HPV vaccination Case 5" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for HPV vaccination Case 5"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="267">
+               <a:s>/*
+@output: Client is not due for HPV vaccination Case 5
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for HPV vaccination Case 5&quot;:
+  </a:s>
+               <a:s r="268">
+                  <a:s r="269">
+                     <a:s r="271">
+                        <a:s r="270">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="271">
+                           <a:s>&quot;Two HPV primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="273">
+                        <a:s r="272">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="273">
+                           <a:s>&quot;The latest HPV dose was administered less than 6 months ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="275">
+                     <a:s r="274">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="275">
+                        <a:s>&quot;Client is immunocompromised&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="268" locator="74:3-76:47" xsi:type="And">
+            <operand localId="269" locator="74:3-75:79" xsi:type="And">
+               <operand localId="271" locator="74:3-74:60" name="Two HPV primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="273" locator="75:9-75:79" name="The latest HPV dose was administered less than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="275" locator="76:9-76:47" name="Client is immunocompromised" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="223" locator="82:1-87:53" name="Client is not due for HPV vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for HPV vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="223">
+               <a:s>/*
+@output: Client is not due for HPV vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for HPV vaccination&quot;:
+  </a:s>
+               <a:s r="224">
+                  <a:s r="225">
+                     <a:s r="226">
+                        <a:s r="227">
+                           <a:s r="232">
+                              <a:s>&quot;Client is not due for HPV vaccination Case 1&quot;</a:s>
+                           </a:s>
+                           <a:s>
+    or </a:s>
+                           <a:s r="243">
+                              <a:s>&quot;Client is not due for HPV vaccination Case 2&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    or </a:s>
+                        <a:s r="254">
+                           <a:s>&quot;Client is not due for HPV vaccination Case 3&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="265">
+                        <a:s>&quot;Client is not due for HPV vaccination Case 4&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="276">
+                     <a:s>&quot;Client is not due for HPV vaccination Case 5&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="224" locator="83:3-87:53" xsi:type="Or">
+            <operand localId="225" locator="83:3-86:53" xsi:type="Or">
+               <operand localId="226" locator="83:3-85:53" xsi:type="Or">
+                  <operand localId="227" locator="83:3-84:53" xsi:type="Or">
+                     <operand localId="232" locator="83:3-83:48" name="Client is not due for HPV vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="243" locator="84:8-84:53" name="Client is not due for HPV vaccination Case 2" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="254" locator="85:8-85:53" name="Client is not due for HPV vaccination Case 3" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="265" locator="86:8-86:53" name="Client is not due for HPV vaccination Case 4" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="276" locator="87:8-87:53" name="Client is not due for HPV vaccination Case 5" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="279" locator="102:1-115:5" name="Client is not due for HPV vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for HPV vaccination Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with first HPV dose as client's age is less than 9 years. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose."/>
+            <a:s r="279">
+               <a:s>/*
+@output: Client is not due for HPV vaccination Guidance
+@guidance: Should not vaccinate client with first HPV dose as client's age is less than 9 years. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+@guidance: Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+@guidance: Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+@guidance: Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+@guidance: Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.
+*/
+define &quot;Client is not due for HPV vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="280">
+                  <a:s>case
+    </a:s>
+                  <a:s r="281">
+                     <a:s>when </a:s>
+                     <a:s r="282">
+                        <a:s>&quot;Client is not due for HPV vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="283">
+                        <a:s>'Should not vaccinate client with first HPV dose as client\'s age is less than 9 years. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="284">
+                     <a:s>when </a:s>
+                     <a:s r="285">
+                        <a:s>&quot;Client is not due for HPV vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="286">
+                        <a:s>'Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="287">
+                     <a:s>when </a:s>
+                     <a:s r="288">
+                        <a:s>&quot;Client is not due for HPV vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="289">
+                        <a:s>'Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="290">
+                     <a:s>when </a:s>
+                     <a:s r="291">
+                        <a:s>&quot;Client is not due for HPV vaccination Case 4&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="292">
+                        <a:s>'Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="293">
+                     <a:s>when </a:s>
+                     <a:s r="294">
+                        <a:s>&quot;Client is not due for HPV vaccination Case 5&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="295">
+                        <a:s>'Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="296">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="280" locator="103:3-115:5" xsi:type="Case">
+            <caseItem localId="281" locator="104:5-104:242">
+               <when localId="282" locator="104:10-104:55" name="Client is not due for HPV vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="283" locator="104:62-104:242" valueType="t:String" value="Should not vaccinate client with first HPV dose as client's age is less than 9 years. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="284" locator="106:5-106:268">
+               <when localId="285" locator="106:10-106:55" name="Client is not due for HPV vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="286" locator="106:62-106:268" valueType="t:String" value="Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="287" locator="108:5-108:268">
+               <when localId="288" locator="108:10-108:55" name="Client is not due for HPV vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="289" locator="108:62-108:268" valueType="t:String" value="Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="290" locator="110:5-110:267">
+               <when localId="291" locator="110:10-110:55" name="Client is not due for HPV vaccination Case 4" xsi:type="ExpressionRef"/>
+               <then localId="292" locator="110:62-110:267" valueType="t:String" value="Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="293" locator="112:5-112:267">
+               <when localId="294" locator="112:10-112:55" name="Client is not due for HPV vaccination Case 5" xsi:type="ExpressionRef"/>
+               <then localId="295" locator="112:62-112:267" valueType="t:String" value="Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="296" locator="114:10-114:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="306" locator="121:1-123:58" name="Client is due for HPV vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for HPV vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="306">
+               <a:s>/*
+@output: Client is due for HPV vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for HPV vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="307">
+                  <a:s r="309">
+                     <a:s r="308">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="309">
+                        <a:s>&quot;No HPV primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="311">
+                     <a:s r="310">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="311">
+                        <a:s>&quot;Client's age is between 9 and 20 years&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="307" locator="122:3-123:58" xsi:type="And">
+            <operand localId="309" locator="122:3-122:59" name="No HPV primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="311" locator="123:9-123:58" name="Client's age is between 9 and 20 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="314" locator="129:1-132:51" name="Client is due for HPV vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for HPV vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="314">
+               <a:s>/*
+@output: Client is due for HPV vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for HPV vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="315">
+                  <a:s r="316">
+                     <a:s r="318">
+                        <a:s r="317">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="318">
+                           <a:s>&quot;One HPV primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="320">
+                        <a:s r="319">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="320">
+                           <a:s>&quot;The latest HPV dose was administered more than 6 months ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="322">
+                     <a:s r="321">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="322">
+                        <a:s>&quot;Client's HIV status is positive&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="315" locator="130:3-132:51" xsi:type="And">
+            <operand localId="316" locator="130:3-131:79" xsi:type="And">
+               <operand localId="318" locator="130:3-130:58" name="One HPV primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="320" locator="131:9-131:79" name="The latest HPV dose was administered more than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="322" locator="132:9-132:51" name="Client's HIV status is positive" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="325" locator="138:1-141:47" name="Client is due for HPV vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for HPV vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="325">
+               <a:s>/*
+@output: Client is due for HPV vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for HPV vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="326">
+                  <a:s r="327">
+                     <a:s r="329">
+                        <a:s r="328">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="329">
+                           <a:s>&quot;One HPV primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="331">
+                        <a:s r="330">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="331">
+                           <a:s>&quot;The latest HPV dose was administered more than 6 months ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="333">
+                     <a:s r="332">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="333">
+                        <a:s>&quot;Client is immunocompromised&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="326" locator="139:3-141:47" xsi:type="And">
+            <operand localId="327" locator="139:3-140:79" xsi:type="And">
+               <operand localId="329" locator="139:3-139:58" name="One HPV primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="331" locator="140:9-140:79" name="The latest HPV dose was administered more than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="333" locator="141:9-141:47" name="Client is immunocompromised" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="336" locator="147:1-150:51" name="Client is due for HPV vaccination Case 4" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for HPV vaccination Case 4"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="336">
+               <a:s>/*
+@output: Client is due for HPV vaccination Case 4
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for HPV vaccination Case 4&quot;:
+  </a:s>
+               <a:s r="337">
+                  <a:s r="338">
+                     <a:s r="340">
+                        <a:s r="339">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="340">
+                           <a:s>&quot;Two HPV primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="342">
+                        <a:s r="341">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="342">
+                           <a:s>&quot;The latest HPV dose was administered more than 6 months ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="344">
+                     <a:s r="343">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="344">
+                        <a:s>&quot;Client's HIV status is positive&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="337" locator="148:3-150:51" xsi:type="And">
+            <operand localId="338" locator="148:3-149:79" xsi:type="And">
+               <operand localId="340" locator="148:3-148:60" name="Two HPV primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="342" locator="149:9-149:79" name="The latest HPV dose was administered more than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="344" locator="150:9-150:51" name="Client's HIV status is positive" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="347" locator="156:1-159:47" name="Client is due for HPV vaccination Case 5" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for HPV vaccination Case 5"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="347">
+               <a:s>/*
+@output: Client is due for HPV vaccination Case 5
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for HPV vaccination Case 5&quot;:
+  </a:s>
+               <a:s r="348">
+                  <a:s r="349">
+                     <a:s r="351">
+                        <a:s r="350">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="351">
+                           <a:s>&quot;Two HPV primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="353">
+                        <a:s r="352">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="353">
+                           <a:s>&quot;The latest HPV dose was administered more than 6 months ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="355">
+                     <a:s r="354">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="355">
+                        <a:s>&quot;Client is immunocompromised&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="348" locator="157:3-159:47" xsi:type="And">
+            <operand localId="349" locator="157:3-158:79" xsi:type="And">
+               <operand localId="351" locator="157:3-157:60" name="Two HPV primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="353" locator="158:9-158:79" name="The latest HPV dose was administered more than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="355" locator="159:9-159:47" name="Client is immunocompromised" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="300" locator="165:1-170:49" name="Client is due for HPV vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for HPV vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="300">
+               <a:s>/*
+@output: Client is due for HPV vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for HPV vaccination&quot;:
+  </a:s>
+               <a:s r="301">
+                  <a:s r="302">
+                     <a:s r="303">
+                        <a:s r="304">
+                           <a:s r="312">
+                              <a:s>&quot;Client is due for HPV vaccination Case 1&quot;</a:s>
+                           </a:s>
+                           <a:s>
+    or </a:s>
+                           <a:s r="323">
+                              <a:s>&quot;Client is due for HPV vaccination Case 2&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+    or </a:s>
+                        <a:s r="334">
+                           <a:s>&quot;Client is due for HPV vaccination Case 3&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="345">
+                        <a:s>&quot;Client is due for HPV vaccination Case 4&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="356">
+                     <a:s>&quot;Client is due for HPV vaccination Case 5&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="301" locator="166:3-170:49" xsi:type="Or">
+            <operand localId="302" locator="166:3-169:49" xsi:type="Or">
+               <operand localId="303" locator="166:3-168:49" xsi:type="Or">
+                  <operand localId="304" locator="166:3-167:49" xsi:type="Or">
+                     <operand localId="312" locator="166:3-166:44" name="Client is due for HPV vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="323" locator="167:8-167:49" name="Client is due for HPV vaccination Case 2" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="334" locator="168:8-168:49" name="Client is due for HPV vaccination Case 3" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="345" locator="169:8-169:49" name="Client is due for HPV vaccination Case 4" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="356" locator="170:8-170:49" name="Client is due for HPV vaccination Case 5" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="359" locator="185:1-198:5" name="Client is due for HPV vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for HPV vaccination Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with first HPV dose as no HPV doses were administered and client is within appropriate age range. &#xa;Check for contraindications."/>
+            <a:t name="guidance" value="Should vaccinate client with second HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago. &#xa;Check for contraindications"/>
+            <a:t name="guidance" value="Should vaccinate client with second HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago. &#xa;Check for contraindications"/>
+            <a:t name="guidance" value="Should vaccinate client with third HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago. &#xa;Check for contraindications"/>
+            <a:t name="guidance" value="Should vaccinate client with third HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago. &#xa;Check for contraindications"/>
+            <a:s r="359">
+               <a:s>/*
+@output: Client is due for HPV vaccination Guidance
+@guidance: Should vaccinate client with first HPV dose as no HPV doses were administered and client is within appropriate age range. 
+Check for contraindications.
+@guidance: Should vaccinate client with second HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago. 
+Check for contraindications
+@guidance: Should vaccinate client with second HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago. 
+Check for contraindications
+@guidance: Should vaccinate client with third HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago. 
+Check for contraindications
+@guidance: Should vaccinate client with third HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago. 
+Check for contraindications
+*/
+define &quot;Client is due for HPV vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="360">
+                  <a:s>case
+    </a:s>
+                  <a:s r="361">
+                     <a:s>when </a:s>
+                     <a:s r="362">
+                        <a:s>&quot;Client is due for HPV vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="363">
+                        <a:s>'Should vaccinate client with first HPV dose as no HPV doses were administered and client is within appropriate age range. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="364">
+                     <a:s>when </a:s>
+                     <a:s r="365">
+                        <a:s>&quot;Client is due for HPV vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="366">
+                        <a:s>'Should vaccinate client with second HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago. 
+Check for contraindications'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="367">
+                     <a:s>when </a:s>
+                     <a:s r="368">
+                        <a:s>&quot;Client is due for HPV vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="369">
+                        <a:s>'Should vaccinate client with second HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago. 
+Check for contraindications'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="370">
+                     <a:s>when </a:s>
+                     <a:s r="371">
+                        <a:s>&quot;Client is due for HPV vaccination Case 4&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="372">
+                        <a:s>'Should vaccinate client with third HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago. 
+Check for contraindications'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="373">
+                     <a:s>when </a:s>
+                     <a:s r="374">
+                        <a:s>&quot;Client is due for HPV vaccination Case 5&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="375">
+                        <a:s>'Should vaccinate client with third HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago. 
+Check for contraindications'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="376">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="360" locator="186:3-198:5" xsi:type="Case">
+            <caseItem localId="361" locator="187:5-187:210">
+               <when localId="362" locator="187:10-187:51" name="Client is due for HPV vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="363" locator="187:58-187:210" valueType="t:String" value="Should vaccinate client with first HPV dose as no HPV doses were administered and client is within appropriate age range. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="364" locator="189:5-189:223">
+               <when localId="365" locator="189:10-189:51" name="Client is due for HPV vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="366" locator="189:58-189:223" valueType="t:String" value="Should vaccinate client with second HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago. &#xa;Check for contraindications" xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="367" locator="191:5-191:228">
+               <when localId="368" locator="191:10-191:51" name="Client is due for HPV vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="369" locator="191:58-191:228" valueType="t:String" value="Should vaccinate client with second HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago. &#xa;Check for contraindications" xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="370" locator="193:5-193:222">
+               <when localId="371" locator="193:10-193:51" name="Client is due for HPV vaccination Case 4" xsi:type="ExpressionRef"/>
+               <then localId="372" locator="193:58-193:222" valueType="t:String" value="Should vaccinate client with third HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago. &#xa;Check for contraindications" xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="373" locator="195:5-195:227">
+               <when localId="374" locator="195:10-195:51" name="Client is due for HPV vaccination Case 5" xsi:type="ExpressionRef"/>
+               <then localId="375" locator="195:58-195:227" valueType="t:String" value="Should vaccinate client with third HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago. &#xa;Check for contraindications" xsi:type="Literal"/>
+            </caseItem>
+            <else localId="376" locator="197:10-197:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="380" locator="204:1-206:54" name="Clinical judgement is required. Create a clinical note." context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Clinical judgement is required. Create a clinical note."/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;"/>
+            <a:s r="380">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note.
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note.&quot;:
+  </a:s>
+               <a:s r="381">
+                  <a:s r="383">
+                     <a:s r="382">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="383">
+                        <a:s>&quot;No HPV primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="385">
+                     <a:s r="384">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="385">
+                        <a:s>&quot;Client's age is more than 20 years&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="381" locator="205:3-206:54" xsi:type="And">
+            <operand localId="383" locator="205:3-205:59" name="No HPV primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="385" locator="206:9-206:54" name="Client's age is more than 20 years" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="388" locator="212:1-213:93" name="Clinical judgement is required. Create a clinical note. Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Clinical judgement is required. Create a clinical note. Guidance"/>
+            <a:t name="guidance" value="Member States should update this action according to the national immunization programme."/>
+            <a:s r="388">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note. Guidance
+@guidance: Member States should update this action according to the national immunization programme.
+*/
+define &quot;Clinical judgement is required. Create a clinical note. Guidance&quot;:
+  </a:s>
+               <a:s r="389">
+                  <a:s>'Member States should update this action according to the national immunization programme.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="389" locator="213:3-213:93" valueType="t:String" value="Member States should update this action according to the national immunization programme." xsi:type="Literal"/>
+      </def>
+      <def localId="396" locator="219:1-222:62" name="HPV immunization schedule is complete Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="HPV immunization schedule is complete Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="396">
+               <a:s>/*
+@output: HPV immunization schedule is complete Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;HPV immunization schedule is complete Case 1&quot;:
+  </a:s>
+               <a:s r="397">
+                  <a:s r="398">
+                     <a:s r="400">
+                        <a:s r="399">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="400">
+                           <a:s>&quot;One HPV primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="402">
+                        <a:s r="401">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="402">
+                           <a:s>&quot;Client is not immunocompromised&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="404">
+                     <a:s r="403">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="404">
+                        <a:s>&quot;Client's HIV status is negative or unknown&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="397" locator="220:3-222:62" xsi:type="And">
+            <operand localId="398" locator="220:3-221:51" xsi:type="And">
+               <operand localId="400" locator="220:3-220:58" name="One HPV primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="402" locator="221:9-221:51" name="Client is not immunocompromised" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="404" locator="222:9-222:62" name="Client's HIV status is negative or unknown" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="407" locator="228:1-229:62" name="HPV immunization schedule is complete Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="HPV immunization schedule is complete Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="407">
+               <a:s>/*
+@output: HPV immunization schedule is complete Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;HPV immunization schedule is complete Case 2&quot;:
+  </a:s>
+               <a:s r="409">
+                  <a:s r="408">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="409">
+                     <a:s>&quot;Three HPV primary series doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="409" locator="229:3-229:62" name="Three HPV primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="393" locator="235:1-237:53" name="HPV immunization schedule is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="HPV immunization schedule is complete"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="393">
+               <a:s>/*
+@output: HPV immunization schedule is complete
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;HPV immunization schedule is complete&quot;:
+  </a:s>
+               <a:s r="394">
+                  <a:s r="405">
+                     <a:s>&quot;HPV immunization schedule is complete Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="410">
+                     <a:s>&quot;HPV immunization schedule is complete Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="394" locator="236:3-237:53" xsi:type="Or">
+            <operand localId="405" locator="236:3-236:48" name="HPV immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="410" locator="237:8-237:53" name="HPV immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="413" locator="246:1-253:5" name="HPV immunization schedule is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="HPV immunization schedule is complete Guidance"/>
+            <a:t name="guidance" value="HPV immunization schedule is complete. One HPV primary series dose was administered. &#xa;Check for any other vaccines due."/>
+            <a:t name="guidance" value="HPV immunization schedule is complete. Three HPV primary series doses were administered. &#xa;Check for any other vaccines due."/>
+            <a:s r="413">
+               <a:s>/*
+@output: HPV immunization schedule is complete Guidance
+@guidance: HPV immunization schedule is complete. One HPV primary series dose was administered. 
+Check for any other vaccines due.
+@guidance: HPV immunization schedule is complete. Three HPV primary series doses were administered. 
+Check for any other vaccines due.
+*/
+define &quot;HPV immunization schedule is complete Guidance&quot;:
+  </a:s>
+               <a:s r="414">
+                  <a:s>case
+    </a:s>
+                  <a:s r="415">
+                     <a:s>when </a:s>
+                     <a:s r="416">
+                        <a:s>&quot;HPV immunization schedule is complete Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="417">
+                        <a:s>'HPV immunization schedule is complete. One HPV primary series dose was administered. 
+Check for any other vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="418">
+                     <a:s>when </a:s>
+                     <a:s r="419">
+                        <a:s>&quot;HPV immunization schedule is complete Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="420">
+                        <a:s>'HPV immunization schedule is complete. Three HPV primary series doses were administered. 
+Check for any other vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="421">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="414" locator="247:3-253:5" xsi:type="Case">
+            <caseItem localId="415" locator="248:5-248:182">
+               <when localId="416" locator="248:10-248:55" name="HPV immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+               <then localId="417" locator="248:62-248:182" valueType="t:String" value="HPV immunization schedule is complete. One HPV primary series dose was administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="418" locator="250:5-250:186">
+               <when localId="419" locator="250:10-250:55" name="HPV immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+               <then localId="420" locator="250:62-250:186" valueType="t:String" value="HPV immunization schedule is complete. Three HPV primary series doses were administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="421" locator="252:10-252:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="219" locator="23:1-30:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="219">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="220">
+                  <a:s>case
+    </a:s>
+                  <a:s r="221">
+                     <a:s>when </a:s>
+                     <a:s r="277">
+                        <a:s>&quot;Client is not due for HPV vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="297">
+                        <a:s>&quot;Client is not due for HPV vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="298">
+                     <a:s>when </a:s>
+                     <a:s r="357">
+                        <a:s>&quot;Client is due for HPV vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="377">
+                        <a:s>&quot;Client is due for HPV vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="378">
+                     <a:s>when </a:s>
+                     <a:s r="386">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note.&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="390">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note. Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="391">
+                     <a:s>when </a:s>
+                     <a:s r="411">
+                        <a:s>&quot;HPV immunization schedule is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="422">
+                        <a:s>&quot;HPV immunization schedule is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="423">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="220" locator="24:3-30:5" xsi:type="Case">
+            <caseItem localId="221" locator="25:5-25:102">
+               <when localId="277" locator="25:10-25:48" name="Client is not due for HPV vaccination" xsi:type="ExpressionRef"/>
+               <then localId="297" locator="25:55-25:102" name="Client is not due for HPV vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="298" locator="26:5-26:94">
+               <when localId="357" locator="26:10-26:44" name="Client is due for HPV vaccination" xsi:type="ExpressionRef"/>
+               <then localId="377" locator="26:51-26:94" name="Client is due for HPV vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="378" locator="27:5-27:138">
+               <when localId="386" locator="27:10-27:66" name="Clinical judgement is required. Create a clinical note." xsi:type="ExpressionRef"/>
+               <then localId="390" locator="27:73-27:138" name="Clinical judgement is required. Create a clinical note. Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="391" locator="28:5-28:102">
+               <when localId="411" locator="28:10-28:48" name="HPV immunization schedule is complete" xsi:type="ExpressionRef"/>
+               <then localId="422" locator="28:55-28:102" name="HPV immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="423" locator="29:10-29:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="425" locator="32:1-33:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="425">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="426">
+                  <a:s r="429">
+                     <a:s r="427">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="435">
+                     <a:s r="431">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="432">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="426" locator="33:3-33:45" xsi:type="And">
+            <operand localId="429" locator="33:3-33:24" xsi:type="Not">
+               <operand localId="428" locator="33:3-33:24" xsi:type="IsNull">
+                  <operand localId="427" locator="33:3-33:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="435" locator="33:30-33:45" xsi:type="Not">
+               <operand localId="430" locator="33:30-33:45" xsi:type="Equal">
+                  <signature localId="433" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="434" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="431" locator="33:30-33:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="432" locator="33:44-33:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="437" locator="259:1-287:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="437">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="438">
+                  <a:s>case
+    </a:s>
+                  <a:s r="439">
+                     <a:s>when </a:s>
+                     <a:s r="440">
+                        <a:s r="442">
+                           <a:s r="441">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="442">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="443">
+                           <a:s>'27.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="448">
+                        <a:s r="449">
+                           <a:s>&quot;Client is not due for HPV vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="450">
+                           <a:s r="451">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="452">
+                              <a:s>'Should not vaccinate client with first HPV dose as client\'s age is less than 9 years. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="455">
+                     <a:s>when </a:s>
+                     <a:s r="456">
+                        <a:s r="458">
+                           <a:s r="457">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="458">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="459">
+                           <a:s>'28.01'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="464">
+                        <a:s r="465">
+                           <a:s>&quot;Client is due for HPV vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="466">
+                           <a:s r="467">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="468">
+                              <a:s>'Should vaccinate client with first HPV dose as no HPV doses were administered and client is within appropriate age range. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="471">
+                     <a:s>when </a:s>
+                     <a:s r="472">
+                        <a:s r="474">
+                           <a:s r="473">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="474">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="475">
+                           <a:s>'29.01'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="480">
+                        <a:s r="481">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note.&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="482">
+                           <a:s r="483">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="484">
+                              <a:s>'Member States should update this action according to the national immunization programme.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="487">
+                     <a:s>when </a:s>
+                     <a:s r="488">
+                        <a:s r="490">
+                           <a:s r="489">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="490">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="491">
+                           <a:s>'30.024'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="496">
+                        <a:s r="497">
+                           <a:s>&quot;Client is not due for HPV vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="498">
+                           <a:s r="499">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="500">
+                              <a:s>'Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="503">
+                     <a:s>when </a:s>
+                     <a:s r="504">
+                        <a:s r="506">
+                           <a:s r="505">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="506">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="507">
+                           <a:s>'31.024'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="512">
+                        <a:s r="513">
+                           <a:s>&quot;Client is due for HPV vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="514">
+                           <a:s r="515">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="516">
+                              <a:s>'Should vaccinate client with second HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago. 
+Check for contraindications'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="519">
+                     <a:s>when </a:s>
+                     <a:s r="520">
+                        <a:s r="522">
+                           <a:s r="521">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="522">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="523">
+                           <a:s>'32.023'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="528">
+                        <a:s r="529">
+                           <a:s>&quot;Client is not due for HPV vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="530">
+                           <a:s r="531">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="532">
+                              <a:s>'Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="535">
+                     <a:s>when </a:s>
+                     <a:s r="536">
+                        <a:s r="538">
+                           <a:s r="537">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="538">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="539">
+                           <a:s>'33.023'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="544">
+                        <a:s r="545">
+                           <a:s>&quot;Client is due for HPV vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="546">
+                           <a:s r="547">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="548">
+                              <a:s>'Should vaccinate client with second HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago. 
+Check for contraindications'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="551">
+                     <a:s>when </a:s>
+                     <a:s r="552">
+                        <a:s r="554">
+                           <a:s r="553">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="554">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="555">
+                           <a:s>'34.034'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="560">
+                        <a:s r="561">
+                           <a:s>&quot;HPV immunization schedule is complete Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="562">
+                           <a:s r="563">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="564">
+                              <a:s>'HPV immunization schedule is complete. One HPV primary series dose was administered. 
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="567">
+                     <a:s>when </a:s>
+                     <a:s r="568">
+                        <a:s r="570">
+                           <a:s r="569">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="570">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="571">
+                           <a:s>'35.024'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="576">
+                        <a:s r="577">
+                           <a:s>&quot;Client is not due for HPV vaccination Case 4&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="578">
+                           <a:s r="579">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="580">
+                              <a:s>'Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="583">
+                     <a:s>when </a:s>
+                     <a:s r="584">
+                        <a:s r="586">
+                           <a:s r="585">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="586">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="587">
+                           <a:s>'36.024'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="592">
+                        <a:s r="593">
+                           <a:s>&quot;Client is due for HPV vaccination Case 4&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="594">
+                           <a:s r="595">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="596">
+                              <a:s>'Should vaccinate client with third HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago. 
+Check for contraindications'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="599">
+                     <a:s>when </a:s>
+                     <a:s r="600">
+                        <a:s r="602">
+                           <a:s r="601">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="602">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="603">
+                           <a:s>'37.023'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="608">
+                        <a:s r="609">
+                           <a:s>&quot;Client is not due for HPV vaccination Case 5&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="610">
+                           <a:s r="611">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="612">
+                              <a:s>'Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="615">
+                     <a:s>when </a:s>
+                     <a:s r="616">
+                        <a:s r="618">
+                           <a:s r="617">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="618">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="619">
+                           <a:s>'38.023'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="624">
+                        <a:s r="625">
+                           <a:s>&quot;Client is due for HPV vaccination Case 5&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="626">
+                           <a:s r="627">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="628">
+                              <a:s>'Should vaccinate client with third HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago. 
+Check for contraindications'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="631">
+                     <a:s>when </a:s>
+                     <a:s r="632">
+                        <a:s r="634">
+                           <a:s r="633">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="634">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="635">
+                           <a:s>'39.0'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="640">
+                        <a:s r="641">
+                           <a:s>&quot;HPV immunization schedule is complete Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="642">
+                           <a:s r="643">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="644">
+                              <a:s>'HPV immunization schedule is complete. Three HPV primary series doses were administered. 
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="647">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="438" locator="260:3-287:5" xsi:type="Case">
+            <caseItem localId="439" locator="261:5-261:279">
+               <when localId="440" locator="261:10-261:28" xsi:type="Equal">
+                  <signature localId="446" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="447" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="444" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="445" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="442" locator="261:10-261:19" path="id" xsi:type="Property">
+                        <source localId="441" locator="261:10-261:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="443" locator="261:23-261:28" valueType="t:String" value="27.1" xsi:type="Literal"/>
+               </when>
+               <then localId="648" xsi:type="As">
+                  <operand localId="448" locator="261:35-261:279" xsi:type="And">
+                     <operand localId="449" locator="261:35-261:80" name="Client is not due for HPV vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="450" locator="261:86-261:279" xsi:type="Equal">
+                        <signature localId="453" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="454" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="451" locator="261:86-261:95" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="452" locator="261:99-261:279" valueType="t:String" value="Should not vaccinate client with first HPV dose as client's age is less than 9 years. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="649" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="650" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="651" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="455" locator="263:5-263:248">
+               <when localId="456" locator="263:10-263:29" xsi:type="Equal">
+                  <signature localId="462" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="463" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="460" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="461" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="458" locator="263:10-263:19" path="id" xsi:type="Property">
+                        <source localId="457" locator="263:10-263:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="459" locator="263:23-263:29" valueType="t:String" value="28.01" xsi:type="Literal"/>
+               </when>
+               <then localId="652" xsi:type="As">
+                  <operand localId="464" locator="263:36-263:248" xsi:type="And">
+                     <operand localId="465" locator="263:36-263:77" name="Client is due for HPV vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="466" locator="263:83-263:248" xsi:type="Equal">
+                        <signature localId="469" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="470" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="467" locator="263:83-263:92" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="468" locator="263:96-263:248" valueType="t:String" value="Should vaccinate client with first HPV dose as no HPV doses were administered and client is within appropriate age range. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="653" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="654" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="655" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="471" locator="265:5-265:201">
+               <when localId="472" locator="265:10-265:29" xsi:type="Equal">
+                  <signature localId="478" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="479" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="476" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="477" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="474" locator="265:10-265:19" path="id" xsi:type="Property">
+                        <source localId="473" locator="265:10-265:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="475" locator="265:23-265:29" valueType="t:String" value="29.01" xsi:type="Literal"/>
+               </when>
+               <then localId="656" xsi:type="As">
+                  <operand localId="480" locator="265:36-265:201" xsi:type="And">
+                     <operand localId="481" locator="265:36-265:92" name="Clinical judgement is required. Create a clinical note." xsi:type="ExpressionRef"/>
+                     <operand localId="482" locator="265:98-265:201" xsi:type="Equal">
+                        <signature localId="485" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="486" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="483" locator="265:98-265:107" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="484" locator="265:111-265:201" valueType="t:String" value="Member States should update this action according to the national immunization programme." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="657" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="658" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="659" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="487" locator="266:5-266:307">
+               <when localId="488" locator="266:10-266:30" xsi:type="Equal">
+                  <signature localId="494" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="495" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="492" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="493" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="490" locator="266:10-266:19" path="id" xsi:type="Property">
+                        <source localId="489" locator="266:10-266:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="491" locator="266:23-266:30" valueType="t:String" value="30.024" xsi:type="Literal"/>
+               </when>
+               <then localId="660" xsi:type="As">
+                  <operand localId="496" locator="266:37-266:307" xsi:type="And">
+                     <operand localId="497" locator="266:37-266:82" name="Client is not due for HPV vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="498" locator="266:88-266:307" xsi:type="Equal">
+                        <signature localId="501" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="502" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="499" locator="266:88-266:97" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="500" locator="266:101-266:307" valueType="t:String" value="Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="661" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="662" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="663" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="503" locator="268:5-268:262">
+               <when localId="504" locator="268:10-268:30" xsi:type="Equal">
+                  <signature localId="510" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="511" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="508" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="509" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="506" locator="268:10-268:19" path="id" xsi:type="Property">
+                        <source localId="505" locator="268:10-268:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="507" locator="268:23-268:30" valueType="t:String" value="31.024" xsi:type="Literal"/>
+               </when>
+               <then localId="664" xsi:type="As">
+                  <operand localId="512" locator="268:37-268:262" xsi:type="And">
+                     <operand localId="513" locator="268:37-268:78" name="Client is due for HPV vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="514" locator="268:84-268:262" xsi:type="Equal">
+                        <signature localId="517" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="518" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="515" locator="268:84-268:93" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="516" locator="268:97-268:262" valueType="t:String" value="Should vaccinate client with second HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago. &#xa;Check for contraindications" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="665" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="666" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="667" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="519" locator="270:5-270:307">
+               <when localId="520" locator="270:10-270:30" xsi:type="Equal">
+                  <signature localId="526" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="527" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="524" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="525" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="522" locator="270:10-270:19" path="id" xsi:type="Property">
+                        <source localId="521" locator="270:10-270:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="523" locator="270:23-270:30" valueType="t:String" value="32.023" xsi:type="Literal"/>
+               </when>
+               <then localId="668" xsi:type="As">
+                  <operand localId="528" locator="270:37-270:307" xsi:type="And">
+                     <operand localId="529" locator="270:37-270:82" name="Client is not due for HPV vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="530" locator="270:88-270:307" xsi:type="Equal">
+                        <signature localId="533" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="534" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="531" locator="270:88-270:97" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="532" locator="270:101-270:307" valueType="t:String" value="Should not vaccinate client with second HPV dose as the latest HPV dose was administered less than 6 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="669" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="670" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="671" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="535" locator="272:5-272:267">
+               <when localId="536" locator="272:10-272:30" xsi:type="Equal">
+                  <signature localId="542" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="543" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="540" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="541" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="538" locator="272:10-272:19" path="id" xsi:type="Property">
+                        <source localId="537" locator="272:10-272:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="539" locator="272:23-272:30" valueType="t:String" value="33.023" xsi:type="Literal"/>
+               </when>
+               <then localId="672" xsi:type="As">
+                  <operand localId="544" locator="272:37-272:267" xsi:type="And">
+                     <operand localId="545" locator="272:37-272:78" name="Client is due for HPV vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="546" locator="272:84-272:267" xsi:type="Equal">
+                        <signature localId="549" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="550" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="547" locator="272:84-272:93" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="548" locator="272:97-272:267" valueType="t:String" value="Should vaccinate client with second HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago. &#xa;Check for contraindications" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="673" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="674" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="675" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="551" locator="274:5-274:221">
+               <when localId="552" locator="274:10-274:30" xsi:type="Equal">
+                  <signature localId="558" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="559" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="556" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="557" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="554" locator="274:10-274:19" path="id" xsi:type="Property">
+                        <source localId="553" locator="274:10-274:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="555" locator="274:23-274:30" valueType="t:String" value="34.034" xsi:type="Literal"/>
+               </when>
+               <then localId="676" xsi:type="As">
+                  <operand localId="560" locator="274:37-274:221" xsi:type="And">
+                     <operand localId="561" locator="274:37-274:82" name="HPV immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="562" locator="274:88-274:221" xsi:type="Equal">
+                        <signature localId="565" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="566" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="563" locator="274:88-274:97" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="564" locator="274:101-274:221" valueType="t:String" value="HPV immunization schedule is complete. One HPV primary series dose was administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="677" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="678" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="679" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="567" locator="276:5-276:306">
+               <when localId="568" locator="276:10-276:30" xsi:type="Equal">
+                  <signature localId="574" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="575" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="572" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="573" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="570" locator="276:10-276:19" path="id" xsi:type="Property">
+                        <source localId="569" locator="276:10-276:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="571" locator="276:23-276:30" valueType="t:String" value="35.024" xsi:type="Literal"/>
+               </when>
+               <then localId="680" xsi:type="As">
+                  <operand localId="576" locator="276:37-276:306" xsi:type="And">
+                     <operand localId="577" locator="276:37-276:82" name="Client is not due for HPV vaccination Case 4" xsi:type="ExpressionRef"/>
+                     <operand localId="578" locator="276:88-276:306" xsi:type="Equal">
+                        <signature localId="581" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="582" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="579" locator="276:88-276:97" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="580" locator="276:101-276:306" valueType="t:String" value="Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="681" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="682" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="683" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="583" locator="278:5-278:261">
+               <when localId="584" locator="278:10-278:30" xsi:type="Equal">
+                  <signature localId="590" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="591" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="588" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="589" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="586" locator="278:10-278:19" path="id" xsi:type="Property">
+                        <source localId="585" locator="278:10-278:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="587" locator="278:23-278:30" valueType="t:String" value="36.024" xsi:type="Literal"/>
+               </when>
+               <then localId="684" xsi:type="As">
+                  <operand localId="592" locator="278:37-278:261" xsi:type="And">
+                     <operand localId="593" locator="278:37-278:78" name="Client is due for HPV vaccination Case 4" xsi:type="ExpressionRef"/>
+                     <operand localId="594" locator="278:84-278:261" xsi:type="Equal">
+                        <signature localId="597" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="598" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="595" locator="278:84-278:93" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="596" locator="278:97-278:261" valueType="t:String" value="Should vaccinate client with third HPV dose as client is HIV positive and the latest HPV dose was administered more than 6 months ago. &#xa;Check for contraindications" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="685" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="686" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="687" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="599" locator="280:5-280:306">
+               <when localId="600" locator="280:10-280:30" xsi:type="Equal">
+                  <signature localId="606" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="607" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="604" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="605" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="602" locator="280:10-280:19" path="id" xsi:type="Property">
+                        <source localId="601" locator="280:10-280:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="603" locator="280:23-280:30" valueType="t:String" value="37.023" xsi:type="Literal"/>
+               </when>
+               <then localId="688" xsi:type="As">
+                  <operand localId="608" locator="280:37-280:306" xsi:type="And">
+                     <operand localId="609" locator="280:37-280:82" name="Client is not due for HPV vaccination Case 5" xsi:type="ExpressionRef"/>
+                     <operand localId="610" locator="280:88-280:306" xsi:type="Equal">
+                        <signature localId="613" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="614" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="611" locator="280:88-280:97" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="612" locator="280:101-280:306" valueType="t:String" value="Should not vaccinate client with third HPV dose as the latest HPV dose was administered less than 6 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="689" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="690" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="691" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="615" locator="282:5-282:266">
+               <when localId="616" locator="282:10-282:30" xsi:type="Equal">
+                  <signature localId="622" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="623" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="620" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="621" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="618" locator="282:10-282:19" path="id" xsi:type="Property">
+                        <source localId="617" locator="282:10-282:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="619" locator="282:23-282:30" valueType="t:String" value="38.023" xsi:type="Literal"/>
+               </when>
+               <then localId="692" xsi:type="As">
+                  <operand localId="624" locator="282:37-282:266" xsi:type="And">
+                     <operand localId="625" locator="282:37-282:78" name="Client is due for HPV vaccination Case 5" xsi:type="ExpressionRef"/>
+                     <operand localId="626" locator="282:84-282:266" xsi:type="Equal">
+                        <signature localId="629" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="630" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="627" locator="282:84-282:93" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="628" locator="282:97-282:266" valueType="t:String" value="Should vaccinate client with third HPV dose as client is immunocompromised and the latest HPV dose was administered more than 6 months ago. &#xa;Check for contraindications" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="693" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="694" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="695" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="631" locator="284:5-284:223">
+               <when localId="632" locator="284:10-284:28" xsi:type="Equal">
+                  <signature localId="638" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="639" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="636" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="637" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="634" locator="284:10-284:19" path="id" xsi:type="Property">
+                        <source localId="633" locator="284:10-284:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="635" locator="284:23-284:28" valueType="t:String" value="39.0" xsi:type="Literal"/>
+               </when>
+               <then localId="696" xsi:type="As">
+                  <operand localId="640" locator="284:35-284:223" xsi:type="And">
+                     <operand localId="641" locator="284:35-284:80" name="HPV immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="642" locator="284:86-284:223" xsi:type="Equal">
+                        <signature localId="645" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="646" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="643" locator="284:86-284:95" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="644" locator="284:99-284:223" valueType="t:String" value="HPV immunization schedule is complete. Three HPV primary series doses were administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="697" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="698" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="699" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="700" xsi:type="As">
+               <operand localId="647" locator="286:10-286:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="701" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="702" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="703" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

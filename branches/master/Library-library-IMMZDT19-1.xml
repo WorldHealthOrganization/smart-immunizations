@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="89">
+         <a:s>/*
+ * Library: IMMZDT19 (IMMZ.DT.19.Dengue)
+ * Rule: If child or person has not been vaccinated, give Dengue vaccine between 9 and 45 years of age 
+ * Trigger: Patient has never had Dengue vaccination, or missing doses in the vaccination schedule
+ */
+library IMMZDT19</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT19" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:33" localIdentifier="IMMZCon" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="13:1-13:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="16:1-16:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="11" locator="21:1-22:59" name="No-doses Dengue vaccine immunization history" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="11">
+               <a:s>/* 
+ * @dataElement No-doses
+ */
+define &quot;No-doses Dengue vaccine immunization history&quot;:
+	</a:s>
+               <a:s r="10">
+                  <a:s>not </a:s>
+                  <a:s r="9">
+                     <a:s>exists</a:s>
+                     <a:s r="8">
+                        <a:s>(</a:s>
+                        <a:s r="8">
+                           <a:s r="7">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="8">
+                              <a:s>&quot;Dengue Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="10" locator="22:2-22:59" xsi:type="Not">
+            <operand localId="9" locator="22:6-22:59" xsi:type="Exists">
+               <operand localId="8" locator="22:12-22:59" name="Dengue Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="14" locator="27:1-28:39" name="Age" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="14">
+               <a:s>/* 
+ * @dataElement Age
+ */
+define &quot;Age&quot;:
+	</a:s>
+               <a:s r="13">
+                  <a:s r="12">
+                     <a:s>IMMZCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="13">
+                     <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="13" locator="28:2-28:39" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="16" locator="33:1-34:8" name="9 years" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="16">
+               <a:s>/* 
+ * @dataElement 9 years
+ */
+define &quot;9 years&quot;:
+	</a:s>
+               <a:s r="15">
+                  <a:s>9 years</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="15" locator="34:2-34:8" value="9" unit="years" xsi:type="Quantity"/>
+      </def>
+      <def localId="18" locator="39:1-40:9" name="45 years" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="18">
+               <a:s>/* 
+ * @dataElement 45 years
+ */
+define &quot;45 years&quot;:
+	</a:s>
+               <a:s r="17">
+                  <a:s>45 years</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="17" locator="40:2-40:9" value="45" unit="years" xsi:type="Quantity"/>
+      </def>
+      <def localId="34" locator="53:1-56:64" name="Should vaccinate patient for Dengue because no doses at 9 years old in a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="34">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Dengue because no doses at 9 years old in a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Dengue immunizations – using the &quot;Dengue vaccine immunization – NO PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Dengue - No Doses at 9 years old
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((&quot;Dengue vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Age&quot; >= &quot;9 years&quot;))
+ */
+define &quot;Should vaccinate patient for Dengue because no doses at 9 years old in a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="33">
+                  <a:s r="28">
+                     <a:s r="24">
+                        <a:s>(</a:s>
+                        <a:s r="24">
+                           <a:s r="19">
+                              <a:s>(</a:s>
+                              <a:s r="19">
+                                 <a:s>&quot;No-doses Dengue vaccine immunization history&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="23">
+                              <a:s>(</a:s>
+                              <a:s r="23">
+                                 <a:s r="20">
+                                    <a:s>&quot;Age&quot;</a:s>
+                                 </a:s>
+                                 <a:s> between </a:s>
+                                 <a:s r="21">
+                                    <a:s>&quot;9 years&quot;</a:s>
+                                 </a:s>
+                                 <a:s> and </a:s>
+                                 <a:s r="22">
+                                    <a:s>&quot;45 years&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="27">
+                        <a:s>not</a:s>
+                        <a:s r="26">
+                           <a:s>(</a:s>
+                           <a:s r="26">
+                              <a:s r="25">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="26">
+                                 <a:s>&quot;Pregnant&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="32">
+                     <a:s>not </a:s>
+                     <a:s r="31">
+                        <a:s>exists</a:s>
+                        <a:s r="30">
+                           <a:s>(</a:s>
+                           <a:s r="30">
+                              <a:s r="29">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="30">
+                                 <a:s>&quot;Individual is Seronegative for Dengue&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="33" locator="54:2-56:64" xsi:type="And">
+            <operand localId="28" locator="54:2-55:28" xsi:type="And">
+               <operand localId="24" locator="54:2-54:96" xsi:type="And">
+                  <operand localId="19" locator="54:3-54:50" name="No-doses Dengue vaccine immunization history" xsi:type="ExpressionRef"/>
+                  <operand localId="23" locator="54:56-54:95" xsi:type="And">
+                     <operand xsi:type="GreaterOrEqual">
+                        <operand xsi:type="ToQuantity">
+                           <operand localId="20" locator="54:57-54:61" name="Age" xsi:type="ExpressionRef"/>
+                        </operand>
+                        <operand localId="21" locator="54:71-54:79" name="9 years" xsi:type="ExpressionRef"/>
+                     </operand>
+                     <operand xsi:type="LessOrEqual">
+                        <operand xsi:type="ToQuantity">
+                           <operand localId="20" locator="54:57-54:61" name="Age" xsi:type="ExpressionRef"/>
+                        </operand>
+                        <operand localId="22" locator="54:85-54:94" name="45 years" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="27" locator="55:6-55:28" xsi:type="Not">
+                  <operand localId="26" locator="55:9-55:28" name="Pregnant" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="32" locator="56:6-56:64" xsi:type="Not">
+               <operand localId="31" locator="56:10-56:64" xsi:type="Exists">
+                  <operand localId="30" locator="56:16-56:64" name="Individual is Seronegative for Dengue" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="40" locator="61:1-62:58" name="Dengue vaccine immunization history = 1 dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="40">
+               <a:s>/* 
+ * @dataElement 1 dose
+ */
+define &quot;Dengue vaccine immunization history = 1 dose&quot;:
+	</a:s>
+               <a:s r="39">
+                  <a:s r="37">
+                     <a:s>Count(</a:s>
+                     <a:s r="36">
+                        <a:s r="35">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="36">
+                           <a:s>&quot;Dengue Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s r="38"> = 1</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="39" locator="62:2-62:58" xsi:type="Equal">
+            <operand localId="37" locator="62:2-62:54" xsi:type="Count">
+               <source localId="36" locator="62:8-62:53" name="Dengue Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="38" locator="62:58" valueType="t:Integer" value="1" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="48" locator="67:1-68:95" name="Last dose given" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="48">
+               <a:s>/* 
+ * @dataElement Last dose given
+ */
+define &quot;Last dose given&quot;:
+  </a:s>
+               <a:s r="47">
+                  <a:s>date from </a:s>
+                  <a:s r="46">
+                     <a:s>(</a:s>
+                     <a:s r="46">
+                        <a:s r="44">
+                           <a:s r="43">
+                              <a:s>First(</a:s>
+                              <a:s r="42">
+                                 <a:s r="41">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="42">
+                                    <a:s>&quot;Dengue Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="44">
+                              <a:s>occurrence</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> as </a:s>
+                        <a:s r="45">
+                           <a:s>FHIR.dateTime</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="47" locator="68:3-68:95" xsi:type="DateFrom">
+            <operand name="ToDateTime" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+               <operand localId="46" locator="68:13-68:95" strict="false" xsi:type="As">
+                  <operand localId="44" locator="68:14-68:77" path="occurrence" xsi:type="Property">
+                     <source localId="43" locator="68:14-68:66" xsi:type="First">
+                        <source localId="42" locator="68:20-68:65" name="Dengue Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     </source>
+                  </operand>
+                  <asTypeSpecifier localId="45" locator="68:82-68:94" name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="50" locator="73:1-74:9" name="6 months" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="50">
+               <a:s>/* 
+ * @dataElement 6 months
+ */
+define &quot;6 months&quot;:
+	</a:s>
+               <a:s r="49">
+                  <a:s>6 months</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="49" locator="74:2-74:9" value="6" unit="months" xsi:type="Quantity"/>
+      </def>
+      <def localId="66" locator="87:1-90:64" name="Should vaccinate patient for Dengue because 1st dose given 6 months ago in a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="66">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Dengue because 1st dose given 6 months ago in a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Dengue immunizations – using the &quot;Dengue vaccine immunization – 1 PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Dengue - 1 Dose given 6 months ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((&quot;Dengue vaccine immunization history&quot; = &quot;1 dose&quot;) and (&quot;Last dose given&quot; >= &quot;6 months&quot;))
+ */
+define &quot;Should vaccinate patient for Dengue because 1st dose given 6 months ago in a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="65">
+                  <a:s r="60">
+                     <a:s r="56">
+                        <a:s>(</a:s>
+                        <a:s r="56">
+                           <a:s r="51">
+                              <a:s>(</a:s>
+                              <a:s r="51">
+                                 <a:s>&quot;Dengue vaccine immunization history = 1 dose&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="55">
+                              <a:s>(</a:s>
+                              <a:s r="55">
+                                 <a:s r="52">
+                                    <a:s>&quot;Last dose given&quot;</a:s>
+                                 </a:s>
+                                 <a:s> </a:s>
+                                 <a:s r="55">
+                                    <a:s>more than </a:s>
+                                    <a:s r="54">
+                                       <a:s>6 months</a:s>
+                                    </a:s>
+                                    <a:s> before</a:s>
+                                 </a:s>
+                                 <a:s> </a:s>
+                                 <a:s r="53">
+                                    <a:s>Today()</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="59">
+                        <a:s>not</a:s>
+                        <a:s r="58">
+                           <a:s>(</a:s>
+                           <a:s r="58">
+                              <a:s r="57">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="58">
+                                 <a:s>&quot;Pregnant&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="64">
+                     <a:s>not </a:s>
+                     <a:s r="63">
+                        <a:s>exists</a:s>
+                        <a:s r="62">
+                           <a:s>(</a:s>
+                           <a:s r="62">
+                              <a:s r="61">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="62">
+                                 <a:s>&quot;Individual is Seronegative for Dengue&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="65" locator="88:2-90:64" xsi:type="And">
+            <operand localId="60" locator="88:2-89:28" xsi:type="And">
+               <operand localId="56" locator="88:2-88:109" xsi:type="And">
+                  <operand localId="51" locator="88:3-88:50" name="Dengue vaccine immunization history = 1 dose" xsi:type="ExpressionRef"/>
+                  <operand localId="55" locator="88:56-88:108" xsi:type="Before">
+                     <operand localId="52" locator="88:57-88:73" name="Last dose given" xsi:type="ExpressionRef"/>
+                     <operand locator="88:101-88:107" xsi:type="Subtract">
+                        <operand localId="53" locator="88:101-88:107" xsi:type="Today"/>
+                        <operand localId="54" locator="88:85-88:92" value="6" unit="months" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="59" locator="89:6-89:28" xsi:type="Not">
+                  <operand localId="58" locator="89:9-89:28" name="Pregnant" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="64" locator="90:6-90:64" xsi:type="Not">
+               <operand localId="63" locator="90:10-90:64" xsi:type="Exists">
+                  <operand localId="62" locator="90:16-90:64" name="Individual is Seronegative for Dengue" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="73" locator="95:1-96:60" name="Dengue vaccine immunization history = 2 doses" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="73">
+               <a:s>/* 
+ * @dataElement 2 doses
+ */
+define &quot;Dengue vaccine immunization history = 2 doses&quot;:
+	</a:s>
+               <a:s r="72">
+                  <a:s r="70">
+                     <a:s>Count(</a:s>
+                     <a:s r="69">
+                        <a:s>
+                           <a:s r="68">
+                              <a:s r="67">
+                                 <a:s>
+                                    <a:s>IMMZCom.&quot;Dengue Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> H</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s r="71"> = 2</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="72" locator="96:2-96:60" xsi:type="Equal">
+            <operand localId="70" locator="96:2-96:56" xsi:type="Count">
+               <source localId="69" locator="96:8-96:55" xsi:type="Query">
+                  <source localId="68" locator="96:8-96:55" alias="H">
+                     <expression localId="67" locator="96:8-96:53" name="Dengue Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </source>
+               </source>
+            </operand>
+            <operand localId="71" locator="96:60" valueType="t:Integer" value="2" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="89" locator="109:1-112:64" name="Should vaccinate patient for Dengue because 2nd dose given 6 months ago in a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="89">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Dengue because 2nd dose given 6 months ago in a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Dengue immunizations – using the &quot;Dengue vaccine immunization – 2 PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Dengue - 2 Doses given 6 months ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((&quot;Dengue vaccine immunization history&quot; = &quot;2 doses&quot;) and (&quot;Last dose given&quot; >= &quot;6 months&quot;))
+ */
+define &quot;Should vaccinate patient for Dengue because 2nd dose given 6 months ago in a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="88">
+                  <a:s r="83">
+                     <a:s r="79">
+                        <a:s>(</a:s>
+                        <a:s r="79">
+                           <a:s r="74">
+                              <a:s>(</a:s>
+                              <a:s r="74">
+                                 <a:s>&quot;Dengue vaccine immunization history = 2 doses&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="78">
+                              <a:s>(</a:s>
+                              <a:s r="78">
+                                 <a:s r="75">
+                                    <a:s>&quot;Last dose given&quot;</a:s>
+                                 </a:s>
+                                 <a:s> </a:s>
+                                 <a:s r="78">
+                                    <a:s>more than </a:s>
+                                    <a:s r="77">
+                                       <a:s>6 months</a:s>
+                                    </a:s>
+                                    <a:s> before</a:s>
+                                 </a:s>
+                                 <a:s> </a:s>
+                                 <a:s r="76">
+                                    <a:s>Today()</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="82">
+                        <a:s>not</a:s>
+                        <a:s r="81">
+                           <a:s>(</a:s>
+                           <a:s r="81">
+                              <a:s r="80">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="81">
+                                 <a:s>&quot;Pregnant&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="87">
+                     <a:s>not </a:s>
+                     <a:s r="86">
+                        <a:s>exists</a:s>
+                        <a:s r="85">
+                           <a:s>(</a:s>
+                           <a:s r="85">
+                              <a:s r="84">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="85">
+                                 <a:s>&quot;Individual is Seronegative for Dengue&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="88" locator="110:2-112:64" xsi:type="And">
+            <operand localId="83" locator="110:2-111:28" xsi:type="And">
+               <operand localId="79" locator="110:2-110:110" xsi:type="And">
+                  <operand localId="74" locator="110:3-110:51" name="Dengue vaccine immunization history = 2 doses" xsi:type="ExpressionRef"/>
+                  <operand localId="78" locator="110:57-110:109" xsi:type="Before">
+                     <operand localId="75" locator="110:58-110:74" name="Last dose given" xsi:type="ExpressionRef"/>
+                     <operand locator="110:102-110:108" xsi:type="Subtract">
+                        <operand localId="76" locator="110:102-110:108" xsi:type="Today"/>
+                        <operand localId="77" locator="110:86-110:93" value="6" unit="months" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="82" locator="111:6-111:28" xsi:type="Not">
+                  <operand localId="81" locator="111:9-111:28" name="Pregnant" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="87" locator="112:6-112:64" xsi:type="Not">
+               <operand localId="86" locator="112:10-112:64" xsi:type="Exists">
+                  <operand localId="85" locator="112:16-112:64" name="Individual is Seronegative for Dengue" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+   </statements>
+</library>
