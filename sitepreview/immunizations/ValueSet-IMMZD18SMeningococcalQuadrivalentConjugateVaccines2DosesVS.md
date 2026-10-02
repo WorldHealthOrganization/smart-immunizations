@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD18SMeningococcalQuadrivalentConjugateVaccines2DosesVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD18SMeningococcalQuadrivalentConjugateVaccines2DosesVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD18SMeningococcalQuadrivalentConjugateVaccines2DosesVS |
 
  
 ValueSet IMMZD18SMeningococcalQuadrivalentConjugateVaccines2Doses for IMMZ.D18.S.Meningococcal.Quadrivalent conjugate vaccines 2-dose schedule. Business rule: Determine if the client is due for a meningococcal vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: Quadrivalent conjugate vaccine (A,C,W135,Y-D), 2-dose schedule 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD18SMeningococcalQuadrivalentConjugateVaccines2DosesVS",
   "title" : "IMMZD18SMeningococcalQuadrivalentConjugateVaccines2Doses ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

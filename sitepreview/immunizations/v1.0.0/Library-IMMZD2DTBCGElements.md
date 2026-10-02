@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTBCGElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTBCGElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTBCGElements |
 
  
 This library defines context-independent elements for BCG used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-000e29cb-ad22-4953-ba56-f1798cdfbf44.html): Unable to Parse HTML - node 'code' has unexpected content '=' (last text = ' /* * Library: IMMZD2DTBCGElements */ library IMMZD2DTBCGElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: BCG containing Doses Administered to Patient */ define "BCG Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."BCG vaccines" /* @internal: BCG containing Doses Administered to Patient that are in the Primary series */ define "BCG Primary Series Doses Administered to Patient": "BCG Doses Administered to Patient".seriesPrimary() /* @internal: Number of BCG Primary Series doses */ define "Number of BCG Primary Series Doses Administered": Count("BCG Primary Series Doses Administered to Patient") /* @input: No BCG primary series dose was administered @pseudocode: Count of vaccines administered (where "Vaccine type" = "BCG vaccines" and "Type of dose" = "Primary series") = 0 @code: No BCG primary series dose was administered-112 @decision: IMMZ.D2.DT.BCG */ define "No BCG primary series dose was administered": "Number of BCG Primary Series Doses Administered" = 0 /* @input: Client's age is less than or equal to 28 days @pseudocode: Today's date − "Date of birth" ≤ 28 days @code: Client's age is less than or equal to 28 days-40 @decision: IMMZ.D2.DT.BCG */ define "Client's age is less than or equal to 28 days": Elements."Current Patient Age In Days" ' at line 269 column 43**
+**Exception parsing generated Narrative (see /tmp/liquid-d29fcb7c-5aa7-44cd-b1f4-57d33d792c1e.html): Unable to Parse HTML - node 'code' has unexpected content '=' (last text = ' /* * Library: IMMZD2DTBCGElements */ library IMMZD2DTBCGElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: BCG containing Doses Administered to Patient */ define "BCG Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."BCG vaccines" /* @internal: BCG containing Doses Administered to Patient that are in the Primary series */ define "BCG Primary Series Doses Administered to Patient": "BCG Doses Administered to Patient".seriesPrimary() /* @internal: Number of BCG Primary Series doses */ define "Number of BCG Primary Series Doses Administered": Count("BCG Primary Series Doses Administered to Patient") /* @input: No BCG primary series dose was administered @pseudocode: Count of vaccines administered (where "Vaccine type" = "BCG vaccines" and "Type of dose" = "Primary series") = 0 @code: No BCG primary series dose was administered-112 @decision: IMMZ.D2.DT.BCG */ define "No BCG primary series dose was administered": "Number of BCG Primary Series Doses Administered" = 0 /* @input: Client's age is less than or equal to 28 days @pseudocode: Today's date − "Date of birth" ≤ 28 days @code: Client's age is less than or equal to 28 days-40 @decision: IMMZ.D2.DT.BCG */ define "Client's age is less than or equal to 28 days": Elements."Current Patient Age In Days" ' at line 269 column 43**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for BCG used throughout the Im
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

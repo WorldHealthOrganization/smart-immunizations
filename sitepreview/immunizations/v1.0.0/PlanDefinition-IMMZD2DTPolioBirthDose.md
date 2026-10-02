@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/PlanDefinition/IMMZD2DTPolioBirthDose | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTPolioBirthDose |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTPolioBirthDose |
 
  
 IMMZ.D2.DT.Polio.Birth dose Birth dose administration as part of "bivalent oral polio vaccine (bOPV) plus inactivated polio vaccine (IPV)" schedule (in countries that are poliomyelitis (polio)-endemic countries or at high risk of importation and subsequent spread of polio that follow the combined bOPV–IPV schedule) 
@@ -24,7 +24,7 @@ IMMZ.D2.DT.Polio.Birth dose Birth dose administration as part of "bivalent oral 
 * **Actions: **: **Status: **
   * : draft
 * **Actions: **: **Date: **
-  * : 2026-10-01 12:00:06+0000
+  * : 2026-10-02 09:40:20+0000
 * **Actions: **: **Publisher: **
   * : WHO
 * **Actions: **: **Description: **
@@ -665,7 +665,7 @@ IMMZ.D2.DT.Polio.Birth dose Birth dose administration as part of "bivalent oral 
   },
   "status" : "draft",
   "experimental" : false,
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

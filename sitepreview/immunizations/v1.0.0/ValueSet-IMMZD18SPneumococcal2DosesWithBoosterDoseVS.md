@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD18SPneumococcal2DosesWithBoosterDoseVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD18SPneumococcal2DosesWithBoosterDoseVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD18SPneumococcal2DosesWithBoosterDoseVS |
 
  
 ValueSet IMMZD18SPneumococcal2DosesWithBoosterDose for IMMZ.D18.S.Pneumococcal.2 doses with booster dose schedule. Business rule: Determine if the client is due for a pneumococcal vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: 2 primary doses with a booster dose (2p+1) schedule 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD18SPneumococcal2DosesWithBoosterDoseVS",
   "title" : "IMMZD18SPneumococcal2DosesWithBoosterDose ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

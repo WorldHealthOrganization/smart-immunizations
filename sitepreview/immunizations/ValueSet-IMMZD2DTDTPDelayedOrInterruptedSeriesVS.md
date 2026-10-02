@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD2DTDTPDelayedOrInterruptedSeriesVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD2DTDTPDelayedOrInterruptedSeriesVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD2DTDTPDelayedOrInterruptedSeriesVS |
 
  
 ValueSet IMMZD2DTDTPDelayedOrInterruptedSeries for IMMZ.D2.DT.DTP.Delayed or interrupted series. Business rule: Determine if the client is due for a diphtheria–tetanus–pertussis (DTP) vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: DTP vaccination schedule for the following groups: children ≥ 1 year of age with no previous immunization, adolescents and adults with no previous immunization (including pregnant women) and supplementary immunization activities in high-risk areas, for women of reproductive age 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD2DTDTPDelayedOrInterruptedSeriesVS",
   "title" : "IMMZD2DTDTPDelayedOrInterruptedSeries ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

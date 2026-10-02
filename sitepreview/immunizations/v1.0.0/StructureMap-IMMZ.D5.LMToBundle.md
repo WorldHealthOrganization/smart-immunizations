@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/StructureMap/IMMZ.D5.LMToBundle | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZ.D5.LMToBundle |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZ.D5.LMToBundle |
 
  
 Immunization Administer Vaccine - Transform Logical Model to Immunization resources 
@@ -27,7 +27,7 @@ Immunization Administer Vaccine - Transform Logical Model to Immunization resour
   "version" : "1.0.0",
   "name" : "IMMZ.D5.LMToBundle",
   "status" : "draft",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD2DTMalariaVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD2DTMalariaVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD2DTMalariaVS |
 
  
 ValueSet IMMZD2DTMalaria for IMMZ.D2.DT.Malaria. Business rule: Determine if the client is due for a malaria vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: 4-dose schedule (The RTS,S/AS01 malaria vaccine should be used for the prevention of Plasmodium falciparum malaria in children living in regions with moderate to high malaria transmission, as defined by WHO) 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD2DTMalariaVS",
   "title" : "IMMZD2DTMalaria ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

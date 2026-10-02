@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTYellowfeverElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTYellowfeverElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTYellowfeverElements |
 
  
 This library defines context-independent elements for Yellow fever used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-65898cd1-946b-44cc-a96e-7a9b7c5409eb.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTYellowfeverElements */ library IMMZD2DTYellowfeverElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Yellow fever containing Doses Administered to Patient */ define "Yellow fever Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Yellow fever vaccines" /* @internal: Yellow fever containing Doses Administered to Patient that are in the Primary series */ define "Yellow fever Primary Series Doses Administered to Patient": "Yellow fever Doses Administered to Patient".seriesPrimary() /* @internal: Number of Yellow fever Primary Series doses */ define "Number of Yellow fever Primary Series Doses Administered": Count("Yellow fever Primary Series Doses Administered to Patient") /* @input: No yellow fever primary series doses were administered @pseudocode: Count of vaccines administered (where "Vaccine type" = "Yellow fever vaccines" and "Type of dose" = "Primary series") = 0 @code: No yellow fever primary series doses were administered-121 @decision: IMMZ.D2.DT.Yellow fever */ define "No yellow fever primary series doses were administered": "Number of Yellow fever Primary Series Doses Administered" = 0 /* @input: Client's age is less than 9 months @pseudocode: Today's date − "Date of birth" ' at line 239 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-76983ae1-88fb-4aaf-8821-5040ad800070.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTYellowfeverElements */ library IMMZD2DTYellowfeverElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Yellow fever containing Doses Administered to Patient */ define "Yellow fever Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Yellow fever vaccines" /* @internal: Yellow fever containing Doses Administered to Patient that are in the Primary series */ define "Yellow fever Primary Series Doses Administered to Patient": "Yellow fever Doses Administered to Patient".seriesPrimary() /* @internal: Number of Yellow fever Primary Series doses */ define "Number of Yellow fever Primary Series Doses Administered": Count("Yellow fever Primary Series Doses Administered to Patient") /* @input: No yellow fever primary series doses were administered @pseudocode: Count of vaccines administered (where "Vaccine type" = "Yellow fever vaccines" and "Type of dose" = "Primary series") = 0 @code: No yellow fever primary series doses were administered-121 @decision: IMMZ.D2.DT.Yellow fever */ define "No yellow fever primary series doses were administered": "Number of Yellow fever Primary Series Doses Administered" = 0 /* @input: Client's age is less than 9 months @pseudocode: Today's date − "Date of birth" ' at line 239 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for Yellow fever used througho
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

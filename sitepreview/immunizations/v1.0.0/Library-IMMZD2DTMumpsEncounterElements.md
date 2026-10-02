@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTMumpsEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTMumpsEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTMumpsEncounterElements |
 
  
 This library defines encounter-based elements for Mumps used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-f8d98614-6fa6-444d-afc9-a67e5698a401.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTMumpsEncounterElements */ library IMMZD2DTMumpsEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTMumpsElements called MumpsElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Mumps containing Doses Administered to Patient */ define "Mumps Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Mumps-containing vaccines" /* @internal: Mumps containing Doses Administered to Patient that are in the Primary series */ define "Mumps Primary Series Doses Administered to Patient": "Mumps Doses Administered to Patient".seriesPrimary() /* @internal: Number of Mumps Primary Series doses */ define "Number of Mumps Primary Series Doses Administered": Count("Mumps Primary Series Doses Administered to Patient") /* @input: Client's age is less than 12 months @pseudocode: Today's date − "Date of birth" ' at line 248 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-21b8abf9-f993-4bb4-ba21-1619852124bc.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTMumpsEncounterElements */ library IMMZD2DTMumpsEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTMumpsElements called MumpsElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Mumps containing Doses Administered to Patient */ define "Mumps Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Mumps-containing vaccines" /* @internal: Mumps containing Doses Administered to Patient that are in the Primary series */ define "Mumps Primary Series Doses Administered to Patient": "Mumps Doses Administered to Patient".seriesPrimary() /* @internal: Number of Mumps Primary Series doses */ define "Number of Mumps Primary Series Doses Administered": Count("Mumps Primary Series Doses Administered to Patient") /* @input: Client's age is less than 12 months @pseudocode: Today's date − "Date of birth" ' at line 248 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for Mumps used throughout the Immu
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD18SMeningococcalMenAConjugateVaccine1DoseLogic | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD18SMeningococcalMenAConjugateVaccine1DoseLogic |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD18SMeningococcalMenAConjugateVaccine1DoseLogic |
 
  
 This library defines decision support logic for the IMMZ.D18.S.Meningococcal.MenA conjugate vaccine 1-dose schedule table in the Immunization CPG 
@@ -24,7 +24,7 @@ This library defines decision support logic for the IMMZ.D18.S.Meningococcal.Men
 * * **Content: **application/elm+xml: ````Encoded data (37812 characters)````: **Status: **
   * ?: draft
 * * **Content: **application/elm+xml: ````Encoded data (37812 characters)````: **Date: **
-  * ?: 2026-10-01 12:12:05+0000
+  * ?: 2026-10-02 09:52:12+0000
 * * **Content: **application/elm+xml: ````Encoded data (37812 characters)````: **Publisher: **
   * ?: WHO
 * * **Content: **application/elm+xml: ````Encoded data (37812 characters)````: **Description: **
@@ -60,7 +60,7 @@ This library defines decision support logic for the IMMZ.D18.S.Meningococcal.Men
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

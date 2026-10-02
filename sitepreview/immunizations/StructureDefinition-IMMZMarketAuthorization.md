@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/StructureDefinition/IMMZMarketAuthorization | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZMarketAuthorization |
+| Active as of 2026-10-02 | *Computable Name*:IMMZMarketAuthorization |
 
 Name of the market authorization holder of the vaccine received. If market authorization holder is unknown, vaccine manufacturer is REQUIRED
 
@@ -50,7 +50,7 @@ Other representations of profile: [CSV](StructureDefinition-IMMZMarketAuthorizat
   "title" : "Immunization Market Authorization Holder",
   "status" : "active",
   "experimental" : false,
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

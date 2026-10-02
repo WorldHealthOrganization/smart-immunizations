@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTTyphoidEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTTyphoidEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTTyphoidEncounterElements |
 
  
 This library defines encounter-based elements for Typhoid used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-6639a3c2-c398-4d22-977f-b71b0fcccb22.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTTyphoidEncounterElements */ library IMMZD2DTTyphoidEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTTyphoidElements called TyphoidElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Typhoid containing Doses Administered to Patient */ define "Typhoid Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Typhoid vaccines" /* @internal: Typhoid containing Doses Administered to Patient that are in the Primary series */ define "Typhoid Primary Series Doses Administered to Patient": "Typhoid Doses Administered to Patient".seriesPrimary() /* @internal: Number of Typhoid Primary Series doses */ define "Number of Typhoid Primary Series Doses Administered": Count("Typhoid Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 260 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-70739ee9-6178-4d9c-9330-2b640693b3ae.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTTyphoidEncounterElements */ library IMMZD2DTTyphoidEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTTyphoidElements called TyphoidElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Typhoid containing Doses Administered to Patient */ define "Typhoid Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Typhoid vaccines" /* @internal: Typhoid containing Doses Administered to Patient that are in the Primary series */ define "Typhoid Primary Series Doses Administered to Patient": "Typhoid Doses Administered to Patient".seriesPrimary() /* @internal: Number of Typhoid Primary Series doses */ define "Number of Typhoid Primary Series Doses Administered": Count("Typhoid Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 260 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for Typhoid used throughout the Im
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD18SRabiesVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD18SRabiesVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD18SRabiesVS |
 
  
 ValueSet IMMZD18SRabies for IMMZ.D18.S.Rabies schedule. Business rule: Determine if the client is due for a rabies vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: Rabies schedule (2-dose scheme) 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD18SRabiesVS",
   "title" : "IMMZD18SRabies ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD18SDengue3DosesWithPreVaccinationScreeningLogic | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD18SDengue3DosesWithPreVaccinationScreeningLogic |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD18SDengue3DosesWithPreVaccinationScreeningLogic |
 
  
 This library defines decision support logic for the IMMZ.D18.S.Dengue schedule table in the Immunization CPG 
@@ -24,7 +24,7 @@ This library defines decision support logic for the IMMZ.D18.S.Dengue schedule t
 * * **Content: **application/elm+xml: ````Encoded data (96024 characters)````: **Status: **
   * ?: draft
 * * **Content: **application/elm+xml: ````Encoded data (96024 characters)````: **Date: **
-  * ?: 2026-10-01 12:00:06+0000
+  * ?: 2026-10-02 09:40:20+0000
 * * **Content: **application/elm+xml: ````Encoded data (96024 characters)````: **Publisher: **
   * ?: WHO
 * * **Content: **application/elm+xml: ````Encoded data (96024 characters)````: **Description: **
@@ -60,7 +60,7 @@ This library defines decision support logic for the IMMZ.D18.S.Dengue schedule t
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

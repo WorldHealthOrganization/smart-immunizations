@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/PlanDefinition/IMMZD18SDTPOnTimeStart | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD18SDTPOnTimeStart |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD18SDTPOnTimeStart |
 
  
 IMMZ.D18.S.DTP.On-time start schedule Diphtheria–tetanus–pertussis (DTP) vaccination schedule, on-time start (at ≤ 12 months of age) 
@@ -24,7 +24,7 @@ IMMZ.D18.S.DTP.On-time start schedule Diphtheria–tetanus–pertussis (DTP) vac
 * **Actions: **: **Status: **
   * : draft
 * **Actions: **: **Date: **
-  * : 2026-10-01 12:00:06+0000
+  * : 2026-10-02 09:40:20+0000
 * **Actions: **: **Publisher: **
   * : WHO
 * **Actions: **: **Description: **
@@ -1713,7 +1713,7 @@ IMMZ.D18.S.DTP.On-time start schedule Diphtheria–tetanus–pertussis (DTP) vac
   },
   "status" : "draft",
   "experimental" : false,
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

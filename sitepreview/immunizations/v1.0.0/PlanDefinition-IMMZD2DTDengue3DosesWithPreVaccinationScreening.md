@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/PlanDefinition/IMMZD2DTDengue3DosesWithPreVaccinationScreening | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTDengue3DosesWithPreVaccinationScreening |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTDengue3DosesWithPreVaccinationScreening |
 
  
 IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening CYD-TDV (Dengvaxia), 3-dose schedule with pre-vaccination screening, the recommended strategy where feasible (pre-vaccination screening whereby only those tested seropositive would be vaccinated) 
@@ -24,7 +24,7 @@ IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening CYD-TDV (Dengvaxia), 3-
 * **Actions: **: **Status: **
   * : draft
 * **Actions: **: **Date: **
-  * : 2026-10-01 12:00:06+0000
+  * : 2026-10-02 09:40:20+0000
 * **Actions: **: **Publisher: **
   * : WHO
 * **Actions: **: **Description: **
@@ -1160,7 +1160,7 @@ IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening CYD-TDV (Dengvaxia), 3-
   },
   "status" : "draft",
   "experimental" : false,
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

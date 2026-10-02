@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD18STyphoidTCVVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD18STyphoidTCVVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD18STyphoidTCVVS |
 
  
 ValueSet IMMZD18STyphoidTCV for IMMZ.D18.S.Typhoid.TCV schedule. Business rule: Determine if the client is due for a typhoid vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: Typhoid conjugate vaccine (TCV), 1 dose schedule 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD18STyphoidTCVVS",
   "title" : "IMMZD18STyphoidTCV ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

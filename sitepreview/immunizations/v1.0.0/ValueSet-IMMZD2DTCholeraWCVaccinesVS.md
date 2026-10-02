@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD2DTCholeraWCVaccinesVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD2DTCholeraWCVaccinesVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD2DTCholeraWCVaccinesVS |
 
  
 ValueSet IMMZD2DTCholeraWCVaccines for IMMZ.D2.DT.Cholera.WC vaccines. Business rule: Determine if the client is due for a cholera vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: Whole-cell (WC) vaccines schedule 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD2DTCholeraWCVaccinesVS",
   "title" : "IMMZD2DTCholeraWCVaccines ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

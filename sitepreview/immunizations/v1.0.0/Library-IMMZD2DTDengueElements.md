@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTDengueElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTDengueElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTDengueElements |
 
  
 This library defines context-independent elements for Dengue used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-9fc58a2c-63ef-45e8-9c12-9917ca22db1f.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTDengueElements */ library IMMZD2DTDengueElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Dengue containing Doses Administered to Patient */ define "Dengue Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Dengue vaccines" /* @internal: Dengue containing Doses Administered to Patient that are in the Primary series */ define "Dengue Primary Series Doses Administered to Patient": "Dengue Doses Administered to Patient".seriesPrimary() /* @internal: Number of Dengue Primary Series doses */ define "Number of Dengue Primary Series Doses Administered": Count("Dengue Primary Series Doses Administered to Patient") /* @input: Client's age is less than 9 years @pseudocode: Today's date − "Date of birth" ' at line 294 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-4f2a76dd-5fc8-4fdc-8e99-332ea3705b91.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTDengueElements */ library IMMZD2DTDengueElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Dengue containing Doses Administered to Patient */ define "Dengue Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Dengue vaccines" /* @internal: Dengue containing Doses Administered to Patient that are in the Primary series */ define "Dengue Primary Series Doses Administered to Patient": "Dengue Doses Administered to Patient".seriesPrimary() /* @internal: Number of Dengue Primary Series doses */ define "Number of Dengue Primary Series Doses Administered": Count("Dengue Primary Series Doses Administered to Patient") /* @input: Client's age is less than 9 years @pseudocode: Today's date − "Date of birth" ' at line 294 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for Dengue used throughout the
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

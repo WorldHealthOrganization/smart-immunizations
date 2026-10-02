@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD2DTCholeraWCRBSVaccine3DosesVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD2DTCholeraWCRBSVaccine3DosesVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD2DTCholeraWCRBSVaccine3DosesVS |
 
  
 ValueSet IMMZD2DTCholeraWCRBSVaccine3Doses for IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses. Business rule: Determine if the client is due for a cholera vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: Whole cell-recombinant B subunit (WC-rBS) vaccine, 3-dose schedule for clients aged 2–5 years 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD2DTCholeraWCRBSVaccine3DosesVS",
   "title" : "IMMZD2DTCholeraWCRBSVaccine3Doses ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

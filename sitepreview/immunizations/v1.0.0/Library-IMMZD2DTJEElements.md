@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTJEElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTJEElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTJEElements |
 
  
 This library defines context-independent elements for JE used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-1e0671f7-f642-4d5f-b4d6-e5e869c0be39.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTJEElements */ library IMMZD2DTJEElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: JE containing Doses Administered to Patient */ define "JE Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."JE vaccines" /* @internal: JE containing Doses Administered to Patient that are in the Primary series */ define "JE Primary Series Doses Administered to Patient": "JE Doses Administered to Patient".seriesPrimary() /* @internal: Number of JE Primary Series doses */ define "Number of JE Primary Series Doses Administered": Count("JE Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 248 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-9578fc5e-9101-43c1-9ea5-ec44181215cf.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTJEElements */ library IMMZD2DTJEElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: JE containing Doses Administered to Patient */ define "JE Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."JE vaccines" /* @internal: JE containing Doses Administered to Patient that are in the Primary series */ define "JE Primary Series Doses Administered to Patient": "JE Doses Administered to Patient".seriesPrimary() /* @internal: Number of JE Primary Series doses */ define "Number of JE Primary Series Doses Administered": Count("JE Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 248 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for JE used throughout the Imm
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

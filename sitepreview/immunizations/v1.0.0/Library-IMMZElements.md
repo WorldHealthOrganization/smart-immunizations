@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZElements |
 
  
 This library defines context-independent elements used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-a670d4fb-41c8-4756-9467-92f76ab1c720.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = 'library IMMZElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZConcepts called Concepts include IMMZCommon called Common context Patient /** * @dataElement All Doses Administered to Patient */ define "Doses Administered to Patient": [Immunization] I where I.status = 'completed' and I.isSubpotent is not true /* @dataElement: Draft Medication Request for Patient */ define "Draft Medication Request for Patient": [MedicationRequest] MR where MR.status = 'draft' and MR.intent = 'proposal' sort by date from (authoredOn as FHIR.dateTime) desc /* @dataElement: Live attenuated vaccines */ define "Live Attenuated Vaccines": "Doses Administered to Patient" I where I.vaccineCode in Concepts."Live Attenuated" /* @dataElement: Date and time of last live attenuated vaccine */ define "Date of Latest Live Attenuated Vaccine": date from start of "Live Attenuated Vaccines".mostRecent().occurrence.toInterval() /** * @dataElement Patient age in years */ define "Current Patient Age In Years": AgeInYearsAt(Today()) /** * @dataElement Patient age in months */ define "Current Patient Age In Months": AgeInMonthsAt(Today()) /** * @dataElement Patient age in weeks */ define "Current Patient Age In Weeks": AgeInWeeksAt(Today()) /** * @dataElement Patient age in days */ define "Current Patient Age In Days": AgeInDaysAt(Today()) /* @input: No live vaccine was administered @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) IS NULL */ define "No live vaccine was administered": not exists("Live Attenuated Vaccines") /* @input: Live vaccine was administered in the last 4 weeks @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ' at line 1940 column 98**
+**Exception parsing generated Narrative (see /tmp/liquid-79aab55e-d4ba-4f33-823d-9cee6f371314.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = 'library IMMZElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZConcepts called Concepts include IMMZCommon called Common context Patient /** * @dataElement All Doses Administered to Patient */ define "Doses Administered to Patient": [Immunization] I where I.status = 'completed' and I.isSubpotent is not true /* @dataElement: Draft Medication Request for Patient */ define "Draft Medication Request for Patient": [MedicationRequest] MR where MR.status = 'draft' and MR.intent = 'proposal' sort by date from (authoredOn as FHIR.dateTime) desc /* @dataElement: Live attenuated vaccines */ define "Live Attenuated Vaccines": "Doses Administered to Patient" I where I.vaccineCode in Concepts."Live Attenuated" /* @dataElement: Date and time of last live attenuated vaccine */ define "Date of Latest Live Attenuated Vaccine": date from start of "Live Attenuated Vaccines".mostRecent().occurrence.toInterval() /** * @dataElement Patient age in years */ define "Current Patient Age In Years": AgeInYearsAt(Today()) /** * @dataElement Patient age in months */ define "Current Patient Age In Months": AgeInMonthsAt(Today()) /** * @dataElement Patient age in weeks */ define "Current Patient Age In Weeks": AgeInWeeksAt(Today()) /** * @dataElement Patient age in days */ define "Current Patient Age In Days": AgeInDaysAt(Today()) /* @input: No live vaccine was administered @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) IS NULL */ define "No live vaccine was administered": not exists("Live Attenuated Vaccines") /* @input: Live vaccine was administered in the last 4 weeks @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) ' at line 1940 column 98**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements used throughout the Immunizati
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

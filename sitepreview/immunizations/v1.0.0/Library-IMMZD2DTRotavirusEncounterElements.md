@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTRotavirusEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTRotavirusEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTRotavirusEncounterElements |
 
  
 This library defines encounter-based elements for Rotavirus used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-78611267-5178-4f7b-ab57-f40ec39d6306.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTRotavirusEncounterElements */ library IMMZD2DTRotavirusEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTRotavirusElements called RotavirusElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Rotavirus containing Doses Administered to Patient */ define "Rotavirus Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Rotavirus vaccines" /* @internal: Rotavirus containing Doses Administered to Patient that are in the Primary series */ define "Rotavirus Primary Series Doses Administered to Patient": "Rotavirus Doses Administered to Patient".seriesPrimary() /* @internal: Number of Rotavirus Primary Series doses */ define "Number of Rotavirus Primary Series Doses Administered": Count("Rotavirus Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 weeks @pseudocode: 'Today's date – "Date of birth" ' at line 266 column 47**
+**Exception parsing generated Narrative (see /tmp/liquid-0ea142d6-9087-4a1c-8c2e-148af02e564b.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTRotavirusEncounterElements */ library IMMZD2DTRotavirusEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTRotavirusElements called RotavirusElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Rotavirus containing Doses Administered to Patient */ define "Rotavirus Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Rotavirus vaccines" /* @internal: Rotavirus containing Doses Administered to Patient that are in the Primary series */ define "Rotavirus Primary Series Doses Administered to Patient": "Rotavirus Doses Administered to Patient".seriesPrimary() /* @internal: Number of Rotavirus Primary Series doses */ define "Number of Rotavirus Primary Series Doses Administered": Count("Rotavirus Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 weeks @pseudocode: 'Today's date – "Date of birth" ' at line 266 column 47**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for Rotavirus used throughout the 
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations-measles/Library/IMMZIndicatorElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZIndicatorElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZIndicatorElements |
 
  
 This library defines indicator-based elements and terminologies used throughout the Immunization CPG indicators 
 
-**Exception parsing generated Narrative (see /tmp/liquid-4b19f175-c00f-47a6-8557-0a82f2ae0242.html): Unable to Parse HTML - node 'Date' has unexpected content ' ' (last text = ' default Interval[@2025-01-01, @2025-12-31] context Patient /* @stratifier: Age in Years */ define "Age Stratifier": case when AgeInYearsAt(end of "Measurement Period") ' at line 307 column 53**
+**Exception parsing generated Narrative (see /tmp/liquid-338ce462-4101-4778-9c92-43da1911bf86.html): Unable to Parse HTML - node 'Date' has unexpected content ' ' (last text = ' default Interval[@2025-01-01, @2025-12-31] context Patient /* @stratifier: Age in Years */ define "Age Stratifier": case when AgeInYearsAt(end of "Measurement Period") ' at line 307 column 53**
 
 
 
@@ -47,7 +47,7 @@ This library defines indicator-based elements and terminologies used throughout 
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

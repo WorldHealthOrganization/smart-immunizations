@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTHPVEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTHPVEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTHPVEncounterElements |
 
  
 This library defines encounter-based elements for HPV used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-f71c0098-f450-452b-821c-ceff6fb94361.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTHPVEncounterElements */ library IMMZD2DTHPVEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTHPVElements called HPVElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: HPV containing Doses Administered to Patient */ define "HPV Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."HPV vaccines" /* @internal: HPV containing Doses Administered to Patient that are in the Primary series */ define "HPV Primary Series Doses Administered to Patient": "HPV Doses Administered to Patient".seriesPrimary() /* @internal: Number of HPV Primary Series doses */ define "Number of HPV Primary Series Doses Administered": Count("HPV Primary Series Doses Administered to Patient") /* @input: Client's age is less than 9 years @pseudocode: Today's date − "Date of birth" ' at line 264 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-2cb7a844-c0db-42b7-a13c-8d0234a4a3dd.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTHPVEncounterElements */ library IMMZD2DTHPVEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTHPVElements called HPVElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: HPV containing Doses Administered to Patient */ define "HPV Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."HPV vaccines" /* @internal: HPV containing Doses Administered to Patient that are in the Primary series */ define "HPV Primary Series Doses Administered to Patient": "HPV Doses Administered to Patient".seriesPrimary() /* @internal: Number of HPV Primary Series doses */ define "Number of HPV Primary Series Doses Administered": Count("HPV Primary Series Doses Administered to Patient") /* @input: Client's age is less than 9 years @pseudocode: Today's date − "Date of birth" ' at line 264 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for HPV used throughout the Immuni
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/PlanDefinition/IMMZD2DTPolioSequentialIPVbOPV | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTPolioSequentialIPVbOPV |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTPolioSequentialIPVbOPV |
 
  
 IMMZ.D2.DT.Polio.Sequential IPV–bOPV Sequential "Bivalent oral polio vaccine (bOPV)–inactivated polio vaccine (IPV)" schedule (in countries with high vaccination coverage [e.g. 90–95%] and low importation risk [where neighbouring countries and/or countries that share substantial population movement have a similarly high coverage]) 
@@ -24,7 +24,7 @@ IMMZ.D2.DT.Polio.Sequential IPV–bOPV Sequential "Bivalent oral polio vaccine (
 * **Actions: **: **Status: **
   * : draft
 * **Actions: **: **Date: **
-  * : 2026-10-01 12:00:06+0000
+  * : 2026-10-02 09:40:20+0000
 * **Actions: **: **Publisher: **
   * : WHO
 * **Actions: **: **Description: **
@@ -1024,7 +1024,7 @@ IMMZ.D2.DT.Polio.Sequential IPV–bOPV Sequential "Bivalent oral polio vaccine (
   },
   "status" : "draft",
   "experimental" : false,
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

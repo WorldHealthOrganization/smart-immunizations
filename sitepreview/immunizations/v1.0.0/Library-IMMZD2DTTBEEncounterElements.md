@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTTBEEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTTBEEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTTBEEncounterElements |
 
  
 This library defines encounter-based elements for TBE used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-cb369df2-f1b1-41b4-af8e-8d66a65e5918.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTTBEEncounterElements */ library IMMZD2DTTBEEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTTBEElements called TBEElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: TBE containing Doses Administered to Patient */ define "TBE Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."TBE vaccines" /* @internal: TBE containing Doses Administered to Patient that are in the Primary series */ define "TBE Primary Series Doses Administered to Patient": "TBE Doses Administered to Patient".seriesPrimary() /* @internal: Number of TBE Primary Series doses */ define "Number of TBE Primary Series Doses Administered": Count("TBE Primary Series Doses Administered to Patient") /* @input: Client's age is less than 1 year @pseudocode: Today's date − "Date of birth" ' at line 274 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-42fd8da1-7010-4437-9c97-1488c3a7e3a8.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTTBEEncounterElements */ library IMMZD2DTTBEEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTTBEElements called TBEElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: TBE containing Doses Administered to Patient */ define "TBE Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."TBE vaccines" /* @internal: TBE containing Doses Administered to Patient that are in the Primary series */ define "TBE Primary Series Doses Administered to Patient": "TBE Doses Administered to Patient".seriesPrimary() /* @internal: Number of TBE Primary Series doses */ define "Number of TBE Primary Series Doses Administered": Count("TBE Primary Series Doses Administered to Patient") /* @input: Client's age is less than 1 year @pseudocode: Today's date − "Date of birth" ' at line 274 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for TBE used throughout the Immuni
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

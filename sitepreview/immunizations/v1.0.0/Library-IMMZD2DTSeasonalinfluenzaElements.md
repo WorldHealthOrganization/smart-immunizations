@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTSeasonalinfluenzaElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTSeasonalinfluenzaElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTSeasonalinfluenzaElements |
 
  
 This library defines context-independent elements for Seasonal influenza used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-9385d913-db45-4110-97a7-6fb37b8509b9.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTSeasonalinfluenzaElements */ library IMMZD2DTSeasonalinfluenzaElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Seasonal influenza containing Doses Administered to Patient */ define "Seasonal influenza Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Seasonal influenza vaccines" /* @internal: Seasonal influenza containing Doses Administered to Patient that are in the Primary series */ define "Seasonal influenza Primary Series Doses Administered to Patient": "Seasonal influenza Doses Administered to Patient".seriesPrimary() /* @internal: Number of Seasonal influenza Primary Series doses */ define "Number of Seasonal influenza Primary Series Doses Administered": Count("Seasonal influenza Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 242 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-431bb9d3-987e-4b0c-9e09-625849a09192.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTSeasonalinfluenzaElements */ library IMMZD2DTSeasonalinfluenzaElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Seasonal influenza containing Doses Administered to Patient */ define "Seasonal influenza Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Seasonal influenza vaccines" /* @internal: Seasonal influenza containing Doses Administered to Patient that are in the Primary series */ define "Seasonal influenza Primary Series Doses Administered to Patient": "Seasonal influenza Doses Administered to Patient".seriesPrimary() /* @internal: Number of Seasonal influenza Primary Series doses */ define "Number of Seasonal influenza Primary Series Doses Administered": Count("Seasonal influenza Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 242 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for Seasonal influenza used th
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

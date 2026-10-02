@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD18STyphoidTy21aVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD18STyphoidTy21aVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD18STyphoidTy21aVS |
 
  
 ValueSet IMMZD18STyphoidTy21a for IMMZ.D18.S.Typhoid.Ty21a schedule. Business rule: Determine if the client is due for a typhoid vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: Live attenuated Ty21a vaccine, 3-dose schedule 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD18STyphoidTy21aVS",
   "title" : "IMMZD18STyphoidTy21a ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

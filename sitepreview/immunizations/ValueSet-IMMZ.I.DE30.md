@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZ.I.DE30 | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZ_I_DE30 |
+| Active as of 2026-10-02 | *Computable Name*:IMMZ_I_DE30 |
 
  
 ValueSet for Disaggregation group for IMMZ.I.DE30 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZ_I_DE30",
   "title" : "IMMZ.I.DE30 ValueSet for Disaggregation group",
   "status" : "active",
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

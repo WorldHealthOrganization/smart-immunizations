@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD5DTYellowfeverElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD5DTYellowfeverElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD5DTYellowfeverElements |
 
  
 This library defines context-independent elements for Yellow fever used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-e4830adf-0a0d-4ebb-8076-7862228cafd9.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD5DTYellowfeverElements */ library IMMZD5DTYellowfeverElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Yellow fever dose */ define "Draft Medication Request for Yellow fever dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Yellow fever vaccines" /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 215 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-cc3e9103-1a38-4b87-bf66-6d39aa6f49bf.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD5DTYellowfeverElements */ library IMMZD5DTYellowfeverElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Draft Medication Request for Yellow fever dose */ define "Draft Medication Request for Yellow fever dose": Elements."Draft Medication Request for Patient" MR where MR.medication in Concepts."Yellow fever vaccines" /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 215 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for Yellow fever used througho
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

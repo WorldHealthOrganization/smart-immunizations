@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTCholeraElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTCholeraElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTCholeraElements |
 
  
 This library defines context-independent elements for Cholera used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-bf5d9db2-49e9-4249-9a96-ff5fef260864.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTCholeraElements */ library IMMZD2DTCholeraElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements parameter CholeraLowerLimitDays Integer default 150 parameter CholeraExactIntervalDays Integer default 0 context Patient /* @internal: Cholera containing Doses Administered to Patient */ define "Cholera Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Cholera vaccines" /* @internal: Cholera containing Doses Administered to Patient that are in the Primary series */ define "Cholera Primary Series Doses Administered to Patient": "Cholera Doses Administered to Patient".seriesPrimary() /* @internal: Number of Cholera Primary Series doses */ define "Number of Cholera Primary Series Doses Administered": Count("Cholera Primary Series Doses Administered to Patient") /* @input: Client's age is less than 1 year @pseudocode: Today's date − "Date of birth" ' at line 292 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-981b8857-7775-4df0-adf5-a0d82a4d3d35.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTCholeraElements */ library IMMZD2DTCholeraElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements parameter CholeraLowerLimitDays Integer default 150 parameter CholeraExactIntervalDays Integer default 0 context Patient /* @internal: Cholera containing Doses Administered to Patient */ define "Cholera Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Cholera vaccines" /* @internal: Cholera containing Doses Administered to Patient that are in the Primary series */ define "Cholera Primary Series Doses Administered to Patient": "Cholera Doses Administered to Patient".seriesPrimary() /* @internal: Number of Cholera Primary Series doses */ define "Number of Cholera Primary Series Doses Administered": Count("Cholera Primary Series Doses Administered to Patient") /* @input: Client's age is less than 1 year @pseudocode: Today's date − "Date of birth" ' at line 292 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for Cholera used throughout th
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

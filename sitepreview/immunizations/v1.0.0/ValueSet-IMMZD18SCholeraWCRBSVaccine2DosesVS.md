@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD18SCholeraWCRBSVaccine2DosesVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD18SCholeraWCRBSVaccine2DosesVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD18SCholeraWCRBSVaccine2DosesVS |
 
  
 ValueSet IMMZD18SCholeraWCRBSVaccine2Doses for IMMZ.D18.S.Cholera.WC-rBS vaccine 2-dose schedule. Business rule: Determine if the client is due for a cholera vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: Whole cell-recombinant B subunit (WC-rBS) vaccine (Dukoral), 2-dose schedule for clients aged ≥ 6 years 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD18SCholeraWCRBSVaccine2DosesVS",
   "title" : "IMMZD18SCholeraWCRBSVaccine2Doses ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

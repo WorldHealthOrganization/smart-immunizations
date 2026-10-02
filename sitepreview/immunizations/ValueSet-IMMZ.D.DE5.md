@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZ.D.DE5 | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZ_D_DE5 |
+| Active as of 2026-10-02 | *Computable Name*:IMMZ_D_DE5 |
 
  
 ValueSet for Reason vaccine was not administered for IMMZ.D.DE5 
@@ -78,7 +78,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZ_D_DE5",
   "title" : "IMMZ.D.DE5 ValueSet for Reason vaccine was not administered",
   "status" : "active",
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

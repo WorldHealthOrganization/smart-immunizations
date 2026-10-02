@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD2DTMeningococcalPolysaccharideVaccinesVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD2DTMeningococcalPolysaccharideVaccinesVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD2DTMeningococcalPolysaccharideVaccinesVS |
 
  
 ValueSet IMMZD2DTMeningococcalPolysaccharideVaccines for IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines. Business rule: Determine if the client is due for a meningococcal vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: Polysaccharide vaccines schedule (Polysaccharide vaccines can be used to control outbreaks in countries where limited economic resources or insufficient supply restrict the use of meningococcal conjugate vaccines) 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD2DTMeningococcalPolysaccharideVaccinesVS",
   "title" : "IMMZD2DTMeningococcalPolysaccharideVaccines ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD18STBEEncepurVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD18STBEEncepurVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD18STBEEncepurVS |
 
  
 ValueSet IMMZD18STBEEncepur for IMMZ.D18.S.TBE.Encepur schedule. Business rule: Determine if the client is due for a tick-borne encephalitis (TBE) vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: Encepur, 3-dose schedule 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD18STBEEncepurVS",
   "title" : "IMMZD18STBEEncepur ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

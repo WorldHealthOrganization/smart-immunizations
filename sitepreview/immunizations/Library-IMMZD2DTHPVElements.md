@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTHPVElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTHPVElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTHPVElements |
 
  
 This library defines context-independent elements for HPV used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-e960f571-9c7f-4c24-a1f2-f5004ea38dfb.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTHPVElements */ library IMMZD2DTHPVElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: HPV containing Doses Administered to Patient */ define "HPV Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."HPV vaccines" /* @internal: HPV containing Doses Administered to Patient that are in the Primary series */ define "HPV Primary Series Doses Administered to Patient": "HPV Doses Administered to Patient".seriesPrimary() /* @internal: Number of HPV Primary Series doses */ define "Number of HPV Primary Series Doses Administered": Count("HPV Primary Series Doses Administered to Patient") /* @input: Client's age is less than 9 years @pseudocode: Today's date − "Date of birth" ' at line 254 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-993a7b57-1ced-4978-955e-32cfa82a89c5.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTHPVElements */ library IMMZD2DTHPVElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: HPV containing Doses Administered to Patient */ define "HPV Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."HPV vaccines" /* @internal: HPV containing Doses Administered to Patient that are in the Primary series */ define "HPV Primary Series Doses Administered to Patient": "HPV Doses Administered to Patient".seriesPrimary() /* @internal: Number of HPV Primary Series doses */ define "Number of HPV Primary Series Doses Administered": Count("HPV Primary Series Doses Administered to Patient") /* @input: Client's age is less than 9 years @pseudocode: Today's date − "Date of birth" ' at line 254 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for HPV used throughout the Im
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

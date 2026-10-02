@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/StructureMap/IMMZ.D1.QRToLM | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZ.D1.QRToLM |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZ.D1.QRToLM |
 
  
 Immunization Administer Vaccine - Transform QuestionnaireResponse to Logical Model 
@@ -27,7 +27,7 @@ Immunization Administer Vaccine - Transform QuestionnaireResponse to Logical Mod
   "version" : "1.0.0",
   "name" : "IMMZ.D1.QRToLM",
   "status" : "draft",
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

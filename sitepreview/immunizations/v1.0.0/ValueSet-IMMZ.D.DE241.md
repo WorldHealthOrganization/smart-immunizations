@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZ.D.DE241 | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZ_D_DE241 |
+| Active as of 2026-10-02 | *Computable Name*:IMMZ_D_DE241 |
 
  
 ValueSet for Dengue serostatus for IMMZ.D.DE241 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZ_D_DE241",
   "title" : "IMMZ.D.DE241 ValueSet for Dengue serostatus",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

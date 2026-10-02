@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD5DTYellowfeverEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD5DTYellowfeverEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD5DTYellowfeverEncounterElements |
 
  
 This library defines encounter-based elements for Yellow fever used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-02f24cce-044e-41c7-992b-373006f3ad3a.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD5DTYellowfeverEncounterElements */ library IMMZD5DTYellowfeverEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD5DTYellowfeverElements called YellowfeverElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Draft Medication Request for Yellow fever dose */ define "Draft Medication Request for Yellow fever dose": Encounter."Draft Medication Request for Patient" MR where MR.medication in Concepts."Yellow fever vaccines" /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 225 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-9b541351-0532-4f57-94d6-c3350f3279b2.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD5DTYellowfeverEncounterElements */ library IMMZD5DTYellowfeverEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD5DTYellowfeverElements called YellowfeverElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Draft Medication Request for Yellow fever dose */ define "Draft Medication Request for Yellow fever dose": Encounter."Draft Medication Request for Patient" MR where MR.medication in Concepts."Yellow fever vaccines" /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 225 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for Yellow fever used throughout t
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

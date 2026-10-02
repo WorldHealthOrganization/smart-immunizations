@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/StructureMap/IMMZ.C4.LMToPatient | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZ.C4.LMToPatient |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZ.C4.LMToPatient |
 
  
 Immunization Client Registry - Transform Logical Model to Patient resources 
@@ -27,7 +27,7 @@ Immunization Client Registry - Transform Logical Model to Patient resources
   "version" : "1.0.0",
   "name" : "IMMZ.C4.LMToPatient",
   "status" : "draft",
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

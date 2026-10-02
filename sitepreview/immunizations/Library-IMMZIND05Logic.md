@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZIND05Logic | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZIND05Logic |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZIND05Logic |
 
  
 This library defines population criteria logic for the IMMZ.IND.05 indicator in the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-11ba6202-c030-48ec-9438-e6b13c86587e.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = '/* * Library: IMMZ.IND.05 Logic * Immunization coverage for hepatitis B-containing vaccines (birth dose) * The percentage in the target population who received hepatitis B-containing vaccine birth dose within the first 24 hours of birth during the reporting period * * Numerator: Number of hepatitis B-containing vaccine birth doses administered through routine services during the reporting period * Numerator Computation: COUNT of immunization events WHERE "Vaccine type" = "Hepatitis B-containing vaccines" AND "Dose 0 administered" = "Yes" AND "Date and time of vaccination" is during the reporting period * Denominator: Number in target group * Denominator Computation: As defined by the Member States * * Disaggregation * - Administrative area * - Sex * - Age in years * - Age group: ' at line 198 column 19**
+**Exception parsing generated Narrative (see /tmp/liquid-63bc21aa-8eec-4ad2-b916-9c11c57b41c9.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = '/* * Library: IMMZ.IND.05 Logic * Immunization coverage for hepatitis B-containing vaccines (birth dose) * The percentage in the target population who received hepatitis B-containing vaccine birth dose within the first 24 hours of birth during the reporting period * * Numerator: Number of hepatitis B-containing vaccine birth doses administered through routine services during the reporting period * Numerator Computation: COUNT of immunization events WHERE "Vaccine type" = "Hepatitis B-containing vaccines" AND "Dose 0 administered" = "Yes" AND "Date and time of vaccination" is during the reporting period * Denominator: Number in target group * Denominator Computation: As defined by the Member States * * Disaggregation * - Administrative area * - Sex * - Age in years * - Age group: ' at line 198 column 19**
 
 
 
@@ -47,7 +47,7 @@ This library defines population criteria logic for the IMMZ.IND.05 indicator in 
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

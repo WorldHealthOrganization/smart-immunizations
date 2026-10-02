@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD18SMeningococcalMenAConjugateVaccine2DosesVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD18SMeningococcalMenAConjugateVaccine2DosesVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD18SMeningococcalMenAConjugateVaccine2DosesVS |
 
  
 ValueSet IMMZD18SMeningococcalMenAConjugateVaccine2Doses for IMMZ.D18.S.Meningococcal.MenA conjugate vaccine 2-dose schedule. Business rule: Determine if the client is due for a meningococcal vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: MenA conjugate vaccine, 2-dose schedule (specific context where there is a compelling reason to vaccinate infants aged under 9 months) 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD18SMeningococcalMenAConjugateVaccine2DosesVS",
   "title" : "IMMZD18SMeningococcalMenAConjugateVaccine2Doses ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

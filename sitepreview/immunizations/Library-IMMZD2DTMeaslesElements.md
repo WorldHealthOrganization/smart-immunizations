@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTMeaslesElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTMeaslesElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTMeaslesElements |
 
  
 This library defines context-independent elements for Measles used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-a3ad2a62-b328-42d0-b32b-a722a4c5819c.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTMeaslesElements */ library IMMZD2DTMeaslesElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Measles containing Doses Administered to Patient */ define "Measles Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Measles-containing vaccines" /* @internal: Measles containing Doses Administered to Patient that are in the Primary series */ define "Measles Primary Series Doses Administered to Patient": "Measles Doses Administered to Patient".seriesPrimary() /* @internal: Number of Measles Primary Series doses */ define "Number of Measles Primary Series Doses Administered": Count("Measles Primary Series Doses Administered to Patient") /* @input: Client's age is less than 9 months @pseudocode: Today's date − "Date of birth" ' at line 277 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-aa2dcf70-8acd-4658-b418-8a7687a3151e.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTMeaslesElements */ library IMMZD2DTMeaslesElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Measles containing Doses Administered to Patient */ define "Measles Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Measles-containing vaccines" /* @internal: Measles containing Doses Administered to Patient that are in the Primary series */ define "Measles Primary Series Doses Administered to Patient": "Measles Doses Administered to Patient".seriesPrimary() /* @internal: Number of Measles Primary Series doses */ define "Number of Measles Primary Series Doses Administered": Count("Measles Primary Series Doses Administered to Patient") /* @input: Client's age is less than 9 months @pseudocode: Today's date − "Date of birth" ' at line 277 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for Measles used throughout th
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

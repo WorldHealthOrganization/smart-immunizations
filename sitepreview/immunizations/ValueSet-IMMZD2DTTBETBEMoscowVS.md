@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD2DTTBETBEMoscowVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD2DTTBETBEMoscowVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD2DTTBETBEMoscowVS |
 
  
 ValueSet IMMZD2DTTBETBEMoscow for IMMZ.D2.DT.TBE.TBE-Moscow. Business rule: Determine if the client is due for a tick-borne encephalitis (TBE) vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: TBE-Moscow schedule (In areas where the disease is highly endemic, implying that there is a high individual risk of infection, WHO recommends that vaccination be offered to all age groups, including children ) 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD2DTTBETBEMoscowVS",
   "title" : "IMMZD2DTTBETBEMoscow ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

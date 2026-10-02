@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD5DTVaricellaEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD5DTVaricellaEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD5DTVaricellaEncounterElements |
 
  
 This library defines encounter-based elements for Varicella used throughout the Immunization CPG 
@@ -24,7 +24,7 @@ This library defines encounter-based elements for Varicella used throughout the 
 * * **Content: **application/elm+xml: ````Encoded data (23140 characters)````: **Status: **
   * ?: draft
 * * **Content: **application/elm+xml: ````Encoded data (23140 characters)````: **Date: **
-  * ?: 2026-10-01 12:00:06+0000
+  * ?: 2026-10-02 09:40:20+0000
 * * **Content: **application/elm+xml: ````Encoded data (23140 characters)````: **Publisher: **
   * ?: WHO
 * * **Content: **application/elm+xml: ````Encoded data (23140 characters)````: **Description: **
@@ -60,7 +60,7 @@ This library defines encounter-based elements for Varicella used throughout the 
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

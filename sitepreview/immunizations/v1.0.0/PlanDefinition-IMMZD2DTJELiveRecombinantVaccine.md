@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/PlanDefinition/IMMZD2DTJELiveRecombinantVaccine | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTJELiveRecombinantVaccine |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTJELiveRecombinantVaccine |
 
  
 IMMZ.D2.DT.JE.Live recombinant vaccine Live recombinant vaccination schedule (1-dose scheme) JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority 
@@ -24,7 +24,7 @@ IMMZ.D2.DT.JE.Live recombinant vaccine Live recombinant vaccination schedule (1-
 * **Actions: **: **Status: **
   * : draft
 * **Actions: **: **Date: **
-  * : 2026-10-01 12:00:06+0000
+  * : 2026-10-02 09:40:20+0000
 * **Actions: **: **Publisher: **
   * : WHO
 * **Actions: **: **Description: **
@@ -875,7 +875,7 @@ IMMZ.D2.DT.JE.Live recombinant vaccine Live recombinant vaccination schedule (1-
   },
   "status" : "draft",
   "experimental" : false,
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

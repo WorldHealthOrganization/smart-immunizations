@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZ.Z.VS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZ_Z_VS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZ_Z_VS |
 
  
 ValueSet for vaccine types for IMMZ.Z 
@@ -54,7 +54,7 @@ ValueSet for vaccine types for IMMZ.Z
   "name" : "IMMZ_Z_VS",
   "title" : "IMMZ.Z.VS ValueSet for vaccine types",
   "status" : "active",
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

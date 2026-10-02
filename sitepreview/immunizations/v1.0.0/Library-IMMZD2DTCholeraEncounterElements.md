@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTCholeraEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTCholeraEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTCholeraEncounterElements |
 
  
 This library defines encounter-based elements for Cholera used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-a3ee6ed0-caf5-4ee5-b393-d0095e534167.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTCholeraEncounterElements */ library IMMZD2DTCholeraEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTCholeraElements called CholeraElements parameter Today Date default Today() parameter EncounterId String parameter CholeraLowerLimitDays Integer default 150 parameter CholeraExactIntervalDays Integer default 0 context Patient /* @internal: Cholera containing Doses Administered to Patient */ define "Cholera Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Cholera vaccines" /* @internal: Cholera containing Doses Administered to Patient that are in the Primary series */ define "Cholera Primary Series Doses Administered to Patient": "Cholera Doses Administered to Patient".seriesPrimary() /* @internal: Number of Cholera Primary Series doses */ define "Number of Cholera Primary Series Doses Administered": Count("Cholera Primary Series Doses Administered to Patient") /* @input: Client's age is less than 1 year @pseudocode: Today's date − "Date of birth" ' at line 302 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-7885d828-427b-4311-9d8c-89f0936d03ff.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTCholeraEncounterElements */ library IMMZD2DTCholeraEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTCholeraElements called CholeraElements parameter Today Date default Today() parameter EncounterId String parameter CholeraLowerLimitDays Integer default 150 parameter CholeraExactIntervalDays Integer default 0 context Patient /* @internal: Cholera containing Doses Administered to Patient */ define "Cholera Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Cholera vaccines" /* @internal: Cholera containing Doses Administered to Patient that are in the Primary series */ define "Cholera Primary Series Doses Administered to Patient": "Cholera Doses Administered to Patient".seriesPrimary() /* @internal: Number of Cholera Primary Series doses */ define "Number of Cholera Primary Series Doses Administered": Count("Cholera Primary Series Doses Administered to Patient") /* @input: Client's age is less than 1 year @pseudocode: Today's date − "Date of birth" ' at line 302 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for Cholera used throughout the Im
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD2DTYellowfeverYellowFeverVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD2DTYellowfeverYellowFeverVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD2DTYellowfeverYellowFeverVS |
 
  
 ValueSet IMMZD2DTYellowfeverYellowFever for IMMZ.D2.DT.Yellow fever. Business rule: Determine if the client is due for a yellow fever vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) in any Table: IMMZ.D2.DT.Yellow fever 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD2DTYellowfeverYellowFeverVS",
   "title" : "IMMZD2DTYellowfeverYellowFever ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTYellowfeverEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTYellowfeverEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTYellowfeverEncounterElements |
 
  
 This library defines encounter-based elements for Yellow fever used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-b6e5e119-9938-4961-9a33-df294c57e562.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTYellowfeverEncounterElements */ library IMMZD2DTYellowfeverEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTYellowfeverElements called YellowfeverElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Yellow fever containing Doses Administered to Patient */ define "Yellow fever Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Yellow fever vaccines" /* @internal: Yellow fever containing Doses Administered to Patient that are in the Primary series */ define "Yellow fever Primary Series Doses Administered to Patient": "Yellow fever Doses Administered to Patient".seriesPrimary() /* @internal: Number of Yellow fever Primary Series doses */ define "Number of Yellow fever Primary Series Doses Administered": Count("Yellow fever Primary Series Doses Administered to Patient") /* @input: No yellow fever primary series doses were administered @pseudocode: Count of vaccines administered (where "Vaccine type" = "Yellow fever vaccines" and "Type of dose" = "Primary series") = 0 @code: No yellow fever primary series doses were administered-121 @decision: IMMZ.D2.DT.Yellow fever */ define "No yellow fever primary series doses were administered": "Number of Yellow fever Primary Series Doses Administered" = 0 /* @input: Client's age is less than 9 months @pseudocode: Today's date − "Date of birth" ' at line 249 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-947f33ea-9a64-4cdf-ad05-53215a610c0f.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTYellowfeverEncounterElements */ library IMMZD2DTYellowfeverEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTYellowfeverElements called YellowfeverElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Yellow fever containing Doses Administered to Patient */ define "Yellow fever Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Yellow fever vaccines" /* @internal: Yellow fever containing Doses Administered to Patient that are in the Primary series */ define "Yellow fever Primary Series Doses Administered to Patient": "Yellow fever Doses Administered to Patient".seriesPrimary() /* @internal: Number of Yellow fever Primary Series doses */ define "Number of Yellow fever Primary Series Doses Administered": Count("Yellow fever Primary Series Doses Administered to Patient") /* @input: No yellow fever primary series doses were administered @pseudocode: Count of vaccines administered (where "Vaccine type" = "Yellow fever vaccines" and "Type of dose" = "Primary series") = 0 @code: No yellow fever primary series doses were administered-121 @decision: IMMZ.D2.DT.Yellow fever */ define "No yellow fever primary series doses were administered": "Number of Yellow fever Primary Series Doses Administered" = 0 /* @input: Client's age is less than 9 months @pseudocode: Today's date − "Date of birth" ' at line 249 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for Yellow fever used throughout t
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

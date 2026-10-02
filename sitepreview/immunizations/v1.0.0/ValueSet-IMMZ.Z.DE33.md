@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE33 | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZ_Z_DE33 |
+| Active as of 2026-10-02 | *Computable Name*:IMMZ_Z_DE33 |
 
  
 ValueSet for Tetanus and diphtheria-containing vaccines (DT) for IMMZ.Z.DE33 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZ_Z_DE33",
   "title" : "IMMZ.Z.DE33 ValueSet for Tetanus and diphtheria-containing vaccines (DT)",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/WHOConcepts | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:WHOConcepts |
+| Draft as of 2026-10-02 | *Computable Name*:WHOConcepts |
 
  
 This library defines common concepts used throughout WHO SMART Guidelines content 
@@ -24,7 +24,7 @@ This library defines common concepts used throughout WHO SMART Guidelines conten
 * * **Content: **application/elm+xml: ````Encoded data (8992 characters)````: **Status: **
   * ?: draft
 * * **Content: **application/elm+xml: ````Encoded data (8992 characters)````: **Date: **
-  * ?: 2026-10-01 12:00:06+0000
+  * ?: 2026-10-02 09:40:20+0000
 * * **Content: **application/elm+xml: ````Encoded data (8992 characters)````: **Publisher: **
   * ?: WHO
 * * **Content: **application/elm+xml: ````Encoded data (8992 characters)````: **Description: **
@@ -60,7 +60,7 @@ This library defines common concepts used throughout WHO SMART Guidelines conten
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

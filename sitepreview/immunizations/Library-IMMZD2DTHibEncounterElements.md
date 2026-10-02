@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTHibEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTHibEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTHibEncounterElements |
 
  
 This library defines encounter-based elements for Hib used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-58e0ab28-d7bf-4208-a8a9-241e60bd89ad.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTHibEncounterElements */ library IMMZD2DTHibEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTHibElements called HibElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Hib containing Doses Administered to Patient */ define "Hib Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Hib-containing vaccines" /* @internal: Hib containing Doses Administered to Patient that are in the Primary series */ define "Hib Primary Series Doses Administered to Patient": "Hib Doses Administered to Patient".seriesPrimary() /* @internal: Number of Hib Primary Series doses */ define "Number of Hib Primary Series Doses Administered": Count("Hib Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 weeks @pseudocode: Today's date − "Date of birth" ' at line 276 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-de8419ee-2f8b-47b8-a031-8166fef7272a.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTHibEncounterElements */ library IMMZD2DTHibEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTHibElements called HibElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Hib containing Doses Administered to Patient */ define "Hib Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Hib-containing vaccines" /* @internal: Hib containing Doses Administered to Patient that are in the Primary series */ define "Hib Primary Series Doses Administered to Patient": "Hib Doses Administered to Patient".seriesPrimary() /* @internal: Number of Hib Primary Series doses */ define "Number of Hib Primary Series Doses Administered": Count("Hib Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 weeks @pseudocode: Today's date − "Date of birth" ' at line 276 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for Hib used throughout the Immuni
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

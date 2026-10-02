@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTMeningococcalEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTMeningococcalEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTMeningococcalEncounterElements |
 
  
 This library defines encounter-based elements for Meningococcal used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-10a64589-524f-4333-b12e-75a1b188ecba.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTMeningococcalEncounterElements */ library IMMZD2DTMeningococcalEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTMeningococcalElements called MeningococcalElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Meningococcal containing Doses Administered to Patient */ define "Meningococcal Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Meningococcal vaccines" /* @internal: Meningococcal containing Doses Administered to Patient that are in the Primary series */ define "Meningococcal Primary Series Doses Administered to Patient": "Meningococcal Doses Administered to Patient".seriesPrimary() /* @internal: Number of Meningococcal Primary Series doses */ define "Number of Meningococcal Primary Series Doses Administered": Count("Meningococcal Primary Series Doses Administered to Patient") /* @input: Client's age is less than 9 months @pseudocode: Today's date − "Date of birth" ' at line 294 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-3c7ee6c5-e1ce-46e3-a3de-bd15abbb3465.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTMeningococcalEncounterElements */ library IMMZD2DTMeningococcalEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTMeningococcalElements called MeningococcalElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Meningococcal containing Doses Administered to Patient */ define "Meningococcal Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Meningococcal vaccines" /* @internal: Meningococcal containing Doses Administered to Patient that are in the Primary series */ define "Meningococcal Primary Series Doses Administered to Patient": "Meningococcal Doses Administered to Patient".seriesPrimary() /* @internal: Number of Meningococcal Primary Series doses */ define "Number of Meningococcal Primary Series Doses Administered": Count("Meningococcal Primary Series Doses Administered to Patient") /* @input: Client's age is less than 9 months @pseudocode: Today's date − "Date of birth" ' at line 294 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for Meningococcal used throughout 
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

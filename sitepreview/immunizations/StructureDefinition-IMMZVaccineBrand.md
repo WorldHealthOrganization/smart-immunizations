@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/StructureDefinition/IMMZVaccineBrand | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZVaccineBrand |
+| Active as of 2026-10-02 | *Computable Name*:IMMZVaccineBrand |
 
 The brand or trade name used to refer to the vaccine received
 
@@ -50,7 +50,7 @@ Other representations of profile: [CSV](StructureDefinition-IMMZVaccineBrand.csv
   "title" : "Immunization Vaccine Brand",
   "status" : "active",
   "experimental" : false,
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

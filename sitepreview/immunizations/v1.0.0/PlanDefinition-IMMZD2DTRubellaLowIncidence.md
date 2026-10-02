@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/PlanDefinition/IMMZD2DTRubellaLowIncidence | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTRubellaLowIncidence |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTRubellaLowIncidence |
 
  
 IMMZ.D2.DT.Rubella.Low incidence Countries with low incidence of rubella 
@@ -24,7 +24,7 @@ IMMZ.D2.DT.Rubella.Low incidence Countries with low incidence of rubella
 * **Actions: **: **Status: **
   * : draft
 * **Actions: **: **Date: **
-  * : 2026-10-01 12:00:06+0000
+  * : 2026-10-02 09:40:20+0000
 * **Actions: **: **Publisher: **
   * : WHO
 * **Actions: **: **Description: **
@@ -856,7 +856,7 @@ IMMZ.D2.DT.Rubella.Low incidence Countries with low incidence of rubella
   },
   "status" : "draft",
   "experimental" : false,
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

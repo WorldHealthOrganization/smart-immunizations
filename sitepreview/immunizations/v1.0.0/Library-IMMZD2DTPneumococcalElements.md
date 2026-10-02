@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTPneumococcalElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTPneumococcalElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTPneumococcalElements |
 
  
 This library defines context-independent elements for Pneumococcal used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-a316b8a5-1164-49fb-b08b-a34d8220e302.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTPneumococcalElements */ library IMMZD2DTPneumococcalElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Pneumococcal containing Doses Administered to Patient */ define "Pneumococcal Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Pneumococcal vaccines" /* @internal: Pneumococcal containing Doses Administered to Patient that are in the Primary series */ define "Pneumococcal Primary Series Doses Administered to Patient": "Pneumococcal Doses Administered to Patient".seriesPrimary() /* @internal: Number of Pneumococcal Primary Series doses */ define "Number of Pneumococcal Primary Series Doses Administered": Count("Pneumococcal Primary Series Doses Administered to Patient") /* @input: The client's age is less than 6 weeks @pseudocode: Today's date − "Date of birth" ' at line 292 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-c2b516ca-7b00-4fa4-91c5-35b4102b62ef.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTPneumococcalElements */ library IMMZD2DTPneumococcalElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Pneumococcal containing Doses Administered to Patient */ define "Pneumococcal Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Pneumococcal vaccines" /* @internal: Pneumococcal containing Doses Administered to Patient that are in the Primary series */ define "Pneumococcal Primary Series Doses Administered to Patient": "Pneumococcal Doses Administered to Patient".seriesPrimary() /* @internal: Number of Pneumococcal Primary Series doses */ define "Number of Pneumococcal Primary Series Doses Administered": Count("Pneumococcal Primary Series Doses Administered to Patient") /* @input: The client's age is less than 6 weeks @pseudocode: Today's date − "Date of birth" ' at line 292 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for Pneumococcal used througho
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZIND30Logic | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZIND30Logic |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZIND30Logic |
 
  
 This library defines population criteria logic for the IMMZ.IND.30 indicator in the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-1a82c29f-ce88-4b4e-ae31-10e54cafe75b.html): unable to parse character reference ' occupational group * * References: WHO/UNICEF joint reporting form (1) * Monitoring COVID-19 vaccination (3) * WHO Immunization facility analysis guide (5) * WHO Handbook on immunization data (6) * * Annotations: – */ library IMMZIND30Logic using FHIR version '' (last text = ' ' at line 208 column 21**
+**Exception parsing generated Narrative (see /tmp/liquid-df8ca81a-d40e-4306-9ab2-12be198c59b8.html): unable to parse character reference ' occupational group * * References: WHO/UNICEF joint reporting form (1) * Monitoring COVID-19 vaccination (3) * WHO Immunization facility analysis guide (5) * WHO Handbook on immunization data (6) * * Annotations: – */ library IMMZIND30Logic using FHIR version '' (last text = ' ' at line 208 column 21**
 
 
 
@@ -47,7 +47,7 @@ This library defines population criteria logic for the IMMZ.IND.30 indicator in 
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/CodeSystem/IMMZDAK | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZDAK |
+| Active as of 2026-10-02 | *Computable Name*:IMMZDAK |
 
  
 CodeSystem for Decision Tables for the Immunization DAK 
@@ -156,7 +156,7 @@ CodeSystem for Decision Tables for the Immunization DAK
   "title" : "IMMZDAK CodeSystem for Decision Tables",
   "status" : "active",
   "experimental" : false,
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

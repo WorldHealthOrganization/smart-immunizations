@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/StructureMap/IMMZ.C4.QRToPatient | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZ.C4.QRToPatient |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZ.C4.QRToPatient |
 
  
 Immunization Client Registry - Transform QuestionnaireResponse to Patient resources 
@@ -27,7 +27,7 @@ Immunization Client Registry - Transform QuestionnaireResponse to Patient resour
   "version" : "1.0.0",
   "name" : "IMMZ.C4.QRToPatient",
   "status" : "draft",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

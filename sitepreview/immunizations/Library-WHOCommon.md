@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/WHOCommon | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:WHOCommon |
+| Draft as of 2026-10-02 | *Computable Name*:WHOCommon |
 
  
 This library defines common terminologies and functions used throughout WHO SMART Guidelines content 
 
-**Exception parsing generated Narrative (see /tmp/liquid-3a5b42f1-60ad-4f65-bdcb-cad24487a3b9.html): Unable to read attribute on <FHIR.dateTime> at line 324 column 63**
+**Exception parsing generated Narrative (see /tmp/liquid-be9819e6-100c-4518-a546-1ecfd2797ecf.html): Unable to read attribute on <FHIR.dateTime> at line 324 column 63**
 
 
 
@@ -47,7 +47,7 @@ This library defines common terminologies and functions used throughout WHO SMAR
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTRotavirusElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTRotavirusElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTRotavirusElements |
 
  
 This library defines context-independent elements for Rotavirus used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-b37ef0ce-7384-460c-b08d-af8472b830eb.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTRotavirusElements */ library IMMZD2DTRotavirusElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Rotavirus containing Doses Administered to Patient */ define "Rotavirus Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Rotavirus vaccines" /* @internal: Rotavirus containing Doses Administered to Patient that are in the Primary series */ define "Rotavirus Primary Series Doses Administered to Patient": "Rotavirus Doses Administered to Patient".seriesPrimary() /* @internal: Number of Rotavirus Primary Series doses */ define "Number of Rotavirus Primary Series Doses Administered": Count("Rotavirus Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 weeks @pseudocode: 'Today's date – "Date of birth" ' at line 256 column 47**
+**Exception parsing generated Narrative (see /tmp/liquid-fd55e11c-db52-4403-9fff-0386b6974a3b.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTRotavirusElements */ library IMMZD2DTRotavirusElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Rotavirus containing Doses Administered to Patient */ define "Rotavirus Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Rotavirus vaccines" /* @internal: Rotavirus containing Doses Administered to Patient that are in the Primary series */ define "Rotavirus Primary Series Doses Administered to Patient": "Rotavirus Doses Administered to Patient".seriesPrimary() /* @internal: Number of Rotavirus Primary Series doses */ define "Number of Rotavirus Primary Series Doses Administered": Count("Rotavirus Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 weeks @pseudocode: 'Today's date – "Date of birth" ' at line 256 column 47**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for Rotavirus used throughout 
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

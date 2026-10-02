@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTTBEElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTTBEElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTTBEElements |
 
  
 This library defines context-independent elements for TBE used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-2f5f0a48-8666-4397-8344-428383aaefcc.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTTBEElements */ library IMMZD2DTTBEElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: TBE containing Doses Administered to Patient */ define "TBE Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."TBE vaccines" /* @internal: TBE containing Doses Administered to Patient that are in the Primary series */ define "TBE Primary Series Doses Administered to Patient": "TBE Doses Administered to Patient".seriesPrimary() /* @internal: Number of TBE Primary Series doses */ define "Number of TBE Primary Series Doses Administered": Count("TBE Primary Series Doses Administered to Patient") /* @input: Client's age is less than 1 year @pseudocode: Today's date − "Date of birth" ' at line 264 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-f0744d17-669c-4f97-bb69-d591485c23eb.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTTBEElements */ library IMMZD2DTTBEElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: TBE containing Doses Administered to Patient */ define "TBE Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."TBE vaccines" /* @internal: TBE containing Doses Administered to Patient that are in the Primary series */ define "TBE Primary Series Doses Administered to Patient": "TBE Doses Administered to Patient".seriesPrimary() /* @internal: Number of TBE Primary Series doses */ define "Number of TBE Primary Series Doses Administered": Count("TBE Primary Series Doses Administered to Patient") /* @input: Client's age is less than 1 year @pseudocode: Today's date − "Date of birth" ' at line 264 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for TBE used throughout the Im
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

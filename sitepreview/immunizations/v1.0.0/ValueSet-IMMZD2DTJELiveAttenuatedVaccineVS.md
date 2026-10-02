@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD2DTJELiveAttenuatedVaccineVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD2DTJELiveAttenuatedVaccineVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD2DTJELiveAttenuatedVaccineVS |
 
  
 ValueSet IMMZD2DTJELiveAttenuatedVaccine for IMMZ.D2.DT.JE.Live attenuated vaccine. Business rule: Determine if the client is due for a Japanese encephalitis (JE) vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: Live attenuated vaccination schedule (1-dose scheme) JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD2DTJELiveAttenuatedVaccineVS",
   "title" : "IMMZD2DTJELiveAttenuatedVaccine ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

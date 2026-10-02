@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTDTPEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTDTPEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTDTPEncounterElements |
 
  
 This library defines encounter-based elements for DTP used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-aa711f38-3188-4ec8-812c-779a4559cfa3.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTDTPEncounterElements */ library IMMZD2DTDTPEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTDTPElements called DTPElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: DTP containing Doses Administered to Patient */ define "DTP Doses Administered to Patient": DTPElements."DTP Doses Administered to Patient".onOrBefore(Today) /* @internal: DTP containing Doses Administered to Patient that are in the Primary series */ define "DTP Primary Series Doses Administered to Patient": DTPElements."DTP Primary Series Doses Administered to Patient".onOrBefore(Today) /* @internal: Number of DTP Primary Series doses */ define "Number of DTP Primary Series Doses Administered": Count("DTP Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 weeks @pseudocode: Today's date − "Date of birth" ' at line 314 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-85d78fd2-b66e-4880-adb1-e41267345a48.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTDTPEncounterElements */ library IMMZD2DTDTPEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTDTPElements called DTPElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: DTP containing Doses Administered to Patient */ define "DTP Doses Administered to Patient": DTPElements."DTP Doses Administered to Patient".onOrBefore(Today) /* @internal: DTP containing Doses Administered to Patient that are in the Primary series */ define "DTP Primary Series Doses Administered to Patient": DTPElements."DTP Primary Series Doses Administered to Patient".onOrBefore(Today) /* @internal: Number of DTP Primary Series doses */ define "Number of DTP Primary Series Doses Administered": Count("DTP Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 weeks @pseudocode: Today's date − "Date of birth" ' at line 314 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for DTP used throughout the Immuni
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

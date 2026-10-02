@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD2DTDengue3DosesWithoutPreVaccinationScreeningVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD2DTDengue3DosesWithoutPreVaccinationScreeningVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD2DTDengue3DosesWithoutPreVaccinationScreeningVS |
 
  
 ValueSet IMMZD2DTDengue3DosesWithoutPreVaccinationScreening for IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening. Business rule: Determine if the client is due for a dengue vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: CYD-TDV (Dengvaxia), 3-dose schedule without pre-vaccination screening [when pre-vaccination screening is not feasible and in areas with recent documentation of seroprevalence rates of at least 80% by age 9 years] 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD2DTDengue3DosesWithoutPreVaccinationScreeningVS",
   "title" : "IMMZD2DTDengue3DosesWithoutPreVaccinationScreening ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

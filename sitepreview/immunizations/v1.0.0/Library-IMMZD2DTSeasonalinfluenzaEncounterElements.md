@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTSeasonalinfluenzaEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTSeasonalinfluenzaEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTSeasonalinfluenzaEncounterElements |
 
  
 This library defines encounter-based elements for Seasonal influenza used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-2606de2e-a2cb-4b56-a248-e6308d209fec.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTSeasonalinfluenzaEncounterElements */ library IMMZD2DTSeasonalinfluenzaEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTSeasonalinfluenzaElements called SeasonalinfluenzaElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Seasonal influenza containing Doses Administered to Patient */ define "Seasonal influenza Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Seasonal influenza vaccines" /* @internal: Seasonal influenza containing Doses Administered to Patient that are in the Primary series */ define "Seasonal influenza Primary Series Doses Administered to Patient": "Seasonal influenza Doses Administered to Patient".seriesPrimary() /* @internal: Number of Seasonal influenza Primary Series doses */ define "Number of Seasonal influenza Primary Series Doses Administered": Count("Seasonal influenza Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 252 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-fa8661db-778b-48e1-8346-d2bb08a49142.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTSeasonalinfluenzaEncounterElements */ library IMMZD2DTSeasonalinfluenzaEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTSeasonalinfluenzaElements called SeasonalinfluenzaElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Seasonal influenza containing Doses Administered to Patient */ define "Seasonal influenza Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Seasonal influenza vaccines" /* @internal: Seasonal influenza containing Doses Administered to Patient that are in the Primary series */ define "Seasonal influenza Primary Series Doses Administered to Patient": "Seasonal influenza Doses Administered to Patient".seriesPrimary() /* @internal: Number of Seasonal influenza Primary Series doses */ define "Number of Seasonal influenza Primary Series Doses Administered": Count("Seasonal influenza Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 252 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for Seasonal influenza used throug
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

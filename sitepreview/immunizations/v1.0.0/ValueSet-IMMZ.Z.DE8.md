@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE8 | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZ_Z_DE8 |
+| Active as of 2026-10-02 | *Computable Name*:IMMZ_Z_DE8 |
 
  
 ValueSet for JE vaccines for IMMZ.Z.DE8 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZ_Z_DE8",
   "title" : "IMMZ.Z.DE8 ValueSet for JE vaccines",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

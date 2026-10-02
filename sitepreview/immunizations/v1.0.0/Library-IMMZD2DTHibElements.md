@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTHibElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTHibElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTHibElements |
 
  
 This library defines context-independent elements for Hib used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-4f70b279-f333-4359-aeef-d18040f56ca5.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTHibElements */ library IMMZD2DTHibElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Hib containing Doses Administered to Patient */ define "Hib Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Hib-containing vaccines" /* @internal: Hib containing Doses Administered to Patient that are in the Primary series */ define "Hib Primary Series Doses Administered to Patient": "Hib Doses Administered to Patient".seriesPrimary() /* @internal: Number of Hib Primary Series doses */ define "Number of Hib Primary Series Doses Administered": Count("Hib Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 weeks @pseudocode: Today's date − "Date of birth" ' at line 266 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-cb307d06-6b79-44de-9b63-e95af9f23e8c.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTHibElements */ library IMMZD2DTHibElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Hib containing Doses Administered to Patient */ define "Hib Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Hib-containing vaccines" /* @internal: Hib containing Doses Administered to Patient that are in the Primary series */ define "Hib Primary Series Doses Administered to Patient": "Hib Doses Administered to Patient".seriesPrimary() /* @internal: Number of Hib Primary Series doses */ define "Number of Hib Primary Series Doses Administered": Count("Hib Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 weeks @pseudocode: Today's date − "Date of birth" ' at line 266 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for Hib used throughout the Im
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

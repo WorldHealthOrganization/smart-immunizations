@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTPolioBOPVPlusIPVLogic | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTPolioBOPVPlusIPVLogic |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTPolioBOPVPlusIPVLogic |
 
  
 This library defines decision support logic for the IMMZ.D2.DT.Polio.bOPV plus IPV decision table in the Immunization CPG 
@@ -24,7 +24,7 @@ This library defines decision support logic for the IMMZ.D2.DT.Polio.bOPV plus I
 * * **Content: **application/elm+xml: ````Encoded data (400532 characters)````: **Status: **
   * ?: draft
 * * **Content: **application/elm+xml: ````Encoded data (400532 characters)````: **Date: **
-  * ?: 2026-10-01 12:12:05+0000
+  * ?: 2026-10-02 09:52:12+0000
 * * **Content: **application/elm+xml: ````Encoded data (400532 characters)````: **Publisher: **
   * ?: WHO
 * * **Content: **application/elm+xml: ````Encoded data (400532 characters)````: **Description: **
@@ -60,7 +60,7 @@ This library defines decision support logic for the IMMZ.D2.DT.Polio.bOPV plus I
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

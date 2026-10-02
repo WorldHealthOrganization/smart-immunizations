@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTVaricellaElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTVaricellaElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTVaricellaElements |
 
  
 This library defines context-independent elements for Varicella used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-76833342-18c9-4c82-8319-2adb9b9d1798.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTVaricellaElements */ library IMMZD2DTVaricellaElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Varicella containing Doses Administered to Patient */ define "Varicella Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Varicella-containing vaccines" /* @internal: Varicella containing Doses Administered to Patient that are in the Primary series */ define "Varicella Primary Series Doses Administered to Patient": "Varicella Doses Administered to Patient".seriesPrimary() /* @internal: Number of Varicella Primary Series doses */ define "Number of Varicella Primary Series Doses Administered": Count("Varicella Primary Series Doses Administered to Patient") /* @input: Client's age is less than 12 months @pseudocode: Today's date − "Date of birth" ' at line 240 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-01e7d4c8-2e89-43dd-bf18-16ee3f6c7052.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTVaricellaElements */ library IMMZD2DTVaricellaElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Varicella containing Doses Administered to Patient */ define "Varicella Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Varicella-containing vaccines" /* @internal: Varicella containing Doses Administered to Patient that are in the Primary series */ define "Varicella Primary Series Doses Administered to Patient": "Varicella Doses Administered to Patient".seriesPrimary() /* @internal: Number of Varicella Primary Series doses */ define "Number of Varicella Primary Series Doses Administered": Count("Varicella Primary Series Doses Administered to Patient") /* @input: Client's age is less than 12 months @pseudocode: Today's date − "Date of birth" ' at line 240 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for Varicella used throughout 
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

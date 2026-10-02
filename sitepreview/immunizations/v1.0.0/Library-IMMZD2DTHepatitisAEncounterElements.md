@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTHepatitisAEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTHepatitisAEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTHepatitisAEncounterElements |
 
  
 This library defines encounter-based elements for Hepatitis A used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-3227ca17-082f-4ed0-b554-f0d70786cbb9.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTHepatitisAEncounterElements */ library IMMZD2DTHepatitisAEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTHepatitisAElements called HepatitisAElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Hepatitis A containing Doses Administered to Patient */ define "Hepatitis A Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Hepatitis A-containing vaccines" /* @internal: Hepatitis A containing Doses Administered to Patient that are in the Primary series */ define "Hepatitis A Primary Series Doses Administered to Patient": "Hepatitis A Doses Administered to Patient".seriesPrimary() /* @internal: Number of Hepatitis A Primary Series doses */ define "Number of Hepatitis A Primary Series Doses Administered": Count("Hepatitis A Primary Series Doses Administered to Patient") /* @input: Client's age is less than 12 months @pseudocode: Today's date − "Date of birth" ' at line 254 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-78ba10fc-6f6b-4dcd-ae2e-61df22c2c845.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTHepatitisAEncounterElements */ library IMMZD2DTHepatitisAEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTHepatitisAElements called HepatitisAElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Hepatitis A containing Doses Administered to Patient */ define "Hepatitis A Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Hepatitis A-containing vaccines" /* @internal: Hepatitis A containing Doses Administered to Patient that are in the Primary series */ define "Hepatitis A Primary Series Doses Administered to Patient": "Hepatitis A Doses Administered to Patient".seriesPrimary() /* @internal: Number of Hepatitis A Primary Series doses */ define "Number of Hepatitis A Primary Series Doses Administered": Count("Hepatitis A Primary Series Doses Administered to Patient") /* @input: Client's age is less than 12 months @pseudocode: Today's date − "Date of birth" ' at line 254 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for Hepatitis A used throughout th
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

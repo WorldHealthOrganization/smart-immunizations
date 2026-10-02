@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZIND33Logic | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZIND33Logic |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZIND33Logic |
 
  
 This library defines population criteria logic for the IMMZ.IND.33 indicator in the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-39d9b257-61bd-4b48-b87d-ba4c3287b121.html): Malformed XHTML: Found "</code>" expecting "</Date>" at line 261 column 8**
+**Exception parsing generated Narrative (see /tmp/liquid-8548f5b0-0fe3-49ef-8c65-62ad832e1d30.html): Malformed XHTML: Found "</code>" expecting "</Date>" at line 261 column 8**
 
 
 
@@ -47,7 +47,7 @@ This library defines population criteria logic for the IMMZ.IND.33 indicator in 
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

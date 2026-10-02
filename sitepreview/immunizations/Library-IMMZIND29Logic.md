@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZIND29Logic | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZIND29Logic |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZIND29Logic |
 
  
 This library defines population criteria logic for the IMMZ.IND.29 indicator in the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-04623c67-ea14-4949-b403-7401e7ffda40.html): unable to parse character reference ' occupational group * * References: WHO/UNICEF joint reporting form (1) * WHO Immunization data portal (2) * WHO Immunization facility analysis guide (5) * WHO Handbook on immunization data (6) * * Annotations: The calculation for this indicator is in line with the administrative calculation provided on the WHO Immunization data portal. * As per WHO Immunization data portal, recommended denominator should be specified by Member States as recommended schedules may vary. */ library IMMZIND29Logic using FHIR version '' (last text = ' ' at line 211 column 21**
+**Exception parsing generated Narrative (see /tmp/liquid-367440d2-d254-4b9c-81f1-ac231d8faf7b.html): unable to parse character reference ' occupational group * * References: WHO/UNICEF joint reporting form (1) * WHO Immunization data portal (2) * WHO Immunization facility analysis guide (5) * WHO Handbook on immunization data (6) * * Annotations: The calculation for this indicator is in line with the administrative calculation provided on the WHO Immunization data portal. * As per WHO Immunization data portal, recommended denominator should be specified by Member States as recommended schedules may vary. */ library IMMZIND29Logic using FHIR version '' (last text = ' ' at line 211 column 21**
 
 
 
@@ -47,7 +47,7 @@ This library defines population criteria logic for the IMMZ.IND.29 indicator in 
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

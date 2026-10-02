@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/PlanDefinition/IMMZD2DTDTPPregnancyStartingWith4Doses | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTDTPPregnancyStartingWith4Doses |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTDTPPregnancyStartingWith4Doses |
 
  
 IMMZ.D2.DT.DTP.Pregnancy starting with 4 doses Diphtheria and tetanus vaccination schedule in pregnant women who received 4 childhood DTP doses 
@@ -24,7 +24,7 @@ IMMZ.D2.DT.DTP.Pregnancy starting with 4 doses Diphtheria and tetanus vaccinatio
 * **Actions: **: **Status: **
   * : draft
 * **Actions: **: **Date: **
-  * : 2026-10-01 12:00:06+0000
+  * : 2026-10-02 09:40:20+0000
 * **Actions: **: **Publisher: **
   * : WHO
 * **Actions: **: **Description: **
@@ -1505,7 +1505,7 @@ IMMZ.D2.DT.DTP.Pregnancy starting with 4 doses Diphtheria and tetanus vaccinatio
   },
   "status" : "draft",
   "experimental" : false,
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

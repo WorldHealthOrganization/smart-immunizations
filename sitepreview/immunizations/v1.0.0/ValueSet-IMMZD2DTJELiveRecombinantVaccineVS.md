@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD2DTJELiveRecombinantVaccineVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD2DTJELiveRecombinantVaccineVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD2DTJELiveRecombinantVaccineVS |
 
  
 ValueSet IMMZD2DTJELiveRecombinantVaccine for IMMZ.D2.DT.JE.Live recombinant vaccine. Business rule: Determine if the client is due for a Japanese encephalitis (JE) vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: Live recombinant vaccination schedule (1-dose scheme) JE vaccination should be integrated into national immunization schedules in all areas where JE is recognized as a public health priority 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD2DTJELiveRecombinantVaccineVS",
   "title" : "IMMZD2DTJELiveRecombinantVaccine ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

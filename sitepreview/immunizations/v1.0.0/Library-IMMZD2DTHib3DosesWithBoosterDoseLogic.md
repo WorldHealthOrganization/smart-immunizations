@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTHib3DosesWithBoosterDoseLogic | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTHib3DosesWithBoosterDoseLogic |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTHib3DosesWithBoosterDoseLogic |
 
  
 This library defines decision support logic for the IMMZ.D2.DT.Hib.3 doses with booster dose decision table in the Immunization CPG 
@@ -24,7 +24,7 @@ This library defines decision support logic for the IMMZ.D2.DT.Hib.3 doses with 
 * * **Content: **application/elm+xml: ````Encoded data (144532 characters)````: **Status: **
   * ?: draft
 * * **Content: **application/elm+xml: ````Encoded data (144532 characters)````: **Date: **
-  * ?: 2026-10-01 12:00:06+0000
+  * ?: 2026-10-02 09:40:20+0000
 * * **Content: **application/elm+xml: ````Encoded data (144532 characters)````: **Publisher: **
   * ?: WHO
 * * **Content: **application/elm+xml: ````Encoded data (144532 characters)````: **Description: **
@@ -60,7 +60,7 @@ This library defines decision support logic for the IMMZ.D2.DT.Hib.3 doses with 
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/StructureDefinition/IMMZOtherMedicalEvent | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZOtherMedicalEvent |
+| Active as of 2026-10-02 | *Computable Name*:IMMZOtherMedicalEvent |
 
 There was another important reaction or medical event
 
@@ -48,7 +48,7 @@ Other representations of profile: [CSV](StructureDefinition-IMMZOtherMedicalEven
   "title" : "Immunization Other Important Medical Event",
   "status" : "active",
   "experimental" : false,
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD2DTMeningococcalMonovalentMenCConjugateVaccineVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD2DTMeningococcalMonovalentMenCConjugateVaccineVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD2DTMeningococcalMonovalentMenCConjugateVaccineVS |
 
  
 ValueSet IMMZD2DTMeningococcalMonovalentMenCConjugateVaccine for IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine. Business rule: Determine if the client is due for a meningococcal vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: Monovalent MenC conjugate vaccine schedule 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD2DTMeningococcalMonovalentMenCConjugateVaccineVS",
   "title" : "IMMZD2DTMeningococcalMonovalentMenCConjugateVaccine ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

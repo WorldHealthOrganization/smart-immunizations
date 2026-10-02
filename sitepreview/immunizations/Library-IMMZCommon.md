@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZCommon | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZCommon |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZCommon |
 
  
 This library defines common terminologies and functions used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-dd655aba-44e9-4adf-bfca-d815709c047c.html): Unable to read attribute on <FHIR.date> at line 191 column 48**
+**Exception parsing generated Narrative (see /tmp/liquid-14b487e7-3176-4103-a711-0e7d058e1a1c.html): Unable to read attribute on <FHIR.date> at line 191 column 48**
 
 
 
@@ -47,7 +47,7 @@ This library defines common terminologies and functions used throughout the Immu
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

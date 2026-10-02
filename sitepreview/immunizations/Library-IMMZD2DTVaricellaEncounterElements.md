@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTVaricellaEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTVaricellaEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTVaricellaEncounterElements |
 
  
 This library defines encounter-based elements for Varicella used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-fa7fdc74-a590-458b-88ce-13b6acc1dc71.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTVaricellaEncounterElements */ library IMMZD2DTVaricellaEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTVaricellaElements called VaricellaElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Varicella containing Doses Administered to Patient */ define "Varicella Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Varicella-containing vaccines" /* @internal: Varicella containing Doses Administered to Patient that are in the Primary series */ define "Varicella Primary Series Doses Administered to Patient": "Varicella Doses Administered to Patient".seriesPrimary() /* @internal: Number of Varicella Primary Series doses */ define "Number of Varicella Primary Series Doses Administered": Count("Varicella Primary Series Doses Administered to Patient") /* @input: Client's age is less than 12 months @pseudocode: Today's date − "Date of birth" ' at line 250 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-a42712c2-6da4-4f17-a31d-900dbc8035c2.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTVaricellaEncounterElements */ library IMMZD2DTVaricellaEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTVaricellaElements called VaricellaElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Varicella containing Doses Administered to Patient */ define "Varicella Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Varicella-containing vaccines" /* @internal: Varicella containing Doses Administered to Patient that are in the Primary series */ define "Varicella Primary Series Doses Administered to Patient": "Varicella Doses Administered to Patient".seriesPrimary() /* @internal: Number of Varicella Primary Series doses */ define "Number of Varicella Primary Series Doses Administered": Count("Varicella Primary Series Doses Administered to Patient") /* @input: Client's age is less than 12 months @pseudocode: Today's date − "Date of birth" ' at line 250 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for Varicella used throughout the 
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

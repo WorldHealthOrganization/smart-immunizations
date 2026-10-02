@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD5DTYellowFeverContraindicationsVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD5DTYellowFeverContraindicationsVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD5DTYellowFeverContraindicationsVS |
 
  
 ValueSet IMMZD5DTYellowFeverContraindications for IMMZ.D5.DT.Yellow fever contraindications. Business rule: Check for contraindications before administering the vaccine(s) due Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications Table: IMMZ.D5.DT.Yellow fever contraindications 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD5DTYellowFeverContraindicationsVS",
   "title" : "IMMZD5DTYellowFeverContraindications ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

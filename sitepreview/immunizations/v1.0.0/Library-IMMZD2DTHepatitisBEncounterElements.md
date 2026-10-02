@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTHepatitisBEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTHepatitisBEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTHepatitisBEncounterElements |
 
  
 This library defines encounter-based elements for Hepatitis B used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-1c7d8d48-9e24-452e-8a2d-eb2c661fc4f8.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTHepatitisBEncounterElements */ library IMMZD2DTHepatitisBEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTHepatitisBElements called HepatitisBElements parameter Today Date default Today() parameter EncounterId String parameter HepBBirthDoseAgeLimitDays Integer default 1 parameter HepBLowerLimitWeeks Integer default 4 context Patient /* @internal: Hepatitis B containing Doses Administered to Patient */ define "Hepatitis B Doses Administered to Patient": HepatitisBElements."Hepatitis B Doses Administered to Patient".onOrBefore(Today) /* @internal: Hepatitis B containing Doses Administered to Patient that are in the Primary series */ define "Hepatitis B Primary Series Doses Administered to Patient": HepatitisBElements."Hepatitis B Primary Series Doses Administered to Patient".onOrBefore(Today) /* @internal: Number of Hepatitis B Primary Series doses */ define "Number of Hepatitis B Primary Series Doses Administered": Count("Hepatitis B Primary Series Doses Administered to Patient") /* @input: Hepatitis B birth dose was not administered @pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Birth dose" = TRUE) = 0 @code: Hepatitis B birth dose was not administered-117 @decision: IMMZ.D2.DT.Hepatitis B.Birth dose: Birth dose administration */ define "Hepatitis B birth dose was not administered": "Number of Hepatitis B Dose 0 Doses Administered" = 0 /* @input: Client's age is less than {Member States defined upper limit} @pseudocode: Today's date − "Date of birth" ' at line 299 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-0c6b3849-0b8d-4640-bd9e-c192686bdb16.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTHepatitisBEncounterElements */ library IMMZD2DTHepatitisBEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTHepatitisBElements called HepatitisBElements parameter Today Date default Today() parameter EncounterId String parameter HepBBirthDoseAgeLimitDays Integer default 1 parameter HepBLowerLimitWeeks Integer default 4 context Patient /* @internal: Hepatitis B containing Doses Administered to Patient */ define "Hepatitis B Doses Administered to Patient": HepatitisBElements."Hepatitis B Doses Administered to Patient".onOrBefore(Today) /* @internal: Hepatitis B containing Doses Administered to Patient that are in the Primary series */ define "Hepatitis B Primary Series Doses Administered to Patient": HepatitisBElements."Hepatitis B Primary Series Doses Administered to Patient".onOrBefore(Today) /* @internal: Number of Hepatitis B Primary Series doses */ define "Number of Hepatitis B Primary Series Doses Administered": Count("Hepatitis B Primary Series Doses Administered to Patient") /* @input: Hepatitis B birth dose was not administered @pseudocode: Count of vaccines administered (where "Vaccine type" = "Hepatitis B-containing vaccines" and "Birth dose" = TRUE) = 0 @code: Hepatitis B birth dose was not administered-117 @decision: IMMZ.D2.DT.Hepatitis B.Birth dose: Birth dose administration */ define "Hepatitis B birth dose was not administered": "Number of Hepatitis B Dose 0 Doses Administered" = 0 /* @input: Client's age is less than {Member States defined upper limit} @pseudocode: Today's date − "Date of birth" ' at line 299 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for Hepatitis B used throughout th
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

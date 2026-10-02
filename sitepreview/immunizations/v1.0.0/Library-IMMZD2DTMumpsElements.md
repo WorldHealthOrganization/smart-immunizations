@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTMumpsElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTMumpsElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTMumpsElements |
 
  
 This library defines context-independent elements for Mumps used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-23b619e3-289c-4c65-8f65-c0d4c914bbeb.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTMumpsElements */ library IMMZD2DTMumpsElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Mumps containing Doses Administered to Patient */ define "Mumps Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Mumps-containing vaccines" /* @internal: Mumps containing Doses Administered to Patient that are in the Primary series */ define "Mumps Primary Series Doses Administered to Patient": "Mumps Doses Administered to Patient".seriesPrimary() /* @internal: Number of Mumps Primary Series doses */ define "Number of Mumps Primary Series Doses Administered": Count("Mumps Primary Series Doses Administered to Patient") /* @input: Client's age is less than 12 months @pseudocode: Today's date − "Date of birth" ' at line 238 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-9cbbf34a-926f-4fda-9f8e-e9f036ee446a.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTMumpsElements */ library IMMZD2DTMumpsElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Mumps containing Doses Administered to Patient */ define "Mumps Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Mumps-containing vaccines" /* @internal: Mumps containing Doses Administered to Patient that are in the Primary series */ define "Mumps Primary Series Doses Administered to Patient": "Mumps Doses Administered to Patient".seriesPrimary() /* @internal: Number of Mumps Primary Series doses */ define "Number of Mumps Primary Series Doses Administered": Count("Mumps Primary Series Doses Administered to Patient") /* @input: Client's age is less than 12 months @pseudocode: Today's date − "Date of birth" ' at line 238 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for Mumps used throughout the 
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

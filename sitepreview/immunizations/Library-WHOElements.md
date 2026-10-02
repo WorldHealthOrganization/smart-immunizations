@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/WHOElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:WHOElements |
+| Draft as of 2026-10-02 | *Computable Name*:WHOElements |
 
  
 This library defines context-independent elements used throughout WHO SMART Guidelines content 
@@ -24,7 +24,7 @@ This library defines context-independent elements used throughout WHO SMART Guid
 * * **Content: **application/elm+xml: ````Encoded data (13588 characters)````: **Status: **
   * ?: draft
 * * **Content: **application/elm+xml: ````Encoded data (13588 characters)````: **Date: **
-  * ?: 2026-10-01 12:12:05+0000
+  * ?: 2026-10-02 09:52:12+0000
 * * **Content: **application/elm+xml: ````Encoded data (13588 characters)````: **Publisher: **
   * ?: WHO
 * * **Content: **application/elm+xml: ````Encoded data (13588 characters)````: **Description: **
@@ -60,7 +60,7 @@ This library defines context-independent elements used throughout WHO SMART Guid
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

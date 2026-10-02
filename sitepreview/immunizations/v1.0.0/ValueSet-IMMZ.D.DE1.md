@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZ.D.DE1 | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZ_D_DE1 |
+| Active as of 2026-10-02 | *Computable Name*:IMMZ_D_DE1 |
 
  
 ValueSet for Immunization event status for IMMZ.D.DE1 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZ_D_DE1",
   "title" : "IMMZ.D.DE1 ValueSet for Immunization event status",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

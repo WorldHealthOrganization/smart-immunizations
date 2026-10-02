@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/StructureDefinition/IMMZTypeOfDose | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZTypeOfDose |
+| Active as of 2026-10-02 | *Computable Name*:IMMZTypeOfDose |
 
 The type of dose in a series that the client received
 
@@ -48,7 +48,7 @@ Other representations of profile: [CSV](StructureDefinition-IMMZTypeOfDose.csv),
   "title" : "Immunization Type of Dose",
   "status" : "active",
   "experimental" : false,
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

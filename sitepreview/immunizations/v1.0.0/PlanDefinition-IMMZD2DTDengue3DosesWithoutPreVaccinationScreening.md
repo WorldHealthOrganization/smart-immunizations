@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/PlanDefinition/IMMZD2DTDengue3DosesWithoutPreVaccinationScreening | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTDengue3DosesWithoutPreVaccinationScreening |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTDengue3DosesWithoutPreVaccinationScreening |
 
  
 IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening CYD-TDV (Dengvaxia), 3-dose schedule without pre-vaccination screening [when pre-vaccination screening is not feasible and in areas with recent documentation of seroprevalence rates of at least 80% by age 9 years] 
@@ -24,7 +24,7 @@ IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening CYD-TDV (Dengvaxia),
 * **Actions: **: **Status: **
   * : draft
 * **Actions: **: **Date: **
-  * : 2026-10-01 12:00:06+0000
+  * : 2026-10-02 09:40:20+0000
 * **Actions: **: **Publisher: **
   * : WHO
 * **Actions: **: **Description: **
@@ -917,7 +917,7 @@ IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening CYD-TDV (Dengvaxia),
   },
   "status" : "draft",
   "experimental" : false,
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

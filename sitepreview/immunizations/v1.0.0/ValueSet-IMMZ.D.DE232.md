@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZ.D.DE232 | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZ_D_DE232 |
+| Active as of 2026-10-02 | *Computable Name*:IMMZ_D_DE232 |
 
  
 ValueSet for Type of meningococcal dose for IMMZ.D.DE232 
@@ -78,7 +78,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZ_D_DE232",
   "title" : "IMMZ.D.DE232 ValueSet for Type of meningococcal dose",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

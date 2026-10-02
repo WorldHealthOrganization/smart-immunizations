@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZ.D.DE19 | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZ_D_DE19 |
+| Active as of 2026-10-02 | *Computable Name*:IMMZ_D_DE19 |
 
  
 ValueSet for Vaccine type for IMMZ.D.DE19 
@@ -51,7 +51,7 @@ This value set is not used here; it may be used elsewhere (e.g. specifications a
   "name" : "IMMZ_D_DE19",
   "title" : "IMMZ.D.DE19 ValueSet for Vaccine type",
   "status" : "active",
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

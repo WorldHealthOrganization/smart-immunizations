@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTDTPElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTDTPElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTDTPElements |
 
  
 This library defines context-independent elements for DTP used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-e798ffd8-c78f-414e-a631-18ef4473fee6.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTDTPElements */ library IMMZD2DTDTPElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: DTP containing Doses Administered to Patient */ define "DTP Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."DTP-containing vaccines" /* @internal: DTP containing Doses Administered to Patient that are in the Primary series */ define "DTP Primary Series Doses Administered to Patient": "DTP Doses Administered to Patient".seriesPrimary() /* @internal: Number of DTP Primary Series doses */ define "Number of DTP Primary Series Doses Administered": Count("DTP Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 weeks @pseudocode: Today's date − "Date of birth" ' at line 304 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-cc86feab-75fd-4f8f-bb74-3f5f22bde19f.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTDTPElements */ library IMMZD2DTDTPElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: DTP containing Doses Administered to Patient */ define "DTP Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."DTP-containing vaccines" /* @internal: DTP containing Doses Administered to Patient that are in the Primary series */ define "DTP Primary Series Doses Administered to Patient": "DTP Doses Administered to Patient".seriesPrimary() /* @internal: Number of DTP Primary Series doses */ define "Number of DTP Primary Series Doses Administered": Count("DTP Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 weeks @pseudocode: Today's date − "Date of birth" ' at line 304 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for DTP used throughout the Im
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

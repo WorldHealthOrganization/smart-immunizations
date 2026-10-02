@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTMeaslesEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTMeaslesEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTMeaslesEncounterElements |
 
  
 This library defines encounter-based elements for Measles used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-3dc5368c-3e51-4a0b-813b-0ad902296948.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTMeaslesEncounterElements */ library IMMZD2DTMeaslesEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTMeaslesElements called MeaslesElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Measles containing Doses Administered to Patient */ define "Measles Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Measles-containing vaccines" /* @internal: Measles containing Doses Administered to Patient that are in the Primary series */ define "Measles Primary Series Doses Administered to Patient": "Measles Doses Administered to Patient".seriesPrimary() /* @internal: Number of Measles Primary Series doses */ define "Number of Measles Primary Series Doses Administered": Count("Measles Primary Series Doses Administered to Patient") /* @input: Client's age is less than 9 months @pseudocode: Today's date − "Date of birth" ' at line 289 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-b20aa11f-c7bb-4d8a-b48d-6313d026c276.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTMeaslesEncounterElements */ library IMMZD2DTMeaslesEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTMeaslesElements called MeaslesElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: Measles containing Doses Administered to Patient */ define "Measles Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."Measles-containing vaccines" /* @internal: Measles containing Doses Administered to Patient that are in the Primary series */ define "Measles Primary Series Doses Administered to Patient": "Measles Doses Administered to Patient".seriesPrimary() /* @internal: Number of Measles Primary Series doses */ define "Number of Measles Primary Series Doses Administered": Count("Measles Primary Series Doses Administered to Patient") /* @input: Client's age is less than 9 months @pseudocode: Today's date − "Date of birth" ' at line 289 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for Measles used throughout the Im
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/PlanDefinition/IMMZD2DTMeaslesLowTransmission | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTMeaslesLowTransmission |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTMeaslesLowTransmission |
 
  
 IMMZ.D2.DT.Measles.Low transmission Countries with low levels of measles transmission (countries that provide first dose of measles-containing vaccine (MCV) at 12 months and second dose of MCV at 15 months) 
@@ -24,7 +24,7 @@ IMMZ.D2.DT.Measles.Low transmission Countries with low levels of measles transmi
 * **Actions: **: **Status: **
   * : draft
 * **Actions: **: **Date: **
-  * : 2026-10-01 12:12:05+0000
+  * : 2026-10-02 09:52:12+0000
 * **Actions: **: **Publisher: **
   * : WHO
 * **Actions: **: **Description: **
@@ -1063,7 +1063,7 @@ IMMZ.D2.DT.Measles.Low transmission Countries with low levels of measles transmi
   },
   "status" : "draft",
   "experimental" : false,
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD18SRubellaHighIncidenceLogic | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD18SRubellaHighIncidenceLogic |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD18SRubellaHighIncidenceLogic |
 
  
 This library defines decision support logic for the IMMZ.D18.S.Rubella.High incidence schedule table in the Immunization CPG 
@@ -24,7 +24,7 @@ This library defines decision support logic for the IMMZ.D18.S.Rubella.High inci
 * * **Content: **application/elm+xml: ````Encoded data (36220 characters)````: **Status: **
   * ?: draft
 * * **Content: **application/elm+xml: ````Encoded data (36220 characters)````: **Date: **
-  * ?: 2026-10-01 12:12:05+0000
+  * ?: 2026-10-02 09:52:12+0000
 * * **Content: **application/elm+xml: ````Encoded data (36220 characters)````: **Publisher: **
   * ?: WHO
 * * **Content: **application/elm+xml: ````Encoded data (36220 characters)````: **Description: **
@@ -60,7 +60,7 @@ This library defines decision support logic for the IMMZ.D18.S.Rubella.High inci
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

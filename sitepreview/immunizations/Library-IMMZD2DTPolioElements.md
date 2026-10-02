@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTPolioElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTPolioElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTPolioElements |
 
  
 This library defines context-independent elements for Polio used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-9be2e199-5c14-458a-9ffd-2980ac954c48.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTPolioElements */ library IMMZD2DTPolioElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Polio containing Doses Administered to Patient */ define "Polio Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Poliovirus-containing vaccines" /* @internal: Polio containing Doses Administered to Patient that are in the Primary series */ define "Polio Primary Series Doses Administered to Patient": "Polio Doses Administered to Patient".seriesPrimary() /* @internal: Number of Polio Primary Series doses */ define "Number of Polio Primary Series Doses Administered": Count("Polio Primary Series Doses Administered to Patient") /* @input: bOPV birth dose (a zero dose) was not administered @pseudocode: Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Dose 0" AND "Birth dose" = TRUE) = 0 @code: bOPV birth dose (a zero dose) was not administered-146 @decision: IMMZ.D2.DT.Polio.Birth dose: Birth dose administration as part of "bivalent oral polio vaccine (bOPV) plus inactivated polio vaccine (IPV)" schedule (in countries that are poliomyelitis (polio)-endemic countries or at high risk of importation and subsequent spread of polio that follow the combined bOPV–IPV schedule) */ define "bOPV birth dose (a zero dose) was not administered": "Number of Polio Dose 0 Doses Administered" = 0 /* @input: Client's age is less than 1 week @pseudocode: Today's date − "Date of birth" ' at line 337 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-d66d14e2-da1d-40ea-9862-fd3c8a2c13d2.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTPolioElements */ library IMMZD2DTPolioElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Polio containing Doses Administered to Patient */ define "Polio Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Poliovirus-containing vaccines" /* @internal: Polio containing Doses Administered to Patient that are in the Primary series */ define "Polio Primary Series Doses Administered to Patient": "Polio Doses Administered to Patient".seriesPrimary() /* @internal: Number of Polio Primary Series doses */ define "Number of Polio Primary Series Doses Administered": Count("Polio Primary Series Doses Administered to Patient") /* @input: bOPV birth dose (a zero dose) was not administered @pseudocode: Count of vaccines administered (where "Vaccine type" = "Poliovirus-containing vaccines" and "Type of dose" = "Dose 0" AND "Birth dose" = TRUE) = 0 @code: bOPV birth dose (a zero dose) was not administered-146 @decision: IMMZ.D2.DT.Polio.Birth dose: Birth dose administration as part of "bivalent oral polio vaccine (bOPV) plus inactivated polio vaccine (IPV)" schedule (in countries that are poliomyelitis (polio)-endemic countries or at high risk of importation and subsequent spread of polio that follow the combined bOPV–IPV schedule) */ define "bOPV birth dose (a zero dose) was not administered": "Number of Polio Dose 0 Doses Administered" = 0 /* @input: Client's age is less than 1 week @pseudocode: Today's date − "Date of birth" ' at line 337 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for Polio used throughout the 
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

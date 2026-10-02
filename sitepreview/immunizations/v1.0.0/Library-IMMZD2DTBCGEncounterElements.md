@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTBCGEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTBCGEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTBCGEncounterElements |
 
  
 This library defines encounter-based elements for BCG used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-09962d01-c71b-4b9a-bef5-e38bfe892559.html): Unable to Parse HTML - node 'code' has unexpected content '=' (last text = ' /* * Library: IMMZD2DTBCGEncounterElements */ library IMMZD2DTBCGEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTBCGElements called BCGElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: BCG containing Doses Administered to Patient */ define "BCG Doses Administered to Patient": BCGElements."BCG Doses Administered to Patient".onOrBefore(Today) /* @internal: BCG containing Doses Administered to Patient that are in the Primary series */ define "BCG Primary Series Doses Administered to Patient": BCGElements."BCG Primary Series Doses Administered to Patient".onOrBefore(Today) /* @internal: Number of BCG Primary Series doses */ define "Number of BCG Primary Series Doses Administered": Count("BCG Primary Series Doses Administered to Patient") /* @input: No BCG primary series dose was administered @pseudocode: Count of vaccines administered (where "Vaccine type" = "BCG vaccines" and "Type of dose" = "Primary series") = 0 @code: No BCG primary series dose was administered-112 @decision: IMMZ.D2.DT.BCG */ define "No BCG primary series dose was administered": "Number of BCG Primary Series Doses Administered" = 0 /* @input: Client's age is less than or equal to 28 days @pseudocode: Today's date − "Date of birth" ≤ 28 days @code: Client's age is less than or equal to 28 days-40 @decision: IMMZ.D2.DT.BCG */ define "Client's age is less than or equal to 28 days": Encounter."Current Patient Age In Days" ' at line 278 column 44**
+**Exception parsing generated Narrative (see /tmp/liquid-f0b4254a-4864-489d-8341-cc4ef4a05b45.html): Unable to Parse HTML - node 'code' has unexpected content '=' (last text = ' /* * Library: IMMZD2DTBCGEncounterElements */ library IMMZD2DTBCGEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTBCGElements called BCGElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: BCG containing Doses Administered to Patient */ define "BCG Doses Administered to Patient": BCGElements."BCG Doses Administered to Patient".onOrBefore(Today) /* @internal: BCG containing Doses Administered to Patient that are in the Primary series */ define "BCG Primary Series Doses Administered to Patient": BCGElements."BCG Primary Series Doses Administered to Patient".onOrBefore(Today) /* @internal: Number of BCG Primary Series doses */ define "Number of BCG Primary Series Doses Administered": Count("BCG Primary Series Doses Administered to Patient") /* @input: No BCG primary series dose was administered @pseudocode: Count of vaccines administered (where "Vaccine type" = "BCG vaccines" and "Type of dose" = "Primary series") = 0 @code: No BCG primary series dose was administered-112 @decision: IMMZ.D2.DT.BCG */ define "No BCG primary series dose was administered": "Number of BCG Primary Series Doses Administered" = 0 /* @input: Client's age is less than or equal to 28 days @pseudocode: Today's date − "Date of birth" ≤ 28 days @code: Client's age is less than or equal to 28 days-40 @decision: IMMZ.D2.DT.BCG */ define "Client's age is less than or equal to 28 days": Encounter."Current Patient Age In Days" ' at line 278 column 44**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for BCG used throughout the Immuni
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

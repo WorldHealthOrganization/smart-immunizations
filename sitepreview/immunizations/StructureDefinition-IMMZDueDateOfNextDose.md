@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/StructureDefinition/IMMZDueDateOfNextDose | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZDueDateOfNextDose |
+| Active as of 2026-10-02 | *Computable Name*:IMMZDueDateOfNextDose |
 
 The service delivery location (location name, city, municipality, town or village) where the vaccine administration occurred
 
@@ -48,7 +48,7 @@ Other representations of profile: [CSV](StructureDefinition-IMMZDueDateOfNextDos
   "title" : "Immunization Due Date of Next Dose",
   "status" : "active",
   "experimental" : false,
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

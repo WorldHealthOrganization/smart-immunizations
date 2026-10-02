@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTTyphoidElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTTyphoidElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTTyphoidElements |
 
  
 This library defines context-independent elements for Typhoid used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-f3ba583d-898f-4cd8-bd27-423a97eb694f.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTTyphoidElements */ library IMMZD2DTTyphoidElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Typhoid containing Doses Administered to Patient */ define "Typhoid Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Typhoid vaccines" /* @internal: Typhoid containing Doses Administered to Patient that are in the Primary series */ define "Typhoid Primary Series Doses Administered to Patient": "Typhoid Doses Administered to Patient".seriesPrimary() /* @internal: Number of Typhoid Primary Series doses */ define "Number of Typhoid Primary Series Doses Administered": Count("Typhoid Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 250 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-193738ec-22b0-47ef-baf7-6ffa1d6acf93.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTTyphoidElements */ library IMMZD2DTTyphoidElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Typhoid containing Doses Administered to Patient */ define "Typhoid Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Typhoid vaccines" /* @internal: Typhoid containing Doses Administered to Patient that are in the Primary series */ define "Typhoid Primary Series Doses Administered to Patient": "Typhoid Doses Administered to Patient".seriesPrimary() /* @internal: Number of Typhoid Primary Series doses */ define "Number of Typhoid Primary Series Doses Administered": Count("Typhoid Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 250 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for Typhoid used throughout th
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

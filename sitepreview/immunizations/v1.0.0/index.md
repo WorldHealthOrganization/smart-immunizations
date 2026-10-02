@@ -8,7 +8,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ImplementationGuide/smart.who.int.immunizations | *Version*:1.0.0 |
-| Active as of 2024-12-06 | *Computable Name*:Immunizations |
+| Active as of 2026-10-02 | *Computable Name*:Immunizations |
 
 This WHO Implementation Guide for Immunizations details how to use Health Level 7 (HL7) Fast Healthcare Interoperability Resources (FHIR) for consistent digital representation of Immunization services.
 
@@ -116,7 +116,7 @@ This publication includes IP covered under the following statements.
   "name" : "Immunizations",
   "title" : "WHO Immunization Implementation Guide",
   "status" : "active",
-  "date" : "2024-12-06",
+  "date" : "2026-10-02",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",
@@ -206,7 +206,7 @@ This publication includes IP covered under the following statements.
       },
       {
         "url" : "value",
-        "valueString" : "ci-build"
+        "valueString" : "release"
       }],
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
     },
@@ -584,7 +584,7 @@ This publication includes IP covered under the following statements.
       },
       {
         "url" : "value",
-        "valueString" : "ci-build"
+        "valueString" : "release"
       }],
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
     },

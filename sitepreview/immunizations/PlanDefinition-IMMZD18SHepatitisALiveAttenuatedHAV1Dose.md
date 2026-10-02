@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/PlanDefinition/IMMZD18SHepatitisALiveAttenuatedHAV1Dose | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD18SHepatitisALiveAttenuatedHAV1Dose |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD18SHepatitisALiveAttenuatedHAV1Dose |
 
  
 IMMZ.D18.S.Hepatitis A.Live attenuated HAV 1-dose schedule Live attenuated hepatitis A virus (HAV), 1 dose schedule 
@@ -24,7 +24,7 @@ IMMZ.D18.S.Hepatitis A.Live attenuated HAV 1-dose schedule Live attenuated hepat
 * **Actions: **: **Status: **
   * : draft
 * **Actions: **: **Date: **
-  * : 2026-10-01 12:12:05+0000
+  * : 2026-10-02 09:52:12+0000
 * **Actions: **: **Publisher: **
   * : WHO
 * **Actions: **: **Description: **
@@ -544,7 +544,7 @@ IMMZ.D18.S.Hepatitis A.Live attenuated HAV 1-dose schedule Live attenuated hepat
   },
   "status" : "draft",
   "experimental" : false,
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

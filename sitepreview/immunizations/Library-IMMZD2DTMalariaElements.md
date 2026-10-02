@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTMalariaElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTMalariaElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTMalariaElements |
 
  
 This library defines context-independent elements for Malaria used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-2cc84f98-81ce-46ac-a651-c6703f5bd659.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTMalariaElements */ library IMMZD2DTMalariaElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Malaria containing Doses Administered to Patient */ define "Malaria Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Malaria vaccines" /* @internal: Malaria containing Doses Administered to Patient that are in the Primary series */ define "Malaria Primary Series Doses Administered to Patient": "Malaria Doses Administered to Patient".seriesPrimary() /* @internal: Number of Malaria Primary Series doses */ define "Number of Malaria Primary Series Doses Administered": Count("Malaria Primary Series Doses Administered to Patient") /* @input: Client's age is less than 5 months @pseudocode: Today's date − "Date of birth" ' at line 238 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-62f5baf8-6d89-4761-9107-4d2542a3642c.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTMalariaElements */ library IMMZD2DTMalariaElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZElements called Elements context Patient /* @internal: Malaria containing Doses Administered to Patient */ define "Malaria Doses Administered to Patient": Elements."Doses Administered to Patient" I where I.vaccineCode in Concepts."Malaria vaccines" /* @internal: Malaria containing Doses Administered to Patient that are in the Primary series */ define "Malaria Primary Series Doses Administered to Patient": "Malaria Doses Administered to Patient".seriesPrimary() /* @internal: Number of Malaria Primary Series doses */ define "Number of Malaria Primary Series Doses Administered": Count("Malaria Primary Series Doses Administered to Patient") /* @input: Client's age is less than 5 months @pseudocode: Today's date − "Date of birth" ' at line 238 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines context-independent elements for Malaria used throughout th
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

@@ -10,7 +10,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD2DTHib2DosesWithBoosterDoseVS | *Version*:1.0.0 |
-| Active as of 2026-10-01 | *Computable Name*:IMMZD2DTHib2DosesWithBoosterDoseVS |
+| Active as of 2026-10-02 | *Computable Name*:IMMZD2DTHib2DosesWithBoosterDoseVS |
 
  
 ValueSet IMMZD2DTHib2DosesWithBoosterDose for IMMZ.D2.DT.Hib.2 doses with booster dose. Business rule: Determine if the client is due for a Haemophilus influenzae type b (Hib) vaccination according to the national immunization schedule Trigger: IMMZ.D2 Determine required vaccination(s) if any Table: 2 primary doses with a booster dose (2p+1) 
@@ -77,7 +77,7 @@ This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMM
   "name" : "IMMZD2DTHib2DosesWithBoosterDoseVS",
   "title" : "IMMZD2DTHib2DosesWithBoosterDose ValueSet for Decision Table",
   "status" : "active",
-  "date" : "2026-10-01T12:12:05+00:00",
+  "date" : "2026-10-02T09:52:12+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",

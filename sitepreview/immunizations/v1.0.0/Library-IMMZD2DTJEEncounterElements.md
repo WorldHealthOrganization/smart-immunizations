@@ -10,12 +10,12 @@
 | | |
 | :--- | :--- |
 | *Official URL*:http://smart.who.int/immunizations/Library/IMMZD2DTJEEncounterElements | *Version*:1.0.0 |
-| Draft as of 2026-10-01 | *Computable Name*:IMMZD2DTJEEncounterElements |
+| Draft as of 2026-10-02 | *Computable Name*:IMMZD2DTJEEncounterElements |
 
  
 This library defines encounter-based elements for JE used throughout the Immunization CPG 
 
-**Exception parsing generated Narrative (see /tmp/liquid-3bcf1808-9387-4403-b527-d59db3bd3ef0.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTJEEncounterElements */ library IMMZD2DTJEEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTJEElements called JEElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: JE containing Doses Administered to Patient */ define "JE Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."JE vaccines" /* @internal: JE containing Doses Administered to Patient that are in the Primary series */ define "JE Primary Series Doses Administered to Patient": "JE Doses Administered to Patient".seriesPrimary() /* @internal: Number of JE Primary Series doses */ define "Number of JE Primary Series Doses Administered": Count("JE Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 258 column 46**
+**Exception parsing generated Narrative (see /tmp/liquid-a88ce6d8-74c2-411f-8b04-c9a8c6a97060.html): Unable to Parse HTML - node 'code' has unexpected content ' ' (last text = ' /* * Library: IMMZD2DTJEEncounterElements */ library IMMZD2DTJEEncounterElements using FHIR version '4.0.1' include FHIRHelpers version '4.0.1' include WHOConcepts include WHOCommon called WC include WHOElements called WE include IMMZCommon called Common include IMMZConcepts called Concepts include IMMZEncounterElements called Encounter include IMMZD2DTJEElements called JEElements parameter Today Date default Today() parameter EncounterId String context Patient /* @internal: JE containing Doses Administered to Patient */ define "JE Doses Administered to Patient": Encounter."Doses Administered to Patient" I where I.vaccineCode in Concepts."JE vaccines" /* @internal: JE containing Doses Administered to Patient that are in the Primary series */ define "JE Primary Series Doses Administered to Patient": "JE Doses Administered to Patient".seriesPrimary() /* @internal: Number of JE Primary Series doses */ define "Number of JE Primary Series Doses Administered": Count("JE Primary Series Doses Administered to Patient") /* @input: Client's age is less than 6 months @pseudocode: Today's date − "Date of birth" ' at line 258 column 46**
 
 
 
@@ -47,7 +47,7 @@ This library defines encounter-based elements for JE used throughout the Immuniz
       "code" : "logic-library"
     }]
   },
-  "date" : "2026-10-01T12:00:06+00:00",
+  "date" : "2026-10-02T09:40:20+00:00",
   "publisher" : "WHO",
   "contact" : [{
     "name" : "WHO",
