@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="73">
+         <a:s>/*
+ * Library: IMMZ.IND.50
+ * Dropout Rate of DTP1 to DTP3 (Individuals) 
+ * Indicates the number of individuals which have dropped out of the DTP containing vaccine protocol (i.e. children which have received DTP1 but not DTP3).
+
+This indicator works by counting the number of individuals who have received the first dose of DTP (dose 1) containing vaccine but not the last dose of DTP (are past-due for dose 3) with the children who have completed the vaccination protocol.
+ * 
+ * Numerator: Number of children who have received DTP1 (numerator) minus number of children who have not received DTP dose 3 and are past due (numerator exclusion)  
+ * Numerator Computation: Numerator: COUNT immunization events WHERE administered product is DTP containing vaccine AND dose sequence = 1 before reporting period and EXISTS immunization recommendation WHERE product is DTP AND dose sequence = 3 AND due date during reporting period.
+Numerator Exclusion: COUNT immunization recommendations WHERE recommended product is DTP containing vaccine AND dose sequence = 3 AND due date during reporting period AND NOT EXISTS Immunization event where administered product is DTP containing vaccine AND dose sequence = 3
+ * Denominator: Number of children who have received DTP containing vaccine dose 1
+ * Denominator Computation: COUNT immunization events WHERE administered product is DTP containing vaccine AND dose sequence = 1 AND EXISTS immunization recommendation WHERE product is DTP and dose sequence = 3 and due date during reporting period.
+ * 
+ * Disaggregation:
+ *   - Geographic Region
+ * 
+ * References: WHO Immunization Facility Analysis Guide (1)
+ */
+library IMMZIND50</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZIND50" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="23:1-23:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="24:1-24:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="25:1-25:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="26:1-26:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="27:1-27:33" localIdentifier="IMMZCon" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="28:1-28:45" localIdentifier="IMMZIndCom" path="http://fhir.org/guides/who/smart-immunization/IMMZIndicatorCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZIndicatorCommon</a:s>
+               </a:s>
+               <a:s> called IMMZIndCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="7" locator="29:1-29:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="7">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="8" locator="30:1-30:28" localIdentifier="FC" path="http://fhir.org/guides/who/smart-immunization/FHIRCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="8">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRCommon</a:s>
+               </a:s>
+               <a:s> called FC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="11" locator="32:1-32:45" name="Measurement Period" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="11">
+               <a:s>// End Skeleton CQL
+parameter &quot;Measurement Period&quot; </a:s>
+               <a:s r="10">
+                  <a:s>Interval&lt;</a:s>
+                  <a:s r="9">
+                     <a:s>Date</a:s>
+                  </a:s>
+                  <a:s>></a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <parameterTypeSpecifier localId="10" locator="32:32-32:45" xsi:type="IntervalTypeSpecifier">
+            <pointType localId="9" locator="32:41-32:44" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+         </parameterTypeSpecifier>
+      </def>
+   </parameters>
+   <statements>
+      <def locator="33:1-33:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="33:1-33:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="51" locator="38:1-54:2" name="Patient Should Complete DTP Series During Measurement Period" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="51">
+               <a:s>/**
+ * Patient should be completing DTP during measurement period
+ */
+define &quot;Patient Should Complete DTP Series During Measurement Period&quot;:
+	</a:s>
+               <a:s r="50">
+                  <a:s r="21">
+                     <a:s>exists</a:s>
+                     <a:s r="20">
+                        <a:s>(
+		</a:s>
+                        <a:s r="20">
+                           <a:s>
+                              <a:s r="13">
+                                 <a:s r="12">
+                                    <a:s>
+                                       <a:s>IMMZCom.&quot;DTP Doses Administered to Patient&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> I</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> 
+		</a:s>
+                           <a:s r="19">
+                              <a:s>where 
+			</a:s>
+                              <a:s r="19">
+                                 <a:s r="17">
+                                    <a:s r="16">
+                                       <a:s>(</a:s>
+                                       <a:s r="16">
+                                          <a:s>singleton from </a:s>
+                                          <a:s r="15">
+                                             <a:s r="14">
+                                                <a:s>I</a:s>
+                                             </a:s>
+                                             <a:s>.</a:s>
+                                             <a:s r="15">
+                                                <a:s>protocolApplied</a:s>
+                                             </a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s>)</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="17">
+                                       <a:s>doseNumber</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s r="18"> = 1</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+	)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and 
+	</a:s>
+                  <a:s r="49">
+                     <a:s>exists</a:s>
+                     <a:s r="48">
+                        <a:s>(
+		</a:s>
+                        <a:s r="48">
+                           <a:s>
+                              <a:s r="23">
+                                 <a:s r="22">
+                                    <a:s r="22">
+                                       <a:s>[ImmunizationRecommendation]</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> IR</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> 
+		</a:s>
+                           <a:s r="47">
+                              <a:s>where 
+			</a:s>
+                              <a:s r="47">
+                                 <a:s>exists</a:s>
+                                 <a:s r="46">
+                                    <a:s>(
+				</a:s>
+                                    <a:s r="46">
+                                       <a:s>
+                                          <a:s r="25">
+                                             <a:s r="24">
+                                                <a:s>
+                                                   <a:s>IR.recommendation</a:s>
+                                                </a:s>
+                                             </a:s>
+                                             <a:s> RC</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> </a:s>
+                                       <a:s r="45">
+                                          <a:s>where
+				</a:s>
+                                          <a:s r="45">
+                                             <a:s r="39">
+                                                <a:s r="34">
+                                                   <a:s>exists</a:s>
+                                                   <a:s r="33">
+                                                      <a:s>(</a:s>
+                                                      <a:s r="33">
+                                                         <a:s>
+                                                            <a:s r="27">
+                                                               <a:s r="26">
+                                                                  <a:s>
+                                                                     <a:s>RC.dateCriterion</a:s>
+                                                                  </a:s>
+                                                               </a:s>
+                                                               <a:s> DC</a:s>
+                                                            </a:s>
+                                                         </a:s>
+                                                         <a:s> </a:s>
+                                                         <a:s r="32">
+                                                            <a:s>where </a:s>
+                                                            <a:s r="32">
+                                                               <a:s r="30">
+                                                                  <a:s>date from </a:s>
+                                                                  <a:s r="29">
+                                                                     <a:s r="28">
+                                                                        <a:s>DC</a:s>
+                                                                     </a:s>
+                                                                     <a:s>.</a:s>
+                                                                     <a:s r="29">
+                                                                        <a:s>value</a:s>
+                                                                     </a:s>
+                                                                  </a:s>
+                                                               </a:s>
+                                                               <a:s r="32"> during </a:s>
+                                                               <a:s r="31">
+                                                                  <a:s>&quot;Measurement Period&quot;</a:s>
+                                                               </a:s>
+                                                            </a:s>
+                                                         </a:s>
+                                                      </a:s>
+                                                      <a:s>)</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                                <a:s>
+				and </a:s>
+                                                <a:s r="38">
+                                                   <a:s r="36">
+                                                      <a:s r="35">
+                                                         <a:s>RC</a:s>
+                                                      </a:s>
+                                                      <a:s>.</a:s>
+                                                      <a:s r="36">
+                                                         <a:s>doseNumber</a:s>
+                                                      </a:s>
+                                                   </a:s>
+                                                   <a:s r="37"> = 3</a:s>
+                                                </a:s>
+                                             </a:s>
+                                             <a:s>
+				and </a:s>
+                                             <a:s r="44">
+                                                <a:s r="41">
+                                                   <a:s r="40">
+                                                      <a:s>RC</a:s>
+                                                   </a:s>
+                                                   <a:s>.</a:s>
+                                                   <a:s r="41">
+                                                      <a:s>vaccineCode</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                                <a:s> in </a:s>
+                                                <a:s r="43">
+                                                   <a:s r="42">
+                                                      <a:s>IMMZc</a:s>
+                                                   </a:s>
+                                                   <a:s>.</a:s>
+                                                   <a:s r="43">
+                                                      <a:s>&quot;DTP Vaccine&quot;</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                             </a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>
+		)</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+	)</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="50" locator="39:2-54:2" xsi:type="And">
+            <operand localId="21" locator="39:2-43:2" xsi:type="Exists">
+               <operand localId="20" locator="39:8-43:2" xsi:type="Query">
+                  <source localId="13" locator="40:3-40:47" alias="I">
+                     <expression localId="12" locator="40:3-40:45" name="DTP Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </source>
+                  <where localId="19" locator="41:3-42:52" xsi:type="Equal">
+                     <operand xsi:type="ToInteger">
+                        <operand localId="17" locator="42:4-42:48" path="doseNumber" xsi:type="Property">
+                           <source localId="16" locator="42:4-42:37" xsi:type="SingletonFrom">
+                              <operand localId="15" locator="42:20-42:36" path="protocolApplied" scope="I" xsi:type="Property"/>
+                           </source>
+                        </operand>
+                     </operand>
+                     <operand localId="18" locator="42:52" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                  </where>
+               </operand>
+            </operand>
+            <operand localId="49" locator="45:2-54:2" xsi:type="Exists">
+               <operand localId="48" locator="45:8-54:2" xsi:type="Query">
+                  <source localId="23" locator="46:3-46:33" alias="IR">
+                     <expression localId="22" locator="46:3-46:30" dataType="fhir:ImmunizationRecommendation" templateId="http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation" xsi:type="Retrieve"/>
+                  </source>
+                  <where localId="47" locator="47:3-53:3" xsi:type="Exists">
+                     <operand localId="46" locator="48:10-53:3" xsi:type="Query">
+                        <source localId="25" locator="49:5-49:24" alias="RC">
+                           <expression localId="24" locator="49:5-49:21" path="recommendation" scope="IR" xsi:type="Property"/>
+                        </source>
+                        <where localId="45" locator="49:26-52:45" xsi:type="And">
+                           <operand localId="39" locator="50:5-51:25" xsi:type="And">
+                              <operand localId="34" locator="50:5-50:84" xsi:type="Exists">
+                                 <operand localId="33" locator="50:11-50:84" xsi:type="Query">
+                                    <source localId="27" locator="50:12-50:30" alias="DC">
+                                       <expression localId="26" locator="50:12-50:27" path="dateCriterion" scope="RC" xsi:type="Property"/>
+                                    </source>
+                                    <where localId="32" locator="50:32-50:83" xsi:type="In">
+                                       <operand localId="30" locator="50:38-50:55" xsi:type="DateFrom">
+                                          <operand name="ToDateTime" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                                             <operand localId="29" locator="50:48-50:55" path="value" scope="DC" xsi:type="Property"/>
+                                          </operand>
+                                       </operand>
+                                       <operand localId="31" locator="50:64-50:83" name="Measurement Period" xsi:type="ParameterRef"/>
+                                    </where>
+                                 </operand>
+                              </operand>
+                              <operand localId="38" locator="51:9-51:25" xsi:type="Equal">
+                                 <operand xsi:type="ToInteger">
+                                    <operand localId="36" locator="51:9-51:21" path="doseNumber" scope="RC" xsi:type="Property"/>
+                                 </operand>
+                                 <operand localId="37" locator="51:25" valueType="t:Integer" value="3" xsi:type="Literal"/>
+                              </operand>
+                           </operand>
+                           <operand localId="44" locator="52:9-52:45" xsi:type="AnyInValueSet">
+                              <codes xsi:type="Query">
+                                 <source alias="X">
+                                    <expression localId="41" locator="52:9-52:22" path="vaccineCode" scope="RC" xsi:type="Property"/>
+                                 </source>
+                                 <return distinct="false">
+                                    <expression name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                                       <operand name="X" xsi:type="AliasRef"/>
+                                    </expression>
+                                 </return>
+                              </codes>
+                              <valueset localId="43" locator="52:27-52:45" name="DTP Vaccine" libraryName="IMMZc"/>
+                           </operand>
+                        </where>
+                     </operand>
+                  </where>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="65" locator="62:1-64:147" name="numerator" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="65">
+               <a:s>/*
+ * Numerator: Number of administrations of DTP1 administered during reporting period minus the number of administrations of DTP3 administered during report period
+ * Numerator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1  during reporting period
+SUBTRACT
+COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 3  during reporting period
+ */
+define &quot;numerator&quot;:
+	</a:s>
+               <a:s r="64">
+                  <a:s r="52">
+                     <a:s>&quot;Patient Should Complete DTP Series During Measurement Period&quot;</a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="63">
+                     <a:s>not </a:s>
+                     <a:s r="62">
+                        <a:s>exists</a:s>
+                        <a:s r="61">
+                           <a:s>(</a:s>
+                           <a:s r="61">
+                              <a:s>
+                                 <a:s r="54">
+                                    <a:s r="53">
+                                       <a:s>
+                                          <a:s>IMMZIndCom.&quot;DTP Doses Administered to Patient During Measurement Period&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> I</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> </a:s>
+                              <a:s r="60">
+                                 <a:s>where </a:s>
+                                 <a:s r="60">
+                                    <a:s r="58">
+                                       <a:s r="57">
+                                          <a:s>(</a:s>
+                                          <a:s r="57">
+                                             <a:s>singleton from </a:s>
+                                             <a:s r="56">
+                                                <a:s r="55">
+                                                   <a:s>I</a:s>
+                                                </a:s>
+                                                <a:s>.</a:s>
+                                                <a:s r="56">
+                                                   <a:s>protocolApplied</a:s>
+                                                </a:s>
+                                             </a:s>
+                                          </a:s>
+                                          <a:s>)</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="58">
+                                          <a:s>doseNumber</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s r="59"> = 3</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="64" locator="63:2-64:147" xsi:type="And">
+            <operand localId="52" locator="63:2-63:63" name="Patient Should Complete DTP Series During Measurement Period" xsi:type="ExpressionRef"/>
+            <operand localId="63" locator="64:6-64:147" xsi:type="Not">
+               <operand localId="62" locator="64:10-64:147" xsi:type="Exists">
+                  <operand localId="61" locator="64:16-64:147" xsi:type="Query">
+                     <source localId="54" locator="64:17-64:90" alias="I">
+                        <expression localId="53" locator="64:17-64:88" name="DTP Doses Administered to Patient During Measurement Period" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+                     </source>
+                     <where localId="60" locator="64:92-64:146" xsi:type="Equal">
+                        <operand xsi:type="ToInteger">
+                           <operand localId="58" locator="64:98-64:142" path="doseNumber" xsi:type="Property">
+                              <source localId="57" locator="64:98-64:131" xsi:type="SingletonFrom">
+                                 <operand localId="56" locator="64:114-64:130" path="protocolApplied" scope="I" xsi:type="Property"/>
+                              </source>
+                           </operand>
+                        </operand>
+                        <operand localId="59" locator="64:146" valueType="t:Integer" value="3" xsi:type="Literal"/>
+                     </where>
+                  </operand>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="67" locator="70:1-71:63" name="denominator" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="67">
+               <a:s>/*
+ * Denominator: Number of doses of DTP1 administered
+ * Denominator Computation: COUNT immunization events WHERE administered product is DTP (IMMZ.A1.DE24) AND dose sequence is 1 before reporting period 
+ */
+define &quot;denominator&quot;:
+	</a:s>
+               <a:s r="66">
+                  <a:s>&quot;Patient Should Complete DTP Series During Measurement Period&quot;</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="66" locator="71:2-71:63" name="Patient Should Complete DTP Series During Measurement Period" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="70" locator="76:1-77:45" name="Geographic Region Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="70">
+               <a:s>/*
+ * Disaggregator: Geographic Region
+ */
+define &quot;Geographic Region Stratifier&quot;:
+	</a:s>
+               <a:s r="69">
+                  <a:s r="68">
+                     <a:s>IMMZIndCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="69">
+                     <a:s>&quot;By Geographic Region Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="69" locator="77:2-77:45" name="By Geographic Region Stratifier" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="73" locator="82:1-83:49" name="Gender Stratifier" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="73">
+               <a:s>/*
+ * Disaggregator: Gender
+ */
+define &quot;Gender Stratifier&quot;:
+	</a:s>
+               <a:s r="72">
+                  <a:s r="71">
+                     <a:s>IMMZIndCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="72">
+                     <a:s>&quot;By Administrative Gender Stratifier&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="72" locator="83:2-83:49" name="By Administrative Gender Stratifier" libraryName="IMMZIndCom" xsi:type="ExpressionRef"/>
+      </def>
+   </statements>
+</library>

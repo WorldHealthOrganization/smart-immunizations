@@ -1,0 +1,1240 @@
+# IMMZ.D18.S.HPV.2-dose schedule - WHO Immunization Implementation Guide v0.2.0
+
+* [**Table of Contents**](toc.md)
+* [**Indices**](indices.md)
+* [**Artifact Index**](artifacts.md)
+* **IMMZ.D18.S.HPV.2-dose schedule**
+
+## PlanDefinition: IMMZ.D18.S.HPV.2-dose schedule 
+
+| | |
+| :--- | :--- |
+| *Official URL*:http://smart.who.int/immunizations/PlanDefinition/IMMZD18SHPV2Doses | *Version*:0.2.0 |
+| Draft as of 2026-03-29 | *Computable Name*:IMMZD18SHPV2Doses |
+
+ 
+IMMZ.D18.S.HPV.2-dose schedule 2-dose schedule 
+
+* **Actions: **: **Url: **
+  * : [IMMZ.D18.S.HPV.2-dose schedule](PlanDefinition-IMMZD18SHPV2Doses.md)
+* **Actions: **: **Version: **
+  * : 0.2.0
+* **Actions: **: **Title: **
+  * : IMMZ.D18.S.HPV.2-dose schedule
+* **Actions: **: **Status: **
+  * : draft
+* **Actions: **: **Date: **
+  * : 2026-03-29 17:23:09+0000
+* **Actions: **: **Publisher: **
+  * : WHO
+* **Actions: **: **Description: **
+  * : IMMZ.D18.S.HPV.2-dose schedule 2-dose schedule
+* **Actions: **: **Knowledge Capability: **
+  * : computable
+* **Actions: **: **Libraries: **
+  * : 
+| |
+| :--- |
+| [IMMZD18SHPV2DosesLogic](Library-IMMZD18SHPV2DosesLogic.md) |
+
+
+
+
+## Resource Content
+
+```json
+{
+  "resourceType" : "PlanDefinition",
+  "id" : "IMMZD18SHPV2Doses",
+  "meta" : {
+    "profile" : ["http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-recommendationdefinition",
+    "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareableplandefinition",
+    "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishableplandefinition"]
+  },
+  "contained" : [{
+    "resourceType" : "Library",
+    "id" : "effective-data-requirements",
+    "extension" : [{
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-directReferenceCode",
+      "valueCoding" : {
+        "system" : "http://smart.who.int/immunizations/CodeSystem/IMMZ.D",
+        "code" : "DE204",
+        "display" : "HIV status"
+      }
+    },
+    {
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-directReferenceCode",
+      "valueCoding" : {
+        "system" : "http://smart.who.int/immunizations/CodeSystem/IMMZ.D",
+        "code" : "DE205",
+        "display" : "HIV-positive"
+      }
+    },
+    {
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-directReferenceCode",
+      "valueCoding" : {
+        "system" : "http://smart.who.int/immunizations/CodeSystem/IMMZ.D",
+        "code" : "DE209",
+        "display" : "Immunocompromised"
+      }
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Doses Administered to Patient"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/**\n * @dataElement All Doses Administered to Patient\n */\ndefine \"Doses Administered to Patient\":\n  [Immunization] I\n    where I.status = 'completed'\n    and I.isSubpotent is not true"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 0
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Doses Administered to Patient"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/**\n * @dataElement All Doses Administered to Patient\n */\ndefine \"Doses Administered to Patient\":\n  Elements.\"Doses Administered to Patient\" I\n    where I.occurrence.toInterval() same day or before Today"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 1
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHPVEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "HPV Doses Administered to Patient"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@internal: HPV containing Doses Administered to Patient\n*/\ndefine \"HPV Doses Administered to Patient\":\n  Encounter.\"Doses Administered to Patient\" I\n  where\n    I.vaccineCode in Concepts.\"HPV vaccines\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 2
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHPVEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "HPV Primary Series Doses Administered to Patient"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@internal: HPV containing Doses Administered to Patient that are in the Primary series\n*/\ndefine \"HPV Primary Series Doses Administered to Patient\":\n  \"HPV Doses Administered to Patient\".seriesPrimary()"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 3
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHPVEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Number of HPV Primary Series Doses Administered"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@internal: Number of HPV Primary Series doses\n*/\ndefine \"Number of HPV Primary Series Doses Administered\":\n  Count(\"HPV Primary Series Doses Administered to Patient\")"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 4
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHPVEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "No HPV primary series doses were administered"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@input: No HPV primary series doses were administered\n@pseudocode: Count of vaccines administered (where \"Vaccine type\" = \"HPV vaccines\" and \"Type of dose\" = \"Primary series\") = 0\n@code: No HPV primary series doses were administered-112\n@decision: IMMZ.D2.DT.HPV.2 doses: 2-dose schedule\n@decision: IMMZ.D2.DT.HPV.Single dose: Alternative single-dose schedule\n*/\ndefine \"No HPV primary series doses were administered\":\n  \"Number of HPV Primary Series Doses Administered\" = 0"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 5
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHPVEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "One HPV primary series dose was administered"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@input: One HPV primary series dose was administered\n@pseudocode: Count of vaccines administered (where \"Vaccine type\" = \"HPV vaccines\" and \"Type of dose\" = \"Primary series\") = 1\n@code: One HPV primary series dose was administered-112\n@decision: IMMZ.D2.DT.HPV.2 doses: 2-dose schedule\n@decision: IMMZ.D2.DT.HPV.Single dose: Alternative single-dose schedule\n*/\ndefine \"One HPV primary series dose was administered\":\n  \"Number of HPV Primary Series Doses Administered\" = 1"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 6
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHPV2DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "First HPV dose from the primary series was administered"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@complete: First HPV dose from the primary series was administered\n@pseudocode: Count of vaccines administered (where \"Vaccine type\" = \"HPV vaccines\" and \"Type of dose\" = \"Primary series\") = 1\n*/\ndefine \"First HPV dose from the primary series was administered\":\n  Encounter.\"One HPV primary series dose was administered\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 7
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHPV2DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "HPV dose 1"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@output: HPV dose 1\n@description: Provision of the HPV dose 1\n@trigger: Child's birth when client's biological sex is female\n@pseudo: Child's birth AND \"Sex\" = \"Female\"\n@triggerDate: \"Date of birth\"\n*/\ndefine \"HPV dose 1\":\n  Encounter.\"No HPV primary series doses were administered\"\n  and not \"First HPV dose from the primary series was administered\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 8
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHPV2DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "HPV dose 1 Due Date"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@dynamicValue: HPV dose 1 Due Date\n@pseudocode: \"Date of birth\" + 9 years\n*/\ndefine \"HPV dose 1 Due Date\":\n  if \"HPV dose 1\" then Patient.birthDate + 9 years\n  else null"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 9
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHPV2DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "HPV dose 1 Overdue"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@dynamicValue: HPV dose 1 Overdue\n@pseudocode: \"Date of birth\" + 14 years\n*/\ndefine \"HPV dose 1 Overdue\":\n  if \"HPV dose 1\" then Patient.birthDate + 14 years\n  else null"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 10
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHPV2DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "HPV dose 1 Create"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@output: HPV dose 1 Create\n@create: HPV dose 1 should be provided if the client is female and older than 9 years of age.\n*/\ndefine \"HPV dose 1 Create\":\n  if \"HPV dose 1\"\n  then 'HPV dose 1 should be provided if the client is female and older than 9 years of age.' + '\nDue Date: ' + ToString(\"HPV dose 1 Due Date\") + '\nOverdue: ' + ToString(\"HPV dose 1 Overdue\")\n  else ''"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 11
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHPVEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Two HPV primary series doses were administered"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@input: Two HPV primary series doses were administered\n@pseudocode: Count of vaccines administered (where \"Vaccine type\" = \"HPV vaccines\" and \"Type of dose\" = \"Primary series\") = 2\n@code: Two HPV primary series doses were administered-112\n@decision: IMMZ.D2.DT.HPV.2 doses: 2-dose schedule\n@decision: IMMZ.D2.DT.HPV.Single dose: Alternative single-dose schedule\n*/\ndefine \"Two HPV primary series doses were administered\":\n  \"Number of HPV Primary Series Doses Administered\" = 2"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 12
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHPV2DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Second HPV dose from the primary series was administered"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@complete: Second HPV dose from the primary series was administered\n@pseudocode: Count of vaccines administered (where \"Vaccine type\" = \"HPV vaccines\" and \"Type of dose\" = \"Primary series\") = 2\n*/\ndefine \"Second HPV dose from the primary series was administered\":\n  Encounter.\"Two HPV primary series doses were administered\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 13
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "HIV status Observation"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@internal: HIV Status Observation\n*/\ndefine \"HIV status Observation\":\n  ([Observation: Concepts.\"HIV status\"]).complete()"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 14
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Client's HIV status is positive"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@input: Client's HIV status is positive\n@pseudocode: \"HIV status\" = \"HIV-positive\"\n*/\ndefine \"Client's HIV status is positive\":\n  exists( (Elements.\"HIV status Observation\".encounterOrOnBefore(EncounterId, Today)) O\n    where O.value ~ Concepts.\"HIV-positive\" )"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 15
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHPVEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Client's HIV status is positive"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@input: Client's HIV status is positive\n@pseudocode: \"HIV status\" = \"HIV-positive\"\n@code: Client's HIV status is positive-29\n@decision: IMMZ.D2.DT.HPV.2 doses: 2-dose schedule\n@decision: IMMZ.D2.DT.HPV.Single dose: Alternative single-dose schedule\n*/\ndefine \"Client's HIV status is positive\":\n  Encounter.\"Client's HIV status is positive\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 16
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Immunocompromised Observation"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@internal: Immunocompromised Observation\n*/\ndefine \"Immunocompromised Observation\":\n  ([Observation: Concepts.\"Immunocompromised\"] O\n    sort by end of effective.toInterval() desc).complete()"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 17
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Client is immunocompromised"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@input: Client is immunocompromised\n@pseudocode: \"Immunocompromised\" = TRUE\n*/\ndefine \"Client is immunocompromised\":\n  exists( \"Immunocompromised Observation\" ) and\n  First( \"Immunocompromised Observation\" ).value = true"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 18
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHPVEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Client is immunocompromised"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@input: Client is immunocompromised\n@pseudocode: \"Immunocompromised\" = TRUE\n@code: Client is immunocompromised-26\n@decision: IMMZ.D2.DT.HPV.2 doses: 2-dose schedule\n@decision: IMMZ.D2.DT.HPV.Single dose: Alternative single-dose schedule\n*/\ndefine \"Client is immunocompromised\":\n  Encounter.\"Client is immunocompromised\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 19
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHPVEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Three HPV primary series doses were administered"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@input: Three HPV primary series doses were administered\n@pseudocode: Count of vaccines administered (where \"Vaccine type\" = \"HPV vaccines\" and \"Type of dose\" = \"Primary series\") = 3\n@code: Three HPV primary series doses were administered-112\n@decision: IMMZ.D2.DT.HPV.2 doses: 2-dose schedule\n@decision: IMMZ.D2.DT.HPV.Single dose: Alternative single-dose schedule\n*/\ndefine \"Three HPV primary series doses were administered\":\n  \"Number of HPV Primary Series Doses Administered\" = 3"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 20
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHPV2DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Third HPV dose from the primary series was administered"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@complete: Third HPV dose from the primary series was administered\n@pseudocode: Count of vaccines administered (where \"Vaccine type\" = \"HPV vaccines\" and \"Type of dose\" = \"Primary series\") = 3\n*/\ndefine \"Third HPV dose from the primary series was administered\":\n  Encounter.\"Three HPV primary series doses were administered\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 21
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHPV2DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "HPV dose 3 (immunocompromised or HIV-positive)"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@output: HPV dose 3 (immunocompromised or HIV-positive)\n@description: Provision of the HPV dose 3 for individuals immunocompromised or infected with HIV\n@trigger: Second HPV dose from the primary series was administered and client's HIV status is positive or client is immunocompromised\n@pseudo: Count of vaccines administered (where \"Vaccine type\" = \"HPV vaccines\" and \"Type of dose\" = \"Primary series\") = 2 AND (\"HIV status\" = \"HIV-positive\" OR \"Immunocompromised\" = TRUE)\n@triggerDate: Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"HPV vaccines\")\n*/\ndefine \"HPV dose 3 (immunocompromised or HIV-positive)\":\n  \"Second HPV dose from the primary series was administered\"\n  and (\n    Encounter.\"Client's HIV status is positive\"\n    or Encounter.\"Client is immunocompromised\"\n  )\n  and not \"Third HPV dose from the primary series was administered\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 22
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHPV2DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "HPV dose 2"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@output: HPV dose 2\n@description: Provision of the HPV dose 2\n@trigger: First HPV dose from the primary series was administered\n@pseudo: Count of vaccines administered (where \"Vaccine type\" = \"HPV vaccines\" and \"Type of dose\" = \"Primary series\") = 1\n@triggerDate: \"Date and time of vaccination\" (where \"Vaccine type\" = \"HPV vaccines\")\n*/\ndefine \"HPV dose 2\":\n  \"First HPV dose from the primary series was administered\"\n  and not \"Second HPV dose from the primary series was administered\""
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 23
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD2DTHPVEncounterElements"
+      },
+      {
+        "url" : "name",
+        "valueString" : "Date of Latest HPV Dose"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@internal: Date of Latest HPV Dose\n*/\ndefine \"Date of Latest HPV Dose\":\n  date from start of \"HPV Doses Administered to Patient\".mostRecent().occurrence.toInterval()"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 24
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHPV2DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "HPV dose 2 Due Date"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@dynamicValue: HPV dose 2 Due Date\n@pseudocode: \"Date and time of vaccination\" (where \"Vaccine type\" = \"HPV vaccines\") + 6 months\n*/\ndefine \"HPV dose 2 Due Date\":\n  if \"HPV dose 2\" then Encounter.\"Date of Latest HPV Dose\" + 6 months\n  else null"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 25
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHPV2DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "HPV dose 2 Overdue"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@dynamicValue: HPV dose 2 Overdue\n@pseudocode: \"Date of birth\" + 14 years\n*/\ndefine \"HPV dose 2 Overdue\":\n  if \"HPV dose 2\" then Patient.birthDate + 14 years\n  else null"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 26
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHPV2DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "HPV dose 2 Create"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@output: HPV dose 2 Create\n@create: HPV dose 2 should be provided if dose 1 was given 6 months ago.\n*/\ndefine \"HPV dose 2 Create\":\n  if \"HPV dose 2\"\n  then 'HPV dose 2 should be provided if dose 1 was given 6 months ago.' + '\nDue Date: ' + ToString(\"HPV dose 2 Due Date\") + '\nOverdue: ' + ToString(\"HPV dose 2 Overdue\")\n  else ''"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 27
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHPV2DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "HPV dose 3 (immunocompromised or HIV-positive) Due Date"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@dynamicValue: HPV dose 3 (immunocompromised or HIV-positive) Due Date\n@pseudocode: Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"HPV vaccines\") + 6 months\n*/\ndefine \"HPV dose 3 (immunocompromised or HIV-positive) Due Date\":\n  if \"HPV dose 3 (immunocompromised or HIV-positive)\" then Encounter.\"Date of Latest HPV Dose\" + 6 months\n  else null"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 28
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZD18SHPV2DosesLogic"
+      },
+      {
+        "url" : "name",
+        "valueString" : "HPV dose 3 (immunocompromised or HIV-positive) Create"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@output: HPV dose 3 (immunocompromised or HIV-positive) Create\n@create: Where possible, three HPV doses should be provided to individuals known to be immunocompromised or infected with HIV.\n*/\ndefine \"HPV dose 3 (immunocompromised or HIV-positive) Create\":\n  if \"HPV dose 3 (immunocompromised or HIV-positive)\"\n  then 'Where possible, three HPV doses should be provided to individuals known to be immunocompromised or infected with HIV.' + '\nDue Date: ' + ToString(\"HPV dose 3 (immunocompromised or HIV-positive) Due Date\")\n  else ''"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 29
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZCommon"
+      },
+      {
+        "url" : "name",
+        "valueString" : "seriesPrimary"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/**\n * @description: Gets the doses from the primary series\n */\ndefine fluent function seriesPrimary(immunizations List<Immunization>):\n  immunizations I where\n    exists( I.protocolApplied pa where pa.series = 'Primary series' )"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 30
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "FHIRHelpers"
+      },
+      {
+        "url" : "name",
+        "valueString" : "ToString"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define function ToString(value string): value.value"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 31
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "FHIRHelpers"
+      },
+      {
+        "url" : "name",
+        "valueString" : "ToString"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define function ToString(value ImmunizationStatus): value.value"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 32
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "FHIRHelpers"
+      },
+      {
+        "url" : "name",
+        "valueString" : "ToBoolean"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define function ToBoolean(value boolean): value.value"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 33
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "FHIRHelpers"
+      },
+      {
+        "url" : "name",
+        "valueString" : "ToConcept"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define function ToConcept(concept FHIR.CodeableConcept):\n    if concept is null then\n        null\n    else\n        System.Concept {\n            codes: concept.coding C return ToCode(C),\n            display: concept.text.value\n        }"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 34
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "FHIRHelpers"
+      },
+      {
+        "url" : "name",
+        "valueString" : "ToCode"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define function ToCode(coding FHIR.Coding):\n    if coding is null then\n        null\n    else\n        System.Code {\n          code: coding.code.value,\n          system: coding.system.value,\n          version: coding.version.value,\n          display: coding.display.value\n        }"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 35
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "FHIRHelpers"
+      },
+      {
+        "url" : "name",
+        "valueString" : "ToDate"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define function ToDate(value date): value.value"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 36
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "IMMZCommon"
+      },
+      {
+        "url" : "name",
+        "valueString" : "encounterOrOnBefore"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/**\n * @description: Gets observation from an encounter or on or before a date\n */\ndefine fluent function encounterOrOnBefore(observations List<Observation>, EncounterId String, beforeDate Date):\n  observations O where\n    (O.encounter.references(EncounterId)\n      or O.effective.toInterval() starts same day or before beforeDate)"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 37
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "WHOCommon"
+      },
+      {
+        "url" : "name",
+        "valueString" : "references"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "/*\n@description: Returns true if the given reference is to the given resourceId\n@comment: Returns true if the `resourceId` parameter exactly equals the tail of the given reference.\nNOTE: This function assumes resources from the same source server.\n*/\ndefine fluent function references(reference FHIR.Reference, resourceId String):\n  resourceId = Last(Split(reference.reference, '/'))"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 38
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "WHOCommon"
+      },
+      {
+        "url" : "name",
+        "valueString" : "complete"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define fluent function complete(observations List<Observation>):\n  observations O where O.status in { 'final', 'amended', 'corrected' }"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 39
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "FHIRHelpers"
+      },
+      {
+        "url" : "name",
+        "valueString" : "ToString"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define function ToString(value ObservationStatus): value.value"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 40
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    },
+    {
+      "extension" : [{
+        "url" : "libraryName",
+        "valueString" : "WHOCommon"
+      },
+      {
+        "url" : "name",
+        "valueString" : "mostRecent"
+      },
+      {
+        "url" : "statement",
+        "valueString" : "define fluent function mostRecent(immunizations List<Immunization>):\n  Last(\n    immunizations I\n      sort by start of occurrence.toInterval()\n  )"
+      },
+      {
+        "url" : "displaySequence",
+        "valueInteger" : 41
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition"
+    }],
+    "name" : "EffectiveDataRequirements",
+    "status" : "active",
+    "type" : {
+      "coding" : [{
+        "system" : "http://terminology.hl7.org/CodeSystem/library-type",
+        "code" : "module-definition"
+      }]
+    },
+    "relatedArtifact" : [{
+      "type" : "depends-on",
+      "display" : "FHIR model information",
+      "resource" : "http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library Encounter",
+      "resource" : "http://smart.who.int/immunizations/Library/IMMZD2DTHPVEncounterElements"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library Common",
+      "resource" : "http://smart.who.int/immunizations/Library/IMMZCommon"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library FHIRHelpers",
+      "resource" : "http://fhir.org/guides/cqf/common/Library/FHIRHelpers|4.0.1"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library Encounter",
+      "resource" : "http://smart.who.int/immunizations/Library/IMMZEncounterElements"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library Elements",
+      "resource" : "http://smart.who.int/immunizations/Library/IMMZElements"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library WC",
+      "resource" : "http://smart.who.int/immunizations/Library/WHOCommon"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library FHIRHelpers",
+      "resource" : "http://fhir.org/guides/cqf/common/Library/FHIRHelpers|4.0.1"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library Concepts",
+      "resource" : "http://smart.who.int/immunizations/Library/IMMZConcepts"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library Common",
+      "resource" : "http://smart.who.int/immunizations/Library/IMMZCommon"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library WC",
+      "resource" : "http://smart.who.int/immunizations/Library/WHOCommon"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library Concepts",
+      "resource" : "http://smart.who.int/immunizations/Library/IMMZConcepts"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Library WC",
+      "resource" : "http://smart.who.int/immunizations/Library/WHOCommon"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Code system IMMZD",
+      "resource" : "http://smart.who.int/immunizations/CodeSystem/IMMZ.D"
+    },
+    {
+      "type" : "depends-on",
+      "display" : "Value set HPV vaccines",
+      "resource" : "http://smart.who.int/immunizations/ValueSet/IMMZ.Z.DE7"
+    }],
+    "parameter" : [{
+      "name" : "Today",
+      "use" : "in",
+      "min" : 0,
+      "max" : "1",
+      "type" : "date"
+    },
+    {
+      "name" : "EncounterId",
+      "use" : "in",
+      "min" : 0,
+      "max" : "1",
+      "type" : "string"
+    },
+    {
+      "name" : "HPV dose 1 Create",
+      "use" : "out",
+      "min" : 0,
+      "max" : "1",
+      "type" : "string"
+    },
+    {
+      "name" : "HPV dose 3 (immunocompromised or HIV-positive)",
+      "use" : "out",
+      "min" : 0,
+      "max" : "1",
+      "type" : "boolean"
+    },
+    {
+      "name" : "HPV dose 2 Create",
+      "use" : "out",
+      "min" : 0,
+      "max" : "1",
+      "type" : "string"
+    },
+    {
+      "name" : "HPV dose 2",
+      "use" : "out",
+      "min" : 0,
+      "max" : "1",
+      "type" : "boolean"
+    },
+    {
+      "name" : "HPV dose 1",
+      "use" : "out",
+      "min" : 0,
+      "max" : "1",
+      "type" : "boolean"
+    },
+    {
+      "name" : "HPV dose 3 (immunocompromised or HIV-positive) Create",
+      "use" : "out",
+      "min" : 0,
+      "max" : "1",
+      "type" : "string"
+    }],
+    "dataRequirement" : [{
+      "type" : "Immunization",
+      "profile" : ["http://hl7.org/fhir/StructureDefinition/Immunization"],
+      "mustSupport" : ["status", "isSubpotent"]
+    },
+    {
+      "type" : "Immunization",
+      "profile" : ["http://hl7.org/fhir/StructureDefinition/Immunization"],
+      "mustSupport" : ["status", "isSubpotent", "occurrence"]
+    },
+    {
+      "type" : "Immunization",
+      "profile" : ["http://hl7.org/fhir/StructureDefinition/Immunization"],
+      "mustSupport" : ["status", "isSubpotent", "occurrence", "vaccineCode"]
+    },
+    {
+      "type" : "Patient",
+      "profile" : ["http://hl7.org/fhir/StructureDefinition/Patient"]
+    },
+    {
+      "type" : "Observation",
+      "profile" : ["http://hl7.org/fhir/StructureDefinition/Observation"],
+      "mustSupport" : ["code"],
+      "codeFilter" : [{
+        "path" : "code",
+        "code" : [{
+          "system" : "http://smart.who.int/immunizations/CodeSystem/IMMZ.D",
+          "code" : "DE204",
+          "display" : "HIV status"
+        }]
+      }]
+    },
+    {
+      "type" : "Observation",
+      "profile" : ["http://hl7.org/fhir/StructureDefinition/Observation"],
+      "mustSupport" : ["code"],
+      "codeFilter" : [{
+        "path" : "code",
+        "code" : [{
+          "system" : "http://smart.who.int/immunizations/CodeSystem/IMMZ.D",
+          "code" : "DE209",
+          "display" : "Immunocompromised"
+        }]
+      }]
+    },
+    {
+      "type" : "Immunization",
+      "profile" : ["http://hl7.org/fhir/StructureDefinition/Immunization"],
+      "mustSupport" : ["status", "isSubpotent", "occurrence", "vaccineCode"]
+    },
+    {
+      "type" : "Immunization",
+      "profile" : ["http://hl7.org/fhir/StructureDefinition/Immunization"],
+      "mustSupport" : ["status", "isSubpotent", "occurrence", "vaccineCode"]
+    }]
+  }],
+  "extension" : [{
+    "url" : "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+    "valueCode" : "computable"
+  },
+  {
+    "url" : "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements",
+    "valueCanonical" : "#effective-data-requirements"
+  }],
+  "url" : "http://smart.who.int/immunizations/PlanDefinition/IMMZD18SHPV2Doses",
+  "version" : "0.2.0",
+  "name" : "IMMZD18SHPV2Doses",
+  "title" : "IMMZ.D18.S.HPV.2-dose schedule",
+  "type" : {
+    "coding" : [{
+      "system" : "http://terminology.hl7.org/CodeSystem/plan-definition-type",
+      "code" : "eca-rule"
+    }]
+  },
+  "status" : "draft",
+  "experimental" : false,
+  "date" : "2026-03-29T17:23:09+00:00",
+  "publisher" : "WHO",
+  "contact" : [{
+    "name" : "WHO",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://who.int"
+    }]
+  }],
+  "description" : "IMMZ.D18.S.HPV.2-dose schedule\n2-dose schedule",
+  "relatedArtifact" : [{
+    "type" : "citation",
+    "citation" : "WHO recommendations for routine immunization - summary tables (January 2025)"
+  }],
+  "library" : ["http://smart.who.int/immunizations/Library/IMMZD18SHPV2DosesLogic"],
+  "action" : [{
+    "title" : "HPV dose 1",
+    "description" : "Provision of the HPV dose 1\nTrigger event: Child's birth when client's biological sex is female\nTrigger pseudo: Child's birth AND \"Sex\" = \"Female\"\nTrigger date: \"Date of birth\"\nCreate condition: HPV dose 1 should be provided if the client is female and older than 9 years of age.",
+    "condition" : [{
+      "kind" : "applicability",
+      "expression" : {
+        "description" : "HPV dose 1",
+        "language" : "text/cql-identifier",
+        "expression" : "HPV dose 1"
+      }
+    }],
+    "definitionCanonical" : "http://smart.who.int/immunizations/ActivityDefinition/IMMZD2DTCR",
+    "dynamicValue" : [{
+      "path" : "status",
+      "expression" : {
+        "language" : "text/cql-expression",
+        "expression" : "'active'"
+      }
+    },
+    {
+      "path" : "payload.contentString",
+      "expression" : {
+        "language" : "text/cql-identifier",
+        "expression" : "HPV dose 1 Create"
+      }
+    },
+    {
+      "path" : "category.coding",
+      "expression" : {
+        "description" : "Category of communication",
+        "language" : "text/cql-expression",
+        "expression" : "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+      }
+    },
+    {
+      "path" : "priority",
+      "expression" : {
+        "description" : "Alert priority",
+        "language" : "text/cql-expression",
+        "expression" : "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+      }
+    }]
+  },
+  {
+    "title" : "HPV dose 2",
+    "description" : "Provision of the HPV dose 2\nTrigger event: First HPV dose from the primary series was administered\nTrigger pseudo: Count of vaccines administered (where \"Vaccine type\" = \"HPV vaccines\" and \"Type of dose\" = \"Primary series\") = 1\nTrigger date: \"Date and time of vaccination\" (where \"Vaccine type\" = \"HPV vaccines\")\nCreate condition: HPV dose 2 should be provided if dose 1 was given 6 months ago.",
+    "condition" : [{
+      "kind" : "applicability",
+      "expression" : {
+        "description" : "HPV dose 2",
+        "language" : "text/cql-identifier",
+        "expression" : "HPV dose 2"
+      }
+    }],
+    "definitionCanonical" : "http://smart.who.int/immunizations/ActivityDefinition/IMMZD2DTCR",
+    "dynamicValue" : [{
+      "path" : "status",
+      "expression" : {
+        "language" : "text/cql-expression",
+        "expression" : "'active'"
+      }
+    },
+    {
+      "path" : "payload.contentString",
+      "expression" : {
+        "language" : "text/cql-identifier",
+        "expression" : "HPV dose 2 Create"
+      }
+    },
+    {
+      "path" : "category.coding",
+      "expression" : {
+        "description" : "Category of communication",
+        "language" : "text/cql-expression",
+        "expression" : "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+      }
+    },
+    {
+      "path" : "priority",
+      "expression" : {
+        "description" : "Alert priority",
+        "language" : "text/cql-expression",
+        "expression" : "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+      }
+    }]
+  },
+  {
+    "title" : "HPV dose 3 (immunocompromised or HIV-positive)",
+    "description" : "Provision of the HPV dose 3 for individuals immunocompromised or infected with HIV\nTrigger event: Second HPV dose from the primary series was administered and client's HIV status is positive or client is immunocompromised\nTrigger pseudo: Count of vaccines administered (where \"Vaccine type\" = \"HPV vaccines\" and \"Type of dose\" = \"Primary series\") = 2 AND (\"HIV status\" = \"HIV-positive\" OR \"Immunocompromised\" = TRUE)\nTrigger date: Latest \"Date and time of vaccination\" (where \"Vaccine type\" = \"HPV vaccines\")\nCreate condition: Where possible, three HPV doses should be provided to individuals known to be immunocompromised or infected with HIV.",
+    "condition" : [{
+      "kind" : "applicability",
+      "expression" : {
+        "description" : "HPV dose 3 (immunocompromised or HIV-positive)",
+        "language" : "text/cql-identifier",
+        "expression" : "HPV dose 3 (immunocompromised or HIV-positive)"
+      }
+    }],
+    "definitionCanonical" : "http://smart.who.int/immunizations/ActivityDefinition/IMMZD2DTCR",
+    "dynamicValue" : [{
+      "path" : "status",
+      "expression" : {
+        "language" : "text/cql-expression",
+        "expression" : "'active'"
+      }
+    },
+    {
+      "path" : "payload.contentString",
+      "expression" : {
+        "language" : "text/cql-identifier",
+        "expression" : "HPV dose 3 (immunocompromised or HIV-positive) Create"
+      }
+    },
+    {
+      "path" : "category.coding",
+      "expression" : {
+        "description" : "Category of communication",
+        "language" : "text/cql-expression",
+        "expression" : "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+      }
+    },
+    {
+      "path" : "priority",
+      "expression" : {
+        "description" : "Alert priority",
+        "language" : "text/cql-expression",
+        "expression" : "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+      }
+    }]
+  }]
+}
+
+```

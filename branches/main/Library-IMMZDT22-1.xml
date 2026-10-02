@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="37">
+         <a:s>/*
+ * Library: IMMZDT22 (IMMZ.DT.22.Varicella)
+ * Rule: If child or person has not been vaccinated against Varicella 
+ * Trigger: Patient has never had the Varicella vaccination or shows no evidence of Varciella immunity
+ */
+library IMMZDT22</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT22" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:34" localIdentifier="IMMZConf" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZConf</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="13:1-13:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="7" locator="14:1-14:28" localIdentifier="FC" path="http://fhir.org/guides/who/smart-immunization/FHIRCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="7">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRCommon</a:s>
+               </a:s>
+               <a:s> called FC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="16:1-16:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="22" locator="29:1-33:78" name="Should vaccinate patient with Varicella vaccine because no doses in a 2 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="22">
+               <a:s>/*
+ * Rule: Should vaccinate patient with Varicella vaccine because no doses in a 2 dose scheme
+ * Annotations:
+ * 	 - Provide Varicella immunizations – using the &quot;Varicella vaccine immunization – NO PREVIOUS&quot; schedule (2 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Varicella- No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Varicella vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Months&quot; >= 12)) and (&quot;Pregnancy Status&quot; = false)) and (&quot;Country recognizes Varicella an important public health burden&quot; = true))
+ */
+define &quot;Should vaccinate patient with Varicella vaccine because no doses in a 2 dose scheme&quot;:
+	</a:s>
+               <a:s r="21">
+                  <a:s r="18">
+                     <a:s r="14">
+                        <a:s r="9">
+                           <a:s r="8">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="9">
+                              <a:s>&quot;No Varicella Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="13">
+                           <a:s r="11">
+                              <a:s r="10">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="11">
+                                 <a:s>&quot;Current Patient Age In Months&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="12"> >= 12</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="17">
+                        <a:s>not</a:s>
+                        <a:s r="16">
+                           <a:s>(</a:s>
+                           <a:s r="16">
+                              <a:s r="15">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="16">
+                                 <a:s>&quot;Pregnant&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="20">
+                     <a:s r="19">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="20">
+                        <a:s>&quot;Country recognizes Varicella an important public health burden&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="21" locator="30:2-33:78" xsi:type="And">
+            <operand localId="18" locator="30:2-32:28" xsi:type="And">
+               <operand localId="14" locator="30:2-31:50" xsi:type="And">
+                  <operand localId="9" locator="30:2-30:53" name="No Varicella Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="13" locator="31:6-31:50" xsi:type="GreaterOrEqual">
+                     <operand localId="11" locator="31:6-31:44" name="Current Patient Age In Months" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="12" locator="31:49-31:50" valueType="t:Integer" value="12" xsi:type="Literal"/>
+                  </operand>
+               </operand>
+               <operand localId="17" locator="32:6-32:28" xsi:type="Not">
+                  <operand localId="16" locator="32:9-32:28" name="Pregnant" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="20" locator="33:6-33:78" name="Country recognizes Varicella an important public health burden" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="37" locator="46:1-49:28" name="Should vaccinate patient with Varicella vaccine because 1 dose given 4 weeks ago in a 2 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="37">
+               <a:s>/*
+ * Rule: Should vaccinate patient with Varicella vaccine because 1 dose given 4 weeks ago in a 2 dose scheme
+ * Annotations:
+ * 	 - Provide Varicella immunizations – using the &quot;Varicella vaccine immunization – 1 PREVIOUS&quot; schedule (2 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Varicella -  1st dose given between 4 weeks and 3 months ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Varicella vaccine immunization history&quot; = &quot;1 dose&quot;) and (&quot;Date last Varicella dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;Pregnancy Status&quot; = false))
+ */
+define &quot;Should vaccinate patient with Varicella vaccine because 1 dose given 4 weeks ago in a 2 dose scheme&quot;:
+	</a:s>
+               <a:s r="36">
+                  <a:s r="32">
+                     <a:s r="26">
+                        <a:s r="24">
+                           <a:s r="23">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="24">
+                              <a:s>&quot;Number of Varicella Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="25"> = 1</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="31">
+                        <a:s r="28">
+                           <a:s r="27">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="28">
+                              <a:s>&quot;Date Last Varicella Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="31">
+                           <a:s>more than </a:s>
+                           <a:s r="30">
+                              <a:s>4 weeks</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="29">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="35">
+                     <a:s>not</a:s>
+                     <a:s r="34">
+                        <a:s>(</a:s>
+                        <a:s r="34">
+                           <a:s r="33">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="34">
+                              <a:s>&quot;Pregnant&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="36" locator="47:2-49:28" xsi:type="And">
+            <operand localId="32" locator="47:2-48:96" xsi:type="And">
+               <operand localId="26" locator="47:2-47:64" xsi:type="Equal">
+                  <operand localId="24" locator="47:2-47:60" name="Number of Varicella Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="25" locator="47:64" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               </operand>
+               <operand localId="31" locator="48:6-48:96" xsi:type="Before">
+                  <operand localId="28" locator="48:6-48:63" name="Date Last Varicella Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="48:90-48:96" xsi:type="Subtract">
+                     <operand localId="29" locator="48:90-48:96" xsi:type="Today"/>
+                     <operand localId="30" locator="48:75-48:81" value="4" unit="weeks" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="35" locator="49:6-49:28" xsi:type="Not">
+               <operand localId="34" locator="49:9-49:28" name="Pregnant" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+   </statements>
+</library>

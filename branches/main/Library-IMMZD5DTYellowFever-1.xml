@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="2.7.0" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="110">
+         <a:s>/*
+ * Library: IMMZD5DTYellowFever (IMMZ.D5.DT.YellowFever)
+ * Rule: Check for contraindications before administering the vaccine(s) due	 	 	  
+ * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
+ */
+library IMMZD5DTYellowFever</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD5DTYellowFever" system="http://smart.who.int/ig/smart-immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://smart.who.int/ig/smart-immunizations/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://smart.who.int/ig/smart-immunizations/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZc" path="http://smart.who.int/ig/smart-immunizations/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:33" localIdentifier="IMMZCon" path="http://smart.who.int/ig/smart-immunizations/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="13:1-13:40" localIdentifier="IMMZvl" path="http://smart.who.int/ig/smart-immunizations/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="7" locator="14:1-14:28" localIdentifier="FC" path="http://smart.who.int/ig/smart-immunizations/FHIRCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="7">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRCommon</a:s>
+               </a:s>
+               <a:s> called FC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="8" locator="15:1-15:45" localIdentifier="input" path="http://smart.who.int/ig/smart-immunizations/IMMZD2DTYellowFeverInput">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="8">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTYellowFeverInput</a:s>
+               </a:s>
+               <a:s> called input</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="18:1-18:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="18:1-18:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="27" locator="23:1-25:53" name="Draft Medication Request for Yellow Fever dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="27">
+               <a:s>/*
+@internal: Draft Medication Request for MCV dose
+*/
+define &quot;Draft Medication Request for Yellow Fever dose&quot;:
+	</a:s>
+               <a:s r="26">
+                  <a:s>
+                     <a:s r="10">
+                        <a:s r="9">
+                           <a:s r="9">
+                              <a:s>[MedicationRequest: </a:s>
+                              <a:s>
+                                 <a:s>IMMZc.&quot;Yellow Fever Vaccine&quot;</a:s>
+                              </a:s>
+                              <a:s>]</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> MR</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> </a:s>
+                  <a:s r="19">
+                     <a:s>where </a:s>
+                     <a:s r="19">
+                        <a:s r="14">
+                           <a:s r="12">
+                              <a:s r="11">
+                                 <a:s>MR</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="12">
+                                 <a:s>status</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="13">
+                              <a:s>'draft'</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="18">
+                           <a:s r="16">
+                              <a:s r="15">
+                                 <a:s>MR</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="16">
+                                 <a:s>intent</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="17">
+                              <a:s>'proposal'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	</a:s>
+                  <a:s r="25">
+                     <a:s>sort by </a:s>
+                     <a:s r="24">
+                        <a:s r="23">
+                           <a:s>date from </a:s>
+                           <a:s r="22">
+                              <a:s>(</a:s>
+                              <a:s r="22">
+                                 <a:s r="20">
+                                    <a:s>authoredOn</a:s>
+                                 </a:s>
+                                 <a:s> as </a:s>
+                                 <a:s r="21">
+                                    <a:s>FHIR.dateTime</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> desc</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="26" locator="24:2-25:53" xsi:type="Query">
+            <source localId="10" locator="24:2-24:53" alias="MR">
+               <expression localId="9" locator="24:2-24:50" xsi:type="Union">
+                  <signature xsi:type="ListTypeSpecifier">
+                     <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+                  </signature>
+                  <signature xsi:type="ListTypeSpecifier">
+                     <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+                  </signature>
+                  <operand dataType="fhir:MedicationRequest" templateId="http://hl7.org/fhir/StructureDefinition/MedicationRequest" codeProperty="medication" codeComparator="in" xsi:type="Retrieve">
+                     <codes locator="24:22-24:49" name="Yellow Fever Vaccine" libraryName="IMMZc" xsi:type="ValueSetRef"/>
+                  </operand>
+                  <operand locator="24:2-24:50" dataType="fhir:MedicationRequest" templateId="http://hl7.org/fhir/StructureDefinition/MedicationRequest" codeProperty="medication" codeComparator="in" xsi:type="Retrieve">
+                     <codes locator="24:22-24:49" name="Yellow Fever Vaccine" libraryName="IMMZc" xsi:type="ValueSetRef"/>
+                  </operand>
+               </expression>
+            </source>
+            <where localId="19" locator="24:55-24:106" xsi:type="And">
+               <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+               <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="14" locator="24:61-24:79" xsi:type="Equal">
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature name="fhir:MedicationRequestStatus" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="12" locator="24:61-24:69" path="status" scope="MR" xsi:type="Property"/>
+                  </operand>
+                  <operand localId="13" locator="24:73-24:79" valueType="t:String" value="draft" xsi:type="Literal"/>
+               </operand>
+               <operand localId="18" locator="24:85-24:106" xsi:type="Equal">
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature name="fhir:MedicationRequestIntent" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="16" locator="24:85-24:93" path="intent" scope="MR" xsi:type="Property"/>
+                  </operand>
+                  <operand localId="17" locator="24:97-24:106" valueType="t:String" value="proposal" xsi:type="Literal"/>
+               </operand>
+            </where>
+            <sort localId="25" locator="25:2-25:53">
+               <by localId="24" locator="25:10-25:53" direction="desc" xsi:type="ByExpression">
+                  <expression localId="23" locator="25:10-25:48" xsi:type="DateFrom">
+                     <signature name="t:DateTime" xsi:type="NamedTypeSpecifier"/>
+                     <operand name="ToDateTime" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <signature name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="22" locator="25:20-25:48" strict="false" xsi:type="As">
+                           <operand localId="20" locator="25:21-25:30" name="authoredOn" xsi:type="IdentifierRef"/>
+                           <asTypeSpecifier localId="21" locator="25:35-25:47" name="fhir:dateTime" xsi:type="NamedTypeSpecifier"/>
+                        </operand>
+                     </operand>
+                  </expression>
+               </by>
+            </sort>
+         </expression>
+      </def>
+      <def localId="31" locator="30:1-31:59" name="Draft Medication Request ID for Yellow Fever dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="31">
+               <a:s>/*
+@dynamicValue: Draft Medication Request ID for MCV dose
+*/
+define &quot;Draft Medication Request ID for Yellow Fever dose&quot;:
+	</a:s>
+               <a:s r="30">
+                  <a:s r="29">
+                     <a:s>First(</a:s>
+                     <a:s r="28">
+                        <a:s>&quot;Draft Medication Request for Yellow Fever dose&quot;</a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="30">
+                     <a:s>id</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="30" locator="31:2-31:59" path="id" xsi:type="Property">
+            <source localId="29" locator="31:2-31:56" xsi:type="First">
+               <signature xsi:type="ListTypeSpecifier">
+                  <elementType name="fhir:MedicationRequest" xsi:type="NamedTypeSpecifier"/>
+               </signature>
+               <source localId="28" locator="31:8-31:55" name="Draft Medication Request for Yellow Fever dose" xsi:type="ExpressionRef"/>
+            </source>
+         </expression>
+      </def>
+      <def localId="34" locator="47:1-48:43" name="Yellow fever vaccination is contraindicated Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="34">
+               <a:s>/*
+@output: Yellow fever vaccination is contraindicated Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = 'Contraindicated'
+*/
+define &quot;Yellow fever vaccination is contraindicated Case 1&quot;:
+	</a:s>
+               <a:s r="33">
+                  <a:s r="32">
+                     <a:s>input</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="33">
+                     <a:s>&quot;Client's age is less than 6 months&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="33" locator="48:2-48:43" name="Client's age is less than 6 months" libraryName="input" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="38" locator="54:1-55:49" name="Yellow fever vaccination is contraindicated Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="38">
+               <a:s>/*
+@output: Yellow fever vaccination is contraindicated Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = 'Contraindicated'
+*/
+define &quot;Yellow fever vaccination is contraindicated Case 2&quot;:
+	</a:s>
+               <a:s r="37">
+                  <a:s r="36">
+                     <a:s>input</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="37">
+                     <a:s>&quot;The client is severely immunocompromised&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="37" locator="55:2-55:49" name="The client is severely immunocompromised" libraryName="input" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="41" locator="61:1-62:109" name="Yellow fever vaccination is contraindicated" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="41">
+               <a:s>/*
+@output: Yellow fever vaccination is contraindicated
+@pseudocode: &quot;Immunization recommendation status&quot; = 'Contraindicated'
+*/
+define &quot;Yellow fever vaccination is contraindicated&quot;:
+	</a:s>
+               <a:s r="40">
+                  <a:s r="35">
+                     <a:s>&quot;Yellow fever vaccination is contraindicated Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s> or </a:s>
+                  <a:s r="39">
+                     <a:s>&quot;Yellow fever vaccination is contraindicated Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="40" locator="62:2-62:109" xsi:type="Or">
+            <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+            <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="35" locator="62:2-62:53" name="Yellow fever vaccination is contraindicated Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="39" locator="62:58-62:109" name="Yellow fever vaccination is contraindicated Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="54" locator="69:1-73:9" name="Yellow fever vaccination is contraindicated Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="54">
+               <a:s>/*
+@output: Yellow fever vaccination is contraindicated Guidance
+@guidance: Do not vaccinate client for yellow fever as yellow fever vaccination is contraindicated in client's aged less than 6 months
+@guidance: Do not vaccinate client for yellow fever as yellow fever vaccination is contraindicated in severely immunocompromised clients.
+*/
+define &quot;Yellow fever vaccination is contraindicated Guidance&quot;:
+	</a:s>
+               <a:s r="53">
+                  <a:s>Combine( </a:s>
+                  <a:s r="51">
+                     <a:s>{
+		</a:s>
+                     <a:s r="46">
+                        <a:s>if </a:s>
+                        <a:s r="43">
+                           <a:s>&quot;Yellow fever vaccination is contraindicated Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> then </a:s>
+                        <a:s r="44">
+                           <a:s>'Do not vaccinate client for yellow fever as yellow fever vaccination is contraindicated in client\'s aged less than 6 months'</a:s>
+                        </a:s>
+                        <a:s> else </a:s>
+                        <a:s r="45">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+		</a:s>
+                     <a:s r="50">
+                        <a:s>if </a:s>
+                        <a:s r="47">
+                           <a:s>&quot;Yellow fever vaccination is contraindicated Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> then </a:s>
+                        <a:s r="48">
+                           <a:s>'Do not vaccinate client for yellow fever as yellow fever vaccination is contraindicated in severely immunocompromised clients.'</a:s>
+                        </a:s>
+                        <a:s> else </a:s>
+                        <a:s r="49">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	}</a:s>
+                  </a:s>
+                  <a:s>, </a:s>
+                  <a:s r="52">
+                     <a:s>' '</a:s>
+                  </a:s>
+                  <a:s> )</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="53" locator="70:2-73:9" xsi:type="Combine">
+            <signature xsi:type="ListTypeSpecifier">
+               <elementType name="t:String" xsi:type="NamedTypeSpecifier"/>
+            </signature>
+            <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+            <source localId="51" locator="70:11-73:2" xsi:type="List">
+               <element localId="46" locator="71:3-71:197" xsi:type="If">
+                  <condition localId="43" locator="71:6-71:57" name="Yellow fever vaccination is contraindicated Case 1" xsi:type="ExpressionRef"/>
+                  <then localId="44" locator="71:64-71:189" valueType="t:String" value="Do not vaccinate client for yellow fever as yellow fever vaccination is contraindicated in client's aged less than 6 months" xsi:type="Literal"/>
+                  <else localId="45" locator="71:196-71:197" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="50" locator="72:3-72:199" xsi:type="If">
+                  <condition localId="47" locator="72:6-72:57" name="Yellow fever vaccination is contraindicated Case 2" xsi:type="ExpressionRef"/>
+                  <then localId="48" locator="72:64-72:191" valueType="t:String" value="Do not vaccinate client for yellow fever as yellow fever vaccination is contraindicated in severely immunocompromised clients." xsi:type="Literal"/>
+                  <else localId="49" locator="72:198-72:199" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+            </source>
+            <separator localId="52" locator="73:5-73:7" valueType="t:String" value=" " xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="60" locator="79:1-80:46" name="Clinical judgement is required. Create a clinical note. Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="60">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note. Case 1
+@pseudocode: Immunization recommendation status = 'Further evaluation needed'&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note. Case 1&quot;:
+	</a:s>
+               <a:s r="59">
+                  <a:s r="58">
+                     <a:s>input</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="59">
+                     <a:s>&quot;Client's age is between 6 to 9 months&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="59" locator="80:2-80:46" name="Client's age is between 6 to 9 months" libraryName="input" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="64" locator="86:1-87:55" name="Clinical judgement is required. Create a clinical note. Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="64">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note. Case 2
+@pseudocode: Immunization recommendation status = 'Further evaluation needed'&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note. Case 2&quot;:
+	</a:s>
+               <a:s r="63">
+                  <a:s r="62">
+                     <a:s>input</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="63">
+                     <a:s>&quot;Client's age is more than or equal to 60 years&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="63" locator="87:2-87:55" name="Client's age is more than or equal to 60 years" libraryName="input" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="69" locator="93:1-94:41" name="Clinical judgement is required. Create a clinical note. Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="69">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note. Case 3
+@pseudocode: Immunization recommendation status = 'Further evaluation needed'&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note. Case 3&quot;:
+	</a:s>
+               <a:s r="68">
+                  <a:s r="67">
+                     <a:s>input</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="68">
+                     <a:s>&quot;The client is currently pregnant&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="68" locator="94:2-94:41" name="The client is currently pregnant" libraryName="input" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="74" locator="100:1-101:32" name="Clinical judgement is required. Create a clinical note. Case 4" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="74">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note. Case 4
+@pseudocode: Immunization recommendation status = 'Further evaluation needed'&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note. Case 4&quot;:
+	</a:s>
+               <a:s r="73">
+                  <a:s r="72">
+                     <a:s>input</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="73">
+                     <a:s>&quot;The client is lactating&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="73" locator="101:2-101:32" name="The client is lactating" libraryName="input" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="77" locator="107:1-111:68" name="Clinical judgement is required. Create a clinical note." context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="77">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note.
+@pseudocode: Immunization recommendation status = 'Further evaluation needed'&quot;
+*/
+define &quot;Clinical judgement is required. Create a clinical note.&quot;:
+	</a:s>
+               <a:s r="76">
+                  <a:s r="71">
+                     <a:s r="66">
+                        <a:s r="61">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note. Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s>
+	or </a:s>
+                        <a:s r="65">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note. Case 2&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	or </a:s>
+                     <a:s r="70">
+                        <a:s>&quot;Clinical judgement is required. Create a clinical note. Case 3&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	or </a:s>
+                  <a:s r="75">
+                     <a:s>&quot;Clinical judgement is required. Create a clinical note. Case 4&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="76" locator="108:2-111:68" xsi:type="Or">
+            <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+            <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+            <operand localId="71" locator="108:2-110:68" xsi:type="Or">
+               <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+               <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+               <operand localId="66" locator="108:2-109:68" xsi:type="Or">
+                  <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <signature name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="61" locator="108:2-108:65" name="Clinical judgement is required. Create a clinical note. Case 1" xsi:type="ExpressionRef"/>
+                  <operand localId="65" locator="109:5-109:68" name="Clinical judgement is required. Create a clinical note. Case 2" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="70" locator="110:5-110:68" name="Clinical judgement is required. Create a clinical note. Case 3" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="75" locator="111:5-111:68" name="Clinical judgement is required. Create a clinical note. Case 4" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="98" locator="120:1-126:9" name="Clinical judgement is required. Create a clinical note. Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="98">
+               <a:s>/*
+@output: Clinical judgement is required. Create a clinical note. Guidance
+@guidance: Check if exceptions to age range is being met, consider risks of vaccination and make a clinical judgement. Vaccine is not recommended for those aged 6-8 months, except during epidemics when the risk of infection with the yellow fever virus is very high.
+@guidance: Conduct a risk-benefit assessment taking into account the risk of acquiring YF disease, consider risks of potential adverse events following immunization and make a clinical judgement. 
+@guidance: Conduct a risk-benefit assessment since yellow fever is a live vaccine and make a clinical judgement. Pregnant women may be vaccinated during epidemics at the direction of local health authorities.
+@guidance: Conduct a risk-benefit assessment since yellow fever is a live vaccine and make a clinical judgement. Lactating women should be advised that the benefits of breastfeeding far outweigh alternatives.
+*/
+define &quot;Clinical judgement is required. Create a clinical note. Guidance&quot;:
+	</a:s>
+               <a:s r="97">
+                  <a:s>Combine( </a:s>
+                  <a:s r="95">
+                     <a:s>{
+		</a:s>
+                     <a:s r="82">
+                        <a:s>if </a:s>
+                        <a:s r="79">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note. Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> then </a:s>
+                        <a:s r="80">
+                           <a:s>'Check if exceptions to age range is being met, consider risks of vaccination and make a clinical judgement. Vaccine is not recommended for those aged 6-8 months, except during epidemics when the risk of infection with the yellow fever virus is very high.'</a:s>
+                        </a:s>
+                        <a:s> else </a:s>
+                        <a:s r="81">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+		</a:s>
+                     <a:s r="86">
+                        <a:s>if </a:s>
+                        <a:s r="83">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note. Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> then </a:s>
+                        <a:s r="84">
+                           <a:s>'Conduct a risk-benefit assessment taking into account the risk of acquiring YF disease, consider risks of potential adverse events following immunization and make a clinical judgement.'</a:s>
+                        </a:s>
+                        <a:s> else </a:s>
+                        <a:s r="85">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+		</a:s>
+                     <a:s r="90">
+                        <a:s>if </a:s>
+                        <a:s r="87">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note. Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> then </a:s>
+                        <a:s r="88">
+                           <a:s>'Conduct a risk-benefit assessment since yellow fever is a live vaccine and make a clinical judgement. Pregnant women may be vaccinated during epidemics at the direction of local health authorities.'</a:s>
+                        </a:s>
+                        <a:s> else </a:s>
+                        <a:s r="89">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+		</a:s>
+                     <a:s r="94">
+                        <a:s>if </a:s>
+                        <a:s r="91">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note. Case 4&quot;</a:s>
+                        </a:s>
+                        <a:s> then </a:s>
+                        <a:s r="92">
+                           <a:s>'Conduct a risk-benefit assessment since yellow fever is a live vaccine and make a clinical judgement. Lactating women should be advised that the benefits of breastfeeding far outweigh alternatives.'</a:s>
+                        </a:s>
+                        <a:s> else </a:s>
+                        <a:s r="93">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	}</a:s>
+                  </a:s>
+                  <a:s>, </a:s>
+                  <a:s r="96">
+                     <a:s>' '</a:s>
+                  </a:s>
+                  <a:s> )</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="97" locator="121:2-126:9" xsi:type="Combine">
+            <signature xsi:type="ListTypeSpecifier">
+               <elementType name="t:String" xsi:type="NamedTypeSpecifier"/>
+            </signature>
+            <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+            <source localId="95" locator="121:11-126:2" xsi:type="List">
+               <element localId="82" locator="122:3-122:339" xsi:type="If">
+                  <condition localId="79" locator="122:6-122:69" name="Clinical judgement is required. Create a clinical note. Case 1" xsi:type="ExpressionRef"/>
+                  <then localId="80" locator="122:76-122:331" valueType="t:String" value="Check if exceptions to age range is being met, consider risks of vaccination and make a clinical judgement. Vaccine is not recommended for those aged 6-8 months, except during epidemics when the risk of infection with the yellow fever virus is very high." xsi:type="Literal"/>
+                  <else localId="81" locator="122:338-122:339" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="86" locator="123:3-123:269" xsi:type="If">
+                  <condition localId="83" locator="123:6-123:69" name="Clinical judgement is required. Create a clinical note. Case 2" xsi:type="ExpressionRef"/>
+                  <then localId="84" locator="123:76-123:261" valueType="t:String" value="Conduct a risk-benefit assessment taking into account the risk of acquiring YF disease, consider risks of potential adverse events following immunization and make a clinical judgement." xsi:type="Literal"/>
+                  <else localId="85" locator="123:268-123:269" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="90" locator="124:3-124:282" xsi:type="If">
+                  <condition localId="87" locator="124:6-124:69" name="Clinical judgement is required. Create a clinical note. Case 3" xsi:type="ExpressionRef"/>
+                  <then localId="88" locator="124:76-124:274" valueType="t:String" value="Conduct a risk-benefit assessment since yellow fever is a live vaccine and make a clinical judgement. Pregnant women may be vaccinated during epidemics at the direction of local health authorities." xsi:type="Literal"/>
+                  <else localId="89" locator="124:281-124:282" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="94" locator="125:3-125:282" xsi:type="If">
+                  <condition localId="91" locator="125:6-125:69" name="Clinical judgement is required. Create a clinical note. Case 4" xsi:type="ExpressionRef"/>
+                  <then localId="92" locator="125:76-125:274" valueType="t:String" value="Conduct a risk-benefit assessment since yellow fever is a live vaccine and make a clinical judgement. Lactating women should be advised that the benefits of breastfeeding far outweigh alternatives." xsi:type="Literal"/>
+                  <else localId="93" locator="125:281-125:282" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+            </source>
+            <separator localId="96" locator="126:5-126:7" valueType="t:String" value=" " xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="104" locator="133:1-134:62" name="Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="104">
+               <a:s>/*
+@output: Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.
+@pseudocode: &quot;Immunization recommendation status&quot; = 'Further evaluation needed'
+*/
+define &quot;Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.&quot;:
+	</a:s>
+               <a:s r="103">
+                  <a:s r="102">
+                     <a:s>input</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="103">
+                     <a:s>&quot;The client has a history of severe allergic reactions&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="103" locator="134:2-134:62" name="The client has a history of severe allergic reactions" libraryName="input" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="110" locator="140:1-142:8" name="Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="110">
+               <a:s>/*
+@output: Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance
+@guidance: Do not vaccinate client for yellow fever if client has severe hypersensitivity to egg antigens
+*/
+define &quot;Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance&quot;:
+	</a:s>
+               <a:s r="109">
+                  <a:s>if </a:s>
+                  <a:s r="106">
+                     <a:s>&quot;Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.&quot;</a:s>
+                  </a:s>
+                  <a:s> then </a:s>
+                  <a:s r="107">
+                     <a:s>'Do not vaccinate client for yellow fever if client has severe hypersensitivity to egg antigens'</a:s>
+                  </a:s>
+                  <a:s>
+	else </a:s>
+                  <a:s r="108">
+                     <a:s>''</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="109" locator="141:2-142:8" xsi:type="If">
+            <condition localId="106" locator="141:5-141:112" name="Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." xsi:type="ExpressionRef"/>
+            <then localId="107" locator="141:119-141:214" valueType="t:String" value="Do not vaccinate client for yellow fever if client has severe hypersensitivity to egg antigens" xsi:type="Literal"/>
+            <else localId="108" locator="142:7-142:8" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="117" locator="36:1-41:9" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="117">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+	</a:s>
+               <a:s r="116">
+                  <a:s>Combine( </a:s>
+                  <a:s r="114">
+                     <a:s>{ 
+		</a:s>
+                     <a:s r="57">
+                        <a:s>if </a:s>
+                        <a:s r="42">
+                           <a:s>&quot;Yellow fever vaccination is contraindicated&quot;</a:s>
+                        </a:s>
+                        <a:s> then </a:s>
+                        <a:s r="55">
+                           <a:s>&quot;Yellow fever vaccination is contraindicated Guidance&quot;</a:s>
+                        </a:s>
+                        <a:s> else </a:s>
+                        <a:s r="56">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+		</a:s>
+                     <a:s r="101">
+                        <a:s>if </a:s>
+                        <a:s r="78">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note.&quot;</a:s>
+                        </a:s>
+                        <a:s> then </a:s>
+                        <a:s r="99">
+                           <a:s>&quot;Clinical judgement is required. Create a clinical note. Guidance&quot;</a:s>
+                        </a:s>
+                        <a:s> else </a:s>
+                        <a:s r="100">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>,
+				</a:s>
+                     <a:s r="113">
+                        <a:s>if </a:s>
+                        <a:s r="105">
+                           <a:s>&quot;Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note.&quot;</a:s>
+                        </a:s>
+                        <a:s> then </a:s>
+                        <a:s r="111">
+                           <a:s>&quot;Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance&quot;</a:s>
+                        </a:s>
+                        <a:s> else </a:s>
+                        <a:s r="112">
+                           <a:s>''</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	}</a:s>
+                  </a:s>
+                  <a:s>, </a:s>
+                  <a:s r="115">
+                     <a:s>' '</a:s>
+                  </a:s>
+                  <a:s> )</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="116" locator="37:2-41:9" xsi:type="Combine">
+            <signature xsi:type="ListTypeSpecifier">
+               <elementType name="t:String" xsi:type="NamedTypeSpecifier"/>
+            </signature>
+            <signature name="t:String" xsi:type="NamedTypeSpecifier"/>
+            <source localId="114" locator="37:11-41:2" xsi:type="List">
+               <element localId="57" locator="38:3-38:118" xsi:type="If">
+                  <condition localId="42" locator="38:6-38:50" name="Yellow fever vaccination is contraindicated" xsi:type="ExpressionRef"/>
+                  <then localId="55" locator="38:57-38:110" name="Yellow fever vaccination is contraindicated Guidance" xsi:type="ExpressionRef"/>
+                  <else localId="56" locator="38:117-38:118" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="101" locator="39:3-39:142" xsi:type="If">
+                  <condition localId="78" locator="39:6-39:62" name="Clinical judgement is required. Create a clinical note." xsi:type="ExpressionRef"/>
+                  <then localId="99" locator="39:69-39:134" name="Clinical judgement is required. Create a clinical note. Guidance" xsi:type="ExpressionRef"/>
+                  <else localId="100" locator="39:141-39:142" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+               <element localId="113" locator="40:5-40:246" xsi:type="If">
+                  <condition localId="105" locator="40:8-40:115" name="Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note." xsi:type="ExpressionRef"/>
+                  <then localId="111" locator="40:122-40:238" name="Yellow fever vaccination could be contraindicated. Clinical judgement is required. Create a clinical note. Guidance" xsi:type="ExpressionRef"/>
+                  <else localId="112" locator="40:245-40:246" valueType="t:String" value="" xsi:type="Literal"/>
+               </element>
+            </source>
+            <separator localId="115" locator="41:5-41:7" valueType="t:String" value=" " xsi:type="Literal"/>
+         </expression>
+      </def>
+   </statements>
+</library>

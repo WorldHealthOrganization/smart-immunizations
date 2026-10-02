@@ -1,0 +1,1114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="166">
+         <a:s>/*
+ * Library: IMMZDT05 (IMMZ.DT.05.Hib)
+ * Rule: if child or person has not been vaccinated, give Hib vaccine between 6 weeks and 59 months 
+ * Trigger: Patient has never received Hib vaccination
+ */
+library IMMZDT05</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT05" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:34" localIdentifier="IMMZConf" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZConf</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="13:1-13:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="15:1-15:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="15:1-15:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="14" locator="28:1-29:96" name="Should vaccinate patient for Hib because no doses on 1 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="14">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Hib because no doses on 1 dose scheme
+ * Annotations:
+ * 	 - Provide Hib immunizations – using the &quot;Hib Vaccine immunization – NO PREVIOUS&quot; schedule (1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Hib - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((&quot;Hib vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;Current Patient Age in Months&quot; > 12))
+ */
+define &quot;Should vaccinate patient for Hib because no doses on 1 dose scheme&quot;:
+	</a:s>
+               <a:s r="13">
+                  <a:s r="8">
+                     <a:s r="7">
+                        <a:s>IMMZCom</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="8">
+                        <a:s>&quot;No Hib Doses Administered to Patient&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="12">
+                     <a:s r="10">
+                        <a:s r="9">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="10">
+                           <a:s>&quot;Current Patient Age In Months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="11"> > 12</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="13" locator="29:2-29:96" xsi:type="And">
+            <operand localId="8" locator="29:2-29:47" name="No Hib Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+            <operand localId="12" locator="29:53-29:96" xsi:type="Greater">
+               <operand localId="10" locator="29:53-29:91" name="Current Patient Age In Months" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="11" locator="29:95-29:96" valueType="t:Integer" value="12" xsi:type="Literal"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="25" locator="42:1-43:191" name="Should vaccinate patient for Hib because no doses on 3p dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="25">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Hib because no doses on 3p dose scheme
+ * Annotations:
+ * 	 - Provide Hib immunizations – using the &quot;Hib Vaccine immunization 3p schedule – NO PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Hib - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Hib vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Weeks&quot; >= 6 )) and (&quot;In a country where the peak burden of severe Hib disease occurs in young infants&quot; = true))
+ */
+define &quot;Should vaccinate patient for Hib because no doses on 3p dose scheme&quot;:
+	</a:s>
+               <a:s r="24">
+                  <a:s r="21">
+                     <a:s r="16">
+                        <a:s r="15">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="16">
+                           <a:s>&quot;No Hib Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and </a:s>
+                     <a:s r="20">
+                        <a:s r="18">
+                           <a:s r="17">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="18">
+                              <a:s>&quot;Current Patient Age In Weeks&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="19"> >= 6</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="23">
+                     <a:s r="22">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="23">
+                        <a:s>&quot;In a country where the peak burden of severe Hib disease occurs in young infants&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="24" locator="43:2-43:191" xsi:type="And">
+            <operand localId="21" locator="43:2-43:95" xsi:type="And">
+               <operand localId="16" locator="43:2-43:47" name="No Hib Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="20" locator="43:53-43:95" xsi:type="GreaterOrEqual">
+                  <operand localId="18" locator="43:53-43:90" name="Current Patient Age In Weeks" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="19" locator="43:95" valueType="t:Integer" value="6" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="23" locator="43:101-43:191" name="In a country where the peak burden of severe Hib disease occurs in young infants" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="46" locator="58:1-62:104" name="Should vaccinate patient for Hib because 1 dose on 3p dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="46">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Hib because 1 dose on 3p dose scheme
+ * Annotations:
+ * 	 - Provide Hib immunizations – using the &quot;Hib Vaccine immunization 3p schedule – 1 PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Hib - 1 Dose
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://w
+ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Hib vaccine immunization history&quot; = &quot;1-dose&quot; = true) and (&quot;Date last Hib dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;In a country where the peak burden of severe Hib disease occurs in young infants&quot; = true)) and (&quot;Age when patient received 1st dose&quot; &lt;= &quot;12 months&quot;))
+ */
+define &quot;Should vaccinate patient for Hib because 1 dose on 3p dose scheme&quot;:
+	</a:s>
+               <a:s r="45">
+                  <a:s r="38">
+                     <a:s r="35">
+                        <a:s r="29">
+                           <a:s r="27">
+                              <a:s r="26">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="27">
+                                 <a:s>&quot;Number of Hib Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="28"> = 1</a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="34">
+                           <a:s r="31">
+                              <a:s r="30">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="31">
+                                 <a:s>&quot;Date Last Hib Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="34">
+                              <a:s>more than </a:s>
+                              <a:s r="33">
+                                 <a:s>4 'weeks'</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="32">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+	and </a:s>
+                     <a:s r="37">
+                        <a:s r="36">
+                           <a:s>IMMZConf</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="37">
+                           <a:s>&quot;In a country where the peak burden of severe Hib disease occurs in young infants&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="44">
+                     <a:s r="40">
+                        <a:s r="39">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="40">
+                           <a:s>&quot;Date First Hib Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="44">
+                        <a:s>less than </a:s>
+                        <a:s r="43">
+                           <a:s>12 'months'</a:s>
+                        </a:s>
+                        <a:s> after</a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="42">
+                        <a:s r="41">
+                           <a:s>Patient</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="42">
+                           <a:s>birthDate</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="45" locator="59:2-62:104" xsi:type="And">
+            <operand localId="38" locator="59:2-61:96" xsi:type="And">
+               <operand localId="35" locator="59:2-60:92" xsi:type="And">
+                  <operand localId="29" locator="59:2-59:58" xsi:type="Equal">
+                     <operand localId="27" locator="59:2-59:54" name="Number of Hib Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="28" locator="59:58" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="34" locator="60:6-60:92" xsi:type="Before">
+                     <operand localId="31" locator="60:6-60:57" name="Date Last Hib Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="60:86-60:92" xsi:type="Subtract">
+                        <operand localId="32" locator="60:86-60:92" xsi:type="Today"/>
+                        <operand localId="33" locator="60:69-60:77" value="4" unit="weeks" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="37" locator="61:6-61:96" name="In a country where the peak burden of severe Hib disease occurs in young infants" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="44" locator="62:6-62:104" xsi:type="In">
+               <operand localId="40" locator="62:6-62:58" name="Date First Hib Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand locator="62:60-62:80" lowClosed="false" highClosed="false" xsi:type="Interval">
+                  <low name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="42" locator="62:88-62:104" path="birthDate" xsi:type="Property">
+                        <source localId="41" locator="62:88-62:94" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </low>
+                  <high locator="62:96-62:104" xsi:type="Add">
+                     <operand name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <operand localId="42" locator="62:88-62:104" path="birthDate" xsi:type="Property">
+                           <source localId="41" locator="62:88-62:94" name="Patient" xsi:type="ExpressionRef"/>
+                        </operand>
+                     </operand>
+                     <operand localId="43" locator="62:70-62:80" value="12" unit="months" xsi:type="Quantity"/>
+                  </high>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="60" locator="75:1-78:96" name="Should vaccinate patient for Hib because 2 doses on 3p dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="60">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Hib because 2 doses on 3p dose scheme
+ * Annotations:
+ * 	 - Provide Hib immunizations – using the &quot;Hib Vaccine immunization 3p schedule – 2 PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Hib - 2 Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Hib vaccine immunization history&quot; = &quot;2-doses&quot;) and (&quot;Date last Hib dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;In a country where the peak burden of severe Hib disease occurs in young infants&quot; = true))
+ */
+define &quot;Should vaccinate patient for Hib because 2 doses on 3p dose scheme&quot;:
+	</a:s>
+               <a:s r="59">
+                  <a:s r="56">
+                     <a:s r="50">
+                        <a:s r="48">
+                           <a:s r="47">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="48">
+                              <a:s>&quot;Number of Hib Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="49"> = 2</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="55">
+                        <a:s r="52">
+                           <a:s r="51">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="52">
+                              <a:s>&quot;Date Last Hib Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="55">
+                           <a:s>more than </a:s>
+                           <a:s r="54">
+                              <a:s>4 'weeks'</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="53">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="58">
+                     <a:s r="57">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="58">
+                        <a:s>&quot;In a country where the peak burden of severe Hib disease occurs in young infants&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="59" locator="76:2-78:96" xsi:type="And">
+            <operand localId="56" locator="76:2-77:92" xsi:type="And">
+               <operand localId="50" locator="76:2-76:58" xsi:type="Equal">
+                  <operand localId="48" locator="76:2-76:54" name="Number of Hib Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="49" locator="76:58" valueType="t:Integer" value="2" xsi:type="Literal"/>
+               </operand>
+               <operand localId="55" locator="77:6-77:92" xsi:type="Before">
+                  <operand localId="52" locator="77:6-77:57" name="Date Last Hib Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="77:86-77:92" xsi:type="Subtract">
+                     <operand localId="53" locator="77:86-77:92" xsi:type="Today"/>
+                     <operand localId="54" locator="77:69-77:77" value="4" unit="weeks" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="58" locator="78:6-78:96" name="In a country where the peak burden of severe Hib disease occurs in young infants" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="71" locator="91:1-94:188" name="Should vaccinate patient for Hib because No dose on 3p+1 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="71">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Hib because No dose on 3p+1 dose scheme
+ * Annotations:
+ * 	 - Provide Hib immunizations – using the &quot;Hib Vaccine immunization 3p + 1 schedule – NO PREVIOUS&quot; schedule (3p+1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Hib - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Hib vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Weeks&quot; >= 6 )) and (&quot;In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine&quot; = true))
+ */
+define &quot;Should vaccinate patient for Hib because No dose on 3p+1 dose scheme&quot;:
+	</a:s>
+               <a:s r="70">
+                  <a:s r="67">
+                     <a:s r="62">
+                        <a:s r="61">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="62">
+                           <a:s>&quot;No Hib Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="66">
+                        <a:s r="64">
+                           <a:s r="63">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="64">
+                              <a:s>&quot;Current Patient Age In Weeks&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="65"> >= 6</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="69">
+                     <a:s r="68">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="69">
+                        <a:s>&quot;In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="70" locator="92:2-94:188" xsi:type="And">
+            <operand localId="67" locator="92:2-93:48" xsi:type="And">
+               <operand localId="62" locator="92:2-92:47" name="No Hib Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="66" locator="93:6-93:48" xsi:type="GreaterOrEqual">
+                  <operand localId="64" locator="93:6-93:43" name="Current Patient Age In Weeks" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="65" locator="93:48" valueType="t:Integer" value="6" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="69" locator="94:6-94:188" name="In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="92" locator="107:1-111:104" name="Should vaccinate patient for Hib because 1 dose on 3p+1 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="92">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Hib because 1 dose on 3p+1 dose scheme
+ * Annotations:
+ * 	 - Provide Hib immunizations – using the &quot;Hib Vaccine immunization 3p + 1 schedule – 1 PREVIOUS&quot; schedule (3p+1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Hib - 1 Dose
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Hib vaccine immunization history&quot; = &quot;1-dose&quot;) and (&quot;Date last Hib dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine&quot; = true)) and (&quot;Age when patient received 1st dose&quot; &lt;= &quot;12 months&quot;))
+ */
+define &quot;Should vaccinate patient for Hib because 1 dose on 3p+1 dose scheme&quot;:
+	</a:s>
+               <a:s r="91">
+                  <a:s r="84">
+                     <a:s r="81">
+                        <a:s r="75">
+                           <a:s r="73">
+                              <a:s r="72">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="73">
+                                 <a:s>&quot;Number of Hib Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="74"> = 1</a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="80">
+                           <a:s r="77">
+                              <a:s r="76">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="77">
+                                 <a:s>&quot;Date Last Hib Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="80">
+                              <a:s>more than </a:s>
+                              <a:s r="79">
+                                 <a:s>4 'weeks'</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="78">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+	and </a:s>
+                     <a:s r="83">
+                        <a:s r="82">
+                           <a:s>IMMZConf</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="83">
+                           <a:s>&quot;In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="90">
+                     <a:s r="86">
+                        <a:s r="85">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="86">
+                           <a:s>&quot;Date First Hib Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="90">
+                        <a:s>less than </a:s>
+                        <a:s r="89">
+                           <a:s>12 'months'</a:s>
+                        </a:s>
+                        <a:s> after</a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="88">
+                        <a:s r="87">
+                           <a:s>Patient</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="88">
+                           <a:s>birthDate</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="91" locator="108:2-111:104" xsi:type="And">
+            <operand localId="84" locator="108:2-110:188" xsi:type="And">
+               <operand localId="81" locator="108:2-109:92" xsi:type="And">
+                  <operand localId="75" locator="108:2-108:58" xsi:type="Equal">
+                     <operand localId="73" locator="108:2-108:54" name="Number of Hib Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="74" locator="108:58" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="80" locator="109:6-109:92" xsi:type="Before">
+                     <operand localId="77" locator="109:6-109:57" name="Date Last Hib Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="109:86-109:92" xsi:type="Subtract">
+                        <operand localId="78" locator="109:86-109:92" xsi:type="Today"/>
+                        <operand localId="79" locator="109:69-109:77" value="4" unit="weeks" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="83" locator="110:6-110:188" name="In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="90" locator="111:6-111:104" xsi:type="In">
+               <operand localId="86" locator="111:6-111:58" name="Date First Hib Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand locator="111:60-111:80" lowClosed="false" highClosed="false" xsi:type="Interval">
+                  <low name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="88" locator="111:88-111:104" path="birthDate" xsi:type="Property">
+                        <source localId="87" locator="111:88-111:94" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </low>
+                  <high locator="111:96-111:104" xsi:type="Add">
+                     <operand name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <operand localId="88" locator="111:88-111:104" path="birthDate" xsi:type="Property">
+                           <source localId="87" locator="111:88-111:94" name="Patient" xsi:type="ExpressionRef"/>
+                        </operand>
+                     </operand>
+                     <operand localId="89" locator="111:70-111:80" value="12" unit="months" xsi:type="Quantity"/>
+                  </high>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="106" locator="124:1-127:188" name="Should vaccinate patient for Hib because 2 doses on 3p+1 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="106">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Hib because 2 doses on 3p+1 dose scheme
+ * Annotations:
+ * 	 - Provide Hib immunizations – using the &quot;Hib Vaccine immunization 3p + 1 schedule – 2 PREVIOUS&quot; schedule (3p+1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Hib - 2 Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Hib vaccine immunization history&quot; = &quot;2-doses&quot;) and (&quot;Date last Hib dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine&quot; = true))
+ */
+define &quot;Should vaccinate patient for Hib because 2 doses on 3p+1 dose scheme&quot;:
+	</a:s>
+               <a:s r="105">
+                  <a:s r="102">
+                     <a:s r="96">
+                        <a:s r="94">
+                           <a:s r="93">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="94">
+                              <a:s>&quot;Number of Hib Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="95"> = 2</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="101">
+                        <a:s r="98">
+                           <a:s r="97">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="98">
+                              <a:s>&quot;Date Last Hib Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="101">
+                           <a:s>more than </a:s>
+                           <a:s r="100">
+                              <a:s>4 'weeks'</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="99">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+	and </a:s>
+                  <a:s r="104">
+                     <a:s r="103">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="104">
+                        <a:s>&quot;In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="105" locator="125:2-127:188" xsi:type="And">
+            <operand localId="102" locator="125:2-126:92" xsi:type="And">
+               <operand localId="96" locator="125:2-125:58" xsi:type="Equal">
+                  <operand localId="94" locator="125:2-125:54" name="Number of Hib Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="95" locator="125:58" valueType="t:Integer" value="2" xsi:type="Literal"/>
+               </operand>
+               <operand localId="101" locator="126:6-126:92" xsi:type="Before">
+                  <operand localId="98" locator="126:6-126:57" name="Date Last Hib Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="126:86-126:92" xsi:type="Subtract">
+                     <operand localId="99" locator="126:86-126:92" xsi:type="Today"/>
+                     <operand localId="100" locator="126:69-126:77" value="4" unit="weeks" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="104" locator="127:6-127:188" name="In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="120" locator="141:1-144:188" name="Should vaccinate patient for Hib because 3 doses on 3p+1 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="120">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Hib because 3 doses on 3p+1 dose scheme
+ * Annotations:
+ * 	 - Provide Hib immunizations – using the &quot;Hib Vaccine immunization 3p + 1 schedule – 3 PREVIOUS&quot; schedule (3p+1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Hib - Booster
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://w
+ww.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Hib vaccine immunization history&quot; = &quot;3-doses&quot;) and (&quot;Date last Hib dose given&quot; >= &quot;6 months&quot;)) and (&quot;In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine&quot; = true))
+ */
+define &quot;Should vaccinate patient for Hib because 3 doses on 3p+1 dose scheme&quot;:
+	</a:s>
+               <a:s r="119">
+                  <a:s r="116">
+                     <a:s r="110">
+                        <a:s r="108">
+                           <a:s r="107">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="108">
+                              <a:s>&quot;Number of Hib Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="109"> = 3</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="115">
+                        <a:s r="112">
+                           <a:s r="111">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="112">
+                              <a:s>&quot;Date Last Hib Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="115">
+                           <a:s>more than </a:s>
+                           <a:s r="114">
+                              <a:s>6 'months'</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="113">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+	and </a:s>
+                  <a:s r="118">
+                     <a:s r="117">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="118">
+                        <a:s>&quot;In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="119" locator="142:2-144:188" xsi:type="And">
+            <operand localId="116" locator="142:2-143:93" xsi:type="And">
+               <operand localId="110" locator="142:2-142:58" xsi:type="Equal">
+                  <operand localId="108" locator="142:2-142:54" name="Number of Hib Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="109" locator="142:58" valueType="t:Integer" value="3" xsi:type="Literal"/>
+               </operand>
+               <operand localId="115" locator="143:6-143:93" xsi:type="Before">
+                  <operand localId="112" locator="143:6-143:57" name="Date Last Hib Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="143:87-143:93" xsi:type="Subtract">
+                     <operand localId="113" locator="143:87-143:93" xsi:type="Today"/>
+                     <operand localId="114" locator="143:69-143:78" value="6" unit="months" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="118" locator="144:6-144:188" name="In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="131" locator="157:1-160:188" name="Should vaccinate patient for Hib because No dose on 2p+1 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="131">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Hib because No dose on 2p+1 dose scheme
+ * Annotations:
+ * 	 - Provide Hib immunizations – using the &quot;Hib Vaccine immunization 2p + 1 schedule – NO PREVIOUS&quot; schedule (2p+1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Hib - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Hib vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Weeks&quot; >= 6 )) and (&quot;In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine&quot; = true))
+ */
+define &quot;Should vaccinate patient for Hib because No dose on 2p+1 dose scheme&quot;:
+	</a:s>
+               <a:s r="130">
+                  <a:s r="127">
+                     <a:s r="122">
+                        <a:s r="121">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="122">
+                           <a:s>&quot;No Hib Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="126">
+                        <a:s r="124">
+                           <a:s r="123">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="124">
+                              <a:s>&quot;Current Patient Age In Weeks&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="125"> >= 6</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="129">
+                     <a:s r="128">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="129">
+                        <a:s>&quot;In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="130" locator="158:2-160:188" xsi:type="And">
+            <operand localId="127" locator="158:2-159:48" xsi:type="And">
+               <operand localId="122" locator="158:2-158:47" name="No Hib Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="126" locator="159:6-159:48" xsi:type="GreaterOrEqual">
+                  <operand localId="124" locator="159:6-159:43" name="Current Patient Age In Weeks" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="125" locator="159:48" valueType="t:Integer" value="6" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="129" locator="160:6-160:188" name="In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="152" locator="173:1-177:104" name="Should vaccinate patient for Hib because 1 dose on 2p+1 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="152">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Hib because 1 dose on 2p+1 dose scheme
+ * Annotations:
+ * 	 - Provide Hib immunizations – using the &quot;Hib Vaccine immunization 2p + 1 schedule – 1 PREVIOUS&quot; schedule (2p+1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Hib - 1 Dose
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Hib vaccine immunization history&quot; = &quot;1-dose&quot;) and (&quot;Date last Hib dose given&quot; >= &quot;8 weeks&quot;)) and (&quot;In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine&quot; = true)) and (&quot;Age when patient received 1st dose&quot; &lt;= &quot;12 months&quot;))
+ */
+define &quot;Should vaccinate patient for Hib because 1 dose on 2p+1 dose scheme&quot;:
+	</a:s>
+               <a:s r="151">
+                  <a:s r="144">
+                     <a:s r="141">
+                        <a:s r="135">
+                           <a:s r="133">
+                              <a:s r="132">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="133">
+                                 <a:s>&quot;Number of Hib Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="134"> = 1</a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="140">
+                           <a:s r="137">
+                              <a:s r="136">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="137">
+                                 <a:s>&quot;Date Last Hib Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="140">
+                              <a:s>more than </a:s>
+                              <a:s r="139">
+                                 <a:s>8 'weeks'</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="138">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="143">
+                        <a:s r="142">
+                           <a:s>IMMZConf</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="143">
+                           <a:s>&quot;In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="150">
+                     <a:s r="146">
+                        <a:s r="145">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="146">
+                           <a:s>&quot;Date First Hib Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="150">
+                        <a:s>less than </a:s>
+                        <a:s r="149">
+                           <a:s>12 'months'</a:s>
+                        </a:s>
+                        <a:s> after</a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="148">
+                        <a:s r="147">
+                           <a:s>Patient</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="148">
+                           <a:s>birthDate</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="151" locator="174:2-177:104" xsi:type="And">
+            <operand localId="144" locator="174:2-176:188" xsi:type="And">
+               <operand localId="141" locator="174:2-175:92" xsi:type="And">
+                  <operand localId="135" locator="174:2-174:58" xsi:type="Equal">
+                     <operand localId="133" locator="174:2-174:54" name="Number of Hib Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="134" locator="174:58" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="140" locator="175:6-175:92" xsi:type="Before">
+                     <operand localId="137" locator="175:6-175:57" name="Date Last Hib Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="175:86-175:92" xsi:type="Subtract">
+                        <operand localId="138" locator="175:86-175:92" xsi:type="Today"/>
+                        <operand localId="139" locator="175:69-175:77" value="8" unit="weeks" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="143" locator="176:6-176:188" name="In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="150" locator="177:6-177:104" xsi:type="In">
+               <operand localId="146" locator="177:6-177:58" name="Date First Hib Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand locator="177:60-177:80" lowClosed="false" highClosed="false" xsi:type="Interval">
+                  <low name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="148" locator="177:88-177:104" path="birthDate" xsi:type="Property">
+                        <source localId="147" locator="177:88-177:94" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </low>
+                  <high locator="177:96-177:104" xsi:type="Add">
+                     <operand name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <operand localId="148" locator="177:88-177:104" path="birthDate" xsi:type="Property">
+                           <source localId="147" locator="177:88-177:94" name="Patient" xsi:type="ExpressionRef"/>
+                        </operand>
+                     </operand>
+                     <operand localId="149" locator="177:70-177:80" value="12" unit="months" xsi:type="Quantity"/>
+                  </high>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="166" locator="191:1-194:188" name="Should vaccinate patient for Hib because 2 dose on 2p+1 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="166">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Hib because 2 dose on 2p+1 dose scheme
+ * Annotations:
+ * 	 - Provide Hib immunizations – using the &quot;Hib Vaccine immunization 2p + 1 schedule – 2 PREVIOUS&quot; schedule (2p+1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Hib - Booster
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Hib vaccine immunization history&quot; = &quot;2-dose&quot;) and (&quot;Date last Hib dose given&quot; >= &quot;6 months&quot;)) and (&quot;In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine&quot; = true))
+ */
+define &quot;Should vaccinate patient for Hib because 2 dose on 2p+1 dose scheme&quot;:
+	</a:s>
+               <a:s r="165">
+                  <a:s r="162">
+                     <a:s r="156">
+                        <a:s r="154">
+                           <a:s r="153">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="154">
+                              <a:s>&quot;Number of Hib Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="155"> = 2</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="161">
+                        <a:s r="158">
+                           <a:s r="157">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="158">
+                              <a:s>&quot;Date Last Hib Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="161">
+                           <a:s>more than </a:s>
+                           <a:s r="160">
+                              <a:s>6 'months'</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="159">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+	and </a:s>
+                  <a:s r="164">
+                     <a:s r="163">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="164">
+                        <a:s>&quot;In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="165" locator="192:2-194:188" xsi:type="And">
+            <operand localId="162" locator="192:2-193:93" xsi:type="And">
+               <operand localId="156" locator="192:2-192:58" xsi:type="Equal">
+                  <operand localId="154" locator="192:2-192:54" name="Number of Hib Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="155" locator="192:58" valueType="t:Integer" value="2" xsi:type="Literal"/>
+               </operand>
+               <operand localId="161" locator="193:6-193:93" xsi:type="Before">
+                  <operand localId="158" locator="193:6-193:57" name="Date Last Hib Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="193:87-193:93" xsi:type="Subtract">
+                     <operand localId="159" locator="193:87-193:93" xsi:type="Today"/>
+                     <operand localId="160" locator="193:69-193:78" value="6" unit="months" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="164" locator="194:6-194:188" name="In a setting where the greatest disease morbidity and mortality occur later, or whererate reductions of disease are not fully sustained after the routine use of Hib vaccine" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+   </statements>
+</library>

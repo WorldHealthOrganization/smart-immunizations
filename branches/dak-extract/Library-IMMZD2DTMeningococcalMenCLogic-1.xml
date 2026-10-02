@@ -1,0 +1,1453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="365">
+         <a:s>/*
+ * Library: IMMZD2DTMeningococcalMenCLogic (IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine )
+ * Rule: Determine if the client is due for a meningococcal vaccination according to the national immunization schedule
+ * Decision Table: Monovalent MenC conjugate vaccine schedule
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any  
+ */
+library IMMZD2DTMeningococcalMenCLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTMeningococcalMenCLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="13:1-13:63" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTMeningococcalEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTMeningococcalEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="209" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>parameter Today </a:s>
+               <a:s r="213">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="212">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="212" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="213" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="217" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="215" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="216" xsi:type="SingletonFrom">
+            <operand localId="214" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="227" locator="39:1-40:48" name="Client is not due for meningococcal vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for meningococcal vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="227">
+               <a:s>/*
+@output: Client is not due for meningococcal vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for meningococcal vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="229">
+                  <a:s r="228">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="229">
+                     <a:s>&quot;Client's age is less than 2 months&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="229" locator="40:3-40:48" name="Client's age is less than 2 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="232" locator="46:1-49:89" name="Client is not due for meningococcal vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for meningococcal vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="232">
+               <a:s>/*
+@output: Client is not due for meningococcal vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for meningococcal vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="233">
+                  <a:s r="234">
+                     <a:s r="236">
+                        <a:s r="235">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="236">
+                           <a:s>&quot;One meningococcal primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="238">
+                        <a:s r="237">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="238">
+                           <a:s>&quot;Client's age was less than or equal to 11 months when the primary series was started&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="240">
+                     <a:s r="239">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="240">
+                        <a:s>&quot;The latest meningococcal dose was administered less than 2 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="233" locator="47:3-49:89" xsi:type="And">
+            <operand localId="234" locator="47:3-48:104" xsi:type="And">
+               <operand localId="236" locator="47:3-47:68" name="One meningococcal primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="238" locator="48:9-48:104" name="Client's age was less than or equal to 11 months when the primary series was started" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="240" locator="49:9-49:89" name="The latest meningococcal dose was administered less than 2 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="243" locator="55:1-58:66" name="Client is not due for meningococcal vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for meningococcal vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="243">
+               <a:s>/*
+@output: Client is not due for meningococcal vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for meningococcal vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="244">
+                  <a:s r="245">
+                     <a:s r="247">
+                        <a:s r="246">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="247">
+                           <a:s>&quot;Two meningococcal primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="249">
+                        <a:s r="248">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="249">
+                           <a:s>&quot;The latest meningococcal dose was administered less than 1 year ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="251">
+                     <a:s r="250">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="251">
+                        <a:s>&quot;No meningococcal booster dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="244" locator="56:3-58:66" xsi:type="And">
+            <operand localId="245" locator="56:3-57:87" xsi:type="And">
+               <operand localId="247" locator="56:3-56:70" name="Two meningococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="249" locator="57:9-57:87" name="The latest meningococcal dose was administered less than 1 year ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="251" locator="58:9-58:66" name="No meningococcal booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="223" locator="64:1-67:63" name="Client is not due for meningococcal vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for meningococcal vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="223">
+               <a:s>/*
+@output: Client is not due for meningococcal vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for meningococcal vaccination&quot;:
+  </a:s>
+               <a:s r="224">
+                  <a:s r="225">
+                     <a:s r="230">
+                        <a:s>&quot;Client is not due for meningococcal vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="241">
+                        <a:s>&quot;Client is not due for meningococcal vaccination Case 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="252">
+                     <a:s>&quot;Client is not due for meningococcal vaccination Case 3&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="224" locator="65:3-67:63" xsi:type="Or">
+            <operand localId="225" locator="65:3-66:63" xsi:type="Or">
+               <operand localId="230" locator="65:3-65:58" name="Client is not due for meningococcal vaccination Case 1" xsi:type="ExpressionRef"/>
+               <operand localId="241" locator="66:8-66:63" name="Client is not due for meningococcal vaccination Case 2" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="252" locator="67:8-67:63" name="Client is not due for meningococcal vaccination Case 3" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="255" locator="77:1-85:5" name="Client is not due for meningococcal vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for meningococcal vaccination Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with first meningococcal dose as client's age is under 2 months. Check for any vaccines due and inform the caregiver of when to come back for the first dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 2 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the second dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with meningococcal booster dose as the latest meningococcal dose was administered less than 1 year ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the booster dose."/>
+            <a:s r="255">
+               <a:s>/*
+@output: Client is not due for meningococcal vaccination Guidance
+@guidance: Should not vaccinate client with first meningococcal dose as client's age is under 2 months. Check for any vaccines due and inform the caregiver of when to come back for the first dose.
+@guidance: Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 2 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the second dose.
+@guidance: Should not vaccinate client with meningococcal booster dose as the latest meningococcal dose was administered less than 1 year ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the booster dose.
+*/
+define &quot;Client is not due for meningococcal vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="256">
+                  <a:s>case
+    </a:s>
+                  <a:s r="257">
+                     <a:s>when </a:s>
+                     <a:s r="258">
+                        <a:s>&quot;Client is not due for meningococcal vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="259">
+                        <a:s>'Should not vaccinate client with first meningococcal dose as client\'s age is under 2 months. Check for any vaccines due and inform the caregiver of when to come back for the first dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="260">
+                     <a:s>when </a:s>
+                     <a:s r="261">
+                        <a:s>&quot;Client is not due for meningococcal vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="262">
+                        <a:s>'Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 2 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the second dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="263">
+                     <a:s>when </a:s>
+                     <a:s r="264">
+                        <a:s>&quot;Client is not due for meningococcal vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="265">
+                        <a:s>'Should not vaccinate client with meningococcal booster dose as the latest meningococcal dose was administered less than 1 year ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the booster dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="266">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="256" locator="78:3-85:5" xsi:type="Case">
+            <caseItem localId="257" locator="79:5-79:259">
+               <when localId="258" locator="79:10-79:65" name="Client is not due for meningococcal vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="259" locator="79:72-79:259" valueType="t:String" value="Should not vaccinate client with first meningococcal dose as client's age is under 2 months. Check for any vaccines due and inform the caregiver of when to come back for the first dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="260" locator="80:5-80:300">
+               <when localId="261" locator="80:10-80:65" name="Client is not due for meningococcal vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="262" locator="80:72-80:300" valueType="t:String" value="Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 2 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the second dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="263" locator="82:5-82:300">
+               <when localId="264" locator="82:10-82:65" name="Client is not due for meningococcal vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="265" locator="82:72-82:300" valueType="t:String" value="Should not vaccinate client with meningococcal booster dose as the latest meningococcal dose was administered less than 1 year ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the booster dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="266" locator="84:10-84:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="273" locator="91:1-93:66" name="Client is due for meningococcal vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for meningococcal vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="273">
+               <a:s>/*
+@output: Client is due for meningococcal vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for meningococcal vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="274">
+                  <a:s r="276">
+                     <a:s r="275">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="276">
+                        <a:s>&quot;No meningococcal primary series dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="278">
+                     <a:s r="277">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="278">
+                        <a:s>&quot;Client's age is more than or equal to 2 months&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="274" locator="92:3-93:66" xsi:type="And">
+            <operand localId="276" locator="92:3-92:67" name="No meningococcal primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="278" locator="93:9-93:66" name="Client's age is more than or equal to 2 months" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="281" locator="99:1-102:89" name="Client is due for meningococcal vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for meningococcal vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="281">
+               <a:s>/*
+@output: Client is due for meningococcal vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for meningococcal vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="282">
+                  <a:s r="283">
+                     <a:s r="285">
+                        <a:s r="284">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="285">
+                           <a:s>&quot;One meningococcal primary series dose was administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="287">
+                        <a:s r="286">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="287">
+                           <a:s>&quot;Client's age was less than or equal to 11 months when the primary series was started&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="289">
+                     <a:s r="288">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="289">
+                        <a:s>&quot;The latest meningococcal dose was administered more than 2 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="282" locator="100:3-102:89" xsi:type="And">
+            <operand localId="283" locator="100:3-101:104" xsi:type="And">
+               <operand localId="285" locator="100:3-100:68" name="One meningococcal primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="287" locator="101:9-101:104" name="Client's age was less than or equal to 11 months when the primary series was started" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="289" locator="102:9-102:89" name="The latest meningococcal dose was administered more than 2 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="270" locator="108:1-110:59" name="Client is due for meningococcal vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for meningococcal vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="270">
+               <a:s>/*
+@output: Client is due for meningococcal vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for meningococcal vaccination&quot;:
+  </a:s>
+               <a:s r="271">
+                  <a:s r="279">
+                     <a:s>&quot;Client is due for meningococcal vaccination Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="290">
+                     <a:s>&quot;Client is due for meningococcal vaccination Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="271" locator="109:3-110:59" xsi:type="Or">
+            <operand localId="279" locator="109:3-109:54" name="Client is due for meningococcal vaccination Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="290" locator="110:8-110:59" name="Client is due for meningococcal vaccination Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="293" locator="119:1-126:5" name="Client is due for meningococcal vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for meningococcal vaccination Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with first meningococcal dose as no meningococcal dose was administered and client is within appropriate age range.&#xa;Check for contraindications."/>
+            <a:t name="guidance" value="Should vaccinate client with second meningococcal dose as client was less than 11 months when primary series was started and latest meningococcal dose was administered more than 2 months ago. &#xa;Check for contraindications."/>
+            <a:s r="293">
+               <a:s>/*
+@output: Client is due for meningococcal vaccination Guidance
+@guidance: Should vaccinate client with first meningococcal dose as no meningococcal dose was administered and client is within appropriate age range.
+Check for contraindications.
+@guidance: Should vaccinate client with second meningococcal dose as client was less than 11 months when primary series was started and latest meningococcal dose was administered more than 2 months ago. 
+Check for contraindications.
+*/
+define &quot;Client is due for meningococcal vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="294">
+                  <a:s>case
+    </a:s>
+                  <a:s r="295">
+                     <a:s>when </a:s>
+                     <a:s r="296">
+                        <a:s>&quot;Client is due for meningococcal vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="297">
+                        <a:s>'Should vaccinate client with first meningococcal dose as no meningococcal dose was administered and client is within appropriate age range.
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="298">
+                     <a:s>when </a:s>
+                     <a:s r="299">
+                        <a:s>&quot;Client is due for meningococcal vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="300">
+                        <a:s>'Should vaccinate client with second meningococcal dose as client was less than 11 months when primary series was started and latest meningococcal dose was administered more than 2 months ago. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="301">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="294" locator="120:3-126:5" xsi:type="Case">
+            <caseItem localId="295" locator="121:5-121:237">
+               <when localId="296" locator="121:10-121:61" name="Client is due for meningococcal vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="297" locator="121:68-121:237" valueType="t:String" value="Should vaccinate client with first meningococcal dose as no meningococcal dose was administered and client is within appropriate age range.&#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="298" locator="123:5-123:290">
+               <when localId="299" locator="123:10-123:61" name="Client is due for meningococcal vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="300" locator="123:68-123:290" valueType="t:String" value="Should vaccinate client with second meningococcal dose as client was less than 11 months when primary series was started and latest meningococcal dose was administered more than 2 months ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="301" locator="125:10-125:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="308" locator="132:1-134:92" name="Meningococcal immunization schedule is complete Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Meningococcal immunization schedule is complete Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="308">
+               <a:s>/*
+@output: Meningococcal immunization schedule is complete Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Meningococcal immunization schedule is complete Case 1&quot;:
+  </a:s>
+               <a:s r="309">
+                  <a:s r="311">
+                     <a:s r="310">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="311">
+                        <a:s>&quot;One meningococcal primary series dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="313">
+                     <a:s r="312">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="313">
+                        <a:s>&quot;Client's age was more than 11 months when the primary series was started&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="309" locator="133:3-134:92" xsi:type="And">
+            <operand localId="311" locator="133:3-133:68" name="One meningococcal primary series dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="313" locator="134:9-134:92" name="Client's age was more than 11 months when the primary series was started" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="316" locator="140:1-142:63" name="Meningococcal immunization schedule is complete Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Meningococcal immunization schedule is complete Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="316">
+               <a:s>/*
+@output: Meningococcal immunization schedule is complete Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Meningococcal immunization schedule is complete Case 2&quot;:
+  </a:s>
+               <a:s r="317">
+                  <a:s r="319">
+                     <a:s r="318">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="319">
+                        <a:s>&quot;Two meningococcal primary series doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="321">
+                     <a:s r="320">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="321">
+                        <a:s>&quot;Meningococcal booster dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="317" locator="141:3-142:63" xsi:type="And">
+            <operand localId="319" locator="141:3-141:70" name="Two meningococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="321" locator="142:9-142:63" name="Meningococcal booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="305" locator="148:1-150:63" name="Meningococcal immunization schedule is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Meningococcal immunization schedule is complete"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="305">
+               <a:s>/*
+@output: Meningococcal immunization schedule is complete
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Meningococcal immunization schedule is complete&quot;:
+  </a:s>
+               <a:s r="306">
+                  <a:s r="314">
+                     <a:s>&quot;Meningococcal immunization schedule is complete Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="322">
+                     <a:s>&quot;Meningococcal immunization schedule is complete Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="306" locator="149:3-150:63" xsi:type="Or">
+            <operand localId="314" locator="149:3-149:58" name="Meningococcal immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="322" locator="150:8-150:63" name="Meningococcal immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="325" locator="158:1-164:5" name="Meningococcal immunization schedule is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Meningococcal immunization schedule is complete Guidance"/>
+            <a:t name="guidance" value="Meningococcal immunization schedule is complete as client's age was more than 11 months when primary series was started. One primary series dose was administered. Check for any other vaccines due."/>
+            <a:t name="guidance" value="Meningococcal immunization schedule is complete. Two primary series doses and one booster dose were administered. &#xa;Check for any vaccines due."/>
+            <a:s r="325">
+               <a:s>/*
+@output: Meningococcal immunization schedule is complete Guidance
+@guidance: Meningococcal immunization schedule is complete as client's age was more than 11 months when primary series was started. One primary series dose was administered. Check for any other vaccines due.
+@guidance: Meningococcal immunization schedule is complete. Two primary series doses and one booster dose were administered. 
+Check for any vaccines due.
+*/
+define &quot;Meningococcal immunization schedule is complete Guidance&quot;:
+  </a:s>
+               <a:s r="326">
+                  <a:s>case
+    </a:s>
+                  <a:s r="327">
+                     <a:s>when </a:s>
+                     <a:s r="328">
+                        <a:s>&quot;Meningococcal immunization schedule is complete Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="329">
+                        <a:s>'Meningococcal immunization schedule is complete as client\'s age was more than 11 months when primary series was started. One primary series dose was administered. Check for any other vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="330">
+                     <a:s>when </a:s>
+                     <a:s r="331">
+                        <a:s>&quot;Meningococcal immunization schedule is complete Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="332">
+                        <a:s>'Meningococcal immunization schedule is complete. Two primary series doses and one booster dose were administered. 
+Check for any vaccines due.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="333">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="326" locator="159:3-164:5" xsi:type="Case">
+            <caseItem localId="327" locator="160:5-160:270">
+               <when localId="328" locator="160:10-160:65" name="Meningococcal immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+               <then localId="329" locator="160:72-160:270" valueType="t:String" value="Meningococcal immunization schedule is complete as client's age was more than 11 months when primary series was started. One primary series dose was administered. Check for any other vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="330" locator="161:5-161:215">
+               <when localId="331" locator="161:10-161:65" name="Meningococcal immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+               <then localId="332" locator="161:72-161:215" valueType="t:String" value="Meningococcal immunization schedule is complete. Two primary series doses and one booster dose were administered. &#xa;Check for any vaccines due." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="333" locator="163:10-163:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="337" locator="170:1-173:66" name="The primary series is complete. Client is due for meningococcal booster dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="The primary series is complete. Client is due for meningococcal booster dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="337">
+               <a:s>/*
+@output: The primary series is complete. Client is due for meningococcal booster dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;The primary series is complete. Client is due for meningococcal booster dose&quot;:
+  </a:s>
+               <a:s r="338">
+                  <a:s r="339">
+                     <a:s r="341">
+                        <a:s r="340">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="341">
+                           <a:s>&quot;Two meningococcal primary series doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="343">
+                        <a:s r="342">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="343">
+                           <a:s>&quot;The latest meningococcal dose was administered more than 1 year ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="345">
+                     <a:s r="344">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="345">
+                        <a:s>&quot;No meningococcal booster dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="338" locator="171:3-173:66" xsi:type="And">
+            <operand localId="339" locator="171:3-172:87" xsi:type="And">
+               <operand localId="341" locator="171:3-171:70" name="Two meningococcal primary series doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="343" locator="172:9-172:87" name="The latest meningococcal dose was administered more than 1 year ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="345" locator="173:9-173:66" name="No meningococcal booster dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="348" locator="180:1-181:212" name="The primary series is complete. Client is due for meningococcal booster dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="The primary series is complete. Client is due for meningococcal booster dose Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with Meningococcal booster dose as no meningococcal booster dose was administered and the latest meningococcal dose was administered more than 1 year ago. &#xa;Check for contraindications."/>
+            <a:s r="348">
+               <a:s>/*
+@output: The primary series is complete. Client is due for meningococcal booster dose Guidance
+@guidance: Should vaccinate client with Meningococcal booster dose as no meningococcal booster dose was administered and the latest meningococcal dose was administered more than 1 year ago. 
+Check for contraindications.
+*/
+define &quot;The primary series is complete. Client is due for meningococcal booster dose Guidance&quot;:
+  </a:s>
+               <a:s r="349">
+                  <a:s>'Should vaccinate client with Meningococcal booster dose as no meningococcal booster dose was administered and the latest meningococcal dose was administered more than 1 year ago. 
+Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="349" locator="181:3-181:212" valueType="t:String" value="Should vaccinate client with Meningococcal booster dose as no meningococcal booster dose was administered and the latest meningococcal dose was administered more than 1 year ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="219" locator="23:1-30:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="219">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="220">
+                  <a:s>case
+    </a:s>
+                  <a:s r="221">
+                     <a:s>when </a:s>
+                     <a:s r="253">
+                        <a:s>&quot;Client is not due for meningococcal vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="267">
+                        <a:s>&quot;Client is not due for meningococcal vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="268">
+                     <a:s>when </a:s>
+                     <a:s r="291">
+                        <a:s>&quot;Client is due for meningococcal vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="302">
+                        <a:s>&quot;Client is due for meningococcal vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="303">
+                     <a:s>when </a:s>
+                     <a:s r="323">
+                        <a:s>&quot;Meningococcal immunization schedule is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="334">
+                        <a:s>&quot;Meningococcal immunization schedule is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="335">
+                     <a:s>when </a:s>
+                     <a:s r="346">
+                        <a:s>&quot;The primary series is complete. Client is due for meningococcal booster dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="350">
+                        <a:s>&quot;The primary series is complete. Client is due for meningococcal booster dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="351">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="220" locator="24:3-30:5" xsi:type="Case">
+            <caseItem localId="221" locator="25:5-25:122">
+               <when localId="253" locator="25:10-25:58" name="Client is not due for meningococcal vaccination" xsi:type="ExpressionRef"/>
+               <then localId="267" locator="25:65-25:122" name="Client is not due for meningococcal vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="268" locator="26:5-26:114">
+               <when localId="291" locator="26:10-26:54" name="Client is due for meningococcal vaccination" xsi:type="ExpressionRef"/>
+               <then localId="302" locator="26:61-26:114" name="Client is due for meningococcal vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="303" locator="27:5-27:122">
+               <when localId="323" locator="27:10-27:58" name="Meningococcal immunization schedule is complete" xsi:type="ExpressionRef"/>
+               <then localId="334" locator="27:65-27:122" name="Meningococcal immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="335" locator="28:5-28:180">
+               <when localId="346" locator="28:10-28:87" name="The primary series is complete. Client is due for meningococcal booster dose" xsi:type="ExpressionRef"/>
+               <then localId="350" locator="28:94-28:180" name="The primary series is complete. Client is due for meningococcal booster dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="351" locator="29:10-29:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="353" locator="32:1-33:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="353">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="354">
+                  <a:s r="357">
+                     <a:s r="355">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="363">
+                     <a:s r="359">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="360">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="354" locator="33:3-33:45" xsi:type="And">
+            <operand localId="357" locator="33:3-33:24" xsi:type="Not">
+               <operand localId="356" locator="33:3-33:24" xsi:type="IsNull">
+                  <operand localId="355" locator="33:3-33:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="363" locator="33:30-33:45" xsi:type="Not">
+               <operand localId="358" locator="33:30-33:45" xsi:type="Equal">
+                  <signature localId="361" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="362" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="359" locator="33:30-33:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="360" locator="33:44-33:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="365" locator="188:1-205:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="365">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="366">
+                  <a:s>case
+    </a:s>
+                  <a:s r="367">
+                     <a:s>when </a:s>
+                     <a:s r="368">
+                        <a:s r="370">
+                           <a:s r="369">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="370">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="371">
+                           <a:s>'30.1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="376">
+                        <a:s r="377">
+                           <a:s>&quot;Client is not due for meningococcal vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="378">
+                           <a:s r="379">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="380">
+                              <a:s>'Should not vaccinate client with first meningococcal dose as client\'s age is under 2 months. Check for any vaccines due and inform the caregiver of when to come back for the first dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="383">
+                     <a:s>when </a:s>
+                     <a:s r="384">
+                        <a:s r="386">
+                           <a:s r="385">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="386">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="387">
+                           <a:s>'31.01'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="392">
+                        <a:s r="393">
+                           <a:s>&quot;Client is due for meningococcal vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="394">
+                           <a:s r="395">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="396">
+                              <a:s>'Should vaccinate client with first meningococcal dose as no meningococcal dose was administered and client is within appropriate age range.
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="399">
+                     <a:s>when </a:s>
+                     <a:s r="400">
+                        <a:s r="402">
+                           <a:s r="401">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="402">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="403">
+                           <a:s>'32.023'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="408">
+                        <a:s r="409">
+                           <a:s>&quot;Client is not due for meningococcal vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="410">
+                           <a:s r="411">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="412">
+                              <a:s>'Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 2 months ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the second dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="415">
+                     <a:s>when </a:s>
+                     <a:s r="416">
+                        <a:s r="418">
+                           <a:s r="417">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="418">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="419">
+                           <a:s>'33.023'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="424">
+                        <a:s r="425">
+                           <a:s>&quot;Client is due for meningococcal vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="426">
+                           <a:s r="427">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="428">
+                              <a:s>'Should vaccinate client with second meningococcal dose as client was less than 11 months when primary series was started and latest meningococcal dose was administered more than 2 months ago. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="431">
+                     <a:s>when </a:s>
+                     <a:s r="432">
+                        <a:s r="434">
+                           <a:s r="433">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="434">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="435">
+                           <a:s>'34.02'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="440">
+                        <a:s r="441">
+                           <a:s>&quot;Meningococcal immunization schedule is complete Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="442">
+                           <a:s r="443">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="444">
+                              <a:s>'Meningococcal immunization schedule is complete as client\'s age was more than 11 months when primary series was started. One primary series dose was administered. Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="447">
+                     <a:s>when </a:s>
+                     <a:s r="448">
+                        <a:s r="450">
+                           <a:s r="449">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="450">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="451">
+                           <a:s>'35.034'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="456">
+                        <a:s r="457">
+                           <a:s>&quot;Client is not due for meningococcal vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="458">
+                           <a:s r="459">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="460">
+                              <a:s>'Should not vaccinate client with meningococcal booster dose as the latest meningococcal dose was administered less than 1 year ago. 
+Check for any vaccines due and inform the caregiver of when to come back for the booster dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="463">
+                     <a:s>when </a:s>
+                     <a:s r="464">
+                        <a:s r="466">
+                           <a:s r="465">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="466">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="467">
+                           <a:s>'36.034'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="472">
+                        <a:s r="473">
+                           <a:s>&quot;The primary series is complete. Client is due for meningococcal booster dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="474">
+                           <a:s r="475">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="476">
+                              <a:s>'Should vaccinate client with Meningococcal booster dose as no meningococcal booster dose was administered and the latest meningococcal dose was administered more than 1 year ago. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="479">
+                     <a:s>when </a:s>
+                     <a:s r="480">
+                        <a:s r="482">
+                           <a:s r="481">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="482">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="483">
+                           <a:s>'37.04'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="488">
+                        <a:s r="489">
+                           <a:s>&quot;Meningococcal immunization schedule is complete Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="490">
+                           <a:s r="491">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="492">
+                              <a:s>'Meningococcal immunization schedule is complete. Two primary series doses and one booster dose were administered. 
+Check for any vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="495">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="366" locator="189:3-205:5" xsi:type="Case">
+            <caseItem localId="367" locator="190:5-190:296">
+               <when localId="368" locator="190:10-190:28" xsi:type="Equal">
+                  <signature localId="374" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="375" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="372" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="373" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="370" locator="190:10-190:19" path="id" xsi:type="Property">
+                        <source localId="369" locator="190:10-190:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="371" locator="190:23-190:28" valueType="t:String" value="30.1" xsi:type="Literal"/>
+               </when>
+               <then localId="496" xsi:type="As">
+                  <operand localId="376" locator="190:35-190:296" xsi:type="And">
+                     <operand localId="377" locator="190:35-190:90" name="Client is not due for meningococcal vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="378" locator="190:96-190:296" xsi:type="Equal">
+                        <signature localId="381" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="382" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="379" locator="190:96-190:105" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="380" locator="190:109-190:296" valueType="t:String" value="Should not vaccinate client with first meningococcal dose as client's age is under 2 months. Check for any vaccines due and inform the caregiver of when to come back for the first dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="497" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="498" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="499" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="383" locator="191:5-191:275">
+               <when localId="384" locator="191:10-191:29" xsi:type="Equal">
+                  <signature localId="390" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="391" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="388" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="389" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="386" locator="191:10-191:19" path="id" xsi:type="Property">
+                        <source localId="385" locator="191:10-191:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="387" locator="191:23-191:29" valueType="t:String" value="31.01" xsi:type="Literal"/>
+               </when>
+               <then localId="500" xsi:type="As">
+                  <operand localId="392" locator="191:36-191:275" xsi:type="And">
+                     <operand localId="393" locator="191:36-191:87" name="Client is due for meningococcal vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="394" locator="191:93-191:275" xsi:type="Equal">
+                        <signature localId="397" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="398" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="395" locator="191:93-191:102" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="396" locator="191:106-191:275" valueType="t:String" value="Should vaccinate client with first meningococcal dose as no meningococcal dose was administered and client is within appropriate age range.&#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="501" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="502" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="503" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="399" locator="193:5-193:339">
+               <when localId="400" locator="193:10-193:30" xsi:type="Equal">
+                  <signature localId="406" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="407" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="404" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="405" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="402" locator="193:10-193:19" path="id" xsi:type="Property">
+                        <source localId="401" locator="193:10-193:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="403" locator="193:23-193:30" valueType="t:String" value="32.023" xsi:type="Literal"/>
+               </when>
+               <then localId="504" xsi:type="As">
+                  <operand localId="408" locator="193:37-193:339" xsi:type="And">
+                     <operand localId="409" locator="193:37-193:92" name="Client is not due for meningococcal vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="410" locator="193:98-193:339" xsi:type="Equal">
+                        <signature localId="413" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="414" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="411" locator="193:98-193:107" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="412" locator="193:111-193:339" valueType="t:String" value="Should not vaccinate client with second meningococcal dose as the latest meningococcal dose was administered less than 2 months ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the second dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="505" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="506" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="507" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="415" locator="195:5-195:329">
+               <when localId="416" locator="195:10-195:30" xsi:type="Equal">
+                  <signature localId="422" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="423" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="420" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="421" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="418" locator="195:10-195:19" path="id" xsi:type="Property">
+                        <source localId="417" locator="195:10-195:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="419" locator="195:23-195:30" valueType="t:String" value="33.023" xsi:type="Literal"/>
+               </when>
+               <then localId="508" xsi:type="As">
+                  <operand localId="424" locator="195:37-195:329" xsi:type="And">
+                     <operand localId="425" locator="195:37-195:88" name="Client is due for meningococcal vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="426" locator="195:94-195:329" xsi:type="Equal">
+                        <signature localId="429" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="430" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="427" locator="195:94-195:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="428" locator="195:107-195:329" valueType="t:String" value="Should vaccinate client with second meningococcal dose as client was less than 11 months when primary series was started and latest meningococcal dose was administered more than 2 months ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="509" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="510" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="511" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="431" locator="197:5-197:308">
+               <when localId="432" locator="197:10-197:29" xsi:type="Equal">
+                  <signature localId="438" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="439" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="436" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="437" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="434" locator="197:10-197:19" path="id" xsi:type="Property">
+                        <source localId="433" locator="197:10-197:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="435" locator="197:23-197:29" valueType="t:String" value="34.02" xsi:type="Literal"/>
+               </when>
+               <then localId="512" xsi:type="As">
+                  <operand localId="440" locator="197:36-197:308" xsi:type="And">
+                     <operand localId="441" locator="197:36-197:91" name="Meningococcal immunization schedule is complete Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="442" locator="197:97-197:308" xsi:type="Equal">
+                        <signature localId="445" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="446" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="443" locator="197:97-197:106" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="444" locator="197:110-197:308" valueType="t:String" value="Meningococcal immunization schedule is complete as client's age was more than 11 months when primary series was started. One primary series dose was administered. Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="513" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="514" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="515" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="447" locator="198:5-198:339">
+               <when localId="448" locator="198:10-198:30" xsi:type="Equal">
+                  <signature localId="454" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="455" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="452" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="453" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="450" locator="198:10-198:19" path="id" xsi:type="Property">
+                        <source localId="449" locator="198:10-198:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="451" locator="198:23-198:30" valueType="t:String" value="35.034" xsi:type="Literal"/>
+               </when>
+               <then localId="516" xsi:type="As">
+                  <operand localId="456" locator="198:37-198:339" xsi:type="And">
+                     <operand localId="457" locator="198:37-198:92" name="Client is not due for meningococcal vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="458" locator="198:98-198:339" xsi:type="Equal">
+                        <signature localId="461" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="462" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="459" locator="198:98-198:107" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="460" locator="198:111-198:339" valueType="t:String" value="Should not vaccinate client with meningococcal booster dose as the latest meningococcal dose was administered less than 1 year ago. &#xa;Check for any vaccines due and inform the caregiver of when to come back for the booster dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="517" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="518" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="519" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="463" locator="200:5-200:342">
+               <when localId="464" locator="200:10-200:30" xsi:type="Equal">
+                  <signature localId="470" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="471" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="468" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="469" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="466" locator="200:10-200:19" path="id" xsi:type="Property">
+                        <source localId="465" locator="200:10-200:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="467" locator="200:23-200:30" valueType="t:String" value="36.034" xsi:type="Literal"/>
+               </when>
+               <then localId="520" xsi:type="As">
+                  <operand localId="472" locator="200:37-200:342" xsi:type="And">
+                     <operand localId="473" locator="200:37-200:114" name="The primary series is complete. Client is due for meningococcal booster dose" xsi:type="ExpressionRef"/>
+                     <operand localId="474" locator="200:120-200:342" xsi:type="Equal">
+                        <signature localId="477" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="478" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="475" locator="200:120-200:129" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="476" locator="200:133-200:342" valueType="t:String" value="Should vaccinate client with Meningococcal booster dose as no meningococcal booster dose was administered and the latest meningococcal dose was administered more than 1 year ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="521" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="522" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="523" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="479" locator="202:5-202:253">
+               <when localId="480" locator="202:10-202:29" xsi:type="Equal">
+                  <signature localId="486" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="487" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="484" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="485" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="482" locator="202:10-202:19" path="id" xsi:type="Property">
+                        <source localId="481" locator="202:10-202:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="483" locator="202:23-202:29" valueType="t:String" value="37.04" xsi:type="Literal"/>
+               </when>
+               <then localId="524" xsi:type="As">
+                  <operand localId="488" locator="202:36-202:253" xsi:type="And">
+                     <operand localId="489" locator="202:36-202:91" name="Meningococcal immunization schedule is complete Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="490" locator="202:97-202:253" xsi:type="Equal">
+                        <signature localId="493" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="494" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="491" locator="202:97-202:106" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="492" locator="202:110-202:253" valueType="t:String" value="Meningococcal immunization schedule is complete. Two primary series doses and one booster dose were administered. &#xa;Check for any vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="525" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="526" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="527" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="528" xsi:type="As">
+               <operand localId="495" locator="204:10-204:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="529" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="530" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="531" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

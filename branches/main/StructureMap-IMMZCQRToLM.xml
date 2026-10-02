@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureMap xmlns="http://hl7.org/fhir">
+  <id value="IMMZCQRToLM"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><pre class="fml">
+<b>map</b><span style="color: navy"> &quot;</span>http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZCQRToLM<span style="color: navy">&quot; = &quot;</span>IMMZCQRToLM<span style="color: navy">&quot;
+
+</span><b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/questionnaireresponse.html" title="QuestionnaireResponse">http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse</a><span style="color: navy">&quot; </span><b>alias </b>QResp <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="StructureDefinition-IMMZCRegisterClient.html" title="IMMZ.C Register Client">http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZCRegisterClient</a><span style="color: navy">&quot; </span><b>alias </b>IMMZC <b>as </b><b>target</b>
+
+<b>group </b>QRespToIMMZC<span style="color: navy">(</span><b>source</b> <span style="color: maroon">qr</span><span style="color: navy"> : </span>QResp, <b>target</b> <span style="color: maroon">immzc</span><span style="color: navy"> : </span>IMMZC<span style="color: navy">)</span><span style="color: navy"> {
+</span>  qr.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
+</span>    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'uniqueId'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immzc.uniqueId = <span style="color: maroon">content</span> <i>&quot;SetIdentifier&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForIdentifier&quot;</i><span style="color: navy">;</span>
+    item<b> where </b>item.linkId = 'name'<b> then </b>NameToIMMZC<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">immzc</span><span style="color: navy">)</span> <i>&quot;SetNames&quot;</i><span style="color: navy">;</span>
+    item<b> where </b>item.linkId = 'caregiver'<span style="color: navy"><b> -&gt; </b></span>immzc.caregiver<b> as </b><span style="color: maroon">caregiver</span><b> then </b>NameToIMMZC<span style="color: navy">(</span><span style="color: maroon">item</span><span style="color: navy">, </span><span style="color: maroon">caregiver</span><span style="color: navy">)</span> <i>&quot;SetNames&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'sex'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">coding</span><b> then</b><span style="color: navy"> {
+</span>        coding.code<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immzc.sex = <span style="color: maroon">content</span> <i>&quot;SetSex&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;ProcessCoding&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForIdentifier&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'birthDate'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immzc.birthDate = <span style="color: maroon">content</span> <i>&quot;SetBirthDate2&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForBirthDate&quot;</i><span style="color: navy">;</span>
+    item.answer<b> as </b><span style="color: maroon">caregiver</span><b> where </b>item.linkId = 'caregiver'<span style="color: navy"><b> -&gt; </b></span>immzc.caregiver<b> as </b><span style="color: maroon">caretgt</span><b> then </b>NameToIMMZC<span style="color: navy">(</span><span style="color: maroon">caregiver</span><span style="color: navy">, </span><span style="color: maroon">caretgt</span><span style="color: navy">)</span> <i>&quot;SetCaregiver&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'phone'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immzc.phone = <span style="color: maroon">content</span> <i>&quot;SetPhone&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForPhone&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'administrativeArea'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">coding</span><span style="color: navy"><b> -&gt; </b></span>immzc.administrativeArea<b> as </b><span style="color: maroon">area</span><b> then</b><span style="color: navy"> {
+</span>        coding<span style="color: navy"><b> -&gt; </b></span>area.coding = <span style="color: maroon">coding</span> <i>&quot;SetCodingValue&quot;</i><span style="color: navy">;</span>
+        coding.display<b> as </b><span style="color: maroon">display</span><span style="color: navy"><b> -&gt; </b></span>area.text = <span style="color: maroon">display</span> <i>&quot;SetDisplay&quot;</i><span style="color: navy">;</span>
+      <span style="color: navy">}</span> <i>&quot;SetCoding&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForAdministrativeArea&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'healthWorker'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immzc.healthWorker = <span style="color: maroon">content</span> <i>&quot;SetHealthWorker&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForHealthWorker&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;processItems&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span><b>group </b>NameToIMMZC<span style="color: navy">(</span><b>source</b> <span style="color: maroon">name</span>, <b>target</b> <span style="color: maroon">immzc</span><span style="color: navy">)</span><span style="color: navy"> {
+</span>  name.item<b> as </b><span style="color: maroon">item</span><b> then</b><span style="color: navy"> {
+</span>    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'fullName'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immzc.name = <span style="color: maroon">content</span> <i>&quot;SetFullName&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForFullName&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'firstName'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immzc.firstName = <span style="color: maroon">content</span> <i>&quot;SetFirstName&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForFirstName&quot;</i><span style="color: navy">;</span>
+    item.answer first<b> as </b><span style="color: maroon">answer</span><b> where </b>item.linkId = 'familyName'<b> then</b><span style="color: navy"> {
+</span>      answer.value<b> as </b><span style="color: maroon">content</span><span style="color: navy"><b> -&gt; </b></span>immzc.familyName = <span style="color: maroon">content</span> <i>&quot;SetFamilyName&quot;</i><span style="color: navy">;</span>
+    <span style="color: navy">}</span> <i>&quot;FirstAnswerForFamilyName&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;processNameItems&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span></pre></div>
+  </text>
+  <url value="http://smart.who.int/ig/smart-immunizations/StructureMap/IMMZCQRToLM"/>
+  <version value="0.1.0"/>
+  <name value="IMMZCQRToLM"/>
+  <status value="draft"/>
+  <date value="2024-03-15T12:36:35+00:00"/>
+  <publisher value="World Health Organization (WHO)"/>
+  <contact>
+    <name value="World Health Organization (WHO)"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.who.int"/>
+    </telecom>
+  </contact>
+  <jurisdiction>
+    <coding>
+      <system value="http://unstats.un.org/unsd/methods/m49/m49.htm"/>
+      <code value="001"/>
+    </coding>
+  </jurisdiction>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
+    <mode value="source"/>
+    <alias value="QResp"/>
+  </structure>
+  <structure>
+    <url value="http://smart.who.int/ig/smart-immunizations/StructureDefinition/IMMZCRegisterClient"/>
+    <mode value="target"/>
+    <alias value="IMMZC"/>
+  </structure>
+  <group>
+    <name value="QRespToIMMZC"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="qr"/>
+      <type value="QResp"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immzc"/>
+      <type value="IMMZC"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="processItems"/>
+      <source>
+        <context value="qr"/>
+        <element value="item"/>
+        <variable value="item"/>
+      </source>
+      <rule>
+        <name value="FirstAnswerForIdentifier"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'uniqueId'"/>
+        </source>
+        <rule>
+          <name value="SetIdentifier"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="uniqueId"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="SetNames"/>
+        <source>
+          <context value="item"/>
+          <condition value="item.linkId = 'name'"/>
+        </source>
+        <dependent>
+          <name value="NameToIMMZC"/>
+          <variable value="item"/>
+          <variable value="immzc"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="SetNames"/>
+        <source>
+          <context value="item"/>
+          <condition value="item.linkId = 'caregiver'"/>
+        </source>
+        <target>
+          <context value="immzc"/>
+          <contextType value="variable"/>
+          <element value="caregiver"/>
+          <variable value="caregiver"/>
+        </target>
+        <dependent>
+          <name value="NameToIMMZC"/>
+          <variable value="item"/>
+          <variable value="caregiver"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="FirstAnswerForIdentifier"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'sex'"/>
+        </source>
+        <rule>
+          <name value="ProcessCoding"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="coding"/>
+          </source>
+          <rule>
+            <name value="SetSex"/>
+            <source>
+              <context value="coding"/>
+              <element value="code"/>
+              <variable value="content"/>
+            </source>
+            <target>
+              <context value="immzc"/>
+              <contextType value="variable"/>
+              <element value="sex"/>
+              <transform value="copy"/>
+              <parameter>
+                <valueId value="content"/>
+              </parameter>
+            </target>
+          </rule>
+        </rule>
+      </rule>
+      <rule>
+        <name value="FirstAnswerForBirthDate"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'birthDate'"/>
+        </source>
+        <rule>
+          <name value="SetBirthDate2"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="birthDate"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="SetCaregiver"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <variable value="caregiver"/>
+          <condition value="item.linkId = 'caregiver'"/>
+        </source>
+        <target>
+          <context value="immzc"/>
+          <contextType value="variable"/>
+          <element value="caregiver"/>
+          <variable value="caretgt"/>
+        </target>
+        <dependent>
+          <name value="NameToIMMZC"/>
+          <variable value="caregiver"/>
+          <variable value="caretgt"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="FirstAnswerForPhone"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'phone'"/>
+        </source>
+        <rule>
+          <name value="SetPhone"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="phone"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="FirstAnswerForAdministrativeArea"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'administrativeArea'"/>
+        </source>
+        <rule>
+          <name value="SetCoding"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="coding"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="administrativeArea"/>
+            <variable value="area"/>
+          </target>
+          <rule>
+            <name value="SetCodingValue"/>
+            <source>
+              <context value="coding"/>
+            </source>
+            <target>
+              <context value="area"/>
+              <contextType value="variable"/>
+              <element value="coding"/>
+              <transform value="copy"/>
+              <parameter>
+                <valueId value="coding"/>
+              </parameter>
+            </target>
+          </rule>
+          <rule>
+            <name value="SetDisplay"/>
+            <source>
+              <context value="coding"/>
+              <element value="display"/>
+              <variable value="display"/>
+            </source>
+            <target>
+              <context value="area"/>
+              <contextType value="variable"/>
+              <element value="text"/>
+              <transform value="copy"/>
+              <parameter>
+                <valueId value="display"/>
+              </parameter>
+            </target>
+          </rule>
+        </rule>
+      </rule>
+      <rule>
+        <name value="FirstAnswerForHealthWorker"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'healthWorker'"/>
+        </source>
+        <rule>
+          <name value="SetHealthWorker"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="healthWorker"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+  <group>
+    <name value="NameToIMMZC"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="name"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="immzc"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="processNameItems"/>
+      <source>
+        <context value="name"/>
+        <element value="item"/>
+        <variable value="item"/>
+      </source>
+      <rule>
+        <name value="FirstAnswerForFullName"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'fullName'"/>
+        </source>
+        <rule>
+          <name value="SetFullName"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="name"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="FirstAnswerForFirstName"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'firstName'"/>
+        </source>
+        <rule>
+          <name value="SetFirstName"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="firstName"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+      <rule>
+        <name value="FirstAnswerForFamilyName"/>
+        <source>
+          <context value="item"/>
+          <element value="answer"/>
+          <listMode value="first"/>
+          <variable value="answer"/>
+          <condition value="item.linkId = 'familyName'"/>
+        </source>
+        <rule>
+          <name value="SetFamilyName"/>
+          <source>
+            <context value="answer"/>
+            <element value="value"/>
+            <variable value="content"/>
+          </source>
+          <target>
+            <context value="immzc"/>
+            <contextType value="variable"/>
+            <element value="familyName"/>
+            <transform value="copy"/>
+            <parameter>
+              <valueId value="content"/>
+            </parameter>
+          </target>
+        </rule>
+      </rule>
+    </rule>
+  </group>
+</StructureMap>

@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="113">
+         <a:s>/*
+ * Library: IMMZDT17 (IMMZ.DT.17.HepatitisA)
+ * Rule: If child or person has not been vaccinated, give Hepatitis A vaccine at 1 year of age 
+ * Trigger: Patient has never had Hepatits A vaccination
+ */
+library IMMZDT17</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT17" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZCon" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="8" locator="13:1-13:94" name="Individual has a substantial risk of contracting Hepatitis A" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="8">
+               <a:s>parameter &quot;Individual has a substantial risk of contracting Hepatitis A&quot; </a:s>
+               <a:s r="7">
+                  <a:s>Boolean</a:s>
+               </a:s>
+               <a:s r="6"> default false</a:s>
+            </a:s>
+         </annotation>
+         <default localId="6" locator="13:90-13:94" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+         <parameterTypeSpecifier localId="7" locator="13:74-13:80" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <statements>
+      <def locator="16:1-16:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="11" locator="22:1-23:45" name="Hepatitis A vaccine immunization history" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="11">
+               <a:s>/* 
+ * @dataElement Hepatitis A vaccine immunization history
+ */
+define &quot;Hepatitis A vaccine immunization history&quot;:
+	</a:s>
+               <a:s r="10">
+                  <a:s r="9">
+                     <a:s>IMMZCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="10">
+                     <a:s>&quot;HepA Doses Administered to Patient&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="10" locator="23:2-23:45" name="HepA Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="15" locator="28:1-29:55" name="No-doses" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="15">
+               <a:s>/* 
+ * @dataElement No-doses
+ */
+define &quot;No-doses&quot;:
+	</a:s>
+               <a:s r="14">
+                  <a:s>not </a:s>
+                  <a:s r="13">
+                     <a:s>exists</a:s>
+                     <a:s r="12">
+                        <a:s>(</a:s>
+                        <a:s r="12">
+                           <a:s>&quot;Hepatitis A vaccine immunization history&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="14" locator="29:2-29:55" xsi:type="Not">
+            <operand localId="13" locator="29:6-29:55" xsi:type="Exists">
+               <operand localId="12" locator="29:12-29:55" name="Hepatitis A vaccine immunization history" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="18" locator="34:1-35:39" name="Current Patient Age in Years" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="18">
+               <a:s>/* 
+ * @dataElement Current Patient Age in Years
+ */
+define &quot;Current Patient Age in Years&quot;:
+	</a:s>
+               <a:s r="17">
+                  <a:s r="16">
+                     <a:s>IMMZCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="17">
+                     <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="17" locator="35:2-35:39" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="21" locator="40:1-41:56" name="Country is not highly endemic" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="21">
+               <a:s>/* 
+ * @dataElement Country is not highly endemic
+ */
+define &quot;Country is not highly endemic&quot;:
+ </a:s>
+               <a:s r="20">
+                  <a:s r="19">
+                     <a:s>IMMZCon</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="20">
+                     <a:s>&quot;Country is not highly endemic for Hepatitis A&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="20" locator="41:2-41:56" name="Country is not highly endemic for Hepatitis A" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="24" locator="46:1-47:19" name="Pregnancy Status" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="24">
+               <a:s>/* 
+ * @dataElement Pregnancy Status
+ */
+define &quot;Pregnancy Status&quot;:
+	</a:s>
+               <a:s r="23">
+                  <a:s r="22">
+                     <a:s>IMMZCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="23">
+                     <a:s>&quot;Pregnant&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="23" locator="47:2-47:19" name="Pregnant" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="28" locator="52:1-53:40" name="Not Immunocompromised" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="28">
+               <a:s>/* 
+ * @dataElement Immunocompromised
+ */
+define &quot;Not Immunocompromised&quot;:
+	</a:s>
+               <a:s r="27">
+                  <a:s>not</a:s>
+                  <a:s r="26">
+                     <a:s>(</a:s>
+                     <a:s r="26">
+                        <a:s r="25">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="26">
+                           <a:s>&quot;Immunocompromised = True&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="27" locator="53:2-53:40" xsi:type="Not">
+            <operand localId="26" locator="53:5-53:40" name="Immunocompromised = True" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="31" locator="58:1-59:65" name="Country is administering a Live attenuated HAV vaccine" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="31">
+               <a:s>/* 
+ * @dataElement Country is administering a Live attenuated HAV vaccine
+ */
+define &quot;Country is administering a Live attenuated HAV vaccine&quot;:
+	</a:s>
+               <a:s r="30">
+                  <a:s r="29">
+                     <a:s>IMMZCon</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="30">
+                     <a:s>&quot;Country is administering a Live attenuated HAV vaccine&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="30" locator="59:2-59:65" name="Country is administering a Live attenuated HAV vaccine" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="47" locator="72:1-73:229" name="Should vaccinate patient for Hepatitis A because no doses at 1 year old in a 1 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="47">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Hepatitis A because no doses at 1 year old in a 1 dose scheme
+ * Annotations:
+ * 	 - Provide Hepatitis A immunization – using the &quot;Hepatitis A vaccine immunization – NO PREVIOUS&quot; Live attenuated HAV vaccine schedule (1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Hepatitis A - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((((&quot;Hepatitis A vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Years&quot; >= 1)) and (&quot;Country is not highly endemic&quot; = true)) and (&quot;Pregnancy Status&quot; = false)) and (&quot;Immunocompromised&quot; = false)) and (&quot;Country is administering a Live attenuated HAV vaccine&quot; = true))
+ */
+define &quot;Should vaccinate patient for Hepatitis A because no doses at 1 year old in a 1 dose scheme&quot;:
+	</a:s>
+               <a:s r="46">
+                  <a:s>(</a:s>
+                  <a:s r="46">
+                     <a:s r="44">
+                        <a:s>(</a:s>
+                        <a:s r="44">
+                           <a:s r="42">
+                              <a:s>(</a:s>
+                              <a:s r="42">
+                                 <a:s r="38">
+                                    <a:s>(</a:s>
+                                    <a:s r="38">
+                                       <a:s r="36">
+                                          <a:s>(</a:s>
+                                          <a:s r="36">
+                                             <a:s r="32">
+                                                <a:s>(</a:s>
+                                                <a:s r="32">
+                                                   <a:s>&quot;No-doses&quot;</a:s>
+                                                </a:s>
+                                                <a:s>)</a:s>
+                                             </a:s>
+                                             <a:s> and </a:s>
+                                             <a:s r="35">
+                                                <a:s>(</a:s>
+                                                <a:s r="35">
+                                                   <a:s r="33">
+                                                      <a:s>&quot;Current Patient Age in Years&quot;</a:s>
+                                                   </a:s>
+                                                   <a:s r="34"> >= 1</a:s>
+                                                </a:s>
+                                                <a:s>)</a:s>
+                                             </a:s>
+                                          </a:s>
+                                          <a:s>)</a:s>
+                                       </a:s>
+                                       <a:s> and </a:s>
+                                       <a:s r="37">
+                                          <a:s>(</a:s>
+                                          <a:s r="37">
+                                             <a:s>&quot;Country is not highly endemic&quot;</a:s>
+                                          </a:s>
+                                          <a:s>)</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                                 <a:s> and </a:s>
+                                 <a:s r="41">
+                                    <a:s>(</a:s>
+                                    <a:s r="41">
+                                       <a:s r="39">
+                                          <a:s>&quot;Pregnancy Status&quot;</a:s>
+                                       </a:s>
+                                       <a:s r="40"> = false</a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="43">
+                              <a:s>(</a:s>
+                              <a:s r="43">
+                                 <a:s>&quot;Not Immunocompromised&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                     <a:s> and </a:s>
+                     <a:s r="45">
+                        <a:s>(</a:s>
+                        <a:s r="45">
+                           <a:s>&quot;Country is administering a Live attenuated HAV vaccine&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>)</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="46" locator="73:2-73:229" xsi:type="And">
+            <operand localId="44" locator="73:3-73:165" xsi:type="And">
+               <operand localId="42" locator="73:4-73:134" xsi:type="And">
+                  <operand localId="38" locator="73:5-73:100" xsi:type="And">
+                     <operand localId="36" locator="73:6-73:61" xsi:type="And">
+                        <operand localId="32" locator="73:7-73:18" name="No-doses" xsi:type="ExpressionRef"/>
+                        <operand localId="35" locator="73:24-73:60" xsi:type="GreaterOrEqual">
+                           <operand localId="33" locator="73:25-73:54" name="Current Patient Age in Years" xsi:type="ExpressionRef"/>
+                           <operand localId="34" locator="73:59" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                        </operand>
+                     </operand>
+                     <operand localId="37" locator="73:67-73:99" name="Country is not highly endemic" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="41" locator="73:106-73:133" xsi:type="Equal">
+                     <operand localId="39" locator="73:107-73:124" name="Pregnancy Status" xsi:type="ExpressionRef"/>
+                     <operand localId="40" locator="73:128-73:132" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+                  </operand>
+               </operand>
+               <operand localId="43" locator="73:140-73:164" name="Not Immunocompromised" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="45" locator="73:171-73:228" name="Country is administering a Live attenuated HAV vaccine" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="50" locator="78:1-79:62" name="Country is administering an Inactivated HAV vaccine" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="50">
+               <a:s>/* 
+ * @dataElement Country is administering an Inactivated HAV vaccine
+ */
+define &quot;Country is administering an Inactivated HAV vaccine&quot;:
+	</a:s>
+               <a:s r="49">
+                  <a:s r="48">
+                     <a:s>IMMZCon</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="49">
+                     <a:s>&quot;Country is administering an Inactivated HAV vaccine&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="49" locator="79:2-79:62" name="Country is administering an Inactivated HAV vaccine" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="60" locator="92:1-93:159" name="Should vaccinate patient for Hepatitis A because no doses at 1 year old in a 2 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="60">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Hepatitis A because no doses at 1 year old in a 2 dose scheme
+ * Annotations:
+ * 	 - Provide Hepatitis A immunization – using the &quot;Hepatitis A vaccine immunization – NO PREVIOUS&quot; Inactivated HAV vaccine schedule (2 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Hepatitis A - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Hepatitis A vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Years&quot; >= 1)) and (&quot;Country is not highly endemic&quot; = true)) and (&quot;Country is administering an Inactivated HAV vaccine&quot; = true))
+ */
+define &quot;Should vaccinate patient for Hepatitis A because no doses at 1 year old in a 2 dose scheme&quot;:
+	</a:s>
+               <a:s r="59">
+                  <a:s>(</a:s>
+                  <a:s r="59">
+                     <a:s r="57">
+                        <a:s>(</a:s>
+                        <a:s r="57">
+                           <a:s r="55">
+                              <a:s>(</a:s>
+                              <a:s r="55">
+                                 <a:s r="51">
+                                    <a:s>(</a:s>
+                                    <a:s r="51">
+                                       <a:s>&quot;No-doses&quot;</a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                                 <a:s> and </a:s>
+                                 <a:s r="54">
+                                    <a:s>(</a:s>
+                                    <a:s r="54">
+                                       <a:s r="52">
+                                          <a:s>&quot;Current Patient Age in Years&quot;</a:s>
+                                       </a:s>
+                                       <a:s r="53"> >= 1</a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                           <a:s> and </a:s>
+                           <a:s r="56">
+                              <a:s>(</a:s>
+                              <a:s r="56">
+                                 <a:s>&quot;Country is not highly endemic&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                     <a:s> and </a:s>
+                     <a:s r="58">
+                        <a:s>(</a:s>
+                        <a:s r="58">
+                           <a:s>&quot;Country is administering an Inactivated HAV vaccine&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>)</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="59" locator="93:2-93:159" xsi:type="And">
+            <operand localId="57" locator="93:3-93:98" xsi:type="And">
+               <operand localId="55" locator="93:4-93:59" xsi:type="And">
+                  <operand localId="51" locator="93:5-93:16" name="No-doses" xsi:type="ExpressionRef"/>
+                  <operand localId="54" locator="93:22-93:58" xsi:type="GreaterOrEqual">
+                     <operand localId="52" locator="93:23-93:52" name="Current Patient Age in Years" xsi:type="ExpressionRef"/>
+                     <operand localId="53" locator="93:57" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                  </operand>
+               </operand>
+               <operand localId="56" locator="93:65-93:97" name="Country is not highly endemic" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="58" locator="93:104-93:158" name="Country is administering an Inactivated HAV vaccine" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="65" locator="98:1-99:59" name="1 dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="65">
+               <a:s>/* 
+ * @dataElement 1 dose
+ */
+define &quot;1 dose&quot;:
+	</a:s>
+               <a:s r="64">
+                  <a:s r="62">
+                     <a:s r="61">
+                        <a:s>IMMZCom</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="62">
+                        <a:s>&quot;Number of HepA Doses Administered to Patient&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s r="63"> = 1</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="64" locator="99:2-99:59" xsi:type="Equal">
+            <operand localId="62" locator="99:2-99:55" name="Number of HepA Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+            <operand localId="63" locator="99:59" valueType="t:Integer" value="1" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="78" locator="104:1-106:94" name="Date last Hepatitis A dose given >= 6 months" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="78">
+               <a:s>/* 
+ * @dataElement Date last Hepatitis A dose given >= 6 months
+ */
+define &quot;Date last Hepatitis A dose given >= 6 months&quot;:
+	</a:s>
+               <a:s r="77">
+                  <a:s r="71">
+                     <a:s r="68">
+                        <a:s>
+                           <a:s r="67">
+                              <a:s r="66">
+                                 <a:s>
+                                    <a:s>IMMZCom.&quot;Date last HepA dose Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> equal</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="71">
+                        <a:s r="70">
+                           <a:s>6 'months'</a:s>
+                        </a:s>
+                        <a:s> before</a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="69">
+                        <a:s>Today()</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="76">
+                     <a:s r="73">
+                        <a:s r="72">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="73">
+                           <a:s>&quot;Date last HepA dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="76">
+                        <a:s>more than </a:s>
+                        <a:s r="75">
+                           <a:s>6 'months'</a:s>
+                        </a:s>
+                        <a:s> before</a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="74">
+                        <a:s>Today()</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="77" locator="105:2-106:94" xsi:type="And">
+            <operand localId="71" locator="105:2-105:86" xsi:type="SameAs">
+               <operand localId="68" locator="105:2-105:60" xsi:type="Query">
+                  <source localId="67" locator="105:2-105:60" alias="equal">
+                     <expression localId="66" locator="105:2-105:54" name="Date last HepA dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </source>
+               </operand>
+               <operand locator="105:80-105:86" xsi:type="Subtract">
+                  <operand localId="69" locator="105:80-105:86" xsi:type="Today"/>
+                  <operand localId="70" locator="105:62-105:71" value="6" unit="months" xsi:type="Quantity"/>
+               </operand>
+            </operand>
+            <operand localId="76" locator="106:6-106:94" xsi:type="Before">
+               <operand localId="73" locator="106:6-106:58" name="Date last HepA dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand locator="106:88-106:94" xsi:type="Subtract">
+                  <operand localId="74" locator="106:88-106:94" xsi:type="Today"/>
+                  <operand localId="75" locator="106:70-106:79" value="6" unit="months" xsi:type="Quantity"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="91" locator="111:1-113:93" name="Date last Hepatitis A dose given &lt;= 5 years" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="91">
+               <a:s>/* 
+ * @dataElement Date last Hepatitis A dose given &lt;= 5 years
+ */
+define &quot;Date last Hepatitis A dose given &lt;= 5 years&quot;:
+	</a:s>
+               <a:s r="90">
+                  <a:s r="84">
+                     <a:s r="81">
+                        <a:s>
+                           <a:s r="80">
+                              <a:s r="79">
+                                 <a:s>
+                                    <a:s>IMMZCom.&quot;Date last HepA dose Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> equal</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="84">
+                        <a:s r="83">
+                           <a:s>5 'years'</a:s>
+                        </a:s>
+                        <a:s> before</a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="82">
+                        <a:s>Today()</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="89">
+                     <a:s r="86">
+                        <a:s r="85">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="86">
+                           <a:s>&quot;Date last HepA dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="89">
+                        <a:s>less than </a:s>
+                        <a:s r="88">
+                           <a:s>5 'years'</a:s>
+                        </a:s>
+                        <a:s> before</a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="87">
+                        <a:s>Today()</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="90" locator="112:2-113:93" xsi:type="And">
+            <operand localId="84" locator="112:2-112:85" xsi:type="SameAs">
+               <operand localId="81" locator="112:2-112:60" xsi:type="Query">
+                  <source localId="80" locator="112:2-112:60" alias="equal">
+                     <expression localId="79" locator="112:2-112:54" name="Date last HepA dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </source>
+               </operand>
+               <operand locator="112:79-112:85" xsi:type="Subtract">
+                  <operand localId="82" locator="112:79-112:85" xsi:type="Today"/>
+                  <operand localId="83" locator="112:62-112:70" value="5" unit="years" xsi:type="Quantity"/>
+               </operand>
+            </operand>
+            <operand localId="89" locator="113:6-113:93" xsi:type="In">
+               <operand localId="86" locator="113:6-113:58" name="Date last HepA dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand locator="113:60-113:78" lowClosed="false" highClosed="false" xsi:type="Interval">
+                  <low locator="113:87-113:93" xsi:type="Subtract">
+                     <operand localId="87" locator="113:87-113:93" xsi:type="Today"/>
+                     <operand localId="88" locator="113:70-113:78" value="5" unit="years" xsi:type="Quantity"/>
+                  </low>
+                  <high localId="87" locator="113:87-113:93" xsi:type="Today"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="94" locator="118:1-119:63" name="Type of last Hepatits A dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="94">
+               <a:s>/* 
+ * @dataElement Type of last Hepatits A dose
+ */
+define &quot;Type of last Hepatits A dose&quot;:
+	</a:s>
+               <a:s r="93">
+                  <a:s r="92">
+                     <a:s>IMMZCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="93">
+                     <a:s>&quot;Type of last Hepatits A dose Administered to Patient&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="93" locator="119:2-119:63" name="Type of last Hepatits A dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="97" locator="124:1-125:24" name="Inactivated HAV" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="97">
+               <a:s>/* 
+ * @dataElement Inactivated HAV
+ */
+define &quot;Inactivated HAV&quot;:
+	</a:s>
+               <a:s r="96">
+                  <a:s r="95">
+                     <a:s>IMMZc</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="96">
+                     <a:s>&quot;Inactivated HAV&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="96" locator="125:2-125:24" name="Inactivated HAV" libraryName="IMMZc" xsi:type="ValueSetRef"/>
+      </def>
+      <def localId="113" locator="141:1-149:2" name="Should vaccinate patient for Hepatitis A because 1 dose given 6 months to 5 years ago in a 2 dose scheme due to high risk or immunocompromised" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="113">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Hepatitis A because 1 dose given 6 months to 5 years ago in a 2 dose scheme due to high risk or immunocompromised
+ * Annotations:
+ * 	 - Provide Hepatitis A immunization – using the &quot;Hepatitis A vaccine immunization – 1 PREVIOUS&quot; Inactivated HAV vaccine schedule (2 dose scheme)
+ * 	 - 
+ * Outputs:
+ * 	 - Immunize Patient for Hepatitis A - 1 Dose of Inactivated HAV (high risk or immunocompromised)
+ * 	 - 
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- 
+ * Logic:
+ *	 ((((((&quot;Hepatitis A vaccine immunization history&quot; = &quot;1 dose&quot;) and (&quot;Date last Hepatitis A dose given&quot; >= &quot;6 months&quot; = true)) and (&quot;Date last Hepatitis A dose given&quot; &lt;= &quot;5 years&quot; = true)) and (&quot;Type of last Hepatits A dose&quot; = &quot;Inactivated HAV&quot;)) and (&quot;Individual has a substantial risk of contracting Hepatitis A&quot; = true)) or (((((&quot;Hepatitis A vaccine immunization history&quot; = &quot;1 dose&quot;) and (&quot;Date last Hepatitis A dose given&quot; >= &quot;6 months&quot; = true)) and (&quot;Date last Hepatitis A dose given&quot; &lt;= &quot;5 years&quot; = true)) and (&quot;Type of last Hepatits A dose&quot; = &quot;Inactivated HAV&quot;)) and (&quot;Immunocompromised&quot; = true)))
+ */
+define &quot;Should vaccinate patient for Hepatitis A because 1 dose given 6 months to 5 years ago in a 2 dose scheme due to high risk or immunocompromised&quot;:
+	</a:s>
+               <a:s r="112">
+                  <a:s r="107">
+                     <a:s r="102">
+                        <a:s r="100">
+                           <a:s r="98">
+                              <a:s>(</a:s>
+                              <a:s r="98">
+                                 <a:s>&quot;1 dose&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                           <a:s> 
+	and </a:s>
+                           <a:s r="99">
+                              <a:s>(</a:s>
+                              <a:s r="99">
+                                 <a:s>&quot;Date last Hepatitis A dose given >= 6 months&quot;</a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="101">
+                           <a:s>(</a:s>
+                           <a:s r="101">
+                              <a:s>&quot;Date last Hepatitis A dose given &lt;= 5 years&quot;</a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="106">
+                        <a:s>(</a:s>
+                        <a:s r="106">
+                           <a:s r="103">
+                              <a:s>&quot;Type of last Hepatits A dose&quot;</a:s>
+                           </a:s>
+                           <a:s> in </a:s>
+                           <a:s r="105">
+                              <a:s r="104">
+                                 <a:s>IMMZc</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="105">
+                                 <a:s>&quot;Inactivated HAV&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="111">
+                     <a:s>(
+		</a:s>
+                     <a:s r="111">
+                        <a:s r="108">
+                           <a:s>(</a:s>
+                           <a:s r="108">
+                              <a:s>&quot;Individual has a substantial risk of contracting Hepatitis A&quot;</a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                        <a:s>
+		or </a:s>
+                        <a:s r="110">
+                           <a:s>(</a:s>
+                           <a:s r="110">
+                              <a:s r="109">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="110">
+                                 <a:s>&quot;Immunocompromised = True&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="112" locator="142:2-149:2" xsi:type="And">
+            <operand localId="107" locator="142:2-145:64" xsi:type="And">
+               <operand localId="102" locator="142:2-144:52" xsi:type="And">
+                  <operand localId="100" locator="142:2-143:53" xsi:type="And">
+                     <operand localId="98" locator="142:2-142:11" name="1 dose" xsi:type="ExpressionRef"/>
+                     <operand localId="99" locator="143:6-143:53" name="Date last Hepatitis A dose given >= 6 months" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="101" locator="144:6-144:52" name="Date last Hepatitis A dose given &lt;= 5 years" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="106" locator="145:6-145:64" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="103" locator="145:7-145:36" name="Type of last Hepatits A dose" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="105" locator="145:41-145:63" name="Inactivated HAV" libraryName="IMMZc"/>
+               </operand>
+            </operand>
+            <operand localId="111" locator="146:6-149:2" xsi:type="Or">
+               <operand localId="108" locator="147:3-147:66" name="Individual has a substantial risk of contracting Hepatitis A" xsi:type="ParameterRef"/>
+               <operand localId="110" locator="148:6-148:41" name="Immunocompromised = True" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+   </statements>
+</library>
