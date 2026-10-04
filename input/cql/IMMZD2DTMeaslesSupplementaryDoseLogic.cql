@@ -93,3 +93,11 @@ Check if one of the measles supplementary dose specific scenarios is applicable.
     when Patient.id = 'Measles50.1' then "Measles immunization schedule is complete" and "Guidance" = 'Measles immunization schedule is complete. Measles supplementary dose was administered.'
     else 'No test case set'
   end
+
+// @generated dynamicValue constants
+// Resolved via text/cql-identifier from PlanDefinition.action.dynamicValue,
+// avoiding per-$apply CQL→ELM compilation of inline text/cql-expression literals.
+// See input/fsh/rulesets/rulesets-plandefinition.fsh.
+define "Active Status": 'active'
+define "Alert Category Coding": Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }
+define "Routine Priority": Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }

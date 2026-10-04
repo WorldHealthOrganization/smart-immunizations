@@ -15,6 +15,15 @@ RuleSet: PlanDefMain( library, version )
   * type = #citation
   * citation = "WHO recommendations for routine immunization - summary tables (January 2025)"
 
+// Constant dynamicValues resolve via `text/cql-identifier` to named defines in
+// the PlanDefinition's primary library (same mechanism as `condition` and
+// `payload.contentString`). Inline `text/cql-expression` literals are compiled
+// CQL→ELM on every $apply invocation because each is wrapped in a fresh
+// anonymous library that the compiled-library cache cannot key on; identifier
+// references evaluate from the already-compiled primary library instead.
+// The defines are appended to each *Logic library by
+// `tools/add_dynamicvalue_defines.py`.
+
 RuleSet: PlanDefMRAction( title, description, rationale, condition, code, display )
 * action[+]
   * extension[+]
@@ -32,18 +41,18 @@ RuleSet: PlanDefMRAction( title, description, rationale, condition, code, displa
   * dynamicValue[+]
     * path = "status"
     * expression
-      * language = #text/cql-expression
-      * expression = "'draft'"
+      * language = #text/cql-identifier
+      * expression = "Draft Status"
   * dynamicValue[+]
     * path = "intent"
     * expression
-      * language = #text/cql-expression
-      * expression = "'proposal'"
+      * language = #text/cql-identifier
+      * expression = "Proposal Intent"
   * dynamicValue[+]
     * path = "medication"
     * expression
-      * language = #text/cql-expression
-      * expression = "Concept { codes: { Code { {code}, display: '{display}' } }, display: '{display}' }"
+      * language = #text/cql-identifier
+      * expression = "{display} Medication"
 
 RuleSet: PlanDefMRUpdate( title, description, condition, mrid, code, display )
 * action[+]
@@ -66,8 +75,8 @@ RuleSet: PlanDefMRUpdate( title, description, condition, mrid, code, display )
   * dynamicValue[+]
     * path = "medication"
     * expression
-      * language = #text/cql-expression
-      * expression = "Concept { codes: { Code { {code}, display: '{display}' } }, display: '{display}' }"
+      * language = #text/cql-identifier
+      * expression = "{display} Medication"
 
 RuleSet: PlanDefCommunicationRequestAction( title, description, condition, text )
 * action[+]
@@ -83,8 +92,8 @@ RuleSet: PlanDefCommunicationRequestAction( title, description, condition, text 
   * dynamicValue[+]
     * path = "status"
     * expression
-      * language = #text/cql-expression
-      * expression = "'active'"
+      * language = #text/cql-identifier
+      * expression = "Active Status"
   * dynamicValue[+]
     * path = "payload.contentString"
     * expression
@@ -106,11 +115,11 @@ RuleSet: PlanDefCommunicationRequestAction( title, description, condition, text 
     * path = "category.coding"
     * expression
       * description = "Category of communication"
-      * language = #text/cql-expression
-      * expression = "Code { system: 'http://terminology.hl7.org/CodeSystem/communication-category', code: 'alert' }"
+      * language = #text/cql-identifier
+      * expression = "Alert Category Coding"
   * dynamicValue[+]
     * path = "priority"
     * expression
       * description = "Alert priority"
-      * language = #text/cql-expression
-      * expression = "Code { system: 'http://hl7.org/fhir/request-priority', code: 'routine' }"
+      * language = #text/cql-identifier
+      * expression = "Routine Priority"
