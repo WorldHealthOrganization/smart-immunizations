@@ -8,8 +8,7 @@ Usage:      #example
 * name[immzName]
   * text = "Thabo Mbulelo Mbeki"
   * family = "Mbeki"
-  * given[+] = "Thabo"
-  * given[+] = "Mbulelo"
+  * given = "Thabo Mbulelo"
 * gender = #male
 * birthDate = "2020-06-18"
 * address.text = "123 Main Street, Cape Town, Western Cape, 8001, ZA"
