@@ -14,6 +14,6 @@ SMART Immunizations
 
 ## Changes and feedback 
 
-Feedback and issues about this empty framework can be submitted via the [issues](issues) page, and will be incorporated into subsequent releases.
+Feedback and issues about this guide can be submitted via the [issues](https://github.com/WorldHealthOrganization/smart-immunizations/issues) page, and will be incorporated into subsequent releases.
 
 

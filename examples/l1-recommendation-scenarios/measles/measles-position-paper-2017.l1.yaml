@@ -1,0 +1,1074 @@
+# L1 source for the measles DAK: WHO measles vaccines position paper, April 2017.
+#
+# AUTHORED, not generated. This file is the reviewable source; tools/build_l1.py turns it into a
+# smart-kg L1 graph document (build/, gitignored -- see smart-kg docs/STORAGE.md).
+#
+# Rules this file keeps:
+#   * every `statement`, `text` and `quote` is VERBATIM from the English column of the PDF, and the
+#     build fails if it cannot find it on the stated page(s) of library/wer-92-17/WER9217.en.txt;
+#   * strength and certainty are NOT recorded: the position paper does not state GRADE strength or
+#     certainty per recommendation (it points at separately published evidence-to-recommendation
+#     tables). Absence is recorded, not invented;
+#   * background epidemiology (incidence, case-fatality, cost-effectiveness figures) is not turned
+#     into recommendations;
+#   * which sentences count as a recommendation, and the PICO and health-intervention groupings,
+#     are judgements, so those nodes and edges are emitted as `inferred` or `decided`.
+#
+# Ontology: litlfred/smart-kg ontology/l1/l1.json, schemaVersion 1.0, main @ 66a9b13.
+
+graph:
+  namespace: https://smart.who.int/measles
+  ontologyVersion: "1.0"
+  ontologyCommit: 66a9b1393fd7f315eb4eb0dab001db5e3eb0c5ef
+  source:
+    pdf: library/wer-92-17/WER9217.pdf
+    text: library/wer-92-17/WER9217.en.txt
+
+publication:
+  key: wer-92-17
+  title: "Measles vaccines: WHO position paper – April 2017"
+  creator: World Health Organization
+  publisher: World Health Organization
+  date: "2017-04-28"
+  identifier: "Weekly Epidemiological Record 92(17):205–228; ISSN 0049-8114"
+  language: en, fr
+  url: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/position-papers/measles
+  publicationType: position-paper
+  supersedes:
+    - key: wer-84-35
+      title: "Measles vaccines: WHO position paper – 2009"
+      identifier: "Weekly Epidemiological Record 84(35):349–360"
+      date: "2009"
+      evidence: {page: "206", quote: "It replaces the 2009 WHO position paper on measles vaccines."}
+
+sections:
+  - {key: treatment, heading: Treatment, pageRange: "210–211"}
+  - {key: pep, heading: Post-exposure prophylaxis, pageRange: "211"}
+  - {key: vaccine-chars, heading: "Vaccine characteristics, content, dosage, administration, storage", pageRange: "212–213"}
+  - {key: safety, heading: Vaccine safety, pageRange: "216–217"}
+  - {key: position, heading: WHO position, pageRange: "220–221"}
+  - {key: timing, heading: Optimal timing for routine MCV1 and MCV2, pageRange: "221–222"}
+  - {key: campaigns, heading: Vaccination campaigns, pageRange: "222–224"}
+  - {key: choice, heading: Choice of vaccines and their interchangeability, pageRange: "224"}
+  - {key: coadmin, heading: Co-administration, pageRange: "224"}
+  - {key: contra, heading: Contraindications, pageRange: "225"}
+  - {key: pregnancy, heading: Vaccination of pregnant women, pageRange: "225"}
+  - {key: hcw, heading: Vaccination of health-care workers, pageRange: "225"}
+  - {key: travel, heading: Vaccination of travellers, pageRange: "225"}
+  - {key: hiv, heading: Measles vaccination of HIV-infected individuals, pageRange: "225–226"}
+  - {key: surveillance, heading: Surveillance and outbreak response, pageRange: "226–227"}
+  - {key: research, heading: Recommendations on selected research needs, pageRange: "227"}
+
+# The DAK-facing interventions. The paper does not enumerate interventions; this grouping is
+# DECIDED and is the hinge to the L2 healthInterventions component.
+health_interventions:
+  - {key: HI-MCV-ROUTINE, name: Routine measles-containing vaccination (MCV1 and MCV2), description: Two routine doses of measles-containing vaccine in the national schedule.}
+  - {key: HI-MCV0, name: Supplementary early measles dose (MCV0), description: A dose given from 6 months and before 9 months of age, recorded as MCV0 and not counted toward the routine series.}
+  - {key: HI-MCV-CATCHUP, name: Catch-up measles vaccination, description: Vaccination of children who missed one or both routine doses, including screening at school entry.}
+  - {key: HI-MCV-CAMPAIGN, name: Measles vaccination campaigns, description: Supplementary immunization activities, their planning, monitoring and cessation.}
+  - {key: HI-MCV-HIV, name: Measles vaccination of HIV-infected or HIV-exposed individuals, description: Routine, early and additional doses for people living with or exposed to HIV, including revaccination after HAART immune reconstitution.}
+  - {key: HI-MCV-HCW, name: Measles immunity of health-care workers, description: Verification and documentation of measles immunity in health-care workers.}
+  - {key: HI-MCV-TRAVEL, name: Measles vaccination of travellers, description: Vaccination of susceptible travellers to measles-endemic areas.}
+  - {key: HI-PEP, name: Measles post-exposure prophylaxis, description: Vaccine within 72 hours, or immune globulin within 6 days, of exposure.}
+  - {key: HI-CASE-MGMT, name: Measles case management, description: Supportive care, nutritional support, rehydration, isolation and antibiotic stewardship for measles cases.}
+  - {key: HI-VITA, name: Vitamin A treatment of measles cases, description: Age-dosed oral vitamin A for acute measles.}
+  - {key: HI-SURVEILLANCE, name: Measles surveillance and outbreak response, description: Case-based surveillance, outbreak response and verification of elimination.}
+  - {key: HI-STORAGE, name: Measles vaccine storage and handling, description: Cold chain, light protection and the reconstitution window for measles-containing vaccine.}
+  - {key: HI-RECORDING, name: Recording of measles vaccine doses, description: Immunization card and register design for MCV0, MCV1, MCV2 and campaign doses.}
+
+# PICO P. Reused across recommendations.
+populations:
+  - {key: P-susceptible-all, description: All susceptible children and adults}
+  - {key: P-all-children, description: All children}
+  - {key: P-infants-high-transmission, description: Infants in countries with ongoing transmission and high infant measles mortality risk, qualifier: high-transmission setting}
+  - {key: P-infants-low-transmission, description: Infants in countries with low measles transmission (nearing or verified elimination), qualifier: low-transmission setting}
+  - {key: P-infants-6m-plus, description: Infants from 6 months of age, ageRange: ">= 6 months"}
+  - {key: P-infants-outbreak, description: Infants from 6 months during a measles outbreak, ageRange: ">= 6 months", qualifier: outbreak}
+  - {key: P-infants-campaign-high-risk, description: "Infants in campaigns where risk among infants < 9 months remains high", ageRange: ">= 6 months", qualifier: campaign}
+  - {key: P-displaced, description: Internally displaced populations, refugees and populations in conflict zones, qualifier: humanitarian setting}
+  - {key: P-infants-high-risk, description: Individual infants at high risk of contracting measles, ageRange: ">= 6 months"}
+  - {key: P-infants-travelling, description: Infants travelling to countries experiencing measles outbreaks, ageRange: ">= 6 months"}
+  - {key: P-hiv-infants, description: Infants known to be HIV-infected or HIV-exposed, ageRange: ">= 6 months"}
+  - {key: P-mcv0-recipients, description: Children who received an MCV0 dose}
+  - {key: P-missed-doses, description: "Children who missed one or both routine MCV doses, particularly those < 15 years", ageRange: "< 15 years"}
+  - {key: P-school-entry, description: Children at school entry}
+  - {key: P-contraindicated, description: Individuals with anaphylaxis or severe allergy to a vaccine component, or severe immunosuppression}
+  - {key: P-pregnant, description: Pregnant women}
+  - {key: P-hcw, description: Health-care workers and staff in contact with patients}
+  - {key: P-travellers, description: Susceptible individuals travelling to measles-endemic areas}
+  - {key: P-hiv-asymptomatic, description: Potentially susceptible, asymptomatic HIV-infected children and adults}
+  - {key: P-hiv-symptomatic, description: Symptomatic HIV-infected individuals not severely immunosuppressed}
+  - {key: P-hiv-high-incidence, description: Children in areas with high incidence of both HIV and measles, ageRange: ">= 6 months"}
+  - {key: P-hiv-haart, description: HIV-infected children receiving HAART}
+  - {key: P-hiv-no-haart, description: "HIV-exposed infants, or HIV-infected children > 6 months not receiving HAART, at high measles risk"}
+  - {key: P-measles-cases, description: Patients with measles}
+  - {key: P-vita-under6m, description: "Measles cases aged < 6 months", ageRange: "< 6 months"}
+  - {key: P-vita-6-11m, description: Measles cases aged 6–11 months, ageRange: "6–11 months"}
+  - {key: P-vita-12m-plus, description: "Measles cases aged >= 12 months", ageRange: ">= 12 months"}
+  - {key: P-exposed-susceptible, description: Unimmunized or insufficiently immunized individuals exposed to measles virus}
+  - {key: P-exposed-contraindicated, description: Exposed susceptible individuals for whom MCV is contraindicated}
+  - {key: P-countries, description: National immunization programmes}
+  - {key: P-countries-elimination, description: Countries aiming at or approaching measles elimination}
+
+# PICO I.
+interventions:
+  - {key: I-mcv, description: Administration of measles-containing vaccine}
+  - {key: I-mcv1, description: First routine dose of MCV (MCV1)}
+  - {key: I-mcv2, description: Second routine dose of MCV (MCV2)}
+  - {key: I-mcv0, description: Supplementary dose of MCV before 9 months (MCV0)}
+  - {key: I-mcv-additional, description: Additional MCV dose after HAART immune reconstitution}
+  - {key: I-mr-mmr, description: Combined MR or MMR vaccine}
+  - {key: I-campaign, description: Measles vaccination campaign}
+  - {key: I-immune-globulin, description: Human (measles) immune globulin}
+  - {key: I-vitamin-a, description: Oral vitamin A}
+  - {key: I-supportive-care, description: Supportive care}
+  - {key: I-surveillance, description: Case-based measles surveillance}
+  - {key: I-recording, description: Recording of doses on immunization card and register}
+
+evidence:
+  - key: EV-ETR-MEASLES
+    summary: "Evidence-to-recommendation table for measles vaccine (footnote 67)."
+    citation: http://www.who.int/immunization/policy/position_papers/measles_evidence_recommendation.pdf
+    location: {page: "220", quote: "Evidence-to-recommendation table for measles vaccine."}
+  - key: EV-ETR-HIV
+    summary: "Evidence-to-recommendation table for revaccination of HIV infected (footnote 73)."
+    citation: http://www.who.int/immunization/policy/position_papers/measles_evidence_recommendation_hiv.pdf
+    location: {page: "226", quote: "Evidence-to-recommendation table for revaccination of HIV infected."}
+
+recommendations:
+  # ---- WHO position, p.220-221 --------------------------------------------------------------
+  - key: R01
+    section: position
+    page: "220"
+    statement: Vaccination against measles is recommended for all susceptible children and adults.
+    population: [P-susceptible-all]
+    intervention: [I-mcv]
+    recommends: [HI-MCV-ROUTINE]
+  - key: R02
+    section: position
+    page: "220"
+    statement: >-
+      The available live attenuated measles vaccines are safe and effective, provide long-lasting
+      protection, are inexpensive and may be used interchangeably within immunization programmes.
+    intervention: [I-mcv]
+    recommends: [HI-MCV-ROUTINE]
+  - key: R03
+    section: position
+    page: "220"
+    statement: >-
+      Reaching all children with 2 doses of measles vaccine should be the standard for all national
+      immunization programmes.
+    population: [P-all-children]
+    intervention: [I-mcv1, I-mcv2]
+    recommends: [HI-MCV-ROUTINE]
+  - key: R04
+    section: position
+    page: "220"
+    statement: >-
+      Countries aiming at measles elimination should achieve ≥95% coverage with both doses
+      equitably to all children in every district.
+    conditionality: Countries aiming at measles elimination
+    population: [P-countries-elimination]
+    intervention: [I-mcv1, I-mcv2]
+    recommends: [HI-MCV-ROUTINE]
+  - key: R05
+    section: position
+    page: "220"
+    statement: >-
+      In addition to the first routine dose of MCV (MCV1), all countries should include a second
+      routine dose of MCV (MCV2) in their national vaccination schedules regardless of the level of
+      MCV1 coverage.
+    population: [P-countries]
+    intervention: [I-mcv2]
+    recommends: [HI-MCV-ROUTINE]
+    supportedBy: [EV-ETR-MEASLES]
+    remarks:
+      - page: "220–221"
+        text: >-
+          The addition of MCV2 in the second year of life reduces the accumulation of susceptible
+          children by immunizing those who did not respond to MCV1 or did not receive the first
+          dose. This measure has the further advantages of lengthening the period between
+          campaigns, helping to establish a routine well-child visit during the second year of
+          life, and reducing the risk of outbreaks.
+  - key: R06
+    section: position
+    page: "221"
+    statement: >-
+      As the addition of routine MCV2 covers only a single birth cohort and it takes time to
+      achieve high rates of population-wide coverage, countries conducting regular campaigns to
+      achieve high population immunity should consider cessation of campaigns only when >90–95%
+      vaccination coverage has been achieved at the national level for both MCV1 and MCV2, as
+      determined by accurate coverage data for a period of at least 3 consecutive years.
+    conditionality: countries conducting regular campaigns to achieve high population immunity
+    population: [P-countries]
+    intervention: [I-campaign]
+    recommends: [HI-MCV-CAMPAIGN]
+
+  # ---- Optimal timing, p.221-222 -------------------------------------------------------------
+  - key: R07
+    section: timing
+    page: "221"
+    statement: >-
+      In countries with ongoing transmission in which the risk of measles mortality among infants
+      remains high, MCV1 should be administered at 9 months of age.
+    conditionality: In countries with ongoing transmission in which the risk of measles mortality among infants remains high
+    population: [P-infants-high-transmission]
+    intervention: [I-mcv1]
+    recommends: [HI-MCV-ROUTINE]
+    remarks:
+      - page: "221"
+        text: >-
+          In these settings, on-time delivery of MCV1 is important to ensure optimal protection
+          during the susceptible period in infancy.
+  - key: R08
+    section: timing
+    page: "221"
+    statement: These countries should administer the routine dose of MCV2 at age 15–18 months.
+    conditionality: In countries with ongoing transmission in which the risk of measles mortality among infants remains high
+    population: [P-infants-high-transmission]
+    intervention: [I-mcv2]
+    recommends: [HI-MCV-ROUTINE]
+    refines: [R07]
+  - key: R09
+    section: timing
+    page: "221"
+    statement: The minimum interval between MCV1 and MCV2 is 4 weeks.
+    intervention: [I-mcv1, I-mcv2]
+    recommends: [HI-MCV-ROUTINE]
+  - key: R10
+    section: timing
+    page: "221"
+    statement: >-
+      In countries with low levels of measles transmission (i.e. those nearing measles
+      elimination or verified as having eliminated endemic measles virus transmission) and
+      therefore the risk of measles virus infection among infants is low, MCV1 may be administered
+      at 12 months of age to take advantage of the higher seroconversion rates achieved at this
+      age.
+    conditionality: In countries with low levels of measles transmission
+    population: [P-infants-low-transmission]
+    intervention: [I-mcv1]
+    recommends: [HI-MCV-ROUTINE]
+    remarks:
+      - page: "221"
+        text: >-
+          However, before implementing this change, policy-makers should review local data on the
+          age at which infants actually receive measles vaccine, the coverage expected at 12 months
+          compared with 9 months, and the age-specific measles incidence.
+  - key: R11
+    section: timing
+    page: "221"
+    statement: >-
+      In countries where MCV1 is administered at 12 months of age, the optimal age for delivering
+      routine MCV2 is based on programmatic considerations that achieve the highest coverage of
+      MCV2 and, hence, the highest population immunity.
+    conditionality: In countries where MCV1 is administered at 12 months of age
+    population: [P-infants-low-transmission]
+    intervention: [I-mcv2]
+    recommends: [HI-MCV-ROUTINE]
+    refines: [R10]
+    remarks:
+      - page: "221"
+        text: >-
+          Administration of MCV2 at 15–18 months of age ensures early protection of the
+          individual, slows the accumulation of susceptible young children, may correspond to the
+          schedule for other routine immunizations (for example, a DTP booster, PCV, or
+          meningococcal vaccines).
+  - key: R12
+    section: timing
+    page: "221"
+    statement: >-
+      If MCV1 coverage is high (>90%) and school enrolment is high (>95%), administration of
+      routine MCV2 at school entry may prove an effective strategy for achieving high coverage and
+      preventing outbreaks in schools.
+    conditionality: If MCV1 coverage is high (>90%) and school enrolment is high (>95%)
+    population: [P-school-entry]
+    intervention: [I-mcv2]
+    recommends: [HI-MCV-ROUTINE]
+    refines: [R11]
+  - key: R13
+    section: timing
+    page: "221"
+    statement: >-
+      In the following situations, a supplementary dose of MCV should be given to infants from
+      6 months of age:
+    population: [P-infants-6m-plus]
+    intervention: [I-mcv0]
+    recommends: [HI-MCV0]
+  - key: R13.1
+    section: timing
+    page: "221"
+    statement: during a measles outbreak as part of intensified service delivery;
+    population: [P-infants-outbreak]
+    intervention: [I-mcv0]
+    recommends: [HI-MCV0]
+    refines: [R13]
+  - key: R13.2
+    section: timing
+    page: "222"
+    statement: >-
+      during campaigns in settings where the risk of measles among infants < 9 months of age
+      remains high (e.g. in endemic countries experiencing regular outbreaks);
+    population: [P-infants-campaign-high-risk]
+    intervention: [I-mcv0]
+    recommends: [HI-MCV0, HI-MCV-CAMPAIGN]
+    refines: [R13]
+  - key: R13.3
+    section: timing
+    page: "222"
+    statement: for internally displaced populations and refugees, and populations in conflict zones;
+    population: [P-displaced]
+    intervention: [I-mcv0]
+    recommends: [HI-MCV0]
+    refines: [R13]
+  - key: R13.4
+    section: timing
+    page: "222"
+    statement: >-
+      for individual infants at high risk of contracting measles (e.g. contacts of known measles
+      cases or in settings with increased risk of exposure during outbreaks such as day-care
+      facilities);
+    population: [P-infants-high-risk]
+    intervention: [I-mcv0]
+    recommends: [HI-MCV0]
+    refines: [R13]
+  - key: R13.5
+    section: timing
+    page: "222"
+    statement: for infants travelling to countries experiencing measles outbreaks;
+    population: [P-infants-travelling]
+    intervention: [I-mcv0]
+    recommends: [HI-MCV0, HI-MCV-TRAVEL]
+    refines: [R13]
+  - key: R13.6
+    section: timing
+    page: "222"
+    statement: for infants known to be HIV-infected or exposed (i.e. born to an HIV-infected woman).
+    population: [P-hiv-infants]
+    intervention: [I-mcv0]
+    recommends: [HI-MCV0, HI-MCV-HIV]
+    refines: [R13]
+  - key: R14
+    section: timing
+    page: "222"
+    statement: >-
+      MCV administered before 9 months of age should therefore be considered a supplementary dose
+      and recorded on the child’s vaccination record as “MCV0” unless the country has data showing
+      high seroconversion when vaccination is carried out before 9 months of age.
+    intervention: [I-mcv0, I-recording]
+    recommends: [HI-MCV0, HI-RECORDING]
+    remarks:
+      - page: "222"
+        text: >-
+          Measles vaccine immunogenicity and effectiveness are lower at 6 months than at later
+          ages, and there are concerns about the long-term effectiveness of an early 2-dose
+          schedule and its potential for later blunting of immunity.
+  - key: R15
+    section: timing
+    page: "222"
+    statement: >-
+      Children who receive a MCV0 dose should also receive MCV1 and MCV2 at the recommended ages
+      according to the national schedule.
+    population: [P-mcv0-recipients]
+    intervention: [I-mcv1, I-mcv2]
+    recommends: [HI-MCV0, HI-MCV-ROUTINE]
+    refines: [R13]
+  - key: R16
+    section: timing
+    page: "222"
+    statement: >-
+      Countries using MR or MMR in their national schedule should use the combined vaccine rather
+      than measles-only formulations in all children, including those aged <1 year.
+    conditionality: Countries using MR or MMR in their national schedule
+    population: [P-all-children]
+    intervention: [I-mr-mmr]
+    recommends: [HI-MCV-ROUTINE, HI-MCV0]
+    remarks:
+      - page: "222"
+        text: >-
+          Available evidence on safety and immunogenicity of rubella and mumps-containing vaccines
+          support their use from 6 months of age.
+  - key: R17
+    section: timing
+    page: "222"
+    statement: >-
+      Because many cases of measles occur in children aged >12 months who have not been
+      vaccinated, routine delivery of MCV1 should not be limited to infants aged 9–12 months and
+      routine delivery of MCV2 should not be limited to infants aged 15–18 months of age.
+    population: [P-missed-doses]
+    intervention: [I-mcv1, I-mcv2]
+    recommends: [HI-MCV-CATCHUP]
+  - key: R18
+    section: timing
+    page: "222"
+    statement: >-
+      Every opportunity (e.g. whenever children come in contact with health services) should be
+      taken to vaccinate all children who missed one or both MCV routine doses, particularly those
+      <15 years of age.
+    population: [P-missed-doses]
+    intervention: [I-mcv1, I-mcv2]
+    recommends: [HI-MCV-CATCHUP]
+  - key: R19
+    section: timing
+    page: "222"
+    statement: >-
+      Policies prohibiting the use of the vaccine in children >1 year of age, older children and
+      adolescents should be changed to allow them to be vaccinated as necessary.
+    population: [P-countries]
+    intervention: [I-mcv]
+    recommends: [HI-MCV-CATCHUP]
+  - key: R20
+    section: timing
+    page: "222"
+    statement: >-
+      Irrespective of the strategy or schedule, the child’s immunization card and the clinic’s
+      vaccination register should be designed to allow accurate recording of supplementary (MCV0),
+      routine (MCV1 and MCV2) and campaign doses.
+    intervention: [I-recording]
+    recommends: [HI-RECORDING]
+  - key: R21
+    section: timing
+    page: "222"
+    statement: >-
+      Children should be screened for their measles vaccination history at the time of school
+      entry, and those lacking evidence of receipt of 2 doses should be vaccinated with any missing
+      doses.
+    population: [P-school-entry]
+    intervention: [I-mcv1, I-mcv2]
+    recommends: [HI-MCV-CATCHUP]
+
+  # ---- Vaccination campaigns, p.222-224 ------------------------------------------------------
+  - key: R22
+    section: campaigns
+    page: "222–223"
+    statement: >-
+      In countries where health systems are functioning only moderately or weakly, implementation
+      of regular measles vaccination campaigns can be a highly effective strategy for protecting
+      children who do not have access to routine health services, particularly if hard-to-reach
+      communities are targeted during the campaign.
+    conditionality: In countries where health systems are functioning only moderately or weakly
+    population: [P-countries]
+    intervention: [I-campaign]
+    recommends: [HI-MCV-CAMPAIGN]
+    remarks:
+      - page: "223"
+        text: >-
+          In certain settings, nationwide campaigns may not be feasible or cost-effective (e.g. due
+          to civil unrest, political instability, financial constraints or in very large countries)
+          and targeted subnational campaigns may be implemented to reduce the accumulation of
+          susceptible individuals.
+  - key: R23
+    section: campaigns
+    page: "223"
+    statement: >-
+      Because the risk of measles outbreaks is determined by the rate of accumulation of
+      susceptible people in the population, programmes should use available good quality data on
+      population immunity (i.e. vaccination coverage, surveillance, serological studies) to
+      monitor the accumulation of susceptible people and conduct follow-up campaigns before the
+      number of pre-school children susceptible to measles approaches the equivalent of one birth
+      cohort, in order to prevent an outbreak of measles.
+    population: [P-countries]
+    intervention: [I-campaign]
+    recommends: [HI-MCV-CAMPAIGN]
+    remarks:
+      - page: "223"
+        text: >-
+          However, for large countries and countries which are close to measles elimination, a more
+          extensive assessment of the accumulation of susceptible persons should be carried out at
+          the subnational level.
+  - key: R24
+    section: campaigns
+    page: "223"
+    statement: >-
+      As there is no single criterion for identification of the target age range for measles or
+      measles/rubella vaccination campaigns, countries should integrate their surveillance,
+      demographic, survey and seroprevalence data together with vaccination coverage information,
+      history of MCV and RCV use, and local knowledge to determine the age distribution of
+      susceptibility (age-specific immunity gaps) and hence the target age range/s for measles and
+      MR campaigns.
+    population: [P-countries]
+    intervention: [I-campaign]
+    recommends: [HI-MCV-CAMPAIGN]
+  - key: R25
+    section: campaigns
+    page: "224"
+    statement: >-
+      All MCV campaigns should follow established best practices, should be monitored to ensure
+      readiness before the campaign, and be independently monitored during and after the campaign
+      to ensure homogeneous vaccination coverage of >95%.
+    intervention: [I-campaign]
+    recommends: [HI-MCV-CAMPAIGN]
+  - key: R26
+    section: campaigns
+    page: "224"
+    statement: >-
+      All doses given during campaigns should be documented in the child’s vaccination record and
+      the number of zero-dose children vaccinated (i.e. children who had not received any previous
+      doses of MCV) recorded by age group.
+    intervention: [I-campaign, I-recording]
+    recommends: [HI-MCV-CAMPAIGN, HI-RECORDING]
+  - key: R27
+    section: campaigns
+    page: "224"
+    statement: >-
+      Before discontinuing campaigns, a review should be conducted by a national committee such as
+      the national immunization advisory group.
+    intervention: [I-campaign]
+    recommends: [HI-MCV-CAMPAIGN]
+    refines: [R06]
+    remarks:
+      - page: "224"
+        text: >-
+          The committee should examine the following: historical data on vaccination coverage for
+          MCV1, routine MCV2 and campaigns both at the national and district levels; degree of
+          heterogeneity of routine coverage among districts; population immunity profile; predicted
+          rate of accumulation of susceptible individuals in the absence of campaigns; detailed
+          epidemiology of measles including measles outbreaks; and the performance of the measles
+          surveillance system.
+  - key: R28
+    section: campaigns
+    page: "224"
+    statement: >-
+      In the absence of adequate data, or if data suggest that cessation of campaigns would allow
+      population immunity to drop below the herd immunity threshold, campaigns should continue.
+    intervention: [I-campaign]
+    recommends: [HI-MCV-CAMPAIGN]
+    refines: [R27]
+
+  # ---- Choice of vaccines, co-administration, p.224 ------------------------------------------
+  - key: R29
+    section: choice
+    page: "224"
+    statement: >-
+      All commercially available live attenuated measles vaccines, either as monovalent vaccine or
+      in combination with rubella, mumps, or varicella vaccines, or some combination of these, can
+      be used interchangeably to protect against measles.
+    intervention: [I-mcv, I-mr-mmr]
+    recommends: [HI-MCV-ROUTINE]
+  - key: R30
+    section: choice
+    page: "224"
+    statement: >-
+      However, for programmatic reasons (e.g. to reduce cold storage needs and vaccine wastage), it
+      is recommended that the same formulation is used for both routine doses of MCV.
+    intervention: [I-mcv1, I-mcv2]
+    recommends: [HI-MCV-ROUTINE]
+    refines: [R29]
+  - key: R31
+    section: coadmin
+    page: "224"
+    statement: >-
+      As a general rule, live vaccines should be given either simultaneously or at intervals of
+      4 weeks.
+    intervention: [I-mcv]
+    recommends: [HI-MCV-ROUTINE]
+    remarks:
+      - page: "224"
+        text: >-
+          An exception to this rule is OPV, which can be given at any time before or after measles
+          vaccination without interference in the response to either vaccine.
+  - key: R32
+    section: coadmin
+    page: "224"
+    statement: >-
+      MCVs may be co-administered at different anatomical sites with other vaccines including
+      Japanese encephalitis vaccine, yellow fever vaccine, DTP-containing vaccines, meningococcal
+      vaccine, hepatitis B vaccine, inactivated poliovirus vaccine, Haemophilus influenza type b
+      conjugate vaccine, and pneumococcal vaccines.
+    intervention: [I-mcv]
+    recommends: [HI-MCV-ROUTINE]
+
+  # ---- Contraindications, special groups, p.225 ----------------------------------------------
+  - key: R33
+    section: contra
+    page: "225"
+    statement: >-
+      MCVs should not be given to individuals with a history of anaphylactic reactions or severe
+      allergic reactions to any component of the vaccine (e.g. neomycin or gelatin) or those with
+      any form of severe immunosuppression.
+    population: [P-contraindicated]
+    intervention: [I-mcv]
+    recommends: [HI-MCV-ROUTINE]
+    remarks:
+      - page: "225"
+        text: Mild concurrent infections are not a contraindication to vaccination.
+  - key: R34
+    section: pregnancy
+    page: "225"
+    statement: >-
+      As a precautionary measure, measles vaccine – alone or in combination with other vaccines –
+      should be avoided during pregnancy.
+    population: [P-pregnant]
+    intervention: [I-mcv]
+    recommends: [HI-MCV-ROUTINE]
+    remarks:
+      - page: "225"
+        text: >-
+          Inadvertent administration of measles vaccine during pregnancy is not a reason for
+          terminating the pregnancy.
+      - page: "218"
+        text: >-
+          Although measles virus has not been shown to have any teratogenic effect, because
+          measles vaccine is a live attenuated vaccine and may pose a theoretical risk to the
+          developing fetus, in particular due to fever that may result from vaccination, as a
+          precautionary measure it is not recommended for pregnant women.
+  - key: R35
+    section: hcw
+    page: "225"
+    statement: >-
+      Because of the known risk of spreading measles from HCWs to patients or from patients to
+      HCWs, all HCWs and any staff who are in contact with patients should be immune to measles.
+    population: [P-hcw]
+    intervention: [I-mcv]
+    recommends: [HI-MCV-HCW]
+    remarks:
+      - page: "225"
+        text: >-
+          All persons involved in patient care such as health care professionals, residents,
+          students, laboratory staff, as well as persons in public health such as field workers,
+          epidemiologists, laboratory staff and community health-care workers.
+      - page: "225"
+        text: >-
+          Either written documentation of receipt of 2 doses of MCV and at least 1 dose of RCV or
+          positive serologic (IgG) test results from a proficient laboratory.
+  - key: R36
+    section: hcw
+    page: "225"
+    statement: >-
+      Verification of vaccination and/or history of measles should be integrated into standard
+      infection control guidelines or other standards of care for health-care workers.
+    population: [P-hcw]
+    recommends: [HI-MCV-HCW]
+  - key: R37
+    section: hcw
+    page: "225"
+    statement: >-
+      For HCWs who have contact with patients, documentation of immunity should be required before
+      signing an employment contract or entering into a training programme.
+    population: [P-hcw]
+    recommends: [HI-MCV-HCW]
+  - key: R38
+    section: travel
+    page: "225"
+    statement: >-
+      Vaccine should be offered to children from 6 months of age, adolescents and adults likely or
+      known to be susceptible.
+    conditionality: Susceptible individuals travelling to measles-endemic areas
+    population: [P-travellers]
+    intervention: [I-mcv]
+    recommends: [HI-MCV-TRAVEL]
+
+  # ---- HIV, p.225-226 ------------------------------------------------------------------------
+  - key: R39
+    section: hiv
+    page: "225"
+    statement: >-
+      Given the severe course of measles in patients with AIDS, measles vaccination should be
+      routinely administered to potentially susceptible, asymptomatic HIV-infected children and
+      adults.
+    population: [P-hiv-asymptomatic]
+    intervention: [I-mcv]
+    recommends: [HI-MCV-HIV]
+  - key: R40
+    section: hiv
+    page: "225"
+    statement: >-
+      Vaccination may even be considered for those with symptomatic HIV infection if they are not
+      severely immunosuppressed according to conventional definitions.
+    population: [P-hiv-symptomatic]
+    intervention: [I-mcv]
+    recommends: [HI-MCV-HIV]
+    refines: [R39]
+  - key: R41
+    section: hiv
+    page: "225"
+    statement: >-
+      In areas where there is a high incidence of both HIV infection and measles, an initial dose
+      of MCV may be offered as early as age 6 months (recorded as MCV0). The 2 routine doses of MCV
+      (MCV1 and MCV2) should then be administered to these children according to the national
+      immunization schedule.
+    conditionality: In areas where there is a high incidence of both HIV infection and measles
+    population: [P-hiv-high-incidence]
+    intervention: [I-mcv0, I-mcv1, I-mcv2]
+    recommends: [HI-MCV-HIV, HI-MCV0]
+  - key: R42
+    section: hiv
+    page: "226"
+    statement: >-
+      An additional dose of MCV should be administered to HIV-infected children receiving HAART
+      following immune reconstitution.
+    population: [P-hiv-haart]
+    intervention: [I-mcv-additional]
+    recommends: [HI-MCV-HIV]
+    supportedBy: [EV-ETR-HIV]
+    remarks:
+      - page: "226"
+        text: >-
+          Current evidence is insufficient to recommend an additional dose for children who start
+          HAART prior to the first dose of MCV.
+  - key: R43
+    section: hiv
+    page: "226"
+    statement: >-
+      If CD4+ T lymphocyte counts are monitored, an additional dose of MCV should be administered
+      when immune reconstitution has been achieved, e.g. when the CD4+ T lymphocyte count reaches
+      20–25%.
+    conditionality: If CD4+ T lymphocyte counts are monitored
+    population: [P-hiv-haart]
+    intervention: [I-mcv-additional]
+    recommends: [HI-MCV-HIV]
+    refines: [R42]
+  - key: R44
+    section: hiv
+    page: "226"
+    statement: >-
+      Where CD4+ T lymphocyte monitoring is not available, children should receive an additional
+      dose of MCV 6–12 months after initiation of HAART.
+    conditionality: Where CD4+ T lymphocyte monitoring is not available
+    population: [P-hiv-haart]
+    intervention: [I-mcv-additional]
+    recommends: [HI-MCV-HIV]
+    refines: [R42]
+  - key: R45
+    section: hiv
+    page: "226"
+    statement: >-
+      A supplementary dose of MCV (recorded as MCV0) should be considered for infants known to be
+      exposed (i.e. born to an HIV-infected woman) or soon after diagnosis of HIV infection in
+      children older than 6 months who are not receiving HAART and for whom the risk of measles is
+      high, with the aim of providing partial protection until they are revaccinated after immune
+      reconstitution with HAART.
+    population: [P-hiv-no-haart]
+    intervention: [I-mcv0]
+    recommends: [HI-MCV-HIV, HI-MCV0]
+
+  # ---- Surveillance and outbreak response, p.226-227 -----------------------------------------
+  - key: R46
+    section: surveillance
+    page: "226"
+    statement: >-
+      As countries approach elimination, they should intensify surveillance and move towards weekly
+      reporting to the WHO regional offices.
+    population: [P-countries-elimination]
+    intervention: [I-surveillance]
+    recommends: [HI-SURVEILLANCE]
+    remarks:
+      - page: "226"
+        text: >-
+          Countries are encouraged to adopt the approach outlined in the framework for verification
+          of measles and rubella elimination.
+      - page: "210"
+        text: >-
+          The WHO definition of suspected measles is a case with fever and maculopapular
+          (non-vesicular) rash, or a case where a health-care worker suspects measles.
+  - key: R47
+    section: surveillance
+    page: "226"
+    statement: >-
+      To limit the impact of measles outbreaks, WHO recommends surveillance for early detection,
+      thorough assessment of the risk of spread and of severe disease outcomes, identification of
+      immunity gaps, and planning rapid responses, including expanded use of MCVs.
+    intervention: [I-surveillance]
+    recommends: [HI-SURVEILLANCE]
+  - key: R48
+    section: surveillance
+    page: "226"
+    statement: >-
+      A district or regional outbreak coordination committee with broad representation should make
+      the decisions about the type of vaccination response to be implemented at the local level.
+    recommends: [HI-SURVEILLANCE]
+  - key: R49
+    section: surveillance
+    page: "226"
+    statement: >-
+      To protect individuals at high risk during an outbreak, vaccination within 72 hours of
+      exposure may be given to modify the clinical course of measles or prevent symptoms.
+    population: [P-exposed-susceptible]
+    intervention: [I-mcv]
+    recommends: [HI-PEP]
+  - key: R50
+    section: surveillance
+    page: "226"
+    statement: >-
+      In individuals for whom vaccination is contraindicated, the administration of measles immune
+      globulin within 6 days of exposure may have a similarly beneficial effect.
+    population: [P-exposed-contraindicated]
+    intervention: [I-immune-globulin]
+    recommends: [HI-PEP]
+  - key: R51
+    section: surveillance
+    page: "227"
+    statement: >-
+      When determining whether a country or the WHO Region as a whole has achieved elimination, the
+      regional verification commission should consider 5 lines of evidence – disease
+      epidemiology, population immunity, quality of surveillance, sustainability of the programme,
+      and genotyping evidence – to allow for a comprehensive evidence-based assessment of past
+      programme performance and future capacity to sustain elimination.
+    recommends: [HI-SURVEILLANCE]
+    remarks:
+      - page: "227"
+        text: These lines of evidence should be evaluated together to establish the case for elimination.
+  - key: R52
+    section: research
+    page: "227"
+    statement: >-
+      Research targeting programmatic challenges is likely to yield the most programmatic gains and
+      should be prioritized.
+
+  # ---- Vaccine storage and safety (Background), p.213 and p.217 ------------------------------
+  # Operational guidance printed in Background, not restated in the WHO position; captured so
+  # that REQ-03 coverage is reached by capture rather than by exclusion.
+  - key: V01
+    section: vaccine-chars
+    page: "213"
+    statement: >-
+      In general, it is recommended that freeze-dried vaccine be stored in a refrigerated
+      condition below +8 °C.
+    intervention: [I-mcv]
+    recommends: [HI-STORAGE]
+    remarks:
+      - page: "216"
+        text: >-
+          Serious adverse events such as toxic shock syndrome, septicaemia, and occasionally even
+          fatal events, following measles vaccine administration (particularly when using
+          multi-dose vials) can occur because of failure to adhere strictly to the manufacturer’s
+          recommendations when handling, reconstituting and administering measles vaccines.
+  - key: V02
+    section: vaccine-chars
+    page: "213"
+    statement: >-
+      The diluent must not be frozen and can be stored at ambient temperature; it should be cooled
+      to 2–8 °C before reconstitution.
+    intervention: [I-mcv]
+    recommends: [HI-STORAGE]
+  - key: V03
+    section: vaccine-chars
+    page: "213"
+    statement: >-
+      The vaccine is also sensitive to light and should be stored in coloured glass vials protected
+      from sunlight.
+    intervention: [I-mcv]
+    recommends: [HI-STORAGE]
+  - key: V04
+    section: vaccine-chars
+    page: "213"
+    statement: >-
+      After reconstitution, the vaccine must be stored in the dark at 2–8 °C and used within
+      6 hours.
+    intervention: [I-mcv]
+    recommends: [HI-STORAGE]
+    refines: [V01]
+  - key: V05
+    section: safety
+    page: "217"
+    statement: >-
+      Mild, concurrent infections are not considered a contraindication to vaccination, but MCVs
+      should be avoided if the patient has a high fever or other signs of serious acute illness.
+    intervention: [I-mcv]
+    recommends: [HI-MCV-ROUTINE]
+    refines: [R33]
+
+  # ---- Case management (Background), p.210-211 -----------------------------------------------
+  # Not in the WHO position section. Kept because the DAK needs them for case management; the
+  # section edge records where they come from.
+  - key: C01
+    section: treatment
+    page: "210"
+    statement: >-
+      Since measles is highly contagious, patient isolation is an important intervention to
+      prevent further spread of the virus.
+    population: [P-measles-cases]
+    intervention: [I-supportive-care]
+    recommends: [HI-CASE-MGMT]
+  - key: C02
+    section: treatment
+    page: "210"
+    statement: >-
+      Supportive care should be provided, including relieving common symptoms such as fever,
+      cough, nasal congestion or rhinorrhea, conjunctivitis, and sore mouth.
+    population: [P-measles-cases]
+    intervention: [I-supportive-care]
+    recommends: [HI-CASE-MGMT]
+  - key: C03
+    section: treatment
+    page: "210"
+    statement: >-
+      Nutritional support is recommended to reduce the risk of malnutrition due to diarrhoea,
+      vomiting and poor appetite associated with measles.
+    population: [P-measles-cases]
+    intervention: [I-supportive-care]
+    recommends: [HI-CASE-MGMT]
+  - key: C04
+    section: treatment
+    page: "210"
+    statement: Breastfeeding should be encouraged where appropriate.
+    population: [P-measles-cases]
+    intervention: [I-supportive-care]
+    recommends: [HI-CASE-MGMT]
+  - key: C05
+    section: treatment
+    page: "210"
+    statement: Oral rehydration salts should be used as needed to prevent dehydration.
+    population: [P-measles-cases]
+    intervention: [I-supportive-care]
+    recommends: [HI-CASE-MGMT]
+  - key: C06
+    section: treatment
+    page: "210"
+    statement: >-
+      Although one study reported that patients who received prophylactic antibiotics had fewer
+      episodes of pneumonia and conjunctivitis and greater weight gain, antibiotics are generally
+      not recommended for the treatment of measles unless secondary bacterial complications
+      develop, such as pneumonia or otitis media.
+    population: [P-measles-cases]
+    intervention: [I-supportive-care]
+    recommends: [HI-CASE-MGMT]
+  - key: C07
+    section: treatment
+    page: "210"
+    statement: >-
+      Vitamin A should be administered to all acute cases irrespective of the timing of previous
+      doses of vitamin A.
+    population: [P-measles-cases]
+    intervention: [I-vitamin-a]
+    recommends: [HI-VITA]
+  - key: C08
+    section: treatment
+    page: "210"
+    statement: >-
+      Vitamin A oral dosage should be given immediately on diagnosis and repeated the next day;
+      50 000 IU should be given to infants aged <6 months, 100 000 IU to infants aged 6–11 months
+      and 200 000 IU to children aged ≥12 months.
+    population: [P-vita-under6m, P-vita-6-11m, P-vita-12m-plus]
+    intervention: [I-vitamin-a]
+    recommends: [HI-VITA]
+    refines: [C07]
+  - key: C09
+    section: treatment
+    page: "210"
+    statement: >-
+      If the child has clinical ophthalmic signs of vitamin A deficiency such as Bitot’s spots, a
+      third dose should be given 4–6 weeks later.
+    conditionality: If the child has clinical ophthalmic signs of vitamin A deficiency
+    population: [P-measles-cases]
+    intervention: [I-vitamin-a]
+    recommends: [HI-VITA]
+    refines: [C08]
+  - key: C10
+    section: treatment
+    page: "210–211"
+    statement: >-
+      Even in countries where measles is not usually severe, vitamin A should be given in all
+      cases of severe measles.
+    population: [P-measles-cases]
+    intervention: [I-vitamin-a]
+    recommends: [HI-VITA]
+    refines: [C07]
+  - key: C11
+    section: pep
+    page: "211"
+    statement: >-
+      In unimmunized or insufficiently immunized individuals, measles vaccine may be administered
+      within 72 hours of exposure to measles virus to protect against disease.
+    population: [P-exposed-susceptible]
+    intervention: [I-mcv]
+    recommends: [HI-PEP]
+  - key: C12
+    section: pep
+    page: "211"
+    statement: >-
+      For susceptible individuals for whom MCV is contraindicated, human immune globulin may be
+      given after measles virus exposure, particularly to pregnant women, infants aged <6 months,
+      and individuals with impaired immune systems.
+    population: [P-exposed-contraindicated]
+    intervention: [I-immune-globulin]
+    recommends: [HI-PEP]
+    remarks:
+      - page: "211"
+        text: >-
+          If administered within 6 days of exposure, this method of passive immunization can
+          prevent illness or reduce its severity.
+
+# One schedule, the granularity a decision table consumes. Each entry is INFERRED from the
+# recommendations it names; the `quote` is what the entry was read from.
+schedule:
+  key: SCH-MEASLES
+  name: Measles-containing vaccine schedule (WHO position paper 2017)
+  scope: Routine, supplementary and HIV-specific doses of measles-containing vaccine
+  entries:
+    - key: SE-MCV0
+      antigen: measles
+      doseNumber: "0"
+      series: supplementary
+      targetAge: from 6 months, before 9 months
+      note: Not counted toward the routine series; MCV1 and MCV2 still required.
+      schedules: [HI-MCV0]
+      derivedFrom: [R13, R14, R15]
+    - key: SE-MCV1-HIGH
+      antigen: measles
+      doseNumber: "1"
+      series: routine
+      targetAge: 9 months
+      note: Countries with ongoing transmission and high infant measles mortality risk.
+      schedules: [HI-MCV-ROUTINE]
+      derivedFrom: [R07]
+    - key: SE-MCV2-HIGH
+      antigen: measles
+      doseNumber: "2"
+      series: routine
+      targetAge: 15–18 months
+      minimumInterval: 4 weeks after MCV1
+      note: Countries with ongoing transmission and high infant measles mortality risk.
+      schedules: [HI-MCV-ROUTINE]
+      derivedFrom: [R08, R09]
+    - key: SE-MCV1-LOW
+      antigen: measles
+      doseNumber: "1"
+      series: routine
+      targetAge: 12 months
+      note: Countries with low measles transmission; review local data before changing from 9 months.
+      schedules: [HI-MCV-ROUTINE]
+      derivedFrom: [R10]
+    - key: SE-MCV2-LOW
+      antigen: measles
+      doseNumber: "2"
+      series: routine
+      targetAge: programmatic; 15–18 months or school entry
+      minimumInterval: 4 weeks after MCV1
+      note: School entry only if MCV1 coverage >90% and school enrolment >95%.
+      schedules: [HI-MCV-ROUTINE]
+      derivedFrom: [R09, R11, R12]
+    - key: SE-MCV-HIV-ADDITIONAL
+      antigen: measles
+      doseNumber: additional
+      series: HIV revaccination
+      targetAge: on immune reconstitution (CD4+ 20–25%), or 6–12 months after HAART initiation
+      note: Not recommended for children who start HAART before MCV1.
+      schedules: [HI-MCV-HIV]
+      derivedFrom: [R42, R43, R44]
+
+# L1-defined indicators. The paper gives targets, not numerator/denominator definitions; those
+# are left absent rather than invented and are an L2 task.
+indicators:
+  - key: IND-MCV1-COV
+    name: MCV1 coverage by district
+    definition: Coverage with the first routine dose of measles-containing vaccine; target ≥95% in every district for countries aiming at elimination.
+    disaggregation: district
+    measures: [HI-MCV-ROUTINE]
+    derivedFrom: [R04]
+  - key: IND-MCV2-COV
+    name: MCV2 coverage by district
+    definition: Coverage with the second routine dose of measles-containing vaccine; target ≥95% in every district for countries aiming at elimination.
+    disaggregation: district
+    measures: [HI-MCV-ROUTINE]
+    derivedFrom: [R04, R06]
+  - key: IND-CAMPAIGN-COV
+    name: Independently monitored campaign coverage
+    definition: Vaccination coverage achieved by an MCV campaign, independently monitored during and after the campaign; target >95%, homogeneous.
+    measures: [HI-MCV-CAMPAIGN]
+    derivedFrom: [R25]
+  - key: IND-ZERO-DOSE-CAMPAIGN
+    name: Zero-dose children vaccinated in campaigns
+    definition: Number of children vaccinated during a campaign who had not received any previous dose of MCV.
+    disaggregation: age group
+    measures: [HI-MCV-CAMPAIGN]
+    derivedFrom: [R26]
