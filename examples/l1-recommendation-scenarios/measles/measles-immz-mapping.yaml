@@ -1,0 +1,660 @@
+# Scenario mapping: the 75 recommendations of the WHO measles vaccines position paper (April 2017,
+# WER 92(17)) against the smart-immunizations vocabulary. Bean kvd2; skill recommendation-extraction.
+#
+# AUTHORED by an agent, and every entry is a CANDIDATE: no `review` is recorded on any entry, so
+# every link in the output stays `candidate` until a person reviews it.
+#
+# How each entry was decided (decision D4, reuse first, stop at the first hit):
+#   persona  immz-vocabulary.json → smart-base-generic-personas.json → a glossary `candidate`;
+#   process  IMMZ.A–I only. smart-immunizations prints IMMZ.A–I and nothing else, and no domain
+#            process catalogue exists (smart-base-clinical holds no processes), so anything outside
+#            them is `could-not-determine` and the run WARNS. No process is invented;
+#   domain   clinical | public-health | health-system-strengthening. `context` when the section
+#            the statement is printed under settles it; `inferred` when the statement's own subject
+#            does.
+#
+# Process rules applied, each checked against the statement rather than the section:
+#   - a per-client act at a vaccination contact (schedule, dose 0, interval, contraindication,
+#     co-administration, recording a dose) → IMMZ.D, whose objective is "To determine which vaccines
+#     a client needs, administer those and record the relevant necessary data";
+#   - preparing a session or a campaign round (readiness, supply) → IMMZ.B, "In preparation for a
+#     vaccination session, ensure sufficient supply and organize workload";
+#   - finding children who are behind and reaching out → IMMZ.F;
+#   - analysing programme data to take a programme decision → IMMZ.I, "To provide the ability to
+#     access and analyse data and to improve immunization programme decision-making";
+#   - a national policy, schedule-design or programme decision, workforce policy, surveillance,
+#     outbreak governance, verification of elimination, cold-chain logistics, measles case
+#     management and immune globulin → could-not-determine: IMMZ.A–I have no process for them.
+$schema: l1-scenario-mapping/v1
+guide: smart-immunizations
+scenarioIdPrefix: IMMZ.Measles.WER9217
+l1Origin:
+  repository: litlfred/test
+  commit: ec35ccfa3e443fc1571a9945713f2c23b6e045b6
+  path: l1/measles-position-paper-2017.l1.yaml
+entries:
+
+  # ── WHO position (p. 220–221) ────────────────────────────────────────────
+
+  R01:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "personas.md: health workers 'administer immunizations'."}
+    process: {id: IMMZ.D, source: inferred, basis: "Deciding that a susceptible client needs MCV and giving it is IMMZ.D's objective; IMMZ.D2.DT.Measles.* encode it."}
+    act: check whether the client, child or adult, is susceptible to measles and vaccinate them if so
+    outcome: every susceptible child and adult is protected against measles
+    domain: {code: public-health, source: context, basis: "Printed under 'WHO position': a population vaccination policy."}
+
+  R02:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker chooses the vial at administration."}
+    process: {id: IMMZ.D, source: inferred, basis: "Interchangeability is applied when the dose is given, in IMMZ.D."}
+    act: give whichever licensed live attenuated measles vaccine is in stock, interchangeably within the series
+    outcome: the client is protected without waiting for a particular product
+    domain: {code: public-health, source: context, basis: "Printed under 'WHO position'."}
+
+  R03:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "personas.md: EPI managers 'develop annual and multi-annual plans'; the statement sets a standard for national programmes."}
+    process: {id: could-not-determine, source: inferred, basis: "Setting a two-dose programme standard is national programme planning; IMMZ.A–I start at session planning (IMMZ.B). Its per-client consequence is IMMZ.D2.DT.Measles."}
+    act: set reaching every child with two doses of measles vaccine as the national programme standard
+    outcome: the programme is planned and judged against two-dose coverage
+    domain: {code: public-health, source: context, basis: "Printed under 'WHO position'."}
+
+  R04:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "Monitoring coverage is the EPI manager's 'monitoring, supervision and evaluation of immunization services'. IMMZ.I's table row names only the health worker."}
+    process: {id: IMMZ.I, source: inferred, basis: "'Achieve ≥95% coverage … in every district' is acted on by analysing district coverage data, which is IMMZ.I's objective. Achieving it is not one process."}
+    act: monitor MCV1 and MCV2 coverage by district against the ≥95% elimination target
+    outcome: districts below the target are seen and acted on equitably
+    domain: {code: public-health, source: context, basis: "Printed under 'WHO position'."}
+
+  R05:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "Including MCV2 in the national schedule is a national programme decision."}
+    process: {id: could-not-determine, source: inferred, basis: "National schedule design has no IMMZ process; once adopted it is applied per client in IMMZ.D (IMMZ.D18.S.Measles.* schedules)."}
+    act: include a routine second dose (MCV2) in the national schedule whatever the MCV1 coverage
+    outcome: children missed by or not responding to MCV1 get a second chance at protection
+    domain: {code: public-health, source: context, basis: "Printed under 'WHO position'."}
+
+  R06:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "Whether to stop regular campaigns is a national programme decision."}
+    process: {id: could-not-determine, source: inferred, basis: "Deciding to cease campaigns on three years of national coverage is national policy; IMMZ.B prepares a session, not whether campaigns continue."}
+    act: consider stopping regular campaigns only after >90–95% national MCV1 and MCV2 coverage for at least 3 consecutive years
+    outcome: population immunity does not fall when campaigns end
+    domain: {code: public-health, source: context, basis: "Printed under 'WHO position'."}
+
+  # ── Optimal timing for routine MCV1 and MCV2 (p. 221–222) ───────────────
+
+  R07:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The dose is given by the health worker."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D2.DT.Measles.Ongoing transmission and IMMZ.D18.S.Measles.Ongoing transmission schedule."}
+    act: give MCV1 at 9 months of age where transmission is ongoing and infant measles mortality is high
+    outcome: infants are protected before their risk of measles death peaks
+    domain: {code: public-health, source: context, basis: "Printed under 'Optimal timing for routine MCV1 and MCV2': a national schedule."}
+
+  R08:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The dose is given by the health worker."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D18.S.Measles.Ongoing transmission schedule."}
+    act: give MCV2 at 15–18 months of age in the same high-transmission settings
+    outcome: children who did not respond to MCV1 are protected early
+    domain: {code: public-health, source: context, basis: "Printed under 'Optimal timing for routine MCV1 and MCV2'."}
+
+  R09:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker checks the interval before giving MCV2."}
+    process: {id: IMMZ.D, source: inferred, basis: "A minimum-interval rule is applied when determining the dose due, in IMMZ.D."}
+    act: give MCV2 no sooner than 4 weeks after MCV1
+    outcome: the second dose is immunologically valid
+    domain: {code: public-health, source: context, basis: "Printed under 'Optimal timing for routine MCV1 and MCV2'."}
+
+  R10:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The dose is given by the health worker."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D2.DT.Measles.Low transmission and IMMZ.D18.S.Measles.Low transmission schedule. The choice of schedule is national (remark: 'policy-makers should review local data')."}
+    act: give MCV1 at 12 months of age where measles transmission is low
+    outcome: the child benefits from the higher seroconversion at 12 months
+    domain: {code: public-health, source: context, basis: "Printed under 'Optimal timing for routine MCV1 and MCV2'."}
+
+  R11:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "Choosing the MCV2 age on 'programmatic considerations' is a programme decision."}
+    process: {id: could-not-determine, source: inferred, basis: "Setting the national MCV2 age is schedule design, not a per-client act; no IMMZ process covers it."}
+    act: set the MCV2 age, where MCV1 is at 12 months, at whatever contact yields the highest MCV2 coverage
+    outcome: population immunity is as high as the programme can make it
+    domain: {code: public-health, source: context, basis: "Printed under 'Optimal timing for routine MCV1 and MCV2'."}
+
+  R12:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "Adopting school entry as the MCV2 contact is a delivery-strategy decision."}
+    process: {id: could-not-determine, source: inferred, basis: "Choosing a delivery strategy conditioned on national MCV1 coverage and school enrolment has no IMMZ process; IMMZ.B prepares a session once the strategy is chosen."}
+    act: deliver routine MCV2 at school entry when MCV1 coverage is >90% and school enrolment >95%
+    outcome: MCV2 coverage is high and school outbreaks are prevented
+    domain: {code: public-health, source: context, basis: "Printed under 'Optimal timing for routine MCV1 and MCV2'."}
+
+  R13:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The supplementary dose is given by the health worker."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D2.DT.Measles.MCV dose 0 and IMMZ.D18.S.Measles.MCV dose 0 schedule."}
+    act: give infants from 6 months of age a supplementary dose of MCV in the situations listed
+    outcome: infants at high risk are protected before the routine MCV1 age
+    domain: {code: public-health, source: context, basis: "Printed under 'Optimal timing for routine MCV1 and MCV2'."}
+
+  R13.1:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The dose is given by the health worker."}
+    process: {id: IMMZ.D, source: inferred, basis: "The act is giving MCV0 (IMMZ.D2.DT.Measles.MCV dose 0). Declaring the outbreak that triggers it is outside IMMZ (see R47)."}
+    act: give infants from 6 months a supplementary MCV dose during a measles outbreak, as part of intensified service delivery
+    outcome: infants are protected while the outbreak lasts
+    domain: {code: public-health, source: inferred, basis: "An outbreak-response measure for a population."}
+
+  R13.2:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The dose is given by the vaccinator during the campaign."}
+    process: {id: IMMZ.D, source: inferred, basis: "The statement's act is giving the dose ('should be given … during campaigns'), and IMMZ covers 'mass immunization campaigns' (business-processes.md); planning the round is IMMZ.B."}
+    act: give infants from 6 months a supplementary MCV dose during campaigns where infant measles risk stays high
+    outcome: infants under 9 months in endemic settings are protected
+    domain: {code: public-health, source: inferred, basis: "A campaign measure for a population."}
+
+  R13.3:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The dose is given by the health worker."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D2.DT.Measles.MCV dose 0; the population qualifier is a condition of the rule."}
+    act: give a supplementary MCV dose from 6 months to infants who are internally displaced, refugees or in conflict zones
+    outcome: infants in crowded, disrupted settings are protected early
+    domain: {code: public-health, source: inferred, basis: "Targets a population group."}
+
+  R13.4:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The dose is given by the health worker."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D2.DT.Measles.MCV dose 0, for an individual infant at high risk."}
+    act: give a supplementary MCV dose from 6 months to an infant at high risk, such as a contact of a known case or a child in day care during an outbreak
+    outcome: an exposed infant is protected before MCV1 is due
+    domain: {code: public-health, source: inferred, basis: "Exposure-risk targeting during outbreaks."}
+
+  R13.5:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The dose is given by the health worker."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D2.DT.Measles.MCV dose 0, conditioned on travel."}
+    act: give a supplementary MCV dose from 6 months to an infant travelling to a country with a measles outbreak
+    outcome: the travelling infant is protected
+    domain: {code: public-health, source: inferred, basis: "Travel vaccination."}
+
+  R13.6:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The dose is given by the health worker."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D2.DT.Measles.MCV dose 0, conditioned on HIV infection or exposure."}
+    act: give a supplementary MCV dose from 6 months to an infant known to be HIV-infected or HIV-exposed
+    outcome: an infant at risk of severe measles is protected early
+    domain: {code: clinical, source: inferred, basis: "Turns on the individual infant's HIV status."}
+
+  R14:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "personas.md: health workers 'record vaccinations administered'."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D's objective includes recording 'in the EIR as well as in the appropriate paper records'."}
+    act: record any MCV given before 9 months as MCV0 on the child's vaccination record, unless national data show high seroconversion at that age
+    outcome: a dose 0 is never counted as MCV1 and the child still gets the routine series
+    domain: {code: public-health, source: context, basis: "Printed under 'Optimal timing for routine MCV1 and MCV2'."}
+
+  R15:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker determines the doses due."}
+    process: {id: IMMZ.D, source: inferred, basis: "Determining that MCV1 and MCV2 are still due after MCV0 is IMMZ.D decision logic."}
+    act: give a child who received MCV0 the MCV1 and MCV2 doses at the national schedule ages
+    outcome: the child completes the two routine doses
+    domain: {code: public-health, source: context, basis: "Printed under 'Optimal timing for routine MCV1 and MCV2'."}
+
+  R16:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker administers the formulation; procurement is national."}
+    process: {id: IMMZ.D, source: inferred, basis: "Using MR/MMR rather than measles-only, including under 1 year, is applied at administration."}
+    act: use the combined MR or MMR vaccine, not a measles-only formulation, for every child including those under 1 year where the schedule uses it
+    outcome: children are protected against rubella and mumps at the same contact
+    domain: {code: public-health, source: context, basis: "Printed under 'Optimal timing for routine MCV1 and MCV2'."}
+
+  R17:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker gives the late dose."}
+    process: {id: IMMZ.D, source: inferred, basis: "Catch-up at any contact: IMMZ.D determines the dose due whatever the child's age."}
+    act: give MCV1 and MCV2 to unvaccinated children older than the target ages, not only to infants of 9–12 and 15–18 months
+    outcome: older unvaccinated children, where many cases occur, are protected
+    domain: {code: public-health, source: context, basis: "Printed under 'Optimal timing for routine MCV1 and MCV2'."}
+
+  R18:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker at the contact."}
+    process: {id: IMMZ.D, source: inferred, basis: "'whenever children come in contact with health services' is an opportunistic dose at a contact — IMMZ.D. Seeking out missed children is IMMZ.F (R21)."}
+    act: take every contact with health services to vaccinate a child, especially one under 15, who missed one or both routine MCV doses
+    outcome: no contact is a missed opportunity
+    domain: {code: public-health, source: context, basis: "Printed under 'Optimal timing for routine MCV1 and MCV2'."}
+
+  R19:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "Changing a national vaccination policy is the programme's."}
+    process: {id: could-not-determine, source: inferred, basis: "Changing a national policy has no IMMZ process; its effect shows in IMMZ.D's age limits."}
+    act: change any policy that forbids measles vaccination of children over 1 year, older children and adolescents
+    outcome: health workers may vaccinate older children as necessary
+    domain: {code: public-health, source: context, basis: "Printed under 'Optimal timing for routine MCV1 and MCV2'."}
+
+  R20:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "The design of the national immunization card and register is the programme's."}
+    process: {id: could-not-determine, source: inferred, basis: "The statement is about DESIGNING the card and register so doses can be recorded; recording a dose is IMMZ.D (R14, R26), but no IMMZ process designs the records."}
+    act: design the child's immunization card and the clinic register to record MCV0, MCV1, MCV2 and campaign doses separately
+    outcome: every dose a child receives can be recorded accurately whatever the strategy
+    domain: {code: health-system-strengthening, source: inferred, basis: "Health information system design."}
+
+  R21:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker screens and vaccinates."}
+    process: {id: IMMZ.F, source: inferred, basis: "Screening every school entrant to find those lacking two doses is identifying children 'overdue for a vaccine' and reaching them — IMMZ.F's objective; the doses are then given in IMMZ.D."}
+    act: screen children's measles vaccination history at school entry and vaccinate those without evidence of two doses
+    outcome: children start school with two doses
+    domain: {code: public-health, source: context, basis: "Printed under 'Optimal timing for routine MCV1 and MCV2'."}
+
+  # ── Vaccination campaigns (p. 222–224) ──────────────────────────────────
+
+  R22:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "Adopting regular campaigns as a strategy is a programme decision."}
+    process: {id: could-not-determine, source: inferred, basis: "The statement chooses a STRATEGY (regular campaigns where systems are weak); IMMZ.B prepares a session once a campaign is decided, and no IMMZ process decides it."}
+    act: run regular measles campaigns that target hard-to-reach communities where health systems function only moderately or weakly
+    outcome: children without access to routine services are protected
+    domain: {code: public-health, source: context, basis: "Printed under 'Vaccination campaigns'."}
+
+  R23:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "Timing follow-up campaigns is the programme's."}
+    process: {id: IMMZ.I, source: inferred, basis: "'use available good quality data on population immunity … to monitor the accumulation of susceptible people' is IMMZ.I's 'access and analyse data … to improve immunization programme decision-making'. Surveillance and serology data lie outside the EIR IMMZ.I reports on."}
+    act: monitor the accumulation of susceptible children from coverage, surveillance and serology data and schedule a follow-up campaign before it reaches one birth cohort
+    outcome: an outbreak is prevented rather than responded to
+    domain: {code: public-health, source: context, basis: "Printed under 'Vaccination campaigns'."}
+
+  R24:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "Choosing a campaign's target ages is the programme's."}
+    process: {id: IMMZ.I, source: inferred, basis: "Integrating data to find age-specific immunity gaps is analysis for a programme decision — IMMZ.I. Demographic, survey and seroprevalence data are outside the EIR."}
+    act: combine surveillance, demographic, survey, seroprevalence and coverage data with vaccine history and local knowledge to set a campaign's target age range
+    outcome: the campaign closes the actual immunity gaps
+    domain: {code: public-health, source: context, basis: "Printed under 'Vaccination campaigns'."}
+
+  R25:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "Campaign readiness monitoring is supervision of immunization services."}
+      - {id: health-worker-hw, source: inferred, basis: "IMMZ.B's table row names the health worker."}
+    process: {id: IMMZ.B, source: inferred, basis: "'monitored to ensure readiness before the campaign' is IMMZ.B, 'In preparation for a vaccination session, ensure sufficient supply and organize workload'. The independent monitoring during and after the campaign has no IMMZ process."}
+    act: prepare each campaign by established best practice and check its readiness before it starts
+    outcome: the campaign can reach homogeneous coverage above 95%
+    domain: {code: public-health, source: context, basis: "Printed under 'Vaccination campaigns'."}
+
+  R26:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The vaccinator records the dose."}
+    process: {id: IMMZ.D, source: inferred, basis: "Recording a dose in the child's record is IMMZ.D. Counting zero-dose children by age group for a report is IMMZ.I."}
+    act: record every campaign dose in the child's vaccination record and record zero-dose children vaccinated by age group
+    outcome: campaign doses count toward the child's history and the programme sees whom it reached for the first time
+    domain: {code: public-health, source: context, basis: "Printed under 'Vaccination campaigns'."}
+
+  R27:
+    personas:
+      - {candidate: National immunization advisory group, definition: "A national committee that reviews the evidence before campaigns are discontinued (WER 92(17) p. 223).", source: inferred, basis: "The statement names 'a national committee such as the national immunization advisory group'; no IMMZ persona or smart-base generic persona is a committee."}
+    process: {id: could-not-determine, source: inferred, basis: "A national committee review has no IMMZ process."}
+    act: review the historical coverage, surveillance and immunity data before campaigns are discontinued
+    outcome: campaigns stop only when population immunity will hold
+    domain: {code: public-health, source: context, basis: "Printed under 'Vaccination campaigns'."}
+
+  R28:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "Continuing campaigns is a programme decision."}
+    process: {id: could-not-determine, source: inferred, basis: "A national decision to continue campaigns has no IMMZ process."}
+    act: continue campaigns when data are inadequate or suggest stopping would drop immunity below the herd immunity threshold
+    outcome: population immunity stays above the herd immunity threshold
+    domain: {code: public-health, source: context, basis: "Printed under 'Vaccination campaigns'."}
+
+  # ── Choice of vaccines, co-administration, contraindications (p. 224–225) ─
+
+  R29:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker gives the product in stock."}
+    process: {id: IMMZ.D, source: inferred, basis: "Interchangeability is applied when determining that a dose of a different product counts, in IMMZ.D."}
+    act: give and count any commercially available live attenuated measles-containing vaccine, monovalent or combined, interchangeably
+    outcome: a change of product never delays or invalidates protection
+    domain: {code: public-health, source: context, basis: "Printed under 'Choice of vaccines and their interchangeability'."}
+
+  R30:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "personas.md: EPI managers handle 'management of cold chain and vaccine logistics'."}
+    process: {id: could-not-determine, source: inferred, basis: "The stated reasons are programmatic — cold storage needs and wastage — so this is product selection and logistics, which no IMMZ process covers."}
+    act: use the same vaccine formulation for both routine MCV doses
+    outcome: cold storage needs and vaccine wastage are reduced
+    domain: {code: health-system-strengthening, source: inferred, basis: "A supply-chain reason."}
+
+  R31:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker schedules the live vaccines."}
+    process: {id: IMMZ.D, source: inferred, basis: "An interval rule between live vaccines is applied when determining what is due, in IMMZ.D."}
+    act: give live vaccines either at the same visit or at least 4 weeks apart
+    outcome: one live vaccine does not blunt the response to another
+    domain: {code: clinical, source: inferred, basis: "A per-client administration rule."}
+
+  R32:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker co-administers."}
+    process: {id: IMMZ.D, source: inferred, basis: "Co-administration at one visit is IMMZ.D."}
+    act: co-administer MCV at a different anatomical site with the other vaccines due, such as JE, yellow fever, DTP-containing, meningococcal, hepatitis B, IPV, Hib and pneumococcal vaccines
+    outcome: the client receives all vaccines due in one visit
+    domain: {code: clinical, source: inferred, basis: "A per-client administration rule."}
+
+  R33:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker performs the contraindication check."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D5.DT.Measles contraindications."}
+    act: withhold MCV from anyone with a history of anaphylaxis or severe allergy to a vaccine component, or with severe immunosuppression
+    outcome: no client is harmed by a contraindicated vaccine
+    domain: {code: clinical, source: context, basis: "Printed under 'Contraindications'."}
+
+  R34:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker checks pregnancy before vaccinating."}
+    process: {id: IMMZ.D, source: inferred, basis: "A precaution applied in the IMMZ.D contraindication check (IMMZ.D5)."}
+    act: avoid giving measles-containing vaccine to a pregnant woman
+    outcome: a theoretical risk to the fetus is avoided
+    domain: {code: clinical, source: context, basis: "Printed under 'Vaccination of pregnant women'."}
+
+  # ── Health-care workers, travellers (p. 225) ─────────────────────────────
+
+  R35:
+    personas:
+      - {id: DAK.Persona.HealthSystemManager, source: inferred, basis: "No IMMZ persona manages the workforce; the generic Health System Manager 'Manage[s] health workforce information, performance, and certification (3.1)'."}
+    process: {id: could-not-determine, source: inferred, basis: "Workforce immunity policy is occupational health, not an IMMZ process."}
+    act: ensure that every health-care worker and staff member in contact with patients is immune to measles
+    outcome: measles does not spread between health workers and patients
+    domain: {code: health-system-strengthening, source: inferred, basis: "A health-workforce requirement."}
+
+  R36:
+    personas:
+      - {id: DAK.Persona.HealthSystemManager, source: inferred, basis: "Standards of care for health-care workers are set by health-system management."}
+    process: {id: could-not-determine, source: inferred, basis: "Writing verification into infection-control guidelines has no IMMZ process."}
+    act: build verification of measles vaccination or history into infection-control guidelines and standards of care for health-care workers
+    outcome: measles immunity is checked as a matter of routine
+    domain: {code: health-system-strengthening, source: inferred, basis: "A health-workforce standard."}
+
+  R37:
+    personas:
+      - {id: DAK.Persona.HealthSystemManager, source: inferred, basis: "Employment and training entry requirements are workforce management."}
+    process: {id: could-not-determine, source: inferred, basis: "Employment screening has no IMMZ process."}
+    act: require documented measles immunity before a health-care worker with patient contact signs a contract or enters training
+    outcome: no non-immune worker reaches patients
+    domain: {code: health-system-strengthening, source: inferred, basis: "A health-workforce requirement."}
+
+  R38:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker offers the vaccine."}
+    process: {id: IMMZ.D, source: inferred, basis: "Offering MCV to a susceptible traveller is determining and giving a vaccine, IMMZ.D."}
+    act: offer measles vaccine to travellers from 6 months of age, adolescents and adults likely or known to be susceptible
+    outcome: travellers neither catch nor import measles
+    domain: {code: public-health, source: context, basis: "Printed under 'Vaccination of travellers'."}
+
+  # ── HIV-infected individuals (p. 225–226) ────────────────────────────────
+
+  R39:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker vaccinates."}
+    process: {id: IMMZ.D, source: inferred, basis: "Routine MCV for asymptomatic HIV-infected clients is applied in IMMZ.D."}
+    act: routinely vaccinate potentially susceptible, asymptomatic HIV-infected children and adults
+    outcome: people with HIV are protected from severe measles
+    domain: {code: clinical, source: inferred, basis: "Turns on the individual's HIV status."}
+
+  R40:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker applies the contraindication check."}
+    process: {id: IMMZ.D, source: inferred, basis: "Whether immunosuppression is severe is the IMMZ.D5 contraindication check."}
+    act: consider vaccinating a person with symptomatic HIV infection who is not severely immunosuppressed
+    outcome: those who can safely be vaccinated are protected
+    domain: {code: clinical, source: inferred, basis: "Turns on the individual's immune status."}
+
+  R41:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker gives the doses."}
+    process: {id: IMMZ.D, source: inferred, basis: "MCV0 from 6 months then MCV1 and MCV2: IMMZ.D2.DT.Measles.MCV dose 0 and the routine schedule."}
+    act: offer MCV0 from 6 months where HIV and measles incidence are both high, then give MCV1 and MCV2 on the national schedule
+    outcome: infants in high-risk areas are protected early and still complete the series
+    domain: {code: public-health, source: inferred, basis: "Conditioned on area incidence, not on the individual."}
+
+  R42:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker gives the additional dose."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D2.DT.Measles.Supplementary dose. Immune reconstitution is an HIV-care finding the health worker reads, not one IMMZ produces."}
+    act: give an additional MCV dose to an HIV-infected child on HAART after immune reconstitution
+    outcome: a child whose earlier doses failed is protected
+    domain: {code: clinical, source: inferred, basis: "Turns on the child's treatment and immune status."}
+
+  R43:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker gives the additional dose."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D2.DT.Measles.Supplementary dose, triggered by a CD4+ result from HIV care."}
+    act: give the additional MCV dose when CD4+ counts show immune reconstitution, such as 20–25%
+    outcome: the dose is given when it can work
+    domain: {code: clinical, source: inferred, basis: "Turns on a laboratory result."}
+
+  R44:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker gives the additional dose."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D2.DT.Measles.Supplementary dose, timed from HAART initiation."}
+    act: give the additional MCV dose 6–12 months after HAART starts where CD4+ monitoring is unavailable
+    outcome: the dose is timed sensibly without a laboratory
+    domain: {code: clinical, source: inferred, basis: "Turns on the child's treatment."}
+
+  R45:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker gives the dose."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D2.DT.Measles.MCV dose 0, for HIV-exposed or HIV-infected children not on HAART."}
+    act: consider an MCV0 dose for an HIV-exposed infant, or soon after diagnosis for an HIV-infected child over 6 months not on HAART
+    outcome: the child has partial protection until revaccinated after immune reconstitution
+    domain: {code: clinical, source: inferred, basis: "Turns on the individual's HIV status."}
+
+  # ── Surveillance and outbreak response (p. 226–227) ──────────────────────
+
+  R46:
+    personas:
+      - {id: DAK.Persona.DataManager, source: inferred, basis: "No IMMZ persona does surveillance reporting; the generic Health Data Manager and Analyst lists 'epidemiologist' and 'Synthesise and visualise data for reporting (4.1.3)'."}
+    process: {id: could-not-determine, source: inferred, basis: "Measles case surveillance and reporting to WHO regional offices have no IMMZ process; IMMZ.I reports immunization data, not cases."}
+    act: intensify measles surveillance and report weekly to the WHO regional office
+    outcome: the last chains of transmission are seen as elimination approaches
+    domain: {code: public-health, source: context, basis: "Printed under 'Surveillance and outbreak response'."}
+
+  R47:
+    personas:
+      - {id: DAK.Persona.HealthSystemManager, source: inferred, basis: "The generic Health System Manager will 'Receive notifications of public health events (3.3)'."}
+      - {id: DAK.Persona.DataManager, source: inferred, basis: "Risk assessment and immunity-gap analysis are the epidemiologist's."}
+    process: {id: could-not-determine, source: inferred, basis: "Outbreak detection, risk assessment and response planning have no IMMZ process."}
+    act: detect outbreaks early, assess the risk of spread and severe disease, identify immunity gaps and plan a rapid response including expanded MCV use
+    outcome: the impact of a measles outbreak is limited
+    domain: {code: public-health, source: context, basis: "Printed under 'Surveillance and outbreak response'."}
+
+  R48:
+    personas:
+      - {candidate: Outbreak coordination committee, definition: "A district or regional committee with broad representation that decides the vaccination response to a measles outbreak at the local level (WER 92(17) p. 226).", source: inferred, basis: "The statement names 'A district or regional outbreak coordination committee'; no IMMZ or generic persona is a committee."}
+    process: {id: could-not-determine, source: inferred, basis: "Outbreak governance has no IMMZ process."}
+    act: decide the type of vaccination response to implement locally
+    outcome: the response fits the local outbreak
+    domain: {code: public-health, source: context, basis: "Printed under 'Surveillance and outbreak response'."}
+
+  R49:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker gives the dose."}
+    process: {id: IMMZ.D, source: inferred, basis: "Giving MCV within 72 hours of exposure is determining and giving a vaccine — IMMZ.D's objective — though no IMMZ.D decision table covers exposure-triggered dosing today."}
+    act: vaccinate an individual at high risk within 72 hours of exposure during an outbreak
+    outcome: the clinical course of measles is modified or symptoms prevented
+    domain: {code: clinical, source: inferred, basis: "Post-exposure prophylaxis of an individual."}
+
+  R50:
+    personas:
+      - {id: DAK.Persona.HealthcareProvider, source: inferred, basis: "Immune globulin is given by a clinician; the IMMZ health worker's description covers immunizations only, so the generic Healthcare Provider is the first fit."}
+    process: {id: could-not-determine, source: inferred, basis: "Immune globulin is not a vaccine, so not IMMZ.D 'Administer vaccine'; no IMMZ process covers it."}
+    act: give measles immune globulin within 6 days of exposure to an exposed person for whom vaccination is contraindicated
+    outcome: illness is prevented or made less severe
+    domain: {code: clinical, source: inferred, basis: "Post-exposure prophylaxis of an individual."}
+
+  R51:
+    personas:
+      - {candidate: Regional verification commission, definition: "The body that verifies whether a country or WHO Region has achieved measles elimination (WER 92(17) p. 227).", source: inferred, basis: "Named in the statement; no IMMZ or generic persona fits."}
+    process: {id: could-not-determine, source: inferred, basis: "Verification of elimination has no IMMZ process."}
+    act: weigh the five lines of evidence — epidemiology, population immunity, surveillance quality, programme sustainability and genotyping — when verifying elimination
+    outcome: verification is a comprehensive, evidence-based judgement
+    domain: {code: public-health, source: context, basis: "Printed under 'Surveillance and outbreak response'."}
+
+  # ── Research (p. 227) ─────────────────────────────────────────────────
+
+  R52:
+    personas:
+      - {candidate: Researcher, definition: "A person or body that sets or carries out the research agenda on measles programme challenges.", source: inferred, basis: "The statement names no actor; no IMMZ or generic persona sets research priorities."}
+    process: {id: could-not-determine, source: inferred, basis: "Research prioritisation has no IMMZ process."}
+    act: prioritise research on programmatic challenges
+    outcome: research yields the most programmatic gain
+    domain: {code: health-system-strengthening, source: inferred, basis: "Research for the immunization system rather than for a client or a population's protection."}
+
+  # ── Vaccine characteristics, storage, safety (p. 212–217) ──────────────
+
+  V01:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "personas.md: EPI managers handle 'management of cold chain and vaccine logistics'."}
+    process: {id: could-not-determine, source: inferred, basis: "Cold-chain storage has no IMMZ process (logistics belongs to an LMIS)."}
+    act: store freeze-dried measles vaccine refrigerated below +8 °C
+    outcome: the vaccine keeps its potency
+    domain: {code: health-system-strengthening, source: inferred, basis: "Supply chain."}
+
+  V02:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker prepares the session's vaccine and diluent."}
+    process: {id: IMMZ.B, source: inferred, basis: "Cooling the diluent to 2–8 °C before reconstitution is preparing the session's supply — IMMZ.B. Storing it unfrozen at ambient temperature beforehand is logistics."}
+    act: keep the diluent unfrozen and cool it to 2–8 °C before reconstitution
+    outcome: reconstitution does not damage the vaccine
+    domain: {code: health-system-strengthening, source: inferred, basis: "Supply chain."}
+
+  V03:
+    personas:
+      - {id: epi-manager, source: inferred, basis: "Cold-chain and storage management is the EPI manager's."}
+    process: {id: could-not-determine, source: inferred, basis: "Storage protected from light has no IMMZ process."}
+    act: store the vaccine in coloured glass vials protected from sunlight
+    outcome: light does not inactivate the vaccine
+    domain: {code: health-system-strengthening, source: inferred, basis: "Supply chain."}
+
+  V04:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker reconstitutes and uses the vial."}
+    process: {id: IMMZ.D, source: inferred, basis: "Handling a reconstituted vial during the session is part of administering it — IMMZ.D. The remark (fatal errors from contaminated vials) makes it a safety step."}
+    act: keep reconstituted vaccine in the dark at 2–8 °C and discard it after 6 hours
+    outcome: no client receives contaminated or inactive vaccine
+    domain: {code: health-system-strengthening, source: inferred, basis: "Vaccine handling."}
+
+  V05:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker checks the client's current illness."}
+    process: {id: IMMZ.D, source: inferred, basis: "IMMZ.D5.DT.Measles contraindications (precaution for acute illness)."}
+    act: vaccinate a client with a mild concurrent infection, but defer MCV for high fever or other serious acute illness
+    outcome: minor illness is not a missed opportunity, and serious illness is not confounded
+    domain: {code: clinical, source: inferred, basis: "A per-client precaution."}
+
+  # ── Treatment (p. 210–211): measles case management ──────────────────────
+
+  C01:
+    personas:
+      - {id: DAK.Persona.HealthcareProvider, source: inferred, basis: "Case management is a clinician's; the IMMZ health worker's description covers immunizations only."}
+    process: {id: could-not-determine, source: inferred, basis: "Measles case management has no IMMZ process (immunization DAK); no clinical process catalogue exists."}
+    act: isolate the measles patient
+    outcome: the virus does not spread further
+    domain: {code: clinical, source: context, basis: "Printed under 'Treatment'."}
+
+  C02:
+    personas:
+      - {id: DAK.Persona.HealthcareProvider, source: inferred, basis: "Case management is a clinician's."}
+    process: {id: could-not-determine, source: inferred, basis: "Measles case management has no IMMZ process."}
+    act: give supportive care that relieves fever, cough, nasal congestion, conjunctivitis and sore mouth
+    outcome: the patient's symptoms are relieved
+    domain: {code: clinical, source: context, basis: "Printed under 'Treatment'."}
+
+  C03:
+    personas:
+      - {id: DAK.Persona.HealthcareProvider, source: inferred, basis: "Case management is a clinician's."}
+    process: {id: could-not-determine, source: inferred, basis: "Measles case management has no IMMZ process."}
+    act: give nutritional support to a measles patient
+    outcome: diarrhoea, vomiting and poor appetite do not lead to malnutrition
+    domain: {code: clinical, source: context, basis: "Printed under 'Treatment'."}
+
+  C04:
+    personas:
+      - {id: DAK.Persona.HealthcareProvider, source: inferred, basis: "The clinician encourages breastfeeding."}
+      - {id: caregiver, source: inferred, basis: "personas.md: the caregiver is the 'Mother, father, guardian' who breastfeeds."}
+    process: {id: could-not-determine, source: inferred, basis: "Measles case management has no IMMZ process."}
+    act: encourage breastfeeding of the sick infant where appropriate
+    outcome: the infant stays nourished and hydrated
+    domain: {code: clinical, source: context, basis: "Printed under 'Treatment'."}
+
+  C05:
+    personas:
+      - {id: DAK.Persona.HealthcareProvider, source: inferred, basis: "Case management is a clinician's."}
+    process: {id: could-not-determine, source: inferred, basis: "Measles case management has no IMMZ process."}
+    act: give oral rehydration salts as needed
+    outcome: the patient does not become dehydrated
+    domain: {code: clinical, source: context, basis: "Printed under 'Treatment'."}
+
+  C06:
+    personas:
+      - {id: DAK.Persona.HealthcareProvider, source: inferred, basis: "Prescribing is a clinician's."}
+    process: {id: could-not-determine, source: inferred, basis: "Measles case management has no IMMZ process."}
+    act: withhold antibiotics unless a secondary bacterial complication such as pneumonia or otitis media develops
+    outcome: antibiotics are used only where they help
+    domain: {code: clinical, source: context, basis: "Printed under 'Treatment'."}
+
+  C07:
+    personas:
+      - {id: DAK.Persona.HealthcareProvider, source: inferred, basis: "Case management is a clinician's."}
+    process: {id: could-not-determine, source: inferred, basis: "Vitamin A treatment of cases has no IMMZ process."}
+    act: give vitamin A to every acute measles case whatever the timing of previous vitamin A doses
+    outcome: complications and deaths from measles are reduced
+    domain: {code: clinical, source: context, basis: "Printed under 'Treatment'."}
+
+  C08:
+    personas:
+      - {id: DAK.Persona.HealthcareProvider, source: inferred, basis: "Dosing is a clinician's."}
+    process: {id: could-not-determine, source: inferred, basis: "Vitamin A treatment of cases has no IMMZ process."}
+    act: give oral vitamin A immediately on diagnosis and again the next day — 50 000 IU under 6 months, 100 000 IU at 6–11 months, 200 000 IU from 12 months
+    outcome: the child receives an age-appropriate therapeutic dose
+    domain: {code: clinical, source: context, basis: "Printed under 'Treatment'."}
+
+  C09:
+    personas:
+      - {id: DAK.Persona.HealthcareProvider, source: inferred, basis: "Recognising eye signs is a clinician's."}
+    process: {id: could-not-determine, source: inferred, basis: "Vitamin A treatment of cases has no IMMZ process."}
+    act: give a third vitamin A dose 4–6 weeks later to a child with clinical eye signs of vitamin A deficiency such as Bitot's spots
+    outcome: the deficiency is corrected and sight protected
+    domain: {code: clinical, source: context, basis: "Printed under 'Treatment'."}
+
+  C10:
+    personas:
+      - {id: DAK.Persona.HealthcareProvider, source: inferred, basis: "Case management is a clinician's."}
+    process: {id: could-not-determine, source: inferred, basis: "Vitamin A treatment of cases has no IMMZ process."}
+    act: give vitamin A in every case of severe measles, even where measles is not usually severe
+    outcome: severe cases are treated wherever they occur
+    domain: {code: clinical, source: context, basis: "Printed under 'Treatment'."}
+
+  # ── Post-exposure prophylaxis (p. 211) ───────────────────────────────────
+
+  C11:
+    personas:
+      - {id: health-worker-hw, source: inferred, basis: "The health worker gives the dose."}
+    process: {id: IMMZ.D, source: inferred, basis: "Giving measles vaccine to an unimmunized contact is determining and giving a vaccine — IMMZ.D — though no IMMZ.D decision table covers exposure-triggered dosing today."}
+    act: give measles vaccine within 72 hours of exposure to an unimmunized or insufficiently immunized person
+    outcome: the exposed person is protected against disease
+    domain: {code: clinical, source: context, basis: "Printed under 'Post-exposure prophylaxis'."}
+
+  C12:
+    personas:
+      - {id: DAK.Persona.HealthcareProvider, source: inferred, basis: "Immune globulin is given by a clinician; the IMMZ health worker's description covers immunizations only."}
+    process: {id: could-not-determine, source: inferred, basis: "Immune globulin is not a vaccine, so not IMMZ.D; no IMMZ process covers it."}
+    act: give human immune globulin after exposure to a susceptible person for whom MCV is contraindicated — particularly pregnant women, infants under 6 months and the immunocompromised
+    outcome: those who cannot be vaccinated still get protection
+    domain: {code: clinical, source: context, basis: "Printed under 'Post-exposure prophylaxis'."}

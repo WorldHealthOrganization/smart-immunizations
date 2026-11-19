@@ -3,10 +3,14 @@
 
 name: Release build
 
+# Manual trigger only (owner decision, 2026-10-06): GitHub workflows here are
+# defined, not run automatically. Start it from the Actions tab.
+# (workflow_call, if present, is kept so other repositories can call it.)
 on:
-  release:
-    types: [created]
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   check:
@@ -15,7 +19,7 @@ jobs:
       file_exists: ${{ steps.checkfile.outputs.exists }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3
         with:
           ref: ${{ github.event.release.tag_name }}
 
@@ -31,5 +35,5 @@ jobs:
   trigger:
     needs: check
     if: needs.check.outputs.file_exists == 'true'
-    uses: WorldHealthOrganization/smart-html/.github/workflows/release.yml@main
+    uses: WorldHealthOrganization/smart-html/.github/workflows/release.yml@4191acf30bd22abb4955952c53f51bb475b1c3d7 # main
   

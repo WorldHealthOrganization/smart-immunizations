@@ -1,0 +1,156 @@
+{
+  "$schema": "cat-harness-declaration/1.0.0",
+  "name": "smart-immunizations",
+  "version": "0.1.0",
+  "repository": "litlfred/smart-immunizations",
+  "_restored_comment": "RESTORED 2026-10-15 (bean folio-assistant-63q4; owner: \"Fix trust and immz\"). 556b5bf1 removed this declaration on 2026-10-14 when the repository moved to the smart-hiv shape (owner: \"Smart-hiv doesn't need its own harness. It can just define index.config.json and reference smart-base as a dependency\"). That shape still governs how THIS repository mounts smart-base: index.config.json does it, and this file declares no remoteMounts. What it cannot do is let folio-assistant mount smart-immunizations as an instance, because remote-mount finds an instance only by its `<name>.json` declaration. Restored from 556b5bf1^, at the repository root where it was.",
+  "iriBase": "https://litlfred.github.io/smart-immunizations/",
+  "title": "WHO SMART Guidelines — Immunizations",
+  "description": "The WHO SMART Guidelines immunizations implementation guide (FHIR IG source under input/), as a harnessed instance of smart-base.",
+  "needs": [
+    "smart-base"
+  ],
+  "assets": [
+    {
+      "id": "agent-instructions",
+      "src": "AGENTS.md",
+      "role": "agent-instructions",
+      "title": "AGENTS.md — smart-immunizations",
+      "description": "Cold start for work here, and its one rule: the declaration names only what an index mounting this instance has."
+    },
+    {
+      "id": "instance-readme",
+      "src": "README.md",
+      "role": "instance-readme",
+      "title": "WHO SMART Guidelines — Immunizations",
+      "description": "The WHO SMART Guidelines immunizations implementation guide, and where to send feedback."
+    }
+  ],
+  "_directories_comment": "Owner, 2026-10-15 (~10:45Z, B1): the declaration names only what an index mounting this instance has. Owner, the same day (\"Mount it everywhere\"): folio-assistant mounts `library` and `l1-recommendation-scenarios`, its override lists exactly these two ids, and this list names exactly them. The measles example moved from library/l1-recommendation-scenarios/ to examples/l1-recommendation-scenarios/ so the library's readers do not take it for a library entry. Add a directory here and to the index's override in the same change, and drop it from both.",
+  "directories": [
+    {
+      "id": "library",
+      "path": "library/",
+      "description": "L1 source content for this DAK: one `<bib-slug>/` per ingested WHO publication (`sections/*.md`, `structure.json`, `manifest.jsonld`, `blocks/`) and, beside each L1 source the DAK's Component 1 cites, its own L1 3.0 knowledge graph `smart-kg-l1-library.jsonld`. The DAK itself is L2 with no L1 graph, and who-iris holds it (`who-iris/library/9789240099456-eng`). The id is the conventional `library`, so this entry overrides the default. It is declared explicitly because remote-mount reads only declared directories: without it an index mounts none of `library/`, and gen-instance-contexts has no document to build `ns/context/v1.jsonld` from.",
+      "graphTypologies": [
+        "library"
+      ]
+    },
+    {
+      "id": "l1-recommendation-scenarios",
+      "path": "examples/l1-recommendation-scenarios/",
+      "description": "The measles L1 recommendation-scenarios worked example (`measles/`): the 2017 position paper's L1 recommendations, the immunization vocabulary and mapping they resolve against, and the L2 scenario candidates `l1-recommendation-scenarios.ts` derives from them. It is smart-base's `l1-extraction` kind, not a library entry.",
+      "graphTypologies": [
+        "l1-extraction"
+      ]
+    },
+    {
+      "id": "smart-immunizations-document-kinds",
+      "path": "document-kinds/",
+      "description": "How this IG realises the document kinds of the layers it needs: `dak.coverage.smart-immunizations.json`, the DAK view of the IG's artefact index, which places each artefact in one of the ten DAK components by its FHIR resource type and lists what no rule places. Written by smart-base's `gen-document-kinds.ts` (`bun run cat smart-base:document-kinds`). The artefact index it was computed from (`from`) is not in this repository, so the generator cannot re-derive the report here and its `--check` does not cover it.",
+      "graphTypologies": [
+        "document-kinds"
+      ]
+    },
+    {
+      "id": "smart-immunizations-annexes",
+      "path": "annexes/",
+      "description": "The web annexes this IG's pages load on demand. `annexes.json` (`ig-annexes/v1`) places each on its page: `../web-annexes/dak-data-dictionary.json` on `dictionary.md` (six columns shown, the rest opened per row), `personas-swimlanes.md` on `personas.md` and `processes-swimlanes.md` on `business-processes.md`. The two swimlane annexes are appended to their pages as written: each persona with the processes whose swimlanes name it, and each process figure's lanes with the persona each is or why it is not one. smart-base's `dak-swimlanes.ts` writes them from `input/pagecontent/personas.md`, the business-process figures and `input/business-processes/swimlanes.json`: regenerate them, never edit them; its QA record goes to `test/results/` on the qa branch. fhir-harness's IG site build (`stage-ig-sites` for an index, `ig-repo-site.ts compose` for this repository's own site) finds the directory through this `ig-annex` declaration. An IG repository commits no artefact index, so this is a directory of its own, not `fhir-artifact-index/`.",
+      "graphTypologies": [
+        "ig-annex"
+      ]
+    },
+    {
+      "id": "smart-immunizations-web-annexes",
+      "path": "web-annexes/",
+      "description": "The annex files themselves, as smart-base's `web-annex` kind (a WHO publication's web annexes, L1 or L2), typed and judged by `check:web-annexes`. `dak-data-dictionary.json` is Web Annex A of the IMMZ DAK (`annexOf` `who-iris/library/9789240099456-eng`, IRIS 10665/380303; `section` `dak#core-data-elements`; no `iris` of its own, since none could be verified): the core data dictionary workbook (`input/L2/IMMZ DAK_core data dictionary.xlsx`) as `dak-data-dictionary/v1`, written by smart-base's `dak-data-dictionary.ts` (`--annex-of who-iris/library/9789240099456-eng --label \"Web Annex A\" --section dak#core-data-elements`). It records the workbook's sha256: regenerate it, never edit it. It sits beside `annexes/`, not inside it: each kind owns the `$schema` families of its own directory, and a declared directory inside another declared one fails `check:layout-norms`.",
+      "graphTypologies": [
+        "web-annex"
+      ]
+    },
+    {
+      "id": "qa",
+      "path": "test/results/",
+      "storage": {
+        "branch": "cat/cat-harness/qa-reports",
+        "keyedBy": "commit"
+      },
+      "description": "What auditing this instance produced: one QA verdict sidecar per audited subject, among them the check:l1-complete verdict of each library/ entry. Stored on the cat/cat-harness/qa-reports branch keyed by commit, so the working copy is not a record: a consumer reads a verdict as unknown until it names the commit it is about. `qa` is a perInstance graph typology: these verdicts are about this instance's nodes.",
+      "graphTypologies": [
+        "qa"
+      ]
+    },
+    {
+      "id": "smart-immunizations-catalogue",
+      "path": "catalogue/",
+      "description": "Qualified Dublin Core (`folio-dublin-core/v1`) and catalogue node (`folio-catalogue-node/v1`) records of the works this IG cites that are not ingested. Each is a `referenced` item whose record is the IG's bibliography entry for it, keyed by the citation (`#ref-<slug>`). A capture of a work, when one exists, is kept in the repository's `uploads/` data store, which is not part of the KG. `bun run cat check:catalogue` verifies every node and metadataRef.",
+      "graphTypologies": [
+        "catalogue"
+      ]
+    }
+  ],
+  "avatar": {
+    "glyph": "M18 3l3 3M16 5l3 3M17.5 6.5L9 15l-3 1 1-3 8.5-8.5M10 10l4 4M6 18l-3 3",
+    "tone": 352,
+    "reads": "a syringe — the immunization guide"
+  },
+  "_avatar_comment": "A syringe: plunger, barrel, needle. Moved here from cat-harness/schemas/avatars.ts, 2026-10-05 (bean sod4 #4): an instance declares its own mark. Restored 2026-10-15 with the rest of the declaration (b1bb21e carried it; the 63q4 restore did not).",
+  "_builtAtPublish_comment": "Owner, 2026-10-14 (B1; schemas/built-at-publish.ts in cat-harness). This instance's JSON-LD @context is generated by `jsonld:contexts` (cat-harness-tools scripts/gen-instance-contexts.ts) from the prefixes and content-context terms its documents use, flattened with the prefix tables of every instance it needs. Those tables are read at the CHECKOUT's pins, not at pins this instance's commit names, so no commit of it can hold the file current: it is built at publish and never committed (bean folio-assistant-63q4).",
+  "builtAtPublish": [
+    {
+      "path": "fhir-artifact-index/index.json",
+      "writer": [
+        "ig-index:build"
+      ],
+      "because": "checkout",
+      "reason": "the IG's artefact index: built by fhir-harness's ig-index:build from the IG's AST (restored from the IG repository's AST cache) and its own sushi-config.yaml, so it moves when the IG's default branch or its AST cache moves, not with a commit of this instance"
+    },
+    {
+      "path": "fhir-artifact-index/menu.json",
+      "writer": [
+        "ig-index:build"
+      ],
+      "because": "checkout",
+      "reason": "the IG's menu: built by fhir-harness's ig-index:build from the IG's AST (restored from the IG repository's AST cache) and its own sushi-config.yaml, so it moves when the IG's default branch or its AST cache moves, not with a commit of this instance"
+    },
+    {
+      "path": "fhir-artifact-index/releases.json",
+      "writer": [
+        "ig-index:build"
+      ],
+      "because": "checkout",
+      "reason": "the IG's release list: built by fhir-harness's ig-index:build from the IG's AST (restored from the IG repository's AST cache) and its own sushi-config.yaml, so it moves when the IG's default branch or its AST cache moves, not with a commit of this instance"
+    },
+    {
+      "path": "fhir-artifact-index/package.tgz",
+      "writer": [
+        "ig-index:build"
+      ],
+      "because": "checkout",
+      "reason": "the Publisher-shaped package the JSON view pages read each resource from: built by fhir-harness's ig-index:build from the IG's AST (restored from the IG repository's AST cache) and its own sushi-config.yaml, so it moves when the IG's default branch or its AST cache moves, not with a commit of this instance"
+    },
+    {
+      "path": "fhir-artifact-index/sidecars/",
+      "writer": [
+        "ig-index:build"
+      ],
+      "because": "checkout",
+      "reason": "the IG API sidecars bound to each artefact: copied by fhir-harness's ig-index:build from what a mounted layer's ig-site:sidecars leaves in its work directory, so it moves with the checkout's layers and the IG's AST cache, not with a commit of this instance"
+    },
+    {
+      "path": "ns/context/v1.jsonld",
+      "writer": [
+        "jsonld:contexts"
+      ],
+      "because": "checkout",
+      "reason": "the prefixes and content-context terms its documents use, flattened with the jsonldPrefixes of the layers it needs at the checkout's pins"
+    }
+  ],
+  "enableSubgraphs": [
+    "folio-assistant-core.collab",
+    "smart-base.collab",
+    "fhir-harness.collab",
+    "smart-base.L2-collab",
+    "smart-base.L3-collab"
+  ]
+}

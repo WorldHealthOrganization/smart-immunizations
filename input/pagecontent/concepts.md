@@ -42,7 +42,6 @@ Key concepts and abbreviations are described here. Additional terms are defined 
     <td>Capabilities the system must have in order to meet the end-users’ needs and achieve tasks within the business process.</td>
   </tr>
   <tr>
-  <tr>
     <td><a href="https://build.fhir.org/implementationguide.html">Implementation Guide (IG)</a></td>
     <td>A set of rules about how FHIR resources are used (or should be used) to solve a particular problem, with associated documentation to support and clarify the usage. This IG is based on WHO guidance, as it is represented in the Digital Adaptation Kit for <mark>[insert health domain here]</mark>, to support the adoption of open standards for interoperability.</td>
   </tr>
