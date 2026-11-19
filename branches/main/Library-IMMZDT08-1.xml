@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="119">
+         <a:s>/*
+ * Library: IMMZDT08 (IMMZ.DT.08.Measles)
+ * Rule: If the child or patient has not been given MCV1 (at 9 months) and MCV2 (between 15-18 months) vaccination 
+ * Trigger: Patient has never received measles vaccination
+ */
+library IMMZDT08</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT08" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:33" localIdentifier="IMMZCon" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="13:1-13:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="7" locator="14:1-14:28" localIdentifier="FC" path="http://fhir.org/guides/who/smart-immunization/FHIRCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="7">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRCommon</a:s>
+               </a:s>
+               <a:s> called FC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="10" locator="16:1-16:83" name="Individual is at high risk of contracting measles" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="10">
+               <a:s>parameter &quot;Individual is at high risk of contracting measles&quot; </a:s>
+               <a:s r="9">
+                  <a:s>Boolean</a:s>
+               </a:s>
+               <a:s r="8"> default false</a:s>
+            </a:s>
+         </annotation>
+         <default localId="8" locator="16:79-16:83" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+         <parameterTypeSpecifier localId="9" locator="16:63-16:69" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+      </def>
+      <def localId="13" locator="17:1-17:102" name="Individual is travelling to a country experiencing measles outbreaks" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="13">
+               <a:s>parameter &quot;Individual is travelling to a country experiencing measles outbreaks&quot; </a:s>
+               <a:s r="12">
+                  <a:s>Boolean</a:s>
+               </a:s>
+               <a:s r="11"> default false</a:s>
+            </a:s>
+         </annotation>
+         <default localId="11" locator="17:98-17:102" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+         <parameterTypeSpecifier localId="12" locator="17:82-17:88" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+      </def>
+      <def localId="16" locator="18:1-18:83" name="Individual is known to be HIV-infected or exposed" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="16">
+               <a:s>parameter &quot;Individual is known to be HIV-infected or exposed&quot; </a:s>
+               <a:s r="15">
+                  <a:s>Boolean</a:s>
+               </a:s>
+               <a:s r="14"> default false</a:s>
+            </a:s>
+         </annotation>
+         <default localId="14" locator="18:79-18:83" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+         <parameterTypeSpecifier localId="15" locator="18:63-18:69" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+      </def>
+      <def localId="19" locator="19:1-19:68" name="Immune reconstitution was achieved" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="19">
+               <a:s>parameter &quot;Immune reconstitution was achieved&quot; </a:s>
+               <a:s r="18">
+                  <a:s>Boolean</a:s>
+               </a:s>
+               <a:s r="17"> default false</a:s>
+            </a:s>
+         </annotation>
+         <default localId="17" locator="19:64-19:68" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+         <parameterTypeSpecifier localId="18" locator="19:48-19:54" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <statements>
+      <def locator="22:1-22:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="22:1-22:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="53" locator="38:1-57:2" name="Should vaccinate patient for measles (supplimentary) because no doses" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="53">
+               <a:s>/*
+ * Rule: Should vaccinate patient for measles (supplimentary) because no doses
+ * Annotations:
+ * 	 - Provide measles immunization supplimentary dose - Using the &quot;MCV0 Vaccine immunization - NO Previous&quot; schedule (supplimentary dose zero)
+ * 	 - 
+ * Outputs:
+ * 	 - Immunize patient for Measles - No doses
+ * 	 - 
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- 
+ * Logic:
+ *	 (((((((((((&quot;Measles vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;Current Patient Age in Months&quot; > 6)) and (&quot;HIV Status&quot; = &quot;Positive&quot; = true)) and (&quot;Current Patient Age in Months&quot; &lt; 9)) and (&quot;Patient is receiving HAART&quot; = false)) or ((((&quot;Measles vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;Current Patient Age in Months&quot; > 6)) and (&quot;Country currently has a measles outbreak&quot; = true)) and (&quot;Current Patient Age in Months&quot; &lt; 9))) or ((((&quot;Measles vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;Current Patient Age in Months&quot; > 6)) and (&quot;In a setting where the risk of measles among infants &lt; 9 months of age remains high&quot; = true)) and (&quot;Current Patient Age in Months&quot; &lt; 9))) or ((((&quot;Measles vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;Current Patient Age in Months&quot; > 6)) and (&quot;Population is in conflict zones internally displaced populations and refugees&quot; = true)) and (&quot;Current Patient Age in Months&quot; &lt; 9))) or ((((&quot;Measles vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;Current Patient Age in Months&quot; > 6)) and (&quot;Individual is at high risk of contracting measles (e.g. contacts of known measles cases or in settings with increased risk of exposure during outbreaks suck as day-care facilities&quot; = true)) and (&quot;Current Patient Age in Months&quot; &lt; 9))) or ((((&quot;Measles vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;Current Patient Age in Months&quot; > 6)) and (&quot;Individual is travelling to a country experiencing measles outbreaks&quot; = true)) and (&quot;Current Patient Age in Months&quot; &lt; 9))) or ((((&quot;Measles vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;Current Patient Age in Months&quot; > 6)) and (&quot;Individual is known to be HIV-infected or exposed (i.e. born to an HIV-infected woman&quot; = true)) and (&quot;Current Patient Age in Months&quot; &lt; 9)))
+ */
+define &quot;Should vaccinate patient for measles (supplimentary) because no doses&quot;:
+	</a:s>
+               <a:s r="52">
+                  <a:s r="21">
+                     <a:s r="20">
+                        <a:s>IMMZCom</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="21">
+                        <a:s>&quot;No MCV Doses Administered to Patient&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and 
+	</a:s>
+                  <a:s r="51">
+                     <a:s>(
+		</a:s>
+                     <a:s r="51">
+                        <a:s r="26">
+                           <a:s r="23">
+                              <a:s r="22">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="23">
+                                 <a:s>&quot;Current Patient Age In Months&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="24"> between 6 and 9</a:s>
+                        </a:s>
+                        <a:s> and
+		</a:s>
+                        <a:s r="50">
+                           <a:s>(
+			</a:s>
+                           <a:s r="50">
+                              <a:s r="35">
+                                 <a:s>(
+				</a:s>
+                                 <a:s r="35">
+                                    <a:s r="31">
+                                       <a:s r="28">
+                                          <a:s r="27">
+                                             <a:s>IMMZCom</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="28">
+                                             <a:s>&quot;HIV Status&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> in </a:s>
+                                       <a:s r="30">
+                                          <a:s r="29">
+                                             <a:s>IMMZc</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="30">
+                                             <a:s>&quot;HIV status - HIV positive Choices&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> and
+				</a:s>
+                                    <a:s r="34">
+                                       <a:s>not</a:s>
+                                       <a:s r="33">
+                                          <a:s>(</a:s>
+                                          <a:s r="33">
+                                             <a:s r="32">
+                                                <a:s>IMMZCom</a:s>
+                                             </a:s>
+                                             <a:s>.</a:s>
+                                             <a:s r="33">
+                                                <a:s>&quot;Patient is receiving HAART&quot;</a:s>
+                                             </a:s>
+                                          </a:s>
+                                          <a:s>)</a:s>
+                                       </a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>
+			)</a:s>
+                              </a:s>
+                              <a:s>
+			or 
+			</a:s>
+                              <a:s r="49">
+                                 <a:s>(
+				</a:s>
+                                 <a:s r="49">
+                                    <a:s r="47">
+                                       <a:s r="45">
+                                          <a:s r="43">
+                                             <a:s r="40">
+                                                <a:s r="37">
+                                                   <a:s r="36">
+                                                      <a:s>IMMZCon</a:s>
+                                                   </a:s>
+                                                   <a:s>.</a:s>
+                                                   <a:s r="37">
+                                                      <a:s>&quot;Country currently has a measles outbreak&quot;</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                                <a:s> or
+				</a:s>
+                                                <a:s r="39">
+                                                   <a:s r="38">
+                                                      <a:s>IMMZCon</a:s>
+                                                   </a:s>
+                                                   <a:s>.</a:s>
+                                                   <a:s r="39">
+                                                      <a:s>&quot;In a setting where the risk of measles among infants &lt; 9 months of age remains high&quot;</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                             </a:s>
+                                             <a:s> or
+				</a:s>
+                                             <a:s r="42">
+                                                <a:s r="41">
+                                                   <a:s>IMMZCon</a:s>
+                                                </a:s>
+                                                <a:s>.</a:s>
+                                                <a:s r="42">
+                                                   <a:s>&quot;Population is in conflict zones internally displaced populations and refugees&quot;</a:s>
+                                                </a:s>
+                                             </a:s>
+                                          </a:s>
+                                          <a:s> or 
+				</a:s>
+                                          <a:s r="44">
+                                             <a:s>&quot;Individual is at high risk of contracting measles&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> or
+				</a:s>
+                                       <a:s r="46">
+                                          <a:s>&quot;Individual is travelling to a country experiencing measles outbreaks&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> or
+				</a:s>
+                                    <a:s r="48">
+                                       <a:s>&quot;Individual is known to be HIV-infected or exposed&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>
+			)</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="52" locator="39:2-57:2" xsi:type="And">
+            <operand localId="21" locator="39:2-39:47" name="No MCV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+            <operand localId="51" locator="40:2-57:2" xsi:type="And">
+               <operand localId="26" locator="41:3-41:57" xsi:type="And">
+                  <operand xsi:type="GreaterOrEqual">
+                     <operand localId="23" locator="41:3-41:41" name="Current Patient Age In Months" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="24" locator="41:51" valueType="t:Integer" value="6" xsi:type="Literal"/>
+                  </operand>
+                  <operand xsi:type="LessOrEqual">
+                     <operand localId="23" locator="41:3-41:41" name="Current Patient Age In Months" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="25" locator="41:57" valueType="t:Integer" value="9" xsi:type="Literal"/>
+                  </operand>
+               </operand>
+               <operand localId="50" locator="42:3-56:3" xsi:type="Or">
+                  <operand localId="35" locator="43:4-46:4" xsi:type="And">
+                     <operand localId="31" locator="44:5-44:69" xsi:type="AnyInValueSet">
+                        <codes xsi:type="Query">
+                           <source alias="X">
+                              <expression localId="28" locator="44:5-44:24" name="HIV Status" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           </source>
+                           <return distinct="false">
+                              <expression name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                                 <operand name="X" xsi:type="AliasRef"/>
+                              </expression>
+                           </return>
+                        </codes>
+                        <valueset localId="30" locator="44:29-44:69" name="HIV status - HIV positive Choices" libraryName="IMMZc"/>
+                     </operand>
+                     <operand localId="34" locator="45:5-45:45" xsi:type="Not">
+                        <operand localId="33" locator="45:8-45:45" name="Patient is receiving HAART" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="49" locator="48:4-55:4" xsi:type="Or">
+                     <operand localId="47" locator="49:5-53:74" xsi:type="Or">
+                        <operand localId="45" locator="49:5-52:55" xsi:type="Or">
+                           <operand localId="43" locator="49:5-51:91" xsi:type="Or">
+                              <operand localId="40" locator="49:5-50:97" xsi:type="Or">
+                                 <operand localId="37" locator="49:5-49:54" name="Country currently has a measles outbreak" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+                                 <operand localId="39" locator="50:5-50:97" name="In a setting where the risk of measles among infants &lt; 9 months of age remains high" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+                              </operand>
+                              <operand localId="42" locator="51:5-51:91" name="Population is in conflict zones internally displaced populations and refugees" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+                           </operand>
+                           <operand localId="44" locator="52:5-52:55" name="Individual is at high risk of contracting measles" xsi:type="ParameterRef"/>
+                        </operand>
+                        <operand localId="46" locator="53:5-53:74" name="Individual is travelling to a country experiencing measles outbreaks" xsi:type="ParameterRef"/>
+                     </operand>
+                     <operand localId="48" locator="54:5-54:55" name="Individual is known to be HIV-infected or exposed" xsi:type="ParameterRef"/>
+                  </operand>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="76" locator="73:1-83:2" name="Should vaccinate patient for measles because no doses in a 2 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="76">
+               <a:s>/*
+ * Rule: Should vaccinate patient for measles because no doses in a 2 dose scheme
+ * Annotations:
+ * 	 - Provide measles immunization 1st dose - Using the &quot;MCV1 Vaccine immunization - NO Previous&quot; schedule (2 doses scheme)
+ * 	 - 
+ * Outputs:
+ * 	 - Immunize patient for Measles - No doses
+ * 	 - 
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- 
+ * Logic:
+ *	 (((((&quot;Measles vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;Current Patient Age in Months&quot; >= 9)) and (&quot;In a setting where there is high transmission of Measles&quot; = true)) and (&quot;Pregnancy Status&quot; = false)) or (((&quot;Measles vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;Current Patient Age in Months&quot; >= 12)) and (&quot;In a setting where there is low transmission of Measles&quot; = true)))
+ */
+define &quot;Should vaccinate patient for measles because no doses in a 2 dose scheme&quot;:
+	</a:s>
+               <a:s r="75">
+                  <a:s r="59">
+                     <a:s r="55">
+                        <a:s r="54">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="55">
+                           <a:s>&quot;No MCV Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and </a:s>
+                     <a:s r="58">
+                        <a:s>not</a:s>
+                        <a:s r="57">
+                           <a:s>(</a:s>
+                           <a:s r="57">
+                              <a:s r="56">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="57">
+                                 <a:s>&quot;Pregnant&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="74">
+                     <a:s>(
+		</a:s>
+                     <a:s r="74">
+                        <a:s r="66">
+                           <a:s>(
+			</a:s>
+                           <a:s r="66">
+                              <a:s r="63">
+                                 <a:s r="61">
+                                    <a:s r="60">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="61">
+                                       <a:s>&quot;Current Patient Age In Months&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s r="62"> >= 9</a:s>
+                              </a:s>
+                              <a:s> and
+			</a:s>
+                              <a:s r="65">
+                                 <a:s r="64">
+                                    <a:s>IMMZCon</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="65">
+                                    <a:s>&quot;In a setting where there is high transmission of Measles&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		)</a:s>
+                        </a:s>
+                        <a:s> or </a:s>
+                        <a:s r="73">
+                           <a:s>(
+			</a:s>
+                           <a:s r="73">
+                              <a:s r="70">
+                                 <a:s r="68">
+                                    <a:s r="67">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="68">
+                                       <a:s>&quot;Current Patient Age In Months&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s r="69"> >= 12</a:s>
+                              </a:s>
+                              <a:s> and
+			</a:s>
+                              <a:s r="72">
+                                 <a:s r="71">
+                                    <a:s>IMMZCon</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="72">
+                                    <a:s>&quot;In a setting where there is low transmission of Measles&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="75" locator="74:2-83:2" xsi:type="And">
+            <operand localId="59" locator="74:2-74:75" xsi:type="And">
+               <operand localId="55" locator="74:2-74:47" name="No MCV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="58" locator="74:53-74:75" xsi:type="Not">
+                  <operand localId="57" locator="74:56-74:75" name="Pregnant" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="74" locator="75:2-83:2" xsi:type="Or">
+               <operand localId="66" locator="76:3-79:3" xsi:type="And">
+                  <operand localId="63" locator="77:4-77:47" xsi:type="GreaterOrEqual">
+                     <operand localId="61" locator="77:4-77:42" name="Current Patient Age In Months" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="62" locator="77:47" valueType="t:Integer" value="9" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="65" locator="78:4-78:69" name="In a setting where there is high transmission of Measles" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="73" locator="79:8-82:3" xsi:type="And">
+                  <operand localId="70" locator="80:4-80:48" xsi:type="GreaterOrEqual">
+                     <operand localId="68" locator="80:4-80:42" name="Current Patient Age In Months" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="69" locator="80:47-80:48" valueType="t:Integer" value="12" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="72" locator="81:4-81:68" name="In a setting where there is low transmission of Measles" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="96" locator="96:1-100:25" name="Should vaccinate patient for measles because 1 dose in a 2 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="96">
+               <a:s>/*
+ * Rule: Should vaccinate patient for measles because 1 dose in a 2 dose scheme
+ * Annotations:
+ * 	 - Provide measles immunization 1st dose - Using the &quot;MCV2 Vaccine immunization - 1 Previous&quot; schedule (2 doses scheme)
+ * Outputs:
+ * 	 - Immunize patient for Measles - 1 Dose
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Measles vaccine immunization history&quot; = &quot;1-dose&quot; = true) and (&quot;Current Patient Age in Months&quot; >= 15)) and (&quot;Date last Measles dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;Pregnancy Status&quot; = false))
+ */
+define &quot;Should vaccinate patient for measles because 1 dose in a 2 dose scheme&quot;:
+	</a:s>
+               <a:s r="95">
+                  <a:s r="91">
+                     <a:s r="85">
+                        <a:s r="80">
+                           <a:s r="78">
+                              <a:s r="77">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="78">
+                                 <a:s>&quot;Number of MCV Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="79"> = 1</a:s>
+                        </a:s>
+                        <a:s> and
+	</a:s>
+                        <a:s r="84">
+                           <a:s r="82">
+                              <a:s r="81">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="82">
+                                 <a:s>&quot;Current Patient Age In Months&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="83"> >= 15</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="90">
+                        <a:s r="87">
+                           <a:s r="86">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="87">
+                              <a:s>&quot;Date Last MCV Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="90">
+                           <a:s>more than </a:s>
+                           <a:s r="89">
+                              <a:s>4 'week'</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="88">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="94">
+                     <a:s>not </a:s>
+                     <a:s r="93">
+                        <a:s>(</a:s>
+                        <a:s r="93">
+                           <a:s r="92">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="93">
+                              <a:s>&quot;Pregnant&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="95" locator="97:2-100:25" xsi:type="And">
+            <operand localId="91" locator="97:2-99:87" xsi:type="And">
+               <operand localId="85" locator="97:2-98:46" xsi:type="And">
+                  <operand localId="80" locator="97:2-97:58" xsi:type="Equal">
+                     <operand localId="78" locator="97:2-97:54" name="Number of MCV Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="79" locator="97:58" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="84" locator="98:2-98:46" xsi:type="GreaterOrEqual">
+                     <operand localId="82" locator="98:2-98:40" name="Current Patient Age In Months" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="83" locator="98:45-98:46" valueType="t:Integer" value="15" xsi:type="Literal"/>
+                  </operand>
+               </operand>
+               <operand localId="90" locator="99:2-99:87" xsi:type="Before">
+                  <operand localId="87" locator="99:2-99:53" name="Date Last MCV Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="99:81-99:87" xsi:type="Subtract">
+                     <operand localId="88" locator="99:81-99:87" xsi:type="Today"/>
+                     <operand localId="89" locator="99:65-99:72" value="4" unit="week" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="94" locator="100:2-100:25" xsi:type="Not">
+               <operand localId="93" locator="100:6-100:25" name="Pregnant" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="119" locator="116:1-125:2" name="Should vaccinate patient for measles supplimentary dose because HIV positive and started HAART" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="119">
+               <a:s>/*
+ * Rule: Should vaccinate patient for measles supplimentary dose because HIV positive and started HAART
+ * Annotations:
+ * 	 - Provide measles immunization supplimentary dose - Using the &quot;MCV Vaccine immunization&quot; schedule (additional supplimentary dose)
+ * 	 - 
+ * Outputs:
+ * 	 - Immunize patient for Measles supplimentary
+ * 	 - 
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- 
+ * Logic:
+ *	 (((((&quot;HIV Status&quot; = &quot;Positive&quot; = true) and (&quot;Patient is receiving HAART&quot; = true)) and (&quot;Immune reconstitution was achieved&quot; = true)) and (&quot;Pregnancy Status&quot; = false)) or ((((((&quot;HIV Status&quot; = &quot;Positive&quot; = true) and (&quot;Patient is receiving HAART&quot; = true)) and (&quot;CD4+ T Lymphocyte monitoring is available&quot; = false)) and (&quot;Time since HAART was initiated in Months&quot; >= 6)) and (&quot;Time since HAART was initiated in Months&quot; &lt;= 12)) and (&quot;Pregnancy Status&quot; = false)))
+ */
+define &quot;Should vaccinate patient for measles supplimentary dose because HIV positive and started HAART&quot;:
+	</a:s>
+               <a:s r="118">
+                  <a:s r="108">
+                     <a:s r="105">
+                        <a:s r="99">
+                           <a:s>not</a:s>
+                           <a:s r="98">
+                              <a:s>(</a:s>
+                              <a:s r="98">
+                                 <a:s r="97">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="98">
+                                    <a:s>&quot;Pregnant&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> and
+	</a:s>
+                        <a:s r="104">
+                           <a:s r="101">
+                              <a:s r="100">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="101">
+                                 <a:s>&quot;HIV Status&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> in </a:s>
+                           <a:s r="103">
+                              <a:s r="102">
+                                 <a:s>IMMZc</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="103">
+                                 <a:s>&quot;HIV status - HIV positive Choices&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="107">
+                        <a:s r="106">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="107">
+                           <a:s>&quot;Patient is receiving HAART&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and 
+	</a:s>
+                  <a:s r="117">
+                     <a:s>(
+
+		</a:s>
+                     <a:s r="117">
+                        <a:s r="109">
+                           <a:s>&quot;Immune reconstitution was achieved&quot;</a:s>
+                        </a:s>
+                        <a:s> or
+		</a:s>
+                        <a:s r="116">
+                           <a:s r="113">
+                              <a:s>not </a:s>
+                              <a:s r="112">
+                                 <a:s>exists</a:s>
+                                 <a:s r="111">
+                                    <a:s>(</a:s>
+                                    <a:s r="111">
+                                       <a:s r="110">
+                                          <a:s>IMMZCom</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="111">
+                                          <a:s>&quot;Observed CD4% Measurements&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		and </a:s>
+                           <a:s r="115">
+                              <a:s r="114">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="115">
+                                 <a:s>&quot;Patient HAART Treatment Started 6 to 12 Months Ago&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="118" locator="117:2-125:2" xsi:type="And">
+            <operand localId="108" locator="117:2-119:37" xsi:type="And">
+               <operand localId="105" locator="117:2-118:66" xsi:type="And">
+                  <operand localId="99" locator="117:2-117:24" xsi:type="Not">
+                     <operand localId="98" locator="117:5-117:24" name="Pregnant" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="104" locator="118:2-118:66" xsi:type="AnyInValueSet">
+                     <codes xsi:type="Query">
+                        <source alias="X">
+                           <expression localId="101" locator="118:2-118:21" name="HIV Status" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        </source>
+                        <return distinct="false">
+                           <expression name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                              <operand name="X" xsi:type="AliasRef"/>
+                           </expression>
+                        </return>
+                     </codes>
+                     <valueset localId="103" locator="118:26-118:66" name="HIV status - HIV positive Choices" libraryName="IMMZc"/>
+                  </operand>
+               </operand>
+               <operand localId="107" locator="119:2-119:37" name="Patient is receiving HAART" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="117" locator="120:2-125:2" xsi:type="Or">
+               <operand localId="109" locator="122:3-122:38" name="Immune reconstitution was achieved" xsi:type="ParameterRef"/>
+               <operand localId="116" locator="123:3-124:66" xsi:type="And">
+                  <operand localId="113" locator="123:3-123:50" xsi:type="Not">
+                     <operand localId="112" locator="123:7-123:50" xsi:type="Exists">
+                        <operand localId="111" locator="123:13-123:50" name="Observed CD4% Measurements" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="115" locator="124:7-124:66" name="Patient HAART Treatment Started 6 to 12 Months Ago" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+   </statements>
+</library>

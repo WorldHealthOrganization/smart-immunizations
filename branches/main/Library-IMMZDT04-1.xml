@@ -1,0 +1,1159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="170">
+         <a:s>/*
+ * Library: IMMZDT04 (IMMZ.DT.04.DTP)
+ * Rule: If child or person has not been given DTP, start scheme 
+ * Trigger: Patient requires a DTP vaccine
+ */
+library IMMZDT04</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT04" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:33" localIdentifier="IMMZCon" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="13:1-13:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="7" locator="14:1-14:28" localIdentifier="FC" path="http://fhir.org/guides/who/smart-immunization/FHIRCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="7">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRCommon</a:s>
+               </a:s>
+               <a:s> called FC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="16:1-16:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="20" locator="31:1-33:98" name="Should vaccinate patient with DTP 1st dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="20">
+               <a:s>/*
+ * Rule: Should vaccinate patient with DTP 1st dose
+ * Annotations:
+ * 	 - Provide DTP immunization 1st dose – using the &quot;DTP vaccine immunization – NO PREVIOUS&quot; schedule (3 dose scheme) if the patient is the older 6 weeks of age
+ * 	 - Provide DTP immunization 1st dose – using the &quot;DTP vaccine immunization – NO PREVIOUS&quot; schedule (5 dose scheme) if the patient is 15 years of age or more
+ * Outputs:
+ * 	 - Immunize Patient for DTP - No Doses
+ * 	 - Immunize Patient for DTP - No Doses at 15 years or older
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;DTP vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Weeks&quot; >= 6)) or ((&quot;DTP vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Years&quot; >= 15)))
+ */
+define &quot;Should vaccinate patient with DTP 1st dose&quot;:
+	</a:s>
+               <a:s r="19">
+                  <a:s r="9">
+                     <a:s>(</a:s>
+                     <a:s r="9">
+                        <a:s r="8">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="9">
+                           <a:s>&quot;No DTP Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s> and 
+	</a:s>
+                  <a:s r="18">
+                     <a:s>(</a:s>
+                     <a:s r="18">
+                        <a:s r="13">
+                           <a:s>(</a:s>
+                           <a:s r="13">
+                              <a:s r="11">
+                                 <a:s r="10">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="11">
+                                    <a:s>&quot;Current Patient Age In Weeks&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="12"> >= 6</a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                        <a:s> or </a:s>
+                        <a:s r="17">
+                           <a:s>(</a:s>
+                           <a:s r="17">
+                              <a:s r="15">
+                                 <a:s r="14">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="15">
+                                    <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="16"> >= 15</a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="19" locator="32:2-33:98" xsi:type="And">
+            <operand localId="9" locator="32:2-32:49" name="No DTP Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+            <operand localId="18" locator="33:2-33:98" xsi:type="Or">
+               <operand localId="13" locator="33:3-33:47" xsi:type="GreaterOrEqual">
+                  <operand localId="11" locator="33:4-33:41" name="Current Patient Age In Weeks" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="12" locator="33:46" valueType="t:Integer" value="6" xsi:type="Literal"/>
+               </operand>
+               <operand localId="17" locator="33:52-33:97" xsi:type="GreaterOrEqual">
+                  <operand localId="15" locator="33:53-33:90" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="16" locator="33:95-33:96" valueType="t:Integer" value="15" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="48" locator="49:1-58:2" name="Should vaccinate patient for DTP with 2nd dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="48">
+               <a:s>/*
+ * Rule: Should vaccinate patient for DTP with 2nd dose
+ * Annotations:
+ * 	 - Provide DTP immunization 2nd dose – using the &quot;DTP vaccine immunization – 3 dose scheme&quot; if the patient is  4-8 weeks after their first dose
+ * 	 - Provide DTP immunization 2nd dose – using the &quot;DTP vaccine immunization – 1 PREVIOUS&quot; schedule (5 dose scheme) if the patient is 15 years of age or more and is 4-8 weeks after their first dose
+ * Outputs:
+ * 	 - Immunize Patient for DTP - 1 Dose
+ * 	 - Immunize Patient for DTP - 1 Dose at 15 years or older
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;DTP vaccine immunization history&quot; = &quot;1 dose&quot;) and (&quot;Date last DTP dose given&quot; >= &quot;4 weeks&quot;)) or ((((&quot;DTP vaccine immunization history&quot; = &quot;1 dose&quot;) and (&quot;Current Patient Age in Years&quot; >= 15)) and (&quot;Date last DTP dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;Date last DTP dose given&quot; &lt;= &quot;8 weeks&quot;)))
+ */
+define &quot;Should vaccinate patient for DTP with 2nd dose&quot;:
+	</a:s>
+               <a:s r="47">
+                  <a:s r="24">
+                     <a:s r="22">
+                        <a:s r="21">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="22">
+                           <a:s>&quot;Number of DTP Doses Administered to Patient Excluding Birth Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="23"> = 1</a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="46">
+                     <a:s>(
+		</a:s>
+                     <a:s r="46">
+                        <a:s r="29">
+                           <a:s r="26">
+                              <a:s r="25">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="26">
+                                 <a:s>&quot;Date Last DTP Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="29">
+                              <a:s>more than </a:s>
+                              <a:s r="28">
+                                 <a:s>4 week</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="27">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> or
+		</a:s>
+                        <a:s r="45">
+                           <a:s>(
+			</a:s>
+                           <a:s r="45">
+                              <a:s r="39">
+                                 <a:s r="33">
+                                    <a:s r="31">
+                                       <a:s r="30">
+                                          <a:s>IMMZCom</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="31">
+                                          <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s r="32"> >= 15</a:s>
+                                 </a:s>
+                                 <a:s> and
+			</a:s>
+                                 <a:s r="38">
+                                    <a:s>(</a:s>
+                                    <a:s r="38">
+                                       <a:s r="35">
+                                          <a:s r="34">
+                                             <a:s>IMMZCom</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="35">
+                                             <a:s>&quot;Date Last DTP Dose Administered to Patient&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> </a:s>
+                                       <a:s r="38">
+                                          <a:s>more than </a:s>
+                                          <a:s r="37">
+                                             <a:s>4 week</a:s>
+                                          </a:s>
+                                          <a:s> before</a:s>
+                                       </a:s>
+                                       <a:s> </a:s>
+                                       <a:s r="36">
+                                          <a:s>Today()</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> and 
+			</a:s>
+                              <a:s r="44">
+                                 <a:s>(</a:s>
+                                 <a:s r="44">
+                                    <a:s r="41">
+                                       <a:s r="40">
+                                          <a:s>IMMZCom</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="41">
+                                          <a:s>&quot;Date Last DTP Dose Administered to Patient&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> </a:s>
+                                    <a:s r="44">
+                                       <a:s>less than </a:s>
+                                       <a:s r="43">
+                                          <a:s>8 week</a:s>
+                                       </a:s>
+                                       <a:s> before</a:s>
+                                    </a:s>
+                                    <a:s> </a:s>
+                                    <a:s r="42">
+                                       <a:s>Today()</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>)</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="47" locator="50:2-58:2" xsi:type="And">
+            <operand localId="24" locator="50:2-50:79" xsi:type="Equal">
+               <operand localId="22" locator="50:2-50:75" name="Number of DTP Doses Administered to Patient Excluding Birth Dose" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="23" locator="50:79" valueType="t:Integer" value="1" xsi:type="Literal"/>
+            </operand>
+            <operand localId="46" locator="51:2-58:2" xsi:type="Or">
+               <operand localId="29" locator="52:3-52:86" xsi:type="Before">
+                  <operand localId="26" locator="52:3-52:54" name="Date Last DTP Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="52:80-52:86" xsi:type="Subtract">
+                     <operand localId="27" locator="52:80-52:86" xsi:type="Today"/>
+                     <operand localId="28" locator="52:66-52:71" value="4" unit="week" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+               <operand localId="45" locator="53:3-57:3" xsi:type="And">
+                  <operand localId="39" locator="54:4-55:89" xsi:type="And">
+                     <operand localId="33" locator="54:4-54:47" xsi:type="GreaterOrEqual">
+                        <operand localId="31" locator="54:4-54:41" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="32" locator="54:46-54:47" valueType="t:Integer" value="15" xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="38" locator="55:4-55:89" xsi:type="Before">
+                        <operand localId="35" locator="55:5-55:56" name="Date Last DTP Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand locator="55:82-55:88" xsi:type="Subtract">
+                           <operand localId="36" locator="55:82-55:88" xsi:type="Today"/>
+                           <operand localId="37" locator="55:68-55:73" value="4" unit="week" xsi:type="Quantity"/>
+                        </operand>
+                     </operand>
+                  </operand>
+                  <operand localId="44" locator="56:4-56:89" xsi:type="In">
+                     <operand localId="41" locator="56:5-56:56" name="Date Last DTP Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="56:58-56:73" lowClosed="false" highClosed="false" xsi:type="Interval">
+                        <low locator="56:82-56:88" xsi:type="Subtract">
+                           <operand localId="42" locator="56:82-56:88" xsi:type="Today"/>
+                           <operand localId="43" locator="56:68-56:73" value="8" unit="week" xsi:type="Quantity"/>
+                        </low>
+                        <high localId="42" locator="56:82-56:88" xsi:type="Today"/>
+                     </operand>
+                  </operand>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="96" locator="76:1-90:2" name="Should vaccinate patient for DTP with 3rd dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="96">
+               <a:s>/*
+ * Rule: Should vaccinate patient for DTP with 3rd dose
+ * Annotations:
+ * 	 - Provide DTP immunizations – using the &quot;DTP vaccine immunization – 3 dose scheme, provide the 3rd dose&quot; if the patient is  4-8 weeks after their first dose
+ * 	 - 
+ * 	 - Provide DTP immunization 3rd dose – using the &quot;DTP vaccine immunization – 2 PREVIOUS&quot; schedule (5 dose scheme) if the patient is 15 years of age or more and is 4-8 weeks after their second dose
+ * Outputs:
+ * 	 - Immunize Patient for DTP - 2 Doses
+ * 	 - 
+ * 	 - Immunize Patient for DTP - 2 Doses at 15 years or older
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- 
+ * Logic:
+ *	 ((((&quot;DTP vaccine immunization history&quot; = &quot;2 doses&quot;) and (&quot;Date last DTP dose given&quot; >= &quot;4 weeks&quot;)) or ((((&quot;DTP vaccine immunization history&quot; = &quot;2 doses&quot;) and (&quot;Date last DTP dose given&quot; >= &quot;6 months&quot;)) and (&quot;Age when patient received 1st dose&quot; >= &quot;1 year&quot;)) and (&quot;Age when patient received 1st dose&quot; &lt; &quot;7 years&quot;))) or ((((&quot;DTP vaccine immunization history&quot; = &quot;2 doses&quot;) and (&quot;Current Patient Age in Years&quot; >= 15)) and (&quot;Date last DTP dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;Date last DTP dose given&quot; &lt;= &quot;8 weeks&quot;)))
+ */
+define &quot;Should vaccinate patient for DTP with 3rd dose&quot;:
+	</a:s>
+               <a:s r="95">
+                  <a:s r="52">
+                     <a:s r="50">
+                        <a:s r="49">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="50">
+                           <a:s>&quot;Number of DTP Doses Administered to Patient Excluding Birth Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="51"> = 2</a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="94">
+                     <a:s>(
+		</a:s>
+                     <a:s r="94">
+                        <a:s r="77">
+                           <a:s r="57">
+                              <a:s r="54">
+                                 <a:s r="53">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="54">
+                                    <a:s>&quot;Date Last DTP Dose Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> </a:s>
+                              <a:s r="57">
+                                 <a:s>more than </a:s>
+                                 <a:s r="56">
+                                    <a:s>4 week</a:s>
+                                 </a:s>
+                                 <a:s> before</a:s>
+                              </a:s>
+                              <a:s> </a:s>
+                              <a:s r="55">
+                                 <a:s>Today()</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> or 
+		</a:s>
+                           <a:s r="76">
+                              <a:s>(
+			</a:s>
+                              <a:s r="76">
+                                 <a:s r="69">
+                                    <a:s r="62">
+                                       <a:s r="59">
+                                          <a:s r="58">
+                                             <a:s>IMMZCom</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="59">
+                                             <a:s>&quot;Date Last DTP Dose Administered to Patient&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> </a:s>
+                                       <a:s r="62">
+                                          <a:s>more than </a:s>
+                                          <a:s r="61">
+                                             <a:s>6 month</a:s>
+                                          </a:s>
+                                          <a:s> before</a:s>
+                                       </a:s>
+                                       <a:s> </a:s>
+                                       <a:s r="60">
+                                          <a:s>Today()</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>  and  
+			</a:s>
+                                    <a:s r="68">
+                                       <a:s r="64">
+                                          <a:s r="63">
+                                             <a:s>IMMZCom</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="64">
+                                             <a:s>&quot;Date First DTP Dose Administered to Patient Excluding Birth Dose&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> </a:s>
+                                       <a:s r="68">
+                                          <a:s>more than </a:s>
+                                          <a:s r="67">
+                                             <a:s>1 year</a:s>
+                                          </a:s>
+                                          <a:s> after</a:s>
+                                       </a:s>
+                                       <a:s> </a:s>
+                                       <a:s r="66">
+                                          <a:s r="65">
+                                             <a:s>Patient</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="66">
+                                             <a:s>birthDate</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> and
+			</a:s>
+                                 <a:s r="75">
+                                    <a:s r="71">
+                                       <a:s r="70">
+                                          <a:s>IMMZCom</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="71">
+                                          <a:s>&quot;Date First DTP Dose Administered to Patient Excluding Birth Dose&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> </a:s>
+                                    <a:s r="75">
+                                       <a:s>less than </a:s>
+                                       <a:s r="74">
+                                          <a:s>7 year</a:s>
+                                       </a:s>
+                                       <a:s> after</a:s>
+                                    </a:s>
+                                    <a:s> </a:s>
+                                    <a:s r="73">
+                                       <a:s r="72">
+                                          <a:s>Patient</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="73">
+                                          <a:s>birthDate</a:s>
+                                       </a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> 
+		)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> or
+		</a:s>
+                        <a:s r="93">
+                           <a:s>(
+			</a:s>
+                           <a:s r="93">
+                              <a:s r="87">
+                                 <a:s r="81">
+                                    <a:s>(</a:s>
+                                    <a:s r="81">
+                                       <a:s r="79">
+                                          <a:s r="78">
+                                             <a:s>IMMZCom</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="79">
+                                             <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s r="80"> >= 15</a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                                 <a:s> and 
+			</a:s>
+                                 <a:s r="86">
+                                    <a:s>(</a:s>
+                                    <a:s r="86">
+                                       <a:s r="83">
+                                          <a:s r="82">
+                                             <a:s>IMMZCom</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="83">
+                                             <a:s>&quot;Date Last DTP Dose Administered to Patient&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> </a:s>
+                                       <a:s r="86">
+                                          <a:s>more than </a:s>
+                                          <a:s r="85">
+                                             <a:s>4 week</a:s>
+                                          </a:s>
+                                          <a:s> before</a:s>
+                                       </a:s>
+                                       <a:s> </a:s>
+                                       <a:s r="84">
+                                          <a:s>Today()</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> and 
+			</a:s>
+                              <a:s r="92">
+                                 <a:s>(</a:s>
+                                 <a:s r="92">
+                                    <a:s r="89">
+                                       <a:s r="88">
+                                          <a:s>IMMZCom</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="89">
+                                          <a:s>&quot;Date Last DTP Dose Administered to Patient&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> </a:s>
+                                    <a:s r="92">
+                                       <a:s>less than </a:s>
+                                       <a:s r="91">
+                                          <a:s>8 week</a:s>
+                                       </a:s>
+                                       <a:s> before</a:s>
+                                    </a:s>
+                                    <a:s> </a:s>
+                                    <a:s r="90">
+                                       <a:s>Today()</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>)</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="95" locator="77:2-90:2" xsi:type="And">
+            <operand localId="52" locator="77:2-77:79" xsi:type="Equal">
+               <operand localId="50" locator="77:2-77:75" name="Number of DTP Doses Administered to Patient Excluding Birth Dose" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="51" locator="77:79" valueType="t:Integer" value="2" xsi:type="Literal"/>
+            </operand>
+            <operand localId="94" locator="78:2-90:2" xsi:type="Or">
+               <operand localId="77" locator="79:3-84:3" xsi:type="Or">
+                  <operand localId="57" locator="79:3-79:86" xsi:type="Before">
+                     <operand localId="54" locator="79:3-79:54" name="Date Last DTP Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="79:80-79:86" xsi:type="Subtract">
+                        <operand localId="55" locator="79:80-79:86" xsi:type="Today"/>
+                        <operand localId="56" locator="79:66-79:71" value="4" unit="week" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+                  <operand localId="76" locator="80:3-84:3" xsi:type="And">
+                     <operand localId="69" locator="81:4-82:118" xsi:type="And">
+                        <operand localId="62" locator="81:4-81:88" xsi:type="Before">
+                           <operand localId="59" locator="81:4-81:55" name="Date Last DTP Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           <operand locator="81:82-81:88" xsi:type="Subtract">
+                              <operand localId="60" locator="81:82-81:88" xsi:type="Today"/>
+                              <operand localId="61" locator="81:67-81:73" value="6" unit="month" xsi:type="Quantity"/>
+                           </operand>
+                        </operand>
+                        <operand localId="68" locator="82:4-82:118" xsi:type="After">
+                           <operand localId="64" locator="82:4-82:77" name="Date First DTP Dose Administered to Patient Excluding Birth Dose" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           <operand locator="82:110-82:118" xsi:type="Add">
+                              <operand name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                                 <operand localId="66" locator="82:102-82:118" path="birthDate" xsi:type="Property">
+                                    <source localId="65" locator="82:102-82:108" name="Patient" xsi:type="ExpressionRef"/>
+                                 </operand>
+                              </operand>
+                              <operand localId="67" locator="82:89-82:94" value="1" unit="year" xsi:type="Quantity"/>
+                           </operand>
+                        </operand>
+                     </operand>
+                     <operand localId="75" locator="83:4-83:118" xsi:type="In">
+                        <operand localId="71" locator="83:4-83:77" name="Date First DTP Dose Administered to Patient Excluding Birth Dose" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand locator="83:79-83:94" lowClosed="false" highClosed="false" xsi:type="Interval">
+                           <low name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                              <operand localId="73" locator="83:102-83:118" path="birthDate" xsi:type="Property">
+                                 <source localId="72" locator="83:102-83:108" name="Patient" xsi:type="ExpressionRef"/>
+                              </operand>
+                           </low>
+                           <high locator="83:110-83:118" xsi:type="Add">
+                              <operand name="ToDate" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                                 <operand localId="73" locator="83:102-83:118" path="birthDate" xsi:type="Property">
+                                    <source localId="72" locator="83:102-83:108" name="Patient" xsi:type="ExpressionRef"/>
+                                 </operand>
+                              </operand>
+                              <operand localId="74" locator="83:89-83:94" value="7" unit="year" xsi:type="Quantity"/>
+                           </high>
+                        </operand>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="93" locator="85:3-89:3" xsi:type="And">
+                  <operand localId="87" locator="86:4-87:89" xsi:type="And">
+                     <operand localId="81" locator="86:4-86:49" xsi:type="GreaterOrEqual">
+                        <operand localId="79" locator="86:5-86:42" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="80" locator="86:47-86:48" valueType="t:Integer" value="15" xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="86" locator="87:4-87:89" xsi:type="Before">
+                        <operand localId="83" locator="87:5-87:56" name="Date Last DTP Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand locator="87:82-87:88" xsi:type="Subtract">
+                           <operand localId="84" locator="87:82-87:88" xsi:type="Today"/>
+                           <operand localId="85" locator="87:68-87:73" value="4" unit="week" xsi:type="Quantity"/>
+                        </operand>
+                     </operand>
+                  </operand>
+                  <operand localId="92" locator="88:4-88:89" xsi:type="In">
+                     <operand localId="89" locator="88:5-88:56" name="Date Last DTP Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="88:58-88:73" lowClosed="false" highClosed="false" xsi:type="Interval">
+                        <low locator="88:82-88:88" xsi:type="Subtract">
+                           <operand localId="90" locator="88:82-88:88" xsi:type="Today"/>
+                           <operand localId="91" locator="88:68-88:73" value="8" unit="week" xsi:type="Quantity"/>
+                        </low>
+                        <high localId="90" locator="88:82-88:88" xsi:type="Today"/>
+                     </operand>
+                  </operand>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="106" locator="104:1-106:50" name="Should vaccinate patient for DTP with 1st booster" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="106">
+               <a:s>/*
+ * Rule: Should vaccinate patient for DTP with 1st booster
+ * Annotations:
+ * 	 - Provide booster at 12-23 months (DTP-containing vaccine) if patient has completed primary 3 dose scheme
+ * Outputs:
+ * 	 - Immunize Patient for DTP - Booster 1
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((&quot;DTP vaccine immunization history&quot; = &quot;3 doses&quot;) and (&quot;Current Patient Age in Months&quot; >= 12))
+ */
+define &quot;Should vaccinate patient for DTP with 1st booster&quot;:
+	</a:s>
+               <a:s r="105">
+                  <a:s r="100">
+                     <a:s r="98">
+                        <a:s r="97">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="98">
+                           <a:s>&quot;Number of DTP Doses Administered to Patient Excluding Birth Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="99"> = 3</a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="104">
+                     <a:s r="102">
+                        <a:s r="101">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="102">
+                           <a:s>&quot;Current Patient Age In Months&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="103"> >= 12</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="105" locator="105:2-106:50" xsi:type="And">
+            <operand localId="100" locator="105:2-105:79" xsi:type="Equal">
+               <operand localId="98" locator="105:2-105:75" name="Number of DTP Doses Administered to Patient Excluding Birth Dose" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="99" locator="105:79" valueType="t:Integer" value="3" xsi:type="Literal"/>
+            </operand>
+            <operand localId="104" locator="106:6-106:50" xsi:type="GreaterOrEqual">
+               <operand localId="102" locator="106:6-106:44" name="Current Patient Age In Months" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="103" locator="106:49-106:50" valueType="t:Integer" value="12" xsi:type="Literal"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="116" locator="120:1-122:48" name="Should vaccinate patient for DTP with 2nd booster" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="116">
+               <a:s>/*
+ * Rule: Should vaccinate patient for DTP with 2nd booster
+ * Annotations:
+ * 	 - Provide booster at 4-7 years (Td/DT containing vaccine)  if patient has completed primary 3 dose scheme and 1 booster
+ * Outputs:
+ * 	 - Immunize Patient for DTP - Booster 2
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((&quot;DTP vaccine immunization history&quot; = &quot;4 doses&quot;) and (&quot;Current Patient Age in Years&quot; >= 4))
+ */
+define &quot;Should vaccinate patient for DTP with 2nd booster&quot;:
+	</a:s>
+               <a:s r="115">
+                  <a:s r="110">
+                     <a:s r="108">
+                        <a:s r="107">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="108">
+                           <a:s>&quot;Number of DTP Doses Administered to Patient Excluding Birth Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="109"> = 4</a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="114">
+                     <a:s r="112">
+                        <a:s r="111">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="112">
+                           <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="113"> >= 4</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="115" locator="121:2-122:48" xsi:type="And">
+            <operand localId="110" locator="121:2-121:79" xsi:type="Equal">
+               <operand localId="108" locator="121:2-121:75" name="Number of DTP Doses Administered to Patient Excluding Birth Dose" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="109" locator="121:79" valueType="t:Integer" value="4" xsi:type="Literal"/>
+            </operand>
+            <operand localId="114" locator="122:6-122:48" xsi:type="GreaterOrEqual">
+               <operand localId="112" locator="122:6-122:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="113" locator="122:48" valueType="t:Integer" value="4" xsi:type="Literal"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="126" locator="136:1-138:48" name="Should vaccinate patient for DTP with 3rd booster" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="126">
+               <a:s>/*
+ * Rule: Should vaccinate patient for DTP with 3rd booster
+ * Annotations:
+ * 	 - Provide booster at 9-15 years (Td containing vaccine), if >7 years use only aP containing vaccine - if patient has completed primary 3 dose scheme and 2 boosters
+ * Outputs:
+ * 	 - Immunize Patient for DTP - Booster 3
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((&quot;DTP vaccine immunization history&quot; = &quot;5 doses&quot;) and (&quot;Current Patient Age in Years&quot; >= 9))
+ */
+define &quot;Should vaccinate patient for DTP with 3rd booster&quot;:
+	</a:s>
+               <a:s r="125">
+                  <a:s r="120">
+                     <a:s r="118">
+                        <a:s r="117">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="118">
+                           <a:s>&quot;Number of DTP Doses Administered to Patient Excluding Birth Dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="119"> = 5</a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="124">
+                     <a:s r="122">
+                        <a:s r="121">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="122">
+                           <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="123"> >= 9</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="125" locator="137:2-138:48" xsi:type="And">
+            <operand localId="120" locator="137:2-137:79" xsi:type="Equal">
+               <operand localId="118" locator="137:2-137:75" name="Number of DTP Doses Administered to Patient Excluding Birth Dose" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="119" locator="137:79" valueType="t:Integer" value="5" xsi:type="Literal"/>
+            </operand>
+            <operand localId="124" locator="138:6-138:48" xsi:type="GreaterOrEqual">
+               <operand localId="122" locator="138:6-138:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="123" locator="138:48" valueType="t:Integer" value="9" xsi:type="Literal"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="148" locator="152:1-156:85" name="Should vaccinate patient for DTP with 4th dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="148">
+               <a:s>/*
+ * Rule: Should vaccinate patient for DTP with 4th dose
+ * Annotations:
+ * 	 - Provide DTP immunization 4th dose – using the &quot;DTP vaccine immunization – 3 PREVIOUS&quot; schedule (5 dose scheme) if the patient is 15 years of age or more and is 4-8 weeks after their second dose
+ * Outputs:
+ * 	 - Immunize Patient for DTP - 3 Doses at 15 years or older
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;DTP vaccine immunization history&quot; = &quot;3 doses&quot;) and (&quot;Current Patient Age in Years&quot; >= 15)) and (&quot;Date last DTP dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;Date last DTP dose given&quot; &lt;= &quot;8 weeks&quot;))
+ */
+define &quot;Should vaccinate patient for DTP with 4th dose&quot;:
+	</a:s>
+               <a:s r="147">
+                  <a:s r="141">
+                     <a:s r="135">
+                        <a:s r="130">
+                           <a:s r="128">
+                              <a:s r="127">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="128">
+                                 <a:s>&quot;Number of DTP Doses Administered to Patient Excluding Birth Dose&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="129"> = 3</a:s>
+                        </a:s>
+                        <a:s> and
+	</a:s>
+                        <a:s r="134">
+                           <a:s r="132">
+                              <a:s r="131">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="132">
+                                 <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="133"> >= 15</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="140">
+                        <a:s r="137">
+                           <a:s r="136">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="137">
+                              <a:s>&quot;Date Last DTP Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="140">
+                           <a:s>more than </a:s>
+                           <a:s r="139">
+                              <a:s>4 week</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="138">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="146">
+                     <a:s r="143">
+                        <a:s r="142">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="143">
+                           <a:s>&quot;Date Last DTP Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="146">
+                        <a:s>less than </a:s>
+                        <a:s r="145">
+                           <a:s>8 week</a:s>
+                        </a:s>
+                        <a:s> before</a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="144">
+                        <a:s>Today()</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="147" locator="153:2-156:85" xsi:type="And">
+            <operand localId="141" locator="153:2-155:85" xsi:type="And">
+               <operand localId="135" locator="153:2-154:45" xsi:type="And">
+                  <operand localId="130" locator="153:2-153:79" xsi:type="Equal">
+                     <operand localId="128" locator="153:2-153:75" name="Number of DTP Doses Administered to Patient Excluding Birth Dose" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="129" locator="153:79" valueType="t:Integer" value="3" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="134" locator="154:2-154:45" xsi:type="GreaterOrEqual">
+                     <operand localId="132" locator="154:2-154:39" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="133" locator="154:44-154:45" valueType="t:Integer" value="15" xsi:type="Literal"/>
+                  </operand>
+               </operand>
+               <operand localId="140" locator="155:2-155:85" xsi:type="Before">
+                  <operand localId="137" locator="155:2-155:53" name="Date Last DTP Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="155:79-155:85" xsi:type="Subtract">
+                     <operand localId="138" locator="155:79-155:85" xsi:type="Today"/>
+                     <operand localId="139" locator="155:65-155:70" value="4" unit="week" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="146" locator="156:2-156:85" xsi:type="In">
+               <operand localId="143" locator="156:2-156:53" name="Date Last DTP Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand locator="156:55-156:70" lowClosed="false" highClosed="false" xsi:type="Interval">
+                  <low locator="156:79-156:85" xsi:type="Subtract">
+                     <operand localId="144" locator="156:79-156:85" xsi:type="Today"/>
+                     <operand localId="145" locator="156:65-156:70" value="8" unit="week" xsi:type="Quantity"/>
+                  </low>
+                  <high localId="144" locator="156:79-156:85" xsi:type="Today"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="170" locator="169:1-173:85" name="Should vaccinate patient for DTP with 5th dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="170">
+               <a:s>/*
+ * Rule: Should vaccinate patient for DTP with 5th dose
+ * Annotations:
+ * 	 - Provide DTP immunization 5th dose – using the &quot;DTP vaccine immunization – 4 PREVIOUS&quot; schedule (5 dose scheme) if the patient is 15 years of age or more and is 4-8 weeks after their second dose
+ * Outputs:
+ * 	 - Immunize Patient for DTP - 4 Doses at 15 years or older
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;DTP vaccine immunization history&quot; = &quot;4 doses&quot;) and (&quot;Current Patient Age in Years&quot; >= 15)) and (&quot;Date last DTP dose given&quot; >= &quot;4 weeks&quot;)) and (&quot;Date last DTP dose given&quot; &lt;= &quot;8 weeks&quot;))
+ */
+define &quot;Should vaccinate patient for DTP with 5th dose&quot;:
+	</a:s>
+               <a:s r="169">
+                  <a:s r="163">
+                     <a:s r="157">
+                        <a:s r="152">
+                           <a:s r="150">
+                              <a:s r="149">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="150">
+                                 <a:s>&quot;Number of DTP Doses Administered to Patient Excluding Birth Dose&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="151"> = 4</a:s>
+                        </a:s>
+                        <a:s> and
+	</a:s>
+                        <a:s r="156">
+                           <a:s r="154">
+                              <a:s r="153">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="154">
+                                 <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="155"> >= 15</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> and
+	</a:s>
+                     <a:s r="162">
+                        <a:s r="159">
+                           <a:s r="158">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="159">
+                              <a:s>&quot;Date Last DTP Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="162">
+                           <a:s>more than </a:s>
+                           <a:s r="161">
+                              <a:s>4 week</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="160">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> and
+	</a:s>
+                  <a:s r="168">
+                     <a:s r="165">
+                        <a:s r="164">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="165">
+                           <a:s>&quot;Date Last DTP Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="168">
+                        <a:s>less than </a:s>
+                        <a:s r="167">
+                           <a:s>8 week</a:s>
+                        </a:s>
+                        <a:s> before</a:s>
+                     </a:s>
+                     <a:s> </a:s>
+                     <a:s r="166">
+                        <a:s>Today()</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="169" locator="170:2-173:85" xsi:type="And">
+            <operand localId="163" locator="170:2-172:85" xsi:type="And">
+               <operand localId="157" locator="170:2-171:45" xsi:type="And">
+                  <operand localId="152" locator="170:2-170:79" xsi:type="Equal">
+                     <operand localId="150" locator="170:2-170:75" name="Number of DTP Doses Administered to Patient Excluding Birth Dose" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="151" locator="170:79" valueType="t:Integer" value="4" xsi:type="Literal"/>
+                  </operand>
+                  <operand localId="156" locator="171:2-171:45" xsi:type="GreaterOrEqual">
+                     <operand localId="154" locator="171:2-171:39" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="155" locator="171:44-171:45" valueType="t:Integer" value="15" xsi:type="Literal"/>
+                  </operand>
+               </operand>
+               <operand localId="162" locator="172:2-172:85" xsi:type="Before">
+                  <operand localId="159" locator="172:2-172:53" name="Date Last DTP Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="172:79-172:85" xsi:type="Subtract">
+                     <operand localId="160" locator="172:79-172:85" xsi:type="Today"/>
+                     <operand localId="161" locator="172:65-172:70" value="4" unit="week" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="168" locator="173:2-173:85" xsi:type="In">
+               <operand localId="165" locator="173:2-173:53" name="Date Last DTP Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand locator="173:55-173:70" lowClosed="false" highClosed="false" xsi:type="Interval">
+                  <low locator="173:79-173:85" xsi:type="Subtract">
+                     <operand localId="166" locator="173:79-173:85" xsi:type="Today"/>
+                     <operand localId="167" locator="173:65-173:70" value="8" unit="week" xsi:type="Quantity"/>
+                  </low>
+                  <high localId="166" locator="173:79-173:85" xsi:type="Today"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+   </statements>
+</library>

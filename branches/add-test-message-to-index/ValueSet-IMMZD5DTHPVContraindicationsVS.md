@@ -1,0 +1,113 @@
+# IMMZD5DTHPVContraindications ValueSet for Decision Table - WHO Immunization Implementation Guide v0.2.0
+
+* [**Table of Contents**](toc.md)
+* [**Indices**](indices.md)
+* [**Artifact Index**](artifacts.md)
+* **IMMZD5DTHPVContraindications ValueSet for Decision Table**
+
+## ValueSet: IMMZD5DTHPVContraindications ValueSet for Decision Table 
+
+| | |
+| :--- | :--- |
+| *Official URL*:http://smart.who.int/immunizations/ValueSet/IMMZD5DTHPVContraindicationsVS | *Version*:0.2.0 |
+| Active as of 2026-03-03 | *Computable Name*:IMMZD5DTHPVContraindicationsVS |
+
+ 
+ValueSet IMMZD5DTHPVContraindications for IMMZ.D5.DT.HPV contraindications. Business rule: Check for contraindications before administering the vaccine(s) due Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications Table: IMMZ.D5.DT.HPV contraindications 
+
+ **References** 
+
+This value set is not used here; it may be used elsewhere (e.g. specifications and/or implementations that use this content)
+
+### Logical Definition (CLD)
+
+ 
+
+### Expansion
+
+-------
+
+ Explanation of the columns that may appear on this page: 
+
+| | |
+| :--- | :--- |
+| Level | A few code lists that FHIR defines are hierarchical - each code is assigned a level. In this scheme, some codes are under other codes, and imply that the code they are under also applies |
+| System | The source of the definition of the code (when the value set draws in codes defined elsewhere) |
+| Code | The code (used as the code in the resource instance) |
+| Display | The display (used in the*display*element of a[Coding](http://hl7.org/fhir/R4/datatypes.html#Coding)). If there is no display, implementers should not simply display the code, but map the concept into their application |
+| Definition | An explanation of the meaning of the concept |
+| Comments | Additional notes about how to use the code |
+
+## API Information
+
+##### IMMZD5DTHPVContraindications ValueSet for Decision Table Schema API
+
+JSON Schema for IMMZD5DTHPVContraindications ValueSet for Decision Table ValueSet codes. Generated from FHIR expansions using IRI format.
+
+**Version:** 1.0.0
+
+## Endpoints
+
+### GET /ValueSet-IMMZD5DTHPVContraindicationsVS.schema.json
+
+#### JSON Schema definition for the enumeration ValueSet-IMMZD5DTHPVContraindicationsVS
+
+This endpoint serves the JSON Schema definition for the enumeration ValueSet-IMMZD5DTHPVContraindicationsVS.
+
+## Schema Definition
+
+### ValueSet-IMMZD5DTHPVContraindicationsVS
+
+**Description:** JSON Schema for IMMZD5DTHPVContraindications ValueSet for Decision Table ValueSet codes. Generated from FHIR expansions using IRI format.
+
+**Type:** string
+
+**This documentation is automatically generated from the OpenAPI specification.**
+
+
+
+## Resource Content
+
+```json
+{
+  "resourceType" : "ValueSet",
+  "id" : "IMMZD5DTHPVContraindicationsVS",
+  "url" : "http://smart.who.int/immunizations/ValueSet/IMMZD5DTHPVContraindicationsVS",
+  "version" : "0.2.0",
+  "name" : "IMMZD5DTHPVContraindicationsVS",
+  "title" : "IMMZD5DTHPVContraindications ValueSet for Decision Table",
+  "status" : "active",
+  "date" : "2026-03-03T13:07:11+00:00",
+  "publisher" : "WHO",
+  "contact" : [{
+    "name" : "WHO",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "http://who.int"
+    }]
+  }],
+  "description" : "ValueSet IMMZD5DTHPVContraindications for IMMZ.D5.DT.HPV contraindications.\nBusiness rule: Check for contraindications before administering the vaccine(s) due\nTrigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications\nTable: IMMZ.D5.DT.HPV contraindications",
+  "compose" : {
+    "include" : [{
+      "system" : "http://smart.who.int/immunizations/CodeSystem/IMMZDAK",
+      "concept" : [{
+        "code" : "The client is currently pregnant-52",
+        "display" : "The client is currently pregnant"
+      },
+      {
+        "code" : "Human papillomavirus (HPV) vaccination is contraindicated-56",
+        "display" : "Human papillomavirus (HPV) vaccination is contraindicated"
+      },
+      {
+        "code" : "The client has history of severe allergic reactions-59",
+        "display" : "The client has history of severe allergic reactions"
+      },
+      {
+        "code" : "HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note-66",
+        "display" : "HPV vaccination could be contraindicated. Clinical judgement is required. Create a clinical note"
+      }]
+    }]
+  }
+}
+
+```

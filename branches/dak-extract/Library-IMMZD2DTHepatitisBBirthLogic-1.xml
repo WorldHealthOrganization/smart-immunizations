@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="271">
+         <a:s>/*
+ * Library: IMMZD2DTHepatitisBBirthLogic (IMMZ.D2.DT.Hepatitis B.Birth dose)
+ * Rule: Determine if the client is due for a hepatitis B vaccination according to the national immunization schedule
+ * Decision Table: Birth dose administration
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any
+ */
+library IMMZD2DTHepatitisBBirthLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTHepatitisBBirthLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="13:1-13:60" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTHepatitisBEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTHepatitisBEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="209" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>parameter Today </a:s>
+               <a:s r="213">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="212">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="212" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="213" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="217" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="215" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="216" xsi:type="SingletonFrom">
+            <operand localId="214" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="223" locator="38:1-40:81" name="Client is due for hepatitis B monovalent vaccine" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for hepatitis B monovalent vaccine"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Type of hepatitis B dose&quot; = &quot;Hepatitis B monovalent vaccine&quot;)"/>
+            <a:s r="223">
+               <a:s>/*
+@output: Client is due for hepatitis B monovalent vaccine
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot; (where &quot;Type of hepatitis B dose&quot; = &quot;Hepatitis B monovalent vaccine&quot;)
+*/
+define &quot;Client is due for hepatitis B monovalent vaccine&quot;:
+  </a:s>
+               <a:s r="224">
+                  <a:s r="226">
+                     <a:s r="225">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="226">
+                        <a:s>&quot;Hepatitis B birth dose was not administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="228">
+                     <a:s r="227">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="228">
+                        <a:s>&quot;Client's age is less than {Member States defined upper limit}&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="224" locator="39:3-40:81" xsi:type="And">
+            <operand localId="226" locator="39:3-39:57" name="Hepatitis B birth dose was not administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="228" locator="40:9-40:81" name="Client's age is less than {Member States defined upper limit}" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="231" locator="46:1-47:107" name="Client is due for hepatitis B monovalent vaccine Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for hepatitis B monovalent vaccine Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with hepatitis B birth dose, as a monovalent dose. Check for contraindications."/>
+            <a:s r="231">
+               <a:s>/*
+@output: Client is due for hepatitis B monovalent vaccine Guidance
+@guidance: Should vaccinate client with hepatitis B birth dose, as a monovalent dose. Check for contraindications.
+*/
+define &quot;Client is due for hepatitis B monovalent vaccine Guidance&quot;:
+  </a:s>
+               <a:s r="232">
+                  <a:s>'Should vaccinate client with hepatitis B birth dose, as a monovalent dose. Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="232" locator="47:3-47:107" valueType="t:String" value="Should vaccinate client with hepatitis B birth dose, as a monovalent dose. Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="236" locator="53:1-55:81" name="Client should follow delayed-start decision logic" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client should follow delayed-start decision logic"/>
+            <a:t name="pseudocode"/>
+            <a:s r="236">
+               <a:s>/*
+@output: Client should follow delayed-start decision logic
+@pseudocode: 
+*/
+define &quot;Client should follow delayed-start decision logic&quot;:
+  </a:s>
+               <a:s r="237">
+                  <a:s r="239">
+                     <a:s r="238">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="239">
+                        <a:s>&quot;Hepatitis B birth dose was not administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="241">
+                     <a:s r="240">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="241">
+                        <a:s>&quot;Client's age is more than {Member States defined upper limit}&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="237" locator="54:3-55:81" xsi:type="And">
+            <operand localId="239" locator="54:3-54:57" name="Hepatitis B birth dose was not administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="241" locator="55:9-55:81" name="Client's age is more than {Member States defined upper limit}" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="244" locator="61:1-62:77" name="Client should follow delayed-start decision logic Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client should follow delayed-start decision logic Guidance"/>
+            <a:t name="guidance" value="The client has a delayed start. Please follow the delayed start schedule."/>
+            <a:s r="244">
+               <a:s>/*
+@output: Client should follow delayed-start decision logic Guidance
+@guidance: The client has a delayed start. Please follow the delayed start schedule.
+*/
+define &quot;Client should follow delayed-start decision logic Guidance&quot;:
+  </a:s>
+               <a:s r="245">
+                  <a:s>'The client has a delayed start. Please follow the delayed start schedule.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="245" locator="62:3-62:77" valueType="t:String" value="The client has a delayed start. Please follow the delayed start schedule." xsi:type="Literal"/>
+      </def>
+      <def localId="249" locator="68:1-69:53" name="Client is not due for the hepatitis B birth dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for the hepatitis B birth dose"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="249">
+               <a:s>/*
+@output: Client is not due for the hepatitis B birth dose
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for the hepatitis B birth dose&quot;:
+  </a:s>
+               <a:s r="251">
+                  <a:s r="250">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="251">
+                     <a:s>&quot;Hepatitis B birth dose was administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="251" locator="69:3-69:53" name="Hepatitis B birth dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="254" locator="75:1-76:93" name="Client is not due for the hepatitis B birth dose Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for the hepatitis B birth dose Guidance"/>
+            <a:t name="guidance" value="Hepatitis B birth dose was already administered. Check hepatitis B immunization schedule."/>
+            <a:s r="254">
+               <a:s>/*
+@output: Client is not due for the hepatitis B birth dose Guidance
+@guidance: Hepatitis B birth dose was already administered. Check hepatitis B immunization schedule.
+*/
+define &quot;Client is not due for the hepatitis B birth dose Guidance&quot;:
+  </a:s>
+               <a:s r="255">
+                  <a:s>'Hepatitis B birth dose was already administered. Check hepatitis B immunization schedule.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="255" locator="76:3-76:93" valueType="t:String" value="Hepatitis B birth dose was already administered. Check hepatitis B immunization schedule." xsi:type="Literal"/>
+      </def>
+      <def localId="219" locator="23:1-29:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="219">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="220">
+                  <a:s>case
+    </a:s>
+                  <a:s r="221">
+                     <a:s>when </a:s>
+                     <a:s r="229">
+                        <a:s>&quot;Client is due for hepatitis B monovalent vaccine&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="233">
+                        <a:s>&quot;Client is due for hepatitis B monovalent vaccine Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="234">
+                     <a:s>when </a:s>
+                     <a:s r="242">
+                        <a:s>&quot;Client should follow delayed-start decision logic&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="246">
+                        <a:s>&quot;Client should follow delayed-start decision logic Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="247">
+                     <a:s>when </a:s>
+                     <a:s r="252">
+                        <a:s>&quot;Client is not due for the hepatitis B birth dose&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="256">
+                        <a:s>&quot;Client is not due for the hepatitis B birth dose Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="257">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="220" locator="24:3-29:5" xsi:type="Case">
+            <caseItem localId="221" locator="25:5-25:124">
+               <when localId="229" locator="25:10-25:59" name="Client is due for hepatitis B monovalent vaccine" xsi:type="ExpressionRef"/>
+               <then localId="233" locator="25:66-25:124" name="Client is due for hepatitis B monovalent vaccine Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="234" locator="26:5-26:126">
+               <when localId="242" locator="26:10-26:60" name="Client should follow delayed-start decision logic" xsi:type="ExpressionRef"/>
+               <then localId="246" locator="26:67-26:126" name="Client should follow delayed-start decision logic Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="247" locator="27:5-27:124">
+               <when localId="252" locator="27:10-27:59" name="Client is not due for the hepatitis B birth dose" xsi:type="ExpressionRef"/>
+               <then localId="256" locator="27:66-27:124" name="Client is not due for the hepatitis B birth dose Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="257" locator="28:10-28:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="259" locator="31:1-32:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="259">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="260">
+                  <a:s r="263">
+                     <a:s r="261">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="269">
+                     <a:s r="265">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="266">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="260" locator="32:3-32:45" xsi:type="And">
+            <operand localId="263" locator="32:3-32:24" xsi:type="Not">
+               <operand localId="262" locator="32:3-32:24" xsi:type="IsNull">
+                  <operand localId="261" locator="32:3-32:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="269" locator="32:30-32:45" xsi:type="Not">
+               <operand localId="264" locator="32:30-32:45" xsi:type="Equal">
+                  <signature localId="267" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="268" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="265" locator="32:30-32:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="266" locator="32:44-32:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="271" locator="82:1-88:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="271">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="272">
+                  <a:s>case
+    </a:s>
+                  <a:s r="273">
+                     <a:s>when </a:s>
+                     <a:s r="274">
+                        <a:s r="276">
+                           <a:s r="275">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="276">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="277">
+                           <a:s>'08.Alt1d'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="282">
+                        <a:s r="283">
+                           <a:s>&quot;Client is due for hepatitis B monovalent vaccine&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="284">
+                           <a:s r="285">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="286">
+                              <a:s>'Should vaccinate client with hepatitis B birth dose, as a monovalent dose. Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="289">
+                     <a:s>when </a:s>
+                     <a:s r="290">
+                        <a:s r="292">
+                           <a:s r="291">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="292">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="293">
+                           <a:s>'09.Agt1d'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="298">
+                        <a:s r="299">
+                           <a:s>&quot;Client should follow delayed-start decision logic&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="300">
+                           <a:s r="301">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="302">
+                              <a:s>'The client has a delayed start. Please follow the delayed start schedule.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="305">
+                     <a:s>when </a:s>
+                     <a:s r="306">
+                        <a:s r="308">
+                           <a:s r="307">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="308">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="309">
+                           <a:s>'10.D1'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="314">
+                        <a:s r="315">
+                           <a:s>&quot;Client is not due for the hepatitis B birth dose&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="316">
+                           <a:s r="317">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="318">
+                              <a:s>'Hepatitis B birth dose was already administered. Check hepatitis B immunization schedule.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="321">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="272" locator="83:3-88:5" xsi:type="Case">
+            <caseItem localId="273" locator="84:5-84:211">
+               <when localId="274" locator="84:10-84:32" xsi:type="Equal">
+                  <signature localId="280" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="281" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="278" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="279" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="276" locator="84:10-84:19" path="id" xsi:type="Property">
+                        <source localId="275" locator="84:10-84:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="277" locator="84:23-84:32" valueType="t:String" value="08.Alt1d" xsi:type="Literal"/>
+               </when>
+               <then localId="322" xsi:type="As">
+                  <operand localId="282" locator="84:39-84:211" xsi:type="And">
+                     <operand localId="283" locator="84:39-84:88" name="Client is due for hepatitis B monovalent vaccine" xsi:type="ExpressionRef"/>
+                     <operand localId="284" locator="84:94-84:211" xsi:type="Equal">
+                        <signature localId="287" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="288" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="285" locator="84:94-84:103" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="286" locator="84:107-84:211" valueType="t:String" value="Should vaccinate client with hepatitis B birth dose, as a monovalent dose. Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="323" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="324" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="325" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="289" locator="85:5-85:182">
+               <when localId="290" locator="85:10-85:32" xsi:type="Equal">
+                  <signature localId="296" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="297" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="294" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="295" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="292" locator="85:10-85:19" path="id" xsi:type="Property">
+                        <source localId="291" locator="85:10-85:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="293" locator="85:23-85:32" valueType="t:String" value="09.Agt1d" xsi:type="Literal"/>
+               </when>
+               <then localId="326" xsi:type="As">
+                  <operand localId="298" locator="85:39-85:182" xsi:type="And">
+                     <operand localId="299" locator="85:39-85:89" name="Client should follow delayed-start decision logic" xsi:type="ExpressionRef"/>
+                     <operand localId="300" locator="85:95-85:182" xsi:type="Equal">
+                        <signature localId="303" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="304" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="301" locator="85:95-85:104" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="302" locator="85:108-85:182" valueType="t:String" value="The client has a delayed start. Please follow the delayed start schedule." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="327" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="328" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="329" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="305" locator="86:5-86:194">
+               <when localId="306" locator="86:10-86:29" xsi:type="Equal">
+                  <signature localId="312" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="313" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="310" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="311" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="308" locator="86:10-86:19" path="id" xsi:type="Property">
+                        <source localId="307" locator="86:10-86:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="309" locator="86:23-86:29" valueType="t:String" value="10.D1" xsi:type="Literal"/>
+               </when>
+               <then localId="330" xsi:type="As">
+                  <operand localId="314" locator="86:36-86:194" xsi:type="And">
+                     <operand localId="315" locator="86:36-86:85" name="Client is not due for the hepatitis B birth dose" xsi:type="ExpressionRef"/>
+                     <operand localId="316" locator="86:91-86:194" xsi:type="Equal">
+                        <signature localId="319" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="320" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="317" locator="86:91-86:100" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="318" locator="86:104-86:194" valueType="t:String" value="Hepatitis B birth dose was already administered. Check hepatitis B immunization schedule." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="331" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="332" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="333" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="334" xsi:type="As">
+               <operand localId="321" locator="87:10-87:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="335" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="336" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="337" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

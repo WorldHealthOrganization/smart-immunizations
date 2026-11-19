@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="263">
+         <a:s>/*
+ * Library: IMMZD5DTDTPCILogic (IMMZ.D5.DT.DTP contraindications)
+ * Rule: Check for contraindications before administering the vaccine(s) due	
+ * Decision Table: Potential contraindications
+ * Trigger: IMMZ.D5 Determine vaccine(s) to be administered based on contraindications
+ */
+library IMMZD5DTDTPCILogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD5DTDTPCILogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="13:1-13:53" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD5DTDTPEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD5DTDTPEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="209" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>parameter Today </a:s>
+               <a:s r="213">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="212">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="212" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="213" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="217" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="215" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="216" xsi:type="SingletonFrom">
+            <operand localId="214" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="219" locator="22:1-23:64" name="Draft Medication Request ID for Tetanus dose" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Draft Medication Request ID for Tetanus dose"/>
+            <a:s r="219">
+               <a:s>/*
+@dynamicValue: Draft Medication Request ID for Tetanus dose
+*/
+define &quot;Draft Medication Request ID for Tetanus dose&quot;:
+	</a:s>
+               <a:s r="225">
+                  <a:s r="224">
+                     <a:s>First(</a:s>
+                     <a:s r="221">
+                        <a:s r="220">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="221">
+                           <a:s>&quot;Draft Medication Request for Tetanus dose&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="225">
+                     <a:s>id</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="225" locator="23:2-23:64" path="id" xsi:type="Property">
+            <source localId="224" locator="23:2-23:61" xsi:type="First">
+               <source localId="221" locator="23:8-23:60" name="Draft Medication Request for Tetanus dose" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </source>
+         </expression>
+      </def>
+      <def localId="231" locator="42:1-43:64" name="Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;)"/>
+            <a:s r="231">
+               <a:s>/*
+@output: Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Further evaluation needed&quot; (where &quot;Vaccine type&quot; = &quot;Pertussis-containing vaccines&quot;)
+*/
+define &quot;Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;:
+  </a:s>
+               <a:s r="233">
+                  <a:s r="232">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="233">
+                     <a:s>&quot;The client has a history of anaphylactic reactions&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="233" locator="43:3-43:64" name="The client has a history of anaphylactic reactions" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="236" locator="49:1-50:169" name="Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance"/>
+            <a:t name="guidance" value="Do not vaccinate client with pertussis and/or tetanus if the client has had a severe anaphylactic reaction to a vaccine component or reaction following a prior dose."/>
+            <a:s r="236">
+               <a:s>/*
+@output: Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance
+@guidance: Do not vaccinate client with pertussis and/or tetanus if the client has had a severe anaphylactic reaction to a vaccine component or reaction following a prior dose.
+*/
+define &quot;Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance&quot;:
+  </a:s>
+               <a:s r="237">
+                  <a:s>'Do not vaccinate client with pertussis and/or tetanus if the client has had a severe anaphylactic reaction to a vaccine component or reaction following a prior dose.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="237" locator="50:3-50:169" valueType="t:String" value="Do not vaccinate client with pertussis and/or tetanus if the client has had a severe anaphylactic reaction to a vaccine component or reaction following a prior dose." xsi:type="Literal"/>
+      </def>
+      <def localId="241" locator="56:1-57:61" name="Tetanus vaccination is contraindicated" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Tetanus vaccination is contraindicated"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus -containing vaccines&quot;)"/>
+            <a:s r="241">
+               <a:s>/*
+@output: Tetanus vaccination is contraindicated
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Contraindicated&quot; (where &quot;Vaccine type&quot; = &quot;Tetanus -containing vaccines&quot;)
+*/
+define &quot;Tetanus vaccination is contraindicated&quot;:
+  </a:s>
+               <a:s r="243">
+                  <a:s r="242">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="243">
+                     <a:s>&quot;The client currently has a severe acute illness&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="243" locator="57:3-57:61" name="The client currently has a severe acute illness" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="246" locator="63:1-64:120" name="Tetanus vaccination is contraindicated Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Tetanus vaccination is contraindicated Guidance"/>
+            <a:t name="guidance" value="Do not vaccinate client with tetanus as tetanus vaccination is contraindicated for clients with severe acute illness"/>
+            <a:s r="246">
+               <a:s>/*
+@output: Tetanus vaccination is contraindicated Guidance
+@guidance: Do not vaccinate client with tetanus as tetanus vaccination is contraindicated for clients with severe acute illness
+*/
+define &quot;Tetanus vaccination is contraindicated Guidance&quot;:
+  </a:s>
+               <a:s r="247">
+                  <a:s>'Do not vaccinate client with tetanus as tetanus vaccination is contraindicated for clients with severe acute illness'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="247" locator="64:3-64:120" valueType="t:String" value="Do not vaccinate client with tetanus as tetanus vaccination is contraindicated for clients with severe acute illness" xsi:type="Literal"/>
+      </def>
+      <def localId="227" locator="28:1-33:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="227">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="228">
+                  <a:s>case
+    </a:s>
+                  <a:s r="229">
+                     <a:s>when </a:s>
+                     <a:s r="234">
+                        <a:s>&quot;Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="238">
+                        <a:s>&quot;Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="239">
+                     <a:s>when </a:s>
+                     <a:s r="244">
+                        <a:s>&quot;Tetanus vaccination is contraindicated&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="248">
+                        <a:s>&quot;Tetanus vaccination is contraindicated Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="249">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="228" locator="29:3-33:5" xsi:type="Case">
+            <caseItem localId="229" locator="30:5-30:256">
+               <when localId="234" locator="30:10-30:125" name="Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+               <then localId="238" locator="30:132-30:256" name="Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="239" locator="31:5-31:104">
+               <when localId="244" locator="31:10-31:49" name="Tetanus vaccination is contraindicated" xsi:type="ExpressionRef"/>
+               <then localId="248" locator="31:56-31:104" name="Tetanus vaccination is contraindicated Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="249" locator="32:10-32:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="251" locator="35:1-36:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="251">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="252">
+                  <a:s r="255">
+                     <a:s r="253">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="261">
+                     <a:s r="257">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="258">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="252" locator="36:3-36:45" xsi:type="And">
+            <operand localId="255" locator="36:3-36:24" xsi:type="Not">
+               <operand localId="254" locator="36:3-36:24" xsi:type="IsNull">
+                  <operand localId="253" locator="36:3-36:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="261" locator="36:30-36:45" xsi:type="Not">
+               <operand localId="256" locator="36:30-36:45" xsi:type="Equal">
+                  <signature localId="259" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="260" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="257" locator="36:30-36:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="258" locator="36:44-36:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="263" locator="70:1-75:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="263">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="264">
+                  <a:s>case
+    </a:s>
+                  <a:s r="265">
+                     <a:s>when </a:s>
+                     <a:s r="266">
+                        <a:s r="268">
+                           <a:s r="267">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="268">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="269">
+                           <a:s>'88.CI166'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="274">
+                        <a:s r="275">
+                           <a:s>&quot;Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="276">
+                           <a:s r="277">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="278">
+                              <a:s>'Do not vaccinate client with pertussis and/or tetanus if the client has had a severe anaphylactic reaction to a vaccine component or reaction following a prior dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="281">
+                     <a:s>when </a:s>
+                     <a:s r="282">
+                        <a:s r="284">
+                           <a:s r="283">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="284">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="285">
+                           <a:s>'89.CI188'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="290">
+                        <a:s r="291">
+                           <a:s>&quot;Tetanus vaccination is contraindicated&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="292">
+                           <a:s r="293">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="294">
+                              <a:s>'Do not vaccinate client with tetanus as tetanus vaccination is contraindicated for clients with severe acute illness'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="297">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="264" locator="71:3-75:5" xsi:type="Case">
+            <caseItem localId="265" locator="72:5-72:339">
+               <when localId="266" locator="72:10-72:32" xsi:type="Equal">
+                  <signature localId="272" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="273" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="270" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="271" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="268" locator="72:10-72:19" path="id" xsi:type="Property">
+                        <source localId="267" locator="72:10-72:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="269" locator="72:23-72:32" valueType="t:String" value="88.CI166" xsi:type="Literal"/>
+               </when>
+               <then localId="298" xsi:type="As">
+                  <operand localId="274" locator="72:39-72:339" xsi:type="And">
+                     <operand localId="275" locator="72:39-72:154" name="Tetanus and pertussis vaccination could be contraindicated. Clinical judgement is required. Create a clinical note" xsi:type="ExpressionRef"/>
+                     <operand localId="276" locator="72:160-72:339" xsi:type="Equal">
+                        <signature localId="279" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="280" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="277" locator="72:160-72:169" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="278" locator="72:173-72:339" valueType="t:String" value="Do not vaccinate client with pertussis and/or tetanus if the client has had a severe anaphylactic reaction to a vaccine component or reaction following a prior dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="299" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="300" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="301" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="281" locator="73:5-73:214">
+               <when localId="282" locator="73:10-73:32" xsi:type="Equal">
+                  <signature localId="288" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="289" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="286" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="287" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="284" locator="73:10-73:19" path="id" xsi:type="Property">
+                        <source localId="283" locator="73:10-73:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="285" locator="73:23-73:32" valueType="t:String" value="89.CI188" xsi:type="Literal"/>
+               </when>
+               <then localId="302" xsi:type="As">
+                  <operand localId="290" locator="73:39-73:214" xsi:type="And">
+                     <operand localId="291" locator="73:39-73:78" name="Tetanus vaccination is contraindicated" xsi:type="ExpressionRef"/>
+                     <operand localId="292" locator="73:84-73:214" xsi:type="Equal">
+                        <signature localId="295" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="296" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="293" locator="73:84-73:93" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="294" locator="73:97-73:214" valueType="t:String" value="Do not vaccinate client with tetanus as tetanus vaccination is contraindicated for clients with severe acute illness" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="303" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="304" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="305" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="306" xsi:type="As">
+               <operand localId="297" locator="74:10-74:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="307" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="308" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="309" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>

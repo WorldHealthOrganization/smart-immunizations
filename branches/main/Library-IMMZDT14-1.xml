@@ -1,0 +1,1090 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="162">
+         <a:s>/*
+ * Library: IMMZDT14 (IMMZ.DT.14.Typhoid)
+ * Rule: If child or person has not been vaccinated, give the Typhoid vaccine between age 6 months - 45 years old 
+ * Trigger: Patient has never received Typhoid vaccination and/or is in an outbreak area
+ */
+library IMMZDT14</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT14" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:34" localIdentifier="IMMZConf" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZConf</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="13:1-13:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="7" locator="14:1-14:28" localIdentifier="FC" path="http://fhir.org/guides/who/smart-immunization/FHIRCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="7">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRCommon</a:s>
+               </a:s>
+               <a:s> called FC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="16:1-16:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="26" locator="30:1-35:56" name="Should vaccinate patient with TCV vaccine on a 1 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="26">
+               <a:s>/*
+ * Rule: Should vaccinate patient with TCV vaccine on a 1 dose scheme
+ * Annotations:
+ * 	 - Provide Typhoid immunizations – using the &quot;TCV vaccine immunization – NO PREVIOUS&quot; schedule (1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Typhoid -  No doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((((&quot;Typhoid vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Months&quot; >= 6)) and (&quot;Current Patient Age in Years&quot; &lt;= 45)) and (&quot;Region recommends Typhoid vaccination&quot; = true)) and (&quot;Country is administering the TCV vaccine&quot; = true))
+ */
+define &quot;Should vaccinate patient with TCV vaccine on a 1 dose scheme&quot;:
+	</a:s>
+               <a:s r="25">
+                  <a:s r="22">
+                     <a:s r="19">
+                        <a:s r="14">
+                           <a:s r="9">
+                              <a:s r="8">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="9">
+                                 <a:s>&quot;No Typhoid Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+	and </a:s>
+                           <a:s r="13">
+                              <a:s r="11">
+                                 <a:s r="10">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="11">
+                                    <a:s>&quot;Current Patient Age In Months&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="12"> >= 6</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="18">
+                           <a:s r="16">
+                              <a:s r="15">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="16">
+                                 <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="17"> &lt;= 45</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+	and </a:s>
+                     <a:s r="21">
+                        <a:s r="20">
+                           <a:s>IMMZConf</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="21">
+                           <a:s>&quot;Region recommends Typhoid vaccination&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="24">
+                     <a:s r="23">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="24">
+                        <a:s>&quot;Country is administering the TCV vaccine&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="25" locator="31:2-35:56" xsi:type="And">
+            <operand localId="22" locator="31:2-34:53" xsi:type="And">
+               <operand localId="19" locator="31:2-33:49" xsi:type="And">
+                  <operand localId="14" locator="31:2-32:49" xsi:type="And">
+                     <operand localId="9" locator="31:2-31:51" name="No Typhoid Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="13" locator="32:6-32:49" xsi:type="GreaterOrEqual">
+                        <operand localId="11" locator="32:6-32:44" name="Current Patient Age In Months" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="12" locator="32:49" valueType="t:Integer" value="6" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <operand localId="18" locator="33:6-33:49" xsi:type="LessOrEqual">
+                     <operand localId="16" locator="33:6-33:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="17" locator="33:48-33:49" valueType="t:Integer" value="45" xsi:type="Literal"/>
+                  </operand>
+               </operand>
+               <operand localId="21" locator="34:6-34:53" name="Region recommends Typhoid vaccination" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="24" locator="35:6-35:56" name="Country is administering the TCV vaccine" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="40" locator="48:1-52:53" name="Should vaccinate patient with ViPS vaccine on a 1 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="40">
+               <a:s>/*
+ * Rule: Should vaccinate patient with ViPS vaccine on a 1 dose scheme
+ * Annotations:
+ * 	 - Provide Typhoid immunizations – using the &quot;ViPS vaccine immunization – NO PREVIOUS&quot; schedule (1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Typhoid - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Typhoid vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Years&quot; >= 2)) and (&quot;Region recommends Typhoid vaccination&quot; = true)) and (&quot;Country is administering the ViPS vaccine&quot; = true))
+ */
+define &quot;Should vaccinate patient with ViPS vaccine on a 1 dose scheme&quot;:
+	</a:s>
+               <a:s r="39">
+                  <a:s r="36">
+                     <a:s r="33">
+                        <a:s r="28">
+                           <a:s r="27">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="28">
+                              <a:s>&quot;No Typhoid Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="32">
+                           <a:s r="30">
+                              <a:s r="29">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="30">
+                                 <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="31"> >= 2</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+	and </a:s>
+                     <a:s r="35">
+                        <a:s r="34">
+                           <a:s>IMMZConf</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="35">
+                           <a:s>&quot;Region recommends Typhoid vaccination&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="38">
+                     <a:s r="37">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="38">
+                        <a:s>&quot;Country is administering ViPS vaccine&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="39" locator="49:2-52:53" xsi:type="And">
+            <operand localId="36" locator="49:2-51:53" xsi:type="And">
+               <operand localId="33" locator="49:2-50:48" xsi:type="And">
+                  <operand localId="28" locator="49:2-49:51" name="No Typhoid Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="32" locator="50:6-50:48" xsi:type="GreaterOrEqual">
+                     <operand localId="30" locator="50:6-50:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="31" locator="50:48" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                  </operand>
+               </operand>
+               <operand localId="35" locator="51:6-51:53" name="Region recommends Typhoid vaccination" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="38" locator="52:6-52:53" name="Country is administering ViPS vaccine" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="70" locator="57:1-64:2" name="Patient has completed Typhoid primary series" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="70">
+               <a:s>/* 
+ * @dataElement Patient has completed Typhoid primary series
+ */
+define &quot;Patient has completed Typhoid primary series&quot;:
+	</a:s>
+               <a:s r="69">
+                  <a:s>exists</a:s>
+                  <a:s r="68">
+                     <a:s>(</a:s>
+                     <a:s r="68">
+                        <a:s>
+                           <a:s r="42">
+                              <a:s r="41">
+                                 <a:s>
+                                    <a:s>IMMZCom.&quot;Typhoid Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> I</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> 
+		</a:s>
+                        <a:s r="67">
+                           <a:s>where 
+			</a:s>
+                           <a:s r="67">
+                              <a:s r="54">
+                                 <a:s>(</a:s>
+                                 <a:s r="54">
+                                    <a:s r="47">
+                                       <a:s r="44">
+                                          <a:s r="43">
+                                             <a:s>I</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="44">
+                                             <a:s>vaccineCode</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> in </a:s>
+                                       <a:s r="46">
+                                          <a:s r="45">
+                                             <a:s>IMMZc</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="46">
+                                             <a:s>&quot;ViPS Class Typhoid Vaccine&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>
+			and </a:s>
+                                    <a:s r="53">
+                                       <a:s r="51">
+                                          <a:s r="50">
+                                             <a:s>(</a:s>
+                                             <a:s r="50">
+                                                <a:s>singleton from </a:s>
+                                                <a:s r="49">
+                                                   <a:s r="48">
+                                                      <a:s>I</a:s>
+                                                   </a:s>
+                                                   <a:s>.</a:s>
+                                                   <a:s r="49">
+                                                      <a:s>protocolApplied</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                             </a:s>
+                                             <a:s>)</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="51">
+                                             <a:s>doseNumber</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s r="52"> >= 1</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>)</a:s>
+                              </a:s>
+                              <a:s>
+			or </a:s>
+                              <a:s r="66">
+                                 <a:s>(</a:s>
+                                 <a:s r="66">
+                                    <a:s r="59">
+                                       <a:s r="56">
+                                          <a:s r="55">
+                                             <a:s>I</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="56">
+                                             <a:s>vaccineCode</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> in </a:s>
+                                       <a:s r="58">
+                                          <a:s r="57">
+                                             <a:s>IMMZc</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="58">
+                                             <a:s>&quot;Ty21a Class Typhoid Vaccine&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> 
+			and </a:s>
+                                    <a:s r="65">
+                                       <a:s r="63">
+                                          <a:s r="62">
+                                             <a:s>(</a:s>
+                                             <a:s r="62">
+                                                <a:s>singleton from </a:s>
+                                                <a:s r="61">
+                                                   <a:s r="60">
+                                                      <a:s>I</a:s>
+                                                   </a:s>
+                                                   <a:s>.</a:s>
+                                                   <a:s r="61">
+                                                      <a:s>protocolApplied</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                             </a:s>
+                                             <a:s>)</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="63">
+                                             <a:s>doseNumber</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s r="64"> >= 3</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>)</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="69" locator="58:2-64:2" xsi:type="Exists">
+            <operand localId="68" locator="58:8-64:2" xsi:type="Query">
+               <source localId="42" locator="58:9-58:57" alias="I">
+                  <expression localId="41" locator="58:9-58:55" name="Typhoid Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </source>
+               <where localId="67" locator="59:3-63:58" xsi:type="Or">
+                  <operand localId="54" locator="60:4-61:58" xsi:type="And">
+                     <operand localId="47" locator="60:5-60:55" xsi:type="InValueSet">
+                        <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                           <operand localId="44" locator="60:5-60:17" path="vaccineCode" scope="I" xsi:type="Property"/>
+                        </code>
+                        <valueset localId="46" locator="60:22-60:55" name="ViPS Class Typhoid Vaccine" libraryName="IMMZc"/>
+                     </operand>
+                     <operand localId="53" locator="61:8-61:57" xsi:type="GreaterOrEqual">
+                        <operand xsi:type="ToInteger">
+                           <operand localId="51" locator="61:8-61:52" path="doseNumber" xsi:type="Property">
+                              <source localId="50" locator="61:8-61:41" xsi:type="SingletonFrom">
+                                 <operand localId="49" locator="61:24-61:40" path="protocolApplied" scope="I" xsi:type="Property"/>
+                              </source>
+                           </operand>
+                        </operand>
+                        <operand localId="52" locator="61:57" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <operand localId="66" locator="62:7-63:58" xsi:type="And">
+                     <operand localId="59" locator="62:8-62:59" xsi:type="InValueSet">
+                        <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                           <operand localId="56" locator="62:8-62:20" path="vaccineCode" scope="I" xsi:type="Property"/>
+                        </code>
+                        <valueset localId="58" locator="62:25-62:59" name="Ty21a Class Typhoid Vaccine" libraryName="IMMZc"/>
+                     </operand>
+                     <operand localId="65" locator="63:8-63:57" xsi:type="GreaterOrEqual">
+                        <operand xsi:type="ToInteger">
+                           <operand localId="63" locator="63:8-63:52" path="doseNumber" xsi:type="Property">
+                              <source localId="62" locator="63:8-63:41" xsi:type="SingletonFrom">
+                                 <operand localId="61" locator="63:24-63:40" path="protocolApplied" scope="I" xsi:type="Property"/>
+                              </source>
+                           </operand>
+                        </operand>
+                        <operand localId="64" locator="63:57" valueType="t:Integer" value="3" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+               </where>
+            </operand>
+         </expression>
+      </def>
+      <def localId="87" locator="77:1-81:53" name="Should Re-vaccinate patient with ViPS vaccine on a 1 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="87">
+               <a:s>/*
+ * Rule: Should Re-vaccinate patient with ViPS vaccine on a 1 dose scheme
+ * Annotations:
+ * 	 - Provide Typhoid revaccination – using the &quot;ViPS vaccine – Revaccination every 3 years&quot; schedule (1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Typhoid - Last dose given 3 years ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Patient has completed Typhoid primary series&quot; = true) and (&quot;Date last Typhoid dose given&quot; >= &quot;3 years&quot;)) and (&quot;Type of last Typhoid dose&quot; = &quot;ViPS&quot;)) and (&quot;Region recommends Typhoid vaccination&quot; = true))
+ */
+define &quot;Should Re-vaccinate patient with ViPS vaccine on a 1 dose scheme&quot;:
+	</a:s>
+               <a:s r="86">
+                  <a:s r="83">
+                     <a:s r="77">
+                        <a:s r="71">
+                           <a:s>&quot;Patient has completed Typhoid primary series&quot;</a:s>
+                        </a:s>
+                        <a:s> and 
+	</a:s>
+                        <a:s r="76">
+                           <a:s r="73">
+                              <a:s r="72">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="73">
+                                 <a:s>&quot;Date Last Typhoid Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="76">
+                              <a:s>more than </a:s>
+                              <a:s r="75">
+                                 <a:s>3 year</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="74">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+	and </a:s>
+                     <a:s r="82">
+                        <a:s r="79">
+                           <a:s r="78">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="79">
+                              <a:s>&quot;Type of Last Typhoid Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> in </a:s>
+                        <a:s r="81">
+                           <a:s r="80">
+                              <a:s>IMMZc</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="81">
+                              <a:s>&quot;ViPS Class Typhoid Vaccine&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="85">
+                     <a:s r="84">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="85">
+                        <a:s>&quot;Region recommends Typhoid vaccination&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="86" locator="78:2-81:53" xsi:type="And">
+            <operand localId="83" locator="78:2-80:102" xsi:type="And">
+               <operand localId="77" locator="78:2-79:89" xsi:type="And">
+                  <operand localId="71" locator="78:2-78:47" name="Patient has completed Typhoid primary series" xsi:type="ExpressionRef"/>
+                  <operand localId="76" locator="79:2-79:89" xsi:type="Before">
+                     <operand localId="73" locator="79:2-79:57" name="Date Last Typhoid Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="79:83-79:89" xsi:type="Subtract">
+                        <operand localId="74" locator="79:83-79:89" xsi:type="Today"/>
+                        <operand localId="75" locator="79:69-79:74" value="3" unit="year" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="82" locator="80:6-80:102" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="79" locator="80:6-80:64" name="Type of Last Typhoid Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="81" locator="80:69-80:102" name="ViPS Class Typhoid Vaccine" libraryName="IMMZc"/>
+               </operand>
+            </operand>
+            <operand localId="85" locator="81:6-81:53" name="Region recommends Typhoid vaccination" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="123" locator="106:1-122:2" name="Should vaccinate patient with Ty21a vaccine on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="123">
+               <a:s>/*
+ * Rule: Should vaccinate patient with Ty21a vaccine on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Typhoid immunizations – using the &quot;Ty21a vaccine immunization – NO PREVIOUS&quot; schedule (3 dose scheme)
+ * 	 - Provide Typhoid immunizations – using the &quot;Ty21a vaccine immunization – 1 PREVIOUS&quot; schedule (3 dose scheme)
+ * 	 - Provide Typhoid immunizations – using the &quot;Ty21a vaccine immunization – 2 PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Typhoid - No Doses
+ * 	 - Immunize Patient for Typhoid -  1 dose
+ * 	 - Immunize Patient for Typhoid -  2 doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((((&quot;Typhoid vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Years&quot; > 6)) and (&quot;Pregnancy Status&quot; = false)) or (((((&quot;Typhoid vaccine immunization history&quot; = &quot;1 dose&quot;) and (&quot;Date last Typhoid dose given&quot; > &quot;1 day&quot;)) and (&quot;Date last Typhoid dose given&quot; &lt; &quot;21 days&quot;)) and (&quot;Type of last Typhoid dose&quot; = &quot;Ty21a&quot;)) and (&quot;Pregnancy Status&quot; = false))) or (((((&quot;Typhoid vaccine immunization history&quot; = &quot;2 doses&quot; = true) and (&quot;Date last Typhoid dose given&quot; > &quot;1 day&quot;)) and (&quot;Date last Typhoid dose given&quot; &lt; &quot;21 days&quot;)) and (&quot;Type of last Typhoid dose&quot; = &quot;Ty21a&quot;)) and (&quot;Pregnancy Status&quot; = false)))
+ * Assumption:
+ * 	The EIR implementation will correctly set the doseNumber on protocolApplied in order for this logic to work for example:
+ *		D1 -> Ty21A DoseNumber = 1
+ *		D20 -> Ty21A DoseNumber = 2
+ * 		D50 -> Ty21A DoseNumber = 1
+ *		D53 -> Ty21A DoseNumber = 2
+ *		D55 -> Ty21A DoseNumber = 3
+ */
+define &quot;Should vaccinate patient with Ty21a vaccine on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="122">
+                  <a:s r="98">
+                     <a:s r="90">
+                        <a:s>not</a:s>
+                        <a:s r="89">
+                           <a:s>(</a:s>
+                           <a:s r="89">
+                              <a:s r="88">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="89">
+                                 <a:s>&quot;Pregnant&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and 
+	</a:s>
+                     <a:s r="97">
+                        <a:s>(
+		</a:s>
+                        <a:s r="97">
+                           <a:s r="92">
+                              <a:s r="91">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="92">
+                                 <a:s>&quot;No Typhoid Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> 
+		and </a:s>
+                           <a:s r="96">
+                              <a:s r="94">
+                                 <a:s r="93">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="94">
+                                    <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s r="95"> > 6</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> 
+	)</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	or
+	</a:s>
+                  <a:s r="121">
+                     <a:s>(
+		</a:s>
+                     <a:s r="121">
+                        <a:s r="103">
+                           <a:s r="100">
+                              <a:s r="99">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="100">
+                                 <a:s>&quot;Type of Last Typhoid Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> in </a:s>
+                           <a:s r="102">
+                              <a:s r="101">
+                                 <a:s>IMMZc</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="102">
+                                 <a:s>&quot;Ty21a Class Typhoid Vaccine&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>
+		and
+		</a:s>
+                        <a:s r="120">
+                           <a:s>(
+			</a:s>
+                           <a:s r="120">
+                              <a:s r="114">
+                                 <a:s r="108">
+                                    <a:s r="105">
+                                       <a:s r="104">
+                                          <a:s>IMMZCom</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="105">
+                                          <a:s>&quot;Highest Sequence of Typhoid Doses Administered to Patient&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s r="106"> between 1 and 2</a:s>
+                                 </a:s>
+                                 <a:s>
+			and </a:s>
+                                 <a:s r="113">
+                                    <a:s r="110">
+                                       <a:s r="109">
+                                          <a:s>IMMZCom</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="110">
+                                          <a:s>&quot;Date Last Typhoid Dose Administered to Patient&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> </a:s>
+                                    <a:s r="113">
+                                       <a:s>more than </a:s>
+                                       <a:s r="112">
+                                          <a:s>1 day</a:s>
+                                       </a:s>
+                                       <a:s> before</a:s>
+                                    </a:s>
+                                    <a:s> </a:s>
+                                    <a:s r="111">
+                                       <a:s>Today()</a:s>
+                                    </a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>
+			and </a:s>
+                              <a:s r="119">
+                                 <a:s r="116">
+                                    <a:s r="115">
+                                       <a:s>IMMZCom</a:s>
+                                    </a:s>
+                                    <a:s>.</a:s>
+                                    <a:s r="116">
+                                       <a:s>&quot;Date Last Typhoid Dose Administered to Patient&quot;</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s> </a:s>
+                                 <a:s r="119">
+                                    <a:s>less than </a:s>
+                                    <a:s r="118">
+                                       <a:s>21 day</a:s>
+                                    </a:s>
+                                    <a:s> before</a:s>
+                                 </a:s>
+                                 <a:s> </a:s>
+                                 <a:s r="117">
+                                    <a:s>Today()</a:s>
+                                 </a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="122" locator="107:2-122:2" xsi:type="Or">
+            <operand localId="98" locator="107:2-112:2" xsi:type="And">
+               <operand localId="90" locator="107:2-107:24" xsi:type="Not">
+                  <operand localId="89" locator="107:5-107:24" name="Pregnant" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="97" locator="109:2-112:2" xsi:type="And">
+                  <operand localId="92" locator="110:3-110:52" name="No Typhoid Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="96" locator="111:7-111:48" xsi:type="Greater">
+                     <operand localId="94" locator="111:7-111:44" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="95" locator="111:48" valueType="t:Integer" value="6" xsi:type="Literal"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="121" locator="114:2-122:2" xsi:type="And">
+               <operand localId="103" locator="115:3-115:100" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="100" locator="115:3-115:61" name="Type of Last Typhoid Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="102" locator="115:66-115:100" name="Ty21a Class Typhoid Vaccine" libraryName="IMMZc"/>
+               </operand>
+               <operand localId="120" locator="117:3-121:3" xsi:type="And">
+                  <operand localId="114" locator="118:4-119:94" xsi:type="And">
+                     <operand localId="108" locator="118:4-118:86" xsi:type="And">
+                        <operand xsi:type="GreaterOrEqual">
+                           <operand localId="105" locator="118:4-118:70" name="Highest Sequence of Typhoid Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           <operand localId="106" locator="118:80" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                        </operand>
+                        <operand xsi:type="LessOrEqual">
+                           <operand localId="105" locator="118:4-118:70" name="Highest Sequence of Typhoid Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           <operand localId="107" locator="118:86" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                        </operand>
+                     </operand>
+                     <operand localId="113" locator="119:8-119:94" xsi:type="Before">
+                        <operand localId="110" locator="119:8-119:63" name="Date Last Typhoid Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand locator="119:88-119:94" xsi:type="Subtract">
+                           <operand localId="111" locator="119:88-119:94" xsi:type="Today"/>
+                           <operand localId="112" locator="119:75-119:79" value="1" unit="day" xsi:type="Quantity"/>
+                        </operand>
+                     </operand>
+                  </operand>
+                  <operand localId="119" locator="120:8-120:95" xsi:type="In">
+                     <operand localId="116" locator="120:8-120:63" name="Date Last Typhoid Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="120:65-120:80" lowClosed="false" highClosed="false" xsi:type="Interval">
+                        <low locator="120:89-120:95" xsi:type="Subtract">
+                           <operand localId="117" locator="120:89-120:95" xsi:type="Today"/>
+                           <operand localId="118" locator="120:75-120:80" value="21" unit="day" xsi:type="Quantity"/>
+                        </low>
+                        <high localId="117" locator="120:89-120:95" xsi:type="Today"/>
+                     </operand>
+                  </operand>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="145" locator="142:1-146:28" name="Should vaccinate patient with Ty21a vaccine - dose 1 (restart due to interrupted series)" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="145">
+               <a:s>/*
+ * Rule: Should vaccinate patient with Ty21a vaccine - dose 1 (restart due to interrupted series)
+ * Annotations:
+ * 	 - Provide Typhoid immunizations – using the &quot;Ty21a vaccine immunization – INTERRUPTED SERIES&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Typhoid - Interrupted series
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((((&quot;Typhoid vaccine immunization history&quot; = &quot;1 dose&quot;) and (&quot;Date last Typhoid dose given&quot; >= &quot;21 days&quot;)) and (&quot;Type of last Typhoid dose&quot; = &quot;Ty21a&quot;)) and (&quot;Pregnancy Status&quot; = false)) or ((((&quot;Typhoid vaccine immunization history&quot; = &quot;2 doses&quot;) and (&quot;Date last Typhoid dose given&quot; >= &quot;21 days&quot;)) and (&quot;Type of last Typhoid dose&quot; = &quot;Ty21a&quot;)) and (&quot;Pregnancy Status&quot; = false)))
+ * Assumption:
+ * 	The EIR implementation will correctly set the doseNumber on protocolApplied in order for this logic to work for example:
+ *		D1 -> Ty21A DoseNumber = 1
+ *		D20 -> Ty21A DoseNumber = 2
+ * 		D50 -> Ty21A DoseNumber = 1
+ *		D53 -> Ty21A DoseNumber = 2
+ *		D55 -> Ty21A DoseNumber = 3
+ */
+define &quot;Should vaccinate patient with Ty21a vaccine - dose 1 (restart due to interrupted series)&quot;:
+	</a:s>
+               <a:s r="144">
+                  <a:s r="140">
+                     <a:s r="134">
+                        <a:s r="128">
+                           <a:s r="125">
+                              <a:s r="124">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="125">
+                                 <a:s>&quot;Highest Sequence of Typhoid Doses Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s r="126"> between 1 and 2</a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="133">
+                           <a:s r="130">
+                              <a:s r="129">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="130">
+                                 <a:s>&quot;Date Last Typhoid Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="133">
+                              <a:s>more than </a:s>
+                              <a:s r="132">
+                                 <a:s>21 days</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="131">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="139">
+                        <a:s r="136">
+                           <a:s r="135">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="136">
+                              <a:s>&quot;Type of Last Typhoid Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> in </a:s>
+                        <a:s r="138">
+                           <a:s r="137">
+                              <a:s>IMMZc</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="138">
+                              <a:s>&quot;Ty21a Class Typhoid Vaccine&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="143">
+                     <a:s>not</a:s>
+                     <a:s r="142">
+                        <a:s>(</a:s>
+                        <a:s r="142">
+                           <a:s r="141">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="142">
+                              <a:s>&quot;Pregnant&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="144" locator="143:2-146:28" xsi:type="And">
+            <operand localId="140" locator="143:2-145:103" xsi:type="And">
+               <operand localId="134" locator="143:2-144:94" xsi:type="And">
+                  <operand localId="128" locator="143:2-143:84" xsi:type="And">
+                     <operand xsi:type="GreaterOrEqual">
+                        <operand localId="125" locator="143:2-143:68" name="Highest Sequence of Typhoid Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="126" locator="143:78" valueType="t:Integer" value="1" xsi:type="Literal"/>
+                     </operand>
+                     <operand xsi:type="LessOrEqual">
+                        <operand localId="125" locator="143:2-143:68" name="Highest Sequence of Typhoid Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        <operand localId="127" locator="143:84" valueType="t:Integer" value="2" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <operand localId="133" locator="144:6-144:94" xsi:type="Before">
+                     <operand localId="130" locator="144:6-144:61" name="Date Last Typhoid Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="144:88-144:94" xsi:type="Subtract">
+                        <operand localId="131" locator="144:88-144:94" xsi:type="Today"/>
+                        <operand localId="132" locator="144:73-144:79" value="21" unit="days" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="139" locator="145:6-145:103" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="136" locator="145:6-145:64" name="Type of Last Typhoid Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="138" locator="145:69-145:103" name="Ty21a Class Typhoid Vaccine" libraryName="IMMZc"/>
+               </operand>
+            </operand>
+            <operand localId="143" locator="146:6-146:28" xsi:type="Not">
+               <operand localId="142" locator="146:9-146:28" name="Pregnant" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="162" locator="159:1-163:53" name="Should Re-vaccinate patient with Ty21a vaccine on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="162">
+               <a:s>/*
+ * Rule: Should Re-vaccinate patient with Ty21a vaccine on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Typhoid revaccination – using the &quot;Ty21a vaccine – Revaccination every 3-7 years&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Typhoid - Last dose given 3 years ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Patient has completed Typhoid primary series&quot; = true) and (&quot;Date last Typhoid dose given&quot; >= &quot;3 years&quot;)) and (&quot;Type of last Typhoid dose&quot; = &quot;Ty21a&quot;)) and (&quot;Region recommends Typhoid vaccination&quot; = true))
+ */
+define &quot;Should Re-vaccinate patient with Ty21a vaccine on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="161">
+                  <a:s r="158">
+                     <a:s r="152">
+                        <a:s r="146">
+                           <a:s>&quot;Patient has completed Typhoid primary series&quot;</a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="151">
+                           <a:s r="148">
+                              <a:s r="147">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="148">
+                                 <a:s>&quot;Date Last Typhoid Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="151">
+                              <a:s>more than </a:s>
+                              <a:s r="150">
+                                 <a:s>3 year</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="149">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="157">
+                        <a:s r="154">
+                           <a:s r="153">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="154">
+                              <a:s>&quot;Type of Last Typhoid Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> in </a:s>
+                        <a:s r="156">
+                           <a:s r="155">
+                              <a:s>IMMZc</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="156">
+                              <a:s>&quot;Ty21a Class Typhoid Vaccine&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="160">
+                     <a:s r="159">
+                        <a:s>IMMZConf</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="160">
+                        <a:s>&quot;Region recommends Typhoid vaccination&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="161" locator="160:2-163:53" xsi:type="And">
+            <operand localId="158" locator="160:2-162:103" xsi:type="And">
+               <operand localId="152" locator="160:2-161:93" xsi:type="And">
+                  <operand localId="146" locator="160:2-160:47" name="Patient has completed Typhoid primary series" xsi:type="ExpressionRef"/>
+                  <operand localId="151" locator="161:6-161:93" xsi:type="Before">
+                     <operand localId="148" locator="161:6-161:61" name="Date Last Typhoid Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="161:87-161:93" xsi:type="Subtract">
+                        <operand localId="149" locator="161:87-161:93" xsi:type="Today"/>
+                        <operand localId="150" locator="161:73-161:78" value="3" unit="year" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="157" locator="162:6-162:103" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="154" locator="162:6-162:64" name="Type of Last Typhoid Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="156" locator="162:69-162:103" name="Ty21a Class Typhoid Vaccine" libraryName="IMMZc"/>
+               </operand>
+            </operand>
+            <operand localId="160" locator="163:6-163:53" name="Region recommends Typhoid vaccination" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+   </statements>
+</library>

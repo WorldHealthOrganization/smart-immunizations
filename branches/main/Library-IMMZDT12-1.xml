@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="32">
+         <a:s>/*
+ * Library: IMMZDT12 (IMMZ.DT.12.YellowFever)
+ * Rule: If child or person has not been vaccinated, give Yellow Fever vaccine between age 9-12 months 
+ * Trigger: Patient has never received Yellow Fever vaccination and/or resides/is from an endemic region
+ */
+library IMMZDT12</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT12" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:33" localIdentifier="IMMZCon" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="13:1-13:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="9" locator="15:1-15:95" name="Patient is travelling to and from a Yellow Fever endemic area" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="9">
+               <a:s>parameter &quot;Patient is travelling to and from a Yellow Fever endemic area&quot; </a:s>
+               <a:s r="8">
+                  <a:s>Boolean</a:s>
+               </a:s>
+               <a:s r="7"> default false</a:s>
+            </a:s>
+         </annotation>
+         <default localId="7" locator="15:91-15:95" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+         <parameterTypeSpecifier localId="8" locator="15:75-15:81" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <statements>
+      <def locator="17:1-17:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="12" locator="22:1-23:53" name="Yellow Fever vaccine immunization history" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="12">
+               <a:s>/* 
+ * @dataElement Yellow Fever vaccine immunization history
+ */
+define &quot;Yellow Fever vaccine immunization history&quot;:
+	</a:s>
+               <a:s r="11">
+                  <a:s r="10">
+                     <a:s>IMMZCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="11">
+                     <a:s>&quot;Yellow Fever Doses Administered to Patient&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="11" locator="23:2-23:53" name="Yellow Fever Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="16" locator="29:1-30:56" name="No-doses of Yellow Fever vaccine administered to patient" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="16">
+               <a:s>/* 
+ * @dataElement No-doses
+ */
+define &quot;No-doses of Yellow Fever vaccine administered to patient&quot;:
+	</a:s>
+               <a:s r="15">
+                  <a:s>not </a:s>
+                  <a:s r="14">
+                     <a:s>exists</a:s>
+                     <a:s r="13">
+                        <a:s>(</a:s>
+                        <a:s r="13">
+                           <a:s>&quot;Yellow Fever vaccine immunization history&quot;</a:s>
+                        </a:s>
+                        <a:s>)</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="15" locator="30:2-30:56" xsi:type="Not">
+            <operand localId="14" locator="30:6-30:56" xsi:type="Exists">
+               <operand localId="13" locator="30:12-30:56" name="Yellow Fever vaccine immunization history" xsi:type="ExpressionRef"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="19" locator="35:1-36:40" name="Age" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="19">
+               <a:s>/* 
+ * @dataElement Age
+ */
+define &quot;Age&quot;:
+	</a:s>
+               <a:s r="18">
+                  <a:s r="17">
+                     <a:s>IMMZCom</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="18">
+                     <a:s>&quot;Current Patient Age In Months&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="18" locator="36:2-36:40" name="Current Patient Age In Months" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="21" locator="41:1-42:9" name="9 months" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="21">
+               <a:s>/* 
+ * @dataElement 9 months
+ */
+define &quot;9 months&quot;:
+	</a:s>
+               <a:s r="20">
+                  <a:s>9 months</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="20" locator="42:2-42:9" value="9" unit="months" xsi:type="Quantity"/>
+      </def>
+      <def localId="32" locator="55:1-57:112" name="Should vaccinate patient for Yellow Fever because no doses on 1 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="32">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Yellow Fever because no doses on 1 dose scheme
+ * Annotations:
+ * 	 - Provide Yellow Fever immunizations – using the &quot;Yellow Fever vaccine immunization – NO PREVIOUS&quot; schedule (1 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Yellow Fever - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((&quot;Yellow Fever vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;Age&quot; >= &quot;9 months&quot;))
+ */
+define &quot;Should vaccinate patient for Yellow Fever because no doses on 1 dose scheme&quot;:
+	</a:s>
+               <a:s r="31">
+                  <a:s r="26">
+                     <a:s>(</a:s>
+                     <a:s r="26">
+                        <a:s r="22">
+                           <a:s>(</a:s>
+                           <a:s r="22">
+                              <a:s>&quot;No-doses of Yellow Fever vaccine administered to patient&quot;</a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="25">
+                           <a:s>(</a:s>
+                           <a:s r="25">
+                              <a:s r="23">
+                                 <a:s>&quot;Age&quot;</a:s>
+                              </a:s>
+                              <a:s> >= </a:s>
+                              <a:s r="24">
+                                 <a:s>&quot;9 months&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s> and 
+	</a:s>
+                  <a:s r="30">
+                     <a:s>(</a:s>
+                     <a:s r="30">
+                        <a:s r="28">
+                           <a:s r="27">
+                              <a:s>IMMZCon</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="28">
+                              <a:s>&quot;Country has Yellow Fever Endemic&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> or </a:s>
+                        <a:s r="29">
+                           <a:s>&quot;Patient is travelling to and from a Yellow Fever endemic area&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="31" locator="56:2-57:112" xsi:type="And">
+            <operand localId="26" locator="56:2-56:89" xsi:type="And">
+               <operand localId="22" locator="56:3-56:62" name="No-doses of Yellow Fever vaccine administered to patient" xsi:type="ExpressionRef"/>
+               <operand localId="25" locator="56:68-56:88" xsi:type="GreaterOrEqual">
+                  <operand xsi:type="ToQuantity">
+                     <operand localId="23" locator="56:69-56:73" name="Age" xsi:type="ExpressionRef"/>
+                  </operand>
+                  <operand localId="24" locator="56:78-56:87" name="9 months" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="30" locator="57:2-57:112" xsi:type="Or">
+               <operand localId="28" locator="57:3-57:44" name="Country has Yellow Fever Endemic" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+               <operand localId="29" locator="57:49-57:111" name="Patient is travelling to and from a Yellow Fever endemic area" xsi:type="ParameterRef"/>
+            </operand>
+         </expression>
+      </def>
+   </statements>
+</library>

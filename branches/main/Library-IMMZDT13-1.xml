@@ -1,0 +1,1736 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="269">
+         <a:s>/*
+ * Library: IMMZDT13 (IMMZ.DT.13.TBE)
+ * Rule: If child or person has not been vaccinated, give Tick-Borne Encephalitis vaccine according to the defined schedule 
+ * Trigger: Patient has not been vaccinated for Tick-Borne Encephalitis
+ */
+library IMMZDT13</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT13" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:33" localIdentifier="IMMZCon" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZCon</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="13:1-13:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="7" locator="14:1-14:28" localIdentifier="FC" path="http://fhir.org/guides/who/smart-immunization/FHIRCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="7">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRCommon</a:s>
+               </a:s>
+               <a:s> called FC</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="16:1-16:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="16:1-16:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="18" locator="29:1-32:51" name="Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because no doses on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="18">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because no doses on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;FSME-Immun vaccine immunization – NO PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Tick-Borne Encephalitis immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Years&quot; >= 1)) and (&quot;Country recognizes TBE as a priority&quot; = true))
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because no doses on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="17">
+                  <a:s r="14">
+                     <a:s r="9">
+                        <a:s r="8">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="9">
+                           <a:s>&quot;No TBE Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="13">
+                        <a:s r="11">
+                           <a:s r="10">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="11">
+                              <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="12"> >= 1</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s> 
+	and </a:s>
+                  <a:s r="16">
+                     <a:s r="15">
+                        <a:s>IMMZCon</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="16">
+                        <a:s>&quot;Country recognizes TBE as a priority&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="17" locator="30:2-32:51" xsi:type="And">
+            <operand localId="14" locator="30:2-31:48" xsi:type="And">
+               <operand localId="9" locator="30:2-30:47" name="No TBE Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="13" locator="31:6-31:48" xsi:type="GreaterOrEqual">
+                  <operand localId="11" locator="31:6-31:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="12" locator="31:48" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="16" locator="32:6-32:51" name="Country recognizes TBE as a priority" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="35" locator="47:1-50:100" name="Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because 1st dose given 1-3 months ago on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="35">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because 1st dose given 1-3 months ago on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;FSME-Immun vaccine immunization – 1 PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 1st Dose given 1-3 months ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Tick-Borne Encephalitis immunization history&quot; = &quot;1 dose&quot;) and (&quot;Date last TBE dose given&quot; >= &quot;1 month&quot;)) and (&quot;Type of last TBE dose&quot; = &quot;FSME-Immun&quot;))
+ * Assumption:
+ * 	vaccineCode will contain a specific classification of the antigen given (or a future version of FHIR will have a product link)
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because 1st dose given 1-3 months ago on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="34">
+                  <a:s r="28">
+                     <a:s r="22">
+                        <a:s r="20">
+                           <a:s r="19">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="20">
+                              <a:s>&quot;Number of TBE Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="21"> = 1</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="27">
+                        <a:s r="24">
+                           <a:s r="23">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="24">
+                              <a:s>&quot;Date Last TBE Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="27">
+                           <a:s>more than </a:s>
+                           <a:s r="26">
+                              <a:s>1 month</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="25">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="33">
+                     <a:s r="30">
+                        <a:s r="29">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="30">
+                           <a:s>&quot;Type of Last TBE Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> in </a:s>
+                     <a:s r="32">
+                        <a:s r="31">
+                           <a:s>IMMZc</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="32">
+                           <a:s>&quot;FSME-Immun Class TBE Vaccine&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="34" locator="48:2-50:100" xsi:type="And">
+            <operand localId="28" locator="48:2-49:90" xsi:type="And">
+               <operand localId="22" locator="48:2-48:58" xsi:type="Equal">
+                  <operand localId="20" locator="48:2-48:54" name="Number of TBE Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="21" locator="48:58" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               </operand>
+               <operand localId="27" locator="49:6-49:90" xsi:type="Before">
+                  <operand localId="24" locator="49:6-49:57" name="Date Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="49:84-49:90" xsi:type="Subtract">
+                     <operand localId="25" locator="49:84-49:90" xsi:type="Today"/>
+                     <operand localId="26" locator="49:69-49:75" value="1" unit="month" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="33" locator="50:6-50:100" xsi:type="InValueSet">
+               <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="30" locator="50:6-50:60" name="Type of Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </code>
+               <valueset localId="32" locator="50:65-50:100" name="FSME-Immun Class TBE Vaccine" libraryName="IMMZc"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="52" locator="65:1-68:100" name="Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because 2nd doses given 5 months to 12 months ago on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="52">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because 2nd doses given 5 months to 12 months ago on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;FSME-Immun vaccine immunization – 2 PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 2nd Dose given between 5 months to 12 months ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Tick-Borne Encephalitis immunization history&quot; = &quot;2 doses&quot;) and (&quot;Date last TBE dose given&quot; >= &quot;5 months&quot;)) and (&quot;Type of last TBE dose&quot; = &quot;FSME-Immun&quot;))
+ * Assumption:
+ * 	vaccineCode will contain a specific classification of the antigen given (or a future version of FHIR will have a product link)
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis using FSME-Immun because 2nd doses given 5 months to 12 months ago on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="51">
+                  <a:s r="45">
+                     <a:s r="39">
+                        <a:s r="37">
+                           <a:s r="36">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="37">
+                              <a:s>&quot;Number of TBE Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="38"> = 2</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="44">
+                        <a:s r="41">
+                           <a:s r="40">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="41">
+                              <a:s>&quot;Date Last TBE Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="44">
+                           <a:s>more than </a:s>
+                           <a:s r="43">
+                              <a:s>5 month</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="42">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="50">
+                     <a:s r="47">
+                        <a:s r="46">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="47">
+                           <a:s>&quot;Type of Last TBE Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> in </a:s>
+                     <a:s r="49">
+                        <a:s r="48">
+                           <a:s>IMMZc</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="49">
+                           <a:s>&quot;FSME-Immun Class TBE Vaccine&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="51" locator="66:2-68:100" xsi:type="And">
+            <operand localId="45" locator="66:2-67:90" xsi:type="And">
+               <operand localId="39" locator="66:2-66:58" xsi:type="Equal">
+                  <operand localId="37" locator="66:2-66:54" name="Number of TBE Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="38" locator="66:58" valueType="t:Integer" value="2" xsi:type="Literal"/>
+               </operand>
+               <operand localId="44" locator="67:6-67:90" xsi:type="Before">
+                  <operand localId="41" locator="67:6-67:57" name="Date Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="67:84-67:90" xsi:type="Subtract">
+                     <operand localId="42" locator="67:84-67:90" xsi:type="Today"/>
+                     <operand localId="43" locator="67:69-67:75" value="5" unit="month" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="50" locator="68:6-68:100" xsi:type="InValueSet">
+               <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="47" locator="68:6-68:60" name="Type of Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </code>
+               <valueset localId="49" locator="68:65-68:100" name="FSME-Immun Class TBE Vaccine" libraryName="IMMZc"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="66" locator="74:1-75:129" name="Patient has completed TBE primary series" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="66">
+               <a:s>/* 
+ * @dataElement Patient has completed TBE primary series
+ * @summary This define checks that the maxmimum sequence for TBE is 3 since all doses are 3 doses
+ */
+define &quot;Patient has completed TBE primary series&quot;:
+	</a:s>
+               <a:s r="65">
+                  <a:s r="63">
+                     <a:s>Max(</a:s>
+                     <a:s r="62">
+                        <a:s>
+                           <a:s r="54">
+                              <a:s r="53">
+                                 <a:s>
+                                    <a:s>IMMZCom.&quot;TBE Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> I</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="61">
+                           <a:s>return </a:s>
+                           <a:s r="60">
+                              <a:s r="58">
+                                 <a:s r="57">
+                                    <a:s>(</a:s>
+                                    <a:s r="57">
+                                       <a:s>singleton from </a:s>
+                                       <a:s r="56">
+                                          <a:s r="55">
+                                             <a:s>I</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="56">
+                                             <a:s>protocolApplied</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="58">
+                                    <a:s>doseNumber</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s> as </a:s>
+                              <a:s r="59">
+                                 <a:s>FHIR.positiveInt</a:s>
+                              </a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>)</a:s>
+                  </a:s>
+                  <a:s r="64"> >= 3</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="65" locator="75:2-75:129" xsi:type="GreaterOrEqual">
+            <operand localId="63" locator="75:2-75:124" xsi:type="Max">
+               <source xsi:type="Query">
+                  <source alias="X">
+                     <expression localId="62" locator="75:6-75:123" xsi:type="Query">
+                        <source localId="54" locator="75:6-75:50" alias="I">
+                           <expression localId="53" locator="75:6-75:48" name="TBE Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                        </source>
+                        <return localId="61" locator="75:52-75:123">
+                           <expression localId="60" locator="75:59-75:123" strict="false" xsi:type="As">
+                              <operand localId="58" locator="75:59-75:103" path="doseNumber" xsi:type="Property">
+                                 <source localId="57" locator="75:59-75:92" xsi:type="SingletonFrom">
+                                    <operand localId="56" locator="75:75-75:91" path="protocolApplied" scope="I" xsi:type="Property"/>
+                                 </source>
+                              </operand>
+                              <asTypeSpecifier localId="59" locator="75:108-75:123" name="fhir:positiveInt" xsi:type="NamedTypeSpecifier"/>
+                           </expression>
+                        </return>
+                     </expression>
+                  </source>
+                  <return distinct="false">
+                     <expression name="ToInteger" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                        <operand name="X" xsi:type="AliasRef"/>
+                     </expression>
+                  </return>
+               </source>
+            </operand>
+            <operand localId="64" locator="75:129" valueType="t:Integer" value="3" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="83" locator="90:1-94:51" name="Should vaccinate patient for Tick-Borne Encephalitis Booster using FSME-Immun because last dose given 3 years ago" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="83">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis Booster using FSME-Immun because last dose given 3 years ago
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;FSME-Immun vaccine immunization – BOOSTER&quot; schedule (1 every 3-5 years)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - Last dose given 3 years ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Patient has completed TBE primary series&quot; = true) and (&quot;Date last TBE dose given&quot; >= &quot;3 years&quot;)) and (&quot;Type of last TBE dose&quot; = &quot;FSME-Immun&quot;)) and (&quot;Country recognizes TBE as a priority&quot; = true))
+ * Assumption:
+ * 	vaccineCode will contain a specific classification of the antigen given (or a future version of FHIR will have a product link)
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis Booster using FSME-Immun because last dose given 3 years ago&quot;:
+	</a:s>
+               <a:s r="82">
+                  <a:s r="79">
+                     <a:s r="73">
+                        <a:s r="67">
+                           <a:s>&quot;Patient has completed TBE primary series&quot;</a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="72">
+                           <a:s r="69">
+                              <a:s r="68">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="69">
+                                 <a:s>&quot;Date Last TBE Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="72">
+                              <a:s>more than </a:s>
+                              <a:s r="71">
+                                 <a:s>3 year</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="70">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="78">
+                        <a:s r="75">
+                           <a:s r="74">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="75">
+                              <a:s>&quot;Type of Last TBE Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> in </a:s>
+                        <a:s r="77">
+                           <a:s r="76">
+                              <a:s>IMMZc</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="77">
+                              <a:s>&quot;FSME-Immun Class TBE Vaccine&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="81">
+                     <a:s r="80">
+                        <a:s>IMMZCon</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="81">
+                        <a:s>&quot;Country recognizes TBE as a priority&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="82" locator="91:2-94:51" xsi:type="And">
+            <operand localId="79" locator="91:2-93:100" xsi:type="And">
+               <operand localId="73" locator="91:2-92:89" xsi:type="And">
+                  <operand localId="67" locator="91:2-91:43" name="Patient has completed TBE primary series" xsi:type="ExpressionRef"/>
+                  <operand localId="72" locator="92:6-92:89" xsi:type="Before">
+                     <operand localId="69" locator="92:6-92:57" name="Date Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="92:83-92:89" xsi:type="Subtract">
+                        <operand localId="70" locator="92:83-92:89" xsi:type="Today"/>
+                        <operand localId="71" locator="92:69-92:74" value="3" unit="year" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="78" locator="93:6-93:100" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="75" locator="93:6-93:60" name="Type of Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="77" locator="93:65-93:100" name="FSME-Immun Class TBE Vaccine" libraryName="IMMZc"/>
+               </operand>
+            </operand>
+            <operand localId="81" locator="94:6-94:51" name="Country recognizes TBE as a priority" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="94" locator="107:1-110:51" name="Should vaccinate patient for Tick-Borne Encephalitis using Encepur because no doses on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="94">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using Encepur because no doses on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;Encepur vaccine immunization – NO PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Tick-Borne Encephalitis immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Years&quot; >= 1)) and (&quot;Country recognizes TBE as a priority&quot; = true))
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis using Encepur because no doses on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="93">
+                  <a:s r="90">
+                     <a:s r="85">
+                        <a:s r="84">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="85">
+                           <a:s>&quot;No TBE Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="89">
+                        <a:s r="87">
+                           <a:s r="86">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="87">
+                              <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="88"> >= 1</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="92">
+                     <a:s r="91">
+                        <a:s>IMMZCon</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="92">
+                        <a:s>&quot;Country recognizes TBE as a priority&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="93" locator="108:2-110:51" xsi:type="And">
+            <operand localId="90" locator="108:2-109:48" xsi:type="And">
+               <operand localId="85" locator="108:2-108:47" name="No TBE Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="89" locator="109:6-109:48" xsi:type="GreaterOrEqual">
+                  <operand localId="87" locator="109:6-109:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="88" locator="109:48" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="92" locator="110:6-110:51" name="Country recognizes TBE as a priority" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="111" locator="123:1-126:97" name="Should vaccinate patient for Tick-Borne Encephalitis using Encepur because 1st dose given 1-3 months ago on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="111">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using Encepur because 1st dose given 1-3 months ago on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;Encepur vaccine immunization – 1 PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 1st Dose given 1-3 months ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Tick-Borne Encephalitis immunization history&quot; = &quot;1 dose&quot;) and (&quot;Date last TBE dose given&quot; >= &quot;1 month&quot;)) and (&quot;Type of last TBE dose&quot; = &quot;Encepur&quot;))
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis using Encepur because 1st dose given 1-3 months ago on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="110">
+                  <a:s r="104">
+                     <a:s r="98">
+                        <a:s r="96">
+                           <a:s r="95">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="96">
+                              <a:s>&quot;Number of TBE Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="97"> = 1</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="103">
+                        <a:s r="100">
+                           <a:s r="99">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="100">
+                              <a:s>&quot;Date Last TBE Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="103">
+                           <a:s>more than </a:s>
+                           <a:s r="102">
+                              <a:s>1 month</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="101">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="109">
+                     <a:s r="106">
+                        <a:s r="105">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="106">
+                           <a:s>&quot;Type of Last TBE Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> in </a:s>
+                     <a:s r="108">
+                        <a:s r="107">
+                           <a:s>IMMZc</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="108">
+                           <a:s>&quot;Encepur Class TBE Vaccine&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="110" locator="124:2-126:97" xsi:type="And">
+            <operand localId="104" locator="124:2-125:90" xsi:type="And">
+               <operand localId="98" locator="124:2-124:58" xsi:type="Equal">
+                  <operand localId="96" locator="124:2-124:54" name="Number of TBE Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="97" locator="124:58" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               </operand>
+               <operand localId="103" locator="125:6-125:90" xsi:type="Before">
+                  <operand localId="100" locator="125:6-125:57" name="Date Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="125:84-125:90" xsi:type="Subtract">
+                     <operand localId="101" locator="125:84-125:90" xsi:type="Today"/>
+                     <operand localId="102" locator="125:69-125:75" value="1" unit="month" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="109" locator="126:6-126:97" xsi:type="InValueSet">
+               <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="106" locator="126:6-126:60" name="Type of Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </code>
+               <valueset localId="108" locator="126:65-126:97" name="Encepur Class TBE Vaccine" libraryName="IMMZc"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="128" locator="139:1-142:97" name="Should vaccinate patient for Tick-Borne Encephalitis using Encepur because 2nd doses given 5 months to 12 months ago on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="128">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using Encepur because 2nd doses given 5 months to 12 months ago on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;Encepur vaccine immunization – 2 PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 2nd Dose given between 5 months to 12 months ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Tick-Borne Encephalitis immunization history&quot; = &quot;2 doses&quot;) and (&quot;Date last TBE dose given&quot; >= &quot;5 months&quot;)) and (&quot;Type of last TBE dose&quot; = &quot;Encepur&quot;))
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis using Encepur because 2nd doses given 5 months to 12 months ago on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="127">
+                  <a:s r="121">
+                     <a:s r="115">
+                        <a:s r="113">
+                           <a:s r="112">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="113">
+                              <a:s>&quot;Number of TBE Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="114"> = 2</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="120">
+                        <a:s r="117">
+                           <a:s r="116">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="117">
+                              <a:s>&quot;Date Last TBE Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="120">
+                           <a:s>more than </a:s>
+                           <a:s r="119">
+                              <a:s>5 month</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="118">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="126">
+                     <a:s r="123">
+                        <a:s r="122">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="123">
+                           <a:s>&quot;Type of Last TBE Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> in </a:s>
+                     <a:s r="125">
+                        <a:s r="124">
+                           <a:s>IMMZc</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="125">
+                           <a:s>&quot;Encepur Class TBE Vaccine&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="127" locator="140:2-142:97" xsi:type="And">
+            <operand localId="121" locator="140:2-141:90" xsi:type="And">
+               <operand localId="115" locator="140:2-140:58" xsi:type="Equal">
+                  <operand localId="113" locator="140:2-140:54" name="Number of TBE Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="114" locator="140:58" valueType="t:Integer" value="2" xsi:type="Literal"/>
+               </operand>
+               <operand localId="120" locator="141:6-141:90" xsi:type="Before">
+                  <operand localId="117" locator="141:6-141:57" name="Date Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="141:84-141:90" xsi:type="Subtract">
+                     <operand localId="118" locator="141:84-141:90" xsi:type="Today"/>
+                     <operand localId="119" locator="141:69-141:75" value="5" unit="month" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="126" locator="142:6-142:97" xsi:type="InValueSet">
+               <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="123" locator="142:6-142:60" name="Type of Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </code>
+               <valueset localId="125" locator="142:65-142:97" name="Encepur Class TBE Vaccine" libraryName="IMMZc"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="145" locator="155:1-159:51" name="Should vaccinate patient for Tick-Borne Encephalitis Booster using Encepur because last dose given 3 years ago" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="145">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis Booster using Encepur because last dose given 3 years ago
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;Encepur vaccine immunization – BOOSTER&quot; schedule (1 every 3-5 years)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - Last dose given 3 years ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Patient has completed TBE primary series&quot; = true) and (&quot;Date last TBE dose given&quot; >= &quot;3 years&quot;)) and (&quot;Type of last TBE dose&quot; = &quot;Encepur&quot;)) and (&quot;Country recognizes TBE as a priority&quot; = true))
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis Booster using Encepur because last dose given 3 years ago&quot;:
+	</a:s>
+               <a:s r="144">
+                  <a:s r="141">
+                     <a:s r="135">
+                        <a:s r="129">
+                           <a:s>&quot;Patient has completed TBE primary series&quot;</a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="134">
+                           <a:s r="131">
+                              <a:s r="130">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="131">
+                                 <a:s>&quot;Date Last TBE Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="134">
+                              <a:s>more than </a:s>
+                              <a:s r="133">
+                                 <a:s>3 year</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="132">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="140">
+                        <a:s r="137">
+                           <a:s r="136">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="137">
+                              <a:s>&quot;Type of Last TBE Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> in </a:s>
+                        <a:s r="139">
+                           <a:s r="138">
+                              <a:s>IMMZc</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="139">
+                              <a:s>&quot;Encepur Class TBE Vaccine&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="143">
+                     <a:s r="142">
+                        <a:s>IMMZCon</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="143">
+                        <a:s>&quot;Country recognizes TBE as a priority&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="144" locator="156:2-159:51" xsi:type="And">
+            <operand localId="141" locator="156:2-158:97" xsi:type="And">
+               <operand localId="135" locator="156:2-157:89" xsi:type="And">
+                  <operand localId="129" locator="156:2-156:43" name="Patient has completed TBE primary series" xsi:type="ExpressionRef"/>
+                  <operand localId="134" locator="157:6-157:89" xsi:type="Before">
+                     <operand localId="131" locator="157:6-157:57" name="Date Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="157:83-157:89" xsi:type="Subtract">
+                        <operand localId="132" locator="157:83-157:89" xsi:type="Today"/>
+                        <operand localId="133" locator="157:69-157:74" value="3" unit="year" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="140" locator="158:6-158:97" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="137" locator="158:6-158:60" name="Type of Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="139" locator="158:65-158:97" name="Encepur Class TBE Vaccine" libraryName="IMMZc"/>
+               </operand>
+            </operand>
+            <operand localId="143" locator="159:6-159:51" name="Country recognizes TBE as a priority" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="156" locator="172:1-175:51" name="Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because no doses on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="156">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because no doses on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;TBE-Moscow vaccine immunization – NO PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Tick-Borne Encephalitis immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Years&quot; >= 3)) and (&quot;Country recognizes TBE as a priority&quot; = true))
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because no doses on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="155">
+                  <a:s r="152">
+                     <a:s r="147">
+                        <a:s r="146">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="147">
+                           <a:s>&quot;No TBE Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="151">
+                        <a:s r="149">
+                           <a:s r="148">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="149">
+                              <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="150"> >= 3</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="154">
+                     <a:s r="153">
+                        <a:s>IMMZCon</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="154">
+                        <a:s>&quot;Country recognizes TBE as a priority&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="155" locator="173:2-175:51" xsi:type="And">
+            <operand localId="152" locator="173:2-174:48" xsi:type="And">
+               <operand localId="147" locator="173:2-173:47" name="No TBE Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="151" locator="174:6-174:48" xsi:type="GreaterOrEqual">
+                  <operand localId="149" locator="174:6-174:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="150" locator="174:48" valueType="t:Integer" value="3" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="154" locator="175:6-175:51" name="Country recognizes TBE as a priority" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="173" locator="188:1-191:100" name="Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because 1st dose given 1 month to 7 months ago on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="173">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because 1st dose given 1 month to 7 months ago on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;TBE-Moscow vaccine immunization – 1 PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 1st Dose given 1 month ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Tick-Borne Encephalitis immunization history&quot; = &quot;1 dose&quot;) and (&quot;Date last TBE dose given&quot; >= &quot;1 month&quot;)) and (&quot;Type of last TBE dose&quot; = &quot;TBE-Moscow&quot;))
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because 1st dose given 1 month to 7 months ago on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="172">
+                  <a:s r="166">
+                     <a:s r="160">
+                        <a:s r="158">
+                           <a:s r="157">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="158">
+                              <a:s>&quot;Number of TBE Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="159"> = 1</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="165">
+                        <a:s r="162">
+                           <a:s r="161">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="162">
+                              <a:s>&quot;Date Last TBE Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="165">
+                           <a:s>more than </a:s>
+                           <a:s r="164">
+                              <a:s>1 month</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="163">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="171">
+                     <a:s r="168">
+                        <a:s r="167">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="168">
+                           <a:s>&quot;Type of Last TBE Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> in </a:s>
+                     <a:s r="170">
+                        <a:s r="169">
+                           <a:s>IMMZc</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="170">
+                           <a:s>&quot;TBE-Moscow Class TBE Vaccine&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="172" locator="189:2-191:100" xsi:type="And">
+            <operand localId="166" locator="189:2-190:90" xsi:type="And">
+               <operand localId="160" locator="189:2-189:58" xsi:type="Equal">
+                  <operand localId="158" locator="189:2-189:54" name="Number of TBE Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="159" locator="189:58" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               </operand>
+               <operand localId="165" locator="190:6-190:90" xsi:type="Before">
+                  <operand localId="162" locator="190:6-190:57" name="Date Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="190:84-190:90" xsi:type="Subtract">
+                     <operand localId="163" locator="190:84-190:90" xsi:type="Today"/>
+                     <operand localId="164" locator="190:69-190:75" value="1" unit="month" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="171" locator="191:6-191:100" xsi:type="InValueSet">
+               <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="168" locator="191:6-191:60" name="Type of Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </code>
+               <valueset localId="170" locator="191:65-191:100" name="TBE-Moscow Class TBE Vaccine" libraryName="IMMZc"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="190" locator="204:1-207:100" name="Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because 2nd dose given 12 months ago on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="190">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because 2nd dose given 12 months ago on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;TBE-Moscow vaccine immunization – 2 PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 2nd Dose given 12 months ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Tick-Borne Encephalitis immunization history&quot; = &quot;2 doses&quot;) and (&quot;Date last TBE dose given&quot; >= &quot;12 months&quot;)) and (&quot;Type of last TBE dose&quot; = &quot;TBE-Moscow&quot;))
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis using TBE-Moscow because 2nd dose given 12 months ago on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="189">
+                  <a:s r="183">
+                     <a:s r="177">
+                        <a:s r="175">
+                           <a:s r="174">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="175">
+                              <a:s>&quot;Number of TBE Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="176"> = 2</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="182">
+                        <a:s r="179">
+                           <a:s r="178">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="179">
+                              <a:s>&quot;Date Last TBE Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="182">
+                           <a:s>more than </a:s>
+                           <a:s r="181">
+                              <a:s>12 month</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="180">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="188">
+                     <a:s r="185">
+                        <a:s r="184">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="185">
+                           <a:s>&quot;Type of Last TBE Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> in </a:s>
+                     <a:s r="187">
+                        <a:s r="186">
+                           <a:s>IMMZc</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="187">
+                           <a:s>&quot;TBE-Moscow Class TBE Vaccine&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="189" locator="205:2-207:100" xsi:type="And">
+            <operand localId="183" locator="205:2-206:91" xsi:type="And">
+               <operand localId="177" locator="205:2-205:58" xsi:type="Equal">
+                  <operand localId="175" locator="205:2-205:54" name="Number of TBE Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="176" locator="205:58" valueType="t:Integer" value="2" xsi:type="Literal"/>
+               </operand>
+               <operand localId="182" locator="206:6-206:91" xsi:type="Before">
+                  <operand localId="179" locator="206:6-206:57" name="Date Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="206:85-206:91" xsi:type="Subtract">
+                     <operand localId="180" locator="206:85-206:91" xsi:type="Today"/>
+                     <operand localId="181" locator="206:69-206:76" value="12" unit="month" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="188" locator="207:6-207:100" xsi:type="InValueSet">
+               <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="185" locator="207:6-207:60" name="Type of Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </code>
+               <valueset localId="187" locator="207:65-207:100" name="TBE-Moscow Class TBE Vaccine" libraryName="IMMZc"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="207" locator="220:1-224:51" name="Should vaccinate patient for TBE-Moscow Booster because last dose given 3 years ago" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>/*
+ * Rule: Should vaccinate patient for TBE-Moscow Booster because last dose given 3 years ago
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;TBE-Moscow vaccine immunization – BOOSTER&quot; schedule (1 every 3 years)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - Last TBE-Moscow dose given 3 years ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Patient has completed TBE primary series&quot; = true) and (&quot;Date last TBE dose given&quot; >= &quot;3 years&quot;)) and (&quot;Type of last TBE dose&quot; = &quot;TBE-Moscow&quot;)) and (&quot;Country recognizes TBE as a priority&quot; = true))
+ */
+define &quot;Should vaccinate patient for TBE-Moscow Booster because last dose given 3 years ago&quot;:
+	</a:s>
+               <a:s r="206">
+                  <a:s r="203">
+                     <a:s r="197">
+                        <a:s r="191">
+                           <a:s>&quot;Patient has completed TBE primary series&quot;</a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="196">
+                           <a:s r="193">
+                              <a:s r="192">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="193">
+                                 <a:s>&quot;Date Last TBE Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="196">
+                              <a:s>more than </a:s>
+                              <a:s r="195">
+                                 <a:s>3 year</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="194">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="202">
+                        <a:s r="199">
+                           <a:s r="198">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="199">
+                              <a:s>&quot;Type of Last TBE Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> in </a:s>
+                        <a:s r="201">
+                           <a:s r="200">
+                              <a:s>IMMZc</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="201">
+                              <a:s>&quot;TBE-Moscow Class TBE Vaccine&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="205">
+                     <a:s r="204">
+                        <a:s>IMMZCon</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="205">
+                        <a:s>&quot;Country recognizes TBE as a priority&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="206" locator="221:2-224:51" xsi:type="And">
+            <operand localId="203" locator="221:2-223:100" xsi:type="And">
+               <operand localId="197" locator="221:2-222:89" xsi:type="And">
+                  <operand localId="191" locator="221:2-221:43" name="Patient has completed TBE primary series" xsi:type="ExpressionRef"/>
+                  <operand localId="196" locator="222:6-222:89" xsi:type="Before">
+                     <operand localId="193" locator="222:6-222:57" name="Date Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="222:83-222:89" xsi:type="Subtract">
+                        <operand localId="194" locator="222:83-222:89" xsi:type="Today"/>
+                        <operand localId="195" locator="222:69-222:74" value="3" unit="year" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="202" locator="223:6-223:100" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="199" locator="223:6-223:60" name="Type of Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="201" locator="223:65-223:100" name="TBE-Moscow Class TBE Vaccine" libraryName="IMMZc"/>
+               </operand>
+            </operand>
+            <operand localId="205" locator="224:6-224:51" name="Country recognizes TBE as a priority" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="218" locator="237:1-240:51" name="Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because no doses on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="218">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because no doses on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;EnceVir vaccine immunization – NO PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - No Doses
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Tick-Borne Encephalitis immunization history&quot; = &quot;No-doses&quot;) and (&quot;Current Patient Age in Years&quot; >= 3)) and (&quot;Country recognizes TBE as a priority&quot; = true))
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because no doses on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="217">
+                  <a:s r="214">
+                     <a:s r="209">
+                        <a:s r="208">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="209">
+                           <a:s>&quot;No TBE Doses Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="213">
+                        <a:s r="211">
+                           <a:s r="210">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="211">
+                              <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="212"> >= 3</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="216">
+                     <a:s r="215">
+                        <a:s>IMMZCon</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="216">
+                        <a:s>&quot;Country recognizes TBE as a priority&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="217" locator="238:2-240:51" xsi:type="And">
+            <operand localId="214" locator="238:2-239:48" xsi:type="And">
+               <operand localId="209" locator="238:2-238:47" name="No TBE Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               <operand localId="213" locator="239:6-239:48" xsi:type="GreaterOrEqual">
+                  <operand localId="211" locator="239:6-239:43" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="212" locator="239:48" valueType="t:Integer" value="3" xsi:type="Literal"/>
+               </operand>
+            </operand>
+            <operand localId="216" locator="240:6-240:51" name="Country recognizes TBE as a priority" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="235" locator="253:1-256:97" name="Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because 1st dose given 1 month to 7 months ago on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="235">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because 1st dose given 1 month to 7 months ago on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;EnceVir vaccine immunization – 1 PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 1st Dose given 1 month ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Tick-Borne Encephalitis immunization history&quot; = &quot;1 dose&quot;) and (&quot;Date last TBE dose given&quot; >= &quot;1 month&quot;)) and (&quot;Type of last TBE dose&quot; = &quot;EnceVir&quot;))
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because 1st dose given 1 month to 7 months ago on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="234">
+                  <a:s r="228">
+                     <a:s r="222">
+                        <a:s r="220">
+                           <a:s r="219">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="220">
+                              <a:s>&quot;Number of TBE Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="221"> = 1</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="227">
+                        <a:s r="224">
+                           <a:s r="223">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="224">
+                              <a:s>&quot;Date Last TBE Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="227">
+                           <a:s>more than </a:s>
+                           <a:s r="226">
+                              <a:s>1 month</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="225">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="233">
+                     <a:s r="230">
+                        <a:s r="229">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="230">
+                           <a:s>&quot;Type of Last TBE Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> in </a:s>
+                     <a:s r="232">
+                        <a:s r="231">
+                           <a:s>IMMZc</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="232">
+                           <a:s>&quot;EnceVir Class TBE Vaccine&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="234" locator="254:2-256:97" xsi:type="And">
+            <operand localId="228" locator="254:2-255:90" xsi:type="And">
+               <operand localId="222" locator="254:2-254:58" xsi:type="Equal">
+                  <operand localId="220" locator="254:2-254:54" name="Number of TBE Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="221" locator="254:58" valueType="t:Integer" value="1" xsi:type="Literal"/>
+               </operand>
+               <operand localId="227" locator="255:6-255:90" xsi:type="Before">
+                  <operand localId="224" locator="255:6-255:57" name="Date Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="255:84-255:90" xsi:type="Subtract">
+                     <operand localId="225" locator="255:84-255:90" xsi:type="Today"/>
+                     <operand localId="226" locator="255:69-255:75" value="1" unit="month" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="233" locator="256:6-256:97" xsi:type="InValueSet">
+               <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="230" locator="256:6-256:60" name="Type of Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </code>
+               <valueset localId="232" locator="256:65-256:97" name="EnceVir Class TBE Vaccine" libraryName="IMMZc"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="252" locator="269:1-272:97" name="Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because 2nd dose given 12 months ago on a 3 dose scheme" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="252">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because 2nd dose given 12 months ago on a 3 dose scheme
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;EnceVir vaccine immunization – 2 PREVIOUS&quot; schedule (3 dose scheme)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - 2nd Dose given 12 months ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 (((&quot;Tick-Borne Encephalitis immunization history&quot; = &quot;2 doses&quot;) and (&quot;Date last TBE dose given&quot; >= &quot;12 months&quot;)) and (&quot;Type of last TBE dose&quot; = &quot;EnceVir&quot;))
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis using EnceVir because 2nd dose given 12 months ago on a 3 dose scheme&quot;:
+	</a:s>
+               <a:s r="251">
+                  <a:s r="245">
+                     <a:s r="239">
+                        <a:s r="237">
+                           <a:s r="236">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="237">
+                              <a:s>&quot;Number of TBE Doses Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s r="238"> = 2</a:s>
+                     </a:s>
+                     <a:s>
+	and </a:s>
+                     <a:s r="244">
+                        <a:s r="241">
+                           <a:s r="240">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="241">
+                              <a:s>&quot;Date Last TBE Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="244">
+                           <a:s>more than </a:s>
+                           <a:s r="243">
+                              <a:s>12 month</a:s>
+                           </a:s>
+                           <a:s> before</a:s>
+                        </a:s>
+                        <a:s> </a:s>
+                        <a:s r="242">
+                           <a:s>Today()</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="250">
+                     <a:s r="247">
+                        <a:s r="246">
+                           <a:s>IMMZCom</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="247">
+                           <a:s>&quot;Type of Last TBE Dose Administered to Patient&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> in </a:s>
+                     <a:s r="249">
+                        <a:s r="248">
+                           <a:s>IMMZc</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="249">
+                           <a:s>&quot;EnceVir Class TBE Vaccine&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="251" locator="270:2-272:97" xsi:type="And">
+            <operand localId="245" locator="270:2-271:91" xsi:type="And">
+               <operand localId="239" locator="270:2-270:58" xsi:type="Equal">
+                  <operand localId="237" locator="270:2-270:54" name="Number of TBE Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand localId="238" locator="270:58" valueType="t:Integer" value="2" xsi:type="Literal"/>
+               </operand>
+               <operand localId="244" locator="271:6-271:91" xsi:type="Before">
+                  <operand localId="241" locator="271:6-271:57" name="Date Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  <operand locator="271:85-271:91" xsi:type="Subtract">
+                     <operand localId="242" locator="271:85-271:91" xsi:type="Today"/>
+                     <operand localId="243" locator="271:69-271:76" value="12" unit="month" xsi:type="Quantity"/>
+                  </operand>
+               </operand>
+            </operand>
+            <operand localId="250" locator="272:6-272:97" xsi:type="InValueSet">
+               <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                  <operand localId="247" locator="272:6-272:60" name="Type of Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </code>
+               <valueset localId="249" locator="272:65-272:97" name="EnceVir Class TBE Vaccine" libraryName="IMMZc"/>
+            </operand>
+         </expression>
+      </def>
+      <def localId="269" locator="285:1-289:51" name="Should vaccinate patient for Tick-Borne Encephalitis Booster using EnceVir because last dose given 3 years ago" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="269">
+               <a:s>/*
+ * Rule: Should vaccinate patient for Tick-Borne Encephalitis Booster using EnceVir because last dose given 3 years ago
+ * Annotations:
+ * 	 - Provide Tick-Borne Encephalitis immunizations – using the &quot;EnceVir vaccine immunization – BOOSTER&quot; schedule (1 every 3 years)
+ * Outputs:
+ * 	 - Immunize Patient for Tick-Borne Encephalitis - Last dose given 3 years ago
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * Logic:
+ *	 ((((&quot;Patient has completed TBE primary series&quot; = true) and (&quot;Date last TBE dose given&quot; >= &quot;3 years&quot;)) and (&quot;Type of last TBE dose&quot; = &quot;EnceVir&quot;)) and (&quot;Country recognizes TBE as a priority&quot; = true))
+ */
+define &quot;Should vaccinate patient for Tick-Borne Encephalitis Booster using EnceVir because last dose given 3 years ago&quot;:
+	</a:s>
+               <a:s r="268">
+                  <a:s r="265">
+                     <a:s r="259">
+                        <a:s r="253">
+                           <a:s>&quot;Patient has completed TBE primary series&quot;</a:s>
+                        </a:s>
+                        <a:s>
+	and </a:s>
+                        <a:s r="258">
+                           <a:s r="255">
+                              <a:s r="254">
+                                 <a:s>IMMZCom</a:s>
+                              </a:s>
+                              <a:s>.</a:s>
+                              <a:s r="255">
+                                 <a:s>&quot;Date Last TBE Dose Administered to Patient&quot;</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="258">
+                              <a:s>more than </a:s>
+                              <a:s r="257">
+                                 <a:s>3 year</a:s>
+                              </a:s>
+                              <a:s> before</a:s>
+                           </a:s>
+                           <a:s> </a:s>
+                           <a:s r="256">
+                              <a:s>Today()</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> 
+	and </a:s>
+                     <a:s r="264">
+                        <a:s r="261">
+                           <a:s r="260">
+                              <a:s>IMMZCom</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="261">
+                              <a:s>&quot;Type of Last TBE Dose Administered to Patient&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> in </a:s>
+                        <a:s r="263">
+                           <a:s r="262">
+                              <a:s>IMMZc</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="263">
+                              <a:s>&quot;EnceVir Class TBE Vaccine&quot;</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+	and </a:s>
+                  <a:s r="267">
+                     <a:s r="266">
+                        <a:s>IMMZCon</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="267">
+                        <a:s>&quot;Country recognizes TBE as a priority&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="268" locator="286:2-289:51" xsi:type="And">
+            <operand localId="265" locator="286:2-288:97" xsi:type="And">
+               <operand localId="259" locator="286:2-287:89" xsi:type="And">
+                  <operand localId="253" locator="286:2-286:43" name="Patient has completed TBE primary series" xsi:type="ExpressionRef"/>
+                  <operand localId="258" locator="287:6-287:89" xsi:type="Before">
+                     <operand localId="255" locator="287:6-287:57" name="Date Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand locator="287:83-287:89" xsi:type="Subtract">
+                        <operand localId="256" locator="287:83-287:89" xsi:type="Today"/>
+                        <operand localId="257" locator="287:69-287:74" value="3" unit="year" xsi:type="Quantity"/>
+                     </operand>
+                  </operand>
+               </operand>
+               <operand localId="264" locator="288:6-288:97" xsi:type="InValueSet">
+                  <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <operand localId="261" locator="288:6-288:60" name="Type of Last TBE Dose Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                  </code>
+                  <valueset localId="263" locator="288:65-288:97" name="EnceVir Class TBE Vaccine" libraryName="IMMZc"/>
+               </operand>
+            </operand>
+            <operand localId="267" locator="289:6-289:51" name="Country recognizes TBE as a priority" libraryName="IMMZCon" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+   </statements>
+</library>

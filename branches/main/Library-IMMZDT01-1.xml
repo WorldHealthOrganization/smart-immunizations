@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1">
+   <annotation translatorVersion="1.4" translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" xsi:type="a:CqlToElmInfo"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="63">
+         <a:s>/*
+ * Library: IMMZDT01 (IMMZ.DT.01.BCG)
+ * Rule: If child or person has not been vaccinated, give BCG vaccine as soon as possible after birth 
+ * Trigger: Patient has never had BCG vaccination
+ */
+library IMMZDT01</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZDT01" system="http://fhir.org/guides/who/smart-immunization"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="1" locator="8:1-8:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="1">
+               <a:s>// Start Skeleton CQL
+using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="2" locator="9:1-9:35" localIdentifier="FHIRHelpers" path="http://fhir.org/guides/who/smart-immunization/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="2">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="3" locator="10:1-10:33" localIdentifier="IMMZCom" path="http://fhir.org/guides/who/smart-immunization/IMMZCommon">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="3">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZCommon</a:s>
+               </a:s>
+               <a:s> called IMMZCom</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="4" locator="11:1-11:33" localIdentifier="IMMZc" path="http://fhir.org/guides/who/smart-immunization/IMMZConcepts">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="4">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConcepts</a:s>
+               </a:s>
+               <a:s> called IMMZc</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="5" locator="12:1-12:40" localIdentifier="IMMZvl" path="http://fhir.org/guides/who/smart-immunization/IMMZVaccineLibrary">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="5">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZVaccineLibrary</a:s>
+               </a:s>
+               <a:s> called IMMZvl</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="6" locator="13:1-13:34" localIdentifier="IMMZConf" path="http://fhir.org/guides/who/smart-immunization/IMMZConfig">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="6">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZConfig</a:s>
+               </a:s>
+               <a:s> called IMMZConf</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <statements>
+      <def locator="15:1-15:15" name="Patient" context="Patient">
+         <expression xsi:type="SingletonFrom">
+            <operand locator="15:1-15:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="63" locator="36:1-48:2" name="Should vaccinate patient for BCG" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="63">
+               <a:s>/*
+ * Rule: Should vaccinate patient for BCG
+ * Annotations:
+ * 	 - Provide BCG immunizations – using the &quot;BCG vaccine immunization – NO PREVIOUS&quot; schedule (1 dose scheme)
+ * 	 - 
+ * 	 - Provide BCG immunizations – using the &quot;BCG vaccine immunization – NO PREVIOUS&quot; schedule (1 dose scheme) if CD4% >25% for children aged &lt;5 years or CD4 count ≥200 if aged >5  years
+ * Outputs:
+ * 	 - Immunize Patient for BCG - TST-negative
+ * 	 - Immunize Patient for BCG - IGRA-negative
+ * 	 - Immunize Patient for BCG - No Doses
+ * 	 - Immunize Patient for BCG - History Unknown
+ * 	 - Immunize Patient for BCG - No Doses and HIV Status Positive and immunicologically stable
+ * 	 - 
+ * References:
+ * 	- WHO recommendations for routine immunization - summary tables: https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/who-recommendations-for-routine-immunization---summary-tables
+ * 	- 
+ * Logic:
+ *	 (((((((&quot;TST Test Result&quot; = &quot;TST-negative&quot;) and (&quot;High incidence of TB and/or high leprosy burden&quot; = true)) or ((&quot;IGRA Test Result&quot; = &quot;IGRA-negative&quot;) and (&quot;High incidence of TB and/or high leprosy burden&quot; = true))) or ((&quot;BCG vaccine immunization history&quot; = &quot;No-doses&quot;) and (&quot;High incidence of TB and/or high leprosy burden&quot; = true))) or ((&quot;BCG vaccine immunization history&quot; = &quot;Unknown&quot;) and (&quot;High incidence of TB and/or high leprosy burden&quot; = true))) or (((((&quot;BCG vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;HIV Status&quot; = &quot;Positive&quot; = true)) and (&quot;CD4%&quot; >&quot;25%&quot; = true)) and (&quot;Current Patient Age in Years&quot; &lt; 5)) and (&quot;High incidence of TB and/or high leprosy burden&quot; = true))) or (((((&quot;BCG vaccine immunization history&quot; = &quot;No-doses&quot; = true) and (&quot;HIV Status&quot; = &quot;Positive&quot; = true)) and (&quot;CD4 count&quot; ≥ &quot;200&quot; = true)) and (&quot;Current Patient Age in Years&quot; > 5)) and (&quot;High incidence of TB and/or high leprosy burden&quot; = true)))
+ */
+define &quot;Should vaccinate patient for BCG&quot;:
+	</a:s>
+               <a:s r="62">
+                  <a:s r="10">
+                     <a:s r="8">
+                        <a:s r="7">
+                           <a:s>IMMZConf</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="8">
+                           <a:s>&quot;High incidence of TB and/or high leprosy burden&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s r="9"> = true</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="61">
+                     <a:s>(
+		</a:s>
+                     <a:s r="61">
+                        <a:s r="28">
+                           <a:s r="25">
+                              <a:s r="17">
+                                 <a:s>Coalesce(</a:s>
+                                 <a:s r="15">
+                                    <a:s>(</a:s>
+                                    <a:s r="15">
+                                       <a:s r="12">
+                                          <a:s r="11">
+                                             <a:s>IMMZCom</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="12">
+                                             <a:s>&quot;Most Recent TST Test Result&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> in </a:s>
+                                       <a:s r="14">
+                                          <a:s r="13">
+                                             <a:s>IMMZc</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="14">
+                                             <a:s>&quot;Negative Result&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                                 <a:s r="16">, false)</a:s>
+                              </a:s>
+                              <a:s> or 
+		</a:s>
+                              <a:s r="24">
+                                 <a:s>Coalesce(</a:s>
+                                 <a:s r="22">
+                                    <a:s>(</a:s>
+                                    <a:s r="22">
+                                       <a:s r="19">
+                                          <a:s r="18">
+                                             <a:s>IMMZCom</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="19">
+                                             <a:s>&quot;Most Recent IGRA Test Result&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> in </a:s>
+                                       <a:s r="21">
+                                          <a:s r="20">
+                                             <a:s>IMMZc</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="21">
+                                             <a:s>&quot;Negative Result&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s>)</a:s>
+                                 </a:s>
+                                 <a:s r="23">, false)</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s> or 
+		</a:s>
+                           <a:s r="27">
+                              <a:s>(</a:s>
+                              <a:s r="27">
+                                 <a:s r="26">
+                                    <a:s>IMMZCom</a:s>
+                                 </a:s>
+                                 <a:s>.</a:s>
+                                 <a:s r="27">
+                                    <a:s>&quot;No BCG Doses Administered to Patient&quot;</a:s>
+                                 </a:s>
+                              </a:s>
+                              <a:s>)</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> or 
+		</a:s>
+                        <a:s r="60">
+                           <a:s>(
+				</a:s>
+                           <a:s r="60">
+                              <a:s r="36">
+                                 <a:s>(</a:s>
+                                 <a:s r="36">
+                                    <a:s r="30">
+                                       <a:s r="29">
+                                          <a:s>IMMZCom</a:s>
+                                       </a:s>
+                                       <a:s>.</a:s>
+                                       <a:s r="30">
+                                          <a:s>&quot;No BCG Doses Administered to Patient&quot;</a:s>
+                                       </a:s>
+                                    </a:s>
+                                    <a:s> and </a:s>
+                                    <a:s r="35">
+                                       <a:s r="32">
+                                          <a:s r="31">
+                                             <a:s>IMMZCom</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="32">
+                                             <a:s>&quot;HIV Status&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                       <a:s> in </a:s>
+                                       <a:s r="34">
+                                          <a:s r="33">
+                                             <a:s>IMMZc</a:s>
+                                          </a:s>
+                                          <a:s>.</a:s>
+                                          <a:s r="34">
+                                             <a:s>&quot;HIV status - HIV positive Choices&quot;</a:s>
+                                          </a:s>
+                                       </a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>)</a:s>
+                              </a:s>
+                              <a:s> and 
+				</a:s>
+                              <a:s r="59">
+                                 <a:s>(
+					</a:s>
+                                 <a:s r="59">
+                                    <a:s r="47">
+                                       <a:s>Coalesce(</a:s>
+                                       <a:s r="45">
+                                          <a:s>(</a:s>
+                                          <a:s r="45">
+                                             <a:s r="40">
+                                                <a:s r="38">
+                                                   <a:s r="37">
+                                                      <a:s>IMMZCom</a:s>
+                                                   </a:s>
+                                                   <a:s>.</a:s>
+                                                   <a:s r="38">
+                                                      <a:s>&quot;Most Recent CD4%&quot;</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                                <a:s> > </a:s>
+                                                <a:s r="39">
+                                                   <a:s>25'%'</a:s>
+                                                </a:s>
+                                             </a:s>
+                                             <a:s> and </a:s>
+                                             <a:s r="44">
+                                                <a:s r="42">
+                                                   <a:s r="41">
+                                                      <a:s>IMMZCom</a:s>
+                                                   </a:s>
+                                                   <a:s>.</a:s>
+                                                   <a:s r="42">
+                                                      <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                                <a:s r="43"> &lt; 5</a:s>
+                                             </a:s>
+                                          </a:s>
+                                          <a:s>)</a:s>
+                                       </a:s>
+                                       <a:s r="46">, false)</a:s>
+                                    </a:s>
+                                    <a:s> or 
+					</a:s>
+                                    <a:s r="58">
+                                       <a:s>Coalesce(</a:s>
+                                       <a:s r="56">
+                                          <a:s>(</a:s>
+                                          <a:s r="56">
+                                             <a:s r="51">
+                                                <a:s r="49">
+                                                   <a:s r="48">
+                                                      <a:s>IMMZCom</a:s>
+                                                   </a:s>
+                                                   <a:s>.</a:s>
+                                                   <a:s r="49">
+                                                      <a:s>&quot;Most Recent CD4 Count&quot;</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                                <a:s r="50"> >= 200</a:s>
+                                             </a:s>
+                                             <a:s> and </a:s>
+                                             <a:s r="55">
+                                                <a:s r="53">
+                                                   <a:s r="52">
+                                                      <a:s>IMMZCom</a:s>
+                                                   </a:s>
+                                                   <a:s>.</a:s>
+                                                   <a:s r="53">
+                                                      <a:s>&quot;Current Patient Age In Years&quot;</a:s>
+                                                   </a:s>
+                                                </a:s>
+                                                <a:s r="54"> >= 5</a:s>
+                                             </a:s>
+                                          </a:s>
+                                          <a:s>)</a:s>
+                                       </a:s>
+                                       <a:s r="57">, false)</a:s>
+                                    </a:s>
+                                 </a:s>
+                                 <a:s>
+				)</a:s>
+                              </a:s>
+                           </a:s>
+                           <a:s>
+		)</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+	)</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="62" locator="37:2-48:2" xsi:type="And">
+            <operand localId="10" locator="37:2-37:66" xsi:type="Equal">
+               <operand localId="8" locator="37:2-37:59" name="High incidence of TB and/or high leprosy burden" libraryName="IMMZConf" xsi:type="ExpressionRef"/>
+               <operand localId="9" locator="37:63-37:66" valueType="t:Boolean" value="true" xsi:type="Literal"/>
+            </operand>
+            <operand localId="61" locator="37:72-48:2" xsi:type="Or">
+               <operand localId="28" locator="38:3-40:50" xsi:type="Or">
+                  <operand localId="25" locator="38:3-39:86" xsi:type="Or">
+                     <operand localId="17" locator="38:3-38:85" xsi:type="Coalesce">
+                        <operand localId="15" locator="38:12-38:77" xsi:type="InValueSet">
+                           <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                              <operand localId="12" locator="38:13-38:49" name="Most Recent TST Test Result" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           </code>
+                           <valueset localId="14" locator="38:54-38:76" name="Negative Result" libraryName="IMMZc"/>
+                        </operand>
+                        <operand localId="16" locator="38:80-38:84" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="24" locator="39:3-39:86" xsi:type="Coalesce">
+                        <operand localId="22" locator="39:12-39:78" xsi:type="InValueSet">
+                           <code name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                              <operand localId="19" locator="39:13-39:50" name="Most Recent IGRA Test Result" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           </code>
+                           <valueset localId="21" locator="39:55-39:77" name="Negative Result" libraryName="IMMZc"/>
+                        </operand>
+                        <operand localId="23" locator="39:81-39:85" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <operand localId="27" locator="40:3-40:50" name="No BCG Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+               </operand>
+               <operand localId="60" locator="41:3-47:3" xsi:type="And">
+                  <operand localId="36" locator="42:5-42:122" xsi:type="And">
+                     <operand localId="30" locator="42:6-42:51" name="No BCG Doses Administered to Patient" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                     <operand localId="35" locator="42:57-42:121" xsi:type="AnyInValueSet">
+                        <codes xsi:type="Query">
+                           <source alias="X">
+                              <expression localId="32" locator="42:57-42:76" name="HIV Status" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                           </source>
+                           <return distinct="false">
+                              <expression name="ToConcept" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                                 <operand name="X" xsi:type="AliasRef"/>
+                              </expression>
+                           </return>
+                        </codes>
+                        <valueset localId="34" locator="42:81-42:121" name="HIV status - HIV positive Choices" libraryName="IMMZc"/>
+                     </operand>
+                  </operand>
+                  <operand localId="59" locator="43:5-46:5" xsi:type="Or">
+                     <operand localId="47" locator="44:6-44:105" xsi:type="Coalesce">
+                        <operand localId="45" locator="44:15-44:97" xsi:type="And">
+                           <operand localId="40" locator="44:16-44:49" xsi:type="Greater">
+                              <operand name="ToQuantity" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                                 <operand localId="38" locator="44:16-44:41" name="Most Recent CD4%" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                              </operand>
+                              <operand localId="39" locator="44:45-44:49" value="25" unit="%" xsi:type="Quantity"/>
+                           </operand>
+                           <operand localId="44" locator="44:55-44:96" xsi:type="Less">
+                              <operand localId="42" locator="44:55-44:92" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                              <operand localId="43" locator="44:96" valueType="t:Integer" value="5" xsi:type="Literal"/>
+                           </operand>
+                        </operand>
+                        <operand localId="46" locator="44:100-44:104" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+                     </operand>
+                     <operand localId="58" locator="45:6-45:110" xsi:type="Coalesce">
+                        <operand localId="56" locator="45:15-45:102" xsi:type="And">
+                           <operand localId="51" locator="45:16-45:53" xsi:type="GreaterOrEqual">
+                              <operand name="ToQuantity" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                                 <operand localId="49" locator="45:16-45:46" name="Most Recent CD4 Count" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                              </operand>
+                              <operand xsi:type="ToQuantity">
+                                 <operand localId="50" locator="45:51-45:53" valueType="t:Integer" value="200" xsi:type="Literal"/>
+                              </operand>
+                           </operand>
+                           <operand localId="55" locator="45:59-45:101" xsi:type="GreaterOrEqual">
+                              <operand localId="53" locator="45:59-45:96" name="Current Patient Age In Years" libraryName="IMMZCom" xsi:type="ExpressionRef"/>
+                              <operand localId="54" locator="45:101" valueType="t:Integer" value="5" xsi:type="Literal"/>
+                           </operand>
+                        </operand>
+                        <operand localId="57" locator="45:105-45:109" valueType="t:Boolean" value="false" xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+   </statements>
+</library>

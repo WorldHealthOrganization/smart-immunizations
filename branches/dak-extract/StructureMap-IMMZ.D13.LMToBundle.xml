@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<StructureMap xmlns="http://hl7.org/fhir">
+  <id value="IMMZ.D13.LMToBundle"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: StructureMap IMMZ.D13.LMToBundle</b></p><a name="IMMZ.D13.LMToBundle"> </a><a name="hcIMMZ.D13.LMToBundle"> </a><pre class="fml">
+<b>map</b><span style="color: navy"> &quot;</span>http://smart.who.int/immunizations/StructureMap/IMMZ.D13.LMToBundle<span style="color: navy">&quot; = &quot;</span>IMMZ.D13.LMToBundle<span style="color: navy">&quot;
+
+</span><span style="color: navy">// </span><span style="color: green">Immunization Administer Vaccine - Transform Logical Model to Immunization resources</span>
+
+<b>uses</b><span style="color: navy"> &quot;</span><a href="StructureDefinition-IMMZD13.html" title="IMMZ.D13.Update client record">http://smart.who.int/immunizations/StructureDefinition/IMMZD13</a><span style="color: navy">&quot; </span><b>alias </b>IMMZD13 <b>as </b><b>source</b>
+<b>uses</b><span style="color: navy"> &quot;</span><a href="http://hl7.org/fhir/R4/bundle.html" title="Bundle">http://hl7.org/fhir/StructureDefinition/Bundle</a><span style="color: navy">&quot; </span><b>alias </b>Bundle <b>as </b><b>target</b>
+
+<b>imports</b><span style="color: navy"> &quot;</span><a href="StructureMap-IMMZ.Helpers.html" title="IMMZ.Helpers">http://smart.who.int/immunizations/StructureMap/IMMZ.Helpers</a><span style="color: navy">&quot;
+</span>
+<b>group </b>IMMZD13ToBundle<span style="color: navy">(</span><b>source</b> <span style="color: maroon">immz</span><span style="color: navy"> : </span>IMMZD13, <b>target</b> <span style="color: maroon">bundle</span><span style="color: navy"> : </span>Bundle<span style="color: navy">)</span><span style="color: navy"> {
+</span>  immz<span style="color: navy"><b> -&gt; </b></span>bundle.type = <span style="color: blue">'transaction'</span> <i>&quot;SetBundleType&quot;</i><span style="color: navy">;</span>
+  immz.patient<b> as </b><span style="color: maroon">patient</span><span style="color: navy"><b> -&gt; </b></span><b>uuid</b><span style="color: navy">(</span><span style="color: navy">)</span><b> as </b><span style="color: maroon">immid</span><b> then</b><span style="color: navy"> {
+</span>    immz<b> then </b>MakeImmunization<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">immz</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span> <i>&quot;MakeImmunization&quot;</i><span style="color: navy">;</span>
+    immz<b> then </b>D1andD13Observations<span style="color: navy">(</span><span style="color: maroon">patient</span><span style="color: navy">, </span><span style="color: maroon">immid</span><span style="color: navy">, </span><span style="color: maroon">immz</span><span style="color: navy">, </span><span style="color: maroon">bundle</span><span style="color: navy">)</span> <i>&quot;MakeD1andD13Observations&quot;</i><span style="color: navy">;</span>
+  <span style="color: navy">}</span> <i>&quot;GetPatient&quot;</i><span style="color: navy">;</span>
+<span style="color: navy">}
+
+</span></pre></div>
+  </text>
+  <url value="http://smart.who.int/immunizations/StructureMap/IMMZ.D13.LMToBundle"/>
+  <version value="0.2.0"/>
+  <name value="IMMZ.D13.LMToBundle"/>
+  <status value="draft"/>
+  <date value="2025-07-23T20:56:04+00:00"/>
+  <publisher value="WHO"/>
+  <contact>
+    <name value="WHO"/>
+    <telecom>
+      <system value="url"/>
+      <value value="http://who.int"/>
+    </telecom>
+  </contact>
+  <description value="Immunization Administer Vaccine - Transform Logical Model to Immunization resources"/>
+  <structure>
+    <url value="http://smart.who.int/immunizations/StructureDefinition/IMMZD13"/>
+    <mode value="source"/>
+    <alias value="IMMZD13"/>
+  </structure>
+  <structure>
+    <url value="http://hl7.org/fhir/StructureDefinition/Bundle"/>
+    <mode value="target"/>
+    <alias value="Bundle"/>
+  </structure>
+  <import value="http://smart.who.int/immunizations/StructureMap/IMMZ.Helpers"/>
+  <group>
+    <name value="IMMZD13ToBundle"/>
+    <typeMode value="none"/>
+    <input>
+      <name value="immz"/>
+      <type value="IMMZD13"/>
+      <mode value="source"/>
+    </input>
+    <input>
+      <name value="bundle"/>
+      <type value="Bundle"/>
+      <mode value="target"/>
+    </input>
+    <rule>
+      <name value="SetBundleType"/>
+      <source>
+        <context value="immz"/>
+      </source>
+      <target>
+        <context value="bundle"/>
+        <contextType value="variable"/>
+        <element value="type"/>
+        <transform value="copy"/>
+        <parameter>
+          <valueString value="transaction"/>
+        </parameter>
+      </target>
+    </rule>
+    <rule>
+      <name value="GetPatient"/>
+      <source>
+        <context value="immz"/>
+        <element value="patient"/>
+        <variable value="patient"/>
+      </source>
+      <target>
+        <contextType value="variable"/>
+        <variable value="immid"/>
+        <transform value="uuid"/>
+      </target>
+      <rule>
+        <name value="MakeImmunization"/>
+        <source>
+          <context value="immz"/>
+        </source>
+        <dependent>
+          <name value="MakeImmunization"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="immz"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+      <rule>
+        <name value="MakeD1andD13Observations"/>
+        <source>
+          <context value="immz"/>
+        </source>
+        <dependent>
+          <name value="D1andD13Observations"/>
+          <variable value="patient"/>
+          <variable value="immid"/>
+          <variable value="immz"/>
+          <variable value="bundle"/>
+        </dependent>
+      </rule>
+    </rule>
+  </group>
+</StructureMap>

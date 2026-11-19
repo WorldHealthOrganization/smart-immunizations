@@ -1,0 +1,1250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="urn:hl7-org:elm:r1" xmlns:t="urn:hl7-org:elm-types:r1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns:qdm43="urn:healthit-gov:qdm:v4_3" xmlns:qdm53="urn:healthit-gov:qdm:v5_3" xmlns:a="urn:hl7-org:cql-annotations:r1" localId="0">
+   <annotation translatorOptions="EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion" signatureLevel="Overloads" xsi:type="a:CqlToElmInfo"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation message="An operand identifier [reference] is hiding another identifier of the same name." errorType="semantic" errorSeverity="warning" xsi:type="a:CqlToElmError"/>
+   <annotation xsi:type="a:Annotation">
+      <a:s r="340">
+         <a:s>/*
+ * Library: IMMZD2DTHepatitisB3DelayedLogic (IMMZ.D2.DT.Hepatitis B.Delayed start)
+ * Rule: Determine if the client is due for a hepatitis B vaccination according to the national immunization schedule
+ * Decision Table: 3-dose schedule (no birth dose + 3 doses), delayed start
+ * Trigger: IMMZ.D2 Determine required vaccination(s) if any
+ */
+library IMMZD2DTHepatitisB3DelayedLogic</a:s>
+      </a:s>
+   </annotation>
+   <identifier id="IMMZD2DTHepatitisB3DelayedLogic" system="http://smart.who.int/immunizations"/>
+   <schemaIdentifier id="urn:hl7-org:elm" version="r1"/>
+   <usings>
+      <def localId="1" localIdentifier="System" uri="urn:hl7-org:elm-types:r1"/>
+      <def localId="206" locator="10:1-10:26" localIdentifier="FHIR" uri="http://hl7.org/fhir" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="206">
+               <a:s>using </a:s>
+               <a:s>
+                  <a:s>FHIR</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </usings>
+   <includes>
+      <def localId="207" locator="11:1-11:35" localIdentifier="FHIRHelpers" path="http://hl7.org/fhir/FHIRHelpers" version="4.0.1">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="207">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>FHIRHelpers</a:s>
+               </a:s>
+               <a:s> version '4.0.1'</a:s>
+            </a:s>
+         </annotation>
+      </def>
+      <def localId="208" locator="13:1-13:60" localIdentifier="Encounter" path="http://smart.who.int/immunizations/IMMZD2DTHepatitisBEncounterElements">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="208">
+               <a:s>include </a:s>
+               <a:s>
+                  <a:s>IMMZD2DTHepatitisBEncounterElements</a:s>
+               </a:s>
+               <a:s> called Encounter</a:s>
+            </a:s>
+         </annotation>
+      </def>
+   </includes>
+   <parameters>
+      <def localId="209" locator="15:1-15:36" name="Today" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="209">
+               <a:s>parameter Today </a:s>
+               <a:s r="213">
+                  <a:s>Date</a:s>
+               </a:s>
+               <a:s> default </a:s>
+               <a:s r="212">
+                  <a:s>Today()</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <default localId="212" locator="15:30-15:36" xsi:type="Today"/>
+         <parameterTypeSpecifier localId="213" locator="15:17-15:20" name="t:Date" xsi:type="NamedTypeSpecifier"/>
+      </def>
+   </parameters>
+   <contexts>
+      <def localId="217" locator="17:1-17:15" name="Patient"/>
+   </contexts>
+   <statements>
+      <def localId="215" locator="17:1-17:15" name="Patient" context="Patient">
+         <expression localId="216" xsi:type="SingletonFrom">
+            <operand localId="214" locator="17:1-17:15" dataType="fhir:Patient" templateId="http://hl7.org/fhir/StructureDefinition/Patient" xsi:type="Retrieve"/>
+         </expression>
+      </def>
+      <def localId="223" locator="39:1-41:81" name="Client is due for hepatitis B vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for hepatitis B vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="223">
+               <a:s>/*
+@output: Client is due for hepatitis B vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for hepatitis B vaccination&quot;:
+  </a:s>
+               <a:s r="224">
+                  <a:s r="226">
+                     <a:s r="225">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="226">
+                        <a:s>&quot;No hepatitis B doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="228">
+                     <a:s r="227">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="228">
+                        <a:s>&quot;Client's age is more than {Member States defined lower limit}&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="224" locator="40:3-41:81" xsi:type="And">
+            <operand localId="226" locator="40:3-40:52" name="No hepatitis B doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="228" locator="41:9-41:81" name="Client's age is more than {Member States defined lower limit}" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="231" locator="48:1-49:205" name="Client is due for hepatitis B vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for hepatitis B vaccination Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with first hepatitis B dose as hepatitis B birth dose was not administered. The first hepatitis B dose should be administered as soon as possible.  &#xa;Check for contraindications."/>
+            <a:s r="231">
+               <a:s>/*
+@output: Client is due for hepatitis B vaccination Guidance
+@guidance: Should vaccinate client with first hepatitis B dose as hepatitis B birth dose was not administered. The first hepatitis B dose should be administered as soon as possible.  
+Check for contraindications.
+*/
+define &quot;Client is due for hepatitis B vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="232">
+                  <a:s>'Should vaccinate client with first hepatitis B dose as hepatitis B birth dose was not administered. The first hepatitis B dose should be administered as soon as possible.  
+Check for contraindications.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="232" locator="49:3-49:205" valueType="t:String" value="Should vaccinate client with first hepatitis B dose as hepatitis B birth dose was not administered. The first hepatitis B dose should be administered as soon as possible.  &#xa;Check for contraindications." xsi:type="Literal"/>
+      </def>
+      <def localId="240" locator="56:1-58:86" name="Client is not due for a hepatitis B vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for a hepatitis B vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="240">
+               <a:s>/*
+@output: Client is not due for a hepatitis B vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for a hepatitis B vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="241">
+                  <a:s r="243">
+                     <a:s r="242">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="243">
+                        <a:s>&quot;One hepatitis B dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="245">
+                     <a:s r="244">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="245">
+                        <a:s>&quot;The latest hepatitis B dose was administered less than 4 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="241" locator="57:3-58:86" xsi:type="And">
+            <operand localId="243" locator="57:3-57:51" name="One hepatitis B dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="245" locator="58:9-58:86" name="The latest hepatitis B dose was administered less than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="248" locator="64:1-66:86" name="Client is not due for a hepatitis B vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for a hepatitis B vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="248">
+               <a:s>/*
+@output: Client is not due for a hepatitis B vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for a hepatitis B vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="249">
+                  <a:s r="251">
+                     <a:s r="250">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="251">
+                        <a:s>&quot;Two hepatitis B doses were administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="253">
+                     <a:s r="252">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="253">
+                        <a:s>&quot;The latest hepatitis B dose was administered less than 4 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="249" locator="65:3-66:86" xsi:type="And">
+            <operand localId="251" locator="65:3-65:53" name="Two hepatitis B doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="253" locator="66:9-66:86" name="The latest hepatitis B dose was administered less than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="256" locator="72:1-75:86" name="Client is not due for a hepatitis B vaccination Case 3" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for a hepatitis B vaccination Case 3"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="256">
+               <a:s>/*
+@output: Client is not due for a hepatitis B vaccination Case 3
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for a hepatitis B vaccination Case 3&quot;:
+  </a:s>
+               <a:s r="257">
+                  <a:s r="258">
+                     <a:s r="260">
+                        <a:s r="259">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="260">
+                           <a:s>&quot;Two hepatitis B doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="262">
+                        <a:s r="261">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="262">
+                           <a:s>&quot;The latest hepatitis B dose was administered more than 4 weeks ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="264">
+                     <a:s r="263">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="264">
+                        <a:s>&quot;The first hepatitis B dose was administered less than 6 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="257" locator="73:3-75:86" xsi:type="And">
+            <operand localId="258" locator="73:3-74:86" xsi:type="And">
+               <operand localId="260" locator="73:3-73:53" name="Two hepatitis B doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="262" locator="74:9-74:86" name="The latest hepatitis B dose was administered more than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="264" locator="75:9-75:86" name="The first hepatitis B dose was administered less than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="236" locator="81:1-84:63" name="Client is not due for a hepatitis B vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for a hepatitis B vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Not due&quot;"/>
+            <a:s r="236">
+               <a:s>/*
+@output: Client is not due for a hepatitis B vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Not due&quot;
+*/
+define &quot;Client is not due for a hepatitis B vaccination&quot;:
+  </a:s>
+               <a:s r="237">
+                  <a:s r="238">
+                     <a:s r="246">
+                        <a:s>&quot;Client is not due for a hepatitis B vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s>
+    or </a:s>
+                     <a:s r="254">
+                        <a:s>&quot;Client is not due for a hepatitis B vaccination Case 2&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="265">
+                     <a:s>&quot;Client is not due for a hepatitis B vaccination Case 3&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="237" locator="82:3-84:63" xsi:type="Or">
+            <operand localId="238" locator="82:3-83:63" xsi:type="Or">
+               <operand localId="246" locator="82:3-82:58" name="Client is not due for a hepatitis B vaccination Case 1" xsi:type="ExpressionRef"/>
+               <operand localId="254" locator="83:8-83:63" name="Client is not due for a hepatitis B vaccination Case 2" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="265" locator="84:8-84:63" name="Client is not due for a hepatitis B vaccination Case 3" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="268" locator="95:1-104:5" name="Client is not due for a hepatitis B vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is not due for a hepatitis B vaccination Guidance"/>
+            <a:t name="guidance" value="Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. &#xa;Check for any other vaccines due, and inform the caregiver of when to come back for the next dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. Two hepatitis B doses have been administered to the client. &#xa;Check for any other vaccines due, and inform the caregiver of when to come back for the next dose."/>
+            <a:t name="guidance" value="Should not vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered less than 6 months ago. &#xa;Check for any other vaccines due, and inform the caregiver of when to come back for the next dose."/>
+            <a:s r="268">
+               <a:s>/*
+@output: Client is not due for a hepatitis B vaccination Guidance
+@guidance: Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.
+@guidance: Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. Two hepatitis B doses have been administered to the client. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.
+@guidance: Should not vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered less than 6 months ago. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.
+*/
+define &quot;Client is not due for a hepatitis B vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="269">
+                  <a:s>case
+    </a:s>
+                  <a:s r="270">
+                     <a:s>when </a:s>
+                     <a:s r="271">
+                        <a:s>&quot;Client is not due for a hepatitis B vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="272">
+                        <a:s>'Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="273">
+                     <a:s>when </a:s>
+                     <a:s r="274">
+                        <a:s>&quot;Client is not due for a hepatitis B vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="275">
+                        <a:s>'Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. Two hepatitis B doses have been administered to the client. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="276">
+                     <a:s>when </a:s>
+                     <a:s r="277">
+                        <a:s>&quot;Client is not due for a hepatitis B vaccination Case 3&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="278">
+                        <a:s>'Should not vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered less than 6 months ago. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="279">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="269" locator="96:3-104:5" xsi:type="Case">
+            <caseItem localId="270" locator="97:5-97:300">
+               <when localId="271" locator="97:10-97:65" name="Client is not due for a hepatitis B vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="272" locator="97:72-97:300" valueType="t:String" value="Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. &#xa;Check for any other vaccines due, and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="273" locator="99:5-99:360">
+               <when localId="274" locator="99:10-99:65" name="Client is not due for a hepatitis B vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="275" locator="99:72-99:360" valueType="t:String" value="Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. Two hepatitis B doses have been administered to the client. &#xa;Check for any other vaccines due, and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="276" locator="101:5-101:299">
+               <when localId="277" locator="101:10-101:65" name="Client is not due for a hepatitis B vaccination Case 3" xsi:type="ExpressionRef"/>
+               <then localId="278" locator="101:72-101:299" valueType="t:String" value="Should not vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered less than 6 months ago. &#xa;Check for any other vaccines due, and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="279" locator="103:10-103:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="286" locator="110:1-112:86" name="Client is due for a hepatitis B vaccination Case 1" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for a hepatitis B vaccination Case 1"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="286">
+               <a:s>/*
+@output: Client is due for a hepatitis B vaccination Case 1
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for a hepatitis B vaccination Case 1&quot;:
+  </a:s>
+               <a:s r="287">
+                  <a:s r="289">
+                     <a:s r="288">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="289">
+                        <a:s>&quot;One hepatitis B dose was administered&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="291">
+                     <a:s r="290">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="291">
+                        <a:s>&quot;The latest hepatitis B dose was administered more than 4 weeks ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="287" locator="111:3-112:86" xsi:type="And">
+            <operand localId="289" locator="111:3-111:51" name="One hepatitis B dose was administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            <operand localId="291" locator="112:9-112:86" name="The latest hepatitis B dose was administered more than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="294" locator="118:1-121:86" name="Client is due for a hepatitis B vaccination Case 2" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for a hepatitis B vaccination Case 2"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="294">
+               <a:s>/*
+@output: Client is due for a hepatitis B vaccination Case 2
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for a hepatitis B vaccination Case 2&quot;:
+  </a:s>
+               <a:s r="295">
+                  <a:s r="296">
+                     <a:s r="298">
+                        <a:s r="297">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="298">
+                           <a:s>&quot;Two hepatitis B doses were administered&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s>
+    and </a:s>
+                     <a:s r="300">
+                        <a:s r="299">
+                           <a:s>Encounter</a:s>
+                        </a:s>
+                        <a:s>.</a:s>
+                        <a:s r="300">
+                           <a:s>&quot;The latest hepatitis B dose was administered more than 4 weeks ago&quot;</a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    and </a:s>
+                  <a:s r="302">
+                     <a:s r="301">
+                        <a:s>Encounter</a:s>
+                     </a:s>
+                     <a:s>.</a:s>
+                     <a:s r="302">
+                        <a:s>&quot;The first hepatitis B dose was administered more than 6 months ago&quot;</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="295" locator="119:3-121:86" xsi:type="And">
+            <operand localId="296" locator="119:3-120:86" xsi:type="And">
+               <operand localId="298" locator="119:3-119:53" name="Two hepatitis B doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+               <operand localId="300" locator="120:9-120:86" name="The latest hepatitis B dose was administered more than 4 weeks ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+            </operand>
+            <operand localId="302" locator="121:9-121:86" name="The first hepatitis B dose was administered more than 6 months ago" libraryName="Encounter" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="283" locator="127:1-129:59" name="Client is due for a hepatitis B vaccination" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for a hepatitis B vaccination"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Due&quot;"/>
+            <a:s r="283">
+               <a:s>/*
+@output: Client is due for a hepatitis B vaccination
+@pseudocode: &quot;Immunization recommendation status&quot; = &quot;Due&quot;
+*/
+define &quot;Client is due for a hepatitis B vaccination&quot;:
+  </a:s>
+               <a:s r="284">
+                  <a:s r="292">
+                     <a:s>&quot;Client is due for a hepatitis B vaccination Case 1&quot;</a:s>
+                  </a:s>
+                  <a:s>
+    or </a:s>
+                  <a:s r="303">
+                     <a:s>&quot;Client is due for a hepatitis B vaccination Case 2&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="284" locator="128:3-129:59" xsi:type="Or">
+            <operand localId="292" locator="128:3-128:54" name="Client is due for a hepatitis B vaccination Case 1" xsi:type="ExpressionRef"/>
+            <operand localId="303" locator="129:8-129:59" name="Client is due for a hepatitis B vaccination Case 2" xsi:type="ExpressionRef"/>
+         </expression>
+      </def>
+      <def localId="306" locator="138:1-145:5" name="Client is due for a hepatitis B vaccination Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Client is due for a hepatitis B vaccination Guidance"/>
+            <a:t name="guidance" value="Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. &#xa;Check for contraindications."/>
+            <a:t name="guidance" value="Should vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered more than 6 months ago and the latest hepatitis B dose was administered more than 4 weeks ago. &#xa;Check for contraindications."/>
+            <a:s r="306">
+               <a:s>/*
+@output: Client is due for a hepatitis B vaccination Guidance
+@guidance: Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. 
+Check for contraindications.
+@guidance: Should vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered more than 6 months ago and the latest hepatitis B dose was administered more than 4 weeks ago. 
+Check for contraindications.
+*/
+define &quot;Client is due for a hepatitis B vaccination Guidance&quot;:
+  </a:s>
+               <a:s r="307">
+                  <a:s>case
+    </a:s>
+                  <a:s r="308">
+                     <a:s>when </a:s>
+                     <a:s r="309">
+                        <a:s>&quot;Client is due for a hepatitis B vaccination Case 1&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="310">
+                        <a:s>'Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="311">
+                     <a:s>when </a:s>
+                     <a:s r="312">
+                        <a:s>&quot;Client is due for a hepatitis B vaccination Case 2&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="313">
+                        <a:s>'Should vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered more than 6 months ago and the latest hepatitis B dose was administered more than 4 weeks ago. 
+Check for contraindications.'</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="314">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="307" locator="139:3-145:5" xsi:type="Case">
+            <caseItem localId="308" locator="140:5-140:222">
+               <when localId="309" locator="140:10-140:61" name="Client is due for a hepatitis B vaccination Case 1" xsi:type="ExpressionRef"/>
+               <then localId="310" locator="140:68-140:222" valueType="t:String" value="Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <caseItem localId="311" locator="142:5-142:292">
+               <when localId="312" locator="142:10-142:61" name="Client is due for a hepatitis B vaccination Case 2" xsi:type="ExpressionRef"/>
+               <then localId="313" locator="142:68-142:292" valueType="t:String" value="Should vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered more than 6 months ago and the latest hepatitis B dose was administered more than 4 weeks ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+            </caseItem>
+            <else localId="314" locator="144:10-144:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="318" locator="151:1-152:55" name="Hepatitis B immunization schedule is complete" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Hepatitis B immunization schedule is complete"/>
+            <a:t name="pseudocode" value="&quot;Immunization recommendation status&quot; = &quot;Complete&quot;"/>
+            <a:s r="318">
+               <a:s>/*
+@output: Hepatitis B immunization schedule is complete
+@pseudocode: '&quot;Immunization recommendation status&quot; = &quot;Complete&quot;
+*/
+define &quot;Hepatitis B immunization schedule is complete&quot;:
+  </a:s>
+               <a:s r="320">
+                  <a:s r="319">
+                     <a:s>Encounter</a:s>
+                  </a:s>
+                  <a:s>.</a:s>
+                  <a:s r="320">
+                     <a:s>&quot;Three hepatitis B doses were administered&quot;</a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="320" locator="152:3-152:55" name="Three hepatitis B doses were administered" libraryName="Encounter" xsi:type="ExpressionRef"/>
+      </def>
+      <def localId="323" locator="159:1-160:143" name="Hepatitis B immunization schedule is complete Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="output" value="Hepatitis B immunization schedule is complete Guidance"/>
+            <a:t name="guidance" value="Hepatitis B immunization schedule is complete. Three hepatitis B primary series doses were administered. &#xa;Check for any other vaccines due."/>
+            <a:s r="323">
+               <a:s>/*
+@output: Hepatitis B immunization schedule is complete Guidance
+@guidance: Hepatitis B immunization schedule is complete. Three hepatitis B primary series doses were administered. 
+Check for any other vaccines due.
+*/
+define &quot;Hepatitis B immunization schedule is complete Guidance&quot;:
+  </a:s>
+               <a:s r="324">
+                  <a:s>'Hepatitis B immunization schedule is complete. Three hepatitis B primary series doses were administered. 
+Check for any other vaccines due.'</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="324" locator="160:3-160:143" valueType="t:String" value="Hepatitis B immunization schedule is complete. Three hepatitis B primary series doses were administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+      </def>
+      <def localId="219" locator="23:1-30:5" name="Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="dynamicValue" value="Guidance"/>
+            <a:s r="219">
+               <a:s>/*
+@dynamicValue: Guidance
+*/
+define &quot;Guidance&quot;:
+  </a:s>
+               <a:s r="220">
+                  <a:s>case
+    </a:s>
+                  <a:s r="221">
+                     <a:s>when </a:s>
+                     <a:s r="229">
+                        <a:s>&quot;Client is due for hepatitis B vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="233">
+                        <a:s>&quot;Client is due for hepatitis B vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="234">
+                     <a:s>when </a:s>
+                     <a:s r="266">
+                        <a:s>&quot;Client is not due for a hepatitis B vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="280">
+                        <a:s>&quot;Client is not due for a hepatitis B vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="281">
+                     <a:s>when </a:s>
+                     <a:s r="304">
+                        <a:s>&quot;Client is due for a hepatitis B vaccination&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="315">
+                        <a:s>&quot;Client is due for a hepatitis B vaccination Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="316">
+                     <a:s>when </a:s>
+                     <a:s r="321">
+                        <a:s>&quot;Hepatitis B immunization schedule is complete&quot;</a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="325">
+                        <a:s>&quot;Hepatitis B immunization schedule is complete Guidance&quot;</a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="326">
+                     <a:s>''</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="220" locator="24:3-30:5" xsi:type="Case">
+            <caseItem localId="221" locator="25:5-25:110">
+               <when localId="229" locator="25:10-25:52" name="Client is due for hepatitis B vaccination" xsi:type="ExpressionRef"/>
+               <then localId="233" locator="25:59-25:110" name="Client is due for hepatitis B vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="234" locator="26:5-26:122">
+               <when localId="266" locator="26:10-26:58" name="Client is not due for a hepatitis B vaccination" xsi:type="ExpressionRef"/>
+               <then localId="280" locator="26:65-26:122" name="Client is not due for a hepatitis B vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="281" locator="27:5-27:114">
+               <when localId="304" locator="27:10-27:54" name="Client is due for a hepatitis B vaccination" xsi:type="ExpressionRef"/>
+               <then localId="315" locator="27:61-27:114" name="Client is due for a hepatitis B vaccination Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <caseItem localId="316" locator="28:5-28:118">
+               <when localId="321" locator="28:10-28:56" name="Hepatitis B immunization schedule is complete" xsi:type="ExpressionRef"/>
+               <then localId="325" locator="28:63-28:118" name="Hepatitis B immunization schedule is complete Guidance" xsi:type="ExpressionRef"/>
+            </caseItem>
+            <else localId="326" locator="29:10-29:11" valueType="t:String" value="" xsi:type="Literal"/>
+         </expression>
+      </def>
+      <def localId="328" locator="32:1-33:45" name="Has Guidance" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:s r="328">
+               <a:s>define &quot;Has Guidance&quot;:
+  </a:s>
+               <a:s r="329">
+                  <a:s r="332">
+                     <a:s r="330">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> is not null</a:s>
+                  </a:s>
+                  <a:s> and </a:s>
+                  <a:s r="338">
+                     <a:s r="334">
+                        <a:s>&quot;Guidance&quot;</a:s>
+                     </a:s>
+                     <a:s> != </a:s>
+                     <a:s r="335">
+                        <a:s>''</a:s>
+                     </a:s>
+                  </a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="329" locator="33:3-33:45" xsi:type="And">
+            <operand localId="332" locator="33:3-33:24" xsi:type="Not">
+               <operand localId="331" locator="33:3-33:24" xsi:type="IsNull">
+                  <operand localId="330" locator="33:3-33:12" name="Guidance" xsi:type="ExpressionRef"/>
+               </operand>
+            </operand>
+            <operand localId="338" locator="33:30-33:45" xsi:type="Not">
+               <operand localId="333" locator="33:30-33:45" xsi:type="Equal">
+                  <signature localId="336" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="337" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="334" locator="33:30-33:39" name="Guidance" xsi:type="ExpressionRef"/>
+                  <operand localId="335" locator="33:44-33:45" valueType="t:String" value="" xsi:type="Literal"/>
+               </operand>
+            </operand>
+         </expression>
+      </def>
+      <def localId="340" locator="167:1-184:5" name="Test Validation" context="Patient" accessLevel="Public">
+         <annotation xsi:type="a:Annotation">
+            <a:t name="test" value="Test expected results based on example patients"/>
+            <a:s r="340">
+               <a:s>/*
+@test: Test expected results based on example patients
+*/
+define &quot;Test Validation&quot;:
+  </a:s>
+               <a:s r="341">
+                  <a:s>case
+    </a:s>
+                  <a:s r="342">
+                     <a:s>when </a:s>
+                     <a:s r="343">
+                        <a:s r="345">
+                           <a:s r="344">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="345">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="346">
+                           <a:s>'50.Agt1d'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="351">
+                        <a:s r="352">
+                           <a:s>&quot;Client is due for hepatitis B vaccination&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="353">
+                           <a:s r="354">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="355">
+                              <a:s>'Should vaccinate client with first hepatitis B dose as hepatitis B birth dose was not administered. The first hepatitis B dose should be administered as soon as possible.  
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="358">
+                     <a:s>when </a:s>
+                     <a:s r="359">
+                        <a:s r="361">
+                           <a:s r="360">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="361">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="362">
+                           <a:s>'51.D1HBltww'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="367">
+                        <a:s r="368">
+                           <a:s>&quot;Client is not due for a hepatitis B vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="369">
+                           <a:s r="370">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="371">
+                              <a:s>'Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="374">
+                     <a:s>when </a:s>
+                     <a:s r="375">
+                        <a:s r="377">
+                           <a:s r="376">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="377">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="378">
+                           <a:s>'52.D1HBgt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="383">
+                        <a:s r="384">
+                           <a:s>&quot;Client is due for a hepatitis B vaccination Case 1&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="385">
+                           <a:s r="386">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="387">
+                              <a:s>'Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="390">
+                     <a:s>when </a:s>
+                     <a:s r="391">
+                        <a:s r="393">
+                           <a:s r="392">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="393">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="394">
+                           <a:s>'53.D2HBlt4w'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="399">
+                        <a:s r="400">
+                           <a:s>&quot;Client is not due for a hepatitis B vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="401">
+                           <a:s r="402">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="403">
+                              <a:s>'Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. Two hepatitis B doses have been administered to the client. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="406">
+                     <a:s>when </a:s>
+                     <a:s r="407">
+                        <a:s r="409">
+                           <a:s r="408">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="409">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="410">
+                           <a:s>'54.D2HBgt4wFDlt6m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="415">
+                        <a:s r="416">
+                           <a:s>&quot;Client is not due for a hepatitis B vaccination Case 3&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="417">
+                           <a:s r="418">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="419">
+                              <a:s>'Should not vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered less than 6 months ago. 
+Check for any other vaccines due, and inform the caregiver of when to come back for the next dose.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="422">
+                     <a:s>when </a:s>
+                     <a:s r="423">
+                        <a:s r="425">
+                           <a:s r="424">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="425">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="426">
+                           <a:s>'55.D2HBgt4wFDgt6m'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="431">
+                        <a:s r="432">
+                           <a:s>&quot;Client is due for a hepatitis B vaccination Case 2&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="433">
+                           <a:s r="434">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="435">
+                              <a:s>'Should vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered more than 6 months ago and the latest hepatitis B dose was administered more than 4 weeks ago. 
+Check for contraindications.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    </a:s>
+                  <a:s r="438">
+                     <a:s>when </a:s>
+                     <a:s r="439">
+                        <a:s r="441">
+                           <a:s r="440">
+                              <a:s>Patient</a:s>
+                           </a:s>
+                           <a:s>.</a:s>
+                           <a:s r="441">
+                              <a:s>id</a:s>
+                           </a:s>
+                        </a:s>
+                        <a:s> = </a:s>
+                        <a:s r="442">
+                           <a:s>'56.D3'</a:s>
+                        </a:s>
+                     </a:s>
+                     <a:s> then </a:s>
+                     <a:s r="447">
+                        <a:s r="448">
+                           <a:s>&quot;Hepatitis B immunization schedule is complete&quot;</a:s>
+                        </a:s>
+                        <a:s> and </a:s>
+                        <a:s r="449">
+                           <a:s r="450">
+                              <a:s>&quot;Guidance&quot;</a:s>
+                           </a:s>
+                           <a:s> = </a:s>
+                           <a:s r="451">
+                              <a:s>'Hepatitis B immunization schedule is complete. Three hepatitis B primary series doses were administered. 
+Check for any other vaccines due.'</a:s>
+                           </a:s>
+                        </a:s>
+                     </a:s>
+                  </a:s>
+                  <a:s>
+    else </a:s>
+                  <a:s r="454">
+                     <a:s>'No test case set'</a:s>
+                  </a:s>
+                  <a:s>
+  end</a:s>
+               </a:s>
+            </a:s>
+         </annotation>
+         <expression localId="341" locator="168:3-184:5" xsi:type="Case">
+            <caseItem localId="342" locator="169:5-169:302">
+               <when localId="343" locator="169:10-169:32" xsi:type="Equal">
+                  <signature localId="349" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="350" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="347" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="348" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="345" locator="169:10-169:19" path="id" xsi:type="Property">
+                        <source localId="344" locator="169:10-169:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="346" locator="169:23-169:32" valueType="t:String" value="50.Agt1d" xsi:type="Literal"/>
+               </when>
+               <then localId="455" xsi:type="As">
+                  <operand localId="351" locator="169:39-169:302" xsi:type="And">
+                     <operand localId="352" locator="169:39-169:81" name="Client is due for hepatitis B vaccination" xsi:type="ExpressionRef"/>
+                     <operand localId="353" locator="169:87-169:302" xsi:type="Equal">
+                        <signature localId="356" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="357" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="354" locator="169:87-169:96" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="355" locator="169:100-169:302" valueType="t:String" value="Should vaccinate client with first hepatitis B dose as hepatitis B birth dose was not administered. The first hepatitis B dose should be administered as soon as possible.  &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="456" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="457" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="458" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="358" locator="171:5-171:344">
+               <when localId="359" locator="171:10-171:35" xsi:type="Equal">
+                  <signature localId="365" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="366" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="363" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="364" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="361" locator="171:10-171:19" path="id" xsi:type="Property">
+                        <source localId="360" locator="171:10-171:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="362" locator="171:23-171:35" valueType="t:String" value="51.D1HBltww" xsi:type="Literal"/>
+               </when>
+               <then localId="459" xsi:type="As">
+                  <operand localId="367" locator="171:42-171:344" xsi:type="And">
+                     <operand localId="368" locator="171:42-171:97" name="Client is not due for a hepatitis B vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="369" locator="171:103-171:344" xsi:type="Equal">
+                        <signature localId="372" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="373" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="370" locator="171:103-171:112" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="371" locator="171:116-171:344" valueType="t:String" value="Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. &#xa;Check for any other vaccines due, and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="460" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="461" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="462" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="374" locator="173:5-173:266">
+               <when localId="375" locator="173:10-173:35" xsi:type="Equal">
+                  <signature localId="381" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="382" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="379" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="380" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="377" locator="173:10-173:19" path="id" xsi:type="Property">
+                        <source localId="376" locator="173:10-173:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="378" locator="173:23-173:35" valueType="t:String" value="52.D1HBgt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="463" xsi:type="As">
+                  <operand localId="383" locator="173:42-173:266" xsi:type="And">
+                     <operand localId="384" locator="173:42-173:93" name="Client is due for a hepatitis B vaccination Case 1" xsi:type="ExpressionRef"/>
+                     <operand localId="385" locator="173:99-173:266" xsi:type="Equal">
+                        <signature localId="388" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="389" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="386" locator="173:99-173:108" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="387" locator="173:112-173:266" valueType="t:String" value="Should vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="464" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="465" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="466" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="390" locator="175:5-175:404">
+               <when localId="391" locator="175:10-175:35" xsi:type="Equal">
+                  <signature localId="397" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="398" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="395" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="396" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="393" locator="175:10-175:19" path="id" xsi:type="Property">
+                        <source localId="392" locator="175:10-175:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="394" locator="175:23-175:35" valueType="t:String" value="53.D2HBlt4w" xsi:type="Literal"/>
+               </when>
+               <then localId="467" xsi:type="As">
+                  <operand localId="399" locator="175:42-175:404" xsi:type="And">
+                     <operand localId="400" locator="175:42-175:97" name="Client is not due for a hepatitis B vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="401" locator="175:103-175:404" xsi:type="Equal">
+                        <signature localId="404" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="405" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="402" locator="175:103-175:112" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="403" locator="175:116-175:404" valueType="t:String" value="Should not vaccinate client with second hepatitis B dose as the latest hepatitis B dose was administered less than 4 weeks ago. Two hepatitis B doses have been administered to the client. &#xa;Check for any other vaccines due, and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="468" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="469" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="470" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="406" locator="177:5-177:349">
+               <when localId="407" locator="177:10-177:41" xsi:type="Equal">
+                  <signature localId="413" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="414" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="411" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="412" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="409" locator="177:10-177:19" path="id" xsi:type="Property">
+                        <source localId="408" locator="177:10-177:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="410" locator="177:23-177:41" valueType="t:String" value="54.D2HBgt4wFDlt6m" xsi:type="Literal"/>
+               </when>
+               <then localId="471" xsi:type="As">
+                  <operand localId="415" locator="177:48-177:349" xsi:type="And">
+                     <operand localId="416" locator="177:48-177:103" name="Client is not due for a hepatitis B vaccination Case 3" xsi:type="ExpressionRef"/>
+                     <operand localId="417" locator="177:109-177:349" xsi:type="Equal">
+                        <signature localId="420" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="421" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="418" locator="177:109-177:118" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="419" locator="177:122-177:349" valueType="t:String" value="Should not vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered less than 6 months ago. &#xa;Check for any other vaccines due, and inform the caregiver of when to come back for the next dose." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="472" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="473" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="474" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="422" locator="179:5-179:342">
+               <when localId="423" locator="179:10-179:41" xsi:type="Equal">
+                  <signature localId="429" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="430" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="427" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="428" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="425" locator="179:10-179:19" path="id" xsi:type="Property">
+                        <source localId="424" locator="179:10-179:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="426" locator="179:23-179:41" valueType="t:String" value="55.D2HBgt4wFDgt6m" xsi:type="Literal"/>
+               </when>
+               <then localId="475" xsi:type="As">
+                  <operand localId="431" locator="179:48-179:342" xsi:type="And">
+                     <operand localId="432" locator="179:48-179:99" name="Client is due for a hepatitis B vaccination Case 2" xsi:type="ExpressionRef"/>
+                     <operand localId="433" locator="179:105-179:342" xsi:type="Equal">
+                        <signature localId="436" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="437" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="434" locator="179:105-179:114" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="435" locator="179:118-179:342" valueType="t:String" value="Should vaccinate client with third hepatitis B dose as the first hepatitis B dose was administered more than 6 months ago and the latest hepatitis B dose was administered more than 4 weeks ago. &#xa;Check for contraindications." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="476" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="477" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="478" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <caseItem localId="438" locator="181:5-181:241">
+               <when localId="439" locator="181:10-181:29" xsi:type="Equal">
+                  <signature localId="445" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <signature localId="446" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  <operand localId="443" name="ToString" libraryName="FHIRHelpers" xsi:type="FunctionRef">
+                     <signature localId="444" name="fhir:string" xsi:type="NamedTypeSpecifier"/>
+                     <operand localId="441" locator="181:10-181:19" path="id" xsi:type="Property">
+                        <source localId="440" locator="181:10-181:16" name="Patient" xsi:type="ExpressionRef"/>
+                     </operand>
+                  </operand>
+                  <operand localId="442" locator="181:23-181:29" valueType="t:String" value="56.D3" xsi:type="Literal"/>
+               </when>
+               <then localId="479" xsi:type="As">
+                  <operand localId="447" locator="181:36-181:241" xsi:type="And">
+                     <operand localId="448" locator="181:36-181:82" name="Hepatitis B immunization schedule is complete" xsi:type="ExpressionRef"/>
+                     <operand localId="449" locator="181:88-181:241" xsi:type="Equal">
+                        <signature localId="452" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <signature localId="453" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                        <operand localId="450" locator="181:88-181:97" name="Guidance" xsi:type="ExpressionRef"/>
+                        <operand localId="451" locator="181:101-181:241" valueType="t:String" value="Hepatitis B immunization schedule is complete. Three hepatitis B primary series doses were administered. &#xa;Check for any other vaccines due." xsi:type="Literal"/>
+                     </operand>
+                  </operand>
+                  <asTypeSpecifier localId="480" xsi:type="ChoiceTypeSpecifier">
+                     <choice localId="481" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                     <choice localId="482" name="t:String" xsi:type="NamedTypeSpecifier"/>
+                  </asTypeSpecifier>
+               </then>
+            </caseItem>
+            <else localId="483" xsi:type="As">
+               <operand localId="454" locator="183:10-183:27" valueType="t:String" value="No test case set" xsi:type="Literal"/>
+               <asTypeSpecifier localId="484" xsi:type="ChoiceTypeSpecifier">
+                  <choice localId="485" name="t:Boolean" xsi:type="NamedTypeSpecifier"/>
+                  <choice localId="486" name="t:String" xsi:type="NamedTypeSpecifier"/>
+               </asTypeSpecifier>
+            </else>
+         </expression>
+      </def>
+   </statements>
+</library>
