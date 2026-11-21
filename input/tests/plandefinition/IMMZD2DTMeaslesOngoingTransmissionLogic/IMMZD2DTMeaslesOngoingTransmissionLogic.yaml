@@ -175,3 +175,70 @@ immunization:
         - doseNumberString: "2"
           seriesDosesString: "2"
           series: Primary series
+
+---
+# PROPOSED TEST: minimal pair of WHO test Measles10.3 (input/tests/plandefinition/IMMZD2DTMeaslesOngoingTransmissionLogic/IMMZD2DTMeaslesOngoingTransmissionLogic.yaml),
+# identical except the live vaccine is bOPV instead of LAIV (LAIV is not recommended < 2 years).
+# Expected per WHO: Table 2 (Dec 2025), measles: "An exception to this rule is OPV, which can be given at any time before or after measles vaccination without interference in the response to either vaccine."
+# Current DAK/IG output: NOT DUE (live vaccine administered in the last 4 weeks).
+#No measles primary series doses were administered
+#   Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 0
+#Client's age is more than or equal to 9 months
+#   Today's date − "Date of birth" ≥ 9 months
+#Live vaccine was administered in the last 4 weeks  [here: bOPV, oral polio vaccine]
+#   Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
+### Client is due for MCV1
+### "Immunization recommendation status" = "Due"
+id: Measles10OPV.3
+birth: -9m
+patient:
+  fhir:
+    gender: female
+immunization:
+  polio:
+    vaccine:
+      code: XM79H3
+      system: http://id.who.int/icd/release/11/mms
+      display: Poliomyelitis oral, bivalent, live attenuated
+    fhir:
+      expirationDate: 1y
+      occurrenceDateTime: -2w
+---
+# PROPOSED TEST: minimal pair of WHO test Measles13.3 (input/tests/plandefinition/IMMZD2DTMeaslesOngoingTransmissionLogic/IMMZD2DTMeaslesOngoingTransmissionLogic.yaml),
+# identical except the live vaccine is bOPV instead of LAIV (LAIV is not recommended < 2 years).
+# Expected per WHO: Table 2 (Dec 2025), measles: OPV "can be given at any time before or after measles vaccination".
+# Current DAK/IG output: NOT DUE (live vaccine administered in the last 4 weeks).
+#MCV1 was administered
+#   Count of vaccines administered (where "Vaccine type" = "Measles-containing vaccines" and "Type of dose" = "Primary series") = 1
+#Client's age is more than or equal to 15 months
+#   Today's date − "Date of birth" ≥ 15 months
+#Live vaccine was administered in the last 4 weeks  [here: bOPV, oral polio vaccine]
+#   Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
+### Client is due for MCV2
+### "Immunization recommendation status" = "Due"
+id: Measles13OPV.3
+birth: -15m
+patient:
+  fhir:
+    gender: female
+immunization:
+  polio:
+    vaccine:
+      code: XM79H3
+      system: http://id.who.int/icd/release/11/mms
+      display: Poliomyelitis oral, bivalent, live attenuated
+    fhir:
+      expirationDate: 1y
+      occurrenceDateTime: -2w
+  measles1:
+    vaccine:
+      code: XM8TF3
+      system: http://id.who.int/icd/release/11/mms
+      display: Measles, combinations with mumps and rubella, live attenuated
+    fhir:
+      expirationDate: 1y
+      occurrenceDateTime: b+9m
+      protocolApplied:
+        - doseNumberString: "1"
+          seriesDosesString: "2"
+          series: Primary series

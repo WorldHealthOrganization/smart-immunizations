@@ -71,19 +71,28 @@ define "Current Patient Age In Days":
   AgeInDaysAt(Today)
 
 /*
+@dataElement Live vaccines that require 4-week spacing from other live vaccines
+OPV is excluded: WHO position papers state OPV "can be given at any time before or after"
+measles-, rubella- and yellow fever-containing vaccines (WHO Table 2, December 2025).
+*/
+define "Live Attenuated Vaccines Requiring Spacing":
+  "Live Attenuated Vaccines" I
+    where not (I.vaccineCode in Concepts."Oral polio vaccines")
+
+/*
 @input: No live vaccine was administered
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) IS NULL
 */
 define "No live vaccine was administered":
-  not exists("Live Attenuated Vaccines")
+  not exists("Live Attenuated Vaccines Requiring Spacing")
 
 /*
 @input: Live vaccine was administered in the last 4 weeks
 @pseudocode: Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
 */
 define "Live vaccine was administered in the last 4 weeks":
-	"Date of Latest Live Attenuated Vaccine" is not null 
-    and duration in weeks between "Date of Latest Live Attenuated Vaccine" and Today < 4
+  exists ( "Live Attenuated Vaccines Requiring Spacing" I
+    where duration in weeks between date from start of I.occurrence.toInterval() and Today < 4 )
 
 /*
 @input: No live vaccine was administered in the last 4 weeks
