@@ -1010,3 +1010,33 @@ immunization:
         - doseNumberString: "1"
           seriesDosesString: "1"
           series: Primary series
+
+---
+# PROPOSED TEST: minimal pair of WHO test BCG08.4 (input/tests/plandefinition/IMMZD2DTBCGLogic/IMMZD2DTBCGLogic.yaml),
+# identical except the live vaccine is bOPV instead of LAIV (LAIV is not recommended < 2 years).
+# Expected per WHO: Table 2 (Dec 2025): BCG "should be given to all healthy neonates at birth"; bOPV zero dose "should be administered at birth"; "Both OPV and IPV may be co-administered with other infant vaccines."
+# Current DAK/IG output: NOT DUE (live vaccine administered in the last 4 weeks).
+#No BCG primary series dose was administered
+#   Count of vaccines administered (where "Vaccine type" = "BCG vaccines" and "Type of dose" = "Primary series") = 0
+#Client's age is less than or equal to 28 days
+#   Today's date − "Date of birth" ≤ 28 days
+#Client's HIV status is negative or unknown
+#   "HIV status" ≠ "HIV-positive"
+#Live vaccine was administered in the last four weeks  [here: bOPV, oral polio vaccine]
+#   Today's date − latest "Date and time of vaccination" (where "Live vaccine" = TRUE) < 4 weeks
+### Client is due for BCG vaccination
+### "Immunization recommendation status" = "Due"
+id: BCG08OPV.4
+birth: -3w
+patient:
+  fhir:
+    gender: female
+immunization:
+  polio:
+    vaccine:
+      code: XM79H3
+      system: http://id.who.int/icd/release/11/mms
+      display: Poliomyelitis oral, bivalent, live attenuated
+    fhir:
+      expirationDate: 1y
+      occurrenceDateTime: b+6h
